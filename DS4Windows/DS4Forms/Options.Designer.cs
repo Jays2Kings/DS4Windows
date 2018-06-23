@@ -76,6 +76,13 @@
             this.nUDL2 = new System.Windows.Forms.NumericUpDown();
             this.gBTouchpad = new System.Windows.Forms.GroupBox();
             this.pnlTPMouse = new System.Windows.Forms.Panel();
+            this.trackFrictionLb = new System.Windows.Forms.Label();
+            this.trackFrictionNUD = new System.Windows.Forms.NumericUpDown();
+            this.trackballCk = new System.Windows.Forms.CheckBox();
+            this.touchpadDisInvertButton = new System.Windows.Forms.Button();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.touchpadInvertComboBox = new System.Windows.Forms.ComboBox();
             this.cbStartTouchpadOff = new System.Windows.Forms.CheckBox();
             this.rBTPControls = new System.Windows.Forms.RadioButton();
             this.rBTPMouse = new System.Windows.Forms.RadioButton();
@@ -114,6 +121,9 @@
             this.bnSwipeRight = new System.Windows.Forms.Button();
             this.lbSwipeRight = new System.Windows.Forms.Label();
             this.gBOther = new System.Windows.Forms.GroupBox();
+            this.btPollRateLabel = new System.Windows.Forms.Label();
+            this.btPollRateComboBox = new System.Windows.Forms.ComboBox();
+            this.enableTouchToggleCheckbox = new System.Windows.Forms.CheckBox();
             this.cBDinput = new System.Windows.Forms.CheckBox();
             this.pBProgram = new System.Windows.Forms.PictureBox();
             this.cBLaunchProgram = new System.Windows.Forms.CheckBox();
@@ -249,6 +259,45 @@
             this.lbActionsTip = new System.Windows.Forms.Label();
             this.tCSens = new System.Windows.Forms.TabControl();
             this.tPDeadzone = new System.Windows.Forms.TabPage();
+            this.antiDeadzoneTabPage = new System.Windows.Forms.TabPage();
+            this.nUDSixaxisZAntiDead = new System.Windows.Forms.NumericUpDown();
+            this.nUDSixaxisXAntiDead = new System.Windows.Forms.NumericUpDown();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.nUDR2AntiDead = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.nUDL2AntiDead = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.nUDRSAntiDead = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.nUDLSAntiDead = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.maxZoneTabPage = new System.Windows.Forms.TabPage();
+            this.nUDSixAxisZMaxZone = new System.Windows.Forms.NumericUpDown();
+            this.nUDSixAxisXMaxZone = new System.Windows.Forms.NumericUpDown();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.nUDR2Maxzone = new System.Windows.Forms.NumericUpDown();
+            this.nUDL2Maxzone = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.nUDRSMaxZone = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.nUDLSMaxZone = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tPOutCurve = new System.Windows.Forms.TabPage();
+            this.cBSixaxisZOutputCurve = new System.Windows.Forms.ComboBox();
+            this.cBSixaxisXOutputCurve = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.cBR2OutputCurve = new System.Windows.Forms.ComboBox();
+            this.cBL2OutputCurve = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.rsOutCurveComboBox = new System.Windows.Forms.ComboBox();
+            this.lsOutCurveComboBox = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.tPCurve = new System.Windows.Forms.TabPage();
             this.nUDLSCurve = new System.Windows.Forms.NumericUpDown();
             this.nUDRSCurve = new System.Windows.Forms.NumericUpDown();
@@ -256,11 +305,26 @@
             this.lbRSCurvePercent = new System.Windows.Forms.Label();
             this.lbLSCurvePercent = new System.Windows.Forms.Label();
             this.lbLSCurve = new System.Windows.Forms.Label();
+            this.tpRotation = new System.Windows.Forms.TabPage();
+            this.nUDRSRotation = new System.Windows.Forms.NumericUpDown();
+            this.label14 = new System.Windows.Forms.Label();
+            this.nUDLSRotation = new System.Windows.Forms.NumericUpDown();
+            this.label13 = new System.Windows.Forms.Label();
             this.fLPSettings = new System.Windows.Forms.FlowLayoutPanel();
             this.gBGyro = new System.Windows.Forms.GroupBox();
             this.rBSAControls = new System.Windows.Forms.RadioButton();
             this.rBSAMouse = new System.Windows.Forms.RadioButton();
             this.pnlSAMouse = new System.Windows.Forms.Panel();
+            this.cBGyroMouseXAxis = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lbGyroSmooth = new System.Windows.Forms.Label();
+            this.cBGyroSmooth = new System.Windows.Forms.CheckBox();
+            this.lbSmoothWeight = new System.Windows.Forms.Label();
+            this.nUDGyroSmoothWeight = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
+            this.nUDGyroMouseVertScale = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.gyroTriggerBehavior = new System.Windows.Forms.CheckBox();
             this.cBGyroInvertY = new System.Windows.Forms.CheckBox();
             this.cBGyroInvertX = new System.Windows.Forms.CheckBox();
             this.lbGyroInvert = new System.Windows.Forms.Label();
@@ -302,6 +366,26 @@
             this.shareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cMTouchDisableInvert = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.crossTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.circleTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.squareTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.triangleTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.l1TouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.l2TouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.r1TouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.r2TouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.upTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.downTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.leftTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rightTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.l3TouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.r3TouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oneFingerTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.twoFingerTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.shareTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.psTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
@@ -324,6 +408,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDL2)).BeginInit();
             this.gBTouchpad.SuspendLayout();
             this.pnlTPMouse.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackFrictionNUD)).BeginInit();
             this.fLPTouchSwipe.SuspendLayout();
             this.cMSPresets.SuspendLayout();
             this.gBOther.SuspendLayout();
@@ -359,12 +444,32 @@
             this.fLPActionButtons.SuspendLayout();
             this.tCSens.SuspendLayout();
             this.tPDeadzone.SuspendLayout();
+            this.antiDeadzoneTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxisZAntiDead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxisXAntiDead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDR2AntiDead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2AntiDead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSAntiDead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSAntiDead)).BeginInit();
+            this.maxZoneTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisZMaxZone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisXMaxZone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDR2Maxzone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).BeginInit();
+            this.tPOutCurve.SuspendLayout();
             this.tPCurve.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).BeginInit();
+            this.tpRotation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSRotation)).BeginInit();
             this.fLPSettings.SuspendLayout();
             this.gBGyro.SuspendLayout();
             this.pnlSAMouse.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSmoothWeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroMouseVertScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSensitivity)).BeginInit();
             this.gBSensitivity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDL2S)).BeginInit();
@@ -374,12 +479,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
             this.cMGyroTriggers.SuspendLayout();
+            this.cMTouchDisableInvert.SuspendLayout();
             this.SuspendLayout();
             // 
             // lowColorChooserButton
             // 
-            resources.ApplyResources(this.lowColorChooserButton, "lowColorChooserButton");
             this.lowColorChooserButton.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.lowColorChooserButton, "lowColorChooserButton");
             this.lowColorChooserButton.Name = "lowColorChooserButton";
             this.lowColorChooserButton.UseVisualStyleBackColor = false;
             this.lowColorChooserButton.Click += new System.EventHandler(this.lowColorChooserButton_Click);
@@ -466,7 +572,7 @@
             resources.ApplyResources(this.cBDoubleTap, "cBDoubleTap");
             this.cBDoubleTap.Checked = true;
             this.cBDoubleTap.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBDoubleTap.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cBDoubleTap.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cBDoubleTap.Name = "cBDoubleTap";
             this.cBDoubleTap.UseVisualStyleBackColor = true;
             this.cBDoubleTap.CheckedChanged += new System.EventHandler(this.cBDoubleTap_CheckedChanged);
@@ -476,7 +582,7 @@
             resources.ApplyResources(this.cBTap, "cBTap");
             this.cBTap.Checked = true;
             this.cBTap.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBTap.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cBTap.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cBTap.Name = "cBTap";
             this.cBTap.UseVisualStyleBackColor = true;
             this.cBTap.CheckedChanged += new System.EventHandler(this.cBTap_CheckedChanged);
@@ -502,7 +608,7 @@
             resources.ApplyResources(this.cBScroll, "cBScroll");
             this.cBScroll.Checked = true;
             this.cBScroll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBScroll.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cBScroll.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cBScroll.Name = "cBScroll";
             this.cBScroll.UseVisualStyleBackColor = true;
             this.cBScroll.CheckedChanged += new System.EventHandler(this.cBScroll_CheckedChanged);
@@ -512,7 +618,7 @@
             resources.ApplyResources(this.cBSlide, "cBSlide");
             this.cBSlide.Checked = true;
             this.cBSlide.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBSlide.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cBSlide.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cBSlide.Name = "cBSlide";
             this.cBSlide.UseVisualStyleBackColor = true;
             this.cBSlide.CheckedChanged += new System.EventHandler(this.cBSlide_CheckedChanged);
@@ -562,7 +668,7 @@
             // cBlowerRCOn
             // 
             resources.ApplyResources(this.cBlowerRCOn, "cBlowerRCOn");
-            this.cBlowerRCOn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cBlowerRCOn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cBlowerRCOn.Name = "cBlowerRCOn";
             this.cBlowerRCOn.UseVisualStyleBackColor = true;
             this.cBlowerRCOn.CheckedChanged += new System.EventHandler(this.lowerRCOffCheckBox_CheckedChanged);
@@ -570,9 +676,7 @@
             // cBTouchpadJitterCompensation
             // 
             resources.ApplyResources(this.cBTouchpadJitterCompensation, "cBTouchpadJitterCompensation");
-            this.cBTouchpadJitterCompensation.Checked = true;
-            this.cBTouchpadJitterCompensation.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBTouchpadJitterCompensation.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cBTouchpadJitterCompensation.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cBTouchpadJitterCompensation.Name = "cBTouchpadJitterCompensation";
             this.cBTouchpadJitterCompensation.UseVisualStyleBackColor = true;
             this.cBTouchpadJitterCompensation.CheckedChanged += new System.EventHandler(this.touchpadJitterCompensation_CheckedChanged);
@@ -594,8 +698,8 @@
             // 
             // nUDIdleDisconnect
             // 
-            resources.ApplyResources(this.nUDIdleDisconnect, "nUDIdleDisconnect");
             this.nUDIdleDisconnect.DecimalPlaces = 1;
+            resources.ApplyResources(this.nUDIdleDisconnect, "nUDIdleDisconnect");
             this.nUDIdleDisconnect.Maximum = new decimal(new int[] {
             60,
             0,
@@ -606,13 +710,13 @@
             // 
             // nUDR2
             // 
-            resources.ApplyResources(this.nUDR2, "nUDR2");
             this.nUDR2.DecimalPlaces = 2;
             this.nUDR2.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
+            resources.ApplyResources(this.nUDR2, "nUDR2");
             this.nUDR2.Maximum = new decimal(new int[] {
             1,
             0,
@@ -718,7 +822,6 @@
             // 
             // pnlFull
             // 
-            resources.ApplyResources(this.pnlFull, "pnlFull");
             this.pnlFull.Controls.Add(this.lbFull);
             this.pnlFull.Controls.Add(this.lbRed);
             this.pnlFull.Controls.Add(this.lbGreen);
@@ -726,11 +829,11 @@
             this.pnlFull.Controls.Add(this.tBRedBar);
             this.pnlFull.Controls.Add(this.tBGreenBar);
             this.pnlFull.Controls.Add(this.tBBlueBar);
+            resources.ApplyResources(this.pnlFull, "pnlFull");
             this.pnlFull.Name = "pnlFull";
             // 
             // pnlLowBattery
             // 
-            resources.ApplyResources(this.pnlLowBattery, "pnlLowBattery");
             this.pnlLowBattery.Controls.Add(this.lowColorChooserButton);
             this.pnlLowBattery.Controls.Add(this.lbLowRed);
             this.pnlLowBattery.Controls.Add(this.lbLowGreen);
@@ -739,6 +842,7 @@
             this.pnlLowBattery.Controls.Add(this.tBLowGreenBar);
             this.pnlLowBattery.Controls.Add(this.tBLowBlueBar);
             this.pnlLowBattery.Controls.Add(this.lbEmpty);
+            resources.ApplyResources(this.pnlLowBattery, "pnlLowBattery");
             this.pnlLowBattery.Name = "pnlLowBattery";
             // 
             // lbRS
@@ -753,23 +857,18 @@
             // 
             // nUDRS
             // 
-            resources.ApplyResources(this.nUDRS, "nUDRS");
             this.nUDRS.DecimalPlaces = 2;
             this.nUDRS.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
+            resources.ApplyResources(this.nUDRS, "nUDRS");
             this.nUDRS.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.nUDRS.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
             this.nUDRS.Name = "nUDRS";
             this.nUDRS.ValueChanged += new System.EventHandler(this.numUDRS_ValueChanged);
             // 
@@ -791,35 +890,30 @@
             // 
             // nUDLS
             // 
-            resources.ApplyResources(this.nUDLS, "nUDLS");
             this.nUDLS.DecimalPlaces = 2;
             this.nUDLS.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
+            resources.ApplyResources(this.nUDLS, "nUDLS");
             this.nUDLS.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.nUDLS.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
             this.nUDLS.Name = "nUDLS";
             this.nUDLS.ValueChanged += new System.EventHandler(this.numUDLS_ValueChanged);
             // 
             // nUDL2
             // 
-            resources.ApplyResources(this.nUDL2, "nUDL2");
             this.nUDL2.DecimalPlaces = 2;
             this.nUDL2.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
+            resources.ApplyResources(this.nUDL2, "nUDL2");
             this.nUDL2.Maximum = new decimal(new int[] {
             1,
             0,
@@ -830,19 +924,25 @@
             // 
             // gBTouchpad
             // 
-            resources.ApplyResources(this.gBTouchpad, "gBTouchpad");
-            this.gBTouchpad.BackColor = System.Drawing.Color.Transparent;
+            this.gBTouchpad.BackColor = System.Drawing.SystemColors.Control;
             this.gBTouchpad.Controls.Add(this.pnlTPMouse);
             this.gBTouchpad.Controls.Add(this.rBTPControls);
             this.gBTouchpad.Controls.Add(this.rBTPMouse);
             this.gBTouchpad.Controls.Add(this.fLPTouchSwipe);
-            this.gBTouchpad.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.gBTouchpad.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.gBTouchpad, "gBTouchpad");
             this.gBTouchpad.Name = "gBTouchpad";
             this.gBTouchpad.TabStop = false;
             // 
             // pnlTPMouse
             // 
-            resources.ApplyResources(this.pnlTPMouse, "pnlTPMouse");
+            this.pnlTPMouse.Controls.Add(this.trackFrictionLb);
+            this.pnlTPMouse.Controls.Add(this.trackFrictionNUD);
+            this.pnlTPMouse.Controls.Add(this.trackballCk);
+            this.pnlTPMouse.Controls.Add(this.touchpadDisInvertButton);
+            this.pnlTPMouse.Controls.Add(this.label25);
+            this.pnlTPMouse.Controls.Add(this.label15);
+            this.pnlTPMouse.Controls.Add(this.touchpadInvertComboBox);
             this.pnlTPMouse.Controls.Add(this.nUDScroll);
             this.pnlTPMouse.Controls.Add(this.cBDoubleTap);
             this.pnlTPMouse.Controls.Add(this.cBScroll);
@@ -853,12 +953,70 @@
             this.pnlTPMouse.Controls.Add(this.cBSlide);
             this.pnlTPMouse.Controls.Add(this.nUDTouch);
             this.pnlTPMouse.Controls.Add(this.cbStartTouchpadOff);
+            resources.ApplyResources(this.pnlTPMouse, "pnlTPMouse");
             this.pnlTPMouse.Name = "pnlTPMouse";
+            // 
+            // trackFrictionLb
+            // 
+            resources.ApplyResources(this.trackFrictionLb, "trackFrictionLb");
+            this.trackFrictionLb.Name = "trackFrictionLb";
+            // 
+            // trackFrictionNUD
+            // 
+            this.trackFrictionNUD.DecimalPlaces = 1;
+            resources.ApplyResources(this.trackFrictionNUD, "trackFrictionNUD");
+            this.trackFrictionNUD.Name = "trackFrictionNUD";
+            this.trackFrictionNUD.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.trackFrictionNUD.ValueChanged += new System.EventHandler(this.trackFrictionNUD_ValueChanged);
+            // 
+            // trackballCk
+            // 
+            resources.ApplyResources(this.trackballCk, "trackballCk");
+            this.trackballCk.Name = "trackballCk";
+            this.trackballCk.UseVisualStyleBackColor = true;
+            this.trackballCk.CheckedChanged += new System.EventHandler(this.trackballCk_CheckedChanged);
+            // 
+            // touchpadDisInvertButton
+            // 
+            this.touchpadDisInvertButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.touchpadDisInvertButton, "touchpadDisInvertButton");
+            this.touchpadDisInvertButton.Name = "touchpadDisInvertButton";
+            this.touchpadDisInvertButton.UseVisualStyleBackColor = true;
+            this.touchpadDisInvertButton.Click += new System.EventHandler(this.touchpadDisInvertButton_Click);
+            // 
+            // label25
+            // 
+            resources.ApplyResources(this.label25, "label25");
+            this.label25.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label25.Name = "label25";
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label15.Name = "label15";
+            // 
+            // touchpadInvertComboBox
+            // 
+            this.touchpadInvertComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.touchpadInvertComboBox.FormattingEnabled = true;
+            this.touchpadInvertComboBox.Items.AddRange(new object[] {
+            resources.GetString("touchpadInvertComboBox.Items"),
+            resources.GetString("touchpadInvertComboBox.Items1"),
+            resources.GetString("touchpadInvertComboBox.Items2"),
+            resources.GetString("touchpadInvertComboBox.Items3")});
+            resources.ApplyResources(this.touchpadInvertComboBox, "touchpadInvertComboBox");
+            this.touchpadInvertComboBox.Name = "touchpadInvertComboBox";
+            this.touchpadInvertComboBox.SelectedIndexChanged += new System.EventHandler(this.touchpadInvertComboBox_SelectedIndexChanged);
             // 
             // cbStartTouchpadOff
             // 
             resources.ApplyResources(this.cbStartTouchpadOff, "cbStartTouchpadOff");
-            this.cbStartTouchpadOff.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cbStartTouchpadOff.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cbStartTouchpadOff.Name = "cbStartTouchpadOff";
             this.cbStartTouchpadOff.UseVisualStyleBackColor = true;
             this.cbStartTouchpadOff.CheckedChanged += new System.EventHandler(this.cbStartTouchpadOff_CheckedChanged);
@@ -866,7 +1024,7 @@
             // rBTPControls
             // 
             resources.ApplyResources(this.rBTPControls, "rBTPControls");
-            this.rBTPControls.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.rBTPControls.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rBTPControls.Name = "rBTPControls";
             this.rBTPControls.TabStop = true;
             this.rBTPControls.UseVisualStyleBackColor = true;
@@ -875,7 +1033,7 @@
             // rBTPMouse
             // 
             resources.ApplyResources(this.rBTPMouse, "rBTPMouse");
-            this.rBTPMouse.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.rBTPMouse.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rBTPMouse.Name = "rBTPMouse";
             this.rBTPMouse.TabStop = true;
             this.rBTPMouse.UseVisualStyleBackColor = true;
@@ -883,7 +1041,6 @@
             // 
             // fLPTouchSwipe
             // 
-            resources.ApplyResources(this.fLPTouchSwipe, "fLPTouchSwipe");
             this.fLPTouchSwipe.Controls.Add(this.bnSwipeUp);
             this.fLPTouchSwipe.Controls.Add(this.lbSwipeUp);
             this.fLPTouchSwipe.Controls.Add(this.bnSwipeDown);
@@ -892,13 +1049,14 @@
             this.fLPTouchSwipe.Controls.Add(this.lbSwipeLeft);
             this.fLPTouchSwipe.Controls.Add(this.bnSwipeRight);
             this.fLPTouchSwipe.Controls.Add(this.lbSwipeRight);
+            resources.ApplyResources(this.fLPTouchSwipe, "fLPTouchSwipe");
             this.fLPTouchSwipe.Name = "fLPTouchSwipe";
             // 
             // bnSwipeUp
             // 
-            resources.ApplyResources(this.bnSwipeUp, "bnSwipeUp");
             this.bnSwipeUp.BackColor = System.Drawing.SystemColors.ControlText;
             this.bnSwipeUp.ContextMenuStrip = this.cMSPresets;
+            resources.ApplyResources(this.bnSwipeUp, "bnSwipeUp");
             this.bnSwipeUp.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.bnSwipeUp.Name = "bnSwipeUp";
             this.bnSwipeUp.UseVisualStyleBackColor = false;
@@ -906,7 +1064,6 @@
             // 
             // cMSPresets
             // 
-            resources.ApplyResources(this.cMSPresets, "cMSPresets");
             this.cMSPresets.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cMSPresets.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.controlToolStripMenuItem,
@@ -921,6 +1078,7 @@
             this.MouseToolStripMenuItem});
             this.cMSPresets.Name = "contextMenuStrip1";
             this.cMSPresets.ShowImageMargin = false;
+            resources.ApplyResources(this.cMSPresets, "cMSPresets");
             this.cMSPresets.Opened += new System.EventHandler(this.cMSPresets_Opened);
             // 
             // controlToolStripMenuItem
@@ -930,173 +1088,173 @@
             // 
             // toolStripSeparator1
             // 
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
             // defaultToolStripMenuItem
             // 
-            resources.ApplyResources(this.defaultToolStripMenuItem, "defaultToolStripMenuItem");
             this.defaultToolStripMenuItem.Name = "defaultToolStripMenuItem";
+            resources.ApplyResources(this.defaultToolStripMenuItem, "defaultToolStripMenuItem");
             this.defaultToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
             // DpadToolStripMenuItem
             // 
-            resources.ApplyResources(this.DpadToolStripMenuItem, "DpadToolStripMenuItem");
             this.DpadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tSMIDPadInverted,
             this.tSMIDPadInvertedX,
             this.tSMIDPadInvertedY});
             this.DpadToolStripMenuItem.Name = "DpadToolStripMenuItem";
+            resources.ApplyResources(this.DpadToolStripMenuItem, "DpadToolStripMenuItem");
             this.DpadToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIDPadInverted
             // 
-            resources.ApplyResources(this.tSMIDPadInverted, "tSMIDPadInverted");
             this.tSMIDPadInverted.Name = "tSMIDPadInverted";
+            resources.ApplyResources(this.tSMIDPadInverted, "tSMIDPadInverted");
             this.tSMIDPadInverted.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIDPadInvertedX
             // 
-            resources.ApplyResources(this.tSMIDPadInvertedX, "tSMIDPadInvertedX");
             this.tSMIDPadInvertedX.Name = "tSMIDPadInvertedX";
+            resources.ApplyResources(this.tSMIDPadInvertedX, "tSMIDPadInvertedX");
             this.tSMIDPadInvertedX.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIDPadInvertedY
             // 
-            resources.ApplyResources(this.tSMIDPadInvertedY, "tSMIDPadInvertedY");
             this.tSMIDPadInvertedY.Name = "tSMIDPadInvertedY";
+            resources.ApplyResources(this.tSMIDPadInvertedY, "tSMIDPadInvertedY");
             this.tSMIDPadInvertedY.Click += new System.EventHandler(this.SetPreset);
             // 
             // LSToolStripMenuItem
             // 
-            resources.ApplyResources(this.LSToolStripMenuItem, "LSToolStripMenuItem");
             this.LSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tSMILSInverted,
             this.tSMILSInvertedX,
             this.tSMILSInvertedY});
             this.LSToolStripMenuItem.Name = "LSToolStripMenuItem";
+            resources.ApplyResources(this.LSToolStripMenuItem, "LSToolStripMenuItem");
             this.LSToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMILSInverted
             // 
-            resources.ApplyResources(this.tSMILSInverted, "tSMILSInverted");
             this.tSMILSInverted.Name = "tSMILSInverted";
+            resources.ApplyResources(this.tSMILSInverted, "tSMILSInverted");
             this.tSMILSInverted.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMILSInvertedX
             // 
-            resources.ApplyResources(this.tSMILSInvertedX, "tSMILSInvertedX");
             this.tSMILSInvertedX.Name = "tSMILSInvertedX";
+            resources.ApplyResources(this.tSMILSInvertedX, "tSMILSInvertedX");
             this.tSMILSInvertedX.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMILSInvertedY
             // 
-            resources.ApplyResources(this.tSMILSInvertedY, "tSMILSInvertedY");
             this.tSMILSInvertedY.Name = "tSMILSInvertedY";
+            resources.ApplyResources(this.tSMILSInvertedY, "tSMILSInvertedY");
             this.tSMILSInvertedY.Click += new System.EventHandler(this.SetPreset);
             // 
             // RSToolStripMenuItem
             // 
-            resources.ApplyResources(this.RSToolStripMenuItem, "RSToolStripMenuItem");
             this.RSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tSMIRSInverted,
             this.tSMIRSInvertedX,
             this.tSMIRSInvertedY});
             this.RSToolStripMenuItem.Name = "RSToolStripMenuItem";
+            resources.ApplyResources(this.RSToolStripMenuItem, "RSToolStripMenuItem");
             this.RSToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIRSInverted
             // 
-            resources.ApplyResources(this.tSMIRSInverted, "tSMIRSInverted");
             this.tSMIRSInverted.Name = "tSMIRSInverted";
+            resources.ApplyResources(this.tSMIRSInverted, "tSMIRSInverted");
             this.tSMIRSInverted.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIRSInvertedX
             // 
-            resources.ApplyResources(this.tSMIRSInvertedX, "tSMIRSInvertedX");
             this.tSMIRSInvertedX.Name = "tSMIRSInvertedX";
+            resources.ApplyResources(this.tSMIRSInvertedX, "tSMIRSInvertedX");
             this.tSMIRSInvertedX.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIRSInvertedY
             // 
-            resources.ApplyResources(this.tSMIRSInvertedY, "tSMIRSInvertedY");
             this.tSMIRSInvertedY.Name = "tSMIRSInvertedY";
+            resources.ApplyResources(this.tSMIRSInvertedY, "tSMIRSInvertedY");
             this.tSMIRSInvertedY.Click += new System.EventHandler(this.SetPreset);
             // 
             // ABXYToolStripMenuItem
             // 
-            resources.ApplyResources(this.ABXYToolStripMenuItem, "ABXYToolStripMenuItem");
             this.ABXYToolStripMenuItem.Name = "ABXYToolStripMenuItem";
+            resources.ApplyResources(this.ABXYToolStripMenuItem, "ABXYToolStripMenuItem");
             this.ABXYToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
             // WASDToolStripMenuItem
             // 
-            resources.ApplyResources(this.WASDToolStripMenuItem, "WASDToolStripMenuItem");
             this.WASDToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.wScanCodeWASDToolStripMenuItem});
             this.WASDToolStripMenuItem.Name = "WASDToolStripMenuItem";
+            resources.ApplyResources(this.WASDToolStripMenuItem, "WASDToolStripMenuItem");
             this.WASDToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
             // wScanCodeWASDToolStripMenuItem
             // 
-            resources.ApplyResources(this.wScanCodeWASDToolStripMenuItem, "wScanCodeWASDToolStripMenuItem");
             this.wScanCodeWASDToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.wScanCodeWASDToolStripMenuItem.Name = "wScanCodeWASDToolStripMenuItem";
+            resources.ApplyResources(this.wScanCodeWASDToolStripMenuItem, "wScanCodeWASDToolStripMenuItem");
             this.wScanCodeWASDToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
             // ArrowKeysToolStripMenuItem
             // 
-            resources.ApplyResources(this.ArrowKeysToolStripMenuItem, "ArrowKeysToolStripMenuItem");
             this.ArrowKeysToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.wScanCodeArrowKeysToolStripMenuItem});
             this.ArrowKeysToolStripMenuItem.Name = "ArrowKeysToolStripMenuItem";
+            resources.ApplyResources(this.ArrowKeysToolStripMenuItem, "ArrowKeysToolStripMenuItem");
             this.ArrowKeysToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
             // wScanCodeArrowKeysToolStripMenuItem
             // 
-            resources.ApplyResources(this.wScanCodeArrowKeysToolStripMenuItem, "wScanCodeArrowKeysToolStripMenuItem");
             this.wScanCodeArrowKeysToolStripMenuItem.Name = "wScanCodeArrowKeysToolStripMenuItem";
+            resources.ApplyResources(this.wScanCodeArrowKeysToolStripMenuItem, "wScanCodeArrowKeysToolStripMenuItem");
             this.wScanCodeArrowKeysToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
             // MouseToolStripMenuItem
             // 
-            resources.ApplyResources(this.MouseToolStripMenuItem, "MouseToolStripMenuItem");
             this.MouseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tSMIMouseInverted,
             this.tSMIMouseInvertedX,
             this.tSMIMouseInvertedY});
             this.MouseToolStripMenuItem.Name = "MouseToolStripMenuItem";
+            resources.ApplyResources(this.MouseToolStripMenuItem, "MouseToolStripMenuItem");
             this.MouseToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIMouseInverted
             // 
-            resources.ApplyResources(this.tSMIMouseInverted, "tSMIMouseInverted");
             this.tSMIMouseInverted.Name = "tSMIMouseInverted";
+            resources.ApplyResources(this.tSMIMouseInverted, "tSMIMouseInverted");
             this.tSMIMouseInverted.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIMouseInvertedX
             // 
-            resources.ApplyResources(this.tSMIMouseInvertedX, "tSMIMouseInvertedX");
             this.tSMIMouseInvertedX.Name = "tSMIMouseInvertedX";
+            resources.ApplyResources(this.tSMIMouseInvertedX, "tSMIMouseInvertedX");
             this.tSMIMouseInvertedX.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIMouseInvertedY
             // 
-            resources.ApplyResources(this.tSMIMouseInvertedY, "tSMIMouseInvertedY");
             this.tSMIMouseInvertedY.Name = "tSMIMouseInvertedY";
+            resources.ApplyResources(this.tSMIMouseInvertedY, "tSMIMouseInvertedY");
             this.tSMIMouseInvertedY.Click += new System.EventHandler(this.SetPreset);
             // 
             // lbSwipeUp
             // 
+            this.lbSwipeUp.ForeColor = System.Drawing.SystemColors.ControlText;
             resources.ApplyResources(this.lbSwipeUp, "lbSwipeUp");
-            this.lbSwipeUp.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbSwipeUp.Name = "lbSwipeUp";
             // 
             // bnSwipeDown
             // 
-            resources.ApplyResources(this.bnSwipeDown, "bnSwipeDown");
             this.bnSwipeDown.BackColor = System.Drawing.SystemColors.ControlText;
             this.bnSwipeDown.ContextMenuStrip = this.cMSPresets;
+            resources.ApplyResources(this.bnSwipeDown, "bnSwipeDown");
             this.bnSwipeDown.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.bnSwipeDown.Name = "bnSwipeDown";
             this.bnSwipeDown.UseVisualStyleBackColor = false;
@@ -1104,15 +1262,15 @@
             // 
             // lbSwipeDown
             // 
+            this.lbSwipeDown.ForeColor = System.Drawing.SystemColors.ControlText;
             resources.ApplyResources(this.lbSwipeDown, "lbSwipeDown");
-            this.lbSwipeDown.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbSwipeDown.Name = "lbSwipeDown";
             // 
             // bnSwipeLeft
             // 
-            resources.ApplyResources(this.bnSwipeLeft, "bnSwipeLeft");
             this.bnSwipeLeft.BackColor = System.Drawing.SystemColors.ControlText;
             this.bnSwipeLeft.ContextMenuStrip = this.cMSPresets;
+            resources.ApplyResources(this.bnSwipeLeft, "bnSwipeLeft");
             this.bnSwipeLeft.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.bnSwipeLeft.Name = "bnSwipeLeft";
             this.bnSwipeLeft.UseVisualStyleBackColor = false;
@@ -1120,15 +1278,15 @@
             // 
             // lbSwipeLeft
             // 
+            this.lbSwipeLeft.ForeColor = System.Drawing.SystemColors.ControlText;
             resources.ApplyResources(this.lbSwipeLeft, "lbSwipeLeft");
-            this.lbSwipeLeft.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbSwipeLeft.Name = "lbSwipeLeft";
             // 
             // bnSwipeRight
             // 
-            resources.ApplyResources(this.bnSwipeRight, "bnSwipeRight");
             this.bnSwipeRight.BackColor = System.Drawing.SystemColors.ControlText;
             this.bnSwipeRight.ContextMenuStrip = this.cMSPresets;
+            resources.ApplyResources(this.bnSwipeRight, "bnSwipeRight");
             this.bnSwipeRight.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.bnSwipeRight.Name = "bnSwipeRight";
             this.bnSwipeRight.UseVisualStyleBackColor = false;
@@ -1136,14 +1294,16 @@
             // 
             // lbSwipeRight
             // 
+            this.lbSwipeRight.ForeColor = System.Drawing.SystemColors.ControlText;
             resources.ApplyResources(this.lbSwipeRight, "lbSwipeRight");
-            this.lbSwipeRight.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbSwipeRight.Name = "lbSwipeRight";
             // 
             // gBOther
             // 
-            resources.ApplyResources(this.gBOther, "gBOther");
-            this.gBOther.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBOther.BackColor = System.Drawing.SystemColors.Control;
+            this.gBOther.Controls.Add(this.btPollRateLabel);
+            this.gBOther.Controls.Add(this.btPollRateComboBox);
+            this.gBOther.Controls.Add(this.enableTouchToggleCheckbox);
             this.gBOther.Controls.Add(this.cBDinput);
             this.gBOther.Controls.Add(this.pBProgram);
             this.gBOther.Controls.Add(this.cBLaunchProgram);
@@ -1158,15 +1318,55 @@
             this.gBOther.Controls.Add(this.numUDMouseSens);
             this.gBOther.Controls.Add(this.cBFlushHIDQueue);
             this.gBOther.Controls.Add(this.lbIdleMinutes);
+            resources.ApplyResources(this.gBOther, "gBOther");
             this.gBOther.Name = "gBOther";
             this.gBOther.TabStop = false;
+            // 
+            // btPollRateLabel
+            // 
+            resources.ApplyResources(this.btPollRateLabel, "btPollRateLabel");
+            this.btPollRateLabel.Name = "btPollRateLabel";
+            // 
+            // btPollRateComboBox
+            // 
+            this.btPollRateComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.btPollRateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.btPollRateComboBox.FormattingEnabled = true;
+            this.btPollRateComboBox.Items.AddRange(new object[] {
+            resources.GetString("btPollRateComboBox.Items"),
+            resources.GetString("btPollRateComboBox.Items1"),
+            resources.GetString("btPollRateComboBox.Items2"),
+            resources.GetString("btPollRateComboBox.Items3"),
+            resources.GetString("btPollRateComboBox.Items4"),
+            resources.GetString("btPollRateComboBox.Items5"),
+            resources.GetString("btPollRateComboBox.Items6"),
+            resources.GetString("btPollRateComboBox.Items7"),
+            resources.GetString("btPollRateComboBox.Items8"),
+            resources.GetString("btPollRateComboBox.Items9"),
+            resources.GetString("btPollRateComboBox.Items10"),
+            resources.GetString("btPollRateComboBox.Items11"),
+            resources.GetString("btPollRateComboBox.Items12"),
+            resources.GetString("btPollRateComboBox.Items13"),
+            resources.GetString("btPollRateComboBox.Items14"),
+            resources.GetString("btPollRateComboBox.Items15"),
+            resources.GetString("btPollRateComboBox.Items16")});
+            resources.ApplyResources(this.btPollRateComboBox, "btPollRateComboBox");
+            this.btPollRateComboBox.Name = "btPollRateComboBox";
+            this.btPollRateComboBox.SelectedIndexChanged += new System.EventHandler(this.btPollRateComboBox_SelectedIndexChanged);
+            // 
+            // enableTouchToggleCheckbox
+            // 
+            resources.ApplyResources(this.enableTouchToggleCheckbox, "enableTouchToggleCheckbox");
+            this.enableTouchToggleCheckbox.Name = "enableTouchToggleCheckbox";
+            this.enableTouchToggleCheckbox.UseVisualStyleBackColor = true;
+            this.enableTouchToggleCheckbox.CheckedChanged += new System.EventHandler(this.enableTouchToggleCheckbox_CheckedChanged);
             // 
             // cBDinput
             // 
             resources.ApplyResources(this.cBDinput, "cBDinput");
             this.cBDinput.Name = "cBDinput";
             this.cBDinput.UseVisualStyleBackColor = true;
-            this.cBDinput.CheckedChanged += new System.EventHandler(this.cBDinput_CheckedChanged);
+            this.cBDinput.CheckedChanged += new System.EventHandler(this.CBDinput_CheckedChanged);
             // 
             // pBProgram
             // 
@@ -1240,8 +1440,7 @@
             // 
             // gBLightbar
             // 
-            resources.ApplyResources(this.gBLightbar, "gBLightbar");
-            this.gBLightbar.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBLightbar.BackColor = System.Drawing.SystemColors.Control;
             this.gBLightbar.Controls.Add(this.btnRainbow);
             this.gBLightbar.Controls.Add(this.lbRainbowB);
             this.gBLightbar.Controls.Add(this.nUDRainbowB);
@@ -1257,13 +1456,14 @@
             this.gBLightbar.Controls.Add(this.cBLightbyBattery);
             this.gBLightbar.Controls.Add(this.pnlLowBattery);
             this.gBLightbar.Controls.Add(this.pnlFull);
+            resources.ApplyResources(this.gBLightbar, "gBLightbar");
             this.gBLightbar.Name = "gBLightbar";
             this.gBLightbar.TabStop = false;
             // 
             // btnRainbow
             // 
-            resources.ApplyResources(this.btnRainbow, "btnRainbow");
             this.btnRainbow.Image = global::DS4Windows.Properties.Resources.rainbow;
+            resources.ApplyResources(this.btnRainbow, "btnRainbow");
             this.btnRainbow.Name = "btnRainbow";
             this.btnRainbow.UseVisualStyleBackColor = true;
             this.btnRainbow.Click += new System.EventHandler(this.btnRainbow_Click);
@@ -1287,22 +1487,20 @@
             0,
             0,
             0});
-            this.nUDRainbowB.ValueChanged += new System.EventHandler(this.nUDRainbowB_ValueChanged);
             // 
             // cBFlashType
             // 
-            resources.ApplyResources(this.cBFlashType, "cBFlashType");
             this.cBFlashType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBFlashType.FormattingEnabled = true;
             this.cBFlashType.Items.AddRange(new object[] {
             resources.GetString("cBFlashType.Items"),
             resources.GetString("cBFlashType.Items1")});
+            resources.ApplyResources(this.cBFlashType, "cBFlashType");
             this.cBFlashType.Name = "cBFlashType";
             this.cBFlashType.SelectedIndexChanged += new System.EventHandler(this.cBFlashType_SelectedIndexChanged);
             // 
             // cBWhileCharging
             // 
-            resources.ApplyResources(this.cBWhileCharging, "cBWhileCharging");
             this.cBWhileCharging.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBWhileCharging.FormattingEnabled = true;
             this.cBWhileCharging.Items.AddRange(new object[] {
@@ -1310,21 +1508,22 @@
             resources.GetString("cBWhileCharging.Items1"),
             resources.GetString("cBWhileCharging.Items2"),
             resources.GetString("cBWhileCharging.Items3")});
+            resources.ApplyResources(this.cBWhileCharging, "cBWhileCharging");
             this.cBWhileCharging.Name = "cBWhileCharging";
             this.cBWhileCharging.SelectedIndexChanged += new System.EventHandler(this.cBWhileCharging_SelectedIndexChanged);
             // 
             // btnFlashColor
             // 
-            resources.ApplyResources(this.btnFlashColor, "btnFlashColor");
             this.btnFlashColor.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.btnFlashColor, "btnFlashColor");
             this.btnFlashColor.Name = "btnFlashColor";
             this.btnFlashColor.UseVisualStyleBackColor = false;
             this.btnFlashColor.Click += new System.EventHandler(this.btnFlashColor_Click);
             // 
             // btnChargingColor
             // 
-            resources.ApplyResources(this.btnChargingColor, "btnChargingColor");
             this.btnChargingColor.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.btnChargingColor, "btnChargingColor");
             this.btnChargingColor.Name = "btnChargingColor";
             this.btnChargingColor.UseVisualStyleBackColor = false;
             this.btnChargingColor.Click += new System.EventHandler(this.btnChargingColor_Click);
@@ -1341,23 +1540,23 @@
             // 
             // nUDflashLED
             // 
-            resources.ApplyResources(this.nUDflashLED, "nUDflashLED");
             this.nUDflashLED.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
+            resources.ApplyResources(this.nUDflashLED, "nUDflashLED");
             this.nUDflashLED.Name = "nUDflashLED";
             this.nUDflashLED.ValueChanged += new System.EventHandler(this.nUDflashLED_ValueChanged);
             // 
             // gBRumble
             // 
-            resources.ApplyResources(this.gBRumble, "gBRumble");
-            this.gBRumble.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBRumble.BackColor = System.Drawing.SystemColors.Control;
             this.gBRumble.Controls.Add(this.lbPercentRumble);
             this.gBRumble.Controls.Add(this.btnRumbleLightTest);
             this.gBRumble.Controls.Add(this.btnRumbleHeavyTest);
             this.gBRumble.Controls.Add(this.nUDRumbleBoost);
+            resources.ApplyResources(this.gBRumble, "gBRumble");
             this.gBRumble.Name = "gBRumble";
             this.gBRumble.TabStop = false;
             // 
@@ -1385,13 +1584,13 @@
             // 
             // nUDSZ
             // 
-            resources.ApplyResources(this.nUDSZ, "nUDSZ");
             this.nUDSZ.DecimalPlaces = 2;
             this.nUDSZ.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
+            resources.ApplyResources(this.nUDSZ, "nUDSZ");
             this.nUDSZ.Maximum = new decimal(new int[] {
             1,
             0,
@@ -1399,7 +1598,7 @@
             0});
             this.nUDSZ.Name = "nUDSZ";
             this.nUDSZ.Value = new decimal(new int[] {
-            25,
+            2,
             0,
             0,
             131072});
@@ -1407,13 +1606,13 @@
             // 
             // nUDSX
             // 
-            resources.ApplyResources(this.nUDSX, "nUDSX");
             this.nUDSX.DecimalPlaces = 2;
             this.nUDSX.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
+            resources.ApplyResources(this.nUDSX, "nUDSX");
             this.nUDSX.Maximum = new decimal(new int[] {
             1,
             0,
@@ -1421,19 +1620,15 @@
             0});
             this.nUDSX.Name = "nUDSX";
             this.nUDSX.Value = new decimal(new int[] {
-            25,
+            2,
             0,
             0,
             131072});
             this.nUDSX.ValueChanged += new System.EventHandler(this.nUDSX_ValueChanged);
             // 
-            // openFileDialog1
-            // 
-            resources.ApplyResources(this.openFileDialog1, "openFileDialog1");
-            // 
             // lbL2TrackS
             // 
-            resources.ApplyResources(this.lbL2TrackS, "lbL2TrackS");
+            this.lbL2TrackS.BackColor = System.Drawing.Color.Transparent;
             this.lbL2TrackS.Controls.Add(this.pnlSATrack);
             this.lbL2TrackS.Controls.Add(this.lbL2Track);
             this.lbL2TrackS.Controls.Add(this.lbRSTip);
@@ -1446,29 +1641,29 @@
             this.lbL2TrackS.Controls.Add(this.pnlSixaxis);
             this.lbL2TrackS.Controls.Add(this.pnlLSTrack);
             this.lbL2TrackS.Controls.Add(this.pnlRSTrack);
+            resources.ApplyResources(this.lbL2TrackS, "lbL2TrackS");
             this.lbL2TrackS.Name = "lbL2TrackS";
-            this.lbL2TrackS.UseVisualStyleBackColor = true;
             // 
             // pnlSATrack
             // 
-            resources.ApplyResources(this.pnlSATrack, "pnlSATrack");
             this.pnlSATrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlSATrack.Controls.Add(this.btnSATrack);
             this.pnlSATrack.Controls.Add(this.btnSATrackS);
+            resources.ApplyResources(this.pnlSATrack, "pnlSATrack");
             this.pnlSATrack.Name = "pnlSATrack";
             this.pnlSATrack.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlSATrack_Paint);
             // 
             // btnSATrack
             // 
-            resources.ApplyResources(this.btnSATrack, "btnSATrack");
             this.btnSATrack.BackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.btnSATrack, "btnSATrack");
             this.btnSATrack.Name = "btnSATrack";
             this.btnSATrack.UseVisualStyleBackColor = false;
             // 
             // btnSATrackS
             // 
-            resources.ApplyResources(this.btnSATrackS, "btnSATrackS");
             this.btnSATrackS.BackColor = System.Drawing.Color.DimGray;
+            resources.ApplyResources(this.btnSATrackS, "btnSATrackS");
             this.btnSATrackS.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.btnSATrackS.Name = "btnSATrackS";
             this.btnSATrackS.UseVisualStyleBackColor = false;
@@ -1524,7 +1719,6 @@
             // 
             // pnlSixaxis
             // 
-            resources.ApplyResources(this.pnlSixaxis, "pnlSixaxis");
             this.pnlSixaxis.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlSixaxis.Controls.Add(this.tBsixaxisAccelX);
             this.pnlSixaxis.Controls.Add(this.lb6Accel);
@@ -1534,13 +1728,14 @@
             this.pnlSixaxis.Controls.Add(this.tBsixaxisGyroZ);
             this.pnlSixaxis.Controls.Add(this.tBsixaxisAccelY);
             this.pnlSixaxis.Controls.Add(this.tBsixaxisAccelZ);
+            resources.ApplyResources(this.pnlSixaxis, "pnlSixaxis");
             this.pnlSixaxis.Name = "pnlSixaxis";
             this.pnlSixaxis.Click += new System.EventHandler(this.SixaxisPanel_Click);
             // 
             // tBsixaxisAccelX
             // 
             resources.ApplyResources(this.tBsixaxisAccelX, "tBsixaxisAccelX");
-            this.tBsixaxisAccelX.BackColor = System.Drawing.Color.White;
+            this.tBsixaxisAccelX.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.tBsixaxisAccelX.Maximum = 100;
             this.tBsixaxisAccelX.Minimum = -100;
             this.tBsixaxisAccelX.Name = "tBsixaxisAccelX";
@@ -1554,7 +1749,7 @@
             // tBsixaxisGyroX
             // 
             resources.ApplyResources(this.tBsixaxisGyroX, "tBsixaxisGyroX");
-            this.tBsixaxisGyroX.BackColor = System.Drawing.Color.White;
+            this.tBsixaxisGyroX.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.tBsixaxisGyroX.Maximum = 127;
             this.tBsixaxisGyroX.Minimum = -127;
             this.tBsixaxisGyroX.Name = "tBsixaxisGyroX";
@@ -1568,7 +1763,7 @@
             // tBsixaxisGyroY
             // 
             resources.ApplyResources(this.tBsixaxisGyroY, "tBsixaxisGyroY");
-            this.tBsixaxisGyroY.BackColor = System.Drawing.Color.White;
+            this.tBsixaxisGyroY.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.tBsixaxisGyroY.Maximum = 127;
             this.tBsixaxisGyroY.Minimum = -127;
             this.tBsixaxisGyroY.Name = "tBsixaxisGyroY";
@@ -1577,7 +1772,7 @@
             // tBsixaxisGyroZ
             // 
             resources.ApplyResources(this.tBsixaxisGyroZ, "tBsixaxisGyroZ");
-            this.tBsixaxisGyroZ.BackColor = System.Drawing.Color.White;
+            this.tBsixaxisGyroZ.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.tBsixaxisGyroZ.Maximum = 127;
             this.tBsixaxisGyroZ.Minimum = -127;
             this.tBsixaxisGyroZ.Name = "tBsixaxisGyroZ";
@@ -1586,7 +1781,7 @@
             // tBsixaxisAccelY
             // 
             resources.ApplyResources(this.tBsixaxisAccelY, "tBsixaxisAccelY");
-            this.tBsixaxisAccelY.BackColor = System.Drawing.Color.White;
+            this.tBsixaxisAccelY.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.tBsixaxisAccelY.Maximum = 100;
             this.tBsixaxisAccelY.Minimum = -100;
             this.tBsixaxisAccelY.Name = "tBsixaxisAccelY";
@@ -1595,7 +1790,7 @@
             // tBsixaxisAccelZ
             // 
             resources.ApplyResources(this.tBsixaxisAccelZ, "tBsixaxisAccelZ");
-            this.tBsixaxisAccelZ.BackColor = System.Drawing.Color.White;
+            this.tBsixaxisAccelZ.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.tBsixaxisAccelZ.Maximum = 100;
             this.tBsixaxisAccelZ.Minimum = -100;
             this.tBsixaxisAccelZ.Name = "tBsixaxisAccelZ";
@@ -1603,55 +1798,54 @@
             // 
             // pnlLSTrack
             // 
-            resources.ApplyResources(this.pnlLSTrack, "pnlLSTrack");
             this.pnlLSTrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlLSTrack.Controls.Add(this.btnLSTrack);
             this.pnlLSTrack.Controls.Add(this.btnLSTrackS);
+            resources.ApplyResources(this.pnlLSTrack, "pnlLSTrack");
             this.pnlLSTrack.Name = "pnlLSTrack";
             this.pnlLSTrack.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLSTrack_Paint);
             // 
             // btnLSTrack
             // 
-            resources.ApplyResources(this.btnLSTrack, "btnLSTrack");
             this.btnLSTrack.BackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.btnLSTrack, "btnLSTrack");
             this.btnLSTrack.Name = "btnLSTrack";
             this.btnLSTrack.UseVisualStyleBackColor = false;
             // 
             // btnLSTrackS
             // 
-            resources.ApplyResources(this.btnLSTrackS, "btnLSTrackS");
             this.btnLSTrackS.BackColor = System.Drawing.Color.DimGray;
+            resources.ApplyResources(this.btnLSTrackS, "btnLSTrackS");
             this.btnLSTrackS.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.btnLSTrackS.Name = "btnLSTrackS";
             this.btnLSTrackS.UseVisualStyleBackColor = false;
             // 
             // pnlRSTrack
             // 
-            resources.ApplyResources(this.pnlRSTrack, "pnlRSTrack");
             this.pnlRSTrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlRSTrack.Controls.Add(this.btnRSTrackS);
             this.pnlRSTrack.Controls.Add(this.btnRSTrack);
+            resources.ApplyResources(this.pnlRSTrack, "pnlRSTrack");
             this.pnlRSTrack.Name = "pnlRSTrack";
             this.pnlRSTrack.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlRSTrack_Paint);
             // 
             // btnRSTrackS
             // 
-            resources.ApplyResources(this.btnRSTrackS, "btnRSTrackS");
             this.btnRSTrackS.BackColor = System.Drawing.Color.DimGray;
+            resources.ApplyResources(this.btnRSTrackS, "btnRSTrackS");
             this.btnRSTrackS.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.btnRSTrackS.Name = "btnRSTrackS";
             this.btnRSTrackS.UseVisualStyleBackColor = false;
             // 
             // btnRSTrack
             // 
-            resources.ApplyResources(this.btnRSTrack, "btnRSTrack");
             this.btnRSTrack.BackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.btnRSTrack, "btnRSTrack");
             this.btnRSTrack.Name = "btnRSTrack";
             this.btnRSTrack.UseVisualStyleBackColor = false;
             // 
             // fLPTiltControls
             // 
-            resources.ApplyResources(this.fLPTiltControls, "fLPTiltControls");
             this.fLPTiltControls.Controls.Add(this.bnGyroZN);
             this.fLPTiltControls.Controls.Add(this.lbGyroZN);
             this.fLPTiltControls.Controls.Add(this.bnGyroZP);
@@ -1660,12 +1854,13 @@
             this.fLPTiltControls.Controls.Add(this.lbGyroXP);
             this.fLPTiltControls.Controls.Add(this.bnGyroXN);
             this.fLPTiltControls.Controls.Add(this.lbGyroXN);
+            resources.ApplyResources(this.fLPTiltControls, "fLPTiltControls");
             this.fLPTiltControls.Name = "fLPTiltControls";
             // 
             // bnGyroZN
             // 
-            resources.ApplyResources(this.bnGyroZN, "bnGyroZN");
             this.bnGyroZN.ContextMenuStrip = this.cMSPresets;
+            resources.ApplyResources(this.bnGyroZN, "bnGyroZN");
             this.bnGyroZN.Name = "bnGyroZN";
             this.bnGyroZN.UseVisualStyleBackColor = true;
             this.bnGyroZN.Click += new System.EventHandler(this.Show_ControlsBn);
@@ -1677,8 +1872,8 @@
             // 
             // bnGyroZP
             // 
-            resources.ApplyResources(this.bnGyroZP, "bnGyroZP");
             this.bnGyroZP.ContextMenuStrip = this.cMSPresets;
+            resources.ApplyResources(this.bnGyroZP, "bnGyroZP");
             this.bnGyroZP.Name = "bnGyroZP";
             this.bnGyroZP.UseVisualStyleBackColor = true;
             this.bnGyroZP.Click += new System.EventHandler(this.Show_ControlsBn);
@@ -1690,8 +1885,8 @@
             // 
             // bnGyroXP
             // 
-            resources.ApplyResources(this.bnGyroXP, "bnGyroXP");
             this.bnGyroXP.ContextMenuStrip = this.cMSPresets;
+            resources.ApplyResources(this.bnGyroXP, "bnGyroXP");
             this.bnGyroXP.Name = "bnGyroXP";
             this.bnGyroXP.UseVisualStyleBackColor = true;
             this.bnGyroXP.Click += new System.EventHandler(this.Show_ControlsBn);
@@ -1703,8 +1898,8 @@
             // 
             // bnGyroXN
             // 
-            resources.ApplyResources(this.bnGyroXN, "bnGyroXN");
             this.bnGyroXN.ContextMenuStrip = this.cMSPresets;
+            resources.ApplyResources(this.bnGyroXN, "bnGyroXN");
             this.bnGyroXN.Name = "bnGyroXN";
             this.bnGyroXN.UseVisualStyleBackColor = true;
             this.bnGyroXN.Click += new System.EventHandler(this.Show_ControlsBn);
@@ -1716,10 +1911,10 @@
             // 
             // tCControls
             // 
-            resources.ApplyResources(this.tCControls, "tCControls");
             this.tCControls.Controls.Add(this.tPControls);
             this.tCControls.Controls.Add(this.tPSpecial);
             this.tCControls.Controls.Add(this.lbL2TrackS);
+            resources.ApplyResources(this.tCControls, "tCControls");
             this.tCControls.Name = "tCControls";
             this.tCControls.SelectedIndex = 0;
             this.tCControls.SelectedIndexChanged += new System.EventHandler(this.tabControls_SelectedIndexChanged);
@@ -1727,7 +1922,7 @@
             // tPControls
             // 
             resources.ApplyResources(this.tPControls, "tPControls");
-            this.tPControls.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.tPControls.BackColor = System.Drawing.Color.DimGray;
             this.tPControls.Controls.Add(this.lBControls);
             this.tPControls.Controls.Add(this.gBTouchpad);
             this.tPControls.Controls.Add(this.lbControlTip);
@@ -1779,16 +1974,16 @@
             // 
             // lbControlTip
             // 
-            resources.ApplyResources(this.lbControlTip, "lbControlTip");
             this.lbControlTip.BackColor = System.Drawing.Color.Transparent;
             this.lbControlTip.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbControlTip, "lbControlTip");
             this.lbControlTip.Name = "lbControlTip";
             // 
             // pnlController
             // 
-            resources.ApplyResources(this.pnlController, "pnlController");
-            this.pnlController.BackColor = System.Drawing.Color.Transparent;
+            this.pnlController.BackColor = System.Drawing.Color.DimGray;
             this.pnlController.BackgroundImage = global::DS4Windows.Properties.Resources.DS4_Config;
+            resources.ApplyResources(this.pnlController, "pnlController");
             this.pnlController.Controls.Add(this.pBHoveredButton);
             this.pnlController.Controls.Add(this.lbLRS);
             this.pnlController.Controls.Add(this.lbLLS);
@@ -1842,9 +2037,11 @@
             this.pnlController.Controls.Add(this.bnCircle);
             this.pnlController.Controls.Add(this.lbControlName);
             this.pnlController.Name = "pnlController";
+            this.pnlController.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlController_Paint);
             // 
             // pBHoveredButton
             // 
+            this.pBHoveredButton.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.pBHoveredButton, "pBHoveredButton");
             this.pBHoveredButton.Image = global::DS4Windows.Properties.Resources.DS4_Config_RS;
             this.pBHoveredButton.Name = "pBHoveredButton";
@@ -1852,22 +2049,22 @@
             // 
             // lbLRS
             // 
-            resources.ApplyResources(this.lbLRS, "lbLRS");
             this.lbLRS.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLRS.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLRS, "lbLRS");
             this.lbLRS.Name = "lbLRS";
             // 
             // lbLLS
             // 
-            resources.ApplyResources(this.lbLLS, "lbLLS");
             this.lbLLS.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLLS.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLLS, "lbLLS");
             this.lbLLS.Name = "lbLLS";
             // 
             // bnRSDown
             // 
-            resources.ApplyResources(this.bnRSDown, "bnRSDown");
             this.bnRSDown.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnRSDown, "bnRSDown");
             this.bnRSDown.ContextMenuStrip = this.cMSPresets;
             this.bnRSDown.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnRSDown.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -1882,22 +2079,22 @@
             // 
             // lbLTouchUpper
             // 
-            resources.ApplyResources(this.lbLTouchUpper, "lbLTouchUpper");
             this.lbLTouchUpper.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLTouchUpper.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLTouchUpper, "lbLTouchUpper");
             this.lbLTouchUpper.Name = "lbLTouchUpper";
             // 
             // lbLTouchRight
             // 
-            resources.ApplyResources(this.lbLTouchRight, "lbLTouchRight");
             this.lbLTouchRight.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLTouchRight.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLTouchRight, "lbLTouchRight");
             this.lbLTouchRight.Name = "lbLTouchRight";
             // 
             // bnL3
             // 
-            resources.ApplyResources(this.bnL3, "bnL3");
             this.bnL3.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnL3, "bnL3");
             this.bnL3.ContextMenuStrip = this.cMSPresets;
             this.bnL3.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnL3.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -1912,15 +2109,15 @@
             // 
             // lbLTouchLM
             // 
-            resources.ApplyResources(this.lbLTouchLM, "lbLTouchLM");
             this.lbLTouchLM.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLTouchLM.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLTouchLM, "lbLTouchLM");
             this.lbLTouchLM.Name = "lbLTouchLM";
             // 
             // bnRSUp
             // 
-            resources.ApplyResources(this.bnRSUp, "bnRSUp");
             this.bnRSUp.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnRSUp, "bnRSUp");
             this.bnRSUp.ContextMenuStrip = this.cMSPresets;
             this.bnRSUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnRSUp.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -1935,15 +2132,15 @@
             // 
             // lbLR2
             // 
-            resources.ApplyResources(this.lbLR2, "lbLR2");
             this.lbLR2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLR2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLR2, "lbLR2");
             this.lbLR2.Name = "lbLR2";
             // 
             // bnRSRight
             // 
-            resources.ApplyResources(this.bnRSRight, "bnRSRight");
             this.bnRSRight.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnRSRight, "bnRSRight");
             this.bnRSRight.ContextMenuStrip = this.cMSPresets;
             this.bnRSRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnRSRight.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -1958,15 +2155,15 @@
             // 
             // lbLL2
             // 
-            resources.ApplyResources(this.lbLL2, "lbLL2");
             this.lbLL2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLL2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLL2, "lbLL2");
             this.lbLL2.Name = "lbLL2";
             // 
             // bnR3
             // 
-            resources.ApplyResources(this.bnR3, "bnR3");
             this.bnR3.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnR3, "bnR3");
             this.bnR3.ContextMenuStrip = this.cMSPresets;
             this.bnR3.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnR3.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -1981,15 +2178,15 @@
             // 
             // lbLR1
             // 
-            resources.ApplyResources(this.lbLR1, "lbLR1");
             this.lbLR1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLR1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLR1, "lbLR1");
             this.lbLR1.Name = "lbLR1";
             // 
             // bnRSLeft
             // 
-            resources.ApplyResources(this.bnRSLeft, "bnRSLeft");
             this.bnRSLeft.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnRSLeft, "bnRSLeft");
             this.bnRSLeft.ContextMenuStrip = this.cMSPresets;
             this.bnRSLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnRSLeft.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -2004,15 +2201,15 @@
             // 
             // lbLL1
             // 
-            resources.ApplyResources(this.lbLL1, "lbLL1");
             this.lbLL1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLL1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLL1, "lbLL1");
             this.lbLL1.Name = "lbLL1";
             // 
             // bnLSLeft
             // 
-            resources.ApplyResources(this.bnLSLeft, "bnLSLeft");
             this.bnLSLeft.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnLSLeft, "bnLSLeft");
             this.bnLSLeft.ContextMenuStrip = this.cMSPresets;
             this.bnLSLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnLSLeft.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -2027,15 +2224,15 @@
             // 
             // lbLPS
             // 
-            resources.ApplyResources(this.lbLPS, "lbLPS");
             this.lbLPS.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLPS.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLPS, "lbLPS");
             this.lbLPS.Name = "lbLPS";
             // 
             // bnLSUp
             // 
-            resources.ApplyResources(this.bnLSUp, "bnLSUp");
             this.bnLSUp.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnLSUp, "bnLSUp");
             this.bnLSUp.ContextMenuStrip = this.cMSPresets;
             this.bnLSUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnLSUp.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -2050,15 +2247,15 @@
             // 
             // lbLLeft
             // 
-            resources.ApplyResources(this.lbLLeft, "lbLLeft");
             this.lbLLeft.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLLeft.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLLeft, "lbLLeft");
             this.lbLLeft.Name = "lbLLeft";
             // 
             // bnLSRight
             // 
-            resources.ApplyResources(this.bnLSRight, "bnLSRight");
             this.bnLSRight.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnLSRight, "bnLSRight");
             this.bnLSRight.ContextMenuStrip = this.cMSPresets;
             this.bnLSRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnLSRight.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -2073,15 +2270,15 @@
             // 
             // lbLright
             // 
-            resources.ApplyResources(this.lbLright, "lbLright");
             this.lbLright.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLright.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLright, "lbLright");
             this.lbLright.Name = "lbLright";
             // 
             // bnLSDown
             // 
-            resources.ApplyResources(this.bnLSDown, "bnLSDown");
             this.bnLSDown.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnLSDown, "bnLSDown");
             this.bnLSDown.ContextMenuStrip = this.cMSPresets;
             this.bnLSDown.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnLSDown.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -2096,15 +2293,15 @@
             // 
             // lbLDown
             // 
-            resources.ApplyResources(this.lbLDown, "lbLDown");
             this.lbLDown.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLDown.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLDown, "lbLDown");
             this.lbLDown.Name = "lbLDown";
             // 
             // bnR2
             // 
-            resources.ApplyResources(this.bnR2, "bnR2");
             this.bnR2.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnR2, "bnR2");
             this.bnR2.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnR2.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.bnR2.FlatAppearance.BorderSize = 0;
@@ -2118,8 +2315,8 @@
             // 
             // bnUp
             // 
-            resources.ApplyResources(this.bnUp, "bnUp");
             this.bnUp.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnUp, "bnUp");
             this.bnUp.ContextMenuStrip = this.cMSPresets;
             this.bnUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnUp.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -2135,8 +2332,8 @@
             // 
             // bnDown
             // 
-            resources.ApplyResources(this.bnDown, "bnDown");
             this.bnDown.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnDown, "bnDown");
             this.bnDown.ContextMenuStrip = this.cMSPresets;
             this.bnDown.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnDown.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -2151,8 +2348,8 @@
             // 
             // bnTriangle
             // 
-            resources.ApplyResources(this.bnTriangle, "bnTriangle");
             this.bnTriangle.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnTriangle, "bnTriangle");
             this.bnTriangle.ContextMenuStrip = this.cMSPresets;
             this.bnTriangle.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnTriangle.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -2167,8 +2364,8 @@
             // 
             // bnR1
             // 
-            resources.ApplyResources(this.bnR1, "bnR1");
             this.bnR1.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnR1, "bnR1");
             this.bnR1.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnR1.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.bnR1.FlatAppearance.BorderSize = 0;
@@ -2182,8 +2379,8 @@
             // 
             // bnSquare
             // 
-            resources.ApplyResources(this.bnSquare, "bnSquare");
             this.bnSquare.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnSquare, "bnSquare");
             this.bnSquare.ContextMenuStrip = this.cMSPresets;
             this.bnSquare.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnSquare.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -2198,8 +2395,8 @@
             // 
             // bnRight
             // 
-            resources.ApplyResources(this.bnRight, "bnRight");
             this.bnRight.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnRight, "bnRight");
             this.bnRight.ContextMenuStrip = this.cMSPresets;
             this.bnRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnRight.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -2214,15 +2411,15 @@
             // 
             // lbLUp
             // 
-            resources.ApplyResources(this.lbLUp, "lbLUp");
             this.lbLUp.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLUp.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLUp, "lbLUp");
             this.lbLUp.Name = "lbLUp";
             // 
             // bnLeft
             // 
-            resources.ApplyResources(this.bnLeft, "bnLeft");
             this.bnLeft.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnLeft, "bnLeft");
             this.bnLeft.ContextMenuStrip = this.cMSPresets;
             this.bnLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnLeft.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -2237,15 +2434,15 @@
             // 
             // lbLShare
             // 
-            resources.ApplyResources(this.lbLShare, "lbLShare");
             this.lbLShare.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLShare.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLShare, "lbLShare");
             this.lbLShare.Name = "lbLShare";
             // 
             // bnOptions
             // 
-            resources.ApplyResources(this.bnOptions, "bnOptions");
             this.bnOptions.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnOptions, "bnOptions");
             this.bnOptions.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnOptions.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.bnOptions.FlatAppearance.BorderSize = 0;
@@ -2259,8 +2456,8 @@
             // 
             // bnShare
             // 
-            resources.ApplyResources(this.bnShare, "bnShare");
             this.bnShare.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnShare, "bnShare");
             this.bnShare.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShare.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.bnShare.FlatAppearance.BorderSize = 0;
@@ -2274,15 +2471,15 @@
             // 
             // lbLOptions
             // 
-            resources.ApplyResources(this.lbLOptions, "lbLOptions");
             this.lbLOptions.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLOptions.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLOptions, "lbLOptions");
             this.lbLOptions.Name = "lbLOptions";
             // 
             // bnL1
             // 
-            resources.ApplyResources(this.bnL1, "bnL1");
             this.bnL1.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnL1, "bnL1");
             this.bnL1.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnL1.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.bnL1.FlatAppearance.BorderSize = 0;
@@ -2296,8 +2493,8 @@
             // 
             // bnTouchRight
             // 
-            resources.ApplyResources(this.bnTouchRight, "bnTouchRight");
             this.bnTouchRight.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnTouchRight, "bnTouchRight");
             this.bnTouchRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnTouchRight.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.bnTouchRight.FlatAppearance.BorderSize = 0;
@@ -2311,8 +2508,8 @@
             // 
             // bnL2
             // 
-            resources.ApplyResources(this.bnL2, "bnL2");
             this.bnL2.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnL2, "bnL2");
             this.bnL2.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnL2.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.bnL2.FlatAppearance.BorderSize = 0;
@@ -2326,15 +2523,15 @@
             // 
             // lbLTriangle
             // 
-            resources.ApplyResources(this.lbLTriangle, "lbLTriangle");
             this.lbLTriangle.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLTriangle.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLTriangle, "lbLTriangle");
             this.lbLTriangle.Name = "lbLTriangle";
             // 
             // bnTouchLeft
             // 
-            resources.ApplyResources(this.bnTouchLeft, "bnTouchLeft");
             this.bnTouchLeft.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnTouchLeft, "bnTouchLeft");
             this.bnTouchLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnTouchLeft.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.bnTouchLeft.FlatAppearance.BorderSize = 0;
@@ -2348,15 +2545,15 @@
             // 
             // lbLSquare
             // 
-            resources.ApplyResources(this.lbLSquare, "lbLSquare");
             this.lbLSquare.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLSquare.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLSquare, "lbLSquare");
             this.lbLSquare.Name = "lbLSquare";
             // 
             // bnTouchMulti
             // 
-            resources.ApplyResources(this.bnTouchMulti, "bnTouchMulti");
             this.bnTouchMulti.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnTouchMulti, "bnTouchMulti");
             this.bnTouchMulti.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnTouchMulti.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.bnTouchMulti.FlatAppearance.BorderSize = 0;
@@ -2370,22 +2567,22 @@
             // 
             // lbLCircle
             // 
-            resources.ApplyResources(this.lbLCircle, "lbLCircle");
             this.lbLCircle.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLCircle.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLCircle, "lbLCircle");
             this.lbLCircle.Name = "lbLCircle";
             // 
             // lbLCross
             // 
-            resources.ApplyResources(this.lbLCross, "lbLCross");
             this.lbLCross.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLCross.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbLCross, "lbLCross");
             this.lbLCross.Name = "lbLCross";
             // 
             // bnTouchUpper
             // 
-            resources.ApplyResources(this.bnTouchUpper, "bnTouchUpper");
             this.bnTouchUpper.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnTouchUpper, "bnTouchUpper");
             this.bnTouchUpper.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnTouchUpper.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.bnTouchUpper.FlatAppearance.BorderSize = 0;
@@ -2399,9 +2596,9 @@
             // 
             // btnLightbar
             // 
-            resources.ApplyResources(this.btnLightbar, "btnLightbar");
             this.btnLightbar.BackColor = System.Drawing.Color.Transparent;
             this.btnLightbar.BackgroundImage = global::DS4Windows.Properties.Resources.DS4_lightbar;
+            resources.ApplyResources(this.btnLightbar, "btnLightbar");
             this.btnLightbar.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnLightbar.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.btnLightbar.FlatAppearance.BorderSize = 0;
@@ -2411,12 +2608,13 @@
             this.btnLightbar.Name = "btnLightbar";
             this.btnLightbar.UseVisualStyleBackColor = false;
             this.btnLightbar.Click += new System.EventHandler(this.btnLightbar_Click);
+            this.btnLightbar.Paint += new System.Windows.Forms.PaintEventHandler(this.btnLightbar_Paint);
             this.btnLightbar.MouseHover += new System.EventHandler(this.btnLightbar_MouseHover);
             // 
             // bnPS
             // 
-            resources.ApplyResources(this.bnPS, "bnPS");
             this.bnPS.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnPS, "bnPS");
             this.bnPS.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnPS.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.bnPS.FlatAppearance.BorderSize = 0;
@@ -2430,8 +2628,8 @@
             // 
             // bnCross
             // 
-            resources.ApplyResources(this.bnCross, "bnCross");
             this.bnCross.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnCross, "bnCross");
             this.bnCross.ContextMenuStrip = this.cMSPresets;
             this.bnCross.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnCross.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -2446,8 +2644,8 @@
             // 
             // bnCircle
             // 
-            resources.ApplyResources(this.bnCircle, "bnCircle");
             this.bnCircle.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnCircle, "bnCircle");
             this.bnCircle.ContextMenuStrip = this.cMSPresets;
             this.bnCircle.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnCircle.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -2462,34 +2660,34 @@
             // 
             // lbControlName
             // 
-            resources.ApplyResources(this.lbControlName, "lbControlName");
             this.lbControlName.BackColor = System.Drawing.Color.Transparent;
             this.lbControlName.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.lbControlName, "lbControlName");
             this.lbControlName.Name = "lbControlName";
             this.lbControlName.Click += new System.EventHandler(this.Show_ControlsList);
             // 
             // tPSpecial
             // 
-            resources.ApplyResources(this.tPSpecial, "tPSpecial");
             this.tPSpecial.Controls.Add(this.pnlActions);
+            resources.ApplyResources(this.tPSpecial, "tPSpecial");
             this.tPSpecial.Name = "tPSpecial";
             this.tPSpecial.UseVisualStyleBackColor = true;
             // 
             // pnlActions
             // 
-            resources.ApplyResources(this.pnlActions, "pnlActions");
             this.pnlActions.Controls.Add(this.lVActions);
             this.pnlActions.Controls.Add(this.panel2);
+            resources.ApplyResources(this.pnlActions, "pnlActions");
             this.pnlActions.Name = "pnlActions";
             // 
             // lVActions
             // 
-            resources.ApplyResources(this.lVActions, "lVActions");
             this.lVActions.CheckBoxes = true;
             this.lVActions.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.cHName,
             this.cHTrigger,
             this.cHAction});
+            resources.ApplyResources(this.lVActions, "lVActions");
             this.lVActions.FullRowSelect = true;
             this.lVActions.HideSelection = false;
             this.lVActions.MultiSelect = false;
@@ -2497,7 +2695,6 @@
             this.lVActions.ShowItemToolTips = true;
             this.lVActions.UseCompatibleStateImageBehavior = false;
             this.lVActions.View = System.Windows.Forms.View.Details;
-            this.lVActions.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lVActions_ItemChecked);
             // 
             // cHName
             // 
@@ -2513,17 +2710,17 @@
             // 
             // panel2
             // 
-            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Controls.Add(this.fLPActionButtons);
             this.panel2.Controls.Add(this.lbActionsTip);
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
             // fLPActionButtons
             // 
-            resources.ApplyResources(this.fLPActionButtons, "fLPActionButtons");
             this.fLPActionButtons.Controls.Add(this.btnNewAction);
             this.fLPActionButtons.Controls.Add(this.btnEditAction);
             this.fLPActionButtons.Controls.Add(this.btnRemAction);
+            resources.ApplyResources(this.fLPActionButtons, "fLPActionButtons");
             this.fLPActionButtons.Name = "fLPActionButtons";
             // 
             // btnNewAction
@@ -2554,16 +2751,19 @@
             // 
             // tCSens
             // 
-            resources.ApplyResources(this.tCSens, "tCSens");
             this.tCSens.Controls.Add(this.tPDeadzone);
+            this.tCSens.Controls.Add(this.antiDeadzoneTabPage);
+            this.tCSens.Controls.Add(this.maxZoneTabPage);
+            this.tCSens.Controls.Add(this.tPOutCurve);
             this.tCSens.Controls.Add(this.tPCurve);
+            this.tCSens.Controls.Add(this.tpRotation);
+            resources.ApplyResources(this.tCSens, "tCSens");
             this.tCSens.Name = "tCSens";
             this.tCSens.SelectedIndex = 0;
             // 
             // tPDeadzone
             // 
-            resources.ApplyResources(this.tPDeadzone, "tPDeadzone");
-            this.tPDeadzone.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tPDeadzone.BackColor = System.Drawing.SystemColors.Control;
             this.tPDeadzone.Controls.Add(this.lbL2);
             this.tPDeadzone.Controls.Add(this.nUDL2);
             this.tPDeadzone.Controls.Add(this.nUDLS);
@@ -2576,39 +2776,498 @@
             this.tPDeadzone.Controls.Add(this.lbRS);
             this.tPDeadzone.Controls.Add(this.lbLS);
             this.tPDeadzone.Controls.Add(this.nUDSZ);
+            resources.ApplyResources(this.tPDeadzone, "tPDeadzone");
             this.tPDeadzone.Name = "tPDeadzone";
+            // 
+            // antiDeadzoneTabPage
+            // 
+            this.antiDeadzoneTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.antiDeadzoneTabPage.Controls.Add(this.nUDSixaxisZAntiDead);
+            this.antiDeadzoneTabPage.Controls.Add(this.nUDSixaxisXAntiDead);
+            this.antiDeadzoneTabPage.Controls.Add(this.label20);
+            this.antiDeadzoneTabPage.Controls.Add(this.label19);
+            this.antiDeadzoneTabPage.Controls.Add(this.nUDR2AntiDead);
+            this.antiDeadzoneTabPage.Controls.Add(this.label3);
+            this.antiDeadzoneTabPage.Controls.Add(this.nUDL2AntiDead);
+            this.antiDeadzoneTabPage.Controls.Add(this.label4);
+            this.antiDeadzoneTabPage.Controls.Add(this.nUDRSAntiDead);
+            this.antiDeadzoneTabPage.Controls.Add(this.label2);
+            this.antiDeadzoneTabPage.Controls.Add(this.nUDLSAntiDead);
+            this.antiDeadzoneTabPage.Controls.Add(this.label1);
+            resources.ApplyResources(this.antiDeadzoneTabPage, "antiDeadzoneTabPage");
+            this.antiDeadzoneTabPage.Name = "antiDeadzoneTabPage";
+            // 
+            // nUDSixaxisZAntiDead
+            // 
+            this.nUDSixaxisZAntiDead.DecimalPlaces = 2;
+            this.nUDSixaxisZAntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDSixaxisZAntiDead, "nUDSixaxisZAntiDead");
+            this.nUDSixaxisZAntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixaxisZAntiDead.Name = "nUDSixaxisZAntiDead";
+            this.nUDSixaxisZAntiDead.ValueChanged += new System.EventHandler(this.nUDSixaxisZAntiDead_ValueChanged);
+            // 
+            // nUDSixaxisXAntiDead
+            // 
+            this.nUDSixaxisXAntiDead.DecimalPlaces = 2;
+            this.nUDSixaxisXAntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDSixaxisXAntiDead, "nUDSixaxisXAntiDead");
+            this.nUDSixaxisXAntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixaxisXAntiDead.Name = "nUDSixaxisXAntiDead";
+            this.nUDSixaxisXAntiDead.ValueChanged += new System.EventHandler(this.nUDSixaxisXAntiDead_ValueChanged);
+            // 
+            // label20
+            // 
+            resources.ApplyResources(this.label20, "label20");
+            this.label20.Name = "label20";
+            // 
+            // label19
+            // 
+            resources.ApplyResources(this.label19, "label19");
+            this.label19.Name = "label19";
+            // 
+            // nUDR2AntiDead
+            // 
+            this.nUDR2AntiDead.DecimalPlaces = 2;
+            this.nUDR2AntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDR2AntiDead, "nUDR2AntiDead");
+            this.nUDR2AntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDR2AntiDead.Name = "nUDR2AntiDead";
+            this.nUDR2AntiDead.ValueChanged += new System.EventHandler(this.nUDR2AntiDead_ValueChanged);
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // nUDL2AntiDead
+            // 
+            this.nUDL2AntiDead.DecimalPlaces = 2;
+            this.nUDL2AntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDL2AntiDead, "nUDL2AntiDead");
+            this.nUDL2AntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDL2AntiDead.Name = "nUDL2AntiDead";
+            this.nUDL2AntiDead.ValueChanged += new System.EventHandler(this.nUDL2AntiDead_ValueChanged);
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // nUDRSAntiDead
+            // 
+            this.nUDRSAntiDead.DecimalPlaces = 2;
+            this.nUDRSAntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDRSAntiDead, "nUDRSAntiDead");
+            this.nUDRSAntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDRSAntiDead.Name = "nUDRSAntiDead";
+            this.nUDRSAntiDead.ValueChanged += new System.EventHandler(this.nUDRSAntiDead_ValueChanged);
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // nUDLSAntiDead
+            // 
+            this.nUDLSAntiDead.DecimalPlaces = 2;
+            this.nUDLSAntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDLSAntiDead, "nUDLSAntiDead");
+            this.nUDLSAntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDLSAntiDead.Name = "nUDLSAntiDead";
+            this.nUDLSAntiDead.ValueChanged += new System.EventHandler(this.nUDLSAntiDead_ValueChanged);
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // maxZoneTabPage
+            // 
+            this.maxZoneTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.maxZoneTabPage.Controls.Add(this.nUDSixAxisZMaxZone);
+            this.maxZoneTabPage.Controls.Add(this.nUDSixAxisXMaxZone);
+            this.maxZoneTabPage.Controls.Add(this.label18);
+            this.maxZoneTabPage.Controls.Add(this.label17);
+            this.maxZoneTabPage.Controls.Add(this.nUDR2Maxzone);
+            this.maxZoneTabPage.Controls.Add(this.nUDL2Maxzone);
+            this.maxZoneTabPage.Controls.Add(this.label8);
+            this.maxZoneTabPage.Controls.Add(this.label7);
+            this.maxZoneTabPage.Controls.Add(this.nUDRSMaxZone);
+            this.maxZoneTabPage.Controls.Add(this.label6);
+            this.maxZoneTabPage.Controls.Add(this.nUDLSMaxZone);
+            this.maxZoneTabPage.Controls.Add(this.label5);
+            resources.ApplyResources(this.maxZoneTabPage, "maxZoneTabPage");
+            this.maxZoneTabPage.Name = "maxZoneTabPage";
+            // 
+            // nUDSixAxisZMaxZone
+            // 
+            this.nUDSixAxisZMaxZone.DecimalPlaces = 2;
+            this.nUDSixAxisZMaxZone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDSixAxisZMaxZone, "nUDSixAxisZMaxZone");
+            this.nUDSixAxisZMaxZone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixAxisZMaxZone.Name = "nUDSixAxisZMaxZone";
+            this.nUDSixAxisZMaxZone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixAxisZMaxZone.ValueChanged += new System.EventHandler(this.nUDSixAxisZMaxZone_ValueChanged);
+            // 
+            // nUDSixAxisXMaxZone
+            // 
+            this.nUDSixAxisXMaxZone.DecimalPlaces = 2;
+            this.nUDSixAxisXMaxZone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDSixAxisXMaxZone, "nUDSixAxisXMaxZone");
+            this.nUDSixAxisXMaxZone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixAxisXMaxZone.Name = "nUDSixAxisXMaxZone";
+            this.nUDSixAxisXMaxZone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixAxisXMaxZone.ValueChanged += new System.EventHandler(this.nUDSixAxisXMaxZone_ValueChanged);
+            // 
+            // label18
+            // 
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
+            // 
+            // label17
+            // 
+            resources.ApplyResources(this.label17, "label17");
+            this.label17.Name = "label17";
+            // 
+            // nUDR2Maxzone
+            // 
+            this.nUDR2Maxzone.DecimalPlaces = 2;
+            this.nUDR2Maxzone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDR2Maxzone, "nUDR2Maxzone");
+            this.nUDR2Maxzone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDR2Maxzone.Name = "nUDR2Maxzone";
+            this.nUDR2Maxzone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDR2Maxzone.ValueChanged += new System.EventHandler(this.nUDR2Maxzone_ValueChanged);
+            // 
+            // nUDL2Maxzone
+            // 
+            this.nUDL2Maxzone.DecimalPlaces = 2;
+            this.nUDL2Maxzone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDL2Maxzone, "nUDL2Maxzone");
+            this.nUDL2Maxzone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDL2Maxzone.Name = "nUDL2Maxzone";
+            this.nUDL2Maxzone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDL2Maxzone.ValueChanged += new System.EventHandler(this.nUDL2Maxzone_ValueChanged);
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // nUDRSMaxZone
+            // 
+            this.nUDRSMaxZone.DecimalPlaces = 2;
+            this.nUDRSMaxZone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDRSMaxZone, "nUDRSMaxZone");
+            this.nUDRSMaxZone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDRSMaxZone.Name = "nUDRSMaxZone";
+            this.nUDRSMaxZone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDRSMaxZone.ValueChanged += new System.EventHandler(this.nUDRSMaxZone_ValueChanged);
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // nUDLSMaxZone
+            // 
+            this.nUDLSMaxZone.DecimalPlaces = 2;
+            this.nUDLSMaxZone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDLSMaxZone, "nUDLSMaxZone");
+            this.nUDLSMaxZone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDLSMaxZone.Name = "nUDLSMaxZone";
+            this.nUDLSMaxZone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDLSMaxZone.ValueChanged += new System.EventHandler(this.nUDLSMaxZone_ValueChanged);
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // tPOutCurve
+            // 
+            this.tPOutCurve.BackColor = System.Drawing.SystemColors.Control;
+            this.tPOutCurve.Controls.Add(this.cBSixaxisZOutputCurve);
+            this.tPOutCurve.Controls.Add(this.cBSixaxisXOutputCurve);
+            this.tPOutCurve.Controls.Add(this.label24);
+            this.tPOutCurve.Controls.Add(this.label23);
+            this.tPOutCurve.Controls.Add(this.cBR2OutputCurve);
+            this.tPOutCurve.Controls.Add(this.cBL2OutputCurve);
+            this.tPOutCurve.Controls.Add(this.label22);
+            this.tPOutCurve.Controls.Add(this.label21);
+            this.tPOutCurve.Controls.Add(this.rsOutCurveComboBox);
+            this.tPOutCurve.Controls.Add(this.lsOutCurveComboBox);
+            this.tPOutCurve.Controls.Add(this.label10);
+            this.tPOutCurve.Controls.Add(this.label9);
+            resources.ApplyResources(this.tPOutCurve, "tPOutCurve");
+            this.tPOutCurve.Name = "tPOutCurve";
+            // 
+            // cBSixaxisZOutputCurve
+            // 
+            this.cBSixaxisZOutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBSixaxisZOutputCurve.DropDownWidth = 70;
+            this.cBSixaxisZOutputCurve.FormattingEnabled = true;
+            this.cBSixaxisZOutputCurve.Items.AddRange(new object[] {
+            resources.GetString("cBSixaxisZOutputCurve.Items"),
+            resources.GetString("cBSixaxisZOutputCurve.Items1"),
+            resources.GetString("cBSixaxisZOutputCurve.Items2")});
+            resources.ApplyResources(this.cBSixaxisZOutputCurve, "cBSixaxisZOutputCurve");
+            this.cBSixaxisZOutputCurve.Name = "cBSixaxisZOutputCurve";
+            this.cBSixaxisZOutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBSixaxisZOutputCurve_SelectedIndexChanged);
+            // 
+            // cBSixaxisXOutputCurve
+            // 
+            this.cBSixaxisXOutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBSixaxisXOutputCurve.DropDownWidth = 70;
+            this.cBSixaxisXOutputCurve.FormattingEnabled = true;
+            this.cBSixaxisXOutputCurve.Items.AddRange(new object[] {
+            resources.GetString("cBSixaxisXOutputCurve.Items"),
+            resources.GetString("cBSixaxisXOutputCurve.Items1"),
+            resources.GetString("cBSixaxisXOutputCurve.Items2")});
+            resources.ApplyResources(this.cBSixaxisXOutputCurve, "cBSixaxisXOutputCurve");
+            this.cBSixaxisXOutputCurve.Name = "cBSixaxisXOutputCurve";
+            this.cBSixaxisXOutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBSixaxisXOutputCurve_SelectedIndexChanged);
+            // 
+            // label24
+            // 
+            resources.ApplyResources(this.label24, "label24");
+            this.label24.Name = "label24";
+            // 
+            // label23
+            // 
+            resources.ApplyResources(this.label23, "label23");
+            this.label23.Name = "label23";
+            // 
+            // cBR2OutputCurve
+            // 
+            this.cBR2OutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBR2OutputCurve.DropDownWidth = 70;
+            this.cBR2OutputCurve.FormattingEnabled = true;
+            this.cBR2OutputCurve.Items.AddRange(new object[] {
+            resources.GetString("cBR2OutputCurve.Items"),
+            resources.GetString("cBR2OutputCurve.Items1"),
+            resources.GetString("cBR2OutputCurve.Items2")});
+            resources.ApplyResources(this.cBR2OutputCurve, "cBR2OutputCurve");
+            this.cBR2OutputCurve.Name = "cBR2OutputCurve";
+            this.cBR2OutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBR2OutputCurve_SelectedIndexChanged);
+            // 
+            // cBL2OutputCurve
+            // 
+            this.cBL2OutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBL2OutputCurve.DropDownWidth = 70;
+            this.cBL2OutputCurve.FormattingEnabled = true;
+            this.cBL2OutputCurve.Items.AddRange(new object[] {
+            resources.GetString("cBL2OutputCurve.Items"),
+            resources.GetString("cBL2OutputCurve.Items1"),
+            resources.GetString("cBL2OutputCurve.Items2")});
+            resources.ApplyResources(this.cBL2OutputCurve, "cBL2OutputCurve");
+            this.cBL2OutputCurve.Name = "cBL2OutputCurve";
+            this.cBL2OutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBL2OutputCurve_SelectedIndexChanged);
+            // 
+            // label22
+            // 
+            resources.ApplyResources(this.label22, "label22");
+            this.label22.Name = "label22";
+            // 
+            // label21
+            // 
+            resources.ApplyResources(this.label21, "label21");
+            this.label21.Name = "label21";
+            // 
+            // rsOutCurveComboBox
+            // 
+            this.rsOutCurveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.rsOutCurveComboBox.DropDownWidth = 120;
+            this.rsOutCurveComboBox.FormattingEnabled = true;
+            this.rsOutCurveComboBox.Items.AddRange(new object[] {
+            resources.GetString("rsOutCurveComboBox.Items"),
+            resources.GetString("rsOutCurveComboBox.Items1"),
+            resources.GetString("rsOutCurveComboBox.Items2"),
+            resources.GetString("rsOutCurveComboBox.Items3")});
+            resources.ApplyResources(this.rsOutCurveComboBox, "rsOutCurveComboBox");
+            this.rsOutCurveComboBox.Name = "rsOutCurveComboBox";
+            this.rsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.rsOutCurveComboBox_SelectedIndexChanged);
+            // 
+            // lsOutCurveComboBox
+            // 
+            this.lsOutCurveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.lsOutCurveComboBox.DropDownWidth = 120;
+            this.lsOutCurveComboBox.FormattingEnabled = true;
+            this.lsOutCurveComboBox.Items.AddRange(new object[] {
+            resources.GetString("lsOutCurveComboBox.Items"),
+            resources.GetString("lsOutCurveComboBox.Items1"),
+            resources.GetString("lsOutCurveComboBox.Items2"),
+            resources.GetString("lsOutCurveComboBox.Items3")});
+            resources.ApplyResources(this.lsOutCurveComboBox, "lsOutCurveComboBox");
+            this.lsOutCurveComboBox.Name = "lsOutCurveComboBox";
+            this.lsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.lsOutCurveComboBox_SelectedIndexChanged);
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
             // 
             // tPCurve
             // 
-            resources.ApplyResources(this.tPCurve, "tPCurve");
-            this.tPCurve.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tPCurve.BackColor = System.Drawing.SystemColors.Control;
             this.tPCurve.Controls.Add(this.nUDLSCurve);
             this.tPCurve.Controls.Add(this.nUDRSCurve);
             this.tPCurve.Controls.Add(this.lbRSCurve);
             this.tPCurve.Controls.Add(this.lbRSCurvePercent);
             this.tPCurve.Controls.Add(this.lbLSCurvePercent);
             this.tPCurve.Controls.Add(this.lbLSCurve);
+            resources.ApplyResources(this.tPCurve, "tPCurve");
             this.tPCurve.Name = "tPCurve";
             // 
             // nUDLSCurve
             // 
-            resources.ApplyResources(this.nUDLSCurve, "nUDLSCurve");
             this.nUDLSCurve.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
+            resources.ApplyResources(this.nUDLSCurve, "nUDLSCurve");
             this.nUDLSCurve.Name = "nUDLSCurve";
             this.nUDLSCurve.ValueChanged += new System.EventHandler(this.nUDLSCurve_ValueChanged);
             // 
             // nUDRSCurve
             // 
-            resources.ApplyResources(this.nUDRSCurve, "nUDRSCurve");
             this.nUDRSCurve.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
+            resources.ApplyResources(this.nUDRSCurve, "nUDRSCurve");
             this.nUDRSCurve.Name = "nUDRSCurve";
             this.nUDRSCurve.ValueChanged += new System.EventHandler(this.nUDRSCurve_ValueChanged);
             // 
@@ -2632,10 +3291,62 @@
             resources.ApplyResources(this.lbLSCurve, "lbLSCurve");
             this.lbLSCurve.Name = "lbLSCurve";
             // 
+            // tpRotation
+            // 
+            this.tpRotation.BackColor = System.Drawing.SystemColors.Control;
+            this.tpRotation.Controls.Add(this.nUDRSRotation);
+            this.tpRotation.Controls.Add(this.label14);
+            this.tpRotation.Controls.Add(this.nUDLSRotation);
+            this.tpRotation.Controls.Add(this.label13);
+            resources.ApplyResources(this.tpRotation, "tpRotation");
+            this.tpRotation.Name = "tpRotation";
+            // 
+            // nUDRSRotation
+            // 
+            resources.ApplyResources(this.nUDRSRotation, "nUDRSRotation");
+            this.nUDRSRotation.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.nUDRSRotation.Minimum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            -2147483648});
+            this.nUDRSRotation.Name = "nUDRSRotation";
+            this.nUDRSRotation.ValueChanged += new System.EventHandler(this.nUDRSRotation_ValueChanged);
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
+            // 
+            // nUDLSRotation
+            // 
+            resources.ApplyResources(this.nUDLSRotation, "nUDLSRotation");
+            this.nUDLSRotation.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.nUDLSRotation.Minimum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            -2147483648});
+            this.nUDLSRotation.Name = "nUDLSRotation";
+            this.nUDLSRotation.ValueChanged += new System.EventHandler(this.nUDLSRotation_ValueChanged);
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
             // fLPSettings
             // 
             resources.ApplyResources(this.fLPSettings, "fLPSettings");
-            this.fLPSettings.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.fLPSettings.BackColor = System.Drawing.SystemColors.Control;
             this.fLPSettings.Controls.Add(this.gBLightbar);
             this.fLPSettings.Controls.Add(this.gBGyro);
             this.fLPSettings.Controls.Add(this.gBRumble);
@@ -2646,12 +3357,12 @@
             // 
             // gBGyro
             // 
-            resources.ApplyResources(this.gBGyro, "gBGyro");
-            this.gBGyro.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBGyro.BackColor = System.Drawing.SystemColors.Control;
             this.gBGyro.Controls.Add(this.rBSAControls);
             this.gBGyro.Controls.Add(this.rBSAMouse);
-            this.gBGyro.Controls.Add(this.pnlSAMouse);
             this.gBGyro.Controls.Add(this.fLPTiltControls);
+            this.gBGyro.Controls.Add(this.pnlSAMouse);
+            resources.ApplyResources(this.gBGyro, "gBGyro");
             this.gBGyro.Name = "gBGyro";
             this.gBGyro.TabStop = false;
             // 
@@ -2673,7 +3384,16 @@
             // 
             // pnlSAMouse
             // 
-            resources.ApplyResources(this.pnlSAMouse, "pnlSAMouse");
+            this.pnlSAMouse.Controls.Add(this.cBGyroMouseXAxis);
+            this.pnlSAMouse.Controls.Add(this.label16);
+            this.pnlSAMouse.Controls.Add(this.lbGyroSmooth);
+            this.pnlSAMouse.Controls.Add(this.cBGyroSmooth);
+            this.pnlSAMouse.Controls.Add(this.lbSmoothWeight);
+            this.pnlSAMouse.Controls.Add(this.nUDGyroSmoothWeight);
+            this.pnlSAMouse.Controls.Add(this.label12);
+            this.pnlSAMouse.Controls.Add(this.nUDGyroMouseVertScale);
+            this.pnlSAMouse.Controls.Add(this.label11);
+            this.pnlSAMouse.Controls.Add(this.gyroTriggerBehavior);
             this.pnlSAMouse.Controls.Add(this.cBGyroInvertY);
             this.pnlSAMouse.Controls.Add(this.cBGyroInvertX);
             this.pnlSAMouse.Controls.Add(this.lbGyroInvert);
@@ -2681,7 +3401,98 @@
             this.pnlSAMouse.Controls.Add(this.btnGyroTriggers);
             this.pnlSAMouse.Controls.Add(this.nUDGyroSensitivity);
             this.pnlSAMouse.Controls.Add(this.lbGyroSens);
+            resources.ApplyResources(this.pnlSAMouse, "pnlSAMouse");
             this.pnlSAMouse.Name = "pnlSAMouse";
+            // 
+            // cBGyroMouseXAxis
+            // 
+            this.cBGyroMouseXAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBGyroMouseXAxis.FormattingEnabled = true;
+            this.cBGyroMouseXAxis.Items.AddRange(new object[] {
+            resources.GetString("cBGyroMouseXAxis.Items"),
+            resources.GetString("cBGyroMouseXAxis.Items1")});
+            resources.ApplyResources(this.cBGyroMouseXAxis, "cBGyroMouseXAxis");
+            this.cBGyroMouseXAxis.Name = "cBGyroMouseXAxis";
+            this.cBGyroMouseXAxis.SelectedIndexChanged += new System.EventHandler(this.cBGyroMouseXAxis_SelectedIndexChanged);
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
+            // 
+            // lbGyroSmooth
+            // 
+            resources.ApplyResources(this.lbGyroSmooth, "lbGyroSmooth");
+            this.lbGyroSmooth.Name = "lbGyroSmooth";
+            // 
+            // cBGyroSmooth
+            // 
+            resources.ApplyResources(this.cBGyroSmooth, "cBGyroSmooth");
+            this.cBGyroSmooth.Name = "cBGyroSmooth";
+            this.cBGyroSmooth.UseVisualStyleBackColor = true;
+            this.cBGyroSmooth.CheckedChanged += new System.EventHandler(this.cBGyroSmooth_CheckedChanged);
+            // 
+            // lbSmoothWeight
+            // 
+            resources.ApplyResources(this.lbSmoothWeight, "lbSmoothWeight");
+            this.lbSmoothWeight.Name = "lbSmoothWeight";
+            // 
+            // nUDGyroSmoothWeight
+            // 
+            this.nUDGyroSmoothWeight.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDGyroSmoothWeight, "nUDGyroSmoothWeight");
+            this.nUDGyroSmoothWeight.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDGyroSmoothWeight.Name = "nUDGyroSmoothWeight";
+            this.nUDGyroSmoothWeight.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.nUDGyroSmoothWeight.ValueChanged += new System.EventHandler(this.nUDGyroSmoothWeight_ValueChanged);
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
+            // nUDGyroMouseVertScale
+            // 
+            this.nUDGyroMouseVertScale.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDGyroMouseVertScale, "nUDGyroMouseVertScale");
+            this.nUDGyroMouseVertScale.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nUDGyroMouseVertScale.Name = "nUDGyroMouseVertScale";
+            this.nUDGyroMouseVertScale.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.nUDGyroMouseVertScale.ValueChanged += new System.EventHandler(this.nUDGyroMouseVertScale_ValueChanged);
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // gyroTriggerBehavior
+            // 
+            resources.ApplyResources(this.gyroTriggerBehavior, "gyroTriggerBehavior");
+            this.gyroTriggerBehavior.Checked = true;
+            this.gyroTriggerBehavior.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.gyroTriggerBehavior.Name = "gyroTriggerBehavior";
+            this.gyroTriggerBehavior.UseVisualStyleBackColor = true;
+            this.gyroTriggerBehavior.CheckedChanged += new System.EventHandler(this.gyroTriggerBehavior_CheckedChanged);
             // 
             // cBGyroInvertY
             // 
@@ -2737,8 +3548,7 @@
             // 
             // gBSensitivity
             // 
-            resources.ApplyResources(this.gBSensitivity, "gBSensitivity");
-            this.gBSensitivity.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBSensitivity.BackColor = System.Drawing.SystemColors.Control;
             this.gBSensitivity.Controls.Add(this.lbL2S);
             this.gBSensitivity.Controls.Add(this.nUDL2S);
             this.gBSensitivity.Controls.Add(this.nUDLSS);
@@ -2751,6 +3561,7 @@
             this.gBSensitivity.Controls.Add(this.lbRSS);
             this.gBSensitivity.Controls.Add(this.lbLSS);
             this.gBSensitivity.Controls.Add(this.nUDSZS);
+            resources.ApplyResources(this.gBSensitivity, "gBSensitivity");
             this.gBSensitivity.Name = "gBSensitivity";
             this.gBSensitivity.TabStop = false;
             // 
@@ -2761,20 +3572,20 @@
             // 
             // nUDL2S
             // 
-            resources.ApplyResources(this.nUDL2S, "nUDL2S");
             this.nUDL2S.DecimalPlaces = 2;
             this.nUDL2S.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
+            resources.ApplyResources(this.nUDL2S, "nUDL2S");
             this.nUDL2S.Maximum = new decimal(new int[] {
-            15,
+            10,
             0,
             0,
-            65536});
+            0});
             this.nUDL2S.Minimum = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
             65536});
@@ -2784,22 +3595,22 @@
             0,
             0,
             0});
-            this.nUDL2S.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDL2S.ValueChanged += new System.EventHandler(this.nUDL2Sens_ValueChanged);
             // 
             // nUDLSS
             // 
-            resources.ApplyResources(this.nUDLSS, "nUDLSS");
             this.nUDLSS.DecimalPlaces = 2;
             this.nUDLSS.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
+            resources.ApplyResources(this.nUDLSS, "nUDLSS");
             this.nUDLSS.Maximum = new decimal(new int[] {
-            15,
+            5,
             0,
             0,
-            65536});
+            0});
             this.nUDLSS.Minimum = new decimal(new int[] {
             5,
             0,
@@ -2811,7 +3622,7 @@
             0,
             0,
             0});
-            this.nUDLSS.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDLSS.ValueChanged += new System.EventHandler(this.nUDLSSens_ValueChanged);
             // 
             // lbSixaxisXS
             // 
@@ -2820,20 +3631,20 @@
             // 
             // nUDR2S
             // 
-            resources.ApplyResources(this.nUDR2S, "nUDR2S");
             this.nUDR2S.DecimalPlaces = 2;
             this.nUDR2S.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
+            resources.ApplyResources(this.nUDR2S, "nUDR2S");
             this.nUDR2S.Maximum = new decimal(new int[] {
-            15,
+            10,
             0,
             0,
-            65536});
+            0});
             this.nUDR2S.Minimum = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
             65536});
@@ -2843,7 +3654,7 @@
             0,
             0,
             0});
-            this.nUDR2S.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDR2S.ValueChanged += new System.EventHandler(this.nUDR2Sens_ValueChanged);
             // 
             // lbSixaxisZS
             // 
@@ -2852,18 +3663,18 @@
             // 
             // nUDRSS
             // 
-            resources.ApplyResources(this.nUDRSS, "nUDRSS");
             this.nUDRSS.DecimalPlaces = 2;
             this.nUDRSS.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
+            resources.ApplyResources(this.nUDRSS, "nUDRSS");
             this.nUDRSS.Maximum = new decimal(new int[] {
-            15,
+            5,
             0,
             0,
-            65536});
+            0});
             this.nUDRSS.Minimum = new decimal(new int[] {
             5,
             0,
@@ -2875,7 +3686,7 @@
             0,
             0,
             0});
-            this.nUDRSS.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDRSS.ValueChanged += new System.EventHandler(this.nUDRSSens_ValueChanged);
             // 
             // lbR2LS
             // 
@@ -2884,18 +3695,18 @@
             // 
             // nUDSXS
             // 
-            resources.ApplyResources(this.nUDSXS, "nUDSXS");
             this.nUDSXS.DecimalPlaces = 2;
             this.nUDSXS.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
+            resources.ApplyResources(this.nUDSXS, "nUDSXS");
             this.nUDSXS.Maximum = new decimal(new int[] {
-            15,
+            5,
             0,
             0,
-            65536});
+            0});
             this.nUDSXS.Minimum = new decimal(new int[] {
             5,
             0,
@@ -2907,7 +3718,7 @@
             0,
             0,
             0});
-            this.nUDSXS.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDSXS.ValueChanged += new System.EventHandler(this.nUDSXSens_ValueChanged);
             // 
             // lbRSS
             // 
@@ -2921,18 +3732,18 @@
             // 
             // nUDSZS
             // 
-            resources.ApplyResources(this.nUDSZS, "nUDSZS");
             this.nUDSZS.DecimalPlaces = 2;
             this.nUDSZS.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
+            resources.ApplyResources(this.nUDSZS, "nUDSZS");
             this.nUDSZS.Maximum = new decimal(new int[] {
-            15,
+            5,
             0,
             0,
-            65536});
+            0});
             this.nUDSZS.Minimum = new decimal(new int[] {
             5,
             0,
@@ -2944,11 +3755,10 @@
             0,
             0,
             0});
-            this.nUDSZS.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDSZS.ValueChanged += new System.EventHandler(this.nUDSZSens_ValueChanged);
             // 
             // cMGyroTriggers
             // 
-            resources.ApplyResources(this.cMGyroTriggers, "cMGyroTriggers");
             this.cMGyroTriggers.BackColor = System.Drawing.SystemColors.Control;
             this.cMGyroTriggers.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cMGyroTriggers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -2975,178 +3785,338 @@
             this.cMGyroTriggers.Name = "cMGyroTriggers";
             this.cMGyroTriggers.ShowCheckMargin = true;
             this.cMGyroTriggers.ShowImageMargin = false;
+            resources.ApplyResources(this.cMGyroTriggers, "cMGyroTriggers");
             // 
             // crossToolStripMenuItem
             // 
-            resources.ApplyResources(this.crossToolStripMenuItem, "crossToolStripMenuItem");
             this.crossToolStripMenuItem.CheckOnClick = true;
             this.crossToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.crossToolStripMenuItem.Name = "crossToolStripMenuItem";
+            resources.ApplyResources(this.crossToolStripMenuItem, "crossToolStripMenuItem");
             this.crossToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // circleToolStripMenuItem
             // 
-            resources.ApplyResources(this.circleToolStripMenuItem, "circleToolStripMenuItem");
             this.circleToolStripMenuItem.CheckOnClick = true;
             this.circleToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.circleToolStripMenuItem.Name = "circleToolStripMenuItem";
+            resources.ApplyResources(this.circleToolStripMenuItem, "circleToolStripMenuItem");
             this.circleToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // squareToolStripMenuItem
             // 
-            resources.ApplyResources(this.squareToolStripMenuItem, "squareToolStripMenuItem");
             this.squareToolStripMenuItem.CheckOnClick = true;
             this.squareToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.squareToolStripMenuItem.Name = "squareToolStripMenuItem";
+            resources.ApplyResources(this.squareToolStripMenuItem, "squareToolStripMenuItem");
             this.squareToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // triangleToolStripMenuItem
             // 
-            resources.ApplyResources(this.triangleToolStripMenuItem, "triangleToolStripMenuItem");
             this.triangleToolStripMenuItem.CheckOnClick = true;
             this.triangleToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.triangleToolStripMenuItem.Name = "triangleToolStripMenuItem";
+            resources.ApplyResources(this.triangleToolStripMenuItem, "triangleToolStripMenuItem");
             this.triangleToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // l1ToolStripMenuItem
             // 
-            resources.ApplyResources(this.l1ToolStripMenuItem, "l1ToolStripMenuItem");
             this.l1ToolStripMenuItem.CheckOnClick = true;
             this.l1ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.l1ToolStripMenuItem.Name = "l1ToolStripMenuItem";
+            resources.ApplyResources(this.l1ToolStripMenuItem, "l1ToolStripMenuItem");
             this.l1ToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // l2ToolStripMenuItem
             // 
-            resources.ApplyResources(this.l2ToolStripMenuItem, "l2ToolStripMenuItem");
             this.l2ToolStripMenuItem.CheckOnClick = true;
             this.l2ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.l2ToolStripMenuItem.Name = "l2ToolStripMenuItem";
+            resources.ApplyResources(this.l2ToolStripMenuItem, "l2ToolStripMenuItem");
             this.l2ToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // r1ToolStripMenuItem
             // 
-            resources.ApplyResources(this.r1ToolStripMenuItem, "r1ToolStripMenuItem");
             this.r1ToolStripMenuItem.CheckOnClick = true;
             this.r1ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.r1ToolStripMenuItem.Name = "r1ToolStripMenuItem";
+            resources.ApplyResources(this.r1ToolStripMenuItem, "r1ToolStripMenuItem");
             this.r1ToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // r2ToolStripMenuItem
             // 
-            resources.ApplyResources(this.r2ToolStripMenuItem, "r2ToolStripMenuItem");
             this.r2ToolStripMenuItem.CheckOnClick = true;
             this.r2ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.r2ToolStripMenuItem.Name = "r2ToolStripMenuItem";
+            resources.ApplyResources(this.r2ToolStripMenuItem, "r2ToolStripMenuItem");
             this.r2ToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // onTouchpadToolStripMenuItem
             // 
-            resources.ApplyResources(this.onTouchpadToolStripMenuItem, "onTouchpadToolStripMenuItem");
             this.onTouchpadToolStripMenuItem.CheckOnClick = true;
             this.onTouchpadToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.onTouchpadToolStripMenuItem.Name = "onTouchpadToolStripMenuItem";
+            resources.ApplyResources(this.onTouchpadToolStripMenuItem, "onTouchpadToolStripMenuItem");
             this.onTouchpadToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // downToolStripMenuItem
             // 
-            resources.ApplyResources(this.downToolStripMenuItem, "downToolStripMenuItem");
             this.downToolStripMenuItem.CheckOnClick = true;
             this.downToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.downToolStripMenuItem.Name = "downToolStripMenuItem";
+            resources.ApplyResources(this.downToolStripMenuItem, "downToolStripMenuItem");
             this.downToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // leftToolStripMenuItem
             // 
-            resources.ApplyResources(this.leftToolStripMenuItem, "leftToolStripMenuItem");
             this.leftToolStripMenuItem.CheckOnClick = true;
             this.leftToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.leftToolStripMenuItem.Name = "leftToolStripMenuItem";
+            resources.ApplyResources(this.leftToolStripMenuItem, "leftToolStripMenuItem");
             this.leftToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // rightToolStripMenuItem
             // 
-            resources.ApplyResources(this.rightToolStripMenuItem, "rightToolStripMenuItem");
             this.rightToolStripMenuItem.CheckOnClick = true;
             this.rightToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rightToolStripMenuItem.Name = "rightToolStripMenuItem";
+            resources.ApplyResources(this.rightToolStripMenuItem, "rightToolStripMenuItem");
             this.rightToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // l3ToolStripMenuItem
             // 
-            resources.ApplyResources(this.l3ToolStripMenuItem, "l3ToolStripMenuItem");
             this.l3ToolStripMenuItem.CheckOnClick = true;
             this.l3ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.l3ToolStripMenuItem.Name = "l3ToolStripMenuItem";
+            resources.ApplyResources(this.l3ToolStripMenuItem, "l3ToolStripMenuItem");
             this.l3ToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // r3ToolStripMenuItem
             // 
-            resources.ApplyResources(this.r3ToolStripMenuItem, "r3ToolStripMenuItem");
             this.r3ToolStripMenuItem.CheckOnClick = true;
             this.r3ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.r3ToolStripMenuItem.Name = "r3ToolStripMenuItem";
+            resources.ApplyResources(this.r3ToolStripMenuItem, "r3ToolStripMenuItem");
             this.r3ToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // fingerOnTouchpadToolStripMenuItem
             // 
-            resources.ApplyResources(this.fingerOnTouchpadToolStripMenuItem, "fingerOnTouchpadToolStripMenuItem");
             this.fingerOnTouchpadToolStripMenuItem.CheckOnClick = true;
             this.fingerOnTouchpadToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.fingerOnTouchpadToolStripMenuItem.Name = "fingerOnTouchpadToolStripMenuItem";
+            resources.ApplyResources(this.fingerOnTouchpadToolStripMenuItem, "fingerOnTouchpadToolStripMenuItem");
             this.fingerOnTouchpadToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // fingersOnTouchpadToolStripMenuItem
             // 
-            resources.ApplyResources(this.fingersOnTouchpadToolStripMenuItem, "fingersOnTouchpadToolStripMenuItem");
             this.fingersOnTouchpadToolStripMenuItem.CheckOnClick = true;
             this.fingersOnTouchpadToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.fingersOnTouchpadToolStripMenuItem.Name = "fingersOnTouchpadToolStripMenuItem";
+            resources.ApplyResources(this.fingersOnTouchpadToolStripMenuItem, "fingersOnTouchpadToolStripMenuItem");
             this.fingersOnTouchpadToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // optionsToolStripMenuItem
             // 
-            resources.ApplyResources(this.optionsToolStripMenuItem, "optionsToolStripMenuItem");
             this.optionsToolStripMenuItem.CheckOnClick = true;
             this.optionsToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            resources.ApplyResources(this.optionsToolStripMenuItem, "optionsToolStripMenuItem");
             this.optionsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // shareToolStripMenuItem
             // 
-            resources.ApplyResources(this.shareToolStripMenuItem, "shareToolStripMenuItem");
             this.shareToolStripMenuItem.CheckOnClick = true;
             this.shareToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.shareToolStripMenuItem.Name = "shareToolStripMenuItem";
+            resources.ApplyResources(this.shareToolStripMenuItem, "shareToolStripMenuItem");
             this.shareToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // pSToolStripMenuItem
             // 
-            resources.ApplyResources(this.pSToolStripMenuItem, "pSToolStripMenuItem");
             this.pSToolStripMenuItem.CheckOnClick = true;
             this.pSToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.pSToolStripMenuItem.Name = "pSToolStripMenuItem";
+            resources.ApplyResources(this.pSToolStripMenuItem, "pSToolStripMenuItem");
             this.pSToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // alwaysOnToolStripMenuItem
             // 
-            resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
             this.alwaysOnToolStripMenuItem.CheckOnClick = true;
             this.alwaysOnToolStripMenuItem.Name = "alwaysOnToolStripMenuItem";
+            resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
             this.alwaysOnToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
+            // 
+            // cMTouchDisableInvert
+            // 
+            this.cMTouchDisableInvert.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.crossTouchInvStripMenuItem,
+            this.circleTouchInvStripMenuItem,
+            this.squareTouchInvStripMenuItem,
+            this.triangleTouchInvStripMenuItem,
+            this.l1TouchInvStripMenuItem,
+            this.l2TouchInvStripMenuItem,
+            this.r1TouchInvStripMenuItem,
+            this.r2TouchInvStripMenuItem,
+            this.upTouchInvStripMenuItem,
+            this.downTouchInvStripMenuItem,
+            this.leftTouchInvStripMenuItem,
+            this.rightTouchInvStripMenuItem,
+            this.l3TouchInvStripMenuItem,
+            this.r3TouchInvStripMenuItem,
+            this.oneFingerTouchInvStripMenuItem,
+            this.twoFingerTouchInvStripMenuItem,
+            this.optionsTouchInvStripMenuItem,
+            this.shareTouchInvStripMenuItem,
+            this.psTouchInvStripMenuItem});
+            this.cMTouchDisableInvert.Name = "cMTouchDisableInvert";
+            this.cMTouchDisableInvert.ShowCheckMargin = true;
+            this.cMTouchDisableInvert.ShowImageMargin = false;
+            resources.ApplyResources(this.cMTouchDisableInvert, "cMTouchDisableInvert");
+            // 
+            // crossTouchInvStripMenuItem
+            // 
+            this.crossTouchInvStripMenuItem.CheckOnClick = true;
+            this.crossTouchInvStripMenuItem.Name = "crossTouchInvStripMenuItem";
+            resources.ApplyResources(this.crossTouchInvStripMenuItem, "crossTouchInvStripMenuItem");
+            this.crossTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // circleTouchInvStripMenuItem
+            // 
+            this.circleTouchInvStripMenuItem.CheckOnClick = true;
+            this.circleTouchInvStripMenuItem.Name = "circleTouchInvStripMenuItem";
+            resources.ApplyResources(this.circleTouchInvStripMenuItem, "circleTouchInvStripMenuItem");
+            this.circleTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // squareTouchInvStripMenuItem
+            // 
+            this.squareTouchInvStripMenuItem.CheckOnClick = true;
+            this.squareTouchInvStripMenuItem.Name = "squareTouchInvStripMenuItem";
+            resources.ApplyResources(this.squareTouchInvStripMenuItem, "squareTouchInvStripMenuItem");
+            this.squareTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // triangleTouchInvStripMenuItem
+            // 
+            this.triangleTouchInvStripMenuItem.CheckOnClick = true;
+            this.triangleTouchInvStripMenuItem.Name = "triangleTouchInvStripMenuItem";
+            resources.ApplyResources(this.triangleTouchInvStripMenuItem, "triangleTouchInvStripMenuItem");
+            this.triangleTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // l1TouchInvStripMenuItem
+            // 
+            this.l1TouchInvStripMenuItem.CheckOnClick = true;
+            this.l1TouchInvStripMenuItem.Name = "l1TouchInvStripMenuItem";
+            resources.ApplyResources(this.l1TouchInvStripMenuItem, "l1TouchInvStripMenuItem");
+            this.l1TouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // l2TouchInvStripMenuItem
+            // 
+            this.l2TouchInvStripMenuItem.CheckOnClick = true;
+            this.l2TouchInvStripMenuItem.Name = "l2TouchInvStripMenuItem";
+            resources.ApplyResources(this.l2TouchInvStripMenuItem, "l2TouchInvStripMenuItem");
+            this.l2TouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // r1TouchInvStripMenuItem
+            // 
+            this.r1TouchInvStripMenuItem.CheckOnClick = true;
+            this.r1TouchInvStripMenuItem.Name = "r1TouchInvStripMenuItem";
+            resources.ApplyResources(this.r1TouchInvStripMenuItem, "r1TouchInvStripMenuItem");
+            this.r1TouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // r2TouchInvStripMenuItem
+            // 
+            this.r2TouchInvStripMenuItem.CheckOnClick = true;
+            this.r2TouchInvStripMenuItem.Name = "r2TouchInvStripMenuItem";
+            resources.ApplyResources(this.r2TouchInvStripMenuItem, "r2TouchInvStripMenuItem");
+            this.r2TouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // upTouchInvStripMenuItem
+            // 
+            this.upTouchInvStripMenuItem.CheckOnClick = true;
+            this.upTouchInvStripMenuItem.Name = "upTouchInvStripMenuItem";
+            resources.ApplyResources(this.upTouchInvStripMenuItem, "upTouchInvStripMenuItem");
+            this.upTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // downTouchInvStripMenuItem
+            // 
+            this.downTouchInvStripMenuItem.CheckOnClick = true;
+            this.downTouchInvStripMenuItem.Name = "downTouchInvStripMenuItem";
+            resources.ApplyResources(this.downTouchInvStripMenuItem, "downTouchInvStripMenuItem");
+            this.downTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // leftTouchInvStripMenuItem
+            // 
+            this.leftTouchInvStripMenuItem.CheckOnClick = true;
+            this.leftTouchInvStripMenuItem.Name = "leftTouchInvStripMenuItem";
+            resources.ApplyResources(this.leftTouchInvStripMenuItem, "leftTouchInvStripMenuItem");
+            this.leftTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // rightTouchInvStripMenuItem
+            // 
+            this.rightTouchInvStripMenuItem.CheckOnClick = true;
+            this.rightTouchInvStripMenuItem.Name = "rightTouchInvStripMenuItem";
+            resources.ApplyResources(this.rightTouchInvStripMenuItem, "rightTouchInvStripMenuItem");
+            this.rightTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // l3TouchInvStripMenuItem
+            // 
+            this.l3TouchInvStripMenuItem.CheckOnClick = true;
+            this.l3TouchInvStripMenuItem.Name = "l3TouchInvStripMenuItem";
+            resources.ApplyResources(this.l3TouchInvStripMenuItem, "l3TouchInvStripMenuItem");
+            this.l3TouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // r3TouchInvStripMenuItem
+            // 
+            this.r3TouchInvStripMenuItem.CheckOnClick = true;
+            this.r3TouchInvStripMenuItem.Name = "r3TouchInvStripMenuItem";
+            resources.ApplyResources(this.r3TouchInvStripMenuItem, "r3TouchInvStripMenuItem");
+            this.r3TouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // oneFingerTouchInvStripMenuItem
+            // 
+            this.oneFingerTouchInvStripMenuItem.CheckOnClick = true;
+            this.oneFingerTouchInvStripMenuItem.Name = "oneFingerTouchInvStripMenuItem";
+            resources.ApplyResources(this.oneFingerTouchInvStripMenuItem, "oneFingerTouchInvStripMenuItem");
+            this.oneFingerTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // twoFingerTouchInvStripMenuItem
+            // 
+            this.twoFingerTouchInvStripMenuItem.CheckOnClick = true;
+            this.twoFingerTouchInvStripMenuItem.Name = "twoFingerTouchInvStripMenuItem";
+            resources.ApplyResources(this.twoFingerTouchInvStripMenuItem, "twoFingerTouchInvStripMenuItem");
+            this.twoFingerTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // optionsTouchInvStripMenuItem
+            // 
+            this.optionsTouchInvStripMenuItem.CheckOnClick = true;
+            this.optionsTouchInvStripMenuItem.Name = "optionsTouchInvStripMenuItem";
+            resources.ApplyResources(this.optionsTouchInvStripMenuItem, "optionsTouchInvStripMenuItem");
+            this.optionsTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // shareTouchInvStripMenuItem
+            // 
+            this.shareTouchInvStripMenuItem.CheckOnClick = true;
+            this.shareTouchInvStripMenuItem.Name = "shareTouchInvStripMenuItem";
+            resources.ApplyResources(this.shareTouchInvStripMenuItem, "shareTouchInvStripMenuItem");
+            this.shareTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // psTouchInvStripMenuItem
+            // 
+            this.psTouchInvStripMenuItem.CheckOnClick = true;
+            this.psTouchInvStripMenuItem.Name = "psTouchInvStripMenuItem";
+            resources.ApplyResources(this.psTouchInvStripMenuItem, "psTouchInvStripMenuItem");
+            this.psTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
             // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.Controls.Add(this.fLPSettings);
             this.Controls.Add(this.tCControls);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Options";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Options_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Options_Closed);
             this.Resize += new System.EventHandler(this.Options_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).EndInit();
@@ -3173,6 +4143,7 @@
             this.gBTouchpad.PerformLayout();
             this.pnlTPMouse.ResumeLayout(false);
             this.pnlTPMouse.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackFrictionNUD)).EndInit();
             this.fLPTouchSwipe.ResumeLayout(false);
             this.cMSPresets.ResumeLayout(false);
             this.gBOther.ResumeLayout(false);
@@ -3214,15 +4185,39 @@
             this.tCSens.ResumeLayout(false);
             this.tPDeadzone.ResumeLayout(false);
             this.tPDeadzone.PerformLayout();
+            this.antiDeadzoneTabPage.ResumeLayout(false);
+            this.antiDeadzoneTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxisZAntiDead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxisXAntiDead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDR2AntiDead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2AntiDead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSAntiDead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSAntiDead)).EndInit();
+            this.maxZoneTabPage.ResumeLayout(false);
+            this.maxZoneTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisZMaxZone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisXMaxZone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDR2Maxzone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).EndInit();
+            this.tPOutCurve.ResumeLayout(false);
+            this.tPOutCurve.PerformLayout();
             this.tPCurve.ResumeLayout(false);
             this.tPCurve.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).EndInit();
+            this.tpRotation.ResumeLayout(false);
+            this.tpRotation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSRotation)).EndInit();
             this.fLPSettings.ResumeLayout(false);
             this.gBGyro.ResumeLayout(false);
             this.gBGyro.PerformLayout();
             this.pnlSAMouse.ResumeLayout(false);
             this.pnlSAMouse.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSmoothWeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroMouseVertScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSensitivity)).EndInit();
             this.gBSensitivity.ResumeLayout(false);
             this.gBSensitivity.PerformLayout();
@@ -3233,6 +4228,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
             this.cMGyroTriggers.ResumeLayout(false);
+            this.cMTouchDisableInvert.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -3514,5 +4510,89 @@
         private System.Windows.Forms.Button btnRainbow;
         private System.Windows.Forms.ToolStripMenuItem alwaysOnToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem fingerOnTouchpadToolStripMenuItem;
+        private System.Windows.Forms.TabPage antiDeadzoneTabPage;
+        private System.Windows.Forms.NumericUpDown nUDRSAntiDead;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown nUDLSAntiDead;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown nUDR2AntiDead;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown nUDL2AntiDead;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox enableTouchToggleCheckbox;
+        private System.Windows.Forms.TabPage maxZoneTabPage;
+        private System.Windows.Forms.NumericUpDown nUDRSMaxZone;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown nUDLSMaxZone;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown nUDR2Maxzone;
+        private System.Windows.Forms.NumericUpDown nUDL2Maxzone;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label btPollRateLabel;
+        private System.Windows.Forms.ComboBox btPollRateComboBox;
+        private System.Windows.Forms.TabPage tPOutCurve;
+        private System.Windows.Forms.ComboBox rsOutCurveComboBox;
+        private System.Windows.Forms.ComboBox lsOutCurveComboBox;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox gyroTriggerBehavior;
+        private System.Windows.Forms.NumericUpDown nUDGyroMouseVertScale;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lbSmoothWeight;
+        private System.Windows.Forms.NumericUpDown nUDGyroSmoothWeight;
+        private System.Windows.Forms.CheckBox cBGyroSmooth;
+        private System.Windows.Forms.Label lbGyroSmooth;
+        private System.Windows.Forms.TabPage tpRotation;
+        private System.Windows.Forms.NumericUpDown nUDRSRotation;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.NumericUpDown nUDLSRotation;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox touchpadInvertComboBox;
+        private System.Windows.Forms.ComboBox cBGyroMouseXAxis;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.NumericUpDown nUDSixAxisZMaxZone;
+        private System.Windows.Forms.NumericUpDown nUDSixAxisXMaxZone;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.NumericUpDown nUDSixaxisZAntiDead;
+        private System.Windows.Forms.NumericUpDown nUDSixaxisXAntiDead;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ComboBox cBR2OutputCurve;
+        private System.Windows.Forms.ComboBox cBL2OutputCurve;
+        private System.Windows.Forms.ComboBox cBSixaxisZOutputCurve;
+        private System.Windows.Forms.ComboBox cBSixaxisXOutputCurve;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.ContextMenuStrip cMTouchDisableInvert;
+        private System.Windows.Forms.ToolStripMenuItem crossTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem circleTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem squareTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem triangleTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem l1TouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem l2TouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem r1TouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem r2TouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem upTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem downTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem leftTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rightTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem l3TouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem r3TouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oneFingerTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem twoFingerTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionsTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem shareTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem psTouchInvStripMenuItem;
+        private System.Windows.Forms.Button touchpadDisInvertButton;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label trackFrictionLb;
+        private System.Windows.Forms.NumericUpDown trackFrictionNUD;
+        private System.Windows.Forms.CheckBox trackballCk;
     }
 }

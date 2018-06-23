@@ -193,9 +193,6 @@
   <data name="tabControllers.Text" xml:space="preserve">
     <value>בקרים</value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>התחבר ל-DS4 בלעדית (ניסיוני)</value>
-  </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
     <value>1084, 94</value>
   </data>

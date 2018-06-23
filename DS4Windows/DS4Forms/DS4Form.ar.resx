@@ -196,9 +196,6 @@
   <data name="tabControllers.Text" xml:space="preserve">
     <value>الأيادي</value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>وصل اليد بشكل حصري (تجريبي)</value>
-  </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
     <value>1046, 94</value>
   </data>

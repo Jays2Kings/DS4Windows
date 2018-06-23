@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>Hủy</value>
-  </data>
   <data name="btnSave.Text" xml:space="preserve">
     <value>Lưu</value>
   </data>
   <data name="tBProfile.Text" xml:space="preserve">
     <value>&lt;gõ tên Profile mới&gt;</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Hủy</value>
   </data>
 </root>

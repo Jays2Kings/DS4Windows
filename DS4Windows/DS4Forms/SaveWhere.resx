@@ -118,250 +118,226 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lbMultiSaves.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 10</value>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>206, 89</value>
   </data>
-  <data name="&gt;&gt;bnPrgmFolder.Name" xml:space="preserve">
-    <value>bnPrgmFolder</value>
-  </data>
-  <data name="&gt;&gt;cBDeleteOther.Name" xml:space="preserve">
-    <value>cBDeleteOther</value>
-  </data>
-  <data name="lbPickWhere.Size" type="System.Drawing.Size, System.Drawing">
-    <value>515, 33</value>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 69</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cBDeleteOther.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;cBDeleteOther.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lbMultiSaves.Text" xml:space="preserve">
-    <value>Multiple save locations detected</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="lbMultiSaves.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="bnAppdataFolder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 28</value>
-  </data>
-  <data name="&gt;&gt;bnAppdataFolder.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>260, 85</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>For those who prefer a regular install Settings saved at %appdata%/DS4Windows</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
+  <data name="label4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
   </data>
-  <data name="cBDeleteOther.Text" xml:space="preserve">
-    <value>Don't Delete the
-other settings yet</value>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
   </data>
-  <data name="&gt;&gt;lbMultiSaves.Parent" xml:space="preserve">
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
-  </data>
-  <data name="label4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 110</value>
+    <value>5, 89</value>
   </data>
-  <data name="bnPrgmFolder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>43, 78</value>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 69</value>
   </data>
-  <data name="&gt;&gt;bnPrgmFolder.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
-  <data name="&gt;&gt;lbMultiSaves.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;bnPrgmFolder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="cBDeleteOther.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="lbMultiSaves.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 17</value>
-  </data>
-  <data name="cBDeleteOther.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbPickWhere.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>For those who prefer a portable program Note: this option does not work if in an admin folder w/o UAC</value>
   </data>
   <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
   </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="bnAppdataFolder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>222, 63</value>
+  </data>
+  <data name="bnAppdataFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 23</value>
+  </data>
+  <data name="bnAppdataFolder.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="bnAppdataFolder.Text" xml:space="preserve">
+    <value>Appdata</value>
+  </data>
+  <data name="&gt;&gt;bnAppdataFolder.Name" xml:space="preserve">
+    <value>bnAppdataFolder</value>
+  </data>
+  <data name="&gt;&gt;bnAppdataFolder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;bnAppdataFolder.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;bnAppdataFolder.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="bnPrgmFolder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 63</value>
+  </data>
+  <data name="bnPrgmFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 23</value>
+  </data>
+  <data name="bnPrgmFolder.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="bnPrgmFolder.Text" xml:space="preserve">
+    <value>Program Folder</value>
+  </data>
+  <data name="&gt;&gt;bnPrgmFolder.Name" xml:space="preserve">
+    <value>bnPrgmFolder</value>
+  </data>
+  <data name="&gt;&gt;bnPrgmFolder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnPrgmFolder.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;bnPrgmFolder.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lbPickWhere.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="lbPickWhere.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 33</value>
+  </data>
+  <data name="lbPickWhere.Size" type="System.Drawing.Size, System.Drawing">
+    <value>386, 27</value>
+  </data>
+  <data name="lbPickWhere.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="lbPickWhere.Text" xml:space="preserve">
+    <value>Pick where you want settings and profiles to be saved</value>
+  </data>
+  <data name="lbPickWhere.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
+  </data>
+  <data name="&gt;&gt;lbPickWhere.Name" xml:space="preserve">
+    <value>lbPickWhere</value>
+  </data>
+  <data name="&gt;&gt;lbPickWhere.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbPickWhere.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lbPickWhere.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
+  <data name="lbMultiSaves.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>For those who prefer a regular install Settings saved at %appdata%/ds4tool</value>
+  <data name="lbMultiSaves.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 8</value>
   </data>
-  <data name="&gt;&gt;bnPrgmFolder.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="lbPickWhere.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopCenter</value>
-  </data>
-  <data name="lbMultiSaves.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopCenter</value>
-  </data>
-  <data name="lbPickWhere.Text" xml:space="preserve">
-    <value>Pick where you want settings and profiles to be saved</value>
-  </data>
-  <data name="&gt;&gt;cBDeleteOther.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>For those who prefer a portable program Note: this option does not work if in an admin folder w/o UAC</value>
-  </data>
-  <data name="label3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopCenter</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="bnPrgmFolder.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="cBDeleteOther.Location" type="System.Drawing.Point, System.Drawing">
-    <value>375, 0</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="lbPickWhere.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="bnPrgmFolder.Text" xml:space="preserve">
-    <value>Program Folder</value>
-  </data>
-  <data name="&gt;&gt;bnAppdataFolder.Name" xml:space="preserve">
-    <value>bnAppdataFolder</value>
-  </data>
-  <data name="cBDeleteOther.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="lbPickWhere.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="bnAppdataFolder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>296, 78</value>
+  <data name="lbMultiSaves.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 13</value>
   </data>
   <data name="lbMultiSaves.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>SaveWhere</value>
+  <data name="lbMultiSaves.Text" xml:space="preserve">
+    <value>Multiple save locations detected</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>DS4Windows</value>
-  <comment>@Invariant</comment></data>
-  <data name="bnAppdataFolder.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;lbPickWhere.Name" xml:space="preserve">
-    <value>lbPickWhere</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>275, 110</value>
-  </data>
-  <data name="&gt;&gt;lbPickWhere.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 85</value>
-  </data>
-  <data name="&gt;&gt;cBDeleteOther.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="bnAppdataFolder.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="lbMultiSaves.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;lbPickWhere.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="bnPrgmFolder.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="&gt;&gt;lbMultiSaves.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bnAppdataFolder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbMultiSaves.Name" xml:space="preserve">
-    <value>lbMultiSaves</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>519, 167</value>
+  <data name="lbMultiSaves.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
   </data>
   <data name="lbMultiSaves.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lbMultiSaves.Name" xml:space="preserve">
+    <value>lbMultiSaves</value>
   </data>
-  <data name="lbPickWhere.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 41</value>
-  </data>
-  <data name="bnPrgmFolder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 28</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="cBDeleteOther.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 38</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+  <data name="&gt;&gt;lbMultiSaves.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="bnAppdataFolder.Text" xml:space="preserve">
-    <value>Appdata</value>
+  <data name="&gt;&gt;lbMultiSaves.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lbMultiSaves.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="cBDeleteOther.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBDeleteOther.Location" type="System.Drawing.Point, System.Drawing">
+    <value>281, 0</value>
+  </data>
+  <data name="cBDeleteOther.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 30</value>
+  </data>
+  <data name="cBDeleteOther.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="cBDeleteOther.Text" xml:space="preserve">
+    <value>Don't Delete the
+other settings yet</value>
+  </data>
+  <data name="cBDeleteOther.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;cBDeleteOther.Name" xml:space="preserve">
+    <value>cBDeleteOther</value>
+  </data>
+  <data name="&gt;&gt;cBDeleteOther.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBDeleteOther.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cBDeleteOther.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>zh-Hans</value>
-  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>389, 136</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>DS4Windows</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>SaveWhere</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

@@ -190,9 +190,6 @@
   <data name="tabControllers.Text" xml:space="preserve">
     <value>Controller</value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>Sambung secara khusus (eksperimental)</value>
-  </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
     <value>1070, 94</value>
   </data>

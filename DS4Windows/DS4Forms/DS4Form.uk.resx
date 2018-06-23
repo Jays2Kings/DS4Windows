@@ -196,9 +196,6 @@
   <data name="cMTaskbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>322, 192</value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>Ексклюзивне підключення DS4 (експерементальне)</value>
-  </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
     <value>1069, 94</value>
   </data>

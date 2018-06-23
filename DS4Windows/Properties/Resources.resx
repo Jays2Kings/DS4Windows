@@ -118,128 +118,20 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mouse" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mouse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="rainbow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rainbow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="rainbowC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rainbowC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Controller" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4 Controller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Pairmode" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Pairmode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shell32_copy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shell32_new.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="newprofile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\imageres_new.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="none" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\none.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="USB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\USB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="export" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\export.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="import" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\imageres_import.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="saveprofile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\saveprofile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="A" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\A.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="B" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\B.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ActionExists" xml:space="preserve">
+    <value>Name of this action already exists</value>
   </data>
-  <data name="BACK" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BACK.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AddingToList" xml:space="preserve">
+    <value>Adding to list...</value>
   </data>
-  <data name="DOWN" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DOWN.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AddPrograms" xml:space="preserve">
+    <value>Add Programs</value>
   </data>
-  <data name="LB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LEFT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LEFT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LSD" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LSD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LSL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LSL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LSR" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LSR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LSU" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LSU.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RIGHT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RIGHT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RSD" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RSD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RSL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RSL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RSR" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RSR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RSU" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RSU.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="START" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\START.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="UP" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UP.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="X" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\X.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Y" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Y.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="size" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\size.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ALocactionNeeded" xml:space="preserve">
+    <value>A location must be picked to continue</value>
   </data>
   <data name="AlwaysRainbow" xml:space="preserve">
     <value>Always Rainbow Mode</value>
@@ -247,14 +139,35 @@
   <data name="AssignProfile" xml:space="preserve">
     <value>Assign to Controller *number*</value>
   </data>
+  <data name="B" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\B.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BACK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BACK.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Battery" xml:space="preserve">
     <value>Battery: *number*%</value>
   </data>
   <data name="BestUsedRightSide" xml:space="preserve">
     <value>Best used with right side as a mouse function</value>
   </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="BT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BTPollRate" xml:space="preserve">
+    <value>Determines the poll rate used for the DS4 hardware when connected via Bluetooth</value>
+  </data>
+  <data name="CannotMoveFiles" xml:space="preserve">
+    <value>Cannot move files to new location, Please rename the DS4Tool folder to "DS4Windows"</value>
+  </data>
   <data name="CannotWriteHere" xml:space="preserve">
     <value>Cannot write at current location. Copy Settings to appdata?</value>
+  </data>
+  <data name="ChargeController" xml:space="preserve">
+    <value>Charge the battery</value>
   </data>
   <data name="Charged" xml:space="preserve">
     <value>Charged</value>
@@ -262,8 +175,26 @@
   <data name="Charging" xml:space="preserve">
     <value>Charging: *number*%</value>
   </data>
+  <data name="CheckBattery" xml:space="preserve">
+    <value>Check Battery</value>
+  </data>
+  <data name="CloseConfirm" xml:space="preserve">
+    <value>This will disconnect all your connected controllers. Proceed?</value>
+  </data>
+  <data name="CloseDS4W" xml:space="preserve">
+    <value>Close DS4Windows?</value>
+  </data>
+  <data name="CloseMinimize" xml:space="preserve">
+    <value>Close DS4Windows via the notification icon</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
   <data name="ColorByBattery" xml:space="preserve">
-    <value>Color by Battey %</value>
+    <value>Color by Battery %</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm...</value>
   </data>
   <data name="Connecting" xml:space="preserve">
     <value>Connecting...</value>
@@ -276,6 +207,9 @@
   </data>
   <data name="ControllerWasRemoved" xml:space="preserve">
     <value>Controller *Mac address* was removed or lost connection</value>
+  </data>
+  <data name="copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shell32_copy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CopyComplete" xml:space="preserve">
     <value>Copy complete, please relaunch DS4Windows and remove settings from Program Directory</value>
@@ -292,14 +226,26 @@
   <data name="Days" xml:space="preserve">
     <value>days</value>
   </data>
+  <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="DeleteProfile" xml:space="preserve">
     <value>Delete Profile?</value>
   </data>
   <data name="DimByBattery" xml:space="preserve">
-    <value>Dim by Battey %</value>
+    <value>Dim by Battery %</value>
+  </data>
+  <data name="DinputOnly" xml:space="preserve">
+    <value>Turn off X360 input and only use the DS4's native input, hide ds4 must be off (Wired Only)</value>
+  </data>
+  <data name="DisconnectBT" xml:space="preserve">
+    <value>Disconnect BT</value>
   </data>
   <data name="Disconnected" xml:space="preserve">
     <value>Disconnected</value>
+  </data>
+  <data name="DOWN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DOWN.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Downloading" xml:space="preserve">
     <value>Downloading *number*%</value>
@@ -307,371 +253,23 @@
   <data name="DownloadVersion" xml:space="preserve">
     <value>Download Version *number* now?</value>
   </data>
-  <data name="DS4Update" xml:space="preserve">
-    <value>DS4Windows Update Available!</value>
-  </data>
-  <data name="DS4WindowsCannotEditHere" xml:space="preserve">
-    <value>DS4Windows cannot edit settings here, This will now close</value>
-  </data>
-  <data name="EditProfile" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="FifthMouseDown" xml:space="preserve">
-    <value>5th Mouse Button Down</value>
-  </data>
-  <data name="FifthMouseUp" xml:space="preserve">
-    <value>5th Mouse Button Up</value>
-  </data>
-  <data name="FlushHID" xml:space="preserve">
-    <value>Flush HID</value>
-  </data>
-  <data name="FoundController" xml:space="preserve">
-    <value>Found Controller:</value>
-  </data>
-  <data name="FourthMouseDown" xml:space="preserve">
-    <value>4th Mouse Button Down</value>
-  </data>
-  <data name="FourthMouseUp" xml:space="preserve">
-    <value>4th Mouse Button Up</value>
-  </data>
-  <data name="Full" xml:space="preserve">
-    <value>Full</value>
-  </data>
-  <data name="Hour" xml:space="preserve">
-    <value>hour</value>
-  </data>
-  <data name="Hours" xml:space="preserve">
-    <value>hours</value>
-  </data>
-  <data name="IfRemovingDS4Windows" xml:space="preserve">
-    <value>If removing DS4Windows, You can delete the settings following the profile folder link</value>
-  </data>
-  <data name="InstallComplete" xml:space="preserve">
-    <value>Install Complete</value>
-  </data>
-  <data name="Loading" xml:space="preserve">
-    <value>Loading...</value>
-  </data>
-  <data name="MakeNewProfile" xml:space="preserve">
-    <value>Make a New Profile</value>
-  </data>
-  <data name="NA" xml:space="preserve">
-    <value>N/A</value>
-  </data>
-  <data name="New" xml:space="preserve">
-    <value>New</value>
-  </data>
-  <data name="NoMacroRecorded" xml:space="preserve">
-    <value>No macro was recorded</value>
-  </data>
-  <data name="noneProfile" xml:space="preserve">
-    <value>(none)</value>
-  </data>
-  <data name="NoneText" xml:space="preserve">
-    <value>none</value>
-  </data>
-  <data name="NoProfileLoaded" xml:space="preserve">
-    <value>No Profile Loaded</value>
-  </data>
-  <data name="NotValid" xml:space="preserve">
-    <value>Not valid</value>
-  </data>
-  <data name="OpeningInstaller" xml:space="preserve">
-    <value>Opening Installer</value>
-  </data>
-  <data name="OpenScpDriver" xml:space="preserve">
-    <value>Please Open ScpDriver.exe</value>
-  </data>
-  <data name="PleaseDownloadUpdater" xml:space="preserve">
-    <value>Please Download the Updater now, and place it in the programs folder, then check for update again</value>
-  </data>
-  <data name="PleaseImport" xml:space="preserve">
-    <value>Please import or make a profile</value>
-  </data>
-  <data name="ProfileCannotRestore" xml:space="preserve">
-    <value>*Profile name* cannot be restored.</value>
-  </data>
-  <data name="ProfileFolderMoved" xml:space="preserve">
-    <value>Profile Folder Moved to program folder</value>
-  </data>
-  <data name="QuitOtherPrograms" xml:space="preserve">
-    <value>You must quit other applications like Steam, Uplay before activating the 'Hide DS4 Controller' option."</value>
-  </data>
-  <data name="SaveRecordedMacro" xml:space="preserve">
-    <value>Save Recorded Macro?</value>
-  </data>
-  <data name="SearchingController" xml:space="preserve">
-    <value>Searching for controllers…</value>
-  </data>
-  <data name="SelectActionTitle" xml:space="preserve">
-    <value>Select an action for *action*</value>
-  </data>
-  <data name="Starting" xml:space="preserve">
-    <value>Starting...</value>
-  </data>
-  <data name="StartText" xml:space="preserve">
-    <value>Start</value>
-  </data>
-  <data name="StoppingDS4" xml:space="preserve">
-    <value>Stopping DS4 Controllers</value>
-  </data>
-  <data name="StoppingX360" xml:space="preserve">
-    <value>Stopping X360 Controllers</value>
-  </data>
-  <data name="StopText" xml:space="preserve">
-    <value>Stop</value>
-  </data>
-  <data name="SwipeTouchpad" xml:space="preserve">
-    <value>Swipe Touchpad to change profiles</value>
-  </data>
-  <data name="TapAndHold" xml:space="preserve">
-    <value>Tap and hold to drag, slight delay with single taps</value>
-  </data>
-  <data name="TouchpadMovementOff" xml:space="preserve">
-    <value>Touchpad Movement is now Off</value>
-  </data>
-  <data name="TouchpadMovementOn" xml:space="preserve">
-    <value>Touchpad Movement is now On</value>
-  </data>
-  <data name="TypeNewName" xml:space="preserve">
-    <value>type new name here</value>
-  </data>
-  <data name="TypeProfileName" xml:space="preserve">
-    <value>type profile name here</value>
-  </data>
-  <data name="UseControllerForMapping" xml:space="preserve">
-    <value>You can also use your controller to change controls</value>
-  </data>
-  <data name="UsingExclusive" xml:space="preserve">
-    <value>Using Exclusive Mode</value>
-  </data>
-  <data name="UsingShared" xml:space="preserve">
-    <value>Using Shared Mode</value>
-  </data>
-  <data name="ValidName" xml:space="preserve">
-    <value>Please enter a valid name</value>
-  </data>
-  <data name="WaitMS" xml:space="preserve">
-    <value>Wait *number*ms</value>
-  </data>
-  <data name="WillKeep" xml:space="preserve">
-    <value>Will Keep</value>
-  </data>
-  <data name="TwoFingerSwipe" xml:space="preserve">
-    <value>2 finger touchpad swipe left or right</value>
-  </data>
-  <data name="UpToDate" xml:space="preserve">
-    <value>You are up to date</value>
-  </data>
-  <data name="AddingToList" xml:space="preserve">
-    <value>Adding to list...</value>
-  </data>
-  <data name="AddPrograms" xml:space="preserve">
-    <value>Add Programs</value>
-  </data>
-  <data name="Browse" xml:space="preserve">
-    <value>Browse...</value>
-  </data>
-  <data name="Color" xml:space="preserve">
-    <value>Color</value>
-  </data>
   <data name="DownText" xml:space="preserve">
     <value>Down</value>
-  </data>
-  <data name="InputDelay" xml:space="preserve">
-    <value>Input Delay: *number*ms</value>
-  </data>
-  <data name="KeepThisSize" xml:space="preserve">
-    <value>Keep this window size after closing</value>
-  </data>
-  <data name="RecordText" xml:space="preserve">
-    <value>Record</value>
-  </data>
-  <data name="Step1" xml:space="preserve">
-    <value>Step 1: Install the DS4 Driver</value>
-  </data>
-  <data name="UpText" xml:space="preserve">
-    <value>Up</value>
-  </data>
-  <data name="DinputOnly" xml:space="preserve">
-    <value>Turn off X360 input and only use the DS4's native input, hide ds4 must be off (Wired Only)</value>
-  </data>
-  <data name="InstallDriver" xml:space="preserve">
-    <value>Install Drivers here</value>
-  </data>
-  <data name="TiltDown" xml:space="preserve">
-    <value>Tilt Down</value>
-  </data>
-  <data name="TiltLeft" xml:space="preserve">
-    <value>Tilt Left</value>
-  </data>
-  <data name="TiltRight" xml:space="preserve">
-    <value>Tilt Right</value>
-  </data>
-  <data name="TiltUp" xml:space="preserve">
-    <value>Tilt Up</value>
-  </data>
-  <data name="Installing" xml:space="preserve">
-    <value>Installing...</value>
   </data>
   <data name="DS4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DS4.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DS4Update" xml:space="preserve">
+    <value>DS4Windows Update Available!</value>
+  </data>
   <data name="DS4W" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DS4W.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="InstallFailed" xml:space="preserve">
-    <value>Install Failed, Please Retry</value>
+  <data name="DS4WindowsCannotEditHere" xml:space="preserve">
+    <value>DS4Windows cannot edit settings here, This will now close</value>
   </data>
-  <data name="SwipeDown" xml:space="preserve">
-    <value>Swipe Down</value>
-  </data>
-  <data name="SwipeLeft" xml:space="preserve">
-    <value>Swipe Left</value>
-  </data>
-  <data name="SwipeRight" xml:space="preserve">
-    <value>Swipe Right</value>
-  </data>
-  <data name="SwipeUp" xml:space="preserve">
-    <value>Swipe Up</value>
-  </data>
-  <data name="StopHText" xml:space="preserve">
-    <value>Stop Heavy</value>
-  </data>
-  <data name="StopLText" xml:space="preserve">
-    <value>Stop Light</value>
-  </data>
-  <data name="TestHText" xml:space="preserve">
-    <value>Test Heavy</value>
-  </data>
-  <data name="TestLText" xml:space="preserve">
-    <value>Test Light</value>
-  </data>
-  <data name="QuickCharge" xml:space="preserve">
-    <value>EXPERIMENTAL: Auto-Disable BT when conencting to USB</value>
-  </data>
-  <data name="TestText" xml:space="preserve">
-    <value>Test</value>
-  </data>
-  <data name="CannotMoveFiles" xml:space="preserve">
-    <value>Cannot move files to new location, Please rename the DS4Tool folder to "DS4Windows"</value>
-  </data>
-  <data name="XinputPorts" xml:space="preserve">
-    <value>Use higher ports if you get conflicts in other emulating X360 programs, such as SCP's tool</value>
-  </data>
-  <data name="ActionExists" xml:space="preserve">
-    <value>Name of this action already exists</value>
-  </data>
-  <data name="LaunchProgram" xml:space="preserve">
-    <value>Launch *program*</value>
-  </data>
-  <data name="LoadProfile" xml:space="preserve">
-    <value>Load *profile*</value>
-  </data>
-  <data name="SetRegularTrigger" xml:space="preserve">
-    <value>Set Regular Trigger</value>
-  </data>
-  <data name="SetUnloadTrigger" xml:space="preserve">
-    <value>Set Unload Trigger</value>
-  </data>
-  <data name="CloseMinimize" xml:space="preserve">
-    <value>Close DS4Windows via the notification icon</value>
-  </data>
-  <data name="RightClickPresets" xml:space="preserve">
-    <value>Right Click to set presets for a set of controls</value>
-  </data>
-  <data name="DisconnectBT" xml:space="preserve">
-    <value>Disconnect BT</value>
-  </data>
-  <data name="PlusNewProfile" xml:space="preserve">
-    <value>New Profile</value>
-  </data>
-  <data name="FallBackTo" xml:space="preserve">
-    <value>Fall Back to *button*</value>
-  </data>
-  <data name="FlashAtTip" xml:space="preserve">
-    <value>Click to change flash color. Black = default color</value>
-  </data>
-  <data name="FlushHIDTip" xml:space="preserve">
-    <value>Flush HID Queue after each reading</value>
-  </data>
-  <data name="GyroReadout" xml:space="preserve">
-    <value>Click to see readout of Sixaxis Gyro</value>
-  </data>
-  <data name="GyroX" xml:space="preserve">
-    <value>GyroX, Left and Right Tilt</value>
-  </data>
-  <data name="GyroY" xml:space="preserve">
-    <value>GyroY, Forward and Back Tilt</value>
-  </data>
-  <data name="GyroZ" xml:space="preserve">
-    <value>GyroZ, Up and Down Tilt</value>
-  </data>
-  <data name="HoverOverItems" xml:space="preserve">
-    <value>Hover over items to see description or more about</value>
-  </data>
-  <data name="Jitter" xml:space="preserve">
-    <value>Use Sixaxis to help calculate touchpad movement</value>
-  </data>
-  <data name="LightByBatteryTip" xml:space="preserve">
-    <value>Also dim light by idle timeout if on</value>
-  </data>
-  <data name="Macro" xml:space="preserve">
-    <value>Macro</value>
-  </data>
-  <data name="Programs" xml:space="preserve">
-    <value>Programs</value>
-  </data>
-  <data name="ScanCode" xml:space="preserve">
-    <value>Scan Code</value>
-  </data>
-  <data name="Shortcuts" xml:space="preserve">
-    <value>Shortcuts</value>
-  </data>
-  <data name="SixAxisReading" xml:space="preserve">
-    <value>Click for advanced Sixaxis reading</value>
-  </data>
-  <data name="TouchpadOffTip" xml:space="preserve">
-    <value>Re-enable by pressing PS+Touchpad</value>
-  </data>
-  <data name="UsingTPSwipes" xml:space="preserve">
-    <value>This disables the Touchpad as a mouse</value>
-  </data>
-  <data name="FallBack" xml:space="preserve">
-    <value>Fall Back</value>
-  </data>
-  <data name="ALocactionNeeded" xml:space="preserve">
-    <value>A location must be picked to continue</value>
-  </data>
-  <data name="CloseDS4W" xml:space="preserve">
-    <value>Close DS4Windows?</value>
-  </data>
-  <data name="OtherFileLocation" xml:space="preserve">
-    <value>, other location files will be deleted</value>
-  </data>
-  <data name="EE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EE.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>Stopped DS4Windows</value>
-  </data>
-  <data name="LatencyNotOverTen" xml:space="preserve">
-    <value>Controller *number*'s latency now under 10ms</value>
-  </data>
-  <data name="LatencyOverTen" xml:space="preserve">
-    <value>Controller *number*'s latency over 10ms</value>
-  </data>
-  <data name="NotUsingProfile" xml:space="preserve">
-    <value>Controller *number* is not using a profile</value>
-  </data>
-  <data name="CheckBattery" xml:space="preserve">
-    <value>Check Battery</value>
-  </data>
-  <data name="UsingProfile" xml:space="preserve">
-    <value>Controller *number* is using Profile “*Profile name*"</value>
-  </data>
-  <data name="ChargeController" xml:space="preserve">
-    <value>Charge the battery</value>
+  <data name="DS4W___White" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DS4W - White.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DS4_Config" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DS4 Config.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -739,23 +337,455 @@
   <data name="DS4_Config_Up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DS4-Config_Up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DS4_Controller" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DS4 Controller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="DS4_lightbar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DS4 lightbar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TextDocs" xml:space="preserve">
-    <value>Text Document (*.txt)</value>
+  <data name="edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shell32_new.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="XMLFiles" xml:space="preserve">
-    <value>XML Files (*.xml)</value>
+  <data name="EditProfile" xml:space="preserve">
+    <value>Edit</value>
   </data>
-  <data name="Unassigned" xml:space="preserve">
-    <value>Unassigned</value>
+  <data name="EE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EE.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="export" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\export.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FallBack" xml:space="preserve">
+    <value>Fall Back</value>
+  </data>
+  <data name="FallBackTo" xml:space="preserve">
+    <value>Fall Back to *button*</value>
+  </data>
+  <data name="FifthMouseDown" xml:space="preserve">
+    <value>5th Mouse Button Down</value>
+  </data>
+  <data name="FifthMouseUp" xml:space="preserve">
+    <value>5th Mouse Button Up</value>
+  </data>
+  <data name="FlashAtTip" xml:space="preserve">
+    <value>Click to change flash color. Black = default color</value>
+  </data>
+  <data name="FlushHID" xml:space="preserve">
+    <value>Flush HID</value>
+  </data>
+  <data name="FlushHIDTip" xml:space="preserve">
+    <value>Flush HID Queue after each reading</value>
+  </data>
+  <data name="FoundController" xml:space="preserve">
+    <value>Found Controller:</value>
+  </data>
+  <data name="FourthMouseDown" xml:space="preserve">
+    <value>4th Mouse Button Down</value>
+  </data>
+  <data name="FourthMouseUp" xml:space="preserve">
+    <value>4th Mouse Button Up</value>
+  </data>
+  <data name="Full" xml:space="preserve">
+    <value>Full</value>
+  </data>
+  <data name="GyroReadout" xml:space="preserve">
+    <value>Click to see readout of Sixaxis Gyro</value>
+  </data>
+  <data name="GyroTriggerBehavior" xml:space="preserve">
+    <value>Check to have gyro active while trigger is active. Uncheck to disable gyro while trigger is active.</value>
+  </data>
+  <data name="GyroX" xml:space="preserve">
+    <value>GyroX, Left and Right Tilt</value>
+  </data>
+  <data name="GyroY" xml:space="preserve">
+    <value>GyroY, Forward and Back Tilt</value>
+  </data>
+  <data name="GyroZ" xml:space="preserve">
+    <value>GyroZ, Up and Down Tilt</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>hour</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>hours</value>
+  </data>
+  <data name="HoverOverItems" xml:space="preserve">
+    <value>Hover over items to see description or more about</value>
+  </data>
+  <data name="IfRemovingDS4Windows" xml:space="preserve">
+    <value>If removing DS4Windows, You can delete the settings following the profile folder link</value>
+  </data>
+  <data name="import" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imageres_import.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InputDelay" xml:space="preserve">
+    <value>Input Delay: *number*ms</value>
+  </data>
+  <data name="InstallComplete" xml:space="preserve">
+    <value>Install Complete</value>
+  </data>
+  <data name="InstallDriver" xml:space="preserve">
+    <value>Install Drivers here</value>
+  </data>
+  <data name="InstallFailed" xml:space="preserve">
+    <value>Install Failed, Please Retry</value>
+  </data>
+  <data name="Installing" xml:space="preserve">
+    <value>Installing...</value>
+  </data>
+  <data name="Jitter" xml:space="preserve">
+    <value>Use Sixaxis to help calculate touchpad movement</value>
+  </data>
+  <data name="KeepThisSize" xml:space="preserve">
+    <value>Keep this window size after closing</value>
+  </data>
+  <data name="LanguagePackApplyRestartRequired" xml:space="preserve">
+    <value>Language pack change will take effect after DS4Windows application is restarted.</value>
+  </data>
+  <data name="LatencyNotOverTen" xml:space="preserve">
+    <value>Controller *number*'s latency now under 10ms</value>
+  </data>
+  <data name="LatencyOverTen" xml:space="preserve">
+    <value>Controller *number*'s latency over 10ms</value>
+  </data>
+  <data name="LaunchProgram" xml:space="preserve">
+    <value>Launch *program*</value>
+  </data>
+  <data name="LB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LEFT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LEFT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="left_touch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\left touch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="LightByBatteryTip" xml:space="preserve">
+    <value>Also dim light by idle timeout if enabled when DS4 is fully charged</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="LoadProfile" xml:space="preserve">
+    <value>Load *profile*</value>
+  </data>
+  <data name="LS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LSD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LSD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LSL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LSL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LSR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LSR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LSU" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LSU.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Macro" xml:space="preserve">
+    <value>Macro</value>
+  </data>
+  <data name="MacroRecorded" xml:space="preserve">
+    <value>Macro Recorded</value>
+  </data>
+  <data name="MakeNewProfile" xml:space="preserve">
+    <value>Make a New Profile</value>
+  </data>
+  <data name="mouse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mouse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MultiAction" xml:space="preserve">
+    <value>Mutli-Action Button</value>
+  </data>
+  <data name="NA" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="newprofile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imageres_new.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NoMacroRecorded" xml:space="preserve">
+    <value>No macro was recorded</value>
+  </data>
+  <data name="none" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\none.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noneProfile" xml:space="preserve">
+    <value>(none)</value>
+  </data>
+  <data name="NoneText" xml:space="preserve">
+    <value>none</value>
+  </data>
+  <data name="NoProfileLoaded" xml:space="preserve">
+    <value>No Profile Loaded</value>
+  </data>
+  <data name="NotUsingProfile" xml:space="preserve">
+    <value>Controller *number* is not using a profile</value>
+  </data>
+  <data name="NotValid" xml:space="preserve">
+    <value>Not valid</value>
+  </data>
+  <data name="OpeningInstaller" xml:space="preserve">
+    <value>Opening Installer</value>
+  </data>
+  <data name="OpenScpDriver" xml:space="preserve">
+    <value>Please Open ScpDriver.exe</value>
+  </data>
+  <data name="OtherFileLocation" xml:space="preserve">
+    <value>, other location files will be deleted</value>
+  </data>
+  <data name="Pairmode" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pairmode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PleaseDownloadUpdater" xml:space="preserve">
+    <value>Please Download the Updater now, and place it in the programs folder, then check for update again</value>
+  </data>
+  <data name="PleaseImport" xml:space="preserve">
+    <value>Please import or make a profile</value>
+  </data>
+  <data name="PlusNewProfile" xml:space="preserve">
+    <value>New Profile</value>
+  </data>
+  <data name="ProfileCannotRestore" xml:space="preserve">
+    <value>*Profile name* cannot be restored.</value>
+  </data>
+  <data name="ProfileFolderMoved" xml:space="preserve">
+    <value>Profile Folder Moved to program folder</value>
+  </data>
+  <data name="Programs" xml:space="preserve">
+    <value>Programs</value>
+  </data>
+  <data name="QuickCharge" xml:space="preserve">
+    <value>EXPERIMENTAL: Auto-Disable BT when connecting to USB</value>
+  </data>
+  <data name="QuitOtherPrograms" xml:space="preserve">
+    <value>You must quit other applications like Steam, Uplay before activating the 'Hide DS4 Controller' option."</value>
+  </data>
+  <data name="rainbow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rainbow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rainbowC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rainbowC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RecordText" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="RIGHT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RIGHT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RightClickPresets" xml:space="preserve">
+    <value>Right Click to set presets for a set of controls</value>
+  </data>
   <data name="right_touch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\right touch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RSD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RSD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RSL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RSL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RSR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RSR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RSU" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RSU.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RunAtStartup" xml:space="preserve">
+    <value>Tells Windows to start DS4Windows after login</value>
+  </data>
+  <data name="saveprofile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\saveprofile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SaveRecordedMacro" xml:space="preserve">
+    <value>Save Recorded Macro?</value>
+  </data>
+  <data name="ScanCode" xml:space="preserve">
+    <value>Scan Code</value>
+  </data>
+  <data name="SearchingController" xml:space="preserve">
+    <value>Searching for controllers...</value>
+  </data>
+  <data name="SelectActionTitle" xml:space="preserve">
+    <value>Select an action for *action*</value>
+  </data>
+  <data name="SelectMacro" xml:space="preserve">
+    <value>Select a macro</value>
+  </data>
+  <data name="SetRegularTrigger" xml:space="preserve">
+    <value>Set Regular Trigger</value>
+  </data>
+  <data name="SetUnloadTrigger" xml:space="preserve">
+    <value>Set Unload Trigger</value>
+  </data>
+  <data name="Shortcuts" xml:space="preserve">
+    <value>Shortcuts</value>
+  </data>
+  <data name="SixAxisReading" xml:space="preserve">
+    <value>Click for advanced Sixaxis reading</value>
+  </data>
+  <data name="size" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\size.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="START" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\START.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Starting" xml:space="preserve">
+    <value>Starting...</value>
+  </data>
+  <data name="StartText" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Step1" xml:space="preserve">
+    <value>Step 1: Install the DS4 Driver</value>
+  </data>
+  <data name="StopHText" xml:space="preserve">
+    <value>Stop Heavy</value>
+  </data>
+  <data name="StopLText" xml:space="preserve">
+    <value>Stop Light</value>
+  </data>
+  <data name="StoppedDS4Windows" xml:space="preserve">
+    <value>Stopped DS4Windows</value>
+  </data>
+  <data name="StoppingDS4" xml:space="preserve">
+    <value>Stopping DS4 Controllers</value>
+  </data>
+  <data name="StoppingX360" xml:space="preserve">
+    <value>Stopping X360 Controllers</value>
+  </data>
+  <data name="StopText" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="SwipeDown" xml:space="preserve">
+    <value>Swipe Down</value>
+  </data>
+  <data name="SwipeLeft" xml:space="preserve">
+    <value>Swipe Left</value>
+  </data>
+  <data name="SwipeRight" xml:space="preserve">
+    <value>Swipe Right</value>
+  </data>
+  <data name="SwipeTouchpad" xml:space="preserve">
+    <value>Swipe Touchpad to change profiles</value>
+  </data>
+  <data name="SwipeUp" xml:space="preserve">
+    <value>Swipe Up</value>
+  </data>
+  <data name="TapAndHold" xml:space="preserve">
+    <value>Tap and hold to drag, slight delay with single taps</value>
+  </data>
+  <data name="TestHText" xml:space="preserve">
+    <value>Test Heavy</value>
+  </data>
+  <data name="TestLText" xml:space="preserve">
+    <value>Test Light</value>
+  </data>
+  <data name="TestText" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="TextDocs" xml:space="preserve">
+    <value>Text Document (*.txt)</value>
+  </data>
+  <data name="TiltDown" xml:space="preserve">
+    <value>Tilt Down</value>
+  </data>
+  <data name="TiltLeft" xml:space="preserve">
+    <value>Tilt Left</value>
+  </data>
+  <data name="TiltRight" xml:space="preserve">
+    <value>Tilt Right</value>
+  </data>
+  <data name="TiltUp" xml:space="preserve">
+    <value>Tilt Up</value>
+  </data>
+  <data name="TouchpadMovementOff" xml:space="preserve">
+    <value>Touchpad Movement is now Off</value>
+  </data>
+  <data name="TouchpadMovementOn" xml:space="preserve">
+    <value>Touchpad Movement is now On</value>
+  </data>
+  <data name="TouchpadOffTip" xml:space="preserve">
+    <value>Re-enable by pressing PS+Touchpad</value>
+  </data>
+  <data name="TwoFingerSwipe" xml:space="preserve">
+    <value>2 finger touchpad swipe left or right</value>
+  </data>
+  <data name="TypeNewName" xml:space="preserve">
+    <value>type new name here</value>
+  </data>
+  <data name="TypeProfileName" xml:space="preserve">
+    <value>type profile name here</value>
+  </data>
+  <data name="UACTask" xml:space="preserve">
+    <value>You need to run DS4Windows as the Administrator in order to activate this mode.</value>
+  </data>
+  <data name="Unassigned" xml:space="preserve">
+    <value>Unassigned</value>
+  </data>
+  <data name="UP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UP.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UpText" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="UpToDate" xml:space="preserve">
+    <value>You are up to date</value>
+  </data>
+  <data name="USB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\USB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UseControllerForMapping" xml:space="preserve">
+    <value>You can also use your controller to change controls</value>
+  </data>
+  <data name="UsingExclusive" xml:space="preserve">
+    <value>Using Exclusive Mode</value>
+  </data>
+  <data name="UsingProfile" xml:space="preserve">
+    <value>Controller *number* is using Profile “*Profile name*"</value>
+  </data>
+  <data name="UsingShared" xml:space="preserve">
+    <value>Using Shared Mode</value>
+  </data>
+  <data name="UsingTPSwipes" xml:space="preserve">
+    <value>This disables the Touchpad as a mouse</value>
+  </data>
+  <data name="ValidName" xml:space="preserve">
+    <value>Please enter a valid name</value>
+  </data>
+  <data name="WaitMS" xml:space="preserve">
+    <value>Wait *number*ms</value>
+  </data>
+  <data name="WillKeep" xml:space="preserve">
+    <value>Will Keep</value>
+  </data>
+  <data name="X" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\X.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="XinputPorts" xml:space="preserve">
+    <value>Use higher ports if you get conflicts in other emulating X360 programs, such as SCP's tool</value>
+  </data>
+  <data name="XMLFiles" xml:space="preserve">
+    <value>XML Files (*.xml)</value>
+  </data>
+  <data name="Y" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Y.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_360_highlight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\360 highlight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -763,16 +793,7 @@
   <data name="_360_map" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\360 map.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DS4W___White" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4W - White.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MultiAction" xml:space="preserve">
-    <value>Mutli-Action Button</value>
-  </data>
-  <data name="MacroRecorded" xml:space="preserve">
-    <value>Macro Recorded</value>
-  </data>
-  <data name="SelectMacro" xml:space="preserve">
-    <value>Select a macro</value>
+  <data name="_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

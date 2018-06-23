@@ -19,7 +19,7 @@ namespace DS4Windows.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -212,6 +212,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Determines the poll rate used for the DS4 hardware when connected via Bluetooth.
+        /// </summary>
+        internal static string BTPollRate {
+            get {
+                return ResourceManager.GetString("BTPollRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot move files to new location, Please rename the DS4Tool folder to &quot;DS4Windows&quot;.
         /// </summary>
         internal static string CannotMoveFiles {
@@ -266,6 +275,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This will disconnect all your connected controllers. Proceed?.
+        /// </summary>
+        internal static string CloseConfirm {
+            get {
+                return ResourceManager.GetString("CloseConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close DS4Windows?.
         /// </summary>
         internal static string CloseDS4W {
@@ -293,11 +311,20 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Color by Battey %.
+        ///   Looks up a localized string similar to Color by Battery %.
         /// </summary>
         internal static string ColorByBattery {
             get {
                 return ResourceManager.GetString("ColorByBattery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm....
+        /// </summary>
+        internal static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
             }
         }
         
@@ -412,7 +439,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dim by Battey %.
+        ///   Looks up a localized string similar to Dim by Battery %.
         /// </summary>
         internal static string DimByBattery {
             get {
@@ -919,6 +946,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check to have gyro active while trigger is active. Uncheck to disable gyro while trigger is active..
+        /// </summary>
+        internal static string GyroTriggerBehavior {
+            get {
+                return ResourceManager.GetString("GyroTriggerBehavior", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GyroX, Left and Right Tilt.
         /// </summary>
         internal static string GyroX {
@@ -1055,6 +1091,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language pack change will take effect after DS4Windows application is restarted..
+        /// </summary>
+        internal static string LanguagePackApplyRestartRequired {
+            get {
+                return ResourceManager.GetString("LanguagePackApplyRestartRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Controller *number*&apos;s latency now under 10ms.
         /// </summary>
         internal static string LatencyNotOverTen {
@@ -1112,7 +1157,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Also dim light by idle timeout if on.
+        ///   Looks up a localized string similar to Also dim light by idle timeout if enabled when DS4 is fully charged.
         /// </summary>
         internal static string LightByBatteryTip {
             get {
@@ -1428,7 +1473,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EXPERIMENTAL: Auto-Disable BT when conencting to USB.
+        ///   Looks up a localized string similar to EXPERIMENTAL: Auto-Disable BT when connecting to USB.
         /// </summary>
         internal static string QuickCharge {
             get {
@@ -1574,6 +1619,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tells Windows to start DS4Windows after login.
+        /// </summary>
+        internal static string RunAtStartup {
+            get {
+                return ResourceManager.GetString("RunAtStartup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap saveprofile {
@@ -1602,7 +1656,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Searching for controllers….
+        ///   Looks up a localized string similar to Searching for controllers....
         /// </summary>
         internal static string SearchingController {
             get {
@@ -1942,6 +1996,15 @@ namespace DS4Windows.Properties {
         internal static string TypeProfileName {
             get {
                 return ResourceManager.GetString("TypeProfileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need to run DS4Windows as the Administrator in order to activate this mode..
+        /// </summary>
+        internal static string UACTask {
+            get {
+                return ResourceManager.GetString("UACTask", resourceCulture);
             }
         }
         

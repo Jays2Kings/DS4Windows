@@ -1,30 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Net;
 
 using System.IO;
 using System.IO.Compression;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Security.Principal;
-using System.Security.Permissions;
-using System.Reflection;
+//using NonFormTimer = System.Threading.Timer;
+using NonFormTimer = System.Timers.Timer;
+using System.Threading.Tasks;
+using static DS4Windows.Global;
 
 namespace DS4Windows
 {
     public partial class WelcomeDialog : Form
     {
-        public WelcomeDialog()
+        public WelcomeDialog(bool loadConfig=false)
         {
+            if (loadConfig)
+            {
+                Global.FindConfigLocation();
+                Global.Load();
+                Global.SetCulture(Global.UseLang);
+            }
+
             InitializeComponent();
             Icon = Properties.Resources.DS4;
-            
         }
 
         private void bnFinish_Click(object sender, EventArgs e)
@@ -42,7 +43,7 @@ namespace DS4Windows
             WebClient wb = new WebClient();
             if (!driverinstalling)
             {
-                wb.DownloadFileAsync(new Uri("http://ds4windows.com/Files/Virtual Bus Driver.zip"), exepath + "\\VBus.zip");
+                wb.DownloadFileAsync(new Uri("http://23.239.26.40/ds4windows/files/Virtual Bus Driver.zip"), exepath + "\\VBus.zip");
                 wb.DownloadProgressChanged += wb_DownloadProgressChanged;
                 wb.DownloadFileCompleted += wb_DownloadFileCompleted;
                 driverinstalling = true;
@@ -54,7 +55,6 @@ namespace DS4Windows
             bnStep1.Text = Properties.Resources.Downloading.Replace("*number*", e.ProgressPercentage.ToString());
         }
 
-        string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         private void wb_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
             bnStep1.Text = Properties.Resources.OpeningInstaller;
@@ -80,10 +80,15 @@ namespace DS4Windows
                 }
                 catch { Process.Start(exepath + "\\Virtual Bus Driver"); }
 
-            Timer timer = new Timer();
+            /*Timer timer = new Timer();
             timer.Start();
             timer.Tick += timer_Tick;
+            */
+            NonFormTimer timer = new NonFormTimer();
+            timer.Elapsed += timer_Tick;
+            timer.Start();
         }
+
         bool waitForFile;
         DateTime waitFileCheck;
         private void timer_Tick(object sender, EventArgs e)
@@ -97,24 +102,27 @@ namespace DS4Windows
                     waitFileCheck = DateTime.UtcNow;
                     return;
                 }
+
                 if (waitForFile && waitFileCheck + TimeSpan.FromMinutes(2) < DateTime.UtcNow)
                 {
-                    bnStep1.Text = Properties.Resources.InstallFailed;
                     Process.Start(exepath + "\\Virtual Bus Driver");
                     File.Delete(exepath + "\\VBus.zip");
-                    ((Timer)sender).Stop();
+                    ((NonFormTimer)sender).Stop();
+                    this.BeginInvoke((Action)(() => { bnStep1.Text = Properties.Resources.InstallFailed; }), null);
                     return;
                 }
                 else if (waitForFile)
                     return;
+
                 string log = File.ReadAllText(exepath + "\\ScpDriver.log");
                 if (log.Contains("Install Succeeded"))
-                    bnStep1.Text = Properties.Resources.InstallComplete;
+                    this.BeginInvoke((Action)(() => { bnStep1.Text = Properties.Resources.InstallComplete; }));
                 else
                 {
-                    bnStep1.Text = Properties.Resources.InstallFailed;
+                    this.BeginInvoke((Action)(() => { bnStep1.Text = Properties.Resources.InstallFailed; }));
                     Process.Start(exepath + "\\Virtual Bus Driver");
                 }
+
                 try
                 {
                     File.Delete(exepath + "\\ScpDriver.exe");
@@ -123,15 +131,15 @@ namespace DS4Windows
                     Directory.Delete(exepath + "\\DIFxAPI", true);
                 }
                 catch { }
+
                 File.Delete(exepath + "\\VBus.zip");
-                ((Timer)sender).Stop();
+                ((NonFormTimer)sender).Stop();
             }
         }
 
-
         private void button2_Click(object sender, EventArgs e)
         {
-             Process.Start("http://www.microsoft.com/hardware/en-us/d/xbox-360-controller-for-windows");
+             Process.Start("http://www.microsoft.com/accessories/en-gb/d/xbox-360-controller-for-windows");
         }
     }
 }

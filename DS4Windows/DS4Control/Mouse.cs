@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.InteropServices;
 
 namespace DS4Windows
 {
@@ -17,12 +13,34 @@ namespace DS4Windows
         private readonly MouseWheel wheel;
         private bool tappedOnce = false, secondtouchbegin = false;
         public bool swipeLeft, swipeRight, swipeUp, swipeDown;
+        public bool priorSwipeLeft, priorSwipeRight, priorSwipeUp, priorSwipeDown;
         public byte swipeLeftB, swipeRightB, swipeUpB, swipeDownB, swipedB;
+        public byte priorSwipeLeftB, priorSwipeRightB, priorSwipeUpB, priorSwipeDownB, priorSwipedB;
         public bool slideleft, slideright;
+        public bool priorSlideLeft, priorSlideright;
         // touch area stuff
         public bool leftDown, rightDown, upperDown, multiDown;
+        public bool priorLeftDown, priorRightDown, priorUpperDown, priorMultiDown;
         protected DS4Controls pushed = DS4Controls.None;
         protected Mapping.Click clicked = Mapping.Click.None;
+
+        internal const int TRACKBALL_INIT_FICTION = 10;
+        internal const int TRACKBALL_MASS = 45;
+        internal const double TRACKBALL_RADIUS = 0.0245;
+
+        private double TRACKBALL_INERTIA = 2.0 * (TRACKBALL_MASS * TRACKBALL_RADIUS * TRACKBALL_RADIUS) / 5.0;
+        private double TRACKBALL_SCALE = 0.004;
+        private const int TRACKBALL_BUFFER_LEN = 8;
+        private double[] trackballXBuffer = new double[TRACKBALL_BUFFER_LEN];
+        private double[] trackballYBuffer = new double[TRACKBALL_BUFFER_LEN];
+        private int trackballBufferTail = 0;
+        private int trackballBufferHead = 0;
+        private double trackballAccel = 0.0;
+        private double trackballXVel = 0.0;
+        private double trackballYVel = 0.0;
+        private bool trackballActive = false;
+        private double trackballDXRemain = 0.0;
+        private double trackballDYRemain = 0.0;
 
         public Mouse(int deviceID, DS4Device d)
         {
@@ -30,22 +48,48 @@ namespace DS4Windows
             dev = d;
             cursor = new MouseCursor(deviceNum);
             wheel = new MouseWheel(deviceNum);
+            trackballAccel = TRACKBALL_RADIUS * TRACKBALL_INIT_FICTION / TRACKBALL_INERTIA;
+            firstTouch = new Touch(0, 0, 0, null);
         }
+
+        public void ResetTrackAccel(double friction)
+        {
+            trackballAccel = TRACKBALL_RADIUS * friction / TRACKBALL_INERTIA;
+        }
+
+        bool triggeractivated = false;
+        bool useReverseRatchet = false;
 
         public virtual void sixaxisMoved(object sender, SixAxisEventArgs arg)
         {
-            if (Global.UseSAforMouse[deviceNum] && Global.GyroSensitivity[deviceNum] > 0)
+            if (Global.isUsingSAforMouse(deviceNum) && Global.getGyroSensitivity(deviceNum) > 0)
             {
-                bool triggeractivated = true;
+                s = dev.getCurrentStateRef();
+
+                triggeractivated = true;
+                useReverseRatchet = Global.getGyroTriggerTurns(deviceNum);
                 int i = 0;
-                string[] ss = Global.SATriggers[deviceNum].Split(',');
+                string[] ss = Global.getSATriggers(deviceNum).Split(',');
                 if (!string.IsNullOrEmpty(ss[0]))
-                    foreach (string s in ss)
+                {
+                    string s = string.Empty;
+                    for (int index = 0, arlen = ss.Length;
+                        triggeractivated && index < arlen; index++)
+                    {
+                        s = ss[index];
                         if (!(int.TryParse(s, out i) && getDS4ControlsByName(i)))
+                        {
                             triggeractivated = false;
-                if (triggeractivated)
+                        }
+                    }
+                }
+
+                if (useReverseRatchet && triggeractivated)
                     cursor.sixaxisMoved(arg);
-                dev.getCurrentState(s);
+                else if (!useReverseRatchet && !triggeractivated)
+                    cursor.sixaxisMoved(arg);
+                else
+                    cursor.mouseRemainderReset();
             }
         }
 
@@ -68,20 +112,43 @@ namespace DS4Windows
                 case 11: return s.DpadRight;
                 case 12: return s.L3;
                 case 13: return s.R3;
-                case 14: return s.Touch1;
-                case 15: return s.Touch2;
+                case 14: return s.Touch1Finger;
+                case 15: return s.Touch2Fingers;
                 case 16: return s.Options;
                 case 17: return s.Share;
                 case 18: return s.PS;
+                default: break;
             }
+
             return false;
         }
 
+        private bool tempBool = false;
         public virtual void touchesMoved(object sender, TouchpadEventArgs arg)
         {
-            if (!Global.UseTPforControls[deviceNum])
+            s = dev.getCurrentStateRef();
+
+            if (Global.getUseTPforControls(deviceNum) == false)
             {
-                cursor.touchesMoved(arg, dragging || dragging2);
+                int[] disArray = Global.getTouchDisInvertTriggers(deviceNum);
+                tempBool = true;
+                for (int i = 0, arlen = disArray.Length; tempBool && i < arlen; i++)
+                {
+                    if (getDS4ControlsByName(disArray[i]) == false)
+                        tempBool = false;
+                }
+
+                if (Global.getTrackballMode(deviceNum))
+                {
+                    int iIndex = trackballBufferTail;
+                    trackballXBuffer[iIndex] = (arg.touches[0].deltaX * TRACKBALL_SCALE) / dev.getCurrentStateRef().elapsedTime;
+                    trackballYBuffer[iIndex] = (arg.touches[0].deltaY * TRACKBALL_SCALE) / dev.getCurrentStateRef().elapsedTime;
+                    trackballBufferTail = (iIndex + 1) % TRACKBALL_BUFFER_LEN;
+                    if (trackballBufferHead == trackballBufferTail)
+                        trackballBufferHead = (trackballBufferHead + 1) % TRACKBALL_BUFFER_LEN;
+                }
+
+                cursor.touchesMoved(arg, dragging || dragging2, tempBool);
                 wheel.touchesMoved(arg, dragging || dragging2);
             }
             else
@@ -93,54 +160,78 @@ namespace DS4Windows
                     if (arg.touches[0].hwY - firstTouch.hwY > 300) swipeDown = true;
                     if (arg.touches[0].hwY - firstTouch.hwY < -300) swipeUp = true;
                 }
+
                 swipeUpB = (byte)Math.Min(255, Math.Max(0, (firstTouch.hwY - arg.touches[0].hwY) * 1.5f));
                 swipeDownB = (byte)Math.Min(255, Math.Max(0, (arg.touches[0].hwY - firstTouch.hwY) * 1.5f));
                 swipeLeftB = (byte)Math.Min(255, Math.Max(0, firstTouch.hwX - arg.touches[0].hwX));
                 swipeRightB = (byte)Math.Min(255, Math.Max(0, arg.touches[0].hwX - firstTouch.hwX));
             }
+
             if (Math.Abs(firstTouch.hwY - arg.touches[0].hwY) < 50 && arg.touches.Length == 2)
+            {
                 if (arg.touches[0].hwX - firstTouch.hwX > 200 && !slideleft)
                     slideright = true;
                 else if (firstTouch.hwX - arg.touches[0].hwX > 200 && !slideright)
                     slideleft = true;
-            dev.getCurrentState(s);
+            }
+
             synthesizeMouseButtons();
         }
+
         public virtual void touchesBegan(object sender, TouchpadEventArgs arg)
         {
             if (!Global.UseTPforControls[deviceNum])
             {
+                Array.Clear(trackballXBuffer, 0, TRACKBALL_BUFFER_LEN);
+                Array.Clear(trackballXBuffer, 0, TRACKBALL_BUFFER_LEN);
+                trackballXVel = 0.0;
+                trackballYVel = 0.0;
+                trackballActive = false;
+                trackballBufferTail = 0;
+                trackballBufferHead = 0;
+                trackballDXRemain = 0.0;
+                trackballDYRemain = 0.0;
+
                 cursor.touchesBegan(arg);
                 wheel.touchesBegan(arg);
             }
+
             pastTime = arg.timeStamp;
-            firstTouch = arg.touches[0];
-            if (Global.DoubleTap[deviceNum])
+            firstTouch.populate(arg.touches[0].hwX, arg.touches[0].hwY, arg.touches[0].touchID,
+                arg.touches[0].previousTouch);
+
+            if (Global.getDoubleTap(deviceNum))
             {
                 DateTime test = arg.timeStamp;
                 if (test <= (firstTap + TimeSpan.FromMilliseconds((double)Global.TapSensitivity[deviceNum] * 1.5)) && !arg.touchButtonPressed)
                     secondtouchbegin = true;
             }
-            dev.getCurrentState(s);
+
+            s = dev.getCurrentStateRef();
             synthesizeMouseButtons();
         }
+
         public virtual void touchesEnded(object sender, TouchpadEventArgs arg)
         {
+            s = dev.getCurrentStateRef();
             slideright = slideleft = false;
             swipeUp = swipeDown = swipeLeft = swipeRight = false;
             swipeUpB = swipeDownB = swipeLeftB = swipeRightB = 0;
-            if (Global.TapSensitivity[deviceNum] != 0 && !Global.UseTPforControls[deviceNum])
+            byte tapSensitivity = Global.getTapSensitivity(deviceNum);
+            if (tapSensitivity != 0 && !Global.getUseTPforControls(deviceNum))
             {
-
                 if (secondtouchbegin)
                 {
                     tappedOnce = false;
                     secondtouchbegin = false;
                 }
+
                 DateTime test = arg.timeStamp;
-                if (test <= (pastTime + TimeSpan.FromMilliseconds((double)Global.TapSensitivity[deviceNum] * 2)) && !arg.touchButtonPressed && !tappedOnce)
+                if (test <= (pastTime + TimeSpan.FromMilliseconds((double)tapSensitivity * 2)) && !arg.touchButtonPressed && !tappedOnce)
+                {
                     if (Math.Abs(firstTouch.hwX - arg.touches[0].hwX) < 10 && Math.Abs(firstTouch.hwY - arg.touches[0].hwY) < 10)
-                        if (Global.DoubleTap[deviceNum])
+                    {
+                        if (Global.getDoubleTap(deviceNum))
                         {
                             tappedOnce = true;
                             firstTap = arg.timeStamp;
@@ -148,8 +239,97 @@ namespace DS4Windows
                         }
                         else
                             Mapping.MapClick(deviceNum, Mapping.Click.Left); //this way no delay if disabled
+                    }
+                }
             }
-            dev.getCurrentState(s);
+            else
+            {
+                if (Global.getUseTPforControls(deviceNum) == false)
+                {
+                    int[] disArray = Global.getTouchDisInvertTriggers(deviceNum);
+                    tempBool = true;
+                    for (int i = 0, arlen = disArray.Length; tempBool && i < arlen; i++)
+                    {
+                        if (getDS4ControlsByName(disArray[i]) == false)
+                            tempBool = false;
+                    }
+
+                    if (Global.getTrackballMode(deviceNum))
+                    {
+                        if (!trackballActive)
+                        {
+                            double currentWeight = 1.0;
+                            double finalWeight = 0.0;
+                            double x_out = 0.0, y_out = 0.0;
+                            int idx = -1;
+                            for (int i = 0; i < TRACKBALL_BUFFER_LEN && idx != trackballBufferHead; i++)
+                            {
+                                idx = (trackballBufferTail - i - 1 + TRACKBALL_BUFFER_LEN) % TRACKBALL_BUFFER_LEN;
+                                x_out += trackballXBuffer[idx] * currentWeight;
+                                y_out += trackballYBuffer[idx] * currentWeight;
+                                finalWeight += currentWeight;
+                                currentWeight *= 1.0;
+                            }
+
+                            x_out /= finalWeight;
+                            trackballXVel = x_out;
+                            y_out /= finalWeight;
+                            trackballYVel = y_out;
+
+                            trackballActive = true;
+                        }
+
+                        double tempAngle = Math.Atan2(-trackballYVel, trackballXVel);
+                        double normX = Math.Abs(Math.Cos(tempAngle));
+                        double normY = Math.Abs(Math.Sin(tempAngle));
+                        int signX = Math.Sign(trackballXVel);
+                        int signY = Math.Sign(trackballYVel);
+                        
+                        double trackXvDecay = Math.Min(Math.Abs(trackballXVel), trackballAccel * s.elapsedTime * normX);
+                        double trackYvDecay = Math.Min(Math.Abs(trackballYVel), trackballAccel * s.elapsedTime * normY);
+                        double xVNew = trackballXVel - (trackXvDecay * signX);
+                        double yVNew = trackballYVel - (trackYvDecay * signY);
+                        double xMotion = (xVNew * s.elapsedTime) / TRACKBALL_SCALE;
+                        double yMotion = (yVNew * s.elapsedTime) / TRACKBALL_SCALE;
+                        if (xMotion != 0.0)
+                        {
+                            xMotion += trackballDXRemain;
+                        }
+                        else
+                        {
+                            trackballDXRemain = 0.0;
+                        }
+
+                        int dx = (int)xMotion;
+                        trackballDXRemain = xMotion - dx;
+
+                        if (yMotion != 0.0)
+                        {
+                            yMotion += trackballDYRemain;
+                        }
+                        else
+                        {
+                            trackballDYRemain = 0.0;
+                        }
+
+                        int dy = (int)yMotion;
+                        trackballDYRemain = yMotion - dy;
+
+                        trackballXVel = xVNew;
+                        trackballYVel = yVNew;
+
+                        if (dx == 0 && dy == 0)
+                        {
+                            trackballActive = false;
+                        }
+                        else
+                        {
+                            cursor.TouchMoveCursor(dx, dy, tempBool);
+                        }
+                    }
+                }
+            }
+
             synthesizeMouseButtons();
         }
 
@@ -165,28 +345,95 @@ namespace DS4Windows
 
         public virtual void touchUnchanged(object sender, EventArgs unused)
         {
-            dev.getCurrentState(s);
-            //if (s.Touch1 || s.Touch2 || s.TouchButton)
-            synthesizeMouseButtons();
+            s = dev.getCurrentStateRef();
+
+            if (trackballActive)
+            {
+                if (Global.getUseTPforControls(deviceNum) == false)
+                {
+                    int[] disArray = Global.getTouchDisInvertTriggers(deviceNum);
+                    tempBool = true;
+                    for (int i = 0, arlen = disArray.Length; tempBool && i < arlen; i++)
+                    {
+                        if (getDS4ControlsByName(disArray[i]) == false)
+                            tempBool = false;
+                    }
+
+                    double tempAngle = Math.Atan2(-trackballYVel, trackballXVel);
+                    double normX = Math.Abs(Math.Cos(tempAngle));
+                    double normY = Math.Abs(Math.Sin(tempAngle));
+                    int signX = Math.Sign(trackballXVel);
+                    int signY = Math.Sign(trackballYVel);
+                    double trackXvDecay = Math.Min(Math.Abs(trackballXVel), trackballAccel * s.elapsedTime * normX);
+                    double trackYvDecay = Math.Min(Math.Abs(trackballYVel), trackballAccel * s.elapsedTime * normY);
+                    double xVNew = trackballXVel - (trackXvDecay * signX);
+                    double yVNew = trackballYVel - (trackYvDecay * signY);
+                    double xMotion = (xVNew * s.elapsedTime) / TRACKBALL_SCALE;
+                    double yMotion = (yVNew * s.elapsedTime) / TRACKBALL_SCALE;
+                    if (xMotion != 0.0)
+                    {
+                        xMotion += trackballDXRemain;
+                    }
+                    else
+                    {
+                        trackballDXRemain = 0.0;
+                    }
+
+                    int dx = (int)xMotion;
+                    trackballDXRemain = xMotion - dx;
+
+                    if (yMotion != 0.0)
+                    {
+                        yMotion += trackballDYRemain;
+                    }
+                    else
+                    {
+                        trackballDYRemain = 0.0;
+                    }
+
+                    int dy = (int)yMotion;
+                    trackballDYRemain = yMotion - dy;
+
+                    trackballXVel = xVNew;
+                    trackballYVel = yVNew;
+
+                    if (dx == 0 && dy == 0)
+                    {
+                        trackballActive = false;
+                    }
+                    else
+                    {
+                        cursor.TouchMoveCursor(dx, dy, tempBool);
+                    }
+                }
+            }
+
+            if (s.TouchButton)
+                synthesizeMouseButtons();
         }
 
-        private DS4State remapped = new DS4State();
         public bool dragging, dragging2;
         private void synthesizeMouseButtons()
         {
-            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchLeft.ToString(), false) == null && leftDown)
+            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchLeft, false) == null && leftDown)
             {
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
                 dragging2 = true;
             }
             else
+            {
                 dragging2 = false;
-            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchUpper.ToString(), false) == null && upperDown)
+            }
+
+            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchUpper, false) == null && upperDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Middle);
-            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchRight.ToString(), false) == null && rightDown)
+
+            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchRight, false) == null && rightDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
-            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchMulti.ToString(), false) == null && multiDown)
+
+            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchMulti, false) == null && multiDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Right);
+
             if (!Global.UseTPforControls[deviceNum])
             {
                 if (tappedOnce)
@@ -205,10 +452,10 @@ namespace DS4Windows
                     dragging = true;
                 }
                 else
+                {
                     dragging = false;
+                }
             }
-            s = remapped;
-            //remapped.CopyTo(s);
         }
 
         public virtual void touchButtonUp(object sender, TouchpadEventArgs arg)
@@ -216,7 +463,7 @@ namespace DS4Windows
             pushed = DS4Controls.None;
             upperDown = leftDown = rightDown = multiDown = false;
             dev.setRumble(0, 0);
-            dev.getCurrentState(s);
+            s = dev.getCurrentStateRef();
             if (s.Touch1 || s.Touch2)
                 synthesizeMouseButtons();
         }
@@ -231,13 +478,28 @@ namespace DS4Windows
             {
                 if ((Global.LowerRCOn[deviceNum] && arg.touches[0].hwX > (1920 * 3) / 4 && arg.touches[0].hwY > (960 * 3) / 4))
                     Mapping.MapClick(deviceNum, Mapping.Click.Right);
+
                 if (isLeft(arg.touches[0]))
                     leftDown = true;
                 else if (isRight(arg.touches[0]))
                     rightDown = true;
             }
-            dev.getCurrentState(s);
+
+            s = dev.getCurrentStateRef();
             synthesizeMouseButtons();
+        }
+
+        public void populatePriorButtonStates()
+        {
+            priorUpperDown = upperDown;
+            priorLeftDown = leftDown;
+            priorRightDown = rightDown;
+            priorMultiDown = multiDown;
+
+            priorSwipeLeft = swipeLeft; priorSwipeRight = swipeRight;
+            priorSwipeUp = swipeUp; priorSwipeDown = swipeDown;
+            priorSwipeLeftB = swipeLeftB; priorSwipeRightB = swipeRightB; priorSwipeUpB = swipeUpB;
+            priorSwipeDownB = swipeDownB; priorSwipedB = swipedB;
         }
 
         public DS4State getDS4State()

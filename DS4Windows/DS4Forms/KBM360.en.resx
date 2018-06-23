@@ -1,0 +1,1241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pBHighlight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>582, 165</value>
+  </data>
+  <data name="pBHighlight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="pBMouse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>760, 44</value>
+  </data>
+  <data name="pBMouse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 140</value>
+  </data>
+  <data name="btnF6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>218, 25</value>
+  </data>
+  <data name="btnF6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 24</value>
+  </data>
+  <data name="btnF5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>188, 25</value>
+  </data>
+  <data name="btnF5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 24</value>
+  </data>
+  <data name="btnF7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>248, 25</value>
+  </data>
+  <data name="btnF7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 24</value>
+  </data>
+  <data name="btnF4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>158, 25</value>
+  </data>
+  <data name="btnF4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 24</value>
+  </data>
+  <data name="btnF8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>278, 25</value>
+  </data>
+  <data name="btnF8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 24</value>
+  </data>
+  <data name="btnF3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>128, 25</value>
+  </data>
+  <data name="btnF3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 24</value>
+  </data>
+  <data name="btnF9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>308, 25</value>
+  </data>
+  <data name="btnF9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 24</value>
+  </data>
+  <data name="btnF2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 25</value>
+  </data>
+  <data name="btnF2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 24</value>
+  </data>
+  <data name="btnINS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>467, 55</value>
+  </data>
+  <data name="btnINS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
+  </data>
+  <data name="btnF1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>68, 25</value>
+  </data>
+  <data name="btnF1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 24</value>
+  </data>
+  <data name="btnHOME.Location" type="System.Drawing.Point, System.Drawing">
+    <value>500, 55</value>
+  </data>
+  <data name="btnHOME.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
+  </data>
+  <data name="btn1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>38, 55</value>
+  </data>
+  <data name="btn1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnPGUP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>533, 55</value>
+  </data>
+  <data name="btnPGUP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
+  </data>
+  <data name="btnBACKSPACE.Location" type="System.Drawing.Point, System.Drawing">
+    <value>398, 55</value>
+  </data>
+  <data name="btnBACKSPACE.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 24</value>
+  </data>
+  <data name="btnPGDN.Location" type="System.Drawing.Point, System.Drawing">
+    <value>533, 85</value>
+  </data>
+  <data name="btnPGDN.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
+  </data>
+  <data name="btnEQUALS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>368, 55</value>
+  </data>
+  <data name="btnEQUALS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnEND.Location" type="System.Drawing.Point, System.Drawing">
+    <value>500, 85</value>
+  </data>
+  <data name="btnEND.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
+  </data>
+  <data name="btnMINUS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>338, 55</value>
+  </data>
+  <data name="btnMINUS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnDEL.Location" type="System.Drawing.Point, System.Drawing">
+    <value>467, 85</value>
+  </data>
+  <data name="btnDEL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
+  </data>
+  <data name="btn0.Location" type="System.Drawing.Point, System.Drawing">
+    <value>308, 55</value>
+  </data>
+  <data name="btn0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnSCL.Location" type="System.Drawing.Point, System.Drawing">
+    <value>500, 25</value>
+  </data>
+  <data name="btnSCL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
+  </data>
+  <data name="btn9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>278, 55</value>
+  </data>
+  <data name="btn9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="button34.Location" type="System.Drawing.Point, System.Drawing">
+    <value>467, 25</value>
+  </data>
+  <data name="button34.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
+  </data>
+  <data name="btn8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>248, 55</value>
+  </data>
+  <data name="btn8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnSTOP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>613, 26</value>
+  </data>
+  <data name="btnSTOP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btn7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>218, 55</value>
+  </data>
+  <data name="btn7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnPLAYPAUSE.Location" type="System.Drawing.Point, System.Drawing">
+    <value>643, 26</value>
+  </data>
+  <data name="btnPLAYPAUSE.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btn6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>188, 55</value>
+  </data>
+  <data name="btn6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnNEXTTRACK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>673, 26</value>
+  </data>
+  <data name="btnNEXTTRACK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btn5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>158, 55</value>
+  </data>
+  <data name="btn5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnPREVTRACK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>583, 26</value>
+  </data>
+  <data name="btnPREVTRACK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btn4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>128, 55</value>
+  </data>
+  <data name="btn4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnVolUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>703, 26</value>
+  </data>
+  <data name="btnVolUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 24</value>
+  </data>
+  <data name="btn3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 55</value>
+  </data>
+  <data name="btn3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="button39.Location" type="System.Drawing.Point, System.Drawing">
+    <value>703, 55</value>
+  </data>
+  <data name="button39.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 24</value>
+  </data>
+  <data name="btn2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>68, 55</value>
+  </data>
+  <data name="btn2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="button35.Location" type="System.Drawing.Point, System.Drawing">
+    <value>703, 85</value>
+  </data>
+  <data name="button35.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 24</value>
+  </data>
+  <data name="btnSPACE.Location" type="System.Drawing.Point, System.Drawing">
+    <value>161, 175</value>
+  </data>
+  <data name="btnSPACE.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 24</value>
+  </data>
+  <data name="btnBREAK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>533, 25</value>
+  </data>
+  <data name="btnBREAK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
+  </data>
+  <data name="btnLSHIFT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 145</value>
+  </data>
+  <data name="btnLSHIFT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 24</value>
+  </data>
+  <data name="btnF12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>413, 25</value>
+  </data>
+  <data name="btnF12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
+  </data>
+  <data name="btnRSHIFT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>383, 145</value>
+  </data>
+  <data name="btnRSHIFT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 24</value>
+  </data>
+  <data name="btnF10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>338, 25</value>
+  </data>
+  <data name="btnF10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
+  </data>
+  <data name="btnSLASH.Location" type="System.Drawing.Point, System.Drawing">
+    <value>353, 145</value>
+  </data>
+  <data name="btnSLASH.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnF11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>374, 25</value>
+  </data>
+  <data name="btnF11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
+  </data>
+  <data name="btnPERIOD.Location" type="System.Drawing.Point, System.Drawing">
+    <value>323, 145</value>
+  </data>
+  <data name="btnPERIOD.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnTILDE.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 55</value>
+  </data>
+  <data name="btnTILDE.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnCOMMA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>293, 145</value>
+  </data>
+  <data name="btnCOMMA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnM.Location" type="System.Drawing.Point, System.Drawing">
+    <value>263, 145</value>
+  </data>
+  <data name="btnM.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnNUMLOCK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>583, 55</value>
+  </data>
+  <data name="btnNUMLOCK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnN.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 145</value>
+  </data>
+  <data name="btnN.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnNUM7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>583, 85</value>
+  </data>
+  <data name="btnNUM7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>203, 145</value>
+  </data>
+  <data name="btnB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnNUMSLASH.Location" type="System.Drawing.Point, System.Drawing">
+    <value>613, 55</value>
+  </data>
+  <data name="btnNUMSLASH.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnV.Location" type="System.Drawing.Point, System.Drawing">
+    <value>173, 145</value>
+  </data>
+  <data name="btnV.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnNUM8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>613, 85</value>
+  </data>
+  <data name="btnNUM8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnC.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 145</value>
+  </data>
+  <data name="btnC.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnNUMSTAR.Location" type="System.Drawing.Point, System.Drawing">
+    <value>643, 55</value>
+  </data>
+  <data name="btnNUMSTAR.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>113, 145</value>
+  </data>
+  <data name="btnX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnNUM9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>643, 85</value>
+  </data>
+  <data name="btnNUM9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>83, 145</value>
+  </data>
+  <data name="btnZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnNUMMINUS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>673, 55</value>
+  </data>
+  <data name="btnNUMMINUS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnRALT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>353, 175</value>
+  </data>
+  <data name="btnRALT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 24</value>
+  </data>
+  <data name="btnNUMPLUS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>673, 85</value>
+  </data>
+  <data name="btnNUMPLUS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 54</value>
+  </data>
+  <data name="button36.Location" type="System.Drawing.Point, System.Drawing">
+    <value>305, 175</value>
+  </data>
+  <data name="button36.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 24</value>
+  </data>
+  <data name="btnNUMENTER.Location" type="System.Drawing.Point, System.Drawing">
+    <value>673, 145</value>
+  </data>
+  <data name="btnNUMENTER.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 54</value>
+  </data>
+  <data name="btnWINDOWS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>113, 175</value>
+  </data>
+  <data name="btnWINDOWS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 24</value>
+  </data>
+  <data name="btnNUM4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>583, 115</value>
+  </data>
+  <data name="btnNUM4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnLALT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>68, 175</value>
+  </data>
+  <data name="btnLALT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 24</value>
+  </data>
+  <data name="btnNUM5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>613, 115</value>
+  </data>
+  <data name="btnNUM5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnRCTRL.Location" type="System.Drawing.Point, System.Drawing">
+    <value>398, 175</value>
+  </data>
+  <data name="btnRCTRL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 24</value>
+  </data>
+  <data name="btnNUM1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>583, 145</value>
+  </data>
+  <data name="btnNUM1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnLCTRL.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 175</value>
+  </data>
+  <data name="btnLCTRL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 24</value>
+  </data>
+  <data name="btnNUM6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>643, 115</value>
+  </data>
+  <data name="btnNUM6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnCAPS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 115</value>
+  </data>
+  <data name="btnCAPS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 24</value>
+  </data>
+  <data name="btnNUM0.Location" type="System.Drawing.Point, System.Drawing">
+    <value>583, 175</value>
+  </data>
+  <data name="btnNUM0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 24</value>
+  </data>
+  <data name="btnRETURN.Location" type="System.Drawing.Point, System.Drawing">
+    <value>398, 115</value>
+  </data>
+  <data name="btnRETURN.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 24</value>
+  </data>
+  <data name="btnNUM2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>613, 145</value>
+  </data>
+  <data name="btnNUM2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnAPOSTROPHE.Location" type="System.Drawing.Point, System.Drawing">
+    <value>368, 115</value>
+  </data>
+  <data name="btnAPOSTROPHE.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnNUM3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>643, 145</value>
+  </data>
+  <data name="btnNUM3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="lbFlashRate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 212</value>
+  </data>
+  <data name="lbFlashRate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 28</value>
+  </data>
+  <data name="lbRumble.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 23</value>
+  </data>
+  <data name="lbRumble.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 13</value>
+  </data>
+  <data name="lbHeavy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 47</value>
+  </data>
+  <data name="lbHeavy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 13</value>
+  </data>
+  <data name="lbLight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 74</value>
+  </data>
+  <data name="lbLight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 13</value>
+  </data>
+  <data name="nUDHeavy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 45</value>
+  </data>
+  <data name="nUDHeavy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 20</value>
+  </data>
+  <data name="nUDLight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 72</value>
+  </data>
+  <data name="nUDLight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 20</value>
+  </data>
+  <data name="btnH.Location" type="System.Drawing.Point, System.Drawing">
+    <value>218, 115</value>
+  </data>
+  <data name="btnH.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="nUDLightFlash.Location" type="System.Drawing.Point, System.Drawing">
+    <value>83, 210</value>
+  </data>
+  <data name="nUDLightFlash.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 20</value>
+  </data>
+  <data name="tBBlueBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>34, 179</value>
+  </data>
+  <data name="tBBlueBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
+  </data>
+  <data name="btnL.Location" type="System.Drawing.Point, System.Drawing">
+    <value>308, 115</value>
+  </data>
+  <data name="btnL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>278, 115</value>
+  </data>
+  <data name="btnK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnJ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>248, 115</value>
+  </data>
+  <data name="btnJ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="button5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>533, 176</value>
+  </data>
+  <data name="button5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
+  </data>
+  <data name="tBGreenBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 153</value>
+  </data>
+  <data name="tBGreenBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
+  </data>
+  <data name="tBRedBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 127</value>
+  </data>
+  <data name="tBRedBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
+  </data>
+  <data name="lbBlue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 182</value>
+  </data>
+  <data name="lbBlue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="lbGreen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 156</value>
+  </data>
+  <data name="lbGreen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 13</value>
+  </data>
+  <data name="btnSEMICOLON.Location" type="System.Drawing.Point, System.Drawing">
+    <value>338, 115</value>
+  </data>
+  <data name="btnSEMICOLON.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="button7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>500, 146</value>
+  </data>
+  <data name="button7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
+  </data>
+  <data name="bnTest.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 18</value>
+  </data>
+  <data name="bnTest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 23</value>
+  </data>
+  <data name="lbRed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 130</value>
+  </data>
+  <data name="lbRed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 13</value>
+  </data>
+  <data name="button4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>467, 176</value>
+  </data>
+  <data name="button4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
+  </data>
+  <data name="nUDMouse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>114, 288</value>
+  </data>
+  <data name="nUDMouse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 20</value>
+  </data>
+  <data name="button6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>500, 176</value>
+  </data>
+  <data name="button6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
+  </data>
+  <data name="bnColor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>144, 209</value>
+  </data>
+  <data name="bnColor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>13, 13</value>
+  </data>
+  <data name="btnNUMDOT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>643, 175</value>
+  </data>
+  <data name="btnNUMDOT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnG.Location" type="System.Drawing.Point, System.Drawing">
+    <value>188, 115</value>
+  </data>
+  <data name="btnG.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="cBScanCode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>663, 8</value>
+  </data>
+  <data name="cBScanCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 17</value>
+  </data>
+  <data name="btnF.Location" type="System.Drawing.Point, System.Drawing">
+    <value>158, 115</value>
+  </data>
+  <data name="btnF.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="lBTip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 326</value>
+  </data>
+  <data name="lBTip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 60</value>
+  </data>
+  <data name="btnD.Location" type="System.Drawing.Point, System.Drawing">
+    <value>128, 115</value>
+  </data>
+  <data name="btnD.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnAButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>452, 106</value>
+  </data>
+  <data name="btnAButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 33</value>
+  </data>
+  <data name="btnS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 115</value>
+  </data>
+  <data name="btnS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnGuide.Location" type="System.Drawing.Point, System.Drawing">
+    <value>309, 81</value>
+  </data>
+  <data name="btnGuide.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 30</value>
+  </data>
+  <data name="btnA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>68, 115</value>
+  </data>
+  <data name="btnA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>370, 80</value>
+  </data>
+  <data name="btnStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
+  </data>
+  <data name="btnTAB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 85</value>
+  </data>
+  <data name="btnTAB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 24</value>
+  </data>
+  <data name="btnBack.Location" type="System.Drawing.Point, System.Drawing">
+    <value>266, 80</value>
+  </data>
+  <data name="btnBack.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
+  </data>
+  <data name="btnBACKSLASH.Location" type="System.Drawing.Point, System.Drawing">
+    <value>413, 85</value>
+  </data>
+  <data name="btnBACKSLASH.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 24</value>
+  </data>
+  <data name="btnBButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>497, 78</value>
+  </data>
+  <data name="btnBButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
+  </data>
+  <data name="btnCLOSEBRACKET.Location" type="System.Drawing.Point, System.Drawing">
+    <value>383, 85</value>
+  </data>
+  <data name="btnCLOSEBRACKET.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnXButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>420, 78</value>
+  </data>
+  <data name="btnXButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 34</value>
+  </data>
+  <data name="btnOPENBRACKET.Location" type="System.Drawing.Point, System.Drawing">
+    <value>353, 85</value>
+  </data>
+  <data name="btnOPENBRACKET.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnYButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>455, 46</value>
+  </data>
+  <data name="btnYButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 35</value>
+  </data>
+  <data name="btnP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>323, 85</value>
+  </data>
+  <data name="btnP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnLB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 50</value>
+  </data>
+  <data name="btnLB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 29</value>
+  </data>
+  <data name="btnO.Location" type="System.Drawing.Point, System.Drawing">
+    <value>293, 85</value>
+  </data>
+  <data name="btnO.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnDpadRight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>278, 155</value>
+  </data>
+  <data name="btnDpadRight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
+  </data>
+  <data name="btnI.Location" type="System.Drawing.Point, System.Drawing">
+    <value>263, 85</value>
+  </data>
+  <data name="btnI.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnDpadUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>251, 138</value>
+  </data>
+  <data name="btnDpadUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 21</value>
+  </data>
+  <data name="btnU.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 85</value>
+  </data>
+  <data name="btnU.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnDpadDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>254, 178</value>
+  </data>
+  <data name="btnDpadDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>26, 21</value>
+  </data>
+  <data name="btnY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>203, 85</value>
+  </data>
+  <data name="btnY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnDpadLeft.Location" type="System.Drawing.Point, System.Drawing">
+    <value>224, 153</value>
+  </data>
+  <data name="btnDpadLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>26, 30</value>
+  </data>
+  <data name="btnT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>173, 85</value>
+  </data>
+  <data name="btnT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnLT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>60, 10</value>
+  </data>
+  <data name="btnLT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 42</value>
+  </data>
+  <data name="btnR.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 85</value>
+  </data>
+  <data name="btnR.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="X360Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>294, 1</value>
+  </data>
+  <data name="X360Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 13</value>
+  </data>
+  <data name="bTNRIGHTMOUSE.Location" type="System.Drawing.Point, System.Drawing">
+    <value>826, 85</value>
+  </data>
+  <data name="bTNRIGHTMOUSE.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="KBMlabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>461, 9</value>
+  </data>
+  <data name="KBMlabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 13</value>
+  </data>
+  <data name="btnE.Location" type="System.Drawing.Point, System.Drawing">
+    <value>113, 85</value>
+  </data>
+  <data name="btnE.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="lBMacroOn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 9</value>
+  </data>
+  <data name="lBMacroOn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>322, 13</value>
+  </data>
+  <data name="bnWHEELDOWN.Location" type="System.Drawing.Point, System.Drawing">
+    <value>796, 110</value>
+  </data>
+  <data name="bnWHEELDOWN.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 21</value>
+  </data>
+  <data name="bnMacro.Location" type="System.Drawing.Point, System.Drawing">
+    <value>749, 4</value>
+  </data>
+  <data name="bnMacro.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 23</value>
+  </data>
+  <data name="bnWHEELUP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>796, 62</value>
+  </data>
+  <data name="bnWHEELUP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 22</value>
+  </data>
+  <data name="btnRSLeft.Location" type="System.Drawing.Point, System.Drawing">
+    <value>371, 166</value>
+  </data>
+  <data name="btnRSLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 30</value>
+  </data>
+  <data name="btnMIDDLEMOUSE.Location" type="System.Drawing.Point, System.Drawing">
+    <value>796, 85</value>
+  </data>
+  <data name="btnMIDDLEMOUSE.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnRSDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>384, 189</value>
+  </data>
+  <data name="btnRSDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 14</value>
+  </data>
+  <data name="btnW.Location" type="System.Drawing.Point, System.Drawing">
+    <value>83, 85</value>
+  </data>
+  <data name="btnW.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnRSRight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>414, 166</value>
+  </data>
+  <data name="btnRSRight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 30</value>
+  </data>
+  <data name="button33.Location" type="System.Drawing.Point, System.Drawing">
+    <value>831, 150</value>
+  </data>
+  <data name="button33.Size" type="System.Drawing.Size, System.Drawing">
+    <value>19, 24</value>
+  </data>
+  <data name="btnRB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>563, 55</value>
+  </data>
+  <data name="btnRB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 30</value>
+  </data>
+  <data name="btn4THMOUSE.Location" type="System.Drawing.Point, System.Drawing">
+    <value>766, 150</value>
+  </data>
+  <data name="btn4THMOUSE.Size" type="System.Drawing.Size, System.Drawing">
+    <value>19, 24</value>
+  </data>
+  <data name="btnLSLeft.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 94</value>
+  </data>
+  <data name="btnLSLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>13, 30</value>
+  </data>
+  <data name="btnMOUSERIGHT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>843, 120</value>
+  </data>
+  <data name="btnMOUSERIGHT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnRSUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>384, 155</value>
+  </data>
+  <data name="btnRSUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 13</value>
+  </data>
+  <data name="btnMOUSELEFT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>745, 121</value>
+  </data>
+  <data name="btnMOUSELEFT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnLSDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>178, 124</value>
+  </data>
+  <data name="btnLSDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 11</value>
+  </data>
+  <data name="btnMOUSEDOWN.Location" type="System.Drawing.Point, System.Drawing">
+    <value>796, 170</value>
+  </data>
+  <data name="btnMOUSEDOWN.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnRT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>574, 12</value>
+  </data>
+  <data name="btnRT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 44</value>
+  </data>
+  <data name="btnMOUSEUP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>796, 28</value>
+  </data>
+  <data name="btnMOUSEUP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnLSRight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>212, 95</value>
+  </data>
+  <data name="btnLSRight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>10, 30</value>
+  </data>
+  <data name="btnLEFTMOUSE.Location" type="System.Drawing.Point, System.Drawing">
+    <value>766, 85</value>
+  </data>
+  <data name="btnLEFTMOUSE.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnRSClick.Location" type="System.Drawing.Point, System.Drawing">
+    <value>385, 170</value>
+  </data>
+  <data name="btnRSClick.Size" type="System.Drawing.Size, System.Drawing">
+    <value>26, 19</value>
+  </data>
+  <data name="btnQ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>53, 85</value>
+  </data>
+  <data name="btnQ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btnLSUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>178, 83</value>
+  </data>
+  <data name="btnLSUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 11</value>
+  </data>
+  <data name="btnLSClick.Location" type="System.Drawing.Point, System.Drawing">
+    <value>182, 99</value>
+  </data>
+  <data name="btnLSClick.Size" type="System.Drawing.Size, System.Drawing">
+    <value>22, 22</value>
+  </data>
+  <data name="cBToggle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>598, 8</value>
+  </data>
+  <data name="cBToggle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 17</value>
+  </data>
+  <data name="btnDefault.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 330</value>
+  </data>
+  <data name="btnDefault.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 23</value>
+  </data>
+  <data name="btnUNBOUND.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 365</value>
+  </data>
+  <data name="btnUNBOUND.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 23</value>
+  </data>
+  <data name="btnESC.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 25</value>
+  </data>
+  <data name="btnESC.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 24</value>
+  </data>
+  <data name="cBMouse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 245</value>
+  </data>
+  <data name="cBMouse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>158, 37</value>
+  </data>
+  <data name="cBLightbar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 107</value>
+  </data>
+  <data name="cBLightbar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 17</value>
+  </data>
+  <data name="lbBlueV.Location" type="System.Drawing.Point, System.Drawing">
+    <value>138, 182</value>
+  </data>
+  <data name="lbBlueV.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="lbGreenV.Location" type="System.Drawing.Point, System.Drawing">
+    <value>138, 154</value>
+  </data>
+  <data name="lbGreenV.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="lbRedV.Location" type="System.Drawing.Point, System.Drawing">
+    <value>138, 129</value>
+  </data>
+  <data name="lbRedV.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="gBExtras.Location" type="System.Drawing.Point, System.Drawing">
+    <value>871, 0</value>
+  </data>
+  <data name="gBExtras.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 446</value>
+  </data>
+  <data name="rBRegular.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 209</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="rBRegular.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="rBRegular.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 17</value>
+  </data>
+  <data name="rBShiftModifer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>94, 209</value>
+  </data>
+  <data name="rBShiftModifer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="rBShiftModifer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 17</value>
+  </data>
+  <data name="cBShiftButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 236</value>
+  </data>
+  <data name="cBShiftButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 21</value>
+  </data>
+  <data name="lb360Tip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>467, 24</value>
+  </data>
+  <data name="lb360Tip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="pnl360Controls.Location" type="System.Drawing.Point, System.Drawing">
+    <value>203, 202</value>
+  </data>
+  <data name="pnl360Controls.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="pnl360Controls.Size" type="System.Drawing.Size, System.Drawing">
+    <value>668, 247</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>96, 96</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1038, 446</value>
+  </data>
+</root>

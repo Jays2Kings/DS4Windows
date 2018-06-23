@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace DS4Windows
@@ -25,17 +21,22 @@ namespace DS4Windows
         bool loading = true;
         private int alphacolor;
         private Color reg, full;
-        int bgc = 240; //Color of the form background, If greyscale color
+        int bgc = 240; // Color of the form background, If greyscale color
         private bool extraChanged;
+        private Bitmap pnl360BgImage;
 
         public KBM360(int deviceNum, Options ooo, Button buton)
         {
             InitializeComponent();
+            pnl360BgImage = (Bitmap)Properties.Resources._360_map.Clone();
+            pnl360Controls.BackgroundImage = null;
+            pnl360Controls.BackgroundImageLayout = ImageLayout.None;
             device = deviceNum;
             ops = ooo;
             button = buton;
-            cBToggle.Checked = button.Font.Italic;
-            cBScanCode.Checked = button.Font.Bold;
+            DS4ControlSettings dcs = Global.getDS4CSetting(device, button.Name);
+            cBToggle.Checked = dcs.keyType.HasFlag(DS4KeyType.Toggle);
+            cBScanCode.Checked = dcs.keyType.HasFlag(DS4KeyType.ScanCode);
             oldSC = cBScanCode.Location;
             defaultText = btnDefault.Text;
             if (button.Name.StartsWith("bnShift"))
@@ -45,13 +46,22 @@ namespace DS4Windows
                 btnDefault.Text = Properties.Resources.FallBack;
             }
             else if (button.Name.StartsWith("bn"))
+            {
                 Text = Properties.Resources.SelectActionTitle.Replace("*action*", button.Name.Substring(2));
+            }
+
             foreach (Control control in Controls)
+            {
                 if (control is Button)
                     ((Button)control).Click += anybtn_Click;
+            }
+
             foreach (Control control in pnl360Controls.Controls)
+            {
                 if (control is Button)
                     ((Button)control).Click += anybtn_Click;
+            }
+
             if (button.Name.Contains("Touch") || button.Name.Contains("Swipe"))
             {
                 btnMOUSEDOWN.Visible = false;
@@ -59,6 +69,7 @@ namespace DS4Windows
                 btnMOUSERIGHT.Visible = false;
                 btnMOUSEUP.Visible = false;
             }
+
             ActiveControl = lBMacroOn;
             guideText = btnGuide.Text;
             btnGuide.Text = "";
@@ -73,7 +84,9 @@ namespace DS4Windows
             InitializeComponent();
             sA = ooo;
             button = buton;
-            Size = new Size(btnVolUp.Location.X + btnVolUp.Size.Width * 2, btnNUMENTER.Location.Y + btnNUMENTER.Size.Height * 2);
+            Size = new Size(btnVolUp.Location.X + btnVolUp.Size.Width * 2,
+                btnNUMENTER.Location.Y + btnNUMENTER.Size.Height * 2);
+
             if (extras)
             {
                 cBScanCode.Checked = button.Text.Contains("(SC)");
@@ -84,13 +97,17 @@ namespace DS4Windows
                 cBScanCode.Visible = false;
                 cBToggle.Visible = false;
             }
+
             gBExtras.Visible = false;
             bnMacro.Visible = false;
             X360Label.Visible = false;
             Text = Properties.Resources.SelectActionTitle.Replace("*action*", "Trigger");
             foreach (Control control in Controls)
+            {
                 if (control is Button)
                     ((Button)control).Click += anybtn_Click;
+            }
+
             btnMOUSEDOWN.Visible = false;
             btnMOUSELEFT.Visible = false;
             btnMOUSERIGHT.Visible = false;
@@ -129,39 +146,61 @@ namespace DS4Windows
                         keyname = "How did you get here?";
                 }
                 else */
-                if (((Button)sender).Tag == null)
-                    keyname = ((Button)sender).Text;
-                else if (((Button)sender).Tag.ToString().Contains("X360"))
-                    keyname = ((Button)sender).Tag.ToString().Substring(4);
-                else if (((Button)sender).Tag != null && ushort.TryParse(((Button)sender).Tag.ToString(), out val))
+                if (bn.Tag == null)
+                    keyname = bn.Text;
+                else if (bn.Tag.ToString().Contains("X360"))
+                    keyname = bn.Tag.ToString().Substring(4);
+                else if (bn.Tag != null && ushort.TryParse(bn.Tag.ToString(), out val))
                     keyname = ((Keys)val).ToString();
                 else
-                    keyname = ((Button)sender).Tag.ToString();
+                    keyname = bn.Tag.ToString();
+
                 object keytag;
                 //ushort val;
-                if (((Button)sender).Tag != null && ((Button)sender).Tag.ToString().Contains("X360"))
-                    keytag = ((Button)sender).Tag.ToString().Substring(4);
-                else if (((Button)sender).Tag != null && ushort.TryParse(((Button)sender).Tag.ToString(), out val))
+                if (bn.Tag != null && bn.Tag.ToString().Contains("X360"))
+                {
+                    //keytag = ((Button)sender).Tag.ToString().Substring(4);
+                    keytag = Global.getX360ControlsByName(bn.Tag.ToString().Substring(4));
+                    DS4Controls psButton = Global.getDS4ControlsByName(button.Name);
+                    if ((X360Controls)keytag == Global.getDefaultX360ControlBinding(psButton) &&
+                        !cBScanCode.Checked && !cBToggle.Checked && !rBShiftModifer.Checked)
+                    {
+                        // Reset action
+                        keytag = null;
+                    }
+                }
+                else if (bn.Tag != null && ushort.TryParse(bn.Tag.ToString(), out val))
                     keytag = val;
                 else
-                    keytag = ((Button)sender).Tag;
+                    keytag = bn.Tag;
 
                 lBMacroOn.Visible = false;
-                string extras = GetExtras();
+                string extras = null;
+                if (IsUsingExtras())
+                {
+                    extras = GetExtras();
+                }
+
                 KeyValuePair<object, string> tag = new KeyValuePair<object, string>(keytag, extras);
+
                 newaction = true;
                 int value;
                 bool tagisint = keytag != null && int.TryParse(keytag.ToString(), out value);
                 bool scanavail = tagisint;
                 bool toggleavil = tagisint;
                 if (ops != null)
-                    ops.ChangeButtonText(button, rBShiftModifer.Checked, tag, (scanavail ? cBScanCode.Checked : false), (toggleavil ? cBToggle.Checked : false), false, false, cBShiftButton.SelectedIndex);
+                {
+                    ops.ChangeButtonText(button, rBShiftModifer.Checked, tag,
+                        (scanavail ? cBScanCode.Checked : false), (toggleavil ? cBToggle.Checked : false),
+                        false, false, cBShiftButton.SelectedIndex);
+                }
                 else if (sA != null)
                 {
                     button.Text = keyname;
                     button.Tag = keytag;
                     button.ForeColor = Color.Black;
                 }
+
                 this.Close();
             }
         }
@@ -171,7 +210,24 @@ namespace DS4Windows
             string t =(byte)nUDHeavy.Value + "," + (byte)nUDLight.Value + "," +
                 (cBLightbar.Checked ? "1" + "," + tBRedBar.Value + "," + tBGreenBar.Value + "," + tBBlueBar.Value + "," + nUDLightFlash.Value: "0,0,0,0,0") + "," +
                    (cBMouse.Checked ? "1" + "," + (byte)nUDMouse.Value : "0,0");
+
             return t;
+        }
+
+        private bool IsUsingExtras()
+        {
+            bool result = false;
+            result = result || (nUDHeavy.Value != 0);
+            result = result || (nUDLight.Value != 0);
+            result = result || (cBLightbar.Checked);
+            result = result ||
+                (tBRedBar.Value != 255 && tBGreenBar.Value != 255 &&
+                tBBlueBar.Value != 255);
+
+            result = result || (nUDLightFlash.Value != 0);
+            result = result || (cBMouse.Checked);
+            result = result || (nUDMouse.Value != 25);
+            return result;
         }
 
         private void finalMeasure(object sender, FormClosedEventArgs e)
@@ -186,13 +242,23 @@ namespace DS4Windows
                 }
                 if (lBMacroOn.Visible)
                 {
-                    string extras = GetExtras();
+                    string extras = null;
+                    if (IsUsingExtras())
+                    {
+                        extras = GetExtras();
+                    }
+
                     KeyValuePair<object, string> tag = new KeyValuePair<object, string>(macrostag.ToArray(), extras);
                     ops.ChangeButtonText(button, rBShiftModifer.Checked, tag, cBScanCode.Checked, false, lBMacroOn.Visible, macrorepeat, cBShiftButton.SelectedIndex);
                 }
                 else if (!newaction)
                 {
-                    string extras = GetExtras();
+                    string extras = null;
+                    if (IsUsingExtras())
+                    {
+                        extras = GetExtras();
+                    }
+
                     int value;
                     object tt = Global.GetDS4Action(device, button.Name, rBShiftModifer.Checked);
                     bool tagisint = tt != null
@@ -228,17 +294,26 @@ namespace DS4Windows
             if (rb == null && !(ActiveControl is NumericUpDown) && !(ActiveControl is TrackBar))
             {
                 lBMacroOn.Visible = false;
-                string extras = GetExtras();
+                string extras = null;
+                if (IsUsingExtras())
+                {
+                    extras = GetExtras();
+                }
+
                 KeyValuePair<object, string> tag = new KeyValuePair<object, string>(e.KeyValue, extras);
                 newaction = true;
                 if (ops != null)
-                    ops.ChangeButtonText(button, rBShiftModifer.Checked, tag, cBScanCode.Checked, cBToggle.Checked, false, false, cBShiftButton.SelectedIndex);
+                {
+                    ops.ChangeButtonText(button, rBShiftModifer.Checked, tag,
+                        cBScanCode.Checked, cBToggle.Checked, false, false, cBShiftButton.SelectedIndex);
+                }
                 else if (sA != null)
                 {
                     button.Text = e.KeyCode.ToString();
                     button.Tag = e.KeyValue;
                     button.ForeColor = Color.Black;
                 }
+
                 this.Close();
             }
         }
@@ -248,24 +323,28 @@ namespace DS4Windows
             if (rb == null && !(ActiveControl is NumericUpDown) && !(ActiveControl is TrackBar))
             {
                 lBMacroOn.Visible = false;
-                string extras = GetExtras();
+                string extras = null;
+                if (IsUsingExtras())
+                {
+                    extras = GetExtras();
+                }
+
                 KeyValuePair<object, string> tag = new KeyValuePair<object, string>(e.KeyValue, extras);
                 newaction = true;
                 if (ops != null)
-                    ops.ChangeButtonText(button, rBShiftModifer.Checked, tag, cBScanCode.Checked, cBToggle.Checked, false, false, cBShiftButton.SelectedIndex);
+                {
+                    ops.ChangeButtonText(button, rBShiftModifer.Checked, tag,
+                        cBScanCode.Checked, cBToggle.Checked, false, false, cBShiftButton.SelectedIndex);
+                }
                 else if (sA != null)
                 {
                     button.Text = e.KeyCode.ToString();
                     button.Tag = e.KeyValue;
                     button.ForeColor = Color.Black;
                 }
+
                 this.Close();
             }
-        }
-
-        private void cbToggle_CheckedChanged(object sender, EventArgs e)
-        {
-         
         }
 
         private void btnMacro_Click(object sender, EventArgs e)
@@ -290,11 +369,14 @@ namespace DS4Windows
                 case Keys.Up:
                 case Keys.Down:
                     return true;
-                case Keys.Shift | Keys.Right:
-                case Keys.Shift | Keys.Left:
-                case Keys.Shift | Keys.Up:
-                case Keys.Shift | Keys.Down:
+
+                case (Keys.Shift | Keys.Right):
+                case (Keys.Shift | Keys.Left):
+                case (Keys.Shift | Keys.Up):
+                case (Keys.Shift | Keys.Down):
                     return true;
+
+                default: break;
             }
             return base.IsInputKey(keyData);
         }
@@ -307,6 +389,7 @@ namespace DS4Windows
                 case Keys.Right:
                 case Keys.Up:
                 case Keys.Down:
+                {
                     if (e.Shift)
                     {
 
@@ -315,6 +398,8 @@ namespace DS4Windows
                     {
                     }
                     break;
+                }
+                default: break;
             }
         }
 
@@ -329,6 +414,7 @@ namespace DS4Windows
                 int som = bgc + 11 * (int)(value * 0.0039215);
                 tb.BackColor = Color.FromArgb(tb.Name.ToLower().Contains("red") ? som : sat, tb.Name.ToLower().Contains("green") ? som : sat, tb.Name.ToLower().Contains("blue") ? som : sat);
             }
+
             alphacolor = Math.Max(tBRedBar.Value, Math.Max(tBGreenBar.Value, tBBlueBar.Value));
             reg = Color.FromArgb(tBRedBar.Value, tBGreenBar.Value, tBBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
@@ -367,6 +453,7 @@ namespace DS4Windows
                 tBBlueBar.Value = advColorDialog.Color.B;
                 extraChanged = true;
             }
+
             if (device < 4)
                 DS4LightBar.forcelight[device] = false;
         }
@@ -405,8 +492,10 @@ namespace DS4Windows
                 if (s[i] >= 'A' && s[i] <= 'Z')
                     s = s.Insert(i, " ");
             }
+
             if (s == "Guide")
                 s = guideText;
+
             return s;
         }
 
@@ -419,7 +508,16 @@ namespace DS4Windows
         private void rBShift_CheckedChanged(object sender, EventArgs e)
         {
             if (!loading && extraChanged)
-                Global.UpdateDS4Extra(device, button.Name, !rBShiftModifer.Checked, GetExtras());
+            {
+                string strextras = null;
+                if (IsUsingExtras())
+                {
+                    strextras = GetExtras();
+                }
+
+                Global.UpdateDS4Extra(device, button.Name, !rBShiftModifer.Checked, strextras);
+            }
+
             object tagO = Global.GetDS4Action(device, button.Name, rBShiftModifer.Checked);
             if (rBShiftModifer.Checked)
                 btnDefault.Text = Properties.Resources.FallBack;
@@ -432,8 +530,11 @@ namespace DS4Windows
             newaction = false;
             Highlight_Leave(null, null);
             foreach (Control control in Controls)
+            {
                 if (control is Button)
                     ((Button)control).BackColor = SystemColors.Control;
+            }
+
             if (tagO != null)
             {
                 if (tagO is int || tagO is ushort)
@@ -441,45 +542,58 @@ namespace DS4Windows
                     int tag = int.Parse(tagO.ToString());
                     int i;
                     foreach (Control control in Controls)
+                    {
                         if (control is Button)
+                        {
                             if (int.TryParse(control.Tag?.ToString(), out i) && i == tag)
                             {
                                 ((Button)control).BackColor = Color.LightGreen;
                                 break;
                             }
+                        }
+                    }
                 }
                 else if (tagO is int[])
                 {
                     int[] tag = (int[])tagO;
-                        lBMacroOn.Visible = true;
-                        foreach (int i in tag)
-                            macrostag.Add(i);
-                    if (Global.GetDS4KeyType(device, button.Name, rBShiftModifer.Checked).HasFlag(DS4KeyType.RepeatMacro))
+                    lBMacroOn.Visible = true;
+                    foreach (int i in tag)
+                        macrostag.Add(i);
+
+                    if (Global.GetDS4KeyType(device, button.Name, rBShiftModifer.Checked).HasFlag(DS4KeyType.HoldMacro))
                         macrorepeat = true;
                 }
                 else if (tagO is string || tagO is X360Controls)
                 {
                     string tag;
                     if (tagO is X360Controls)
-                    {
                         tag = getX360ControlsByName((X360Controls)tagO);
-                    }
                     else
                         tag = tagO.ToString();
+
                     foreach (Control control in Controls)
+                    {
                         if (control is Button)
+                        {
                             if (control.Tag?.ToString() == tag)
                             {
                                 ((Button)control).BackColor = Color.LightGreen;
                                 break;
                             }
+                        }
+                    }
+
                     foreach (Control control in pnl360Controls.Controls)
+                    {
                         if (control is Button)
+                        {
                             if (control.Tag?.ToString().Substring(4) == tag)
                             {
                                 Hightlight_Hover(((Button)control), null);
                                 break;
                             }
+                        }
+                    }
                 }
             }
             else
@@ -493,71 +607,96 @@ namespace DS4Windows
                         tag = getX360ControlsByName((X360Controls)tagO);
                     else
                         tag = tagO.ToString();
+
                     foreach (Control control in Controls)
+                    {
                         if (control is Button)
+                        {
                             if (control.Tag != null && control.Tag.ToString().Contains("X360") ? control.Tag?.ToString().Substring(4) == tag : control.Tag?.ToString() == tag)
                             {
                                 ((Button)control).BackColor = Color.LightGreen;
                                 break;
                             }
+                        }
+                    }
+   
                     foreach (Control control in pnl360Controls.Controls)
+                    {
                         if (control is Button)
+                        {
                             if (control.Tag?.ToString().Substring(4) == tag)
                             {
                                 Hightlight_Hover(((Button)control), null);
                                 break;
                             }
+                        }
+                    }
                 }
             }
-            string[] extras = Global.GetDS4Extra(device, button.Name, rBShiftModifer.Checked).Split(',');
-            int b;
-            try
-            {
-                if (int.TryParse(extras[0], out b)) nUDHeavy.Value = b;
-                if (int.TryParse(extras[1], out b)) nUDLight.Value = b;
-                if (int.TryParse(extras[2], out b))
-                    if (b == 1)
-                    {
-                        cBLightbar.Checked = true;
-                        if (int.TryParse(extras[3], out b)) tBRedBar.Value = b;
-                        if (int.TryParse(extras[4], out b)) tBGreenBar.Value = b;
-                        if (int.TryParse(extras[5], out b)) tBBlueBar.Value = b;
-                        if (int.TryParse(extras[6], out b)) nUDLightFlash.Value = b;
-                    }
-                    else
-                    {
 
-                        tBRedBar.Value = 255;
-                        tBGreenBar.Value = 255;
-                        tBBlueBar.Value = 255;
-                        nUDLightFlash.Value = 0;
-                        cBLightbar.Checked = false;
-                    }
-                if (int.TryParse(extras[7], out b))
-                    if (b == 1)
+            string dcExtras = Global.GetDS4Extra(device, button.Name, rBShiftModifer.Checked);
+            string[] extras = null;
+            if (!string.IsNullOrEmpty(dcExtras))
+            {
+                extras = dcExtras.Split(',');
+            }
+
+            if (extras != null)
+            {
+                int b;
+                try
+                {
+                    if (int.TryParse(extras[0], out b)) nUDHeavy.Value = b;
+                    if (int.TryParse(extras[1], out b)) nUDLight.Value = b;
+                    if (int.TryParse(extras[2], out b))
                     {
-                        cBMouse.Checked = true;
-                        if (int.TryParse(extras[8], out b)) nUDMouse.Value = b;
-                    }
-                    else
-                    {
-                        nUDMouse.Value = 25;
-                        cBMouse.Checked = false;
+                        if (b == 1)
+                        {
+                            cBLightbar.Checked = true;
+                            if (int.TryParse(extras[3], out b)) tBRedBar.Value = b;
+                            if (int.TryParse(extras[4], out b)) tBGreenBar.Value = b;
+                            if (int.TryParse(extras[5], out b)) tBBlueBar.Value = b;
+                            if (int.TryParse(extras[6], out b)) nUDLightFlash.Value = b;
+                        }
+                        else
+                        {
+
+                            tBRedBar.Value = 255;
+                            tBGreenBar.Value = 255;
+                            tBBlueBar.Value = 255;
+                            nUDLightFlash.Value = 0;
+                            cBLightbar.Checked = false;
+                        }
                     }
 
+                    if (int.TryParse(extras[7], out b))
+                    {
+                        if (b == 1)
+                        {
+                            cBMouse.Checked = true;
+                            if (int.TryParse(extras[8], out b)) nUDMouse.Value = b;
+                        }
+                        else
+                        {
+                            nUDMouse.Value = 25;
+                            cBMouse.Checked = false;
+                        }
+                    }
+                }
+                catch
+                {
+                    nUDHeavy.Value = 0;
+                    nUDLight.Value = 0;
+                    tBRedBar.Value = 255;
+                    tBGreenBar.Value = 255;
+                    tBBlueBar.Value = 255;
+                    nUDLightFlash.Value = 0;
+                    cBLightbar.Checked = false;
+                    nUDMouse.Value = 25;
+                    cBMouse.Checked = false;
+                }
             }
-            catch
-            {
-                nUDHeavy.Value = 0;
-                nUDLight.Value = 0;
-                tBRedBar.Value = 255;
-                tBGreenBar.Value = 255;
-                tBBlueBar.Value = 255;
-                nUDLightFlash.Value = 0;
-                cBLightbar.Checked = false;
-                nUDMouse.Value = 25;
-                cBMouse.Checked = false;
-            }
+
             extraChanged = false;
         }
 
@@ -606,39 +745,51 @@ namespace DS4Windows
                 case X360Controls.MouseLeft: return "Mouse Left";
                 case X360Controls.MouseRight: return "Mouse Right";
                 case X360Controls.Unbound: return "Unbound";
+                default: break;
             }
+
             return "Unbound";
         }
 
         private void bnTest_Click(object sender, EventArgs e)
         {
+            Button btn = (Button)sender;
             if (device < 4)
-                if (((Button)sender).Text == Properties.Resources.TestText)
+            {
+                if (btn.Text == Properties.Resources.TestText)
                 {
                     Program.rootHub.setRumble((byte)nUDHeavy.Value, (byte)nUDLight.Value, device);
-                    ((Button)sender).Text = Properties.Resources.StopText;
+                    btn.Text = Properties.Resources.StopText;
                 }
                 else
                 {
                     Program.rootHub.setRumble(0, 0, device);
-                    ((Button)sender).Text = Properties.Resources.TestText;
+                    btn.Text = Properties.Resources.TestText;
                 }
+            }
             else
-                if (((Button)sender).Text == Properties.Resources.TestText)
+            {
+                if (btn.Text == Properties.Resources.TestText)
                 {
                     Program.rootHub.setRumble((byte)nUDHeavy.Value, (byte)nUDLight.Value, 0);
-                    ((Button)sender).Text = Properties.Resources.StopText;
+                    btn.Text = Properties.Resources.StopText;
                 }
                 else
                 {
                     Program.rootHub.setRumble(0, 0, 0);
-                    ((Button)sender).Text = Properties.Resources.TestText;
+                    btn.Text = Properties.Resources.TestText;
                 }
+            }
         }
 
         private void ExtraChanged(object sender, EventArgs e)
         {
             extraChanged = true;
+        }
+
+        private void pnl360Controls_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(pnl360BgImage, new Rectangle(0, 13, Convert.ToInt32(pnl360Controls.Width), Convert.ToInt32(pnl360Controls.Height - 26)), new Rectangle(0, 0, Convert.ToInt32(pnl360BgImage.Width), Convert.ToInt32(pnl360BgImage.Height)), GraphicsUnit.Pixel);
         }
 
         private void nUD_ValueChanged(object sender, EventArgs e)
@@ -650,6 +801,7 @@ namespace DS4Windows
                 else
                     Program.rootHub.setRumble((byte)nUDHeavy.Value, (byte)nUDLight.Value, 0);
             }
+
             extraChanged = true;
         }
 

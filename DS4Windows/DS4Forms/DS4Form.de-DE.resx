@@ -184,9 +184,6 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Beenden (Mittlere Maustaste)</value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>Verbinde den DS4 exklusiv (experimentell)</value>
-  </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
     <value>1071, 94</value>
   </data>

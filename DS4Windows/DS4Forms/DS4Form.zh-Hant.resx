@@ -123,72 +123,24 @@
   <data name="chData.Text" xml:space="preserve">
     <value>資料</value>
   </data>
-  <data name="btnStartStop.Text" xml:space="preserve">
-    <value>開始</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lbLastMessage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>973, 22</value>
-  </data>
   <data name="llbHelp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>986, 11</value>
+    <value>774, 9</value>
   </data>
   <data name="llbHelp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 17</value>
+    <value>60, 13</value>
   </data>
   <data name="llbHelp.Text" xml:space="preserve">
     <value>熱鍵/關於</value>
   </data>
-  <data name="btnClear.Text" xml:space="preserve">
-    <value>清除</value>
-  </data>
-  <data name="editProfileForController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 26</value>
-  </data>
-  <data name="editProfileForController1ToolStripMenuItem.Text" xml:space="preserve">
-    <value>編輯控制器 1 設定檔</value>
-  </data>
-  <data name="editProfileForController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 26</value>
-  </data>
-  <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>編輯控制器 2 設定檔</value>
-  </data>
-  <data name="editProfileForController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 26</value>
-  </data>
-  <data name="editProfileForController3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>編輯控制器 3 設定檔</value>
-  </data>
-  <data name="editProfileForController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 26</value>
-  </data>
-  <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>編輯控制器 4 設定檔</value>
-  </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 6</value>
-  </data>
-  <data name="startToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 26</value>
-  </data>
-  <data name="startToolStripMenuItem.Text" xml:space="preserve">
+  <data name="btnStartStop.Text" xml:space="preserve">
     <value>開始</value>
   </data>
-  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 26</value>
-  </data>
-  <data name="openToolStripMenuItem.Text" xml:space="preserve">
-    <value>開啟</value>
-  </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 26</value>
-  </data>
-  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>離開 (滑鼠中鍵)</value>
+  <data name="lbLastMessage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>973, 22</value>
   </data>
   <data name="cMTaskbar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 192</value>
+    <value>191, 186</value>
   </data>
   <data name="notifyIcon1.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6362,191 +6314,257 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 </value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>獨佔地連接 DS4 (實驗功能)</value>
+  <data name="editProfileForController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 22</value>
+  </data>
+  <data name="editProfileForController1ToolStripMenuItem.Text" xml:space="preserve">
+    <value>編輯控制器 1 設定檔</value>
+  </data>
+  <data name="editProfileForController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 22</value>
+  </data>
+  <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>編輯控制器 2 設定檔</value>
+  </data>
+  <data name="editProfileForController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 22</value>
+  </data>
+  <data name="editProfileForController3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>編輯控制器 3 設定檔</value>
+  </data>
+  <data name="editProfileForController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 22</value>
+  </data>
+  <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
+    <value>編輯控制器 4 設定檔</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 6</value>
+  </data>
+  <data name="startToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 22</value>
+  </data>
+  <data name="startToolStripMenuItem.Text" xml:space="preserve">
+    <value>開始</value>
+  </data>
+  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 22</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>開啟</value>
+  </data>
+  <data name="openProgramFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 22</value>
+  </data>
+  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 22</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>離開 (滑鼠中鍵)</value>
+  </data>
+  <data name="tabControllers.Text" xml:space="preserve">
+    <value>控制器</value>
   </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1082, 94</value>
+    <value>795, 89</value>
   </data>
   <data name="bnLight3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 28</value>
+    <value>98, 22</value>
   </data>
   <data name="pBStatus1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>510, 26</value>
+    <value>382, 34</value>
   </data>
   <data name="bnEditC3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1028, 94</value>
+    <value>755, 89</value>
   </data>
   <data name="bnEditC3.Text" xml:space="preserve">
     <value>編輯</value>
   </data>
   <data name="bnEditC4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1028, 130</value>
+    <value>755, 117</value>
   </data>
   <data name="bnEditC4.Text" xml:space="preserve">
     <value>編輯</value>
   </data>
   <data name="cBController1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>882, 23</value>
+    <value>638, 33</value>
   </data>
   <data name="bnEditC2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1028, 58</value>
+    <value>755, 61</value>
   </data>
   <data name="bnEditC2.Text" xml:space="preserve">
     <value>編輯</value>
   </data>
   <data name="cBController2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>882, 59</value>
+    <value>638, 61</value>
   </data>
   <data name="cBController3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>882, 95</value>
+    <value>638, 89</value>
   </data>
   <data name="bnEditC1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1028, 22</value>
+    <value>755, 33</value>
   </data>
   <data name="bnEditC1.Text" xml:space="preserve">
     <value>編輯</value>
   </data>
   <data name="cBController4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>882, 131</value>
+    <value>638, 117</value>
   </data>
   <data name="lbSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>929, 0</value>
+    <value>670, 7</value>
   </data>
   <data name="lbSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 18</value>
+    <value>46, 15</value>
   </data>
   <data name="lbSelectedProfile.Text" xml:space="preserve">
     <value>設定檔</value>
   </data>
   <data name="lbStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>514, 0</value>
+    <value>385, 7</value>
   </data>
   <data name="lbStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 18</value>
+    <value>33, 15</value>
   </data>
   <data name="lbStatus.Text" xml:space="preserve">
     <value>狀態</value>
   </data>
   <data name="lbBattery.Location" type="System.Drawing.Point, System.Drawing">
-    <value>750, 0</value>
+    <value>489, 7</value>
   </data>
   <data name="lbBattery.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 18</value>
+    <value>33, 15</value>
   </data>
   <data name="lbBattery.Text" xml:space="preserve">
     <value>電池</value>
   </data>
   <data name="lbBatt1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>743, 27</value>
+    <value>486, 36</value>
   </data>
   <data name="lbBatt2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>743, 63</value>
+    <value>486, 64</value>
   </data>
   <data name="lbBatt3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>743, 99</value>
+    <value>486, 92</value>
   </data>
   <data name="lbBatt4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>743, 135</value>
+    <value>486, 120</value>
   </data>
   <data name="pBStatus2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>510, 62</value>
+    <value>382, 62</value>
   </data>
   <data name="pBStatus3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>510, 98</value>
+    <value>382, 90</value>
   </data>
   <data name="pBStatus4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>510, 134</value>
+    <value>382, 118</value>
   </data>
   <data name="bnLight1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1082, 22</value>
+    <value>795, 33</value>
   </data>
   <data name="bnLight1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 28</value>
+    <value>98, 22</value>
   </data>
   <data name="bnLight2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1082, 58</value>
+    <value>795, 61</value>
   </data>
   <data name="bnLight2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 28</value>
+    <value>98, 22</value>
   </data>
   <data name="bnLight4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1082, 130</value>
+    <value>795, 117</value>
   </data>
   <data name="bnLight4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 28</value>
+    <value>98, 22</value>
+  </data>
+  <data name="lbLinkProfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>561, 0</value>
+  </data>
+  <data name="linkCB1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>587, 37</value>
+  </data>
+  <data name="linkCB2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>587, 65</value>
+  </data>
+  <data name="linkCB3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>587, 93</value>
+  </data>
+  <data name="linkCB4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>587, 121</value>
   </data>
   <data name="lbNoControllers.Text" xml:space="preserve">
     <value>沒有連接的控制器 (最多 4 個)</value>
   </data>
-  <data name="tabControllers.Text" xml:space="preserve">
-    <value>控制器</value>
+  <data name="tabProfiles.Text" xml:space="preserve">
+    <value>設定檔</value>
+  </data>
+  <data name="cMProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 224</value>
   </data>
   <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 26</value>
+    <value>161, 22</value>
   </data>
   <data name="editToolStripMenuItem.Text" xml:space="preserve">
     <value>編輯</value>
   </data>
   <data name="assignToController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 26</value>
+    <value>161, 22</value>
   </data>
   <data name="assignToController1ToolStripMenuItem.Text" xml:space="preserve">
     <value>指定給控制器 1</value>
   </data>
   <data name="assignToController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 26</value>
+    <value>161, 22</value>
   </data>
   <data name="assignToController2ToolStripMenuItem.Text" xml:space="preserve">
     <value>指定給控制器 2</value>
   </data>
   <data name="assignToController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 26</value>
+    <value>161, 22</value>
   </data>
   <data name="assignToController3ToolStripMenuItem.Text" xml:space="preserve">
     <value>指定給控制器 3</value>
   </data>
   <data name="assignToController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 26</value>
+    <value>161, 22</value>
   </data>
   <data name="assignToController4ToolStripMenuItem.Text" xml:space="preserve">
     <value>指定給控制器 4</value>
   </data>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 26</value>
+    <value>161, 22</value>
   </data>
   <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
     <value>刪除 (Del)</value>
   </data>
   <data name="duplicateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 26</value>
+    <value>161, 22</value>
   </data>
   <data name="duplicateToolStripMenuItem.Text" xml:space="preserve">
     <value>複製 (Ctrl+D)</value>
   </data>
   <data name="newProfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 26</value>
+    <value>161, 22</value>
   </data>
   <data name="newProfileToolStripMenuItem.Text" xml:space="preserve">
     <value>新設定檔</value>
   </data>
   <data name="importToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 26</value>
+    <value>161, 22</value>
   </data>
   <data name="importToolStripMenuItem.Text" xml:space="preserve">
     <value>匯入</value>
   </data>
   <data name="exportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 26</value>
+    <value>161, 22</value>
   </data>
   <data name="exportToolStripMenuItem.Text" xml:space="preserve">
     <value>匯出</value>
   </data>
-  <data name="cMProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 264</value>
+  <data name="tSOptions.Text" xml:space="preserve">
+    <value>設定檔選項</value>
   </data>
   <data name="toolStripLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 24</value>
+    <value>85, 24</value>
   </data>
   <data name="toolStripLabel1.Text" xml:space="preserve">
     <value>設定檔名稱：</value>
@@ -6555,28 +6573,25 @@
     <value>&lt;輸入設定檔名稱&gt;</value>
   </data>
   <data name="tSBSaveProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 24</value>
+    <value>96, 24</value>
   </data>
   <data name="tSBSaveProfile.Text" xml:space="preserve">
     <value>儲存設定檔</value>
   </data>
   <data name="tSBCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 24</value>
+    <value>57, 24</value>
   </data>
   <data name="tSBCancel.Text" xml:space="preserve">
     <value>取消</value>
   </data>
   <data name="tSBKeepSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 24</value>
+    <value>187, 24</value>
   </data>
   <data name="tSBKeepSize.Text" xml:space="preserve">
     <value>關閉後保留現在的視窗大小</value>
   </data>
-  <data name="tSOptions.Text" xml:space="preserve">
-    <value>設定檔選項</value>
-  </data>
   <data name="tsBNewProfle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 24</value>
+    <value>57, 24</value>
   </data>
   <data name="tsBNewProfle.Text" xml:space="preserve">
     <value>新增</value>
@@ -6585,7 +6600,7 @@
     <value>新增設定檔</value>
   </data>
   <data name="tsBEditProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 24</value>
+    <value>57, 24</value>
   </data>
   <data name="tsBEditProfile.Text" xml:space="preserve">
     <value>編輯</value>
@@ -6594,7 +6609,7 @@
     <value>編輯選擇的設定檔 (Enter)</value>
   </data>
   <data name="tsBDeleteProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 24</value>
+    <value>57, 24</value>
   </data>
   <data name="tsBDeleteProfile.Text" xml:space="preserve">
     <value>刪除</value>
@@ -6603,7 +6618,7 @@
     <value>刪除選擇的設定檔 (Delete)</value>
   </data>
   <data name="tSBDupProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 24</value>
+    <value>57, 24</value>
   </data>
   <data name="tSBDupProfile.Text" xml:space="preserve">
     <value>複製</value>
@@ -6612,7 +6627,7 @@
     <value>複製選擇的設定檔 (Ctrl+D)</value>
   </data>
   <data name="tSBImportProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 24</value>
+    <value>57, 24</value>
   </data>
   <data name="tSBImportProfile.Text" xml:space="preserve">
     <value>匯入</value>
@@ -6621,7 +6636,7 @@
     <value>匯入一個或多個設定檔</value>
   </data>
   <data name="tSBExportProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 24</value>
+    <value>57, 24</value>
   </data>
   <data name="tSBExportProfile.Text" xml:space="preserve">
     <value>匯出</value>
@@ -6629,38 +6644,41 @@
   <data name="tSBExportProfile.ToolTipText" xml:space="preserve">
     <value>匯出選擇的設定檔</value>
   </data>
-  <data name="tabProfiles.Text" xml:space="preserve">
-    <value>設定檔</value>
-  </data>
   <data name="tabAutoProfiles.Text" xml:space="preserve">
     <value>自動設定檔</value>
   </data>
+  <data name="tabSettings.Text" xml:space="preserve">
+    <value>設定</value>
+  </data>
   <data name="hideDS4CheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 21</value>
+    <value>113, 17</value>
   </data>
   <data name="hideDS4CheckBox.Text" xml:space="preserve">
     <value>隱藏 DS4 控制器</value>
   </data>
   <data name="cBSwipeProfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 21</value>
+    <value>158, 17</value>
   </data>
   <data name="cBSwipeProfiles.Text" xml:space="preserve">
     <value>滑動觸控板以更換設定檔</value>
   </data>
   <data name="StartWindowsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 21</value>
+    <value>122, 17</value>
   </data>
   <data name="StartWindowsCheckBox.Text" xml:space="preserve">
     <value>開機自動執行程式</value>
   </data>
   <data name="startMinimizedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 21</value>
+    <value>98, 17</value>
   </data>
   <data name="startMinimizedCheckBox.Text" xml:space="preserve">
     <value>開啟時最小化</value>
   </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 28</value>
+  </data>
   <data name="lbNotifications.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 17</value>
+    <value>55, 13</value>
   </data>
   <data name="lbNotifications.Text" xml:space="preserve">
     <value>顯示通知</value>
@@ -6677,14 +6695,20 @@
   <data name="cBoxNotifications.Location" type="System.Drawing.Point, System.Drawing">
     <value>68, 1</value>
   </data>
-  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 28</value>
+  <data name="cBDisconnectBT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 222</value>
   </data>
   <data name="cBDisconnectBT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 21</value>
+    <value>110, 17</value>
   </data>
   <data name="cBDisconnectBT.Text" xml:space="preserve">
     <value>停止時中斷藍牙</value>
+  </data>
+  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 245</value>
+  </data>
+  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 28</value>
   </data>
   <data name="nUDLatency.Location" type="System.Drawing.Point, System.Drawing">
     <value>140, 2</value>
@@ -6693,37 +6717,46 @@
     <value>203, 5</value>
   </data>
   <data name="cBFlashWhenLate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 21</value>
+    <value>134, 17</value>
   </data>
   <data name="cBFlashWhenLate.Text" xml:space="preserve">
     <value>在高延遲時閃爍光條</value>
   </data>
-  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 28</value>
+  <data name="cBCloseMini.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 279</value>
   </data>
   <data name="cBCloseMini.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 21</value>
+    <value>98, 17</value>
   </data>
   <data name="cBCloseMini.Text" xml:space="preserve">
     <value>關閉時最小化</value>
   </data>
+  <data name="cBQuickCharge.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 302</value>
+  </data>
   <data name="cBQuickCharge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 21</value>
+    <value>74, 17</value>
   </data>
   <data name="cBQuickCharge.Text" xml:space="preserve">
     <value>快速充電</value>
   </data>
-  <data name="cBDownloadLangauge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 21</value>
+  <data name="cBUseWhiteIcon.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 324</value>
   </data>
-  <data name="cBDownloadLangauge.Text" xml:space="preserve">
-    <value>更新時下載語言包</value>
+  <data name="cBUpdate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>248, 10</value>
   </data>
   <data name="cBUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 21</value>
+    <value>110, 17</value>
   </data>
   <data name="cBUpdate.Text" xml:space="preserve">
     <value>啟動時檢查更新</value>
+  </data>
+  <data name="pNUpdate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>248, 33</value>
+  </data>
+  <data name="pNUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 28</value>
   </data>
   <data name="cBUpdateTime.Items" xml:space="preserve">
     <value>小時</value>
@@ -6735,7 +6768,7 @@
     <value>117, 0</value>
   </data>
   <data name="lbCheckEvery.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 17</value>
+    <value>43, 13</value>
   </data>
   <data name="lbCheckEvery.Text" xml:space="preserve">
     <value>檢查每</value>
@@ -6743,11 +6776,14 @@
   <data name="nUDUpdateTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>54, 1</value>
   </data>
-  <data name="pNUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 28</value>
+  <data name="pnlXIPorts.Location" type="System.Drawing.Point, System.Drawing">
+    <value>248, 67</value>
+  </data>
+  <data name="pnlXIPorts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 28</value>
   </data>
   <data name="lbUseXIPorts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 17</value>
+    <value>79, 13</value>
   </data>
   <data name="lbUseXIPorts.Text" xml:space="preserve">
     <value>使用 Xinput 埠</value>
@@ -6758,67 +6794,61 @@
   <data name="lbLastXIPort.Location" type="System.Drawing.Point, System.Drawing">
     <value>176, 4</value>
   </data>
-  <data name="pnlXIPorts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 28</value>
+  <data name="languagePackComboBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>248, 101</value>
+  </data>
+  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>248, 134</value>
   </data>
   <data name="linkProfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 17</value>
+    <value>79, 13</value>
   </data>
   <data name="linkProfiles.Text" xml:space="preserve">
     <value>設定檔資料夾</value>
   </data>
   <data name="lnkControllers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 17</value>
+    <value>55, 13</value>
   </data>
   <data name="lnkControllers.Text" xml:space="preserve">
     <value>控制面版</value>
   </data>
   <data name="linkUninstall.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 17</value>
+    <value>86, 13</value>
   </data>
   <data name="linkUninstall.Text" xml:space="preserve">
     <value>移除 VBus 驅動</value>
   </data>
   <data name="linkSetup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 17</value>
+    <value>123, 13</value>
   </data>
   <data name="linkSetup.Text" xml:space="preserve">
     <value>控制器/驅動程式 設定</value>
   </data>
   <data name="lLBUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 17</value>
+    <value>55, 13</value>
   </data>
   <data name="lLBUpdate.Text" xml:space="preserve">
     <value>檢查更新</value>
   </data>
-  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>253, 13</value>
-  </data>
-  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 85</value>
-  </data>
-  <data name="tabSettings.Text" xml:space="preserve">
-    <value>設定</value>
-  </data>
   <data name="tabLog.Text" xml:space="preserve">
     <value>紀錄</value>
   </data>
+  <data name="btnClear.Text" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="cMCustomLed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>166, 48</value>
+  </data>
   <data name="useProfileColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 26</value>
+    <value>165, 22</value>
   </data>
   <data name="useProfileColorToolStripMenuItem.Text" xml:space="preserve">
     <value>使用設定檔顏色</value>
   </data>
   <data name="useCustomColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 26</value>
+    <value>165, 22</value>
   </data>
   <data name="useCustomColorToolStripMenuItem.Text" xml:space="preserve">
     <value>使用自訂顏色</value>
-  </data>
-  <data name="cMCustomLed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 56</value>
-  </data>
-  <data name="lbID.Text" xml:space="preserve">
-    <value>ID</value>
   </data>
 </root>

@@ -191,7 +191,6 @@
             // 
             // cMSPrograms
             // 
-            resources.ApplyResources(this.cMSPrograms, "cMSPrograms");
             this.cMSPrograms.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cMSPrograms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addProgramsFromStartMenuToolStripMenuItem,
@@ -201,35 +200,36 @@
             this.browseForOtherProgramsToolStripMenuItem});
             this.cMSPrograms.Name = "contextMenuStrip1";
             this.cMSPrograms.ShowImageMargin = false;
+            resources.ApplyResources(this.cMSPrograms, "cMSPrograms");
             // 
             // addProgramsFromStartMenuToolStripMenuItem
             // 
-            resources.ApplyResources(this.addProgramsFromStartMenuToolStripMenuItem, "addProgramsFromStartMenuToolStripMenuItem");
             this.addProgramsFromStartMenuToolStripMenuItem.Name = "addProgramsFromStartMenuToolStripMenuItem";
+            resources.ApplyResources(this.addProgramsFromStartMenuToolStripMenuItem, "addProgramsFromStartMenuToolStripMenuItem");
             this.addProgramsFromStartMenuToolStripMenuItem.Click += new System.EventHandler(this.addProgramsFromStartMenuToolStripMenuItem_Click);
             // 
             // addSteamGamesToolStripMenuItem
             // 
-            resources.ApplyResources(this.addSteamGamesToolStripMenuItem, "addSteamGamesToolStripMenuItem");
             this.addSteamGamesToolStripMenuItem.Name = "addSteamGamesToolStripMenuItem";
+            resources.ApplyResources(this.addSteamGamesToolStripMenuItem, "addSteamGamesToolStripMenuItem");
             this.addSteamGamesToolStripMenuItem.Click += new System.EventHandler(this.addSteamGamesToolStripMenuItem_Click);
             // 
             // addOriginGamesToolStripMenuItem
             // 
-            resources.ApplyResources(this.addOriginGamesToolStripMenuItem, "addOriginGamesToolStripMenuItem");
             this.addOriginGamesToolStripMenuItem.Name = "addOriginGamesToolStripMenuItem";
+            resources.ApplyResources(this.addOriginGamesToolStripMenuItem, "addOriginGamesToolStripMenuItem");
             this.addOriginGamesToolStripMenuItem.Click += new System.EventHandler(this.addOriginGamesToolStripMenuItem_Click);
             // 
             // addDirectoryToolStripMenuItem
             // 
-            resources.ApplyResources(this.addDirectoryToolStripMenuItem, "addDirectoryToolStripMenuItem");
             this.addDirectoryToolStripMenuItem.Name = "addDirectoryToolStripMenuItem";
+            resources.ApplyResources(this.addDirectoryToolStripMenuItem, "addDirectoryToolStripMenuItem");
             this.addDirectoryToolStripMenuItem.Click += new System.EventHandler(this.addDirectoryToolStripMenuItem_Click);
             // 
             // browseForOtherProgramsToolStripMenuItem
             // 
-            resources.ApplyResources(this.browseForOtherProgramsToolStripMenuItem, "browseForOtherProgramsToolStripMenuItem");
             this.browseForOtherProgramsToolStripMenuItem.Name = "browseForOtherProgramsToolStripMenuItem";
+            resources.ApplyResources(this.browseForOtherProgramsToolStripMenuItem, "browseForOtherProgramsToolStripMenuItem");
             this.browseForOtherProgramsToolStripMenuItem.Click += new System.EventHandler(this.browseForOtherProgramsToolStripMenuItem_Click);
             // 
             // cBTurnOffDS4W
@@ -243,7 +243,7 @@
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.cBTurnOffDS4W);
             this.Controls.Add(this.pBProfilesTip);
             this.Controls.Add(this.bnHideUnchecked);

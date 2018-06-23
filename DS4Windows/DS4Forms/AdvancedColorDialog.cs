@@ -19,26 +19,26 @@ namespace DS4Windows
         internal class WindowsEnumerator
         {
             private delegate int EnumCallBackDelegate(IntPtr hwnd, int lParam);
-            [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
 
+            [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
             private static extern int EnumWindows(EnumCallBackDelegate lpEnumFunc, int lParam);
-            [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
 
+            [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
             private static extern int EnumChildWindows(IntPtr hWndParent, EnumCallBackDelegate lpEnumFunc, int lParam);
+
             [DllImport("user32", EntryPoint = "GetClassNameA", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-
             private static extern int GetClassName(IntPtr hwnd, System.Text.StringBuilder lpClassName, int nMaxCount);
-            [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
 
+            [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
             private static extern int IsWindowVisible(IntPtr hwnd);
+
             [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-
             private static extern int GetParent(IntPtr hwnd);
-            [DllImport("user32", EntryPoint = "SendMessageA", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
 
+            [DllImport("user32", EntryPoint = "SendMessageA", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
             private static extern int SendMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
-            [DllImport("user32", EntryPoint = "SendMessageA", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
 
+            [DllImport("user32", EntryPoint = "SendMessageA", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
             private static extern int SendMessage(IntPtr hwnd, int wMsg, int wParam, System.Text.StringBuilder lParam);
 
             private List<ApiWindow> _listChildren = new List<ApiWindow>();
@@ -160,7 +160,7 @@ namespace DS4Windows
                     if (Byte.TryParse(WindowsEnumerator.WindowText(EditWindows[3].hWnd), out red))
                         if (Byte.TryParse(WindowsEnumerator.WindowText(EditWindows[4].hWnd), out green))
                             if (Byte.TryParse(WindowsEnumerator.WindowText(EditWindows[5].hWnd), out blue))
-                                OnUpdateColor(Color.FromArgb(red, green, blue), EventArgs.Empty);
+                                OnUpdateColor?.Invoke(Color.FromArgb(red, green, blue), EventArgs.Empty);
                 }
             }
             // Always call the base class hook procedure. 

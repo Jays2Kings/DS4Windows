@@ -196,9 +196,6 @@
   <data name="tabControllers.Text" xml:space="preserve">
     <value>Krmilniki</value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>Poveži izključno z DS4</value>
-  </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
     <value>1079, 94</value>
   </data>

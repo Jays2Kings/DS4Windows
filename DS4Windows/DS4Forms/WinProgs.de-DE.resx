@@ -118,14 +118,83 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="bnAddPrograms.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 2</value>
+  </data>
   <data name="bnAddPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 23</value>
+    <value>98, 19</value>
   </data>
   <data name="bnAddPrograms.Text" xml:space="preserve">
     <value>Programme hinzufügen</value>
   </data>
+  <data name="lBProgramPath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>519, 195</value>
+  </data>
+  <data name="lBProgramPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 18</value>
+  </data>
+  <data name="cBProfile1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>609, 28</value>
+  </data>
+  <data name="cBProfile1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 21</value>
+  </data>
+  <data name="cBProfile2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>609, 55</value>
+  </data>
+  <data name="cBProfile2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 21</value>
+  </data>
+  <data name="cBProfile3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>609, 82</value>
+  </data>
+  <data name="cBProfile3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 21</value>
+  </data>
+  <data name="cBProfile4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>609, 109</value>
+  </data>
+  <data name="cBProfile4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 21</value>
+  </data>
+  <data name="bnSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>663, 2</value>
+  </data>
+  <data name="bnSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 23</value>
+  </data>
   <data name="bnSave.Text" xml:space="preserve">
     <value>Speichern</value>
+  </data>
+  <data name="lBController1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>516, 31</value>
+  </data>
+  <data name="lBController1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 13</value>
+  </data>
+  <data name="lBController2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>516, 58</value>
+  </data>
+  <data name="lBController2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 13</value>
+  </data>
+  <data name="lBController3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>516, 85</value>
+  </data>
+  <data name="lBController3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 13</value>
+  </data>
+  <data name="lBController4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>516, 112</value>
+  </data>
+  <data name="lBController4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 13</value>
+  </data>
+  <data name="bnDelete.Location" type="System.Drawing.Point, System.Drawing">
+    <value>590, 2</value>
+  </data>
+  <data name="bnDelete.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 23</value>
   </data>
   <data name="bnDelete.Text" xml:space="preserve">
     <value>Entfernen</value>
@@ -133,11 +202,17 @@
   <data name="PathHeader.Text" xml:space="preserve">
     <value>Verzeichnis</value>
   </data>
+  <data name="lVPrograms.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 28</value>
+  </data>
+  <data name="lVPrograms.Size" type="System.Drawing.Size, System.Drawing">
+    <value>505, 190</value>
+  </data>
   <data name="pBProfilesTip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>818, 167</value>
+    <value>614, 136</value>
   </data>
   <data name="pBProfilesTip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 17</value>
+    <value>110, 13</value>
   </data>
   <data name="pBProfilesTip.Text" xml:space="preserve">
     <value>Profile hier auswählen</value>
@@ -147,63 +222,66 @@
     <value>NoControl</value>
   </data>
   <data name="bnHideUnchecked.Location" type="System.Drawing.Point, System.Drawing">
-    <value>141, 2</value>
+    <value>106, 2</value>
   </data>
   <data name="bnHideUnchecked.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 23</value>
+    <value>129, 19</value>
   </data>
   <data name="bnHideUnchecked.Text" xml:space="preserve">
     <value>Abgewählte verstecken</value>
   </data>
   <data name="addProgramsFromStartMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>275, 26</value>
+    <value>229, 22</value>
   </data>
   <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
     <value>Startmenü Programm hinzufügen</value>
   </data>
   <data name="addSteamGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>275, 26</value>
+    <value>229, 22</value>
   </data>
   <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Steam Spiel hinzufügen</value>
   </data>
   <data name="addOriginGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>275, 26</value>
+    <value>229, 22</value>
   </data>
   <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Origin Spiel hinzufügen</value>
   </data>
   <data name="addDirectoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>275, 26</value>
+    <value>229, 22</value>
   </data>
   <data name="addDirectoryToolStripMenuItem.Text" xml:space="preserve">
     <value>Verzeichnis Hinzufügen</value>
   </data>
   <data name="browseForOtherProgramsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>275, 26</value>
+    <value>229, 22</value>
   </data>
   <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
     <value>Suche nach anderen Programmen</value>
   </data>
   <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 134</value>
+    <value>230, 114</value>
+  </data>
+  <data name="cBTurnOffDS4W.Location" type="System.Drawing.Point, System.Drawing">
+    <value>514, 152</value>
+  </data>
+  <data name="cBTurnOffDS4W.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="cBTurnOffDS4W.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 41</value>
   </data>
   <data name="cBTurnOffDS4W.Text" xml:space="preserve">
     <value>DS4Windows temporär ausschalten</value>
   </data>
-  <data name="lBController1.Text" xml:space="preserve">
-    <value>Controller 1</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
   </data>
-  <data name="lBController2.Text" xml:space="preserve">
-    <value>Controller 2</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>736, 222</value>
   </data>
-  <data name="lBController3.Text" xml:space="preserve">
-    <value>Controller 3</value>
-  </data>
-  <data name="lBController4.Text" xml:space="preserve">
-    <value>Controller 4</value>
-  </data>
-  <data name="nameHeader.Text" xml:space="preserve">
-    <value>Name</value>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
 </root>

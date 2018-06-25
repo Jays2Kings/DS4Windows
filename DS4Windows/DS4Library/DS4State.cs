@@ -183,19 +183,19 @@ namespace DS4Windows
 
         public void calculateStickAngles()
         {
-            double lsangle = Math.Atan2((LX - 127), -(LY - 127));
+            double lsangle = Math.Atan2(-(LY - 127), (LX - 127));
             LSAngleRad = lsangle;
             lsangle = (lsangle >= 0 ? lsangle : (2 * Math.PI + lsangle)) * 180 / Math.PI;
             LSAngle = lsangle;
             LXUnit = Math.Abs(Math.Cos(LSAngleRad));
             LYUnit = Math.Abs(Math.Sin(LSAngleRad));
 
-            double rsangle = Math.Atan2((RX - 127), -(RY - 127));
+            double rsangle = Math.Atan2(-(RY - 127), (RX - 127));
             RSAngleRad = rsangle;
             rsangle = (rsangle >= 0 ? rsangle : (2 * Math.PI + rsangle)) * 180 / Math.PI;
             RSAngle = rsangle;
             RXUnit = Math.Abs(Math.Cos(RSAngleRad));
-            RYUnit = Math.Abs(Math.Sin(LSAngleRad));
+            RYUnit = Math.Abs(Math.Sin(RSAngleRad));
         }
 
         public void rotateLSCoordinates(double rotation)

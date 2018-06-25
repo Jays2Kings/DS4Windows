@@ -1363,8 +1363,6 @@
             this.Controls.Add(this.pnlButton);
             this.Name = "DS4Form";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ScpForm_Closing);
-            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.ScpForm_DragDrop);
-            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.ScpForm_DragEnter);
             this.Resize += new System.EventHandler(this.Form_Resize);
             this.pnlButton.ResumeLayout(false);
             this.pnlButton.PerformLayout();

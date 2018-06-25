@@ -25,6 +25,10 @@ namespace DS4Windows
         List<string> programpaths = new List<string>();
         List<string> lodsf = new List<string>();
         bool appsloaded = false;
+        const string steamCommx86Loc = @"C:\Program Files (x86)\Steam\steamapps\common";
+        const string steamCommLoc = @"C:\Program Files\Steam\steamapps\common";
+        const string originx86Loc = @"C:\Program Files (x86)\Origin Games";
+        const string originLoc = @"C:\Program Files\Origin Games";
 
         public WinProgs(string[] oc, DS4Form main)
         {
@@ -44,17 +48,17 @@ namespace DS4Windows
 
             LoadP();
 
-            if (Directory.Exists(@"C:\Program Files (x86)\Steam\steamapps\common"))
-                steamgamesdir =  @"C:\Program Files (x86)\Steam\steamapps\common";
-            else if (Directory.Exists(@"C:\Program Files\Steam\steamapps\common"))
-                steamgamesdir = @"C:\Program Files\Steam\steamapps\common";
+            if (Directory.Exists(steamCommx86Loc))
+                steamgamesdir = steamCommx86Loc;
+            else if (Directory.Exists(steamCommLoc))
+                steamgamesdir = steamCommLoc;
             else
                 cMSPrograms.Items.Remove(addSteamGamesToolStripMenuItem);
 
-            if (Directory.Exists(@"C:\Program Files (x86)\Origin Games"))
-                origingamesdir = @"C:\Program Files (x86)\Origin Games";
-            else if (Directory.Exists(@"C:\Program Files\Origin Games"))
-                origingamesdir = @"C:\Program Files\Origin Games";
+            if (Directory.Exists(originx86Loc))
+                origingamesdir = originx86Loc;
+            else if (Directory.Exists(originLoc))
+                origingamesdir = originLoc;
             else
                 cMSPrograms.Items.Remove(addOriginGamesToolStripMenuItem);
         }
@@ -105,26 +109,26 @@ namespace DS4Windows
                 programpaths.Add(x.Attributes["path"].Value);
 
             lVPrograms.BeginUpdate();
+            int index = 0;
             foreach (string st in programpaths)
             {
-                if (File.Exists(st))
+                if (!string.IsNullOrEmpty(st))
                 {
-                    int index = programpaths.IndexOf(st);
-                    if (string.Empty != st)
+                    if (File.Exists(st))
                     {
                         iLIcons.Images.Add(Icon.ExtractAssociatedIcon(st));
-                        ListViewItem lvi = new ListViewItem(Path.GetFileNameWithoutExtension(st), index);
-                        lvi.SubItems.Add(st);
-                        lvi.Checked = true;
-                        lvi.ToolTipText = st;
-                        lVPrograms.Items.Add(lvi);
                     }
+
+                    ListViewItem lvi = new ListViewItem(Path.GetFileNameWithoutExtension(st), index);
+                    lvi.Checked = true;
+                    lvi.ToolTipText = st;
+                    lvi.SubItems.Add(st);
+                    lVPrograms.Items.Add(lvi);
                 }
-                else
-                {
-                    RemoveP(st, false, false);
-                }
+
+                index++;
             }
+
             lVPrograms.EndUpdate();
         }
 
@@ -172,7 +176,7 @@ namespace DS4Windows
             appsloaded = true;
         }
 
-        void addLoadedApps()
+        void AddLoadedApps()
         {
             if (appsloaded)
             {
@@ -298,7 +302,7 @@ namespace DS4Windows
             }
         }
 
-        public void RemoveP(string name, bool uncheck, bool reload = true)
+        public void RemoveP(string name, bool uncheck)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(m_Profile);
@@ -316,8 +320,6 @@ namespace DS4Windows
                 cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
 
             bnSave.Enabled = false;
-            if (reload)
-                form.LoadP();
         }
 
         private void CBProfile_IndexChanged(object sender, EventArgs e)
@@ -388,7 +390,7 @@ namespace DS4Windows
             bnAddPrograms.Enabled = false;
             cMSPrograms.Items.Remove(addSteamGamesToolStripMenuItem);
             await Task.Run(() => GetApps(steamgamesdir));
-            addLoadedApps();
+            AddLoadedApps();
         }
         
         private async void addDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -399,7 +401,7 @@ namespace DS4Windows
                 bnAddPrograms.Text = Properties.Resources.Loading;
                 bnAddPrograms.Enabled = false;
                 await Task.Run(() => GetApps(fbd.SelectedPath));
-                addLoadedApps();
+                AddLoadedApps();
             }
         }
 
@@ -427,7 +429,7 @@ namespace DS4Windows
             bnAddPrograms.Enabled = false;
             cMSPrograms.Items.Remove(addOriginGamesToolStripMenuItem);
             await Task.Run(() => GetApps(origingamesdir));
-            addLoadedApps();
+            AddLoadedApps();
         }
 
         private async void addProgramsFromStartMenuToolStripMenuItem_Click(object sender, EventArgs e)
@@ -436,7 +438,7 @@ namespace DS4Windows
             bnAddPrograms.Enabled = false;
             cMSPrograms.Items.Remove(addProgramsFromStartMenuToolStripMenuItem);
             await Task.Run(() => GetShortcuts(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\Programs"));
-            addLoadedApps();
+            AddLoadedApps();
         }
 
         public static string GetTargetPath(string filePath)

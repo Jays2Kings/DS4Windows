@@ -779,28 +779,28 @@ namespace DS4Windows
 
                     if (absX <= 0.4)
                     {
-                        outputX = 0.414 * absX;
+                        outputX = 0.43 * absX;
                     }
                     else if (absX <= 0.75)
                     {
-                        outputX = absX - 0.24;
+                        outputX = absX - 0.228;
                     }
                     else if (absX > 0.75)
                     {
-                        outputX = (absX * 1.9376) - 0.9376;
+                        outputX = (absX * 1.912) - 0.912;
                     }
 
                     if (absY <= 0.4)
                     {
-                        outputY = 0.414 * absY;
+                        outputY = 0.43 * absY;
                     }
                     else if (absY <= 0.75)
                     {
-                        outputY = absY - 0.24;
+                        outputY = absY - 0.228;
                     }
                     else if (absY > 0.75)
                     {
-                        outputY = (absY * 1.9376) - 0.9376;
+                        outputY = (absY * 1.912) - 0.912;
                     }
 
                     dState.LX = (byte)(outputX * signX * 127.5 + 127.5);
@@ -2475,12 +2475,12 @@ namespace DS4Windows
         {
             int controlnum = DS4ControltoInt(control);
 
-            int deadzoneL = 3;
-            int deadzoneR = 3;
-            if (getLSDeadzone(device) >= 3)
-                deadzoneL = 0;
-            if (getRSDeadzone(device) >= 3)
-                deadzoneR = 0;
+            int deadzoneL = 0;
+            int deadzoneR = 0;
+            if (getLSDeadzone(device) == 0)
+                deadzoneL = 3;
+            if (getRSDeadzone(device) == 0)
+                deadzoneR = 3;
 
             double value = 0.0;
             int speed = ButtonMouseSensitivity[device];
@@ -3125,49 +3125,49 @@ namespace DS4Windows
                     case DS4Controls.LXNeg:
                     {
                         double angle = cState.LSAngle;
-                        result = cState.LX < 127 && (angle >= 210 && angle <= 330);
+                        result = cState.LX < 127 && (angle >= 112.5 && angle <= 247.5);
                         break;
                     }
                     case DS4Controls.LYNeg:
                     {
                         double angle = cState.LSAngle;
-                        result = cState.LY < 127 && (angle >= 300 || angle <= 60);
+                        result = cState.LY < 127 && (angle >= 22.5 && angle <= 157.5);
                         break;
                     }
                     case DS4Controls.RXNeg:
                     {
                         double angle = cState.RSAngle;
-                        result = cState.RX < 127 && (angle >= 210 && angle <= 330);
+                        result = cState.RX < 127 && (angle >= 112.5 && angle <= 247.5);
                         break;
                     }
                     case DS4Controls.RYNeg:
                     {
                         double angle = cState.RSAngle;
-                        result = cState.RY < 127 && (angle >= 300 || angle <= 60);
+                        result = cState.RY < 127 && (angle >= 22.5 && angle <= 157.5);
                         break;
                     }
                     case DS4Controls.LXPos:
                     {
                         double angle = cState.LSAngle;
-                        result = cState.LX > 127 && (angle >= 30 && angle <= 150);
+                        result = cState.LX > 127 && (angle <= 67.5 || angle >= 292.5);
                         break;
                     }
                     case DS4Controls.LYPos:
                     {
                         double angle = cState.LSAngle;
-                        result = cState.LY > 127 && (angle >= 120 && angle <= 240);
+                        result = cState.LY > 127 && (angle >= 202.5 && angle <= 337.5);
                         break;
                     }
                     case DS4Controls.RXPos:
                     {
                         double angle = cState.RSAngle;
-                        result = cState.RX > 127 && (angle >= 30 && angle <= 150);
+                        result = cState.RX > 127 && (angle <= 67.5 || angle >= 292.5);
                         break;
                     }
                     case DS4Controls.RYPos:
                     {
                         double angle = cState.RSAngle;
-                        result = cState.RY > 127 && (angle >= 120 && angle <= 240);
+                        result = cState.RY > 127 && (angle >= 202.5 && angle <= 337.5);
                         break;
                     }
                     default: break;
@@ -3255,7 +3255,7 @@ namespace DS4Windows
                         if (!analog)
                         {
                             double angle = cState.LSAngle;
-                            result = cState.LX < 127 && (angle >= 210 && angle <= 330);
+                            result = cState.LX < 127 && (angle >= 112.5 && angle <= 247.5);
                         }
                         else
                         {
@@ -3269,7 +3269,7 @@ namespace DS4Windows
                         if (!analog)
                         {
                             double angle = cState.LSAngle;
-                            result = cState.LY < 127 && (angle >= 300 || angle <= 60);
+                            result = cState.LY < 127 && (angle >= 22.5 && angle <= 157.5);
                         }
                         else
                         {
@@ -3283,7 +3283,7 @@ namespace DS4Windows
                         if (!analog)
                         {
                             double angle = cState.RSAngle;
-                            result = cState.RX < 127 && (angle >= 210 && angle <= 330);
+                            result = cState.RX < 127 && (angle >= 112.5 && angle <= 247.5);
                         }
                         else
                         {
@@ -3297,7 +3297,7 @@ namespace DS4Windows
                         if (!analog)
                         {
                             double angle = cState.RSAngle;
-                            result = cState.RY < 127 && (angle >= 300 || angle <= 60);
+                            result = cState.RY < 127 && (angle >= 22.5 && angle <= 157.5);
                         }
                         else
                         {
@@ -3311,7 +3311,7 @@ namespace DS4Windows
                         if (!analog)
                         {
                             double angle = cState.LSAngle;
-                            result = cState.LX > 127 && (angle >= 30 && angle <= 150);
+                            result = cState.LX > 127 && (angle <= 67.5 || angle >= 292.5);
                         }
                         else
                         {
@@ -3325,7 +3325,7 @@ namespace DS4Windows
                         if (!analog)
                         {
                             double angle = cState.LSAngle;
-                            result = cState.LY > 127 && (angle >= 120 && angle <= 240);
+                            result = cState.LY > 127 && (angle >= 202.5 && angle <= 337.5);
                         }
                         else
                         {
@@ -3339,7 +3339,7 @@ namespace DS4Windows
                         if (!analog)
                         {
                             double angle = cState.RSAngle;
-                            result = cState.RX > 127 && (angle >= 30 && angle <= 150);
+                            result = cState.RX > 127 && (angle <= 67.5 || angle >= 292.5);
                         }
                         else
                         {
@@ -3353,7 +3353,7 @@ namespace DS4Windows
                         if (!analog)
                         {
                             double angle = cState.RSAngle;
-                            result = cState.RY > 127 && (angle >= 120 && angle <= 240);
+                            result = cState.RY > 127 && (angle >= 202.5 && angle <= 337.5);
                         }
                         else
                         {

@@ -150,6 +150,7 @@ namespace DS4Windows
         public DateTime lastActive = DateTime.UtcNow;
         public DateTime firstActive = DateTime.UtcNow;
         private bool charging;
+        private bool isNacon = false;
         private bool outputRumble = false;
         private int warnInterval = WARN_INTERVAL_USB;
         public int getWarnInterval()
@@ -426,6 +427,11 @@ namespace DS4Windows
                     {
                         audio = new DS4Audio();
                         micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture);
+                    }
+
+                    else if (tempAttr.VendorId == 0x146B)
+                    {
+                        isNacon = true;
                     }
 
                     synced = true;
@@ -971,7 +977,7 @@ namespace DS4Windows
                         pbAccel[i-6] = pbInput[i];
                     }
                 }
-                sixAxis.handleSixaxis(gyro, accel, cState, elapsedDeltaTime);
+                sixAxis.handleSixaxis(gyro, accel, cState, elapsedDeltaTime, isNacon);
 
                 /* Debug output of incoming HID data:
                 if (cState.L2 == 0xff && cState.R2 == 0xff)

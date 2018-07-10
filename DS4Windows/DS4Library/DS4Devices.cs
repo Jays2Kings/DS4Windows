@@ -235,7 +235,7 @@ namespace DS4Windows
                         }
 
                         if (device.ShouldRunCalib())
-                            device.refreshCalibration();
+                            device.RefreshCalibration();
                     }
                 }
             }

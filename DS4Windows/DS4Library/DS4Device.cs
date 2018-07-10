@@ -433,7 +433,6 @@ namespace DS4Windows
                         audio = new DS4Audio();
                         micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture);
                     }
-
                     else if (tempAttr.VendorId == 0x146B)
                     {
                         runCalib = false;
@@ -463,7 +462,7 @@ namespace DS4Windows
             sixAxis = new DS4SixAxis();
             Crc32Algorithm.InitializeTable(DefaultPolynomial);
             if (runCalib)
-                refreshCalibration();
+                RefreshCalibration();
 
             if (!hDevice.IsFileStreamOpen())
             {
@@ -473,7 +472,7 @@ namespace DS4Windows
             sendOutputReport(true, true); // initialize the output report
         }
 
-        private void timeoutTestThread()
+        private void TimeoutTestThread()
         {
             while (!timeoutExecuted)
             {
@@ -492,7 +491,7 @@ namespace DS4Windows
 
         const int DS4_FEATURE_REPORT_5_LEN = 41;
         const int DS4_FEATURE_REPORT_5_CRC32_POS = DS4_FEATURE_REPORT_5_LEN - 4;
-        public void refreshCalibration()
+        public void RefreshCalibration()
         {
             byte[] calibration = new byte[41];
             calibration[0] = conType == ConnectionType.BT ? (byte)0x05 : (byte)0x02;
@@ -543,7 +542,7 @@ namespace DS4Windows
                     ds4Output.IsBackground = true;
                     ds4Output.Start();
 
-                    timeoutCheckThread = new Thread(timeoutTestThread);
+                    timeoutCheckThread = new Thread(TimeoutTestThread);
                     timeoutCheckThread.Priority = ThreadPriority.BelowNormal;
                     timeoutCheckThread.Name = "DS4 Timeout thread: " + Mac;
                     timeoutCheckThread.IsBackground = true;

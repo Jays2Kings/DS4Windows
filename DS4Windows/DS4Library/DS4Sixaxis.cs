@@ -218,7 +218,7 @@ namespace DS4Windows
         }
 
         public void handleSixaxis(byte[] gyro, byte[] accel, DS4State state,
-            double elapsedDelta)
+            double elapsedDelta, bool disableCalibs)
         {
             int currentYaw = (short)((ushort)(gyro[3] << 8) | gyro[2]);
             int currentPitch = (short)((ushort)(gyro[1] << 8) | gyro[0]);
@@ -227,7 +227,10 @@ namespace DS4Windows
             int AccelY = (short)((ushort)(accel[3] << 8) | accel[2]);
             int AccelZ = (short)((ushort)(accel[5] << 8) | accel[4]);
 
-            applyCalibs(ref currentYaw, ref currentPitch, ref currentRoll, ref AccelX, ref AccelY, ref AccelZ);
+            if (!disableCalibs)
+            {
+                applyCalibs(ref currentYaw, ref currentPitch, ref currentRoll, ref AccelX, ref AccelY, ref AccelZ);
+            }
 
             SixAxisEventArgs args = null;
             if (AccelX != 0 || AccelY != 0 || AccelZ != 0)

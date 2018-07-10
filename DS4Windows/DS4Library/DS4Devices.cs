@@ -234,7 +234,8 @@ namespace DS4Windows
                             deviceSerials.Add(serial);
                         }
 
-                        device.refreshCalibration();
+                        if (device.ShouldRunCalib())
+                            device.refreshCalibration();
                     }
                 }
             }

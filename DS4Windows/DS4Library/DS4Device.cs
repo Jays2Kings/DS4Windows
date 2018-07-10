@@ -407,13 +407,18 @@ namespace DS4Windows
         private Thread timeoutCheckThread = null;
         private bool timeoutExecuted = false;
         private bool timeoutEvent = false;
+        private bool runCalib;
+        public bool ShouldRunCalib()
+        {
+            return runCalib;
+        }
 
         public DS4Device(HidDevice hidDevice)
         {
             hDevice = hidDevice;
             conType = HidConnectionType(hDevice);
             Mac = hDevice.readSerial();
-            bool runCalib = true;
+            runCalib = true;
             if (conType == ConnectionType.USB || conType == ConnectionType.SONYWA)
             {
                 inputReport = new byte[64];

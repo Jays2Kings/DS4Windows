@@ -2463,7 +2463,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             {
                 Registry.LocalMachine.DeleteSubKeyTree(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist");
                 Log.LogToGui("Cleared HidGuardian Whitelist", false);
-                Program.rootHub.createHidGuardKey();
+                Program.rootHub.CreateHidGuardKey();
             }
             catch { }
         }

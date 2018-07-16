@@ -103,7 +103,8 @@ namespace DS4Windows
             //if (mutex.WaitOne(TimeSpan.Zero, true))
             //{
                 createControlService();
-                rootHub.createHidGuardKey();
+                //rootHub.ScanPurgeHidGuard();
+                rootHub.CreateHidGuardKey();
                 //rootHub = new ControlService();
                 Application.EnableVisualStyles();
                 Application.Run(new DS4Form(args));

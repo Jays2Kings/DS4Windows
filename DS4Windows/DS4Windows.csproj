@@ -229,7 +229,6 @@
     <Compile Include="DS4Forms\SaveWhere.Designer.cs">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </Compile>
-    <Compile Include="DS4Forms\Settings.cs" />
     <Compile Include="DS4Forms\SpecActions.cs">
       <SubType>Form</SubType>
     </Compile>

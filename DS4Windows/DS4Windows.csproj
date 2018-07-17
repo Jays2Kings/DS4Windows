@@ -151,12 +151,6 @@
     <Compile Include="DS4Control\ScpDevice.Designer.cs">
       <DependentUpon>ScpDevice.cs</DependentUpon>
     </Compile>
-    <Compile Include="DS4Control\ScpHub.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DS4Control\ScpHub.Designer.cs">
-      <DependentUpon>ScpHub.cs</DependentUpon>
-    </Compile>
     <Compile Include="DS4Control\ScpUtil.cs" />
     <Compile Include="DS4Control\X360Device.cs">
       <SubType>Component</SubType>

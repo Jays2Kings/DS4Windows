@@ -75,7 +75,7 @@ namespace DS4Windows
                 meta.Model = DsModel.None;
                 meta.BatteryStatus = 0;
                 meta.IsActive = false;
-
+                return;
                 //return meta;
             }
 

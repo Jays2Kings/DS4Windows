@@ -7,10 +7,12 @@ using System.Media;
 using System.Threading.Tasks;
 using static DS4Windows.Global;
 using System.Threading;
+using System.Diagnostics;
+using Microsoft.Win32;
 using Nefarius.ViGEm.Client;
 using Nefarius.ViGEm.Client.Targets;
 using Nefarius.ViGEm.Client.Targets.Xbox360;
-using Registry = Microsoft.Win32.Registry;
+
 
 namespace DS4Windows
 {
@@ -166,7 +168,32 @@ namespace DS4Windows
             }
         }
 
-        public void createHidGuardKey()
+        public void ScanPurgeHidGuard()
+        {
+            RegistryKey tempkey = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist");
+            string[] subkeys = tempkey.GetSubKeyNames();
+            bool processExists = false;
+            for (int ind = 0, arlen = subkeys.Length; ind < arlen; ind++)
+            {
+                processExists = true;
+                try
+                {
+                    Process.GetProcessById(Convert.ToInt32(subkeys[ind]));
+                }
+                catch { processExists = false; }
+
+                if (!processExists)
+                {
+                    try
+                    {
+                        Registry.LocalMachine.DeleteSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist\" + subkeys[ind]);
+                    }
+                    catch { }
+                }
+            }
+        }
+
+        public void CreateHidGuardKey()
         {
             try
             {

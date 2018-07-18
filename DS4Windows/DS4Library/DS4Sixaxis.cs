@@ -115,6 +115,7 @@ namespace DS4Windows
         private CalibData[] calibrationData = new CalibData[6] { new CalibData(), new CalibData(),
             new CalibData(), new CalibData(), new CalibData(), new CalibData()
         };
+        private bool calibrationDone = false;
 
         public DS4SixAxis()
         {
@@ -187,6 +188,8 @@ namespace DS4Windows
             calibrationData[5].bias = accelZPlus - accelRange / 2;
             calibrationData[5].sensNumer = 2 * SixAxis.ACC_RES_PER_G;
             calibrationData[5].sensDenom = accelRange;
+
+            calibrationDone = true;
         }
 
         private void applyCalibs(ref int yaw, ref int pitch, ref int roll,
@@ -227,7 +230,8 @@ namespace DS4Windows
             int AccelY = (short)((ushort)(accel[3] << 8) | accel[2]);
             int AccelZ = (short)((ushort)(accel[5] << 8) | accel[4]);
 
-            applyCalibs(ref currentYaw, ref currentPitch, ref currentRoll, ref AccelX, ref AccelY, ref AccelZ);
+            if (calibrationDone)
+                applyCalibs(ref currentYaw, ref currentPitch, ref currentRoll, ref AccelX, ref AccelY, ref AccelZ);
 
             SixAxisEventArgs args = null;
             if (AccelX != 0 || AccelY != 0 || AccelZ != 0)

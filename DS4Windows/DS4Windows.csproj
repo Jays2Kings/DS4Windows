@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DS4Windows</RootNamespace>
     <AssemblyName>DS4Windows</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -94,6 +94,7 @@
     <LangVersion>6</LangVersion>
     <DebugSymbols>false</DebugSymbols>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <WarningLevel>1</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -118,6 +119,7 @@
     <LangVersion>6</LangVersion>
     <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <WarningLevel>1</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.8.0.0, Culture=neutral, PublicKeyToken=c416bc1b32d97233, processorArchitecture=MSIL">
@@ -154,12 +156,6 @@
     <Compile Include="DS4Control\ScpDevice.Designer.cs">
       <DependentUpon>ScpDevice.cs</DependentUpon>
     </Compile>
-    <Compile Include="DS4Control\ScpHub.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DS4Control\ScpHub.Designer.cs">
-      <DependentUpon>ScpHub.cs</DependentUpon>
-    </Compile>
     <Compile Include="DS4Control\ScpUtil.cs" />
     <Compile Include="DS4Control\UdpServer.cs" />
     <Compile Include="DS4Control\X360Device.cs">
@@ -183,7 +179,6 @@
     <Compile Include="DS4Library\DS4StateExposed.cs" />
     <Compile Include="DS4Library\DS4Touchpad.cs" />
     <Compile Include="DS4Forms\AdvancedColorDialog.cs" />
-    <Compile Include="DS4Forms\AdvancedComboBox.cs" />
     <Compile Include="DS4Forms\DS4Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,7 +228,6 @@
     <Compile Include="DS4Forms\SaveWhere.Designer.cs">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </Compile>
-    <Compile Include="DS4Forms\Settings.cs" />
     <Compile Include="DS4Forms\SpecActions.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -991,15 +991,16 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         private bool inHotPlug = false;
         private int hotplugCounter = 0;
         private object hotplugCounterLock = new object();
+        private const int DBT_DEVNODES_CHANGED = 0x0007;
         protected override void WndProc(ref Message m)
         {
-            try
+            if (m.Msg == ScpDevice.WM_DEVICECHANGE)
             {
-                if (m.Msg == ScpDevice.WM_DEVICECHANGE)
+                if (runHotPlug)
                 {
-                    if (runHotPlug)
+                    Int32 Type = m.WParam.ToInt32();
+                    if (Type == DBT_DEVNODES_CHANGED)
                     {
-                        Int32 Type = m.WParam.ToInt32();
                         lock (hotplugCounterLock)
                         {
                             hotplugCounter++;
@@ -1009,19 +1010,18 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                         if (!inHotPlug)
                         {
                             inHotPlug = true;
-                            TaskRunner.Run(() => { Thread.Sleep(1500);  InnerHotplug2(uiContext); });
+                            TaskRunner.Run(() => { Thread.Sleep(1500); InnerHotplug2(uiContext); });
                         }
                     }
                 }
             }
-            catch { }
+
             if (m.Msg == WM_QUERYENDSESSION)
                 systemShutdown = true;
 
             // If this is WM_QUERYENDSESSION, the closing event should be
             // raised in the base WndProc.
-            try { base.WndProc(ref m); }
-            catch { }
+            base.WndProc(ref m);
         }
 
         private void InnerHotplug2(SynchronizationContext uiContext)
@@ -2463,7 +2463,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             {
                 Registry.LocalMachine.DeleteSubKeyTree(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist");
                 Log.LogToGui("Cleared HidGuardian Whitelist", false);
-                Program.rootHub.createHidGuardKey();
+                Program.rootHub.CreateHidGuardKey();
             }
             catch { }
         }

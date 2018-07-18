@@ -159,7 +159,16 @@ namespace DS4Windows
         public void ScanPurgeHidGuard()
         {
             RegistryKey tempkey = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist");
-            string[] subkeys = tempkey.GetSubKeyNames();
+            string[] subkeys = null;
+            if (tempkey != null)
+            {
+                subkeys = tempkey.GetSubKeyNames();
+            }
+            else
+            {
+                subkeys = new string[0];
+            }
+
             bool processExists = false;
             for (int ind = 0, arlen = subkeys.Length; ind < arlen; ind++)
             {

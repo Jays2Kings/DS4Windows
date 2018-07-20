@@ -983,7 +983,7 @@ namespace DS4Windows
                     }
                 }
 
-                sixAxis.handleSixaxis(gyro, accel, cState, elapsedDeltaTime);
+                fixed (byte* pGyro = gyro, pAccel = accel) sixAxis.handleSixaxis(pGyro, pAccel, cState, elapsedDeltaTime);
 
                 /* Debug output of incoming HID data:
                 if (cState.L2 == 0xff && cState.R2 == 0xff)

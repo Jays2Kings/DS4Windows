@@ -717,7 +717,7 @@ namespace DS4Windows
         {
             firstActive = DateTime.UtcNow;
             NativeMethods.HidD_SetNumInputBuffers(hDevice.safeReadHandle.DangerousGetHandle(), 2);
-            Queue<long> latencyQueue = new Queue<long>(21); // Set capacity at max + 1 to avoid any resizing
+            Queue<long> latencyQueue = new Queue<long>(11); // Set capacity at max + 1 to avoid any resizing
             int tempLatencyCount = 0;
             long oldtime = 0;
             string currerror = string.Empty;
@@ -746,7 +746,7 @@ namespace DS4Windows
                 oldCharging = charging;
                 currerror = string.Empty;
 
-                if (tempLatencyCount >= 20)
+                if (tempLatencyCount >= 10)
                 {
                     latencyQueue.Dequeue();
                     tempLatencyCount--;

@@ -898,16 +898,14 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
         protected void Form_Resize(object sender, EventArgs e)
         {
-            if (FormWindowState.Minimized == WindowState && !MinToTaskbar)
+            if (FormWindowState.Minimized == WindowState && MinToTaskbar)
             {
                 Hide();
                 ShowInTaskbar = false;
                 FormBorderStyle = FormBorderStyle.None;
             }
-
-            else if (FormWindowState.Normal == WindowState && !MinToTaskbar)
+            else if (FormWindowState.Normal == WindowState && MinToTaskbar)
             {
-                //mAllowVisible = true;
                 Show();
                 ShowInTaskbar = true;
                 FormBorderStyle = FormBorderStyle.Sizable;

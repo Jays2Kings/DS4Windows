@@ -506,6 +506,11 @@ namespace DS4Windows
             get { return m_Config.minToTaskbar; }
         }
 
+        public static bool GetMinToTaskbar()
+        {
+            return m_Config.minToTaskbar;
+        }
+
         public static int FormWidth
         {
             set { m_Config.formWidth = value; }

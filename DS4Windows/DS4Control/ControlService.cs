@@ -135,7 +135,7 @@ namespace DS4Windows
         {
             //sp.Stream = Properties.Resources.EE;
             // Cause thread affinity to not be tied to main GUI thread
-            tempThread = new Thread(() => { x360Bus = new X360Device(); });
+            tempThread = new Thread(() => { x360Bus = new X360Device(); _udpServer = new UdpServer(GetPadDetailForIdx); });
             tempThread.Priority = ThreadPriority.AboveNormal;
             tempThread.IsBackground = true;
             tempThread.Start();
@@ -153,8 +153,6 @@ namespace DS4Windows
                 PreviousState[i] = new DS4State();
                 ExposedState[i] = new DS4StateExposed(CurrentState[i]);
             }
-
-            _udpServer = new UdpServer(GetPadDetailForIdx);
         }
 
         private void WarnExclusiveModeFailure(DS4Device device)

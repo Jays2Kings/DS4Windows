@@ -220,7 +220,7 @@ namespace DS4Windows
             accelZ = temInt = (int)(temInt * (current.sensNumer / (float)current.sensDenom));
         }
 
-        public void handleSixaxis(byte[] gyro, byte[] accel, DS4State state,
+        public unsafe void handleSixaxis(byte* gyro, byte* accel, DS4State state,
             double elapsedDelta)
         {
             int currentYaw = (short)((ushort)(gyro[3] << 8) | gyro[2]);

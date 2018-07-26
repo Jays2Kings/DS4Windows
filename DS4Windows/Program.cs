@@ -81,7 +81,9 @@ namespace DS4Windows
             try
             {
                 // another instance is already running if OpenExsting succeeds.
-                threadComEvent = EventWaitHandle.OpenExisting(SingleAppComEventName);
+                threadComEvent = EventWaitHandle.OpenExisting(SingleAppComEventName,
+                    System.Security.AccessControl.EventWaitHandleRights.Synchronize |
+                    System.Security.AccessControl.EventWaitHandleRights.Modify);
                 threadComEvent.Set();  // signal the other instance.
                 threadComEvent.Close();
                 return;    // return immediatly.

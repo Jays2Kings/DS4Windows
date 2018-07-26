@@ -139,12 +139,13 @@ namespace DS4Windows
 
         private static void singleAppComThread_DoWork()
         {
-            WaitHandle[] waitHandles = new WaitHandle[] { threadComEvent };
+            //WaitHandle[] waitHandles = new WaitHandle[] { threadComEvent };
 
             while (!exitComThread)
             {
                 // check every second for a signal.
-                if (WaitHandle.WaitAny(waitHandles) == 0)
+                //if (WaitHandle.WaitAny(waitHandles) == 0)
+                if (threadComEvent.WaitOne())
                 {
                     threadComEvent.Reset();
                     // The user tried to start another instance. We can't allow that, 

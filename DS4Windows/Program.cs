@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using System.Threading;
 using System.Runtime.InteropServices;
-using System.Diagnostics;
+using Process = System.Diagnostics.Process;
 using System.ComponentModel;
 using System.Globalization;
 using System.Runtime;
@@ -73,13 +73,10 @@ namespace DS4Windows
 
             try
             {
-                Process.GetCurrentProcess().PriorityClass = 
-                    ProcessPriorityClass.High;
+                Process.GetCurrentProcess().PriorityClass =
+                    System.Diagnostics.ProcessPriorityClass.High;
             }
-            catch
-            {
-                // Ignore problems raising the priority.
-            }
+            catch { } // Ignore problems raising the priority.
 
             try
             {
@@ -89,7 +86,7 @@ namespace DS4Windows
                 threadComEvent.Close();
                 return;    // return immediatly.
             }
-            catch { /* don't care about errors */     }
+            catch { /* don't care about errors */ }
 
             // Create the Event handle
             threadComEvent = new EventWaitHandle(false, EventResetMode.ManualReset, SingleAppComEventName);

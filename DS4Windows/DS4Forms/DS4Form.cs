@@ -1462,6 +1462,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             opt.TopLevel = false;
             opt.Dock = DockStyle.Fill;
             opt.FormBorderStyle = FormBorderStyle.None;
+
             tabProfiles.Controls.Add(opt);
             optPop = true;
             //opt.Dock = DockStyle.Fill;
@@ -1479,9 +1480,12 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             }
 
             opt.Reload(devID, profile);
+
             opt.inputtimer.Start();
             opt.Visible = true;
+
             tabMain.SelectedIndex = 1;
+            opt.SetFlowAutoScroll();
         }
 
         public void OptionsClosed()
@@ -1510,7 +1514,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             opt.sixaxisTimer.Stop();
             opt.Dock = DockStyle.None;
             tabProfiles.Controls.Remove(opt);
-            opt.Dispose();
             optPop = false;
 
             lBProfiles.Visible = true;

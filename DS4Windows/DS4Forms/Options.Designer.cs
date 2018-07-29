@@ -4117,7 +4117,6 @@
             this.MinimizeBox = false;
             this.Name = "Options";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Options_FormClosing);
-            this.Resize += new System.EventHandler(this.Options_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).EndInit();

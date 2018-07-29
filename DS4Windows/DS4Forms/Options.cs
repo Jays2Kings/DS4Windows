@@ -142,6 +142,12 @@ namespace DS4Windows
             populateHoverLabelDict();
         }
 
+        public void SetFlowAutoScroll()
+        {
+            fLPSettings.AutoScroll = false;
+            fLPSettings.AutoScroll = true;
+        }
+
         private void populateHoverIndexDict()
         {
             hoverIndexDict.Clear();
@@ -2985,12 +2991,6 @@ namespace DS4Windows
         private void btnLightbar_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawImage(btnLightBgImg, new Rectangle(0, -1, Convert.ToInt32(btnLightbar.Width), Convert.ToInt32(btnLightbar.Height - 2)));
-        }
-
-        private void Options_Resize(object sender, EventArgs e)
-        {
-            fLPSettings.AutoScroll = false;
-            fLPSettings.AutoScroll = true;
         }
 
         private void lBControls_SelectedIndexChanged(object sender, EventArgs e)

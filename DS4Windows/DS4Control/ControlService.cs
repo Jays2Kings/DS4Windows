@@ -657,13 +657,16 @@ namespace DS4Windows
 
         private short AxisScale(Int32 Value, Boolean Flip)
         {
-            Value -= 0x80;
+            unchecked
+            {
+                Value -= 0x80;
 
-            //float temp = (Value - (-128)) / (float)inputResolution;
-            float temp = (Value - (-128)) * reciprocalInputResolution;
-            if (Flip) temp = (temp - 0.5f) * -1.0f + 0.5f;
+                //float temp = (Value - (-128)) / (float)inputResolution;
+                float temp = (Value - (-128)) * reciprocalInputResolution;
+                if (Flip) temp = (temp - 0.5f) * -1.0f + 0.5f;
 
-            return (short) (temp* outputResolution + (-32768));
+                return (short)(temp * outputResolution + (-32768));
+            }
         }
 
         private void CheckProfileOptions(int ind, DS4Device device, bool startUp=false)

@@ -624,25 +624,28 @@ namespace DS4Windows
         {
             Xbox360Buttons tempButtons = 0;
 
-            if (state.Share) tempButtons |= Xbox360Buttons.Back;
-            if (state.L3) tempButtons |= Xbox360Buttons.LeftThumb;
-            if (state.R3) tempButtons |= Xbox360Buttons.RightThumb;
-            if (state.Options) tempButtons |= Xbox360Buttons.Start;
+            unchecked
+            {
+                if (state.Share) tempButtons |= Xbox360Buttons.Back;
+                if (state.L3) tempButtons |= Xbox360Buttons.LeftThumb;
+                if (state.R3) tempButtons |= Xbox360Buttons.RightThumb;
+                if (state.Options) tempButtons |= Xbox360Buttons.Start;
 
-            if (state.DpadUp) tempButtons |= Xbox360Buttons.Up;
-            if (state.DpadRight) tempButtons |= Xbox360Buttons.Right;
-            if (state.DpadDown) tempButtons |= Xbox360Buttons.Down;
-            if (state.DpadLeft) tempButtons |= Xbox360Buttons.Left;
+                if (state.DpadUp) tempButtons |= Xbox360Buttons.Up;
+                if (state.DpadRight) tempButtons |= Xbox360Buttons.Right;
+                if (state.DpadDown) tempButtons |= Xbox360Buttons.Down;
+                if (state.DpadLeft) tempButtons |= Xbox360Buttons.Left;
 
-            if (state.L1) tempButtons |= Xbox360Buttons.LeftShoulder;
-            if (state.R1) tempButtons |= Xbox360Buttons.RightShoulder;
+                if (state.L1) tempButtons |= Xbox360Buttons.LeftShoulder;
+                if (state.R1) tempButtons |= Xbox360Buttons.RightShoulder;
 
-            if (state.Triangle) tempButtons |= Xbox360Buttons.Y;
-            if (state.Circle) tempButtons |= Xbox360Buttons.B;
-            if (state.Cross) tempButtons |= Xbox360Buttons.A;
-            if (state.Square) tempButtons |= Xbox360Buttons.X;
-            if (state.PS) tempButtons |= Xbox360Buttons.Guide;
-            xboxreport.SetButtons(tempButtons);
+                if (state.Triangle) tempButtons |= Xbox360Buttons.Y;
+                if (state.Circle) tempButtons |= Xbox360Buttons.B;
+                if (state.Cross) tempButtons |= Xbox360Buttons.A;
+                if (state.Square) tempButtons |= Xbox360Buttons.X;
+                if (state.PS) tempButtons |= Xbox360Buttons.Guide;
+                xboxreport.SetButtons(tempButtons);
+            }
             
             xboxreport.LeftTrigger = state.L2;
             xboxreport.RightTrigger = state.R2;

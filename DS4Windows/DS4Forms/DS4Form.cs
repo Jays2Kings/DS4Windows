@@ -409,13 +409,28 @@ namespace DS4Windows
 
             foreach (Control control in fLPSettings.Controls)
             {
+                string tempst;
                 if (control.HasChildren)
                 {
                     foreach (Control ctrl in control.Controls)
-                        ctrl.MouseHover += Items_MouseHover;
+                    {
+                        if (hoverTextDict.TryGetValue(ctrl, out tempst))
+                        {
+                            ctrl.MouseHover += Items_MouseHover;
+                        }
+                        else
+                        {
+                            ctrl.MouseHover += ClearLastMessage;
+                        }
+                    }
                 }
-
-                control.MouseHover += Items_MouseHover;
+                else
+                {
+                    if (hoverTextDict.TryGetValue(control, out tempst))
+                        control.MouseEnter += Items_MouseHover;
+                    else
+                        control.MouseHover += ClearLastMessage;
+                }
             }
         }
 
@@ -445,6 +460,12 @@ namespace DS4Windows
             int finalWidth = Convert.ToInt32(image.Height * aspectRatio);
             int finalHeight = Convert.ToInt32(image.Width / aspectRatio);
             g.DrawImage(shield, new Rectangle(0, 0, finalWidth, finalHeight));
+        }
+
+        private void ClearLastMessage(object sender, EventArgs e)
+        {
+            lbLastMessage.Text = "";
+            lbLastMessage.ForeColor = SystemColors.GrayText;
         }
 
         private void blankControllerTab()

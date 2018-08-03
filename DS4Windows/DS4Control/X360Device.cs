@@ -25,13 +25,16 @@ namespace DS4Windows
 
         protected Int32 Scale(Int32 Value, Boolean Flip)
         {
-            Value -= 0x80;
+            unchecked
+            {
+                Value -= 0x80;
 
-            //float temp = (Value - (-128)) / (float)inputResolution;
-            float temp = (Value - (-128)) * reciprocalInputResolution;
-            if (Flip) temp = (temp - 0.5f) * -1.0f + 0.5f;
+                //float temp = (Value - (-128)) / (float)inputResolution;
+                float temp = (Value - (-128)) * reciprocalInputResolution;
+                if (Flip) temp = (temp - 0.5f) * -1.0f + 0.5f;
 
-            return (Int32)(temp * outputResolution + (-32768));
+                return (Int32)(temp * outputResolution + (-32768));
+            }
         }
 
 
@@ -113,41 +116,44 @@ namespace DS4Windows
                 Output[i] = 0;
             }
 
-            if (state.Share) Output[10] |= (Byte)(1 << 5); // Back
-            if (state.L3) Output[10] |= (Byte)(1 << 6); // Left  Thumb
-            if (state.R3) Output[10] |= (Byte)(1 << 7); // Right Thumb
-            if (state.Options) Output[10] |= (Byte)(1 << 4); // Start
+            unchecked
+            {
+                if (state.Share) Output[10] |= (Byte)(1 << 5); // Back
+                if (state.L3) Output[10] |= (Byte)(1 << 6); // Left  Thumb
+                if (state.R3) Output[10] |= (Byte)(1 << 7); // Right Thumb
+                if (state.Options) Output[10] |= (Byte)(1 << 4); // Start
 
-            if (state.DpadUp) Output[10] |= (Byte)(1 << 0); // Up
-            if (state.DpadRight) Output[10] |= (Byte)(1 << 3); // Down
-            if (state.DpadDown) Output[10] |= (Byte)(1 << 1); // Right
-            if (state.DpadLeft) Output[10] |= (Byte)(1 << 2); // Left
+                if (state.DpadUp) Output[10] |= (Byte)(1 << 0); // Up
+                if (state.DpadRight) Output[10] |= (Byte)(1 << 3); // Down
+                if (state.DpadDown) Output[10] |= (Byte)(1 << 1); // Right
+                if (state.DpadLeft) Output[10] |= (Byte)(1 << 2); // Left
 
-            if (state.L1) Output[11] |= (Byte)(1 << 0); // Left  Shoulder
-            if (state.R1) Output[11] |= (Byte)(1 << 1); // Right Shoulder
+                if (state.L1) Output[11] |= (Byte)(1 << 0); // Left  Shoulder
+                if (state.R1) Output[11] |= (Byte)(1 << 1); // Right Shoulder
 
-            if (state.Triangle) Output[11] |= (Byte)(1 << 7); // Y
-            if (state.Circle) Output[11] |= (Byte)(1 << 5); // B
-            if (state.Cross) Output[11] |= (Byte)(1 << 4); // A
-            if (state.Square) Output[11] |= (Byte)(1 << 6); // X
+                if (state.Triangle) Output[11] |= (Byte)(1 << 7); // Y
+                if (state.Circle) Output[11] |= (Byte)(1 << 5); // B
+                if (state.Cross) Output[11] |= (Byte)(1 << 4); // A
+                if (state.Square) Output[11] |= (Byte)(1 << 6); // X
 
-            if (state.PS) Output[11] |= (Byte)(1 << 2); // Guide     
+                if (state.PS) Output[11] |= (Byte)(1 << 2); // Guide     
 
-            Output[12] = state.L2; // Left Trigger
-            Output[13] = state.R2; // Right Trigger
+                Output[12] = state.L2; // Left Trigger
+                Output[13] = state.R2; // Right Trigger
 
-            Int32 ThumbLX = Scale(state.LX, false);
-            Int32 ThumbLY = Scale(state.LY, true);
-            Int32 ThumbRX = Scale(state.RX, false);
-            Int32 ThumbRY = Scale(state.RY, true);
-            Output[14] = (Byte)((ThumbLX >> 0) & 0xFF); // LX
-            Output[15] = (Byte)((ThumbLX >> 8) & 0xFF);            
-            Output[16] = (Byte)((ThumbLY >> 0) & 0xFF); // LY
-            Output[17] = (Byte)((ThumbLY >> 8) & 0xFF);
-            Output[18] = (Byte)((ThumbRX >> 0) & 0xFF); // RX
-            Output[19] = (Byte)((ThumbRX >> 8) & 0xFF);
-            Output[20] = (Byte)((ThumbRY >> 0) & 0xFF); // RY
-            Output[21] = (Byte)((ThumbRY >> 8) & 0xFF);
+                Int32 ThumbLX = Scale(state.LX, false);
+                Int32 ThumbLY = Scale(state.LY, true);
+                Int32 ThumbRX = Scale(state.RX, false);
+                Int32 ThumbRY = Scale(state.RY, true);
+                Output[14] = (Byte)((ThumbLX >> 0) & 0xFF); // LX
+                Output[15] = (Byte)((ThumbLX >> 8) & 0xFF);
+                Output[16] = (Byte)((ThumbLY >> 0) & 0xFF); // LY
+                Output[17] = (Byte)((ThumbLY >> 8) & 0xFF);
+                Output[18] = (Byte)((ThumbRX >> 0) & 0xFF); // RX
+                Output[19] = (Byte)((ThumbRX >> 8) & 0xFF);
+                Output[20] = (Byte)((ThumbRY >> 0) & 0xFF); // RY
+                Output[21] = (Byte)((ThumbRY >> 8) & 0xFF);
+            }
         }
 
         public Boolean Plugin(Int32 Serial)

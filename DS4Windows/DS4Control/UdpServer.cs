@@ -597,44 +597,48 @@ namespace DS4Windows
             if (clientsList.Count <= 0)
                 return;
 
-            byte[] outputData = new byte[100];
-            int outIdx = BeginPacket(outputData, 1001);
-            Array.Copy(BitConverter.GetBytes((uint)MessageType.DSUS_PadDataRsp), 0, outputData, outIdx, 4);
-            outIdx += 4;
-
-            outputData[outIdx++] = (byte)padMeta.PadId;
-            outputData[outIdx++] = (byte)padMeta.PadState;
-            outputData[outIdx++] = (byte)padMeta.Model;
-            outputData[outIdx++] = (byte)padMeta.ConnectionType;
+            unchecked
             {
-                byte[] padMac = padMeta.PadMacAddress.GetAddressBytes();
-                outputData[outIdx++] = padMac[0];
-                outputData[outIdx++] = padMac[1];
-                outputData[outIdx++] = padMac[2];
-                outputData[outIdx++] = padMac[3];
-                outputData[outIdx++] = padMac[4];
-                outputData[outIdx++] = padMac[5];
+                byte[] outputData = new byte[100];
+                int outIdx = BeginPacket(outputData, 1001);
+                Array.Copy(BitConverter.GetBytes((uint)MessageType.DSUS_PadDataRsp), 0, outputData, outIdx, 4);
+                outIdx += 4;
+
+                outputData[outIdx++] = (byte)padMeta.PadId;
+                outputData[outIdx++] = (byte)padMeta.PadState;
+                outputData[outIdx++] = (byte)padMeta.Model;
+                outputData[outIdx++] = (byte)padMeta.ConnectionType;
+                {
+                    byte[] padMac = padMeta.PadMacAddress.GetAddressBytes();
+                    outputData[outIdx++] = padMac[0];
+                    outputData[outIdx++] = padMac[1];
+                    outputData[outIdx++] = padMac[2];
+                    outputData[outIdx++] = padMac[3];
+                    outputData[outIdx++] = padMac[4];
+                    outputData[outIdx++] = padMac[5];
+                }
+                outputData[outIdx++] = (byte)padMeta.BatteryStatus;
+                outputData[outIdx++] = padMeta.IsActive ? (byte)1 : (byte)0;
+
+                Array.Copy(BitConverter.GetBytes((uint)hidReport.PacketCounter), 0, outputData, outIdx, 4);
+                outIdx += 4;
+
+                if (!ReportToBuffer(hidReport, outputData, ref outIdx))
+                    return;
+                else
+                    FinishPacket(outputData);
+
+                foreach (var cl in clientsList)
+                {
+                    //try { udpSock.SendTo(outputData, cl); }
+                    SocketAsyncEventArgs args = new SocketAsyncEventArgs();
+                    args.RemoteEndPoint = cl;
+                    args.SetBuffer(outputData, 0, outputData.Length);
+                    try { udpSock.SendToAsync(args); }
+                    catch (SocketException ex) { }
+                }
             }
-            outputData[outIdx++] = (byte)padMeta.BatteryStatus;
-            outputData[outIdx++] = padMeta.IsActive ? (byte)1 : (byte)0;
 
-            Array.Copy(BitConverter.GetBytes((uint)hidReport.PacketCounter), 0, outputData, outIdx, 4);
-            outIdx += 4;
-
-            if (!ReportToBuffer(hidReport, outputData, ref outIdx))
-                return;
-            else
-                FinishPacket(outputData);
-
-            foreach (var cl in clientsList)
-            {
-                //try { udpSock.SendTo(outputData, cl); }
-                SocketAsyncEventArgs args = new SocketAsyncEventArgs();
-                args.RemoteEndPoint = cl;
-                args.SetBuffer(outputData, 0, outputData.Length);
-                try { udpSock.SendToAsync(args); }
-                catch (SocketException ex) { }
-            }
             clientsList.Clear();
             clientsList = null;
         }

@@ -414,113 +414,116 @@ namespace DS4Windows
 
         private bool ReportToBuffer(DS4State hidReport, byte[] outputData, ref int outIdx)
         {
-            outputData[outIdx] = 0;
-
-            if (hidReport.DpadLeft) outputData[outIdx] |= 0x80;
-            if (hidReport.DpadDown) outputData[outIdx] |= 0x40;
-            if (hidReport.DpadRight) outputData[outIdx] |= 0x20;
-            if (hidReport.DpadUp) outputData[outIdx] |= 0x10;
-
-            if (hidReport.Options) outputData[outIdx] |= 0x08;
-            if (hidReport.R3) outputData[outIdx] |= 0x04;
-            if (hidReport.L3) outputData[outIdx] |= 0x02;
-            if (hidReport.Share) outputData[outIdx] |= 0x01;
-
-            outputData[++outIdx] = 0;
-
-            if (hidReport.Square) outputData[outIdx] |= 0x80;
-            if (hidReport.Cross) outputData[outIdx] |= 0x40;
-            if (hidReport.Circle) outputData[outIdx] |= 0x20;
-            if (hidReport.Triangle) outputData[outIdx] |= 0x10;
-
-            if (hidReport.R1) outputData[outIdx] |= 0x08;
-            if (hidReport.L1) outputData[outIdx] |= 0x04;
-            if (hidReport.R2Btn) outputData[outIdx] |= 0x02;
-            if (hidReport.L2Btn) outputData[outIdx] |= 0x01;
-
-            outputData[++outIdx] = (hidReport.PS) ? (byte)1 : (byte)0;
-            outputData[++outIdx] = (hidReport.TouchButton) ? (byte)1 : (byte)0;
-
-            //Left stick
-            outputData[++outIdx] = hidReport.LX;
-            outputData[++outIdx] = hidReport.LY;
-            outputData[outIdx] = (byte)(255 - outputData[outIdx]); //invert Y by convention
-
-            //Right stick
-            outputData[++outIdx] = hidReport.RX;
-            outputData[++outIdx] = hidReport.RY;
-            outputData[outIdx] = (byte)(255 - outputData[outIdx]); //invert Y by convention
-
-            //we don't have analog buttons on DS4 :(
-            outputData[++outIdx] = hidReport.DpadLeft ? (byte)0xFF : (byte)0x00;
-            outputData[++outIdx] = hidReport.DpadDown ? (byte)0xFF : (byte)0x00;
-            outputData[++outIdx] = hidReport.DpadRight ? (byte)0xFF : (byte)0x00;
-            outputData[++outIdx] = hidReport.DpadUp ? (byte)0xFF : (byte)0x00;
-
-            outputData[++outIdx] = hidReport.Square ? (byte)0xFF : (byte)0x00;
-            outputData[++outIdx] = hidReport.Cross ? (byte)0xFF : (byte)0x00;
-            outputData[++outIdx] = hidReport.Circle ? (byte)0xFF : (byte)0x00;
-            outputData[++outIdx] = hidReport.Triangle ? (byte)0xFF : (byte)0x00;
-
-            outputData[++outIdx] = hidReport.R1 ? (byte)0xFF : (byte)0x00;
-            outputData[++outIdx] = hidReport.L1 ? (byte)0xFF : (byte)0x00;
-
-            outputData[++outIdx] = hidReport.R2;
-            outputData[++outIdx] = hidReport.L2;
-
-            outIdx++;
-
-            //DS4 only: touchpad points
-            for (int i = 0; i < 2; i++)
+            unchecked
             {
-                var tpad = (i == 0) ? hidReport.TrackPadTouch0 : hidReport.TrackPadTouch1;
+                outputData[outIdx] = 0;
 
-                outputData[outIdx++] = tpad.IsActive ? (byte)1 : (byte)0;
-                outputData[outIdx++] = (byte)tpad.Id;
-                Array.Copy(BitConverter.GetBytes((ushort)tpad.X), 0, outputData, outIdx, 2);
-                outIdx += 2;
-                Array.Copy(BitConverter.GetBytes((ushort)tpad.Y), 0, outputData, outIdx, 2);
-                outIdx += 2;
-            }
+                if (hidReport.DpadLeft) outputData[outIdx] |= 0x80;
+                if (hidReport.DpadDown) outputData[outIdx] |= 0x40;
+                if (hidReport.DpadRight) outputData[outIdx] |= 0x20;
+                if (hidReport.DpadUp) outputData[outIdx] |= 0x10;
 
-            //motion timestamp
-            if (hidReport.Motion != null)
-                Array.Copy(BitConverter.GetBytes((ulong)hidReport.totalMicroSec), 0, outputData, outIdx, 8);
-            else
-                Array.Clear(outputData, outIdx, 8);
+                if (hidReport.Options) outputData[outIdx] |= 0x08;
+                if (hidReport.R3) outputData[outIdx] |= 0x04;
+                if (hidReport.L3) outputData[outIdx] |= 0x02;
+                if (hidReport.Share) outputData[outIdx] |= 0x01;
 
-            outIdx += 8;
+                outputData[++outIdx] = 0;
 
-            //accelerometer
-            if (hidReport.Motion != null)
-            {
-                Array.Copy(BitConverter.GetBytes((float)hidReport.Motion.accelXG), 0, outputData, outIdx, 4);
-                outIdx += 4;
-                Array.Copy(BitConverter.GetBytes((float)hidReport.Motion.accelYG), 0, outputData, outIdx, 4);
-                outIdx += 4;
-                Array.Copy(BitConverter.GetBytes((float)-hidReport.Motion.accelZG), 0, outputData, outIdx, 4);
-                outIdx += 4;
-            }
-            else
-            {
-                Array.Clear(outputData, outIdx, 12);
-                outIdx += 12;
-            }
+                if (hidReport.Square) outputData[outIdx] |= 0x80;
+                if (hidReport.Cross) outputData[outIdx] |= 0x40;
+                if (hidReport.Circle) outputData[outIdx] |= 0x20;
+                if (hidReport.Triangle) outputData[outIdx] |= 0x10;
 
-            //gyroscope
-            if (hidReport.Motion != null)
-            {
-                Array.Copy(BitConverter.GetBytes((float)hidReport.Motion.angVelPitch), 0, outputData, outIdx, 4);
-                outIdx += 4;
-                Array.Copy(BitConverter.GetBytes((float)hidReport.Motion.angVelYaw), 0, outputData, outIdx, 4);
-                outIdx += 4;
-                Array.Copy(BitConverter.GetBytes((float)hidReport.Motion.angVelRoll), 0, outputData, outIdx, 4);
-                outIdx += 4;
-            }
-            else
-            {
-                Array.Clear(outputData, outIdx, 12);
-                outIdx += 12;
+                if (hidReport.R1) outputData[outIdx] |= 0x08;
+                if (hidReport.L1) outputData[outIdx] |= 0x04;
+                if (hidReport.R2Btn) outputData[outIdx] |= 0x02;
+                if (hidReport.L2Btn) outputData[outIdx] |= 0x01;
+
+                outputData[++outIdx] = (hidReport.PS) ? (byte)1 : (byte)0;
+                outputData[++outIdx] = (hidReport.TouchButton) ? (byte)1 : (byte)0;
+
+                //Left stick
+                outputData[++outIdx] = hidReport.LX;
+                outputData[++outIdx] = hidReport.LY;
+                outputData[outIdx] = (byte)(255 - outputData[outIdx]); //invert Y by convention
+
+                //Right stick
+                outputData[++outIdx] = hidReport.RX;
+                outputData[++outIdx] = hidReport.RY;
+                outputData[outIdx] = (byte)(255 - outputData[outIdx]); //invert Y by convention
+
+                //we don't have analog buttons on DS4 :(
+                outputData[++outIdx] = hidReport.DpadLeft ? (byte)0xFF : (byte)0x00;
+                outputData[++outIdx] = hidReport.DpadDown ? (byte)0xFF : (byte)0x00;
+                outputData[++outIdx] = hidReport.DpadRight ? (byte)0xFF : (byte)0x00;
+                outputData[++outIdx] = hidReport.DpadUp ? (byte)0xFF : (byte)0x00;
+
+                outputData[++outIdx] = hidReport.Square ? (byte)0xFF : (byte)0x00;
+                outputData[++outIdx] = hidReport.Cross ? (byte)0xFF : (byte)0x00;
+                outputData[++outIdx] = hidReport.Circle ? (byte)0xFF : (byte)0x00;
+                outputData[++outIdx] = hidReport.Triangle ? (byte)0xFF : (byte)0x00;
+
+                outputData[++outIdx] = hidReport.R1 ? (byte)0xFF : (byte)0x00;
+                outputData[++outIdx] = hidReport.L1 ? (byte)0xFF : (byte)0x00;
+
+                outputData[++outIdx] = hidReport.R2;
+                outputData[++outIdx] = hidReport.L2;
+
+                outIdx++;
+
+                //DS4 only: touchpad points
+                for (int i = 0; i < 2; i++)
+                {
+                    var tpad = (i == 0) ? hidReport.TrackPadTouch0 : hidReport.TrackPadTouch1;
+
+                    outputData[outIdx++] = tpad.IsActive ? (byte)1 : (byte)0;
+                    outputData[outIdx++] = (byte)tpad.Id;
+                    Array.Copy(BitConverter.GetBytes((ushort)tpad.X), 0, outputData, outIdx, 2);
+                    outIdx += 2;
+                    Array.Copy(BitConverter.GetBytes((ushort)tpad.Y), 0, outputData, outIdx, 2);
+                    outIdx += 2;
+                }
+
+                //motion timestamp
+                if (hidReport.Motion != null)
+                    Array.Copy(BitConverter.GetBytes((ulong)hidReport.totalMicroSec), 0, outputData, outIdx, 8);
+                else
+                    Array.Clear(outputData, outIdx, 8);
+
+                outIdx += 8;
+
+                //accelerometer
+                if (hidReport.Motion != null)
+                {
+                    Array.Copy(BitConverter.GetBytes((float)hidReport.Motion.accelXG), 0, outputData, outIdx, 4);
+                    outIdx += 4;
+                    Array.Copy(BitConverter.GetBytes((float)hidReport.Motion.accelYG), 0, outputData, outIdx, 4);
+                    outIdx += 4;
+                    Array.Copy(BitConverter.GetBytes((float)-hidReport.Motion.accelZG), 0, outputData, outIdx, 4);
+                    outIdx += 4;
+                }
+                else
+                {
+                    Array.Clear(outputData, outIdx, 12);
+                    outIdx += 12;
+                }
+
+                //gyroscope
+                if (hidReport.Motion != null)
+                {
+                    Array.Copy(BitConverter.GetBytes((float)hidReport.Motion.angVelPitch), 0, outputData, outIdx, 4);
+                    outIdx += 4;
+                    Array.Copy(BitConverter.GetBytes((float)hidReport.Motion.angVelYaw), 0, outputData, outIdx, 4);
+                    outIdx += 4;
+                    Array.Copy(BitConverter.GetBytes((float)hidReport.Motion.angVelRoll), 0, outputData, outIdx, 4);
+                    outIdx += 4;
+                }
+                else
+                {
+                    Array.Clear(outputData, outIdx, 12);
+                    outIdx += 12;
+                }
             }
 
             return true;
@@ -621,7 +624,11 @@ namespace DS4Windows
 
             foreach (var cl in clientsList)
             {
-                try { udpSock.SendTo(outputData, cl); }
+                //try { udpSock.SendTo(outputData, cl); }
+                SocketAsyncEventArgs args = new SocketAsyncEventArgs();
+                args.RemoteEndPoint = cl;
+                args.SetBuffer(outputData, 0, outputData.Length);
+                try { udpSock.SendToAsync(args); }
                 catch (SocketException ex) { }
             }
             clientsList.Clear();

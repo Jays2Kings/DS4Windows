@@ -173,7 +173,11 @@ namespace DS4Windows
             Array.Copy(usefulData, 0, packetData, currIdx, usefulData.Length);
             FinishPacket(packetData);
 
-            try { udpSock.SendTo(packetData, clientEP); }
+            //try { udpSock.SendTo(packetData, clientEP); }
+            SocketAsyncEventArgs args = new SocketAsyncEventArgs();
+            args.RemoteEndPoint = clientEP;
+            args.SetBuffer(packetData, 0, packetData.Length);
+            try { udpSock.SendToAsync(args); }
             catch (Exception e) { }
         }
 

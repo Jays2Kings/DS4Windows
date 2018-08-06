@@ -400,6 +400,9 @@ namespace DS4Windows
             StartWindowsCheckBox.CheckedChanged += new EventHandler(StartWindowsCheckBox_CheckedChanged);
             new ToolTip().SetToolTip(StartWindowsCheckBox, Properties.Resources.RunAtStartup);
 
+            ckUdpServ.Checked = isUsingUDPServer();
+            nUDUdpPortNum.Value = getUDPServerPortNum();
+
             populateHoverTextDict();
 
             cBController1.KeyPress += CBController_KeyPress;
@@ -2542,6 +2545,38 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         private void CBController_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private async void CkUdpServ_CheckedChanged(object sender, EventArgs e)
+        {
+            bool state = ckUdpServ.Checked;
+            setUsingUDPServer(state);
+            if (!state)
+            {
+                Program.rootHub.ChangeMotionEventStatus(state);
+                await TaskRunner.Delay(100);
+                Program.rootHub.ChangeUDPStatus(state);
+            }
+            else
+            {
+                Program.rootHub.ChangeUDPStatus(state);
+                Program.rootHub.ChangeMotionEventStatus(state);
+            }
+
+            nUDUdpPortNum.Enabled = state;
+        }
+
+        private void NUDUdpPortNum_Leave(object sender, EventArgs e)
+        {
+            nUDUdpPortNum.Enabled = false;
+            setUDPServerPort((int)nUDUdpPortNum.Value);
+            WaitUDPPortChange();
+        }
+
+        private async void WaitUDPPortChange()
+        {
+            await TaskRunner.Run(() => Program.rootHub.UseUDPPort());
+            nUDUdpPortNum.Enabled = true;
         }
 
         private void cBFlashWhenLate_CheckedChanged(object sender, EventArgs e)

@@ -569,6 +569,24 @@ namespace DS4Windows
             return m_Config.flashWhenLateAt;
         }
 
+        public static bool isUsingUDPServer()
+        {
+            return m_Config.useUDPServ;
+        }
+        public static void setUsingUDPServer(bool state)
+        {
+            m_Config.useUDPServ = state;
+        }
+
+        public static int getUDPServerPortNum()
+        {
+            return m_Config.udpServPort;
+        }
+        public static void setUDPServerPort(int value)
+        {
+            m_Config.udpServPort = value;
+        }
+
         public static bool UseWhiteIcon
         {
             set { m_Config.useWhiteIcon = value; }
@@ -1472,6 +1490,8 @@ namespace DS4Windows
         public bool useWhiteIcon;
         public bool flashWhenLate = true;
         public int flashWhenLateAt = 20;
+        public bool useUDPServ = false;
+        public int udpServPort = 26760;
         // Cache whether profile has custom action
         public bool[] containsCustomAction = new bool[5] { false, false, false, false, false };
 
@@ -2989,6 +3009,10 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/WhiteIcon"); Boolean.TryParse(Item.InnerText, out useWhiteIcon); }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/UseUDPServer"); Boolean.TryParse(Item.InnerText, out useUDPServ); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/UDPServerPort"); int temp; int.TryParse(Item.InnerText, out temp); udpServPort = Math.Min(Math.Max(temp, 1024), 65535); }
+                    catch { missingSetting = true; }
 
                     for (int i = 0; i < 4; i++)
                     {
@@ -3057,6 +3081,8 @@ namespace DS4Windows
             XmlNode xmlFlashWhenLate = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLate", null); xmlFlashWhenLate.InnerText = flashWhenLate.ToString(); Node.AppendChild(xmlFlashWhenLate);
             XmlNode xmlFlashWhenLateAt = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLateAt", null); xmlFlashWhenLateAt.InnerText = flashWhenLateAt.ToString(); Node.AppendChild(xmlFlashWhenLateAt);
             XmlNode xmlWhiteIcon = m_Xdoc.CreateNode(XmlNodeType.Element, "WhiteIcon", null); xmlWhiteIcon.InnerText = useWhiteIcon.ToString(); Node.AppendChild(xmlWhiteIcon);
+            XmlNode xmlUseUDPServ = m_Xdoc.CreateNode(XmlNodeType.Element, "UseUDPServer", null); xmlUseUDPServ.InnerText = useUDPServ.ToString(); Node.AppendChild(xmlUseUDPServ);
+            XmlNode xmlUDPServPort = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerPort", null); xmlUDPServPort.InnerText = udpServPort.ToString(); Node.AppendChild(xmlUDPServPort);
 
             for (int i = 0; i < 4; i++)
             {

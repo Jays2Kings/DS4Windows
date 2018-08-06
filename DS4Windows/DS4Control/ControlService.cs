@@ -131,18 +131,42 @@ namespace DS4Windows
             //return meta;
         }
 
+        private object busThrLck = new object();
+        private bool busThrRunning = false;
+        private Queue<Action> busEvtQueue = new Queue<Action>();
+        private object busEvtQueueLock = new object();
         public ControlService()
         {
             //sp.Stream = Properties.Resources.EE;
             // Cause thread affinity to not be tied to main GUI thread
-            tempThread = new Thread(() => { x360Bus = new X360Device(); _udpServer = new UdpServer(GetPadDetailForIdx); });
+            tempThread = new Thread(() => {
+                x360Bus = new X360Device();
+                //_udpServer = new UdpServer(GetPadDetailForIdx);
+                busThrRunning = true;
+
+                while (busThrRunning)
+                {
+                    lock (busEvtQueueLock)
+                    {
+                        Action tempAct = null;
+                        for (int actInd = 0, actLen = busEvtQueue.Count; actInd < actLen; actInd++)
+                        {
+                            tempAct = busEvtQueue.Dequeue();
+                            tempAct.Invoke();
+                        }
+                    }
+
+                    lock (busThrLck)
+                        Monitor.Wait(busThrLck);
+                }
+            });
             tempThread.Priority = ThreadPriority.AboveNormal;
             tempThread.IsBackground = true;
             tempThread.Start();
-            while (tempThread.IsAlive)
-            {
-                Thread.SpinWait(500);
-            }
+            //while (_udpServer == null)
+            //{
+            //    Thread.SpinWait(500);
+            //}
 
             for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
             {
@@ -153,6 +177,109 @@ namespace DS4Windows
                 PreviousState[i] = new DS4State();
                 ExposedState[i] = new DS4StateExposed(CurrentState[i]);
             }
+        }
+
+        private void TestQueueBus(Action temp)
+        {
+            lock (busEvtQueueLock)
+            {
+                busEvtQueue.Enqueue(temp);
+            }
+
+            lock (busThrLck)
+                Monitor.Pulse(busThrLck);
+        }
+
+        public void ChangeUDPStatus(bool state)
+        {
+            if (state && _udpServer == null)
+            {
+                TestQueueBus(() =>
+                {
+                    udpChangeStatus = true;
+                    _udpServer = new UdpServer(GetPadDetailForIdx);
+                    var UDP_SERVER_PORT = Global.getUDPServerPortNum();
+
+                    try
+                    {
+                        _udpServer.Start(UDP_SERVER_PORT);
+                        LogDebug("UDP server listening on port " + UDP_SERVER_PORT);
+                    }
+                    catch (System.Net.Sockets.SocketException ex)
+                    {
+                        var errMsg = String.Format("Couldn't start UDP server on port {0}, outside applications won't be able to access pad data ({1})", UDP_SERVER_PORT, ex.SocketErrorCode);
+
+                        LogDebug(errMsg, true);
+                        Log.LogToTray(errMsg, true, true);
+                    }
+
+                    udpChangeStatus = false;
+                });
+            }
+            else if (!state && _udpServer != null)
+            {
+                TestQueueBus(() =>
+                {
+                    udpChangeStatus = true;
+                    _udpServer.Stop();
+                    _udpServer = null;
+                    Log.LogToGui("Closed UDP server", false);
+                    udpChangeStatus = false;
+                });
+            }
+        }
+
+        public void ChangeMotionEventStatus(bool state)
+        {
+            IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
+            if (state)
+            {
+                foreach (DS4Device dev in devices)
+                {
+                    dev.queueEvent(() =>
+                    {
+                        dev.Report += dev.MotionEvent;
+                    });
+                }
+            }
+            else
+            {
+                foreach (DS4Device dev in devices)
+                {
+                    dev.queueEvent(() =>
+                    {
+                        dev.Report -= dev.MotionEvent;
+                    });
+                }
+            }
+        }
+
+        private bool udpChangeStatus = false;
+        public bool changingUDPPort = false;
+        public async void UseUDPPort()
+        {
+            changingUDPPort = true;
+            IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
+            foreach (DS4Device dev in devices)
+            {
+                dev.queueEvent(() =>
+                {
+                    dev.Report -= dev.MotionEvent;
+                });
+            }
+
+            await Task.Delay(100);
+            _udpServer.Start(getUDPServerPortNum());
+
+            foreach (DS4Device dev in devices)
+            {
+                dev.queueEvent(() =>
+                {
+                    dev.Report += dev.MotionEvent;
+                });
+            }
+
+            changingUDPPort = false;
         }
 
         private void WarnExclusiveModeFailure(DS4Device device)
@@ -300,6 +427,15 @@ namespace DS4Windows
                     LogDebug(DS4Devices.isExclusiveMode ? Properties.Resources.UsingExclusive : Properties.Resources.UsingShared);
                 }
 
+                if (isUsingUDPServer() && _udpServer == null)
+                {
+                    ChangeUDPStatus(true);
+                    while (udpChangeStatus == true)
+                    {
+                        Task.Delay(100);
+                    }
+                }
+
                 try
                 {
                     DS4Devices.findControllers();
@@ -357,17 +493,17 @@ namespace DS4Windows
                             this.On_Report(sender, e, tempIdx);
                         };
 
+                        EventHandler<EventArgs> tempEvnt = (sender, args) =>
+                        {
+                            DualShockPadMeta padDetail = new DualShockPadMeta();
+                            GetPadDetailForIdx(tempIdx, ref padDetail);
+                            _udpServer.NewReportIncoming(ref padDetail, CurrentState[tempIdx]);
+                        };
+                        device.MotionEvent = tempEvnt;
+
                         if (_udpServer != null)
                         {
-                            EventHandler<EventArgs> tempEvnt = (sender, args) =>
-                            {
-                                DualShockPadMeta padDetail = new DualShockPadMeta();
-                                GetPadDetailForIdx(tempIdx, ref padDetail);
-                                _udpServer.NewReportIncoming(ref padDetail, CurrentState[tempIdx]);
-                            };
-
                             device.Report += tempEvnt;
-                            device.MotionEvent = tempEvnt;
                         }
 
                         TouchPadOn(i, device);
@@ -405,7 +541,8 @@ namespace DS4Windows
 
                 if (_udpServer != null)
                 {
-                    var UDP_SERVER_PORT = 26760;
+                    //var UDP_SERVER_PORT = 26760;
+                    var UDP_SERVER_PORT = Global.getUDPServerPortNum();
 
                     try
                     {
@@ -491,7 +628,8 @@ namespace DS4Windows
                 DS4Devices.stopControllers();
 
                 if (_udpServer != null)
-                    _udpServer.Stop();
+                    ChangeUDPStatus(false);
+                    //_udpServer.Stop();
 
                 if (showlog)
                     LogDebug(Properties.Resources.StoppedDS4Windows);
@@ -565,7 +703,20 @@ namespace DS4Windows
                                 this.On_Report(sender, e, tempIdx);
                             };
 
+                            EventHandler<EventArgs> tempEvnt = (sender, args) =>
+                            {
+                                DualShockPadMeta padDetail = new DualShockPadMeta();
+                                GetPadDetailForIdx(tempIdx, ref padDetail);
+                                _udpServer.NewReportIncoming(ref padDetail, CurrentState[tempIdx]);
+                            };
+                            device.MotionEvent = tempEvnt;
+
                             if (_udpServer != null)
+                            {
+                                device.Report += tempEvnt;
+                            }
+
+                            if (!getDInputOnly(Index) && device.isSynced())
                             {
                                 EventHandler<EventArgs> tempEvnt = (sender, args) =>
                                 {
@@ -1082,6 +1233,14 @@ namespace DS4Windows
                     }
                     */
                 }
+
+                /*if (_udpServer != null)
+                {
+                    DualShockPadMeta padDetail = new DualShockPadMeta();
+                    GetPadDetailForIdx(ind, ref padDetail);
+                    _udpServer.NewReportIncoming(ref padDetail, CurrentState[ind]);
+                }
+                */
 
                 // Output any synthetic events.
                 Mapping.Commit(ind);

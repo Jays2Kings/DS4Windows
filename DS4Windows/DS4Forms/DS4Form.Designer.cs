@@ -154,6 +154,10 @@
             this.lbUseXIPorts = new System.Windows.Forms.Label();
             this.nUDXIPorts = new System.Windows.Forms.NumericUpDown();
             this.lbLastXIPort = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ckUdpServ = new System.Windows.Forms.CheckBox();
+            this.nUDUdpPortNum = new System.Windows.Forms.NumericUpDown();
             this.languagePackComboBox1 = new DS4Windows.DS4Forms.LanguagePackComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.linkProfiles = new System.Windows.Forms.LinkLabel();
@@ -199,6 +203,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDUpdateTime)).BeginInit();
             this.pnlXIPorts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDXIPorts)).BeginInit();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDUdpPortNum)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.tabLog.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -958,6 +964,7 @@
             this.fLPSettings.Controls.Add(this.cBUpdate);
             this.fLPSettings.Controls.Add(this.pNUpdate);
             this.fLPSettings.Controls.Add(this.pnlXIPorts);
+            this.fLPSettings.Controls.Add(this.panel4);
             this.fLPSettings.Controls.Add(this.languagePackComboBox1);
             this.fLPSettings.Controls.Add(this.flowLayoutPanel1);
             this.fLPSettings.Name = "fLPSettings";
@@ -1209,6 +1216,47 @@
             resources.ApplyResources(this.lbLastXIPort, "lbLastXIPort");
             this.lbLastXIPort.Name = "lbLastXIPort";
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Controls.Add(this.ckUdpServ);
+            this.panel4.Controls.Add(this.nUDUdpPortNum);
+            resources.ApplyResources(this.panel4, "panel4");
+            this.panel4.Name = "panel4";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // ckUdpServ
+            // 
+            resources.ApplyResources(this.ckUdpServ, "ckUdpServ");
+            this.ckUdpServ.Name = "ckUdpServ";
+            this.ckUdpServ.UseVisualStyleBackColor = true;
+            this.ckUdpServ.CheckedChanged += new System.EventHandler(this.CkUdpServ_CheckedChanged);
+            // 
+            // nUDUdpPortNum
+            // 
+            resources.ApplyResources(this.nUDUdpPortNum, "nUDUdpPortNum");
+            this.nUDUdpPortNum.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.nUDUdpPortNum.Minimum = new decimal(new int[] {
+            1024,
+            0,
+            0,
+            0});
+            this.nUDUdpPortNum.Name = "nUDUdpPortNum";
+            this.nUDUdpPortNum.Value = new decimal(new int[] {
+            26760,
+            0,
+            0,
+            0});
+            this.nUDUdpPortNum.Leave += new System.EventHandler(this.NUDUdpPortNum_Leave);
+            // 
             // languagePackComboBox1
             // 
             resources.ApplyResources(this.languagePackComboBox1, "languagePackComboBox1");
@@ -1399,6 +1447,9 @@
             this.pnlXIPorts.ResumeLayout(false);
             this.pnlXIPorts.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDXIPorts)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDUdpPortNum)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.tabLog.ResumeLayout(false);
@@ -1555,6 +1606,10 @@
         private System.Windows.Forms.ToolStripMenuItem discon3ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem discon4ToolStripMenuItem;
         private System.Windows.Forms.CheckBox mintoTaskCheckBox;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox ckUdpServ;
+        private System.Windows.Forms.NumericUpDown nUDUdpPortNum;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

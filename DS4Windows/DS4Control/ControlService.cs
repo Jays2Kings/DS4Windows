@@ -715,19 +715,6 @@ namespace DS4Windows
                             {
                                 device.Report += tempEvnt;
                             }
-
-                            if (!getDInputOnly(Index) && device.isSynced())
-                            {
-                                EventHandler<EventArgs> tempEvnt = (sender, args) =>
-                                {
-                                    DualShockPadMeta padDetail = new DualShockPadMeta();
-                                    GetPadDetailForIdx(tempIdx, ref padDetail);
-                                    _udpServer.NewReportIncoming(ref padDetail, CurrentState[tempIdx]);
-                                };
-
-                                device.Report += tempEvnt;
-                                device.MotionEvent = tempEvnt;
-                            }
                             
                             if (!getDInputOnly(Index) && device.isSynced())
                             {

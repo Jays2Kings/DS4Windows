@@ -782,7 +782,7 @@ namespace DS4Windows
                 if (state.Cross) tempButtons |= Xbox360Buttons.A;
                 if (state.Square) tempButtons |= Xbox360Buttons.X;
                 if (state.PS) tempButtons |= Xbox360Buttons.Guide;
-                xboxreport.SetButtons(tempButtons);
+                xboxreport.SetButtonsFull(tempButtons);
             }
             
             xboxreport.LeftTrigger = state.L2;

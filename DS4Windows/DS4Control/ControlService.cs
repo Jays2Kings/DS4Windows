@@ -257,14 +257,26 @@ namespace DS4Windows
             }
 
             await Task.Delay(100);
-            _udpServer.Start(getUDPServerPortNum());
 
-            foreach (DS4Device dev in devices)
+            var UDP_SERVER_PORT = Global.getUDPServerPortNum();
+            try
             {
-                dev.queueEvent(() =>
+                _udpServer.Start(UDP_SERVER_PORT);
+                foreach (DS4Device dev in devices)
                 {
-                    dev.Report += dev.MotionEvent;
-                });
+                    dev.queueEvent(() =>
+                    {
+                        dev.Report += dev.MotionEvent;
+                    });
+                }
+                LogDebug("UDP server listening on port " + UDP_SERVER_PORT);
+            }
+            catch (System.Net.Sockets.SocketException ex)
+            {
+                var errMsg = String.Format("Couldn't start UDP server on port {0}, outside applications won't be able to access pad data ({1})", UDP_SERVER_PORT, ex.SocketErrorCode);
+
+                LogDebug(errMsg, true);
+                Log.LogToTray(errMsg, true, true);
             }
 
             changingUDPPort = false;

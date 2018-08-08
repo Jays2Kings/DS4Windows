@@ -400,8 +400,11 @@ namespace DS4Windows
             StartWindowsCheckBox.CheckedChanged += new EventHandler(StartWindowsCheckBox_CheckedChanged);
             new ToolTip().SetToolTip(StartWindowsCheckBox, Properties.Resources.RunAtStartup);
 
-            ckUdpServ.Checked = isUsingUDPServer();
+            ckUdpServ.Checked = nUDUdpPortNum.Enabled = isUsingUDPServer();
             nUDUdpPortNum.Value = getUDPServerPortNum();
+
+            ckUdpServ.CheckedChanged += CkUdpServ_CheckedChanged;
+            nUDUdpPortNum.Leave += NUDUdpPortNum_Leave;
 
             populateHoverTextDict();
 
@@ -2568,9 +2571,13 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
         private void NUDUdpPortNum_Leave(object sender, EventArgs e)
         {
-            nUDUdpPortNum.Enabled = false;
-            setUDPServerPort((int)nUDUdpPortNum.Value);
-            WaitUDPPortChange();
+            int curValue = (int)nUDUdpPortNum.Value;
+            if (curValue != getUDPServerPortNum())
+            {
+                setUDPServerPort(curValue);
+                nUDUdpPortNum.Enabled = false;
+                WaitUDPPortChange();
+            }
         }
 
         private async void WaitUDPPortChange()

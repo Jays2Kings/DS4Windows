@@ -1234,7 +1234,6 @@
             resources.ApplyResources(this.ckUdpServ, "ckUdpServ");
             this.ckUdpServ.Name = "ckUdpServ";
             this.ckUdpServ.UseVisualStyleBackColor = true;
-            this.ckUdpServ.CheckedChanged += new System.EventHandler(this.CkUdpServ_CheckedChanged);
             // 
             // nUDUdpPortNum
             // 
@@ -1255,7 +1254,6 @@
             0,
             0,
             0});
-            this.nUDUdpPortNum.Leave += new System.EventHandler(this.NUDUdpPortNum_Leave);
             // 
             // languagePackComboBox1
             // 

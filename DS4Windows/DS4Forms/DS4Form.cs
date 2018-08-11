@@ -290,6 +290,7 @@ namespace DS4Windows
 
             autoProfilesTimer.Elapsed += CheckAutoProfiles;
             autoProfilesTimer.Interval = 1000;
+            autoProfilesTimer.AutoReset = false;
 
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
@@ -676,6 +677,7 @@ namespace DS4Windows
                 }
             }
 
+            autoProfilesTimer.Start();
             //GC.Collect();
         }
 

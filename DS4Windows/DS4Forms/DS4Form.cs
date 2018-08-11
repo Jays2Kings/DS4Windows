@@ -2587,8 +2587,12 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
         private async void WaitUDPPortChange()
         {
-            await TaskRunner.Run(() => Program.rootHub.UseUDPPort());
-            nUDUdpPortNum.Enabled = true;
+            await TaskRunner.Delay(100);
+            if (isUsingUDPServer())
+            {
+                await TaskRunner.Run(() => Program.rootHub.UseUDPPort());
+                nUDUdpPortNum.Enabled = true;
+            }
         }
 
         private void cBFlashWhenLate_CheckedChanged(object sender, EventArgs e)

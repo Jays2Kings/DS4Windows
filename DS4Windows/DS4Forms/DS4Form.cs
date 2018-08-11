@@ -290,6 +290,7 @@ namespace DS4Windows
 
             autoProfilesTimer.Elapsed += CheckAutoProfiles;
             autoProfilesTimer.Interval = 1000;
+            autoProfilesTimer.AutoReset = false;
 
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
@@ -310,6 +311,7 @@ namespace DS4Windows
             btnStartStop.Text = Properties.Resources.StartText;
 
             hotkeysTimer.Elapsed += Hotkeys;
+            hotkeysTimer.AutoReset = false;
             if (SwipeProfiles)
             {
                 hotkeysTimer.Start();
@@ -600,6 +602,8 @@ namespace DS4Windows
                 bat = null;
                 runningBat = false;
             }
+
+            hotkeysTimer.Start();
         }
 
         private void CheckAutoProfiles(object sender, EventArgs e)
@@ -676,6 +680,7 @@ namespace DS4Windows
                 }
             }
 
+            autoProfilesTimer.Start();
             //GC.Collect();
         }
 
@@ -926,14 +931,14 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         protected void Form_Resize(object sender, EventArgs e)
         {
             bool minToTask = GetMinToTaskbar();
-            if (FormWindowState.Minimized == WindowState && minToTask)
+            if (FormWindowState.Minimized == WindowState && !minToTask)
             {
                 Hide();
                 ShowInTaskbar = false;
                 FormBorderStyle = FormBorderStyle.None;
             }
 
-            else if (FormWindowState.Normal == WindowState && minToTask)
+            else if (FormWindowState.Normal == WindowState && !minToTask)
             {
                 //mAllowVisible = true;
                 Show();
@@ -2582,8 +2587,12 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
         private async void WaitUDPPortChange()
         {
-            await TaskRunner.Run(() => Program.rootHub.UseUDPPort());
-            nUDUdpPortNum.Enabled = true;
+            await TaskRunner.Delay(100);
+            if (isUsingUDPServer())
+            {
+                await TaskRunner.Run(() => Program.rootHub.UseUDPPort());
+                nUDUdpPortNum.Enabled = true;
+            }
         }
 
         private void cBFlashWhenLate_CheckedChanged(object sender, EventArgs e)

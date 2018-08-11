@@ -8,7 +8,7 @@ You can find the latest and older versions [here](https://github.com/Ryochan7/DS
 
 ViGEm build with UdpServer included for using Gyro motion controls in Cemu.
 
-http://ryochan7.xyz/ds4windows/test/DS4Windows_1.5.3_ViGEm_UdpServer_x64.zip
+http://ryochan7.xyz/ds4windows/test/DS4Windows_1.5.4_ViGEm_UdpServer_x64.zip
 
 This project is a fork of the work of Jays2Kings. You can find the old project
 website at [ds4windows.com](http://ds4windows.com).

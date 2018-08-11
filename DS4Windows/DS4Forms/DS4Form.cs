@@ -311,6 +311,7 @@ namespace DS4Windows
             btnStartStop.Text = Properties.Resources.StartText;
 
             hotkeysTimer.Elapsed += Hotkeys;
+            hotkeysTimer.AutoReset = false;
             if (SwipeProfiles)
             {
                 hotkeysTimer.Start();
@@ -601,6 +602,8 @@ namespace DS4Windows
                 bat = null;
                 runningBat = false;
             }
+
+            hotkeysTimer.Start();
         }
 
         private void CheckAutoProfiles(object sender, EventArgs e)

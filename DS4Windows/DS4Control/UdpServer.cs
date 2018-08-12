@@ -177,6 +177,7 @@ namespace DS4Windows
             SocketAsyncEventArgs args = new SocketAsyncEventArgs();
             args.RemoteEndPoint = clientEP;
             args.SetBuffer(packetData, 0, packetData.Length);
+            args.Completed += ClearSentData;
             try { udpSock.SendToAsync(args); }
             catch (Exception e) { }
         }
@@ -634,6 +635,7 @@ namespace DS4Windows
                     SocketAsyncEventArgs args = new SocketAsyncEventArgs();
                     args.RemoteEndPoint = cl;
                     args.SetBuffer(outputData, 0, outputData.Length);
+                    args.Completed += ClearSentData;
                     try { udpSock.SendToAsync(args); }
                     catch (SocketException ex) { }
                 }
@@ -641,6 +643,12 @@ namespace DS4Windows
 
             clientsList.Clear();
             clientsList = null;
+        }
+
+        private void ClearSentData(object sender, SocketAsyncEventArgs args)
+        {
+            args.Dispose();
+            args = null;
         }
     }
 }

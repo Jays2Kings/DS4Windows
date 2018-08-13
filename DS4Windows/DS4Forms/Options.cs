@@ -1671,9 +1671,8 @@ namespace DS4Windows
             inputtimer.Stop();
             sixaxisTimer.Stop();
             root.OptionsClosed();
-            lVActions.ItemCheck -= this.lVActions_ItemCheck;
             Visible = false;
-            e.Cancel = true;
+            e.Cancel = false;
         }
 
         private void cBSlide_CheckedChanged(object sender, EventArgs e)

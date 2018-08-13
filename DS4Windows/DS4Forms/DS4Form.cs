@@ -1536,17 +1536,12 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             toolStrip1.Visible = true;
             toolStrip1.Enabled = true;
             lbLastMessage.ForeColor = SystemColors.GrayText;
-            int lvDebugItemCount = lvDebug.Items.Count;
-            if (lvDebugItemCount > 0)
-            {
-                lbLastMessage.Text = lvDebug.Items[lvDebugItemCount - 1].SubItems[1].Text;
-            }
 
             opt.inputtimer.Stop();
             opt.sixaxisTimer.Stop();
             opt.Dock = DockStyle.None;
             tabProfiles.Controls.Remove(opt);
-            optPop = false;
+            optPop = false; opt = null;
 
             lBProfiles.Visible = true;
         }

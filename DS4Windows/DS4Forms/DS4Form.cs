@@ -1537,8 +1537,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             toolStrip1.Enabled = true;
             lbLastMessage.ForeColor = SystemColors.GrayText;
 
-            opt.inputtimer.Stop();
-            opt.sixaxisTimer.Stop();
             opt.Dock = DockStyle.None;
             tabProfiles.Controls.Remove(opt);
             optPop = false; opt = null;

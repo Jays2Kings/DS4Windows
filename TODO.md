@@ -1,6 +1,6 @@
 # TODO
 
-* Perform some final cleanup and release version 1.5
+* ~~Perform some final cleanup and release version 1.5~~
 * Attempt to remove reliance on the main thread when disconnecting a device.
 Currently used to delay hotplug routine
 * Look into distributing profile properties around various objects

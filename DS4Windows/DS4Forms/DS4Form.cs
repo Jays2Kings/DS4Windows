@@ -88,13 +88,6 @@ namespace DS4Windows
             {
                 new SaveWhere(Global.multisavespots).ShowDialog();
             }
-            else if (Global.oldappdatafail)
-            {
-                MessageBox.Show(Properties.Resources.CannotMoveFiles, "DS4Windows");
-                Process.Start("explorer.exe", @"/select, " + appDataPpath);
-                Close();
-                return;
-            }
 
             Global.Load();
             Global.SetCulture(UseLang);

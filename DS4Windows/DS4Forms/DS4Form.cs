@@ -275,9 +275,6 @@ namespace DS4Windows
                 hotkeysTimer.Start();
             }
 
-            if (btnStartStop.Enabled && start)
-                BtnStartStop_Clicked();
-
             startToolStripMenuItem.Text = btnStartStop.Text;
             cBoxNotifications.SelectedIndex = Notifications;
             cBSwipeProfiles.Checked = SwipeProfiles;
@@ -398,6 +395,9 @@ namespace DS4Windows
                         control.MouseHover += ClearLastMessage;
                 }
             }
+
+            if (btnStartStop.Enabled && start)
+                TaskRunner.Delay(10).ContinueWith((t) => this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked())));
         }
 
         private void populateHoverTextDict()

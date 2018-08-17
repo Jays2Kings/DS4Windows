@@ -171,17 +171,15 @@ namespace DS4Windows
                     }
                     catch { }
                     MessageBox.Show("Copy complete, please relaunch DS4Windows and remove settings from Program Directory", "DS4Windows");
-                    appdatapath = null;
-                    Close();
-                    return;
                 }
                 else
                 {
                     MessageBox.Show("DS4Windows cannot edit settings here, This will now close", "DS4Windows");
-                    appdatapath = null;
-                    Close();
-                    return;
                 }
+
+                appdatapath = null;
+                Close();
+                return;
             }
 
             cBUseWhiteIcon.Checked = UseWhiteIcon;

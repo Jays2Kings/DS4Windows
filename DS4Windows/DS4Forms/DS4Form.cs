@@ -535,22 +535,32 @@ namespace DS4Windows
                     string slide = Program.rootHub.TouchpadSlide(i);
                     if (slide == "left")
                     {
-                        if (cbs[i].SelectedIndex <= 0)
-                            cbs[i].SelectedIndex = cbs[i].Items.Count - 2;
-                        else
-                            cbs[i].SelectedIndex--;
-
+                        this.BeginInvoke((System.Action)(() =>
+                        {
+                            if (cbs[i].SelectedIndex <= 0)
+                                cbs[i].SelectedIndex = cbs[i].Items.Count - 2;
+                            else
+                                cbs[i].SelectedIndex--;
+                        }));
                     }
                     else if (slide == "right")
                     {
-                        if (cbs[i].SelectedIndex == cbs[i].Items.Count - 2)
-                            cbs[i].SelectedIndex = 0;
-                        else
-                            cbs[i].SelectedIndex++;
+                        this.BeginInvoke((System.Action)(() =>
+                        {
+                            if (cbs[i].SelectedIndex == cbs[i].Items.Count - 2)
+                                cbs[i].SelectedIndex = 0;
+                            else
+                                cbs[i].SelectedIndex++;
+                        }));
                     }
 
                     if (slide.Contains("t"))
-                        ShowNotification(this, Properties.Resources.UsingProfile.Replace("*number*", (i + 1).ToString()).Replace("*Profile name*", cbs[i].Text));
+                    {
+                        this.BeginInvoke((System.Action)(() =>
+                        {
+                            ShowNotification(this, Properties.Resources.UsingProfile.Replace("*number*", (i + 1).ToString()).Replace("*Profile name*", cbs[i].Text));
+                        }));
+                    }
                 }
             }
 

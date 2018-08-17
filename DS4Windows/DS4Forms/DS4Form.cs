@@ -216,40 +216,7 @@ namespace DS4Windows
 
             if (!LoadActions()) //if first no actions have been made yet, create PS+Option to D/C and save it to every profile
             {
-                XmlDocument xDoc = new XmlDocument();
-                try
-                {
-                    string[] profiles = Directory.GetFiles(appdatapath + @"\Profiles\");
-                    string s = string.Empty;
-                    //foreach (string s in profiles)
-                    for (int i = 0, proflen = profiles.Length; i < proflen; i++)
-                    {
-                        s = profiles[i];
-                        if (Path.GetExtension(s) == ".xml")
-                        {
-                            xDoc.Load(s);
-                            XmlNode el = xDoc.SelectSingleNode("DS4Windows/ProfileActions");
-                            if (el != null)
-                            {
-                                if (string.IsNullOrEmpty(el.InnerText))
-                                    el.InnerText = "Disconnect Controller";
-                                else
-                                    el.InnerText += "/Disconnect Controller";
-                            }
-                            else
-                            {
-                                XmlNode Node = xDoc.SelectSingleNode("DS4Windows");
-                                el = xDoc.CreateElement("ProfileActions");
-                                el.InnerText = "Disconnect Controller";
-                                Node.AppendChild(el);
-                            }
-
-                            xDoc.Save(s);
-                            LoadActions();
-                        }
-                    }
-                }
-                catch { }
+                Global.CreateStdActions();
             }
 
             bool start = true;

@@ -88,13 +88,6 @@ namespace DS4Windows
             {
                 new SaveWhere(Global.multisavespots).ShowDialog();
             }
-            else if (Global.oldappdatafail)
-            {
-                MessageBox.Show(Properties.Resources.CannotMoveFiles, "DS4Windows");
-                Process.Start("explorer.exe", @"/select, " + appDataPpath);
-                Close();
-                return;
-            }
 
             Global.Load();
             Global.SetCulture(UseLang);
@@ -178,17 +171,15 @@ namespace DS4Windows
                     }
                     catch { }
                     MessageBox.Show("Copy complete, please relaunch DS4Windows and remove settings from Program Directory", "DS4Windows");
-                    appdatapath = null;
-                    Close();
-                    return;
                 }
                 else
                 {
                     MessageBox.Show("DS4Windows cannot edit settings here, This will now close", "DS4Windows");
-                    appdatapath = null;
-                    Close();
-                    return;
                 }
+
+                appdatapath = null;
+                Close();
+                return;
             }
 
             cBUseWhiteIcon.Checked = UseWhiteIcon;
@@ -223,40 +214,7 @@ namespace DS4Windows
 
             if (!LoadActions()) //if first no actions have been made yet, create PS+Option to D/C and save it to every profile
             {
-                XmlDocument xDoc = new XmlDocument();
-                try
-                {
-                    string[] profiles = Directory.GetFiles(appdatapath + @"\Profiles\");
-                    string s = string.Empty;
-                    //foreach (string s in profiles)
-                    for (int i = 0, proflen = profiles.Length; i < proflen; i++)
-                    {
-                        s = profiles[i];
-                        if (Path.GetExtension(s) == ".xml")
-                        {
-                            xDoc.Load(s);
-                            XmlNode el = xDoc.SelectSingleNode("DS4Windows/ProfileActions");
-                            if (el != null)
-                            {
-                                if (string.IsNullOrEmpty(el.InnerText))
-                                    el.InnerText = "Disconnect Controller";
-                                else
-                                    el.InnerText += "/Disconnect Controller";
-                            }
-                            else
-                            {
-                                XmlNode Node = xDoc.SelectSingleNode("DS4Windows");
-                                el = xDoc.CreateElement("ProfileActions");
-                                el.InnerText = "Disconnect Controller";
-                                Node.AppendChild(el);
-                            }
-
-                            xDoc.Save(s);
-                            LoadActions();
-                        }
-                    }
-                }
-                catch { }
+                Global.CreateStdActions();
             }
 
             bool start = true;
@@ -316,9 +274,6 @@ namespace DS4Windows
             {
                 hotkeysTimer.Start();
             }
-
-            if (btnStartStop.Enabled && start)
-                BtnStartStop_Clicked();
 
             startToolStripMenuItem.Text = btnStartStop.Text;
             cBoxNotifications.SelectedIndex = Notifications;
@@ -440,6 +395,9 @@ namespace DS4Windows
                         control.MouseHover += ClearLastMessage;
                 }
             }
+
+            if (btnStartStop.Enabled && start)
+                TaskRunner.Delay(10).ContinueWith((t) => this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked())));
         }
 
         private void populateHoverTextDict()
@@ -577,22 +535,32 @@ namespace DS4Windows
                     string slide = Program.rootHub.TouchpadSlide(i);
                     if (slide == "left")
                     {
-                        if (cbs[i].SelectedIndex <= 0)
-                            cbs[i].SelectedIndex = cbs[i].Items.Count - 2;
-                        else
-                            cbs[i].SelectedIndex--;
-
+                        this.BeginInvoke((System.Action)(() =>
+                        {
+                            if (cbs[i].SelectedIndex <= 0)
+                                cbs[i].SelectedIndex = cbs[i].Items.Count - 2;
+                            else
+                                cbs[i].SelectedIndex--;
+                        }));
                     }
                     else if (slide == "right")
                     {
-                        if (cbs[i].SelectedIndex == cbs[i].Items.Count - 2)
-                            cbs[i].SelectedIndex = 0;
-                        else
-                            cbs[i].SelectedIndex++;
+                        this.BeginInvoke((System.Action)(() =>
+                        {
+                            if (cbs[i].SelectedIndex == cbs[i].Items.Count - 2)
+                                cbs[i].SelectedIndex = 0;
+                            else
+                                cbs[i].SelectedIndex++;
+                        }));
                     }
 
                     if (slide.Contains("t"))
-                        ShowNotification(this, Properties.Resources.UsingProfile.Replace("*number*", (i + 1).ToString()).Replace("*Profile name*", cbs[i].Text));
+                    {
+                        this.BeginInvoke((System.Action)(() =>
+                        {
+                            ShowNotification(this, Properties.Resources.UsingProfile.Replace("*number*", (i + 1).ToString()).Replace("*Profile name*", cbs[i].Text));
+                        }));
+                    }
                 }
             }
 

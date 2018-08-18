@@ -231,9 +231,7 @@ namespace DS4Windows
         public static string appdatapath;
         public static bool firstRun = false;
         public static bool multisavespots = false;
-        public static bool oldappdatafail = false;
         public static string appDataPpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows";
-        public static string oldappdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
         public static bool runHotPlug = false;
         public const int XINPUT_UNPLUG_SETTLE_TIME = 250; // Inhibit races that occur with the asynchronous teardown of ScpVBus -> X360 driver instance.
         public static string[] tempprofilename = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
@@ -342,20 +340,6 @@ namespace DS4Windows
                 SaveWhere(exepath);
             else if (File.Exists(appDataPpath + "\\Auto Profiles.xml"))
                 SaveWhere(appDataPpath);
-            else if (File.Exists(oldappdatapath + "\\Auto Profiles.xml"))
-            {
-                try
-                {
-                    if (Directory.Exists(appDataPpath))
-                        Directory.Move(appDataPpath, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows Old");
-                    Directory.Move(oldappdatapath, appDataPpath);
-                    SaveWhere(appDataPpath);
-                }
-                catch
-                {
-                    Global.oldappdatafail = true;
-                }
-            }
             else if (!File.Exists(exepath + "\\Auto Profiles.xml")
                 && !File.Exists(appDataPpath + "\\Auto Profiles.xml"))
             {
@@ -374,7 +358,43 @@ namespace DS4Windows
             catch { /* Skip setting culture that we cannot set */ }
         }
 
+        public static void CreateStdActions()
+        {
+            XmlDocument xDoc = new XmlDocument();
+            try
+            {
+                string[] profiles = Directory.GetFiles(appdatapath + @"\Profiles\");
+                string s = string.Empty;
+                //foreach (string s in profiles)
+                for (int i = 0, proflen = profiles.Length; i < proflen; i++)
+                {
+                    s = profiles[i];
+                    if (Path.GetExtension(s) == ".xml")
+                    {
+                        xDoc.Load(s);
+                        XmlNode el = xDoc.SelectSingleNode("DS4Windows/ProfileActions");
+                        if (el != null)
+                        {
+                            if (string.IsNullOrEmpty(el.InnerText))
+                                el.InnerText = "Disconnect Controller";
+                            else
+                                el.InnerText += "/Disconnect Controller";
+                        }
+                        else
+                        {
+                            XmlNode Node = xDoc.SelectSingleNode("DS4Windows");
+                            el = xDoc.CreateElement("ProfileActions");
+                            el.InnerText = "Disconnect Controller";
+                            Node.AppendChild(el);
+                        }
 
+                        xDoc.Save(s);
+                        LoadActions();
+                    }
+                }
+            }
+            catch { }
+        }
 
         public static event EventHandler<EventArgs> ControllerStatusChange; // called when a controller is added/removed/battery or touchpad mode changes/etc.
         public static void ControllerStatusChanged(object sender)

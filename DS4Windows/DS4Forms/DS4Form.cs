@@ -535,30 +535,33 @@ namespace DS4Windows
                     string slide = Program.rootHub.TouchpadSlide(i);
                     if (slide == "left")
                     {
+                        int ind = i;
                         this.BeginInvoke((System.Action)(() =>
                         {
-                            if (cbs[i].SelectedIndex <= 0)
-                                cbs[i].SelectedIndex = cbs[i].Items.Count - 2;
+                            if (cbs[ind].SelectedIndex <= 0)
+                                cbs[ind].SelectedIndex = cbs[ind].Items.Count - 2;
                             else
-                                cbs[i].SelectedIndex--;
+                                cbs[ind].SelectedIndex--;
                         }));
                     }
                     else if (slide == "right")
                     {
+                        int ind = i;
                         this.BeginInvoke((System.Action)(() =>
                         {
-                            if (cbs[i].SelectedIndex == cbs[i].Items.Count - 2)
-                                cbs[i].SelectedIndex = 0;
+                            if (cbs[ind].SelectedIndex == cbs[ind].Items.Count - 2)
+                                cbs[ind].SelectedIndex = 0;
                             else
-                                cbs[i].SelectedIndex++;
+                                cbs[ind].SelectedIndex++;
                         }));
                     }
 
                     if (slide.Contains("t"))
                     {
+                        int ind = i;
                         this.BeginInvoke((System.Action)(() =>
                         {
-                            ShowNotification(this, Properties.Resources.UsingProfile.Replace("*number*", (i + 1).ToString()).Replace("*Profile name*", cbs[i].Text));
+                            ShowNotification(this, Properties.Resources.UsingProfile.Replace("*number*", (ind + 1).ToString()).Replace("*Profile name*", cbs[ind].Text));
                         }));
                     }
                 }

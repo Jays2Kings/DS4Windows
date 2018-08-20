@@ -436,7 +436,7 @@ namespace DS4Windows
                     warnInterval = WARN_INTERVAL_BT;
                     audio = new DS4Audio();
                     micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture);
-                    synced = isValidSerial();
+                    runCalib = synced = isValidSerial();
                 }
             }
             else
@@ -1000,7 +1000,7 @@ namespace DS4Windows
                     bool controllerSynced = inputReport[31] == 0;
                     if (controllerSynced != synced)
                     {
-                        synced = controllerSynced;
+                        runCalib = synced = controllerSynced;
                         SyncChange?.Invoke(this, EventArgs.Empty);
                         sendOutputReport(true, true);
                     }

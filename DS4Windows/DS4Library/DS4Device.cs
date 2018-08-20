@@ -392,16 +392,6 @@ namespace DS4Windows
             return result;
         }
 
-        private SynchronizationContext uiContext = null;
-        public SynchronizationContext getUiContext()
-        {
-            return uiContext;
-        }
-        public void setUiContext(SynchronizationContext uiContext)
-        {
-            this.uiContext = uiContext;
-        }
-
         private Queue<Action> eventQueue = new Queue<Action>();
         private object eventQueueLock = new object();
 
@@ -808,10 +798,7 @@ namespace DS4Windows
                         sendOutputReport(true, true); // Kick Windows into noticing the disconnection.
                         StopOutputUpdate();
                         isDisconnecting = true;
-                        uiContext.Send(new SendOrPostCallback(delegate (object state4)
-                        {
-                            Removal?.Invoke(this, EventArgs.Empty);
-                        }), null);
+                        Removal?.Invoke(this, EventArgs.Empty);
 
                         timeoutExecuted = true;
                         return;
@@ -838,10 +825,7 @@ namespace DS4Windows
 
                         StopOutputUpdate();
                         isDisconnecting = true;
-                        uiContext.Send(new SendOrPostCallback(delegate (object state4)
-                        {
-                            Removal?.Invoke(this, EventArgs.Empty);
-                        }), null);
+                        Removal?.Invoke(this, EventArgs.Empty);
 
                         timeoutExecuted = true;
                         return;
@@ -1292,10 +1276,7 @@ namespace DS4Windows
 
                     if (callRemoval)
                     {
-                        uiContext.Send(new SendOrPostCallback(delegate (object state)
-                        {
-                            Removal?.Invoke(this, EventArgs.Empty);
-                        }), null);
+                        Removal?.Invoke(this, EventArgs.Empty);
 
                         //System.Threading.Tasks.Task.Factory.StartNew(() => { Removal?.Invoke(this, EventArgs.Empty); });
                     }
@@ -1327,10 +1308,7 @@ namespace DS4Windows
             {
                 isDisconnecting = true;
 
-                uiContext.Send(new SendOrPostCallback(delegate (object state4)
-                {
-                    Removal?.Invoke(this, EventArgs.Empty);
-                }), null);
+                Removal?.Invoke(this, EventArgs.Empty);
 
                 //System.Threading.Tasks.Task.Factory.StartNew(() => { Removal?.Invoke(this, EventArgs.Empty); });
                 //Removal?.Invoke(this, EventArgs.Empty);

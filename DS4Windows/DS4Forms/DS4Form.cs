@@ -1010,11 +1010,10 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                             hotplugCounter++;
                         }
 
-                        var uiContext = SynchronizationContext.Current;
                         if (!inHotPlug)
                         {
                             inHotPlug = true;
-                            TaskRunner.Run(() => { Thread.Sleep(1500); InnerHotplug2(uiContext); });
+                            TaskRunner.Run(() => { Thread.Sleep(1500); InnerHotplug2(); });
                         }
                     }
                 }
@@ -1028,7 +1027,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             base.WndProc(ref m);
         }
 
-        private void InnerHotplug2(SynchronizationContext uiContext)
+        private void InnerHotplug2()
         {
             inHotPlug = true;
 
@@ -1040,7 +1039,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
             while (loopHotplug == true)
             {
-                Program.rootHub.HotPlug(uiContext);
+                Program.rootHub.HotPlug();
                 //TaskRunner.Run(() => { Program.rootHub.HotPlug(uiContext); });
                 lock (hotplugCounterLock)
                 {

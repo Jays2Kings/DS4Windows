@@ -421,6 +421,7 @@ namespace DS4Windows
             }
         }
 
+        private SynchronizationContext uiContext = null;
         public bool Start(object tempui, bool showlog = true)
         {
             startViGEm();
@@ -433,6 +434,7 @@ namespace DS4Windows
                 LogDebug("Connection to ViGEm established");
 
                 DS4Devices.isExclusiveMode = getUseExclusiveMode();
+                uiContext = tempui as SynchronizationContext;
                 if (showlog)
                 {
                     LogDebug(Properties.Resources.SearchingController);
@@ -466,7 +468,6 @@ namespace DS4Windows
                         task.Start();
 
                         DS4Controllers[i] = device;
-                        device.setUiContext(tempui as SynchronizationContext);
                         device.Removal += this.On_DS4Removal;
                         device.Removal += DS4Devices.On_Removal;
                         device.SyncChange += this.On_SyncChange;
@@ -653,7 +654,7 @@ namespace DS4Windows
             return true;
         }
 
-        public bool HotPlug(SynchronizationContext uiContext)
+        public bool HotPlug()
         {
             if (running)
             {
@@ -690,7 +691,6 @@ namespace DS4Windows
                             Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
                             task.Start();
                             DS4Controllers[Index] = device;
-                            device.setUiContext(uiContext);
                             device.Removal += this.On_DS4Removal;
                             device.Removal += DS4Devices.On_Removal;
                             device.SyncChange += this.On_SyncChange;
@@ -1142,7 +1142,7 @@ namespace DS4Windows
                 string devError = tempStrings[ind] = device.error;
                 if (!string.IsNullOrEmpty(devError))
                 {
-                    device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state)
+                    uiContext?.Post(new SendOrPostCallback(delegate (object state)
                     {
                         LogDebug(devError);
                     }), null);
@@ -1154,7 +1154,7 @@ namespace DS4Windows
                     if (!lag[ind] && device.Latency >= flashWhenLateAt)
                     {
                         lag[ind] = true;
-                        device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state)
+                        uiContext?.Post(new SendOrPostCallback(delegate (object state)
                         {
                             LagFlashWarning(ind, true);
                         }), null);
@@ -1162,7 +1162,7 @@ namespace DS4Windows
                     else if (lag[ind] && device.Latency < flashWhenLateAt)
                     {
                         lag[ind] = false;
-                        device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state)
+                        uiContext?.Post(new SendOrPostCallback(delegate (object state)
                         {
                             LagFlashWarning(ind, false);
                         }), null);
@@ -1185,7 +1185,7 @@ namespace DS4Windows
                 if (device.firstReport && device.IsAlive())
                 {
                     device.firstReport = false;
-                    device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state)
+                    uiContext?.Post(new SendOrPostCallback(delegate (object state)
                     {
                         OnDeviceStatusChanged(this, ind);
                     }), null);
@@ -1194,7 +1194,7 @@ namespace DS4Windows
                 {
                     byte tempBattery = currentBattery[ind] = cState.Battery;
                     bool tempCharging = charging[ind] = device.isCharging();
-                    device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state)
+                    uiContext?.Post(new SendOrPostCallback(delegate (object state)
                     {
                         OnBatteryStatusChange(this, ind, tempBattery, tempCharging);
                     }), null);

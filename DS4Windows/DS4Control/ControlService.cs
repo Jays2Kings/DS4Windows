@@ -1047,8 +1047,11 @@ namespace DS4Windows
                     lag[ind] = false;
                     inWarnMonitor[ind] = false;
                     useDInputOnly[ind] = true;
-                    OnControllerRemoved(this, ind);
-                    Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
+                    uiContext?.Post(new SendOrPostCallback((state) =>
+                    {
+                        OnControllerRemoved(this, ind);
+                    }), null);
+                    //Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                 }
             }
         }

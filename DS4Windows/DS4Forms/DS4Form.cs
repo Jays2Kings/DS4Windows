@@ -2174,14 +2174,15 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
             FormLocationX = Location.X > 0 ? Location.X : 0;
             FormLocationY = Location.Y > 0 ? Location.Y : 0;
+            Global.ControllerRemoved -= ControllerRemovedChange;
 
             if (!string.IsNullOrEmpty(appdatapath))
             {
                 Save();
                 blankControllerTab();
-                Program.rootHub.Stop();
             }
 
+            TaskRunner.Run(() => Program.rootHub.Stop()).Wait();
             // Make sure to stop event generation routines. Should fix odd crashes on shutdown
             Application.Exit();
         }

@@ -246,7 +246,7 @@ namespace DS4Windows
             */
             //tabProfiles.Controls.Add(opt);
 
-            autoProfilesTimer.Elapsed += CheckAutoProfiles;
+            //autoProfilesTimer.Elapsed += CheckAutoProfiles;
             autoProfilesTimer.Interval = 1000;
             autoProfilesTimer.AutoReset = false;
 
@@ -268,11 +268,12 @@ namespace DS4Windows
             Enable_Controls(3, false);
             btnStartStop.Text = Properties.Resources.StartText;
 
-            hotkeysTimer.Elapsed += Hotkeys;
+            //hotkeysTimer.Elapsed += Hotkeys;
             hotkeysTimer.AutoReset = false;
             if (SwipeProfiles)
             {
-                hotkeysTimer.Start();
+                ChangeHotkeysStatus(true);
+                //hotkeysTimer.Start();
             }
 
             startToolStripMenuItem.Text = btnStartStop.Text;
@@ -432,6 +433,34 @@ namespace DS4Windows
         {
             lbLastMessage.Text = "";
             lbLastMessage.ForeColor = SystemColors.GrayText;
+        }
+
+        private void ChangeAutoProfilesStatus(bool state)
+        {
+            if (state)
+            {
+                autoProfilesTimer.Elapsed += CheckAutoProfiles;
+                autoProfilesTimer.Start();
+            }
+            else
+            {
+                autoProfilesTimer.Stop();
+                autoProfilesTimer.Elapsed -= CheckAutoProfiles;
+            }
+        }
+
+        private void ChangeHotkeysStatus(bool state)
+        {
+            if (state)
+            {
+                hotkeysTimer.Elapsed += Hotkeys;
+                hotkeysTimer.Start();
+            }
+            else
+            {
+                hotkeysTimer.Stop();
+                hotkeysTimer.Elapsed -= Hotkeys;
+            }
         }
 
         private void blankControllerTab()
@@ -602,8 +631,10 @@ namespace DS4Windows
                             turnOffTemp = true;
                             if (btnStartStop.Text == Properties.Resources.StopText)
                             {
-                                autoProfilesTimer.Stop();
-                                hotkeysTimer.Stop();
+                                //autoProfilesTimer.Stop();
+                                //hotkeysTimer.Stop();
+                                ChangeAutoProfilesStatus(false);
+                                ChangeHotkeysStatus(false);
 
                                 this.Invoke((System.Action)(() => {
                                     this.changingService = true;
@@ -617,8 +648,10 @@ namespace DS4Windows
 
                                 this.Invoke((System.Action)(() =>
                                 {
-                                    hotkeysTimer.Start();
-                                    autoProfilesTimer.Start();
+                                    //hotkeysTimer.Start();
+                                    ChangeHotkeysStatus(true);
+                                    ChangeAutoProfilesStatus(true);
+                                    //autoProfilesTimer.Start();
                                 }));
                             }
                         }
@@ -691,11 +724,13 @@ namespace DS4Windows
             bool timerEnabled = autoProfilesTimer.Enabled;
             if (pathCount > 0 && !timerEnabled)
             {
-                autoProfilesTimer.Start();
+                ChangeAutoProfilesStatus(true);
+                //autoProfilesTimer.Start();
             }
             else if (pathCount == 0 && timerEnabled)
             {
-                autoProfilesTimer.Stop();
+                //autoProfilesTimer.Stop();
+                ChangeAutoProfilesStatus(false);
             }
         }
 
@@ -942,12 +977,14 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         {
             if (SwipeProfiles && !hotkeysTimer.Enabled)
             {
-                hotkeysTimer.Start();
+                ChangeHotkeysStatus(true);
+                //hotkeysTimer.Start();
             }
 
             if (programpaths.Count > 0 && !autoProfilesTimer.Enabled)
             {
-                autoProfilesTimer.Start();
+                ChangeAutoProfilesStatus(true);
+                //autoProfilesTimer.Start();
             }
 
             startToolStripMenuItem.Text = btnStartStop.Text = Properties.Resources.StopText;
@@ -966,8 +1003,10 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
         private void ServiceShutdownFinish()
         {
-            hotkeysTimer.Stop();
-            autoProfilesTimer.Stop();
+            ChangeAutoProfilesStatus(false);
+            ChangeHotkeysStatus(false);
+            //hotkeysTimer.Stop();
+            //autoProfilesTimer.Stop();
             startToolStripMenuItem.Text = btnStartStop.Text = Properties.Resources.StartText;
             blankControllerTab();
             populateFullNotifyText();
@@ -2154,11 +2193,13 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             bool timerEnabled = hotkeysTimer.Enabled;
             if (swipe && !timerEnabled)
             {
-                hotkeysTimer.Start();
+                ChangeHotkeysStatus(true);
+                //hotkeysTimer.Start();
             }
             else if (!swipe && timerEnabled)
             {
-                hotkeysTimer.Stop();
+                ChangeHotkeysStatus(false);
+                //hotkeysTimer.Stop();
             }
         }
 

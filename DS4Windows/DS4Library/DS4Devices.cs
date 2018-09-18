@@ -104,7 +104,7 @@ namespace DS4Windows
                                     startInfo.Arguments = "re-enabledevice " + devicePathToInstanceId(hDevice.DevicePath);
                                     Process child = Process.Start(startInfo);
 
-                                    if (!child.WaitForExit(5000))
+                                    if (!child.WaitForExit(15000))
                                     {
                                         child.Kill();
                                     }

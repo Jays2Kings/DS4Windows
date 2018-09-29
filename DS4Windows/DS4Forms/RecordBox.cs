@@ -1225,72 +1225,70 @@ namespace DS4Windows
 
         private void lVMacros_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (lVMacros.SelectedIndices.Count == 0)
+            if (lVMacros.SelectedIndices.Count != 0)
             {
-                return;
-            }
-
-            if (lVMacros.SelectedItems[0].ImageIndex == 2)
-            {
-                TextBox tb = new TextBox();
-                tb.MaxLength = 5;
-                tb.KeyDown += nud_KeyDown;
-                tb.LostFocus += nud_LostFocus;
-                selection = lVMacros.SelectedIndices[0];
-                Controls.Add(tb);
-                changingDelay = true;
-                tb.Location = new Point(lVMacros.Location.X + lVMacros.SelectedItems[0].Position.X, lVMacros.Location.Y + lVMacros.SelectedItems[0].Position.Y);
-                tb.BringToFront();
-                lVMacros.MouseHover -= lVMacros_MouseHover;
-                tb.TextChanged += tb_TextChanged;
-                tb.Focus();
-            }
-            else if (macros[lVMacros.SelectedIndices[0]] > 1000000000)
-            {
-                selection = lVMacros.SelectedIndices[0];
-                string lb = macros[lVMacros.SelectedIndices[0]].ToString().Substring(1);
-                byte r = (byte)(int.Parse(lb[0].ToString()) * 100 + int.Parse(lb[1].ToString()) * 10 + int.Parse(lb[2].ToString()));
-                byte g = (byte)(int.Parse(lb[3].ToString()) * 100 + int.Parse(lb[4].ToString()) * 10 + int.Parse(lb[5].ToString()));
-                byte b = (byte)(int.Parse(lb[6].ToString()) * 100 + int.Parse(lb[7].ToString()) * 10 + int.Parse(lb[8].ToString()));
-                AdvancedColorDialog advColorDialog = new AdvancedColorDialog();
-                advColorDialog.Color = Color.FromArgb(r, g, b);
-                advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
-                if (advColorDialog.ShowDialog() == DialogResult.OK)
+                if (lVMacros.SelectedItems[0].ImageIndex == 2)
                 {
-                    macros[selection] = 1000000000 + advColorDialog.Color.R * 1000000 + advColorDialog.Color.G * 1000 + advColorDialog.Color.B;
+                    TextBox tb = new TextBox();
+                    tb.MaxLength = 5;
+                    tb.KeyDown += nud_KeyDown;
+                    tb.LostFocus += nud_LostFocus;
+                    selection = lVMacros.SelectedIndices[0];
+                    Controls.Add(tb);
+                    changingDelay = true;
+                    tb.Location = new Point(lVMacros.Location.X + lVMacros.SelectedItems[0].Position.X, lVMacros.Location.Y + lVMacros.SelectedItems[0].Position.Y);
+                    tb.BringToFront();
+                    lVMacros.MouseHover -= lVMacros_MouseHover;
+                    tb.TextChanged += tb_TextChanged;
+                    tb.Focus();
                 }
-                lVMacros.Items[selection].Text = ($"Lightbar Color: {advColorDialog.Color.R},{advColorDialog.Color.G},{advColorDialog.Color.B}");
-            }
-            else if (macros[lVMacros.SelectedIndices[0]] > 1000000 && macros[lVMacros.SelectedIndices[0]] != 1000000000)
-            {
+                else if (macros[lVMacros.SelectedIndices[0]] > 1000000000)
+                {
+                    selection = lVMacros.SelectedIndices[0];
+                    string lb = macros[lVMacros.SelectedIndices[0]].ToString().Substring(1);
+                    byte r = (byte)(int.Parse(lb[0].ToString()) * 100 + int.Parse(lb[1].ToString()) * 10 + int.Parse(lb[2].ToString()));
+                    byte g = (byte)(int.Parse(lb[3].ToString()) * 100 + int.Parse(lb[4].ToString()) * 10 + int.Parse(lb[5].ToString()));
+                    byte b = (byte)(int.Parse(lb[6].ToString()) * 100 + int.Parse(lb[7].ToString()) * 10 + int.Parse(lb[8].ToString()));
+                    AdvancedColorDialog advColorDialog = new AdvancedColorDialog();
+                    advColorDialog.Color = Color.FromArgb(r, g, b);
+                    advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
+                    if (advColorDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        macros[selection] = 1000000000 + advColorDialog.Color.R * 1000000 + advColorDialog.Color.G * 1000 + advColorDialog.Color.B;
+                    }
+                    lVMacros.Items[selection].Text = ($"Lightbar Color: {advColorDialog.Color.R},{advColorDialog.Color.G},{advColorDialog.Color.B}");
+                }
+                else if (macros[lVMacros.SelectedIndices[0]] > 1000000 && macros[lVMacros.SelectedIndices[0]] != 1000000000)
+                {
 
-                lVMacros.MouseHover -= lVMacros_MouseHover;
-                string r = macros[lVMacros.SelectedIndices[0]].ToString().Substring(1);
-                byte heavy = (byte)(int.Parse(r[0].ToString()) * 100 + int.Parse(r[1].ToString()) * 10 + int.Parse(r[2].ToString()));
-                byte light = (byte)(int.Parse(r[3].ToString()) * 100 + int.Parse(r[4].ToString()) * 10 + int.Parse(r[5].ToString()));
-                selection = lVMacros.SelectedIndices[0];
-                tb1 = new TextBox();
-                tb2 = new TextBox();
-                tb1.Name = "tBHeavy";
-                tb1.Name = "tBLight";
-                tb1.MaxLength = 3;
-                tb2.MaxLength = 3;
-                tb1.KeyDown += nud_KeyDown;
-                tb2.KeyDown += nud_KeyDown;
-                Controls.Add(tb1);
-                Controls.Add(tb2);
-                changingDelay = false;
-                tb1.Location = new Point(lVMacros.Location.X + lVMacros.SelectedItems[0].Position.X, lVMacros.Location.Y + lVMacros.SelectedItems[0].Position.Y);
-                tb1.Size = new Size(tb1.Size.Width / 2, tb1.Size.Height);
-                tb2.Location = new Point(lVMacros.Location.X + lVMacros.SelectedItems[0].Position.X + tb1.Size.Width, lVMacros.Location.Y + lVMacros.SelectedItems[0].Position.Y);
-                tb2.Size = tb1.Size;
-                tb1.BringToFront();
-                tb2.BringToFront();
-                tb1.Text = heavy.ToString();
-                tb2.Text = light.ToString();
-                tb1.TextChanged += tb_TextChanged;
-                tb2.TextChanged += tb_TextChanged;
-                tb1.Focus();
+                    lVMacros.MouseHover -= lVMacros_MouseHover;
+                    string r = macros[lVMacros.SelectedIndices[0]].ToString().Substring(1);
+                    byte heavy = (byte)(int.Parse(r[0].ToString()) * 100 + int.Parse(r[1].ToString()) * 10 + int.Parse(r[2].ToString()));
+                    byte light = (byte)(int.Parse(r[3].ToString()) * 100 + int.Parse(r[4].ToString()) * 10 + int.Parse(r[5].ToString()));
+                    selection = lVMacros.SelectedIndices[0];
+                    tb1 = new TextBox();
+                    tb2 = new TextBox();
+                    tb1.Name = "tBHeavy";
+                    tb1.Name = "tBLight";
+                    tb1.MaxLength = 3;
+                    tb2.MaxLength = 3;
+                    tb1.KeyDown += nud_KeyDown;
+                    tb2.KeyDown += nud_KeyDown;
+                    Controls.Add(tb1);
+                    Controls.Add(tb2);
+                    changingDelay = false;
+                    tb1.Location = new Point(lVMacros.Location.X + lVMacros.SelectedItems[0].Position.X, lVMacros.Location.Y + lVMacros.SelectedItems[0].Position.Y);
+                    tb1.Size = new Size(tb1.Size.Width / 2, tb1.Size.Height);
+                    tb2.Location = new Point(lVMacros.Location.X + lVMacros.SelectedItems[0].Position.X + tb1.Size.Width, lVMacros.Location.Y + lVMacros.SelectedItems[0].Position.Y);
+                    tb2.Size = tb1.Size;
+                    tb1.BringToFront();
+                    tb2.BringToFront();
+                    tb1.Text = heavy.ToString();
+                    tb2.Text = light.ToString();
+                    tb1.TextChanged += tb_TextChanged;
+                    tb2.TextChanged += tb_TextChanged;
+                    tb1.Focus();
+                }
             }
         }
 

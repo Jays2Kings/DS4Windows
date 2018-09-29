@@ -2,7 +2,7 @@
 
 namespace DS4Windows
 {
-    public class Log
+    public class AppLogger
     {
         public static event EventHandler<DebugEventArgs> TrayIconLog;
         public static event EventHandler<DebugEventArgs> GuiLog;

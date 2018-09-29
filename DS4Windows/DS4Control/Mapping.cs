@@ -1940,7 +1940,7 @@ namespace DS4Windows
                                     dets = action.details.Split(',');
                                 if (bool.Parse(dets[1]) && !actionDone[index].dev[device])
                                 {
-                                    Log.LogToTray("Controller " + (device + 1) + ": " +
+                                    AppLogger.LogToTray("Controller " + (device + 1) + ": " +
                                         ctrl.getDS4Battery(device), true);
                                 }
                                 if (bool.Parse(dets[2]))

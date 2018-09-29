@@ -2900,12 +2900,12 @@ namespace DS4Windows
                             if (xinputResult)
                             {
                                 dinputOnly[device] = false;
-                                Log.LogToGui("X360 Controller # " + xinputIndex + " connected", false);
+                                AppLogger.LogToGui("X360 Controller # " + xinputIndex + " connected", false);
                             }
                             else
                             {
                                 dinputOnly[device] = true;
-                                Log.LogToGui("X360 Controller # " + xinputIndex + " failed. Using DInput only mode", true);
+                                AppLogger.LogToGui("X360 Controller # " + xinputIndex + " failed. Using DInput only mode", true);
                             }
                         }
                         else if (xinputStatus && !xinputPlug)
@@ -2915,11 +2915,11 @@ namespace DS4Windows
                             if (xinputResult)
                             {
                                 dinputOnly[device] = true;
-                                Log.LogToGui("X360 Controller # " + xinputIndex + " unplugged", false);
+                                AppLogger.LogToGui("X360 Controller # " + xinputIndex + " unplugged", false);
                             }
                             else
                             {
-                                Log.LogToGui("X360 Controller # " + xinputIndex + " failed to unplug", true);
+                                AppLogger.LogToGui("X360 Controller # " + xinputIndex + " failed to unplug", true);
                             }
                         }
 
@@ -3355,7 +3355,7 @@ namespace DS4Windows
             m_Xdoc.AppendChild(Node);
 
             try { m_Xdoc.Save(m_linkedProfiles); }
-            catch (UnauthorizedAccessException) { Log.LogToGui("Unauthorized Access - Save failed to path: " + m_linkedProfiles, false); saved = false; }
+            catch (UnauthorizedAccessException) { AppLogger.LogToGui("Unauthorized Access - Save failed to path: " + m_linkedProfiles, false); saved = false; }
 
             return saved;
         }
@@ -3386,7 +3386,7 @@ namespace DS4Windows
             }
             else
             {
-                Log.LogToGui("LinkedProfiles.xml can't be found.", false);
+                AppLogger.LogToGui("LinkedProfiles.xml can't be found.", false);
                 loaded = false;
             }
 
@@ -3424,7 +3424,7 @@ namespace DS4Windows
                 }
 
                 try { linkedXdoc.Save(m_linkedProfiles); }
-                catch (UnauthorizedAccessException) { Log.LogToGui("Unauthorized Access - Save failed to path: " + m_linkedProfiles, false); saved = false; }
+                catch (UnauthorizedAccessException) { AppLogger.LogToGui("Unauthorized Access - Save failed to path: " + m_linkedProfiles, false); saved = false; }
             }
             else
             {

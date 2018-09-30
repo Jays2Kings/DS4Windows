@@ -707,6 +707,16 @@ namespace DS4Windows
             return m_Config.sATriggers[index];
         }
 
+        public static bool[] SATriggerCond => m_Config.sATriggerCond;
+        public static bool getSATriggerCond(int index)
+        {
+            return m_Config.sATriggerCond[index];
+        }
+        public static void SetSaTriggerCond(int index, string text)
+        {
+            m_Config.SetSaTriggerCond(index, text);
+        }
+
         public static int[][] TouchDisInvertTriggers => m_Config.touchDisInvertTriggers;
         public static int[] getTouchDisInvertTriggers(int index)
         {
@@ -1470,6 +1480,7 @@ namespace DS4Windows
         public bool[] useTPforControls = new bool[5] { false, false, false, false, false };
         public bool[] useSAforMouse = new bool[5] { false, false, false, false, false };
         public string[] sATriggers = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+        public bool[] sATriggerCond = new bool[5] { true, true, true, true, true };
         public int[][] touchDisInvertTriggers = new int[5][] { new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 },
             new int[1] { -1 }, new int[1] { -1 } };
         public int[] lsCurve = new int[5] { 0, 0, 0, 0, 0 };
@@ -1604,6 +1615,30 @@ namespace DS4Windows
             return id;
         }
 
+        private bool SaTriggerCondValue(string text)
+        {
+            bool result = true;
+            switch (text)
+            {
+                case "and": result = true; break;
+                case "or": result = false; break;
+                default: result = true; break;
+            }
+
+            return result;
+        }
+
+        private string SaTriggerCondString(bool value)
+        {
+            string result = value ? "and" : "or";
+            return result;
+        }
+
+        public void SetSaTriggerCond(int index, string text)
+        {
+            sATriggerCond[index] = SaTriggerCondValue(text);
+        }
+
         public bool SaveProfile(int device, string propath)
         {
             bool Saved = true;
@@ -1691,6 +1726,7 @@ namespace DS4Windows
                 XmlNode xmlUseTPforControls = m_Xdoc.CreateNode(XmlNodeType.Element, "UseTPforControls", null); xmlUseTPforControls.InnerText = useTPforControls[device].ToString(); Node.AppendChild(xmlUseTPforControls);
                 XmlNode xmlUseSAforMouse = m_Xdoc.CreateNode(XmlNodeType.Element, "UseSAforMouse", null); xmlUseSAforMouse.InnerText = useSAforMouse[device].ToString(); Node.AppendChild(xmlUseSAforMouse);
                 XmlNode xmlSATriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "SATriggers", null); xmlSATriggers.InnerText = sATriggers[device].ToString(); Node.AppendChild(xmlSATriggers);
+                XmlNode xmlSATriggerCond = m_Xdoc.CreateNode(XmlNodeType.Element, "SATriggerCond", null); xmlSATriggerCond.InnerText = SaTriggerCondString(sATriggerCond[device]); Node.AppendChild(xmlSATriggerCond);
 
                 XmlNode xmlTouchDisInvTriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "TouchDisInvTriggers", null);
                 string tempTouchDisInv = string.Join(",", touchDisInvertTriggers[device]);
@@ -2570,6 +2606,9 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SATriggers"); sATriggers[device] = Item.InnerText; }
                 catch { sATriggers[device] = ""; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SATriggerCond"); sATriggerCond[device] = SaTriggerCondValue(Item.InnerText); }
+                catch { sATriggerCond[device] = true; missingSetting = true; }
 
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TouchDisInvTriggers");
@@ -3747,6 +3786,7 @@ namespace DS4Windows
             useTPforControls[device] = false;
             useSAforMouse[device] = false;
             sATriggers[device] = string.Empty;
+            sATriggerCond[device] = true;
             touchDisInvertTriggers[device] = new int[1] { -1 };
             lsCurve[device] = rsCurve[device] = 0;
             gyroSensitivity[device] = 100;

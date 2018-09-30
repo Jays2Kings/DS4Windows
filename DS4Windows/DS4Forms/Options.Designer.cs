@@ -386,6 +386,8 @@
             this.optionsTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shareTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.psTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.triggerCondAndCombo = new System.Windows.Forms.ComboBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
@@ -3360,8 +3362,8 @@
             this.gBGyro.BackColor = System.Drawing.SystemColors.Control;
             this.gBGyro.Controls.Add(this.rBSAControls);
             this.gBGyro.Controls.Add(this.rBSAMouse);
-            this.gBGyro.Controls.Add(this.fLPTiltControls);
             this.gBGyro.Controls.Add(this.pnlSAMouse);
+            this.gBGyro.Controls.Add(this.fLPTiltControls);
             resources.ApplyResources(this.gBGyro, "gBGyro");
             this.gBGyro.Name = "gBGyro";
             this.gBGyro.TabStop = false;
@@ -3384,6 +3386,8 @@
             // 
             // pnlSAMouse
             // 
+            this.pnlSAMouse.Controls.Add(this.label26);
+            this.pnlSAMouse.Controls.Add(this.triggerCondAndCombo);
             this.pnlSAMouse.Controls.Add(this.cBGyroMouseXAxis);
             this.pnlSAMouse.Controls.Add(this.label16);
             this.pnlSAMouse.Controls.Add(this.lbGyroSmooth);
@@ -4106,6 +4110,21 @@
             resources.ApplyResources(this.psTouchInvStripMenuItem, "psTouchInvStripMenuItem");
             this.psTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
             // 
+            // triggerCondAndCombo
+            // 
+            this.triggerCondAndCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.triggerCondAndCombo.FormattingEnabled = true;
+            this.triggerCondAndCombo.Items.AddRange(new object[] {
+            resources.GetString("triggerCondAndCombo.Items"),
+            resources.GetString("triggerCondAndCombo.Items1")});
+            resources.ApplyResources(this.triggerCondAndCombo, "triggerCondAndCombo");
+            this.triggerCondAndCombo.Name = "triggerCondAndCombo";
+            // 
+            // label26
+            // 
+            resources.ApplyResources(this.label26, "label26");
+            this.label26.Name = "label26";
+            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -4593,5 +4612,7 @@
         private System.Windows.Forms.Label trackFrictionLb;
         private System.Windows.Forms.NumericUpDown trackFrictionNUD;
         private System.Windows.Forms.CheckBox trackballCk;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.ComboBox triggerCondAndCombo;
     }
 }

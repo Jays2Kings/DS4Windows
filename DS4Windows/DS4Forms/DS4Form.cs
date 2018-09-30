@@ -398,7 +398,7 @@ namespace DS4Windows
             }
 
             if (btnStartStop.Enabled && start)
-                TaskRunner.Delay(10).ContinueWith((t) => this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked())));
+                TaskRunner.Delay(50).ContinueWith((t) => this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked())));
         }
 
         private void populateHoverTextDict()

@@ -1020,6 +1020,13 @@ namespace DS4Windows
                         LogDebug("X360 Controller # " + xinputIndex + " unplugged");
                     }
 
+                    // Use Task to reset device synth state and commit it
+                    Task.Run(() =>
+                    {
+                        Mapping.deviceState[ind].SavePrevious(true);
+                        Mapping.Commit(ind);
+                    }).Wait();
+
                     string removed = Properties.Resources.ControllerWasRemoved.Replace("*Mac address*", (ind + 1).ToString());
                     if (device.getBattery() <= 20 &&
                         device.getConnectionType() == ConnectionType.BT && !device.isCharging())
@@ -1162,14 +1169,6 @@ namespace DS4Windows
                         }
                     }
                 }
-
-                /*if (_udpServer != null)
-                {
-                    DualShockPadMeta padDetail = new DualShockPadMeta();
-                    GetPadDetailForIdx(ind, ref padDetail);
-                    _udpServer.NewReportIncoming(ref padDetail, CurrentState[ind]);
-                }
-                */
 
                 // Output any synthetic events.
                 Mapping.Commit(ind);

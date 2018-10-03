@@ -126,6 +126,8 @@ namespace DS4Windows
             sixaxisTimer.Tick += ControllerReadout_Tick;
             sixaxisTimer.Interval = 1000 / 60;
 
+            triggerCondAndCombo.SelectedIndexChanged += TriggerCondAndCombo_SelectedIndexChanged;
+
             bnGyroZN.Text = Properties.Resources.TiltUp;
             bnGyroZP.Text = Properties.Resources.TiltDown;
             bnGyroXP.Text = Properties.Resources.TiltLeft;
@@ -140,6 +142,15 @@ namespace DS4Windows
             populateHoverIndexDict();
             populateHoverImageDict();
             populateHoverLabelDict();
+        }
+
+        private void TriggerCondAndCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                string temp = triggerCondAndCombo.SelectedItem.ToString().ToLower();
+                SetSaTriggerCond(device, triggerCondAndCombo.SelectedItem.ToString().ToLower());
+            }
         }
 
         public void SetFlowAutoScroll()
@@ -706,6 +717,7 @@ namespace DS4Windows
                 cBGyroSmooth.Checked = nUDGyroSmoothWeight.Enabled = GyroSmoothing[device];
                 nUDGyroSmoothWeight.Value = (decimal)(GyroSmoothingWeight[device]);
                 cBGyroMouseXAxis.SelectedIndex = GyroMouseHorizontalAxis[device];
+                triggerCondAndCombo.SelectedIndex = SATriggerCond[device] ? 0 : 1;
             }
             else
             {
@@ -823,6 +835,7 @@ namespace DS4Windows
                 cBGyroSmooth.Checked = false;
                 nUDGyroSmoothWeight.Value = 0.5m;
                 cBGyroMouseXAxis.SelectedIndex = 0;
+                triggerCondAndCombo.SelectedIndex = 0;
                 Set();
             }
             
@@ -1342,6 +1355,7 @@ namespace DS4Windows
                 ints.Add(-1);
 
             SATriggers[device] = string.Join(",", ints);
+            SetSaTriggerCond(device, triggerCondAndCombo.SelectedItem.ToString().ToLower());
 
             ints.Clear();
             for (int i = 0, trigLen = cMTouchDisableInvert.Items.Count; i < trigLen; i++)

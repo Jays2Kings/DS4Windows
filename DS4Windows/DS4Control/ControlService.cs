@@ -210,7 +210,7 @@ namespace DS4Windows
                         var errMsg = String.Format("Couldn't start UDP server on port {0}, outside applications won't be able to access pad data ({1})", UDP_SERVER_PORT, ex.SocketErrorCode);
 
                         LogDebug(errMsg, true);
-                        Log.LogToTray(errMsg, true, true);
+                        AppLogger.LogToTray(errMsg, true, true);
                     }
 
                     udpChangeStatus = false;
@@ -223,7 +223,7 @@ namespace DS4Windows
                     udpChangeStatus = true;
                     _udpServer.Stop();
                     _udpServer = null;
-                    Log.LogToGui("Closed UDP server", false);
+                    AppLogger.LogToGui("Closed UDP server", false);
                     udpChangeStatus = false;
                 });
             }
@@ -288,7 +288,7 @@ namespace DS4Windows
                 var errMsg = String.Format("Couldn't start UDP server on port {0}, outside applications won't be able to access pad data ({1})", UDP_SERVER_PORT, ex.SocketErrorCode);
 
                 LogDebug(errMsg, true);
-                Log.LogToTray(errMsg, true, true);
+                AppLogger.LogToTray(errMsg, true, true);
             }
 
             changingUDPPort = false;
@@ -301,7 +301,7 @@ namespace DS4Windows
                 string message = Properties.Resources.CouldNotOpenDS4.Replace("*Mac address*", device.getMacAddress()) + " " +
                     Properties.Resources.QuitOtherPrograms;
                 LogDebug(message, true);
-                Log.LogToTray(message, true);
+                AppLogger.LogToTray(message, true);
             }
         }
 
@@ -530,13 +530,13 @@ namespace DS4Windows
                             {
                                 string prolog = Properties.Resources.UsingProfile.Replace("*number*", (i + 1).ToString()).Replace("*Profile name*", ProfilePath[i]);
                                 LogDebug(prolog);
-                                Log.LogToTray(prolog);
+                                AppLogger.LogToTray(prolog);
                             }
                             else
                             {
                                 string prolog = Properties.Resources.NotUsingProfile.Replace("*number*", (i + 1).ToString());
                                 LogDebug(prolog);
-                                Log.LogToTray(prolog);
+                                AppLogger.LogToTray(prolog);
                             }
                         }
 
@@ -547,7 +547,7 @@ namespace DS4Windows
                 catch (Exception e)
                 {
                     LogDebug(e.Message);
-                    Log.LogToTray(e.Message);
+                    AppLogger.LogToTray(e.Message);
                 }
 
                 running = true;
@@ -567,7 +567,7 @@ namespace DS4Windows
                         var errMsg = String.Format("Couldn't start UDP server on port {0}, outside applications won't be able to access pad data ({1})", UDP_SERVER_PORT, ex.SocketErrorCode);
 
                         LogDebug(errMsg, true);
-                        Log.LogToTray(errMsg, true, true);
+                        AppLogger.LogToTray(errMsg, true, true);
                     }
                 }
             }
@@ -575,7 +575,7 @@ namespace DS4Windows
             {
                 string logMessage = "Could not connect to ViGEm. Please check the status of the System device in Device Manager";
                 LogDebug(logMessage);
-                Log.LogToTray(logMessage);
+                AppLogger.LogToTray(logMessage);
             }
 
             runHotPlug = true;
@@ -752,13 +752,13 @@ namespace DS4Windows
                             {
                                 string prolog = Properties.Resources.UsingProfile.Replace("*number*", (Index + 1).ToString()).Replace("*Profile name*", ProfilePath[Index]);
                                 LogDebug(prolog);
-                                Log.LogToTray(prolog);
+                                AppLogger.LogToTray(prolog);
                             }
                             else
                             {
                                 string prolog = Properties.Resources.NotUsingProfile.Replace("*number*", (Index + 1).ToString());
                                 LogDebug(prolog);
-                                Log.LogToTray(prolog);
+                                AppLogger.LogToTray(prolog);
                             }
 
                             break;
@@ -1091,6 +1091,13 @@ namespace DS4Windows
                         LogDebug("X360 Controller # " + (ind + 1) + " unplugged");
                     }
 
+                    // Use Task to reset device synth state and commit it
+                    Task.Run(() =>
+                    {
+                        Mapping.deviceState[ind].SavePrevious(true);
+                        Mapping.Commit(ind);
+                    }).Wait();
+
                     string removed = Properties.Resources.ControllerWasRemoved.Replace("*Mac address*", (ind + 1).ToString());
                     if (device.getBattery() <= 20 &&
                         device.getConnectionType() == ConnectionType.BT && !device.isCharging())
@@ -1099,7 +1106,7 @@ namespace DS4Windows
                     }
 
                     LogDebug(removed);
-                    Log.LogToTray(removed);
+                    AppLogger.LogToTray(removed);
                     /*Stopwatch sw = new Stopwatch();
                     sw.Start();
                     while (sw.ElapsedMilliseconds < XINPUT_UNPLUG_SETTLE_TIME)
@@ -1237,14 +1244,6 @@ namespace DS4Windows
                     */
                 }
 
-                /*if (_udpServer != null)
-                {
-                    DualShockPadMeta padDetail = new DualShockPadMeta();
-                    GetPadDetailForIdx(ind, ref padDetail);
-                    _udpServer.NewReportIncoming(ref padDetail, CurrentState[ind]);
-                }
-                */
-
                 // Output any synthetic events.
                 Mapping.Commit(ind);
 
@@ -1365,7 +1364,7 @@ namespace DS4Windows
                     getTouchSensitivity()[deviceID] = 0;
                     getScrollSensitivity()[deviceID] = 0;
                     LogDebug(Properties.Resources.TouchpadMovementOff);
-                    Log.LogToTray(Properties.Resources.TouchpadMovementOff);
+                    AppLogger.LogToTray(Properties.Resources.TouchpadMovementOff);
                     touchreleased[deviceID] = false;
                 }
                 else if (touchreleased[deviceID])
@@ -1373,7 +1372,7 @@ namespace DS4Windows
                     getTouchSensitivity()[deviceID] = oldtouchvalue[deviceID];
                     getScrollSensitivity()[deviceID] = oldscrollvalue[deviceID];
                     LogDebug(Properties.Resources.TouchpadMovementOn);
-                    Log.LogToTray(Properties.Resources.TouchpadMovementOn);
+                    AppLogger.LogToTray(Properties.Resources.TouchpadMovementOn);
                     touchreleased[deviceID] = false;
                 }
             }

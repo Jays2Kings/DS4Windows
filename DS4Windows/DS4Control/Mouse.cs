@@ -66,20 +66,26 @@ namespace DS4Windows
             {
                 s = dev.getCurrentStateRef();
 
-                triggeractivated = true;
                 useReverseRatchet = Global.getGyroTriggerTurns(deviceNum);
                 int i = 0;
                 string[] ss = Global.getSATriggers(deviceNum).Split(',');
+                bool andCond = Global.getSATriggerCond(deviceNum);
+                triggeractivated = andCond ? true : false;
                 if (!string.IsNullOrEmpty(ss[0]))
                 {
                     string s = string.Empty;
-                    for (int index = 0, arlen = ss.Length;
-                        triggeractivated && index < arlen; index++)
+                    for (int index = 0, arlen = ss.Length; index < arlen; index++)
                     {
                         s = ss[index];
-                        if (!(int.TryParse(s, out i) && getDS4ControlsByName(i)))
+                        if (andCond && !(int.TryParse(s, out i) && getDS4ControlsByName(i)))
                         {
                             triggeractivated = false;
+                            break;
+                        }
+                        else if (!andCond && int.TryParse(s, out i) && getDS4ControlsByName(i))
+                        {
+                            triggeractivated = true;
+                            break;
                         }
                     }
                 }

@@ -13,7 +13,7 @@ website at [ds4windows.com](http://ds4windows.com).
 
 - **[Main builds of DS4Windows](https://github.com/Ryochan7/DS4Windows/releases)**
 - Alternative builds:
-  - [UdpServer ViGEm build](http://ryochan7.xyz/ds4windows/test/DS4Windows_1.5.6_ViGEm_UdpServer_x64.zip)
+  - [UdpServer ViGEm build](http://ryochan7.xyz/ds4windows/test/DS4Windows_1.5.8_ViGEm_UdpServer_x64.zip)
 
 ## Requirements
 

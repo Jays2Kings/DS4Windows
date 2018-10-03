@@ -149,8 +149,8 @@ namespace DS4Windows
 
             Program.rootHub.Debug += On_Debug;
 
-            Log.GuiLog += On_Debug;
-            Log.TrayIconLog += ShowNotification;
+            AppLogger.GuiLog += On_Debug;
+            AppLogger.TrayIconLog += ShowNotification;
 
             Directory.CreateDirectory(appdatapath);
             if (!Save()) //if can't write to file
@@ -252,7 +252,7 @@ namespace DS4Windows
 
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
-            Log.LogToGui("DS4Windows version " + version, false);
+            AppLogger.LogToGui("DS4Windows version " + version, false);
 
             LoadP();
             LoadLinkedProfiles();
@@ -398,7 +398,7 @@ namespace DS4Windows
             }
 
             if (btnStartStop.Enabled && start)
-                TaskRunner.Delay(10).ContinueWith((t) => this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked())));
+                TaskRunner.Delay(50).ContinueWith((t) => this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked())));
         }
 
         private void populateHoverTextDict()
@@ -2493,7 +2493,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             {
                 RegistryKey key = Registry.LocalMachine.CreateSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters");
                 key.SetValue("AffectedDevices", Program.rootHub.affectedDevs.ToArray(), RegistryValueKind.MultiString);
-                Log.LogToGui("Wrote HidGuardian Device List to Registry", false);
+                AppLogger.LogToGui("Wrote HidGuardian Device List to Registry", false);
             }
             catch { }
         }
@@ -2503,7 +2503,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             try
             {
                 Registry.LocalMachine.DeleteSubKeyTree(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist");
-                Log.LogToGui("Cleared HidGuardian Whitelist", false);
+                AppLogger.LogToGui("Cleared HidGuardian Whitelist", false);
                 Program.rootHub.CreateHidGuardKey();
             }
             catch { }

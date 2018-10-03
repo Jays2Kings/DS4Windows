@@ -1225,7 +1225,7 @@ namespace DS4Windows
 
         private void lVMacros_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (lVMacros.SelectedIndices[0] >= 0)
+            if (lVMacros.SelectedIndices.Count != 0)
             {
                 if (lVMacros.SelectedItems[0].ImageIndex == 2)
                 {

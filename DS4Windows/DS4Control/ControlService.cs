@@ -459,6 +459,10 @@ namespace DS4Windows
                                 LogDebug("X360 Controller # " + xinputIndex + " failed. Using DInput only mode");
                             }
                         }
+                        else
+                        {
+                            useDInputOnly[i] = true;
+                        }
 
                         int tempIdx = i;
                         device.Report += (sender, e) =>
@@ -708,6 +712,10 @@ namespace DS4Windows
                                     useDInputOnly[Index] = true;
                                     LogDebug("X360 Controller # " + xinputIndex + " failed. Using DInput only mode");
                                 }
+                            }
+                            else
+                            {
+                                useDInputOnly[Index] = true;
                             }
 
                             TouchPadOn(Index, device);

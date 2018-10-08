@@ -2557,7 +2557,6 @@ namespace DS4Windows
                 {
                     if (device < 4)
                     {
-                        //bool changed = false;
                         DS4Device tempDevice = control.DS4Controllers[device];
                         bool exists = tempBool = (tempDevice != null);
                         bool synced = tempBool = exists ? tempDevice.isSynced() : false;
@@ -2569,23 +2568,17 @@ namespace DS4Windows
                                 Global.useDInputOnly[device] = true;
                                 xinputPlug = false;
                                 xinputStatus = true;
-
-                                //changed = true;
                             }
                             else if (synced && isAlive)
                             {
                                 Global.useDInputOnly[device] = false;
                                 xinputPlug = true;
                                 xinputStatus = true;
-
-                                //changed = true;
                             }
-
-                            /*if (changed)
+                            else if (!synced)
                             {
-                                System.Threading.Thread.Sleep(Global.XINPUT_UNPLUG_SETTLE_TIME);
+                                Global.useDInputOnly[device] = true;
                             }
-                            */
                         }
                     }
                 }

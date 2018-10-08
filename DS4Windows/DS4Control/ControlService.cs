@@ -499,6 +499,10 @@ namespace DS4Windows
                             };
                             LogDebug("X360 Controller # " + (i + 1) + " connected");
                         }
+                        else
+                        {
+                            useDInputOnly[i] = true;
+                        }
 
                         int tempIdx = i;
                         device.Report += (sender, e) =>
@@ -741,6 +745,10 @@ namespace DS4Windows
                                     setRumble(args.SmallMotor, args.LargeMotor, devIndex);
                                 };
                                 LogDebug("X360 Controller # " + (Index + 1) + " connected");
+                            }
+                            else
+                            {
+                                useDInputOnly[Index] = true;
                             }
 
                             TouchPadOn(Index, device);

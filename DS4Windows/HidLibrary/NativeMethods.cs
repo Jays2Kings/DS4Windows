@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Security;
 using Microsoft.Win32.SafeHandles; 
 namespace DS4Windows
 {
+    [SuppressUnmanagedCodeSecurity]
     internal static class NativeMethods
     {
         [StructLayout(LayoutKind.Sequential)]

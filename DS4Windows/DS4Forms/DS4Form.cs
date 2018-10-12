@@ -55,6 +55,7 @@ namespace DS4Windows
         bool turnOffTemp;
         bool runningBat;
         private bool changingService;
+        private static DS4Form instance;
         Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();
         // 0 index is used for application version text. 1 - 4 indices are used for controller status
         string[] notifyText = new string[5]
@@ -397,6 +398,7 @@ namespace DS4Windows
                 }
             }
 
+            instance = this;
             if (btnStartStop.Enabled && start)
                 TaskRunner.Delay(50).ContinueWith((t) => this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked())));
         }
@@ -525,29 +527,29 @@ namespace DS4Windows
             return text.ToString();
         }
 
-        private void OnPowerChange(object s, PowerModeChangedEventArgs e)
+        private static void OnPowerChange(object s, PowerModeChangedEventArgs e)
         {
             switch (e.Mode)
             {
                 case PowerModes.Resume:
                 {
-                    if (btnStartStop.Text == Properties.Resources.StartText && wasrunning)
+                    if (instance.btnStartStop.Text == Properties.Resources.StartText && instance.wasrunning)
                     {
                         DS4LightBar.shuttingdown = false;
-                        wasrunning = false;
+                        instance.wasrunning = false;
                         Program.rootHub.suspending = false;
-                        BtnStartStop_Clicked();
+                        instance.BtnStartStop_Clicked();
                     }
                     break;
                 }
                 case PowerModes.Suspend:
                 {
-                    if (btnStartStop.Text == Properties.Resources.StopText)
+                    if (instance.btnStartStop.Text == Properties.Resources.StopText)
                     {
                         DS4LightBar.shuttingdown = true;
                         Program.rootHub.suspending = true;
-                        BtnStartStop_Clicked();
-                        wasrunning = true;
+                        instance.BtnStartStop_Clicked();
+                        instance.wasrunning = true;
                     }
                     break;
                 }

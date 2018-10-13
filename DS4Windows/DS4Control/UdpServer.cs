@@ -69,7 +69,8 @@ namespace DS4Windows
         private uint serverId;
         private bool running;
         private byte[] recvBuffer = new byte[1024];
-        private Stack<SocketAsyncEventArgs> argsStack;
+        private SocketAsyncEventArgs[] argsList;
+        private int listInd = 0;
 
         public delegate void GetPadDetail(int padIdx, ref DualShockPadMeta meta);
 
@@ -78,12 +79,11 @@ namespace DS4Windows
         public UdpServer(GetPadDetail getPadDetailDel)
         {
             portInfoGet = getPadDetailDel;
-            argsStack = new Stack<SocketAsyncEventArgs>(20);
+            argsList = new SocketAsyncEventArgs[20];
             for (int num = 0; num <= 19; num++)
             {
                 SocketAsyncEventArgs args = new SocketAsyncEventArgs();
-                args.Completed += ClearSentData;
-                argsStack.Push(args);
+                argsList[num] = args;
             }
         }
 
@@ -182,10 +182,13 @@ namespace DS4Windows
             FinishPacket(packetData);
 
             //try { udpSock.SendTo(packetData, clientEP); }
-            SocketAsyncEventArgs args = argsStack.Pop();
+            SocketAsyncEventArgs args = argsList[listInd];
             args.RemoteEndPoint = clientEP;
             args.SetBuffer(packetData, 0, packetData.Length);
-            try { udpSock.SendToAsync(args); }
+            listInd = ++listInd % 20;
+            try {
+                udpSock.SendToAsync(args);
+            }
             catch (Exception e) { }
         }
 
@@ -639,23 +642,19 @@ namespace DS4Windows
                 foreach (var cl in clientsList)
                 {
                     //try { udpSock.SendTo(outputData, cl); }
-                    SocketAsyncEventArgs args = argsStack.Pop();
+                    SocketAsyncEventArgs args = argsList[listInd];
                     args.RemoteEndPoint = cl;
                     args.SetBuffer(outputData, 0, outputData.Length);
-                    try { bool result = udpSock.SendToAsync(args); if (!result) argsStack.Push(args); }
+                    listInd = ++listInd % 20;
+                    try {
+                        udpSock.SendToAsync(args);
+                    }
                     catch (SocketException ex) { }
                 }
             }
 
             clientsList.Clear();
             clientsList = null;
-        }
-
-        private void ClearSentData(object sender, SocketAsyncEventArgs args)
-        {
-            argsStack.Push(args);
-            //args.Dispose();
-            //args = null;
         }
     }
 }

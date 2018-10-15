@@ -1091,15 +1091,15 @@ namespace DS4Windows
                         error = string.Empty;
 
                     cState.CopyTo(pState);
-                }
 
-                lock (eventQueueLock)
-                {
-                    Action tempAct = null;
-                    for (int actInd = 0, actLen = eventQueue.Count; actInd < actLen; actInd++)
+                    lock (eventQueueLock)
                     {
-                        tempAct = eventQueue.Dequeue();
-                        tempAct.Invoke();
+                        Action tempAct = null;
+                        for (int actInd = 0, actLen = eventQueue.Count; actInd < actLen; actInd++)
+                        {
+                            tempAct = eventQueue.Dequeue();
+                            tempAct.Invoke();
+                        }
                     }
                 }
             }

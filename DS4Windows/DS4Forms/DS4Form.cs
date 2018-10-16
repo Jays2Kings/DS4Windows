@@ -1037,14 +1037,29 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         private int hotplugCounter = 0;
         private object hotplugCounterLock = new object();
         private const int DBT_DEVNODES_CHANGED = 0x0007;
+        private const int DBT_DEVICEARRIVAL = 0x8000;
+        private const int DBT_DEVICEREMOVECOMPLETE = 0x8004;
         protected override void WndProc(ref Message m)
         {
-            if (m.Msg == ScpDevice.WM_DEVICECHANGE)
+            if (m.Msg == ScpDevice.WM_CREATE)
+            {
+                Guid hidGuid = new Guid();
+                NativeMethods.HidD_GetHidGuid(ref hidGuid);
+                IntPtr outHandle = new IntPtr();
+                bool result = ScpDevice.RegisterNotify(this.Handle, hidGuid, ref outHandle);
+                if (!result)
+                {
+                    ScpForm_Closing(this,
+                        new FormClosingEventArgs(CloseReason.ApplicationExitCall, false));
+                }
+            }
+            else if (m.Msg == ScpDevice.WM_DEVICECHANGE)
             {
                 if (runHotPlug)
                 {
                     Int32 Type = m.WParam.ToInt32();
-                    if (Type == DBT_DEVNODES_CHANGED)
+                    if (Type == DBT_DEVICEARRIVAL ||
+                        Type == DBT_DEVICEREMOVECOMPLETE)
                     {
                         lock (hotplugCounterLock)
                         {

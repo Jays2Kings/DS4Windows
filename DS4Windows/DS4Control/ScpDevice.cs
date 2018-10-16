@@ -181,6 +181,7 @@ namespace DS4Windows
         public const Int32 DEVICE_NOTIFY_SERVICE_HANDLE         = 0x0001;
         public const Int32 DEVICE_NOTIFY_ALL_INTERFACE_CLASSES  = 0x0004;
 
+        public const Int32 WM_CREATE                            = 0x0001;
         public const Int32 WM_DEVICECHANGE                      = 0x0219;
 
         public const Int32 DIGCF_PRESENT                        = 0x0002;

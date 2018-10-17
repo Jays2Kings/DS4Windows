@@ -17,9 +17,11 @@ using System.Drawing.Drawing2D;
 using TaskRunner = System.Threading.Tasks.Task;
 using NonFormTimer = System.Timers.Timer;
 using static DS4Windows.Global;
+using System.Security;
 
 namespace DS4Windows
 {
+    [SuppressUnmanagedCodeSecurity]
     public partial class DS4Form : Form
     {
         public string[] cmdArguments;

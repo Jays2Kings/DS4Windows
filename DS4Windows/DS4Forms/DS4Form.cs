@@ -62,8 +62,9 @@ namespace DS4Windows
             { "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion,
             string.Empty, string.Empty, string.Empty, string.Empty };
 
-        internal const string UPDATER_VERSION = "1.2.8.0";
-        internal static int WM_QUERYENDSESSION = 0x11;
+        private const string UPDATER_VERSION = "1.2.8.0";
+        private const int WM_QUERYENDSESSION = 0x11;
+        private const int WM_CLOSE = 0x10;
         internal string updaterExe = Environment.Is64BitProcess ? "DS4Updater.exe" : "DS4Updater_x86.exe";
 
         [DllImport("user32.dll")]
@@ -1041,42 +1042,55 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         private const int DBT_DEVICEREMOVECOMPLETE = 0x8004;
         protected override void WndProc(ref Message m)
         {
-            if (m.Msg == ScpDevice.WM_CREATE)
+            switch (m.Msg)
             {
-                Guid hidGuid = new Guid();
-                NativeMethods.HidD_GetHidGuid(ref hidGuid);
-                IntPtr outHandle = new IntPtr();
-                bool result = ScpDevice.RegisterNotify(this.Handle, hidGuid, ref outHandle);
-                if (!result)
+                case ScpDevice.WM_CREATE:
                 {
-                    ScpForm_Closing(this,
-                        new FormClosingEventArgs(CloseReason.ApplicationExitCall, false));
-                }
-            }
-            else if (m.Msg == ScpDevice.WM_DEVICECHANGE)
-            {
-                if (runHotPlug)
-                {
-                    Int32 Type = m.WParam.ToInt32();
-                    if (Type == DBT_DEVICEARRIVAL ||
-                        Type == DBT_DEVICEREMOVECOMPLETE)
+                    Guid hidGuid = new Guid();
+                    NativeMethods.HidD_GetHidGuid(ref hidGuid);
+                    IntPtr outHandle = new IntPtr();
+                    bool result = ScpDevice.RegisterNotify(this.Handle, hidGuid, ref outHandle);
+                    if (!result)
                     {
-                        lock (hotplugCounterLock)
+                        ScpForm_Closing(this,
+                            new FormClosingEventArgs(CloseReason.ApplicationExitCall, false));
+                    }
+                    break;
+                }
+                case ScpDevice.WM_DEVICECHANGE:
+                {
+                    if (runHotPlug)
+                    {
+                        Int32 Type = m.WParam.ToInt32();
+                        if (Type == DBT_DEVICEARRIVAL ||
+                            Type == DBT_DEVICEREMOVECOMPLETE)
                         {
-                            hotplugCounter++;
-                        }
+                            lock (hotplugCounterLock)
+                            {
+                                hotplugCounter++;
+                            }
 
-                        if (!inHotPlug)
-                        {
-                            inHotPlug = true;
-                            TaskRunner.Run(() => { Thread.Sleep(1500); InnerHotplug2(); });
+                            if (!inHotPlug)
+                            {
+                                inHotPlug = true;
+                                TaskRunner.Run(() => { Thread.Sleep(1500); InnerHotplug2(); });
+                            }
                         }
                     }
+                    break;
                 }
+                case WM_CLOSE:
+                {
+                    ScpDevice.UnregisterNotify(Handle);
+                    break;
+                }
+                case WM_QUERYENDSESSION:
+                {
+                    systemShutdown = true;
+                    break;
+                }
+                default: break;
             }
-
-            if (m.Msg == WM_QUERYENDSESSION)
-                systemShutdown = true;
 
             // If this is WM_QUERYENDSESSION, the closing event should be
             // raised in the base WndProc.

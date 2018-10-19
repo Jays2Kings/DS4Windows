@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Security;
 using System.Windows.Forms;
 
 namespace DS4Windows
 {
+    [SuppressUnmanagedCodeSecurity]
     [System.ComponentModel.DesignerCategory("")]
     public class AdvancedColorDialog : ColorDialog
     {

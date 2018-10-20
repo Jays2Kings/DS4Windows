@@ -1,8 +1,6 @@
 # TODO
 
-* ~~Perform some final cleanup and release version 1.5~~
-* ~~Attempt to remove reliance on the main thread when disconnecting a device.
-Currently used to delay hotplug routine~~
+* Look into adding periodic rumble updates when data does not change
 * Look into newer version of HidGuardian
 * Look into distributing profile properties around various objects
 rather than using a lot of getters to obtain properties each poll.

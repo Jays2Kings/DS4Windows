@@ -1257,13 +1257,16 @@
             // 
             // languagePackComboBox1
             // 
+            this.languagePackComboBox1.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.languagePackComboBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.languagePackComboBox1.CausesValidation = false;
             resources.ApplyResources(this.languagePackComboBox1, "languagePackComboBox1");
             this.languagePackComboBox1.Name = "languagePackComboBox1";
             this.languagePackComboBox1.SelectedValueChanged += new System.EventHandler(this.languagePackComboBox1_SelectedValueChanged);
             // 
             // flowLayoutPanel1
             // 
-            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.Window;
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel1.Controls.Add(this.linkProfiles);
             this.flowLayoutPanel1.Controls.Add(this.lnkControllers);
@@ -1274,6 +1277,7 @@
             this.flowLayoutPanel1.Controls.Add(this.hidGuardWhiteList);
             this.flowLayoutPanel1.Controls.Add(this.clrHidGuardWlistLinkLabel);
             this.flowLayoutPanel1.Controls.Add(this.hidGuardRegLinkLabel);
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 

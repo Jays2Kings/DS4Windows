@@ -326,7 +326,6 @@ namespace DS4Windows
                 hidGuardWhiteList.Visible = false;
                 clrHidGuardWlistLinkLabel.Visible = false;
                 hidGuardRegLinkLabel.Visible = false;
-                linkSplitLabel.Visible = false;
             }
             else
             {

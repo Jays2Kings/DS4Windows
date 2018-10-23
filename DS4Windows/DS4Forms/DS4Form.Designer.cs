@@ -165,7 +165,6 @@
             this.linkUninstall = new System.Windows.Forms.LinkLabel();
             this.linkSetup = new System.Windows.Forms.LinkLabel();
             this.lLBUpdate = new System.Windows.Forms.LinkLabel();
-            this.linkSplitLabel = new System.Windows.Forms.Label();
             this.hidGuardWhiteList = new System.Windows.Forms.LinkLabel();
             this.clrHidGuardWlistLinkLabel = new System.Windows.Forms.LinkLabel();
             this.hidGuardRegLinkLabel = new System.Windows.Forms.LinkLabel();
@@ -1273,7 +1272,6 @@
             this.flowLayoutPanel1.Controls.Add(this.linkUninstall);
             this.flowLayoutPanel1.Controls.Add(this.linkSetup);
             this.flowLayoutPanel1.Controls.Add(this.lLBUpdate);
-            this.flowLayoutPanel1.Controls.Add(this.linkSplitLabel);
             this.flowLayoutPanel1.Controls.Add(this.hidGuardWhiteList);
             this.flowLayoutPanel1.Controls.Add(this.clrHidGuardWlistLinkLabel);
             this.flowLayoutPanel1.Controls.Add(this.hidGuardRegLinkLabel);
@@ -1315,14 +1313,6 @@
             this.lLBUpdate.Name = "lLBUpdate";
             this.lLBUpdate.TabStop = true;
             this.lLBUpdate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLBUpdate_LinkClicked);
-            // 
-            // linkSplitLabel
-            // 
-            resources.ApplyResources(this.linkSplitLabel, "linkSplitLabel");
-            this.linkSplitLabel.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.linkSplitLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.linkSplitLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.linkSplitLabel.Name = "linkSplitLabel";
             // 
             // hidGuardWhiteList
             // 
@@ -1599,7 +1589,6 @@
         private System.Windows.Forms.LinkLabel hidGuardWhiteList;
         private System.Windows.Forms.LinkLabel clrHidGuardWlistLinkLabel;
         private System.Windows.Forms.LinkLabel hidGuardRegLinkLabel;
-        private System.Windows.Forms.Label linkSplitLabel;
         private System.Windows.Forms.ToolStripMenuItem openProgramFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem disconToolStripMenuItem;

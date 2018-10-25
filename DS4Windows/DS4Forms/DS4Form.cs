@@ -57,6 +57,7 @@ namespace DS4Windows
         bool turnOffTemp;
         bool runningBat;
         private bool changingService;
+        private IntPtr regHandle = new IntPtr();
         private static DS4Form instance;
         Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();
         // 0 index is used for application version text. 1 - 4 indices are used for controller status
@@ -1049,8 +1050,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 {
                     Guid hidGuid = new Guid();
                     NativeMethods.HidD_GetHidGuid(ref hidGuid);
-                    IntPtr outHandle = new IntPtr();
-                    bool result = ScpDevice.RegisterNotify(this.Handle, hidGuid, ref outHandle);
+                    bool result = ScpDevice.RegisterNotify(this.Handle, hidGuid, ref regHandle);
                     if (!result)
                     {
                         ScpForm_Closing(this,
@@ -1078,11 +1078,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                             }
                         }
                     }
-                    break;
-                }
-                case WM_CLOSE:
-                {
-                    ScpDevice.UnregisterNotify(Handle);
                     break;
                 }
                 case WM_QUERYENDSESSION:
@@ -2176,6 +2171,14 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                         e.Cancel = true;
                         return;
                     }
+                    else
+                    {
+                        ScpDevice.UnregisterNotify(regHandle);
+                    }
+                }
+                else
+                {
+                    ScpDevice.UnregisterNotify(Handle);
                 }
             }
             else if (userClosing && closeMini && !contextclose)

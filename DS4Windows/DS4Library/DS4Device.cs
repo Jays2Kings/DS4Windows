@@ -398,6 +398,7 @@ namespace DS4Windows
         private bool timeoutExecuted = false;
         private bool timeoutEvent = false;
         private bool runCalib;
+        private bool hasInputEvts = false;
         public bool ShouldRunCalib()
         {
             return runCalib;
@@ -1090,13 +1091,18 @@ namespace DS4Windows
 
                     cState.CopyTo(pState);
 
-                    lock (eventQueueLock)
+                    if (hasInputEvts)
                     {
-                        Action tempAct = null;
-                        for (int actInd = 0, actLen = eventQueue.Count; actInd < actLen; actInd++)
+                        lock (eventQueueLock)
                         {
-                            tempAct = eventQueue.Dequeue();
-                            tempAct.Invoke();
+                            Action tempAct = null;
+                            for (int actInd = 0, actLen = eventQueue.Count; actInd < actLen; actInd++)
+                            {
+                                tempAct = eventQueue.Dequeue();
+                                tempAct.Invoke();
+                            }
+
+                            hasInputEvts = false;
                         }
                     }
                 }
@@ -1467,6 +1473,7 @@ namespace DS4Windows
             lock (eventQueueLock)
             {
                 eventQueue.Enqueue(act);
+                hasInputEvts = true;
             }
         }
 

@@ -150,7 +150,6 @@ namespace DS4Windows
         public DateTime lastActive = DateTime.UtcNow;
         public DateTime firstActive = DateTime.UtcNow;
         private bool charging;
-        private bool outputRumble = false;
         private int warnInterval = WARN_INTERVAL_USB;
         public int getWarnInterval()
         {
@@ -649,7 +648,6 @@ namespace DS4Windows
                             }
                             //outReportBuffer.CopyTo(outputReport, 0);
                             outputPendCount--;
-                            outputRumble = false;
                         }
 
                         currentRumble = true;
@@ -1175,7 +1173,6 @@ namespace DS4Windows
 
                 if (synchronous)
                 {
-                    outputRumble = false;
                     outputPendCount = 3;
 
                     if (change)
@@ -1215,7 +1212,6 @@ namespace DS4Windows
                             outputPendCount = 3;
                         }
 
-                        outputRumble = true;
                         Monitor.Pulse(outReportBuffer);
                     }
                 }

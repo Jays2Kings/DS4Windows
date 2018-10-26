@@ -1186,9 +1186,8 @@ namespace DS4Windows
                         if (usingBT)
                         {
                             Monitor.Enter(outputReport);
+                            outReportBuffer.CopyTo(outputReport, 0);
                         }
-
-                        outReportBuffer.CopyTo(outputReport, 0);
 
                         try
                         {

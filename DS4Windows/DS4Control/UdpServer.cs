@@ -183,9 +183,9 @@ namespace DS4Windows
 
             //try { udpSock.SendTo(packetData, clientEP); }
             SocketAsyncEventArgs args = argsList[listInd];
+            listInd = ++listInd % 20;
             args.RemoteEndPoint = clientEP;
             args.SetBuffer(packetData, 0, packetData.Length);
-            listInd = ++listInd % 20;
             try {
                 udpSock.SendToAsync(args);
             }
@@ -643,9 +643,9 @@ namespace DS4Windows
                 {
                     //try { udpSock.SendTo(outputData, cl); }
                     SocketAsyncEventArgs args = argsList[listInd];
+                    listInd = ++listInd % 20;
                     args.RemoteEndPoint = cl;
                     args.SetBuffer(outputData, 0, outputData.Length);
-                    listInd = ++listInd % 20;
                     try {
                         udpSock.SendToAsync(args);
                     }

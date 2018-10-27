@@ -150,7 +150,6 @@ namespace DS4Windows
         public DateTime lastActive = DateTime.UtcNow;
         public DateTime firstActive = DateTime.UtcNow;
         private bool charging;
-        private bool outputRumble = false;
         private int warnInterval = WARN_INTERVAL_USB;
         public int getWarnInterval()
         {
@@ -399,6 +398,7 @@ namespace DS4Windows
         private bool timeoutExecuted = false;
         private bool timeoutEvent = false;
         private bool runCalib;
+        private bool hasInputEvts = false;
         public bool ShouldRunCalib()
         {
             return runCalib;
@@ -539,6 +539,14 @@ namespace DS4Windows
                     timeoutCheckThread.IsBackground = true;
                     timeoutCheckThread.Start();
                 }
+                else
+                {
+                    ds4Output = new Thread(OutReportCopy);
+                    ds4Output.Priority = ThreadPriority.AboveNormal;
+                    ds4Output.Name = "DS4 Arr Copy thread: " + Mac;
+                    ds4Output.IsBackground = true;
+                    ds4Output.Start();
+                }
 
                 ds4Input = new Thread(performDs4Input);
                 ds4Input.Priority = ThreadPriority.AboveNormal;
@@ -649,7 +657,6 @@ namespace DS4Windows
                             }
                             //outReportBuffer.CopyTo(outputReport, 0);
                             outputPendCount--;
-                            outputRumble = false;
                         }
 
                         currentRumble = true;
@@ -1092,13 +1099,18 @@ namespace DS4Windows
 
                     cState.CopyTo(pState);
 
-                    lock (eventQueueLock)
+                    if (hasInputEvts)
                     {
-                        Action tempAct = null;
-                        for (int actInd = 0, actLen = eventQueue.Count; actInd < actLen; actInd++)
+                        lock (eventQueueLock)
                         {
-                            tempAct = eventQueue.Dequeue();
-                            tempAct.Invoke();
+                            Action tempAct = null;
+                            for (int actInd = 0, actLen = eventQueue.Count; actInd < actLen; actInd++)
+                            {
+                                tempAct = eventQueue.Dequeue();
+                                tempAct.Invoke();
+                            }
+
+                            hasInputEvts = false;
                         }
                     }
                 }
@@ -1175,7 +1187,6 @@ namespace DS4Windows
 
                 if (synchronous)
                 {
-                    outputRumble = false;
                     outputPendCount = 3;
 
                     if (change)
@@ -1183,9 +1194,8 @@ namespace DS4Windows
                         if (usingBT)
                         {
                             Monitor.Enter(outputReport);
+                            outReportBuffer.CopyTo(outputReport, 0);
                         }
-
-                        outReportBuffer.CopyTo(outputReport, 0);
 
                         try
                         {
@@ -1201,6 +1211,10 @@ namespace DS4Windows
                         {
                             Monitor.Exit(outputReport);
                         }
+                        else
+                        {
+                            Monitor.Pulse(outReportBuffer);
+                        }
                     }
                 }
                 else
@@ -1215,7 +1229,6 @@ namespace DS4Windows
                             outputPendCount = 3;
                         }
 
-                        outputRumble = true;
                         Monitor.Pulse(outReportBuffer);
                     }
                 }
@@ -1226,6 +1239,22 @@ namespace DS4Windows
                 StopOutputUpdate();
                 exitOutputThread = true;
             }
+        }
+
+        public void OutReportCopy()
+        {
+            try
+            {
+                while (!exitOutputThread)
+                {
+                    lock (outReportBuffer)
+                    {
+                        outReportBuffer.CopyTo(outputReport, 0);
+                        Monitor.Wait(outReportBuffer);
+                    }
+                }
+            }
+            catch (ThreadInterruptedException) { }
         }
 
         public bool DisconnectBT(bool callRemoval = false)
@@ -1471,6 +1500,7 @@ namespace DS4Windows
             lock (eventQueueLock)
             {
                 eventQueue.Enqueue(act);
+                hasInputEvts = true;
             }
         }
 

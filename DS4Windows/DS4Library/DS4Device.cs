@@ -539,6 +539,14 @@ namespace DS4Windows
                     timeoutCheckThread.IsBackground = true;
                     timeoutCheckThread.Start();
                 }
+                else
+                {
+                    ds4Output = new Thread(OutReportCopy);
+                    ds4Output.Priority = ThreadPriority.AboveNormal;
+                    ds4Output.Name = "DS4 Arr Copy thread: " + Mac;
+                    ds4Output.IsBackground = true;
+                    ds4Output.Start();
+                }
 
                 ds4Input = new Thread(performDs4Input);
                 ds4Input.Priority = ThreadPriority.AboveNormal;
@@ -1203,6 +1211,10 @@ namespace DS4Windows
                         {
                             Monitor.Exit(outputReport);
                         }
+                        else
+                        {
+                            Monitor.Pulse(outReportBuffer);
+                        }
                     }
                 }
                 else
@@ -1227,6 +1239,22 @@ namespace DS4Windows
                 StopOutputUpdate();
                 exitOutputThread = true;
             }
+        }
+
+        public void OutReportCopy()
+        {
+            try
+            {
+                while (!exitOutputThread)
+                {
+                    lock (outReportBuffer)
+                    {
+                        outReportBuffer.CopyTo(outputReport, 0);
+                        Monitor.Wait(outReportBuffer);
+                    }
+                }
+            }
+            catch (ThreadInterruptedException) { }
         }
 
         public bool DisconnectBT(bool callRemoval = false)

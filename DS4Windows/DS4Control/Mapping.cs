@@ -32,7 +32,7 @@ namespace DS4Windows
             }
             public Dictionary<UInt16, KeyPresses> keyPresses = new Dictionary<UInt16, KeyPresses>();
 
-            public void SavePrevious(bool performClear)
+            public void SaveToPrevious(bool performClear)
             {
                 previousClicks = currentClicks;
                 if (performClear)
@@ -367,9 +367,9 @@ namespace DS4Windows
                         }
                     }
                 }
-                globalState.SavePrevious(false);
+                globalState.SaveToPrevious(false);
             }
-            state.SavePrevious(true);
+            state.SaveToPrevious(true);
         }
 
         public enum Click { None, Left, Middle, Right, Fourth, Fifth, WUP, WDOWN };

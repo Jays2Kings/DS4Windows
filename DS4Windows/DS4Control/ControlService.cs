@@ -1102,7 +1102,6 @@ namespace DS4Windows
                     // Use Task to reset device synth state and commit it
                     Task.Run(() =>
                     {
-                        Mapping.deviceState[ind].SavePrevious(true);
                         Mapping.Commit(ind);
                     }).Wait();
 

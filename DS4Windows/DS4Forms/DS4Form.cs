@@ -2178,7 +2178,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 }
                 else
                 {
-                    ScpDevice.UnregisterNotify(Handle);
+                    ScpDevice.UnregisterNotify(regHandle);
                 }
             }
             else if (userClosing && closeMini && !contextclose)

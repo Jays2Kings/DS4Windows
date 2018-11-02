@@ -71,8 +71,8 @@ namespace DS4Windows
         private bool running;
         private byte[] recvBuffer = new byte[1024];
         private SocketAsyncEventArgs[] argsList;
-        private volatile int listInd = 0;
-        private object poolLock = new object();
+        private int listInd = 0;
+        private ReaderWriterLockSlim poolLock = new ReaderWriterLockSlim();
 
         public delegate void GetPadDetail(int padIdx, ref DualShockPadMeta meta);
 
@@ -185,11 +185,10 @@ namespace DS4Windows
 
             //try { udpSock.SendTo(packetData, clientEP); }
             int temp = 0;
-            lock (poolLock)
-            {
-                listInd = ++listInd % 20;
-                temp = listInd;
-            }
+            poolLock.EnterWriteLock();
+            listInd = ++listInd % 20;
+            temp = listInd;
+            poolLock.ExitWriteLock();
 
             SocketAsyncEventArgs args = argsList[temp];
             args.RemoteEndPoint = clientEP;
@@ -651,11 +650,10 @@ namespace DS4Windows
                 {
                     //try { udpSock.SendTo(outputData, cl); }
                     int temp = 0;
-                    lock (poolLock)
-                    {
-                        listInd = ++listInd % 20;
-                        temp = listInd;
-                    }
+                    poolLock.EnterWriteLock();
+                    listInd = ++listInd % 20;
+                    temp = listInd;
+                    poolLock.ExitWriteLock();
 
                     SocketAsyncEventArgs args = argsList[temp];
                     args.RemoteEndPoint = cl;

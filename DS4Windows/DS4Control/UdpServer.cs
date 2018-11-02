@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.ComponentModel;
+using System.Threading;
 
 namespace DS4Windows
 {
@@ -70,7 +71,8 @@ namespace DS4Windows
         private bool running;
         private byte[] recvBuffer = new byte[1024];
         private SocketAsyncEventArgs[] argsList;
-        private int listInd = 0;
+        private volatile int listInd = 0;
+        private object poolLock = new object();
 
         public delegate void GetPadDetail(int padIdx, ref DualShockPadMeta meta);
 
@@ -182,8 +184,14 @@ namespace DS4Windows
             FinishPacket(packetData);
 
             //try { udpSock.SendTo(packetData, clientEP); }
-            SocketAsyncEventArgs args = argsList[listInd];
-            listInd = ++listInd % 20;
+            int temp = 0;
+            lock (poolLock)
+            {
+                listInd = ++listInd % 20;
+                temp = listInd;
+            }
+
+            SocketAsyncEventArgs args = argsList[temp];
             args.RemoteEndPoint = clientEP;
             args.SetBuffer(packetData, 0, packetData.Length);
             try {
@@ -642,8 +650,14 @@ namespace DS4Windows
                 foreach (var cl in clientsList)
                 {
                     //try { udpSock.SendTo(outputData, cl); }
-                    SocketAsyncEventArgs args = argsList[listInd];
-                    listInd = ++listInd % 20;
+                    int temp = 0;
+                    lock (poolLock)
+                    {
+                        listInd = ++listInd % 20;
+                        temp = listInd;
+                    }
+
+                    SocketAsyncEventArgs args = argsList[temp];
                     args.RemoteEndPoint = cl;
                     args.SetBuffer(outputData, 0, outputData.Length);
                     try {

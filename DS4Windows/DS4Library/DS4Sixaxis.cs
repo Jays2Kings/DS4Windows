@@ -189,7 +189,11 @@ namespace DS4Windows
             calibrationData[5].sensNumer = 2 * SixAxis.ACC_RES_PER_G;
             calibrationData[5].sensDenom = accelRange;
 
-            calibrationDone = true;
+            // Check that denom will not be zero.
+            calibrationDone = calibrationData[0].sensDenom != 0 &&
+                calibrationData[1].sensDenom != 0 &&
+                calibrationData[2].sensDenom != 0 &&
+                accelRange != 0;
         }
 
         private void applyCalibs(ref int yaw, ref int pitch, ref int roll,

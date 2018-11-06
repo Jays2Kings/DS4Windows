@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using static DS4Windows.Global;
 using System.Threading;
 using System.Diagnostics;
-using Microsoft.Win32;
 
 namespace DS4Windows
 {
@@ -291,42 +290,6 @@ namespace DS4Windows
                 LogDebug(message, true);
                 AppLogger.LogToTray(message, true);
             }
-        }
-
-        public bool PlugXInputController(int index)
-        {
-            int xinputIndex = x360Bus.FirstController + index;
-            LogDebug("Plugging in X360 Controller #" + xinputIndex);
-            bool xinputResult = x360Bus.Plugin(index);
-            if (xinputResult)
-            {
-                useDInputOnly[index] = false;
-                LogDebug("X360 Controller # " + xinputIndex + " connected");
-            }
-            else
-            {
-                useDInputOnly[index] = true;
-                LogDebug("X360 Controller # " + xinputIndex + " failed. Using DInput only mode");
-            }
-
-            return xinputResult;
-        }
-
-        public bool UnplugXInputController(int index)
-        {
-            bool unplugResult = x360Bus.Unplug(index);
-            int xinputIndex = x360Bus.FirstController + index;
-            if (unplugResult)
-            {
-                useDInputOnly[index] = true;
-                LogDebug("X360 Controller # " + xinputIndex + " unplugged");
-            }
-            else
-            {
-                LogDebug("X360 Controller # " + xinputIndex + " failed to unplug");
-            }
-
-            return unplugResult;
         }
 
         private SynchronizationContext uiContext = null;

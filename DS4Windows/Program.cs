@@ -100,13 +100,10 @@ namespace DS4Windows
             //if (mutex.WaitOne(TimeSpan.Zero, true))
             //{
                 createControlService();
-                rootHub.ScanPurgeHidGuard();
-                rootHub.CreateHidGuardKey();
                 //rootHub = new ControlService();
                 Application.EnableVisualStyles();
                 ds4form = new DS4Form(args);
                 Application.Run(ds4form);
-                rootHub.removeHidGuardKey();
             //mutex.ReleaseMutex();
             //}
 

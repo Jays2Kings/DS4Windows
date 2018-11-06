@@ -324,9 +324,6 @@ namespace DS4Windows
                 uacPictureBox.Visible = true;
                 new ToolTip().SetToolTip(uacPictureBox, Properties.Resources.UACTask);
                 runStartTaskRadio.Enabled = false;
-                hidGuardWhiteList.Visible = false;
-                clrHidGuardWlistLinkLabel.Visible = false;
-                hidGuardRegLinkLabel.Visible = false;
             }
             else
             {
@@ -2520,41 +2517,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 Save();
                 MessageBox.Show(Properties.Resources.LanguagePackApplyRestartRequired, Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
-
-        private void HidGuardWhiteList_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                RegistryKey key = Registry.LocalMachine.CreateSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters");
-                key.SetValue("AffectedDevices", Program.rootHub.affectedDevs.ToArray(), RegistryValueKind.MultiString);
-                AppLogger.LogToGui("Wrote HidGuardian Device List to Registry", false);
-            }
-            catch { }
-        }
-
-        private void ClrHidGuardWlistLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                Registry.LocalMachine.DeleteSubKeyTree(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist");
-                AppLogger.LogToGui("Cleared HidGuardian Whitelist", false);
-                Program.rootHub.CreateHidGuardKey();
-            }
-            catch { }
-        }
-
-        private void HidGuardRegLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                RegistryKey key = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Applets\Regedit");
-                key.SetValue("LastKey", @"Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters", RegistryValueKind.String);
-                Process temp = new Process();
-                temp.StartInfo.FileName = "regedit";
-                temp.Start();
-            }
-            catch { }
         }
 
         private void OpenProgramFolderToolStripMenuItem_Click(object sender, EventArgs e)

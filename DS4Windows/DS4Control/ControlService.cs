@@ -293,58 +293,6 @@ namespace DS4Windows
             }
         }
 
-        public void ScanPurgeHidGuard()
-        {
-            RegistryKey tempkey = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist");
-            string[] subkeys = null;
-            if (tempkey != null)
-            {
-                subkeys = tempkey.GetSubKeyNames();
-            }
-            else
-            {
-                subkeys = new string[0];
-            }
-
-            bool processExists = false;
-            for (int ind = 0, arlen = subkeys.Length; ind < arlen; ind++)
-            {
-                processExists = true;
-                try
-                {
-                    Process.GetProcessById(Convert.ToInt32(subkeys[ind]));
-                }
-                catch { processExists = false; }
-
-                if (!processExists)
-                {
-                    try
-                    {
-                        Registry.LocalMachine.DeleteSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist\" + subkeys[ind]);
-                    }
-                    catch { }
-                }
-            }
-        }
-
-        public void CreateHidGuardKey()
-        {
-            try
-            {
-                Registry.LocalMachine.CreateSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist\" + System.Diagnostics.Process.GetCurrentProcess().Id);
-            }
-            catch { }
-        }
-
-        public void removeHidGuardKey()
-        {
-            try
-            {
-                Registry.LocalMachine.DeleteSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist\" + System.Diagnostics.Process.GetCurrentProcess().Id);
-            }
-            catch { }
-        }
-
         public bool PlugXInputController(int index)
         {
             int xinputIndex = x360Bus.FirstController + index;

@@ -34,9 +34,9 @@ If your DS4 is not detected by DS4Windows and the lightbar continues to
 flash yellow, there is a chance that Exclusive Mode has permanently
 disabled your DS4 in Windows. The easiest way to test if this has happened is
 for you to plug in the controller into a different USB port and see if it
-works then. Although this problem mainly affected versions of
-DS4Windows prior to 1.4.109 when using some applications, other mapping
-programs can cause the same problem to occur.
+works then. Although this problem mainly affected older versions of
+DS4Windows (text written after version 1.5.15) for various reasons,
+other mapping programs can cause the same problem to occur.
 
 If you suspect that your DS4 has been disabled, open the Device Manager
 (Control Panel\Hardware and Sound\Device Manager) and look for devices listed
@@ -59,13 +59,3 @@ be made during code review to try to tweak the changes in order to improve
 application performance. However, there is a chance that a pull request will be
 rejected if no reasonable solution can be found to incorporate code changes.
 
-## Tip Jar
-
-If you would like to send some coin my way, here are some means by
-which to do so.
-
-**Bitcoin:** 1DnMJwjdd7JRfHJap2mmTmADYm38SzR2z9  
-**Dogecoin:** D9fhbXp9bCHEhuS8vX1BmVu6t7Y2nVNUCK  
-**Litecoin:** La5mniW7SFMH2RhqDgUty3RwkBSYbjbnJ6  
-**Monero:** 49RvRMiMewaeez1Y2auxHmfMaAUYfhUpBem4ohzRJd9b5acPcxzh1icjnhZfjnYd1S7NQ57reQ7cP1swGre3rpfzUgJhEB7  
-**PayPal:** https://paypal.me/ryochan7

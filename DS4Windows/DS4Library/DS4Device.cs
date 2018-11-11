@@ -106,7 +106,8 @@ namespace DS4Windows
 
         public bool IsRumbleSet()
         {
-            return RumbleMotorsExplicitlyOff || RumbleMotorStrengthLeftHeavySlow != 0 || RumbleMotorStrengthRightLightFast != 0;
+            const byte zero = 0;
+            return RumbleMotorsExplicitlyOff || RumbleMotorStrengthLeftHeavySlow != zero || RumbleMotorStrengthRightLightFast != zero;
         }
     }
 

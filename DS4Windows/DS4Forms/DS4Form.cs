@@ -2137,9 +2137,9 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         }
 
         bool tempBool = false;
-        protected void ScpForm_Closing(object sender, FormClosingEventArgs e)
+        private void ScpForm_Closing(object sender, FormClosingEventArgs e)
         {
-            if (opt != null && opt.Visible)
+            if (optPop)
             {
                 opt.Close();
                 e.Cancel = true;

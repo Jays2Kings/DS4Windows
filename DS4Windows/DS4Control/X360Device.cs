@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
 
+using System.Drawing; // Point struct
+
 namespace DS4Windows
 {
     public partial class X360Device : ScpDevice
@@ -141,10 +143,25 @@ namespace DS4Windows
                 Output[12] = state.L2; // Left Trigger
                 Output[13] = state.R2; // Right Trigger
 
-                Int32 ThumbLX = Scale(state.LX, false);
-                Int32 ThumbLY = Scale(state.LY, true);
-                Int32 ThumbRX = Scale(state.RX, false);
-                Int32 ThumbRY = Scale(state.RY, true);
+                Int32 ThumbLX;
+                Int32 ThumbLY;
+                Int32 ThumbRX;
+                Int32 ThumbRY;
+
+                DS4Controls steeringWheelMappedAxis = Global.getSASteeringWheelEmulationAxis(device);
+
+                if (steeringWheelMappedAxis == DS4Controls.LXPos) ThumbLX = state.SASteeringWheelEmulationUnit;
+                else ThumbLX = Scale(state.LX, false);
+
+                if (steeringWheelMappedAxis == DS4Controls.LYPos) ThumbLY = state.SASteeringWheelEmulationUnit;
+                else ThumbLY = Scale(state.LY, true);
+
+                if (steeringWheelMappedAxis == DS4Controls.RXPos) ThumbRX = state.SASteeringWheelEmulationUnit;
+                else ThumbRX = Scale(state.RX, false);
+
+                if (steeringWheelMappedAxis == DS4Controls.RYPos) ThumbRY = state.SASteeringWheelEmulationUnit;
+                else ThumbRY = Scale(state.RY, true);
+
                 Output[14] = (Byte)((ThumbLX >> 0) & 0xFF); // LX
                 Output[15] = (Byte)((ThumbLX >> 8) & 0xFF);
                 Output[16] = (Byte)((ThumbLY >> 0) & 0xFF); // LY

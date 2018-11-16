@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using static DS4Windows.Global;
 
+using System.Drawing; // Point struct
+
 namespace DS4Windows
 {
     public class Mapping
@@ -1647,6 +1649,9 @@ namespace DS4Windows
                     }
                 }
             }
+
+            if (getSASteeringWheelEmulationAxis(device) != DS4Controls.None)
+                MappedState.SASteeringWheelEmulationUnit = Mapping.Scale360degreeGyroAxis(device, eState, ctrl);
 
             calculateFinalMouseMovement(ref tempMouseDeltaX, ref tempMouseDeltaY,
                 out mouseDeltaX, out mouseDeltaY);
@@ -3773,5 +3778,261 @@ namespace DS4Windows
                 fieldMap.buttons[controlNum] = false;
             }
         }
+
+        // BEGIN: SixAxis steering wheel emulation logic
+
+        // "In-game" calibration process:
+        //    TODO: Launching a calibration process should probably be a special action which allows multiple key bindings to launch a specific task.
+        // - Place controller at "steering wheel center" position and press DS4 Option button to start the calibration (Profile should have "SASteeringWheelEmulationAxis" option set to LXPos, LYPos, RXPos or RYPos value).
+        // - Hold the controller still for a while and wait until red lightbar turns to blinking yellow (center point calibrated)
+        // - Turn the controller at 90 degree left or right position and hold still for few seconds and wait until lightbar turns to blinking light blue (two points calibrated)
+        // - Turn the controller at 90 degree position on the opposite side (but do it by going through 0 degree center position. Don't go through 180deg mark). Wait until lighbar turns to green (three points calibrated)
+        // - Now you can check the calibratio by turning the wheel and see when the green lightbar starts to blink (it should blink at those three calibrated positions).
+        // - Press DS4 Options button to accept the calibration (result is saved to ControllerConfigs.xml xml file in AppData folder).
+        //
+        // 0 = None of the anchors calibrated yet. Hold controller still at "wheel center position" and wait until lightbar turns from constant red to flashing yellow color
+        // 1 = one anchor calibrated (The first calibration point should always be the center position)
+        // 2 = two anchors calibrated (center and 90Right or 90Left depending on which way user turn the wheel after the first center calibration point)
+        // 3 = all three anchor points calibrated (center, 90Right, 90Left). Good to go. User can check calibration by turning the wheel and checking when the green lightbar blinks. If happy then pressing Options btn accepts the calibration.
+        private static readonly DS4Color calibrationColor_0 = new DS4Color { red = 0xA0, green = 0x00, blue = 0x00 };
+        private static readonly DS4Color calibrationColor_1 = new DS4Color { red = 0xFF, green = 0xFF, blue = 0x00 };
+        private static readonly DS4Color calibrationColor_2 = new DS4Color { red = 0x00, green = 0x50, blue = 0x50 };
+        private static readonly DS4Color calibrationColor_3 = new DS4Color { red = 0x00, green = 0xC0, blue = 0x00 };
+
+        private static DateTime latestDebugMsgTime;
+        private static void LogToGuiSACalibrationDebugMsg(string data)
+        {
+            // Print debug calibration log messages only once per 2 secs to avoid flooding the log receiver
+            DateTime curTime = DateTime.Now;
+            if (((TimeSpan)(curTime - latestDebugMsgTime)).TotalSeconds > 2)
+            {
+                latestDebugMsgTime = curTime;
+                AppLogger.LogToGui(data, false);
+            }
+        }
+
+        // Return number of bits set in a value
+        protected static int CountNumOfSetBits(int bitValue)
+        {
+            int count = 0;
+            while (bitValue != 0)
+            {
+                count++;
+                bitValue &= (bitValue - 1);
+            }
+            return count;
+        }
+
+        // Calculate and return the angle of the controller as -180...0...+180 value.
+        // TODO: Support >360 degree turn range by adding "lap counter" when wheel is rotated full rounds left or right.At the moment this logic supports only 360 degree turn range.
+        protected static Int32 CalculateControllerAngle(int gyroAccelX, int gyroAccelZ, DS4Device controller)
+        {
+            Int32 result;
+
+            if (Math.Abs(gyroAccelX - controller.wheelCenterPoint.X) <= 1 && Math.Abs(gyroAccelZ - controller.wheelCenterPoint.Y) <= 1)
+            {
+                // When the current gyro position is "close enough" the wheel center point then no need to go through the hassle of calculating an angle
+                result = 0;
+            }
+            else
+            {
+                // Calculate two vectors based on "circle center" (ie. circle represents the 360 degree wheel turn and wheelCenterPoint and currentPosition vectors both start from circle center).
+                // To improve accuracy both left and right turns use a decicated calibration "circle" because DS4 gyro and DoItYourselfWheelRig may return slightly different SA sensor values depending on the tilt direction (well, only one or two degree difference so nothing major).
+                Point vectorAB;
+                Point vectorCD;
+
+                if (gyroAccelX >= controller.wheelCenterPoint.X)
+                {
+                    // "DS4 gyro wheel" tilted to right
+                    vectorAB = new Point(controller.wheelCenterPoint.X - controller.wheelCircleCenterPointRight.X, controller.wheelCenterPoint.Y - controller.wheelCircleCenterPointRight.Y);
+                    vectorCD = new Point(gyroAccelX - controller.wheelCircleCenterPointRight.X, gyroAccelZ - controller.wheelCircleCenterPointRight.Y);
+                }
+                else
+                {
+                    // "DS4 gyro wheel" tilted to left
+                    vectorAB = new Point(controller.wheelCenterPoint.X - controller.wheelCircleCenterPointLeft.X, controller.wheelCenterPoint.Y - controller.wheelCircleCenterPointLeft.Y);
+                    vectorCD = new Point(gyroAccelX - controller.wheelCircleCenterPointLeft.X, gyroAccelZ - controller.wheelCircleCenterPointLeft.Y);
+                }
+
+                // Calculate dot product and magnitude of vectors (center vector and the current tilt vector)
+                double dotProduct = vectorAB.X * vectorCD.X + vectorAB.Y * vectorCD.Y;
+                double magAB = Math.Sqrt(vectorAB.X * vectorAB.X + vectorAB.Y * vectorAB.Y);
+                double magCD = Math.Sqrt(vectorCD.X * vectorCD.X + vectorCD.Y * vectorCD.Y);
+
+                // Calculate angle between vectors and convert radian to degrees
+                double angle = Math.Acos(dotProduct / (magAB * magCD));
+                result = Convert.ToInt32(Math.Round(angle * (180.0 / Math.PI)));
+
+                // Left turn is -180..0 and right turn 0..180 degrees
+                if (gyroAccelX < controller.wheelCenterPoint.X) result = -result;
+
+                // Just to be sure.. Probably not needed. TODO: Add support for 360/720/900 turn ranges by counting "laps" how many times the steering wheel is turned around
+                result = ClampInt(-180, result, 180);
+            }
+
+            return result;
+        }
+
+        protected static Int32 Scale360degreeGyroAxis(int device, /*DS4State state,*/ DS4StateExposed exposedState, ControlService ctrl)
+        {
+            unchecked
+            {
+                DS4Device controller;
+                DS4State currentDeviceState;
+
+                int gyroAccelX, gyroAccelZ;
+                int result;
+
+                //controller = Program.rootHub.DS4Controllers[device];
+                controller = ctrl.DS4Controllers[device];
+                if (controller == null) return 0;
+
+                currentDeviceState = controller.getCurrentStateRef();
+
+                gyroAccelX = exposedState.getAccelX();
+                gyroAccelZ = exposedState.getAccelZ();
+
+                // If DS4 Options btn is pressed and the previous re-calibration was done more than 2 secs ago (avoids repeated "calibration" loops if user holds down the Option btn too long) then re-calibrate the gyro wheel emulation.
+                // TODO. Maybe here should be logic to enter calibration process only if Options btn is hold down minimum of 3 secs? This way Option btn can be re-mapped to do other things without kicking on re-calibration everytime it is pressed.
+                if (currentDeviceState.Options && ((TimeSpan)(DateTime.Now - controller.wheelPrevRecalibrateTime)).TotalSeconds > 2)
+                {
+                    if (controller.WheelRecalibrateActive == false)
+                    {
+                        AppLogger.LogToGui($"Controller {ctrl.x360Bus.FirstController + device} activated re-calibration of motion steering wheel emulation", false);
+
+                        controller.WheelRecalibrateActive = true;
+
+                        // Clear existing calibration value and use current position as "center" point.
+                        // This initial center value may be off-center because of shaking the controller while button was pressed. The value will be overriden with correct value once controller is stabilized and hold still few secs at the center point
+                        controller.wheelCenterPoint.X = gyroAccelX;
+                        controller.wheelCenterPoint.Y = gyroAccelZ;
+                        controller.wheel90DegPointRight.X = gyroAccelX + 25;
+                        controller.wheel90DegPointLeft.X = gyroAccelX - 25;
+
+                        // Clear bitmask for calibration points. All three calibration points need to be set before re-calibration process is valid
+                        controller.wheelCalibratedAxisBitmask = DS4Device.WheelCalibrationPoint.None;
+                    }
+                    else
+                    {
+                        AppLogger.LogToGui($"Controller {ctrl.x360Bus.FirstController + device} completed steering wheel calibration. center=({controller.wheelCenterPoint.X}, {controller.wheelCenterPoint.Y})  90L=({controller.wheel90DegPointLeft.X}, {controller.wheel90DegPointLeft.Y})  90R=({controller.wheel90DegPointRight.X}, {controller.wheel90DegPointRight.Y})", false);
+
+                        controller.WheelRecalibrateActive = false;
+
+                        // If any of the calibration points (center, left 90deg, right 90deg) are missing then reset back to default calibration values
+                        if (((controller.wheelCalibratedAxisBitmask & DS4Device.WheelCalibrationPoint.All) == DS4Device.WheelCalibrationPoint.All))
+                            Global.SaveControllerConfigs(controller);
+                        else
+                            controller.wheelCenterPoint.X = controller.wheelCenterPoint.Y = 0;
+
+                        // Reset lightbar back to normal color
+                        DS4LightBar.forcelight[device] = false;
+                        DS4LightBar.forcedFlash[device] = 0;
+                        controller.LightBarColor = Global.getMainColor(device);
+                        DS4LightBar.updateLightBar(controller, device);
+                    }
+
+                    controller.wheelPrevRecalibrateTime = DateTime.Now;
+                }
+
+                if (controller.WheelRecalibrateActive)
+                {
+                    // Auto calibrate 90deg left/right positions (these values may change over time because gyro/accel sensor values are not "precise mathematics", so user can trigger calibration even in mid-game sessions by pressing DS4 Options btn),
+                    // but make sure controller is stable enough to avoid misaligments because of hard shaking (check velocity of gyro axis)
+                    if (Math.Abs(/*state*/ currentDeviceState.Motion.angVelPitch) < 0.5 && Math.Abs(currentDeviceState.Motion.angVelYaw) < 0.5 && Math.Abs(currentDeviceState.Motion.angVelRoll) < 0.5)
+                    {
+                        if (controller.wheelCalibratedAxisBitmask == DS4Device.WheelCalibrationPoint.None)
+                        {
+                            // Wait few secs after re-calibration button was pressed. Hold controller still at center position and don't shake it too much until red lightbar turns to yellow.
+                            if (((TimeSpan)(DateTime.Now - controller.wheelPrevRecalibrateTime)).TotalSeconds >= 3)
+                            {
+                                controller.wheelCenterPoint.X = gyroAccelX;
+                                controller.wheelCenterPoint.Y = gyroAccelZ;
+
+                                controller.wheelCalibratedAxisBitmask |= DS4Device.WheelCalibrationPoint.Center;
+                            }
+                        }
+                        else if (controller.wheel90DegPointRight.X < gyroAccelX)
+                        {
+                            controller.wheel90DegPointRight.X = gyroAccelX;
+                            controller.wheel90DegPointRight.Y = gyroAccelZ;
+                            controller.wheelCircleCenterPointRight.X = controller.wheelCenterPoint.X;
+                            controller.wheelCircleCenterPointRight.Y = controller.wheel90DegPointRight.Y;
+
+                            controller.wheelCalibratedAxisBitmask |= DS4Device.WheelCalibrationPoint.Right90;
+                        }
+                        else if (controller.wheel90DegPointLeft.X > gyroAccelX)
+                        {
+                            controller.wheel90DegPointLeft.X = gyroAccelX;
+                            controller.wheel90DegPointLeft.Y = gyroAccelZ;
+                            controller.wheelCircleCenterPointLeft.X = controller.wheelCenterPoint.X;
+                            controller.wheelCircleCenterPointLeft.Y = controller.wheel90DegPointLeft.Y;
+
+                            controller.wheelCalibratedAxisBitmask |= DS4Device.WheelCalibrationPoint.Left90;
+                        }
+                    }
+
+                    // Show lightbar color feedback how the calibration process is proceeding.
+                    //  red / yellow / blue / green = No calibration anchors/one anchor/two anchors/three anchors calibrated (center, 90DegLeft, 90DegRight)
+                    //  Blinking led = Controller is tilted at the current calibration point (or calibration routine just set a new anchor point)
+                    // TODO: device num to flash led idx (use red for center calibrated, yellow for one 90deg and green for both 90deg calibration and then reset back to normal led)
+                    int bitsSet = CountNumOfSetBits((int)controller.wheelCalibratedAxisBitmask);
+                    if (bitsSet >= 3) DS4LightBar.forcedColor[device] = calibrationColor_3;
+                    else if (bitsSet == 2) DS4LightBar.forcedColor[device] = calibrationColor_2;
+                    else if (bitsSet == 1) DS4LightBar.forcedColor[device] = calibrationColor_1;
+                    else DS4LightBar.forcedColor[device] = calibrationColor_0;
+
+                    result = CalculateControllerAngle(gyroAccelX, gyroAccelZ, controller);
+                    if (bitsSet >= 1 && (Math.Abs(result) <= 1 || (Math.Abs(result) >= 88 && Math.Abs(result) <= 92) || Math.Abs(result) >= 178)) DS4LightBar.forcedFlash[device] = 2;
+                    else DS4LightBar.forcedFlash[device] = 0;
+
+                    DS4LightBar.forcelight[device] = true;
+                    //DS4LightBar.updateLightBar(controller, device);
+
+                    LogToGuiSACalibrationDebugMsg($"Calibration values ({gyroAccelX}, {gyroAccelZ})  angle={result}\n");
+
+                    // Return center wheel position while gyro is calibrated, not the calculated angle
+                    return 0;
+                }
+
+
+                // If calibration values are missing then use "educated guesses" about good starting values.
+                // TODO. Use pre-calibrated default values from configuration file.
+                if (controller.wheelCenterPoint.IsEmpty)
+                {
+                    if (!Global.LoadControllerConfigs(controller))
+                    {
+                        AppLogger.LogToGui($"Controller {ctrl.x360Bus.FirstController + device} motion steering wheel calibration data missing. It is recommended to run steering wheel calibration process by pressing DS4 Options button. Using estimated values until the controller is calibrated at least once.", false);
+
+                        controller.wheelCenterPoint.X = gyroAccelX;
+                        controller.wheelCenterPoint.Y = gyroAccelZ;
+
+                        controller.wheel90DegPointRight.X = controller.wheelCenterPoint.X + 113; // 113;
+                        controller.wheel90DegPointRight.Y = controller.wheelCenterPoint.Y + 110; // 110;
+
+                        controller.wheel90DegPointLeft.X = controller.wheelCenterPoint.X - 127;  // -127;
+                        controller.wheel90DegPointLeft.Y = controller.wheel90DegPointRight.Y;    // 2;
+                    }
+
+                    controller.wheelCircleCenterPointRight.X = controller.wheelCenterPoint.X;
+                    controller.wheelCircleCenterPointRight.Y = controller.wheel90DegPointRight.Y;
+                    controller.wheelCircleCenterPointLeft.X = controller.wheelCenterPoint.X;
+                    controller.wheelCircleCenterPointLeft.Y = controller.wheel90DegPointLeft.Y;
+
+                    AppLogger.LogToGui($"Controller {ctrl.x360Bus.FirstController + device} steering wheel emulation calibration values. center=({controller.wheelCenterPoint.X}, {controller.wheelCenterPoint.Y})  90L=({controller.wheel90DegPointLeft.X}, {controller.wheel90DegPointLeft.Y})  90R=({controller.wheel90DegPointRight.X}, {controller.wheel90DegPointRight.Y})", false);
+                    controller.wheelPrevRecalibrateTime = DateTime.Now;
+                }
+
+                result = CalculateControllerAngle(gyroAccelX, gyroAccelZ, controller);
+
+                // Keep outputting debug data 30secs after the latest re-calibration event (user can check these values from the log screen of DS4Windows GUI)
+                //if (((TimeSpan)(DateTime.Now - prevRecalibrateTime)).TotalSeconds < 30)
+                //    LogToGuiSACalibrationDebugMsg($"DEBUG gyro=({gyroAccelX}, {gyroAccelZ})  angle={result}");
+
+                // Scale input to a raw x360 thumbstick output scale
+                return (((result - (-180)) * (32767 - (-32768))) / (180 - (-180))) + (-32768);
+            }
+        }
+        // END: SixAxis steering wheel emulation logic
+
     }
 }

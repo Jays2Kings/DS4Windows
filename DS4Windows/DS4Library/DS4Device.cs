@@ -157,6 +157,34 @@ namespace DS4Windows
             return warnInterval;
         }
 
+        public Point wheelCenterPoint;
+        public Point wheel90DegPointLeft;
+        public Point wheelCircleCenterPointLeft;
+        public Point wheel90DegPointRight;
+        public Point wheelCircleCenterPointRight;
+
+        public DateTime wheelPrevRecalibrateTime;
+
+        private bool wheelRecalibrateActive = false;
+        public bool WheelRecalibrateActive
+        {
+            get { return wheelRecalibrateActive; }
+            set
+            {
+                wheelRecalibrateActive = value;
+            }
+        }
+
+        public enum WheelCalibrationPoint
+        {
+            None = 0,
+            Center = 1,
+            Right90 = 2,
+            Left90 = 4,
+            All = Center | Right90 | Left90
+        }
+        public WheelCalibrationPoint wheelCalibratedAxisBitmask;
+
         private bool exitOutputThread = false;
         public bool ExitOutputThread => exitOutputThread;
         private bool exitInputThread = false;

@@ -741,6 +741,7 @@ namespace DS4Windows
                     CRC32_POS_3 = BT_INPUT_REPORT_CRC32_POS + 3;
                 int crcpos = BT_INPUT_REPORT_CRC32_POS;
                 int crcoffset = 0;
+                long latencySum = 0;
 
                 while (!exitInputThread)
                 {
@@ -749,14 +750,16 @@ namespace DS4Windows
 
                     if (tempLatencyCount >= 20)
                     {
-                        latencyQueue.Dequeue();
+                        latencySum -= latencyQueue.Dequeue();
                         tempLatencyCount--;
                     }
 
+                    latencySum += this.lastTimeElapsed;
                     latencyQueue.Enqueue(this.lastTimeElapsed);
                     tempLatencyCount++;
 
-                    Latency = latencyQueue.Average();
+                    //Latency = latencyQueue.Average();
+                    Latency = latencySum / tempLatencyCount;
 
                     if (conType == ConnectionType.BT)
                     {

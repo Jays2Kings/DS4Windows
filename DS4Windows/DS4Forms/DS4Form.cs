@@ -389,7 +389,7 @@ namespace DS4Windows
                 else
                 {
                     if (hoverTextDict.TryGetValue(control, out tempst))
-                        control.MouseEnter += Items_MouseHover;
+                        control.MouseHover += Items_MouseHover;
                     else
                         control.MouseHover += ClearLastMessage;
                 }

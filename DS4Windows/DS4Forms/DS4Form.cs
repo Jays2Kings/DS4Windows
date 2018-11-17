@@ -234,9 +234,9 @@ namespace DS4Windows
                     break;
             }
 
-            if (!(startMinimizedCheckBox.Checked || mini))
+            if (startMinimizedCheckBox.Checked || mini)
             {
-                Show();
+                WindowState = FormWindowState.Minimized;
             }
 
             RefreshProfiles();

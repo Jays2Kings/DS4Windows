@@ -732,7 +732,6 @@
             this.lBProfiles.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lBProfiles.ContextMenuStrip = this.cMProfile;
             resources.ApplyResources(this.lBProfiles, "lBProfiles");
-            this.lBProfiles.FormattingEnabled = true;
             this.lBProfiles.Name = "lBProfiles";
             this.lBProfiles.SelectedIndexChanged += new System.EventHandler(this.lBProfiles_SelectedIndexChanged);
             this.lBProfiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lBProfiles_KeyDown);

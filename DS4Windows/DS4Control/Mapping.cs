@@ -3781,6 +3781,9 @@ namespace DS4Windows
 
         // BEGIN: SixAxis steering wheel emulation logic
 
+        private const int C_WHEEL_ANGLE_PRECISION = 10; // 1=precision of one degree, 10=precision of 1/10 of degree. Bigger number means fine graned precision
+        private const int C_WHEEL_ANGLE_PRECISION_DECIMALS = (C_WHEEL_ANGLE_PRECISION == 1 ? 0 : C_WHEEL_ANGLE_PRECISION/10);
+
         // "In-game" calibration process:
         //    TODO: Launching a calibration process should probably be a special action which allows multiple key bindings to launch a specific task.
         // - Place controller at "steering wheel center" position and press DS4 Option button to start the calibration (Profile should have "SASteeringWheelEmulationAxis" option set to LXPos, LYPos, RXPos or RYPos value).
@@ -3829,7 +3832,7 @@ namespace DS4Windows
         {
             Int32 result;
 
-            if (Math.Abs(gyroAccelX - controller.wheelCenterPoint.X) <= 1 && Math.Abs(gyroAccelZ - controller.wheelCenterPoint.Y) <= 1)
+            if (gyroAccelX == controller.wheelCenterPoint.X && Math.Abs(gyroAccelZ - controller.wheelCenterPoint.Y) <= 1)
             {
                 // When the current gyro position is "close enough" the wheel center point then no need to go through the hassle of calculating an angle
                 result = 0;
@@ -3860,14 +3863,24 @@ namespace DS4Windows
                 double magCD = Math.Sqrt(vectorCD.X * vectorCD.X + vectorCD.Y * vectorCD.Y);
 
                 // Calculate angle between vectors and convert radian to degrees
-                double angle = Math.Acos(dotProduct / (magAB * magCD));
-                result = Convert.ToInt32(Math.Round(angle * (180.0 / Math.PI)));
+                if (magAB == 0 || magCD == 0)
+                {
+                    result = 0;
+                }
+                else
+                {
+                    double angle = Math.Acos(dotProduct / (magAB * magCD));
+                    result = Convert.ToInt32( Clamp(-180.0 * C_WHEEL_ANGLE_PRECISION, 
+                            Math.Round((angle * (180.0 / Math.PI)), C_WHEEL_ANGLE_PRECISION_DECIMALS) * C_WHEEL_ANGLE_PRECISION, 
+                            180.0 * C_WHEEL_ANGLE_PRECISION)
+                         );
+                }
 
                 // Left turn is -180..0 and right turn 0..180 degrees
                 if (gyroAccelX < controller.wheelCenterPoint.X) result = -result;
 
                 // Just to be sure.. Probably not needed. TODO: Add support for 360/720/900 turn ranges by counting "laps" how many times the steering wheel is turned around
-                result = ClampInt(-180, result, 180);
+                //result = ClampInt(-180, result, 180);
             }
 
             return result;
@@ -3974,7 +3987,6 @@ namespace DS4Windows
                     // Show lightbar color feedback how the calibration process is proceeding.
                     //  red / yellow / blue / green = No calibration anchors/one anchor/two anchors/three anchors calibrated (center, 90DegLeft, 90DegRight)
                     //  Blinking led = Controller is tilted at the current calibration point (or calibration routine just set a new anchor point)
-                    // TODO: device num to flash led idx (use red for center calibrated, yellow for one 90deg and green for both 90deg calibration and then reset back to normal led)
                     int bitsSet = CountNumOfSetBits((int)controller.wheelCalibratedAxisBitmask);
                     if (bitsSet >= 3) DS4LightBar.forcedColor[device] = calibrationColor_3;
                     else if (bitsSet == 2) DS4LightBar.forcedColor[device] = calibrationColor_2;
@@ -3982,13 +3994,19 @@ namespace DS4Windows
                     else DS4LightBar.forcedColor[device] = calibrationColor_0;
 
                     result = CalculateControllerAngle(gyroAccelX, gyroAccelZ, controller);
-                    if (bitsSet >= 1 && (Math.Abs(result) <= 1 || (Math.Abs(result) >= 88 && Math.Abs(result) <= 92) || Math.Abs(result) >= 178)) DS4LightBar.forcedFlash[device] = 2;
-                    else DS4LightBar.forcedFlash[device] = 0;
+                    if (bitsSet >= 1 && (
+                      Math.Abs(result) <= 1 * C_WHEEL_ANGLE_PRECISION 
+                      || (Math.Abs(result) >= 88 * C_WHEEL_ANGLE_PRECISION && Math.Abs(result) <= 92 * C_WHEEL_ANGLE_PRECISION) 
+                      || Math.Abs(result) >= 178 * C_WHEEL_ANGLE_PRECISION
+                      ))
+                        DS4LightBar.forcedFlash[device] = 2;
+                    else
+                        DS4LightBar.forcedFlash[device] = 0;
 
                     DS4LightBar.forcelight[device] = true;
                     //DS4LightBar.updateLightBar(controller, device);
 
-                    LogToGuiSACalibrationDebugMsg($"Calibration values ({gyroAccelX}, {gyroAccelZ})  angle={result}\n");
+                    LogToGuiSACalibrationDebugMsg($"Calibration values ({gyroAccelX}, {gyroAccelZ})  angle={result / (1.0 * C_WHEEL_ANGLE_PRECISION)}\n");
 
                     // Return center wheel position while gyro is calibrated, not the calculated angle
                     return 0;
@@ -3996,7 +4014,6 @@ namespace DS4Windows
 
 
                 // If calibration values are missing then use "educated guesses" about good starting values.
-                // TODO. Use pre-calibrated default values from configuration file.
                 if (controller.wheelCenterPoint.IsEmpty)
                 {
                     if (!Global.LoadControllerConfigs(controller))
@@ -4026,10 +4043,10 @@ namespace DS4Windows
 
                 // Keep outputting debug data 30secs after the latest re-calibration event (user can check these values from the log screen of DS4Windows GUI)
                 //if (((TimeSpan)(DateTime.Now - prevRecalibrateTime)).TotalSeconds < 30)
-                //    LogToGuiSACalibrationDebugMsg($"DEBUG gyro=({gyroAccelX}, {gyroAccelZ})  angle={result}");
+                //    LogToGuiSACalibrationDebugMsg($"DEBUG gyro=({gyroAccelX}, {gyroAccelZ})  angle={result / (1.0 * C_WHEEL_ANGLE_PRECISION)}");
 
                 // Scale input to a raw x360 thumbstick output scale
-                return (((result - (-180)) * (32767 - (-32768))) / (180 - (-180))) + (-32768);
+                return (((result - (-180 * C_WHEEL_ANGLE_PRECISION)) * (32767 - (-32768))) / (180 * C_WHEEL_ANGLE_PRECISION - (-180 * C_WHEEL_ANGLE_PRECISION))) + (-32768);
             }
         }
         // END: SixAxis steering wheel emulation logic

@@ -52,7 +52,6 @@ namespace DS4Windows
         Options opt;
         private bool optPop;
         public Size oldsize;
-        public bool mAllowVisible;
         bool contextclose;
         bool turnOffTemp;
         bool runningBat;
@@ -235,13 +234,11 @@ namespace DS4Windows
                     break;
             }
 
-            if (!(startMinimizedCheckBox.Checked || mini))
+            if (startMinimizedCheckBox.Checked || mini)
             {
-                mAllowVisible = true;
-                Show();
+                WindowState = FormWindowState.Minimized;
             }
 
-            Form_Resize(null, null);
             RefreshProfiles();
             /*opt = new Options(this);
             opt.Icon = this.Icon;
@@ -392,13 +389,14 @@ namespace DS4Windows
                 else
                 {
                     if (hoverTextDict.TryGetValue(control, out tempst))
-                        control.MouseEnter += Items_MouseHover;
+                        control.MouseHover += Items_MouseHover;
                     else
                         control.MouseHover += ClearLastMessage;
                 }
             }
 
             instance = this;
+            Form_Resize(null, null);
             if (btnStartStop.Enabled && start)
                 TaskRunner.Delay(50).ContinueWith((t) => this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked())));
         }
@@ -498,17 +496,6 @@ namespace DS4Windows
                 File.Move(exepath + "\\Update Files\\DS4Updater.exe", exepath + "\\DS4Updater.exe");
                 Directory.Delete(exepath + "\\Update Files");
             }
-        }
-
-        protected override void SetVisibleCore(bool value)
-        {
-            if (!mAllowVisible)
-            {
-                value = false;
-                if (!IsHandleCreated) CreateHandle();
-            }
-
-            base.SetVisibleCore(value);
         }
 
         public static string GetTopWindowName()
@@ -1591,7 +1578,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
         private void editMenu_Click(object sender, EventArgs e)
         {
-            mAllowVisible = true;
             Show();
             WindowState = FormWindowState.Normal;
             ToolStripMenuItem em = (ToolStripMenuItem)sender;
@@ -1741,7 +1727,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mAllowVisible = true;
             Show();
             Focus();
             WindowState = FormWindowState.Normal;

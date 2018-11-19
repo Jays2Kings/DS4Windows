@@ -103,7 +103,7 @@ namespace DS4Windows
                 //rootHub = new ControlService();
                 Application.EnableVisualStyles();
                 ds4form = new DS4Form(args);
-                Application.Run(ds4form);
+                Application.Run();
             //mutex.ReleaseMutex();
             //}
 

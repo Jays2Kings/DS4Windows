@@ -85,6 +85,8 @@ namespace DS4Windows
             for (int num = 0; num <= 19; num++)
             {
                 SocketAsyncEventArgs args = new SocketAsyncEventArgs();
+                args.Completed += CompletedBuffer;
+                args.SetBuffer(new byte[100], 0, 100);
                 argsList[num] = args;
             }
         }
@@ -186,15 +188,17 @@ namespace DS4Windows
             //try { udpSock.SendTo(packetData, clientEP); }
             int temp = 0;
             poolLock.EnterWriteLock();
-            listInd = ++listInd % 20;
             temp = listInd;
+            listInd = (listInd + 1) % 20;
+            SocketAsyncEventArgs args = argsList[temp];
             poolLock.ExitWriteLock();
 
-            SocketAsyncEventArgs args = argsList[temp];
             args.RemoteEndPoint = clientEP;
-            args.SetBuffer(packetData, 0, packetData.Length);
+            Array.Copy(packetData, args.Buffer, packetData.Length);
+            //args.SetBuffer(packetData, 0, packetData.Length);
             try {
                 udpSock.SendToAsync(args);
+                //udpSock.BeginSendTo(packetData, 0, packetData.Length, SocketFlags.Broadcast, clientEP, null, null);
             }
             catch (Exception e) { }
         }
@@ -651,15 +655,17 @@ namespace DS4Windows
                     //try { udpSock.SendTo(outputData, cl); }
                     int temp = 0;
                     poolLock.EnterWriteLock();
-                    listInd = ++listInd % 20;
                     temp = listInd;
+                    listInd = (listInd + 1) % 20;
+                    SocketAsyncEventArgs args = argsList[temp];
                     poolLock.ExitWriteLock();
 
-                    SocketAsyncEventArgs args = argsList[temp];
                     args.RemoteEndPoint = cl;
-                    args.SetBuffer(outputData, 0, outputData.Length);
+                    //args.SetBuffer(outputData, 0, outputData.Length);
+                    Array.Copy(outputData, args.Buffer, outputData.Length);
                     try {
                         udpSock.SendToAsync(args);
+                        //udpSock.BeginSendTo(outputData, 0, outputData.Length, SocketFlags.Broadcast, cl, null, null);
                     }
                     catch (SocketException ex) { }
                 }
@@ -667,6 +673,12 @@ namespace DS4Windows
 
             clientsList.Clear();
             clientsList = null;
+        }
+
+        public void CompletedBuffer(object sender, SocketAsyncEventArgs args)
+        {
+            //args.SetBuffer(null, 0, 0);
+            //args.RemoteEndPoint = null;
         }
     }
 }

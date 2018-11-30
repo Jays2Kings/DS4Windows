@@ -100,13 +100,10 @@ namespace DS4Windows
             //if (mutex.WaitOne(TimeSpan.Zero, true))
             //{
                 createControlService();
-                rootHub.ScanPurgeHidGuard();
-                rootHub.CreateHidGuardKey();
                 //rootHub = new ControlService();
                 Application.EnableVisualStyles();
                 ds4form = new DS4Form(args);
-                Application.Run(ds4form);
-                rootHub.removeHidGuardKey();
+                Application.Run();
             //mutex.ReleaseMutex();
             //}
 
@@ -160,14 +157,14 @@ namespace DS4Windows
         /// </summary>
         /// <param name="frm"></param>
         private delegate void SetFormVisableDelegate(Form frm);
-        static private void ThreadFormVisable(Form frm)
+        private static void ThreadFormVisable(Form frm)
         {
             if (frm is DS4Form)
             {
                 // display the form and bring to foreground.
-                frm.WindowState = FormWindowState.Normal;
-                frm.Focus();
-                frm.Activate();
+                DS4Form temp = (DS4Form)frm;
+                temp.Show();
+                temp.WindowState = FormWindowState.Normal;
             }
         }
     }

@@ -8,11 +8,9 @@ using System.Threading.Tasks;
 using static DS4Windows.Global;
 using System.Threading;
 using System.Diagnostics;
-using Microsoft.Win32;
 using Nefarius.ViGEm.Client;
 using Nefarius.ViGEm.Client.Targets;
 using Nefarius.ViGEm.Client.Targets.Xbox360;
-
 
 namespace DS4Windows
 {
@@ -303,94 +301,6 @@ namespace DS4Windows
                 LogDebug(message, true);
                 AppLogger.LogToTray(message, true);
             }
-        }
-
-        public void ScanPurgeHidGuard()
-        {
-            RegistryKey tempkey = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist");
-            string[] subkeys = null;
-            if (tempkey != null)
-            {
-                subkeys = tempkey.GetSubKeyNames();
-            }
-            else
-            {
-                subkeys = new string[0];
-            }
-
-            bool processExists = false;
-            for (int ind = 0, arlen = subkeys.Length; ind < arlen; ind++)
-            {
-                processExists = true;
-                try
-                {
-                    Process.GetProcessById(Convert.ToInt32(subkeys[ind]));
-                }
-                catch { processExists = false; }
-
-                if (!processExists)
-                {
-                    try
-                    {
-                        Registry.LocalMachine.DeleteSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist\" + subkeys[ind]);
-                    }
-                    catch { }
-                }
-            }
-        }
-
-        public void CreateHidGuardKey()
-        {
-            try
-            {
-                Registry.LocalMachine.CreateSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist\" + System.Diagnostics.Process.GetCurrentProcess().Id);
-            }
-            catch { }
-        }
-
-        public void removeHidGuardKey()
-        {
-            try
-            {
-                Registry.LocalMachine.DeleteSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist\" + System.Diagnostics.Process.GetCurrentProcess().Id);
-            }
-            catch { }
-        }
-
-        public bool PlugXInputController(int index)
-        {
-            int xinputIndex = x360Bus.FirstController + index;
-            LogDebug("Plugging in X360 Controller #" + xinputIndex);
-            bool xinputResult = x360Bus.Plugin(index);
-            if (xinputResult)
-            {
-                useDInputOnly[index] = false;
-                LogDebug("X360 Controller # " + xinputIndex + " connected");
-            }
-            else
-            {
-                useDInputOnly[index] = true;
-                LogDebug("X360 Controller # " + xinputIndex + " failed. Using DInput only mode");
-            }
-
-            return xinputResult;
-        }
-
-        public bool UnplugXInputController(int index)
-        {
-            bool unplugResult = x360Bus.Unplug(index);
-            int xinputIndex = x360Bus.FirstController + index;
-            if (unplugResult)
-            {
-                useDInputOnly[index] = true;
-                LogDebug("X360 Controller # " + xinputIndex + " unplugged");
-            }
-            else
-            {
-                LogDebug("X360 Controller # " + xinputIndex + " failed to unplug");
-            }
-
-            return unplugResult;
         }
 
         private void startViGEm()

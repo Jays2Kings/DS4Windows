@@ -52,7 +52,6 @@ namespace DS4Windows
         Options opt;
         private bool optPop;
         public Size oldsize;
-        public bool mAllowVisible;
         bool contextclose;
         bool turnOffTemp;
         bool runningBat;
@@ -235,13 +234,11 @@ namespace DS4Windows
                     break;
             }
 
-            if (!(startMinimizedCheckBox.Checked || mini))
+            if (startMinimizedCheckBox.Checked || mini)
             {
-                mAllowVisible = true;
-                Show();
+                WindowState = FormWindowState.Minimized;
             }
 
-            Form_Resize(null, null);
             RefreshProfiles();
             /*opt = new Options(this);
             opt.Icon = this.Icon;
@@ -324,9 +321,6 @@ namespace DS4Windows
                 uacPictureBox.Visible = true;
                 new ToolTip().SetToolTip(uacPictureBox, Properties.Resources.UACTask);
                 runStartTaskRadio.Enabled = false;
-                hidGuardWhiteList.Visible = false;
-                clrHidGuardWlistLinkLabel.Visible = false;
-                hidGuardRegLinkLabel.Visible = false;
             }
             else
             {
@@ -395,13 +389,14 @@ namespace DS4Windows
                 else
                 {
                     if (hoverTextDict.TryGetValue(control, out tempst))
-                        control.MouseEnter += Items_MouseHover;
+                        control.MouseHover += Items_MouseHover;
                     else
                         control.MouseHover += ClearLastMessage;
                 }
             }
 
             instance = this;
+            Form_Resize(null, null);
             if (btnStartStop.Enabled && start)
                 TaskRunner.Delay(50).ContinueWith((t) => this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked())));
         }
@@ -501,17 +496,6 @@ namespace DS4Windows
                 File.Move(exepath + "\\Update Files\\DS4Updater.exe", exepath + "\\DS4Updater.exe");
                 Directory.Delete(exepath + "\\Update Files");
             }
-        }
-
-        protected override void SetVisibleCore(bool value)
-        {
-            if (!mAllowVisible)
-            {
-                value = false;
-                if (!IsHandleCreated) CreateHandle();
-            }
-
-            base.SetVisibleCore(value);
         }
 
         public static string GetTopWindowName()
@@ -1594,7 +1578,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
         private void editMenu_Click(object sender, EventArgs e)
         {
-            mAllowVisible = true;
             Show();
             WindowState = FormWindowState.Normal;
             ToolStripMenuItem em = (ToolStripMenuItem)sender;
@@ -1744,7 +1727,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mAllowVisible = true;
             Show();
             Focus();
             WindowState = FormWindowState.Normal;
@@ -2140,9 +2122,9 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         }
 
         bool tempBool = false;
-        protected void ScpForm_Closing(object sender, FormClosingEventArgs e)
+        private void ScpForm_Closing(object sender, FormClosingEventArgs e)
         {
-            if (opt != null && opt.Visible)
+            if (optPop)
             {
                 opt.Close();
                 e.Cancel = true;
@@ -2522,41 +2504,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             }
         }
 
-        private void HidGuardWhiteList_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                RegistryKey key = Registry.LocalMachine.CreateSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters");
-                key.SetValue("AffectedDevices", Program.rootHub.affectedDevs.ToArray(), RegistryValueKind.MultiString);
-                AppLogger.LogToGui("Wrote HidGuardian Device List to Registry", false);
-            }
-            catch { }
-        }
-
-        private void ClrHidGuardWlistLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                Registry.LocalMachine.DeleteSubKeyTree(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist");
-                AppLogger.LogToGui("Cleared HidGuardian Whitelist", false);
-                Program.rootHub.CreateHidGuardKey();
-            }
-            catch { }
-        }
-
-        private void HidGuardRegLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                RegistryKey key = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Applets\Regedit");
-                key.SetValue("LastKey", @"Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters", RegistryValueKind.String);
-                Process temp = new Process();
-                temp.StartInfo.FileName = "regedit";
-                temp.Start();
-            }
-            catch { }
-        }
-
         private void OpenProgramFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process temp = new Process();
@@ -2602,13 +2549,18 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             if (!state)
             {
                 Program.rootHub.ChangeMotionEventStatus(state);
-                await TaskRunner.Delay(100);
-                Program.rootHub.ChangeUDPStatus(state);
+                await TaskRunner.Delay(100).ContinueWith((t) =>
+                {
+                    Program.rootHub.ChangeUDPStatus(state);
+                });
             }
             else
             {
                 Program.rootHub.ChangeUDPStatus(state);
-                Program.rootHub.ChangeMotionEventStatus(state);
+                await TaskRunner.Delay(100).ContinueWith((t) =>
+                {
+                    Program.rootHub.ChangeMotionEventStatus(state);
+                });
             }
 
             nUDUdpPortNum.Enabled = state;

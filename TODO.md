@@ -1,7 +1,7 @@
 # TODO
 
 * Look into adding periodic rumble updates when data does not change
-* Look into newer version of HidGuardian
+* ~~Look into newer version of HidGuardian~~
 * Look into distributing profile properties around various objects
 rather than using a lot of getters to obtain properties each poll.
 It will complicate the architecture a little bit but hopefully

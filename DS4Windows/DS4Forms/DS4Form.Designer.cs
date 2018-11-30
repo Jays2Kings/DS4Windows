@@ -165,9 +165,6 @@
             this.linkUninstall = new System.Windows.Forms.LinkLabel();
             this.linkSetup = new System.Windows.Forms.LinkLabel();
             this.lLBUpdate = new System.Windows.Forms.LinkLabel();
-            this.hidGuardWhiteList = new System.Windows.Forms.LinkLabel();
-            this.clrHidGuardWlistLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.hidGuardRegLinkLabel = new System.Windows.Forms.LinkLabel();
             this.tabLog = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.exportLogTxtBtn = new System.Windows.Forms.Button();
@@ -735,7 +732,6 @@
             this.lBProfiles.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lBProfiles.ContextMenuStrip = this.cMProfile;
             resources.ApplyResources(this.lBProfiles, "lBProfiles");
-            this.lBProfiles.FormattingEnabled = true;
             this.lBProfiles.Name = "lBProfiles";
             this.lBProfiles.SelectedIndexChanged += new System.EventHandler(this.lBProfiles_SelectedIndexChanged);
             this.lBProfiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lBProfiles_KeyDown);
@@ -1272,9 +1268,6 @@
             this.flowLayoutPanel1.Controls.Add(this.linkUninstall);
             this.flowLayoutPanel1.Controls.Add(this.linkSetup);
             this.flowLayoutPanel1.Controls.Add(this.lLBUpdate);
-            this.flowLayoutPanel1.Controls.Add(this.hidGuardWhiteList);
-            this.flowLayoutPanel1.Controls.Add(this.clrHidGuardWlistLinkLabel);
-            this.flowLayoutPanel1.Controls.Add(this.hidGuardRegLinkLabel);
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -1313,27 +1306,6 @@
             this.lLBUpdate.Name = "lLBUpdate";
             this.lLBUpdate.TabStop = true;
             this.lLBUpdate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLBUpdate_LinkClicked);
-            // 
-            // hidGuardWhiteList
-            // 
-            resources.ApplyResources(this.hidGuardWhiteList, "hidGuardWhiteList");
-            this.hidGuardWhiteList.Name = "hidGuardWhiteList";
-            this.hidGuardWhiteList.TabStop = true;
-            this.hidGuardWhiteList.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.HidGuardWhiteList_LinkClicked);
-            // 
-            // clrHidGuardWlistLinkLabel
-            // 
-            resources.ApplyResources(this.clrHidGuardWlistLinkLabel, "clrHidGuardWlistLinkLabel");
-            this.clrHidGuardWlistLinkLabel.Name = "clrHidGuardWlistLinkLabel";
-            this.clrHidGuardWlistLinkLabel.TabStop = true;
-            this.clrHidGuardWlistLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ClrHidGuardWlistLinkLabel_LinkClicked);
-            // 
-            // hidGuardRegLinkLabel
-            // 
-            resources.ApplyResources(this.hidGuardRegLinkLabel, "hidGuardRegLinkLabel");
-            this.hidGuardRegLinkLabel.Name = "hidGuardRegLinkLabel";
-            this.hidGuardRegLinkLabel.TabStop = true;
-            this.hidGuardRegLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.HidGuardRegLinkLabel_LinkClicked);
             // 
             // tabLog
             // 
@@ -1395,7 +1367,6 @@
             // 
             // DS4Form
             // 
-            this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.Window;
@@ -1586,9 +1557,6 @@
         private System.Windows.Forms.Button exportLogTxtBtn;
         private System.Windows.Forms.Button btnClear;
         private DS4Forms.LanguagePackComboBox languagePackComboBox1;
-        private System.Windows.Forms.LinkLabel hidGuardWhiteList;
-        private System.Windows.Forms.LinkLabel clrHidGuardWlistLinkLabel;
-        private System.Windows.Forms.LinkLabel hidGuardRegLinkLabel;
         private System.Windows.Forms.ToolStripMenuItem openProgramFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem disconToolStripMenuItem;

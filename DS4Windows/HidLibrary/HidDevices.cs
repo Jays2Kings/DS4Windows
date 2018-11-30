@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 
@@ -55,7 +54,8 @@ namespace DS4Windows
                 for (int j = 0; !found && j < devInfoLen; j++)
                 {
                     VidPidInfo tempInfo = devInfo[j];
-                    if (tempDev.Attributes.VendorId == tempInfo.vid &&
+                    if (tempDev.Capabilities.Usage == 0x05 &&
+                        tempDev.Attributes.VendorId == tempInfo.vid &&
                         tempDev.Attributes.ProductId == tempInfo.pid)
                     {
                         found = true;

@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.ComponentModel;
+using System.Threading;
 
 namespace DS4Windows
 {
@@ -71,6 +72,7 @@ namespace DS4Windows
         private byte[] recvBuffer = new byte[1024];
         private SocketAsyncEventArgs[] argsList;
         private int listInd = 0;
+        private ReaderWriterLockSlim poolLock = new ReaderWriterLockSlim();
 
         public delegate void GetPadDetail(int padIdx, ref DualShockPadMeta meta);
 
@@ -83,6 +85,7 @@ namespace DS4Windows
             for (int num = 0; num <= 19; num++)
             {
                 SocketAsyncEventArgs args = new SocketAsyncEventArgs();
+                args.SetBuffer(new byte[100], 0, 100);
                 argsList[num] = args;
             }
         }
@@ -182,10 +185,16 @@ namespace DS4Windows
             FinishPacket(packetData);
 
             //try { udpSock.SendTo(packetData, clientEP); }
-            SocketAsyncEventArgs args = argsList[listInd];
+            int temp = 0;
+            poolLock.EnterWriteLock();
+            temp = listInd;
             listInd = ++listInd % 20;
+            SocketAsyncEventArgs args = argsList[temp];
+            poolLock.ExitWriteLock();
+
             args.RemoteEndPoint = clientEP;
-            args.SetBuffer(packetData, 0, packetData.Length);
+            Array.Copy(packetData, args.Buffer, packetData.Length);
+            //args.SetBuffer(packetData, 0, packetData.Length);
             try {
                 udpSock.SendToAsync(args);
             }
@@ -642,10 +651,15 @@ namespace DS4Windows
                 foreach (var cl in clientsList)
                 {
                     //try { udpSock.SendTo(outputData, cl); }
-                    SocketAsyncEventArgs args = argsList[listInd];
+                    int temp = 0;
+                    poolLock.EnterWriteLock();
+                    temp = listInd;
                     listInd = ++listInd % 20;
+                    SocketAsyncEventArgs args = argsList[temp];
+                    poolLock.ExitWriteLock();
+
                     args.RemoteEndPoint = cl;
-                    args.SetBuffer(outputData, 0, outputData.Length);
+                    Array.Copy(outputData, args.Buffer, outputData.Length);
                     try {
                         udpSock.SendToAsync(args);
                     }

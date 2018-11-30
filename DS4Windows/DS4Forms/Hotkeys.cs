@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 
 using System.Reflection;
-using System.Threading;
 using System.Diagnostics;
 using System.Drawing;
 
@@ -13,15 +12,6 @@ namespace DS4Windows
         public Hotkeys()
         {
             InitializeComponent();
-            string s = Thread.CurrentThread.CurrentUICulture.ToString().Split('-')[0];
-            
-            Control[] ctrls = tLPTranslators.Controls.Find("lb" + s, true);
-            if (ctrls.Length > 0)
-            {
-                ((Label)ctrls[0]).ForeColor = Color.DarkGreen;
-                int ind = tLPTranslators.Controls.IndexOf(ctrls[0]) + 1;
-                ((Label)tLPTranslators.Controls[ind]).ForeColor = Color.DarkGreen;
-            }
 
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;

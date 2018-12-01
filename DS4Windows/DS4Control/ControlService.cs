@@ -181,9 +181,9 @@ namespace DS4Windows
         {
             if (state && _udpServer == null)
             {
+                udpChangeStatus = true;
                 TestQueueBus(() =>
                 {
-                    udpChangeStatus = true;
                     _udpServer = new UdpServer(GetPadDetailForIdx);
                     var UDP_SERVER_PORT = Global.getUDPServerPortNum();
 
@@ -315,7 +315,7 @@ namespace DS4Windows
                     ChangeUDPStatus(true);
                     while (udpChangeStatus == true)
                     {
-                        Task.Delay(100);
+                        Thread.SpinWait(500);
                     }
                 }
 

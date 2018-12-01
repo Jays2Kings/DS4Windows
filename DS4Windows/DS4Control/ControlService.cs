@@ -426,25 +426,6 @@ namespace DS4Windows
                 }
 
                 running = true;
-
-                if (_udpServer != null)
-                {
-                    //var UDP_SERVER_PORT = 26760;
-                    var UDP_SERVER_PORT = Global.getUDPServerPortNum();
-
-                    try
-                    {
-                        _udpServer.Start(UDP_SERVER_PORT);
-                        LogDebug("UDP server listening on port " + UDP_SERVER_PORT);
-                    }
-                    catch (System.Net.Sockets.SocketException ex)
-                    {
-                        var errMsg = String.Format("Couldn't start UDP server on port {0}, outside applications won't be able to access pad data ({1})", UDP_SERVER_PORT, ex.SocketErrorCode);
-
-                        LogDebug(errMsg, true);
-                        AppLogger.LogToTray(errMsg, true, true);
-                    }
-                }
             }
             else
             {

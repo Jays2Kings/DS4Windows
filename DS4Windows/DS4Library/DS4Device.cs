@@ -157,6 +157,9 @@ namespace DS4Windows
             return warnInterval;
         }
 
+        public Int32 wheelPrevPhysicalAngle = 0;
+        public Int32 wheelFullTurnCount = 0;
+
         public Point wheelCenterPoint;
         public Point wheel90DegPointLeft;
         public Point wheelCircleCenterPointLeft;
@@ -165,13 +168,13 @@ namespace DS4Windows
 
         public DateTime wheelPrevRecalibrateTime;
 
-        private bool wheelRecalibrateActive = false;
-        public bool WheelRecalibrateActive
+        private int wheelRecalibrateActiveState = 0;
+        public int WheelRecalibrateActiveState
         {
-            get { return wheelRecalibrateActive; }
+            get { return wheelRecalibrateActiveState; }
             set
             {
-                wheelRecalibrateActive = value;
+                wheelRecalibrateActiveState = value;
             }
         }
 

@@ -86,7 +86,6 @@
             this.lbDTapDVR = new System.Windows.Forms.Label();
             this.lbHoldDVR = new System.Windows.Forms.Label();
             this.lbTapDVR = new System.Windows.Forms.Label();
-            this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).BeginInit();
             this.pnlProgram.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDProg)).BeginInit();
@@ -221,7 +220,8 @@
             resources.GetString("cBActions.Items4"),
             resources.GetString("cBActions.Items5"),
             resources.GetString("cBActions.Items6"),
-            resources.GetString("cBActions.Items7")});
+            resources.GetString("cBActions.Items7"),
+            resources.GetString("cBActions.Items8")});
             resources.ApplyResources(this.cBActions, "cBActions");
             this.cBActions.Name = "cBActions";
             this.cBActions.SelectedIndexChanged += new System.EventHandler(this.cBActions_SelectedIndexChanged);
@@ -595,13 +595,6 @@
             // 
             resources.ApplyResources(this.lbTapDVR, "lbTapDVR");
             this.lbTapDVR.Name = "lbTapDVR";
-            // 
-            // advColorDialog
-            // 
-            this.advColorDialog.AnyColor = true;
-            this.advColorDialog.Color = System.Drawing.Color.Blue;
-            this.advColorDialog.FullOpen = true;
-            this.advColorDialog.OnUpdateColor += new DS4Windows.AdvancedColorDialog.ColorUpdateHandler(this.advColorDialog_OnUpdateColor);
             // 
             // SpecActions
             // 

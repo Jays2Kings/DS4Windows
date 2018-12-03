@@ -873,6 +873,9 @@ namespace DS4Windows
                     case "MultiAction":
                         lvi.SubItems.Add(Properties.Resources.MultiAction);
                         break;
+                    case "SASteeringWheelEmulationCalibrate":
+                        lvi.SubItems.Add(Properties.Resources.SASteeringWheelEmulationCalibrate);
+                        break;
                 }
 
                 if (newp)

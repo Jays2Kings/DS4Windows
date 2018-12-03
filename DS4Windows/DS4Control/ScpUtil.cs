@@ -724,6 +724,12 @@ namespace DS4Windows
             return m_Config.sASteeringWheelEmulationAxis[index];
         }
 
+        public static int[] SASteeringWheelEmulationRange => m_Config.sASteeringWheelEmulationRange;
+        public static int getSASteeringWheelEmulationRange(int index)
+        {
+            return m_Config.sASteeringWheelEmulationRange[index];
+        }
+
         public static int[][] TouchDisInvertTriggers => m_Config.touchDisInvertTriggers;
         public static int[] getTouchDisInvertTriggers(int index)
         {
@@ -1514,6 +1520,7 @@ namespace DS4Windows
         public string[] sATriggers = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         public bool[] sATriggerCond = new bool[5] { true, true, true, true, true };
         public DS4Controls[] sASteeringWheelEmulationAxis = new DS4Controls[5] { DS4Controls.None, DS4Controls.None, DS4Controls.None, DS4Controls.None, DS4Controls.None };
+        public int[] sASteeringWheelEmulationRange = new int[5] { 360, 360, 360, 360, 360 };
         public int[][] touchDisInvertTriggers = new int[5][] { new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 },
             new int[1] { -1 }, new int[1] { -1 } };
         public int[] lsCurve = new int[5] { 0, 0, 0, 0, 0 };
@@ -1761,6 +1768,7 @@ namespace DS4Windows
                 XmlNode xmlSATriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "SATriggers", null); xmlSATriggers.InnerText = sATriggers[device].ToString(); Node.AppendChild(xmlSATriggers);
                 XmlNode xmlSATriggerCond = m_Xdoc.CreateNode(XmlNodeType.Element, "SATriggerCond", null); xmlSATriggerCond.InnerText = SaTriggerCondString(sATriggerCond[device]); Node.AppendChild(xmlSATriggerCond);
                 XmlNode xmlSASteeringWheelEmulationAxis = m_Xdoc.CreateNode(XmlNodeType.Element, "SASteeringWheelEmulationAxis", null); xmlSASteeringWheelEmulationAxis.InnerText = sASteeringWheelEmulationAxis[device].ToString("G"); Node.AppendChild(xmlSASteeringWheelEmulationAxis);
+                XmlNode xmlSASteeringWheelEmulationRange = m_Xdoc.CreateNode(XmlNodeType.Element, "SASteeringWheelEmulationRange", null); xmlSASteeringWheelEmulationRange.InnerText = sASteeringWheelEmulationRange[device].ToString(); Node.AppendChild(xmlSASteeringWheelEmulationRange);
 
                 XmlNode xmlTouchDisInvTriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "TouchDisInvTriggers", null);
                 string tempTouchDisInv = string.Join(",", touchDisInvertTriggers[device]);
@@ -2640,6 +2648,9 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SASteeringWheelEmulationAxis"); DS4Controls.TryParse(Item.InnerText, out sASteeringWheelEmulationAxis[device]); }
                 catch { sASteeringWheelEmulationAxis[device] = DS4Controls.None; missingSetting = true; }
 
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SASteeringWheelEmulationRange"); int.TryParse(Item.InnerText, out sASteeringWheelEmulationRange[device]); }
+                catch { sASteeringWheelEmulationRange[device] = 360; missingSetting = true; }
+
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TouchDisInvTriggers");
@@ -3281,6 +3292,10 @@ namespace DS4Windows
                     el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "MultiAction";
                     el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
                     break;
+                case 8:
+                    el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "SASteeringWheelEmulationCalibrate";
+                    el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
+                    break;
             }
 
             if (edit)
@@ -3399,6 +3414,14 @@ namespace DS4Windows
                     else if (type == "XboxGameDVR" || type == "MultiAction")
                     {
                         actions.Add(new SpecialAction(name, controls, type, details));
+                    }
+                    else if (type == "SASteeringWheelEmulationCalibrate")
+                    {
+                        double doub;
+                        if (double.TryParse(details, out doub))
+                            actions.Add(new SpecialAction(name, controls, type, "", doub));
+                        else
+                            actions.Add(new SpecialAction(name, controls, type, ""));
                     }
                 }
             }
@@ -3920,6 +3943,7 @@ namespace DS4Windows
             sATriggers[device] = string.Empty;
             sATriggerCond[device] = true;
             sASteeringWheelEmulationAxis[device] = DS4Controls.None;
+            sASteeringWheelEmulationRange[device] = 360;
             touchDisInvertTriggers[device] = new int[1] { -1 };
             lsCurve[device] = rsCurve[device] = 0;
             gyroSensitivity[device] = 100;
@@ -3941,7 +3965,7 @@ namespace DS4Windows
 
     public class SpecialAction
     {
-        public enum ActionTypeId { None, Key, Program, Profile, Macro, DisconnectBT, BatteryCheck, MultiAction, XboxGameDVR }
+        public enum ActionTypeId { None, Key, Program, Profile, Macro, DisconnectBT, BatteryCheck, MultiAction, XboxGameDVR, SASteeringWheelEmulationCalibrate }
 
         public string name;
         public List<DS4Controls> trigger = new List<DS4Controls>();
@@ -4058,6 +4082,10 @@ namespace DS4Windows
                 this.type = "MultiAction";
                 type = "MultiAction";
                 this.details = string.Join(",", macros);
+            }
+            else if (type == "SASteeringWheelEmulationCalibrate")
+            {
+                typeID = ActionTypeId.SASteeringWheelEmulationCalibrate;
             }
             else
                 this.details = details;

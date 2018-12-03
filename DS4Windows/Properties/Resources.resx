@@ -637,6 +637,9 @@
   <data name="Shortcuts" xml:space="preserve">
     <value>Shortcuts</value>
   </data>
+  <data name="SASteeringWheelEmulationCalibrate" xml:space="preserve">
+    <value>Calibration of sixaxis wheel emulation</value>
+  </data>
   <data name="SixAxisReading" xml:space="preserve">
     <value>Click for advanced Sixaxis reading</value>
   </data>

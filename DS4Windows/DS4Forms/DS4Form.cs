@@ -2549,13 +2549,18 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             if (!state)
             {
                 Program.rootHub.ChangeMotionEventStatus(state);
-                await TaskRunner.Delay(100);
-                Program.rootHub.ChangeUDPStatus(state);
+                await TaskRunner.Delay(100).ContinueWith((t) =>
+                {
+                    Program.rootHub.ChangeUDPStatus(state);
+                });
             }
             else
             {
                 Program.rootHub.ChangeUDPStatus(state);
-                Program.rootHub.ChangeMotionEventStatus(state);
+                await TaskRunner.Delay(100).ContinueWith((t) =>
+                {
+                    Program.rootHub.ChangeMotionEventStatus(state);
+                });
             }
 
             nUDUdpPortNum.Enabled = state;

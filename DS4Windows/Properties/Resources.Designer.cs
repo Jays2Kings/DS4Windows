@@ -1482,7 +1482,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You must quit other applications like Steam, Uplay, NVIDIA IN-GAME before activating the &apos;Hide DS4 Controller&apos; option.&quot;.
+        ///   Looks up a localized string similar to You must quit other applications like Steam, Uplay, NVIDIA IN-GAME before activating the &apos;Hide DS4 Controller&apos; option..
         /// </summary>
         public static string QuitOtherPrograms {
             get {

@@ -187,7 +187,7 @@ namespace DS4Windows
                     _udpServer = new UdpServer(GetPadDetailForIdx);
                     if (openPort)
                     {
-                        // Change thread affinity to object has normal priority
+                        // Change thread affinity of object to have normal priority
                         Task.Run(() =>
                         {
                             var UDP_SERVER_PORT = Global.getUDPServerPortNum();

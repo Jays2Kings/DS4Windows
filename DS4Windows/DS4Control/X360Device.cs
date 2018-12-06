@@ -140,15 +140,26 @@ namespace DS4Windows
 
                 if (state.PS) Output[11] |= (Byte)(1 << 2); // Guide     
 
-                Output[12] = state.L2; // Left Trigger
-                Output[13] = state.R2; // Right Trigger
+                DS4Controls steeringWheelMappedAxis = Global.getSASteeringWheelEmulationAxis(device);
+
+                if (steeringWheelMappedAxis == DS4Controls.L2)
+                {
+                    Output[12] = Output[13] = 0;
+                    if (state.SASteeringWheelEmulationUnit >= 0)
+                        Output[12] = (Byte)state.SASteeringWheelEmulationUnit;
+                    else
+                        Output[13] = (Byte)state.SASteeringWheelEmulationUnit;
+                }
+                else
+                {
+                    Output[12] = state.L2; // Left Trigger
+                    Output[13] = state.R2; // Right Trigger
+                }
 
                 Int32 ThumbLX;
                 Int32 ThumbLY;
                 Int32 ThumbRX;
                 Int32 ThumbRY;
-
-                DS4Controls steeringWheelMappedAxis = Global.getSASteeringWheelEmulationAxis(device);
 
                 if (steeringWheelMappedAxis == DS4Controls.LXPos) ThumbLX = state.SASteeringWheelEmulationUnit;
                 else ThumbLX = Scale(state.LX, false);

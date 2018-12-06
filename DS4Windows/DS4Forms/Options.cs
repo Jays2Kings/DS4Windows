@@ -718,6 +718,20 @@ namespace DS4Windows
                 nUDGyroSmoothWeight.Value = (decimal)(GyroSmoothingWeight[device]);
                 cBGyroMouseXAxis.SelectedIndex = GyroMouseHorizontalAxis[device];
                 triggerCondAndCombo.SelectedIndex = SATriggerCond[device] ? 0 : 1;
+
+                switch (getSASteeringWheelEmulationAxis(device))
+                {
+                    case DS4Controls.None: cBSteeringWheelEmulationAxis.SelectedIndex = 0; break;
+                    case DS4Controls.LXPos: cBSteeringWheelEmulationAxis.SelectedIndex = 1; break;
+                    case DS4Controls.LYPos: cBSteeringWheelEmulationAxis.SelectedIndex = 2; break;
+                    case DS4Controls.RXPos: cBSteeringWheelEmulationAxis.SelectedIndex = 3; break;
+                    case DS4Controls.RYPos: cBSteeringWheelEmulationAxis.SelectedIndex = 4; break;
+                    case DS4Controls.L2: 
+                    case DS4Controls.R2: cBSteeringWheelEmulationAxis.SelectedIndex = 5; break;
+                }
+
+                int idxSASteeringWheelEmulationRange = cBSteeringWheelEmulationRange.Items.IndexOf(getSASteeringWheelEmulationRange(device).ToString());
+                if (idxSASteeringWheelEmulationRange >= 0) cBSteeringWheelEmulationRange.SelectedIndex = idxSASteeringWheelEmulationRange;
             }
             else
             {
@@ -836,6 +850,8 @@ namespace DS4Windows
                 nUDGyroSmoothWeight.Value = 0.5m;
                 cBGyroMouseXAxis.SelectedIndex = 0;
                 triggerCondAndCombo.SelectedIndex = 0;
+                cBSteeringWheelEmulationAxis.SelectedIndex = 0;
+                cBSteeringWheelEmulationRange.SelectedIndex = cBSteeringWheelEmulationRange.Items.IndexOf("360");
                 Set();
             }
             
@@ -2989,6 +3005,85 @@ namespace DS4Windows
             if (loading == false)
             {
                 TrackballMode[device] = trackballCk.Checked;
+            }
+        }
+
+        private void cBSteeringWheelEmulationRange_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                SASteeringWheelEmulationRange[device] = Convert.ToInt32(cBSteeringWheelEmulationRange.Items[cBSteeringWheelEmulationRange.SelectedIndex].ToString());
+            }
+        }
+
+        private void cBSteeringWheelEmulationAxis_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                switch (cBSteeringWheelEmulationAxis.SelectedIndex)
+                {
+                    case 0: SASteeringWheelEmulationAxis[device] = DS4Controls.None; break;   // Gyro SA steering wheel emulation disabled
+                    case 1: SASteeringWheelEmulationAxis[device] = DS4Controls.LXPos; break;  // Left stick X axis 
+                    case 2: SASteeringWheelEmulationAxis[device] = DS4Controls.LYPos; break;  // Left stick Y axis 
+                    case 3: SASteeringWheelEmulationAxis[device] = DS4Controls.RXPos; break;  // Right stick X axis 
+                    case 4: SASteeringWheelEmulationAxis[device] = DS4Controls.RYPos; break;  // Right stick Y axis 
+                    case 5: SASteeringWheelEmulationAxis[device] = DS4Controls.L2; break;     // Left+Right trigger axis (max range -255..0 as left trigger and 0..+255 as right trigger)
+                }
+            }
+        }
+
+        private void btnSteeringWheelEmulationCalibrate_Click(object sender, EventArgs e)
+        {
+            if(cBSteeringWheelEmulationAxis.SelectedIndex > 0)
+            {
+                DS4Device d;
+                int tempDeviceNum = (int)nUDSixaxis.Value - 1;
+
+                d = Program.rootHub.DS4Controllers[tempDeviceNum];
+                if (d != null)
+                {
+                    Point origWheelCenterPoint = new Point(d.wheelCenterPoint.X, d.wheelCenterPoint.Y);
+                    Point origWheel90DegPointLeft = new Point(d.wheel90DegPointLeft.X, d.wheel90DegPointLeft.Y);
+                    Point origWheel90DegPointRight = new Point(d.wheel90DegPointRight.X, d.wheel90DegPointRight.Y);
+                    
+                    d.WheelRecalibrateActiveState = 1;
+
+                    DialogResult msgBoxResult = MessageBox.Show($"{Properties.Resources.SASteeringWheelEmulationCalibrate}.\n\n" +
+                            $"{Properties.Resources.SASteeringWheelEmulationCalibrateInstruction1}.\n" +
+                            $"{Properties.Resources.SASteeringWheelEmulationCalibrateInstruction2}.\n" +
+                            $"{Properties.Resources.SASteeringWheelEmulationCalibrateInstruction3}.\n\n" +
+                            $"{Properties.Resources.SASteeringWheelEmulationCalibrateInstruction}.\n",
+                        Properties.Resources.SASteeringWheelEmulationCalibrate,
+                        MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Information,
+                        MessageBoxDefaultButton.Button1,
+                        0,
+                        false);
+
+                    if (msgBoxResult == DialogResult.OK)
+                    {
+                        // Accept new calibration values (State 3 is "Complete calibration" state)
+                        d.WheelRecalibrateActiveState = 3;
+                    }
+                    else
+                    {
+                        // Cancel calibration and reset back to original calibration values
+                        d.WheelRecalibrateActiveState = 4;
+
+                        d.wheelFullTurnCount = 0;
+                        d.wheelCenterPoint = origWheelCenterPoint;
+                        d.wheel90DegPointLeft = origWheel90DegPointLeft;
+                        d.wheel90DegPointRight = origWheel90DegPointRight;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"{Properties.Resources.SASteeringWheelEmulationCalibrateNoControllerError}.");
+                }
+            }
+            else
+            {
+                MessageBox.Show($"{Properties.Resources.SASteeringWheelEmulationCalibrateNoneAxisError}.");
             }
         }
 

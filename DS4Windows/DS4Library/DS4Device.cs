@@ -158,6 +158,7 @@ namespace DS4Windows
         }
 
         public Int32 wheelPrevPhysicalAngle = 0;
+        public Int32 wheelPrevFullAngle = 0;
         public Int32 wheelFullTurnCount = 0;
 
         public Point wheelCenterPoint;

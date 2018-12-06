@@ -1637,6 +1637,60 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All calibraton points are set when lightbar color turns to green. While turning the controller the lightbar color flashes when the controller is at calibration point. Accept calibration with OK button.
+        /// </summary>
+        internal static string SASteeringWheelEmulationCalibrateInstruction {
+            get {
+                return ResourceManager.GetString("SASteeringWheelEmulationCalibrateInstruction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (1) Center the controller, hold it steady and press &quot;X&quot;.
+        /// </summary>
+        internal static string SASteeringWheelEmulationCalibrateInstruction1 {
+            get {
+                return ResourceManager.GetString("SASteeringWheelEmulationCalibrateInstruction1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (2) Turn to 90° left (or right) position and press &quot;X&quot;.
+        /// </summary>
+        internal static string SASteeringWheelEmulationCalibrateInstruction2 {
+            get {
+                return ResourceManager.GetString("SASteeringWheelEmulationCalibrateInstruction2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (3) Turn to 90° right (or left) position and press &quot;X&quot;.
+        /// </summary>
+        internal static string SASteeringWheelEmulationCalibrateInstruction3 {
+            get {
+                return ResourceManager.GetString("SASteeringWheelEmulationCalibrateInstruction3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot calibrate gyro (sixaxis) steering wheel emulation values without a controller. Connect a controller via bluetooth or usb.
+        /// </summary>
+        internal static string SASteeringWheelEmulationCalibrateNoControllerError {
+            get {
+                return ResourceManager.GetString("SASteeringWheelEmulationCalibrateNoControllerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gyro steering wheel emulation axis option is set to NONE (emulation is not used). Please select an axis option before calibrating the sixaxis gyro steering wheel emulation.
+        /// </summary>
+        internal static string SASteeringWheelEmulationCalibrateNoneAxisError {
+            get {
+                return ResourceManager.GetString("SASteeringWheelEmulationCalibrateNoneAxisError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap saveprofile {

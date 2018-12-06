@@ -188,6 +188,11 @@
             this.lbGyroXP = new System.Windows.Forms.Label();
             this.bnGyroXN = new System.Windows.Forms.Button();
             this.lbGyroXN = new System.Windows.Forms.Label();
+            this.lblSteeringWheelEmulationAxis = new System.Windows.Forms.Label();
+            this.cBSteeringWheelEmulationAxis = new System.Windows.Forms.ComboBox();
+            this.lblSteeringWheelEmulationRange = new System.Windows.Forms.Label();
+            this.cBSteeringWheelEmulationRange = new System.Windows.Forms.ComboBox();
+            this.btnSteeringWheelEmulationCalibrate = new System.Windows.Forms.Button();
             this.tCControls = new System.Windows.Forms.TabControl();
             this.tPControls = new System.Windows.Forms.TabPage();
             this.lBControls = new System.Windows.Forms.ListBox();
@@ -315,6 +320,8 @@
             this.rBSAControls = new System.Windows.Forms.RadioButton();
             this.rBSAMouse = new System.Windows.Forms.RadioButton();
             this.pnlSAMouse = new System.Windows.Forms.Panel();
+            this.label26 = new System.Windows.Forms.Label();
+            this.triggerCondAndCombo = new System.Windows.Forms.ComboBox();
             this.cBGyroMouseXAxis = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.lbGyroSmooth = new System.Windows.Forms.Label();
@@ -386,8 +393,6 @@
             this.optionsTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shareTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.psTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.triggerCondAndCombo = new System.Windows.Forms.ComboBox();
-            this.label26 = new System.Windows.Forms.Label();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
@@ -1856,6 +1861,11 @@
             this.fLPTiltControls.Controls.Add(this.lbGyroXP);
             this.fLPTiltControls.Controls.Add(this.bnGyroXN);
             this.fLPTiltControls.Controls.Add(this.lbGyroXN);
+            this.fLPTiltControls.Controls.Add(this.lblSteeringWheelEmulationAxis);
+            this.fLPTiltControls.Controls.Add(this.cBSteeringWheelEmulationAxis);
+            this.fLPTiltControls.Controls.Add(this.lblSteeringWheelEmulationRange);
+            this.fLPTiltControls.Controls.Add(this.cBSteeringWheelEmulationRange);
+            this.fLPTiltControls.Controls.Add(this.btnSteeringWheelEmulationCalibrate);
             resources.ApplyResources(this.fLPTiltControls, "fLPTiltControls");
             this.fLPTiltControls.Name = "fLPTiltControls";
             // 
@@ -1910,6 +1920,56 @@
             // 
             resources.ApplyResources(this.lbGyroXN, "lbGyroXN");
             this.lbGyroXN.Name = "lbGyroXN";
+            // 
+            // lblSteeringWheelEmulationAxis
+            // 
+            resources.ApplyResources(this.lblSteeringWheelEmulationAxis, "lblSteeringWheelEmulationAxis");
+            this.lblSteeringWheelEmulationAxis.Name = "lblSteeringWheelEmulationAxis";
+            // 
+            // cBSteeringWheelEmulationAxis
+            // 
+            this.cBSteeringWheelEmulationAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBSteeringWheelEmulationAxis.FormattingEnabled = true;
+            this.cBSteeringWheelEmulationAxis.Items.AddRange(new object[] {
+            resources.GetString("cBSteeringWheelEmulationAxis.Items"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items1"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items2"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items3"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items4"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items5")});
+            resources.ApplyResources(this.cBSteeringWheelEmulationAxis, "cBSteeringWheelEmulationAxis");
+            this.cBSteeringWheelEmulationAxis.Name = "cBSteeringWheelEmulationAxis";
+            this.cBSteeringWheelEmulationAxis.SelectedIndexChanged += new System.EventHandler(this.cBSteeringWheelEmulationAxis_SelectedIndexChanged);
+            // 
+            // lblSteeringWheelEmulationRange
+            // 
+            resources.ApplyResources(this.lblSteeringWheelEmulationRange, "lblSteeringWheelEmulationRange");
+            this.lblSteeringWheelEmulationRange.Name = "lblSteeringWheelEmulationRange";
+            // 
+            // cBSteeringWheelEmulationRange
+            // 
+            this.cBSteeringWheelEmulationRange.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBSteeringWheelEmulationRange.FormattingEnabled = true;
+            this.cBSteeringWheelEmulationRange.Items.AddRange(new object[] {
+            resources.GetString("cBSteeringWheelEmulationRange.Items"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items1"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items2"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items3"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items4"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items5"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items6"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items7"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items8")});
+            resources.ApplyResources(this.cBSteeringWheelEmulationRange, "cBSteeringWheelEmulationRange");
+            this.cBSteeringWheelEmulationRange.Name = "cBSteeringWheelEmulationRange";
+            this.cBSteeringWheelEmulationRange.SelectedIndexChanged += new System.EventHandler(this.cBSteeringWheelEmulationRange_SelectedIndexChanged);
+            // 
+            // btnSteeringWheelEmulationCalibrate
+            // 
+            resources.ApplyResources(this.btnSteeringWheelEmulationCalibrate, "btnSteeringWheelEmulationCalibrate");
+            this.btnSteeringWheelEmulationCalibrate.Name = "btnSteeringWheelEmulationCalibrate";
+            this.btnSteeringWheelEmulationCalibrate.UseVisualStyleBackColor = true;
+            this.btnSteeringWheelEmulationCalibrate.Click += new System.EventHandler(this.btnSteeringWheelEmulationCalibrate_Click);
             // 
             // tCControls
             // 
@@ -3362,8 +3422,8 @@
             this.gBGyro.BackColor = System.Drawing.SystemColors.Control;
             this.gBGyro.Controls.Add(this.rBSAControls);
             this.gBGyro.Controls.Add(this.rBSAMouse);
-            this.gBGyro.Controls.Add(this.pnlSAMouse);
             this.gBGyro.Controls.Add(this.fLPTiltControls);
+            this.gBGyro.Controls.Add(this.pnlSAMouse);
             resources.ApplyResources(this.gBGyro, "gBGyro");
             this.gBGyro.Name = "gBGyro";
             this.gBGyro.TabStop = false;
@@ -3407,6 +3467,21 @@
             this.pnlSAMouse.Controls.Add(this.lbGyroSens);
             resources.ApplyResources(this.pnlSAMouse, "pnlSAMouse");
             this.pnlSAMouse.Name = "pnlSAMouse";
+            // 
+            // label26
+            // 
+            resources.ApplyResources(this.label26, "label26");
+            this.label26.Name = "label26";
+            // 
+            // triggerCondAndCombo
+            // 
+            this.triggerCondAndCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.triggerCondAndCombo.FormattingEnabled = true;
+            this.triggerCondAndCombo.Items.AddRange(new object[] {
+            resources.GetString("triggerCondAndCombo.Items"),
+            resources.GetString("triggerCondAndCombo.Items1")});
+            resources.ApplyResources(this.triggerCondAndCombo, "triggerCondAndCombo");
+            this.triggerCondAndCombo.Name = "triggerCondAndCombo";
             // 
             // cBGyroMouseXAxis
             // 
@@ -4110,21 +4185,6 @@
             resources.ApplyResources(this.psTouchInvStripMenuItem, "psTouchInvStripMenuItem");
             this.psTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
             // 
-            // triggerCondAndCombo
-            // 
-            this.triggerCondAndCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.triggerCondAndCombo.FormattingEnabled = true;
-            this.triggerCondAndCombo.Items.AddRange(new object[] {
-            resources.GetString("triggerCondAndCombo.Items"),
-            resources.GetString("triggerCondAndCombo.Items1")});
-            resources.ApplyResources(this.triggerCondAndCombo, "triggerCondAndCombo");
-            this.triggerCondAndCombo.Name = "triggerCondAndCombo";
-            // 
-            // label26
-            // 
-            resources.ApplyResources(this.label26, "label26");
-            this.label26.Name = "label26";
-            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -4192,6 +4252,7 @@
             this.pnlLSTrack.ResumeLayout(false);
             this.pnlRSTrack.ResumeLayout(false);
             this.fLPTiltControls.ResumeLayout(false);
+            this.fLPTiltControls.PerformLayout();
             this.tCControls.ResumeLayout(false);
             this.tPControls.ResumeLayout(false);
             this.pnlController.ResumeLayout(false);
@@ -4614,5 +4675,10 @@
         private System.Windows.Forms.CheckBox trackballCk;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.ComboBox triggerCondAndCombo;
+        private System.Windows.Forms.Label lblSteeringWheelEmulationAxis;
+        private System.Windows.Forms.ComboBox cBSteeringWheelEmulationAxis;
+        private System.Windows.Forms.Label lblSteeringWheelEmulationRange;
+        private System.Windows.Forms.ComboBox cBSteeringWheelEmulationRange;
+        private System.Windows.Forms.Button btnSteeringWheelEmulationCalibrate;
     }
 }

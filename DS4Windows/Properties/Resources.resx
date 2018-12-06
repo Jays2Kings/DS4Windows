@@ -640,6 +640,24 @@
   <data name="SASteeringWheelEmulationCalibrate" xml:space="preserve">
     <value>Calibration of sixaxis wheel emulation</value>
   </data>
+  <data name="SASteeringWheelEmulationCalibrateInstruction1" xml:space="preserve">
+    <value>(1) Center the controller, hold it steady and press "X"</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrateInstruction2" xml:space="preserve">
+    <value>(2) Turn to 90° left (or right) position and press "X"</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrateInstruction3" xml:space="preserve">
+    <value>(3) Turn to 90° right (or left) position and press "X"</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrateInstruction" xml:space="preserve">
+    <value>All calibraton points are set when lightbar color turns to green. While turning the controller the lightbar color flashes when the controller is at calibration point. Accept calibration with OK button</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrateNoControllerError" xml:space="preserve">
+    <value>Cannot calibrate gyro (sixaxis) steering wheel emulation values without a controller. Connect a controller via bluetooth or usb</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrateNoneAxisError" xml:space="preserve">
+    <value>Gyro steering wheel emulation axis option is set to NONE (emulation is not used). Please select an axis option before calibrating the sixaxis gyro steering wheel emulation</value>
+  </data>
   <data name="SixAxisReading" xml:space="preserve">
     <value>Click for advanced Sixaxis reading</value>
   </data>

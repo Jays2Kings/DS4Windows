@@ -1374,7 +1374,6 @@
             this.Controls.Add(this.pnlButton);
             this.Name = "DS4Form";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ScpForm_Closing);
-            this.Resize += new System.EventHandler(this.Form_Resize);
             this.pnlButton.ResumeLayout(false);
             this.pnlButton.PerformLayout();
             this.cMTaskbar.ResumeLayout(false);

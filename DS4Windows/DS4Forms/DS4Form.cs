@@ -396,6 +396,7 @@ namespace DS4Windows
             }
 
             instance = this;
+            this.Resize += Form_Resize;
             Form_Resize(null, null);
             if (btnStartStop.Enabled && start)
                 TaskRunner.Delay(50).ContinueWith((t) => this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked())));

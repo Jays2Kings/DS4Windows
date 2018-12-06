@@ -396,6 +396,8 @@ namespace DS4Windows
             }
 
             instance = this;
+            this.Resize += Form_Resize;
+            this.LocationChanged += TrackLocationChanged;
             Form_Resize(null, null);
             if (btnStartStop.Enabled && start)
                 TaskRunner.Delay(50).ContinueWith((t) => this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked())));
@@ -941,7 +943,22 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 FormBorderStyle = FormBorderStyle.Sizable;
             }
 
+            if (WindowState != FormWindowState.Minimized)
+            {
+                FormWidth = Width;
+                FormHeight = Height;
+            }
+
             chData.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void TrackLocationChanged(object sender, EventArgs e)
+        {
+            if (WindowState != FormWindowState.Minimized)
+            {
+                FormLocationX = Location.X;
+                FormLocationY = Location.Y;
+            }
         }
 
         private void BtnStartStop_Click(object sender, EventArgs e)
@@ -2178,19 +2195,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 DS4LightBar.shuttingdown = true;
             }
 
-            if (oldsize == new Size(0, 0))
-            {
-                FormWidth = this.Width;
-                FormHeight = this.Height;
-            }
-            else
-            {
-                FormWidth = oldsize.Width;
-                FormHeight = oldsize.Height;
-            }
-
-            FormLocationX = Location.X > 0 ? Location.X : 0;
-            FormLocationY = Location.Y > 0 ? Location.Y : 0;
             Global.ControllerRemoved -= ControllerRemovedChange;
 
             if (!string.IsNullOrEmpty(appdatapath))

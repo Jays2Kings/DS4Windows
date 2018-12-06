@@ -177,7 +177,7 @@ namespace DS4Windows
                 Monitor.Pulse(busThrLck);
         }
 
-        public void ChangeUDPStatus(bool state)
+        public void ChangeUDPStatus(bool state, bool openPort=true)
         {
             if (state && _udpServer == null)
             {
@@ -185,19 +185,26 @@ namespace DS4Windows
                 TestQueueBus(() =>
                 {
                     _udpServer = new UdpServer(GetPadDetailForIdx);
-                    var UDP_SERVER_PORT = Global.getUDPServerPortNum();
-
-                    try
+                    if (openPort)
                     {
-                        _udpServer.Start(UDP_SERVER_PORT);
-                        LogDebug("UDP server listening on port " + UDP_SERVER_PORT);
-                    }
-                    catch (System.Net.Sockets.SocketException ex)
-                    {
-                        var errMsg = String.Format("Couldn't start UDP server on port {0}, outside applications won't be able to access pad data ({1})", UDP_SERVER_PORT, ex.SocketErrorCode);
+                        // Change thread affinity of object to have normal priority
+                        Task.Run(() =>
+                        {
+                            var UDP_SERVER_PORT = Global.getUDPServerPortNum();
 
-                        LogDebug(errMsg, true);
-                        AppLogger.LogToTray(errMsg, true, true);
+                            try
+                            {
+                                _udpServer.Start(UDP_SERVER_PORT);
+                                LogDebug("UDP server listening on port " + UDP_SERVER_PORT);
+                            }
+                            catch (System.Net.Sockets.SocketException ex)
+                            {
+                                var errMsg = String.Format("Couldn't start UDP server on port {0}, outside applications won't be able to access pad data ({1})", UDP_SERVER_PORT, ex.SocketErrorCode);
+
+                                LogDebug(errMsg, true);
+                                AppLogger.LogToTray(errMsg, true, true);
+                            }
+                        }).Wait();
                     }
 
                     udpChangeStatus = false;
@@ -312,7 +319,7 @@ namespace DS4Windows
 
                 if (isUsingUDPServer() && _udpServer == null)
                 {
-                    ChangeUDPStatus(true);
+                    ChangeUDPStatus(true, false);
                     while (udpChangeStatus == true)
                     {
                         Thread.SpinWait(500);
@@ -426,6 +433,25 @@ namespace DS4Windows
                 }
 
                 running = true;
+
+                if (_udpServer != null)
+                {
+                    //var UDP_SERVER_PORT = 26760;
+                    var UDP_SERVER_PORT = Global.getUDPServerPortNum();
+
+                    try
+                    {
+                        _udpServer.Start(UDP_SERVER_PORT);
+                        LogDebug("UDP server listening on port " + UDP_SERVER_PORT);
+                    }
+                    catch (System.Net.Sockets.SocketException ex)
+                    {
+                        var errMsg = String.Format("Couldn't start UDP server on port {0}, outside applications won't be able to access pad data ({1})", UDP_SERVER_PORT, ex.SocketErrorCode);
+
+                        LogDebug(errMsg, true);
+                        AppLogger.LogToTray(errMsg, true, true);
+                    }
+                }
             }
             else
             {

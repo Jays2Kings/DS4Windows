@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
 
 namespace DS4Windows
 {
-    public partial class X360Device : ScpDevice
+    public class X360Device : ScpDevice
     {
         private const String DS3_BUS_CLASS_GUID = "{F679F562-3164-42CE-A4DB-E7DDBE723909}";
         private const int CONTROLLER_OFFSET = 1; // Device 0 is the virtual USB hub itself, and we leave devices 1-10 available for other software (like the Scarlet.Crush DualShock driver itself)
@@ -41,17 +40,7 @@ namespace DS4Windows
         public X360Device()
             : base(DS3_BUS_CLASS_GUID)
         {
-            InitializeComponent();
         }
-
-        public X360Device(IContainer container)
-            : base(DS3_BUS_CLASS_GUID)
-        {
-            container.Add(this);
-
-            InitializeComponent();
-        }
-
 
         /* public override Boolean Open(int Instance = 0)
         {

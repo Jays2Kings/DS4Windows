@@ -137,20 +137,10 @@
     <Compile Include="DS4Control\Mouse.cs" />
     <Compile Include="DS4Control\MouseCursor.cs" />
     <Compile Include="DS4Control\MouseWheel.cs" />
-    <Compile Include="DS4Control\ScpDevice.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DS4Control\ScpDevice.Designer.cs">
-      <DependentUpon>ScpDevice.cs</DependentUpon>
-    </Compile>
+    <Compile Include="DS4Control\ScpDevice.cs" />
     <Compile Include="DS4Control\ScpUtil.cs" />
     <Compile Include="DS4Control\UdpServer.cs" />
-    <Compile Include="DS4Control\X360Device.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DS4Control\X360Device.designer.cs">
-      <DependentUpon>X360Device.cs</DependentUpon>
-    </Compile>
+    <Compile Include="DS4Control\X360Device.cs" />
     <Compile Include="DS4Forms\LanguagePackComboBox.cs">
       <SubType>UserControl</SubType>
     </Compile>

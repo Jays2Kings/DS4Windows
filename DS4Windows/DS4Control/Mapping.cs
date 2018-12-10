@@ -4134,11 +4134,11 @@ namespace DS4Windows
                 // L2+R2 triggers use independent 8bit values, so use -255..0..+255 scaled values (therefore L2+R2 Trigger axis supports only 360 turn range)
                 if (Global.getSASteeringWheelEmulationAxis(device) != DS4Controls.L2)
                 {
-                    return (((result - maxRangeLeft) * (32767 - (-32768))) / (maxRangeRight - maxRangeLeft)) + (-32768);
+                    return (((result - maxRangeLeft) * (32767 - (-32768))) / (maxRangeRight - maxRangeLeft)) + (-32768); // Stick axis with configurable range
                 }
                 else
                 {
-                    result = Convert.ToInt32(Math.Round(result / (1.0 * C_WHEEL_ANGLE_PRECISION)));
+                    result = Convert.ToInt32(Math.Round(result / (1.0 * C_WHEEL_ANGLE_PRECISION))); // Trigger axis with fixed 360 range
                     if (result < 0) result = -181 - result;
                     return (((result - (-180)) * (255 - (-255))) / (180 - (-180))) + (-255);
                 }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -56,18 +56,9 @@
   <PropertyGroup>
     <StartupObject>DS4Windows.Program</StartupObject>
   </PropertyGroup>
-  <PropertyGroup />
   <PropertyGroup>
     <ApplicationIcon>Resources\DS4W.ico</ApplicationIcon>
   </PropertyGroup>
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
@@ -132,7 +123,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -150,20 +140,10 @@
     <Compile Include="DS4Control\Mouse.cs" />
     <Compile Include="DS4Control\MouseCursor.cs" />
     <Compile Include="DS4Control\MouseWheel.cs" />
-    <Compile Include="DS4Control\ScpDevice.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DS4Control\ScpDevice.Designer.cs">
-      <DependentUpon>ScpDevice.cs</DependentUpon>
-    </Compile>
+    <Compile Include="DS4Control\ScpDevice.cs" />
     <Compile Include="DS4Control\ScpUtil.cs" />
     <Compile Include="DS4Control\UdpServer.cs" />
-    <Compile Include="DS4Control\X360Device.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DS4Control\X360Device.designer.cs">
-      <DependentUpon>X360Device.cs</DependentUpon>
-    </Compile>
+    <Compile Include="DS4Control\X360Device.cs" />
     <Compile Include="DS4Forms\LanguagePackComboBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -253,6 +233,7 @@
     <Compile Include="HidLibrary\HidDevices.cs" />
     <Compile Include="HidLibrary\NativeMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
     <EmbeddedResource Include="DS4Forms\DS4Form.ar.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1078,7 +1059,7 @@
     <EmbeddedResource Include="Properties\Resources.pl.resx" />
     <EmbeddedResource Include="Properties\Resources.pt-BR.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -1093,19 +1074,10 @@
     <EmbeddedResource Include="Properties\Resources.zh-Hant.resx" />
     <None Include="app.manifest" />
     <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
   <ItemGroup>

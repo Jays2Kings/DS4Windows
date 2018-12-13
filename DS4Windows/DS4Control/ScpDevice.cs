@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 using System.Runtime.InteropServices;
 using System.Security;
@@ -9,7 +8,7 @@ using Microsoft.Win32.SafeHandles;
 namespace DS4Windows 
 {
     [SuppressUnmanagedCodeSecurity]
-    public partial class ScpDevice : Component 
+    public class ScpDevice
     {
         public virtual Boolean IsActive 
         {
@@ -21,23 +20,8 @@ namespace DS4Windows
             get { return m_Path; }
         }
 
-
-        public ScpDevice() 
-        {
-            InitializeComponent();
-        }
-
-        public ScpDevice(IContainer container) 
-        {
-            container.Add(this);
-
-            InitializeComponent();
-        }
-
         public ScpDevice(String Class) 
         {
-            InitializeComponent();
-
             this.m_Class = new Guid(Class);
         }
 

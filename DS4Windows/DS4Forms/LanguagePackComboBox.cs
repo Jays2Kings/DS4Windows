@@ -39,7 +39,9 @@ namespace DS4Windows.DS4Forms
             [System.Diagnostics.CodeAnalysis.SuppressMessage("InvariantCultureText_Changed call will complete when ready, no need for a warning", "CS4014:Await.Warning")]
             set {
                 InvariantCultureTextValue = value;
+#pragma warning disable CS4014
                 InvariantCultureText_Changed(value);
+#pragma warning restore CS4014
             }
         }
 

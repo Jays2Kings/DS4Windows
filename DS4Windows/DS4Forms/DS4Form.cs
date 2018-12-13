@@ -556,6 +556,8 @@ namespace DS4Windows
 
         void Hotkeys(object sender, EventArgs e)
         {
+            hotkeysTimer.Stop();
+
             if (SwipeProfiles)
             {
                 for (int i = 0; i < 4; i++)
@@ -607,6 +609,8 @@ namespace DS4Windows
 
         private void CheckAutoProfiles(object sender, EventArgs e)
         {
+            autoProfilesTimer.Stop();
+
             //Check for process for auto profiles
             if (string.IsNullOrEmpty(tempProfileProgram))
             {

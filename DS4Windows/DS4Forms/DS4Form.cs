@@ -398,11 +398,17 @@ namespace DS4Windows
             AppLogger.GuiLog += On_Debug;
             AppLogger.TrayIconLog += ShowNotification;
 
+            TaskRunner.Delay(50).ContinueWith((t) =>
+            {
+                UpdateTheUpdater();
+            });
+
             if (btnStartStop.Enabled && start)
+            {
                 TaskRunner.Delay(50).ContinueWith((t) => {
-                    UpdateTheUpdater();
                     this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked()));
                 });
+            }
         }
 
         private void populateHoverTextDict()

@@ -151,11 +151,6 @@ namespace DS4Windows
 
             blankControllerTab();
 
-            Program.rootHub.Debug += On_Debug;
-
-            AppLogger.GuiLog += On_Debug;
-            AppLogger.TrayIconLog += ShowNotification;
-
             Directory.CreateDirectory(appdatapath);
             if (!Save()) //if can't write to file
             {
@@ -254,7 +249,7 @@ namespace DS4Windows
 
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
-            AppLogger.LogToGui("DS4Windows version " + version, false);
+            LogDebug(DateTime.Now, "DS4Windows version " + version, false);
 
             LoadP();
             LoadLinkedProfiles();
@@ -351,8 +346,6 @@ namespace DS4Windows
                 }
             }
 
-            TaskRunner.Run(() => { UpdateTheUpdater(); });
-
             StartWindowsCheckBox.CheckedChanged += new EventHandler(StartWindowsCheckBox_CheckedChanged);
             new ToolTip().SetToolTip(StartWindowsCheckBox, Properties.Resources.RunAtStartup);
 
@@ -399,8 +392,17 @@ namespace DS4Windows
             this.Resize += Form_Resize;
             this.LocationChanged += TrackLocationChanged;
             Form_Resize(null, null);
+
+            Program.rootHub.Debug += On_Debug;
+
+            AppLogger.GuiLog += On_Debug;
+            AppLogger.TrayIconLog += ShowNotification;
+
             if (btnStartStop.Enabled && start)
-                TaskRunner.Delay(50).ContinueWith((t) => this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked())));
+                TaskRunner.Delay(50).ContinueWith((t) => {
+                    UpdateTheUpdater();
+                    this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked()));
+                });
         }
 
         private void populateHoverTextDict()

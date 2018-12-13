@@ -252,7 +252,6 @@ namespace DS4Windows
             LogDebug(DateTime.Now, "DS4Windows version " + version, false);
 
             LoadP();
-            LoadLinkedProfiles();
 
             Global.BatteryStatusChange += BatteryStatusUpdate;
             Global.ControllerRemoved += ControllerRemovedChange;
@@ -397,6 +396,7 @@ namespace DS4Windows
 
             AppLogger.GuiLog += On_Debug;
             AppLogger.TrayIconLog += ShowNotification;
+            LoadLinkedProfiles();
 
             TaskRunner.Delay(50).ContinueWith((t) =>
             {

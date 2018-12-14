@@ -37,7 +37,6 @@ namespace DS4Windows
         private ToolStripMenuItem[] shortcuts;
         private ToolStripMenuItem[] disconnectShortcuts;
         protected CheckBox[] linkedProfileCB;
-        WebClient wc = new WebClient();
         NonFormTimer hotkeysTimer = new NonFormTimer();
         NonFormTimer autoProfilesTimer = new NonFormTimer();
         string tempProfileProgram = string.Empty;
@@ -292,6 +291,7 @@ namespace DS4Windows
 
             if (checkwhen > 0 && DateTime.Now >= LastChecked + TimeSpan.FromHours(checkwhen))
             {
+                WebClient wc = new WebClient();
                 wc.DownloadFileAsync(url, appdatapath + "\\version.txt");
                 wc.DownloadFileCompleted += (sender, e) => { TaskRunner.Run(() => Check_Version(sender, e)); };
                 LastChecked = DateTime.Now;

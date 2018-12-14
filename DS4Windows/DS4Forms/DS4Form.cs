@@ -390,7 +390,8 @@ namespace DS4Windows
             instance = this;
             this.Resize += Form_Resize;
             this.LocationChanged += TrackLocationChanged;
-            Form_Resize(null, null);
+            if (!(StartMinimized || mini))
+                Form_Resize(null, null);
 
             Program.rootHub.Debug += On_Debug;
 

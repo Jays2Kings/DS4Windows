@@ -760,14 +760,14 @@ namespace DS4Windows
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
             string newversion = File.ReadAllText(appdatapath + "\\version.txt").Trim();
-            if (version.Replace(',', '.').CompareTo(newversion) == -1)
+            if (version.Replace(',', '.').CompareTo(newversion) != 0)
             {
                 if ((DialogResult)this.Invoke(new Func<DialogResult>(() => {
                     return MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion),
 Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question); })) == DialogResult.Yes)
                 {
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
-                        && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") == -1)))
+                        && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") != 0)))
                     {
                         Uri url2 = new Uri($"http://23.239.26.40/ds4windows/files/{updaterExe}");
                         WebClient wc2 = new WebClient();
@@ -2077,7 +2077,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version2 = fvi.FileVersion;
             string newversion2 = File.ReadAllText(appdatapath + "\\version.txt").Trim();
-            if (version2.Replace(',', '.').CompareTo(newversion2) == -1)
+            if (version2.Replace(',', '.').CompareTo(newversion2) != 0)
             {
                 if ((DialogResult)this.Invoke(new Func<DialogResult>(() =>
                 {
@@ -2086,7 +2086,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 })) == DialogResult.Yes)
                 {
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
-                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo(UPDATER_VERSION) == -1)))
+                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo(UPDATER_VERSION) != 0)))
                     {
                         Uri url2 = new Uri($"http://23.239.26.40/ds4windows/files/{updaterExe}");
                         WebClient wc2 = new WebClient();

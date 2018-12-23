@@ -37,7 +37,6 @@ namespace DS4Windows
         private ToolStripMenuItem[] shortcuts;
         private ToolStripMenuItem[] disconnectShortcuts;
         protected CheckBox[] linkedProfileCB;
-        WebClient wc = new WebClient();
         NonFormTimer hotkeysTimer = new NonFormTimer();
         NonFormTimer autoProfilesTimer = new NonFormTimer();
         string tempProfileProgram = string.Empty;
@@ -151,11 +150,6 @@ namespace DS4Windows
 
             blankControllerTab();
 
-            Program.rootHub.Debug += On_Debug;
-
-            AppLogger.GuiLog += On_Debug;
-            AppLogger.TrayIconLog += ShowNotification;
-
             Directory.CreateDirectory(appdatapath);
             if (!Save()) //if can't write to file
             {
@@ -254,10 +248,9 @@ namespace DS4Windows
 
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
-            AppLogger.LogToGui("DS4Windows version " + version, false);
+            LogDebug(DateTime.Now, "DS4Windows version " + version, false);
 
             LoadP();
-            LoadLinkedProfiles();
 
             Global.BatteryStatusChange += BatteryStatusUpdate;
             Global.ControllerRemoved += ControllerRemovedChange;
@@ -298,6 +291,7 @@ namespace DS4Windows
 
             if (checkwhen > 0 && DateTime.Now >= LastChecked + TimeSpan.FromHours(checkwhen))
             {
+                WebClient wc = new WebClient();
                 wc.DownloadFileAsync(url, appdatapath + "\\version.txt");
                 wc.DownloadFileCompleted += (sender, e) => { TaskRunner.Run(() => Check_Version(sender, e)); };
                 LastChecked = DateTime.Now;
@@ -351,8 +345,6 @@ namespace DS4Windows
                 }
             }
 
-            TaskRunner.Run(() => { UpdateTheUpdater(); });
-
             StartWindowsCheckBox.CheckedChanged += new EventHandler(StartWindowsCheckBox_CheckedChanged);
             new ToolTip().SetToolTip(StartWindowsCheckBox, Properties.Resources.RunAtStartup);
 
@@ -398,9 +390,26 @@ namespace DS4Windows
             instance = this;
             this.Resize += Form_Resize;
             this.LocationChanged += TrackLocationChanged;
-            Form_Resize(null, null);
+            if (!(StartMinimized || mini))
+                Form_Resize(null, null);
+
+            Program.rootHub.Debug += On_Debug;
+
+            AppLogger.GuiLog += On_Debug;
+            AppLogger.TrayIconLog += ShowNotification;
+            LoadLinkedProfiles();
+
+            TaskRunner.Delay(50).ContinueWith((t) =>
+            {
+                UpdateTheUpdater();
+            });
+
             if (btnStartStop.Enabled && start)
-                TaskRunner.Delay(50).ContinueWith((t) => this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked())));
+            {
+                TaskRunner.Delay(50).ContinueWith((t) => {
+                    this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked()));
+                });
+            }
         }
 
         private void populateHoverTextDict()
@@ -548,6 +557,8 @@ namespace DS4Windows
 
         void Hotkeys(object sender, EventArgs e)
         {
+            hotkeysTimer.Stop();
+
             if (SwipeProfiles)
             {
                 for (int i = 0; i < 4; i++)
@@ -599,6 +610,8 @@ namespace DS4Windows
 
         private void CheckAutoProfiles(object sender, EventArgs e)
         {
+            autoProfilesTimer.Stop();
+
             //Check for process for auto profiles
             if (string.IsNullOrEmpty(tempProfileProgram))
             {
@@ -747,14 +760,14 @@ namespace DS4Windows
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
             string newversion = File.ReadAllText(appdatapath + "\\version.txt").Trim();
-            if (version.Replace(',', '.').CompareTo(newversion) == -1)
+            if (version.Replace(',', '.').CompareTo(newversion) != 0)
             {
                 if ((DialogResult)this.Invoke(new Func<DialogResult>(() => {
                     return MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion),
 Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question); })) == DialogResult.Yes)
                 {
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
-                        && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") == -1)))
+                        && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") != 0)))
                     {
                         Uri url2 = new Uri($"http://23.239.26.40/ds4windows/files/{updaterExe}");
                         WebClient wc2 = new WebClient();
@@ -2064,7 +2077,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version2 = fvi.FileVersion;
             string newversion2 = File.ReadAllText(appdatapath + "\\version.txt").Trim();
-            if (version2.Replace(',', '.').CompareTo(newversion2) == -1)
+            if (version2.Replace(',', '.').CompareTo(newversion2) != 0)
             {
                 if ((DialogResult)this.Invoke(new Func<DialogResult>(() =>
                 {
@@ -2073,7 +2086,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 })) == DialogResult.Yes)
                 {
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
-                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo(UPDATER_VERSION) == -1)))
+                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo(UPDATER_VERSION) != 0)))
                     {
                         Uri url2 = new Uri($"http://23.239.26.40/ds4windows/files/{updaterExe}");
                         WebClient wc2 = new WebClient();

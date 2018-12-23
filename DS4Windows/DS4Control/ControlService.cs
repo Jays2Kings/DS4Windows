@@ -147,7 +147,7 @@ namespace DS4Windows
                         Monitor.Wait(busThrLck);
                 }
             });
-            tempThread.Priority = ThreadPriority.AboveNormal;
+            tempThread.Priority = ThreadPriority.Normal;
             tempThread.IsBackground = true;
             tempThread.Start();
             //while (_udpServer == null)

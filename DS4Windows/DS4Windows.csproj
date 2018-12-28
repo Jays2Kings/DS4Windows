@@ -1172,7 +1172,19 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="PostBuildMacros">
+    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+      <Output TaskParameter="Assemblies" ItemName="Targets" />
+    </GetAssemblyIdentity>
+    <ItemGroup>
+      <VersionNumber Include="$([System.Text.RegularExpressions.Regex]::Replace(&quot;%(Targets.Version)&quot;, &quot;^(.+?)(\.0+)$&quot;, &quot;$1&quot;))" />
+    </ItemGroup>
+  </Target>
   <PropertyGroup>
+    <PostBuildEventDependsOn>
+      $(PostBuildEventDependsOn);
+      PostBuildMacros;
+    </PostBuildEventDependsOn>
     <PostBuildEvent>rem Copy compiled l18n assemblies to alt folder
 GOTO END
 if not exist $(TargetDir)Lang mkdir $(TargetDir)Lang
@@ -1184,7 +1196,10 @@ for %25%25l in (%25langs%25) do (
   xcopy $(TargetDir)%25%25l $(TargetDir)Lang\%25%25l\ /s /y
 )
 
-:END</PostBuildEvent>
+echo @(VersionNumber)&gt; $(ProjectDir)\newest.txt
+
+:END
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

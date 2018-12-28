@@ -183,6 +183,7 @@ namespace DS4Windows
             cBUseWhiteIcon.Checked = UseWhiteIcon;
             Icon = Properties.Resources.DS4W;
             notifyIcon1.Icon = UseWhiteIcon ? Properties.Resources.DS4W___White : Properties.Resources.DS4W;
+            populateNotifyText();
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
 
@@ -1163,7 +1164,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 string temp = Program.rootHub.getShortDS4ControllerInfo(i);
                 if (temp != Properties.Resources.NoneText)
                 {
-                    notifyText[i + 1] = (i + 1) + ": " + temp; // Carefully stay under the 63 character limit.
+                    notifyText[i + 1] = (i + 1) + ": " + temp;
                 }
                 else
                 {
@@ -1179,7 +1180,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             string temp = Program.rootHub.getShortDS4ControllerInfo(index);
             if (temp != Properties.Resources.NoneText)
             {
-                notifyText[index + 1] = (index + 1) + ": " + temp; // Carefully stay under the 63 character limit.
+                notifyText[index + 1] = (index + 1) + ": " + temp;
             }
             else
             {
@@ -1195,14 +1196,11 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 string temp = notifyText[i];
                 if (!string.IsNullOrEmpty(temp))
                 {
-                    tooltip += "\n" + notifyText[i]; // Carefully stay under the 63 character limit.
+                    tooltip += "\n" + notifyText[i];
                 }
             }
 
-            if (tooltip.Length > 63)
-                notifyIcon1.Text = tooltip.Substring(0, 63);
-            else
-                notifyIcon1.Text = tooltip;
+            notifyIcon1.Text = tooltip.Length > 63 ? tooltip.Substring(0, 63) : tooltip; // Carefully stay under the 63 character limit.
         }
 
         protected void DeviceSerialChanged(object sender, SerialChangeArgs args)

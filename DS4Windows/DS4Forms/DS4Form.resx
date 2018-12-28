@@ -418,7 +418,7 @@
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="notifyIcon1.Text" xml:space="preserve">
-    <value>DS4 Xinput Tool</value>
+    <value>DS4Windows</value>
   </data>
   <data name="notifyIcon1.Visible" type="System.Boolean, mscorlib">
     <value>True</value>

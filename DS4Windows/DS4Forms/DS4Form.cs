@@ -288,16 +288,6 @@ namespace DS4Windows
                 nUDUpdateTime.Value = checkwhen;
             }
 
-            Uri url = new Uri("https://raw.githubusercontent.com/Ryochan7/DS4Windows/jay/DS4Windows/newest.txt"); // Sorry other devs, gonna have to find your own server
-
-            if (checkwhen > 0 && DateTime.Now >= LastChecked + TimeSpan.FromHours(checkwhen))
-            {
-                WebClient wc = new WebClient();
-                wc.DownloadFileAsync(url, appdatapath + "\\version.txt");
-                wc.DownloadFileCompleted += (sender, e) => { TaskRunner.Run(() => Check_Version(sender, e)); };
-                LastChecked = DateTime.Now;
-            }
-
             if (File.Exists(exepath + "\\Updater.exe"))
             {
                 Thread.Sleep(2000);
@@ -402,6 +392,19 @@ namespace DS4Windows
 
             TaskRunner.Delay(50).ContinueWith((t) =>
             {
+                if (checkwhen > 0 && DateTime.Now >= LastChecked + TimeSpan.FromHours(checkwhen))
+                {
+                    this.BeginInvoke((System.Action)(() =>
+                    {
+                        // Sorry other devs, gonna have to find your own server
+                        Uri url = new Uri("https://raw.githubusercontent.com/Ryochan7/DS4Windows/jay/DS4Windows/newest.txt");
+                        WebClient wc = new WebClient();
+                        wc.DownloadFileAsync(url, appdatapath + "\\version.txt");
+                        wc.DownloadFileCompleted += (sender, e) => { TaskRunner.Run(() => Check_Version(sender, e)); };
+                        LastChecked = DateTime.Now;
+                    }));
+                }
+
                 UpdateTheUpdater();
             });
 

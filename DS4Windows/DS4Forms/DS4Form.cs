@@ -66,7 +66,7 @@ namespace DS4Windows
         private const string UPDATER_VERSION = "1.2.9";
         private const int WM_QUERYENDSESSION = 0x11;
         private const int WM_CLOSE = 0x10;
-        internal string updaterExe = Environment.Is64BitProcess ? "DS4Updater.exe" : "DS4Updater_x86.exe";
+        internal string updaterExe = Environment.Is64BitProcess ? "DS4Updater_x64.exe" : "DS4Updater_x86.exe";
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace DS4Windows
 {
+    [SuppressUnmanagedCodeSecurity]
     class InputMethods
     {
         public static void MoveCursorBy(int x, int y)

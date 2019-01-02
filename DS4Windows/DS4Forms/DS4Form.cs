@@ -63,10 +63,10 @@ namespace DS4Windows
             { "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion,
             string.Empty, string.Empty, string.Empty, string.Empty };
 
-        private const string UPDATER_VERSION = "1.2.8.0";
+        private const string UPDATER_VERSION = "1.3.0";
         private const int WM_QUERYENDSESSION = 0x11;
         private const int WM_CLOSE = 0x10;
-        internal string updaterExe = Environment.Is64BitProcess ? "DS4Updater.exe" : "DS4Updater_x86.exe";
+        internal string updaterExe = Environment.Is64BitProcess ? "DS4Updater_x64.exe" : "DS4Updater_x86.exe";
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
@@ -183,6 +183,7 @@ namespace DS4Windows
             cBUseWhiteIcon.Checked = UseWhiteIcon;
             Icon = Properties.Resources.DS4W;
             notifyIcon1.Icon = UseWhiteIcon ? Properties.Resources.DS4W___White : Properties.Resources.DS4W;
+            populateNotifyText();
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
 
@@ -285,16 +286,6 @@ namespace DS4Windows
             {
                 cBUpdateTime.SelectedIndex = 0;
                 nUDUpdateTime.Value = checkwhen;
-            }
-
-            Uri url = new Uri("http://23.239.26.40/ds4windows/files/builds/newest.txt"); // Sorry other devs, gonna have to find your own server
-
-            if (checkwhen > 0 && DateTime.Now >= LastChecked + TimeSpan.FromHours(checkwhen))
-            {
-                WebClient wc = new WebClient();
-                wc.DownloadFileAsync(url, appdatapath + "\\version.txt");
-                wc.DownloadFileCompleted += (sender, e) => { TaskRunner.Run(() => Check_Version(sender, e)); };
-                LastChecked = DateTime.Now;
             }
 
             if (File.Exists(exepath + "\\Updater.exe"))
@@ -401,6 +392,19 @@ namespace DS4Windows
 
             TaskRunner.Delay(50).ContinueWith((t) =>
             {
+                if (checkwhen > 0 && DateTime.Now >= LastChecked + TimeSpan.FromHours(checkwhen))
+                {
+                    this.BeginInvoke((System.Action)(() =>
+                    {
+                        // Sorry other devs, gonna have to find your own server
+                        Uri url = new Uri("https://raw.githubusercontent.com/Ryochan7/DS4Windows/jay/DS4Windows/newest.txt");
+                        WebClient wc = new WebClient();
+                        wc.DownloadFileAsync(url, appdatapath + "\\version.txt");
+                        wc.DownloadFileCompleted += (sender, e) => { TaskRunner.Run(() => Check_Version(sender, e)); };
+                        LastChecked = DateTime.Now;
+                    }));
+                }
+
                 UpdateTheUpdater();
             });
 
@@ -767,16 +771,16 @@ namespace DS4Windows
 Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question); })) == DialogResult.Yes)
                 {
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
-                        && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") != 0)))
+                        && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo(UPDATER_VERSION) != 0)))
                     {
-                        Uri url2 = new Uri($"http://23.239.26.40/ds4windows/files/{updaterExe}");
+                        Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{UPDATER_VERSION}/{updaterExe}");
                         WebClient wc2 = new WebClient();
                         if (appdatapath == exepath)
                             wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
                         else
                         {
                             this.BeginInvoke((System.Action)(() => MessageBox.Show(Properties.Resources.PleaseDownloadUpdater)));
-                            Process.Start($"http://23.239.26.40/ds4windows/files/{updaterExe}");
+                            Process.Start($"https://github.com/Ryochan7/DS4Updater/releases/download/v{UPDATER_VERSION}/{updaterExe}");
                         }
                     }
 
@@ -1163,7 +1167,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 string temp = Program.rootHub.getShortDS4ControllerInfo(i);
                 if (temp != Properties.Resources.NoneText)
                 {
-                    notifyText[i + 1] = (i + 1) + ": " + temp; // Carefully stay under the 63 character limit.
+                    notifyText[i + 1] = (i + 1) + ": " + temp;
                 }
                 else
                 {
@@ -1179,7 +1183,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             string temp = Program.rootHub.getShortDS4ControllerInfo(index);
             if (temp != Properties.Resources.NoneText)
             {
-                notifyText[index + 1] = (index + 1) + ": " + temp; // Carefully stay under the 63 character limit.
+                notifyText[index + 1] = (index + 1) + ": " + temp;
             }
             else
             {
@@ -1195,14 +1199,11 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 string temp = notifyText[i];
                 if (!string.IsNullOrEmpty(temp))
                 {
-                    tooltip += "\n" + notifyText[i]; // Carefully stay under the 63 character limit.
+                    tooltip += "\n" + notifyText[i];
                 }
             }
 
-            if (tooltip.Length > 63)
-                notifyIcon1.Text = tooltip.Substring(0, 63);
-            else
-                notifyIcon1.Text = tooltip;
+            notifyIcon1.Text = tooltip.Length > 63 ? tooltip.Substring(0, 63) : tooltip; // Carefully stay under the 63 character limit.
         }
 
         protected void DeviceSerialChanged(object sender, SerialChangeArgs args)
@@ -2060,7 +2061,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         private void lLBUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Sorry other devs, gonna have to find your own server
-            Uri url = new Uri("http://23.239.26.40/ds4windows/files/builds/newest.txt");
+            Uri url = new Uri("https://raw.githubusercontent.com/Ryochan7/DS4Windows/jay/DS4Windows/newest.txt");
             WebClient wct = new WebClient();
             wct.DownloadFileAsync(url, appdatapath + "\\version.txt");
             wct.DownloadFileCompleted += (sender2, e2) => TaskRunner.Run(() => wct_DownloadFileCompleted(sender2, e2));
@@ -2088,14 +2089,14 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
                          && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo(UPDATER_VERSION) != 0)))
                     {
-                        Uri url2 = new Uri($"http://23.239.26.40/ds4windows/files/{updaterExe}");
+                        Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{UPDATER_VERSION}/{updaterExe}");
                         WebClient wc2 = new WebClient();
                         if (appdatapath == exepath)
                             wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
                         else
                         {
                             this.BeginInvoke((System.Action)(() => MessageBox.Show(Properties.Resources.PleaseDownloadUpdater)));
-                            Process.Start($"http://23.239.26.40/ds4windows/files/{updaterExe}");
+                            Process.Start($"https://github.com/Ryochan7/DS4Updater/releases/download/v{UPDATER_VERSION}/{updaterExe}");
                         }
                     }
 

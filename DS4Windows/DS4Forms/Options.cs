@@ -719,16 +719,7 @@ namespace DS4Windows
                 cBGyroMouseXAxis.SelectedIndex = GyroMouseHorizontalAxis[device];
                 triggerCondAndCombo.SelectedIndex = SATriggerCond[device] ? 0 : 1;
 
-                switch (getSASteeringWheelEmulationAxis(device))
-                {
-                    case DS4Controls.None: cBSteeringWheelEmulationAxis.SelectedIndex = 0; break;
-                    case DS4Controls.LXPos: cBSteeringWheelEmulationAxis.SelectedIndex = 1; break;
-                    case DS4Controls.LYPos: cBSteeringWheelEmulationAxis.SelectedIndex = 2; break;
-                    case DS4Controls.RXPos: cBSteeringWheelEmulationAxis.SelectedIndex = 3; break;
-                    case DS4Controls.RYPos: cBSteeringWheelEmulationAxis.SelectedIndex = 4; break;
-                    case DS4Controls.L2: 
-                    case DS4Controls.R2: cBSteeringWheelEmulationAxis.SelectedIndex = 5; break;
-                }
+                cBSteeringWheelEmulationAxis.SelectedIndex = (int) getSASteeringWheelEmulationAxis(device);
 
                 int idxSASteeringWheelEmulationRange = cBSteeringWheelEmulationRange.Items.IndexOf(getSASteeringWheelEmulationRange(device).ToString());
                 if (idxSASteeringWheelEmulationRange >= 0) cBSteeringWheelEmulationRange.SelectedIndex = idxSASteeringWheelEmulationRange;
@@ -3020,15 +3011,8 @@ namespace DS4Windows
         {
             if (loading == false)
             {
-                switch (cBSteeringWheelEmulationAxis.SelectedIndex)
-                {
-                    case 0: SASteeringWheelEmulationAxis[device] = DS4Controls.None; break;   // Gyro SA steering wheel emulation disabled
-                    case 1: SASteeringWheelEmulationAxis[device] = DS4Controls.LXPos; break;  // Left stick X axis 
-                    case 2: SASteeringWheelEmulationAxis[device] = DS4Controls.LYPos; break;  // Left stick Y axis 
-                    case 3: SASteeringWheelEmulationAxis[device] = DS4Controls.RXPos; break;  // Right stick X axis 
-                    case 4: SASteeringWheelEmulationAxis[device] = DS4Controls.RYPos; break;  // Right stick Y axis 
-                    case 5: SASteeringWheelEmulationAxis[device] = DS4Controls.L2; break;     // Left+Right trigger axis (max range -255..0 as left trigger and 0..+255 as right trigger)
-                }
+                if (cBSteeringWheelEmulationAxis.SelectedIndex >= 0) SASteeringWheelEmulationAxis[device] = (SASteeringWheelEmulationAxisType) ((byte) cBSteeringWheelEmulationAxis.SelectedIndex);
+                else SASteeringWheelEmulationAxis[device] = SASteeringWheelEmulationAxisType.None;
             }
         }
 

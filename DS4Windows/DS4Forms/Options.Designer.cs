@@ -1936,7 +1936,13 @@
             resources.GetString("cBSteeringWheelEmulationAxis.Items2"),
             resources.GetString("cBSteeringWheelEmulationAxis.Items3"),
             resources.GetString("cBSteeringWheelEmulationAxis.Items4"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items5")});
+            resources.GetString("cBSteeringWheelEmulationAxis.Items5"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items6"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items7"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items8"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items9"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items10"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items11")});
             resources.ApplyResources(this.cBSteeringWheelEmulationAxis, "cBSteeringWheelEmulationAxis");
             this.cBSteeringWheelEmulationAxis.Name = "cBSteeringWheelEmulationAxis";
             this.cBSteeringWheelEmulationAxis.SelectedIndexChanged += new System.EventHandler(this.cBSteeringWheelEmulationAxis_SelectedIndexChanged);

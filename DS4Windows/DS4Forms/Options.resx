@@ -4108,6 +4108,24 @@ with profile</value>
   <data name="cBSteeringWheelEmulationAxis.Items5" xml:space="preserve">
     <value>Trigger L+R Axis</value>
   </data>
+  <data name="cBSteeringWheelEmulationAxis.Items6" xml:space="preserve">
+    <value>VJoy1 X-Axis</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Items7" xml:space="preserve">
+    <value>VJoy1 Y-Axis</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Items8" xml:space="preserve">
+    <value>VJoy1 Z-Axis</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Items9" xml:space="preserve">
+    <value>VJoy2 X-Axis</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Items10" xml:space="preserve">
+    <value>VJoy2 Y-Axis</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Items11" xml:space="preserve">
+    <value>VJoy2 Z-Axis</value>
+  </data>
   <data name="cBSteeringWheelEmulationAxis.Location" type="System.Drawing.Point, System.Drawing">
     <value>107, 119</value>
   </data>
@@ -9140,7 +9158,7 @@ with profile</value>
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>102</value>
+    <value>25</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>96, 96</value>
@@ -9569,7 +9587,7 @@ with profile</value>
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.5.17.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.6.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Options</value>

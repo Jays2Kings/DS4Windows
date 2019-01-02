@@ -1650,7 +1650,7 @@ namespace DS4Windows
                 }
             }
 
-            if (getSASteeringWheelEmulationAxis(device) != DS4Controls.None)
+            if (getSASteeringWheelEmulationAxis(device) != SASteeringWheelEmulationAxisType.None)
                 MappedState.SASteeringWheelEmulationUnit = Mapping.Scale360degreeGyroAxis(device, eState, ctrl);
 
             calculateFinalMouseMovement(ref tempMouseDeltaX, ref tempMouseDeltaY,
@@ -4132,15 +4132,24 @@ namespace DS4Windows
 
                 // Scale input to a raw x360 16bit output scale, except if output axis of steering wheel emulation is L2+R2 trigger axis.
                 // L2+R2 triggers use independent 8bit values, so use -255..0..+255 scaled values (therefore L2+R2 Trigger axis supports only 360 turn range)
-                if (Global.getSASteeringWheelEmulationAxis(device) != DS4Controls.L2)
+                switch(Global.getSASteeringWheelEmulationAxis(device))
                 {
-                    return (((result - maxRangeLeft) * (32767 - (-32768))) / (maxRangeRight - maxRangeLeft)) + (-32768); // Stick axis with configurable range
-                }
-                else
-                {
-                    result = Convert.ToInt32(Math.Round(result / (1.0 * C_WHEEL_ANGLE_PRECISION))); // Trigger axis with fixed 360 range
-                    if (result < 0) result = -181 - result;
-                    return (((result - (-180)) * (255 - (-255))) / (180 - (-180))) + (-255);
+                    case SASteeringWheelEmulationAxisType.LX:
+                    case SASteeringWheelEmulationAxisType.LY:
+                    case SASteeringWheelEmulationAxisType.RX:
+                    case SASteeringWheelEmulationAxisType.RY:
+                        // DS4 Stick axis values with configurable range
+                        return (((result - maxRangeLeft) * (32767 - (-32768))) / (maxRangeRight - maxRangeLeft)) + (-32768); 
+
+                    case SASteeringWheelEmulationAxisType.L2R2:
+                        // DS4 Trigger axis values with fixed 360 range
+                        result = Convert.ToInt32(Math.Round(result / (1.0 * C_WHEEL_ANGLE_PRECISION))); 
+                        if (result < 0) result = -181 - result;
+                        return (((result - (-180)) * (255 - (-255))) / (180 - (-180))) + (-255);
+
+                    default:
+                        // VJoy axis values with configurable range
+                        return (((result - maxRangeLeft) * (32767 - (-0))) / (maxRangeRight - maxRangeLeft)) + (-0); 
                 }
             }
         }

@@ -20,6 +20,8 @@ namespace DS4Windows
     public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown };
     public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, Unbound };
 
+    public enum SASteeringWheelEmulationAxisType: byte { None = 0, LX, LY, RX, RY, L2R2, VJoy1X, VJoy1Y, VJoy1Z, VJoy2X, VJoy2Y, VJoy2Z };
+
     public class DS4ControlSettings
     {
         public DS4Controls control;
@@ -718,8 +720,8 @@ namespace DS4Windows
             m_Config.SetSaTriggerCond(index, text);
         }
 
-        public static DS4Controls[] SASteeringWheelEmulationAxis => m_Config.sASteeringWheelEmulationAxis;
-        public static DS4Controls getSASteeringWheelEmulationAxis(int index)
+        public static SASteeringWheelEmulationAxisType[] SASteeringWheelEmulationAxis => m_Config.sASteeringWheelEmulationAxis;
+        public static SASteeringWheelEmulationAxisType getSASteeringWheelEmulationAxis(int index)
         {
             return m_Config.sASteeringWheelEmulationAxis[index];
         }
@@ -1519,7 +1521,7 @@ namespace DS4Windows
         public bool[] useSAforMouse = new bool[5] { false, false, false, false, false };
         public string[] sATriggers = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         public bool[] sATriggerCond = new bool[5] { true, true, true, true, true };
-        public DS4Controls[] sASteeringWheelEmulationAxis = new DS4Controls[5] { DS4Controls.None, DS4Controls.None, DS4Controls.None, DS4Controls.None, DS4Controls.None };
+        public SASteeringWheelEmulationAxisType[] sASteeringWheelEmulationAxis = new SASteeringWheelEmulationAxisType[5] { SASteeringWheelEmulationAxisType.None, SASteeringWheelEmulationAxisType.None, SASteeringWheelEmulationAxisType.None, SASteeringWheelEmulationAxisType.None, SASteeringWheelEmulationAxisType.None };
         public int[] sASteeringWheelEmulationRange = new int[5] { 360, 360, 360, 360, 360 };
         public int[][] touchDisInvertTriggers = new int[5][] { new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 },
             new int[1] { -1 }, new int[1] { -1 } };
@@ -2645,8 +2647,8 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SATriggerCond"); sATriggerCond[device] = SaTriggerCondValue(Item.InnerText); }
                 catch { sATriggerCond[device] = true; missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SASteeringWheelEmulationAxis"); DS4Controls.TryParse(Item.InnerText, out sASteeringWheelEmulationAxis[device]); }
-                catch { sASteeringWheelEmulationAxis[device] = DS4Controls.None; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SASteeringWheelEmulationAxis"); SASteeringWheelEmulationAxisType.TryParse(Item.InnerText, out sASteeringWheelEmulationAxis[device]); }
+                catch { sASteeringWheelEmulationAxis[device] = SASteeringWheelEmulationAxisType.None; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SASteeringWheelEmulationRange"); int.TryParse(Item.InnerText, out sASteeringWheelEmulationRange[device]); }
                 catch { sASteeringWheelEmulationRange[device] = 360; missingSetting = true; }
@@ -3942,7 +3944,7 @@ namespace DS4Windows
             useSAforMouse[device] = false;
             sATriggers[device] = string.Empty;
             sATriggerCond[device] = true;
-            sASteeringWheelEmulationAxis[device] = DS4Controls.None;
+            sASteeringWheelEmulationAxis[device] = SASteeringWheelEmulationAxisType.None;
             sASteeringWheelEmulationRange[device] = 360;
             touchDisInvertTriggers[device] = new int[1] { -1 };
             lsCurve[device] = rsCurve[device] = 0;

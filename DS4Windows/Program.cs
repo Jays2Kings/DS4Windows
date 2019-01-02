@@ -99,7 +99,7 @@ namespace DS4Windows
 
             //if (mutex.WaitOne(TimeSpan.Zero, true))
             //{
-                createControlService();
+            createControlService();
                 //rootHub = new ControlService();
                 Application.EnableVisualStyles();
                 ds4form = new DS4Form(args);

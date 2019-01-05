@@ -539,25 +539,25 @@ namespace DS4Windows
             short evType = Convert.ToInt16(e.NewEvent.GetPropertyValue("EventType"));
             switch (evType)
             {
-                case 4:
+                case 7:
                 {
                     if (btnStartStop.Text == Properties.Resources.StartText && wasrunning)
                     {
                         DS4LightBar.shuttingdown = false;
                         wasrunning = false;
                         Program.rootHub.suspending = false;
-                        BtnStartStop_Clicked();
+                        this.Invoke((System.Action)(() => BtnStartStop_Clicked()));
                     }
 
                     break;
                 }
-                case 7:
+                case 4:
                 {
                     if (btnStartStop.Text == Properties.Resources.StopText)
                     {
                         DS4LightBar.shuttingdown = true;
                         Program.rootHub.suspending = true;
-                        BtnStartStop_Clicked();
+                        this.Invoke((System.Action)(() => BtnStartStop_Clicked()));
                         wasrunning = true;
                     }
 

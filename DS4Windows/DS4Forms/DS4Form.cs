@@ -37,8 +37,8 @@ namespace DS4Windows
         private ToolStripMenuItem[] shortcuts;
         private ToolStripMenuItem[] disconnectShortcuts;
         protected CheckBox[] linkedProfileCB;
-        NonFormTimer hotkeysTimer = new NonFormTimer();
-        NonFormTimer autoProfilesTimer = new NonFormTimer();
+        NonFormTimer hotkeysTimer = null;// new NonFormTimer();
+        NonFormTimer autoProfilesTimer = null;// new NonFormTimer();
         string tempProfileProgram = string.Empty;
         double dpix, dpiy;
         List<string> profilenames = new List<string>();
@@ -249,15 +249,9 @@ namespace DS4Windows
             */
             //tabProfiles.Controls.Add(opt);
 
-            //autoProfilesTimer.Elapsed += CheckAutoProfiles;
-            autoProfilesTimer.Interval = 1000;
-            autoProfilesTimer.AutoReset = false;
-
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
             LogDebug(DateTime.Now, "DS4Windows version " + version, false);
-
-            LoadP();
 
             Global.BatteryStatusChange += BatteryStatusUpdate;
             Global.ControllerRemoved += ControllerRemovedChange;
@@ -270,17 +264,9 @@ namespace DS4Windows
             Enable_Controls(3, false);
             btnStartStop.Text = Properties.Resources.StartText;
 
-            //hotkeysTimer.Elapsed += Hotkeys;
-            hotkeysTimer.AutoReset = false;
-            if (SwipeProfiles)
-            {
-                ChangeHotkeysStatus(true);
-                //hotkeysTimer.Start();
-            }
-
             startToolStripMenuItem.Text = btnStartStop.Text;
             cBoxNotifications.SelectedIndex = Notifications;
-            cBSwipeProfiles.Checked = SwipeProfiles;
+            //cBSwipeProfiles.Checked = SwipeProfiles;
             int checkwhen = CheckWhen;
             cBUpdate.Checked = checkwhen > 0;
             if (checkwhen > 23)
@@ -419,6 +405,33 @@ namespace DS4Windows
                     this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked()));
                 });
             }
+
+            Thread timerThread = new Thread(() =>
+            {
+                hotkeysTimer = new NonFormTimer();
+                //hotkeysTimer.Elapsed += Hotkeys;
+                hotkeysTimer.AutoReset = false;
+                if (SwipeProfiles)
+                {
+                    ChangeHotkeysStatus(true);
+                    //hotkeysTimer.Start();
+                }
+
+                autoProfilesTimer = new NonFormTimer();
+                //autoProfilesTimer.Elapsed += CheckAutoProfiles;
+                autoProfilesTimer.Interval = 1000;
+                autoProfilesTimer.AutoReset = false;
+
+                LoadP();
+
+                this.BeginInvoke((System.Action)(() =>
+                {
+                    cBSwipeProfiles.Checked = SwipeProfiles;
+                }));
+            });
+            timerThread.IsBackground = true;
+            timerThread.Priority = ThreadPriority.Lowest;
+            timerThread.Start();
         }
 
         private void populateHoverTextDict()

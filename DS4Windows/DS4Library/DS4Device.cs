@@ -615,6 +615,7 @@ namespace DS4Windows
         }
 
         private byte outputPendCount = 0;
+        private readonly Stopwatch standbySw = new Stopwatch();
         private unsafe void performDs4Output()
         {
             try
@@ -658,6 +659,7 @@ namespace DS4Windows
                             }
                             //outReportBuffer.CopyTo(outputReport, 0);
                             outputPendCount--;
+                            standbySw.Reset();
                         }
 
                         currentRumble = true;
@@ -742,6 +744,7 @@ namespace DS4Windows
                 int crcpos = BT_INPUT_REPORT_CRC32_POS;
                 int crcoffset = 0;
                 long latencySum = 0;
+                standbySw.Start();
 
                 while (!exitInputThread)
                 {
@@ -1192,9 +1195,11 @@ namespace DS4Windows
                 if (synchronous)
                 {
                     outputPendCount = 3;
-
-                    if (change)
+                    output = output || standbySw.ElapsedMilliseconds >= 4000L;
+                    if (output || change)
                     {
+                        standbySw.Reset();
+
                         if (usingBT)
                         {
                             Monitor.Enter(outputReport);
@@ -1226,6 +1231,7 @@ namespace DS4Windows
                     //for (int i = 0, arlen = outputReport.Length; !change && i < arlen; i++)
                     //    change = outputReport[i] != outReportBuffer[i];
 
+                    output = output || standbySw.ElapsedMilliseconds >= 4000L;
                     if (output || change)
                     {
                         if (change)

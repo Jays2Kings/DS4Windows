@@ -529,7 +529,7 @@ namespace DS4Windows
                 if (conType == ConnectionType.BT)
                 {
                     ds4Output = new Thread(performDs4Output);
-                    ds4Output.Priority = ThreadPriority.AboveNormal;
+                    ds4Output.Priority = ThreadPriority.Normal;
                     ds4Output.Name = "DS4 Output thread: " + Mac;
                     ds4Output.IsBackground = true;
                     ds4Output.Start();
@@ -543,7 +543,7 @@ namespace DS4Windows
                 else
                 {
                     ds4Output = new Thread(OutReportCopy);
-                    ds4Output.Priority = ThreadPriority.AboveNormal;
+                    ds4Output.Priority = ThreadPriority.Normal;
                     ds4Output.Name = "DS4 Arr Copy thread: " + Mac;
                     ds4Output.IsBackground = true;
                     ds4Output.Start();

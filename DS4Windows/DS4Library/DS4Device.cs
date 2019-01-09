@@ -658,8 +658,9 @@ namespace DS4Windows
                                     byteR[i] = byteB[i];
                             }
                             //outReportBuffer.CopyTo(outputReport, 0);
-                            outputPendCount--;
-                            standbySw.Reset();
+                            if (outputPendCount > 0)
+                                outputPendCount--;
+                            standbySw.Restart();
                         }
 
                         currentRumble = true;
@@ -1194,11 +1195,17 @@ namespace DS4Windows
 
                 if (synchronous)
                 {
-                    outputPendCount = 3;
                     output = output || standbySw.ElapsedMilliseconds >= 4000L;
                     if (output || change)
                     {
-                        standbySw.Reset();
+                        if (change)
+                        {
+                            outputPendCount = 3;
+                        }
+                        else if (outputPendCount > 0)
+                            outputPendCount--;
+
+                        standbySw.Restart();
 
                         if (usingBT)
                         {

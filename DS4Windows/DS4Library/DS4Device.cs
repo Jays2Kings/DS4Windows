@@ -658,10 +658,14 @@ namespace DS4Windows
                                     byteR[i] = byteB[i];
                             }
                             //outReportBuffer.CopyTo(outputReport, 0);
-                            if (outputPendCount > 0)
+                            if (outputPendCount > 1)
                                 outputPendCount--;
-
-                            if (outputPendCount == 0)
+                            else if (outputPendCount == 1)
+                            {
+                                outputPendCount--;
+                                standbySw.Restart();
+                            }
+                            else
                                 standbySw.Restart();
                         }
 
@@ -1205,10 +1209,14 @@ namespace DS4Windows
                             outputPendCount = 3;
                             standbySw.Reset();
                         }
-                        else if (outputPendCount > 0)
+                        else if (outputPendCount > 1)
                             outputPendCount--;
-
-                        if (outputPendCount == 0)
+                        else if (outputPendCount == 1)
+                        {
+                            outputPendCount--;
+                            standbySw.Restart();
+                        }
+                        else
                             standbySw.Restart();
 
                         if (usingBT)

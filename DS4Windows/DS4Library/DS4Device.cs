@@ -660,7 +660,9 @@ namespace DS4Windows
                             //outReportBuffer.CopyTo(outputReport, 0);
                             if (outputPendCount > 0)
                                 outputPendCount--;
-                            standbySw.Restart();
+
+                            if (outputPendCount == 0)
+                                standbySw.Restart();
                         }
 
                         currentRumble = true;
@@ -1201,11 +1203,13 @@ namespace DS4Windows
                         if (change)
                         {
                             outputPendCount = 3;
+                            standbySw.Reset();
                         }
                         else if (outputPendCount > 0)
                             outputPendCount--;
 
-                        standbySw.Restart();
+                        if (outputPendCount == 0)
+                            standbySw.Restart();
 
                         if (usingBT)
                         {
@@ -1244,6 +1248,7 @@ namespace DS4Windows
                         if (change)
                         {
                             outputPendCount = 3;
+                            standbySw.Reset();
                         }
 
                         Monitor.Pulse(outReportBuffer);

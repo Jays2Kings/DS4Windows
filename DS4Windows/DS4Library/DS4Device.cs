@@ -1140,8 +1140,9 @@ namespace DS4Windows
 
         private unsafe void sendOutputReport(bool synchronous, bool force = false)
         {
-            setTestRumble();
-            setHapticState();
+            MergeStates();
+            //setTestRumble();
+            //setHapticState();
 
             bool quitOutputThread = false;
             bool usingBT = conType == ConnectionType.BT;
@@ -1156,13 +1157,13 @@ namespace DS4Windows
                     outReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
                     // enable rumble (0x01), lightbar (0x02), flash (0x04)
                     outReportBuffer[3] = 0xf7;
-                    outReportBuffer[6] = rightLightFastRumble; // fast motor
-                    outReportBuffer[7] = leftHeavySlowRumble; // slow motor
-                    outReportBuffer[8] = ligtBarColor.red; // red
-                    outReportBuffer[9] = ligtBarColor.green; // green
-                    outReportBuffer[10] = ligtBarColor.blue; // blue
-                    outReportBuffer[11] = ledFlashOn; // flash on duration
-                    outReportBuffer[12] = ledFlashOff; // flash off duration
+                    outReportBuffer[6] = currentHap.RumbleMotorStrengthRightLightFast; // fast motor
+                    outReportBuffer[7] = currentHap.RumbleMotorStrengthLeftHeavySlow; // slow motor
+                    outReportBuffer[8] = currentHap.LightBarColor.red; // red
+                    outReportBuffer[9] = currentHap.LightBarColor.green; // green
+                    outReportBuffer[10] = currentHap.LightBarColor.blue; // blue
+                    outReportBuffer[11] = currentHap.LightBarFlashDurationOn; // flash on duration
+                    outReportBuffer[12] = currentHap.LightBarFlashDurationOff; // flash off duration
 
                     fixed (byte* byteR = outputReport, byteB = outReportBuffer)
                     {
@@ -1175,13 +1176,13 @@ namespace DS4Windows
                     outReportBuffer[0] = 0x05;
                     // enable rumble (0x01), lightbar (0x02), flash (0x04)
                     outReportBuffer[1] = 0xf7;
-                    outReportBuffer[4] = rightLightFastRumble; // fast motor
-                    outReportBuffer[5] = leftHeavySlowRumble; // slow  motor
-                    outReportBuffer[6] = ligtBarColor.red; // red
-                    outReportBuffer[7] = ligtBarColor.green; // green
-                    outReportBuffer[8] = ligtBarColor.blue; // blue
-                    outReportBuffer[9] = ledFlashOn; // flash on duration
-                    outReportBuffer[10] = ledFlashOff; // flash off duration
+                    outReportBuffer[4] = currentHap.RumbleMotorStrengthRightLightFast; // fast motor
+                    outReportBuffer[5] = currentHap.RumbleMotorStrengthLeftHeavySlow; // slow  motor
+                    outReportBuffer[6] = currentHap.LightBarColor.red; // red
+                    outReportBuffer[7] = currentHap.LightBarColor.green; // green
+                    outReportBuffer[8] = currentHap.LightBarColor.blue; // blue
+                    outReportBuffer[9] = currentHap.LightBarFlashDurationOn; // flash on duration
+                    outReportBuffer[10] = currentHap.LightBarFlashDurationOff; // flash off duration
 
                     fixed (byte* byteR = outputReport, byteB = outReportBuffer)
                     {
@@ -1399,6 +1400,20 @@ namespace DS4Windows
                 pushHapticState(ref testRumble);
                 if (testRumble.RumbleMotorsExplicitlyOff)
                     testRumble.RumbleMotorsExplicitlyOff = false;
+
+
+            }
+        }
+
+        private void MergeStates()
+        {
+            if (testRumble.IsRumbleSet())
+            {
+                if (testRumble.RumbleMotorsExplicitlyOff)
+                    testRumble.RumbleMotorsExplicitlyOff = false;
+
+                currentHap.RumbleMotorStrengthLeftHeavySlow = testRumble.RumbleMotorStrengthLeftHeavySlow;
+                currentHap.RumbleMotorStrengthRightLightFast = testRumble.RumbleMotorStrengthRightLightFast;
             }
         }
 
@@ -1507,6 +1522,12 @@ namespace DS4Windows
             }
 
             hapticState[hapticStackIndex++] = hs;
+        }
+
+        private DS4HapticState currentHap = new DS4HapticState();
+        public void SetHapticState(ref DS4HapticState hs)
+        {
+            currentHap = hs;
         }
 
         override

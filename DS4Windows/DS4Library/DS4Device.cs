@@ -838,7 +838,7 @@ namespace DS4Windows
                     }
 
                     utcNow = DateTime.UtcNow; // timestamp with UTC in case system time zone changes
-                    resetHapticState();
+
                     cState.PacketCounter = pState.PacketCounter + 1;
                     cState.ReportTimeStamp = utcNow;
                     cState.LX = inputReport[1];
@@ -1360,18 +1360,6 @@ namespace DS4Windows
             testRumble.RumbleMotorsExplicitlyOff = rightLightFastMotor == 0 && leftHeavySlowMotor == 0;
         }
 
-        private void setTestRumble()
-        {
-            if (testRumble.IsRumbleSet())
-            {
-                pushHapticState(ref testRumble);
-                if (testRumble.RumbleMotorsExplicitlyOff)
-                    testRumble.RumbleMotorsExplicitlyOff = false;
-
-
-            }
-        }
-
         private void MergeStates()
         {
             if (testRumble.IsRumbleSet())
@@ -1433,26 +1421,6 @@ namespace DS4Windows
             if (cState.Touch1 || cState.Touch2 || cState.TouchButton)
                 return false;
             return true;
-        }
-
-        private DS4HapticState[] hapticState = new DS4HapticState[1];
-        private int hapticStackIndex = 0;
-        private void resetHapticState()
-        {
-            hapticStackIndex = 0;
-        }
-
-        public void pushHapticState(ref DS4HapticState hs)
-        {
-            int hapsLen = hapticState.Length;
-            if (hapticStackIndex == hapsLen)
-            {
-                DS4HapticState[] newHaptics = new DS4HapticState[hapsLen + 1];
-                Array.Copy(hapticState, newHaptics, hapsLen);
-                hapticState = newHaptics;
-            }
-
-            hapticState[hapticStackIndex++] = hs;
         }
 
         private DS4HapticState currentHap = new DS4HapticState();

@@ -779,28 +779,28 @@ namespace DS4Windows
 
                     if (absX <= 0.4)
                     {
-                        outputX = 0.54 * absX;
+                        outputX = 0.544 * absX;
                     }
                     else if (absX <= 0.75)
                     {
-                        outputX = absX - 0.184;
+                        outputX = absX - 0.1824;
                     }
                     else if (absX > 0.75)
                     {
-                        outputX = (absX * 1.736) - 0.736;
+                        outputX = (absX * 1.7296) - 0.7296;
                     }
 
                     if (absY <= 0.4)
                     {
-                        outputY = 0.54 * absY;
+                        outputY = 0.544 * absY;
                     }
                     else if (absY <= 0.75)
                     {
-                        outputY = absY - 0.184;
+                        outputY = absY - 0.1824;
                     }
                     else if (absY > 0.75)
                     {
-                        outputY = (absY * 1.736) - 0.736;
+                        outputY = (absY * 1.7296) - 0.7296;
                     }
 
                     dState.LX = (byte)(outputX * signX * 127.5 + 127.5);
@@ -839,28 +839,28 @@ namespace DS4Windows
 
                     if (absX <= 0.4)
                     {
-                        outputX = 0.545 * absX;
+                        outputX = 0.544 * absX;
                     }
                     else if (absX <= 0.75)
                     {
-                        outputX = absX - 0.182;
+                        outputX = absX - 0.1824;
                     }
                     else if (absX > 0.75)
                     {
-                        outputX = (absX * 1.728) - 0.728;
+                        outputX = (absX * 1.7296) - 0.7296;
                     }
 
                     if (absY <= 0.4)
                     {
-                        outputY = 0.545 * absY;
+                        outputY = 0.544 * absY;
                     }
                     else if (absY <= 0.75)
                     {
-                        outputY = absY - 0.182;
+                        outputY = absY - 0.1824;
                     }
                     else if (absY > 0.75)
                     {
-                        outputY = (absY * 1.728) - 0.728;
+                        outputY = (absY * 1.7296) - 0.7296;
                     }
 
                     dState.RX = (byte)(outputX * signX * 127.5 + 127.5);
@@ -1841,6 +1841,9 @@ namespace DS4Windows
                                             }
                                         }
                                     }
+
+                                    string prolog = Properties.Resources.UsingProfile.Replace("*number*", (device + 1).ToString()).Replace("*Profile name*", action.details);
+                                    AppLogger.LogToGui(prolog, false);
                                     LoadTempProfile(device, action.details, true, ctrl);
                                     return;
                                 }
@@ -2209,6 +2212,8 @@ namespace DS4Windows
                             }
 
                             untriggeraction[device] = null;
+                            string prolog = Properties.Resources.UsingProfile.Replace("*number*", (device + 1).ToString()).Replace("*Profile name*", ProfilePath[device]);
+                            AppLogger.LogToGui(prolog, false);
                             LoadProfile(device, false, ctrl);
                         }
                     }
@@ -2466,7 +2471,7 @@ namespace DS4Windows
             if (now >= oldnow + TimeSpan.FromMilliseconds(10) && !pressagain)
             {
                 oldnow = now;
-                InputMethods.MouseWheel((int)(getByteMapping(device, control, cState, eState, tp) / 51f * (down ? -1 : 1)), 0);
+                InputMethods.MouseWheel((int)(getByteMapping(device, control, cState, eState, tp) / 1.5f * (down ? -1 : 1)), 0);
             }
         }
 

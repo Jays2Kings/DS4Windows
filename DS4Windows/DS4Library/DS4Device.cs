@@ -140,10 +140,6 @@ namespace DS4Windows
         private byte[] outReportBuffer, outputReport;
         private readonly DS4Touchpad touchpad = null;
         private readonly DS4SixAxis sixAxis = null;
-        private byte rightLightFastRumble;
-        private byte leftHeavySlowRumble;
-        private DS4Color ligtBarColor;
-        private byte ledFlashOn, ledFlashOff;
         private Thread ds4Input, ds4Output;
         private int battery;
         private DS4Audio audio = null;
@@ -274,73 +270,44 @@ namespace DS4Windows
 
         public byte RightLightFastRumble
         {
-            get { return rightLightFastRumble; }
+            get { return currentHap.RumbleMotorStrengthRightLightFast; }
             set
             {
-                if (rightLightFastRumble != value)
-                    rightLightFastRumble = value;
+                if (currentHap.RumbleMotorStrengthRightLightFast != value)
+                    currentHap.RumbleMotorStrengthRightLightFast = value;
             }
         }
 
         public byte LeftHeavySlowRumble
         {
-            get { return leftHeavySlowRumble; }
+            get { return currentHap.RumbleMotorStrengthLeftHeavySlow; }
             set
             {
-                if (leftHeavySlowRumble != value)
-                    leftHeavySlowRumble = value;
+                if (currentHap.RumbleMotorStrengthLeftHeavySlow != value)
+                    currentHap.RumbleMotorStrengthLeftHeavySlow = value;
             }
         }
 
         public byte getLeftHeavySlowRumble()
         {
-            return leftHeavySlowRumble;
+            return currentHap.RumbleMotorStrengthLeftHeavySlow;
         }
 
         public DS4Color LightBarColor
         {
-            get { return ligtBarColor; }
+            get { return currentHap.LightBarColor; }
             set
             {
-                if (ligtBarColor.red != value.red || ligtBarColor.green != value.green || ligtBarColor.blue != value.blue)
+                if (currentHap.LightBarColor.red != value.red || currentHap.LightBarColor.green != value.green || currentHap.LightBarColor.blue != value.blue)
                 {
-                    ligtBarColor = value;
-                }
-            }
-        }
-
-        public byte LightBarOnDuration
-        {
-            get { return ledFlashOn; }
-            set
-            {
-                if (ledFlashOn != value)
-                {
-                    ledFlashOn = value;
+                    currentHap.LightBarColor = value;
                 }
             }
         }
 
         public byte getLightBarOnDuration()
         {
-            return ledFlashOn;
-        }
-        
-        public byte LightBarOffDuration
-        {
-            get { return ledFlashOff; }
-            set
-            {
-                if (ledFlashOff != value)
-                {
-                    ledFlashOff = value;
-                }
-            }
-        }
-
-        public byte getLightBarOffDuration()
-        {
-            return ledFlashOff;
+            return currentHap.LightBarFlashDurationOn;
         }
 
         // Specify the poll rate interval used for the DS4 hardware when
@@ -529,7 +496,7 @@ namespace DS4Windows
                 if (conType == ConnectionType.BT)
                 {
                     ds4Output = new Thread(performDs4Output);
-                    ds4Output.Priority = ThreadPriority.AboveNormal;
+                    ds4Output.Priority = ThreadPriority.Normal;
                     ds4Output.Name = "DS4 Output thread: " + Mac;
                     ds4Output.IsBackground = true;
                     ds4Output.Start();
@@ -543,7 +510,7 @@ namespace DS4Windows
                 else
                 {
                     ds4Output = new Thread(OutReportCopy);
-                    ds4Output.Priority = ThreadPriority.AboveNormal;
+                    ds4Output.Priority = ThreadPriority.Normal;
                     ds4Output.Name = "DS4 Arr Copy thread: " + Mac;
                     ds4Output.IsBackground = true;
                     ds4Output.Start();
@@ -615,6 +582,7 @@ namespace DS4Windows
         }
 
         private byte outputPendCount = 0;
+        private readonly Stopwatch standbySw = new Stopwatch();
         private unsafe void performDs4Output()
         {
             try
@@ -657,7 +625,15 @@ namespace DS4Windows
                                     byteR[i] = byteB[i];
                             }
                             //outReportBuffer.CopyTo(outputReport, 0);
-                            outputPendCount--;
+                            if (outputPendCount > 1)
+                                outputPendCount--;
+                            else if (outputPendCount == 1)
+                            {
+                                outputPendCount--;
+                                standbySw.Restart();
+                            }
+                            else
+                                standbySw.Restart();
                         }
 
                         currentRumble = true;
@@ -742,6 +718,7 @@ namespace DS4Windows
                 int crcpos = BT_INPUT_REPORT_CRC32_POS;
                 int crcoffset = 0;
                 long latencySum = 0;
+                standbySw.Start();
 
                 while (!exitInputThread)
                 {
@@ -861,7 +838,7 @@ namespace DS4Windows
                     }
 
                     utcNow = DateTime.UtcNow; // timestamp with UTC in case system time zone changes
-                    resetHapticState();
+
                     cState.PacketCounter = pState.PacketCounter + 1;
                     cState.ReportTimeStamp = utcNow;
                     cState.LX = inputReport[1];
@@ -1130,8 +1107,9 @@ namespace DS4Windows
 
         private unsafe void sendOutputReport(bool synchronous, bool force = false)
         {
-            setTestRumble();
-            setHapticState();
+            MergeStates();
+            //setTestRumble();
+            //setHapticState();
 
             bool quitOutputThread = false;
             bool usingBT = conType == ConnectionType.BT;
@@ -1146,13 +1124,13 @@ namespace DS4Windows
                     outReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
                     // enable rumble (0x01), lightbar (0x02), flash (0x04)
                     outReportBuffer[3] = 0xf7;
-                    outReportBuffer[6] = rightLightFastRumble; // fast motor
-                    outReportBuffer[7] = leftHeavySlowRumble; // slow motor
-                    outReportBuffer[8] = ligtBarColor.red; // red
-                    outReportBuffer[9] = ligtBarColor.green; // green
-                    outReportBuffer[10] = ligtBarColor.blue; // blue
-                    outReportBuffer[11] = ledFlashOn; // flash on duration
-                    outReportBuffer[12] = ledFlashOff; // flash off duration
+                    outReportBuffer[6] = currentHap.RumbleMotorStrengthRightLightFast; // fast motor
+                    outReportBuffer[7] = currentHap.RumbleMotorStrengthLeftHeavySlow; // slow motor
+                    outReportBuffer[8] = currentHap.LightBarColor.red; // red
+                    outReportBuffer[9] = currentHap.LightBarColor.green; // green
+                    outReportBuffer[10] = currentHap.LightBarColor.blue; // blue
+                    outReportBuffer[11] = currentHap.LightBarFlashDurationOn; // flash on duration
+                    outReportBuffer[12] = currentHap.LightBarFlashDurationOff; // flash off duration
 
                     fixed (byte* byteR = outputReport, byteB = outReportBuffer)
                     {
@@ -1165,13 +1143,13 @@ namespace DS4Windows
                     outReportBuffer[0] = 0x05;
                     // enable rumble (0x01), lightbar (0x02), flash (0x04)
                     outReportBuffer[1] = 0xf7;
-                    outReportBuffer[4] = rightLightFastRumble; // fast motor
-                    outReportBuffer[5] = leftHeavySlowRumble; // slow  motor
-                    outReportBuffer[6] = ligtBarColor.red; // red
-                    outReportBuffer[7] = ligtBarColor.green; // green
-                    outReportBuffer[8] = ligtBarColor.blue; // blue
-                    outReportBuffer[9] = ledFlashOn; // flash on duration
-                    outReportBuffer[10] = ledFlashOff; // flash off duration
+                    outReportBuffer[4] = currentHap.RumbleMotorStrengthRightLightFast; // fast motor
+                    outReportBuffer[5] = currentHap.RumbleMotorStrengthLeftHeavySlow; // slow  motor
+                    outReportBuffer[6] = currentHap.LightBarColor.red; // red
+                    outReportBuffer[7] = currentHap.LightBarColor.green; // green
+                    outReportBuffer[8] = currentHap.LightBarColor.blue; // blue
+                    outReportBuffer[9] = currentHap.LightBarFlashDurationOn; // flash on duration
+                    outReportBuffer[10] = currentHap.LightBarFlashDurationOff; // flash off duration
 
                     fixed (byte* byteR = outputReport, byteB = outReportBuffer)
                     {
@@ -1191,10 +1169,24 @@ namespace DS4Windows
 
                 if (synchronous)
                 {
-                    outputPendCount = 3;
-
-                    if (change)
+                    output = output || standbySw.ElapsedMilliseconds >= 4000L;
+                    if (output || change)
                     {
+                        if (change)
+                        {
+                            outputPendCount = 3;
+                            standbySw.Reset();
+                        }
+                        else if (outputPendCount > 1)
+                            outputPendCount--;
+                        else if (outputPendCount == 1)
+                        {
+                            outputPendCount--;
+                            standbySw.Restart();
+                        }
+                        else
+                            standbySw.Restart();
+
                         if (usingBT)
                         {
                             Monitor.Enter(outputReport);
@@ -1226,11 +1218,13 @@ namespace DS4Windows
                     //for (int i = 0, arlen = outputReport.Length; !change && i < arlen; i++)
                     //    change = outputReport[i] != outReportBuffer[i];
 
+                    output = output || standbySw.ElapsedMilliseconds >= 4000L;
                     if (output || change)
                     {
                         if (change)
                         {
                             outputPendCount = 3;
+                            standbySw.Reset();
                         }
 
                         Monitor.Pulse(outReportBuffer);
@@ -1366,13 +1360,15 @@ namespace DS4Windows
             testRumble.RumbleMotorsExplicitlyOff = rightLightFastMotor == 0 && leftHeavySlowMotor == 0;
         }
 
-        private void setTestRumble()
+        private void MergeStates()
         {
             if (testRumble.IsRumbleSet())
             {
-                pushHapticState(ref testRumble);
                 if (testRumble.RumbleMotorsExplicitlyOff)
                     testRumble.RumbleMotorsExplicitlyOff = false;
+
+                currentHap.RumbleMotorStrengthLeftHeavySlow = testRumble.RumbleMotorStrengthLeftHeavySlow;
+                currentHap.RumbleMotorStrengthRightLightFast = testRumble.RumbleMotorStrengthRightLightFast;
             }
         }
 
@@ -1427,60 +1423,10 @@ namespace DS4Windows
             return true;
         }
 
-        private DS4HapticState[] hapticState = new DS4HapticState[1];
-        private int hapticStackIndex = 0;
-        private void resetHapticState()
+        private DS4HapticState currentHap = new DS4HapticState();
+        public void SetHapticState(ref DS4HapticState hs)
         {
-            hapticStackIndex = 0;
-        }
-
-        delegate void HapticItem(ref DS4HapticState haptic);
-
-        // Use the "most recently set" haptic state for each of light bar/motor.
-        private void setHapticState()
-        {
-            byte lightBarFlashDurationOn = ledFlashOn, lightBarFlashDurationOff = ledFlashOff;
-            byte rumbleMotorStrengthLeftHeavySlow = leftHeavySlowRumble,
-                rumbleMotorStrengthRightLightFast = rightLightFastRumble;
-            int hapticLen = hapticState.Length;
-            for (int i=0; i < hapticLen; i++)
-            {
-                if (i == hapticStackIndex)
-                    break; // rest haven't been used this time
-
-                ((HapticItem)((ref DS4HapticState haptic) => {
-                    if (haptic.IsLightBarSet())
-                    {
-                        ligtBarColor = haptic.LightBarColor;
-                        lightBarFlashDurationOn = haptic.LightBarFlashDurationOn;
-                        lightBarFlashDurationOff = haptic.LightBarFlashDurationOff;
-                    }
-
-                    if (haptic.IsRumbleSet())
-                    {
-                        rumbleMotorStrengthLeftHeavySlow = haptic.RumbleMotorStrengthLeftHeavySlow;
-                        rumbleMotorStrengthRightLightFast = haptic.RumbleMotorStrengthRightLightFast;
-                    }
-                }))(ref hapticState[i]);
-            }
-
-            ledFlashOn = lightBarFlashDurationOn;
-            ledFlashOff = lightBarFlashDurationOff;
-            leftHeavySlowRumble = rumbleMotorStrengthLeftHeavySlow;
-            rightLightFastRumble = rumbleMotorStrengthRightLightFast;
-        }
-
-        public void pushHapticState(ref DS4HapticState hs)
-        {
-            int hapsLen = hapticState.Length;
-            if (hapticStackIndex == hapsLen)
-            {
-                DS4HapticState[] newHaptics = new DS4HapticState[hapsLen + 1];
-                Array.Copy(hapticState, newHaptics, hapsLen);
-                hapticState = newHaptics;
-            }
-
-            hapticState[hapticStackIndex++] = hs;
+            currentHap = hs;
         }
 
         override

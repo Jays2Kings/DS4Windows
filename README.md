@@ -27,6 +27,7 @@ you've used a 360 controller before)
   - Bluetooth 2.1+ (via an
   [adapter like this](https://www.newegg.com/Product/Product.aspx?Item=N82E16833166126)
   or built in pc). Toshiba's adapters currently do not work.
+- Disable Steam Controller Mapping support in Steam
 
 ## Device Detection Issue
 
@@ -49,6 +50,19 @@ check the device's device instance path and see if the device is a
 DualShock 4 device. Right click the device item and select "Enable device"
 from the menu. That will re-enable the device and be seen by applications
 again.
+
+## Disable Steam Controller Mapping Support
+
+With recent updates to the Steam client at the time writing this (2018-12-13),
+Steam has enabled Xbox Configuration Support in the Steam client by default.
+What this means is that Steam will automatically map a detected Xbox 360
+controller to KB+M bindings initially (Desktop Mode) before launching Steam
+Big Picture Mode or launching a game. This presents a problem for DS4Windows
+since the created virtual Xbox 360 controller will be mapped to KB+M actions
+for desktop mode and games launched outside of the Steam client. In order to
+use DS4Windows properly, you have to open Steam Big Picture Mode, navigate to
+Settings > Controller> Controller Settings and uncheck **Xbox Configuration
+Support** along with **PlayStation Configuration Support**.
 
 ## Pull Requests
 

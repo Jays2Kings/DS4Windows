@@ -545,7 +545,7 @@
     <value>..\Resources\Pairmode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PleaseDownloadUpdater" xml:space="preserve">
-    <value>Please Download the Updater now, and place it in the programs folder, then check for update again</value>
+    <value>Please Download the Updater now, place it in the programs folder and rename to DS4Updater.exe if on x86, then check for update again</value>
   </data>
   <data name="PleaseImport" xml:space="preserve">
     <value>Please import or make a profile</value>

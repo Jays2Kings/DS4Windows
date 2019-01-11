@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Net;
 using System.Drawing;
-using Microsoft.Win32;
 using System.Diagnostics;
 using System.Xml;
 using System.Text;
@@ -18,6 +17,7 @@ using TaskRunner = System.Threading.Tasks.Task;
 using NonFormTimer = System.Timers.Timer;
 using static DS4Windows.Global;
 using System.Security;
+using System.Management;
 
 namespace DS4Windows
 {
@@ -37,9 +37,8 @@ namespace DS4Windows
         private ToolStripMenuItem[] shortcuts;
         private ToolStripMenuItem[] disconnectShortcuts;
         protected CheckBox[] linkedProfileCB;
-        WebClient wc = new WebClient();
-        NonFormTimer hotkeysTimer = new NonFormTimer();
-        NonFormTimer autoProfilesTimer = new NonFormTimer();
+        NonFormTimer hotkeysTimer = null;// new NonFormTimer();
+        NonFormTimer autoProfilesTimer = null;// new NonFormTimer();
         string tempProfileProgram = string.Empty;
         double dpix, dpiy;
         List<string> profilenames = new List<string>();
@@ -57,14 +56,14 @@ namespace DS4Windows
         bool runningBat;
         private bool changingService;
         private IntPtr regHandle = new IntPtr();
-        private static DS4Form instance;
+        private ManagementEventWatcher managementEvWatcher;
         Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();
         // 0 index is used for application version text. 1 - 4 indices are used for controller status
         string[] notifyText = new string[5]
             { "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion,
             string.Empty, string.Empty, string.Empty, string.Empty };
 
-        private const string UPDATER_VERSION = "1.2.8.0";
+        private const string UPDATER_VERSION = "1.3.0";
         private const int WM_QUERYENDSESSION = 0x11;
         private const int WM_CLOSE = 0x10;
         internal string updaterExe = Environment.Is64BitProcess ? "DS4Updater.exe" : "DS4Updater_x86.exe";
@@ -127,7 +126,13 @@ namespace DS4Windows
 
             linkedProfileCB = new CheckBox[4] { linkCB1, linkCB2, linkCB3, linkCB4 };
 
-            SystemEvents.PowerModeChanged += OnPowerChange;
+            WqlEventQuery q = new WqlEventQuery();
+            ManagementScope scope = new ManagementScope("root\\CIMV2");
+            q.EventClassName = "Win32_PowerManagementEvent";
+            managementEvWatcher = new ManagementEventWatcher(scope, q);
+            managementEvWatcher.EventArrived += PowerEventArrive;
+            managementEvWatcher.Start();
+
             tSOptions.Visible = false;
 
             TaskRunner.Run(() => CheckDrivers());
@@ -150,11 +155,6 @@ namespace DS4Windows
             }
 
             blankControllerTab();
-
-            Program.rootHub.Debug += On_Debug;
-
-            AppLogger.GuiLog += On_Debug;
-            AppLogger.TrayIconLog += ShowNotification;
 
             Directory.CreateDirectory(appdatapath);
             if (!Save()) //if can't write to file
@@ -189,6 +189,7 @@ namespace DS4Windows
             cBUseWhiteIcon.Checked = UseWhiteIcon;
             Icon = Properties.Resources.DS4W;
             notifyIcon1.Icon = UseWhiteIcon ? Properties.Resources.DS4W___White : Properties.Resources.DS4W;
+            populateNotifyText();
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
 
@@ -248,16 +249,9 @@ namespace DS4Windows
             */
             //tabProfiles.Controls.Add(opt);
 
-            //autoProfilesTimer.Elapsed += CheckAutoProfiles;
-            autoProfilesTimer.Interval = 1000;
-            autoProfilesTimer.AutoReset = false;
-
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
-            AppLogger.LogToGui("DS4Windows version " + version, false);
-
-            LoadP();
-            LoadLinkedProfiles();
+            LogDebug(DateTime.Now, "DS4Windows version " + version, false);
 
             Global.BatteryStatusChange += BatteryStatusUpdate;
             Global.ControllerRemoved += ControllerRemovedChange;
@@ -270,17 +264,9 @@ namespace DS4Windows
             Enable_Controls(3, false);
             btnStartStop.Text = Properties.Resources.StartText;
 
-            //hotkeysTimer.Elapsed += Hotkeys;
-            hotkeysTimer.AutoReset = false;
-            if (SwipeProfiles)
-            {
-                ChangeHotkeysStatus(true);
-                //hotkeysTimer.Start();
-            }
-
             startToolStripMenuItem.Text = btnStartStop.Text;
             cBoxNotifications.SelectedIndex = Notifications;
-            cBSwipeProfiles.Checked = SwipeProfiles;
+            //cBSwipeProfiles.Checked = SwipeProfiles;
             int checkwhen = CheckWhen;
             cBUpdate.Checked = checkwhen > 0;
             if (checkwhen > 23)
@@ -292,15 +278,6 @@ namespace DS4Windows
             {
                 cBUpdateTime.SelectedIndex = 0;
                 nUDUpdateTime.Value = checkwhen;
-            }
-
-            Uri url = new Uri("http://23.239.26.40/ds4windows/files/builds/newest.txt"); // Sorry other devs, gonna have to find your own server
-
-            if (checkwhen > 0 && DateTime.Now >= LastChecked + TimeSpan.FromHours(checkwhen))
-            {
-                wc.DownloadFileAsync(url, appdatapath + "\\version.txt");
-                wc.DownloadFileCompleted += (sender, e) => { TaskRunner.Run(() => Check_Version(sender, e)); };
-                LastChecked = DateTime.Now;
             }
 
             if (File.Exists(exepath + "\\Updater.exe"))
@@ -351,8 +328,6 @@ namespace DS4Windows
                 }
             }
 
-            TaskRunner.Run(() => { UpdateTheUpdater(); });
-
             StartWindowsCheckBox.CheckedChanged += new EventHandler(StartWindowsCheckBox_CheckedChanged);
             new ToolTip().SetToolTip(StartWindowsCheckBox, Properties.Resources.RunAtStartup);
 
@@ -395,12 +370,68 @@ namespace DS4Windows
                 }
             }
 
-            instance = this;
             this.Resize += Form_Resize;
             this.LocationChanged += TrackLocationChanged;
-            Form_Resize(null, null);
+            if (!(StartMinimized || mini))
+                Form_Resize(null, null);
+
+            Program.rootHub.Debug += On_Debug;
+
+            AppLogger.GuiLog += On_Debug;
+            AppLogger.TrayIconLog += ShowNotification;
+            LoadLinkedProfiles();
+
+            TaskRunner.Delay(50).ContinueWith((t) =>
+            {
+                if (checkwhen > 0 && DateTime.Now >= LastChecked + TimeSpan.FromHours(checkwhen))
+                {
+                    this.BeginInvoke((System.Action)(() =>
+                    {
+                        // Sorry other devs, gonna have to find your own server
+                        Uri url = new Uri("https://raw.githubusercontent.com/Ryochan7/DS4Windows/jay/DS4Windows/newest.txt");
+                        WebClient wc = new WebClient();
+                        wc.DownloadFileAsync(url, appdatapath + "\\version.txt");
+                        wc.DownloadFileCompleted += (sender, e) => { TaskRunner.Run(() => Check_Version(sender, e)); };
+                        LastChecked = DateTime.Now;
+                    }));
+                }
+
+                UpdateTheUpdater();
+            });
+
             if (btnStartStop.Enabled && start)
-                TaskRunner.Delay(50).ContinueWith((t) => this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked())));
+            {
+                TaskRunner.Delay(50).ContinueWith((t) => {
+                    this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked()));
+                });
+            }
+
+            Thread timerThread = new Thread(() =>
+            {
+                hotkeysTimer = new NonFormTimer();
+                //hotkeysTimer.Elapsed += Hotkeys;
+                hotkeysTimer.AutoReset = false;
+                if (SwipeProfiles)
+                {
+                    ChangeHotkeysStatus(true);
+                    //hotkeysTimer.Start();
+                }
+
+                autoProfilesTimer = new NonFormTimer();
+                //autoProfilesTimer.Elapsed += CheckAutoProfiles;
+                autoProfilesTimer.Interval = 1000;
+                autoProfilesTimer.AutoReset = false;
+
+                LoadP();
+
+                this.BeginInvoke((System.Action)(() =>
+                {
+                    cBSwipeProfiles.Checked = SwipeProfiles;
+                }));
+            });
+            timerThread.IsBackground = true;
+            timerThread.Priority = ThreadPriority.Lowest;
+            timerThread.Start();
         }
 
         private void populateHoverTextDict()
@@ -516,38 +547,44 @@ namespace DS4Windows
             return text.ToString();
         }
 
-        private static void OnPowerChange(object s, PowerModeChangedEventArgs e)
+        private void PowerEventArrive(object sender, EventArrivedEventArgs e)
         {
-            switch (e.Mode)
+            short evType = Convert.ToInt16(e.NewEvent.GetPropertyValue("EventType"));
+            switch (evType)
             {
-                case PowerModes.Resume:
+                case 7:
                 {
-                    if (instance.btnStartStop.Text == Properties.Resources.StartText && instance.wasrunning)
+                    if (btnStartStop.Text == Properties.Resources.StartText && wasrunning)
                     {
                         DS4LightBar.shuttingdown = false;
-                        instance.wasrunning = false;
+                        wasrunning = false;
                         Program.rootHub.suspending = false;
-                        instance.BtnStartStop_Clicked();
+                        this.Invoke((System.Action)(() => BtnStartStop_Clicked()));
                     }
+
                     break;
                 }
-                case PowerModes.Suspend:
+                case 4:
                 {
-                    if (instance.btnStartStop.Text == Properties.Resources.StopText)
+                    if (btnStartStop.Text == Properties.Resources.StopText)
                     {
                         DS4LightBar.shuttingdown = true;
                         Program.rootHub.suspending = true;
-                        instance.BtnStartStop_Clicked();
-                        instance.wasrunning = true;
+                        this.Invoke((System.Action)(() => BtnStartStop_Clicked()));
+                        wasrunning = true;
                     }
+
                     break;
                 }
-                default: break;
+                default:
+                    break;
             }
         }
 
         void Hotkeys(object sender, EventArgs e)
         {
+            hotkeysTimer.Stop();
+
             if (SwipeProfiles)
             {
                 for (int i = 0; i < 4; i++)
@@ -599,6 +636,8 @@ namespace DS4Windows
 
         private void CheckAutoProfiles(object sender, EventArgs e)
         {
+            autoProfilesTimer.Stop();
+
             //Check for process for auto profiles
             if (string.IsNullOrEmpty(tempProfileProgram))
             {
@@ -747,23 +786,23 @@ namespace DS4Windows
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
             string newversion = File.ReadAllText(appdatapath + "\\version.txt").Trim();
-            if (version.Replace(',', '.').CompareTo(newversion) == -1)
+            if (version.Replace(',', '.').CompareTo(newversion) != 0)
             {
                 if ((DialogResult)this.Invoke(new Func<DialogResult>(() => {
                     return MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion),
 Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question); })) == DialogResult.Yes)
                 {
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
-                        && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") == -1)))
+                        && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo(UPDATER_VERSION) != 0)))
                     {
-                        Uri url2 = new Uri($"http://23.239.26.40/ds4windows/files/{updaterExe}");
+                        Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{UPDATER_VERSION}/{updaterExe}");
                         WebClient wc2 = new WebClient();
                         if (appdatapath == exepath)
                             wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
                         else
                         {
                             this.BeginInvoke((System.Action)(() => MessageBox.Show(Properties.Resources.PleaseDownloadUpdater)));
-                            Process.Start($"http://23.239.26.40/ds4windows/files/{updaterExe}");
+                            Process.Start($"https://github.com/Ryochan7/DS4Updater/releases/download/v{UPDATER_VERSION}/{updaterExe}");
                         }
                     }
 
@@ -1150,7 +1189,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 string temp = Program.rootHub.getShortDS4ControllerInfo(i);
                 if (temp != Properties.Resources.NoneText)
                 {
-                    notifyText[i + 1] = (i + 1) + ": " + temp; // Carefully stay under the 63 character limit.
+                    notifyText[i + 1] = (i + 1) + ": " + temp;
                 }
                 else
                 {
@@ -1166,7 +1205,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             string temp = Program.rootHub.getShortDS4ControllerInfo(index);
             if (temp != Properties.Resources.NoneText)
             {
-                notifyText[index + 1] = (index + 1) + ": " + temp; // Carefully stay under the 63 character limit.
+                notifyText[index + 1] = (index + 1) + ": " + temp;
             }
             else
             {
@@ -1182,14 +1221,11 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 string temp = notifyText[i];
                 if (!string.IsNullOrEmpty(temp))
                 {
-                    tooltip += "\n" + notifyText[i]; // Carefully stay under the 63 character limit.
+                    tooltip += "\n" + notifyText[i];
                 }
             }
 
-            if (tooltip.Length > 63)
-                notifyIcon1.Text = tooltip.Substring(0, 63);
-            else
-                notifyIcon1.Text = tooltip;
+            notifyIcon1.Text = tooltip.Length > 63 ? tooltip.Substring(0, 63) : tooltip; // Carefully stay under the 63 character limit.
         }
 
         protected void DeviceSerialChanged(object sender, SerialChangeArgs args)
@@ -1780,7 +1816,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         private void StartWindowsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             bool isChecked = StartWindowsCheckBox.Checked;
-            RegistryKey KeyLoc = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
             if (isChecked && !File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk"))
             {
                 appShortcutToStartup();
@@ -1789,8 +1824,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             {
                 File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
             }
-
-            KeyLoc.DeleteValue("DS4Tool", false);
 
             if (isChecked)
             {
@@ -2047,7 +2080,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         private void lLBUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Sorry other devs, gonna have to find your own server
-            Uri url = new Uri("http://23.239.26.40/ds4windows/files/builds/newest.txt");
+            Uri url = new Uri("https://raw.githubusercontent.com/Ryochan7/DS4Windows/jay/DS4Windows/newest.txt");
             WebClient wct = new WebClient();
             wct.DownloadFileAsync(url, appdatapath + "\\version.txt");
             wct.DownloadFileCompleted += (sender2, e2) => TaskRunner.Run(() => wct_DownloadFileCompleted(sender2, e2));
@@ -2064,7 +2097,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version2 = fvi.FileVersion;
             string newversion2 = File.ReadAllText(appdatapath + "\\version.txt").Trim();
-            if (version2.Replace(',', '.').CompareTo(newversion2) == -1)
+            if (version2.Replace(',', '.').CompareTo(newversion2) != 0)
             {
                 if ((DialogResult)this.Invoke(new Func<DialogResult>(() =>
                 {
@@ -2073,16 +2106,16 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 })) == DialogResult.Yes)
                 {
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
-                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo(UPDATER_VERSION) == -1)))
+                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo(UPDATER_VERSION) != 0)))
                     {
-                        Uri url2 = new Uri($"http://23.239.26.40/ds4windows/files/{updaterExe}");
+                        Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{UPDATER_VERSION}/{updaterExe}");
                         WebClient wc2 = new WebClient();
                         if (appdatapath == exepath)
                             wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
                         else
                         {
                             this.BeginInvoke((System.Action)(() => MessageBox.Show(Properties.Resources.PleaseDownloadUpdater)));
-                            Process.Start($"http://23.239.26.40/ds4windows/files/{updaterExe}");
+                            Process.Start($"https://github.com/Ryochan7/DS4Updater/releases/download/v{UPDATER_VERSION}/{updaterExe}");
                         }
                     }
 

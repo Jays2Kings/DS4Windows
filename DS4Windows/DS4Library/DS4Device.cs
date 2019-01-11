@@ -140,10 +140,6 @@ namespace DS4Windows
         private byte[] outReportBuffer, outputReport;
         private readonly DS4Touchpad touchpad = null;
         private readonly DS4SixAxis sixAxis = null;
-        private byte rightLightFastRumble;
-        private byte leftHeavySlowRumble;
-        private DS4Color ligtBarColor;
-        private byte ledFlashOn, ledFlashOff;
         private Thread ds4Input, ds4Output;
         private int battery;
         private DS4Audio audio = null;
@@ -274,73 +270,44 @@ namespace DS4Windows
 
         public byte RightLightFastRumble
         {
-            get { return rightLightFastRumble; }
+            get { return currentHap.RumbleMotorStrengthRightLightFast; }
             set
             {
-                if (rightLightFastRumble != value)
-                    rightLightFastRumble = value;
+                if (currentHap.RumbleMotorStrengthRightLightFast != value)
+                    currentHap.RumbleMotorStrengthRightLightFast = value;
             }
         }
 
         public byte LeftHeavySlowRumble
         {
-            get { return leftHeavySlowRumble; }
+            get { return currentHap.RumbleMotorStrengthLeftHeavySlow; }
             set
             {
-                if (leftHeavySlowRumble != value)
-                    leftHeavySlowRumble = value;
+                if (currentHap.RumbleMotorStrengthLeftHeavySlow != value)
+                    currentHap.RumbleMotorStrengthLeftHeavySlow = value;
             }
         }
 
         public byte getLeftHeavySlowRumble()
         {
-            return leftHeavySlowRumble;
+            return currentHap.RumbleMotorStrengthLeftHeavySlow;
         }
 
         public DS4Color LightBarColor
         {
-            get { return ligtBarColor; }
+            get { return currentHap.LightBarColor; }
             set
             {
-                if (ligtBarColor.red != value.red || ligtBarColor.green != value.green || ligtBarColor.blue != value.blue)
+                if (currentHap.LightBarColor.red != value.red || currentHap.LightBarColor.green != value.green || currentHap.LightBarColor.blue != value.blue)
                 {
-                    ligtBarColor = value;
-                }
-            }
-        }
-
-        public byte LightBarOnDuration
-        {
-            get { return ledFlashOn; }
-            set
-            {
-                if (ledFlashOn != value)
-                {
-                    ledFlashOn = value;
+                    currentHap.LightBarColor = value;
                 }
             }
         }
 
         public byte getLightBarOnDuration()
         {
-            return ledFlashOn;
-        }
-        
-        public byte LightBarOffDuration
-        {
-            get { return ledFlashOff; }
-            set
-            {
-                if (ledFlashOff != value)
-                {
-                    ledFlashOff = value;
-                }
-            }
-        }
-
-        public byte getLightBarOffDuration()
-        {
-            return ledFlashOff;
+            return currentHap.LightBarFlashDurationOn;
         }
 
         // Specify the poll rate interval used for the DS4 hardware when
@@ -1473,42 +1440,6 @@ namespace DS4Windows
         private void resetHapticState()
         {
             hapticStackIndex = 0;
-        }
-
-        delegate void HapticItem(ref DS4HapticState haptic);
-
-        // Use the "most recently set" haptic state for each of light bar/motor.
-        private void setHapticState()
-        {
-            byte lightBarFlashDurationOn = ledFlashOn, lightBarFlashDurationOff = ledFlashOff;
-            byte rumbleMotorStrengthLeftHeavySlow = leftHeavySlowRumble,
-                rumbleMotorStrengthRightLightFast = rightLightFastRumble;
-            int hapticLen = hapticState.Length;
-            for (int i=0; i < hapticLen; i++)
-            {
-                if (i == hapticStackIndex)
-                    break; // rest haven't been used this time
-
-                ((HapticItem)((ref DS4HapticState haptic) => {
-                    if (haptic.IsLightBarSet())
-                    {
-                        ligtBarColor = haptic.LightBarColor;
-                        lightBarFlashDurationOn = haptic.LightBarFlashDurationOn;
-                        lightBarFlashDurationOff = haptic.LightBarFlashDurationOff;
-                    }
-
-                    if (haptic.IsRumbleSet())
-                    {
-                        rumbleMotorStrengthLeftHeavySlow = haptic.RumbleMotorStrengthLeftHeavySlow;
-                        rumbleMotorStrengthRightLightFast = haptic.RumbleMotorStrengthRightLightFast;
-                    }
-                }))(ref hapticState[i]);
-            }
-
-            ledFlashOn = lightBarFlashDurationOn;
-            ledFlashOff = lightBarFlashDurationOff;
-            leftHeavySlowRumble = rumbleMotorStrengthLeftHeavySlow;
-            rightLightFastRumble = rumbleMotorStrengthRightLightFast;
         }
 
         public void pushHapticState(ref DS4HapticState hs)

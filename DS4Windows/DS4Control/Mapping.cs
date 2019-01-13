@@ -4128,28 +4128,29 @@ namespace DS4Windows
 
                 result = Mapping.ClampInt(maxRangeLeft, result, maxRangeRight);
 
+                // Debug log output of SA sensor values
                 //LogToGuiSACalibrationDebugMsg($"DEBUG gyro=({gyroAccelX}, {gyroAccelZ})  gyroPitchRollYaw=({currentDeviceState.Motion.gyroPitch}, {currentDeviceState.Motion.gyroRoll}, {currentDeviceState.Motion.gyroYaw})  gyroPitchRollYaw=({currentDeviceState.Motion.angVelPitch}, {currentDeviceState.Motion.angVelRoll}, {currentDeviceState.Motion.angVelYaw})  angle={result / (1.0 * C_WHEEL_ANGLE_PRECISION)}  fullTurns={controller.wheelFullTurnCount}", false);
 
                 // Scale input to a raw x360 16bit output scale, except if output axis of steering wheel emulation is L2+R2 trigger axis.
-                // L2+R2 triggers use independent 8bit values, so use -255..0..+255 scaled values (therefore L2+R2 Trigger axis supports only 360 turn range)
                 switch(Global.getSASteeringWheelEmulationAxis(device))
                 {
                     case SASteeringWheelEmulationAxisType.LX:
                     case SASteeringWheelEmulationAxisType.LY:
                     case SASteeringWheelEmulationAxisType.RX:
                     case SASteeringWheelEmulationAxisType.RY:
-                        // DS4 Stick axis values with configurable range
+                        // DS4 thumbstick axis output (-32768..32767 raw value range)
                         return (((result - maxRangeLeft) * (32767 - (-32768))) / (maxRangeRight - maxRangeLeft)) + (-32768); 
 
                     case SASteeringWheelEmulationAxisType.L2R2:
-                        // DS4 Trigger axis values with fixed 360 range
+                        // DS4 Trigger axis output. L2+R2 triggers share the same axis in x360 xInput/DInput controller, 
+                        // so L2+R2 steering output supports only 360 turn range (-255..255 raw value range in the shared trigger axis)
                         result = Convert.ToInt32(Math.Round(result / (1.0 * C_WHEEL_ANGLE_PRECISION))); 
                         if (result < 0) result = -181 - result;
                         return (((result - (-180)) * (255 - (-255))) / (180 - (-180))) + (-255);
 
                     default:
-                        // VJoy axis values with configurable range
-                        return (((result - maxRangeLeft) * (32767 - (-0))) / (maxRangeRight - maxRangeLeft)) + (-0); 
+                        // SASteeringWheelEmulationAxisType.VJoy1X/VJoy1Y/VJoy1Z/VJoy2X/VJoy2Y/VJoy2Z VJoy axis output (0..32767 raw value range by default)
+                        return (((result - maxRangeLeft) * (32767 - (-0))) / (maxRangeRight - maxRangeLeft)) + (-0);
                 }
             }
         }

@@ -653,36 +653,44 @@ namespace DS4Windows.VJoyFeeder
                 vJoyInitialized = true;
                 AppLogger.LogToGui("Initializing VJoy virtual joystick driver via vJoyInterface.dll interface", false);
 
-                if (vJoyObj == null) vJoyObj = new vJoy();
-
-                if (vJoyObj.vJoyEnabled() && vJoyObj.GetVJDAxisExist(vJoyID, axis))
+                try
                 {
-                    AppLogger.LogToGui("Connection to VJoy virtual joystick established", false);
-                    AppLogger.LogToGui($"VJoy driver. Vendor={vJoyObj.GetvJoyManufacturerString()}  Product={vJoyObj.GetvJoyProductString()}  Version={vJoyObj.GetvJoySerialNumberString()}  Device#={vJoyID}  Axis={axis}", false);
+                    if (vJoyObj == null) vJoyObj = new vJoy();
 
-                    // Test if DLL matches the driver
-                    UInt32 DllVer = 0, DrvVer = 0;
-                    if (!vJoyObj.DriverMatch(ref DllVer, ref DrvVer))
-                        AppLogger.LogToGui("WARNING. VJoy version of Driver {DrvVer}) does not match interface DLL Version {DllVer}. This may lead to unexpected problems or crashes. Update VJoy driver and vJoyInterface.dll", false);
-
-                    VjdStat status = vJoyObj.GetVJDStatus(vJoyID);
-                    if ((status == VjdStat.VJD_STAT_OWN) || ((status == VjdStat.VJD_STAT_FREE) && (!vJoyObj.AcquireVJD(vJoyID))))
+                    if (vJoyObj.vJoyEnabled() && vJoyObj.GetVJDAxisExist(vJoyID, axis))
                     {
-                        vJoyAvailable = false;
-                        AppLogger.LogToGui("ERROR. Failed to acquire vJoy device# {vJoyID}. Use another VJoy device or make sure there are no other VJoy feeder apps using the same device", false);
+                        AppLogger.LogToGui("Connection to VJoy virtual joystick established", false);
+                        AppLogger.LogToGui($"VJoy driver. Vendor={vJoyObj.GetvJoyManufacturerString()}  Product={vJoyObj.GetvJoyProductString()}  Version={vJoyObj.GetvJoySerialNumberString()}  Device#={vJoyID}  Axis={axis}", false);
+
+                        // Test if DLL matches the driver
+                        UInt32 DllVer = 0, DrvVer = 0;
+                        if (!vJoyObj.DriverMatch(ref DllVer, ref DrvVer))
+                            AppLogger.LogToGui("WARNING. VJoy version of Driver {DrvVer}) does not match interface DLL Version {DllVer}. This may lead to unexpected problems or crashes. Update VJoy driver and vJoyInterface.dll", false);
+
+                        VjdStat status = vJoyObj.GetVJDStatus(vJoyID);
+                        if ((status == VjdStat.VJD_STAT_OWN) || ((status == VjdStat.VJD_STAT_FREE) && (!vJoyObj.AcquireVJD(vJoyID))))
+                        {
+                            vJoyAvailable = false;
+                            AppLogger.LogToGui("ERROR. Failed to acquire vJoy device# {vJoyID}. Use another VJoy device or make sure there are no other VJoy feeder apps using the same device", false);
+                        }
+                        else
+                        {
+                            //vJoyObj.GetVJDAxisMax(vJoyID, axis, ref vJoyAxisMaxValue);
+                            //AppLogger.LogToGui($"VJoy axis {axis} max value={vJoyAxisMaxValue}", false);
+                            vJoyObj.ResetVJD(vJoyID);
+                            vJoyAvailable = true;
+                        }
                     }
                     else
                     {
-                        //vJoyObj.GetVJDAxisMax(vJoyID, axis, ref vJoyAxisMaxValue);
-                        //AppLogger.LogToGui($"VJoy axis {axis} max value={vJoyAxisMaxValue}", false);
-                        vJoyObj.ResetVJD(vJoyID);
-                        vJoyAvailable = true;
+                        vJoyAvailable = false;
+                        AppLogger.LogToGui($"ERROR. VJoy device# {vJoyID} or {axis} axis not available. Check vJoy driver installation and configuration", false);
                     }
                 }
-                else
+                catch
                 {
                     vJoyAvailable = false;
-                    AppLogger.LogToGui($"ERROR. VJoy device# {vJoyID} or {axis} axis not available. Check vJoy driver installation and configuration", false);
+                    AppLogger.LogToGui("ERROR. vJoy initialization failed. Make sure that DS4Windows application can find vJoyInterface.dll library file", false);
                 }
             }
         }

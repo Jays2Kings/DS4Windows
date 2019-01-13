@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Net;
 using System.Drawing;
-using Microsoft.Win32;
 using System.Diagnostics;
 using System.Xml;
 using System.Text;
@@ -18,6 +17,7 @@ using TaskRunner = System.Threading.Tasks.Task;
 using NonFormTimer = System.Timers.Timer;
 using static DS4Windows.Global;
 using System.Security;
+using System.Management;
 
 namespace DS4Windows
 {
@@ -37,8 +37,8 @@ namespace DS4Windows
         private ToolStripMenuItem[] shortcuts;
         private ToolStripMenuItem[] disconnectShortcuts;
         protected CheckBox[] linkedProfileCB;
-        NonFormTimer hotkeysTimer = new NonFormTimer();
-        NonFormTimer autoProfilesTimer = new NonFormTimer();
+        NonFormTimer hotkeysTimer = null;// new NonFormTimer();
+        NonFormTimer autoProfilesTimer = null;// new NonFormTimer();
         string tempProfileProgram = string.Empty;
         double dpix, dpiy;
         List<string> profilenames = new List<string>();
@@ -56,7 +56,7 @@ namespace DS4Windows
         bool runningBat;
         private bool changingService;
         private IntPtr regHandle = new IntPtr();
-        private static DS4Form instance;
+        private ManagementEventWatcher managementEvWatcher;
         Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();
         // 0 index is used for application version text. 1 - 4 indices are used for controller status
         string[] notifyText = new string[5]
@@ -66,7 +66,7 @@ namespace DS4Windows
         private const string UPDATER_VERSION = "1.3.0";
         private const int WM_QUERYENDSESSION = 0x11;
         private const int WM_CLOSE = 0x10;
-        internal string updaterExe = Environment.Is64BitProcess ? "DS4Updater_x64.exe" : "DS4Updater_x86.exe";
+        internal string updaterExe = Environment.Is64BitProcess ? "DS4Updater.exe" : "DS4Updater_x86.exe";
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
@@ -126,7 +126,13 @@ namespace DS4Windows
 
             linkedProfileCB = new CheckBox[4] { linkCB1, linkCB2, linkCB3, linkCB4 };
 
-            SystemEvents.PowerModeChanged += OnPowerChange;
+            WqlEventQuery q = new WqlEventQuery();
+            ManagementScope scope = new ManagementScope("root\\CIMV2");
+            q.EventClassName = "Win32_PowerManagementEvent";
+            managementEvWatcher = new ManagementEventWatcher(scope, q);
+            managementEvWatcher.EventArrived += PowerEventArrive;
+            managementEvWatcher.Start();
+
             tSOptions.Visible = false;
 
             TaskRunner.Run(() => CheckDrivers());
@@ -243,15 +249,9 @@ namespace DS4Windows
             */
             //tabProfiles.Controls.Add(opt);
 
-            //autoProfilesTimer.Elapsed += CheckAutoProfiles;
-            autoProfilesTimer.Interval = 1000;
-            autoProfilesTimer.AutoReset = false;
-
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
             LogDebug(DateTime.Now, "DS4Windows version " + version, false);
-
-            LoadP();
 
             Global.BatteryStatusChange += BatteryStatusUpdate;
             Global.ControllerRemoved += ControllerRemovedChange;
@@ -264,17 +264,9 @@ namespace DS4Windows
             Enable_Controls(3, false);
             btnStartStop.Text = Properties.Resources.StartText;
 
-            //hotkeysTimer.Elapsed += Hotkeys;
-            hotkeysTimer.AutoReset = false;
-            if (SwipeProfiles)
-            {
-                ChangeHotkeysStatus(true);
-                //hotkeysTimer.Start();
-            }
-
             startToolStripMenuItem.Text = btnStartStop.Text;
             cBoxNotifications.SelectedIndex = Notifications;
-            cBSwipeProfiles.Checked = SwipeProfiles;
+            //cBSwipeProfiles.Checked = SwipeProfiles;
             int checkwhen = CheckWhen;
             cBUpdate.Checked = checkwhen > 0;
             if (checkwhen > 23)
@@ -378,7 +370,6 @@ namespace DS4Windows
                 }
             }
 
-            instance = this;
             this.Resize += Form_Resize;
             this.LocationChanged += TrackLocationChanged;
             if (!(StartMinimized || mini))
@@ -414,6 +405,33 @@ namespace DS4Windows
                     this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked()));
                 });
             }
+
+            Thread timerThread = new Thread(() =>
+            {
+                hotkeysTimer = new NonFormTimer();
+                //hotkeysTimer.Elapsed += Hotkeys;
+                hotkeysTimer.AutoReset = false;
+                if (SwipeProfiles)
+                {
+                    ChangeHotkeysStatus(true);
+                    //hotkeysTimer.Start();
+                }
+
+                autoProfilesTimer = new NonFormTimer();
+                //autoProfilesTimer.Elapsed += CheckAutoProfiles;
+                autoProfilesTimer.Interval = 1000;
+                autoProfilesTimer.AutoReset = false;
+
+                LoadP();
+
+                this.BeginInvoke((System.Action)(() =>
+                {
+                    cBSwipeProfiles.Checked = SwipeProfiles;
+                }));
+            });
+            timerThread.IsBackground = true;
+            timerThread.Priority = ThreadPriority.Lowest;
+            timerThread.Start();
         }
 
         private void populateHoverTextDict()
@@ -529,33 +547,37 @@ namespace DS4Windows
             return text.ToString();
         }
 
-        private static void OnPowerChange(object s, PowerModeChangedEventArgs e)
+        private void PowerEventArrive(object sender, EventArrivedEventArgs e)
         {
-            switch (e.Mode)
+            short evType = Convert.ToInt16(e.NewEvent.GetPropertyValue("EventType"));
+            switch (evType)
             {
-                case PowerModes.Resume:
+                case 7:
                 {
-                    if (instance.btnStartStop.Text == Properties.Resources.StartText && instance.wasrunning)
+                    if (btnStartStop.Text == Properties.Resources.StartText && wasrunning)
                     {
                         DS4LightBar.shuttingdown = false;
-                        instance.wasrunning = false;
+                        wasrunning = false;
                         Program.rootHub.suspending = false;
-                        instance.BtnStartStop_Clicked();
+                        this.Invoke((System.Action)(() => BtnStartStop_Clicked()));
                     }
+
                     break;
                 }
-                case PowerModes.Suspend:
+                case 4:
                 {
-                    if (instance.btnStartStop.Text == Properties.Resources.StopText)
+                    if (btnStartStop.Text == Properties.Resources.StopText)
                     {
                         DS4LightBar.shuttingdown = true;
                         Program.rootHub.suspending = true;
-                        instance.BtnStartStop_Clicked();
-                        instance.wasrunning = true;
+                        this.Invoke((System.Action)(() => BtnStartStop_Clicked()));
+                        wasrunning = true;
                     }
+
                     break;
                 }
-                default: break;
+                default:
+                    break;
             }
         }
 
@@ -1794,7 +1816,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         private void StartWindowsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             bool isChecked = StartWindowsCheckBox.Checked;
-            RegistryKey KeyLoc = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
             if (isChecked && !File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk"))
             {
                 appShortcutToStartup();
@@ -1803,8 +1824,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             {
                 File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
             }
-
-            KeyLoc.DeleteValue("DS4Tool", false);
 
             if (isChecked)
             {

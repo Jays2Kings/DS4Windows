@@ -1419,7 +1419,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please Download the Updater now, and place it in the programs folder, then check for update again.
+        ///   Looks up a localized string similar to Please Download the Updater now, place it in the programs folder and rename to DS4Updater.exe if on x86, then check for update again.
         /// </summary>
         public static string PleaseDownloadUpdater {
             get {

@@ -1846,6 +1846,9 @@ namespace DS4Windows
                                             }
                                         }
                                     }
+
+                                    string prolog = Properties.Resources.UsingProfile.Replace("*number*", (device + 1).ToString()).Replace("*Profile name*", action.details);
+                                    AppLogger.LogToGui(prolog, false);
                                     LoadTempProfile(device, action.details, true, ctrl);
                                     return;
                                 }
@@ -2233,6 +2236,8 @@ namespace DS4Windows
                             }
 
                             untriggeraction[device] = null;
+                            string prolog = Properties.Resources.UsingProfile.Replace("*number*", (device + 1).ToString()).Replace("*Profile name*", ProfilePath[device]);
+                            AppLogger.LogToGui(prolog, false);
                             LoadProfile(device, false, ctrl);
                         }
                     }

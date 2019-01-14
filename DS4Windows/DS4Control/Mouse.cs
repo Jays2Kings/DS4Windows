@@ -109,9 +109,9 @@ namespace DS4Windows
                 case 2: return s.Square;
                 case 3: return s.Triangle;
                 case 4: return s.L1;
-                case 5: return s.L2 > 127;
+                case 5: return s.L2 > 128;
                 case 6: return s.R1;
-                case 7: return s.R2 > 127;
+                case 7: return s.R2 > 128;
                 case 8: return s.DpadUp;
                 case 9: return s.DpadDown;
                 case 10: return s.DpadLeft;

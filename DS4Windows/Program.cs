@@ -21,7 +21,7 @@ namespace DS4Windows
         public static ControlService rootHub;
         private static Thread testThread;
         private static Thread controlThread;
-        private static DS4Form ds4form;
+        private static Form ds4form;
 
         /// <summary>
         /// The main entry point for the application.

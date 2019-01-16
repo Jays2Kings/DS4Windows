@@ -12,7 +12,7 @@ using DS4Windows.DS4Library;
 
 namespace DS4Windows
 {
-    public struct DS4Color
+    public struct DS4Color : IEquatable<DS4Color>
     {
         public byte red;
         public byte green;
@@ -31,15 +31,9 @@ namespace DS4Windows
             blue = b;
         }
 
-        public override bool Equals(object obj)
+        public bool Equals(DS4Color other)
         {
-            if (obj is DS4Color)
-            {
-                DS4Color dsc = ((DS4Color)obj);
-                return (this.red == dsc.red && this.green == dsc.green && this.blue == dsc.blue);
-            }
-            else
-                return false;
+            return this.red == other.red && this.green == other.green && this.blue == other.blue;
         }
 
         public Color ToColor => Color.FromArgb(red, green, blue);
@@ -1117,6 +1111,7 @@ namespace DS4Windows
             lock (outReportBuffer)
             {
                 bool output = outputPendCount > 0, change = force;
+                bool haptime = output || standbySw.ElapsedMilliseconds >= 4000L;
 
                 if (usingBT)
                 {
@@ -1137,6 +1132,8 @@ namespace DS4Windows
                         for (int i = 0, arlen = BT_OUTPUT_CHANGE_LENGTH; !change && i < arlen; i++)
                             change = byteR[i] != byteB[i];
                     }
+
+                    haptime = haptime || change;
                 }
                 else
                 {
@@ -1157,7 +1154,8 @@ namespace DS4Windows
                             change = byteR[i] != byteB[i];
                     }
 
-                    if (change && audio != null)
+                    haptime = haptime || change;
+                    if (haptime && audio != null)
                     {
                         // Headphone volume levels
                         outReportBuffer[19] = outReportBuffer[20] =
@@ -1169,8 +1167,7 @@ namespace DS4Windows
 
                 if (synchronous)
                 {
-                    output = output || standbySw.ElapsedMilliseconds >= 4000L;
-                    if (output || change)
+                    if (output || haptime)
                     {
                         if (change)
                         {
@@ -1218,8 +1215,7 @@ namespace DS4Windows
                     //for (int i = 0, arlen = outputReport.Length; !change && i < arlen; i++)
                     //    change = outputReport[i] != outReportBuffer[i];
 
-                    output = output || standbySw.ElapsedMilliseconds >= 4000L;
-                    if (output || change)
+                    if (output || haptime)
                     {
                         if (change)
                         {

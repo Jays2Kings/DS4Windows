@@ -12,7 +12,7 @@ using DS4Windows.DS4Library;
 
 namespace DS4Windows
 {
-    public struct DS4Color
+    public struct DS4Color : IEquatable<DS4Color>
     {
         public byte red;
         public byte green;
@@ -31,15 +31,9 @@ namespace DS4Windows
             blue = b;
         }
 
-        public override bool Equals(object obj)
+        public bool Equals(DS4Color other)
         {
-            if (obj is DS4Color)
-            {
-                DS4Color dsc = ((DS4Color)obj);
-                return (this.red == dsc.red && this.green == dsc.green && this.blue == dsc.blue);
-            }
-            else
-                return false;
+            return this.red == other.red && this.green == other.green && this.blue == other.blue;
         }
 
         public Color ToColor => Color.FromArgb(red, green, blue);

@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 using Process = System.Diagnostics.Process;
 using System.ComponentModel;
 using System.Globalization;
-using System.Runtime;
 using Microsoft.Win32.TaskScheduler;
 
 namespace DS4Windows
@@ -68,8 +67,6 @@ namespace DS4Windows
                     return;
                 }
             }
-
-            GCSettings.LatencyMode = GCLatencyMode.LowLatency;
 
             try
             {

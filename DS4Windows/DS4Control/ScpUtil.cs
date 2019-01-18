@@ -227,7 +227,7 @@ namespace DS4Windows
     {
         protected static BackingStore m_Config = new BackingStore();
         protected static Int32 m_IdleTimeout = 600000;
-        public static string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
+        public static readonly string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         public static string appdatapath;
         public static bool firstRun = false;
         public static bool multisavespots = false;
@@ -297,25 +297,28 @@ namespace DS4Windows
             return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
-        public static bool IsScpVBusInstalled()
+        private static bool CheckForSysDevice(string searchHardwareId)
         {
             bool result = false;
             Guid sysGuid = Guid.Parse("{4d36e97d-e325-11ce-bfc1-08002be10318}");
-            NativeMethods.SP_DEVINFO_DATA deviceInfoData = new NativeMethods.SP_DEVINFO_DATA();
-            deviceInfoData.cbSize = System.Runtime.InteropServices.Marshal.SizeOf(deviceInfoData);
+            NativeMethods.SP_DEVINFO_DATA deviceInfoData =
+                new NativeMethods.SP_DEVINFO_DATA();
+            deviceInfoData.cbSize =
+                System.Runtime.InteropServices.Marshal.SizeOf(deviceInfoData);
             var dataBuffer = new byte[4096];
             ulong propertyType = 0;
             var requiredSize = 0;
             IntPtr deviceInfoSet = NativeMethods.SetupDiGetClassDevs(ref sysGuid, null, 0, 0);
             for (int i = 0; !result && NativeMethods.SetupDiEnumDeviceInfo(deviceInfoSet, i, ref deviceInfoData); i++)
             {
-                if (NativeMethods.SetupDiGetDeviceProperty(deviceInfoSet, ref deviceInfoData, ref NativeMethods.DEVPKEY_Device_HardwareIds, ref propertyType,
+                if (NativeMethods.SetupDiGetDeviceProperty(deviceInfoSet, ref deviceInfoData,
+                    ref NativeMethods.DEVPKEY_Device_HardwareIds, ref propertyType,
                     dataBuffer, dataBuffer.Length, ref requiredSize, 0))
                 {
                     string hardwareId = dataBuffer.ToUTF16String();
                     //if (hardwareIds.Contains("Scp Virtual Bus Driver"))
                     //    result = true;
-                    if (hardwareId.Equals(@"root\ScpVBus"))
+                    if (hardwareId.Equals(searchHardwareId))
                         result = true;
                 }
             }
@@ -326,6 +329,16 @@ namespace DS4Windows
             }
 
             return result;
+        }
+
+        public static bool IsHidGuardianInstalled()
+        {
+            return CheckForSysDevice(@"Root\HidGuardian");
+        }
+
+        public static bool IsScpVBusInstalled()
+        {
+            return CheckForSysDevice(@"root\ScpVBus");
         }
 
         public static void FindConfigLocation()

@@ -401,7 +401,7 @@ namespace DS4Windows
 
             if (btnStartStop.Enabled && start)
             {
-                TaskRunner.Delay(50).ContinueWith((t) => {
+                TaskRunner.Delay(100).ContinueWith((t) => {
                     this.BeginInvoke((System.Action)(() => BtnStartStop_Clicked()));
                 });
             }

@@ -1563,7 +1563,7 @@ namespace DS4Windows
                             case DS4Controls.LXNeg:
                             case DS4Controls.LXPos:
                             {
-                                if (MappedState.LX == 127)
+                                if (MappedState.LX == 128)
                                 {
                                     if (dc == DS4Controls.LXNeg)
                                     {
@@ -1582,7 +1582,7 @@ namespace DS4Windows
                             case DS4Controls.LYNeg:
                             case DS4Controls.LYPos:
                             {
-                                if (MappedState.LY == 127)
+                                if (MappedState.LY == 128)
                                 {
                                     if (dc == DS4Controls.LYNeg)
                                     {
@@ -1601,7 +1601,7 @@ namespace DS4Windows
                             case DS4Controls.RXNeg:
                             case DS4Controls.RXPos:
                             {
-                                if (MappedState.RX == 127)
+                                if (MappedState.RX == 128)
                                 {
                                     if (dc == DS4Controls.RXNeg)
                                     {
@@ -1620,7 +1620,7 @@ namespace DS4Windows
                             case DS4Controls.RYNeg:
                             case DS4Controls.RYPos:
                             {
-                                if (MappedState.RY == 127)
+                                if (MappedState.RY == 128)
                                 {
                                     if (dc == DS4Controls.RYNeg)
                                     {

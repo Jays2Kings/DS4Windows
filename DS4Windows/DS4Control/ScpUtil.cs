@@ -3543,16 +3543,18 @@ namespace DS4Windows
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
 
-            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
-            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            int temp = (int)dc;
+            if (temp > 0)
             {
-                DS4ControlSettings dcs = ds4settingsList[i];
-                if (dcs.control == dc)
+                int index = temp - 1;
+                DS4ControlSettings dcs = ds4settings[deviceNum][index];
+                if (shift)
                 {
-                    if (shift)
-                        return dcs.shiftAction;
-                    else
-                        return dcs.action;
+                    return dcs.shiftTrigger;
+                }
+                else
+                {
+                    return dcs.action;
                 }
             }
 

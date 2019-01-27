@@ -166,6 +166,18 @@ namespace DS4Windows
             //    Thread.SpinWait(500);
             //}
 
+            if (Global.IsHidGuardianInstalled())
+            {
+                ProcessStartInfo startInfo =
+                    new ProcessStartInfo(Global.exepath + "\\HidGuardHelper.exe");
+                startInfo.Verb = "runas";
+                startInfo.Arguments = Process.GetCurrentProcess().Id.ToString();
+                startInfo.WorkingDirectory = Global.exepath;
+                try
+                { Process tempProc = Process.Start(startInfo); tempProc.Dispose(); }
+                catch { }
+            }
+
             for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
             {
                 processingData[i] = new X360Data();

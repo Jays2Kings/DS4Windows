@@ -3077,11 +3077,11 @@ namespace DS4Windows
 
                 switch (control)
                 {
-                    case DS4Controls.LXNeg: result = cState.LX < 127 - 55; break;
-                    case DS4Controls.LYNeg: result = cState.LY < 127 - 55; break;
-                    case DS4Controls.RXNeg: result = cState.RX < 127 - 55; break;
-                    case DS4Controls.RYNeg: result = cState.RY < 127 - 55; break;
-                    default: result = axisValue > 127 + 55; break;
+                    case DS4Controls.LXNeg: result = cState.LX < 128 - 55; break;
+                    case DS4Controls.LYNeg: result = cState.LY < 128 - 55; break;
+                    case DS4Controls.RXNeg: result = cState.RX < 128 - 55; break;
+                    case DS4Controls.RYNeg: result = cState.RY < 128 - 55; break;
+                    default: result = axisValue > 128 + 55; break;
                 }
             }
             else if (controlType == DS4StateFieldMapping.ControlType.Trigger)
@@ -3448,7 +3448,7 @@ namespace DS4Windows
         {
             byte result = 0;
             byte trueVal = 0;
-            byte falseVal = 127;
+            byte falseVal = 128;
 
             if (alt)
                 trueVal = 255;
@@ -3548,6 +3548,7 @@ namespace DS4Windows
             return result;
         }
 
+        /* TODO: Possibly remove usage of this version of the method */
         public static byte getXYAxisMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, Mouse tp, bool alt = false)
         {
             byte result = 0;
@@ -3690,74 +3691,6 @@ namespace DS4Windows
             return result;
         }
 
-        /* TODO: Possibly remove usage of this version of the method */
-        //Returns false for any bool, 
-        //if control is one of the xy axis returns 127
-        //if its a trigger returns 0
-        public static void resetToDefaultValue(DS4Controls control, DS4State cState)
-        {
-            if (control >= DS4Controls.Square && control <= DS4Controls.Cross)
-            {
-                switch (control)
-                {
-                    case DS4Controls.Cross: cState.Cross = false; break;
-                    case DS4Controls.Square: cState.Square = false; break;
-                    case DS4Controls.Triangle: cState.Triangle = false; break;
-                    case DS4Controls.Circle: cState.Circle = false; break;
-                    default: break;
-                }
-            }
-            else if (control >= DS4Controls.L1 && control <= DS4Controls.R3)
-            {
-                switch (control)
-                {
-                    case DS4Controls.L1: cState.L1 = false; break;
-                    case DS4Controls.L2: cState.L2 = 0; break;
-                    case DS4Controls.L3: cState.L3 = false; break;
-                    case DS4Controls.R1: cState.R1 = false; break;
-                    case DS4Controls.R2: cState.R2 = 0; break;
-                    case DS4Controls.R3: cState.R3 = false; break;
-                    default: break;
-                }
-            }
-            else if (control >= DS4Controls.DpadUp && control <= DS4Controls.DpadLeft)
-            {
-                switch (control)
-                {
-                    case DS4Controls.DpadUp: cState.DpadUp = false; break;
-                    case DS4Controls.DpadDown: cState.DpadDown = false; break;
-                    case DS4Controls.DpadLeft: cState.DpadLeft = false; break;
-                    case DS4Controls.DpadRight: cState.DpadRight = false; break;
-                    default: break;
-                }
-            }
-            else if (control >= DS4Controls.LXNeg && control <= DS4Controls.RYPos)
-            {
-                switch (control)
-                {
-                    case DS4Controls.LXNeg: cState.LX = 127; break;
-                    case DS4Controls.LYNeg: cState.LY = 127; break;
-                    case DS4Controls.RXNeg: cState.RX = 127; break;
-                    case DS4Controls.RYNeg: cState.RY = 127; break;
-                    case DS4Controls.LXPos: cState.LX = 127; break;
-                    case DS4Controls.LYPos: cState.LY = 127; break;
-                    case DS4Controls.RXPos: cState.RX = 127; break;
-                    case DS4Controls.RYPos: cState.RY = 127; break;
-                    default: break;
-                }
-            }
-            else
-            {
-                switch (control)
-                {
-                    case DS4Controls.Share: cState.Share = false; break;
-                    case DS4Controls.Options: cState.Options = false; break;
-                    case DS4Controls.PS: cState.PS = false; break;
-                    default: break;
-                }
-            }
-        }
-
         private static void resetToDefaultValue2(DS4Controls control, DS4State cState,
             DS4StateFieldMapping fieldMap)
         {
@@ -3769,9 +3702,9 @@ namespace DS4Windows
             }
             else if (controlType == DS4StateFieldMapping.ControlType.AxisDir)
             {
-                fieldMap.axisdirs[controlNum] = 127;
+                fieldMap.axisdirs[controlNum] = 128;
                 int controlRelation = (controlNum % 2 == 0 ? controlNum - 1 : controlNum + 1);
-                fieldMap.axisdirs[controlRelation] = 127;
+                fieldMap.axisdirs[controlRelation] = 128;
             }
             else if (controlType == DS4StateFieldMapping.ControlType.Trigger)
             {

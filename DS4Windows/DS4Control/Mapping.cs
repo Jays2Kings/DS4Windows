@@ -918,6 +918,11 @@ namespace DS4Windows
                     double output = temp * temp * temp;
                     dState.L2 = (byte)(output * 255.0);
                 }
+                else if (l2OutCurveMode == 3)
+                {
+                    double output = temp * (temp - 2.0);
+                    dState.L2 = (byte)(-1.0 * output * 255.0);
+                }
             }
 
             int r2OutCurveMode = tempIntArray[device] = getR2OutCurveMode(device);
@@ -933,6 +938,11 @@ namespace DS4Windows
                 {
                     double output = temp * temp * temp;
                     dState.R2 = (byte)(output * 255.0);
+                }
+                else if (r2OutCurveMode == 3)
+                {
+                    double output = temp * (temp - 2.0);
+                    dState.R2 = (byte)(-1.0 * output * 255.0);
                 }
             }
 
@@ -1009,6 +1019,12 @@ namespace DS4Windows
                         result = (int)(output * 128.0);
                         dState.Motion.outputAccelX = result;
                     }
+                    else if (sxOutCurveMode == 3)
+                    {
+                        double output = temp * (temp - 2.0);
+                        result = (int)(-1.0 * output * 128.0);
+                        dState.Motion.outputAccelX = result;
+                    }
                 }
 
                 int szOutCurveMode = tempIntArray[device] = getSZOutCurveMode(device);
@@ -1026,6 +1042,12 @@ namespace DS4Windows
                     {
                         double output = temp * temp * temp;
                         result = (int)(output * 128.0);
+                        dState.Motion.outputAccelZ = result;
+                    }
+                    else if (szOutCurveMode == 3)
+                    {
+                        double output = temp * (temp - 2.0);
+                        result = (int)(-1.0 * output * 128.0);
                         dState.Motion.outputAccelZ = result;
                     }
                 }

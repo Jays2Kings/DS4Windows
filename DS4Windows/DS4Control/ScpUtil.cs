@@ -1610,6 +1610,7 @@ namespace DS4Windows
                 case 0: break;
                 case 1: result = "quadratic"; break;
                 case 2: result = "cubic"; break;
+                case 3: result = "easeout-quad"; break;
                 default: break;
             }
 
@@ -1624,6 +1625,7 @@ namespace DS4Windows
                 case "linear": id = 0; break;
                 case "quadratic": id = 1; break;
                 case "cubic": id = 2; break;
+                case "easeout-quad": id = 3; break;
                 default: break;
             }
 

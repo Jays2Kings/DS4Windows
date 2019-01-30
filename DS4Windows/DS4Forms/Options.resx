@@ -6922,6 +6922,9 @@ with profile</value>
   <data name="cBSixaxisZOutputCurve.Items2" xml:space="preserve">
     <value>Cubic</value>
   </data>
+  <data name="cBSixaxisZOutputCurve.Items3" xml:space="preserve">
+    <value>Easeout Quad</value>
+  </data>
   <data name="cBSixaxisZOutputCurve.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 28</value>
   </data>
@@ -6951,6 +6954,9 @@ with profile</value>
   </data>
   <data name="cBSixaxisXOutputCurve.Items2" xml:space="preserve">
     <value>Cubic</value>
+  </data>
+  <data name="cBSixaxisXOutputCurve.Items3" xml:space="preserve">
+    <value>Easeout Quad</value>
   </data>
   <data name="cBSixaxisXOutputCurve.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 1</value>
@@ -7042,6 +7048,9 @@ with profile</value>
   <data name="cBR2OutputCurve.Items2" xml:space="preserve">
     <value>Cubic</value>
   </data>
+  <data name="cBR2OutputCurve.Items3" xml:space="preserve">
+    <value>Easeout Quad</value>
+  </data>
   <data name="cBR2OutputCurve.Location" type="System.Drawing.Point, System.Drawing">
     <value>111, 28</value>
   </data>
@@ -7071,6 +7080,9 @@ with profile</value>
   </data>
   <data name="cBL2OutputCurve.Items2" xml:space="preserve">
     <value>Cubic</value>
+  </data>
+  <data name="cBL2OutputCurve.Items3" xml:space="preserve">
+    <value>Easeout Quad</value>
   </data>
   <data name="cBL2OutputCurve.Location" type="System.Drawing.Point, System.Drawing">
     <value>31, 28</value>

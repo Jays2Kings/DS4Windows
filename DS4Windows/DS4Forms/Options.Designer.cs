@@ -3137,7 +3137,8 @@
             this.cBSixaxisZOutputCurve.Items.AddRange(new object[] {
             resources.GetString("cBSixaxisZOutputCurve.Items"),
             resources.GetString("cBSixaxisZOutputCurve.Items1"),
-            resources.GetString("cBSixaxisZOutputCurve.Items2")});
+            resources.GetString("cBSixaxisZOutputCurve.Items2"),
+            resources.GetString("cBSixaxisZOutputCurve.Items3")});
             resources.ApplyResources(this.cBSixaxisZOutputCurve, "cBSixaxisZOutputCurve");
             this.cBSixaxisZOutputCurve.Name = "cBSixaxisZOutputCurve";
             this.cBSixaxisZOutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBSixaxisZOutputCurve_SelectedIndexChanged);
@@ -3150,7 +3151,8 @@
             this.cBSixaxisXOutputCurve.Items.AddRange(new object[] {
             resources.GetString("cBSixaxisXOutputCurve.Items"),
             resources.GetString("cBSixaxisXOutputCurve.Items1"),
-            resources.GetString("cBSixaxisXOutputCurve.Items2")});
+            resources.GetString("cBSixaxisXOutputCurve.Items2"),
+            resources.GetString("cBSixaxisXOutputCurve.Items3")});
             resources.ApplyResources(this.cBSixaxisXOutputCurve, "cBSixaxisXOutputCurve");
             this.cBSixaxisXOutputCurve.Name = "cBSixaxisXOutputCurve";
             this.cBSixaxisXOutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBSixaxisXOutputCurve_SelectedIndexChanged);
@@ -3173,7 +3175,8 @@
             this.cBR2OutputCurve.Items.AddRange(new object[] {
             resources.GetString("cBR2OutputCurve.Items"),
             resources.GetString("cBR2OutputCurve.Items1"),
-            resources.GetString("cBR2OutputCurve.Items2")});
+            resources.GetString("cBR2OutputCurve.Items2"),
+            resources.GetString("cBR2OutputCurve.Items3")});
             resources.ApplyResources(this.cBR2OutputCurve, "cBR2OutputCurve");
             this.cBR2OutputCurve.Name = "cBR2OutputCurve";
             this.cBR2OutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBR2OutputCurve_SelectedIndexChanged);
@@ -3186,7 +3189,8 @@
             this.cBL2OutputCurve.Items.AddRange(new object[] {
             resources.GetString("cBL2OutputCurve.Items"),
             resources.GetString("cBL2OutputCurve.Items1"),
-            resources.GetString("cBL2OutputCurve.Items2")});
+            resources.GetString("cBL2OutputCurve.Items2"),
+            resources.GetString("cBL2OutputCurve.Items3")});
             resources.ApplyResources(this.cBL2OutputCurve, "cBL2OutputCurve");
             this.cBL2OutputCurve.Name = "cBL2OutputCurve";
             this.cBL2OutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBL2OutputCurve_SelectedIndexChanged);

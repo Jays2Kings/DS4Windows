@@ -315,6 +315,8 @@
             this.rBSAControls = new System.Windows.Forms.RadioButton();
             this.rBSAMouse = new System.Windows.Forms.RadioButton();
             this.pnlSAMouse = new System.Windows.Forms.Panel();
+            this.label26 = new System.Windows.Forms.Label();
+            this.triggerCondAndCombo = new System.Windows.Forms.ComboBox();
             this.cBGyroMouseXAxis = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.lbGyroSmooth = new System.Windows.Forms.Label();
@@ -386,8 +388,6 @@
             this.optionsTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shareTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.psTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.triggerCondAndCombo = new System.Windows.Forms.ComboBox();
-            this.label26 = new System.Windows.Forms.Label();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
@@ -3210,7 +3210,8 @@
             resources.GetString("rsOutCurveComboBox.Items"),
             resources.GetString("rsOutCurveComboBox.Items1"),
             resources.GetString("rsOutCurveComboBox.Items2"),
-            resources.GetString("rsOutCurveComboBox.Items3")});
+            resources.GetString("rsOutCurveComboBox.Items3"),
+            resources.GetString("rsOutCurveComboBox.Items4")});
             resources.ApplyResources(this.rsOutCurveComboBox, "rsOutCurveComboBox");
             this.rsOutCurveComboBox.Name = "rsOutCurveComboBox";
             this.rsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.rsOutCurveComboBox_SelectedIndexChanged);
@@ -3224,7 +3225,8 @@
             resources.GetString("lsOutCurveComboBox.Items"),
             resources.GetString("lsOutCurveComboBox.Items1"),
             resources.GetString("lsOutCurveComboBox.Items2"),
-            resources.GetString("lsOutCurveComboBox.Items3")});
+            resources.GetString("lsOutCurveComboBox.Items3"),
+            resources.GetString("lsOutCurveComboBox.Items4")});
             resources.ApplyResources(this.lsOutCurveComboBox, "lsOutCurveComboBox");
             this.lsOutCurveComboBox.Name = "lsOutCurveComboBox";
             this.lsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.lsOutCurveComboBox_SelectedIndexChanged);
@@ -3407,6 +3409,21 @@
             this.pnlSAMouse.Controls.Add(this.lbGyroSens);
             resources.ApplyResources(this.pnlSAMouse, "pnlSAMouse");
             this.pnlSAMouse.Name = "pnlSAMouse";
+            // 
+            // label26
+            // 
+            resources.ApplyResources(this.label26, "label26");
+            this.label26.Name = "label26";
+            // 
+            // triggerCondAndCombo
+            // 
+            this.triggerCondAndCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.triggerCondAndCombo.FormattingEnabled = true;
+            this.triggerCondAndCombo.Items.AddRange(new object[] {
+            resources.GetString("triggerCondAndCombo.Items"),
+            resources.GetString("triggerCondAndCombo.Items1")});
+            resources.ApplyResources(this.triggerCondAndCombo, "triggerCondAndCombo");
+            this.triggerCondAndCombo.Name = "triggerCondAndCombo";
             // 
             // cBGyroMouseXAxis
             // 
@@ -4109,21 +4126,6 @@
             this.psTouchInvStripMenuItem.Name = "psTouchInvStripMenuItem";
             resources.ApplyResources(this.psTouchInvStripMenuItem, "psTouchInvStripMenuItem");
             this.psTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
-            // 
-            // triggerCondAndCombo
-            // 
-            this.triggerCondAndCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.triggerCondAndCombo.FormattingEnabled = true;
-            this.triggerCondAndCombo.Items.AddRange(new object[] {
-            resources.GetString("triggerCondAndCombo.Items"),
-            resources.GetString("triggerCondAndCombo.Items1")});
-            resources.ApplyResources(this.triggerCondAndCombo, "triggerCondAndCombo");
-            this.triggerCondAndCombo.Name = "triggerCondAndCombo";
-            // 
-            // label26
-            // 
-            resources.ApplyResources(this.label26, "label26");
-            this.label26.Name = "label26";
             // 
             // Options
             // 

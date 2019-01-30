@@ -7165,6 +7165,9 @@ with profile</value>
   <data name="rsOutCurveComboBox.Items3" xml:space="preserve">
     <value>Cubic</value>
   </data>
+  <data name="rsOutCurveComboBox.Items4" xml:space="preserve">
+    <value>Easeout Quad</value>
+  </data>
   <data name="rsOutCurveComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>111, 3</value>
   </data>
@@ -7197,6 +7200,9 @@ with profile</value>
   </data>
   <data name="lsOutCurveComboBox.Items3" xml:space="preserve">
     <value>Cubic</value>
+  </data>
+  <data name="lsOutCurveComboBox.Items4" xml:space="preserve">
+    <value>Easeout Quad</value>
   </data>
   <data name="lsOutCurveComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>31, 2</value>
@@ -8971,9 +8977,6 @@ with profile</value>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1011, 481</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -9392,7 +9395,7 @@ with profile</value>
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.6.8.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Options</value>

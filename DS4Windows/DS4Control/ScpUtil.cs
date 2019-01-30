@@ -1579,6 +1579,7 @@ namespace DS4Windows
                 case 1: result = "enhanced-precision"; break;
                 case 2: result = "quadratic"; break;
                 case 3: result = "cubic"; break;
+                case 4: result = "easeout-quad"; break;
                 default: break;
             }
 
@@ -1594,6 +1595,7 @@ namespace DS4Windows
                 case "enhanced-precision": id = 1; break;
                 case "quadratic": id = 2; break;
                 case "cubic": id = 3; break;
+                case "easeout-quad": id = 4; break;
                 default: break;
             }
 

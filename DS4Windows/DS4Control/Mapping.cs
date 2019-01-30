@@ -822,6 +822,15 @@ namespace DS4Windows
                     dState.LX = (byte)(outputX * capX + 128.0);
                     dState.LY = (byte)(outputY * capY + 128.0);
                 }
+                else if (lsOutCurveMode == 4)
+                {
+                    double absX = Math.Abs(tempX);
+                    double absY = Math.Abs(tempY);
+                    double outputX = absX * (absX - 2.0);
+                    double outputY = absY * (absY - 2.0);
+                    dState.LX = (byte)(-1.0 * outputX * signX * capX + 128.0);
+                    dState.LY = (byte)(-1.0 * outputY * signY * capY + 128.0);
+                }
             }
 
             int rsOutCurveMode = rsOutCurveModeArray[device] = getRsOutCurveMode(device);
@@ -883,6 +892,15 @@ namespace DS4Windows
                     double outputY = tempY * tempY * tempY;
                     dState.RX = (byte)(outputX * capX + 128.0);
                     dState.RY = (byte)(outputY * capY + 128.0);
+                }
+                else if (rsOutCurveMode == 4)
+                {
+                    double absX = Math.Abs(tempX);
+                    double absY = Math.Abs(tempY);
+                    double outputX = absX * (absX - 2.0);
+                    double outputY = absY * (absY - 2.0);
+                    dState.RX = (byte)(-1.0 * outputX * signX * capX + 128.0);
+                    dState.RY = (byte)(-1.0 * outputY * signY * capY + 128.0);
                 }
             }
 

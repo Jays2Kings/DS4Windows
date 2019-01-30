@@ -1021,9 +1021,10 @@ namespace DS4Windows
                     }
                     else if (sxOutCurveMode == 3)
                     {
-                        double output = temp * (temp - 2.0);
-                        result = (int)(-1.0 * output * 128.0);
-                        dState.Motion.outputAccelX = result;
+                        double abs = Math.Abs(temp);
+                        double output = abs * (abs - 2.0);
+                        dState.Motion.outputAccelX = (byte)(-1.0 * output *
+                            sign * 128.0);
                     }
                 }
 
@@ -1046,9 +1047,10 @@ namespace DS4Windows
                     }
                     else if (szOutCurveMode == 3)
                     {
-                        double output = temp * (temp - 2.0);
-                        result = (int)(-1.0 * output * 128.0);
-                        dState.Motion.outputAccelZ = result;
+                        double abs = Math.Abs(temp);
+                        double output = abs * (abs - 2.0);
+                        dState.Motion.outputAccelZ = (byte)(-1.0 * output *
+                            sign * 128.0);
                     }
                 }
             }

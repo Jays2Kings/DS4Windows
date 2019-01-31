@@ -3556,7 +3556,7 @@ namespace DS4Windows
                 DS4ControlSettings dcs = ds4settings[deviceNum][index];
                 if (shift)
                 {
-                    return dcs.shiftTrigger;
+                    return dcs.shiftAction;
                 }
                 else
                 {

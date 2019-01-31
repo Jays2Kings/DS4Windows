@@ -778,6 +778,17 @@ namespace DS4Windows
             return m_Config.gyroMouseHorizontalAxis[index];
         }
 
+        public static int[] GyroMouseDeadZone => m_Config.gyroMouseDZ;
+        public static int GetGyroMouseDeadZone(int index)
+        {
+            return m_Config.gyroMouseDZ[index];
+        }
+
+        public static void SetGyroMouseDeadZone(int index, int value, ControlService control)
+        {
+            m_Config.SetGyroMouseDZ(index, value, control);
+        }
+
         public static DS4Color[] MainColor => m_Config.m_Leds;
         public static DS4Color getMainColor(int index)
         {
@@ -1437,6 +1448,9 @@ namespace DS4Windows
         public int[] flashAt = new int[5] { 0, 0, 0, 0, 0 };
         public bool[] mouseAccel = new bool[5] { true, true, true, true, true };
         public int[] btPollRate = new int[5] { 4, 4, 4, 4, 4 };
+        public int[] gyroMouseDZ = new int[5] { MouseCursor.GYRO_MOUSE_DEADZONE, MouseCursor.GYRO_MOUSE_DEADZONE,
+            MouseCursor.GYRO_MOUSE_DEADZONE, MouseCursor.GYRO_MOUSE_DEADZONE,
+            MouseCursor.GYRO_MOUSE_DEADZONE };
         public int[] lsOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
         public int[] rsOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
         public int[] l2OutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
@@ -1656,6 +1670,13 @@ namespace DS4Windows
             sATriggerCond[index] = SaTriggerCondValue(text);
         }
 
+        public void SetGyroMouseDZ(int index, int value, ControlService control)
+        {
+            gyroMouseDZ[index] = value;
+            if (index < 4 && control.touchPad[index] != null)
+                control.touchPad[index].CursorGyroDead = value;
+        }
+
         public bool SaveProfile(int device, string propath)
         {
             bool Saved = true;
@@ -1757,6 +1778,7 @@ namespace DS4Windows
                 XmlNode xmlGyroSmoothWeight = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroSmoothingWeight", null); xmlGyroSmoothWeight.InnerText = Convert.ToInt32(gyroSmoothWeight[device] * 100).ToString(); Node.AppendChild(xmlGyroSmoothWeight);
                 XmlNode xmlGyroSmoothing = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroSmoothing", null); xmlGyroSmoothing.InnerText = gyroSmoothing[device].ToString(); Node.AppendChild(xmlGyroSmoothing);
                 XmlNode xmlGyroMouseHAxis = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseHAxis", null); xmlGyroMouseHAxis.InnerText = gyroMouseHorizontalAxis[device].ToString(); Node.AppendChild(xmlGyroMouseHAxis);
+                XmlNode xmlGyroMouseDZ = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseDeadZone", null); xmlGyroMouseDZ.InnerText = gyroMouseDZ[device].ToString(); Node.AppendChild(xmlGyroMouseDZ);
                 XmlNode xmlLSC = m_Xdoc.CreateNode(XmlNodeType.Element, "LSCurve", null); xmlLSC.InnerText = lsCurve[device].ToString(); Node.AppendChild(xmlLSC);
                 XmlNode xmlRSC = m_Xdoc.CreateNode(XmlNodeType.Element, "RSCurve", null); xmlRSC.InnerText = rsCurve[device].ToString(); Node.AppendChild(xmlRSC);
                 XmlNode xmlProfileActions = m_Xdoc.CreateNode(XmlNodeType.Element, "ProfileActions", null); xmlProfileActions.InnerText = string.Join("/", profileActions[device]); Node.AppendChild(xmlProfileActions);
@@ -2655,6 +2677,10 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseHAxis"); int temp = 0; int.TryParse(Item.InnerText, out temp); gyroMouseHorizontalAxis[device] = Math.Min(Math.Max(0, temp), 1); }
                 catch { gyroMouseHorizontalAxis[device] = 0; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseDeadZone"); int.TryParse(Item.InnerText, out int temp);
+                    SetGyroMouseDZ(device, temp, control); }
+                catch { SetGyroMouseDZ(device, MouseCursor.GYRO_MOUSE_DEADZONE, control);  missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSCurve"); int.TryParse(Item.InnerText, out lsCurve[device]); }
                 catch { lsCurve[device] = 0; missingSetting = true; }

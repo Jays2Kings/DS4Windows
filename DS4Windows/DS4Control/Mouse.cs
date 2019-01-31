@@ -23,6 +23,7 @@ namespace DS4Windows
         public bool priorLeftDown, priorRightDown, priorUpperDown, priorMultiDown;
         protected DS4Controls pushed = DS4Controls.None;
         protected Mapping.Click clicked = Mapping.Click.None;
+        public int CursorGyroDead { get => cursor.GyroCursorDeadZone; set => cursor.GyroCursorDeadZone = value; }
 
         internal const int TRACKBALL_INIT_FICTION = 10;
         internal const int TRACKBALL_MASS = 45;
@@ -419,6 +420,7 @@ namespace DS4Windows
         }
 
         public bool dragging, dragging2;
+
         private void synthesizeMouseButtons()
         {
             if (Global.GetDS4Action(deviceNum, DS4Controls.TouchLeft, false) == null && leftDown)

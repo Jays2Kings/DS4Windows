@@ -718,6 +718,7 @@ namespace DS4Windows
                 nUDGyroSmoothWeight.Value = (decimal)(GyroSmoothingWeight[device]);
                 cBGyroMouseXAxis.SelectedIndex = GyroMouseHorizontalAxis[device];
                 triggerCondAndCombo.SelectedIndex = SATriggerCond[device] ? 0 : 1;
+                gyroMouseDzNUD.Value = GyroMouseDeadZone[device];
             }
             else
             {
@@ -834,6 +835,7 @@ namespace DS4Windows
                 cBGyroInvertY.Checked = false;
                 cBGyroSmooth.Checked = false;
                 nUDGyroSmoothWeight.Value = 0.5m;
+                gyroMouseDzNUD.Value = MouseCursor.GYRO_MOUSE_DEADZONE;
                 cBGyroMouseXAxis.SelectedIndex = 0;
                 triggerCondAndCombo.SelectedIndex = 0;
                 Set();
@@ -1334,6 +1336,7 @@ namespace DS4Windows
             GyroSmoothing[device] = cBGyroSmooth.Checked;
             GyroSmoothingWeight[device] = (double)nUDGyroSmoothWeight.Value;
             GyroMouseHorizontalAxis[device] = cBGyroMouseXAxis.SelectedIndex;
+            SetGyroMouseDeadZone(device, (int)gyroMouseDzNUD.Value, Program.rootHub);
 
             int invert = 0;
             if (cBGyroInvertX.Checked)
@@ -2986,6 +2989,15 @@ namespace DS4Windows
             if (loading == false)
             {
                 TrackballMode[device] = trackballCk.Checked;
+            }
+        }
+
+        private void gyroMouseDzNUD_ValueChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                SetGyroMouseDeadZone(device, (int)gyroMouseDzNUD.Value,
+                    Program.rootHub);
             }
         }
 

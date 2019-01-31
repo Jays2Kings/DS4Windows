@@ -315,6 +315,8 @@
             this.rBSAControls = new System.Windows.Forms.RadioButton();
             this.rBSAMouse = new System.Windows.Forms.RadioButton();
             this.pnlSAMouse = new System.Windows.Forms.Panel();
+            this.label27 = new System.Windows.Forms.Label();
+            this.gyroMouseDzNUD = new System.Windows.Forms.NumericUpDown();
             this.label26 = new System.Windows.Forms.Label();
             this.triggerCondAndCombo = new System.Windows.Forms.ComboBox();
             this.cBGyroMouseXAxis = new System.Windows.Forms.ComboBox();
@@ -470,6 +472,7 @@
             this.fLPSettings.SuspendLayout();
             this.gBGyro.SuspendLayout();
             this.pnlSAMouse.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseDzNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSmoothWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroMouseVertScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSensitivity)).BeginInit();
@@ -3392,6 +3395,8 @@
             // 
             // pnlSAMouse
             // 
+            this.pnlSAMouse.Controls.Add(this.label27);
+            this.pnlSAMouse.Controls.Add(this.gyroMouseDzNUD);
             this.pnlSAMouse.Controls.Add(this.label26);
             this.pnlSAMouse.Controls.Add(this.triggerCondAndCombo);
             this.pnlSAMouse.Controls.Add(this.cBGyroMouseXAxis);
@@ -3413,6 +3418,22 @@
             this.pnlSAMouse.Controls.Add(this.lbGyroSens);
             resources.ApplyResources(this.pnlSAMouse, "pnlSAMouse");
             this.pnlSAMouse.Name = "pnlSAMouse";
+            // 
+            // label27
+            // 
+            resources.ApplyResources(this.label27, "label27");
+            this.label27.Name = "label27";
+            // 
+            // gyroMouseDzNUD
+            // 
+            resources.ApplyResources(this.gyroMouseDzNUD, "gyroMouseDzNUD");
+            this.gyroMouseDzNUD.Name = "gyroMouseDzNUD";
+            this.gyroMouseDzNUD.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.gyroMouseDzNUD.ValueChanged += new System.EventHandler(this.gyroMouseDzNUD_ValueChanged);
             // 
             // label26
             // 
@@ -4240,6 +4261,7 @@
             this.gBGyro.PerformLayout();
             this.pnlSAMouse.ResumeLayout(false);
             this.pnlSAMouse.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseDzNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSmoothWeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroMouseVertScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSensitivity)).EndInit();
@@ -4620,5 +4642,7 @@
         private System.Windows.Forms.CheckBox trackballCk;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.ComboBox triggerCondAndCombo;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.NumericUpDown gyroMouseDzNUD;
     }
 }

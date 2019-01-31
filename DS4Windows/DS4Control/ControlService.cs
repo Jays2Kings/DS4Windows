@@ -369,8 +369,9 @@ namespace DS4Windows
                         {
                             ProfilePath[i] = OlderProfilePath[i];
                         }
-                        LoadProfile(i, false, this, false, false);
+
                         touchPad[i] = new Mouse(i, device);
+                        LoadProfile(i, false, this, false, false);
                         device.LightBarColor = getMainColor(i);
 
                         if (!getDInputOnly(i) && device.isSynced())
@@ -604,8 +605,8 @@ namespace DS4Windows
                                 ProfilePath[Index] = OlderProfilePath[Index];
                             }
 
-                            LoadProfile(Index, false, this, false, false);
                             touchPad[Index] = new Mouse(Index, device);
+                            LoadProfile(Index, false, this, false, false);
                             device.LightBarColor = getMainColor(Index);
 
                             int tempIdx = Index;

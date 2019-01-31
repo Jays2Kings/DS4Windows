@@ -21,7 +21,7 @@ namespace DS4Windows
         private Direction hDirection = Direction.Neutral, vDirection = Direction.Neutral;
 
         private const double GYRO_MOUSE_COEFFICIENT = 0.0095;
-        private const int GYRO_MOUSE_DEADZONE = 10;
+        public const int GYRO_MOUSE_DEADZONE = 10;
         private const double GYRO_MOUSE_OFFSET = 0.1463;
         private const double GYRO_SMOOTH_MOUSE_OFFSET = 0.14698;
         private const double TOUCHPAD_MOUSE_OFFSET = 0.015;
@@ -30,8 +30,9 @@ namespace DS4Windows
         private double[] xSmoothBuffer = new double[SMOOTH_BUFFER_LEN];
         private double[] ySmoothBuffer = new double[SMOOTH_BUFFER_LEN];
         private int smoothBufferTail = 0;
+        private int gyroCursorDeadZone = GYRO_MOUSE_DEADZONE;
+        public int GyroCursorDeadZone { get => gyroCursorDeadZone; set => gyroCursorDeadZone = value; }
 
-        
 
         double coefficient = 0.0;
         double verticalScale = 0.0;
@@ -80,8 +81,8 @@ namespace DS4Windows
                 vRemainder = 0.0;
             }
 
-            int deadzoneX = (int)Math.Abs(normX * GYRO_MOUSE_DEADZONE);
-            int deadzoneY = (int)Math.Abs(normY * GYRO_MOUSE_DEADZONE);
+            int deadzoneX = (int)Math.Abs(normX * gyroCursorDeadZone);
+            int deadzoneY = (int)Math.Abs(normY * gyroCursorDeadZone);
 
             if (Math.Abs(deltaX) > deadzoneX)
             {

@@ -1368,13 +1368,13 @@ namespace DS4Windows
                             int controlNum = (int)dcs.control;
                             if (xboxControl == X360Controls.LT || xboxControl == X360Controls.RT)
                             {
-                                byte axisMapping = getByteMapping2(device, dcs.control, cState, eState, tp, outputfieldMapping);
+                                byte axisMapping = getByteMapping2(device, dcs.control, cState, eState, tp, fieldMapping);
                                 if (axisMapping != 0)
                                     outputfieldMapping.triggers[(int)tempDS4Control] = axisMapping;
                             }
                             else
                             {
-                                bool value = getBoolMapping2(device, dcs.control, cState, eState, tp, outputfieldMapping);
+                                bool value = getBoolMapping2(device, dcs.control, cState, eState, tp, fieldMapping);
                                 outputfieldMapping.buttons[(int)tempDS4Control] = value;
                             }
                         }

@@ -2602,7 +2602,6 @@ namespace DS4Windows
                 catch { dinputOnly[device] = false; missingSetting = true; }
 
                 bool oldUseDInputOnly = Global.useDInputOnly[device];
-                Global.useDInputOnly[device] = dinputOnly[device];
 
                 // Only change xinput devices under certain conditions. Avoid
                 // performing this upon program startup before loading devices.
@@ -2618,19 +2617,13 @@ namespace DS4Windows
                         {
                             if (dinputOnly[device] == true)
                             {
-                                Global.useDInputOnly[device] = true;
                                 xinputPlug = false;
                                 xinputStatus = true;
                             }
                             else if (synced && isAlive)
                             {
-                                Global.useDInputOnly[device] = false;
                                 xinputPlug = true;
                                 xinputStatus = true;
-                            }
-                            else if (!synced)
-                            {
-                                Global.useDInputOnly[device] = true;
                             }
                         }
                     }
@@ -2995,12 +2988,12 @@ namespace DS4Windows
                             int xinputIndex = control.x360Bus.FirstController + device;
                             if (xinputResult)
                             {
-                                dinputOnly[device] = false;
+                                Global.useDInputOnly[device] = false;
                                 AppLogger.LogToGui("X360 Controller # " + xinputIndex + " connected", false);
                             }
                             else
                             {
-                                dinputOnly[device] = true;
+                                Global.useDInputOnly[device] = true;
                                 AppLogger.LogToGui("X360 Controller # " + xinputIndex + " failed. Using DInput only mode", true);
                             }
                         }
@@ -3010,11 +3003,12 @@ namespace DS4Windows
                             int xinputIndex = control.x360Bus.FirstController + device;
                             if (xinputResult)
                             {
-                                dinputOnly[device] = true;
+                                Global.useDInputOnly[device] = true;
                                 AppLogger.LogToGui("X360 Controller # " + xinputIndex + " unplugged", false);
                             }
                             else
                             {
+                                Global.useDInputOnly[device] = false;
                                 AppLogger.LogToGui("X360 Controller # " + xinputIndex + " failed to unplug", true);
                             }
                         }

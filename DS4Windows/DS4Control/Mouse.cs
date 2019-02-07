@@ -58,8 +58,18 @@ namespace DS4Windows
             trackballAccel = TRACKBALL_RADIUS * friction / TRACKBALL_INERTIA;
         }
 
+        public void ResetToggleGyroM()
+        {
+            currentToggleGyroM = false;
+        }
+
         bool triggeractivated = false;
+        bool previousTriggerActivated = false;
         bool useReverseRatchet = false;
+        bool toggleGyroMouse = true;
+        public bool ToggleGyroMouse { get => toggleGyroMouse;
+            set { toggleGyroMouse = value; ResetToggleGyroM(); } }
+        bool currentToggleGyroM = false;
 
         public virtual void sixaxisMoved(object sender, SixAxisEventArgs arg)
         {
@@ -89,6 +99,21 @@ namespace DS4Windows
                             break;
                         }
                     }
+                }
+
+                if (toggleGyroMouse)
+                {
+                    if (triggeractivated && triggeractivated != previousTriggerActivated)
+                    {
+                        currentToggleGyroM = !currentToggleGyroM;
+                    }
+
+                    previousTriggerActivated = triggeractivated;
+                    triggeractivated = currentToggleGyroM;
+                }
+                else
+                {
+                    previousTriggerActivated = triggeractivated;
                 }
 
                 if (useReverseRatchet && triggeractivated)

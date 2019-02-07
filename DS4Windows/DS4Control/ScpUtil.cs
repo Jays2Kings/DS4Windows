@@ -789,6 +789,10 @@ namespace DS4Windows
             m_Config.SetGyroMouseDZ(index, value, control);
         }
 
+        public static bool[] GyroMouseToggle => m_Config.gyroMouseToggle;
+        public static void SetGyroMouseToggle(int index, bool value, ControlService control) 
+            => m_Config.SetGyroMouseToggle(index, value, control);
+
         public static DS4Color[] MainColor => m_Config.m_Leds;
         public static DS4Color getMainColor(int index)
         {
@@ -1451,6 +1455,8 @@ namespace DS4Windows
         public int[] gyroMouseDZ = new int[5] { MouseCursor.GYRO_MOUSE_DEADZONE, MouseCursor.GYRO_MOUSE_DEADZONE,
             MouseCursor.GYRO_MOUSE_DEADZONE, MouseCursor.GYRO_MOUSE_DEADZONE,
             MouseCursor.GYRO_MOUSE_DEADZONE };
+        public bool[] gyroMouseToggle = new bool[5] { false, false, false,
+            false, false };
         public int[] lsOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
         public int[] rsOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
         public int[] l2OutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
@@ -1677,6 +1683,13 @@ namespace DS4Windows
                 control.touchPad[index].CursorGyroDead = value;
         }
 
+        public void SetGyroMouseToggle(int index, bool value, ControlService control)
+        {
+            gyroMouseToggle[index] = value;
+            if (index < 4 && control.touchPad[index] != null)
+                control.touchPad[index].ToggleGyroMouse = value;
+        }
+
         public bool SaveProfile(int device, string propath)
         {
             bool Saved = true;
@@ -1779,6 +1792,7 @@ namespace DS4Windows
                 XmlNode xmlGyroSmoothing = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroSmoothing", null); xmlGyroSmoothing.InnerText = gyroSmoothing[device].ToString(); Node.AppendChild(xmlGyroSmoothing);
                 XmlNode xmlGyroMouseHAxis = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseHAxis", null); xmlGyroMouseHAxis.InnerText = gyroMouseHorizontalAxis[device].ToString(); Node.AppendChild(xmlGyroMouseHAxis);
                 XmlNode xmlGyroMouseDZ = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseDeadZone", null); xmlGyroMouseDZ.InnerText = gyroMouseDZ[device].ToString(); Node.AppendChild(xmlGyroMouseDZ);
+                XmlNode xmlGyroMouseToggle = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseToggle", null); xmlGyroMouseToggle.InnerText = gyroMouseToggle[device].ToString(); Node.AppendChild(xmlGyroMouseToggle);
                 XmlNode xmlLSC = m_Xdoc.CreateNode(XmlNodeType.Element, "LSCurve", null); xmlLSC.InnerText = lsCurve[device].ToString(); Node.AppendChild(xmlLSC);
                 XmlNode xmlRSC = m_Xdoc.CreateNode(XmlNodeType.Element, "RSCurve", null); xmlRSC.InnerText = rsCurve[device].ToString(); Node.AppendChild(xmlRSC);
                 XmlNode xmlProfileActions = m_Xdoc.CreateNode(XmlNodeType.Element, "ProfileActions", null); xmlProfileActions.InnerText = string.Join("/", profileActions[device]); Node.AppendChild(xmlProfileActions);
@@ -2681,6 +2695,13 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseDeadZone"); int.TryParse(Item.InnerText, out int temp);
                     SetGyroMouseDZ(device, temp, control); }
                 catch { SetGyroMouseDZ(device, MouseCursor.GYRO_MOUSE_DEADZONE, control);  missingSetting = true; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseToggle"); bool.TryParse(Item.InnerText, out bool temp);
+                    SetGyroMouseToggle(device, temp, control);
+                }
+                catch { SetGyroMouseToggle(device, false, control); missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSCurve"); int.TryParse(Item.InnerText, out lsCurve[device]); }
                 catch { lsCurve[device] = 0; missingSetting = true; }

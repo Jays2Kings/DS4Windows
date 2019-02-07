@@ -315,6 +315,7 @@
             this.rBSAControls = new System.Windows.Forms.RadioButton();
             this.rBSAMouse = new System.Windows.Forms.RadioButton();
             this.pnlSAMouse = new System.Windows.Forms.Panel();
+            this.toggleGyroMCb = new System.Windows.Forms.CheckBox();
             this.label27 = new System.Windows.Forms.Label();
             this.gyroMouseDzNUD = new System.Windows.Forms.NumericUpDown();
             this.label26 = new System.Windows.Forms.Label();
@@ -3395,6 +3396,7 @@
             // 
             // pnlSAMouse
             // 
+            this.pnlSAMouse.Controls.Add(this.toggleGyroMCb);
             this.pnlSAMouse.Controls.Add(this.label27);
             this.pnlSAMouse.Controls.Add(this.gyroMouseDzNUD);
             this.pnlSAMouse.Controls.Add(this.label26);
@@ -3418,6 +3420,13 @@
             this.pnlSAMouse.Controls.Add(this.lbGyroSens);
             resources.ApplyResources(this.pnlSAMouse, "pnlSAMouse");
             this.pnlSAMouse.Name = "pnlSAMouse";
+            // 
+            // toggleGyroMCb
+            // 
+            resources.ApplyResources(this.toggleGyroMCb, "toggleGyroMCb");
+            this.toggleGyroMCb.Name = "toggleGyroMCb";
+            this.toggleGyroMCb.UseVisualStyleBackColor = true;
+            this.toggleGyroMCb.Click += new System.EventHandler(this.toggleGyroMCb_Click);
             // 
             // label27
             // 
@@ -4644,5 +4653,6 @@
         private System.Windows.Forms.ComboBox triggerCondAndCombo;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.NumericUpDown gyroMouseDzNUD;
+        private System.Windows.Forms.CheckBox toggleGyroMCb;
     }
 }

@@ -1612,6 +1612,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
             opt.Dock = DockStyle.None;
             tabProfiles.Controls.Remove(opt);
+            opt.Dispose();
             optPop = false; opt = null;
 
             lBProfiles.Visible = true;

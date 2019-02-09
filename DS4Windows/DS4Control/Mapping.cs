@@ -58,6 +58,23 @@ namespace DS4Windows
             public bool[] dev = new bool[4];
         }
 
+        struct ControlToXInput
+        {
+            public DS4Controls ds4input;
+            public DS4Controls xoutput;
+
+            public ControlToXInput(DS4Controls input, DS4Controls output)
+            {
+                ds4input = input; xoutput = output;
+            }
+        }
+
+        static Queue<ControlToXInput>[] customMapQueue = new Queue<ControlToXInput>[4]
+        {
+            new Queue<ControlToXInput>(), new Queue<ControlToXInput>(),
+            new Queue<ControlToXInput>(), new Queue<ControlToXInput>()
+        };
+
         public static SyntheticState globalState = new SyntheticState();
         public static SyntheticState[] deviceState = new SyntheticState[4]
             { new SyntheticState(), new SyntheticState(), new SyntheticState(),
@@ -1159,10 +1176,6 @@ namespace DS4Windows
             Mouse tp, ControlService ctrl)
         {
             /* TODO: This method is slow sauce. Find ways to speed up action execution */
-            MappedState.LX = 128;
-            MappedState.LY = 128;
-            MappedState.RX = 128;
-            MappedState.RY = 128;
             double tempMouseDeltaX = 0.0;
             double tempMouseDeltaY = 0.0;
             int mouseDeltaX = 0;
@@ -1181,7 +1194,7 @@ namespace DS4Windows
                 MapCustomAction(device, cState, MappedState, eState, tp, ctrl, fieldMapping, outputfieldMapping);
             if (ctrl.DS4Controllers[device] == null) return;
 
-            cState.CopyTo(MappedState);
+            //cState.CopyTo(MappedState);
 
             //Dictionary<DS4Controls, DS4Controls> tempControlDict = new Dictionary<DS4Controls, DS4Controls>();
             //MultiValueDict<DS4Controls, DS4Controls> tempControlDict = new MultiValueDict<DS4Controls, DS4Controls>();
@@ -1345,38 +1358,11 @@ namespace DS4Windows
                             xboxControl = getX360ControlsByName(action.ToString());
                         }
 
-                        if (xboxControl >= X360Controls.LXNeg && xboxControl <= X360Controls.RYPos)
+                        if (xboxControl >= X360Controls.LXNeg && xboxControl <= X360Controls.Start)
                         {
                             DS4Controls tempDS4Control = reverseX360ButtonMapping[(int)xboxControl];
-                            int controlNum = (int)dcs.control;
-                            int tempOutControl = (int)tempDS4Control;
-                            DS4StateFieldMapping.ControlType controlType = DS4StateFieldMapping.mappedType[tempOutControl];
-                            bool alt = controlType == DS4StateFieldMapping.ControlType.AxisDir && tempOutControl % 2 == 0 ? true : false;
-                            byte axisMapping = getXYAxisMapping2(device, dcs.control, cState, eState, tp, fieldMapping, alt);
-                            if (axisMapping != 128)
-                            {
-                                int controlRelation = tempOutControl % 2 == 0 ? tempOutControl - 1 : tempOutControl + 1;
-                                outputfieldMapping.axisdirs[tempOutControl] = axisMapping;
-                                outputfieldMapping.axisdirs[controlRelation] = axisMapping;
-                            }
-
+                            customMapQueue[device].Enqueue(new ControlToXInput(dcs.control, tempDS4Control));
                             //tempControlDict.Add(dcs.control, tempDS4Control);
-                        }
-                        else if (xboxControl >= X360Controls.LB && xboxControl <= X360Controls.Start)
-                        {
-                            DS4Controls tempDS4Control = reverseX360ButtonMapping[(int)xboxControl];
-                            int controlNum = (int)dcs.control;
-                            if (xboxControl == X360Controls.LT || xboxControl == X360Controls.RT)
-                            {
-                                byte axisMapping = getByteMapping2(device, dcs.control, cState, eState, tp, fieldMapping);
-                                if (axisMapping != 0)
-                                    outputfieldMapping.triggers[(int)tempDS4Control] = axisMapping;
-                            }
-                            else
-                            {
-                                bool value = getBoolMapping2(device, dcs.control, cState, eState, tp, fieldMapping);
-                                outputfieldMapping.buttons[(int)tempDS4Control] = value;
-                            }
                         }
                         else if (xboxControl >= X360Controls.LeftMouse && xboxControl <= X360Controls.WDOWN)
                         {
@@ -1518,6 +1504,37 @@ namespace DS4Windows
 
                         // erase default mappings for things that are remapped
                         resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
+                    }
+                }
+            }
+
+            Queue<ControlToXInput> tempControl = customMapQueue[device];
+            for (int i = 0, len = tempControl.Count; i < len; i++)
+            //while(tempControl.Any())
+            {
+                ControlToXInput tempMap = tempControl.Dequeue();
+                int controlNum = (int)tempMap.ds4input;
+                int tempOutControl = (int)tempMap.xoutput;
+                if (tempMap.xoutput >= DS4Controls.LXNeg && tempMap.xoutput <= DS4Controls.RYPos)
+                {
+                    DS4StateFieldMapping.ControlType controlType = DS4StateFieldMapping.mappedType[tempOutControl];
+                    bool alt = controlType == DS4StateFieldMapping.ControlType.AxisDir && tempOutControl % 2 == 0 ? true : false;
+                    byte axisMapping = getXYAxisMapping2(device, tempMap.ds4input, cState, eState, tp, fieldMapping, alt);
+                    int controlRelation = tempOutControl % 2 == 0 ? tempOutControl - 1 : tempOutControl + 1;
+                    outputfieldMapping.axisdirs[tempOutControl] = axisMapping;
+                    outputfieldMapping.axisdirs[controlRelation] = axisMapping;
+                }
+                else
+                {
+                    if (tempMap.xoutput == DS4Controls.L2 || tempMap.xoutput == DS4Controls.R2)
+                    {
+                        byte axisMapping = getByteMapping2(device, tempMap.ds4input, cState, eState, tp, fieldMapping);
+                        outputfieldMapping.triggers[tempOutControl] = axisMapping;
+                    }
+                    else
+                    {
+                        bool value = getBoolMapping2(device, tempMap.ds4input, cState, eState, tp, fieldMapping);
+                        outputfieldMapping.buttons[tempOutControl] = value;
                     }
                 }
             }

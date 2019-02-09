@@ -1520,21 +1520,26 @@ namespace DS4Windows
                     DS4StateFieldMapping.ControlType controlType = DS4StateFieldMapping.mappedType[tempOutControl];
                     bool alt = controlType == DS4StateFieldMapping.ControlType.AxisDir && tempOutControl % 2 == 0 ? true : false;
                     byte axisMapping = getXYAxisMapping2(device, tempMap.ds4input, cState, eState, tp, fieldMapping, alt);
-                    int controlRelation = tempOutControl % 2 == 0 ? tempOutControl - 1 : tempOutControl + 1;
-                    outputfieldMapping.axisdirs[tempOutControl] = axisMapping;
-                    outputfieldMapping.axisdirs[controlRelation] = axisMapping;
+                    if (axisMapping != 128)
+                    {
+                        int controlRelation = tempOutControl % 2 == 0 ? tempOutControl - 1 : tempOutControl + 1;
+                        outputfieldMapping.axisdirs[tempOutControl] = axisMapping;
+                        outputfieldMapping.axisdirs[controlRelation] = axisMapping;
+                    }
                 }
                 else
                 {
                     if (tempMap.xoutput == DS4Controls.L2 || tempMap.xoutput == DS4Controls.R2)
                     {
                         byte axisMapping = getByteMapping2(device, tempMap.ds4input, cState, eState, tp, fieldMapping);
-                        outputfieldMapping.triggers[tempOutControl] = axisMapping;
+                        if (axisMapping != 0)
+                            outputfieldMapping.triggers[tempOutControl] = axisMapping;
                     }
                     else
                     {
                         bool value = getBoolMapping2(device, tempMap.ds4input, cState, eState, tp, fieldMapping);
-                        outputfieldMapping.buttons[tempOutControl] = value;
+                        if (value)
+                            outputfieldMapping.buttons[tempOutControl] = value;
                     }
                 }
             }

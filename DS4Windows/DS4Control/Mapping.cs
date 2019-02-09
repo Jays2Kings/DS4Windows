@@ -1517,10 +1517,11 @@ namespace DS4Windows
                 int tempOutControl = (int)tempMap.xoutput;
                 if (tempMap.xoutput >= DS4Controls.LXNeg && tempMap.xoutput <= DS4Controls.RYPos)
                 {
+                    const byte axisDead = 128;
                     DS4StateFieldMapping.ControlType controlType = DS4StateFieldMapping.mappedType[tempOutControl];
                     bool alt = controlType == DS4StateFieldMapping.ControlType.AxisDir && tempOutControl % 2 == 0 ? true : false;
                     byte axisMapping = getXYAxisMapping2(device, tempMap.ds4input, cState, eState, tp, fieldMapping, alt);
-                    if (axisMapping != 128)
+                    if (axisMapping != axisDead)
                     {
                         int controlRelation = tempOutControl % 2 == 0 ? tempOutControl - 1 : tempOutControl + 1;
                         outputfieldMapping.axisdirs[tempOutControl] = axisMapping;
@@ -1531,8 +1532,9 @@ namespace DS4Windows
                 {
                     if (tempMap.xoutput == DS4Controls.L2 || tempMap.xoutput == DS4Controls.R2)
                     {
+                        const byte axisZero = 0;
                         byte axisMapping = getByteMapping2(device, tempMap.ds4input, cState, eState, tp, fieldMapping);
-                        if (axisMapping != 0)
+                        if (axisMapping != axisZero)
                             outputfieldMapping.triggers[tempOutControl] = axisMapping;
                     }
                     else

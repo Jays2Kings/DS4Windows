@@ -49,7 +49,7 @@ namespace DS4Windows
                     {
                         DS4Color fullColor = getCustomColor(deviceNum);
                         DS4Color lowColor = getLowColor(deviceNum);
-                        color = getTransitionedColor(lowColor, fullColor, device.getBattery());
+                        color = getTransitionedColor(ref lowColor, ref fullColor, device.getBattery());
                     }
                     else
                         color = getCustomColor(deviceNum);
@@ -85,7 +85,7 @@ namespace DS4Windows
                     {
                         DS4Color fullColor = getMainColor(deviceNum);
                         DS4Color lowColor = getLowColor(deviceNum);
-                        color = getTransitionedColor(lowColor, fullColor, device.getBattery());
+                        color = getTransitionedColor(ref lowColor, ref fullColor, device.getBattery());
                     }
                     else
                     {
@@ -144,7 +144,8 @@ namespace DS4Windows
                             }
                         }
 
-                        color = getTransitionedColor(color, new DS4Color(0, 0, 0), ratio);
+                        DS4Color tempCol = new DS4Color(0, 0, 0);
+                        color = getTransitionedColor(ref color, ref tempCol, ratio);
                     }
                 }
 
@@ -159,11 +160,16 @@ namespace DS4Windows
                     double ratio = 100.0 * (botratio / topratio), elapsed = ratio;
                     if (ratio >= 50.0 && ratio < 100.0)
                     {
-                        color = getTransitionedColor(color, new DS4Color(0, 0, 0),
+                        DS4Color emptyCol = new DS4Color(0, 0, 0);
+                        color = getTransitionedColor(ref color, ref emptyCol,
                             (uint)(-100.0 * (elapsed = 0.02 * (ratio - 50.0)) * (elapsed - 2.0)));
                     }
                     else if (ratio >= 100.0)
-                        color = getTransitionedColor(color, new DS4Color(0, 0, 0), 100.0);
+                    {
+                        DS4Color emptyCol = new DS4Color(0, 0, 0);
+                        color = getTransitionedColor(ref color, ref emptyCol, 100.0);
+                    }
+                        
                 }
 
                 if (device.isCharging() && device.getBattery() < 100)
@@ -217,7 +223,8 @@ namespace DS4Windows
                                 }
                             }
 
-                            color = getTransitionedColor(color, new DS4Color(0, 0, 0), ratio);
+                            DS4Color emptyCol = new DS4Color(0, 0, 0);
+                            color = getTransitionedColor(ref color, ref emptyCol, ratio);
                             break;
                         }
                         case 2:
@@ -257,9 +264,22 @@ namespace DS4Windows
                 float rumble = device.getLeftHeavySlowRumble() / 2.55f;
                 byte max = Max(color.red, Max(color.green, color.blue));
                 if (device.getLeftHeavySlowRumble() > 100)
-                    color = getTransitionedColor(new DS4Color(max, max, 0), new DS4Color(255, 0, 0), rumble);
+                {
+                    DS4Color maxCol = new DS4Color(max, max, 0);
+                    DS4Color redCol = new DS4Color(255, 0, 0);
+                    color = getTransitionedColor(ref maxCol, ref redCol, rumble);
+                }
+                    
                 else
-                    color = getTransitionedColor(color, getTransitionedColor(new DS4Color(max, max, 0), new DS4Color(255, 0, 0), 39.6078f), device.getLeftHeavySlowRumble());
+                {
+                    DS4Color maxCol = new DS4Color(max, max, 0);
+                    DS4Color redCol = new DS4Color(255, 0, 0);
+                    DS4Color tempCol = getTransitionedColor(ref maxCol,
+                        ref redCol, 39.6078f);
+                    color = getTransitionedColor(ref color, ref tempCol,
+                        device.getLeftHeavySlowRumble());
+                }
+                    
             }
 
             DS4HapticState haptics = new DS4HapticState

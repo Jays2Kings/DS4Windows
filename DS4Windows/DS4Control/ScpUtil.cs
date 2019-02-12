@@ -1319,17 +1319,20 @@ namespace DS4Windows
             else if (r < 0.0)
                 r = 0.0;
 
-            r /= 100.0;
-            return (byte)Math.Round((b1 * (1 - r) + b2 * r), 0);
+            r *= 0.01;
+            return (byte)Math.Round((b1 * (1 - r)) + b2 * r, 0);
         }
 
-        public static DS4Color getTransitionedColor(DS4Color c1, DS4Color c2, double ratio)
+        public static DS4Color getTransitionedColor(ref DS4Color c1, ref DS4Color c2, double ratio)
         {
             //Color cs = Color.FromArgb(c1.red, c1.green, c1.blue);
-            c1.red = applyRatio(c1.red, c2.red, ratio);
-            c1.green = applyRatio(c1.green, c2.green, ratio);
-            c1.blue = applyRatio(c1.blue, c2.blue, ratio);
-            return c1;
+            DS4Color cs = new DS4Color
+            {
+                red = applyRatio(c1.red, c2.red, ratio),
+                green = applyRatio(c1.green, c2.green, ratio),
+                blue = applyRatio(c1.blue, c2.blue, ratio)
+            };
+            return cs;
         }
 
         private static Color applyRatio(Color c1, Color c2, uint r)

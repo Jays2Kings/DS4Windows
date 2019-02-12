@@ -794,27 +794,27 @@ namespace DS4Windows
             => m_Config.SetGyroMouseToggle(index, value, control);
 
         public static DS4Color[] MainColor => m_Config.m_Leds;
-        public static DS4Color getMainColor(int index)
+        public static ref DS4Color getMainColor(int index)
         {
-            return m_Config.m_Leds[index];
+            return ref m_Config.m_Leds[index];
         }
 
         public static DS4Color[] LowColor => m_Config.m_LowLeds;
-        public static DS4Color getLowColor(int index)
+        public static ref DS4Color getLowColor(int index)
         {
-            return m_Config.m_LowLeds[index];
+            return ref m_Config.m_LowLeds[index];
         }
 
         public static DS4Color[] ChargingColor => m_Config.m_ChargingLeds;
-        public static DS4Color getChargingColor(int index)
+        public static ref DS4Color getChargingColor(int index)
         {
-            return m_Config.m_ChargingLeds[index];
+            return ref m_Config.m_ChargingLeds[index];
         }
 
         public static DS4Color[] CustomColor => m_Config.m_CustomLeds;
-        public static DS4Color getCustomColor(int index)
+        public static ref DS4Color getCustomColor(int index)
         {
-            return m_Config.m_CustomLeds[index];
+            return ref m_Config.m_CustomLeds[index];
         }
 
         public static bool[] UseCustomLed => m_Config.useCustomLeds;
@@ -824,9 +824,9 @@ namespace DS4Windows
         }
 
         public static DS4Color[] FlashColor => m_Config.m_FlashLeds;
-        public static DS4Color getFlashColor(int index)
+        public static ref DS4Color getFlashColor(int index)
         {
-            return m_Config.m_FlashLeds[index];
+            return ref m_Config.m_FlashLeds[index];
         }
 
         public static byte[] TapSensitivity => m_Config.tapSensitivity;

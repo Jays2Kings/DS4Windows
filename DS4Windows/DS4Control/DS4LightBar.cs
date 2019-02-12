@@ -47,8 +47,8 @@ namespace DS4Windows
                 {
                     if (getLedAsBatteryIndicator(deviceNum))
                     {
-                        DS4Color fullColor = getCustomColor(deviceNum);
-                        DS4Color lowColor = getLowColor(deviceNum);
+                        ref DS4Color fullColor = ref getCustomColor(deviceNum);
+                        ref DS4Color lowColor = ref getLowColor(deviceNum);
                         color = getTransitionedColor(ref lowColor, ref fullColor, device.getBattery());
                     }
                     else
@@ -83,8 +83,8 @@ namespace DS4Windows
                     }
                     else if (getLedAsBatteryIndicator(deviceNum))
                     {
-                        DS4Color fullColor = getMainColor(deviceNum);
-                        DS4Color lowColor = getLowColor(deviceNum);
+                        ref DS4Color fullColor = ref getMainColor(deviceNum);
+                        ref DS4Color lowColor = ref getLowColor(deviceNum);
                         color = getTransitionedColor(ref lowColor, ref fullColor, device.getBattery());
                     }
                     else
@@ -95,7 +95,7 @@ namespace DS4Windows
 
                 if (device.getBattery() <= getFlashAt(deviceNum) && !defaultLight && !device.isCharging())
                 {
-                    DS4Color flashColor = getFlashColor(deviceNum);
+                    ref DS4Color flashColor = ref getFlashColor(deviceNum);
                     if (!(flashColor.red == 0 &&
                         flashColor.green == 0 &&
                         flashColor.blue == 0))

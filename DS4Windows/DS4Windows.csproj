@@ -82,7 +82,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <DefineConstants>WIN64</DefineConstants>
     <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
-    <LangVersion>7.2</LangVersion>
+    <LangVersion>7.3</LangVersion>
     <DebugSymbols>false</DebugSymbols>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <WarningLevel>1</WarningLevel>

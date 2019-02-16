@@ -346,9 +346,12 @@ namespace DS4Windows
                     DS4LightBar.defaultLight = false;
                     //foreach (DS4Device device in devices)
 
-                    for (int i = 0, devCount = devices.Count(); i < devCount; i++)
+                    //for (int i = 0, devCount = devices.Count(); i < devCount; i++)
+                    int i = 0;
+                    for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext(); i++)
                     {
-                        DS4Device device = devices.ElementAt(i);
+                        DS4Device device = devEnum.Current;
+                        //DS4Device device = devices.ElementAt(i);
                         if (showlog)
                             LogDebug(Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
 
@@ -561,9 +564,11 @@ namespace DS4Windows
                 DS4Devices.findControllers();
                 IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
                 //foreach (DS4Device device in devices)
-                for (int i = 0, devlen = devices.Count(); i < devlen; i++)
+                //for (int i = 0, devlen = devices.Count(); i < devlen; i++)
+                for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext();)
                 {
-                    DS4Device device = devices.ElementAt(i);
+                    DS4Device device = devEnum.Current;
+                    //DS4Device device = devices.ElementAt(i);
 
                     if (device.isDisconnectingStatus())
                         continue;

@@ -179,9 +179,11 @@ namespace DS4Windows
             {
                 IEnumerable<DS4Device> devices = getDS4Controllers();
                 //foreach (DS4Device device in devices)
-                for (int i = 0, devCount = devices.Count(); i < devCount; i++)
+                //for (int i = 0, devCount = devices.Count(); i < devCount; i++)
+                for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext();)
                 {
-                    DS4Device device = devices.ElementAt(i);
+                    DS4Device device = devEnum.Current;
+                    //DS4Device device = devices.ElementAt(i);
                     device.StopUpdate();
                     //device.runRemoval();
                     device.HidDevice.CloseDevice();

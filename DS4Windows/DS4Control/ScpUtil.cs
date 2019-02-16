@@ -3507,9 +3507,11 @@ namespace DS4Windows
                 linkedXdoc.AppendChild(Node);
 
                 Dictionary<string, string>.KeyCollection serials = linkedProfiles.Keys;
-                for (int i = 0, itemCount = linkedProfiles.Count; i < itemCount; i++)
+                //for (int i = 0, itemCount = linkedProfiles.Count; i < itemCount; i++)
+                for (var serialEnum = serials.GetEnumerator(); serialEnum.MoveNext();)
                 {
-                    string serial = serials.ElementAt(i);
+                    //string serial = serials.ElementAt(i);
+                    string serial = serialEnum.Current;
                     string profile = linkedProfiles[serial];
                     XmlElement link = linkedXdoc.CreateElement("MAC" + serial);
                     link.InnerText = profile;

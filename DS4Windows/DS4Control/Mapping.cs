@@ -1205,9 +1205,11 @@ namespace DS4Windows
             DS4Controls usingExtra = DS4Controls.None;
             List<DS4ControlSettings> tempSettingsList = getDS4CSettings(device);
             //foreach (DS4ControlSettings dcs in getDS4CSettings(device))
-            for (int settingIndex = 0, arlen = tempSettingsList.Count; settingIndex < arlen; settingIndex++)
+            //for (int settingIndex = 0, arlen = tempSettingsList.Count; settingIndex < arlen; settingIndex++)
+            for (var settingEnum = tempSettingsList.GetEnumerator(); settingEnum.MoveNext();)
             {
-                DS4ControlSettings dcs = tempSettingsList[settingIndex];
+                //DS4ControlSettings dcs = tempSettingsList[settingIndex];
+                DS4ControlSettings dcs = settingEnum.Current;
                 object action = null;
                 DS4ControlSettings.ActionType actionType = 0;
                 DS4KeyType keyType = DS4KeyType.None;

@@ -1506,6 +1506,15 @@ namespace DS4Windows
                         resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
                     }
                 }
+                else
+                {
+                    DS4StateFieldMapping.ControlType controlType = DS4StateFieldMapping.mappedType[(int)dcs.control];
+                    if (controlType == DS4StateFieldMapping.ControlType.AxisDir)
+                    //if (dcs.control > DS4Controls.None && dcs.control < DS4Controls.L1)
+                    {
+                        customMapQueue[device].Enqueue(new ControlToXInput(dcs.control, dcs.control));
+                    }
+                }
             }
 
             Queue<ControlToXInput> tempControl = customMapQueue[device];
@@ -3371,9 +3380,9 @@ namespace DS4Windows
         private static byte getXYAxisMapping2(int device, DS4Controls control, DS4State cState,
             DS4StateExposed eState, Mouse tp, DS4StateFieldMapping fieldMap, bool alt = false)
         {
+            const byte falseVal = 128;
             byte result = 0;
             byte trueVal = 0;
-            byte falseVal = 128;
 
             if (alt)
                 trueVal = 255;
@@ -3391,11 +3400,11 @@ namespace DS4Windows
 
                 switch (control)
                 {
-                    case DS4Controls.LXNeg: if (!alt) result = cState.LX; else result = (byte)(255 - cState.LX); break;
-                    case DS4Controls.LYNeg: if (!alt) result = cState.LY; else result = (byte)(255 - cState.LY); break;
-                    case DS4Controls.RXNeg: if (!alt) result = cState.RX; else result = (byte)(255 - cState.RX); break;
-                    case DS4Controls.RYNeg: if (!alt) result = cState.RY; else result = (byte)(255 - cState.RY); break;
-                    default: if (!alt) result = (byte)(255 - axisValue); else result = axisValue; break;
+                    case DS4Controls.LXNeg: if (!alt) result = axisValue < falseVal ? axisValue : falseVal; else result = axisValue < falseVal ? (byte)(255 - axisValue) : falseVal; break;
+                    case DS4Controls.LYNeg: if (!alt) result = axisValue < falseVal ? axisValue : falseVal; else result = axisValue < falseVal ? (byte)(255 - axisValue) : falseVal; break;
+                    case DS4Controls.RXNeg: if (!alt) result = axisValue < falseVal ? axisValue : falseVal; else result = axisValue < falseVal ? (byte)(255 - axisValue) : falseVal; break;
+                    case DS4Controls.RYNeg: if (!alt) result = axisValue < falseVal ? axisValue : falseVal; else result = axisValue < falseVal ? (byte)(255 - axisValue) : falseVal; break;
+                    default: if (!alt) result = axisValue > falseVal ? (byte)(255 - axisValue) : falseVal; else result = axisValue > falseVal ? axisValue : falseVal; break;
                 }
             }
             else if (controlType == DS4StateFieldMapping.ControlType.Trigger)

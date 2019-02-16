@@ -40,9 +40,11 @@ namespace DS4Windows
 
                 //foreach (KeyPresses kp in keyPresses.Values)
                 Dictionary<ushort, KeyPresses>.ValueCollection keyValues = keyPresses.Values;
-                for (int i = 0, kpCount = keyValues.Count; i < kpCount; i++)
+                for (var keyEnum = keyValues.GetEnumerator(); keyEnum.MoveNext();)
+                //for (int i = 0, kpCount = keyValues.Count; i < kpCount; i++)
                 {
-                    KeyPresses kp = keyValues.ElementAt(i);
+                    //KeyPresses kp = keyValues.ElementAt(i);
+                    KeyPresses kp = keyEnum.Current;
                     kp.previous = kp.current;
                     if (performClear)
                     {

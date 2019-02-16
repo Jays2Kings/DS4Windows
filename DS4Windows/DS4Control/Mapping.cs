@@ -290,9 +290,11 @@ namespace DS4Windows
                 // TODO what about the rest?  e.g. repeat keys really ought to be on some set schedule
                 Dictionary<UInt16, SyntheticState.KeyPresses>.KeyCollection kvpKeys = state.keyPresses.Keys;
                 //foreach (KeyValuePair<UInt16, SyntheticState.KeyPresses> kvp in state.keyPresses)
-                for (int i = 0, keyCount = kvpKeys.Count; i < keyCount; i++)
+                //for (int i = 0, keyCount = kvpKeys.Count; i < keyCount; i++)
+                for (var keyEnum = kvpKeys.GetEnumerator(); keyEnum.MoveNext();)
                 {
-                    UInt16 kvpKey = kvpKeys.ElementAt(i);
+                    //UInt16 kvpKey = kvpKeys.ElementAt(i);
+                    UInt16 kvpKey = keyEnum.Current;
                     SyntheticState.KeyPresses kvpValue = state.keyPresses[kvpKey];
 
                     SyntheticState.KeyPresses gkp;

@@ -43,12 +43,12 @@ namespace DS4Windows
             {
                 byte alphacolor = Math.Max(red, Math.Max(green, blue));
                 Color reg = Color.FromArgb(red, green, blue);
-                Color full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
+                Color full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), ref reg);
                 return Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             }
         }
 
-        private Color HuetoRGB(float hue, float light, Color rgb)
+        private Color HuetoRGB(float hue, float light, ref Color rgb)
         {
             float L = (float)Math.Max(.5, light);
             float C = (1 - Math.Abs(2 * L - 1));

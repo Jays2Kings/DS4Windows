@@ -229,7 +229,7 @@ namespace DS4Windows
     {
         protected static BackingStore m_Config = new BackingStore();
         protected static Int32 m_IdleTimeout = 600000;
-        public static string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
+        public static readonly string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         public static string appdatapath;
         public static bool firstRun = false;
         public static bool multisavespots = false;
@@ -300,25 +300,28 @@ namespace DS4Windows
             return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
-        public static bool IsScpVBusInstalled()
+        private static bool CheckForSysDevice(string searchHardwareId)
         {
             bool result = false;
             Guid sysGuid = Guid.Parse("{4d36e97d-e325-11ce-bfc1-08002be10318}");
-            NativeMethods.SP_DEVINFO_DATA deviceInfoData = new NativeMethods.SP_DEVINFO_DATA();
-            deviceInfoData.cbSize = System.Runtime.InteropServices.Marshal.SizeOf(deviceInfoData);
+            NativeMethods.SP_DEVINFO_DATA deviceInfoData =
+                new NativeMethods.SP_DEVINFO_DATA();
+            deviceInfoData.cbSize =
+                System.Runtime.InteropServices.Marshal.SizeOf(deviceInfoData);
             var dataBuffer = new byte[4096];
             ulong propertyType = 0;
             var requiredSize = 0;
             IntPtr deviceInfoSet = NativeMethods.SetupDiGetClassDevs(ref sysGuid, null, 0, 0);
             for (int i = 0; !result && NativeMethods.SetupDiEnumDeviceInfo(deviceInfoSet, i, ref deviceInfoData); i++)
             {
-                if (NativeMethods.SetupDiGetDeviceProperty(deviceInfoSet, ref deviceInfoData, ref NativeMethods.DEVPKEY_Device_HardwareIds, ref propertyType,
+                if (NativeMethods.SetupDiGetDeviceProperty(deviceInfoSet, ref deviceInfoData,
+                    ref NativeMethods.DEVPKEY_Device_HardwareIds, ref propertyType,
                     dataBuffer, dataBuffer.Length, ref requiredSize, 0))
                 {
                     string hardwareId = dataBuffer.ToUTF16String();
                     //if (hardwareIds.Contains("Scp Virtual Bus Driver"))
                     //    result = true;
-                    if (hardwareId.Equals(@"root\ScpVBus"))
+                    if (hardwareId.Equals(searchHardwareId))
                         result = true;
                 }
             }
@@ -329,6 +332,16 @@ namespace DS4Windows
             }
 
             return result;
+        }
+
+        public static bool IsHidGuardianInstalled()
+        {
+            return CheckForSysDevice(@"Root\HidGuardian");
+        }
+
+        public static bool IsScpVBusInstalled()
+        {
+            return CheckForSysDevice(@"root\ScpVBus");
         }
 
         public static void FindConfigLocation()
@@ -780,28 +793,43 @@ namespace DS4Windows
             return m_Config.gyroMouseHorizontalAxis[index];
         }
 
-        public static DS4Color[] MainColor => m_Config.m_Leds;
-        public static DS4Color getMainColor(int index)
+        public static int[] GyroMouseDeadZone => m_Config.gyroMouseDZ;
+        public static int GetGyroMouseDeadZone(int index)
         {
-            return m_Config.m_Leds[index];
+            return m_Config.gyroMouseDZ[index];
+        }
+
+        public static void SetGyroMouseDeadZone(int index, int value, ControlService control)
+        {
+            m_Config.SetGyroMouseDZ(index, value, control);
+        }
+
+        public static bool[] GyroMouseToggle => m_Config.gyroMouseToggle;
+        public static void SetGyroMouseToggle(int index, bool value, ControlService control) 
+            => m_Config.SetGyroMouseToggle(index, value, control);
+
+        public static DS4Color[] MainColor => m_Config.m_Leds;
+        public static ref DS4Color getMainColor(int index)
+        {
+            return ref m_Config.m_Leds[index];
         }
 
         public static DS4Color[] LowColor => m_Config.m_LowLeds;
-        public static DS4Color getLowColor(int index)
+        public static ref DS4Color getLowColor(int index)
         {
-            return m_Config.m_LowLeds[index];
+            return ref m_Config.m_LowLeds[index];
         }
 
         public static DS4Color[] ChargingColor => m_Config.m_ChargingLeds;
-        public static DS4Color getChargingColor(int index)
+        public static ref DS4Color getChargingColor(int index)
         {
-            return m_Config.m_ChargingLeds[index];
+            return ref m_Config.m_ChargingLeds[index];
         }
 
         public static DS4Color[] CustomColor => m_Config.m_CustomLeds;
-        public static DS4Color getCustomColor(int index)
+        public static ref DS4Color getCustomColor(int index)
         {
-            return m_Config.m_CustomLeds[index];
+            return ref m_Config.m_CustomLeds[index];
         }
 
         public static bool[] UseCustomLed => m_Config.useCustomLeds;
@@ -811,9 +839,9 @@ namespace DS4Windows
         }
 
         public static DS4Color[] FlashColor => m_Config.m_FlashLeds;
-        public static DS4Color getFlashColor(int index)
+        public static ref DS4Color getFlashColor(int index)
         {
-            return m_Config.m_FlashLeds[index];
+            return ref m_Config.m_FlashLeds[index];
         }
 
         public static byte[] TapSensitivity => m_Config.tapSensitivity;
@@ -1330,17 +1358,20 @@ namespace DS4Windows
             else if (r < 0.0)
                 r = 0.0;
 
-            r /= 100.0;
-            return (byte)Math.Round((b1 * (1 - r) + b2 * r), 0);
+            r *= 0.01;
+            return (byte)Math.Round((b1 * (1 - r)) + b2 * r, 0);
         }
 
-        public static DS4Color getTransitionedColor(DS4Color c1, DS4Color c2, double ratio)
+        public static DS4Color getTransitionedColor(ref DS4Color c1, ref DS4Color c2, double ratio)
         {
             //Color cs = Color.FromArgb(c1.red, c1.green, c1.blue);
-            c1.red = applyRatio(c1.red, c2.red, ratio);
-            c1.green = applyRatio(c1.green, c2.green, ratio);
-            c1.blue = applyRatio(c1.blue, c2.blue, ratio);
-            return c1;
+            DS4Color cs = new DS4Color
+            {
+                red = applyRatio(c1.red, c2.red, ratio),
+                green = applyRatio(c1.green, c2.green, ratio),
+                blue = applyRatio(c1.blue, c2.blue, ratio)
+            };
+            return cs;
         }
 
         private static Color applyRatio(Color c1, Color c2, uint r)
@@ -1464,6 +1495,11 @@ namespace DS4Windows
         public int[] flashAt = new int[5] { 0, 0, 0, 0, 0 };
         public bool[] mouseAccel = new bool[5] { true, true, true, true, true };
         public int[] btPollRate = new int[5] { 4, 4, 4, 4, 4 };
+        public int[] gyroMouseDZ = new int[5] { MouseCursor.GYRO_MOUSE_DEADZONE, MouseCursor.GYRO_MOUSE_DEADZONE,
+            MouseCursor.GYRO_MOUSE_DEADZONE, MouseCursor.GYRO_MOUSE_DEADZONE,
+            MouseCursor.GYRO_MOUSE_DEADZONE };
+        public bool[] gyroMouseToggle = new bool[5] { false, false, false,
+            false, false };
         public int[] lsOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
         public int[] rsOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
         public int[] l2OutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
@@ -1608,6 +1644,7 @@ namespace DS4Windows
                 case 1: result = "enhanced-precision"; break;
                 case 2: result = "quadratic"; break;
                 case 3: result = "cubic"; break;
+                case 4: result = "easeout-quad"; break;
                 default: break;
             }
 
@@ -1623,6 +1660,7 @@ namespace DS4Windows
                 case "enhanced-precision": id = 1; break;
                 case "quadratic": id = 2; break;
                 case "cubic": id = 3; break;
+                case "easeout-quad": id = 4; break;
                 default: break;
             }
 
@@ -1637,6 +1675,7 @@ namespace DS4Windows
                 case 0: break;
                 case 1: result = "quadratic"; break;
                 case 2: result = "cubic"; break;
+                case 3: result = "easeout-quad"; break;
                 default: break;
             }
 
@@ -1651,6 +1690,7 @@ namespace DS4Windows
                 case "linear": id = 0; break;
                 case "quadratic": id = 1; break;
                 case "cubic": id = 2; break;
+                case "easeout-quad": id = 3; break;
                 default: break;
             }
 
@@ -1679,6 +1719,20 @@ namespace DS4Windows
         public void SetSaTriggerCond(int index, string text)
         {
             sATriggerCond[index] = SaTriggerCondValue(text);
+        }
+
+        public void SetGyroMouseDZ(int index, int value, ControlService control)
+        {
+            gyroMouseDZ[index] = value;
+            if (index < 4 && control.touchPad[index] != null)
+                control.touchPad[index].CursorGyroDead = value;
+        }
+
+        public void SetGyroMouseToggle(int index, bool value, ControlService control)
+        {
+            gyroMouseToggle[index] = value;
+            if (index < 4 && control.touchPad[index] != null)
+                control.touchPad[index].ToggleGyroMouse = value;
         }
 
         public bool SaveProfile(int device, string propath)
@@ -1784,6 +1838,8 @@ namespace DS4Windows
                 XmlNode xmlGyroSmoothWeight = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroSmoothingWeight", null); xmlGyroSmoothWeight.InnerText = Convert.ToInt32(gyroSmoothWeight[device] * 100).ToString(); Node.AppendChild(xmlGyroSmoothWeight);
                 XmlNode xmlGyroSmoothing = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroSmoothing", null); xmlGyroSmoothing.InnerText = gyroSmoothing[device].ToString(); Node.AppendChild(xmlGyroSmoothing);
                 XmlNode xmlGyroMouseHAxis = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseHAxis", null); xmlGyroMouseHAxis.InnerText = gyroMouseHorizontalAxis[device].ToString(); Node.AppendChild(xmlGyroMouseHAxis);
+                XmlNode xmlGyroMouseDZ = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseDeadZone", null); xmlGyroMouseDZ.InnerText = gyroMouseDZ[device].ToString(); Node.AppendChild(xmlGyroMouseDZ);
+                XmlNode xmlGyroMouseToggle = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseToggle", null); xmlGyroMouseToggle.InnerText = gyroMouseToggle[device].ToString(); Node.AppendChild(xmlGyroMouseToggle);
                 XmlNode xmlLSC = m_Xdoc.CreateNode(XmlNodeType.Element, "LSCurve", null); xmlLSC.InnerText = lsCurve[device].ToString(); Node.AppendChild(xmlLSC);
                 XmlNode xmlRSC = m_Xdoc.CreateNode(XmlNodeType.Element, "RSCurve", null); xmlRSC.InnerText = rsCurve[device].ToString(); Node.AppendChild(xmlRSC);
                 XmlNode xmlProfileActions = m_Xdoc.CreateNode(XmlNodeType.Element, "ProfileActions", null); xmlProfileActions.InnerText = string.Join("/", profileActions[device]); Node.AppendChild(xmlProfileActions);
@@ -2593,7 +2649,6 @@ namespace DS4Windows
                 catch { dinputOnly[device] = false; missingSetting = true; }
 
                 bool oldUseDInputOnly = Global.useDInputOnly[device];
-                Global.useDInputOnly[device] = dinputOnly[device];
 
                 // Only change xinput devices under certain conditions. Avoid
                 // performing this upon program startup before loading devices.
@@ -2609,19 +2664,13 @@ namespace DS4Windows
                         {
                             if (dinputOnly[device] == true)
                             {
-                                Global.useDInputOnly[device] = true;
                                 xinputPlug = false;
                                 xinputStatus = true;
                             }
                             else if (synced && isAlive)
                             {
-                                Global.useDInputOnly[device] = false;
                                 xinputPlug = true;
                                 xinputStatus = true;
-                            }
-                            else if (!synced)
-                            {
-                                Global.useDInputOnly[device] = true;
                             }
                         }
                     }
@@ -2689,6 +2738,17 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseHAxis"); int temp = 0; int.TryParse(Item.InnerText, out temp); gyroMouseHorizontalAxis[device] = Math.Min(Math.Max(0, temp), 1); }
                 catch { gyroMouseHorizontalAxis[device] = 0; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseDeadZone"); int.TryParse(Item.InnerText, out int temp);
+                    SetGyroMouseDZ(device, temp, control); }
+                catch { SetGyroMouseDZ(device, MouseCursor.GYRO_MOUSE_DEADZONE, control);  missingSetting = true; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseToggle"); bool.TryParse(Item.InnerText, out bool temp);
+                    SetGyroMouseToggle(device, temp, control);
+                }
+                catch { SetGyroMouseToggle(device, false, control); missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSCurve"); int.TryParse(Item.InnerText, out lsCurve[device]); }
                 catch { lsCurve[device] = 0; missingSetting = true; }
@@ -2982,12 +3042,12 @@ namespace DS4Windows
                             int xinputIndex = control.x360Bus.FirstController + device;
                             if (xinputResult)
                             {
-                                dinputOnly[device] = false;
+                                Global.useDInputOnly[device] = false;
                                 AppLogger.LogToGui("X360 Controller # " + xinputIndex + " connected", false);
                             }
                             else
                             {
-                                dinputOnly[device] = true;
+                                Global.useDInputOnly[device] = true;
                                 AppLogger.LogToGui("X360 Controller # " + xinputIndex + " failed. Using DInput only mode", true);
                             }
                         }
@@ -2997,11 +3057,12 @@ namespace DS4Windows
                             int xinputIndex = control.x360Bus.FirstController + device;
                             if (xinputResult)
                             {
-                                dinputOnly[device] = true;
+                                Global.useDInputOnly[device] = true;
                                 AppLogger.LogToGui("X360 Controller # " + xinputIndex + " unplugged", false);
                             }
                             else
                             {
+                                Global.useDInputOnly[device] = false;
                                 AppLogger.LogToGui("X360 Controller # " + xinputIndex + " failed to unplug", true);
                             }
                         }
@@ -3509,9 +3570,11 @@ namespace DS4Windows
                 linkedXdoc.AppendChild(Node);
 
                 Dictionary<string, string>.KeyCollection serials = linkedProfiles.Keys;
-                for (int i = 0, itemCount = linkedProfiles.Count; i < itemCount; i++)
+                //for (int i = 0, itemCount = linkedProfiles.Count; i < itemCount; i++)
+                for (var serialEnum = serials.GetEnumerator(); serialEnum.MoveNext();)
                 {
-                    string serial = serials.ElementAt(i);
+                    //string serial = serials.ElementAt(i);
+                    string serial = serialEnum.Current;
                     string profile = linkedProfiles[serial];
                     XmlElement link = linkedXdoc.CreateElement("MAC" + serial);
                     link.InnerText = profile;
@@ -3639,15 +3702,12 @@ namespace DS4Windows
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
 
-            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
-            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            int temp = (int)dc;
+            if (temp > 0)
             {
-                DS4ControlSettings dcs = ds4settingsList[i];
-                if (dcs.control == dc)
-                {
-                    dcs.UpdateSettings(shift, action, exts, kt, trigger);
-                    break;
-                }
+                int index = temp - 1;
+                DS4ControlSettings dcs = ds4settings[deviceNum][index];
+                dcs.UpdateSettings(shift, action, exts, kt, trigger);
             }
         }
 
@@ -3659,19 +3719,15 @@ namespace DS4Windows
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
 
-            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
-            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            int temp = (int)dc;
+            if (temp > 0)
             {
-                DS4ControlSettings dcs = ds4settingsList[i];
-                if (dcs.control == dc)
-                {
-                    if (shift)
-                        dcs.shiftExtras = exts;
-                    else
-                        dcs.extras = exts;
-
-                    break;
-                }
+                int index = temp - 1;
+                DS4ControlSettings dcs = ds4settings[deviceNum][index];
+                if (shift)
+                    dcs.shiftExtras = exts;
+                else
+                    dcs.extras = exts;
             }
         }
 
@@ -3683,19 +3739,15 @@ namespace DS4Windows
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
 
-            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
-            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            int temp = (int)dc;
+            if (temp > 0)
             {
-                DS4ControlSettings dcs = ds4settingsList[i];
-                if (dcs.control == dc)
-                {
-                    if (shift)
-                        dcs.shiftKeyType = keyType;
-                    else
-                        dcs.keyType = keyType;
-
-                    break;
-                }
+                int index = temp - 1;
+                DS4ControlSettings dcs = ds4settings[deviceNum][index];
+                if (shift)
+                    dcs.shiftKeyType = keyType;
+                else
+                    dcs.keyType = keyType;
             }
         }
 
@@ -3707,16 +3759,18 @@ namespace DS4Windows
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
 
-            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
-            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            int temp = (int)dc;
+            if (temp > 0)
             {
-                DS4ControlSettings dcs = ds4settingsList[i];
-                if (dcs.control == dc)
+                int index = temp - 1;
+                DS4ControlSettings dcs = ds4settings[deviceNum][index];
+                if (shift)
                 {
-                    if (shift)
-                        return dcs.shiftAction;
-                    else
-                        return dcs.action;
+                    return dcs.shiftAction;
+                }
+                else
+                {
+                    return dcs.action;
                 }
             }
 
@@ -3732,7 +3786,7 @@ namespace DS4Windows
                 DS4ControlSettings dcs = ds4settings[deviceNum][index];
                 if (shift)
                 {
-                    return dcs.shiftTrigger;
+                    return dcs.shiftAction;
                 }
                 else
                 {
@@ -3751,17 +3805,15 @@ namespace DS4Windows
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
 
-            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
-            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            int temp = (int)dc;
+            if (temp > 0)
             {
-                DS4ControlSettings dcs = ds4settingsList[i];
-                if (dcs.control == dc)
-                {
-                    if (shift)
-                        return dcs.shiftExtras;
-                    else
-                        return dcs.extras;
-                }
+                int index = temp - 1;
+                DS4ControlSettings dcs = ds4settings[deviceNum][index];
+                if (shift)
+                    return dcs.shiftExtras;
+                else
+                    return dcs.extras;
             }
 
             return null;
@@ -3775,17 +3827,15 @@ namespace DS4Windows
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
 
-            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
-            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            int temp = (int)dc;
+            if (temp > 0)
             {
-                DS4ControlSettings dcs = ds4settingsList[i];
-                if (dcs.control == dc)
-                {
-                    if (shift)
-                        return dcs.shiftKeyType;
-                    else
-                        return dcs.keyType;
-                }
+                int index = temp - 1;
+                DS4ControlSettings dcs = ds4settings[deviceNum][index];
+                if (shift)
+                    return dcs.shiftKeyType;
+                else
+                    return dcs.keyType;
             }
 
             return DS4KeyType.None;
@@ -3799,12 +3849,12 @@ namespace DS4Windows
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
 
-            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
-            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            int temp = (int)dc;
+            if (temp > 0)
             {
-                DS4ControlSettings dcs = ds4settingsList[i];
-                if (dcs.control == dc)
-                    return dcs.shiftTrigger;
+                int index = temp - 1;
+                DS4ControlSettings dcs = ds4settings[deviceNum][index];
+                return dcs.shiftTrigger;
             }
 
             return 0;
@@ -3831,12 +3881,12 @@ namespace DS4Windows
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
 
-            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
-            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            int temp = (int)dc;
+            if (temp > 0)
             {
-                DS4ControlSettings dcs = ds4settingsList[i];
-                if (dcs.control == dc)
-                    return dcs;
+                int index = temp - 1;
+                DS4ControlSettings dcs = ds4settings[deviceNum][index];
+                return dcs;
             }
 
             return null;

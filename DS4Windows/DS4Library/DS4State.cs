@@ -49,7 +49,7 @@ namespace DS4Windows
             L1 = L2Btn = L3 = R1 = R2Btn = R3 = false;
             Share = Options = PS = Touch1 = Touch2 = TouchButton = TouchRight = TouchLeft = false;
             Touch1Finger = Touch2Fingers = false;
-            LX = RX = LY = RY = 127;
+            LX = RX = LY = RY = 128;
             L2 = R2 = 0;
             FrameCounter = 255; // only actually has 6 bits, so this is a null indicator
             TouchPacketCounter = 255; // 8 bits, no great junk value
@@ -187,14 +187,14 @@ namespace DS4Windows
 
         public void calculateStickAngles()
         {
-            double lsangle = Math.Atan2(-(LY - 127), (LX - 127));
+            double lsangle = Math.Atan2(-(LY - 128), (LX - 128));
             LSAngleRad = lsangle;
             lsangle = (lsangle >= 0 ? lsangle : (2 * Math.PI + lsangle)) * 180 / Math.PI;
             LSAngle = lsangle;
             LXUnit = Math.Abs(Math.Cos(LSAngleRad));
             LYUnit = Math.Abs(Math.Sin(LSAngleRad));
 
-            double rsangle = Math.Atan2(-(RY - 127), (RX - 127));
+            double rsangle = Math.Atan2(-(RY - 128), (RX - 128));
             RSAngleRad = rsangle;
             rsangle = (rsangle >= 0 ? rsangle : (2 * Math.PI + rsangle)) * 180 / Math.PI;
             RSAngle = rsangle;
@@ -205,17 +205,17 @@ namespace DS4Windows
         public void rotateLSCoordinates(double rotation)
         {
             double sinAngle = Math.Sin(rotation), cosAngle = Math.Cos(rotation);
-            double tempLX = LX - 127.5, tempLY = LY - 127.5;
-            LX = (Byte)(Global.Clamp(-127.5, (tempLX * cosAngle - tempLY * sinAngle), 127.5) + 127.5);
-            LY = (Byte)(Global.Clamp(-127.5, (tempLX * sinAngle + tempLY * cosAngle), 127.5) + 127.5);
+            double tempLX = LX - 128.0, tempLY = LY - 128.0;
+            LX = (Byte)(Global.Clamp(-128.0, (tempLX * cosAngle - tempLY * sinAngle), 127.0) + 128.0);
+            LY = (Byte)(Global.Clamp(-128.0, (tempLX * sinAngle + tempLY * cosAngle), 127.0) + 128.0);
         }
 
         public void rotateRSCoordinates(double rotation)
         {
             double sinAngle = Math.Sin(rotation), cosAngle = Math.Cos(rotation);
-            double tempRX = RX - 127.5, tempRY = RY - 127.5;
-            RX = (Byte)(Global.Clamp(-127.5, (tempRX * cosAngle - tempRY * sinAngle), 127.5) + 127.5);
-            RY = (Byte)(Global.Clamp(-127.5, (tempRX * sinAngle + tempRY * cosAngle), 127.5) + 127.5);
+            double tempRX = RX - 128.0, tempRY = RY - 128.0;
+            RX = (Byte)(Global.Clamp(-128.0, (tempRX * cosAngle - tempRY * sinAngle), 127.0) + 128.0);
+            RY = (Byte)(Global.Clamp(-128.0, (tempRX * sinAngle + tempRY * cosAngle), 127.0) + 128.0);
         }
     }
 }

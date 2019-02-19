@@ -179,9 +179,11 @@ namespace DS4Windows
             {
                 IEnumerable<DS4Device> devices = getDS4Controllers();
                 //foreach (DS4Device device in devices)
-                for (int i = 0, devCount = devices.Count(); i < devCount; i++)
+                //for (int i = 0, devCount = devices.Count(); i < devCount; i++)
+                for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext();)
                 {
-                    DS4Device device = devices.ElementAt(i);
+                    DS4Device device = devEnum.Current;
+                    //DS4Device device = devices.ElementAt(i);
                     device.StopUpdate();
                     //device.runRemoval();
                     device.HidDevice.CloseDevice();
@@ -248,9 +250,11 @@ namespace DS4Windows
             if (disabledDevCount > 0)
             {
                 List<HidDevice> disabledDevList = new List<HidDevice>();
-                for (int i = 0, arlen = disabledDevCount; i < arlen; i++)
+                for (var devEnum = DisabledDevices.GetEnumerator(); devEnum.MoveNext();)
+                //for (int i = 0, arlen = disabledDevCount; i < arlen; i++)
                 {
-                    HidDevice tempDev = DisabledDevices.ElementAt(i);
+                    //HidDevice tempDev = DisabledDevices.ElementAt(i);
+                    HidDevice tempDev = devEnum.Current;
                     if (tempDev != null)
                     {
                         if (tempDev.IsOpen && tempDev.IsConnected)

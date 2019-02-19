@@ -718,6 +718,8 @@ namespace DS4Windows
                 nUDGyroSmoothWeight.Value = (decimal)(GyroSmoothingWeight[device]);
                 cBGyroMouseXAxis.SelectedIndex = GyroMouseHorizontalAxis[device];
                 triggerCondAndCombo.SelectedIndex = SATriggerCond[device] ? 0 : 1;
+                gyroMouseDzNUD.Value = GyroMouseDeadZone[device];
+                toggleGyroMCb.Checked = GyroMouseToggle[device];
 
                 cBSteeringWheelEmulationAxis.SelectedIndex = (int) GetSASteeringWheelEmulationAxis(device);
 
@@ -839,6 +841,8 @@ namespace DS4Windows
                 cBGyroInvertY.Checked = false;
                 cBGyroSmooth.Checked = false;
                 nUDGyroSmoothWeight.Value = 0.5m;
+                gyroMouseDzNUD.Value = MouseCursor.GYRO_MOUSE_DEADZONE;
+                toggleGyroMCb.Checked = false;
                 cBGyroMouseXAxis.SelectedIndex = 0;
                 triggerCondAndCombo.SelectedIndex = 0;
                 cBSteeringWheelEmulationAxis.SelectedIndex = 0;
@@ -1344,6 +1348,8 @@ namespace DS4Windows
             GyroSmoothing[device] = cBGyroSmooth.Checked;
             GyroSmoothingWeight[device] = (double)nUDGyroSmoothWeight.Value;
             GyroMouseHorizontalAxis[device] = cBGyroMouseXAxis.SelectedIndex;
+            SetGyroMouseDeadZone(device, (int)gyroMouseDzNUD.Value, Program.rootHub);
+            SetGyroMouseToggle(device, toggleGyroMCb.Checked, Program.rootHub);
 
             int invert = 0;
             if (cBGyroInvertX.Checked)
@@ -2824,6 +2830,8 @@ namespace DS4Windows
             if (!loading)
             {
                 GyroTriggerTurns[device] = gyroTriggerBehavior.Checked;
+                if (device < 4)
+                    Program.rootHub.touchPad[device]?.ResetToggleGyroM();
             }
         }
 
@@ -3068,6 +3076,26 @@ namespace DS4Windows
             else
             {
                 MessageBox.Show($"{Properties.Resources.SASteeringWheelEmulationCalibrateNoneAxisError}.");
+            }
+        }
+
+        private void gyroMouseDzNUD_ValueChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                SetGyroMouseDeadZone(device, (int)gyroMouseDzNUD.Value,
+                    Program.rootHub);
+            }
+        }
+
+        private void toggleGyroMCb_Click(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                if (device < 4)
+                {
+                    SetGyroMouseToggle(device, toggleGyroMCb.Checked, Program.rootHub);
+                }
             }
         }
 

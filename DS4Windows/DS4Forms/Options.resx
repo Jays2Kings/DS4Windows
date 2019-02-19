@@ -148,7 +148,7 @@
     <value>0</value>
   </data>
   <data name="nUDRainbow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>30, 215</value>
+    <value>28, 207</value>
   </data>
   <data name="nUDRainbow.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -256,7 +256,7 @@
     <value>NoControl</value>
   </data>
   <data name="cBLightbyBattery.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 191</value>
+    <value>6, 184</value>
   </data>
   <data name="cBLightbyBattery.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 17</value>
@@ -346,7 +346,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbspc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>72, 218</value>
+    <value>70, 210</value>
   </data>
   <data name="lbspc.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 13</value>
@@ -2552,7 +2552,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="btnRainbow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 214</value>
+    <value>4, 206</value>
   </data>
   <data name="btnRainbow.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -2582,7 +2582,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="lbRainbowB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 214</value>
+    <value>201, 206</value>
   </data>
   <data name="lbRainbowB.Size" type="System.Drawing.Size, System.Drawing">
     <value>15, 13</value>
@@ -2609,7 +2609,7 @@ with profile</value>
     <value>1</value>
   </data>
   <data name="nUDRainbowB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>151, 214</value>
+    <value>149, 206</value>
   </data>
   <data name="nUDRainbowB.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 20</value>
@@ -2639,7 +2639,7 @@ with profile</value>
     <value>Pulse at</value>
   </data>
   <data name="cBFlashType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 133</value>
+    <value>6, 123</value>
   </data>
   <data name="cBFlashType.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 21</value>
@@ -2672,7 +2672,7 @@ with profile</value>
     <value>Color</value>
   </data>
   <data name="cBWhileCharging.Location" type="System.Drawing.Point, System.Drawing">
-    <value>91, 166</value>
+    <value>90, 156</value>
   </data>
   <data name="cBWhileCharging.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 21</value>
@@ -2702,7 +2702,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="btnFlashColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 137</value>
+    <value>148, 127</value>
   </data>
   <data name="btnFlashColor.Size" type="System.Drawing.Size, System.Drawing">
     <value>13, 13</value>
@@ -2729,7 +2729,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="btnChargingColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>218, 168</value>
+    <value>217, 158</value>
   </data>
   <data name="btnChargingColor.Size" type="System.Drawing.Size, System.Drawing">
     <value>13, 13</value>
@@ -2759,7 +2759,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="lbWhileCharging.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 167</value>
+    <value>4, 157</value>
   </data>
   <data name="lbWhileCharging.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 13</value>
@@ -2813,7 +2813,7 @@ with profile</value>
     <value>8</value>
   </data>
   <data name="nUDflashLED.Location" type="System.Drawing.Point, System.Drawing">
-    <value>78, 134</value>
+    <value>80, 124</value>
   </data>
   <data name="nUDflashLED.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 20</value>
@@ -2837,7 +2837,7 @@ with profile</value>
     <value>3, 3</value>
   </data>
   <data name="gBLightbar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 244</value>
+    <value>272, 233</value>
   </data>
   <data name="gBLightbar.TabIndex" type="System.Int32, mscorlib">
     <value>247</value>
@@ -3821,7 +3821,7 @@ with profile</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="lbL2TrackS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 455</value>
+    <value>438, 485</value>
   </data>
   <data name="lbL2TrackS.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -4259,7 +4259,7 @@ with profile</value>
     <value>4, 43</value>
   </data>
   <data name="fLPTiltControls.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 170</value>
+    <value>271, 203</value>
   </data>
   <data name="fLPTiltControls.TabIndex" type="System.Int32, mscorlib">
     <value>254</value>
@@ -4385,7 +4385,7 @@ with profile</value>
     <value>278, 254</value>
   </data>
   <data name="lBControls.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 186</value>
+    <value>157, 212</value>
   </data>
   <data name="lBControls.TabIndex" type="System.Int32, mscorlib">
     <value>180</value>
@@ -6119,7 +6119,7 @@ with profile</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tPControls.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 455</value>
+    <value>438, 485</value>
   </data>
   <data name="tPControls.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -6164,7 +6164,7 @@ with profile</value>
     <value>0, 66</value>
   </data>
   <data name="lVActions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 389</value>
+    <value>438, 419</value>
   </data>
   <data name="lVActions.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -6353,7 +6353,7 @@ with profile</value>
     <value>0, 0</value>
   </data>
   <data name="pnlActions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 455</value>
+    <value>438, 485</value>
   </data>
   <data name="pnlActions.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -6374,7 +6374,7 @@ with profile</value>
     <value>4, 22</value>
   </data>
   <data name="tPSpecial.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 455</value>
+    <value>438, 485</value>
   </data>
   <data name="tPSpecial.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -6401,7 +6401,7 @@ with profile</value>
     <value>0, 0</value>
   </data>
   <data name="tCControls.Size" type="System.Drawing.Size, System.Drawing">
-    <value>446, 481</value>
+    <value>446, 511</value>
   </data>
   <data name="tCControls.TabIndex" type="System.Int32, mscorlib">
     <value>253</value>
@@ -7120,6 +7120,9 @@ with profile</value>
   <data name="cBSixaxisZOutputCurve.Items2" xml:space="preserve">
     <value>Cubic</value>
   </data>
+  <data name="cBSixaxisZOutputCurve.Items3" xml:space="preserve">
+    <value>Easeout Quad</value>
+  </data>
   <data name="cBSixaxisZOutputCurve.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 28</value>
   </data>
@@ -7149,6 +7152,9 @@ with profile</value>
   </data>
   <data name="cBSixaxisXOutputCurve.Items2" xml:space="preserve">
     <value>Cubic</value>
+  </data>
+  <data name="cBSixaxisXOutputCurve.Items3" xml:space="preserve">
+    <value>Easeout Quad</value>
   </data>
   <data name="cBSixaxisXOutputCurve.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 1</value>
@@ -7240,6 +7246,9 @@ with profile</value>
   <data name="cBR2OutputCurve.Items2" xml:space="preserve">
     <value>Cubic</value>
   </data>
+  <data name="cBR2OutputCurve.Items3" xml:space="preserve">
+    <value>Easeout Quad</value>
+  </data>
   <data name="cBR2OutputCurve.Location" type="System.Drawing.Point, System.Drawing">
     <value>111, 28</value>
   </data>
@@ -7269,6 +7278,9 @@ with profile</value>
   </data>
   <data name="cBL2OutputCurve.Items2" xml:space="preserve">
     <value>Cubic</value>
+  </data>
+  <data name="cBL2OutputCurve.Items3" xml:space="preserve">
+    <value>Easeout Quad</value>
   </data>
   <data name="cBL2OutputCurve.Location" type="System.Drawing.Point, System.Drawing">
     <value>31, 28</value>
@@ -7363,6 +7375,9 @@ with profile</value>
   <data name="rsOutCurveComboBox.Items3" xml:space="preserve">
     <value>Cubic</value>
   </data>
+  <data name="rsOutCurveComboBox.Items4" xml:space="preserve">
+    <value>Easeout Quad</value>
+  </data>
   <data name="rsOutCurveComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>111, 3</value>
   </data>
@@ -7395,6 +7410,9 @@ with profile</value>
   </data>
   <data name="lsOutCurveComboBox.Items3" xml:space="preserve">
     <value>Cubic</value>
+  </data>
+  <data name="lsOutCurveComboBox.Items4" xml:space="preserve">
+    <value>Easeout Quad</value>
   </data>
   <data name="lsOutCurveComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>31, 2</value>
@@ -7915,6 +7933,84 @@ with profile</value>
   <data name="&gt;&gt;rBSAMouse.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="toggleGyroMCb.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="toggleGyroMCb.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 187</value>
+  </data>
+  <data name="toggleGyroMCb.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="toggleGyroMCb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 17</value>
+  </data>
+  <data name="toggleGyroMCb.TabIndex" type="System.Int32, mscorlib">
+    <value>276</value>
+  </data>
+  <data name="toggleGyroMCb.Text" xml:space="preserve">
+    <value>Toggle</value>
+  </data>
+  <data name="&gt;&gt;toggleGyroMCb.Name" xml:space="preserve">
+    <value>toggleGyroMCb</value>
+  </data>
+  <data name="&gt;&gt;toggleGyroMCb.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toggleGyroMCb.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;toggleGyroMCb.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label27.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 166</value>
+  </data>
+  <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 13</value>
+  </data>
+  <data name="label27.TabIndex" type="System.Int32, mscorlib">
+    <value>275</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>Deadzone</value>
+  </data>
+  <data name="&gt;&gt;label27.Name" xml:space="preserve">
+    <value>label27</value>
+  </data>
+  <data name="&gt;&gt;label27.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label27.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;label27.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="gyroMouseDzNUD.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 166</value>
+  </data>
+  <data name="gyroMouseDzNUD.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 20</value>
+  </data>
+  <data name="gyroMouseDzNUD.TabIndex" type="System.Int32, mscorlib">
+    <value>274</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseDzNUD.Name" xml:space="preserve">
+    <value>gyroMouseDzNUD</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseDzNUD.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseDzNUD.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseDzNUD.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="label26.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -7943,7 +8039,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;label26.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="triggerCondAndCombo.Items" xml:space="preserve">
     <value>And</value>
@@ -7952,7 +8048,7 @@ with profile</value>
     <value>Or</value>
   </data>
   <data name="triggerCondAndCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 67</value>
+    <value>165, 62</value>
   </data>
   <data name="triggerCondAndCombo.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 21</value>
@@ -7970,7 +8066,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;triggerCondAndCombo.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="cBGyroMouseXAxis.Items" xml:space="preserve">
     <value>Yaw</value>
@@ -7979,7 +8075,7 @@ with profile</value>
     <value>Roll</value>
   </data>
   <data name="cBGyroMouseXAxis.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 114</value>
+    <value>169, 107</value>
   </data>
   <data name="cBGyroMouseXAxis.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 21</value>
@@ -7997,7 +8093,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;cBGyroMouseXAxis.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="label16.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8006,7 +8102,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>167, 95</value>
+    <value>166, 91</value>
   </data>
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 13</value>
@@ -8027,7 +8123,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="lbGyroSmooth.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8036,7 +8132,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="lbGyroSmooth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 145</value>
+    <value>6, 139</value>
   </data>
   <data name="lbGyroSmooth.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 13</value>
@@ -8057,7 +8153,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;lbGyroSmooth.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="cBGyroSmooth.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8066,7 +8162,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="cBGyroSmooth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>75, 145</value>
+    <value>73, 139</value>
   </data>
   <data name="cBGyroSmooth.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
@@ -8087,7 +8183,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;cBGyroSmooth.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="lbSmoothWeight.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8096,7 +8192,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="lbSmoothWeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 145</value>
+    <value>94, 139</value>
   </data>
   <data name="lbSmoothWeight.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
@@ -8117,13 +8213,13 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;lbSmoothWeight.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="nUDGyroSmoothWeight.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="nUDGyroSmoothWeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 141</value>
+    <value>183, 135</value>
   </data>
   <data name="nUDGyroSmoothWeight.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 20</value>
@@ -8141,7 +8237,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;nUDGyroSmoothWeight.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="label12.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8171,10 +8267,10 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="nUDGyroMouseVertScale.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 93</value>
+    <value>95, 89</value>
   </data>
   <data name="nUDGyroMouseVertScale.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 20</value>
@@ -8192,7 +8288,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;nUDGyroMouseVertScale.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8201,7 +8297,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 95</value>
+    <value>7, 91</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 13</value>
@@ -8222,7 +8318,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>13</value>
   </data>
   <data name="gyroTriggerBehavior.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8255,7 +8351,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;gyroTriggerBehavior.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>14</value>
   </data>
   <data name="cBGyroInvertY.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8264,7 +8360,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="cBGyroInvertY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>92, 119</value>
+    <value>95, 114</value>
   </data>
   <data name="cBGyroInvertY.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
@@ -8288,7 +8384,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;cBGyroInvertY.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>15</value>
   </data>
   <data name="cBGyroInvertX.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8297,7 +8393,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="cBGyroInvertX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>49, 119</value>
+    <value>52, 114</value>
   </data>
   <data name="cBGyroInvertX.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
@@ -8321,7 +8417,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;cBGyroInvertX.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>16</value>
   </data>
   <data name="lbGyroInvert.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8330,7 +8426,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="lbGyroInvert.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 119</value>
+    <value>11, 114</value>
   </data>
   <data name="lbGyroInvert.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 13</value>
@@ -8354,7 +8450,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;lbGyroInvert.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>17</value>
   </data>
   <data name="lbGyroTriggers.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8387,7 +8483,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;lbGyroTriggers.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>18</value>
   </data>
   <data name="btnGyroTriggers.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -8417,10 +8513,10 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;btnGyroTriggers.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>19</value>
   </data>
   <data name="nUDGyroSensitivity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 67</value>
+    <value>96, 62</value>
   </data>
   <data name="nUDGyroSensitivity.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 20</value>
@@ -8438,7 +8534,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;nUDGyroSensitivity.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>20</value>
   </data>
   <data name="lbGyroSens.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8447,7 +8543,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="lbGyroSens.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 69</value>
+    <value>8, 64</value>
   </data>
   <data name="lbGyroSens.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 13</value>
@@ -8471,16 +8567,16 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;lbGyroSens.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>21</value>
   </data>
   <data name="pnlSAMouse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 43</value>
+    <value>6, 39</value>
   </data>
   <data name="pnlSAMouse.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="pnlSAMouse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 170</value>
+    <value>263, 207</value>
   </data>
   <data name="pnlSAMouse.TabIndex" type="System.Int32, mscorlib">
     <value>259</value>
@@ -8498,10 +8594,10 @@ with profile</value>
     <value>3</value>
   </data>
   <data name="gBGyro.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 253</value>
+    <value>3, 242</value>
   </data>
   <data name="gBGyro.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 224</value>
+    <value>272, 257</value>
   </data>
   <data name="gBGyro.TabIndex" type="System.Int32, mscorlib">
     <value>248</value>
@@ -8876,7 +8972,7 @@ with profile</value>
     <value>2, 2, 2, 2</value>
   </data>
   <data name="fLPSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>565, 481</value>
+    <value>565, 511</value>
   </data>
   <data name="fLPSettings.TabIndex" type="System.Int32, mscorlib">
     <value>254</value>
@@ -9167,16 +9263,16 @@ with profile</value>
     <value>True</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1011, 481</value>
+    <value>1011, 511</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>1027, 520</value>
+    <value>1027, 550</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>18, 94</value>
+    <value>18, 520</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Profile Options</value>
@@ -9587,7 +9683,7 @@ with profile</value>
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.6.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.6.8.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Options</value>

@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 using Process = System.Diagnostics.Process;
 using System.ComponentModel;
 using System.Globalization;
-using System.Runtime;
 using Microsoft.Win32.TaskScheduler;
 
 namespace DS4Windows
@@ -21,7 +20,7 @@ namespace DS4Windows
         public static ControlService rootHub;
         private static Thread testThread;
         private static Thread controlThread;
-        private static DS4Form ds4form;
+        private static Form ds4form;
 
         /// <summary>
         /// The main entry point for the application.
@@ -68,8 +67,6 @@ namespace DS4Windows
                     return;
                 }
             }
-
-            GCSettings.LatencyMode = GCLatencyMode.LowLatency;
 
             try
             {

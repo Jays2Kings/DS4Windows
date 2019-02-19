@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using static DS4Windows.Global;
+
 
 namespace DS4Windows
 {
@@ -76,6 +78,8 @@ namespace DS4Windows
             new Queue<ControlToXInput>(), new Queue<ControlToXInput>(),
             new Queue<ControlToXInput>(), new Queue<ControlToXInput>()
         };
+
+        static ReaderWriterLockSlim syncStateLock = new ReaderWriterLockSlim();
 
         public static SyntheticState globalState = new SyntheticState();
         public static SyntheticState[] deviceState = new SyntheticState[4]
@@ -190,206 +194,207 @@ namespace DS4Windows
         public static void Commit(int device)
         {
             SyntheticState state = deviceState[device];
-            lock (globalState)
+            syncStateLock.EnterWriteLock();
+
+            globalState.currentClicks.leftCount += state.currentClicks.leftCount - state.previousClicks.leftCount;
+            globalState.currentClicks.middleCount += state.currentClicks.middleCount - state.previousClicks.middleCount;
+            globalState.currentClicks.rightCount += state.currentClicks.rightCount - state.previousClicks.rightCount;
+            globalState.currentClicks.fourthCount += state.currentClicks.fourthCount - state.previousClicks.fourthCount;
+            globalState.currentClicks.fifthCount += state.currentClicks.fifthCount - state.previousClicks.fifthCount;
+            globalState.currentClicks.wUpCount += state.currentClicks.wUpCount - state.previousClicks.wUpCount;
+            globalState.currentClicks.wDownCount += state.currentClicks.wDownCount - state.previousClicks.wDownCount;
+            globalState.currentClicks.toggleCount += state.currentClicks.toggleCount - state.previousClicks.toggleCount;
+            globalState.currentClicks.toggle = state.currentClicks.toggle;
+
+            if (globalState.currentClicks.toggleCount != 0 && globalState.previousClicks.toggleCount == 0 && globalState.currentClicks.toggle)
             {
-                globalState.currentClicks.leftCount += state.currentClicks.leftCount - state.previousClicks.leftCount;
-                globalState.currentClicks.middleCount += state.currentClicks.middleCount - state.previousClicks.middleCount;
-                globalState.currentClicks.rightCount += state.currentClicks.rightCount - state.previousClicks.rightCount;
-                globalState.currentClicks.fourthCount += state.currentClicks.fourthCount - state.previousClicks.fourthCount;
-                globalState.currentClicks.fifthCount += state.currentClicks.fifthCount - state.previousClicks.fifthCount;
-                globalState.currentClicks.wUpCount += state.currentClicks.wUpCount - state.previousClicks.wUpCount;
-                globalState.currentClicks.wDownCount += state.currentClicks.wDownCount - state.previousClicks.wDownCount;
-                globalState.currentClicks.toggleCount += state.currentClicks.toggleCount - state.previousClicks.toggleCount;
-                globalState.currentClicks.toggle = state.currentClicks.toggle;
+                if (globalState.currentClicks.leftCount != 0 && globalState.previousClicks.leftCount == 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN);
+                if (globalState.currentClicks.rightCount != 0 && globalState.previousClicks.rightCount == 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
+                if (globalState.currentClicks.middleCount != 0 && globalState.previousClicks.middleCount == 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
+                if (globalState.currentClicks.fourthCount != 0 && globalState.previousClicks.fourthCount == 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1);
+                if (globalState.currentClicks.fifthCount != 0 && globalState.previousClicks.fifthCount == 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2);
+            }
+            else if (globalState.currentClicks.toggleCount != 0 && globalState.previousClicks.toggleCount == 0 && !globalState.currentClicks.toggle)
+            {
+                if (globalState.currentClicks.leftCount != 0 && globalState.previousClicks.leftCount == 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP);
+                if (globalState.currentClicks.rightCount != 0 && globalState.previousClicks.rightCount == 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
+                if (globalState.currentClicks.middleCount != 0 && globalState.previousClicks.middleCount == 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
+                if (globalState.currentClicks.fourthCount != 0 && globalState.previousClicks.fourthCount == 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
+                if (globalState.currentClicks.fifthCount != 0 && globalState.previousClicks.fifthCount == 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
+            }
 
-                if (globalState.currentClicks.toggleCount != 0 && globalState.previousClicks.toggleCount == 0 && globalState.currentClicks.toggle)
+            if (globalState.currentClicks.toggleCount == 0 && globalState.previousClicks.toggleCount == 0)
+            {
+                if (globalState.currentClicks.leftCount != 0 && globalState.previousClicks.leftCount == 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN);
+                else if (globalState.currentClicks.leftCount == 0 && globalState.previousClicks.leftCount != 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP);
+
+                if (globalState.currentClicks.middleCount != 0 && globalState.previousClicks.middleCount == 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
+                else if (globalState.currentClicks.middleCount == 0 && globalState.previousClicks.middleCount != 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
+
+                if (globalState.currentClicks.rightCount != 0 && globalState.previousClicks.rightCount == 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
+                else if (globalState.currentClicks.rightCount == 0 && globalState.previousClicks.rightCount != 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
+
+                if (globalState.currentClicks.fourthCount != 0 && globalState.previousClicks.fourthCount == 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1);
+                else if (globalState.currentClicks.fourthCount == 0 && globalState.previousClicks.fourthCount != 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
+
+                if (globalState.currentClicks.fifthCount != 0 && globalState.previousClicks.fifthCount == 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2);
+                else if (globalState.currentClicks.fifthCount == 0 && globalState.previousClicks.fifthCount != 0)
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
+
+                if (globalState.currentClicks.wUpCount != 0 && globalState.previousClicks.wUpCount == 0)
                 {
-                    if (globalState.currentClicks.leftCount != 0 && globalState.previousClicks.leftCount == 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN);
-                    if (globalState.currentClicks.rightCount != 0 && globalState.previousClicks.rightCount == 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
-                    if (globalState.currentClicks.middleCount != 0 && globalState.previousClicks.middleCount == 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
-                    if (globalState.currentClicks.fourthCount != 0 && globalState.previousClicks.fourthCount == 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1);
-                    if (globalState.currentClicks.fifthCount != 0 && globalState.previousClicks.fifthCount == 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2);
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, 120);
+                    oldnow = DateTime.UtcNow;
+                    wheel = 120;
                 }
-                else if (globalState.currentClicks.toggleCount != 0 && globalState.previousClicks.toggleCount == 0 && !globalState.currentClicks.toggle)
+                else if (globalState.currentClicks.wUpCount == 0 && globalState.previousClicks.wUpCount != 0)
+                    wheel = 0;
+
+                if (globalState.currentClicks.wDownCount != 0 && globalState.previousClicks.wDownCount == 0)
                 {
-                    if (globalState.currentClicks.leftCount != 0 && globalState.previousClicks.leftCount == 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP);
-                    if (globalState.currentClicks.rightCount != 0 && globalState.previousClicks.rightCount == 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
-                    if (globalState.currentClicks.middleCount != 0 && globalState.previousClicks.middleCount == 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
-                    if (globalState.currentClicks.fourthCount != 0 && globalState.previousClicks.fourthCount == 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
-                    if (globalState.currentClicks.fifthCount != 0 && globalState.previousClicks.fifthCount == 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, -120);
+                    oldnow = DateTime.UtcNow;
+                    wheel = -120;
                 }
-
-                if (globalState.currentClicks.toggleCount == 0 && globalState.previousClicks.toggleCount == 0)
-                {
-                    if (globalState.currentClicks.leftCount != 0 && globalState.previousClicks.leftCount == 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN);
-                    else if (globalState.currentClicks.leftCount == 0 && globalState.previousClicks.leftCount != 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP);
-
-                    if (globalState.currentClicks.middleCount != 0 && globalState.previousClicks.middleCount == 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
-                    else if (globalState.currentClicks.middleCount == 0 && globalState.previousClicks.middleCount != 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
-
-                    if (globalState.currentClicks.rightCount != 0 && globalState.previousClicks.rightCount == 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
-                    else if (globalState.currentClicks.rightCount == 0 && globalState.previousClicks.rightCount != 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
-
-                    if (globalState.currentClicks.fourthCount != 0 && globalState.previousClicks.fourthCount == 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1);
-                    else if (globalState.currentClicks.fourthCount == 0 && globalState.previousClicks.fourthCount != 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
-
-                    if (globalState.currentClicks.fifthCount != 0 && globalState.previousClicks.fifthCount == 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2);
-                    else if (globalState.currentClicks.fifthCount == 0 && globalState.previousClicks.fifthCount != 0)
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
-
-                    if (globalState.currentClicks.wUpCount != 0 && globalState.previousClicks.wUpCount == 0)
-                    {
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, 120);
-                        oldnow = DateTime.UtcNow;
-                        wheel = 120;
-                    }
-                    else if (globalState.currentClicks.wUpCount == 0 && globalState.previousClicks.wUpCount != 0)
-                        wheel = 0;
-
-                    if (globalState.currentClicks.wDownCount != 0 && globalState.previousClicks.wDownCount == 0)
-                    {
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, -120);
-                        oldnow = DateTime.UtcNow;
-                        wheel = -120;
-                    }
-                    if (globalState.currentClicks.wDownCount == 0 && globalState.previousClicks.wDownCount != 0)
-                        wheel = 0;
-                }
+                if (globalState.currentClicks.wDownCount == 0 && globalState.previousClicks.wDownCount != 0)
+                    wheel = 0;
+            }
             
 
-                if (wheel != 0) //Continue mouse wheel movement
+            if (wheel != 0) //Continue mouse wheel movement
+            {
+                DateTime now = DateTime.UtcNow;
+                if (now >= oldnow + TimeSpan.FromMilliseconds(100) && !pressagain)
                 {
-                    DateTime now = DateTime.UtcNow;
-                    if (now >= oldnow + TimeSpan.FromMilliseconds(100) && !pressagain)
-                    {
-                        oldnow = now;
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, wheel);
-                    }
+                    oldnow = now;
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, wheel);
                 }
+            }
 
-                // Merge and synthesize all key presses/releases that are present in this device's mapping.
-                // TODO what about the rest?  e.g. repeat keys really ought to be on some set schedule
-                Dictionary<UInt16, SyntheticState.KeyPresses>.KeyCollection kvpKeys = state.keyPresses.Keys;
-                //foreach (KeyValuePair<UInt16, SyntheticState.KeyPresses> kvp in state.keyPresses)
-                //for (int i = 0, keyCount = kvpKeys.Count; i < keyCount; i++)
-                for (var keyEnum = kvpKeys.GetEnumerator(); keyEnum.MoveNext();)
+            // Merge and synthesize all key presses/releases that are present in this device's mapping.
+            // TODO what about the rest?  e.g. repeat keys really ought to be on some set schedule
+            Dictionary<UInt16, SyntheticState.KeyPresses>.KeyCollection kvpKeys = state.keyPresses.Keys;
+            //foreach (KeyValuePair<UInt16, SyntheticState.KeyPresses> kvp in state.keyPresses)
+            //for (int i = 0, keyCount = kvpKeys.Count; i < keyCount; i++)
+            for (var keyEnum = kvpKeys.GetEnumerator(); keyEnum.MoveNext();)
+            {
+                //UInt16 kvpKey = kvpKeys.ElementAt(i);
+                UInt16 kvpKey = keyEnum.Current;
+                SyntheticState.KeyPresses kvpValue = state.keyPresses[kvpKey];
+
+                SyntheticState.KeyPresses gkp;
+                if (globalState.keyPresses.TryGetValue(kvpKey, out gkp))
                 {
-                    //UInt16 kvpKey = kvpKeys.ElementAt(i);
-                    UInt16 kvpKey = keyEnum.Current;
-                    SyntheticState.KeyPresses kvpValue = state.keyPresses[kvpKey];
-
-                    SyntheticState.KeyPresses gkp;
-                    if (globalState.keyPresses.TryGetValue(kvpKey, out gkp))
+                    gkp.current.vkCount += kvpValue.current.vkCount - kvpValue.previous.vkCount;
+                    gkp.current.scanCodeCount += kvpValue.current.scanCodeCount - kvpValue.previous.scanCodeCount;
+                    gkp.current.repeatCount += kvpValue.current.repeatCount - kvpValue.previous.repeatCount;
+                    gkp.current.toggle = kvpValue.current.toggle;
+                    gkp.current.toggleCount += kvpValue.current.toggleCount - kvpValue.previous.toggleCount;
+                }
+                else
+                {
+                    gkp = new SyntheticState.KeyPresses();
+                    gkp.current = kvpValue.current;
+                    globalState.keyPresses[kvpKey] = gkp;
+                }
+                if (gkp.current.toggleCount != 0 && gkp.previous.toggleCount == 0 && gkp.current.toggle)
+                {
+                    if (gkp.current.scanCodeCount != 0)
+                        InputMethods.performSCKeyPress(kvpKey);
+                    else
+                        InputMethods.performKeyPress(kvpKey);
+                }
+                else if (gkp.current.toggleCount != 0 && gkp.previous.toggleCount == 0 && !gkp.current.toggle)
+                {
+                    if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC
+                        InputMethods.performSCKeyRelease(kvpKey);
+                    else
+                        InputMethods.performKeyRelease(kvpKey);
+                }
+                else if (gkp.current.vkCount + gkp.current.scanCodeCount != 0 && gkp.previous.vkCount + gkp.previous.scanCodeCount == 0)
+                {
+                    if (gkp.current.scanCodeCount != 0)
                     {
-                        gkp.current.vkCount += kvpValue.current.vkCount - kvpValue.previous.vkCount;
-                        gkp.current.scanCodeCount += kvpValue.current.scanCodeCount - kvpValue.previous.scanCodeCount;
-                        gkp.current.repeatCount += kvpValue.current.repeatCount - kvpValue.previous.repeatCount;
-                        gkp.current.toggle = kvpValue.current.toggle;
-                        gkp.current.toggleCount += kvpValue.current.toggleCount - kvpValue.previous.toggleCount;
+                        oldnow = DateTime.UtcNow;
+                        InputMethods.performSCKeyPress(kvpKey);
+                        pressagain = false;
+                        keyshelddown = kvpKey;
                     }
                     else
                     {
-                        gkp = new SyntheticState.KeyPresses();
-                        gkp.current = kvpValue.current;
-                        globalState.keyPresses[kvpKey] = gkp;
+                        oldnow = DateTime.UtcNow;
+                        InputMethods.performKeyPress(kvpKey);
+                        pressagain = false;
+                        keyshelddown = kvpKey;
                     }
-                    if (gkp.current.toggleCount != 0 && gkp.previous.toggleCount == 0 && gkp.current.toggle)
+                }
+                else if (gkp.current.toggleCount != 0 || gkp.previous.toggleCount != 0 || gkp.current.repeatCount != 0 || // repeat or SC/VK transition
+                    ((gkp.previous.scanCodeCount == 0) != (gkp.current.scanCodeCount == 0))) //repeat keystroke after 500ms
+                {
+                    if (keyshelddown == kvpKey)
                     {
-                        if (gkp.current.scanCodeCount != 0)
-                            InputMethods.performSCKeyPress(kvpKey);
-                        else
-                            InputMethods.performKeyPress(kvpKey);
-                    }
-                    else if (gkp.current.toggleCount != 0 && gkp.previous.toggleCount == 0 && !gkp.current.toggle)
-                    {
-                        if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC
-                            InputMethods.performSCKeyRelease(kvpKey);
-                        else
-                            InputMethods.performKeyRelease(kvpKey);
-                    }
-                    else if (gkp.current.vkCount + gkp.current.scanCodeCount != 0 && gkp.previous.vkCount + gkp.previous.scanCodeCount == 0)
-                    {
-                        if (gkp.current.scanCodeCount != 0)
+                        DateTime now = DateTime.UtcNow;
+                        if (now >= oldnow + TimeSpan.FromMilliseconds(500) && !pressagain)
                         {
-                            oldnow = DateTime.UtcNow;
-                            InputMethods.performSCKeyPress(kvpKey);
-                            pressagain = false;
-                            keyshelddown = kvpKey;
+                            oldnow = now;
+                            pressagain = true;
                         }
-                        else
+                        if (pressagain && gkp.current.scanCodeCount != 0)
                         {
-                            oldnow = DateTime.UtcNow;
-                            InputMethods.performKeyPress(kvpKey);
-                            pressagain = false;
-                            keyshelddown = kvpKey;
-                        }
-                    }
-                    else if (gkp.current.toggleCount != 0 || gkp.previous.toggleCount != 0 || gkp.current.repeatCount != 0 || // repeat or SC/VK transition
-                        ((gkp.previous.scanCodeCount == 0) != (gkp.current.scanCodeCount == 0))) //repeat keystroke after 500ms
-                    {
-                        if (keyshelddown == kvpKey)
-                        {
-                            DateTime now = DateTime.UtcNow;
-                            if (now >= oldnow + TimeSpan.FromMilliseconds(500) && !pressagain)
+                            now = DateTime.UtcNow;
+                            if (now >= oldnow + TimeSpan.FromMilliseconds(25) && pressagain)
                             {
                                 oldnow = now;
-                                pressagain = true;
-                            }
-                            if (pressagain && gkp.current.scanCodeCount != 0)
-                            {
-                                now = DateTime.UtcNow;
-                                if (now >= oldnow + TimeSpan.FromMilliseconds(25) && pressagain)
-                                {
-                                    oldnow = now;
-                                    InputMethods.performSCKeyPress(kvpKey);
-                                }
-                            }
-                            else if (pressagain)
-                            {
-                                now = DateTime.UtcNow;
-                                if (now >= oldnow + TimeSpan.FromMilliseconds(25) && pressagain)
-                                {
-                                    oldnow = now;
-                                    InputMethods.performKeyPress(kvpKey);
-                                }
+                                InputMethods.performSCKeyPress(kvpKey);
                             }
                         }
-                    }
-                    if ((gkp.current.toggleCount == 0 && gkp.previous.toggleCount == 0) && gkp.current.vkCount + gkp.current.scanCodeCount == 0 && gkp.previous.vkCount + gkp.previous.scanCodeCount != 0)
-                    {
-                        if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC
+                        else if (pressagain)
                         {
-                            InputMethods.performSCKeyRelease(kvpKey);
-                            pressagain = false;
-                        }
-                        else
-                        {
-                            InputMethods.performKeyRelease(kvpKey);
-                            pressagain = false;
+                            now = DateTime.UtcNow;
+                            if (now >= oldnow + TimeSpan.FromMilliseconds(25) && pressagain)
+                            {
+                                oldnow = now;
+                                InputMethods.performKeyPress(kvpKey);
+                            }
                         }
                     }
                 }
-                globalState.SaveToPrevious(false);
+                if ((gkp.current.toggleCount == 0 && gkp.previous.toggleCount == 0) && gkp.current.vkCount + gkp.current.scanCodeCount == 0 && gkp.previous.vkCount + gkp.previous.scanCodeCount != 0)
+                {
+                    if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC
+                    {
+                        InputMethods.performSCKeyRelease(kvpKey);
+                        pressagain = false;
+                    }
+                    else
+                    {
+                        InputMethods.performKeyRelease(kvpKey);
+                        pressagain = false;
+                    }
+                }
             }
+            globalState.SaveToPrevious(false);
+
+            syncStateLock.ExitWriteLock();
             state.SaveToPrevious(true);
         }
 

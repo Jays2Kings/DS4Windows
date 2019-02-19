@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
 
-using System.Drawing; // Point struct
-
 namespace DS4Windows
 {
     public class X360Device : ScpDevice

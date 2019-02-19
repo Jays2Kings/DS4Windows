@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using static DS4Windows.Global;
-
 using System.Drawing; // Point struct
 
 namespace DS4Windows

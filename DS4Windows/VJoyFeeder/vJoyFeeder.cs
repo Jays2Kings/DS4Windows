@@ -4,7 +4,7 @@
 // https://github.com/shauleiz/vJoy/tree/master/apps/common/vJoyInterfaceCS
 //
 // This module is a feeder for VJoy virtual joystick driver. DS4Windows can optionally re-map and feed buttons and analog axis values from DS4 Controller to VJoy device.
-// At first this may seem silly because DS4Windows can already to re-mapping by using a virtual X360 Controller driver, so why feed VJoy virtual driver also? 
+// At first this may seem silly because DS4Windows can already do re-mapping by using a virtual X360 Controller driver, so why feed VJoy virtual driver also? 
 // Sometimes X360 driver may run out of analog axis options, so for example "SA motion sensor steering wheel emulation" in DS4Windows would reserve a thumbstick X or Y 
 // axis for SA steering wheel emulation usage. That thumbstick axis would be unavailable for "normal" thumbstick usage after this re-mapping. 
 // The problem can be solved by configuring DS4Windows to re-map SA steering wheel emulation axis to VJoy axis, so all analog axies in DS4 controller are still available for normal usage.
@@ -12,6 +12,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Security;    // SuppressUnmanagedCodeSecurity support to optimize for performance instead of code security
 
 namespace DS4Windows.VJoyFeeder
 {
@@ -105,7 +106,8 @@ namespace DS4Windows.VJoyFeeder
 
     //namespace vJoyInterfaceWrap
     //{
-        public class vJoy
+    [SuppressUnmanagedCodeSecurity]
+    public class vJoy
         {
 
             /***************************************************/
@@ -698,12 +700,17 @@ namespace DS4Windows.VJoyFeeder
         // Feed axis value to VJoy virtual joystic driver (DS4Windows sixaxis (SA) motion sensor steering wheel emulation feature can optionally feed VJoy analog axis instead of ScpVBus x360 axis
         public static void FeedAxisValue(int value, uint vJoyID, HID_USAGES axis)
         {
-            if (!vJoyInitialized)
-                InitializeVJoyDevice(vJoyID, axis);
-
             if (vJoyAvailable)
+            {
                 vJoyObj.SetAxis(value, vJoyID, axis);
+            }
+            else if (!vJoyInitialized)
+            {
+                // If this was the first call to this FeedAxisValue function and VJoy driver connection is not yet initialized
+                // then try to do it now. Subsequent calls will see the the vJoy as available (if connection succeeded) and 
+                // there is no need to re-initialize the connection everytime the feeder is used.
+                InitializeVJoyDevice(vJoyID, axis);
+            }
         }
-
     }
 }

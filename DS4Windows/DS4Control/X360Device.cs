@@ -129,7 +129,7 @@ namespace DS4Windows
 
                 if (state.PS) Output[11] |= (Byte)(1 << 2); // Guide     
 
-                SASteeringWheelEmulationAxisType steeringWheelMappedAxis = Global.getSASteeringWheelEmulationAxis(device);
+                SASteeringWheelEmulationAxisType steeringWheelMappedAxis = Global.GetSASteeringWheelEmulationAxis(device);
                 Int32 ThumbLX;
                 Int32 ThumbLY;
                 Int32 ThumbRX;
@@ -140,6 +140,13 @@ namespace DS4Windows
 
                 switch(steeringWheelMappedAxis)
                 {
+                    case SASteeringWheelEmulationAxisType.None:
+                        ThumbLX = Scale(state.LX, false);
+                        ThumbLY = Scale(state.LY, true);
+                        ThumbRX = Scale(state.RX, false);
+                        ThumbRY = Scale(state.RY, true);
+                        break;
+
                     case SASteeringWheelEmulationAxisType.LX:
                         ThumbLX = state.SASteeringWheelEmulationUnit;
                         ThumbLY = Scale(state.LY, true);
@@ -172,29 +179,26 @@ namespace DS4Windows
                         Output[12] = Output[13] = 0;
                         if (state.SASteeringWheelEmulationUnit >= 0) Output[12] = (Byte)state.SASteeringWheelEmulationUnit;
                         else Output[13] = (Byte)state.SASteeringWheelEmulationUnit;
-                        goto default; // Usually GOTO is not a good idea but in switch-case statements it is sometimes pretty handy and acceptable way to fall through case options
+                        goto case SASteeringWheelEmulationAxisType.None;
 
                     case SASteeringWheelEmulationAxisType.VJoy1X:
                     case SASteeringWheelEmulationAxisType.VJoy2X:
                         DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(state.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_X);
-                        goto default;
+                        goto case SASteeringWheelEmulationAxisType.None;
 
                     case SASteeringWheelEmulationAxisType.VJoy1Y:
                     case SASteeringWheelEmulationAxisType.VJoy2Y:
                         DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(state.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_Y);
-                        goto default;
+                        goto case SASteeringWheelEmulationAxisType.None;
 
                     case SASteeringWheelEmulationAxisType.VJoy1Z:
                     case SASteeringWheelEmulationAxisType.VJoy2Z:
                         DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(state.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_Z);
-                        goto default;
+                        goto case SASteeringWheelEmulationAxisType.None;
 
                     default:
-                        ThumbLX = Scale(state.LX, false);
-                        ThumbLY = Scale(state.LY, true);
-                        ThumbRX = Scale(state.RX, false);
-                        ThumbRY = Scale(state.RY, true);
-                        break;
+                        // Should never come here but just in case use the NONE case as default handler....
+                        goto case SASteeringWheelEmulationAxisType.None;                        
                 }
 
                 Output[14] = (Byte)((ThumbLX >> 0) & 0xFF); // LX

@@ -721,13 +721,13 @@ namespace DS4Windows
         }
 
         public static SASteeringWheelEmulationAxisType[] SASteeringWheelEmulationAxis => m_Config.sASteeringWheelEmulationAxis;
-        public static SASteeringWheelEmulationAxisType getSASteeringWheelEmulationAxis(int index)
+        public static SASteeringWheelEmulationAxisType GetSASteeringWheelEmulationAxis(int index)
         {
             return m_Config.sASteeringWheelEmulationAxis[index];
         }
 
         public static int[] SASteeringWheelEmulationRange => m_Config.sASteeringWheelEmulationRange;
-        public static int getSASteeringWheelEmulationRange(int index)
+        public static int GetSASteeringWheelEmulationRange(int index)
         {
             return m_Config.sASteeringWheelEmulationRange[index];
         }

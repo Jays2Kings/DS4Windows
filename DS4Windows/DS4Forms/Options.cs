@@ -719,9 +719,9 @@ namespace DS4Windows
                 cBGyroMouseXAxis.SelectedIndex = GyroMouseHorizontalAxis[device];
                 triggerCondAndCombo.SelectedIndex = SATriggerCond[device] ? 0 : 1;
 
-                cBSteeringWheelEmulationAxis.SelectedIndex = (int) getSASteeringWheelEmulationAxis(device);
+                cBSteeringWheelEmulationAxis.SelectedIndex = (int) GetSASteeringWheelEmulationAxis(device);
 
-                int idxSASteeringWheelEmulationRange = cBSteeringWheelEmulationRange.Items.IndexOf(getSASteeringWheelEmulationRange(device).ToString());
+                int idxSASteeringWheelEmulationRange = cBSteeringWheelEmulationRange.Items.IndexOf(GetSASteeringWheelEmulationRange(device).ToString());
                 if (idxSASteeringWheelEmulationRange >= 0) cBSteeringWheelEmulationRange.SelectedIndex = idxSASteeringWheelEmulationRange;
             }
             else

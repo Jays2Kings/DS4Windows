@@ -1650,8 +1650,10 @@ namespace DS4Windows
                 }
             }
 
-            if (getSASteeringWheelEmulationAxis(device) != SASteeringWheelEmulationAxisType.None)
+            if (GetSASteeringWheelEmulationAxis(device) != SASteeringWheelEmulationAxisType.None)
+            {
                 MappedState.SASteeringWheelEmulationUnit = Mapping.Scale360degreeGyroAxis(device, eState, ctrl);
+            }
 
             calculateFinalMouseMovement(ref tempMouseDeltaX, ref tempMouseDeltaY,
                 out mouseDeltaX, out mouseDeltaY);
@@ -3915,6 +3917,8 @@ namespace DS4Windows
 
             gyroAccelX = exposedState.getAccelX();
             gyroAccelZ = exposedState.getAccelZ();
+            //gyroAccelX = exposedState.OutputAccelX;
+            //gyroAccelZ = exposedState.OutputAccelZ;
 
             // State 0=Normal mode (ie. calibration process is not running), 1=Activating calibration, 2=Calibration process running, 3=Completing calibration, 4=Cancelling calibration
             if (controller.WheelRecalibrateActiveState == 1)
@@ -4057,6 +4061,8 @@ namespace DS4Windows
 
                 gyroAccelX = exposedState.getAccelX();
                 gyroAccelZ = exposedState.getAccelZ();
+                //gyroAccelX = exposedState.OutputAccelX;
+                //gyroAccelZ = exposedState.OutputAccelZ;
 
                 // If calibration values are missing then use "educated guesses" about good starting values
                 if (controller.wheelCenterPoint.IsEmpty)
@@ -4086,10 +4092,18 @@ namespace DS4Windows
                 }
 
 
-                int maxRangeRight = Global.getSASteeringWheelEmulationRange(device) / 2 * C_WHEEL_ANGLE_PRECISION;
+                int maxRangeRight = Global.GetSASteeringWheelEmulationRange(device) / 2 * C_WHEEL_ANGLE_PRECISION;
                 int maxRangeLeft = -maxRangeRight;
 
                 result = CalculateControllerAngle(gyroAccelX, gyroAccelZ, controller);
+
+                // Apply deadzone (SA X-deadzone value). This code assumes that 20deg is the max deadzone anyone ever might wanna use (in practice effective deadzone 
+                // is probably just few degrees by using SXDeadZone values 0.01...0.05)
+                double sxDead = getSXDeadzone(device);
+                if ( sxDead > 0 && result != 0 && Math.Abs(result) < (20.0 * C_WHEEL_ANGLE_PRECISION * sxDead) )
+                {
+                    result = 0;
+                }
 
                 // If wrapped around from +180 to -180 side (or vice versa) then SA steering wheel keeps on turning beyond 360 degrees (if range is >360)
                 int wheelFullTurnCount = controller.wheelFullTurnCount;
@@ -4134,28 +4148,76 @@ namespace DS4Windows
                 result = Mapping.ClampInt(maxRangeLeft, result, maxRangeRight);
 
                 // Debug log output of SA sensor values
-                //LogToGuiSACalibrationDebugMsg($"DEBUG gyro=({gyroAccelX}, {gyroAccelZ})  gyroPitchRollYaw=({currentDeviceState.Motion.gyroPitch}, {currentDeviceState.Motion.gyroRoll}, {currentDeviceState.Motion.gyroYaw})  gyroPitchRollYaw=({currentDeviceState.Motion.angVelPitch}, {currentDeviceState.Motion.angVelRoll}, {currentDeviceState.Motion.angVelYaw})  angle={result / (1.0 * C_WHEEL_ANGLE_PRECISION)}  fullTurns={controller.wheelFullTurnCount}", false);
+                //LogToGuiSACalibrationDebugMsg($"DBG gyro=({gyroAccelX}, {gyroAccelZ})  output=({exposedState.OutputAccelX}, {exposedState.OutputAccelZ})  PitRolYaw=({currentDeviceState.Motion.gyroPitch}, {currentDeviceState.Motion.gyroRoll}, {currentDeviceState.Motion.gyroYaw})  VelPitRolYaw=({currentDeviceState.Motion.angVelPitch}, {currentDeviceState.Motion.angVelRoll}, {currentDeviceState.Motion.angVelYaw})  angle={result / (1.0 * C_WHEEL_ANGLE_PRECISION)}  fullTurns={controller.wheelFullTurnCount}", false);
 
-                // Scale input to a raw x360 16bit output scale, except if output axis of steering wheel emulation is L2+R2 trigger axis.
-                switch(Global.getSASteeringWheelEmulationAxis(device))
+                // Apply anti-deadzone (SA X-antideadzone value)
+                double sxAntiDead = getSXAntiDeadzone(device); 
+
+                switch (Global.GetSASteeringWheelEmulationAxis(device))
                 {
                     case SASteeringWheelEmulationAxisType.LX:
                     case SASteeringWheelEmulationAxisType.LY:
                     case SASteeringWheelEmulationAxisType.RX:
                     case SASteeringWheelEmulationAxisType.RY:
                         // DS4 thumbstick axis output (-32768..32767 raw value range)
-                        return (((result - maxRangeLeft) * (32767 - (-32768))) / (maxRangeRight - maxRangeLeft)) + (-32768); 
+                        //return (((result - maxRangeLeft) * (32767 - (-32768))) / (maxRangeRight - maxRangeLeft)) + (-32768);
+                        if (result == 0) return 0;
+
+                        if (sxAntiDead > 0)
+                        {
+                            sxAntiDead *= 32767; 
+                            if (result < 0) return (((result - maxRangeLeft) * (-Convert.ToInt32(sxAntiDead) - (-32768))) / (0 - maxRangeLeft)) + (-32768);
+                            else return (((result - 0) * (32767 - (Convert.ToInt32(sxAntiDead)))) / (maxRangeRight - 0)) + (Convert.ToInt32(sxAntiDead));
+                        }
+                        else
+                        {
+                            return (((result - maxRangeLeft) * (32767 - (-32768))) / (maxRangeRight - maxRangeLeft)) + (-32768);
+                        }
 
                     case SASteeringWheelEmulationAxisType.L2R2:
                         // DS4 Trigger axis output. L2+R2 triggers share the same axis in x360 xInput/DInput controller, 
                         // so L2+R2 steering output supports only 360 turn range (-255..255 raw value range in the shared trigger axis)
+                        // return (((result - (-180)) * (255 - (-255))) / (180 - (-180))) + (-255);
+                        if (result == 0) return 0;
+
                         result = Convert.ToInt32(Math.Round(result / (1.0 * C_WHEEL_ANGLE_PRECISION))); 
                         if (result < 0) result = -181 - result;
-                        return (((result - (-180)) * (255 - (-255))) / (180 - (-180))) + (-255);
+
+                        if (sxAntiDead > 0)
+                        {
+                            sxAntiDead *= 255;
+                            if(result < 0) return (((result - (-180)) * (-Convert.ToInt32(sxAntiDead) - (-255))) / (0 - (-180))) + (-255);
+                            else return (((result - (0)) * (255 - (Convert.ToInt32(sxAntiDead)))) / (180 - (0))) + (Convert.ToInt32(sxAntiDead));
+                        }
+                        else
+                        {
+                            return (((result - (-180)) * (255 - (-255))) / (180 - (-180))) + (-255);
+                        }
+
+                    case SASteeringWheelEmulationAxisType.VJoy1X:
+                    case SASteeringWheelEmulationAxisType.VJoy1Y:
+                    case SASteeringWheelEmulationAxisType.VJoy1Z:
+                    case SASteeringWheelEmulationAxisType.VJoy2X:
+                    case SASteeringWheelEmulationAxisType.VJoy2Y:
+                    case SASteeringWheelEmulationAxisType.VJoy2Z:
+                        // SASteeringWheelEmulationAxisType.VJoy1X/VJoy1Y/VJoy1Z/VJoy2X/VJoy2Y/VJoy2Z VJoy axis output (0..32767 raw value range by default)
+                        // return (((result - maxRangeLeft) * (32767 - (-0))) / (maxRangeRight - maxRangeLeft)) + (-0);
+                        if (result == 0) return 16384;
+
+                        if (sxAntiDead > 0)
+                        {
+                            sxAntiDead *= 16384;
+                            if (result < 0) return (((result - maxRangeLeft) * (16384 - Convert.ToInt32(sxAntiDead) - (-0))) / (0 - maxRangeLeft)) + (-0);
+                            else return (((result - 0) * (32767 - (16384 + Convert.ToInt32(sxAntiDead)))) / (maxRangeRight - 0)) + (16384 + Convert.ToInt32(sxAntiDead));
+                        }
+                        else
+                        {
+                            return (((result - maxRangeLeft) * (32767 - (-0))) / (maxRangeRight - maxRangeLeft)) + (-0);
+                        }
 
                     default:
-                        // SASteeringWheelEmulationAxisType.VJoy1X/VJoy1Y/VJoy1Z/VJoy2X/VJoy2Y/VJoy2Z VJoy axis output (0..32767 raw value range by default)
-                        return (((result - maxRangeLeft) * (32767 - (-0))) / (maxRangeRight - maxRangeLeft)) + (-0);
+                        // Should never come here, but C# case statement syntax requires DEFAULT handler
+                        return 0;
                 }
             }
         }

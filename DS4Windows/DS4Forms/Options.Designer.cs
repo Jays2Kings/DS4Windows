@@ -4294,7 +4294,6 @@
             this.pnlLSTrack.ResumeLayout(false);
             this.pnlRSTrack.ResumeLayout(false);
             this.fLPTiltControls.ResumeLayout(false);
-            this.fLPTiltControls.PerformLayout();
             this.tCControls.ResumeLayout(false);
             this.tPControls.ResumeLayout(false);
             this.pnlController.ResumeLayout(false);

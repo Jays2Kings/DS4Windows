@@ -107,7 +107,7 @@ namespace DS4Windows.VJoyFeeder
     //namespace vJoyInterfaceWrap
     //{
     [SuppressUnmanagedCodeSecurity]
-    public class vJoy
+    public class VJoy
         {
 
             /***************************************************/
@@ -634,7 +634,7 @@ namespace DS4Windows.VJoyFeeder
 
         static bool vJoyInitialized = false;
         static bool vJoyAvailable = false;
-        static vJoy vJoyObj = null; 
+        static VJoy vJoyObj = null; 
 
         vJoyFeeder()
         {
@@ -657,7 +657,7 @@ namespace DS4Windows.VJoyFeeder
 
                 try
                 {
-                    if (vJoyObj == null) vJoyObj = new vJoy();
+                    if (vJoyObj == null) vJoyObj = new VJoy();
 
                     if (vJoyObj.vJoyEnabled() && vJoyObj.GetVJDAxisExist(vJoyID, axis))
                     {

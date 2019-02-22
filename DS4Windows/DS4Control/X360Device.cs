@@ -100,7 +100,7 @@ namespace DS4Windows
             Output[4] = (Byte)(device + firstController);
             Output[9] = 0x14;
 
-            for (int i = 10, outLen = Output.Length; i < outLen; i++)
+            for (int i = 10; i < 28; i++)
             {
                 Output[i] = 0;
             }

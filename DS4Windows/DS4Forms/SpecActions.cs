@@ -177,6 +177,10 @@ namespace DS4Windows
                     cBHoldDVR.SelectedIndex = int.Parse(dets[1]);
                     cBDTapDVR.SelectedIndex = int.Parse(dets[2]);*/
                     break;
+                case "SASteeringWheelEmulationCalibrate":
+                    cBActions.SelectedIndex = 8;
+                    nUDDCBT.Value = (decimal)act.delayTime;
+                    break;
             }
         }
 
@@ -331,6 +335,13 @@ namespace DS4Windows
 
                         }
                         break;
+                    case 8:
+                        action = Properties.Resources.SASteeringWheelEmulationCalibrate;
+                        actRe = true;
+                        if (!string.IsNullOrEmpty(oldprofilename) && oldprofilename != tBName.Text)
+                            Global.RemoveAction(oldprofilename);
+                        Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, Math.Round(nUDDCBT.Value, 1).ToString(), edit);
+                        break;
                 }
                 if (actRe)
                 {                    
@@ -368,7 +379,7 @@ namespace DS4Windows
             pnlProgram.Visible = i == 2;
             pnlProfile.Visible = i == 3;
             pnlKeys.Visible = i == 4;
-            pnlDisconnectBT.Visible = i == 5;
+            pnlDisconnectBT.Visible = i == 5 || i == 8;  // SASteeringWheelEmulationCalibrate action #8 re-uses DisconnectBT panel ("hold for X secs" detail option)
             pnlBatteryCheck.Visible = i == 6;
             pnlGameDVR.Visible = i == 7;
             btnSave.Enabled = i > 0;

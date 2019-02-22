@@ -4057,6 +4057,204 @@ with profile</value>
   <data name="&gt;&gt;lbGyroXN.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="lblSteeringWheelEmulationAxis.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblSteeringWheelEmulationAxis.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblSteeringWheelEmulationAxis.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 116</value>
+  </data>
+  <data name="lblSteeringWheelEmulationAxis.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 5, 0, 0</value>
+  </data>
+  <data name="lblSteeringWheelEmulationAxis.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 18</value>
+  </data>
+  <data name="lblSteeringWheelEmulationAxis.TabIndex" type="System.Int32, mscorlib">
+    <value>290</value>
+  </data>
+  <data name="lblSteeringWheelEmulationAxis.Text" xml:space="preserve">
+    <value>Steering wheel axis</value>
+  </data>
+  <data name="&gt;&gt;lblSteeringWheelEmulationAxis.Name" xml:space="preserve">
+    <value>lblSteeringWheelEmulationAxis</value>
+  </data>
+  <data name="&gt;&gt;lblSteeringWheelEmulationAxis.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblSteeringWheelEmulationAxis.Parent" xml:space="preserve">
+    <value>fLPTiltControls</value>
+  </data>
+  <data name="&gt;&gt;lblSteeringWheelEmulationAxis.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Items" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Items1" xml:space="preserve">
+    <value>Left X-Axis</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Items2" xml:space="preserve">
+    <value>Left Y-Axis</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Items3" xml:space="preserve">
+    <value>Right X-Axis</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Items4" xml:space="preserve">
+    <value>Right Y-Axis</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Items5" xml:space="preserve">
+    <value>Trigger L+R Axis</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Items6" xml:space="preserve">
+    <value>VJoy1 X-Axis</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Items7" xml:space="preserve">
+    <value>VJoy1 Y-Axis</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Items8" xml:space="preserve">
+    <value>VJoy1 Z-Axis</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Items9" xml:space="preserve">
+    <value>VJoy2 X-Axis</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Items10" xml:space="preserve">
+    <value>VJoy2 Y-Axis</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Items11" xml:space="preserve">
+    <value>VJoy2 Z-Axis</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Location" type="System.Drawing.Point, System.Drawing">
+    <value>107, 119</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 21</value>
+  </data>
+  <data name="cBSteeringWheelEmulationAxis.TabIndex" type="System.Int32, mscorlib">
+    <value>291</value>
+  </data>
+  <data name="&gt;&gt;cBSteeringWheelEmulationAxis.Name" xml:space="preserve">
+    <value>cBSteeringWheelEmulationAxis</value>
+  </data>
+  <data name="&gt;&gt;cBSteeringWheelEmulationAxis.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBSteeringWheelEmulationAxis.Parent" xml:space="preserve">
+    <value>fLPTiltControls</value>
+  </data>
+  <data name="&gt;&gt;cBSteeringWheelEmulationAxis.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="lblSteeringWheelEmulationRange.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblSteeringWheelEmulationRange.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblSteeringWheelEmulationRange.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 143</value>
+  </data>
+  <data name="lblSteeringWheelEmulationRange.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 5, 0, 0</value>
+  </data>
+  <data name="lblSteeringWheelEmulationRange.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 18</value>
+  </data>
+  <data name="lblSteeringWheelEmulationRange.TabIndex" type="System.Int32, mscorlib">
+    <value>292</value>
+  </data>
+  <data name="lblSteeringWheelEmulationRange.Text" xml:space="preserve">
+    <value>Steering wheel range</value>
+  </data>
+  <data name="&gt;&gt;lblSteeringWheelEmulationRange.Name" xml:space="preserve">
+    <value>lblSteeringWheelEmulationRange</value>
+  </data>
+  <data name="&gt;&gt;lblSteeringWheelEmulationRange.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblSteeringWheelEmulationRange.Parent" xml:space="preserve">
+    <value>fLPTiltControls</value>
+  </data>
+  <data name="&gt;&gt;lblSteeringWheelEmulationRange.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="cBSteeringWheelEmulationRange.Items" xml:space="preserve">
+    <value>90</value>
+  </data>
+  <data name="cBSteeringWheelEmulationRange.Items1" xml:space="preserve">
+    <value>180</value>
+  </data>
+  <data name="cBSteeringWheelEmulationRange.Items2" xml:space="preserve">
+    <value>270</value>
+  </data>
+  <data name="cBSteeringWheelEmulationRange.Items3" xml:space="preserve">
+    <value>360</value>
+  </data>
+  <data name="cBSteeringWheelEmulationRange.Items4" xml:space="preserve">
+    <value>450</value>
+  </data>
+  <data name="cBSteeringWheelEmulationRange.Items5" xml:space="preserve">
+    <value>720</value>
+  </data>
+  <data name="cBSteeringWheelEmulationRange.Items6" xml:space="preserve">
+    <value>900</value>
+  </data>
+  <data name="cBSteeringWheelEmulationRange.Items7" xml:space="preserve">
+    <value>1080</value>
+  </data>
+  <data name="cBSteeringWheelEmulationRange.Items8" xml:space="preserve">
+    <value>1440</value>
+  </data>
+  <data name="cBSteeringWheelEmulationRange.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 146</value>
+  </data>
+  <data name="cBSteeringWheelEmulationRange.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 21</value>
+  </data>
+  <data name="cBSteeringWheelEmulationRange.TabIndex" type="System.Int32, mscorlib">
+    <value>293</value>
+  </data>
+  <data name="&gt;&gt;cBSteeringWheelEmulationRange.Name" xml:space="preserve">
+    <value>cBSteeringWheelEmulationRange</value>
+  </data>
+  <data name="&gt;&gt;cBSteeringWheelEmulationRange.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBSteeringWheelEmulationRange.Parent" xml:space="preserve">
+    <value>fLPTiltControls</value>
+  </data>
+  <data name="&gt;&gt;cBSteeringWheelEmulationRange.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="btnSteeringWheelEmulationCalibrate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnSteeringWheelEmulationCalibrate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>182, 146</value>
+  </data>
+  <data name="btnSteeringWheelEmulationCalibrate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="btnSteeringWheelEmulationCalibrate.TabIndex" type="System.Int32, mscorlib">
+    <value>294</value>
+  </data>
+  <data name="btnSteeringWheelEmulationCalibrate.Text" xml:space="preserve">
+    <value>Calibrate...</value>
+  </data>
+  <data name="&gt;&gt;btnSteeringWheelEmulationCalibrate.Name" xml:space="preserve">
+    <value>btnSteeringWheelEmulationCalibrate</value>
+  </data>
+  <data name="&gt;&gt;btnSteeringWheelEmulationCalibrate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSteeringWheelEmulationCalibrate.Parent" xml:space="preserve">
+    <value>fLPTiltControls</value>
+  </data>
+  <data name="&gt;&gt;btnSteeringWheelEmulationCalibrate.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
   <data name="fLPTiltControls.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 43</value>
   </data>
@@ -4076,7 +4274,7 @@ with profile</value>
     <value>gBGyro</value>
   </data>
   <data name="&gt;&gt;fLPTiltControls.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="tPControls.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8393,7 +8591,7 @@ with profile</value>
     <value>gBGyro</value>
   </data>
   <data name="&gt;&gt;pnlSAMouse.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="gBGyro.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 242</value>
@@ -9056,7 +9254,7 @@ with profile</value>
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>102</value>
+    <value>25</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>96, 96</value>

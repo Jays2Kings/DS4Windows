@@ -404,7 +404,7 @@ namespace DS4Windows
                             this.On_Report(sender, e, tempIdx);
                         };
 
-                        EventHandler<EventArgs> tempEvnt = (sender, args) =>
+                        DS4Device.ReportHandler<EventArgs> tempEvnt = (sender, args) =>
                         {
                             DualShockPadMeta padDetail = new DualShockPadMeta();
                             GetPadDetailForIdx(tempIdx, ref padDetail);
@@ -620,7 +620,7 @@ namespace DS4Windows
                                 this.On_Report(sender, e, tempIdx);
                             };
 
-                            EventHandler<EventArgs> tempEvnt = (sender, args) =>
+                            DS4Device.ReportHandler<EventArgs> tempEvnt = (sender, args) =>
                             {
                                 DualShockPadMeta padDetail = new DualShockPadMeta();
                                 GetPadDetailForIdx(tempIdx, ref padDetail);
@@ -1013,9 +1013,10 @@ namespace DS4Windows
         private string[] tempStrings = new string[4] { string.Empty, string.Empty, string.Empty, string.Empty };
 
         // Called every time a new input report has arrived
-        protected virtual void On_Report(object sender, EventArgs e, int ind)
+        //protected virtual void On_Report(object sender, EventArgs e, int ind)
+        protected virtual void On_Report(DS4Device device, EventArgs e, int ind)
         {
-            DS4Device device = (DS4Device)sender;
+            //DS4Device device = (DS4Device)sender;
 
             if (ind != -1)
             {

@@ -29,6 +29,10 @@ you've used a 360 controller before)
   or built in pc). Toshiba's adapters currently do not work.
 - Disable Steam Controller Mapping support in Steam
 
+## Social
+
+[Discord](https://discord.gg/zrpPgyN)
+
 ## Device Detection Issue
 
 If your DS4 is not detected by DS4Windows and the lightbar continues to

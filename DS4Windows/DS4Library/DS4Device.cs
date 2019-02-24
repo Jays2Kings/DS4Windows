@@ -184,11 +184,15 @@ namespace DS4Windows
         private bool exitInputThread = false;
         private object exitLocker = new object();
 
-        public event EventHandler<EventArgs> Report = null;
+        public delegate void ReportHandler<TEventArgs>(DS4Device sender, TEventArgs args);
+
+        //public event EventHandler<EventArgs> Report = null;
+        public event ReportHandler<EventArgs> Report = null;
         public event EventHandler<EventArgs> Removal = null;
         public event EventHandler<EventArgs> SyncChange = null;
         public event EventHandler<EventArgs> SerialChange = null;
-        public EventHandler<EventArgs> MotionEvent = null;
+        //public EventHandler<EventArgs> MotionEvent = null;
+        public ReportHandler<EventArgs> MotionEvent = null;
 
         public HidDevice HidDevice => hDevice;
         public bool IsExclusive => HidDevice.IsExclusive;

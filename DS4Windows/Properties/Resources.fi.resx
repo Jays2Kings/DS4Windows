@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -548,5 +548,56 @@
   </data>
   <data name="XMLFiles" xml:space="preserve">
     <value>XML-tiedostot (*xml)</value>
+  </data>
+  <data name="BTPollRate" xml:space="preserve">
+    <value>Määrittelee DS4 laitteen tietojen luentatiheyden BT yhteystavassa</value>
+  </data>
+  <data name="CloseConfirm" xml:space="preserve">
+    <value>Tämä toiminto sulkee yhteyden kaikkiin ohjaimiin. Suorita toiminto?</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Vahvista...</value>
+  </data>
+  <data name="GyroTriggerBehavior" xml:space="preserve">
+    <value>Valitse valinta jolloin kytkimen painallus aktivoi gyro toiminnon. Poista valinta jolloin kytkimen painallus poistaa gyro toiminnon.</value>
+  </data>
+  <data name="LanguagePackApplyRestartRequired" xml:space="preserve">
+    <value>Kielivalinta tulee voimaan kun DS4Windows sovellus käynnistetään seuraavan kerran uudelleen.</value>
+  </data>
+  <data name="MacroRecorded" xml:space="preserve">
+    <value>Makro tallennettu.</value>
+  </data>
+  <data name="MultiAction" xml:space="preserve">
+    <value>Monitoiminappi</value>
+  </data>
+  <data name="RunAtStartup" xml:space="preserve">
+    <value>Määrittää Windowsin käynnistämään DS4Windows sovelluksen kirjautumisen yhteydessä</value>
+  </data>
+  <data name="SelectMacro" xml:space="preserve">
+    <value>Valitse makro</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrate" xml:space="preserve">
+    <value>Sixaxis rattitoiminnon kalibrointi</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrateInstruction1" xml:space="preserve">
+    <value>(1) Keskitä ohjain vaakatasoon, pidä ohjain vakaana ja paina "X"</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrateInstruction2" xml:space="preserve">
+    <value>(2) Kallista ohjainta 90° vasemmalle (tai oikealle) keskikohdasta  ja paina "X"</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrateInstruction3" xml:space="preserve">
+    <value>(3) Kallista ohjainta 90° oikealle (tai vasemmalle) keskikohdasta ja paina "X"</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrateInstruction" xml:space="preserve">
+    <value>Kaikki kolme kalibrointipistettä on asetettu kun valopalkin väri on muuttunut vihreäksi. Ohjaimen kallistelun aikana valopalkki vilkkuu kun ohjain on kallistettu kalibrointipisteen kohdalle. Hyväksy kalibrointi OK napilla.</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrateNoControllerError" xml:space="preserve">
+    <value>Rattiohjainemuloinnin sixaxis kallistusantureita ei voi kalibroida ilman ohjainta. Kytke ohjain joko bluetooth tai usb yhteydellä</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrateNoneAxisError" xml:space="preserve">
+    <value>Gyro rattiohjainemuloinnin käyttöakseli on asetettu NONE (ei käytössä) valinnalle. Valitse jokin muu valintavaihtoehto ennen sixaxis rattiohjainemuloinnin kalibrointia</value>
+  </data>
+  <data name="UACTask" xml:space="preserve">
+    <value>DS4Windows sovellus pitää käynnistää järjestelmävalvojan oikeuksilla tämän toiminnon käyttämiseksi.</value>
   </data>
 </root>

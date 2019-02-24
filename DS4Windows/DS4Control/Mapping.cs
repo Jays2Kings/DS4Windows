@@ -3690,19 +3690,11 @@ namespace DS4Windows
             }
         }
 
-        // BEGIN: SixAxis steering wheel emulation logic
 
-        private const int C_WHEEL_ANGLE_PRECISION = 10; // 1=precision of one degree, 10=precision of 1/10 of degree. Bigger number means fine graned precision
-        private const int C_WHEEL_ANGLE_PRECISION_DECIMALS = (C_WHEEL_ANGLE_PRECISION == 1 ? 0 : C_WHEEL_ANGLE_PRECISION / 10);
+        // SA steering wheel emulation mapping
 
-        // "In-game" calibration process:
-        // - Place controller at "steering wheel center" position and press "Calibrate SA steering wheel" special action button to start the calibration
-        // - Hold the controller still for a while at center point and press "X"
-        // - Turn the controller at 90 degree left or right position and hold still for few seconds and press "X"
-        // - Turn the controller at 90 degree position on the opposite side and press "X"
-        // - Now you can check the calibratio by turning the wheel and see when the green lightbar starts to blink (it should blink at those three calibrated positions)
-        // - Press "Calibrate SA steering wheel" special action key to accept the calibration (result is saved to ControllerConfigs.xml xml file)
-        //
+        private const int C_WHEEL_ANGLE_PRECISION = 10; // Precision of SA angle in 1/10 of degrees
+        
         private static readonly DS4Color calibrationColor_0 = new DS4Color { red = 0xA0, green = 0x00, blue = 0x00 };
         private static readonly DS4Color calibrationColor_1 = new DS4Color { red = 0xFF, green = 0xFF, blue = 0x00 };
         private static readonly DS4Color calibrationColor_2 = new DS4Color { red = 0x00, green = 0x50, blue = 0x50 };
@@ -3782,7 +3774,7 @@ namespace DS4Windows
                     double angle = Math.Acos(dotProduct / (magAB * magCD));
                     result = Convert.ToInt32(Global.Clamp(
                             -180.0 * C_WHEEL_ANGLE_PRECISION,
-                            Math.Round((angle * (180.0 / Math.PI)), C_WHEEL_ANGLE_PRECISION_DECIMALS) * C_WHEEL_ANGLE_PRECISION,
+                            Math.Round((angle * (180.0 / Math.PI)), 1) * C_WHEEL_ANGLE_PRECISION,
                             180.0 * C_WHEEL_ANGLE_PRECISION)
                          );
                 }
@@ -3802,8 +3794,6 @@ namespace DS4Windows
 
             gyroAccelX = exposedState.getAccelX();
             gyroAccelZ = exposedState.getAccelZ();
-            //gyroAccelX = exposedState.OutputAccelX;
-            //gyroAccelZ = exposedState.OutputAccelZ;
 
             // State 0=Normal mode (ie. calibration process is not running), 1=Activating calibration, 2=Calibration process running, 3=Completing calibration, 4=Cancelling calibration
             if (controller.WheelRecalibrateActiveState == 1)
@@ -3944,10 +3934,12 @@ namespace DS4Windows
                     return 0;
                 }
 
+                // Do nothing if connection is active but the actual DS4 controller is still missing or not yet synchronized
+                if (!controller.Synced)
+                    return 0;
+
                 gyroAccelX = exposedState.getAccelX();
                 gyroAccelZ = exposedState.getAccelZ();
-                //gyroAccelX = exposedState.OutputAccelX;
-                //gyroAccelZ = exposedState.OutputAccelZ;
 
                 // If calibration values are missing then use "educated guesses" about good starting values
                 if (controller.wheelCenterPoint.IsEmpty)
@@ -4106,7 +4098,6 @@ namespace DS4Windows
                 }
             }
         }
-        // END: SixAxis steering wheel emulation logic
 
     }
 }

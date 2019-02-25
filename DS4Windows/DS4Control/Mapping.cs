@@ -3964,7 +3964,7 @@ namespace DS4Windows
                     controller.wheelCircleCenterPointLeft.X = controller.wheelCenterPoint.X;
                     controller.wheelCircleCenterPointLeft.Y = controller.wheel90DegPointLeft.Y;
 
-                    AppLogger.LogToGui($"Controller {ctrl.x360Bus.FirstController + device} steering wheel emulation calibration values. center=({controller.wheelCenterPoint.X}, {controller.wheelCenterPoint.Y})  90L=({controller.wheel90DegPointLeft.X}, {controller.wheel90DegPointLeft.Y})  90R=({controller.wheel90DegPointRight.X}, {controller.wheel90DegPointRight.Y})", false);
+                    AppLogger.LogToGui($"Controller {ctrl.x360Bus.FirstController + device} steering wheel emulation calibration values. Center=({controller.wheelCenterPoint.X}, {controller.wheelCenterPoint.Y})  90L=({controller.wheel90DegPointLeft.X}, {controller.wheel90DegPointLeft.Y})  90R=({controller.wheel90DegPointRight.X}, {controller.wheel90DegPointRight.Y})  Range={Global.GetSASteeringWheelEmulationRange(device)}", false);
                     controller.wheelPrevRecalibrateTime = DateTime.Now;
                 }
 
@@ -3977,41 +3977,53 @@ namespace DS4Windows
                 // Apply deadzone (SA X-deadzone value). This code assumes that 20deg is the max deadzone anyone ever might wanna use (in practice effective deadzone 
                 // is probably just few degrees by using SXDeadZone values 0.01...0.05)
                 double sxDead = getSXDeadzone(device);
-                if (sxDead > 0 && result != 0 && Math.Abs(result) < (20.0 * C_WHEEL_ANGLE_PRECISION * sxDead))
+                if (sxDead > 0)
                 {
-                    result = 0;
+                    int sxDeadInt = Convert.ToInt32(20.0 * C_WHEEL_ANGLE_PRECISION * sxDead);
+                    if (Math.Abs(result) <= sxDeadInt)
+                    {
+                        result = 0;
+                    }
+                    else
+                    {
+                        // Smooth steering angle based on deadzone range instead of just clipping the deadzone gap
+                        result -= (result < 0 ? -sxDeadInt : sxDeadInt);
+                    }
                 }
 
-                // If wrapped around from +180 to -180 side (or vice versa) then SA steering wheel keeps on turning beyond 360 degrees (if range is >360)
+                // If wrapped around from +180 to -180 side (or vice versa) then SA steering wheel keeps on turning beyond 360 degrees (if range is >360).
+                // Keep track of how many times the steering wheel has been turned beyond the full 360 circle and clip the result to max range.
                 int wheelFullTurnCount = controller.wheelFullTurnCount;
                 if (controller.wheelPrevPhysicalAngle < 0 && result > 0)
                 {
                     if ((result - controller.wheelPrevPhysicalAngle) > 180 * C_WHEEL_ANGLE_PRECISION)
-                        if (maxRangeRight > 360 * C_WHEEL_ANGLE_PRECISION)
+                    {
+                        if (maxRangeRight > 360/2 * C_WHEEL_ANGLE_PRECISION)
                             wheelFullTurnCount--;
                         else
                             result = maxRangeLeft;
+                    }
                 }
                 else if (controller.wheelPrevPhysicalAngle > 0 && result < 0)
                 {
                     if ((controller.wheelPrevPhysicalAngle - result) > 180 * C_WHEEL_ANGLE_PRECISION)
-                        if (maxRangeRight > 360 * C_WHEEL_ANGLE_PRECISION)
+                    {
+                        if (maxRangeRight > 360/2 * C_WHEEL_ANGLE_PRECISION)
                             wheelFullTurnCount++;
                         else
                             result = maxRangeRight;
+                    }
                 }
                 controller.wheelPrevPhysicalAngle = result;
-
+                
                 if (wheelFullTurnCount != 0)
                 {
-                    if (wheelFullTurnCount > 0)
-                        result = (wheelFullTurnCount * 180 * C_WHEEL_ANGLE_PRECISION) + ((wheelFullTurnCount * 180 * C_WHEEL_ANGLE_PRECISION) + result);
-                    else
-                        result = (wheelFullTurnCount * 180 * C_WHEEL_ANGLE_PRECISION) - ((wheelFullTurnCount * -180 * C_WHEEL_ANGLE_PRECISION) - result);
+                    // Adjust value of result (steering wheel angle) based on num of full 360 turn counts
+                    result += (wheelFullTurnCount * 180 * C_WHEEL_ANGLE_PRECISION * 2);
                 }
 
                 // If the new angle is more than 180 degrees further away then this is probably bogus value (controller shaking too much and gyro and velocity sensors went crazy).
-                // Accept the new angle only when the new angle is within a "stability threshold", otherwise use the previous full angle value.
+                // Accept the new angle only when the new angle is within a "stability threshold", otherwise use the previous full angle value and wait for controller to be stabilized.
                 if (Math.Abs(result - controller.wheelPrevFullAngle) <= 180 * C_WHEEL_ANGLE_PRECISION)
                 {
                     controller.wheelPrevFullAngle = result;
@@ -4039,7 +4051,7 @@ namespace DS4Windows
                         // DS4 thumbstick axis output (-32768..32767 raw value range)
                         //return (((result - maxRangeLeft) * (32767 - (-32768))) / (maxRangeRight - maxRangeLeft)) + (-32768);
                         if (result == 0) return 0;
-
+                        
                         if (sxAntiDead > 0)
                         {
                             sxAntiDead *= 32767;
@@ -4050,7 +4062,7 @@ namespace DS4Windows
                         {
                             return (((result - maxRangeLeft) * (32767 - (-32768))) / (maxRangeRight - maxRangeLeft)) + (-32768);
                         }
-
+                        
                     case SASteeringWheelEmulationAxisType.L2R2:
                         // DS4 Trigger axis output. L2+R2 triggers share the same axis in x360 xInput/DInput controller, 
                         // so L2+R2 steering output supports only 360 turn range (-255..255 raw value range in the shared trigger axis)

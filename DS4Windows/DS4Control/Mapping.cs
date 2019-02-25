@@ -4015,7 +4015,7 @@ namespace DS4Windows
                     }
                 }
                 controller.wheelPrevPhysicalAngle = result;
-                
+
                 if (wheelFullTurnCount != 0)
                 {
                     // Adjust value of result (steering wheel angle) based on num of full 360 turn counts
@@ -4051,7 +4051,7 @@ namespace DS4Windows
                         // DS4 thumbstick axis output (-32768..32767 raw value range)
                         //return (((result - maxRangeLeft) * (32767 - (-32768))) / (maxRangeRight - maxRangeLeft)) + (-32768);
                         if (result == 0) return 0;
-                        
+
                         if (sxAntiDead > 0)
                         {
                             sxAntiDead *= 32767;

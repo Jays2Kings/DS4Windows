@@ -2,6 +2,8 @@
 
 namespace DS4Windows
 {
+    public delegate void SixAxisHandler<TEventArgs>(DS4SixAxis sender, TEventArgs args);
+
     public class SixAxisEventArgs : EventArgs
     {
         public readonly SixAxis sixAxis;
@@ -110,7 +112,8 @@ namespace DS4Windows
 
     public class DS4SixAxis
     {
-        public event EventHandler<SixAxisEventArgs> SixAccelMoved = null;
+        //public event EventHandler<SixAxisEventArgs> SixAccelMoved = null;
+        public event SixAxisHandler<SixAxisEventArgs> SixAccelMoved = null;
         private SixAxis sPrev = null, now = null;
         private CalibData[] calibrationData = new CalibData[6] { new CalibData(), new CalibData(),
             new CalibData(), new CalibData(), new CalibData(), new CalibData()

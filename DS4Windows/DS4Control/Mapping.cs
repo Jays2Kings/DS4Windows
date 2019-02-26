@@ -1668,7 +1668,7 @@ namespace DS4Windows
                             for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                             {
                                 DS4Controls dc = action.trigger[i];
-                                if (!getBoolMapping2(device, dc, cState, eState, tp, fieldMapping))
+                                if (!getBoolSpecialActionMapping(device, dc, cState, eState, tp, fieldMapping))
                                 {
                                     subtriggeractivated = false;
                                     break;
@@ -1692,7 +1692,7 @@ namespace DS4Windows
                             for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                             {
                                 DS4Controls dc = action.trigger[i];
-                                if (!getBoolMapping2(device, dc, cState, eState, tp, fieldMapping))
+                                if (!getBoolSpecialActionMapping(device, dc, cState, eState, tp, fieldMapping))
                                 {
                                     subtriggeractivated = false;
                                     break;
@@ -1711,7 +1711,7 @@ namespace DS4Windows
                             for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                             {
                                 DS4Controls dc = action.trigger[i];
-                                if (!getBoolMapping2(device, dc, cState, eState, tp, fieldMapping))
+                                if (!getBoolSpecialActionMapping(device, dc, cState, eState, tp, fieldMapping))
                                 {
                                     subtriggeractivated = false;
                                     break;
@@ -1733,7 +1733,7 @@ namespace DS4Windows
                             for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                             {
                                 DS4Controls dc = action.trigger[i];
-                                if (!getBoolMapping2(device, dc, cState, eState, tp, fieldMapping))
+                                if (!getBoolSpecialActionMapping(device, dc, cState, eState, tp, fieldMapping))
                                 {
                                     triggeractivated = false;
                                     break;
@@ -1749,7 +1749,7 @@ namespace DS4Windows
                             for (int i = 0, arlen = action.uTrigger.Count; i < arlen; i++)
                             {
                                 DS4Controls dc = action.uTrigger[i];
-                                if (!getBoolMapping2(device, dc, cState, eState, tp, fieldMapping))
+                                if (!getBoolSpecialActionMapping(device, dc, cState, eState, tp, fieldMapping))
                                 {
                                     utriggeractivated = false;
                                     break;
@@ -2017,8 +2017,8 @@ namespace DS4Windows
                                     //previousFieldMapping = new DS4StateFieldMapping(tempPrevState, eState, tp, true);
                                 }
 
-                                bool activeCur = getBoolMapping2(device, action.trigger[0], cState, eState, tp, fieldMapping);
-                                bool activePrev = getBoolMapping2(device, action.trigger[0], tempPrevState, eState, tp, previousFieldMapping);
+                                bool activeCur = getBoolSpecialActionMapping(device, action.trigger[0], cState, eState, tp, fieldMapping);
+                                bool activePrev = getBoolSpecialActionMapping(device, action.trigger[0], tempPrevState, eState, tp, previousFieldMapping);
                                 if (activeCur && !activePrev)
                                 {
                                     // pressed down
@@ -2156,7 +2156,7 @@ namespace DS4Windows
                 for (int i = 0, uTrigLen = action.uTrigger.Count; i < uTrigLen; i++)
                 {
                     DS4Controls dc = action.uTrigger[i];
-                    if (!getBoolMapping2(device, dc, cState, eState, tp, fieldMapping))
+                    if (!getBoolSpecialActionMapping(device, dc, cState, eState, tp, fieldMapping))
                     {
                         utriggeractivated = false;
                         break;
@@ -3090,6 +3090,62 @@ namespace DS4Windows
             return result;
         }
 
+        private static bool getBoolSpecialActionMapping(int device, DS4Controls control,
+            DS4State cState, DS4StateExposed eState, Mouse tp, DS4StateFieldMapping fieldMap)
+        {
+            bool result = false;
+
+            int controlNum = (int)control;
+            DS4StateFieldMapping.ControlType controlType = DS4StateFieldMapping.mappedType[controlNum];
+            if (controlType == DS4StateFieldMapping.ControlType.Button)
+            {
+                result = fieldMap.buttons[controlNum];
+            }
+            else if (controlType == DS4StateFieldMapping.ControlType.AxisDir)
+            {
+                byte axisValue = fieldMap.axisdirs[controlNum];
+
+                switch (control)
+                {
+                    case DS4Controls.LXNeg: result = cState.LX < 128 - 55; break;
+                    case DS4Controls.LYNeg: result = cState.LY < 128 - 55; break;
+                    case DS4Controls.RXNeg: result = cState.RX < 128 - 55; break;
+                    case DS4Controls.RYNeg: result = cState.RY < 128 - 55; break;
+                    default: result = axisValue > 128 + 55; break;
+                }
+            }
+            else if (controlType == DS4StateFieldMapping.ControlType.Trigger)
+            {
+                result = fieldMap.triggers[controlNum] > 100;
+            }
+            else if (controlType == DS4StateFieldMapping.ControlType.Touch)
+            {
+                result = fieldMap.buttons[controlNum];
+            }
+            else if (controlType == DS4StateFieldMapping.ControlType.SwipeDir)
+            {
+                result = fieldMap.swipedirbools[controlNum];
+            }
+            else if (controlType == DS4StateFieldMapping.ControlType.GyroDir)
+            {
+                bool sOff = isUsingSAforMouse(device);
+                bool safeTest = false;
+
+                switch (control)
+                {
+                    case DS4Controls.GyroXPos: safeTest = fieldMap.gryodirs[controlNum] > 67; break;
+                    case DS4Controls.GyroXNeg: safeTest = fieldMap.gryodirs[controlNum] < -67; break;
+                    case DS4Controls.GyroZPos: safeTest = fieldMap.gryodirs[controlNum] > 67; break;
+                    case DS4Controls.GyroZNeg: safeTest = fieldMap.gryodirs[controlNum] < -67; break;
+                    default: break;
+                }
+
+                result = sOff == false ? safeTest : false;
+            }
+
+            return result;
+        }
+
         private static bool getBoolActionMapping2(int device, DS4Controls control,
             DS4State cState, DS4StateExposed eState, Mouse tp, DS4StateFieldMapping fieldMap, bool analog = false)
         {
@@ -3183,215 +3239,6 @@ namespace DS4Windows
                 }
 
                 result = sOff == false ? safeTest : false;
-            }
-
-            return result;
-        }
-
-        /* TODO: Possibly remove usage of this version of the method */
-        public static bool getBoolActionMapping(int device, DS4Controls control,
-            DS4State cState, DS4StateExposed eState, Mouse tp, bool analog=false)
-        {
-            bool result = false;
-
-            if (control >= DS4Controls.Square && control <= DS4Controls.Cross)
-            {
-                switch (control)
-                {
-                    case DS4Controls.Cross: result = cState.Cross; break;
-                    case DS4Controls.Square: result = cState.Square; break;
-                    case DS4Controls.Triangle: result = cState.Triangle; break;
-                    case DS4Controls.Circle: result = cState.Circle; break;
-                    default: break;
-                }
-            }
-            else if (control >= DS4Controls.L1 && control <= DS4Controls.R3)
-            {
-                switch (control)
-                {
-                    case DS4Controls.L1: result = cState.L1; break;
-                    case DS4Controls.R1: result = cState.R1; break;
-                    case DS4Controls.L2: result = cState.L2 > 0; break;
-                    case DS4Controls.R2: result = cState.R2 > 0; break;
-                    case DS4Controls.L3: result = cState.L3; break;
-                    case DS4Controls.R3: result = cState.R3; break;
-                    default: break;
-                }
-            }
-            else if (control >= DS4Controls.DpadUp && control <= DS4Controls.DpadLeft)
-            {
-                switch (control)
-                {
-                    case DS4Controls.DpadUp: result = cState.DpadUp; break;
-                    case DS4Controls.DpadDown: result = cState.DpadDown; break;
-                    case DS4Controls.DpadLeft: result = cState.DpadLeft; break;
-                    case DS4Controls.DpadRight: result = cState.DpadRight; break;
-                    default: break;
-                }
-            }
-            else if (control >= DS4Controls.LXNeg && control <= DS4Controls.RYPos)
-            {
-                switch (control)
-                {
-                    case DS4Controls.LXNeg:
-                    {
-                        if (!analog)
-                        {
-                            double angle = cState.LSAngle;
-                            result = cState.LX < 128 && (angle >= 112.5 && angle <= 247.5);
-                        }
-                        else
-                        {
-                            result = cState.LX < 128;
-                        }
-
-                        break;
-                    }
-                    case DS4Controls.LYNeg:
-                    {
-                        if (!analog)
-                        {
-                            double angle = cState.LSAngle;
-                            result = cState.LY < 128 && (angle >= 22.5 && angle <= 157.5);
-                        }
-                        else
-                        {
-                            result = cState.LY < 128;
-                        }
-
-                        break;
-                    }
-                    case DS4Controls.RXNeg:
-                    {
-                        if (!analog)
-                        {
-                            double angle = cState.RSAngle;
-                            result = cState.RX < 128 && (angle >= 112.5 && angle <= 247.5);
-                        }
-                        else
-                        {
-                            result = cState.RX < 128;
-                        }
-
-                        break;
-                    }
-                    case DS4Controls.RYNeg:
-                    {
-                        if (!analog)
-                        {
-                            double angle = cState.RSAngle;
-                            result = cState.RY < 128 && (angle >= 22.5 && angle <= 157.5);
-                        }
-                        else
-                        {
-                            result = cState.RY < 128;
-                        }
-
-                        break;
-                    }
-                    case DS4Controls.LXPos:
-                    {
-                        if (!analog)
-                        {
-                            double angle = cState.LSAngle;
-                            result = cState.LX > 128 && (angle <= 67.5 || angle >= 292.5);
-                        }
-                        else
-                        {
-                            result = cState.LX > 128;
-                        }
-
-                        break;
-                    }
-                    case DS4Controls.LYPos:
-                    {
-                        if (!analog)
-                        {
-                            double angle = cState.LSAngle;
-                            result = cState.LY > 128 && (angle >= 202.5 && angle <= 337.5);
-                        }
-                        else
-                        {
-                            result = cState.LY > 128;
-                        }
-
-                        break;
-                    }
-                    case DS4Controls.RXPos:
-                    {
-                        if (!analog)
-                        {
-                            double angle = cState.RSAngle;
-                            result = cState.RX > 128 && (angle <= 67.5 || angle >= 292.5);
-                        }
-                        else
-                        {
-                            result = cState.RX > 128;
-                        }
-
-                        break;
-                    }
-                    case DS4Controls.RYPos:
-                    {
-                        if (!analog)
-                        {
-                            double angle = cState.RSAngle;
-                            result = cState.RY > 128 && (angle >= 202.5 && angle <= 337.5);
-                        }
-                        else
-                        {
-                            result = cState.RY > 128;
-                        }
-
-                        break;
-                    }
-                    default: break;
-                }
-            }
-            else if (control >= DS4Controls.TouchLeft && control <= DS4Controls.TouchRight)
-            {
-                switch (control)
-                {
-                    case DS4Controls.TouchLeft: result = (tp != null ? tp.leftDown : false); break;
-                    case DS4Controls.TouchRight: result = (tp != null ? tp.rightDown : false); break;
-                    case DS4Controls.TouchMulti: result = (tp != null ? tp.multiDown : false); break;
-                    case DS4Controls.TouchUpper: result = (tp != null ? tp.upperDown : false); break;
-                    default: break;
-                }
-            }
-            else if (control >= DS4Controls.SwipeLeft && control <= DS4Controls.SwipeDown)
-            {
-                switch (control)
-                {
-                    case DS4Controls.SwipeUp: result = (tp != null && tp.swipeUp); break;
-                    case DS4Controls.SwipeDown: result = (tp != null && tp.swipeDown); break;
-                    case DS4Controls.SwipeLeft: result = (tp != null && tp.swipeLeft); break;
-                    case DS4Controls.SwipeRight: result = (tp != null && tp.swipeRight); break;
-                    default: break;
-                }
-            }
-            else if (control >= DS4Controls.GyroXPos && control <= DS4Controls.GyroZNeg)
-            {
-                bool sOff = isUsingSAforMouse(device);
-
-                switch (control)
-                {
-                    case DS4Controls.GyroXPos: result = !sOff ? SXSens[device] * eState.AccelX > 67 : false; break;
-                    case DS4Controls.GyroXNeg: result = !sOff ? SXSens[device] * eState.AccelX < -67 : false; break;
-                    case DS4Controls.GyroZPos: result = !sOff ? SZSens[device] * eState.AccelZ > 67 : false; break;
-                    case DS4Controls.GyroZNeg: result = !sOff ? SZSens[device] * eState.AccelZ < -67 : false; break;
-                    default: break;
-                }
-            }
-            else
-            {
-                switch (control)
-                {
-                    case DS4Controls.PS: result = cState.PS; break;
-                    case DS4Controls.Share: result = cState.Share; break;
-                    case DS4Controls.Options: result = cState.Options; break;
-                    default: break;
-                }
             }
 
             return result;

@@ -63,93 +63,100 @@ namespace DS4Windows
 
         public void populateFieldMapping(DS4State cState, DS4StateExposed exposeState, Mouse tp, bool priorMouse = false)
         {
-            axisdirs[(int)DS4Controls.LXNeg] = cState.LX;
-            axisdirs[(int)DS4Controls.LXPos] = cState.LX;
-            axisdirs[(int)DS4Controls.LYNeg] = cState.LY;
-            axisdirs[(int)DS4Controls.LYPos] = cState.LY;
+            unchecked
+            {
+                axisdirs[(int)DS4Controls.LXNeg] = cState.LX;
+                axisdirs[(int)DS4Controls.LXPos] = cState.LX;
+                axisdirs[(int)DS4Controls.LYNeg] = cState.LY;
+                axisdirs[(int)DS4Controls.LYPos] = cState.LY;
 
-            axisdirs[(int)DS4Controls.RXNeg] = cState.RX;
-            axisdirs[(int)DS4Controls.RXPos] = cState.RX;
-            axisdirs[(int)DS4Controls.RYNeg] = cState.RY;
-            axisdirs[(int)DS4Controls.RYPos] = cState.RY;
+                axisdirs[(int)DS4Controls.RXNeg] = cState.RX;
+                axisdirs[(int)DS4Controls.RXPos] = cState.RX;
+                axisdirs[(int)DS4Controls.RYNeg] = cState.RY;
+                axisdirs[(int)DS4Controls.RYPos] = cState.RY;
 
-            triggers[(int)DS4Controls.L2] = cState.L2;
-            triggers[(int)DS4Controls.R2] = cState.R2;
+                triggers[(int)DS4Controls.L2] = cState.L2;
+                triggers[(int)DS4Controls.R2] = cState.R2;
 
-            buttons[(int)DS4Controls.L1] = cState.L1;
-            buttons[(int)DS4Controls.L3] = cState.L3;
-            buttons[(int)DS4Controls.R1] = cState.R1;
-            buttons[(int)DS4Controls.R3] = cState.R3;
+                buttons[(int)DS4Controls.L1] = cState.L1;
+                buttons[(int)DS4Controls.L3] = cState.L3;
+                buttons[(int)DS4Controls.R1] = cState.R1;
+                buttons[(int)DS4Controls.R3] = cState.R3;
 
-            buttons[(int)DS4Controls.Cross] = cState.Cross;
-            buttons[(int)DS4Controls.Triangle] = cState.Triangle;
-            buttons[(int)DS4Controls.Circle] = cState.Circle;
-            buttons[(int)DS4Controls.Square] = cState.Square;
-            buttons[(int)DS4Controls.PS] = cState.PS;
-            buttons[(int)DS4Controls.Options] = cState.Options;
-            buttons[(int)DS4Controls.Share] = cState.Share;
+                buttons[(int)DS4Controls.Cross] = cState.Cross;
+                buttons[(int)DS4Controls.Triangle] = cState.Triangle;
+                buttons[(int)DS4Controls.Circle] = cState.Circle;
+                buttons[(int)DS4Controls.Square] = cState.Square;
+                buttons[(int)DS4Controls.PS] = cState.PS;
+                buttons[(int)DS4Controls.Options] = cState.Options;
+                buttons[(int)DS4Controls.Share] = cState.Share;
 
-            buttons[(int)DS4Controls.DpadUp] = cState.DpadUp;
-            buttons[(int)DS4Controls.DpadRight] = cState.DpadRight;
-            buttons[(int)DS4Controls.DpadDown] = cState.DpadDown;
-            buttons[(int)DS4Controls.DpadLeft] = cState.DpadLeft;
+                buttons[(int)DS4Controls.DpadUp] = cState.DpadUp;
+                buttons[(int)DS4Controls.DpadRight] = cState.DpadRight;
+                buttons[(int)DS4Controls.DpadDown] = cState.DpadDown;
+                buttons[(int)DS4Controls.DpadLeft] = cState.DpadLeft;
 
-            buttons[(int)DS4Controls.TouchLeft] = tp != null ? (!priorMouse ? tp.leftDown : tp.priorLeftDown) : false;
-            buttons[(int)DS4Controls.TouchRight] = tp != null ? (!priorMouse ? tp.rightDown : tp.priorRightDown) : false;
-            buttons[(int)DS4Controls.TouchUpper] = tp != null ? (!priorMouse ? tp.upperDown : tp.priorUpperDown) : false;
-            buttons[(int)DS4Controls.TouchMulti] = tp != null ? (!priorMouse ? tp.multiDown : tp.priorMultiDown) : false;
+                buttons[(int)DS4Controls.TouchLeft] = tp != null ? (!priorMouse ? tp.leftDown : tp.priorLeftDown) : false;
+                buttons[(int)DS4Controls.TouchRight] = tp != null ? (!priorMouse ? tp.rightDown : tp.priorRightDown) : false;
+                buttons[(int)DS4Controls.TouchUpper] = tp != null ? (!priorMouse ? tp.upperDown : tp.priorUpperDown) : false;
+                buttons[(int)DS4Controls.TouchMulti] = tp != null ? (!priorMouse ? tp.multiDown : tp.priorMultiDown) : false;
 
-            int sixAxisX = -exposeState.getOutputAccelX();
-            gryodirs[(int)DS4Controls.GyroXPos] = sixAxisX > 0 ? sixAxisX : 0;
-            gryodirs[(int)DS4Controls.GyroXNeg] = sixAxisX < 0 ? sixAxisX : 0;
+                int sixAxisX = -exposeState.getOutputAccelX();
+                gryodirs[(int)DS4Controls.GyroXPos] = sixAxisX > 0 ? sixAxisX : 0;
+                gryodirs[(int)DS4Controls.GyroXNeg] = sixAxisX < 0 ? sixAxisX : 0;
 
-            int sixAxisZ = exposeState.getOutputAccelZ();
-            gryodirs[(int)DS4Controls.GyroZPos] = sixAxisZ > 0 ? sixAxisZ : 0;
-            gryodirs[(int)DS4Controls.GyroZNeg] = sixAxisZ < 0 ? sixAxisZ : 0;
+                int sixAxisZ = exposeState.getOutputAccelZ();
+                gryodirs[(int)DS4Controls.GyroZPos] = sixAxisZ > 0 ? sixAxisZ : 0;
+                gryodirs[(int)DS4Controls.GyroZNeg] = sixAxisZ < 0 ? sixAxisZ : 0;
 
-            swipedirs[(int)DS4Controls.SwipeLeft] = tp != null ? (!priorMouse ? tp.swipeLeftB : tp.priorSwipeLeftB) : (byte)0;
-            swipedirs[(int)DS4Controls.SwipeRight] = tp != null ? (!priorMouse ? tp.swipeRightB : tp.priorSwipeRightB) : (byte)0;
-            swipedirs[(int)DS4Controls.SwipeUp] = tp != null ? (!priorMouse ? tp.swipeUpB : tp.priorSwipeUpB) : (byte)0;
-            swipedirs[(int)DS4Controls.SwipeDown] = tp != null ? (!priorMouse ? tp.swipeDownB : tp.priorSwipeDownB) : (byte)0;
+                swipedirs[(int)DS4Controls.SwipeLeft] = tp != null ? (!priorMouse ? tp.swipeLeftB : tp.priorSwipeLeftB) : (byte)0;
+                swipedirs[(int)DS4Controls.SwipeRight] = tp != null ? (!priorMouse ? tp.swipeRightB : tp.priorSwipeRightB) : (byte)0;
+                swipedirs[(int)DS4Controls.SwipeUp] = tp != null ? (!priorMouse ? tp.swipeUpB : tp.priorSwipeUpB) : (byte)0;
+                swipedirs[(int)DS4Controls.SwipeDown] = tp != null ? (!priorMouse ? tp.swipeDownB : tp.priorSwipeDownB) : (byte)0;
 
-            swipedirbools[(int)DS4Controls.SwipeLeft] = tp != null ? (!priorMouse ? tp.swipeLeft : tp.priorSwipeLeft) : false;
-            swipedirbools[(int)DS4Controls.SwipeRight] = tp != null ? (!priorMouse ? tp.swipeRight : tp.priorSwipeRight) : false;
-            swipedirbools[(int)DS4Controls.SwipeUp] = tp != null ? (!priorMouse ? tp.swipeUp : tp.priorSwipeUp) : false;
-            swipedirbools[(int)DS4Controls.SwipeDown] = tp != null ? (!priorMouse ? tp.swipeDown : tp.priorSwipeDown) : false;
+                swipedirbools[(int)DS4Controls.SwipeLeft] = tp != null ? (!priorMouse ? tp.swipeLeft : tp.priorSwipeLeft) : false;
+                swipedirbools[(int)DS4Controls.SwipeRight] = tp != null ? (!priorMouse ? tp.swipeRight : tp.priorSwipeRight) : false;
+                swipedirbools[(int)DS4Controls.SwipeUp] = tp != null ? (!priorMouse ? tp.swipeUp : tp.priorSwipeUp) : false;
+                swipedirbools[(int)DS4Controls.SwipeDown] = tp != null ? (!priorMouse ? tp.swipeDown : tp.priorSwipeDown) : false;
+            }
+            
         }
 
         public void populateState(DS4State state)
         {
-            state.LX = axisdirs[(int)DS4Controls.LXNeg];
-            state.LX = axisdirs[(int)DS4Controls.LXPos];
-            state.LY = axisdirs[(int)DS4Controls.LYNeg];
-            state.LY = axisdirs[(int)DS4Controls.LYPos];
+            unchecked
+            {
+                state.LX = axisdirs[(int)DS4Controls.LXNeg];
+                state.LX = axisdirs[(int)DS4Controls.LXPos];
+                state.LY = axisdirs[(int)DS4Controls.LYNeg];
+                state.LY = axisdirs[(int)DS4Controls.LYPos];
 
-            state.RX = axisdirs[(int)DS4Controls.RXNeg];
-            state.RX = axisdirs[(int)DS4Controls.RXPos];
-            state.RY = axisdirs[(int)DS4Controls.RYNeg];
-            state.RY = axisdirs[(int)DS4Controls.RYPos];
+                state.RX = axisdirs[(int)DS4Controls.RXNeg];
+                state.RX = axisdirs[(int)DS4Controls.RXPos];
+                state.RY = axisdirs[(int)DS4Controls.RYNeg];
+                state.RY = axisdirs[(int)DS4Controls.RYPos];
 
-            state.L2 = triggers[(int)DS4Controls.L2];
-            state.R2 = triggers[(int)DS4Controls.R2];
+                state.L2 = triggers[(int)DS4Controls.L2];
+                state.R2 = triggers[(int)DS4Controls.R2];
 
-            state.L1 = buttons[(int)DS4Controls.L1];
-            state.L3 = buttons[(int)DS4Controls.L3];
-            state.R1 = buttons[(int)DS4Controls.R1];
-            state.R3 = buttons[(int)DS4Controls.R3];
+                state.L1 = buttons[(int)DS4Controls.L1];
+                state.L3 = buttons[(int)DS4Controls.L3];
+                state.R1 = buttons[(int)DS4Controls.R1];
+                state.R3 = buttons[(int)DS4Controls.R3];
 
-            state.Cross = buttons[(int)DS4Controls.Cross];
-            state.Triangle = buttons[(int)DS4Controls.Triangle];
-            state.Circle = buttons[(int)DS4Controls.Circle];
-            state.Square = buttons[(int)DS4Controls.Square];
-            state.PS = buttons[(int)DS4Controls.PS];
-            state.Options = buttons[(int)DS4Controls.Options];
-            state.Share = buttons[(int)DS4Controls.Share];
+                state.Cross = buttons[(int)DS4Controls.Cross];
+                state.Triangle = buttons[(int)DS4Controls.Triangle];
+                state.Circle = buttons[(int)DS4Controls.Circle];
+                state.Square = buttons[(int)DS4Controls.Square];
+                state.PS = buttons[(int)DS4Controls.PS];
+                state.Options = buttons[(int)DS4Controls.Options];
+                state.Share = buttons[(int)DS4Controls.Share];
 
-            state.DpadUp = buttons[(int)DS4Controls.DpadUp];
-            state.DpadRight = buttons[(int)DS4Controls.DpadRight];
-            state.DpadDown = buttons[(int)DS4Controls.DpadDown];
-            state.DpadLeft = buttons[(int)DS4Controls.DpadLeft];
+                state.DpadUp = buttons[(int)DS4Controls.DpadUp];
+                state.DpadRight = buttons[(int)DS4Controls.DpadRight];
+                state.DpadDown = buttons[(int)DS4Controls.DpadDown];
+                state.DpadLeft = buttons[(int)DS4Controls.DpadLeft];
+            }
         }
     }
 }

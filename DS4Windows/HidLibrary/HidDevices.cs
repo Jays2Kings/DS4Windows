@@ -46,9 +46,11 @@ namespace DS4Windows
             List<HidDevice> foundDevs = new List<HidDevice>();
             int devInfoLen = devInfo.Length;
             IEnumerable<DeviceInfo> temp = EnumerateDevices();
-            for (int i = 0, len = temp.Count(); i < len; i++)
+            for (var devEnum = temp.GetEnumerator(); devEnum.MoveNext();)
+            //for (int i = 0, len = temp.Count(); i < len; i++)
             {
-                DeviceInfo x = temp.ElementAt(i);
+                DeviceInfo x = devEnum.Current;
+                //DeviceInfo x = temp.ElementAt(i);
                 HidDevice tempDev = new HidDevice(x.Path, x.Description);
                 bool found = false;
                 for (int j = 0; !found && j < devInfoLen; j++)

@@ -63,7 +63,7 @@ namespace DS4Windows
             { "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion,
             string.Empty, string.Empty, string.Empty, string.Empty };
 
-        private const string UPDATER_VERSION = "1.3.0";
+        private const string UPDATER_VERSION = "1.3.1";
         private const int WM_QUERYENDSESSION = 0x11;
         private const int WM_CLOSE = 0x10;
         internal string updaterExe = Environment.Is64BitProcess ? "DS4Updater.exe" : "DS4Updater_x86.exe";
@@ -786,7 +786,7 @@ namespace DS4Windows
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
             string newversion = File.ReadAllText(appdatapath + "\\version.txt").Trim();
-            if (version.Replace(',', '.').CompareTo(newversion) != 0)
+            if (!string.IsNullOrWhiteSpace(newversion) && version.Replace(',', '.').CompareTo(newversion) != 0)
             {
                 if ((DialogResult)this.Invoke(new Func<DialogResult>(() => {
                     return MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion),
@@ -2097,7 +2097,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version2 = fvi.FileVersion;
             string newversion2 = File.ReadAllText(appdatapath + "\\version.txt").Trim();
-            if (version2.Replace(',', '.').CompareTo(newversion2) != 0)
+            if (!string.IsNullOrWhiteSpace(newversion2) && version2.Replace(',', '.').CompareTo(newversion2) != 0)
             {
                 if ((DialogResult)this.Invoke(new Func<DialogResult>(() =>
                 {

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DS4Windows</RootNamespace>
     <AssemblyName>DS4Windows</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -82,7 +82,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <DefineConstants>WIN64</DefineConstants>
     <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
-    <LangVersion>7.2</LangVersion>
+    <LangVersion>7.3</LangVersion>
     <DebugSymbols>false</DebugSymbols>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <WarningLevel>1</WarningLevel>
@@ -235,6 +235,7 @@
     <Compile Include="HidLibrary\NativeMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="VJoyFeeder\vJoyFeeder.cs" />
     <EmbeddedResource Include="DS4Forms\DS4Form.ar.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -300,6 +301,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.ro-RO.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
@@ -625,6 +627,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\Options.resx">
       <DependentUpon>Options.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\Options.ro-RO.resx">
       <DependentUpon>Options.cs</DependentUpon>
@@ -859,6 +862,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\SpecActions.resx">
       <DependentUpon>SpecActions.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\SpecActions.ro-RO.resx">
       <DependentUpon>SpecActions.cs</DependentUpon>
@@ -1047,7 +1051,9 @@
     <EmbeddedResource Include="Properties\Resources.cs.resx" />
     <EmbeddedResource Include="Properties\Resources.de-DE.resx" />
     <EmbeddedResource Include="Properties\Resources.el.resx" />
-    <EmbeddedResource Include="Properties\Resources.es.resx" />
+    <EmbeddedResource Include="Properties\Resources.es.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.fi.resx" />
     <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
     <EmbeddedResource Include="Properties\Resources.he.resx" />
@@ -1175,6 +1181,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="PostBuildMacros">
     <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">

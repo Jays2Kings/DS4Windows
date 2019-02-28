@@ -188,6 +188,11 @@
             this.lbGyroXP = new System.Windows.Forms.Label();
             this.bnGyroXN = new System.Windows.Forms.Button();
             this.lbGyroXN = new System.Windows.Forms.Label();
+            this.lblSteeringWheelEmulationAxis = new System.Windows.Forms.Label();
+            this.cBSteeringWheelEmulationAxis = new System.Windows.Forms.ComboBox();
+            this.lblSteeringWheelEmulationRange = new System.Windows.Forms.Label();
+            this.cBSteeringWheelEmulationRange = new System.Windows.Forms.ComboBox();
+            this.btnSteeringWheelEmulationCalibrate = new System.Windows.Forms.Button();
             this.tCControls = new System.Windows.Forms.TabControl();
             this.tPControls = new System.Windows.Forms.TabPage();
             this.lBControls = new System.Windows.Forms.ListBox();
@@ -315,6 +320,11 @@
             this.rBSAControls = new System.Windows.Forms.RadioButton();
             this.rBSAMouse = new System.Windows.Forms.RadioButton();
             this.pnlSAMouse = new System.Windows.Forms.Panel();
+            this.toggleGyroMCb = new System.Windows.Forms.CheckBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.gyroMouseDzNUD = new System.Windows.Forms.NumericUpDown();
+            this.label26 = new System.Windows.Forms.Label();
+            this.triggerCondAndCombo = new System.Windows.Forms.ComboBox();
             this.cBGyroMouseXAxis = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.lbGyroSmooth = new System.Windows.Forms.Label();
@@ -386,8 +396,6 @@
             this.optionsTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shareTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.psTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.triggerCondAndCombo = new System.Windows.Forms.ComboBox();
-            this.label26 = new System.Windows.Forms.Label();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
@@ -470,6 +478,7 @@
             this.fLPSettings.SuspendLayout();
             this.gBGyro.SuspendLayout();
             this.pnlSAMouse.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseDzNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSmoothWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroMouseVertScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSensitivity)).BeginInit();
@@ -1856,6 +1865,11 @@
             this.fLPTiltControls.Controls.Add(this.lbGyroXP);
             this.fLPTiltControls.Controls.Add(this.bnGyroXN);
             this.fLPTiltControls.Controls.Add(this.lbGyroXN);
+            this.fLPTiltControls.Controls.Add(this.lblSteeringWheelEmulationAxis);
+            this.fLPTiltControls.Controls.Add(this.cBSteeringWheelEmulationAxis);
+            this.fLPTiltControls.Controls.Add(this.lblSteeringWheelEmulationRange);
+            this.fLPTiltControls.Controls.Add(this.cBSteeringWheelEmulationRange);
+            this.fLPTiltControls.Controls.Add(this.btnSteeringWheelEmulationCalibrate);
             resources.ApplyResources(this.fLPTiltControls, "fLPTiltControls");
             this.fLPTiltControls.Name = "fLPTiltControls";
             // 
@@ -1910,6 +1924,62 @@
             // 
             resources.ApplyResources(this.lbGyroXN, "lbGyroXN");
             this.lbGyroXN.Name = "lbGyroXN";
+            // 
+            // lblSteeringWheelEmulationAxis
+            // 
+            resources.ApplyResources(this.lblSteeringWheelEmulationAxis, "lblSteeringWheelEmulationAxis");
+            this.lblSteeringWheelEmulationAxis.Name = "lblSteeringWheelEmulationAxis";
+            // 
+            // cBSteeringWheelEmulationAxis
+            // 
+            this.cBSteeringWheelEmulationAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBSteeringWheelEmulationAxis.FormattingEnabled = true;
+            this.cBSteeringWheelEmulationAxis.Items.AddRange(new object[] {
+            resources.GetString("cBSteeringWheelEmulationAxis.Items"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items1"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items2"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items3"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items4"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items5"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items6"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items7"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items8"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items9"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items10"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items11")});
+            resources.ApplyResources(this.cBSteeringWheelEmulationAxis, "cBSteeringWheelEmulationAxis");
+            this.cBSteeringWheelEmulationAxis.Name = "cBSteeringWheelEmulationAxis";
+            this.cBSteeringWheelEmulationAxis.SelectedIndexChanged += new System.EventHandler(this.cBSteeringWheelEmulationAxis_SelectedIndexChanged);
+            // 
+            // lblSteeringWheelEmulationRange
+            // 
+            resources.ApplyResources(this.lblSteeringWheelEmulationRange, "lblSteeringWheelEmulationRange");
+            this.lblSteeringWheelEmulationRange.Name = "lblSteeringWheelEmulationRange";
+            // 
+            // cBSteeringWheelEmulationRange
+            // 
+            this.cBSteeringWheelEmulationRange.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBSteeringWheelEmulationRange.FormattingEnabled = true;
+            this.cBSteeringWheelEmulationRange.Items.AddRange(new object[] {
+            resources.GetString("cBSteeringWheelEmulationRange.Items"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items1"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items2"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items3"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items4"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items5"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items6"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items7"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items8")});
+            resources.ApplyResources(this.cBSteeringWheelEmulationRange, "cBSteeringWheelEmulationRange");
+            this.cBSteeringWheelEmulationRange.Name = "cBSteeringWheelEmulationRange";
+            this.cBSteeringWheelEmulationRange.SelectedIndexChanged += new System.EventHandler(this.cBSteeringWheelEmulationRange_SelectedIndexChanged);
+            // 
+            // btnSteeringWheelEmulationCalibrate
+            // 
+            resources.ApplyResources(this.btnSteeringWheelEmulationCalibrate, "btnSteeringWheelEmulationCalibrate");
+            this.btnSteeringWheelEmulationCalibrate.Name = "btnSteeringWheelEmulationCalibrate";
+            this.btnSteeringWheelEmulationCalibrate.UseVisualStyleBackColor = true;
+            this.btnSteeringWheelEmulationCalibrate.Click += new System.EventHandler(this.btnSteeringWheelEmulationCalibrate_Click);
             // 
             // tCControls
             // 
@@ -3137,7 +3207,8 @@
             this.cBSixaxisZOutputCurve.Items.AddRange(new object[] {
             resources.GetString("cBSixaxisZOutputCurve.Items"),
             resources.GetString("cBSixaxisZOutputCurve.Items1"),
-            resources.GetString("cBSixaxisZOutputCurve.Items2")});
+            resources.GetString("cBSixaxisZOutputCurve.Items2"),
+            resources.GetString("cBSixaxisZOutputCurve.Items3")});
             resources.ApplyResources(this.cBSixaxisZOutputCurve, "cBSixaxisZOutputCurve");
             this.cBSixaxisZOutputCurve.Name = "cBSixaxisZOutputCurve";
             this.cBSixaxisZOutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBSixaxisZOutputCurve_SelectedIndexChanged);
@@ -3150,7 +3221,8 @@
             this.cBSixaxisXOutputCurve.Items.AddRange(new object[] {
             resources.GetString("cBSixaxisXOutputCurve.Items"),
             resources.GetString("cBSixaxisXOutputCurve.Items1"),
-            resources.GetString("cBSixaxisXOutputCurve.Items2")});
+            resources.GetString("cBSixaxisXOutputCurve.Items2"),
+            resources.GetString("cBSixaxisXOutputCurve.Items3")});
             resources.ApplyResources(this.cBSixaxisXOutputCurve, "cBSixaxisXOutputCurve");
             this.cBSixaxisXOutputCurve.Name = "cBSixaxisXOutputCurve";
             this.cBSixaxisXOutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBSixaxisXOutputCurve_SelectedIndexChanged);
@@ -3173,7 +3245,8 @@
             this.cBR2OutputCurve.Items.AddRange(new object[] {
             resources.GetString("cBR2OutputCurve.Items"),
             resources.GetString("cBR2OutputCurve.Items1"),
-            resources.GetString("cBR2OutputCurve.Items2")});
+            resources.GetString("cBR2OutputCurve.Items2"),
+            resources.GetString("cBR2OutputCurve.Items3")});
             resources.ApplyResources(this.cBR2OutputCurve, "cBR2OutputCurve");
             this.cBR2OutputCurve.Name = "cBR2OutputCurve";
             this.cBR2OutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBR2OutputCurve_SelectedIndexChanged);
@@ -3186,7 +3259,8 @@
             this.cBL2OutputCurve.Items.AddRange(new object[] {
             resources.GetString("cBL2OutputCurve.Items"),
             resources.GetString("cBL2OutputCurve.Items1"),
-            resources.GetString("cBL2OutputCurve.Items2")});
+            resources.GetString("cBL2OutputCurve.Items2"),
+            resources.GetString("cBL2OutputCurve.Items3")});
             resources.ApplyResources(this.cBL2OutputCurve, "cBL2OutputCurve");
             this.cBL2OutputCurve.Name = "cBL2OutputCurve";
             this.cBL2OutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBL2OutputCurve_SelectedIndexChanged);
@@ -3210,7 +3284,8 @@
             resources.GetString("rsOutCurveComboBox.Items"),
             resources.GetString("rsOutCurveComboBox.Items1"),
             resources.GetString("rsOutCurveComboBox.Items2"),
-            resources.GetString("rsOutCurveComboBox.Items3")});
+            resources.GetString("rsOutCurveComboBox.Items3"),
+            resources.GetString("rsOutCurveComboBox.Items4")});
             resources.ApplyResources(this.rsOutCurveComboBox, "rsOutCurveComboBox");
             this.rsOutCurveComboBox.Name = "rsOutCurveComboBox";
             this.rsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.rsOutCurveComboBox_SelectedIndexChanged);
@@ -3224,7 +3299,8 @@
             resources.GetString("lsOutCurveComboBox.Items"),
             resources.GetString("lsOutCurveComboBox.Items1"),
             resources.GetString("lsOutCurveComboBox.Items2"),
-            resources.GetString("lsOutCurveComboBox.Items3")});
+            resources.GetString("lsOutCurveComboBox.Items3"),
+            resources.GetString("lsOutCurveComboBox.Items4")});
             resources.ApplyResources(this.lsOutCurveComboBox, "lsOutCurveComboBox");
             this.lsOutCurveComboBox.Name = "lsOutCurveComboBox";
             this.lsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.lsOutCurveComboBox_SelectedIndexChanged);
@@ -3362,8 +3438,8 @@
             this.gBGyro.BackColor = System.Drawing.SystemColors.Control;
             this.gBGyro.Controls.Add(this.rBSAControls);
             this.gBGyro.Controls.Add(this.rBSAMouse);
-            this.gBGyro.Controls.Add(this.pnlSAMouse);
             this.gBGyro.Controls.Add(this.fLPTiltControls);
+            this.gBGyro.Controls.Add(this.pnlSAMouse);
             resources.ApplyResources(this.gBGyro, "gBGyro");
             this.gBGyro.Name = "gBGyro";
             this.gBGyro.TabStop = false;
@@ -3386,6 +3462,9 @@
             // 
             // pnlSAMouse
             // 
+            this.pnlSAMouse.Controls.Add(this.toggleGyroMCb);
+            this.pnlSAMouse.Controls.Add(this.label27);
+            this.pnlSAMouse.Controls.Add(this.gyroMouseDzNUD);
             this.pnlSAMouse.Controls.Add(this.label26);
             this.pnlSAMouse.Controls.Add(this.triggerCondAndCombo);
             this.pnlSAMouse.Controls.Add(this.cBGyroMouseXAxis);
@@ -3407,6 +3486,44 @@
             this.pnlSAMouse.Controls.Add(this.lbGyroSens);
             resources.ApplyResources(this.pnlSAMouse, "pnlSAMouse");
             this.pnlSAMouse.Name = "pnlSAMouse";
+            // 
+            // toggleGyroMCb
+            // 
+            resources.ApplyResources(this.toggleGyroMCb, "toggleGyroMCb");
+            this.toggleGyroMCb.Name = "toggleGyroMCb";
+            this.toggleGyroMCb.UseVisualStyleBackColor = true;
+            this.toggleGyroMCb.Click += new System.EventHandler(this.toggleGyroMCb_Click);
+            // 
+            // label27
+            // 
+            resources.ApplyResources(this.label27, "label27");
+            this.label27.Name = "label27";
+            // 
+            // gyroMouseDzNUD
+            // 
+            resources.ApplyResources(this.gyroMouseDzNUD, "gyroMouseDzNUD");
+            this.gyroMouseDzNUD.Name = "gyroMouseDzNUD";
+            this.gyroMouseDzNUD.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.gyroMouseDzNUD.ValueChanged += new System.EventHandler(this.gyroMouseDzNUD_ValueChanged);
+            // 
+            // label26
+            // 
+            resources.ApplyResources(this.label26, "label26");
+            this.label26.Name = "label26";
+            // 
+            // triggerCondAndCombo
+            // 
+            this.triggerCondAndCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.triggerCondAndCombo.FormattingEnabled = true;
+            this.triggerCondAndCombo.Items.AddRange(new object[] {
+            resources.GetString("triggerCondAndCombo.Items"),
+            resources.GetString("triggerCondAndCombo.Items1")});
+            resources.ApplyResources(this.triggerCondAndCombo, "triggerCondAndCombo");
+            this.triggerCondAndCombo.Name = "triggerCondAndCombo";
             // 
             // cBGyroMouseXAxis
             // 
@@ -4110,21 +4227,6 @@
             resources.ApplyResources(this.psTouchInvStripMenuItem, "psTouchInvStripMenuItem");
             this.psTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
             // 
-            // triggerCondAndCombo
-            // 
-            this.triggerCondAndCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.triggerCondAndCombo.FormattingEnabled = true;
-            this.triggerCondAndCombo.Items.AddRange(new object[] {
-            resources.GetString("triggerCondAndCombo.Items"),
-            resources.GetString("triggerCondAndCombo.Items1")});
-            resources.ApplyResources(this.triggerCondAndCombo, "triggerCondAndCombo");
-            this.triggerCondAndCombo.Name = "triggerCondAndCombo";
-            // 
-            // label26
-            // 
-            resources.ApplyResources(this.label26, "label26");
-            this.label26.Name = "label26";
-            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -4234,6 +4336,7 @@
             this.gBGyro.PerformLayout();
             this.pnlSAMouse.ResumeLayout(false);
             this.pnlSAMouse.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseDzNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSmoothWeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroMouseVertScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSensitivity)).EndInit();
@@ -4614,5 +4717,13 @@
         private System.Windows.Forms.CheckBox trackballCk;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.ComboBox triggerCondAndCombo;
+        private System.Windows.Forms.Label lblSteeringWheelEmulationAxis;
+        private System.Windows.Forms.ComboBox cBSteeringWheelEmulationAxis;
+        private System.Windows.Forms.Label lblSteeringWheelEmulationRange;
+        private System.Windows.Forms.ComboBox cBSteeringWheelEmulationRange;
+        private System.Windows.Forms.Button btnSteeringWheelEmulationCalibrate;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.NumericUpDown gyroMouseDzNUD;
+        private System.Windows.Forms.CheckBox toggleGyroMCb;
     }
 }

@@ -387,9 +387,12 @@ namespace DS4Windows
                     DS4LightBar.defaultLight = false;
                     //foreach (DS4Device device in devices)
 
-                    for (int i = 0, devCount = devices.Count(); i < devCount; i++)
+                    //for (int i = 0, devCount = devices.Count(); i < devCount; i++)
+                    int i = 0;
+                    for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext(); i++)
                     {
-                        DS4Device device = devices.ElementAt(i);
+                        DS4Device device = devEnum.Current;
+                        //DS4Device device = devices.ElementAt(i);
                         if (showlog)
                             LogDebug(Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
 
@@ -410,8 +413,9 @@ namespace DS4Windows
                         {
                             ProfilePath[i] = OlderProfilePath[i];
                         }
-                        LoadProfile(i, false, this, false, false);
+
                         touchPad[i] = new Mouse(i, device);
+                        LoadProfile(i, false, this, false, false);
                         device.LightBarColor = getMainColor(i);
 
                         if (!getDInputOnly(i) && device.isSynced())
@@ -439,7 +443,7 @@ namespace DS4Windows
                             this.On_Report(sender, e, tempIdx);
                         };
 
-                        EventHandler<EventArgs> tempEvnt = (sender, args) =>
+                        DS4Device.ReportHandler<EventArgs> tempEvnt = (sender, args) =>
                         {
                             DualShockPadMeta padDetail = new DualShockPadMeta();
                             GetPadDetailForIdx(tempIdx, ref padDetail);
@@ -594,9 +598,11 @@ namespace DS4Windows
                 DS4Devices.findControllers();
                 IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
                 //foreach (DS4Device device in devices)
-                for (int i = 0, devlen = devices.Count(); i < devlen; i++)
+                //for (int i = 0, devlen = devices.Count(); i < devlen; i++)
+                for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext();)
                 {
-                    DS4Device device = devices.ElementAt(i);
+                    DS4Device device = devEnum.Current;
+                    //DS4Device device = devices.ElementAt(i);
 
                     if (device.isDisconnectingStatus())
                         continue;
@@ -638,8 +644,8 @@ namespace DS4Windows
                                 ProfilePath[Index] = OlderProfilePath[Index];
                             }
 
-                            LoadProfile(Index, false, this, false, false);
                             touchPad[Index] = new Mouse(Index, device);
+                            LoadProfile(Index, false, this, false, false);
                             device.LightBarColor = getMainColor(Index);
 
                             int tempIdx = Index;
@@ -648,7 +654,7 @@ namespace DS4Windows
                                 this.On_Report(sender, e, tempIdx);
                             };
 
-                            EventHandler<EventArgs> tempEvnt = (sender, args) =>
+                            DS4Device.ReportHandler<EventArgs> tempEvnt = (sender, args) =>
                             {
                                 DualShockPadMeta padDetail = new DualShockPadMeta();
                                 GetPadDetailForIdx(tempIdx, ref padDetail);
@@ -1077,9 +1083,10 @@ namespace DS4Windows
         private string[] tempStrings = new string[4] { string.Empty, string.Empty, string.Empty, string.Empty };
 
         // Called every time a new input report has arrived
-        protected virtual void On_Report(object sender, EventArgs e, int ind)
+        //protected virtual void On_Report(object sender, EventArgs e, int ind)
+        protected virtual void On_Report(DS4Device device, EventArgs e, int ind)
         {
-            DS4Device device = (DS4Device)sender;
+            //DS4Device device = (DS4Device)sender;
 
             if (ind != -1)
             {

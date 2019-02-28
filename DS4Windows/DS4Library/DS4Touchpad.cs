@@ -52,13 +52,16 @@ namespace DS4Windows
 
     public class DS4Touchpad
     {
-        public event EventHandler<TouchpadEventArgs> TouchesBegan = null; // finger one or two landed (or both, or one then two, or two then one; any touches[] count increase)
-        public event EventHandler<TouchpadEventArgs> TouchesMoved = null; // deltaX/deltaY are set because one or both fingers were already down on a prior sensor reading
-        public event EventHandler<TouchpadEventArgs> TouchesEnded = null; // all fingers lifted
-        public event EventHandler<TouchpadEventArgs> TouchButtonDown = null; // touchpad pushed down until the button clicks
-        public event EventHandler<TouchpadEventArgs> TouchButtonUp = null; // touchpad button released
-        public event EventHandler<EventArgs> TouchUnchanged = null; // no status change for the touchpad itself... but other sensors may have changed, or you may just want to do some processing
-        public event EventHandler<EventArgs> PreTouchProcess = null; // used to publish that a touch packet is about to be processed
+        public delegate void TouchHandler<TEventArgs>(DS4Touchpad sender, TEventArgs args);
+
+        public event TouchHandler<TouchpadEventArgs> TouchesBegan = null; // finger one or two landed (or both, or one then two, or two then one; any touches[] count increase)
+        public event TouchHandler<TouchpadEventArgs> TouchesMoved = null; // deltaX/deltaY are set because one or both fingers were already down on a prior sensor reading
+        public event TouchHandler<TouchpadEventArgs> TouchesEnded = null; // all fingers lifted
+        public event TouchHandler<TouchpadEventArgs> TouchButtonDown = null; // touchpad pushed down until the button clicks
+        public event TouchHandler<TouchpadEventArgs> TouchButtonUp = null; // touchpad button released
+        public event TouchHandler<EventArgs> TouchUnchanged = null; // no status change for the touchpad itself... but other sensors may have changed, or you may just want to do some processing
+        public event TouchHandler<EventArgs> PreTouchProcess = null; // used to publish that a touch packet is about to be processed
+        //public event EventHandler<EventArgs> PreTouchProcess = null; // used to publish that a touch packet is about to be processed
 
         public readonly static int TOUCHPAD_DATA_OFFSET = 35;
         internal int lastTouchPadX1, lastTouchPadY1,

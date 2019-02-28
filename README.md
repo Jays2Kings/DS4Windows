@@ -29,6 +29,10 @@ you've used a 360 controller before)
   or built in pc). Toshiba's adapters currently do not work.
 - Disable Steam Controller Mapping support in Steam
 
+## Social
+
+[Discord](https://discord.gg/zrpPgyN)
+
 ## Device Detection Issue
 
 If your DS4 is not detected by DS4Windows and the lightbar continues to
@@ -63,6 +67,21 @@ for desktop mode and games launched outside of the Steam client. In order to
 use DS4Windows properly, you have to open Steam Big Picture Mode, navigate to
 Settings > Controller> Controller Settings and uncheck **Xbox Configuration
 Support** along with **PlayStation Configuration Support**.
+
+## Personal Game Testing
+
+My PC game library is not that expansive so there are likely games
+that will be tested by users that I will not have access to
+playing. There are likely going to be times when I cannot directly test
+against a game since I will not have access to play it. Most free to play
+games or games that include a playable demo should be fine for testing.
+For other games, it might be better if people could test against any game
+that I have in my game library and try to reproduce a problem. Here are
+links to my Steam and GOG profiles so that people can see what games I have
+access to play.
+
+https://steamcommunity.com/id/Ryochan7/games/?tab=all
+https://www.gog.com/u/Ryochan7/games
 
 ## Pull Requests
 

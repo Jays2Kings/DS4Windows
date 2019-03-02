@@ -3983,8 +3983,8 @@ namespace DS4Windows
             m_Leds[device] = new DS4Color(tempColor);
             m_ChargingLeds[device] = new DS4Color(Color.Black);
             m_FlashLeds[device] = new DS4Color(Color.Black);
-            useCustomLeds[device] = false;
-            m_CustomLeds[device] = new DS4Color(Color.Blue);
+            //useCustomLeds[device] = false;
+            //m_CustomLeds[device] = new DS4Color(Color.Blue);
 
             chargingType[device] = 0;
             launchProgram[device] = string.Empty;

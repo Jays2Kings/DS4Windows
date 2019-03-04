@@ -510,6 +510,10 @@ namespace DS4Windows
                                 tempDevice.StopUpdate();
                                 tempDevice.DisconnectDongle(true);
                             }
+                            else
+                            {
+                                tempDevice.StopUpdate();
+                            }
                         }
                         else
                         {

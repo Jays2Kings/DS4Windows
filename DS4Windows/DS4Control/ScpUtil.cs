@@ -1059,6 +1059,18 @@ namespace DS4Windows
             return m_Config.btPollRate[index];
         }
 
+        public static bool[] squareStickLS => m_Config.sqLSStickMode;
+        public static bool getSquareStickLS(int device)
+        {
+            return m_Config.sqLSStickMode[device];
+        }
+
+        public static bool[] squareStickRS => m_Config.sqRSStickMode;
+        public static bool getSquareStickRS(int device)
+        {
+            return m_Config.sqRSStickMode[device];
+        }
+
         public static int[] lsOutCurveMode => m_Config.lsOutCurveMode;
         public static int getLsOutCurveMode(int index)
         {
@@ -1500,6 +1512,8 @@ namespace DS4Windows
             MouseCursor.GYRO_MOUSE_DEADZONE };
         public bool[] gyroMouseToggle = new bool[5] { false, false, false,
             false, false };
+        public bool[] sqLSStickMode = new bool[5] { false, false, false, false, false };
+        public bool[] sqRSStickMode = new bool[5] { false, false, false, false, false };
         public int[] lsOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
         public int[] rsOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
         public int[] l2OutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
@@ -1846,6 +1860,9 @@ namespace DS4Windows
                 XmlNode xmlBTPollRate = m_Xdoc.CreateNode(XmlNodeType.Element, "BTPollRate", null); xmlBTPollRate.InnerText = btPollRate[device].ToString(); Node.AppendChild(xmlBTPollRate);
                 XmlNode xmlLsOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOutputCurveMode", null); xmlLsOutputCurveMode.InnerText = stickOutputCurveString(lsOutCurveMode[device]); Node.AppendChild(xmlLsOutputCurveMode);
                 XmlNode xmlRsOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOutputCurveMode", null); xmlRsOutputCurveMode.InnerText = stickOutputCurveString(rsOutCurveMode[device]); Node.AppendChild(xmlRsOutputCurveMode);
+
+                XmlNode xmlLsSquareStickMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LSSquareStick", null); xmlLsSquareStickMode.InnerText = sqLSStickMode[device].ToString(); Node.AppendChild(xmlLsSquareStickMode);
+                XmlNode xmlRsSquareStickMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSSquareStick", null); xmlRsSquareStickMode.InnerText = sqRSStickMode[device].ToString(); Node.AppendChild(xmlRsSquareStickMode);
 
                 XmlNode xmlL2OutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "L2OutputCurveMode", null); xmlL2OutputCurveMode.InnerText = axisOutputCurveString(l2OutCurveMode[device]); Node.AppendChild(xmlL2OutputCurveMode);
                 XmlNode xmlR2OutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "R2OutputCurveMode", null); xmlR2OutputCurveMode.InnerText = axisOutputCurveString(r2OutCurveMode[device]); Node.AppendChild(xmlR2OutputCurveMode);
@@ -2769,6 +2786,12 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSOutputCurveMode"); rsOutCurveMode[device] = stickOutputCurveId(Item.InnerText); }
                 catch { rsOutCurveMode[device] = 0; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSSquareStick"); bool.TryParse(Item.InnerText, out sqLSStickMode[device]); }
+                catch { sqLSStickMode[device] = false; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSSquareStick"); bool.TryParse(Item.InnerText, out sqRSStickMode[device]); }
+                catch { sqRSStickMode[device] = false; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2OutputCurveMode"); l2OutCurveMode[device] = axisOutputCurveId(Item.InnerText); }
                 catch { l2OutCurveMode[device] = 0; missingSetting = true; }
@@ -4005,6 +4028,8 @@ namespace DS4Windows
             gyroSmoothing[device] = false;
             gyroSmoothWeight[device] = 0.5;
             gyroMouseHorizontalAxis[device] = 0;
+            sqLSStickMode[device] = false;
+            sqRSStickMode[device] = false;
             lsOutCurveMode[device] = 0;
             rsOutCurveMode[device] = 0;
             l2OutCurveMode[device] = 0;

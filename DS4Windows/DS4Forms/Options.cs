@@ -631,6 +631,9 @@ namespace DS4Windows
                     btnBrowse.Text = Path.GetFileNameWithoutExtension(LaunchProgram[device]);
                 }
 
+                lsSquStickCk.Checked = squareStickLS[device];
+                rsSquStickCk.Checked = squareStickRS[device];
+
                 cBDinput.Checked = DinputOnly[device];
                 olddinputcheck = cBDinput.Checked;
                 cbStartTouchpadOff.Checked = StartTouchpadOff[device];
@@ -806,6 +809,9 @@ namespace DS4Windows
                 nUDRSS.Value = 1;
                 nUDSXS.Value = 1;
                 nUDSZS.Value = 1;
+
+                lsSquStickCk.Checked = false;
+                rsSquStickCk.Checked = false;
 
                 cBLaunchProgram.Checked = false;
                 pBProgram.Image = null;
@@ -1312,6 +1318,8 @@ namespace DS4Windows
             SZMaxzone[device] = (double)nUDSixAxisZMaxZone.Value;
             SXAntiDeadzone[device] = (double)nUDSixaxisXAntiDead.Value;
             SZAntiDeadzone[device] = (double)nUDSixaxisZAntiDead.Value;
+            squareStickLS[device] = lsSquStickCk.Checked;
+            squareStickRS[device] = rsSquStickCk.Checked;
             MouseAccel[device] = cBMouseAccel.Checked;
             DinputOnly[device] = cBDinput.Checked;
             StartTouchpadOff[device] = cbStartTouchpadOff.Checked;
@@ -3096,6 +3104,22 @@ namespace DS4Windows
                 {
                     SetGyroMouseToggle(device, toggleGyroMCb.Checked, Program.rootHub);
                 }
+            }
+        }
+
+        private void lsSquStickCk_Click(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                squareStickLS[device] = lsSquStickCk.Checked;
+            }
+        }
+
+        private void rsSquStickCk_Click(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                squareStickRS[device] = rsSquStickCk.Checked;
             }
         }
 

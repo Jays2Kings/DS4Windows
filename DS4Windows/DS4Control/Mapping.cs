@@ -79,6 +79,88 @@ namespace DS4Windows
             new Queue<ControlToXInput>(), new Queue<ControlToXInput>()
         };
 
+        struct DS4Vector2
+        {
+            public double x;
+            public double y;
+
+            public DS4Vector2(double x, double y)
+            {
+                this.x = x;
+                this.y = y;
+            }
+        }
+
+        class DS4SquareStick
+        {
+            public DS4Vector2 current;
+            public DS4Vector2 squared;
+
+            public DS4SquareStick()
+            {
+                current = new DS4Vector2(0.0, 0.0);
+                squared = new DS4Vector2(0.0, 0.0);
+            }
+
+            public void CircleToSquare()
+            {
+                const double PiOverFour = Math.PI / 4.0;
+                const double roundness = 5.0;
+
+                // Determine the theta angle
+                double angle = Math.Atan2(current.y, -current.x);
+                angle += Math.PI;
+                double cosAng = Math.Cos(angle);
+                // Scale according to which wall we're clamping to
+                // X+ wall
+                if (angle <= PiOverFour || angle > 7.0 * PiOverFour)
+                {
+                    double tempVal = 1.0 / cosAng;
+                    //Console.WriteLine("1 ANG: {0} | TEMP: {1}", angle, tempVal);
+                    squared.x = current.x * tempVal;
+                    squared.y = current.y * tempVal;
+                }
+                // Y+ wall
+                else if (angle > PiOverFour && angle <= 3.0 * PiOverFour)
+                {
+                    double tempVal = 1.0 / Math.Sin(angle);
+                    //Console.WriteLine("2 ANG: {0} | TEMP: {1}", angle, tempVal);
+                    squared.x = current.x * tempVal;
+                    squared.y = current.y * tempVal;
+                }
+                // X- wall
+                else if (angle > 3.0 * PiOverFour && angle <= 5.0 * PiOverFour)
+                {
+                    double tempVal = -1.0 / cosAng;
+                    //Console.WriteLine("3 ANG: {0} | TEMP: {1}", angle, tempVal);
+                    squared.x = current.x * tempVal;
+                    squared.y = current.y * tempVal;
+                }
+                // Y- wall
+                else if (angle > 5.0 * PiOverFour && angle <= 7.0 * PiOverFour)
+                {
+                    double tempVal = -1.0 / Math.Sin(angle);
+                    //Console.WriteLine("4 ANG: {0} | TEMP: {1}", angle, tempVal);
+                    squared.x = current.x * tempVal;
+                    squared.y = current.y * tempVal;
+                }
+                else return;
+
+                //double lengthOld = Math.Sqrt((x * x) + (y * y));
+                double length = current.x / cosAng;
+                //Console.WriteLine("LENGTH TEST ({0}) ({1}) {2}", lengthOld, length, (lengthOld == length).ToString());
+                double factor = Math.Pow(length, roundness);
+                //double ogX = current.x, ogY = current.y;
+                current.x += (squared.x - current.x) * factor;
+                current.y += (squared.y - current.y) * factor;
+                //Console.WriteLine("INPUT: {0} {1} | {2} {3} | {4} {5} | {6} {7}",
+                //    ogX, ogY, current.x, current.y, squared.x, squared.y, length, factor);
+            }
+        }
+
+        static DS4SquareStick[] outSqrStk = new DS4SquareStick[4] { new DS4SquareStick(),
+        new DS4SquareStick(), new DS4SquareStick(), new DS4SquareStick()};
+
         static ReaderWriterLockSlim syncStateLock = new ReaderWriterLockSlim();
 
         public static SyntheticState globalState = new SyntheticState();
@@ -788,6 +870,24 @@ namespace DS4Windows
             if (r2Sens != 1.0)
                 dState.R2 = (byte)Global.Clamp(0, r2Sens * dState.R2, 255);
 
+            if (getSquareStickLS(device))
+            {
+                double capX = dState.LX >= 128 ? 127.0 : 128.0;
+                double capY = dState.LY >= 128 ? 127.0 : 128.0;
+                double tempX = (dState.LX - 128.0) / capX;
+                double tempY = (dState.LY - 128.0) / capY;
+                DS4SquareStick sqstick = outSqrStk[device];
+                sqstick.current.x = tempX; sqstick.current.y = tempY;
+                sqstick.CircleToSquare();
+                //Console.WriteLine("Input ({0}) | Output ({1})", tempY, sqstick.current.y);
+                tempX = sqstick.current.x < -1.0 ? -1.0 : sqstick.current.x > 1.0
+                    ? 1.0 : sqstick.current.x;
+                tempY = sqstick.current.y < -1.0 ? -1.0 : sqstick.current.y > 1.0
+                    ? 1.0 : sqstick.current.y;
+                dState.LX = (byte)(tempX * capX + 128.0);
+                dState.LY = (byte)(tempY * capY + 128.0);
+            }
+
             int lsOutCurveMode = lsOutCurveModeArray[device] = getLsOutCurveMode(device);
             if (lsOutCurveMode > 0)
             {
@@ -857,6 +957,24 @@ namespace DS4Windows
                     dState.LX = (byte)(-1.0 * outputX * signX * capX + 128.0);
                     dState.LY = (byte)(-1.0 * outputY * signY * capY + 128.0);
                 }
+            }
+
+            if (getSquareStickRS(device))
+            {
+                double capX = dState.RX >= 128 ? 127.0 : 128.0;
+                double capY = dState.RY >= 128 ? 127.0 : 128.0;
+                double tempX = (dState.RX - 128.0) / capX;
+                double tempY = (dState.RY - 128.0) / capY;
+                DS4SquareStick sqstick = outSqrStk[device];
+                sqstick.current.x = tempX; sqstick.current.y = tempY;
+                sqstick.CircleToSquare();
+                tempX = sqstick.current.x < -1.0 ? -1.0 : sqstick.current.x > 1.0
+                    ? 1.0 : sqstick.current.x;
+                tempY = sqstick.current.y < -1.0 ? -1.0 : sqstick.current.y > 1.0
+                    ? 1.0 : sqstick.current.y;
+                //Console.WriteLine("Input ({0}) | Output ({1})", tempY, sqstick.current.y);
+                dState.RX = (byte)(tempX * capX + 128.0);
+                dState.RY = (byte)(tempY * capY + 128.0);
             }
 
             int rsOutCurveMode = rsOutCurveModeArray[device] = getRsOutCurveMode(device);

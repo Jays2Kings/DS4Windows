@@ -397,6 +397,9 @@
             this.shareTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.psTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
+            this.squStickTabPage = new System.Windows.Forms.TabPage();
+            this.lsSquStickCk = new System.Windows.Forms.CheckBox();
+            this.rsSquStickCk = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).BeginInit();
@@ -491,6 +494,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
             this.cMGyroTriggers.SuspendLayout();
             this.cMTouchDisableInvert.SuspendLayout();
+            this.squStickTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // lowColorChooserButton
@@ -2826,6 +2830,7 @@
             this.tCSens.Controls.Add(this.tPDeadzone);
             this.tCSens.Controls.Add(this.antiDeadzoneTabPage);
             this.tCSens.Controls.Add(this.maxZoneTabPage);
+            this.tCSens.Controls.Add(this.squStickTabPage);
             this.tCSens.Controls.Add(this.tPOutCurve);
             this.tCSens.Controls.Add(this.tPCurve);
             this.tCSens.Controls.Add(this.tpRotation);
@@ -4227,6 +4232,28 @@
             resources.ApplyResources(this.psTouchInvStripMenuItem, "psTouchInvStripMenuItem");
             this.psTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
             // 
+            // squStickTabPage
+            // 
+            this.squStickTabPage.Controls.Add(this.rsSquStickCk);
+            this.squStickTabPage.Controls.Add(this.lsSquStickCk);
+            resources.ApplyResources(this.squStickTabPage, "squStickTabPage");
+            this.squStickTabPage.Name = "squStickTabPage";
+            this.squStickTabPage.UseVisualStyleBackColor = true;
+            // 
+            // lsSquStickCk
+            // 
+            resources.ApplyResources(this.lsSquStickCk, "lsSquStickCk");
+            this.lsSquStickCk.Name = "lsSquStickCk";
+            this.lsSquStickCk.UseVisualStyleBackColor = true;
+            this.lsSquStickCk.Click += new System.EventHandler(this.lsSquStickCk_Click);
+            // 
+            // rsSquStickCk
+            // 
+            resources.ApplyResources(this.rsSquStickCk, "rsSquStickCk");
+            this.rsSquStickCk.Name = "rsSquStickCk";
+            this.rsSquStickCk.UseVisualStyleBackColor = true;
+            this.rsSquStickCk.Click += new System.EventHandler(this.rsSquStickCk_Click);
+            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -4294,6 +4321,7 @@
             this.pnlLSTrack.ResumeLayout(false);
             this.pnlRSTrack.ResumeLayout(false);
             this.fLPTiltControls.ResumeLayout(false);
+            this.fLPTiltControls.PerformLayout();
             this.tCControls.ResumeLayout(false);
             this.tPControls.ResumeLayout(false);
             this.pnlController.ResumeLayout(false);
@@ -4350,6 +4378,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
             this.cMGyroTriggers.ResumeLayout(false);
             this.cMTouchDisableInvert.ResumeLayout(false);
+            this.squStickTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -4725,5 +4754,8 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.NumericUpDown gyroMouseDzNUD;
         private System.Windows.Forms.CheckBox toggleGyroMCb;
+        private System.Windows.Forms.TabPage squStickTabPage;
+        private System.Windows.Forms.CheckBox rsSquStickCk;
+        private System.Windows.Forms.CheckBox lsSquStickCk;
     }
 }

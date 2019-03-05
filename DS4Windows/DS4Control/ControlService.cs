@@ -364,17 +364,21 @@ namespace DS4Windows
                         device.SyncChange += this.On_SyncChange;
                         device.SyncChange += DS4Devices.UpdateSerial;
                         device.SerialChange += this.On_SerialChange;
-                        if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
+                        if (!useTempProfile[i])
                         {
-                            ProfilePath[i] = getLinkedProfile(device.getMacAddress());
-                        }
-                        else
-                        {
-                            ProfilePath[i] = OlderProfilePath[i];
+                            if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
+                            {
+                                ProfilePath[i] = getLinkedProfile(device.getMacAddress());
+                            }
+                            else
+                            {
+                                ProfilePath[i] = OlderProfilePath[i];
+                            }
+
+                            LoadProfile(i, false, this, false, false);
                         }
 
                         touchPad[i] = new Mouse(i, device);
-                        LoadProfile(i, false, this, false, false);
                         device.LightBarColor = getMainColor(i);
 
                         if (!getDInputOnly(i) && device.isSynced())
@@ -605,17 +609,21 @@ namespace DS4Windows
                             device.SyncChange += this.On_SyncChange;
                             device.SyncChange += DS4Devices.UpdateSerial;
                             device.SerialChange += this.On_SerialChange;
-                            if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
+                            if (!useTempProfile[Index])
                             {
-                                ProfilePath[Index] = getLinkedProfile(device.getMacAddress());
-                            }
-                            else
-                            {
-                                ProfilePath[Index] = OlderProfilePath[Index];
+                                if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
+                                {
+                                    ProfilePath[Index] = getLinkedProfile(device.getMacAddress());
+                                }
+                                else
+                                {
+                                    ProfilePath[Index] = OlderProfilePath[Index];
+                                }
+
+                                LoadProfile(Index, false, this, false, false);
                             }
 
                             touchPad[Index] = new Mouse(Index, device);
-                            LoadProfile(Index, false, this, false, false);
                             device.LightBarColor = getMainColor(Index);
 
                             int tempIdx = Index;
@@ -1093,7 +1101,7 @@ namespace DS4Windows
 
                 cState = Mapping.SetCurveAndDeadzone(ind, cState, TempState[ind]);
 
-                if (!recordingMacro && (!string.IsNullOrEmpty(tempprofilename[ind]) ||
+                if (!recordingMacro && (useTempProfile[ind] ||
                     containsCustomAction(ind) || containsCustomExtras(ind) ||
                     getProfileActionCount(ind) > 0))
                 {

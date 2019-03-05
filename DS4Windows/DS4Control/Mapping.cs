@@ -1317,7 +1317,7 @@ namespace DS4Windows
             //DS4StateFieldMapping outputfieldMapping = new DS4StateFieldMapping(cState, eState, tp);
 
             SyntheticState deviceState = Mapping.deviceState[device];
-            if (getProfileActionCount(device) > 0 || !string.IsNullOrEmpty(tempprofilename[device]))
+            if (getProfileActionCount(device) > 0 || useTempProfile[device])
                 MapCustomAction(device, cState, MappedState, eState, tp, ctrl, fieldMapping, outputfieldMapping);
             if (ctrl.DS4Controllers[device] == null) return;
 
@@ -1896,7 +1896,7 @@ namespace DS4Windows
                             {
                                 actionFound = true;
 
-                                if (!actionDone[index].dev[device] && string.IsNullOrEmpty(tempprofilename[device]))
+                                if (!actionDone[index].dev[device] && !useTempProfile[device])
                                 {
                                     actionDone[index].dev[device] = true;
                                     untriggeraction[device] = action;
@@ -2286,7 +2286,7 @@ namespace DS4Windows
                     if ((action.controls == action.ucontrols && !actionDone[index].dev[device]) || //if trigger and end trigger are the same
                     action.controls != action.ucontrols)
                     {
-                        if (!string.IsNullOrEmpty(tempprofilename[device]))
+                        if (useTempProfile[device])
                         {
                             //foreach (DS4Controls dc in action.uTrigger)
                             for (int i = 0, arlen = action.uTrigger.Count; i < arlen; i++)

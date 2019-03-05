@@ -237,6 +237,7 @@ namespace DS4Windows
         public static bool runHotPlug = false;
         public const int XINPUT_UNPLUG_SETTLE_TIME = 250; // Inhibit races that occur with the asynchronous teardown of ScpVBus -> X360 driver instance.
         public static string[] tempprofilename = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+        public static bool[] useTempProfile = new bool[5] { false, false, false, false, false };
         public static bool[] tempprofileDistance = new bool[5] { false, false, false, false, false };
         public static bool[] useDInputOnly = new bool[5] { true, true, true, true, true };
         public static bool[] linkedProfileCheck = new bool[4] { true, true, true, true };
@@ -1308,6 +1309,7 @@ namespace DS4Windows
         {
             m_Config.LoadProfile(device, launchprogram, control, "", xinputChange, postLoad);
             tempprofilename[device] = string.Empty;
+            useTempProfile[device] = false;
             tempprofileDistance[device] = false;
         }
 
@@ -1316,6 +1318,7 @@ namespace DS4Windows
         {
             m_Config.LoadProfile(device, launchprogram, control, appdatapath + @"\Profiles\" + name + ".xml");
             tempprofilename[device] = name;
+            useTempProfile[device] = true;
             tempprofileDistance[device] = name.ToLower().Contains("distance");
         }
 

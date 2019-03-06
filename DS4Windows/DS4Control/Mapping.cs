@@ -870,7 +870,7 @@ namespace DS4Windows
             if (r2Sens != 1.0)
                 dState.R2 = (byte)Global.Clamp(0, r2Sens * dState.R2, 255);
 
-            if (getSquareStickLS(device))
+            if (getSquareStickLS(device) && (dState.LX != 128 || dState.LY != 128))
             {
                 double capX = dState.LX >= 128 ? 127.0 : 128.0;
                 double capY = dState.LY >= 128 ? 127.0 : 128.0;
@@ -889,7 +889,7 @@ namespace DS4Windows
             }
 
             int lsOutCurveMode = lsOutCurveModeArray[device] = getLsOutCurveMode(device);
-            if (lsOutCurveMode > 0)
+            if (lsOutCurveMode > 0 && (dState.LX != 128 || dState.LY != 128))
             {
                 double capX = dState.LX >= 128 ? 127.0 : 128.0;
                 double capY = dState.LY >= 128 ? 127.0 : 128.0;
@@ -959,7 +959,7 @@ namespace DS4Windows
                 }
             }
 
-            if (getSquareStickRS(device))
+            if (getSquareStickRS(device) && (dState.RX != 128 || dState.RY != 128))
             {
                 double capX = dState.RX >= 128 ? 127.0 : 128.0;
                 double capY = dState.RY >= 128 ? 127.0 : 128.0;
@@ -978,7 +978,7 @@ namespace DS4Windows
             }
 
             int rsOutCurveMode = rsOutCurveModeArray[device] = getRsOutCurveMode(device);
-            if (rsOutCurveMode > 0)
+            if (rsOutCurveMode > 0 && (dState.RX != 128 || dState.RY != 128))
             {
                 double capX = dState.RX >= 128 ? 127.0 : 128.0;
                 double capY = dState.RY >= 128 ? 127.0 : 128.0;
@@ -1049,7 +1049,7 @@ namespace DS4Windows
             }
 
             int l2OutCurveMode = tempIntArray[device] = getL2OutCurveMode(device);
-            if (l2OutCurveMode > 0)
+            if (l2OutCurveMode > 0 && dState.L2 != 0)
             {
                 double temp = dState.L2 / 255.0;
                 if (l2OutCurveMode == 1)
@@ -1070,7 +1070,7 @@ namespace DS4Windows
             }
 
             int r2OutCurveMode = tempIntArray[device] = getR2OutCurveMode(device);
-            if (r2OutCurveMode > 0)
+            if (r2OutCurveMode > 0 && dState.R2 != 0)
             {
                 double temp = dState.R2 / 255.0;
                 if (r2OutCurveMode == 1)
@@ -1147,7 +1147,7 @@ namespace DS4Windows
                 }
 
                 int sxOutCurveMode = tempIntArray[device] = getSXOutCurveMode(device);
-                if (sxOutCurveMode > 0)
+                if (sxOutCurveMode > 0 && dState.Motion.outputAccelX != 0)
                 {
                     double temp = dState.Motion.outputAccelX / 128.0;
                     double sign = Math.Sign(temp);
@@ -1173,7 +1173,7 @@ namespace DS4Windows
                 }
 
                 int szOutCurveMode = tempIntArray[device] = getSZOutCurveMode(device);
-                if (szOutCurveMode > 0)
+                if (szOutCurveMode > 0 && dState.Motion.outputAccelZ != 0)
                 {
                     double temp = dState.Motion.outputAccelZ / 128.0;
                     double sign = Math.Sign(temp);

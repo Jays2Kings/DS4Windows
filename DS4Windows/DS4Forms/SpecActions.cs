@@ -491,11 +491,10 @@ namespace DS4Windows
             e.Graphics.FillRectangle(linGrBrush, 0, 0, pBGraident.Width, pBGraident.Height);
         }
 
-        private void advColorDialog_OnUpdateColor(object sender, EventArgs e)
+        private void advColorDialog_OnUpdateColor(Color color, EventArgs e)
         {
-            if (sender is Color && device < 4)
+            if (device < 4)
             {
-                Color color = (Color)sender;
                 DS4Color dcolor = new DS4Color { red = color.R, green = color.G, blue = color.B };
                 DS4LightBar.forcedColor[device] = dcolor;
                 DS4LightBar.forcedFlash[device] = 0;

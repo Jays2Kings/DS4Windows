@@ -2359,11 +2359,10 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             DS4LightBar.forcelight[currentCustomLed] = false;
         }
 
-        private void advColor_CustomColorUpdate(object sender, EventArgs e)
+        private void advColor_CustomColorUpdate(Color color, EventArgs e)
         {
-            if (sender is Color && currentCustomLed < 4)
+            if (currentCustomLed < 4)
             {
-                Color color = (Color)sender;
                 DS4Color dcolor = new DS4Color { red = color.R, green = color.G, blue = color.B };
                 DS4LightBar.forcedColor[currentCustomLed] = dcolor;
                 DS4LightBar.forcedFlash[currentCustomLed] = 0;

@@ -1352,6 +1352,11 @@ namespace DS4Windows
         public DS4State getDS4StateMapped(int ind)
         {
             return MappedState[ind];
-        }        
+        }
+
+        public DS4State getDS4StateTemp(int ind)
+        {
+            return TempState[ind];
+        }
     }
 }

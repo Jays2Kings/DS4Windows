@@ -57,6 +57,10 @@ namespace DS4Windows
                 LoadAction();
                 loadingAction = false;
             }
+
+            advColorDialog = new AdvancedColorDialog();
+            advColorDialog.FullOpen = true;
+            advColorDialog.OnUpdateColor += new AdvancedColorDialog.ColorUpdateHandler(this.advColorDialog_OnUpdateColor);
         }
 
         void LoadAction()

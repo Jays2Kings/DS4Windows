@@ -1319,7 +1319,7 @@ namespace DS4Windows
             SyntheticState deviceState = Mapping.deviceState[device];
             if (getProfileActionCount(device) > 0 || useTempProfile[device])
                 MapCustomAction(device, cState, MappedState, eState, tp, ctrl, fieldMapping, outputfieldMapping);
-            if (ctrl.DS4Controllers[device] == null) return;
+            //if (ctrl.DS4Controllers[device] == null) return;
 
             //cState.CopyTo(MappedState);
 

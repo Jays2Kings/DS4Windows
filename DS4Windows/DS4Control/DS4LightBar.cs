@@ -10,7 +10,7 @@ namespace DS4Windows
     {
         private readonly static byte[/* Light On duration */, /* Light Off duration */] BatteryIndicatorDurations =
         {
-            { 0, 0 }, // 0 is for "charging" OR anything sufficiently-"charged"
+            { 28, 252 }, // on 10% of the time at 0
             { 28, 252 },
             { 56, 224 },
             { 84, 196 },
@@ -19,7 +19,8 @@ namespace DS4Windows
             { 168, 112 },
             { 196, 84 },
             { 224, 56 }, // on 80% of the time at 80, etc.
-            { 252, 28 } // on 90% of the time at 90
+            { 252, 28 }, // on 90% of the time at 90
+            { 0, 0 }     // use on 100%. 0 is for "charging" OR anything sufficiently-"charged"
         };
 
         static double[] counters = new double[4] { 0, 0, 0, 0 };
@@ -298,7 +299,7 @@ namespace DS4Windows
                 {
                     int level = device.getBattery() / 10;
                     if (level >= 10)
-                        level = 0; // all values of ~0% or >~100% are rendered the same
+                        level = 10; // all values of >~100% are rendered the same
 
                     haptics.LightBarFlashDurationOn = BatteryIndicatorDurations[level, 0];
                     haptics.LightBarFlashDurationOff = BatteryIndicatorDurations[level, 1];

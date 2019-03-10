@@ -132,7 +132,7 @@ namespace DS4Windows
         private const int WM_INITDIALOG = 0x0110;
 
         private List<ApiWindow> EditWindows = null;
-        public delegate void ColorUpdateHandler(object sender, EventArgs e);
+        public delegate void ColorUpdateHandler(Color colValue, EventArgs e);
         public event ColorUpdateHandler OnUpdateColor;
 
         [DllImport("user32.dll", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]

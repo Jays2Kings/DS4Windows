@@ -405,17 +405,21 @@ namespace DS4Windows
                         device.SyncChange += this.On_SyncChange;
                         device.SyncChange += DS4Devices.UpdateSerial;
                         device.SerialChange += this.On_SerialChange;
-                        if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
+                        if (!useTempProfile[i])
                         {
-                            ProfilePath[i] = getLinkedProfile(device.getMacAddress());
-                        }
-                        else
-                        {
-                            ProfilePath[i] = OlderProfilePath[i];
+                            if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
+                            {
+                                ProfilePath[i] = getLinkedProfile(device.getMacAddress());
+                            }
+                            else
+                            {
+                                ProfilePath[i] = OlderProfilePath[i];
+                            }
+
+                            LoadProfile(i, false, this, false, false);
                         }
 
                         touchPad[i] = new Mouse(i, device);
-                        LoadProfile(i, false, this, false, false);
                         device.LightBarColor = getMainColor(i);
 
                         if (!getDInputOnly(i) && device.isSynced())
@@ -548,6 +552,10 @@ namespace DS4Windows
                                 tempDevice.StopUpdate();
                                 tempDevice.DisconnectDongle(true);
                             }
+                            else
+                            {
+                                tempDevice.StopUpdate();
+                            }
                         }
                         else
                         {
@@ -635,17 +643,21 @@ namespace DS4Windows
                             device.SyncChange += this.On_SyncChange;
                             device.SyncChange += DS4Devices.UpdateSerial;
                             device.SerialChange += this.On_SerialChange;
-                            if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
+                            if (!useTempProfile[Index])
                             {
-                                ProfilePath[Index] = getLinkedProfile(device.getMacAddress());
-                            }
-                            else
-                            {
-                                ProfilePath[Index] = OlderProfilePath[Index];
+                                if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
+                                {
+                                    ProfilePath[Index] = getLinkedProfile(device.getMacAddress());
+                                }
+                                else
+                                {
+                                    ProfilePath[Index] = OlderProfilePath[Index];
+                                }
+
+                                LoadProfile(Index, false, this, false, false);
                             }
 
                             touchPad[Index] = new Mouse(Index, device);
-                            LoadProfile(Index, false, this, false, false);
                             device.LightBarColor = getMainColor(Index);
 
                             int tempIdx = Index;
@@ -1159,7 +1171,7 @@ namespace DS4Windows
 
                 cState = Mapping.SetCurveAndDeadzone(ind, cState, TempState[ind]);
 
-                if (!recordingMacro && (!string.IsNullOrEmpty(tempprofilename[ind]) ||
+                if (!recordingMacro && (useTempProfile[ind] ||
                     containsCustomAction(ind) || containsCustomExtras(ind) ||
                     getProfileActionCount(ind) > 0))
                 {
@@ -1181,7 +1193,7 @@ namespace DS4Windows
 
                         if (processingData[ind].Rumble[1] == 0x08)
                         {
-                            setRumble(Big, Small, ind);
+                            SetDevRumble(device, Big, Small, ind);
                         }
                     }
                     */
@@ -1377,8 +1389,22 @@ namespace DS4Windows
                 Debug(this, args);
         }
 
-        //sets the rumble adjusted with rumble boost
+        // sets the rumble adjusted with rumble boost. General use method
         public virtual void setRumble(byte heavyMotor, byte lightMotor, int deviceNum)
+        {
+            if (deviceNum < 4)
+            {
+                DS4Device device = DS4Controllers[deviceNum];
+                if (device != null)
+                    SetDevRumble(device, heavyMotor, lightMotor, deviceNum);
+                    //device.setRumble((byte)lightBoosted, (byte)heavyBoosted);
+            }
+        }
+
+        // sets the rumble adjusted with rumble boost. Method more used for
+        // report handling. Avoid constant checking for a device.
+        public void SetDevRumble(DS4Device device,
+            byte heavyMotor, byte lightMotor, int deviceNum)
         {
             byte boost = getRumbleBoost(deviceNum);
             uint lightBoosted = ((uint)lightMotor * (uint)boost) / 100;
@@ -1388,12 +1414,7 @@ namespace DS4Windows
             if (heavyBoosted > 255)
                 heavyBoosted = 255;
 
-            if (deviceNum < 4)
-            {
-                DS4Device device = DS4Controllers[deviceNum];
-                if (device != null)
-                    device.setRumble((byte)lightBoosted, (byte)heavyBoosted);
-            }
+            device.setRumble((byte)lightBoosted, (byte)heavyBoosted);
         }
 
         public DS4State getDS4State(int ind)
@@ -1404,6 +1425,11 @@ namespace DS4Windows
         public DS4State getDS4StateMapped(int ind)
         {
             return MappedState[ind];
-        }        
+        }
+
+        public DS4State getDS4StateTemp(int ind)
+        {
+            return TempState[ind];
+        }
     }
 }

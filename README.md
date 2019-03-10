@@ -92,3 +92,14 @@ be made during code review to try to tweak the changes in order to improve
 application performance. However, there is a chance that a pull request will be
 rejected if no reasonable solution can be found to incorporate code changes.
 
+## Tip Jar
+
+If you would like to send some coin my way, here are some means by
+which to do so.
+
+**PayPal:** https://paypal.me/ryochan7  
+**Bitcoin:** 1DnMJwjdd7JRfHJap2mmTmADYm38SzR2z9  
+**Dogecoin:** D9fhbXp9bCHEhuS8vX1BmVu6t7Y2nVNUCK  
+**Litecoin:** La5mniW7SFMH2RhqDgUty3RwkBSYbjbnJ6  
+**Monero:** 49RvRMiMewaeez1Y2auxHmfMaAUYfhUpBem4ohzRJd9b5acPcxzh1icjnhZfjnYd1S7NQ57reQ7cP1swGre3rpfzUgJhEB7
+

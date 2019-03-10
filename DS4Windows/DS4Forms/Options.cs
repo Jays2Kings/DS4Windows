@@ -631,6 +631,9 @@ namespace DS4Windows
                     btnBrowse.Text = Path.GetFileNameWithoutExtension(LaunchProgram[device]);
                 }
 
+                lsSquStickCk.Checked = squareStickLS[device];
+                rsSquStickCk.Checked = squareStickRS[device];
+
                 cBDinput.Checked = DinputOnly[device];
                 olddinputcheck = cBDinput.Checked;
                 cbStartTouchpadOff.Checked = StartTouchpadOff[device];
@@ -807,6 +810,9 @@ namespace DS4Windows
                 nUDSXS.Value = 1;
                 nUDSZS.Value = 1;
 
+                lsSquStickCk.Checked = false;
+                rsSquStickCk.Checked = false;
+
                 cBLaunchProgram.Checked = false;
                 pBProgram.Image = null;
                 btnBrowse.Text = Properties.Resources.Browse;
@@ -948,6 +954,7 @@ namespace DS4Windows
 
                 DS4StateExposed exposeState = Program.rootHub.ExposedState[tempDeviceNum];
                 DS4State baseState = Program.rootHub.getDS4State(tempDeviceNum);
+                DS4State interState = Program.rootHub.getDS4StateTemp(tempDeviceNum);
 
                 SetDynamicTrackBarValue(tBsixaxisGyroX, (exposeState.getGyroYaw() + tBsixaxisGyroX.Value * 2) / 3);
                 SetDynamicTrackBarValue(tBsixaxisGyroY, (exposeState.getGyroPitch() + tBsixaxisGyroY.Value * 2) / 3);
@@ -959,137 +966,75 @@ namespace DS4Windows
                 int x = baseState.LX;
                 int y = baseState.LY;
 
-                double tempLSS = (double)nUDLSS.Value;
-                btnLSTrackS.Visible = tempLSS != 1;
-                double tempLSCurve = (double)nUDLSCurve.Value;
-                if (tempLSCurve > 0.0)
-                {
-                    float max = x + y;
-                    double curvex;
-                    double curvey;
-                    double multimax = TValue(382.5, max, tempLSCurve);
-                    double multimin = TValue(127.5, max, tempLSCurve);
-                    if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
-                    {
-                        curvex = (x > 127.5f ? Math.Min(x, (x / max) * multimax) : Math.Max(x, (x / max) * multimin));
-                        curvey = (y > 127.5f ? Math.Min(y, (y / max) * multimax) : Math.Max(y, (y / max) * multimin));
-                    }
-                    else
-                    {
-                        if (x < 127.5f)
-                        {
-                            curvex = Math.Min(x, (x / max) * multimax);
-                            curvey = Math.Min(y, (-(y / max) * multimax + 510));
-                        }
-                        else
-                        {
-                            curvex = Math.Min(x, (-(x / max) * multimax + 510));
-                            curvey = Math.Min(y, (y / max) * multimax);
-                        }
-                    }
-                    btnLSTrack.Location = new Point((int)(dpix * curvex / 2.09), (int)(dpiy * curvey / 2.09));
-                }
-                else
-                {
-                    btnLSTrack.Location = new Point((int)(dpix * x / 2.09), (int)(dpiy * y / 2.09));
-                    btnLSTrackS.Visible = tempLSS != 1;
-                }
+                btnLSTrack.Location = new Point((int)(dpix * x / 2.09),
+                    (int)(dpiy * y / 2.09));
+                bool mappedLS = interState.LX != x || interState.LY != y;
+                btnLSTrackS.Visible = mappedLS;
 
-                if (tempLSS != 1)
+                if (mappedLS)
                 {
-                    btnLSTrackS.Location = new Point((int)(tempLSS * (btnLSTrack.Location.X - pnlLSTrack.Size.Width / 2f) + pnlLSTrack.Size.Width / 2f),
-                        (int)(tempLSS * (btnLSTrack.Location.Y - pnlLSTrack.Size.Height / 2f) + pnlLSTrack.Size.Height / 2f));
+                    btnLSTrackS.Location = new Point((int)(dpix * interState.LX / 2.09), (int)(dpiy * interState.LY / 2.09));
                 }
 
                 x = baseState.RX;
                 y = baseState.RY;
 
-                double tempRSS = (double)nUDRSS.Value;
-                btnRSTrackS.Visible = tempRSS != 1;
-                double tempRSCurve = (double)nUDRSCurve.Value;
-                if (tempRSCurve > 0.0)
+                bool mappedRS = interState.RX != x || interState.RY != y;
+                btnRSTrackS.Visible = mappedRS;
+                
+                btnRSTrack.Location = new Point((int)(dpix * x / 2.09), (int)(dpiy * y / 2.09));
+                
+                if (mappedRS)
                 {
-                    float max = x + y;
-                    double curvex;
-                    double curvey;
-                    double multimax = TValue(382.5, max, tempRSCurve);
-                    double multimin = TValue(127.5, max, tempRSCurve);
-                    if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
-                    {
-                        curvex = (x > 127.5f ? Math.Min(x, (x / max) * multimax) : Math.Max(x, (x / max) * multimin));
-                        curvey = (y > 127.5f ? Math.Min(y, (y / max) * multimax) : Math.Max(y, (y / max) * multimin));
-                    }
-                    else
-                    {
-                        if (x < 127.5f)
-                        {
-                            curvex = Math.Min(x, (x / max) * multimax);
-                            curvey = Math.Min(y, (-(y / max) * multimax + 510));
-                        }
-                        else
-                        {
-                            curvex = Math.Min(x, (-(x / max) * multimax + 510));
-                            curvey = Math.Min(y, (y / max) * multimax);
-                        }
-                    }
-                    btnRSTrack.Location = new Point((int)(dpix * curvex / 2.09), (int)(dpiy * curvey / 2.09));
-                }
-                else
-                {
-                    btnRSTrack.Location = new Point((int)(dpix * x / 2.09), (int)(dpiy * y / 2.09));
-                    btnRSTrackS.Visible = tempRSS != 1;
-                }
-
-                if (tempRSS != 1)
-                {
-                    btnRSTrackS.Location = new Point((int)(tempRSS * (btnRSTrack.Location.X - pnlRSTrack.Size.Width / 2f) + pnlRSTrack.Size.Width / 2f),
-                        (int)(tempRSS * (btnRSTrack.Location.Y - pnlRSTrack.Size.Height / 2f) + pnlRSTrack.Size.Height / 2f));
+                    btnRSTrackS.Location = new Point((int)(dpix * interState.RX / 2.09), (int)(dpiy * interState.RY / 2.09));
                 }
 
                 x = exposeState.getAccelX() + 127;
                 y = exposeState.getAccelZ() + 127;
-                btnSATrack.Location = new Point((int)(dpix * Global.Clamp(0, x / 2.09, pnlSATrack.Size.Width)), (int)(dpiy * Global.Clamp(0, y / 2.09, pnlSATrack.Size.Height)));
+                btnSATrack.Location = new Point((int)(dpix * Global.Clamp(0, x / 2.09, pnlSATrack.Size.Width)),
+                    (int)(dpiy * Global.Clamp(0, y / 2.09, pnlSATrack.Size.Height)));
 
-                double tempSXS = (double)nUDSXS.Value;
-                double tempSZS = (double)nUDSZS.Value;
-                btnSATrackS.Visible = tempSXS != 1 || tempSZS != 1;
-                if (tempSXS != 1 || tempSZS != 1)
+                bool mappedSix = interState.Motion.accelX != 0 || interState.Motion.accelZ != 0;
+                btnSATrackS.Visible = mappedSix;
+                if (mappedSix)
                 {
-                    btnSATrackS.Location = new Point((int)(tempSXS * (btnSATrack.Location.X - pnlSATrack.Size.Width / 2f) + pnlSATrack.Size.Width / 2f),
-                        (int)(tempSZS * (btnSATrack.Location.Y - pnlSATrack.Size.Height / 2f) + pnlSATrack.Size.Height / 2f));
+                    btnSATrackS.Location = new Point((int)(dpix * Global.Clamp(0, (interState.Motion.accelX + 127) / 2.09, pnlSATrack.Size.Width)),
+                        (int)(dpiy * Global.Clamp(0, (interState.Motion.accelZ + 127) / 2.09, pnlSATrack.Size.Height)));
                 }
 
-                double tempL2 = (double)nUDL2.Value;
-                double tempL2S = (double)nUDL2S.Value;
                 tBL2.Value = baseState.L2;
-                lbL2Track.Location = new Point(tBL2.Location.X - (int)(dpix * 25), 
-                    Math.Max((int)(((tBL2.Location.Y + tBL2.Size.Height) - (tBL2.Value * tempL2S) / (tBL2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20),
-                    (int)(1 * ((tBL2.Location.Y + tBL2.Size.Height) - 255 / (tBL2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20)));
+                lbL2Track.Location = new Point(tBL2.Location.X - (int)(dpix * 25),
+                    (int)(tBL2.Location.Y + tBL2.Size.Height - interState.L2 / (tBL2.Size.Height * .0209f / Math.Pow(dpix, 2.0)) - (dpix * 20)));
 
-                if (tBL2.Value * tempL2S >= 255)
+                //lbL2Track.Location = new Point(tBL2.Location.X - (int)(dpix * 25), 
+                //    Math.Max((int)(((tBL2.Location.Y + tBL2.Size.Height) - (tBL2.Value * tempL2S) / (tBL2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20),
+                //    (int)(1 * ((tBL2.Location.Y + tBL2.Size.Height) - 255 / (tBL2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20)));
+
+                if (interState.L2 >= 255)
                     lbL2Track.ForeColor = Color.Green;
-                else if (tBL2.Value * tempL2S < tempL2 * 255)
+                else if (interState.L2 == 0)
                     lbL2Track.ForeColor = Color.Red;
                 else
                     lbL2Track.ForeColor = Color.Black;
 
-                double tempR2 = (double)nUDR2.Value;
-                double tempR2S = (double)nUDR2S.Value;
                 tBR2.Value = baseState.R2;
                 lbR2Track.Location = new Point(tBR2.Location.X + (int)(dpix * 25),
-                     Math.Max((int)(1 * ((tBR2.Location.Y + tBR2.Size.Height) - (tBR2.Value * tempR2S) / (tBR2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20),
-                     (int)(1 * ((tBR2.Location.Y + tBR2.Size.Height) - 255 / (tBR2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20)));
+                    (int)(tBR2.Location.Y + tBR2.Size.Height - interState.R2 / (tBR2.Size.Height * .0209f / Math.Pow(dpix, 2.0)) - (dpix * 20)));
+                //lbR2Track.Location = new Point(tBR2.Location.X + (int)(dpix * 25),
+                //     Math.Max((int)(1 * ((tBR2.Location.Y + tBR2.Size.Height) - (tBR2.Value * tempR2S) / (tBR2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20),
+                //     (int)(1 * ((tBR2.Location.Y + tBR2.Size.Height) - 255 / (tBR2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20)));
 
-                if (tBR2.Value * tempR2S >= 255)
+                if (interState.R2 >= 255)
                     lbR2Track.ForeColor = Color.Green;
-                else if (tBR2.Value * tempR2S < tempR2 * 255)
+                else if (interState.R2 == 0)
                     lbR2Track.ForeColor = Color.Red;
                 else
                     lbR2Track.ForeColor = Color.Black;
 
                 double latency = ds.Latency;
                 int warnInterval = ds.getWarnInterval();
-                lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*", latency.ToString());
+                lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*",
+                    latency.ToString());
                 if (latency > warnInterval)
                 {
                     lbInputDelay.BackColor = Color.Red;
@@ -1312,6 +1257,8 @@ namespace DS4Windows
             SZMaxzone[device] = (double)nUDSixAxisZMaxZone.Value;
             SXAntiDeadzone[device] = (double)nUDSixaxisXAntiDead.Value;
             SZAntiDeadzone[device] = (double)nUDSixaxisZAntiDead.Value;
+            squareStickLS[device] = lsSquStickCk.Checked;
+            squareStickRS[device] = rsSquStickCk.Checked;
             MouseAccel[device] = cBMouseAccel.Checked;
             DinputOnly[device] = cBDinput.Checked;
             StartTouchpadOff[device] = cbStartTouchpadOff.Checked;
@@ -1484,11 +1431,10 @@ namespace DS4Windows
             ChargingColor[device] = new DS4Color(chargingBackColor);
         }
 
-        private void advColorDialog_OnUpdateColor(object sender, EventArgs e)
+        private void advColorDialog_OnUpdateColor(Color color, EventArgs e)
         {
-            if (sender is Color && device < 4)
+            if (device < 4)
             {
-                Color color = (Color)sender;
                 DS4Color dcolor = new DS4Color { red = color.R, green = color.G, blue = color.B };
                 DS4LightBar.forcedColor[device] = dcolor;
                 DS4LightBar.forcedFlash[device] = 0;
@@ -3096,6 +3042,22 @@ namespace DS4Windows
                 {
                     SetGyroMouseToggle(device, toggleGyroMCb.Checked, Program.rootHub);
                 }
+            }
+        }
+
+        private void lsSquStickCk_Click(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                squareStickLS[device] = lsSquStickCk.Checked;
+            }
+        }
+
+        private void rsSquStickCk_Click(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                squareStickRS[device] = rsSquStickCk.Checked;
             }
         }
 

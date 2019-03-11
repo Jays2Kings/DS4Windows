@@ -212,7 +212,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Determines the poll rate used for the DS4 hardware when connected via Bluetooth.
+        ///   Looks up a localized string similar to Determines the poll rate used for the DS4 hardware when connected via Bluetooth. (Applies on profile save).
         /// </summary>
         public static string BTPollRate {
             get {

@@ -141,6 +141,7 @@
     <Compile Include="DS4Control\ScpDevice.cs" />
     <Compile Include="DS4Control\ScpUtil.cs" />
     <Compile Include="DS4Control\UdpServer.cs" />
+    <Compile Include="DS4Control\Util.cs" />
     <Compile Include="DS4Control\X360Device.cs" />
     <Compile Include="DS4Forms\LanguagePackComboBox.cs">
       <SubType>UserControl</SubType>

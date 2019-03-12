@@ -81,8 +81,8 @@ namespace DS4Windows
         public UdpServer(GetPadDetail getPadDetailDel)
         {
             portInfoGet = getPadDetailDel;
-            argsList = new SocketAsyncEventArgs[20];
-            for (int num = 0; num <= 19; num++)
+            argsList = new SocketAsyncEventArgs[40];
+            for (int num = 0; num < 40; num++)
             {
                 SocketAsyncEventArgs args = new SocketAsyncEventArgs();
                 args.SetBuffer(new byte[100], 0, 100);
@@ -188,7 +188,7 @@ namespace DS4Windows
             int temp = 0;
             poolLock.EnterWriteLock();
             temp = listInd;
-            listInd = ++listInd % 20;
+            listInd = ++listInd % 40;
             SocketAsyncEventArgs args = argsList[temp];
             poolLock.ExitWriteLock();
 
@@ -654,7 +654,7 @@ namespace DS4Windows
                     int temp = 0;
                     poolLock.EnterWriteLock();
                     temp = listInd;
-                    listInd = ++listInd % 20;
+                    listInd = ++listInd % 40;
                     SocketAsyncEventArgs args = argsList[temp];
                     poolLock.ExitWriteLock();
 

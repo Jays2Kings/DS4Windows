@@ -1592,7 +1592,7 @@ namespace DS4Windows
         public int notifications = 2;
         public bool disconnectBTAtStop = false;
         public bool swipeProfiles = true;
-        public bool ds4Mapping = true;
+        public bool ds4Mapping = false;
         public bool quickCharge = false;
         public int firstXinputPort = 1;
         public bool closeMini = false;

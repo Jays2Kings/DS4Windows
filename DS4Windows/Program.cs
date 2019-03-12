@@ -75,6 +75,16 @@ namespace DS4Windows
             }
             catch { } // Ignore problems raising the priority.
 
+            // Force Normal IO Priority
+            IntPtr ioPrio = new IntPtr(2);
+            Util.NtSetInformationProcess(Process.GetCurrentProcess().Handle,
+                Util.PROCESS_INFORMATION_CLASS.ProcessIoPriority, ref ioPrio, 4);
+
+            // Force Normal Page Priority
+            IntPtr pagePrio = new IntPtr(5);
+            Util.NtSetInformationProcess(Process.GetCurrentProcess().Handle,
+                Util.PROCESS_INFORMATION_CLASS.ProcessPagePriority, ref pagePrio, 4);
+
             try
             {
                 // another instance is already running if OpenExsting succeeds.

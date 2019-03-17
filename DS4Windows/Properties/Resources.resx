@@ -674,7 +674,7 @@
     <value>Start</value>
   </data>
   <data name="Step1" xml:space="preserve">
-    <value>Step 1: Install the DS4 Driver</value>
+    <value>Step 1: Install the ScpVBus Driver</value>
   </data>
   <data name="StopHText" xml:space="preserve">
     <value>Stop Heavy</value>

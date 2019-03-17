@@ -780,7 +780,7 @@ namespace DS4Windows
                 nUDIdleDisconnect.Value = 5;
                 cBIdleDisconnect.Checked = true;
                 numUDMouseSens.Value = 25;
-                cBMouseAccel.Checked = true;
+                cBMouseAccel.Checked = false;
                 pBHoveredButton.Image = null;
 
                 nUDRainbow.Value = 0;

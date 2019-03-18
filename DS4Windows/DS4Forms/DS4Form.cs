@@ -1145,7 +1145,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
             while (loopHotplug == true)
             {
-                Thread.Sleep(1500);
                 Program.rootHub.HotPlug();
                 //TaskRunner.Run(() => { Program.rootHub.HotPlug(uiContext); });
                 lock (hotplugCounterLock)

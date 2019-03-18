@@ -735,6 +735,7 @@ namespace DS4Windows
                 ds4InactiveFrame = true;
                 idleInput = true;
                 bool syncWriteReport = conType != ConnectionType.BT;
+                bool forceWrite = false;
 
                 int maxBatteryValue = 0;
                 int tempBattery = 0;
@@ -1022,7 +1023,14 @@ namespace DS4Windows
                         {
                             runCalib = synced = controllerSynced;
                             SyncChange?.Invoke(this, EventArgs.Empty);
-                            sendOutputReport(true, true);
+                            if (synced)
+                            {
+                                forceWrite = true;
+                            }
+                            else
+                            {
+                                standbySw.Reset();
+                            }
                         }
                     }
 
@@ -1101,7 +1109,8 @@ namespace DS4Windows
                     if (Report != null)
                         Report(this, EventArgs.Empty);
 
-                    sendOutputReport(syncWriteReport);
+                    sendOutputReport(syncWriteReport, forceWrite);
+                    forceWrite = false;
 
                     if (!string.IsNullOrEmpty(currerror))
                         error = currerror;

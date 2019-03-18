@@ -1508,7 +1508,7 @@ namespace DS4Windows
         public int[] touchpadInvert = new int[5] { 0, 0, 0, 0, 0 };
         public double[] rainbow = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 };
         public int[] flashAt = new int[5] { 0, 0, 0, 0, 0 };
-        public bool[] mouseAccel = new bool[5] { true, true, true, true, true };
+        public bool[] mouseAccel = new bool[5] { false, false, false, false, false };
         public int[] btPollRate = new int[5] { 4, 4, 4, 4, 4 };
         public int[] gyroMouseDZ = new int[5] { MouseCursor.GYRO_MOUSE_DEADZONE, MouseCursor.GYRO_MOUSE_DEADZONE,
             MouseCursor.GYRO_MOUSE_DEADZONE, MouseCursor.GYRO_MOUSE_DEADZONE,
@@ -3974,7 +3974,7 @@ namespace DS4Windows
             touchpadInvert[device] = 0;
             rainbow[device] = 0;
             flashAt[device] = 0;
-            mouseAccel[device] = true;
+            mouseAccel[device] = false;
             btPollRate[device] = 4;
 
             m_LowLeds[device] = new DS4Color(Color.Black);

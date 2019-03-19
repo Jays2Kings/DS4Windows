@@ -769,7 +769,7 @@ namespace DS4Windows
         {
             originalsettingstext = tabSettings.Text;
             bool deriverinstalled = false;
-            deriverinstalled = Global.IsScpVBusInstalled();
+            deriverinstalled = Global.IsViGEmBusInstalled();
             if (!deriverinstalled)
             {
                 Process p = new Process();

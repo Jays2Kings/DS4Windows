@@ -340,7 +340,7 @@ namespace DS4Windows
             return CheckForSysDevice(@"Root\HidGuardian");
         }
 
-        public static bool IsScpVBusInstalled()
+        public static bool IsViGEmBusInstalled()
         {
             return CheckForSysDevice(@"Root\ViGEmBus");
         }

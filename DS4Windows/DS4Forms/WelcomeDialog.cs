@@ -84,7 +84,7 @@ namespace DS4Windows
             Process[] processes = Process.GetProcessesByName("ViGEmBusInstaller");
             if (processes.Length < 1)
             {
-                if (Global.IsScpVBusInstalled())
+                if (Global.IsViGEmBusInstalled())
                 {
                     this.BeginInvoke((Action)(() => { bnStep1.Text = Properties.Resources.InstallComplete; }));
                 }

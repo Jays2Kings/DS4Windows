@@ -16,7 +16,6 @@ namespace DS4Windows
 {
     public class ControlService
     {
-        public X360Device x360Bus = null;
         public ViGEmClient vigemTestClient = null;
         private const int inputResolution = 127 - (-128);
         private const float reciprocalInputResolution = 1 / (float)inputResolution;
@@ -138,7 +137,6 @@ namespace DS4Windows
             //sp.Stream = Properties.Resources.EE;
             // Cause thread affinity to not be tied to main GUI thread
             tempThread = new Thread(() => {
-                x360Bus = new X360Device();
                 //_udpServer = new UdpServer(GetPadDetailForIdx);
                 busThrRunning = true;
 

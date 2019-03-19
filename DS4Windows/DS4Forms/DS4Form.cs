@@ -1080,11 +1080,11 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         {
             switch (m.Msg)
             {
-                case ScpDevice.WM_CREATE:
+                case Util.WM_CREATE:
                 {
                     Guid hidGuid = new Guid();
                     NativeMethods.HidD_GetHidGuid(ref hidGuid);
-                    bool result = ScpDevice.RegisterNotify(this.Handle, hidGuid, ref regHandle);
+                    bool result = Util.RegisterNotify(this.Handle, hidGuid, ref regHandle);
                     if (!result)
                     {
                         ScpForm_Closing(this,
@@ -1092,7 +1092,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                     }
                     break;
                 }
-                case ScpDevice.WM_DEVICECHANGE:
+                case Util.WM_DEVICECHANGE:
                 {
                     if (runHotPlug)
                     {
@@ -2200,12 +2200,12 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                     }
                     else
                     {
-                        ScpDevice.UnregisterNotify(regHandle);
+                        Util.UnregisterNotify(regHandle);
                     }
                 }
                 else
                 {
-                    ScpDevice.UnregisterNotify(regHandle);
+                    Util.UnregisterNotify(regHandle);
                 }
             }
             else if (userClosing && closeMini && !contextclose)

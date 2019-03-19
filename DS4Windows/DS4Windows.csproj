@@ -119,7 +119,7 @@
     <Reference Include="Nefarius.ViGEmClient" Condition="'$(Platform)' == 'x64'">
       <HintPath>.\libs\x64\Nefarius.ViGEmClient\Nefarius.ViGEmClient.dll</HintPath>
     </Reference>
-    <Reference Include="Nefarius.ViGEmClient"  Condition="'$(Platform)' == 'x86'">
+    <Reference Include="Nefarius.ViGEmClient" Condition="'$(Platform)' == 'x86'">
       <HintPath>.\libs\x86\Nefarius.ViGEmClient\Nefarius.ViGEmClient.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -144,11 +144,9 @@
     <Compile Include="DS4Control\Mouse.cs" />
     <Compile Include="DS4Control\MouseCursor.cs" />
     <Compile Include="DS4Control\MouseWheel.cs" />
-    <Compile Include="DS4Control\ScpDevice.cs" />
     <Compile Include="DS4Control\ScpUtil.cs" />
     <Compile Include="DS4Control\UdpServer.cs" />
     <Compile Include="DS4Control\Util.cs" />
-    <Compile Include="DS4Control\X360Device.cs" />
     <Compile Include="DS4Forms\LanguagePackComboBox.cs">
       <SubType>UserControl</SubType>
     </Compile>

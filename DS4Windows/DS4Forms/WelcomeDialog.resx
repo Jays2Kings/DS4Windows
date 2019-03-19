@@ -129,7 +129,7 @@
     <value>1</value>
   </data>
   <data name="bnStep1.Text" xml:space="preserve">
-    <value>Step 1: Install the ScpVBus Driver</value>
+    <value>Step 1: Install the ViGEmBus Driver</value>
   </data>
   <data name="&gt;&gt;bnStep1.Name" xml:space="preserve">
     <value>bnStep1</value>

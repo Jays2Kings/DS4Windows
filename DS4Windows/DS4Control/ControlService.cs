@@ -360,7 +360,7 @@ namespace DS4Windows
                 if (showlog)
                     LogDebug(Properties.Resources.Starting);
 
-                LogDebug("Connection to ViGEm established");
+                LogDebug("Connection to ViGEmBus established");
 
                 DS4Devices.isExclusiveMode = getUseExclusiveMode();
                 uiContext = tempui as SynchronizationContext;
@@ -514,7 +514,7 @@ namespace DS4Windows
             }
             else
             {
-                string logMessage = "Could not connect to ViGEm. Please check the status of the System device in Device Manager";
+                string logMessage = "Could not connect to ViGEmBus. Please check the status of the System device in Device Manager";
                 LogDebug(logMessage);
                 AppLogger.LogToTray(logMessage);
             }
@@ -533,7 +533,7 @@ namespace DS4Windows
                 if (showlog)
                     LogDebug(Properties.Resources.StoppingX360);
 
-                LogDebug("Closing connection to ViGEm");
+                LogDebug("Closing connection to ViGEmBus");
 
                 for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
                 {

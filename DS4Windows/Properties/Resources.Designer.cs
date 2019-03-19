@@ -1820,7 +1820,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Step 1: Install the ScpVBus Driver.
+        ///   Looks up a localized string similar to Step 1: Install the ViGEmBus Driver.
         /// </summary>
         public static string Step1 {
             get {

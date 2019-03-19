@@ -2201,15 +2201,6 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use higher ports if you get conflicts in other emulating X360 programs, such as SCP&apos;s tool.
-        /// </summary>
-        public static string XinputPorts {
-            get {
-                return ResourceManager.GetString("XinputPorts", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to XML Files (*.xml).
         /// </summary>
         public static string XMLFiles {

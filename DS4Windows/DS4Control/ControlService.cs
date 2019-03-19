@@ -424,7 +424,6 @@ namespace DS4Windows
 
                         if (!getDInputOnly(i) && device.isSynced())
                         {
-                            //int xinputIndex = x360Bus.FirstController + i;
                             LogDebug("Plugging in X360 Controller #" + (i + 1));
                             useDInputOnly[i] = false;
                             x360controls[i] = new Xbox360Controller(vigemTestClient);
@@ -681,7 +680,6 @@ namespace DS4Windows
                             
                             if (!getDInputOnly(Index) && device.isSynced())
                             {
-                                //int xinputIndex = x360Bus.FirstController + Index;
                                 LogDebug("Plugging in X360 Controller #" + (Index + 1));
                                 useDInputOnly[Index] = false;
                                 x360controls[Index] = new Xbox360Controller(vigemTestClient);

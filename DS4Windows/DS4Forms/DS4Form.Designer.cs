@@ -150,10 +150,6 @@
             this.cBUpdateTime = new System.Windows.Forms.ComboBox();
             this.lbCheckEvery = new System.Windows.Forms.Label();
             this.nUDUpdateTime = new System.Windows.Forms.NumericUpDown();
-            this.pnlXIPorts = new System.Windows.Forms.Panel();
-            this.lbUseXIPorts = new System.Windows.Forms.Label();
-            this.nUDXIPorts = new System.Windows.Forms.NumericUpDown();
-            this.lbLastXIPort = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.ckUdpServ = new System.Windows.Forms.CheckBox();
@@ -197,8 +193,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDLatency)).BeginInit();
             this.pNUpdate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDUpdateTime)).BeginInit();
-            this.pnlXIPorts.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDXIPorts)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDUdpPortNum)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -958,7 +952,6 @@
             this.fLPSettings.Controls.Add(this.cBUseWhiteIcon);
             this.fLPSettings.Controls.Add(this.cBUpdate);
             this.fLPSettings.Controls.Add(this.pNUpdate);
-            this.fLPSettings.Controls.Add(this.pnlXIPorts);
             this.fLPSettings.Controls.Add(this.panel4);
             this.fLPSettings.Controls.Add(this.languagePackComboBox1);
             this.fLPSettings.Controls.Add(this.flowLayoutPanel1);
@@ -1170,47 +1163,6 @@
             this.nUDUpdateTime.Name = "nUDUpdateTime";
             this.nUDUpdateTime.ValueChanged += new System.EventHandler(this.nUDUpdateTime_ValueChanged);
             // 
-            // pnlXIPorts
-            // 
-            this.pnlXIPorts.Controls.Add(this.lbUseXIPorts);
-            this.pnlXIPorts.Controls.Add(this.nUDXIPorts);
-            this.pnlXIPorts.Controls.Add(this.lbLastXIPort);
-            resources.ApplyResources(this.pnlXIPorts, "pnlXIPorts");
-            this.pnlXIPorts.Name = "pnlXIPorts";
-            // 
-            // lbUseXIPorts
-            // 
-            resources.ApplyResources(this.lbUseXIPorts, "lbUseXIPorts");
-            this.lbUseXIPorts.Name = "lbUseXIPorts";
-            // 
-            // nUDXIPorts
-            // 
-            resources.ApplyResources(this.nUDXIPorts, "nUDXIPorts");
-            this.nUDXIPorts.Maximum = new decimal(new int[] {
-            11,
-            0,
-            0,
-            0});
-            this.nUDXIPorts.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDXIPorts.Name = "nUDXIPorts";
-            this.nUDXIPorts.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDXIPorts.ValueChanged += new System.EventHandler(this.nUDXIPorts_ValueChanged);
-            this.nUDXIPorts.Enter += new System.EventHandler(this.nUDXIPorts_Enter);
-            this.nUDXIPorts.Leave += new System.EventHandler(this.nUDXIPorts_Leave);
-            // 
-            // lbLastXIPort
-            // 
-            resources.ApplyResources(this.lbLastXIPort, "lbLastXIPort");
-            this.lbLastXIPort.Name = "lbLastXIPort";
-            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.label2);
@@ -1406,9 +1358,6 @@
             this.pNUpdate.ResumeLayout(false);
             this.pNUpdate.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDUpdateTime)).EndInit();
-            this.pnlXIPorts.ResumeLayout(false);
-            this.pnlXIPorts.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDXIPorts)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDUdpPortNum)).EndInit();
@@ -1516,10 +1465,6 @@
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
         public System.Windows.Forms.Label lbLastMessage;
         private System.Windows.Forms.CheckBox cBQuickCharge;
-        private System.Windows.Forms.Panel pnlXIPorts;
-        private System.Windows.Forms.Label lbUseXIPorts;
-        private System.Windows.Forms.NumericUpDown nUDXIPorts;
-        private System.Windows.Forms.Label lbLastXIPort;
         public System.Windows.Forms.ListBox lBProfiles;
         private System.Windows.Forms.CheckBox cBCloseMini;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;

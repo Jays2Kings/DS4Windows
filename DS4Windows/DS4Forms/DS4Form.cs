@@ -199,8 +199,6 @@ namespace DS4Windows
 
             cBDisconnectBT.Checked = DCBTatStop;
             cBQuickCharge.Checked = QuickCharge;
-            nUDXIPorts.Value = FirstXinputPort;
-            //Program.rootHub.x360Bus.FirstController = FirstXinputPort;
             // New settings
             this.Width = FormWidth;
             this.Height = FormHeight;
@@ -440,10 +438,6 @@ namespace DS4Windows
             hoverTextDict[linkUninstall] = Properties.Resources.IfRemovingDS4Windows;
             hoverTextDict[cBSwipeProfiles] = Properties.Resources.TwoFingerSwipe;
             hoverTextDict[cBQuickCharge] = Properties.Resources.QuickCharge;
-            hoverTextDict[pnlXIPorts] = Properties.Resources.XinputPorts;
-            hoverTextDict[lbUseXIPorts] = Properties.Resources.XinputPorts;
-            hoverTextDict[nUDXIPorts] = Properties.Resources.XinputPorts;
-            hoverTextDict[lbLastXIPort] = Properties.Resources.XinputPorts;
             hoverTextDict[cBCloseMini] = Properties.Resources.CloseMinimize;
             hoverTextDict[uacPictureBox] = Properties.Resources.UACTask;
             hoverTextDict[StartWindowsCheckBox] = Properties.Resources.RunAtStartup;
@@ -2272,29 +2266,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         private void pnlButton_MouseLeave(object sender, EventArgs e)
         {
             toolTip1.Hide(lbLastMessage);
-        }
-
-        private void nUDXIPorts_ValueChanged(object sender, EventArgs e)
-        {
-            lbLastXIPort.Text = "- " + ((int)Math.Round(nUDXIPorts.Value, 0) + 3);
-        }
-
-        private int oldxiport;
-        private void nUDXIPorts_Leave(object sender, EventArgs e)
-        {
-            if (oldxiport != (int)Math.Round(nUDXIPorts.Value, 0))
-            {
-                oldxiport = (int)Math.Round(nUDXIPorts.Value, 0);
-                FirstXinputPort = oldxiport;
-                //Program.rootHub.x360Bus.FirstController = oldxiport;
-                BtnStartStop_Clicked(false);
-                finishHideDS4Check();
-            }
-        }
-
-        private void nUDXIPorts_Enter(object sender, EventArgs e)
-        {
-            oldxiport = (int)Math.Round(nUDXIPorts.Value, 0);
         }
 
         private void cBCloseMini_CheckedChanged(object sender, EventArgs e)

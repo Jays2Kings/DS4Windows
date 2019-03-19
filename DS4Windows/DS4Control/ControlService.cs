@@ -723,7 +723,8 @@ namespace DS4Windows
             return true;
         }
 
-        private void testNewReport(ref Xbox360Report xboxreport, DS4State state)
+        private void testNewReport(ref Xbox360Report xboxreport, DS4State state,
+            int device)
         {
             Xbox360Buttons tempButtons = 0;
 
@@ -749,13 +750,73 @@ namespace DS4Windows
                 if (state.PS) tempButtons |= Xbox360Buttons.Guide;
                 xboxreport.SetButtonsFull(tempButtons);
             }
-            
+
             xboxreport.LeftTrigger = state.L2;
             xboxreport.RightTrigger = state.R2;
-            xboxreport.LeftThumbX = AxisScale(state.LX, false);
-            xboxreport.LeftThumbY = AxisScale(state.LY, true);
-            xboxreport.RightThumbX = AxisScale(state.RX, false);
-            xboxreport.RightThumbY = AxisScale(state.RY, true);
+
+            SASteeringWheelEmulationAxisType steeringWheelMappedAxis = Global.GetSASteeringWheelEmulationAxis(device);
+            switch (steeringWheelMappedAxis)
+            {
+                case SASteeringWheelEmulationAxisType.None:
+                    xboxreport.LeftThumbX = AxisScale(state.LX, false);
+                    xboxreport.LeftThumbY = AxisScale(state.LY, true);
+                    xboxreport.RightThumbX = AxisScale(state.RX, false);
+                    xboxreport.RightThumbY = AxisScale(state.RY, true);
+                    break;
+
+                case SASteeringWheelEmulationAxisType.LX:
+                    xboxreport.LeftThumbX = (short)state.SASteeringWheelEmulationUnit;
+                    xboxreport.LeftThumbY = AxisScale(state.LY, true);
+                    xboxreport.RightThumbX = AxisScale(state.RX, false);
+                    xboxreport.RightThumbY = AxisScale(state.RY, true);
+                    break;
+
+                case SASteeringWheelEmulationAxisType.LY:
+                    xboxreport.LeftThumbX = AxisScale(state.LX, false);
+                    xboxreport.LeftThumbY = (short)state.SASteeringWheelEmulationUnit;
+                    xboxreport.RightThumbX = AxisScale(state.RX, false);
+                    xboxreport.RightThumbY = AxisScale(state.RY, true);
+                    break;
+
+                case SASteeringWheelEmulationAxisType.RX:
+                    xboxreport.LeftThumbX = AxisScale(state.LX, false);
+                    xboxreport.LeftThumbY = AxisScale(state.LY, true);
+                    xboxreport.RightThumbX = (short)state.SASteeringWheelEmulationUnit;
+                    xboxreport.RightThumbY = AxisScale(state.RY, true);
+                    break;
+
+                case SASteeringWheelEmulationAxisType.RY:
+                    xboxreport.LeftThumbX = AxisScale(state.LX, false);
+                    xboxreport.LeftThumbY = AxisScale(state.LY, true);
+                    xboxreport.RightThumbX = AxisScale(state.RX, false);
+                    xboxreport.RightThumbY = (short)state.SASteeringWheelEmulationUnit;
+                    break;
+
+                case SASteeringWheelEmulationAxisType.L2R2:
+                    xboxreport.LeftTrigger = xboxreport.RightTrigger = 0;
+                    if (state.SASteeringWheelEmulationUnit >= 0) xboxreport.LeftTrigger = (Byte)state.SASteeringWheelEmulationUnit;
+                    else xboxreport.RightTrigger = (Byte)state.SASteeringWheelEmulationUnit;
+                    goto case SASteeringWheelEmulationAxisType.None;
+
+                case SASteeringWheelEmulationAxisType.VJoy1X:
+                case SASteeringWheelEmulationAxisType.VJoy2X:
+                    DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(state.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_X);
+                    goto case SASteeringWheelEmulationAxisType.None;
+
+                case SASteeringWheelEmulationAxisType.VJoy1Y:
+                case SASteeringWheelEmulationAxisType.VJoy2Y:
+                    DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(state.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_Y);
+                    goto case SASteeringWheelEmulationAxisType.None;
+
+                case SASteeringWheelEmulationAxisType.VJoy1Z:
+                case SASteeringWheelEmulationAxisType.VJoy2Z:
+                    DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(state.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_Z);
+                    goto case SASteeringWheelEmulationAxisType.None;
+
+                default:
+                    // Should never come here but just in case use the NONE case as default handler....
+                    goto case SASteeringWheelEmulationAxisType.None;
+            }
         }
 
         private short AxisScale(Int32 Value, Boolean Flip)
@@ -1179,7 +1240,7 @@ namespace DS4Windows
 
                 if (!useDInputOnly[ind])
                 {
-                    testNewReport(ref x360reports[ind], cState);
+                    testNewReport(ref x360reports[ind], cState, ind);
                     x360controls[ind]?.SendReport(x360reports[ind]);
                     //x360Bus.Parse(cState, processingData[ind].Report, ind);
                     // We push the translated Xinput state, and simultaneously we

@@ -156,4 +156,4 @@ $RECYCLE.BIN/
 .DS_Store
 
 .vs/
-
+!DS4Windows/libs/x64/

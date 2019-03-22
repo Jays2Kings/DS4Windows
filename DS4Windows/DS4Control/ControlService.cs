@@ -429,7 +429,7 @@ namespace DS4Windows
                             int devIndex = i;
                             x360controls[i].FeedbackReceived += (sender, args) =>
                             {
-                                setRumble(args.SmallMotor, args.LargeMotor, devIndex);
+                                setRumble(args.LargeMotor, args.SmallMotor, devIndex);
                             };
                             LogDebug("X360 Controller # " + (i + 1) + " connected");
                         }
@@ -685,7 +685,7 @@ namespace DS4Windows
                                 int devIndex = Index;
                                 x360controls[Index].FeedbackReceived += (sender, args) =>
                                 {
-                                    setRumble(args.SmallMotor, args.LargeMotor, devIndex);
+                                    setRumble(args.LargeMotor, args.SmallMotor, devIndex);
                                 };
                                 LogDebug("X360 Controller # " + (Index + 1) + " connected");
                             }

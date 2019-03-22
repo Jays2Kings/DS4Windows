@@ -425,13 +425,13 @@ namespace DS4Windows
                             LogDebug("Plugging in X360 Controller #" + (i + 1));
                             useDInputOnly[i] = false;
                             x360controls[i] = new Xbox360Controller(vigemTestClient);
-                            x360controls[i].Connect();
                             int devIndex = i;
                             x360controls[i].FeedbackReceived += (sender, args) =>
                             {
                                 setRumble(args.LargeMotor, args.SmallMotor, devIndex);
                             };
-                            LogDebug("X360 Controller # " + (i + 1) + " connected");
+                            x360controls[i].Connect();
+                            LogDebug("X360 Controller #" + (i + 1) + " connected");
                         }
                         else
                         {
@@ -681,13 +681,13 @@ namespace DS4Windows
                                 LogDebug("Plugging in X360 Controller #" + (Index + 1));
                                 useDInputOnly[Index] = false;
                                 x360controls[Index] = new Xbox360Controller(vigemTestClient);
-                                x360controls[Index].Connect();
                                 int devIndex = Index;
                                 x360controls[Index].FeedbackReceived += (sender, args) =>
                                 {
                                     setRumble(args.LargeMotor, args.SmallMotor, devIndex);
                                 };
-                                LogDebug("X360 Controller # " + (Index + 1) + " connected");
+                                x360controls[Index].Connect();
+                                LogDebug("X360 Controller #" + (Index + 1) + " connected");
                             }
                             else
                             {

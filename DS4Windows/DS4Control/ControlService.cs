@@ -1049,7 +1049,7 @@ namespace DS4Windows
                         x360controls[ind].Disconnect();
                         x360controls[ind] = null;
                         useDInputOnly[ind] = true;
-                        LogDebug("X360 Controller # " + (ind + 1) + " unplugged");
+                        LogDebug("X360 Controller #" + (ind + 1) + " unplugged");
                     }
                 }
                 else
@@ -1058,13 +1058,13 @@ namespace DS4Windows
                     {
                         LogDebug("Plugging in X360 Controller #" + (ind + 1));
                         x360controls[ind] = new Xbox360Controller(vigemTestClient);
-                        x360controls[ind].Connect();
                         x360controls[ind].FeedbackReceived += (eventsender, args) =>
                         {
-                            setRumble(args.SmallMotor, args.LargeMotor, ind);
+                            SetDevRumble(device, args.LargeMotor, args.SmallMotor, ind);
                         };
+                        x360controls[ind].Connect();
                         useDInputOnly[ind] = false;
-                        LogDebug("X360 Controller # " + (ind + 1) + " connected");
+                        LogDebug("X360 Controller #" + (ind + 1) + " connected");
                     }
                 }
             }

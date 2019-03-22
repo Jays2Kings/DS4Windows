@@ -495,7 +495,6 @@ namespace DS4Windows
         {
             pushed = DS4Controls.None;
             upperDown = leftDown = rightDown = multiDown = false;
-            dev.setRumble(0, 0);
             s = dev.getCurrentStateRef();
             if (s.Touch1 || s.Touch2)
                 synthesizeMouseButtons();

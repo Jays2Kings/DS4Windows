@@ -1379,6 +1379,7 @@ namespace DS4Windows
             advColorDialog.OnUpdateColor += tempDel;
             advColorDialog.Color = Color.FromArgb(tBRedBar.Value, tBGreenBar.Value, tBBlueBar.Value);
             advColorDialog_OnUpdateColor(main, e);
+            advColorDialog.FullOpen = true;
             if (advColorDialog.ShowDialog() == DialogResult.OK)
             {
                 main = advColorDialog.Color;
@@ -2556,7 +2557,9 @@ namespace DS4Windows
             else
                 advColorDialog.Color = Color.Black;
 
+            advColorDialog.FullOpen = true;
             advColorDialog_OnUpdateColor(lbPercentFlashBar.ForeColor, e);
+            advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             if (advColorDialog.ShowDialog() == DialogResult.OK)
             {
                 if (advColorDialog.Color.GetBrightness() > 0)

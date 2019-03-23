@@ -2570,6 +2570,8 @@ namespace DS4Windows
                 FlashColor[device] = new DS4Color(advColorDialog.Color);
             }
 
+            advColorDialog.OnUpdateColor -= advColorDialog_OnUpdateColor;
+
             if (device < 4)
                 DS4LightBar.forcelight[device] = false;
         }

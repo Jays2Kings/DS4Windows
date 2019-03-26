@@ -1405,6 +1405,11 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
         private void Enable_Controls(int device, bool on)
         {
+            DS4Device dev = Program.rootHub.DS4Controllers[device];
+            ConnectionType conType = ConnectionType.USB;
+            if (dev != null)
+                conType = dev.ConnectionType;
+
             Pads[device].Visible = on;
             ebns[device].Visible = on;
             lights[device].Visible = on;
@@ -1412,8 +1417,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             shortcuts[device].Visible = on;
             Batteries[device].Visible = on;
             linkedProfileCB[device].Visible = on;
-            disconnectShortcuts[device].Visible = on &&
-                Program.rootHub.DS4Controllers[device].ConnectionType != ConnectionType.USB;
+            disconnectShortcuts[device].Visible = on && conType != ConnectionType.USB;
         }
 
         protected void On_Debug(object sender, DebugEventArgs e)

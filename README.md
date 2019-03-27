@@ -84,7 +84,7 @@ that I have in my game library and try to reproduce a problem. Here are
 links to my Steam and GOG profiles so that people can see what games I have
 access to play.
 
-https://steamcommunity.com/id/Ryochan7/games/?tab=all
+https://steamcommunity.com/id/Ryochan7/games/?tab=all  
 https://www.gog.com/u/Ryochan7/games
 
 ## Pull Requests

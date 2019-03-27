@@ -29,7 +29,7 @@ you've used a 360 controller before)
 [adapter like this](https://www.newegg.com/Product/Product.aspx?Item=N82E16833166126)
 or built in pc). Only use of Microsoft BT stack is supported. CSR BT stack is
 confirmed to not work with the DS4 even though some CSR adapters work fine
-with Microsoft BT stack. Toshiba's adapters currently do not work.
+using Microsoft BT stack. Toshiba's adapters currently do not work.
 - Disable **PlayStation Configuration Support** and
 **Xbox Configuration Support** options in Steam
 

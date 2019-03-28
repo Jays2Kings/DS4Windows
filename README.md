@@ -18,6 +18,7 @@ website at [ds4windows.com](http://ds4windows.com).
 - Windows 7 SP1 or newer
 - [Microsoft .NET 4.6.2 or higher (needed to unzip the driver and for macros to
 work properly)](https://www.microsoft.com/en-us/download/details.aspx?id=53344)
+- Visual C++ 2017 Redistributable. [x64](https://aka.ms/vs/15/release/vc_redist.x64.exe) or [x86](https://aka.ms/vs/15/release/vc_redist.x86.exe)
 - ViGEmBus driver (DS4Windows will install it for you)
 - Microsoft 360 Driver (link inside DS4Windows, already installed by Windows if
 you've used a 360 controller before)

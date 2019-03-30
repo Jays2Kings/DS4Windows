@@ -792,22 +792,23 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                         Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{UPDATER_VERSION}/{updaterExe}");
                         WebClient wc2 = new WebClient();
                         if (appdatapath == exepath)
+                        {
                             wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
+                            Process p = new Process();
+                            p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
+                            p.StartInfo.Arguments = "-autolaunch";
+                            if (AdminNeeded())
+                                p.StartInfo.Verb = "runas";
+
+                            try { p.Start(); Close(); }
+                            catch { }
+                        }
                         else
                         {
                             this.BeginInvoke((System.Action)(() => MessageBox.Show(Properties.Resources.PleaseDownloadUpdater)));
                             Process.Start($"https://github.com/Ryochan7/DS4Updater/releases/download/v{UPDATER_VERSION}/{updaterExe}");
                         }
                     }
-
-                    Process p = new Process();
-                    p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
-                    p.StartInfo.Arguments = "-autolaunch";
-                    if (AdminNeeded())
-                        p.StartInfo.Verb = "runas";
-
-                    try { p.Start(); Close(); }
-                    catch { }
                 }
                 else
                     File.Delete(appdatapath + "\\version.txt");

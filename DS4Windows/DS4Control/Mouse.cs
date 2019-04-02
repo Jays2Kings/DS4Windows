@@ -162,7 +162,7 @@ namespace DS4Windows
 
             if (Global.getUseTPforControls(deviceNum) == false)
             {
-                if (Global.TouchActive[deviceNum])
+                if (Global.GetTouchActive(deviceNum))
                 {
                     int[] disArray = Global.getTouchDisInvertTriggers(deviceNum);
                     tempBool = true;

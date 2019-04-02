@@ -1362,27 +1362,20 @@ namespace DS4Windows
         public bool[] touchreleased = new bool[4] { true, true, true, true },
             touchslid = new bool[4] { false, false, false, false };
 
-        public byte[] oldtouchvalue = new byte[4] { 0, 0, 0, 0 };
-        public int[] oldscrollvalue = new int[4] { 0, 0, 0, 0 };
-
         protected virtual void CheckForTouchToggle(int deviceID, DS4State cState, DS4State pState)
         {
             if (!getUseTPforControls(deviceID) && cState.Touch1 && pState.PS)
             {
-                if (getTouchSensitivity(deviceID) > 0 && touchreleased[deviceID])
+                if (GetTouchActive(deviceID) && touchreleased[deviceID])
                 {
-                    oldtouchvalue[deviceID] = getTouchSensitivity(deviceID);
-                    oldscrollvalue[deviceID] = getScrollSensitivity(deviceID);
-                    getTouchSensitivity()[deviceID] = 0;
-                    getScrollSensitivity()[deviceID] = 0;
+                    TouchActive[deviceID] = false;
                     LogDebug(Properties.Resources.TouchpadMovementOff);
                     AppLogger.LogToTray(Properties.Resources.TouchpadMovementOff);
                     touchreleased[deviceID] = false;
                 }
                 else if (touchreleased[deviceID])
                 {
-                    getTouchSensitivity()[deviceID] = oldtouchvalue[deviceID];
-                    getScrollSensitivity()[deviceID] = oldscrollvalue[deviceID];
+                    TouchActive[deviceID] = true;
                     LogDebug(Properties.Resources.TouchpadMovementOn);
                     AppLogger.LogToTray(Properties.Resources.TouchpadMovementOn);
                     touchreleased[deviceID] = false;
@@ -1396,10 +1389,7 @@ namespace DS4Windows
         {
             if (deviceID < 4)
             {
-                oldtouchvalue[deviceID] = getTouchSensitivity(deviceID);
-                oldscrollvalue[deviceID] = getScrollSensitivity(deviceID);
-                TouchSensitivity[deviceID] = 0;
-                ScrollSensitivity[deviceID] = 0;
+                TouchActive[deviceID] = false;
             }
         }
 

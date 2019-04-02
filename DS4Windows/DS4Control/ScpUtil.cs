@@ -240,6 +240,7 @@ namespace DS4Windows
         public static bool[] tempprofileDistance = new bool[5] { false, false, false, false, false };
         public static bool[] useDInputOnly = new bool[5] { true, true, true, true, true };
         public static bool[] linkedProfileCheck = new bool[4] { true, true, true, true };
+        public static bool[] touchpadActive = new bool[5] { true, true, true, true, true };
 
         public static X360Controls[] defaultButtonMapping = { X360Controls.None, X360Controls.LXNeg, X360Controls.LXPos,
             X360Controls.LYNeg, X360Controls.LYPos, X360Controls.RXNeg, X360Controls.RXPos, X360Controls.RYNeg, X360Controls.RYPos,
@@ -665,6 +666,12 @@ namespace DS4Windows
         public static byte getTouchSensitivity(int index)
         {
             return m_Config.touchSensitivity[index];
+        }
+
+        public static bool[] TouchActive => touchpadActive;
+        public static bool GetTouchActive(int index)
+        {
+            return touchpadActive[index];
         }
 
         public static byte[] FlashType => m_Config.flashType;

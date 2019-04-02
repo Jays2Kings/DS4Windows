@@ -162,26 +162,41 @@ namespace DS4Windows
 
             if (Global.getUseTPforControls(deviceNum) == false)
             {
-                int[] disArray = Global.getTouchDisInvertTriggers(deviceNum);
-                tempBool = true;
-                for (int i = 0, arlen = disArray.Length; tempBool && i < arlen; i++)
+                if (Global.TouchActive[deviceNum])
                 {
-                    if (getDS4ControlsByName(disArray[i]) == false)
-                        tempBool = false;
-                }
+                    int[] disArray = Global.getTouchDisInvertTriggers(deviceNum);
+                    tempBool = true;
+                    for (int i = 0, arlen = disArray.Length; tempBool && i < arlen; i++)
+                    {
+                        if (getDS4ControlsByName(disArray[i]) == false)
+                            tempBool = false;
+                    }
 
-                if (Global.getTrackballMode(deviceNum))
+                    if (Global.getTrackballMode(deviceNum))
+                    {
+                        int iIndex = trackballBufferTail;
+                        trackballXBuffer[iIndex] = (arg.touches[0].deltaX * TRACKBALL_SCALE) / dev.getCurrentStateRef().elapsedTime;
+                        trackballYBuffer[iIndex] = (arg.touches[0].deltaY * TRACKBALL_SCALE) / dev.getCurrentStateRef().elapsedTime;
+                        trackballBufferTail = (iIndex + 1) % TRACKBALL_BUFFER_LEN;
+                        if (trackballBufferHead == trackballBufferTail)
+                            trackballBufferHead = (trackballBufferHead + 1) % TRACKBALL_BUFFER_LEN;
+                    }
+
+                    cursor.touchesMoved(arg, dragging || dragging2, tempBool);
+                    wheel.touchesMoved(arg, dragging || dragging2);
+                }
+                else
                 {
-                    int iIndex = trackballBufferTail;
-                    trackballXBuffer[iIndex] = (arg.touches[0].deltaX * TRACKBALL_SCALE) / dev.getCurrentStateRef().elapsedTime;
-                    trackballYBuffer[iIndex] = (arg.touches[0].deltaY * TRACKBALL_SCALE) / dev.getCurrentStateRef().elapsedTime;
-                    trackballBufferTail = (iIndex + 1) % TRACKBALL_BUFFER_LEN;
-                    if (trackballBufferHead == trackballBufferTail)
-                        trackballBufferHead = (trackballBufferHead + 1) % TRACKBALL_BUFFER_LEN;
+                    if (Global.getTrackballMode(deviceNum))
+                    {
+                        int iIndex = trackballBufferTail;
+                        trackballXBuffer[iIndex] = 0;
+                        trackballYBuffer[iIndex] = 0;
+                        trackballBufferTail = (iIndex + 1) % TRACKBALL_BUFFER_LEN;
+                        if (trackballBufferHead == trackballBufferTail)
+                            trackballBufferHead = (trackballBufferHead + 1) % TRACKBALL_BUFFER_LEN;
+                    }
                 }
-
-                cursor.touchesMoved(arg, dragging || dragging2, tempBool);
-                wheel.touchesMoved(arg, dragging || dragging2);
             }
             else
             {

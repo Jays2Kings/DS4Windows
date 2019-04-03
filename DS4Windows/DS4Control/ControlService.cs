@@ -34,10 +34,7 @@ namespace DS4Windows
         bool[] buttonsdown = new bool[4] { false, false, false, false };
         bool[] held = new bool[DS4_CONTROLLER_COUNT];
         int[] oldmouse = new int[DS4_CONTROLLER_COUNT] { -1, -1, -1, -1 };
-        public Xbox360Controller[] x360controls = new Xbox360Controller[4] { null, null, null, null };
-        private Xbox360Report[] x360reports = new Xbox360Report[4] { new Xbox360Report(), new Xbox360Report(),
-            new Xbox360Report(), new Xbox360Report()
-        };
+        public IXbox360Controller[] x360controls = new IXbox360Controller[4] { null, null, null, null };
         Thread tempThread;
         public List<string> affectedDevs = new List<string>()
         {
@@ -424,7 +421,7 @@ namespace DS4Windows
                         {
                             LogDebug("Plugging in X360 Controller #" + (i + 1));
                             useDInputOnly[i] = false;
-                            x360controls[i] = new Xbox360Controller(vigemTestClient);
+                            x360controls[i] = vigemTestClient.CreateXbox360Controller();
                             int devIndex = i;
                             x360controls[i].FeedbackReceived += (sender, args) =>
                             {
@@ -680,7 +677,7 @@ namespace DS4Windows
                             {
                                 LogDebug("Plugging in X360 Controller #" + (Index + 1));
                                 useDInputOnly[Index] = false;
-                                x360controls[Index] = new Xbox360Controller(vigemTestClient);
+                                x360controls[Index] = vigemTestClient.CreateXbox360Controller();
                                 int devIndex = Index;
                                 x360controls[Index].FeedbackReceived += (sender, args) =>
                                 {
@@ -721,7 +718,7 @@ namespace DS4Windows
             return true;
         }
 
-        private void testNewReport(ref Xbox360Report xboxreport, DS4State state,
+        private void testNewReport(ref IXbox360Controller cont, DS4State state,
             int device)
         {
             Xbox360Buttons tempButtons = 0;
@@ -746,54 +743,54 @@ namespace DS4Windows
                 if (state.Cross) tempButtons |= Xbox360Buttons.A;
                 if (state.Square) tempButtons |= Xbox360Buttons.X;
                 if (state.PS) tempButtons |= Xbox360Buttons.Guide;
-                xboxreport.SetButtonsFull(tempButtons);
+                cont.SetButtonsFull((ushort)tempButtons);
             }
 
-            xboxreport.LeftTrigger = state.L2;
-            xboxreport.RightTrigger = state.R2;
+            cont.LeftTrigger = state.L2;
+            cont.RightTrigger = state.R2;
 
             SASteeringWheelEmulationAxisType steeringWheelMappedAxis = Global.GetSASteeringWheelEmulationAxis(device);
             switch (steeringWheelMappedAxis)
             {
                 case SASteeringWheelEmulationAxisType.None:
-                    xboxreport.LeftThumbX = AxisScale(state.LX, false);
-                    xboxreport.LeftThumbY = AxisScale(state.LY, true);
-                    xboxreport.RightThumbX = AxisScale(state.RX, false);
-                    xboxreport.RightThumbY = AxisScale(state.RY, true);
+                    cont.LeftThumbX = AxisScale(state.LX, false);
+                    cont.LeftThumbY = AxisScale(state.LY, true);
+                    cont.RightThumbX = AxisScale(state.RX, false);
+                    cont.RightThumbY = AxisScale(state.RY, true);
                     break;
 
                 case SASteeringWheelEmulationAxisType.LX:
-                    xboxreport.LeftThumbX = (short)state.SASteeringWheelEmulationUnit;
-                    xboxreport.LeftThumbY = AxisScale(state.LY, true);
-                    xboxreport.RightThumbX = AxisScale(state.RX, false);
-                    xboxreport.RightThumbY = AxisScale(state.RY, true);
+                    cont.LeftThumbX = (short)state.SASteeringWheelEmulationUnit;
+                    cont.LeftThumbY = AxisScale(state.LY, true);
+                    cont.RightThumbX = AxisScale(state.RX, false);
+                    cont.RightThumbY = AxisScale(state.RY, true);
                     break;
 
                 case SASteeringWheelEmulationAxisType.LY:
-                    xboxreport.LeftThumbX = AxisScale(state.LX, false);
-                    xboxreport.LeftThumbY = (short)state.SASteeringWheelEmulationUnit;
-                    xboxreport.RightThumbX = AxisScale(state.RX, false);
-                    xboxreport.RightThumbY = AxisScale(state.RY, true);
+                    cont.LeftThumbX = AxisScale(state.LX, false);
+                    cont.LeftThumbY = (short)state.SASteeringWheelEmulationUnit;
+                    cont.RightThumbX = AxisScale(state.RX, false);
+                    cont.RightThumbY = AxisScale(state.RY, true);
                     break;
 
                 case SASteeringWheelEmulationAxisType.RX:
-                    xboxreport.LeftThumbX = AxisScale(state.LX, false);
-                    xboxreport.LeftThumbY = AxisScale(state.LY, true);
-                    xboxreport.RightThumbX = (short)state.SASteeringWheelEmulationUnit;
-                    xboxreport.RightThumbY = AxisScale(state.RY, true);
+                    cont.LeftThumbX = AxisScale(state.LX, false);
+                    cont.LeftThumbY = AxisScale(state.LY, true);
+                    cont.RightThumbX = (short)state.SASteeringWheelEmulationUnit;
+                    cont.RightThumbY = AxisScale(state.RY, true);
                     break;
 
                 case SASteeringWheelEmulationAxisType.RY:
-                    xboxreport.LeftThumbX = AxisScale(state.LX, false);
-                    xboxreport.LeftThumbY = AxisScale(state.LY, true);
-                    xboxreport.RightThumbX = AxisScale(state.RX, false);
-                    xboxreport.RightThumbY = (short)state.SASteeringWheelEmulationUnit;
+                    cont.LeftThumbX = AxisScale(state.LX, false);
+                    cont.LeftThumbY = AxisScale(state.LY, true);
+                    cont.RightThumbX = AxisScale(state.RX, false);
+                    cont.RightThumbY = (short)state.SASteeringWheelEmulationUnit;
                     break;
 
                 case SASteeringWheelEmulationAxisType.L2R2:
-                    xboxreport.LeftTrigger = xboxreport.RightTrigger = 0;
-                    if (state.SASteeringWheelEmulationUnit >= 0) xboxreport.LeftTrigger = (Byte)state.SASteeringWheelEmulationUnit;
-                    else xboxreport.RightTrigger = (Byte)state.SASteeringWheelEmulationUnit;
+                    cont.LeftTrigger = cont.RightTrigger = 0;
+                    if (state.SASteeringWheelEmulationUnit >= 0) cont.LeftTrigger = (Byte)state.SASteeringWheelEmulationUnit;
+                    else cont.RightTrigger = (Byte)state.SASteeringWheelEmulationUnit;
                     goto case SASteeringWheelEmulationAxisType.None;
 
                 case SASteeringWheelEmulationAxisType.VJoy1X:
@@ -1057,7 +1054,7 @@ namespace DS4Windows
                     if (!getDInputOnly(ind))
                     {
                         LogDebug("Plugging in X360 Controller #" + (ind + 1));
-                        x360controls[ind] = new Xbox360Controller(vigemTestClient);
+                        x360controls[ind] = vigemTestClient.CreateXbox360Controller();
                         x360controls[ind].FeedbackReceived += (eventsender, args) =>
                         {
                             SetDevRumble(device, args.LargeMotor, args.SmallMotor, ind);
@@ -1238,8 +1235,8 @@ namespace DS4Windows
 
                 if (!useDInputOnly[ind])
                 {
-                    testNewReport(ref x360reports[ind], cState, ind);
-                    x360controls[ind]?.SendReport(x360reports[ind]);
+                    testNewReport(ref x360controls[ind], cState, ind);
+                    x360controls[ind]?.SubmitReport();
                     //x360Bus.Parse(cState, processingData[ind].Report, ind);
                     // We push the translated Xinput state, and simultaneously we
                     // pull back any possible rumble data coming from Xinput consumers.

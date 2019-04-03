@@ -117,10 +117,10 @@
       <HintPath>..\packages\TaskScheduler.2.8.0\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
     </Reference>
     <Reference Include="Nefarius.ViGEm.Client" Condition="'$(Platform)' == 'x64'">
-      <HintPath>.\libs\x64\Nefarius.ViGEmClient\Nefarius.ViGEm.Client.dll</HintPath>
+      <HintPath>.\libs\x64\Nefarius.ViGEm.Client\Nefarius.ViGEm.Client.dll</HintPath>
     </Reference>
     <Reference Include="Nefarius.ViGEm.Client" Condition="'$(Platform)' == 'x86'">
-      <HintPath>.\libs\x86\Nefarius.ViGEmClient\Nefarius.ViGEm.Client.dll</HintPath>
+      <HintPath>.\libs\x86\Nefarius.ViGEm.Client\Nefarius.ViGEm.Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -147,7 +147,6 @@
     <Compile Include="DS4Control\ScpUtil.cs" />
     <Compile Include="DS4Control\UdpServer.cs" />
     <Compile Include="DS4Control\Util.cs" />
-    <Compile Include="DS4Control\VigemXbox360Report.cs" />
     <Compile Include="DS4Forms\LanguagePackComboBox.cs">
       <SubType>UserControl</SubType>
     </Compile>

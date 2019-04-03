@@ -3063,9 +3063,9 @@ namespace DS4Windows
                         tempDev.setBTPollRate(btPollRate[device]);
                         if (xinputStatus && xinputPlug)
                         {
-                            control.x360controls[device] = control.vigemTestClient.CreateXbox360Controller();
+                            control.x360controls[device] = new Nefarius.ViGEm.Client.Targets.Xbox360Controller(control.vigemTestClient);
                             control.x360controls[device].Connect();
-			    Global.useDInputOnly[device] = false;
+                            Global.useDInputOnly[device] = false;
                             AppLogger.LogToGui("X360 Controller # " + (device + 1) + " connected", false);
                         }
                         else if (xinputStatus && !xinputPlug)

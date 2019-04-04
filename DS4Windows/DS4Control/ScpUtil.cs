@@ -3064,6 +3064,11 @@ namespace DS4Windows
                         if (xinputStatus && xinputPlug)
                         {
                             control.x360controls[device] = new Nefarius.ViGEm.Client.Targets.Xbox360Controller(control.vigemTestClient);
+                            /*control.x360controls[device].FeedbackReceived += (eventsender, args) =>
+                            {
+                                control.SetDevRumble(tempDev, args.LargeMotor, args.SmallMotor, device);
+                            };
+                            */
                             control.x360controls[device].Connect();
                             Global.useDInputOnly[device] = false;
                             AppLogger.LogToGui("X360 Controller # " + (device + 1) + " connected", false);

@@ -3071,14 +3071,14 @@ namespace DS4Windows
                             */
                             control.x360controls[device].Connect();
                             Global.useDInputOnly[device] = false;
-                            AppLogger.LogToGui("X360 Controller # " + (device + 1) + " connected", false);
+                            AppLogger.LogToGui("X360 Controller #" + (device + 1) + " connected", false);
                         }
                         else if (xinputStatus && !xinputPlug)
                         {
                             control.x360controls[device].Disconnect();
                             control.x360controls[device] = null;
                             Global.useDInputOnly[device] = true;
-                            AppLogger.LogToGui("X360 Controller # " + (device + 1) + " unplugged", false);
+                            AppLogger.LogToGui("X360 Controller #" + (device + 1) + " unplugged", false);
                         }
 
                         tempDev.setRumble(0, 0);

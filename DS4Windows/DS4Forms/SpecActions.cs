@@ -92,13 +92,16 @@ namespace DS4Windows
                 case "Profile": 
                     cBActions.SelectedIndex = 3;
                     cBProfiles.Text = act.details;
-                    foreach (string s in act.ucontrols.Split('/'))
-                        foreach (ListViewItem lvi in lVUnloadTrigger.Items)
-                            if (lvi.Text == s)
-                            {
-                                lvi.Checked = true;
-                                break;
-                            }
+                    if (act.ucontrols != null)
+                    {
+                        foreach (string s in act.ucontrols.Split('/'))
+                            foreach (ListViewItem lvi in lVUnloadTrigger.Items)
+                                if (lvi.Text == s)
+                                {
+                                    lvi.Checked = true;
+                                    break;
+                                }
+                    }
                     break;
                 case "Key":
                     cBActions.SelectedIndex = 4;
@@ -261,7 +264,7 @@ namespace DS4Windows
                         }
                         break;
                     case 3:
-                        if (cBProfiles.SelectedIndex > 0 && ucontrols.Count > 0)
+                        if (cBProfiles.SelectedIndex > 0 /*&& ucontrols.Count > 0*/)
                         {
                             action = Properties.Resources.LoadProfile.Replace("*profile*", cBProfiles.Text);
                             actRe = true;

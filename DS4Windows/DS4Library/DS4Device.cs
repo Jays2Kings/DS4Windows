@@ -611,6 +611,8 @@ namespace DS4Windows
             }
         }
 
+        private readonly Stopwatch rumbleAutostopTimer = new Stopwatch(); // Autostop timer to stop rumble motors if those are stuck in a rumble state
+
         private byte outputPendCount = 0;
         private readonly Stopwatch standbySw = new Stopwatch();
         private unsafe void performDs4Output()
@@ -1210,6 +1212,13 @@ namespace DS4Windows
                     }
                 }
 
+                if (rumbleAutostopTimer.IsRunning)
+                {
+                    // Workaround to a bug in ViGem driver. Force stop potentially stuck rumble motor on the next output report if there haven't been new rumble events within X seconds
+                    if (rumbleAutostopTimer.ElapsedMilliseconds >= 2000L)
+                        setRumble(0, 0);
+                }
+
                 if (synchronous)
                 {
                     if (output || haptime)
@@ -1399,6 +1408,11 @@ namespace DS4Windows
             testRumble.RumbleMotorStrengthRightLightFast = rightLightFastMotor;
             testRumble.RumbleMotorStrengthLeftHeavySlow = leftHeavySlowMotor;
             testRumble.RumbleMotorsExplicitlyOff = rightLightFastMotor == 0 && leftHeavySlowMotor == 0;
+
+            if (testRumble.RumbleMotorsExplicitlyOff)
+                rumbleAutostopTimer.Reset();   // Stop an autostop timer because ViGem driver sent properly a zero rumble notification
+            else
+                rumbleAutostopTimer.Restart(); // Start an autostop timer to stop potentially stuck rumble motor because of lost rumble notification events from ViGem driver
         }
 
         private void MergeStates()

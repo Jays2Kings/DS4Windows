@@ -1896,11 +1896,15 @@ namespace DS4Windows
                             {
                                 actionFound = true;
 
-                                if (!actionDone[index].dev[device] && !useTempProfile[device])
+                                if (!actionDone[index].dev[device] && (!useTempProfile[device] || untriggeraction[device] == null || untriggeraction[device].typeID != SpecialAction.ActionTypeId.Profile) )
                                 {
                                     actionDone[index].dev[device] = true;
-                                    untriggeraction[device] = action;
-                                    untriggerindex[device] = index;
+                                    // If Loadprofile special action doesn't have unload trigger then don't set untrigger status. This way the new loaded profile allows yet another loadProfile action key events)
+                                    if (action.uTrigger.Count > 0)
+                                    {
+                                        untriggeraction[device] = action;
+                                        untriggerindex[device] = index;
+                                    }
                                     //foreach (DS4Controls dc in action.trigger)
                                     for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                                     {

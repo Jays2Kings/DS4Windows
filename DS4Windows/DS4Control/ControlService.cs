@@ -426,11 +426,11 @@ namespace DS4Windows
                             useDInputOnly[i] = false;
                             x360controls[i] = new Xbox360Controller(vigemTestClient);
                             int devIndex = i;
-                            /*x360controls[i].FeedbackReceived += (sender, args) =>
+                            x360controls[i].FeedbackReceived += (sender, args) =>
                             {
                                 SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
                             };
-                            */
+                            
                             x360controls[i].Connect();
                             LogDebug("X360 Controller #" + (i + 1) + " connected");
                         }
@@ -683,11 +683,11 @@ namespace DS4Windows
                                 useDInputOnly[Index] = false;
                                 x360controls[Index] = new Xbox360Controller(vigemTestClient);
                                 int devIndex = Index;
-                                /*x360controls[Index].FeedbackReceived += (sender, args) =>
+                                x360controls[Index].FeedbackReceived += (sender, args) =>
                                 {
                                     SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
                                 };
-                                */
+                                
                                 x360controls[Index].Connect();
                                 LogDebug("X360 Controller #" + (Index + 1) + " connected");
                             }
@@ -1060,11 +1060,11 @@ namespace DS4Windows
                     {
                         LogDebug("Plugging in X360 Controller #" + (ind + 1));
                         x360controls[ind] = new Xbox360Controller(vigemTestClient);
-                        /*x360controls[ind].FeedbackReceived += (eventsender, args) =>
+                        x360controls[ind].FeedbackReceived += (eventsender, args) =>
                         {
                             SetDevRumble(device, args.LargeMotor, args.SmallMotor, ind);
                         };
-                        */
+                        
                         x360controls[ind].Connect();
                         useDInputOnly[ind] = false;
                         LogDebug("X360 Controller #" + (ind + 1) + " connected");

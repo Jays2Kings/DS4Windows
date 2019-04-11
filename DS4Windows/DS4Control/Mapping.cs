@@ -851,15 +851,15 @@ namespace DS4Windows
             double lsSens = getLSSens(device);
             if (lsSens != 1.0)
             {
-                dState.LX = (byte)Global.Clamp(0, lsSens * (dState.LX - 128.0) + 127.0, 255);
-                dState.LY = (byte)Global.Clamp(0, lsSens * (dState.LY - 128.0) + 127.0, 255);
+                dState.LX = (byte)Global.Clamp(0, lsSens * (dState.LX - 128.0) + 128.0, 255);
+                dState.LY = (byte)Global.Clamp(0, lsSens * (dState.LY - 128.0) + 128.0, 255);
             }
 
             double rsSens = getRSSens(device);
             if (rsSens != 1.0)
             {
-                dState.RX = (byte)Global.Clamp(0, rsSens * (dState.RX - 128.0) + 127.0, 255);
-                dState.RY = (byte)Global.Clamp(0, rsSens * (dState.RY - 128.0) + 127.0, 255);
+                dState.RX = (byte)Global.Clamp(0, rsSens * (dState.RX - 128.0) + 128.0, 255);
+                dState.RY = (byte)Global.Clamp(0, rsSens * (dState.RY - 128.0) + 128.0, 255);
             }
 
             double l2Sens = getL2Sens(device);

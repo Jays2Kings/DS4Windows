@@ -83,10 +83,14 @@ namespace DS4Windows
         public static void performSCKeyPress(ushort key)
         {
             INPUT[] tempInput = new INPUT[1];
+            ushort scancode = scancodeFromVK(key);
+            bool extended = (scancode & 0x100) != 0;
+            uint curflags = extended ? KEYEVENTF_EXTENDEDKEY : 0;
+
             tempInput[0].Type = INPUT_KEYBOARD;
             tempInput[0].Data.Keyboard.ExtraInfo = IntPtr.Zero;
-            tempInput[0].Data.Keyboard.Flags = KEYEVENTF_SCANCODE;
-            tempInput[0].Data.Keyboard.Scan = MapVirtualKey(key, MAPVK_VK_TO_VSC);
+            tempInput[0].Data.Keyboard.Flags = KEYEVENTF_SCANCODE | curflags;
+            tempInput[0].Data.Keyboard.Scan = scancode;
             tempInput[0].Data.Keyboard.Time = 0;
             tempInput[0].Data.Keyboard.Vk = key;
             uint result = SendInput(1, tempInput, Marshal.SizeOf(tempInput[0]));
@@ -113,10 +117,14 @@ namespace DS4Windows
         public static void performSCKeyRelease(ushort key)
         {
             INPUT[] tempInput = new INPUT[1];
+            ushort scancode = scancodeFromVK(key);
+            bool extended = (scancode & 0x100) != 0;
+            uint curflags = extended ? KEYEVENTF_EXTENDEDKEY : 0;
+
             tempInput[0].Type = INPUT_KEYBOARD;
             tempInput[0].Data.Keyboard.ExtraInfo = IntPtr.Zero;
-            tempInput[0].Data.Keyboard.Flags = KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP;
-            tempInput[0].Data.Keyboard.Scan = MapVirtualKey(key, MAPVK_VK_TO_VSC);
+            tempInput[0].Data.Keyboard.Flags = KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP | curflags;
+            tempInput[0].Data.Keyboard.Scan = scancode;
             tempInput[0].Data.Keyboard.Time = 0;
             //sendInputs[0].Data.Keyboard.Vk = MapVirtualKey(key, MAPVK_VK_TO_VSC);
             uint result = SendInput(1, tempInput, Marshal.SizeOf(tempInput[0]));

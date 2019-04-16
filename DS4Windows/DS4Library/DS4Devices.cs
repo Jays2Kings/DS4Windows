@@ -44,6 +44,7 @@ namespace DS4Windows
             new VidPidInfo(HORI_VID, 0x00EE),    // Hori PS4 Mini Wired Gamepad
             new VidPidInfo(0x7545, 0x0104),
             new VidPidInfo(0x2E95, 0x7725), // Scuf Vantage gamepad
+            new VidPidInfo(0x11C0, 0x4001), // PS4 Fun Controller
         };
 
         private static string devicePathToInstanceId(string devicePath)

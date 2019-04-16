@@ -69,6 +69,13 @@ namespace DS4Windows.DS4Library
                     endpointVolume = interfacePointer as IAudioEndpointVolume;
                     endpointVolume.RegisterControlChangeNotify(this);
                 }
+                else if (deviceName.Contains("PS4 Fun Controller"))
+                {
+                    object interfacePointer;
+                    Marshal.ThrowExceptionForHR(audioDevice.Activate(ref IID_IAudioEndpointVolume, ClsCtx.ALL, IntPtr.Zero, out interfacePointer));
+                    endpointVolume = interfacePointer as IAudioEndpointVolume;
+                    endpointVolume.RegisterControlChangeNotify(this);
+                }
 
                 RefreshVolume();
                 Marshal.ReleaseComObject(audioDevice);

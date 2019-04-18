@@ -422,31 +422,37 @@ namespace DS4Windows
 
                         if (!getDInputOnly(i) && device.isSynced())
                         {
-                            LogDebug("Plugging in X360 Controller #" + (i + 1));
                             useDInputOnly[i] = false;
 
-                            DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
-                            outputDevices[i] = tempDS4;
-                            int devIndex = i;
-                            tempDS4.cont.FeedbackReceived += (sender, args) =>
+                            OutContType contType = Global.OutContType[i];
+                            if (contType == OutContType.X360)
                             {
-                                SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
-                            };
+                                LogDebug("Plugging in X360 Controller #" + (i + 1));
+                                Xbox360OutDevice tempXbox = new Xbox360OutDevice(vigemTestClient);
+                                outputDevices[i] = tempXbox;
+                                int devIndex = i;
+                                tempXbox.cont.FeedbackReceived += (sender, args) =>
+                                {
+                                    SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
+                                };
 
-                            tempDS4.Connect();
-                            //x360controls[i] = new Xbox360Controller(vigemTestClient);
-                            /*Xbox360Controller bacon = new Xbox360Controller(vigemTestClient);
-                            Xbox360OutDevice tempXbox = new Xbox360OutDevice(vigemTestClient);
-                            outputDevices[i] = tempXbox;
-                            int devIndex = i;
-                            tempXbox.cont.FeedbackReceived += (sender, args) =>
+                                tempXbox.Connect();
+                                LogDebug("X360 Controller #" + (i + 1) + " connected");
+                            }
+                            else if (contType == OutContType.DS4)
                             {
-                                SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
-                            };
+                                LogDebug("Plugging in DS4 Controller #" + (i + 1));
+                                DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
+                                outputDevices[i] = tempDS4;
+                                int devIndex = i;
+                                tempDS4.cont.FeedbackReceived += (sender, args) =>
+                                {
+                                    SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
+                                };
 
-                            tempXbox.Connect();
-                            */
-                            LogDebug("X360 Controller #" + (i + 1) + " connected");
+                                tempDS4.Connect();
+                                LogDebug("DS4 Controller #" + (i + 1) + " connected");
+                            }
                         }
                         else
                         {
@@ -582,10 +588,8 @@ namespace DS4Windows
                         }
 
                         CurrentState[i].Battery = PreviousState[i].Battery = 0; // Reset for the next connection's initial status change.
-                        //x360controls[i]?.Disconnect();
                         outputDevices[i]?.Disconnect();
                         outputDevices[i] = null;
-                        //x360controls[i] = null;
                         useDInputOnly[i] = true;
                         DS4Controllers[i] = null;
                         touchPad[i] = null;
@@ -695,21 +699,37 @@ namespace DS4Windows
                             
                             if (!getDInputOnly(Index) && device.isSynced())
                             {
-                                LogDebug("Plugging in X360 Controller #" + (Index + 1));
                                 useDInputOnly[Index] = false;
-                                //x360controls[Index] = new Xbox360Controller(vigemTestClient);
-                                Xbox360OutDevice tempXbox = new Xbox360OutDevice(vigemTestClient);
-                                outputDevices[Index] = tempXbox;
-                                int devIndex = Index;
-                                //x360controls[Index].FeedbackReceived += (sender, args) =>
-                                tempXbox.cont.FeedbackReceived += (sender, args) =>
+                                OutContType contType = Global.OutContType[Index];
+                                if (contType == OutContType.X360)
                                 {
-                                    SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
-                                };
+                                    LogDebug("Plugging in X360 Controller #" + (Index + 1));
+                                    Xbox360OutDevice tempXbox = new Xbox360OutDevice(vigemTestClient);
+                                    outputDevices[Index] = tempXbox;
+                                    int devIndex = Index;
+                                    tempXbox.cont.FeedbackReceived += (sender, args) =>
+                                    {
+                                        SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
+                                    };
 
-                                //x360controls[Index].Connect();
-                                tempXbox.Connect();
-                                LogDebug("X360 Controller #" + (Index + 1) + " connected");
+                                    tempXbox.Connect();
+                                    LogDebug("X360 Controller #" + (Index + 1) + " connected");
+                                }
+                                else if (contType == OutContType.DS4)
+                                {
+                                    LogDebug("Plugging in DS4 Controller #" + (Index + 1));
+                                    DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
+                                    outputDevices[Index] = tempDS4;
+                                    int devIndex = Index;
+                                    tempDS4.cont.FeedbackReceived += (sender, args) =>
+                                    {
+                                        SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
+                                    };
+
+                                    tempDS4.Connect();
+                                    LogDebug("DS4 Controller #" + (Index + 1) + " connected");
+                                }
+                                
                             }
                             else
                             {
@@ -1073,33 +1093,43 @@ namespace DS4Windows
                         outputDevices[ind].Disconnect();
                         outputDevices[ind] = null;
                         useDInputOnly[ind] = true;
-                        LogDebug("X360 Controller #" + (ind + 1) + " unplugged");
+                        LogDebug("Controller #" + (ind + 1) + " unplugged");
                     }
                 }
                 else
                 {
                     if (!getDInputOnly(ind))
                     {
-                        LogDebug("Plugging in X360 Controller #" + (ind + 1));
-                        Xbox360OutDevice tempXbox = new Xbox360OutDevice(vigemTestClient);
-                        outputDevices[ind] = tempXbox;
-                        tempXbox.cont.FeedbackReceived += (eventsender, args) =>
+                        OutContType conType = Global.OutContType[ind];
+                        if (conType == OutContType.X360)
                         {
-                            SetDevRumble(device, args.LargeMotor, args.SmallMotor, ind);
-                        };
-                        
-                        tempXbox.Connect();
+                            LogDebug("Plugging in X360 Controller #" + (ind + 1));
+                            Xbox360OutDevice tempXbox = new Xbox360OutDevice(vigemTestClient);
+                            outputDevices[ind] = tempXbox;
+                            tempXbox.cont.FeedbackReceived += (eventsender, args) =>
+                            {
+                                SetDevRumble(device, args.LargeMotor, args.SmallMotor, ind);
+                            };
 
-                        /*x360controls[ind] = new Xbox360Controller(vigemTestClient);
-                        x360controls[ind].FeedbackReceived += (eventsender, args) =>
+                            tempXbox.Connect();
+                            LogDebug("X360 Controller #" + (ind + 1) + " connected");
+                        }
+                        else if (conType == OutContType.DS4)
                         {
-                            SetDevRumble(device, args.LargeMotor, args.SmallMotor, ind);
-                        };
-                        
-                        x360controls[ind].Connect();
-                        */
+                            LogDebug("Plugging in DS4 Controller #" + (ind + 1));
+                            DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
+                            outputDevices[ind] = tempDS4;
+                            int devIndex = ind;
+                            tempDS4.cont.FeedbackReceived += (eventsender, args) =>
+                            {
+                                SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
+                            };
+
+                            tempDS4.Connect();
+                            LogDebug("DS4 Controller #" + (ind + 1) + " connected");
+                        }
+
                         useDInputOnly[ind] = false;
-                        LogDebug("X360 Controller #" + (ind + 1) + " connected");
                     }
                 }
             }

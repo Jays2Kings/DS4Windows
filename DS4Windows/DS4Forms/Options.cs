@@ -34,6 +34,7 @@ namespace DS4Windows
         private Bitmap pnlControllerBgImg;
         private Bitmap btnLightBgImg;
         private Bitmap btnLightBg;
+        private OutContType devOutContType = OutContType.X360;
 
         int tempInt = 0;
 
@@ -306,6 +307,8 @@ namespace DS4Windows
                     ProfilePath[4] = name;
 
                 LoadProfile(device, false, Program.rootHub);
+
+                devOutContType = Global.OutContType[device];
 
                 if (Rainbow[device] == 0)
                 {
@@ -728,6 +731,15 @@ namespace DS4Windows
 
                 int idxSASteeringWheelEmulationRange = cBSteeringWheelEmulationRange.Items.IndexOf(GetSASteeringWheelEmulationRange(device).ToString());
                 if (idxSASteeringWheelEmulationRange >= 0) cBSteeringWheelEmulationRange.SelectedIndex = idxSASteeringWheelEmulationRange;
+
+                OutContType tempOutType = Global.OutContType[device];
+                switch(tempOutType)
+                {
+                    case OutContType.X360: OutContTypeCb.SelectedIndex = 0; break;
+                    case OutContType.DS4: OutContTypeCb.SelectedIndex = 1; break;
+                    default: break;
+                }
+                
             }
             else
             {
@@ -853,6 +865,7 @@ namespace DS4Windows
                 triggerCondAndCombo.SelectedIndex = 0;
                 cBSteeringWheelEmulationAxis.SelectedIndex = 0;
                 cBSteeringWheelEmulationRange.SelectedIndex = cBSteeringWheelEmulationRange.Items.IndexOf("360");
+                OutContTypeCb.SelectedIndex = 0;
                 Set();
             }
             
@@ -1334,6 +1347,20 @@ namespace DS4Windows
 
             if (nUDRainbow.Value == 0) btnRainbow.Image = greyscale;
             else btnRainbow.Image = colored;
+
+            int tempOutCont = OutContTypeCb.SelectedIndex;
+            OutContType tempType = OutContType.X360;
+            switch(tempOutCont)
+            {
+                case 0: tempType = OutContType.X360; break;
+                case 1: tempType = OutContType.DS4; break;
+                default: break;
+            }
+
+            if (devOutContType != tempType)
+            {
+                Global.OutContType[device] = tempType;
+            }
         }
 
         private void Show_ControlsBtn(object sender, EventArgs e)

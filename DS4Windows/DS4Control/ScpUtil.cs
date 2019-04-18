@@ -21,6 +21,7 @@ namespace DS4Windows
     public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, Unbound };
 
     public enum SASteeringWheelEmulationAxisType: byte { None = 0, LX, LY, RX, RY, L2R2, VJoy1X, VJoy1Y, VJoy1Z, VJoy2X, VJoy2Y, VJoy2Z };
+    public enum OutContType : uint { None = 0, X360, DS4 }
 
     public class DS4ControlSettings
     {
@@ -1148,6 +1149,7 @@ namespace DS4Windows
             return m_Config.trackballFriction[index];
         }
 
+        public static OutContType[] OutContType => m_Config.outputDevType;
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
         public static string[] OlderProfilePath => m_Config.olderProfilePath;
@@ -1660,6 +1662,9 @@ namespace DS4Windows
         public int[] gyroMouseHorizontalAxis = new int[5] { 0, 0, 0, 0, 0 };
         public bool[] trackballMode = new bool[5] { false, false, false, false, false };
         public double[] trackballFriction = new double[5] { 10.0, 10.0, 10.0, 10.0, 10.0 };
+        public OutContType[] outputDevType = new OutContType[5] { OutContType.None,
+            OutContType.None, OutContType.None,
+            OutContType.None, OutContType.None };
 
         bool tempBool = false;
 
@@ -1777,6 +1782,34 @@ namespace DS4Windows
             gyroMouseToggle[index] = value;
             if (index < 4 && control.touchPad[index] != null)
                 control.touchPad[index].ToggleGyroMouse = value;
+        }
+
+        private string OutContDeviceString(OutContType id)
+        {
+            string result = "None";
+            switch (id)
+            {
+                case OutContType.None: break;
+                case OutContType.X360: result = "X360"; break;
+                case OutContType.DS4: result = "DS4"; break;
+                default: break;
+            }
+
+            return result;
+        }
+
+        private OutContType OutContDeviceId(string name)
+        {
+            OutContType id = OutContType.None;
+            switch (name)
+            {
+                case "None": break;
+                case "X360": id = OutContType.X360; break;
+                case "DS4": id = OutContType.DS4; break;
+                default: break;
+            }
+
+            return id;
         }
 
         public bool SaveProfile(int device, string propath)
@@ -1902,6 +1935,8 @@ namespace DS4Windows
 
                 XmlNode xmlTrackBallMode = m_Xdoc.CreateNode(XmlNodeType.Element, "TrackballMode", null); xmlTrackBallMode.InnerText = trackballMode[device].ToString(); Node.AppendChild(xmlTrackBallMode);
                 XmlNode xmlTrackBallFriction = m_Xdoc.CreateNode(XmlNodeType.Element, "TrackballFriction", null); xmlTrackBallFriction.InnerText = trackballFriction[device].ToString(); Node.AppendChild(xmlTrackBallFriction);
+
+                XmlNode xmlOutContDevice = m_Xdoc.CreateNode(XmlNodeType.Element, "OutputContDevice", null); xmlOutContDevice.InnerText = OutContDeviceString(outputDevType[device]); Node.AppendChild(xmlOutContDevice);
 
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
                 XmlNode Key = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
@@ -2376,6 +2411,8 @@ namespace DS4Windows
                     DS4LightBar.forcedFlash[device] = 0;
                 }
 
+                OutContType oldContType = outputDevType[device];
+
                 // Make sure to reset currently set profile values before parsing
                 ResetProfile(device);
 
@@ -2697,32 +2734,6 @@ namespace DS4Windows
 
                 bool oldUseDInputOnly = Global.useDInputOnly[device];
 
-                // Only change xinput devices under certain conditions. Avoid
-                // performing this upon program startup before loading devices.
-                if (xinputChange)
-                {
-                    if (device < 4)
-                    {
-                        DS4Device tempDevice = control.DS4Controllers[device];
-                        bool exists = tempBool = (tempDevice != null);
-                        bool synced = tempBool = exists ? tempDevice.isSynced() : false;
-                        bool isAlive = tempBool = exists ? tempDevice.IsAlive() : false;
-                        if (dinputOnly[device] != oldUseDInputOnly)
-                        {
-                            if (dinputOnly[device] == true)
-                            {
-                                xinputPlug = false;
-                                xinputStatus = true;
-                            }
-                            else if (synced && isAlive)
-                            {
-                                xinputPlug = true;
-                                xinputStatus = true;
-                            }
-                        }
-                    }
-                }
-
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/StartTouchpadOff");
@@ -2840,6 +2851,40 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TrackballFriction"); double.TryParse(Item.InnerText, out trackballFriction[device]); }
                 catch { trackballFriction[device] = 10.0; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/OutputContDevice"); outputDevType[device] = OutContDeviceId(Item.InnerText); }
+                catch { outputDevType[device] = OutContType.X360; missingSetting = true; }
+
+                // Only change xinput devices under certain conditions. Avoid
+                // performing this upon program startup before loading devices.
+                if (xinputChange)
+                {
+                    if (device < 4)
+                    {
+                        DS4Device tempDevice = control.DS4Controllers[device];
+                        bool exists = tempBool = (tempDevice != null);
+                        bool synced = tempBool = exists ? tempDevice.isSynced() : false;
+                        bool isAlive = tempBool = exists ? tempDevice.IsAlive() : false;
+                        if (dinputOnly[device] != oldUseDInputOnly)
+                        {
+                            if (dinputOnly[device] == true)
+                            {
+                                xinputPlug = false;
+                                xinputStatus = true;
+                            }
+                            else if (synced && isAlive)
+                            {
+                                xinputPlug = true;
+                                xinputStatus = true;
+                            }
+                        }
+                        else if (oldContType != outputDevType[device])
+                        {
+                            xinputPlug = true;
+                            xinputStatus = true;
+                        }
+                    }
+                }
 
                 try
                 {
@@ -3091,31 +3136,50 @@ namespace DS4Windows
                         tempDev.setBTPollRate(btPollRate[device]);
                         if (xinputStatus && xinputPlug)
                         {
-                            Xbox360OutDevice tempXbox = new Xbox360OutDevice(control.vigemTestClient);
-                            control.outputDevices[device] = tempXbox;
-                            tempXbox.cont.FeedbackReceived += (eventsender, args) =>
+                            OutputDevice tempOutDev = control.outputDevices[device];
+                            if (tempOutDev != null)
                             {
-                                control.SetDevRumble(tempDev, args.LargeMotor, args.SmallMotor, device);
-                            };
+                                AppLogger.LogToGui("Unplug Controller #" + (device + 1), false);
+                                tempOutDev.Disconnect();
+                                tempOutDev = null;
+                                control.outputDevices[device] = null;
+                            }
 
-                            tempXbox.Connect();
-                            /*control.x360controls[device] = new Nefarius.ViGEm.Client.Targets.Xbox360Controller(control.vigemTestClient);
-                            control.x360controls[device].FeedbackReceived += (eventsender, args) =>
+                            OutContType tempContType = outputDevType[device];
+                            if (tempContType == OutContType.X360)
                             {
-                                control.SetDevRumble(tempDev, args.LargeMotor, args.SmallMotor, device);
-                            };
-                            
-                            control.x360controls[device].Connect();
-                            */
+                                Xbox360OutDevice tempXbox = new Xbox360OutDevice(control.vigemTestClient);
+                                control.outputDevices[device] = tempXbox;
+                                tempXbox.cont.FeedbackReceived += (eventsender, args) =>
+                                {
+                                    control.SetDevRumble(tempDev, args.LargeMotor, args.SmallMotor, device);
+                                };
+
+                                tempXbox.Connect();
+                                AppLogger.LogToGui("X360 Controller #" + (device + 1) + " connected", false);
+                            }
+                            else if (tempContType == OutContType.DS4)
+                            {
+                                DS4OutDevice tempDS4 = new DS4OutDevice(control.vigemTestClient);
+                                control.outputDevices[device] = tempDS4;
+                                tempDS4.cont.FeedbackReceived += (eventsender, args) =>
+                                {
+                                    control.SetDevRumble(tempDev, args.LargeMotor, args.SmallMotor, device);
+                                };
+
+                                tempDS4.Connect();
+                                AppLogger.LogToGui("DS4 Controller #" + (device + 1) + " connected", false);
+                            }
+
                             Global.useDInputOnly[device] = false;
-                            AppLogger.LogToGui("X360 Controller #" + (device + 1) + " connected", false);
+                            
                         }
                         else if (xinputStatus && !xinputPlug)
                         {
                             control.outputDevices[device].Disconnect();
                             control.outputDevices[device] = null;
                             Global.useDInputOnly[device] = true;
-                            AppLogger.LogToGui("X360 Controller #" + (device + 1) + " unplugged", false);
+                            AppLogger.LogToGui("Controller #" + (device + 1) + " unplugged", false);
                         }
 
                         tempDev.setRumble(0, 0);
@@ -4062,6 +4126,7 @@ namespace DS4Windows
             sxOutCurveMode[device] = szOutCurveMode[device] = 0;
             trackballMode[device] = false;
             trackballFriction[device] = 10.0;
+            outputDevType[device] = OutContType.X360;
         }
     }
 

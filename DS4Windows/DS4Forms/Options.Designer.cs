@@ -121,6 +121,8 @@
             this.bnSwipeRight = new System.Windows.Forms.Button();
             this.lbSwipeRight = new System.Windows.Forms.Label();
             this.gBOther = new System.Windows.Forms.GroupBox();
+            this.OutContTypeCb = new System.Windows.Forms.ComboBox();
+            this.label28 = new System.Windows.Forms.Label();
             this.btPollRateLabel = new System.Windows.Forms.Label();
             this.btPollRateComboBox = new System.Windows.Forms.ComboBox();
             this.enableTouchToggleCheckbox = new System.Windows.Forms.CheckBox();
@@ -290,6 +292,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.nUDLSMaxZone = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
+            this.squStickTabPage = new System.Windows.Forms.TabPage();
+            this.rsSquStickCk = new System.Windows.Forms.CheckBox();
+            this.lsSquStickCk = new System.Windows.Forms.CheckBox();
             this.tPOutCurve = new System.Windows.Forms.TabPage();
             this.cBSixaxisZOutputCurve = new System.Windows.Forms.ComboBox();
             this.cBSixaxisXOutputCurve = new System.Windows.Forms.ComboBox();
@@ -397,9 +402,6 @@
             this.shareTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.psTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
-            this.squStickTabPage = new System.Windows.Forms.TabPage();
-            this.lsSquStickCk = new System.Windows.Forms.CheckBox();
-            this.rsSquStickCk = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).BeginInit();
@@ -471,6 +473,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).BeginInit();
+            this.squStickTabPage.SuspendLayout();
             this.tPOutCurve.SuspendLayout();
             this.tPCurve.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).BeginInit();
@@ -494,7 +497,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
             this.cMGyroTriggers.SuspendLayout();
             this.cMTouchDisableInvert.SuspendLayout();
-            this.squStickTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // lowColorChooserButton
@@ -1316,6 +1318,8 @@
             // gBOther
             // 
             this.gBOther.BackColor = System.Drawing.SystemColors.Control;
+            this.gBOther.Controls.Add(this.OutContTypeCb);
+            this.gBOther.Controls.Add(this.label28);
             this.gBOther.Controls.Add(this.btPollRateLabel);
             this.gBOther.Controls.Add(this.btPollRateComboBox);
             this.gBOther.Controls.Add(this.enableTouchToggleCheckbox);
@@ -1336,6 +1340,21 @@
             resources.ApplyResources(this.gBOther, "gBOther");
             this.gBOther.Name = "gBOther";
             this.gBOther.TabStop = false;
+            // 
+            // OutContTypeCb
+            // 
+            this.OutContTypeCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.OutContTypeCb.FormattingEnabled = true;
+            this.OutContTypeCb.Items.AddRange(new object[] {
+            resources.GetString("OutContTypeCb.Items"),
+            resources.GetString("OutContTypeCb.Items1")});
+            resources.ApplyResources(this.OutContTypeCb, "OutContTypeCb");
+            this.OutContTypeCb.Name = "OutContTypeCb";
+            // 
+            // label28
+            // 
+            resources.ApplyResources(this.label28, "label28");
+            this.label28.Name = "label28";
             // 
             // btPollRateLabel
             // 
@@ -3186,6 +3205,28 @@
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
             // 
+            // squStickTabPage
+            // 
+            this.squStickTabPage.Controls.Add(this.rsSquStickCk);
+            this.squStickTabPage.Controls.Add(this.lsSquStickCk);
+            resources.ApplyResources(this.squStickTabPage, "squStickTabPage");
+            this.squStickTabPage.Name = "squStickTabPage";
+            this.squStickTabPage.UseVisualStyleBackColor = true;
+            // 
+            // rsSquStickCk
+            // 
+            resources.ApplyResources(this.rsSquStickCk, "rsSquStickCk");
+            this.rsSquStickCk.Name = "rsSquStickCk";
+            this.rsSquStickCk.UseVisualStyleBackColor = true;
+            this.rsSquStickCk.Click += new System.EventHandler(this.rsSquStickCk_Click);
+            // 
+            // lsSquStickCk
+            // 
+            resources.ApplyResources(this.lsSquStickCk, "lsSquStickCk");
+            this.lsSquStickCk.Name = "lsSquStickCk";
+            this.lsSquStickCk.UseVisualStyleBackColor = true;
+            this.lsSquStickCk.Click += new System.EventHandler(this.lsSquStickCk_Click);
+            // 
             // tPOutCurve
             // 
             this.tPOutCurve.BackColor = System.Drawing.SystemColors.Control;
@@ -4232,28 +4273,6 @@
             resources.ApplyResources(this.psTouchInvStripMenuItem, "psTouchInvStripMenuItem");
             this.psTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
             // 
-            // squStickTabPage
-            // 
-            this.squStickTabPage.Controls.Add(this.rsSquStickCk);
-            this.squStickTabPage.Controls.Add(this.lsSquStickCk);
-            resources.ApplyResources(this.squStickTabPage, "squStickTabPage");
-            this.squStickTabPage.Name = "squStickTabPage";
-            this.squStickTabPage.UseVisualStyleBackColor = true;
-            // 
-            // lsSquStickCk
-            // 
-            resources.ApplyResources(this.lsSquStickCk, "lsSquStickCk");
-            this.lsSquStickCk.Name = "lsSquStickCk";
-            this.lsSquStickCk.UseVisualStyleBackColor = true;
-            this.lsSquStickCk.Click += new System.EventHandler(this.lsSquStickCk_Click);
-            // 
-            // rsSquStickCk
-            // 
-            resources.ApplyResources(this.rsSquStickCk, "rsSquStickCk");
-            this.rsSquStickCk.Name = "rsSquStickCk";
-            this.rsSquStickCk.UseVisualStyleBackColor = true;
-            this.rsSquStickCk.Click += new System.EventHandler(this.rsSquStickCk_Click);
-            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -4349,6 +4368,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).EndInit();
+            this.squStickTabPage.ResumeLayout(false);
             this.tPOutCurve.ResumeLayout(false);
             this.tPOutCurve.PerformLayout();
             this.tPCurve.ResumeLayout(false);
@@ -4378,7 +4398,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
             this.cMGyroTriggers.ResumeLayout(false);
             this.cMTouchDisableInvert.ResumeLayout(false);
-            this.squStickTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -4757,5 +4776,7 @@
         private System.Windows.Forms.TabPage squStickTabPage;
         private System.Windows.Forms.CheckBox rsSquStickCk;
         private System.Windows.Forms.CheckBox lsSquStickCk;
+        private System.Windows.Forms.ComboBox OutContTypeCb;
+        private System.Windows.Forms.Label label28;
     }
 }

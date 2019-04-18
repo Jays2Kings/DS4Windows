@@ -234,6 +234,9 @@ namespace DS4Windows
         internal static DEVPROPKEY DEVPKEY_Device_HardwareIds =
             new DEVPROPKEY { fmtid = new Guid(0xa45c254e, 0xdf1c, 0x4efd, 0x80, 0x20, 0x67, 0xd1, 0x46, 0xa8, 0x50, 0xe0), pid = 3 };
 
+        internal static DEVPROPKEY DEVPKEY_Device_UINumber =
+            new DEVPROPKEY { fmtid = new Guid(0xa45c254e, 0xdf1c, 0x4efd, 0x80, 0x20, 0x67, 0xd1, 0x46, 0xa8, 0x50, 0xe0), pid = 18 };
+
         [DllImport("setupapi.dll", EntryPoint = "SetupDiGetDeviceRegistryProperty")]
         public static extern bool SetupDiGetDeviceRegistryProperty(IntPtr deviceInfoSet, ref SP_DEVINFO_DATA deviceInfoData, int propertyVal, ref int propertyRegDataType, byte[] propertyBuffer, int propertyBufferSize, ref int requiredSize);
 	

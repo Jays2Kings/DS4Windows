@@ -335,6 +335,34 @@ namespace DS4Windows
             return result;
         }
 
+        internal static string GetDeviceProperty(string deviceInstanceId,
+            NativeMethods.DEVPROPKEY prop)
+        {
+            string result = string.Empty;
+            NativeMethods.SP_DEVINFO_DATA deviceInfoData = new NativeMethods.SP_DEVINFO_DATA();
+            deviceInfoData.cbSize = System.Runtime.InteropServices.Marshal.SizeOf(deviceInfoData);
+            var dataBuffer = new byte[4096];
+            ulong propertyType = 0;
+            var requiredSize = 0;
+
+            Guid hidGuid = new Guid();
+            NativeMethods.HidD_GetHidGuid(ref hidGuid);
+            IntPtr deviceInfoSet = NativeMethods.SetupDiGetClassDevs(ref hidGuid, deviceInstanceId, 0, NativeMethods.DIGCF_PRESENT | NativeMethods.DIGCF_DEVICEINTERFACE);
+            NativeMethods.SetupDiEnumDeviceInfo(deviceInfoSet, 0, ref deviceInfoData);
+            if (NativeMethods.SetupDiGetDeviceProperty(deviceInfoSet, ref deviceInfoData, ref prop, ref propertyType,
+                    dataBuffer, dataBuffer.Length, ref requiredSize, 0))
+            {
+                result = dataBuffer.ToUTF16String();
+            }
+
+            if (deviceInfoSet.ToInt64() != NativeMethods.INVALID_HANDLE_VALUE)
+            {
+                NativeMethods.SetupDiDestroyDeviceInfoList(deviceInfoSet);
+            }
+
+            return result;
+        }
+
         public static bool IsHidGuardianInstalled()
         {
             return CheckForSysDevice(@"Root\HidGuardian");
@@ -3063,20 +3091,29 @@ namespace DS4Windows
                         tempDev.setBTPollRate(btPollRate[device]);
                         if (xinputStatus && xinputPlug)
                         {
-                            control.x360controls[device] = new Nefarius.ViGEm.Client.Targets.Xbox360Controller(control.vigemTestClient);
+                            Xbox360OutDevice tempXbox = new Xbox360OutDevice(control.vigemTestClient);
+                            control.outputDevices[device] = tempXbox;
+                            tempXbox.cont.FeedbackReceived += (eventsender, args) =>
+                            {
+                                control.SetDevRumble(tempDev, args.LargeMotor, args.SmallMotor, device);
+                            };
+
+                            tempXbox.Connect();
+                            /*control.x360controls[device] = new Nefarius.ViGEm.Client.Targets.Xbox360Controller(control.vigemTestClient);
                             control.x360controls[device].FeedbackReceived += (eventsender, args) =>
                             {
                                 control.SetDevRumble(tempDev, args.LargeMotor, args.SmallMotor, device);
                             };
                             
                             control.x360controls[device].Connect();
+                            */
                             Global.useDInputOnly[device] = false;
                             AppLogger.LogToGui("X360 Controller #" + (device + 1) + " connected", false);
                         }
                         else if (xinputStatus && !xinputPlug)
                         {
-                            control.x360controls[device].Disconnect();
-                            control.x360controls[device] = null;
+                            control.outputDevices[device].Disconnect();
+                            control.outputDevices[device] = null;
                             Global.useDInputOnly[device] = true;
                             AppLogger.LogToGui("X360 Controller #" + (device + 1) + " unplugged", false);
                         }

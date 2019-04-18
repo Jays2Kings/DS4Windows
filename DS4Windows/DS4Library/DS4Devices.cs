@@ -61,12 +61,22 @@ namespace DS4Windows
             return deviceInstanceId;
         }
 
+        private static bool IsRealDS4(HidDevice hDevice)
+        {
+            string deviceInstanceId = devicePathToInstanceId(hDevice.DevicePath);
+            string temp = Global.GetDeviceProperty(deviceInstanceId,
+                NativeMethods.DEVPKEY_Device_UINumber);
+            return string.IsNullOrEmpty(temp);
+        }
+
         // Enumerates ds4 controllers in the system
         public static void findControllers()
         {
             lock (Devices)
             {
                 IEnumerable<HidDevice> hDevices = HidDevices.EnumerateDS4(knownDevices);
+                hDevices = hDevices.Where(dev => IsRealDS4(dev)).Select(dev => dev);
+                //hDevices = from dev in hDevices where IsRealDS4(dev) select dev;
                 // Sort Bluetooth first in case USB is also connected on the same controller.
                 hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) => { return DS4Device.HidConnectionType(d); });
 

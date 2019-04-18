@@ -138,6 +138,7 @@
   <ItemGroup>
     <Compile Include="DS4Control\ControlService.cs" />
     <Compile Include="DS4Control\DS4LightBar.cs" />
+    <Compile Include="DS4Control\DS4OutDevice.cs" />
     <Compile Include="DS4Control\DS4StateFieldMapping.cs" />
     <Compile Include="DS4Control\InputMethods.cs" />
     <Compile Include="DS4Control\ITouchpadBehaviour.cs" />
@@ -146,9 +147,11 @@
     <Compile Include="DS4Control\Mouse.cs" />
     <Compile Include="DS4Control\MouseCursor.cs" />
     <Compile Include="DS4Control\MouseWheel.cs" />
+    <Compile Include="DS4Control\OutputDevice.cs" />
     <Compile Include="DS4Control\ScpUtil.cs" />
     <Compile Include="DS4Control\UdpServer.cs" />
     <Compile Include="DS4Control\Util.cs" />
+    <Compile Include="DS4Control\Xbox360OutDevice.cs" />
     <Compile Include="DS4Forms\LanguagePackComboBox.cs">
       <SubType>UserControl</SubType>
     </Compile>

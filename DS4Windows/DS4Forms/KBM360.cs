@@ -7,6 +7,9 @@ namespace DS4Windows
 {
     public partial class KBM360 : Form
     {
+        private bool use360 = true;
+        private Dictionary<string, string> ds4StrAliases =
+            new Dictionary<string, string>();
         private int device;
         private Button button;
         private Options ops;
@@ -24,13 +27,25 @@ namespace DS4Windows
         int bgc = 240; // Color of the form background, If greyscale color
         private bool extraChanged;
         private Bitmap pnl360BgImage;
+        private Bitmap pnlDS4BgImage;
 
         public KBM360(int deviceNum, Options ooo, Button buton)
         {
             InitializeComponent();
             pnl360BgImage = (Bitmap)Properties.Resources._360_map.Clone();
-            pnl360Controls.BackgroundImage = null;
-            pnl360Controls.BackgroundImageLayout = ImageLayout.None;
+            //pnl360Controls.BackgroundImage = null;
+            //pnl360Controls.BackgroundImageLayout = ImageLayout.None;
+            use360 = true;
+            pnl360Controls.Paint -= pnl360Controls_Paint;
+            if (Global.outDevTypeTemp[device] == OutContType.DS4)
+            {
+                use360 = false;
+                InitDS4Panel();
+                PopulateDS4StrAliases();
+                pnl360Controls.Hide();
+                pnlDS4Controls.Show();
+            }
+
             device = deviceNum;
             ops = ooo;
             button = buton;
@@ -56,10 +71,22 @@ namespace DS4Windows
                     ((Button)control).Click += anybtn_Click;
             }
 
-            foreach (Control control in pnl360Controls.Controls)
+            if (use360)
             {
-                if (control is Button)
-                    ((Button)control).Click += anybtn_Click;
+                pnl360Controls.Paint -= pnl360Controls_Paint;
+                foreach (Control control in pnl360Controls.Controls)
+                {
+                    if (control is Button)
+                        ((Button)control).Click += anybtn_Click;
+                }
+            }
+            else
+            {
+                foreach (Control control in pnlDS4Controls.Controls)
+                {
+                    if (control is Button)
+                        ((Button)control).Click += anybtn_Click;
+                }
             }
 
             if (button.Name.Contains("Touch") || button.Name.Contains("Swipe"))
@@ -120,6 +147,174 @@ namespace DS4Windows
             pnl360Controls.Visible = false;
             ActiveControl = lBMacroOn;
             btnGuide.Text = "";
+        }
+
+        private void InitDS4Panel()
+        {
+            pnlDS4BgImage = (Bitmap)Properties.Resources.DS4_Config.Clone();
+
+            pnl360Controls.Controls.Remove(this.btnAButton);
+            this.btnAButton.Location = new Point(461, 145);
+            this.btnAButton.Size = new Size(23, 23);
+            pnlDS4Controls.Controls.Add(this.btnAButton);
+
+            pnl360Controls.Controls.Remove(this.btnBButton);
+            this.btnBButton.Location = new Point(494, 116);
+            this.btnBButton.Size = new Size(23, 23);
+            pnlDS4Controls.Controls.Add(this.btnBButton);
+
+            pnl360Controls.Controls.Remove(this.btnXButton);
+            this.btnXButton.Location = new Point(429, 116);
+            this.btnXButton.Size = new Size(23, 23);
+            pnlDS4Controls.Controls.Add(this.btnXButton);
+
+            pnl360Controls.Controls.Remove(this.btnYButton);
+            this.btnYButton.Location = new Point(460, 86);
+            this.btnYButton.Size = new Size(23, 23);
+            pnlDS4Controls.Controls.Add(this.btnYButton);
+
+            pnl360Controls.Controls.Remove(this.btnGuide);
+            this.btnGuide.Location = new Point(322, 160);
+            this.btnGuide.Size = new Size(23, 20);
+            pnlDS4Controls.Controls.Add(this.btnGuide);
+
+            pnl360Controls.Controls.Remove(this.btnLB);
+            this.btnLB.Location = new Point(164, 26);
+            this.btnLB.Size = new Size(66, 17);
+            pnlDS4Controls.Controls.Add(this.btnLB);
+
+            pnl360Controls.Controls.Remove(this.btnRB);
+            this.btnRB.Location = new Point(442, 26);
+            this.btnRB.Size = new Size(66, 17);
+            pnlDS4Controls.Controls.Add(this.btnRB);
+
+            pnl360Controls.Controls.Remove(this.btnLT);
+            this.btnLT.Location = new Point(178, 3);
+            this.btnLT.Size = new Size(43, 23);
+            pnlDS4Controls.Controls.Add(this.btnLT);
+
+            pnl360Controls.Controls.Remove(this.btnRT);
+            this.btnRT.Location = new Point(447, 3);
+            this.btnRT.Size = new Size(43, 23);
+            pnlDS4Controls.Controls.Add(this.btnRT);
+
+            pnl360Controls.Controls.Remove(this.btnBack);
+            this.btnBack.Location = new Point(238, 74);
+            this.btnBack.Size = new Size(16, 23);
+            pnlDS4Controls.Controls.Add(this.btnBack);
+
+            pnl360Controls.Controls.Remove(this.btnStart);
+            this.btnStart.Location = new Point(415, 74);
+            this.btnStart.Size = new Size(16, 23);
+            pnlDS4Controls.Controls.Add(this.btnStart);
+
+            pnl360Controls.Controls.Remove(this.btnDpadUp);
+            this.btnDpadUp.Location = new Point(190, 96);
+            this.btnDpadUp.Size = new Size(16, 18);
+            pnlDS4Controls.Controls.Add(this.btnDpadUp);
+
+            pnl360Controls.Controls.Remove(this.btnDpadRight);
+            this.btnDpadRight.Location = new Point(207, 116);
+            this.btnDpadRight.Size = new Size(24, 23);
+            pnlDS4Controls.Controls.Add(this.btnDpadRight);
+
+            pnl360Controls.Controls.Remove(this.btnDpadDown);
+            this.btnDpadDown.Location = new Point(184, 131);
+            this.btnDpadDown.Size = new Size(24, 30);
+            pnlDS4Controls.Controls.Add(this.btnDpadDown);
+
+            pnl360Controls.Controls.Remove(this.btnDpadLeft);
+            this.btnDpadLeft.Location = new Point(165, 118);
+            this.btnDpadLeft.Size = new Size(16, 18);
+            pnlDS4Controls.Controls.Add(this.btnDpadLeft);
+
+            pnl360Controls.Controls.Remove(this.btnLSUp);
+            this.btnLSUp.Location = new Point(256, 167);
+            this.btnLSUp.Size = new Size(16, 18);
+            pnlDS4Controls.Controls.Add(this.btnLSUp);
+
+            pnl360Controls.Controls.Remove(this.btnLSRight);
+            this.btnLSRight.Location = new Point(275, 179);
+            this.btnLSRight.Size = new Size(16, 18);
+            pnlDS4Controls.Controls.Add(this.btnLSRight);
+
+            pnl360Controls.Controls.Remove(this.btnLSDown);
+            this.btnLSDown.Location = new Point(258, 194);
+            this.btnLSDown.Size = new Size(16, 18);
+            pnlDS4Controls.Controls.Add(this.btnLSDown);
+
+            pnl360Controls.Controls.Remove(this.btnLSLeft);
+            this.btnLSLeft.Location = new Point(241, 181);
+            this.btnLSLeft.Size = new Size(16, 18);
+            pnlDS4Controls.Controls.Add(this.btnLSLeft);
+
+            pnl360Controls.Controls.Remove(this.btnRSUp);
+            this.btnRSUp.Location = new Point(398, 166);
+            this.btnRSUp.Size = new Size(16, 18);
+            pnlDS4Controls.Controls.Add(this.btnRSUp);
+
+            pnl360Controls.Controls.Remove(this.btnRSRight);
+            this.btnRSRight.Location = new Point(412, 179);
+            this.btnRSRight.Size = new Size(16, 18);
+            pnlDS4Controls.Controls.Add(this.btnRSRight);
+
+            pnl360Controls.Controls.Remove(this.btnRSDown);
+            this.btnRSDown.Location = new Point(397, 195);
+            this.btnRSDown.Size = new Size(16, 18);
+            pnlDS4Controls.Controls.Add(this.btnRSDown);
+
+            pnl360Controls.Controls.Remove(this.btnRSLeft);
+            this.btnRSLeft.Location = new Point(380, 182);
+            this.btnRSLeft.Size = new Size(16, 18);
+            pnlDS4Controls.Controls.Add(this.btnRSLeft);
+
+            pnl360Controls.Controls.Remove(this.btnLSClick);
+            this.btnLSClick.Location = new Point(256, 181);
+            this.btnLSClick.Size = new Size(16, 18);
+            pnlDS4Controls.Controls.Add(this.btnLSClick);
+
+            pnl360Controls.Controls.Remove(this.btnRSClick);
+            this.btnRSClick.Location = new Point(397, 181);
+            this.btnRSClick.Size = new Size(16, 18);
+            pnlDS4Controls.Controls.Add(this.btnRSClick);
+
+            pnl360Controls.Controls.Remove(this.lb360Tip);
+            pnlDS4Controls.Controls.Add(this.lb360Tip);
+            pnl360Controls.Controls.Remove(this.pBHighlight);
+            pnlDS4Controls.Controls.Add(this.pBHighlight);
+            //this.pnlDS4Controls.Paint += new PaintEventHandler(this.pnlDS4Controls_Paint);
+        }
+
+        private void PopulateDS4StrAliases()
+        {
+            ds4StrAliases["A Button"] = "Cross";
+            ds4StrAliases["B Button"] = "Circle";
+            ds4StrAliases["X Button"] = "Square";
+            ds4StrAliases["Y Button"] = "Triangle";
+            ds4StrAliases["Left Bumper"] = "L1";
+            ds4StrAliases["Right Bumper"] = "R1";
+            ds4StrAliases["Left Trigger"] = "L2";
+            ds4StrAliases["Right Trigger"] = "R2";
+            ds4StrAliases["Back"] = "Share";
+            ds4StrAliases["Start"] = "Options";
+            ds4StrAliases["Guide"] = "PS";
+            ds4StrAliases["Left Stick"] = "L3";
+            ds4StrAliases["Right Stick"] = "R3";
+
+            ds4StrAliases["Up Button"] = "Dpad Up";
+            ds4StrAliases["Right Button"] = "Dpad Right";
+            ds4StrAliases["Down Button"] = "Dpad Down";
+            ds4StrAliases["Left Button"] = "Dpad Left";
+
+            ds4StrAliases["Left X-Axis-"] = "LS Left";
+            ds4StrAliases["Left X-Axis+"] = "LS Right";
+            ds4StrAliases["Left Y-Axis-"] = "LS Up";
+            ds4StrAliases["Left Y-Axis+"] = "LS Down";
+
+            ds4StrAliases["Right X-Axis-"] = "RS Left";
+            ds4StrAliases["Right X-Axis+"] = "RS Right";
+            ds4StrAliases["Right Y-Axis-"] = "RS Up";
+            ds4StrAliases["Right Y-Axis+"] = "RS Down";
         }
 
         public void anybtn_Click(object sender, EventArgs e)
@@ -267,7 +462,7 @@ namespace DS4Windows
                     bool toggleavil = tagisint;
                     KeyValuePair<object, string> tag;
                     if (tt is X360Controls)
-                        tag = new KeyValuePair<object, string>(getX360ControlsByName((X360Controls)tt), extras);
+                        tag = new KeyValuePair<object, string>(getX360ControlsByName((X360Controls)tt, Global.outDevTypeTemp[device]), extras);
                     else
                         tag = new KeyValuePair<object, string>(tt, extras);
                     ops.ChangeButtonText(button, rBShiftModifer.Checked, tag, (scanavail ? cBScanCode.Checked : false), (toggleavil ? cBToggle.Checked : false), lBMacroOn.Visible, macrorepeat, cBShiftButton.SelectedIndex);
@@ -479,23 +674,25 @@ namespace DS4Windows
             Point l = c.Location;
             pBHighlight.Location = new Point(l.X + s.Width / 2 - s2.Width / 2, l.Y + s.Height / 2 - s2.Height / 2);
             Point l2 = pBHighlight.Location;
-            lb360Tip.Text = X360ControlName(c.Name.Substring(3));
+            lb360Tip.Text = X360ControlName(c.Tag.ToString().Substring(4));
             lb360Tip.Location = new Point(l2.X + s2.Width / 2 - lb360Tip.Width / 2, l2.Y - 20);
+            lb360Tip.BringToFront();
+            pBHighlight.BringToFront();
         }
 
         private string X360ControlName(string v)
         {
-            string s = v;
-            for (int i = s.Length - 1; i > (s.StartsWith("L") || s.StartsWith("R") ? 1 : 0); i--)
+            string result = string.Empty;
+            if (use360)
             {
-                if (s[i] >= 'A' && s[i] <= 'Z')
-                    s = s.Insert(i, " ");
+                result = v;
+            }
+            else
+            {
+                ds4StrAliases.TryGetValue(v, out result);
             }
 
-            if (s == "Guide")
-                s = guideText;
-
-            return s;
+            return result;
         }
 
         private void Highlight_Leave(object sender, EventArgs e)
@@ -566,7 +763,7 @@ namespace DS4Windows
                 {
                     string tag;
                     if (tagO is X360Controls)
-                        tag = getX360ControlsByName((X360Controls)tagO);
+                        tag = getX360ControlsByName((X360Controls)tagO, Global.outDevTypeTemp[device]);
                     else
                         tag = tagO.ToString();
 
@@ -603,7 +800,7 @@ namespace DS4Windows
                     tagO = ops.defaults[button.Name];
                     string tag;
                     if (tagO is X360Controls)
-                        tag = getX360ControlsByName((X360Controls)tagO);
+                        tag = getX360ControlsByName((X360Controls)tagO, Global.outDevTypeTemp[device]);
                     else
                         tag = tagO.ToString();
 
@@ -699,54 +896,106 @@ namespace DS4Windows
             extraChanged = false;
         }
 
-        public static string getX360ControlsByName(X360Controls key)
+        public static string getX360ControlsByName(X360Controls key,
+            OutContType contType=OutContType.X360)
         {
-            switch (key)
+            if (contType == OutContType.X360 || contType== OutContType.None)
             {
-                case X360Controls.Back: return "Back";
-                case X360Controls.LS: return "Left Stick";
-                case X360Controls.RS: return "Right Stick";
-                case X360Controls.Start: return "Start";
-                case X360Controls.DpadUp: return "Up Button";
-                case X360Controls.DpadRight: return "Right Button";
-                case X360Controls.DpadDown: return "Down Button";
-                case X360Controls.DpadLeft: return "Left Button";
+                switch (key)
+                {
+                    case X360Controls.Back: return "Back";
+                    case X360Controls.LS: return "Left Stick";
+                    case X360Controls.RS: return "Right Stick";
+                    case X360Controls.Start: return "Start";
+                    case X360Controls.DpadUp: return "Up Button";
+                    case X360Controls.DpadRight: return "Right Button";
+                    case X360Controls.DpadDown: return "Down Button";
+                    case X360Controls.DpadLeft: return "Left Button";
 
-                case X360Controls.LB: return "Left Bumper";
-                case X360Controls.RB: return "Right Bumper";
-                case X360Controls.Y: return "Y Button";
-                case X360Controls.B: return "B Button";
-                case X360Controls.A: return "A Button";
-                case X360Controls.X: return "X Button";
+                    case X360Controls.LB: return "Left Bumper";
+                    case X360Controls.RB: return "Right Bumper";
+                    case X360Controls.Y: return "Y Button";
+                    case X360Controls.B: return "B Button";
+                    case X360Controls.A: return "A Button";
+                    case X360Controls.X: return "X Button";
 
-                case X360Controls.Guide: return "Guide";
-                case X360Controls.LXNeg: return "Left X-Axis-";
-                case X360Controls.LYNeg: return "Left Y-Axis-";
-                case X360Controls.RXNeg: return "Right X-Axis-";
-                case X360Controls.RYNeg: return "Right Y-Axis-";
+                    case X360Controls.Guide: return "Guide";
+                    case X360Controls.LXNeg: return "Left X-Axis-";
+                    case X360Controls.LYNeg: return "Left Y-Axis-";
+                    case X360Controls.RXNeg: return "Right X-Axis-";
+                    case X360Controls.RYNeg: return "Right Y-Axis-";
 
-                case X360Controls.LXPos: return "Left X-Axis+";
-                case X360Controls.LYPos: return "Left Y-Axis+";
-                case X360Controls.RXPos: return "Right X-Axis+";
-                case X360Controls.RYPos: return "Right Y-Axis+";
-                case X360Controls.LT: return "Left Trigger";
-                case X360Controls.RT: return "Right Trigger";
+                    case X360Controls.LXPos: return "Left X-Axis+";
+                    case X360Controls.LYPos: return "Left Y-Axis+";
+                    case X360Controls.RXPos: return "Right X-Axis+";
+                    case X360Controls.RYPos: return "Right Y-Axis+";
+                    case X360Controls.LT: return "Left Trigger";
+                    case X360Controls.RT: return "Right Trigger";
 
-                case X360Controls.LeftMouse: return "Left Mouse Button";
-                case X360Controls.RightMouse: return "Right Mouse Button";
-                case X360Controls.MiddleMouse: return "Middle Mouse Button";
-                case X360Controls.FourthMouse: return "4th Mouse Button";
-                case X360Controls.FifthMouse: return "5th Mouse Button";
-                case X360Controls.WUP: return "Mouse Wheel Up";
-                case X360Controls.WDOWN: return "Mouse Wheel Down";
-                case X360Controls.MouseUp: return "Mouse Up";
-                case X360Controls.MouseDown: return "Mouse Down";
-                case X360Controls.MouseLeft: return "Mouse Left";
-                case X360Controls.MouseRight: return "Mouse Right";
-                case X360Controls.Unbound: return "Unbound";
-                default: break;
+                    case X360Controls.LeftMouse: return "Left Mouse Button";
+                    case X360Controls.RightMouse: return "Right Mouse Button";
+                    case X360Controls.MiddleMouse: return "Middle Mouse Button";
+                    case X360Controls.FourthMouse: return "4th Mouse Button";
+                    case X360Controls.FifthMouse: return "5th Mouse Button";
+                    case X360Controls.WUP: return "Mouse Wheel Up";
+                    case X360Controls.WDOWN: return "Mouse Wheel Down";
+                    case X360Controls.MouseUp: return "Mouse Up";
+                    case X360Controls.MouseDown: return "Mouse Down";
+                    case X360Controls.MouseLeft: return "Mouse Left";
+                    case X360Controls.MouseRight: return "Mouse Right";
+                    case X360Controls.Unbound: return "Unbound";
+                    default: break;
+                }
             }
+            else
+            {
+                switch (key)
+                {
+                    case X360Controls.Back: return "Share";
+                    case X360Controls.LS: return "L3";
+                    case X360Controls.RS: return "R3";
+                    case X360Controls.Start: return "Options";
+                    case X360Controls.DpadUp: return "Dpad Up";
+                    case X360Controls.DpadRight: return "Dpad Right";
+                    case X360Controls.DpadDown: return "Dpad Down";
+                    case X360Controls.DpadLeft: return "Dpad Left";
 
+                    case X360Controls.LB: return "L1";
+                    case X360Controls.RB: return "R1";
+                    case X360Controls.Y: return "Triangle";
+                    case X360Controls.B: return "Circle";
+                    case X360Controls.A: return "Cross";
+                    case X360Controls.X: return "Square";
+
+                    case X360Controls.Guide: return "PS";
+                    case X360Controls.LXNeg: return "Left X-Axis-";
+                    case X360Controls.LYNeg: return "Left Y-Axis-";
+                    case X360Controls.RXNeg: return "Right X-Axis-";
+                    case X360Controls.RYNeg: return "Right Y-Axis-";
+
+                    case X360Controls.LXPos: return "Left X-Axis+";
+                    case X360Controls.LYPos: return "Left Y-Axis+";
+                    case X360Controls.RXPos: return "Right X-Axis+";
+                    case X360Controls.RYPos: return "Right Y-Axis+";
+                    case X360Controls.LT: return "L2";
+                    case X360Controls.RT: return "R2";
+
+                    case X360Controls.LeftMouse: return "Left Mouse Button";
+                    case X360Controls.RightMouse: return "Right Mouse Button";
+                    case X360Controls.MiddleMouse: return "Middle Mouse Button";
+                    case X360Controls.FourthMouse: return "4th Mouse Button";
+                    case X360Controls.FifthMouse: return "5th Mouse Button";
+                    case X360Controls.WUP: return "Mouse Wheel Up";
+                    case X360Controls.WDOWN: return "Mouse Wheel Down";
+                    case X360Controls.MouseUp: return "Mouse Up";
+                    case X360Controls.MouseDown: return "Mouse Down";
+                    case X360Controls.MouseLeft: return "Mouse Left";
+                    case X360Controls.MouseRight: return "Mouse Right";
+                    case X360Controls.Unbound: return "Unbound";
+                    default: break;
+                }
+            }
+            
             return "Unbound";
         }
 
@@ -788,7 +1037,17 @@ namespace DS4Windows
 
         private void pnl360Controls_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawImage(pnl360BgImage, new Rectangle(0, 13, Convert.ToInt32(pnl360Controls.Width), Convert.ToInt32(pnl360Controls.Height - 26)), new Rectangle(0, 0, Convert.ToInt32(pnl360BgImage.Width), Convert.ToInt32(pnl360BgImage.Height)), GraphicsUnit.Pixel);
+            //e.Graphics.DrawImage(pnl360BgImage, new Rectangle(0, 13, Convert.ToInt32(pnl360Controls.Width), Convert.ToInt32(pnl360Controls.Height - 26)), new Rectangle(0, 0, Convert.ToInt32(pnl360BgImage.Width), Convert.ToInt32(pnl360BgImage.Height)), GraphicsUnit.Pixel);
+        }
+
+        private void pnlDS4Controls_Paint(object sender, PaintEventArgs e)
+        {
+            /*e.Graphics.DrawImage(pnlDS4BgImage,
+                new Rectangle(0, 13, Convert.ToInt32(pnlDS4Controls.Width),
+                Convert.ToInt32(pnlDS4Controls.Height - 26)),
+                new Rectangle(0, 0, Convert.ToInt32(pnlDS4Controls.Width),
+                Convert.ToInt32(pnlDS4Controls.Height)), GraphicsUnit.Pixel);
+                */
         }
 
         private void nUD_ValueChanged(object sender, EventArgs e)

@@ -178,7 +178,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pBMouse.ZOrder" xml:space="preserve">
-    <value>132</value>
+    <value>134</value>
   </data>
   <data name="btnF6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -208,7 +208,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnF6.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="btnF5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -238,7 +238,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnF5.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="btnF7.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -268,7 +268,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnF7.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="btnF4.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -298,7 +298,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnF4.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="btnF8.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -328,7 +328,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnF8.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>17</value>
   </data>
   <data name="btnF3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -358,7 +358,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnF3.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>18</value>
   </data>
   <data name="btnF9.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -388,7 +388,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnF9.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>20</value>
   </data>
   <data name="btnF2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -418,7 +418,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnF2.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>21</value>
   </data>
   <data name="btnINS.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -448,7 +448,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnINS.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>23</value>
   </data>
   <data name="btnF1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -478,7 +478,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnF1.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>24</value>
   </data>
   <data name="btnHOME.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -508,7 +508,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnHOME.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>26</value>
   </data>
   <data name="btn1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -538,7 +538,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn1.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>27</value>
   </data>
   <data name="btnPGUP.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -568,7 +568,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnPGUP.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>29</value>
   </data>
   <data name="btnBACKSPACE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -598,7 +598,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnBACKSPACE.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>30</value>
   </data>
   <data name="btnPGDN.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -628,7 +628,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnPGDN.ZOrder" xml:space="preserve">
-    <value>30</value>
+    <value>32</value>
   </data>
   <data name="btnEQUALS.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -658,7 +658,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnEQUALS.ZOrder" xml:space="preserve">
-    <value>31</value>
+    <value>33</value>
   </data>
   <data name="btnEND.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -688,7 +688,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnEND.ZOrder" xml:space="preserve">
-    <value>33</value>
+    <value>35</value>
   </data>
   <data name="btnMINUS.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -718,7 +718,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnMINUS.ZOrder" xml:space="preserve">
-    <value>34</value>
+    <value>36</value>
   </data>
   <data name="btnDEL.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -748,7 +748,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnDEL.ZOrder" xml:space="preserve">
-    <value>36</value>
+    <value>38</value>
   </data>
   <data name="btn0.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -778,7 +778,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn0.ZOrder" xml:space="preserve">
-    <value>37</value>
+    <value>39</value>
   </data>
   <data name="btnSCL.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -808,7 +808,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSCL.ZOrder" xml:space="preserve">
-    <value>39</value>
+    <value>41</value>
   </data>
   <data name="btn9.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -838,7 +838,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn9.ZOrder" xml:space="preserve">
-    <value>40</value>
+    <value>42</value>
   </data>
   <data name="button34.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -868,7 +868,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button34.ZOrder" xml:space="preserve">
-    <value>42</value>
+    <value>44</value>
   </data>
   <data name="btn8.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -898,7 +898,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn8.ZOrder" xml:space="preserve">
-    <value>44</value>
+    <value>46</value>
   </data>
   <data name="btnSTOP.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -931,7 +931,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSTOP.ZOrder" xml:space="preserve">
-    <value>46</value>
+    <value>48</value>
   </data>
   <data name="btn7.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -961,7 +961,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn7.ZOrder" xml:space="preserve">
-    <value>47</value>
+    <value>49</value>
   </data>
   <data name="btnPLAYPAUSE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -994,7 +994,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnPLAYPAUSE.ZOrder" xml:space="preserve">
-    <value>49</value>
+    <value>51</value>
   </data>
   <data name="btn6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1024,7 +1024,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn6.ZOrder" xml:space="preserve">
-    <value>51</value>
+    <value>53</value>
   </data>
   <data name="btnNEXTTRACK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1057,7 +1057,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNEXTTRACK.ZOrder" xml:space="preserve">
-    <value>53</value>
+    <value>55</value>
   </data>
   <data name="btn5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1087,7 +1087,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn5.ZOrder" xml:space="preserve">
-    <value>54</value>
+    <value>56</value>
   </data>
   <data name="btnPREVTRACK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1120,7 +1120,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnPREVTRACK.ZOrder" xml:space="preserve">
-    <value>56</value>
+    <value>58</value>
   </data>
   <data name="btn4.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1150,7 +1150,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn4.ZOrder" xml:space="preserve">
-    <value>57</value>
+    <value>59</value>
   </data>
   <data name="btnVolUp.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1180,7 +1180,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnVolUp.ZOrder" xml:space="preserve">
-    <value>59</value>
+    <value>61</value>
   </data>
   <data name="btn3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1210,7 +1210,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn3.ZOrder" xml:space="preserve">
-    <value>60</value>
+    <value>62</value>
   </data>
   <data name="button39.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1240,7 +1240,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button39.ZOrder" xml:space="preserve">
-    <value>62</value>
+    <value>64</value>
   </data>
   <data name="btn2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1270,7 +1270,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn2.ZOrder" xml:space="preserve">
-    <value>63</value>
+    <value>65</value>
   </data>
   <data name="button35.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1300,7 +1300,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button35.ZOrder" xml:space="preserve">
-    <value>65</value>
+    <value>67</value>
   </data>
   <data name="btnSPACE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1330,7 +1330,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSPACE.ZOrder" xml:space="preserve">
-    <value>66</value>
+    <value>68</value>
   </data>
   <data name="btnBREAK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1360,7 +1360,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnBREAK.ZOrder" xml:space="preserve">
-    <value>68</value>
+    <value>70</value>
   </data>
   <data name="btnLSHIFT.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1390,7 +1390,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnLSHIFT.ZOrder" xml:space="preserve">
-    <value>69</value>
+    <value>71</value>
   </data>
   <data name="btnF12.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1420,7 +1420,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnF12.ZOrder" xml:space="preserve">
-    <value>71</value>
+    <value>73</value>
   </data>
   <data name="btnRSHIFT.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1450,7 +1450,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnRSHIFT.ZOrder" xml:space="preserve">
-    <value>72</value>
+    <value>74</value>
   </data>
   <data name="btnF10.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1480,7 +1480,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnF10.ZOrder" xml:space="preserve">
-    <value>74</value>
+    <value>76</value>
   </data>
   <data name="btnSLASH.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1510,7 +1510,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSLASH.ZOrder" xml:space="preserve">
-    <value>75</value>
+    <value>77</value>
   </data>
   <data name="btnF11.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1540,7 +1540,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnF11.ZOrder" xml:space="preserve">
-    <value>77</value>
+    <value>79</value>
   </data>
   <data name="btnPERIOD.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1570,7 +1570,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnPERIOD.ZOrder" xml:space="preserve">
-    <value>78</value>
+    <value>80</value>
   </data>
   <data name="btnTILDE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1600,7 +1600,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTILDE.ZOrder" xml:space="preserve">
-    <value>80</value>
+    <value>82</value>
   </data>
   <data name="btnCOMMA.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1630,7 +1630,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnCOMMA.ZOrder" xml:space="preserve">
-    <value>81</value>
+    <value>83</value>
   </data>
   <data name="btnM.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1660,7 +1660,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnM.ZOrder" xml:space="preserve">
-    <value>83</value>
+    <value>85</value>
   </data>
   <data name="btnNUMLOCK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1690,7 +1690,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUMLOCK.ZOrder" xml:space="preserve">
-    <value>84</value>
+    <value>86</value>
   </data>
   <data name="btnN.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1720,7 +1720,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnN.ZOrder" xml:space="preserve">
-    <value>86</value>
+    <value>88</value>
   </data>
   <data name="btnNUM7.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1750,7 +1750,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUM7.ZOrder" xml:space="preserve">
-    <value>87</value>
+    <value>89</value>
   </data>
   <data name="btnB.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1780,7 +1780,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnB.ZOrder" xml:space="preserve">
-    <value>89</value>
+    <value>91</value>
   </data>
   <data name="btnNUMSLASH.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1810,7 +1810,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUMSLASH.ZOrder" xml:space="preserve">
-    <value>90</value>
+    <value>92</value>
   </data>
   <data name="btnV.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1840,7 +1840,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnV.ZOrder" xml:space="preserve">
-    <value>92</value>
+    <value>94</value>
   </data>
   <data name="btnNUM8.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1870,7 +1870,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUM8.ZOrder" xml:space="preserve">
-    <value>93</value>
+    <value>95</value>
   </data>
   <data name="btnC.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1900,7 +1900,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnC.ZOrder" xml:space="preserve">
-    <value>95</value>
+    <value>97</value>
   </data>
   <data name="btnNUMSTAR.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1930,7 +1930,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUMSTAR.ZOrder" xml:space="preserve">
-    <value>96</value>
+    <value>98</value>
   </data>
   <data name="btnX.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1960,7 +1960,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnX.ZOrder" xml:space="preserve">
-    <value>98</value>
+    <value>100</value>
   </data>
   <data name="btnNUM9.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1990,7 +1990,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUM9.ZOrder" xml:space="preserve">
-    <value>100</value>
+    <value>102</value>
   </data>
   <data name="btnZ.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2020,7 +2020,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnZ.ZOrder" xml:space="preserve">
-    <value>102</value>
+    <value>104</value>
   </data>
   <data name="btnNUMMINUS.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2050,7 +2050,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUMMINUS.ZOrder" xml:space="preserve">
-    <value>104</value>
+    <value>106</value>
   </data>
   <data name="btnRALT.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2080,7 +2080,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnRALT.ZOrder" xml:space="preserve">
-    <value>106</value>
+    <value>108</value>
   </data>
   <data name="btnNUMPLUS.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2110,7 +2110,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUMPLUS.ZOrder" xml:space="preserve">
-    <value>108</value>
+    <value>110</value>
   </data>
   <data name="button36.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2140,7 +2140,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button36.ZOrder" xml:space="preserve">
-    <value>110</value>
+    <value>112</value>
   </data>
   <data name="btnNUMENTER.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2170,7 +2170,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUMENTER.ZOrder" xml:space="preserve">
-    <value>112</value>
+    <value>114</value>
   </data>
   <data name="btnWINDOWS.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2200,7 +2200,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnWINDOWS.ZOrder" xml:space="preserve">
-    <value>114</value>
+    <value>116</value>
   </data>
   <data name="btnNUM4.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2230,7 +2230,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUM4.ZOrder" xml:space="preserve">
-    <value>116</value>
+    <value>118</value>
   </data>
   <data name="btnLALT.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2260,7 +2260,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnLALT.ZOrder" xml:space="preserve">
-    <value>118</value>
+    <value>120</value>
   </data>
   <data name="btnNUM5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2290,7 +2290,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUM5.ZOrder" xml:space="preserve">
-    <value>120</value>
+    <value>122</value>
   </data>
   <data name="btnRCTRL.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2320,7 +2320,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnRCTRL.ZOrder" xml:space="preserve">
-    <value>122</value>
+    <value>124</value>
   </data>
   <data name="btnNUM1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2350,7 +2350,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUM1.ZOrder" xml:space="preserve">
-    <value>124</value>
+    <value>126</value>
   </data>
   <data name="btnLCTRL.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2380,7 +2380,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnLCTRL.ZOrder" xml:space="preserve">
-    <value>126</value>
+    <value>128</value>
   </data>
   <data name="btnNUM6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2410,7 +2410,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUM6.ZOrder" xml:space="preserve">
-    <value>128</value>
+    <value>130</value>
   </data>
   <data name="btnCAPS.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2440,7 +2440,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnCAPS.ZOrder" xml:space="preserve">
-    <value>130</value>
+    <value>132</value>
   </data>
   <data name="btnNUM0.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2470,7 +2470,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUM0.ZOrder" xml:space="preserve">
-    <value>131</value>
+    <value>133</value>
   </data>
   <data name="btnRETURN.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2500,7 +2500,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnRETURN.ZOrder" xml:space="preserve">
-    <value>129</value>
+    <value>131</value>
   </data>
   <data name="btnNUM2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2530,7 +2530,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUM2.ZOrder" xml:space="preserve">
-    <value>127</value>
+    <value>129</value>
   </data>
   <data name="btnAPOSTROPHE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2560,7 +2560,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnAPOSTROPHE.ZOrder" xml:space="preserve">
-    <value>125</value>
+    <value>127</value>
   </data>
   <data name="btnNUM3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2590,7 +2590,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUM3.ZOrder" xml:space="preserve">
-    <value>123</value>
+    <value>125</value>
   </data>
   <data name="lbFlashRate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2779,7 +2779,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnH.ZOrder" xml:space="preserve">
-    <value>105</value>
+    <value>107</value>
   </data>
   <data name="nUDLightFlash.Location" type="System.Drawing.Point, System.Drawing">
     <value>83, 210</value>
@@ -2857,7 +2857,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnL.ZOrder" xml:space="preserve">
-    <value>117</value>
+    <value>119</value>
   </data>
   <data name="btnK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2887,7 +2887,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnK.ZOrder" xml:space="preserve">
-    <value>113</value>
+    <value>115</value>
   </data>
   <data name="btnJ.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2917,7 +2917,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnJ.ZOrder" xml:space="preserve">
-    <value>109</value>
+    <value>111</value>
   </data>
   <data name="button5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2947,7 +2947,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button5.ZOrder" xml:space="preserve">
-    <value>107</value>
+    <value>109</value>
   </data>
   <data name="tBGreenBar.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -3091,7 +3091,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSEMICOLON.ZOrder" xml:space="preserve">
-    <value>121</value>
+    <value>123</value>
   </data>
   <data name="button7.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -3121,7 +3121,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button7.ZOrder" xml:space="preserve">
-    <value>103</value>
+    <value>105</value>
   </data>
   <data name="bnTest.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3208,7 +3208,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button4.ZOrder" xml:space="preserve">
-    <value>111</value>
+    <value>113</value>
   </data>
   <data name="nUDMouse.Location" type="System.Drawing.Point, System.Drawing">
     <value>114, 288</value>
@@ -3259,7 +3259,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button6.ZOrder" xml:space="preserve">
-    <value>115</value>
+    <value>117</value>
   </data>
   <data name="bnColor.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -3316,7 +3316,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUMDOT.ZOrder" xml:space="preserve">
-    <value>119</value>
+    <value>121</value>
   </data>
   <data name="btnG.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -3346,7 +3346,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnG.ZOrder" xml:space="preserve">
-    <value>101</value>
+    <value>103</value>
   </data>
   <data name="cBScanCode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3379,7 +3379,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cBScanCode.ZOrder" xml:space="preserve">
-    <value>99</value>
+    <value>101</value>
   </data>
   <data name="btnF.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -3409,7 +3409,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnF.ZOrder" xml:space="preserve">
-    <value>97</value>
+    <value>99</value>
   </data>
   <data name="lBTip.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3470,7 +3470,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnD.ZOrder" xml:space="preserve">
-    <value>94</value>
+    <value>96</value>
   </data>
   <data name="btnAButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -3527,7 +3527,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnS.ZOrder" xml:space="preserve">
-    <value>91</value>
+    <value>93</value>
   </data>
   <data name="btnGuide.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -3587,7 +3587,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnA.ZOrder" xml:space="preserve">
-    <value>88</value>
+    <value>90</value>
   </data>
   <data name="btnStart.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -3644,7 +3644,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTAB.ZOrder" xml:space="preserve">
-    <value>85</value>
+    <value>87</value>
   </data>
   <data name="btnBack.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -3701,7 +3701,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnBACKSLASH.ZOrder" xml:space="preserve">
-    <value>82</value>
+    <value>84</value>
   </data>
   <data name="btnBButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -3758,7 +3758,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnCLOSEBRACKET.ZOrder" xml:space="preserve">
-    <value>79</value>
+    <value>81</value>
   </data>
   <data name="btnXButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -3815,7 +3815,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnOPENBRACKET.ZOrder" xml:space="preserve">
-    <value>76</value>
+    <value>78</value>
   </data>
   <data name="btnYButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -3872,7 +3872,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnP.ZOrder" xml:space="preserve">
-    <value>73</value>
+    <value>75</value>
   </data>
   <data name="btnLB.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -3929,7 +3929,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnO.ZOrder" xml:space="preserve">
-    <value>70</value>
+    <value>72</value>
   </data>
   <data name="btnDpadRight.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -3986,7 +3986,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnI.ZOrder" xml:space="preserve">
-    <value>67</value>
+    <value>69</value>
   </data>
   <data name="btnDpadUp.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -4043,7 +4043,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnU.ZOrder" xml:space="preserve">
-    <value>64</value>
+    <value>66</value>
   </data>
   <data name="btnDpadDown.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -4100,7 +4100,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnY.ZOrder" xml:space="preserve">
-    <value>61</value>
+    <value>63</value>
   </data>
   <data name="btnDpadLeft.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -4157,7 +4157,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnT.ZOrder" xml:space="preserve">
-    <value>58</value>
+    <value>60</value>
   </data>
   <data name="btnLT.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -4214,7 +4214,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnR.ZOrder" xml:space="preserve">
-    <value>55</value>
+    <value>57</value>
   </data>
   <data name="X360Label.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4274,7 +4274,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;bTNRIGHTMOUSE.ZOrder" xml:space="preserve">
-    <value>52</value>
+    <value>54</value>
   </data>
   <data name="KBMlabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4304,7 +4304,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;KBMlabel.ZOrder" xml:space="preserve">
-    <value>50</value>
+    <value>52</value>
   </data>
   <data name="btnE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -4334,7 +4334,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnE.ZOrder" xml:space="preserve">
-    <value>48</value>
+    <value>50</value>
   </data>
   <data name="lBMacroOn.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4367,7 +4367,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lBMacroOn.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="bnWHEELDOWN.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -4397,7 +4397,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;bnWHEELDOWN.ZOrder" xml:space="preserve">
-    <value>45</value>
+    <value>47</value>
   </data>
   <data name="bnMacro.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -4424,7 +4424,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;bnMacro.ZOrder" xml:space="preserve">
-    <value>43</value>
+    <value>45</value>
   </data>
   <data name="bnWHEELUP.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -4454,7 +4454,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;bnWHEELUP.ZOrder" xml:space="preserve">
-    <value>41</value>
+    <value>43</value>
   </data>
   <data name="btnRSLeft.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -4511,7 +4511,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnMIDDLEMOUSE.ZOrder" xml:space="preserve">
-    <value>38</value>
+    <value>40</value>
   </data>
   <data name="btnRSDown.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -4568,7 +4568,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnW.ZOrder" xml:space="preserve">
-    <value>35</value>
+    <value>37</value>
   </data>
   <data name="btnRSRight.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -4625,7 +4625,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button33.ZOrder" xml:space="preserve">
-    <value>32</value>
+    <value>34</value>
   </data>
   <data name="btnRB.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -4682,7 +4682,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn4THMOUSE.ZOrder" xml:space="preserve">
-    <value>29</value>
+    <value>31</value>
   </data>
   <data name="btnLSLeft.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -4739,7 +4739,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnMOUSERIGHT.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>28</value>
   </data>
   <data name="btnRSUp.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -4796,7 +4796,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnMOUSELEFT.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>25</value>
   </data>
   <data name="btnLSDown.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -4853,7 +4853,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnMOUSEDOWN.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>22</value>
   </data>
   <data name="btnRT.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -4910,7 +4910,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnMOUSEUP.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>19</value>
   </data>
   <data name="btnLSRight.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -4967,7 +4967,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnLEFTMOUSE.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>16</value>
   </data>
   <data name="btnRSClick.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -5024,7 +5024,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnQ.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="btnLSUp.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -5111,7 +5111,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cBToggle.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="btnDefault.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5138,7 +5138,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnDefault.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="btnUNBOUND.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5165,7 +5165,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnUNBOUND.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="btnESC.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -5195,7 +5195,94 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnESC.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;cBMouse.Name" xml:space="preserve">
+    <value>cBMouse</value>
+  </data>
+  <data name="&gt;&gt;cBMouse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBMouse.Parent" xml:space="preserve">
+    <value>gBExtras</value>
+  </data>
+  <data name="&gt;&gt;cBMouse.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;cBLightbar.Name" xml:space="preserve">
+    <value>cBLightbar</value>
+  </data>
+  <data name="&gt;&gt;cBLightbar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBLightbar.Parent" xml:space="preserve">
+    <value>gBExtras</value>
+  </data>
+  <data name="&gt;&gt;cBLightbar.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lbBlueV.Name" xml:space="preserve">
+    <value>lbBlueV</value>
+  </data>
+  <data name="&gt;&gt;lbBlueV.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbBlueV.Parent" xml:space="preserve">
+    <value>gBExtras</value>
+  </data>
+  <data name="&gt;&gt;lbBlueV.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;lbGreenV.Name" xml:space="preserve">
+    <value>lbGreenV</value>
+  </data>
+  <data name="&gt;&gt;lbGreenV.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbGreenV.Parent" xml:space="preserve">
+    <value>gBExtras</value>
+  </data>
+  <data name="&gt;&gt;lbGreenV.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;lbRedV.Name" xml:space="preserve">
+    <value>lbRedV</value>
+  </data>
+  <data name="&gt;&gt;lbRedV.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRedV.Parent" xml:space="preserve">
+    <value>gBExtras</value>
+  </data>
+  <data name="&gt;&gt;lbRedV.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="gBExtras.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="gBExtras.Location" type="System.Drawing.Point, System.Drawing">
+    <value>871, 0</value>
+  </data>
+  <data name="gBExtras.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 446</value>
+  </data>
+  <data name="gBExtras.TabIndex" type="System.Int32, mscorlib">
+    <value>324</value>
+  </data>
+  <data name="gBExtras.Text" xml:space="preserve">
+    <value>Extras</value>
+  </data>
+  <data name="&gt;&gt;gBExtras.Name" xml:space="preserve">
+    <value>gBExtras</value>
+  </data>
+  <data name="&gt;&gt;gBExtras.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gBExtras.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gBExtras.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="cBMouse.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
@@ -5359,33 +5446,6 @@ a key by typing it</value>
   <data name="&gt;&gt;lbRedV.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="gBExtras.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="gBExtras.Location" type="System.Drawing.Point, System.Drawing">
-    <value>871, 0</value>
-  </data>
-  <data name="gBExtras.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 446</value>
-  </data>
-  <data name="gBExtras.TabIndex" type="System.Int32, mscorlib">
-    <value>324</value>
-  </data>
-  <data name="gBExtras.Text" xml:space="preserve">
-    <value>Extras</value>
-  </data>
-  <data name="&gt;&gt;gBExtras.Name" xml:space="preserve">
-    <value>gBExtras</value>
-  </data>
-  <data name="&gt;&gt;gBExtras.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gBExtras.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gBExtras.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="rBRegular.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -5417,7 +5477,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;rBRegular.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="rBShiftModifer.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5450,7 +5510,7 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;rBShiftModifer.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="cBShiftButton.Items" xml:space="preserve">
     <value>Select Shift Trigger</value>
@@ -5552,10 +5612,46 @@ a key by typing it</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cBShiftButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="pnl360Controls.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
+  </data>
+  <data name="&gt;&gt;lb360Tip.Name" xml:space="preserve">
+    <value>lb360Tip</value>
+  </data>
+  <data name="&gt;&gt;lb360Tip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lb360Tip.Parent" xml:space="preserve">
+    <value>pnl360Controls</value>
+  </data>
+  <data name="&gt;&gt;lb360Tip.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="pnl360Controls.Location" type="System.Drawing.Point, System.Drawing">
+    <value>189, 199</value>
+  </data>
+  <data name="pnl360Controls.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="pnl360Controls.Size" type="System.Drawing.Size, System.Drawing">
+    <value>668, 247</value>
+  </data>
+  <data name="pnl360Controls.TabIndex" type="System.Int32, mscorlib">
+    <value>328</value>
+  </data>
+  <data name="&gt;&gt;pnl360Controls.Name" xml:space="preserve">
+    <value>pnl360Controls</value>
+  </data>
+  <data name="&gt;&gt;pnl360Controls.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnl360Controls.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnl360Controls.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="lb360Tip.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5590,29 +5686,92 @@ a key by typing it</value>
   <data name="&gt;&gt;lb360Tip.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="pnl360Controls.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 202</value>
+  <data name="pnlDS4Controls.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
   </data>
-  <data name="pnl360Controls.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
+  <data name="buttonTmp.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
-  <data name="pnl360Controls.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="buttonTmp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonTmp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>615, 38</value>
+  </data>
+  <data name="buttonTmp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 18</value>
+  </data>
+  <data name="buttonTmp.TabIndex" type="System.Int32, mscorlib">
+    <value>329</value>
+  </data>
+  <data name="buttonTmp.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;buttonTmp.Name" xml:space="preserve">
+    <value>buttonTmp</value>
+  </data>
+  <data name="&gt;&gt;buttonTmp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonTmp.Parent" xml:space="preserve">
+    <value>pnlDS4Controls</value>
+  </data>
+  <data name="&gt;&gt;buttonTmp.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>304, 4</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 13</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>319</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>DS4 Controls</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>pnlDS4Controls</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pnlDS4Controls.Location" type="System.Drawing.Point, System.Drawing">
+    <value>189, 199</value>
+  </data>
+  <data name="pnlDS4Controls.Size" type="System.Drawing.Size, System.Drawing">
     <value>668, 247</value>
   </data>
-  <data name="pnl360Controls.TabIndex" type="System.Int32, mscorlib">
-    <value>328</value>
+  <data name="pnlDS4Controls.TabIndex" type="System.Int32, mscorlib">
+    <value>329</value>
   </data>
-  <data name="&gt;&gt;pnl360Controls.Name" xml:space="preserve">
-    <value>pnl360Controls</value>
+  <data name="pnlDS4Controls.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="&gt;&gt;pnl360Controls.Type" xml:space="preserve">
+  <data name="&gt;&gt;pnlDS4Controls.Name" xml:space="preserve">
+    <value>pnlDS4Controls</value>
+  </data>
+  <data name="&gt;&gt;pnlDS4Controls.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pnl360Controls.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pnlDS4Controls.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;pnl360Controls.ZOrder" xml:space="preserve">
-    <value>133</value>
+  <data name="&gt;&gt;pnlDS4Controls.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="advColorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -5626,6 +5785,9 @@ a key by typing it</value>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1038, 446</value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
   </data>
@@ -5636,7 +5798,7 @@ a key by typing it</value>
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.101.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.7.3.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>KBM360</value>

@@ -213,6 +213,9 @@
             this.cBShiftButton = new System.Windows.Forms.ComboBox();
             this.pnl360Controls = new System.Windows.Forms.Panel();
             this.lb360Tip = new System.Windows.Forms.Label();
+            this.pnlDS4Controls = new System.Windows.Forms.Panel();
+            this.buttonTmp = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pBHighlight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBMouse)).BeginInit();
@@ -225,6 +228,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDMouse)).BeginInit();
             this.gBExtras.SuspendLayout();
             this.pnl360Controls.SuspendLayout();
+            this.pnlDS4Controls.SuspendLayout();
             this.SuspendLayout();
             // 
             // pBHighlight
@@ -1899,6 +1903,26 @@
             this.lb360Tip.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lb360Tip.Name = "lb360Tip";
             // 
+            // pnlDS4Controls
+            // 
+            this.pnlDS4Controls.BackgroundImage = global::DS4Windows.Properties.Resources.DS4_Config;
+            resources.ApplyResources(this.pnlDS4Controls, "pnlDS4Controls");
+            this.pnlDS4Controls.Controls.Add(this.buttonTmp);
+            this.pnlDS4Controls.Controls.Add(this.label1);
+            this.pnlDS4Controls.Name = "pnlDS4Controls";
+            // 
+            // buttonTmp
+            // 
+            this.buttonTmp.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.buttonTmp, "buttonTmp");
+            this.buttonTmp.Name = "buttonTmp";
+            this.buttonTmp.UseVisualStyleBackColor = false;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
             // advColorDialog
             // 
             this.advColorDialog.AnyColor = true;
@@ -1910,6 +1934,8 @@
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.pnlDS4Controls);
+            this.Controls.Add(this.pnl360Controls);
             this.Controls.Add(this.cBShiftButton);
             this.Controls.Add(this.rBShiftModifer);
             this.Controls.Add(this.rBRegular);
@@ -2043,7 +2069,6 @@
             this.Controls.Add(this.btnCAPS);
             this.Controls.Add(this.btnNUM0);
             this.Controls.Add(this.pBMouse);
-            this.Controls.Add(this.pnl360Controls);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -2064,6 +2089,8 @@
             this.gBExtras.PerformLayout();
             this.pnl360Controls.ResumeLayout(false);
             this.pnl360Controls.PerformLayout();
+            this.pnlDS4Controls.ResumeLayout(false);
+            this.pnlDS4Controls.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2256,5 +2283,8 @@
         private System.Windows.Forms.ComboBox cBShiftButton;
         private System.Windows.Forms.Panel pnl360Controls;
         private System.Windows.Forms.Label lb360Tip;
+        private System.Windows.Forms.Panel pnlDS4Controls;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonTmp;
     }
 }

@@ -22,7 +22,9 @@ namespace DS4Windows
         bool olddinputcheck = false;
         private float dpix;
         private float dpiy;
-        public Dictionary<string, string> defaults = new Dictionary<string, string>();
+        public Dictionary<string, string> defaults = null;
+        private Dictionary<string, string> xboxDefaults = new Dictionary<string, string>();
+        private Dictionary<string, string> ds4Defaults = new Dictionary<string, string>();
         public bool saving, loading;
         public bool actionTabSeen = false;
         public static Size mSize { get; private set; }
@@ -86,9 +88,13 @@ namespace DS4Windows
 
             foreach (Button b in buttons)
             {
-                defaults.Add(b.Name, b.Text);
+                //Console.WriteLine("{0} -> {1}", b.Name, b.Text);
+                xboxDefaults.Add(b.Name, b.Text);
                 b.Text = "";
             }
+
+            defaults = xboxDefaults;
+            PopulateDS4Defaults();
             
             foreach (Control control in Controls)
             {
@@ -139,6 +145,8 @@ namespace DS4Windows
             bnSwipeRight.Text = Properties.Resources.SwipeRight;
             btnLightbar.BackgroundImage = null;
             btnLightbar.BackgroundImageLayout = ImageLayout.None;
+
+            OutContTypeCb.SelectedIndexChanged += OutContTypeCb_SelectedIndexChanged;
 
             populateHoverIndexDict();
             populateHoverImageDict();
@@ -271,6 +279,47 @@ namespace DS4Windows
             hoverLabelDict[bnRSRight] = lbLRS;
         }
 
+        public void PopulateDS4Defaults()
+        {
+            ds4Defaults["bnSwipeUp"] = "Swipe Up";
+            ds4Defaults["bnSwipeDown"] = "Swipe Down";
+            ds4Defaults["bnSwipeLeft"] = "Swipe Left";
+            ds4Defaults["bnSwipeRight"] = "Swipe Right";
+            ds4Defaults["bnGyroZN"] = "";
+            ds4Defaults["bnGyroZP"] = "";
+            ds4Defaults["bnGyroXP"] = "";
+            ds4Defaults["bnGyroXN"] = "";
+            ds4Defaults["bnRSDown"] = "Right Y - Axis +";
+            ds4Defaults["bnL3"] = "L3";
+            ds4Defaults["bnRSUp"] = "Right Y - Axis -";
+            ds4Defaults["bnRSRight"] = "Right X - Axis +";
+            ds4Defaults["bnR3"] = "Right Stick";
+            ds4Defaults["bnRSLeft"] = "Right X - Axis -";
+            ds4Defaults["bnLSLeft"] = "Left X - Axis -";
+            ds4Defaults["bnLSUp"] = "Left Y - Axis -";
+            ds4Defaults["bnLSRight"] = "Left X - Axis +";
+            ds4Defaults["bnLSDown"] = "Left Y - Axis +";
+            ds4Defaults["bnR2"] = "R2";
+            ds4Defaults["bnUp"] = "Dpad Up";
+            ds4Defaults["bnDown"] = "Dpad Down";
+            ds4Defaults["bnTriangle"] = "Triangle";
+            ds4Defaults["bnR1"] = "R1";
+            ds4Defaults["bnSquare"] = "Square";
+            ds4Defaults["bnRight"] = "Dpad Right";
+            ds4Defaults["bnLeft"] = "Dpad Left";
+            ds4Defaults["bnOptions"] = "Options";
+            ds4Defaults["bnShare"] = "Share";
+            ds4Defaults["bnL1"] = "L1";
+            ds4Defaults["bnTouchRight"] = "Left Mouse Button";
+            ds4Defaults["bnL2"] = "L2";
+            ds4Defaults["bnTouchLeft"] = "Left Mouse Button";
+            ds4Defaults["bnTouchMulti"] = "Right Mouse Button";
+            ds4Defaults["bnTouchUpper"] = "Middle Mouse Button";
+            ds4Defaults["bnPS"] = "PS";
+            ds4Defaults["bnCross"] = "Cross";
+            ds4Defaults["bnCircle"] = "Circle";
+        }
+
         public void Reload(int deviceNum, string name)
         {
             loading = true;
@@ -308,7 +357,8 @@ namespace DS4Windows
 
                 LoadProfile(device, false, Program.rootHub);
 
-                devOutContType = Global.OutContType[device];
+                //devOutContType = Global.OutContType[device];
+                Global.outDevTypeTemp[device] = Global.OutContType[device];
 
                 if (Rainbow[device] == 0)
                 {
@@ -733,13 +783,19 @@ namespace DS4Windows
                 if (idxSASteeringWheelEmulationRange >= 0) cBSteeringWheelEmulationRange.SelectedIndex = idxSASteeringWheelEmulationRange;
 
                 OutContType tempOutType = Global.OutContType[device];
+                devOutContType = tempOutType;
                 switch(tempOutType)
                 {
-                    case OutContType.X360: OutContTypeCb.SelectedIndex = 0; break;
-                    case OutContType.DS4: OutContTypeCb.SelectedIndex = 1; break;
+                    case OutContType.X360:
+                        OutContTypeCb.SelectedIndex = 0;
+                        defaults = xboxDefaults;
+                        break;
+                    case OutContType.DS4:
+                        OutContTypeCb.SelectedIndex = 1;
+                        defaults = ds4Defaults;
+                        break;
                     default: break;
                 }
-                
             }
             else
             {
@@ -1357,7 +1413,7 @@ namespace DS4Windows
                 default: break;
             }
 
-            if (devOutContType != tempType)
+            if (Global.outDevTypeTemp[device] != tempType)
             {
                 Global.OutContType[device] = tempType;
             }
@@ -1794,7 +1850,7 @@ namespace DS4Windows
                 else if (tagO is X360Controls)
                 {
                     string tag;
-                    tag = KBM360.getX360ControlsByName((X360Controls)tagO);
+                    tag = KBM360.getX360ControlsByName((X360Controls)tagO, devOutContType);
                     return tag;
                 }
                 else if (tagO is string)
@@ -3090,6 +3146,30 @@ namespace DS4Windows
             if (loading == false)
             {
                 squareStickRS[device] = rsSquStickCk.Checked;
+            }
+        }
+
+        private void OutContTypeCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                int tempOutCont = OutContTypeCb.SelectedIndex;
+                OutContType tempType = OutContType.X360;
+                switch (tempOutCont)
+                {
+                    case 0:
+                        tempType = OutContType.X360;
+                        defaults = xboxDefaults;
+                        break;
+                    case 1:
+                        tempType = OutContType.DS4;
+                        defaults = ds4Defaults;
+                        break;
+                    default: break;
+                }
+
+                devOutContType = tempType;
+                UpdateLists();
             }
         }
 

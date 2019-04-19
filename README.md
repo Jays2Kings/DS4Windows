@@ -103,6 +103,11 @@ If you would like to send some coin my way, here are some means by
 which to do so.
 
 **PayPal:** https://paypal.me/ryochan7  
+**Patreon:** https://patreon.com/user?u=501036  
+**SubscribeStar:** https://subscribestar.com/ryochan7
+
+### Crypto
+
 **Bitcoin:** 1DnMJwjdd7JRfHJap2mmTmADYm38SzR2z9  
 **Dogecoin:** D9fhbXp9bCHEhuS8vX1BmVu6t7Y2nVNUCK  
 **Litecoin:** La5mniW7SFMH2RhqDgUty3RwkBSYbjbnJ6  

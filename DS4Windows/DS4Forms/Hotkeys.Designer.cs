@@ -90,6 +90,8 @@
             this.coinTP = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.linkPatreon = new System.Windows.Forms.LinkLabel();
+            this.linkSubStar = new System.Windows.Forms.LinkLabel();
             this.tCAbout.SuspendLayout();
             this.tPHotkeys.SuspendLayout();
             this.tPCredits.SuspendLayout();
@@ -482,6 +484,8 @@
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Controls.Add(this.textBox2);
             this.flowLayoutPanel1.Controls.Add(this.linkDonate);
+            this.flowLayoutPanel1.Controls.Add(this.linkPatreon);
+            this.flowLayoutPanel1.Controls.Add(this.linkSubStar);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
             // textBox2
@@ -490,6 +494,20 @@
             resources.ApplyResources(this.textBox2, "textBox2");
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
+            // 
+            // linkPatreon
+            // 
+            resources.ApplyResources(this.linkPatreon, "linkPatreon");
+            this.linkPatreon.Name = "linkPatreon";
+            this.linkPatreon.TabStop = true;
+            this.linkPatreon.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkPatreon_LinkClicked);
+            // 
+            // linkSubStar
+            // 
+            resources.ApplyResources(this.linkSubStar, "linkSubStar");
+            this.linkSubStar.Name = "linkSubStar";
+            this.linkSubStar.TabStop = true;
+            this.linkSubStar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkSubStar_LinkClicked);
             // 
             // Hotkeys
             // 
@@ -578,5 +596,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.LinkLabel linkCurrentSite;
+        private System.Windows.Forms.LinkLabel linkPatreon;
+        private System.Windows.Forms.LinkLabel linkSubStar;
     }
 }

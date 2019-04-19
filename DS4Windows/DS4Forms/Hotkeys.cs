@@ -111,5 +111,15 @@ namespace DS4Windows
         {
             Process.Start("https://ryochan7.github.io/ds4windows-site/");
         }
+
+        private void LinkPatreon_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://patreon.com/user?u=501036");
+        }
+
+        private void LinkSubStar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://subscribestar.com/ryochan7");
+        }
     }
 }

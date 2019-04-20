@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using static DS4Windows.Global;
 
 namespace DS4Windows
 {
@@ -32,6 +33,15 @@ namespace DS4Windows
 
         public WinProgs(string[] oc, DS4Form main)
         {
+            Global.FindConfigLocation();
+
+            if (Global.firstRun)
+            {
+                new SaveWhere(Global.multisavespots).ShowDialog();
+            }
+
+            Global.Load();
+
             InitializeComponent();
             openProgram.Filter =  Properties.Resources.Programs+"|*.exe|" + Properties.Resources.Shortcuts + "|*.lnk";
             form = main;
@@ -48,7 +58,9 @@ namespace DS4Windows
 
             LoadP();
 
-            if (Directory.Exists(steamCommx86Loc))
+            if (UseCustomSteamFolder && Directory.Exists(CustomSteamFolder))
+                steamgamesdir = CustomSteamFolder;
+            else if (Directory.Exists(steamCommx86Loc))
                 steamgamesdir = steamCommx86Loc;
             else if (Directory.Exists(steamCommLoc))
                 steamgamesdir = steamCommLoc;

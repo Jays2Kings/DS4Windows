@@ -2832,6 +2832,63 @@
   <data name="&gt;&gt;languagePackComboBox1.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
+  <data name="cBCustomSteam.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBCustomSteam.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="cBCustomSteam.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBCustomSteam.Location" type="System.Drawing.Point, System.Drawing">
+    <value>274, 144</value>
+  </data>
+  <data name="cBCustomSteam.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 17</value>
+  </data>
+  <data name="cBCustomSteam.TabIndex" type="System.Int32, mscorlib">
+    <value>65</value>
+  </data>
+  <data name="cBCustomSteam.Text" xml:space="preserve">
+    <value>Use custom Steam Folder</value>
+  </data>
+  <data name="&gt;&gt;cBCustomSteam.Name" xml:space="preserve">
+    <value>cBCustomSteam</value>
+  </data>
+  <data name="&gt;&gt;cBCustomSteam.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBCustomSteam.Parent" xml:space="preserve">
+    <value>fLPSettings</value>
+  </data>
+  <data name="&gt;&gt;cBCustomSteam.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="tBSteamFolder.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="tBSteamFolder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>274, 167</value>
+  </data>
+  <data name="tBSteamFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 20</value>
+  </data>
+  <data name="tBSteamFolder.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="&gt;&gt;tBSteamFolder.Name" xml:space="preserve">
+    <value>tBSteamFolder</value>
+  </data>
+  <data name="&gt;&gt;tBSteamFolder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBSteamFolder.Parent" xml:space="preserve">
+    <value>fLPSettings</value>
+  </data>
+  <data name="&gt;&gt;tBSteamFolder.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
   <data name="linkProfiles.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>

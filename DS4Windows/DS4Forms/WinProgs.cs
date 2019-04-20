@@ -25,8 +25,8 @@ namespace DS4Windows
         List<string> programpaths = new List<string>();
         List<string> lodsf = new List<string>();
         bool appsloaded = false;
-        const string steamCommx86Loc = @"C:\Program Files (x86)\Steam\steamapps\common";
-        const string steamCommLoc = @"C:\Program Files\Steam\steamapps\common";
+        public const string steamCommx86Loc = @"C:\Program Files (x86)\Steam\steamapps\common";
+        public const string steamCommLoc = @"C:\Program Files\Steam\steamapps\common";
         const string originx86Loc = @"C:\Program Files (x86)\Origin Games";
         const string originLoc = @"C:\Program Files\Origin Games";
 

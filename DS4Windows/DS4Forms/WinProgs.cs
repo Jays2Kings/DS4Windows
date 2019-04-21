@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using static DS4Windows.Global;
 
 namespace DS4Windows
 {
@@ -25,13 +26,22 @@ namespace DS4Windows
         List<string> programpaths = new List<string>();
         List<string> lodsf = new List<string>();
         bool appsloaded = false;
-        const string steamCommx86Loc = @"C:\Program Files (x86)\Steam\steamapps\common";
-        const string steamCommLoc = @"C:\Program Files\Steam\steamapps\common";
+        public const string steamCommx86Loc = @"C:\Program Files (x86)\Steam\steamapps\common";
+        public const string steamCommLoc = @"C:\Program Files\Steam\steamapps\common";
         const string originx86Loc = @"C:\Program Files (x86)\Origin Games";
         const string originLoc = @"C:\Program Files\Origin Games";
 
         public WinProgs(string[] oc, DS4Form main)
         {
+            Global.FindConfigLocation();
+
+            if (Global.firstRun)
+            {
+                new SaveWhere(Global.multisavespots).ShowDialog();
+            }
+
+            Global.Load();
+
             InitializeComponent();
             openProgram.Filter =  Properties.Resources.Programs+"|*.exe|" + Properties.Resources.Shortcuts + "|*.lnk";
             form = main;
@@ -48,7 +58,9 @@ namespace DS4Windows
 
             LoadP();
 
-            if (Directory.Exists(steamCommx86Loc))
+            if (UseCustomSteamFolder && Directory.Exists(CustomSteamFolder))
+                steamgamesdir = CustomSteamFolder;
+            else if (Directory.Exists(steamCommx86Loc))
                 steamgamesdir = steamCommx86Loc;
             else if (Directory.Exists(steamCommLoc))
                 steamgamesdir = steamCommLoc;

@@ -624,6 +624,18 @@ namespace DS4Windows
             get { return m_Config.useWhiteIcon; }
         }
 
+        public static bool UseCustomSteamFolder
+        {
+            set { m_Config.useCustomSteamFolder = value; }
+            get { return m_Config.useCustomSteamFolder; }
+        }
+
+        public static string CustomSteamFolder
+        {
+            set { m_Config.customSteamFolder = value; }
+            get { return m_Config.customSteamFolder; }
+        }
+
         // controller/profile specfic values
         public static int[] ButtonMouseSensitivity => m_Config.buttonMouseSensitivity;
 
@@ -1617,6 +1629,8 @@ namespace DS4Windows
         public int flashWhenLateAt = 20;
         public bool useUDPServ = false;
         public int udpServPort = 26760;
+        public bool useCustomSteamFolder;
+        public string customSteamFolder;
         // Cache whether profile has custom action
         public bool[] containsCustomAction = new bool[5] { false, false, false, false, false };
 
@@ -3206,6 +3220,10 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/UDPServerPort"); int temp; int.TryParse(Item.InnerText, out temp); udpServPort = Math.Min(Math.Max(temp, 1024), 65535); }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/UseCustomSteamFolder"); Boolean.TryParse(Item.InnerText, out useCustomSteamFolder); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/CustomSteamFolder"); customSteamFolder = Item.InnerText; }
+                    catch { missingSetting = true; }
 
                     for (int i = 0; i < 4; i++)
                     {
@@ -3275,6 +3293,8 @@ namespace DS4Windows
             XmlNode xmlWhiteIcon = m_Xdoc.CreateNode(XmlNodeType.Element, "WhiteIcon", null); xmlWhiteIcon.InnerText = useWhiteIcon.ToString(); Node.AppendChild(xmlWhiteIcon);
             XmlNode xmlUseUDPServ = m_Xdoc.CreateNode(XmlNodeType.Element, "UseUDPServer", null); xmlUseUDPServ.InnerText = useUDPServ.ToString(); Node.AppendChild(xmlUseUDPServ);
             XmlNode xmlUDPServPort = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerPort", null); xmlUDPServPort.InnerText = udpServPort.ToString(); Node.AppendChild(xmlUDPServPort);
+            XmlNode xmlUseCustomSteamFolder = m_Xdoc.CreateNode(XmlNodeType.Element, "UseCustomSteamFolder", null); xmlUseCustomSteamFolder.InnerText = useCustomSteamFolder.ToString(); Node.AppendChild(xmlUseCustomSteamFolder);
+            XmlNode xmlCustomSteamFolder = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomSteamFolder", null); xmlCustomSteamFolder.InnerText = customSteamFolder; Node.AppendChild(xmlCustomSteamFolder);
 
             for (int i = 0; i < 4; i++)
             {

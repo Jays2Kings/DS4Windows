@@ -155,6 +155,8 @@
             this.ckUdpServ = new System.Windows.Forms.CheckBox();
             this.nUDUdpPortNum = new System.Windows.Forms.NumericUpDown();
             this.languagePackComboBox1 = new DS4Windows.DS4Forms.LanguagePackComboBox();
+            this.cBCustomSteam = new System.Windows.Forms.CheckBox();
+            this.tBSteamFolder = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.linkProfiles = new System.Windows.Forms.LinkLabel();
             this.lnkControllers = new System.Windows.Forms.LinkLabel();
@@ -954,6 +956,8 @@
             this.fLPSettings.Controls.Add(this.pNUpdate);
             this.fLPSettings.Controls.Add(this.panel4);
             this.fLPSettings.Controls.Add(this.languagePackComboBox1);
+            this.fLPSettings.Controls.Add(this.cBCustomSteam);
+            this.fLPSettings.Controls.Add(this.tBSteamFolder);
             this.fLPSettings.Controls.Add(this.flowLayoutPanel1);
             this.fLPSettings.Name = "fLPSettings";
             // 
@@ -1210,6 +1214,19 @@
             resources.ApplyResources(this.languagePackComboBox1, "languagePackComboBox1");
             this.languagePackComboBox1.Name = "languagePackComboBox1";
             this.languagePackComboBox1.SelectedValueChanged += new System.EventHandler(this.languagePackComboBox1_SelectedValueChanged);
+            // 
+            // cBCustomSteam
+            // 
+            resources.ApplyResources(this.cBCustomSteam, "cBCustomSteam");
+            this.cBCustomSteam.Name = "cBCustomSteam";
+            this.cBCustomSteam.UseVisualStyleBackColor = false;
+            this.cBCustomSteam.CheckedChanged += new System.EventHandler(this.cBCustomSteam_CheckedChanged);
+            // 
+            // tBSteamFolder
+            // 
+            resources.ApplyResources(this.tBSteamFolder, "tBSteamFolder");
+            this.tBSteamFolder.Name = "tBSteamFolder";
+            this.tBSteamFolder.TextChanged += new System.EventHandler(this.tBSteamFolder_TextChanged);
             // 
             // flowLayoutPanel1
             // 
@@ -1513,6 +1530,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox ckUdpServ;
         private System.Windows.Forms.NumericUpDown nUDUdpPortNum;
+        private System.Windows.Forms.CheckBox cBCustomSteam;
+        private System.Windows.Forms.TextBox tBSteamFolder;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

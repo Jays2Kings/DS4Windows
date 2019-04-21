@@ -656,6 +656,18 @@ namespace DS4Windows
             get { return m_Config.useWhiteIcon; }
         }
 
+        public static bool UseCustomSteamFolder
+        {
+            set { m_Config.useCustomSteamFolder = value; }
+            get { return m_Config.useCustomSteamFolder; }
+        }
+
+        public static string CustomSteamFolder
+        {
+            set { m_Config.customSteamFolder = value; }
+            get { return m_Config.customSteamFolder; }
+        }
+
         // controller/profile specfic values
         public static int[] ButtonMouseSensitivity => m_Config.buttonMouseSensitivity;
 
@@ -1527,7 +1539,7 @@ namespace DS4Windows
         public int[] l2AntiDeadzone = new int[5] { 0, 0, 0, 0, 0 }, r2AntiDeadzone = new int[5] { 0, 0, 0, 0, 0 };
         public int[] l2Maxzone = new int[5] { 100, 100, 100, 100, 100 }, r2Maxzone = new int[5] { 100, 100, 100, 100, 100 };
         public double[] LSRotation = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 }, RSRotation = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 };
-        public double[] SXDeadzone = new double[5] { 0.02, 0.02, 0.02, 0.02, 0.02 }, SZDeadzone = new double[5] { 0.02, 0.02, 0.02, 0.02, 0.02 };
+        public double[] SXDeadzone = new double[5] { 0.25, 0.25, 0.25, 0.25, 0.25 }, SZDeadzone = new double[5] { 0.25, 0.25, 0.25, 0.25, 0.25 };
         public double[] SXMaxzone = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 },
             SZMaxzone = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 };
         public double[] SXAntiDeadzone = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 },
@@ -1650,6 +1662,8 @@ namespace DS4Windows
         public int flashWhenLateAt = 20;
         public bool useUDPServ = false;
         public int udpServPort = 26760;
+        public bool useCustomSteamFolder;
+        public string customSteamFolder;
         // Cache whether profile has custom action
         public bool[] containsCustomAction = new bool[5] { false, false, false, false, false };
 
@@ -3310,6 +3324,10 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/UDPServerPort"); int temp; int.TryParse(Item.InnerText, out temp); udpServPort = Math.Min(Math.Max(temp, 1024), 65535); }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/UseCustomSteamFolder"); Boolean.TryParse(Item.InnerText, out useCustomSteamFolder); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/CustomSteamFolder"); customSteamFolder = Item.InnerText; }
+                    catch { missingSetting = true; }
 
                     for (int i = 0; i < 4; i++)
                     {
@@ -3379,6 +3397,8 @@ namespace DS4Windows
             XmlNode xmlWhiteIcon = m_Xdoc.CreateNode(XmlNodeType.Element, "WhiteIcon", null); xmlWhiteIcon.InnerText = useWhiteIcon.ToString(); Node.AppendChild(xmlWhiteIcon);
             XmlNode xmlUseUDPServ = m_Xdoc.CreateNode(XmlNodeType.Element, "UseUDPServer", null); xmlUseUDPServ.InnerText = useUDPServ.ToString(); Node.AppendChild(xmlUseUDPServ);
             XmlNode xmlUDPServPort = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerPort", null); xmlUDPServPort.InnerText = udpServPort.ToString(); Node.AppendChild(xmlUDPServPort);
+            XmlNode xmlUseCustomSteamFolder = m_Xdoc.CreateNode(XmlNodeType.Element, "UseCustomSteamFolder", null); xmlUseCustomSteamFolder.InnerText = useCustomSteamFolder.ToString(); Node.AppendChild(xmlUseCustomSteamFolder);
+            XmlNode xmlCustomSteamFolder = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomSteamFolder", null); xmlCustomSteamFolder.InnerText = customSteamFolder; Node.AppendChild(xmlCustomSteamFolder);
 
             for (int i = 0; i < 4; i++)
             {
@@ -4067,7 +4087,7 @@ namespace DS4Windows
             l2Maxzone[device] = r2Maxzone[device] = 100;
             LSRotation[device] = 0.0;
             RSRotation[device] = 0.0;
-            SXDeadzone[device] = SZDeadzone[device] = 0.02;
+            SXDeadzone[device] = SZDeadzone[device] = 0.25;
             SXMaxzone[device] = SZMaxzone[device] = 1.0;
             SXAntiDeadzone[device] = SZAntiDeadzone[device] = 0.0;
             l2Sens[device] = r2Sens[device] = 1;

@@ -580,7 +580,7 @@ namespace DS4Windows
                 }
                 catch
                 {
-                    nUDSX.Value = 0.02m;
+                    nUDSX.Value = 0.25m;
                 }
 
                 try
@@ -589,7 +589,7 @@ namespace DS4Windows
                 }
                 catch
                 {
-                    nUDSZ.Value = 0.02m;
+                    nUDSZ.Value = 0.25m;
                 }
 
                 try
@@ -864,8 +864,8 @@ namespace DS4Windows
                 nUDRSMaxZone.Value = 1;
                 nUDLSRotation.Value = 0;
                 nUDRSRotation.Value = 0;
-                nUDSX.Value = 0.02m;
-                nUDSZ.Value = 0.02m;
+                nUDSX.Value = 0.25m;
+                nUDSZ.Value = 0.25m;
                 nUDSixAxisXMaxZone.Value = 1.0m;
                 nUDSixAxisZMaxZone.Value = 1.0m;
                 nUDSixaxisXAntiDead.Value = 0.0m;

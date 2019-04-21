@@ -1632,7 +1632,7 @@
             0});
             this.nUDSZ.Name = "nUDSZ";
             this.nUDSZ.Value = new decimal(new int[] {
-            2,
+            25,
             0,
             0,
             131072});
@@ -1654,7 +1654,7 @@
             0});
             this.nUDSX.Name = "nUDSX";
             this.nUDSX.Value = new decimal(new int[] {
-            2,
+            25,
             0,
             0,
             131072});

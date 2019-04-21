@@ -199,6 +199,8 @@ namespace DS4Windows
 
             cBDisconnectBT.Checked = DCBTatStop;
             cBQuickCharge.Checked = QuickCharge;
+            cBCustomSteam.Checked = UseCustomSteamFolder;
+            tBSteamFolder.Text = CustomSteamFolder;
             // New settings
             this.Width = FormWidth;
             this.Height = FormHeight;
@@ -2033,6 +2035,17 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 cBUpdateTime.SelectedIndex = 0;
                 pNUpdate.Enabled = true;
             }
+        }
+
+        private void cBCustomSteam_CheckedChanged(object sender, EventArgs e)
+        {
+            UseCustomSteamFolder = cBCustomSteam.Checked;
+            tBSteamFolder.Enabled = cBCustomSteam.Checked;
+        }
+
+        private void tBSteamFolder_TextChanged(object sender, EventArgs e)
+        {
+            CustomSteamFolder = tBSteamFolder.Text;
         }
 
         private void nUDUpdateTime_ValueChanged(object sender, EventArgs e)

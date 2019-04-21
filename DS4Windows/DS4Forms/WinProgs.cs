@@ -33,15 +33,6 @@ namespace DS4Windows
 
         public WinProgs(string[] oc, DS4Form main)
         {
-            Global.FindConfigLocation();
-
-            if (Global.firstRun)
-            {
-                new SaveWhere(Global.multisavespots).ShowDialog();
-            }
-
-            Global.Load();
-
             InitializeComponent();
             openProgram.Filter =  Properties.Resources.Programs+"|*.exe|" + Properties.Resources.Shortcuts + "|*.lnk";
             form = main;

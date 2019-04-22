@@ -305,6 +305,27 @@ namespace DS4Windows
             return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
+        public static bool CheckForDevice(string guid)
+        {
+            bool result = false;
+            Guid deviceGuid = Guid.Parse(guid);
+            NativeMethods.SP_DEVINFO_DATA deviceInfoData =
+                new NativeMethods.SP_DEVINFO_DATA();
+            deviceInfoData.cbSize =
+                System.Runtime.InteropServices.Marshal.SizeOf(deviceInfoData);
+
+            IntPtr deviceInfoSet = NativeMethods.SetupDiGetClassDevs(ref deviceGuid, null, 0,
+                NativeMethods.DIGCF_DEVICEINTERFACE);
+            result = NativeMethods.SetupDiEnumDeviceInfo(deviceInfoSet, 0, ref deviceInfoData);
+
+            if (deviceInfoSet.ToInt64() != NativeMethods.INVALID_HANDLE_VALUE)
+            {
+                NativeMethods.SetupDiDestroyDeviceInfoList(deviceInfoSet);
+            }
+
+            return result;
+        }
+
         private static bool CheckForSysDevice(string searchHardwareId)
         {
             bool result = false;
@@ -374,8 +395,7 @@ namespace DS4Windows
 
         public static bool IsViGEmBusInstalled()
         {
-            return CheckForSysDevice(@"Root\ViGEmBus") ||
-                CheckForSysDevice(@"Nefarius\ViGEmBus\Gen1");
+            return CheckForDevice("{96E42B22-F5E9-42F8-B043-ED0F932F014F}");
         }
 
         public static void FindConfigLocation()

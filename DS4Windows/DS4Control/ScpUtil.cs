@@ -374,7 +374,8 @@ namespace DS4Windows
 
         public static bool IsViGEmBusInstalled()
         {
-            return CheckForSysDevice(@"Root\ViGEmBus");
+            return CheckForSysDevice(@"Root\ViGEmBus") ||
+                CheckForSysDevice(@"Nefarius\ViGEmBus\Gen1");
         }
 
         public static void FindConfigLocation()

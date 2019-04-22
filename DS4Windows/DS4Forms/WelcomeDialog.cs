@@ -15,6 +15,10 @@ namespace DS4Windows
 {
     public partial class WelcomeDialog : Form
     {
+        private const string InstallerDL =
+            "https://github.com/ViGEm/ViGEmBus/releases/download/v1.16.112/ViGEmBus_Setup_1.16.112.exe";
+        private const string InstFileName = "ViGEmBus_Setup_1.16.112.exe";
+
         public WelcomeDialog(bool loadConfig=false)
         {
             if (loadConfig)
@@ -40,9 +44,14 @@ namespace DS4Windows
 
         private void bnStep1_Click(object sender, EventArgs e)
         {
+            if (File.Exists(exepath + $"\\{InstFileName}"))
+            {
+                File.Delete(exepath + $"\\{InstFileName}");
+            }
+
             WebClient wb = new WebClient();
-            wb.DownloadFileAsync(new Uri("https://github.com/Ryochan7/DS4Windows/raw/jay/extras/ViGEmBusInstaller_DS4Win.zip"),
-                exepath + "\\ViGEmBusInstaller_DS4Win.zip");
+            wb.DownloadFileAsync(new Uri(InstallerDL), exepath + $"\\{InstFileName}");
+
             wb.DownloadProgressChanged += wb_DownloadProgressChanged;
             wb.DownloadFileCompleted += wb_DownloadFileCompleted;
         }
@@ -59,18 +68,10 @@ namespace DS4Windows
                 Directory.Delete(exepath + "\\ViGEmBusInstaller", true);
             }
 
-            if (File.Exists(exepath + "\\ViGEmBusInstaller_DS4Win.zip"))
-            {
-                Directory.CreateDirectory(exepath + "\\ViGEmBusInstaller");
-                try { ZipFile.ExtractToDirectory(exepath + "\\ViGEmBusInstaller_DS4Win.zip",
-                    exepath + "\\ViGEmBusInstaller"); } //Saved so the user can uninstall later
-                catch { }
-            }
-
-            if (File.Exists(exepath + "\\ViGEmBusInstaller\\ViGEmBusInstaller.exe"))
+            if (File.Exists(exepath + $"\\{InstFileName}"))
             {
                 bnStep1.Text = Properties.Resources.OpeningInstaller;
-                Process.Start(exepath + "\\ViGEmBusInstaller\\ViGEmBusInstaller.exe", "--silent");
+                Process.Start(exepath + $"\\{InstFileName}", "/quiet");
                 bnStep1.Text = Properties.Resources.Installing;
             }
 
@@ -81,7 +82,7 @@ namespace DS4Windows
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            Process[] processes = Process.GetProcessesByName("ViGEmBusInstaller");
+            Process[] processes = Process.GetProcessesByName("ViGEmBus_Setup_1.16.112");
             if (processes.Length < 1)
             {
                 if (Global.IsViGEmBusInstalled())
@@ -92,9 +93,8 @@ namespace DS4Windows
                 {
                     this.BeginInvoke((Action)(() => { bnStep1.Text = Properties.Resources.InstallFailed; }), null);
                 }
-                
 
-                File.Delete(exepath + "\\ViGEmBusInstaller_DS4Win.zip");
+                File.Delete(exepath + $"\\{InstFileName}");
                 ((NonFormTimer)sender).Stop();
             }
         }

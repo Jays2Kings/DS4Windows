@@ -61,6 +61,8 @@ namespace DS4Windows
         public void ResetToggleGyroM()
         {
             currentToggleGyroM = false;
+            previousTriggerActivated = false;
+            triggeractivated = false;
         }
 
         bool triggeractivated = false;

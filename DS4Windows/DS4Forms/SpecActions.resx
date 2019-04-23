@@ -2116,7 +2116,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbUnloadTipProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 55</value>
+    <value>0, 95</value>
   </data>
   <data name="lbUnloadTipProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -2140,7 +2140,7 @@
     <value>206, 58</value>
   </data>
   <data name="pnlProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 94</value>
+    <value>161, 121</value>
   </data>
   <data name="pnlProfile.TabIndex" type="System.Int32, mscorlib">
     <value>262</value>
@@ -2159,6 +2159,45 @@
   </data>
   <data name="&gt;&gt;pnlProfile.ZOrder" xml:space="preserve">
     <value>11</value>
+  </data>
+  <data name="&gt;&gt;cbProfileAutoUntrigger.Name" xml:space="preserve">
+    <value>cbProfileAutoUntrigger</value>
+  </data>
+  <data name="&gt;&gt;cbProfileAutoUntrigger.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbProfileAutoUntrigger.Parent" xml:space="preserve">
+    <value>pnlProfile</value>
+  </data>
+  <data name="&gt;&gt;cbProfileAutoUntrigger.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cbProfileAutoUntrigger.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbProfileAutoUntrigger.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 61</value>
+  </data>
+  <data name="cbProfileAutoUntrigger.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 17</value>
+  </data>
+  <data name="cbProfileAutoUntrigger.TabIndex" type="System.Int32, mscorlib">
+    <value>260</value>
+  </data>
+  <data name="cbProfileAutoUntrigger.Text" xml:space="preserve">
+    <value>Unload on trigger release</value>
+  </data>
+  <data name="&gt;&gt;cbProfileAutoUntrigger.Name" xml:space="preserve">
+    <value>cbProfileAutoUntrigger</value>
+  </data>
+  <data name="&gt;&gt;cbProfileAutoUntrigger.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbProfileAutoUntrigger.Parent" xml:space="preserve">
+    <value>pnlProfile</value>
+  </data>
+  <data name="&gt;&gt;cbProfileAutoUntrigger.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="nUDDCBT.Location" type="System.Drawing.Point, System.Drawing">
     <value>56, 3</value>

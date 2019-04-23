@@ -102,6 +102,7 @@ namespace DS4Windows
                                     break;
                                 }
                     }
+                    cbProfileAutoUntrigger.Checked = act.automaticUntrigger;
                     break;
                 case "Key":
                     cBActions.SelectedIndex = 4;
@@ -270,7 +271,7 @@ namespace DS4Windows
                             actRe = true;
                             if (!string.IsNullOrEmpty(oldprofilename) && oldprofilename != tBName.Text)
                                 Global.RemoveAction(oldprofilename);
-                            Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, cBProfiles.Text, edit, String.Join("/", ucontrols) + (/* TODO: Is automaticUntrigger set */ true ? (ucontrols.Count > 0 ? "/" : "") + "AutomaticUntrigger" : "") );
+                            Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, cBProfiles.Text, edit, String.Join("/", ucontrols) + (cbProfileAutoUntrigger.Checked ? (ucontrols.Count > 0 ? "/" : "") + "AutomaticUntrigger" : "") );
                         }
                         else
                             btnSetUTriggerProfile.ForeColor = Color.Red;

@@ -14,6 +14,7 @@ namespace DS4Windows
         private const int inputResolution = 127 - (-128);
         private const float reciprocalInputResolution = 1 / (float)inputResolution;
         private const int outputResolution = 32767 - (-32768);
+        public const string devType = "X360";
 
         public Xbox360Controller cont;
         private Xbox360Report report;
@@ -137,5 +138,6 @@ namespace DS4Windows
 
         public override void Connect() => cont.Connect();
         public override void Disconnect() => cont.Disconnect();
+        public override string GetDeviceType() => devType;
     }
 }

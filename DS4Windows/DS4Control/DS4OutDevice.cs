@@ -11,6 +11,8 @@ namespace DS4Windows
 {
     class DS4OutDevice : OutputDevice
     {
+        public const string devtype = "DS4";
+
         public DualShock4Controller cont;
         private DualShock4Report report;
 
@@ -79,5 +81,6 @@ namespace DS4Windows
 
         public override void Connect() => cont.Connect();
         public override void Disconnect() => cont.Disconnect();
+        public override string GetDeviceType() => devtype;
     }
 }

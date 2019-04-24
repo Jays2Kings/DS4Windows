@@ -1094,10 +1094,11 @@ namespace DS4Windows
                 {
                     if (!useDInputOnly[ind])
                     {
+                        string tempType = outputDevices[ind].GetDeviceType();
                         outputDevices[ind].Disconnect();
                         outputDevices[ind] = null;
                         useDInputOnly[ind] = true;
-                        LogDebug("Controller #" + (ind + 1) + " unplugged");
+                        LogDebug(tempType + " Controller #" + (ind + 1) + " unplugged");
                     }
                 }
                 else
@@ -1167,11 +1168,12 @@ namespace DS4Windows
                     CurrentState[ind].Battery = PreviousState[ind].Battery = 0; // Reset for the next connection's initial status change.
                     if (!useDInputOnly[ind])
                     {
+                        string tempType = outputDevices[ind].GetDeviceType();
                         outputDevices[ind].Disconnect();
                         outputDevices[ind] = null;
                         //x360controls[ind].Disconnect();
                         //x360controls[ind] = null;
-                        LogDebug("X360 Controller # " + (ind + 1) + " unplugged");
+                        LogDebug(tempType + " Controller # " + (ind + 1) + " unplugged");
                     }
 
                     // Use Task to reset device synth state and commit it

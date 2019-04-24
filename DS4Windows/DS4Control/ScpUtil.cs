@@ -3214,10 +3214,11 @@ namespace DS4Windows
                         }
                         else if (xinputStatus && !xinputPlug)
                         {
+                            string tempType = control.outputDevices[device].GetDeviceType();
                             control.outputDevices[device].Disconnect();
                             control.outputDevices[device] = null;
                             Global.useDInputOnly[device] = true;
-                            AppLogger.LogToGui("Controller #" + (device + 1) + " unplugged", false);
+                            AppLogger.LogToGui(tempType + " Controller #" + (device + 1) + " unplugged", false);
                         }
 
                         tempDev.setRumble(0, 0);

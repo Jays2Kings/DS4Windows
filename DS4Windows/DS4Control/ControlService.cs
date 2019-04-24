@@ -891,7 +891,8 @@ namespace DS4Windows
 
         public void TouchPadOn(int ind, DS4Device device)
         {
-            ITouchpadBehaviour tPad = touchPad[ind];
+            Mouse tPad = touchPad[ind];
+            //ITouchpadBehaviour tPad = touchPad[ind];
             device.Touchpad.TouchButtonDown += tPad.touchButtonDown;
             device.Touchpad.TouchButtonUp += tPad.touchButtonUp;
             device.Touchpad.TouchesBegan += tPad.touchesBegan;

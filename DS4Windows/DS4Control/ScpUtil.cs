@@ -3177,7 +3177,8 @@ namespace DS4Windows
                             OutputDevice tempOutDev = control.outputDevices[device];
                             if (tempOutDev != null)
                             {
-                                AppLogger.LogToGui("Unplug Controller #" + (device + 1), false);
+                                string tempType = tempOutDev.GetDeviceType();
+                                AppLogger.LogToGui("Unplug " + tempType + " Controller #" + (device + 1), false);
                                 tempOutDev.Disconnect();
                                 tempOutDev = null;
                                 control.outputDevices[device] = null;

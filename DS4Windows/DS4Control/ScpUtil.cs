@@ -4092,6 +4092,8 @@ namespace DS4Windows
         public DateTime pastTime;
         public DateTime firstTap;
         public DateTime TimeofEnd;
+        public bool automaticUntrigger = false;
+        public string prevProfileName;  // Name of the previous profile where automaticUntrigger would jump back to (could be regular or temporary profile. Empty name is the same as regular profile)
 
         public SpecialAction(string name, string controls, string type, string details, double delay = 0, string extras = "")
         {
@@ -4201,7 +4203,10 @@ namespace DS4Windows
                 this.ucontrols = extras;
                 string[] uctrls = extras.Split('/');
                 foreach (string s in uctrls)
-                    uTrigger.Add(getDS4ControlsByName(s));
+                {
+                    if (s == "AutomaticUntrigger") this.automaticUntrigger = true;
+                    else uTrigger.Add(getDS4ControlsByName(s));
+                }
             }
         }
 

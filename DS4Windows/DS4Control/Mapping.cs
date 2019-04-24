@@ -1899,11 +1899,14 @@ namespace DS4Windows
                                 if (!actionDone[index].dev[device] && (!useTempProfile[device] || untriggeraction[device] == null || untriggeraction[device].typeID != SpecialAction.ActionTypeId.Profile) )
                                 {
                                     actionDone[index].dev[device] = true;
-                                    // If Loadprofile special action doesn't have unload trigger then don't set untrigger status. This way the new loaded profile allows yet another loadProfile action key events)
-                                    if (action.uTrigger.Count > 0)
+                                    // If Loadprofile special action doesn't have untrigger keys or automatic untrigger option is not set then don't set untrigger status. This way the new loaded profile allows yet another loadProfile action key event.
+                                    if (action.uTrigger.Count > 0 || action.automaticUntrigger)
                                     {
                                         untriggeraction[device] = action;
                                         untriggerindex[device] = index;
+
+                                        // If the existing profile is a temp profile then store its name, because automaticUntrigger needs to know where to go back (empty name goes back to default regular profile)
+                                        untriggeraction[device].prevProfileName = (useTempProfile[device] ? tempprofilename[device] : string.Empty);
                                     }
                                     //foreach (DS4Controls dc in action.trigger)
                                     for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
@@ -1926,6 +1929,22 @@ namespace DS4Windows
                                     string prolog = Properties.Resources.UsingProfile.Replace("*number*", (device + 1).ToString()).Replace("*Profile name*", action.details);
                                     AppLogger.LogToGui(prolog, false);
                                     LoadTempProfile(device, action.details, true, ctrl);
+
+                                    if (action.uTrigger.Count == 0 && !action.automaticUntrigger)
+                                    {
+                                        // If the new profile has any actions with the same action key (controls) than this action (which doesn't have untrigger keys) then set status of those actions to wait for the release of the existing action key. 
+                                        List<string> profileActionsNext = getProfileActions(device);
+                                        for (int actionIndexNext = 0, profileListLenNext = profileActionsNext.Count; actionIndexNext < profileListLenNext; actionIndexNext++)
+                                        {
+                                            string actionnameNext = profileActionsNext[actionIndexNext];
+                                            SpecialAction actionNext = GetProfileAction(device, actionnameNext);
+                                            int indexNext = GetProfileActionIndexOf(device, actionnameNext);
+
+                                            if (actionNext.controls == action.controls)
+                                                actionDone[indexNext].dev[device] = true;
+                                        }
+                                    }
+
                                     return;
                                 }
                             }
@@ -2273,15 +2292,37 @@ namespace DS4Windows
             {
                 SpecialAction action = untriggeraction[device];
                 int index = untriggerindex[device];
-                bool utriggeractivated = true;
-                //foreach (DS4Controls dc in action.uTrigger)
-                for (int i = 0, uTrigLen = action.uTrigger.Count; i < uTrigLen; i++)
+                bool utriggeractivated;
+
+                if (!action.automaticUntrigger)
                 {
-                    DS4Controls dc = action.uTrigger[i];
-                    if (!getBoolSpecialActionMapping(device, dc, cState, eState, tp, fieldMapping))
+                    // Untrigger keys defined and auto-untrigger (=unload) profile option is NOT set. Unload a temporary profile only when specified untrigger keys have been triggered.
+                    utriggeractivated = true;
+
+                    //foreach (DS4Controls dc in action.uTrigger)
+                    for (int i = 0, uTrigLen = action.uTrigger.Count; i < uTrigLen; i++)
                     {
-                        utriggeractivated = false;
-                        break;
+                        DS4Controls dc = action.uTrigger[i];
+                        if (!getBoolSpecialActionMapping(device, dc, cState, eState, tp, fieldMapping))
+                        {
+                            utriggeractivated = false;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    // Untrigger as soon any of the defined regular trigger keys have been released. 
+                    utriggeractivated = false;
+
+                    for (int i = 0, trigLen = action.trigger.Count; i < trigLen; i++)
+                    {
+                        DS4Controls dc = action.trigger[i];
+                        if (!getBoolSpecialActionMapping(device, dc, cState, eState, tp, fieldMapping))
+                        {
+                            utriggeractivated = true;
+                            break;
+                        }
                     }
                 }
 
@@ -2311,10 +2352,16 @@ namespace DS4Windows
                                 }
                             }
 
-                            untriggeraction[device] = null;
-                            string prolog = Properties.Resources.UsingProfile.Replace("*number*", (device + 1).ToString()).Replace("*Profile name*", ProfilePath[device]);
+                            string profileName = untriggeraction[device].prevProfileName;
+                            string prolog = Properties.Resources.UsingProfile.Replace("*number*", (device + 1).ToString()).Replace("*Profile name*", (profileName == string.Empty ? ProfilePath[device] : profileName));
                             AppLogger.LogToGui(prolog, false);
-                            LoadProfile(device, false, ctrl);
+
+                            untriggeraction[device] = null;
+
+                            if (profileName == string.Empty)
+                                LoadProfile(device, false, ctrl); // Previous profile was a regular default profile of a controller
+                            else
+                                LoadTempProfile(device, profileName, true, ctrl); // Previous profile was a temporary profile, so re-load it as a temp profile
                         }
                     }
                 }

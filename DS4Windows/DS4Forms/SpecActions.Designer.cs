@@ -86,6 +86,7 @@
             this.lbDTapDVR = new System.Windows.Forms.Label();
             this.lbHoldDVR = new System.Windows.Forms.Label();
             this.lbTapDVR = new System.Windows.Forms.Label();
+            this.cbProfileAutoUntrigger = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).BeginInit();
             this.pnlProgram.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDProg)).BeginInit();
@@ -383,6 +384,7 @@
             // 
             // pnlProfile
             // 
+            this.pnlProfile.Controls.Add(this.cbProfileAutoUntrigger);
             this.pnlProfile.Controls.Add(this.lbUnloadTipProfile);
             this.pnlProfile.Controls.Add(this.cBProfiles);
             this.pnlProfile.Controls.Add(this.btnSetUTriggerProfile);
@@ -596,6 +598,12 @@
             resources.ApplyResources(this.lbTapDVR, "lbTapDVR");
             this.lbTapDVR.Name = "lbTapDVR";
             // 
+            // cbProfileAutoUntrigger
+            // 
+            resources.ApplyResources(this.cbProfileAutoUntrigger, "cbProfileAutoUntrigger");
+            this.cbProfileAutoUntrigger.Name = "cbProfileAutoUntrigger";
+            this.cbProfileAutoUntrigger.UseVisualStyleBackColor = true;
+            // 
             // SpecActions
             // 
             resources.ApplyResources(this, "$this");
@@ -698,5 +706,6 @@
         public System.Windows.Forms.Button btnDTapT;
         public System.Windows.Forms.Button btnHoldT;
         public System.Windows.Forms.Button btnSTapT;
+        private System.Windows.Forms.CheckBox cbProfileAutoUntrigger;
     }
 }

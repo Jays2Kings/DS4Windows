@@ -127,7 +127,7 @@ namespace DS4Windows
         private readonly DS4SixAxis sixAxis = null;
         private byte rightLightFastRumble;
         private byte leftHeavySlowRumble;
-        private DS4Color ligtBarColor;
+        private DS4Color lightBarColor;
         private byte ledFlashOn, ledFlashOff;
         private Thread ds4Input, ds4Output;
         private int battery;
@@ -171,12 +171,12 @@ namespace DS4Windows
 
         public DS4Color LightBarColor
         {
-            get { return ligtBarColor; }
+            get { return lightBarColor; }
             set
             {
-                if (ligtBarColor.red != value.red || ligtBarColor.green != value.green || ligtBarColor.blue != value.blue)
+                if (lightBarColor.red != value.red || lightBarColor.green != value.green || lightBarColor.blue != value.blue)
                 {
-                    ligtBarColor = value;
+                    lightBarColor = value;
                 }
             }
         }

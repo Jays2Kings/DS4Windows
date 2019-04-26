@@ -1409,6 +1409,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose the type of output virtual controller (Applies on profile save).
+        /// </summary>
+        public static string OutContNotice {
+            get {
+                return ResourceManager.GetString("OutContNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap Pairmode {

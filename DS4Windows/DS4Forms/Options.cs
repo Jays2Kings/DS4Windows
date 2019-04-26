@@ -2284,6 +2284,8 @@ namespace DS4Windows
                 case "bnR3": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
                 case "btPollRateLabel": root.lbLastMessage.Text = Properties.Resources.BTPollRate; break;
                 case "btPollRateComboBox": root.lbLastMessage.Text = Properties.Resources.BTPollRate; break;
+                case "outcontLb": root.lbLastMessage.Text = Properties.Resources.OutContNotice; break;
+                case "OutContTypeCb": root.lbLastMessage.Text = Properties.Resources.OutContNotice; break;
                 case "nUDSixaxis": root.lbLastMessage.Text = Properties.Resources.UseControllerForMapping; break;
                 case "cBControllerInput": root.lbLastMessage.Text = Properties.Resources.UseControllerForMapping; break;
                 case "lbUseController": root.lbLastMessage.Text = Properties.Resources.UseControllerForMapping; break;

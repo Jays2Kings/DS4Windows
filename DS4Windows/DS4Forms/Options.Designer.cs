@@ -122,7 +122,7 @@
             this.lbSwipeRight = new System.Windows.Forms.Label();
             this.gBOther = new System.Windows.Forms.GroupBox();
             this.OutContTypeCb = new System.Windows.Forms.ComboBox();
-            this.label28 = new System.Windows.Forms.Label();
+            this.outcontLb = new System.Windows.Forms.Label();
             this.btPollRateLabel = new System.Windows.Forms.Label();
             this.btPollRateComboBox = new System.Windows.Forms.ComboBox();
             this.enableTouchToggleCheckbox = new System.Windows.Forms.CheckBox();
@@ -1319,7 +1319,7 @@
             // 
             this.gBOther.BackColor = System.Drawing.SystemColors.Control;
             this.gBOther.Controls.Add(this.OutContTypeCb);
-            this.gBOther.Controls.Add(this.label28);
+            this.gBOther.Controls.Add(this.outcontLb);
             this.gBOther.Controls.Add(this.btPollRateLabel);
             this.gBOther.Controls.Add(this.btPollRateComboBox);
             this.gBOther.Controls.Add(this.enableTouchToggleCheckbox);
@@ -1351,10 +1351,10 @@
             resources.ApplyResources(this.OutContTypeCb, "OutContTypeCb");
             this.OutContTypeCb.Name = "OutContTypeCb";
             // 
-            // label28
+            // outcontLb
             // 
-            resources.ApplyResources(this.label28, "label28");
-            this.label28.Name = "label28";
+            resources.ApplyResources(this.outcontLb, "outcontLb");
+            this.outcontLb.Name = "outcontLb";
             // 
             // btPollRateLabel
             // 
@@ -4777,6 +4777,6 @@
         private System.Windows.Forms.CheckBox rsSquStickCk;
         private System.Windows.Forms.CheckBox lsSquStickCk;
         private System.Windows.Forms.ComboBox OutContTypeCb;
-        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label outcontLb;
     }
 }

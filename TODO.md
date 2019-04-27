@@ -1,5 +1,6 @@
 # TODO
 
+* Re-evaluate HidGuardian
 * Move forms to new namespace
 * ~~Finalize DS4 Emulation~~
 * ~~Raise Sixaxis default dead zones~~

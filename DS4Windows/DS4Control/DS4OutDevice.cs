@@ -36,13 +36,14 @@ namespace DS4Windows
                 if (state.Options) tempButtons |= DualShock4Buttons.Options;
 
                 if (state.DpadUp && state.DpadRight) tempDPad = DualShock4DPadValues.Northeast;
+                else if (state.DpadUp && state.DpadLeft) tempDPad = DualShock4DPadValues.Northwest;
                 else if (state.DpadUp) tempDPad = DualShock4DPadValues.North;
                 else if (state.DpadRight && state.DpadDown) tempDPad = DualShock4DPadValues.Southeast;
                 else if (state.DpadRight) tempDPad = DualShock4DPadValues.East;
                 else if (state.DpadDown && state.DpadLeft) tempDPad = DualShock4DPadValues.Southwest;
                 else if (state.DpadDown) tempDPad = DualShock4DPadValues.South;
-                else if (state.DpadLeft && state.DpadUp) tempDPad = DualShock4DPadValues.Northwest;
                 else if (state.DpadLeft) tempDPad = DualShock4DPadValues.West;
+
                 /*if (state.DpadUp) tempDPad = (state.DpadRight) ? DualShock4DPadValues.Northeast : DualShock4DPadValues.North;
                 if (state.DpadRight) tempDPad = (state.DpadDown) ? DualShock4DPadValues.Southeast : DualShock4DPadValues.East;
                 if (state.DpadDown) tempDPad = (state.DpadLeft) ? DualShock4DPadValues.Southwest : DualShock4DPadValues.South;

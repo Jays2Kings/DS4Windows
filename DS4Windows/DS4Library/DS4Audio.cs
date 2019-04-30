@@ -40,7 +40,8 @@ namespace DS4Windows.DS4Library
             RefreshVolume();
         }
 
-        public DS4Audio(DataFlow audioFlags = DataFlow.Render)
+        public DS4Audio(DataFlow audioFlags = DataFlow.Render,
+            string searchName = "Wireless Controller")
         {
             var audioEnumerator = new MMDeviceEnumeratorComObject() as IMMDeviceEnumerator;
             IMMDeviceCollection audioDevices;
@@ -55,21 +56,7 @@ namespace DS4Windows.DS4Library
                 Marshal.ThrowExceptionForHR(audioDevices.Item(deviceNumber, out audioDevice));
                 string deviceName = GetAudioDeviceName(ref audioDevice);
 
-                if (deviceName.Contains("DUALSHOCK®4 USB Wireless Adaptor"))
-                {
-                    object interfacePointer;
-                    Marshal.ThrowExceptionForHR(audioDevice.Activate(ref IID_IAudioEndpointVolume, ClsCtx.ALL, IntPtr.Zero, out interfacePointer));
-                    endpointVolume = interfacePointer as IAudioEndpointVolume;
-                    endpointVolume.RegisterControlChangeNotify(this);
-                }
-                else if (deviceName.Contains("Wireless Controller"))
-                {
-                    object interfacePointer;
-                    Marshal.ThrowExceptionForHR(audioDevice.Activate(ref IID_IAudioEndpointVolume, ClsCtx.ALL, IntPtr.Zero, out interfacePointer));
-                    endpointVolume = interfacePointer as IAudioEndpointVolume;
-                    endpointVolume.RegisterControlChangeNotify(this);
-                }
-                else if (deviceName.Contains("PS4 Fun Controller"))
+                if (deviceName.Contains(searchName))
                 {
                     object interfacePointer;
                     Marshal.ThrowExceptionForHR(audioDevice.Activate(ref IID_IAudioEndpointVolume, ClsCtx.ALL, IntPtr.Zero, out interfacePointer));

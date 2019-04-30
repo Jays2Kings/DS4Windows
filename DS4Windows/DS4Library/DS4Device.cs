@@ -122,6 +122,8 @@ namespace DS4Windows
         internal const int BATTERY_MAX = 8;
         internal const int BATTERY_MAX_USB = 11;
         public const string blankSerial = "00:00:00:00:00:00";
+        private const string SONYWA_AUDIO_SEARCHNAME = "DUALSHOCK®4 USB Wireless Adaptor";
+        private const string RAIJU_TE_AUDIO_SEARCHNAME = "Razer Raiju Tournament Edition Wired";
         private HidDevice hDevice;
         private string Mac;
         private DS4State cState = new DS4State();
@@ -426,14 +428,22 @@ namespace DS4Windows
                     {
                         runCalib = false;
                     }
+                    else if (tempAttr.VendorId == DS4Devices.RAZER_VID &&
+                        tempAttr.ProductId == 0x1007)
+                    {
+                        audio = new DS4Audio(searchName: RAIJU_TE_AUDIO_SEARCHNAME);
+                        micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture,
+                        RAIJU_TE_AUDIO_SEARCHNAME);
+                    }
 
                     synced = true;
                 }
                 else
                 {
                     warnInterval = WARN_INTERVAL_BT;
-                    audio = new DS4Audio();
-                    micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture);
+                    audio = new DS4Audio(searchName: SONYWA_AUDIO_SEARCHNAME);
+                    micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture,
+                        SONYWA_AUDIO_SEARCHNAME);
                     runCalib = synced = isValidSerial();
                 }
             }

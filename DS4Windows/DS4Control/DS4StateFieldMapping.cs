@@ -11,6 +11,7 @@ namespace DS4Windows
         public int[] gryodirs = new int[(int)DS4Controls.SwipeDown + 1];
         public byte[] swipedirs = new byte[(int)DS4Controls.SwipeDown + 1];
         public bool[] swipedirbools = new bool[(int)DS4Controls.SwipeDown + 1];
+        public bool touchButton = false;
 
         public static ControlType[] mappedType = new ControlType[38] { ControlType.Unknown, // DS4Controls.None
             ControlType.AxisDir, // DS4Controls.LXNeg
@@ -118,8 +119,8 @@ namespace DS4Windows
                 swipedirbools[(int)DS4Controls.SwipeRight] = tp != null ? (!priorMouse ? tp.swipeRight : tp.priorSwipeRight) : false;
                 swipedirbools[(int)DS4Controls.SwipeUp] = tp != null ? (!priorMouse ? tp.swipeUp : tp.priorSwipeUp) : false;
                 swipedirbools[(int)DS4Controls.SwipeDown] = tp != null ? (!priorMouse ? tp.swipeDown : tp.priorSwipeDown) : false;
+                touchButton = cState.TouchButton;
             }
-            
         }
 
         public void populateState(DS4State state)
@@ -156,6 +157,7 @@ namespace DS4Windows
                 state.DpadRight = buttons[(int)DS4Controls.DpadRight];
                 state.DpadDown = buttons[(int)DS4Controls.DpadDown];
                 state.DpadLeft = buttons[(int)DS4Controls.DpadLeft];
+                state.TouchButton = touchButton;
             }
         }
     }

@@ -9,7 +9,7 @@ using NonFormTimer = System.Timers.Timer;
 using System.IO;
 using System.Reflection;
 
-namespace DS4Windows
+namespace DS4Windows.Forms
 {
     public partial class RecordBox : Form
     {

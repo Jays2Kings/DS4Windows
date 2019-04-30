@@ -1,4 +1,4 @@
-﻿namespace DS4Windows
+﻿namespace DS4Windows.Forms
 {
     partial class SpecActions
     {

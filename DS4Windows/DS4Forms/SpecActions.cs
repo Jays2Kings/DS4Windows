@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 using System.IO;
 using System.Xml;
-namespace DS4Windows
+namespace DS4Windows.Forms
 {
     public partial class SpecActions : Form
     {

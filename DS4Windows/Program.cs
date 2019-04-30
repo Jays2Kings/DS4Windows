@@ -35,7 +35,7 @@ namespace DS4Windows
                 if (s == "driverinstall" || s == "-driverinstall")
                 {
                     Application.EnableVisualStyles();
-                    Application.Run(new WelcomeDialog(true));
+                    Application.Run(new Forms.WelcomeDialog(true));
                     return;
                 }
                 else if (s == "re-enabledevice" || s == "-re-enabledevice")
@@ -109,7 +109,7 @@ namespace DS4Windows
             createControlService();
                 //rootHub = new ControlService();
                 Application.EnableVisualStyles();
-                ds4form = new DS4Form(args);
+                ds4form = new Forms.DS4Form(args);
                 Application.Run();
             //mutex.ReleaseMutex();
             //}
@@ -166,10 +166,10 @@ namespace DS4Windows
         private delegate void SetFormVisableDelegate(Form frm);
         private static void ThreadFormVisable(Form frm)
         {
-            if (frm is DS4Form)
+            if (frm is Forms.DS4Form)
             {
                 // display the form and bring to foreground.
-                DS4Form temp = (DS4Form)frm;
+                Forms.DS4Form temp = (Forms.DS4Form)frm;
                 temp.Show();
                 temp.WindowState = FormWindowState.Normal;
             }

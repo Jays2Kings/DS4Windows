@@ -1,7 +1,7 @@
 # TODO
 
 * Re-evaluate HidGuardian
-* Move forms to new namespace
+* ~~Move forms to new namespace~~
 * ~~Finalize DS4 Emulation~~
 * ~~Raise Sixaxis default dead zones~~
 * ~~Evaluate latest ViGEmBus driver and update download URL~~

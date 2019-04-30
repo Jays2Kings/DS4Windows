@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Diagnostics;
 using System.Drawing;
 
-namespace DS4Windows
+namespace DS4Windows.Forms
 {
     public partial class Hotkeys : Form
     {

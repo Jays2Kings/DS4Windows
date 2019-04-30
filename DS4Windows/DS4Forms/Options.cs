@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using static DS4Windows.Global;
 
-namespace DS4Windows
+namespace DS4Windows.Forms
 {
     public partial class Options : Form
     {

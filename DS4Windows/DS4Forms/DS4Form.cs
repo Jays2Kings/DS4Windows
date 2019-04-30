@@ -19,7 +19,7 @@ using static DS4Windows.Global;
 using System.Security;
 using System.Management;
 
-namespace DS4Windows
+namespace DS4Windows.Forms
 {
     [SuppressUnmanagedCodeSecurity]
     public partial class DS4Form : Form

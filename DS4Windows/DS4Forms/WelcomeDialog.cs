@@ -11,7 +11,7 @@ using NonFormTimer = System.Timers.Timer;
 using System.Threading.Tasks;
 using static DS4Windows.Global;
 
-namespace DS4Windows
+namespace DS4Windows.Forms
 {
     public partial class WelcomeDialog : Form
     {

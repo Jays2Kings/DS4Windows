@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace DS4Windows
+namespace DS4Windows.Forms
 {
     public partial class DupBox : Form
     {

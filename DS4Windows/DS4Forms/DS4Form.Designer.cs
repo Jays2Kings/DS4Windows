@@ -851,7 +851,7 @@
             // tSBCancel
             // 
             this.tSBCancel.AutoToolTip = false;
-            this.tSBCancel.Image = global::DS4Windows.Properties.Resources.delete;
+            this.tSBCancel.Image = global::DS4Windows.Properties.Resources.cancel;
             resources.ApplyResources(this.tSBCancel, "tSBCancel");
             this.tSBCancel.Name = "tSBCancel";
             this.tSBCancel.Click += new System.EventHandler(this.tSBCancel_Click);

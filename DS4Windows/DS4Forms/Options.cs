@@ -786,15 +786,15 @@ namespace DS4Windows.Forms
                 devOutContType = tempOutType;
                 switch(tempOutType)
                 {
-                    case OutContType.X360:
-                        OutContTypeCb.SelectedIndex = 0;
-                        defaults = xboxDefaults;
-                        break;
                     case OutContType.DS4:
                         OutContTypeCb.SelectedIndex = 1;
                         defaults = ds4Defaults;
                         break;
-                    default: break;
+                    case OutContType.X360:
+                    default:
+                        OutContTypeCb.SelectedIndex = 0;
+                        defaults = xboxDefaults;
+                        break;
                 }
             }
             else

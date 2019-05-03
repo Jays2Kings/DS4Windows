@@ -1700,9 +1700,9 @@ namespace DS4Windows
         public int[] gyroMouseHorizontalAxis = new int[5] { 0, 0, 0, 0, 0 };
         public bool[] trackballMode = new bool[5] { false, false, false, false, false };
         public double[] trackballFriction = new double[5] { 10.0, 10.0, 10.0, 10.0, 10.0 };
-        public OutContType[] outputDevType = new OutContType[5] { OutContType.None,
-            OutContType.None, OutContType.None,
-            OutContType.None, OutContType.None };
+        public OutContType[] outputDevType = new OutContType[5] { OutContType.X360,
+            OutContType.X360, OutContType.X360,
+            OutContType.X360, OutContType.X360 };
 
         bool tempBool = false;
 
@@ -1824,10 +1824,10 @@ namespace DS4Windows
 
         private string OutContDeviceString(OutContType id)
         {
-            string result = "None";
+            string result = "X360";
             switch (id)
             {
-                case OutContType.None: break;
+                case OutContType.None:
                 case OutContType.X360: result = "X360"; break;
                 case OutContType.DS4: result = "DS4"; break;
                 default: break;
@@ -1838,10 +1838,10 @@ namespace DS4Windows
 
         private OutContType OutContDeviceId(string name)
         {
-            OutContType id = OutContType.None;
+            OutContType id = OutContType.X360;
             switch (name)
             {
-                case "None": break;
+                case "None":
                 case "X360": id = OutContType.X360; break;
                 case "DS4": id = OutContType.DS4; break;
                 default: break;

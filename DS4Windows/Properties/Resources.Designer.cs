@@ -221,6 +221,16 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap cancel {
+            get {
+                object obj = ResourceManager.GetObject("cancel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot move files to new location, Please rename the DS4Tool folder to &quot;DS4Windows&quot;.
         /// </summary>
         public static string CannotMoveFiles {

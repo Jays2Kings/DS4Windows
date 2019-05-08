@@ -286,9 +286,6 @@ namespace DS4Windows.Forms
                 File.Delete(exepath + "\\Updater.exe");
             }
 
-            if (!Directory.Exists(appdatapath + "\\Virtual Bus Driver"))
-                linkUninstall.Visible = false;
-
             bool isElevated = IsAdministrator();
             if (!isElevated)
             {
@@ -437,7 +434,6 @@ namespace DS4Windows.Forms
         private void populateHoverTextDict()
         {
             hoverTextDict.Clear();
-            hoverTextDict[linkUninstall] = Properties.Resources.IfRemovingDS4Windows;
             hoverTextDict[cBSwipeProfiles] = Properties.Resources.TwoFingerSwipe;
             hoverTextDict[cBQuickCharge] = Properties.Resources.QuickCharge;
             hoverTextDict[cBCloseMini] = Properties.Resources.CloseMinimize;
@@ -2156,15 +2152,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             Process.Start(appdatapath + "\\Profiles");
         }
 
-        private void linkUninstall_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (File.Exists(appdatapath + "\\Virtual Bus Driver\\ScpDriver.exe"))
-            {
-                try { Process.Start(appdatapath + "\\Virtual Bus Driver\\ScpDriver.exe"); }
-                catch { Process.Start(appdatapath + "\\Virtual Bus Driver"); }
-            }
-        }
-
         private void cBoxNotifications_SelectedIndexChanged(object sender, EventArgs e)
         {
             Notifications = cBoxNotifications.SelectedIndex;
@@ -2172,16 +2159,33 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
         private void lLSetup_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process p = new Process();
-            p.StartInfo.FileName = Assembly.GetExecutingAssembly().Location;
-            p.StartInfo.Arguments = "-driverinstall";
-            p.StartInfo.Verb = "runas";
-            try { p.Start(); }
-            catch { }
-            //WelcomeDialog wd = new WelcomeDialog();
-            //wd.ShowDialog();
+            DriverSetupPrep();
+
             tabSettings.Text = originalsettingstext;
             linkSetup.LinkColor = Color.Blue;
+        }
+
+        private void DriverSetupPrep()
+        {
+            if (btnStartStop.Text == Properties.Resources.StopText)
+                BtnStartStop_Clicked(false);
+
+            TaskRunner.Run(() =>
+            {
+                while (changingService)
+                {
+                    Thread.SpinWait(1000);
+                }
+
+                Process p = new Process();
+                p.StartInfo.FileName = Assembly.GetExecutingAssembly().Location;
+                p.StartInfo.Arguments = "-driverinstall";
+                p.StartInfo.Verb = "runas";
+                try { p.Start(); }
+                catch { }
+                //WelcomeDialog wd = new WelcomeDialog();
+                //wd.ShowDialog();
+            });
         }
 
         bool tempBool = false;

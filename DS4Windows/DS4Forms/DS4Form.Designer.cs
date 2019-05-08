@@ -160,7 +160,6 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.linkProfiles = new System.Windows.Forms.LinkLabel();
             this.lnkControllers = new System.Windows.Forms.LinkLabel();
-            this.linkUninstall = new System.Windows.Forms.LinkLabel();
             this.linkSetup = new System.Windows.Forms.LinkLabel();
             this.lLBUpdate = new System.Windows.Forms.LinkLabel();
             this.tabLog = new System.Windows.Forms.TabPage();
@@ -1234,7 +1233,6 @@
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel1.Controls.Add(this.linkProfiles);
             this.flowLayoutPanel1.Controls.Add(this.lnkControllers);
-            this.flowLayoutPanel1.Controls.Add(this.linkUninstall);
             this.flowLayoutPanel1.Controls.Add(this.linkSetup);
             this.flowLayoutPanel1.Controls.Add(this.lLBUpdate);
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
@@ -1254,13 +1252,6 @@
             this.lnkControllers.Name = "lnkControllers";
             this.lnkControllers.TabStop = true;
             this.lnkControllers.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkControllers_LinkClicked);
-            // 
-            // linkUninstall
-            // 
-            resources.ApplyResources(this.linkUninstall, "linkUninstall");
-            this.linkUninstall.Name = "linkUninstall";
-            this.linkUninstall.TabStop = true;
-            this.linkUninstall.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkUninstall_LinkClicked);
             // 
             // linkSetup
             // 
@@ -1476,7 +1467,6 @@
         private System.Windows.Forms.CheckBox StartWindowsCheckBox;
         private System.Windows.Forms.CheckBox startMinimizedCheckBox;
         private System.Windows.Forms.LinkLabel linkProfiles;
-        private System.Windows.Forms.LinkLabel linkUninstall;
         private System.Windows.Forms.CheckBox cBDisconnectBT;
         private System.Windows.Forms.CheckBox cBSwipeProfiles;
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;

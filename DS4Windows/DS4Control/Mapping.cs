@@ -4087,8 +4087,8 @@ namespace DS4Windows
                         if (sxAntiDead > 0)
                         {
                             sxAntiDead *= (outputAxisMax - outputAxisZero);
-                            if (result < 0) return (((result - maxRangeLeft) * (-Convert.ToInt32(sxAntiDead) - (outputAxisMin))) / (0 - maxRangeLeft)) + (outputAxisMin);
-                            else return (((result - 0) * (outputAxisMax - (Convert.ToInt32(sxAntiDead)))) / (maxRangeRight - 0)) + (Convert.ToInt32(sxAntiDead));
+                            if (result < 0) return (((result - maxRangeLeft) * (outputAxisZero - Convert.ToInt32(sxAntiDead) - (outputAxisMin))) / (0 - maxRangeLeft)) + (outputAxisMin);
+                            else return (((result - 0) * (outputAxisMax - (outputAxisZero + Convert.ToInt32(sxAntiDead)))) / (maxRangeRight - 0)) + (outputAxisZero + Convert.ToInt32(sxAntiDead));
                         }
                         else
                         {

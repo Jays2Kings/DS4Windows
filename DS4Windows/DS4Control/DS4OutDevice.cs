@@ -72,10 +72,70 @@ namespace DS4Windows
 
             report.LeftTrigger = state.L2;
             report.RightTrigger = state.R2;
-            report.LeftThumbX = state.LX;
-            report.LeftThumbY = state.LY;
-            report.RightThumbX = state.RX;
-            report.RightThumbY = state.RY;
+
+            SASteeringWheelEmulationAxisType steeringWheelMappedAxis = Global.GetSASteeringWheelEmulationAxis(device);
+            switch (steeringWheelMappedAxis)
+            {
+                case SASteeringWheelEmulationAxisType.None:
+                    report.LeftThumbX = state.LX;
+                    report.LeftThumbY = state.LY;
+                    report.RightThumbX = state.RX;
+                    report.RightThumbY = state.RY;
+                    break;
+
+                case SASteeringWheelEmulationAxisType.LX:
+                    report.LeftThumbX = (byte)state.SASteeringWheelEmulationUnit;
+                    report.LeftThumbY = state.LY;
+                    report.RightThumbX = state.RX;
+                    report.RightThumbY = state.RY;
+                    break;
+
+                case SASteeringWheelEmulationAxisType.LY:
+                    report.LeftThumbX = state.LX;
+                    report.LeftThumbY = (byte)state.SASteeringWheelEmulationUnit;
+                    report.RightThumbX = state.RX;
+                    report.RightThumbY = state.RY;
+                    break;
+
+                case SASteeringWheelEmulationAxisType.RX:
+                    report.LeftThumbX = state.LX;
+                    report.LeftThumbY = state.LY;
+                    report.RightThumbX = (byte)state.SASteeringWheelEmulationUnit;
+                    report.RightThumbY = state.RY;
+                    break;
+
+                case SASteeringWheelEmulationAxisType.RY:
+                    report.LeftThumbX = state.LX;
+                    report.LeftThumbY = state.LY;
+                    report.RightThumbX = state.RX;
+                    report.RightThumbY = (byte)state.SASteeringWheelEmulationUnit;
+                    break;
+
+                case SASteeringWheelEmulationAxisType.L2R2:
+                    report.LeftTrigger = report.RightTrigger = 0;
+                    if (state.SASteeringWheelEmulationUnit >= 0) report.LeftTrigger = (Byte)state.SASteeringWheelEmulationUnit;
+                    else report.RightTrigger = (Byte)state.SASteeringWheelEmulationUnit;
+                    goto case SASteeringWheelEmulationAxisType.None;
+
+                case SASteeringWheelEmulationAxisType.VJoy1X:
+                case SASteeringWheelEmulationAxisType.VJoy2X:
+                    DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(state.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_X);
+                    goto case SASteeringWheelEmulationAxisType.None;
+
+                case SASteeringWheelEmulationAxisType.VJoy1Y:
+                case SASteeringWheelEmulationAxisType.VJoy2Y:
+                    DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(state.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_Y);
+                    goto case SASteeringWheelEmulationAxisType.None;
+
+                case SASteeringWheelEmulationAxisType.VJoy1Z:
+                case SASteeringWheelEmulationAxisType.VJoy2Z:
+                    DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(state.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_Z);
+                    goto case SASteeringWheelEmulationAxisType.None;
+
+                default:
+                    // Should never come here but just in case use the NONE case as default handler....
+                    goto case SASteeringWheelEmulationAxisType.None;
+            }
 
             cont.SendReport(report);
         }

@@ -4058,6 +4058,22 @@ namespace DS4Windows
                 // Apply anti-deadzone (SA X-antideadzone value)
                 double sxAntiDead = getSXAntiDeadzone(device);
 
+                int outputAxisMax, outputAxisMin, outputAxisZero;
+                if ( Global.OutContType[device] == OutContType.DS4 )
+                {
+                    // DS4 analog stick axis supports only 0...255 output value range (not the best one for steering wheel usage)
+                    outputAxisMax = 255;
+                    outputAxisMin = 0;
+                    outputAxisZero = 128;
+                }
+                else
+                {
+                    // x360 (xinput) analog stick axis supports -32768...32767 output value range (more than enough for steering wheel usage)
+                    outputAxisMax = 32767;
+                    outputAxisMin = -32768;
+                    outputAxisZero = 0;
+                }
+
                 switch (Global.GetSASteeringWheelEmulationAxis(device))
                 {
                     case SASteeringWheelEmulationAxisType.LX:
@@ -4066,23 +4082,22 @@ namespace DS4Windows
                     case SASteeringWheelEmulationAxisType.RY:
                         // DS4 thumbstick axis output (-32768..32767 raw value range)
                         //return (((result - maxRangeLeft) * (32767 - (-32768))) / (maxRangeRight - maxRangeLeft)) + (-32768);
-                        if (result == 0) return 0;
+                        if (result == 0) return outputAxisZero;
 
                         if (sxAntiDead > 0)
                         {
-                            sxAntiDead *= 32767;
-                            if (result < 0) return (((result - maxRangeLeft) * (-Convert.ToInt32(sxAntiDead) - (-32768))) / (0 - maxRangeLeft)) + (-32768);
-                            else return (((result - 0) * (32767 - (Convert.ToInt32(sxAntiDead)))) / (maxRangeRight - 0)) + (Convert.ToInt32(sxAntiDead));
+                            sxAntiDead *= (outputAxisMax - outputAxisZero);
+                            if (result < 0) return (((result - maxRangeLeft) * (outputAxisZero - Convert.ToInt32(sxAntiDead) - (outputAxisMin))) / (0 - maxRangeLeft)) + (outputAxisMin);
+                            else return (((result - 0) * (outputAxisMax - (outputAxisZero + Convert.ToInt32(sxAntiDead)))) / (maxRangeRight - 0)) + (outputAxisZero + Convert.ToInt32(sxAntiDead));
                         }
                         else
                         {
-                            return (((result - maxRangeLeft) * (32767 - (-32768))) / (maxRangeRight - maxRangeLeft)) + (-32768);
+                            return (((result - maxRangeLeft) * (outputAxisMax - (outputAxisMin))) / (maxRangeRight - maxRangeLeft)) + (outputAxisMin);
                         }
                         
                     case SASteeringWheelEmulationAxisType.L2R2:
                         // DS4 Trigger axis output. L2+R2 triggers share the same axis in x360 xInput/DInput controller, 
                         // so L2+R2 steering output supports only 360 turn range (-255..255 raw value range in the shared trigger axis)
-                        // return (((result - (-180)) * (255 - (-255))) / (180 - (-180))) + (-255);
                         if (result == 0) return 0;
 
                         result = Convert.ToInt32(Math.Round(result / (1.0 * C_WHEEL_ANGLE_PRECISION)));
@@ -4106,7 +4121,6 @@ namespace DS4Windows
                     case SASteeringWheelEmulationAxisType.VJoy2Y:
                     case SASteeringWheelEmulationAxisType.VJoy2Z:
                         // SASteeringWheelEmulationAxisType.VJoy1X/VJoy1Y/VJoy1Z/VJoy2X/VJoy2Y/VJoy2Z VJoy axis output (0..32767 raw value range by default)
-                        // return (((result - maxRangeLeft) * (32767 - (-0))) / (maxRangeRight - maxRangeLeft)) + (-0);
                         if (result == 0) return 16384;
 
                         if (sxAntiDead > 0)

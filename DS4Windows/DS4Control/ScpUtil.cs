@@ -245,6 +245,8 @@ namespace DS4Windows
         public static OutContType[] outDevTypeTemp = new OutContType[5] { DS4Windows.OutContType.X360, DS4Windows.OutContType.X360,
             DS4Windows.OutContType.X360, DS4Windows.OutContType.X360,
             DS4Windows.OutContType.X360 };
+        public static bool vigemInstalled = IsViGEmBusInstalled();
+        public static string vigembusVersion = ViGEmBusVersion();
 
         public static X360Controls[] defaultButtonMapping = { X360Controls.None, X360Controls.LXNeg, X360Controls.LXPos,
             X360Controls.LYNeg, X360Controls.LYPos, X360Controls.RXNeg, X360Controls.RXPos, X360Controls.RYNeg, X360Controls.RYPos,
@@ -388,14 +390,50 @@ namespace DS4Windows
             return result;
         }
 
+        private static string GetViGEmDriverProperty(NativeMethods.DEVPROPKEY prop)
+        {
+            string result = string.Empty;
+            Guid deviceGuid = Guid.Parse(VIGEMBUS_GUID);
+            NativeMethods.SP_DEVINFO_DATA deviceInfoData =
+                new NativeMethods.SP_DEVINFO_DATA();
+            deviceInfoData.cbSize =
+                System.Runtime.InteropServices.Marshal.SizeOf(deviceInfoData);
+
+            var dataBuffer = new byte[4096];
+            ulong propertyType = 0;
+            var requiredSize = 0;
+
+            IntPtr deviceInfoSet = NativeMethods.SetupDiGetClassDevs(ref deviceGuid, null, 0,
+                NativeMethods.DIGCF_DEVICEINTERFACE);
+            NativeMethods.SetupDiEnumDeviceInfo(deviceInfoSet, 0, ref deviceInfoData);
+            if (NativeMethods.SetupDiGetDeviceProperty(deviceInfoSet, ref deviceInfoData, ref prop, ref propertyType,
+                    dataBuffer, dataBuffer.Length, ref requiredSize, 0))
+            {
+                result = dataBuffer.ToUTF16String();
+            }
+
+            if (deviceInfoSet.ToInt64() != NativeMethods.INVALID_HANDLE_VALUE)
+            {
+                NativeMethods.SetupDiDestroyDeviceInfoList(deviceInfoSet);
+            }
+
+            return result;
+        }
+
         public static bool IsHidGuardianInstalled()
         {
             return CheckForSysDevice(@"Root\HidGuardian");
         }
 
+        const string VIGEMBUS_GUID = "{96E42B22-F5E9-42F8-B043-ED0F932F014F}";
         public static bool IsViGEmBusInstalled()
         {
-            return CheckForDevice("{96E42B22-F5E9-42F8-B043-ED0F932F014F}");
+            return CheckForDevice(VIGEMBUS_GUID);
+        }
+
+        public static string ViGEmBusVersion()
+        {
+            return GetViGEmDriverProperty(NativeMethods.DEVPKEY_Device_DriverVersion);
         }
 
         public static void FindConfigLocation()

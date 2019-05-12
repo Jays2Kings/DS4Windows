@@ -358,7 +358,7 @@ namespace DS4Windows
                 if (showlog)
                     LogDebug(Properties.Resources.Starting);
 
-                LogDebug("Connection to ViGEmBus established");
+                LogDebug($"Connection to ViGEmBus {Global.vigembusVersion} established");
 
                 DS4Devices.isExclusiveMode = getUseExclusiveMode();
                 uiContext = tempui as SynchronizationContext;

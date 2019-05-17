@@ -16,8 +16,8 @@ namespace DS4Windows.Forms
     public partial class WelcomeDialog : Form
     {
         private const string InstallerDL =
-            "https://github.com/ViGEm/ViGEmBus/releases/download/v1.16.112/ViGEmBus_Setup_1.16.112.exe";
-        private const string InstFileName = "ViGEmBus_Setup_1.16.112.exe";
+            "https://github.com/ViGEm/ViGEmBus/releases/download/v1.16.112/ViGEmBus_Setup_1.16.115.exe";
+        private const string InstFileName = "ViGEmBus_Setup_1.16.115.exe";
 
         public WelcomeDialog(bool loadConfig=false)
         {

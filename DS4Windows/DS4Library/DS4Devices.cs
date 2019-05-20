@@ -46,6 +46,9 @@ namespace DS4Windows
             new VidPidInfo(0x2E95, 0x7725), // Scuf Vantage gamepad
             new VidPidInfo(0x11C0, 0x4001), // PS4 Fun Controller
             new VidPidInfo(RAZER_VID, 0x1007), // Razer Raiju Tournament Edition
+            new VidPidInfo(RAZER_VID, 0x1004), // Razer Raiju Ultimate Edition (wired)
+            new VidPidInfo(RAZER_VID, 0x1009), // Razer Raiju Ultimate Edition (BT). Doesn't work yet for some reason even when non-steam Razer driver lists the BT Razer Ultimate with this ID.
+            new VidPidInfo(SONY_VID, 0x05C5), // CronusMax (PS4 Output Mode)
         };
 
         private static string devicePathToInstanceId(string devicePath)

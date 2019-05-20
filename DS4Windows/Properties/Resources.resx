@@ -820,4 +820,7 @@
   <data name="newprofile" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\newprofile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="EnableTouchToggle" xml:space="preserve">
+    <value>Allow touchpad mouse function to get toggled with PS + Touchpad Click.</value>
+  </data>
 </root>

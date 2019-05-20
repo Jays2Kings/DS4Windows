@@ -2287,6 +2287,7 @@ namespace DS4Windows.Forms
                 case "outcontLb": root.lbLastMessage.Text = Properties.Resources.OutContNotice; break;
                 case "OutContTypeCb": root.lbLastMessage.Text = Properties.Resources.OutContNotice; break;
                 case "nUDSixaxis": root.lbLastMessage.Text = Properties.Resources.UseControllerForMapping; break;
+                case "enableTouchToggleCheckbox": root.lbLastMessage.Text = Properties.Resources.EnableTouchToggle; break;
                 case "cBControllerInput": root.lbLastMessage.Text = Properties.Resources.UseControllerForMapping; break;
                 case "lbUseController": root.lbLastMessage.Text = Properties.Resources.UseControllerForMapping; break;
                 case "gyroTriggerBehavior": root.lbLastMessage.Text = Properties.Resources.GyroTriggerBehavior; break;

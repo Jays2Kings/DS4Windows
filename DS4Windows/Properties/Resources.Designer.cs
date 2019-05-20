@@ -838,6 +838,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow touchpad mouse function to get toggled with PS + Touchpad Click..
+        /// </summary>
+        public static string EnableTouchToggle {
+            get {
+                return ResourceManager.GetString("EnableTouchToggle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap export {

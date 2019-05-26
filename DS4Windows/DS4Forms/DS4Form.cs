@@ -328,12 +328,14 @@ namespace DS4Windows.Forms
             StartWindowsCheckBox.CheckedChanged += new EventHandler(StartWindowsCheckBox_CheckedChanged);
             new ToolTip().SetToolTip(StartWindowsCheckBox, Properties.Resources.RunAtStartup);
 
-            ckUdpServ.Checked = nUDUdpPortNum.Enabled = isUsingUDPServer();
+            ckUdpServ.Checked = nUDUdpPortNum.Enabled = tBUdpListenAddress.Enabled = isUsingUDPServer();
             nUDUdpPortNum.Value = getUDPServerPortNum();
+            tBUdpListenAddress.Text = getUDPServerListenAddress();
+            new ToolTip().SetToolTip(ckUdpServ, Properties.Resources.UdpServer);
 
             ckUdpServ.CheckedChanged += CkUdpServ_CheckedChanged;
             nUDUdpPortNum.Leave += NUDUdpPortNum_Leave;
-
+            
             populateHoverTextDict();
 
             cBController1.KeyPress += CBController_KeyPress;
@@ -2594,6 +2596,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             }
 
             nUDUdpPortNum.Enabled = state;
+            tBUdpListenAddress.Enabled = state;
         }
 
         private void NUDUdpPortNum_Leave(object sender, EventArgs e)
@@ -2603,6 +2606,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             {
                 setUDPServerPort(curValue);
                 nUDUdpPortNum.Enabled = false;
+                tBUdpListenAddress.Enabled = false;
                 WaitUDPPortChange();
             }
         }
@@ -2614,7 +2618,13 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             {
                 await TaskRunner.Run(() => Program.rootHub.UseUDPPort());
                 nUDUdpPortNum.Enabled = true;
+                tBUdpListenAddress.Enabled = true;
             }
+        }
+
+        private void tBUdpListenAddress_TextChanged(object sender, EventArgs e)
+        {
+            setUDPServerListenAddress(tBUdpListenAddress.Text.Trim());
         }
 
         private void cBFlashWhenLate_CheckedChanged(object sender, EventArgs e)

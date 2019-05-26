@@ -396,7 +396,7 @@ namespace DS4Windows
             }
         }
 
-        public void Start(int port)
+        public void Start(int port, string listenAddress = "")
         {
             if (running)
             {
@@ -409,7 +409,35 @@ namespace DS4Windows
             }
 
             udpSock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            try { udpSock.Bind(new IPEndPoint(IPAddress.Loopback, port)); }
+            try
+            {
+                IPAddress udpListenIPAddress;
+                if (listenAddress == "127.0.0.1" || listenAddress == "")
+                {
+                    // Listen on local looback interface (default option). Does not allow remote client connections
+                    udpListenIPAddress = IPAddress.Loopback;
+                }
+                else if (listenAddress == "0.0.0.0")
+                {
+                    // Listen on all IPV4 interfaces. 
+                    // Remote client connections allowed. If the local network is not "safe" then may not be a good idea, because at the moment incoming connections are not authenticated in any way
+                    udpListenIPAddress = IPAddress.Any;                    
+                }
+                else
+                {
+                    // Listen on a specific hostname or IPV4 interface address. If the hostname has multiple interfaces then use the first IPV4 address because it is usually the primary IP addr.
+                    // Remote client connections allowed.
+                    IPAddress[] ipAddresses = Dns.GetHostAddresses(listenAddress);
+                    udpListenIPAddress = null; 
+                    foreach (IPAddress ip4 in ipAddresses.Where(ip => ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork))
+                    {
+                        udpListenIPAddress = ip4;
+                        break;
+                    }
+                    if (udpListenIPAddress == null) throw new SocketException(10049 /*WSAEADDRNOTAVAIL*/);
+                }
+                udpSock.Bind(new IPEndPoint(udpListenIPAddress, port));
+            }
             catch (SocketException ex)
             {
                 udpSock.Close();

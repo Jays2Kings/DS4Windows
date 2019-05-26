@@ -600,4 +600,7 @@
   <data name="UACTask" xml:space="preserve">
     <value>DS4Windows sovellus pitää käynnistää järjestelmävalvojan oikeuksilla tämän toiminnon käyttämiseksi.</value>
   </data>
+  <data name="UdpServer" xml:space="preserve">
+    <value>Aktivoi UDP palvelu. Palvelun osoite ja portti. Osoitevaihtoehdot: 127.0.0.1 paikallinen | 0.0.0.0 kaikki liittymät | Tietty palvelinnimi tai IP numero.</value>
+  </data>
 </root>

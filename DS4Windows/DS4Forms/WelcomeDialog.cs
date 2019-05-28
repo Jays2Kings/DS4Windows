@@ -19,6 +19,8 @@ namespace DS4Windows.Forms
             "https://github.com/ViGEm/ViGEmBus/releases/download/v1.16.112/ViGEmBus_Setup_1.16.115.exe";
         private const string InstFileName = "ViGEmBus_Setup_1.16.115.exe";
 
+        Process monitorProc;
+
         public WelcomeDialog(bool loadConfig=false)
         {
             if (loadConfig)
@@ -71,7 +73,7 @@ namespace DS4Windows.Forms
             if (File.Exists(exepath + $"\\{InstFileName}"))
             {
                 bnStep1.Text = Properties.Resources.OpeningInstaller;
-                Process.Start(exepath + $"\\{InstFileName}", "/quiet");
+                monitorProc = Process.Start(exepath + $"\\{InstFileName}", "/quiet");
                 bnStep1.Text = Properties.Resources.Installing;
             }
 
@@ -82,8 +84,7 @@ namespace DS4Windows.Forms
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            Process[] processes = Process.GetProcessesByName("ViGEmBus_Setup_1.16.115");
-            if (processes.Length < 1)
+            if (monitorProc != null && monitorProc.HasExited)
             {
                 if (Global.IsViGEmBusInstalled())
                 {

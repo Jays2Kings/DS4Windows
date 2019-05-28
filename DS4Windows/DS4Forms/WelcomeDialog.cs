@@ -82,7 +82,7 @@ namespace DS4Windows.Forms
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            Process[] processes = Process.GetProcessesByName("ViGEmBus_Setup_1.16.112");
+            Process[] processes = Process.GetProcessesByName("ViGEmBus_Setup_1.16.115");
             if (processes.Length < 1)
             {
                 if (Global.IsViGEmBusInstalled())

@@ -823,4 +823,7 @@
   <data name="EnableTouchToggle" xml:space="preserve">
     <value>Allow touchpad mouse function to get toggled with PS + Touchpad Click.</value>
   </data>
+  <data name="UdpServer" xml:space="preserve">
+    <value>Enable UDP server. Server listen address and port. Address value options: 127.0.0.1 localhost only | 0.0.0.0 all addresses | Specific host name or IP address.</value>
+  </data>
 </root>

@@ -2100,6 +2100,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable UDP server. Server listen address and port. Address value options: 127.0.0.1 localhost only | 0.0.0.0 all addresses | Specific host name or IP address..
+        /// </summary>
+        public static string UdpServer {
+            get {
+                return ResourceManager.GetString("UdpServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unassigned.
         /// </summary>
         public static string Unassigned {

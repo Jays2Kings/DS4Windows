@@ -154,6 +154,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.ckUdpServ = new System.Windows.Forms.CheckBox();
             this.nUDUdpPortNum = new System.Windows.Forms.NumericUpDown();
+            this.tBUdpListenAddress = new System.Windows.Forms.TextBox();
             this.languagePackComboBox1 = new DS4Windows.DS4Forms.LanguagePackComboBox();
             this.cBCustomSteam = new System.Windows.Forms.CheckBox();
             this.tBSteamFolder = new System.Windows.Forms.TextBox();
@@ -1171,6 +1172,7 @@
             this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.ckUdpServ);
             this.panel4.Controls.Add(this.nUDUdpPortNum);
+            this.panel4.Controls.Add(this.tBUdpListenAddress);
             resources.ApplyResources(this.panel4, "panel4");
             this.panel4.Name = "panel4";
             // 
@@ -1204,6 +1206,12 @@
             0,
             0,
             0});
+            //
+            // tBUdpListenAddress
+            //
+            resources.ApplyResources(this.tBUdpListenAddress, "tBUdpListenAddress");
+            this.tBUdpListenAddress.Name = "tBUdpListenAddress";
+            this.tBUdpListenAddress.TextChanged += new System.EventHandler(this.tBUdpListenAddress_TextChanged);
             // 
             // languagePackComboBox1
             // 
@@ -1520,6 +1528,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox ckUdpServ;
         private System.Windows.Forms.NumericUpDown nUDUdpPortNum;
+        private System.Windows.Forms.TextBox tBUdpListenAddress;
         private System.Windows.Forms.CheckBox cBCustomSteam;
         private System.Windows.Forms.TextBox tBSteamFolder;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;

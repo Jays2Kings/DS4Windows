@@ -2707,7 +2707,7 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>118, 2</value>
+    <value>200, 2</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>26, 13</value>
@@ -2764,7 +2764,7 @@
     <value>False</value>
   </data>
   <data name="nUDUdpPortNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 0</value>
+    <value>230, 0</value>
   </data>
   <data name="nUDUdpPortNum.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 20</value>
@@ -2784,11 +2784,35 @@
   <data name="&gt;&gt;nUDUdpPortNum.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="tBUdpListenAddress.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="tBUdpListenAddress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 0</value>
+  </data>
+  <data name="tBUdpListenAddress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
+  </data>
+  <data name="tBUdpListenAddress.TabIndex" type="System.Int32, mscorlib">
+    <value>64</value>
+  </data>
+  <data name="&gt;&gt;tBUdpListenAddress.Name" xml:space="preserve">
+    <value>tBUdpListenAddress</value>
+  </data>
+  <data name="&gt;&gt;tBUdpListenAddress.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBUdpListenAddress.Parent" xml:space="preserve">
+    <value>panel4</value>
+  </data>
+  <data name="&gt;&gt;tBUdpListenAddress.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="panel4.Location" type="System.Drawing.Point, System.Drawing">
     <value>274, 82</value>
   </data>
   <data name="panel4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 23</value>
+    <value>300, 23</value>
   </data>
   <data name="panel4.TabIndex" type="System.Int32, mscorlib">
     <value>64</value>

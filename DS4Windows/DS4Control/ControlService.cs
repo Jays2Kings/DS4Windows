@@ -212,15 +212,16 @@ namespace DS4Windows
                         Task.Run(() =>
                         {
                             var UDP_SERVER_PORT = Global.getUDPServerPortNum();
+                            var UDP_SERVER_LISTEN_ADDRESS = Global.getUDPServerListenAddress();
 
                             try
                             {
-                                _udpServer.Start(UDP_SERVER_PORT);
-                                LogDebug("UDP server listening on port " + UDP_SERVER_PORT);
+                                _udpServer.Start(UDP_SERVER_PORT, UDP_SERVER_LISTEN_ADDRESS);
+                                LogDebug($"UDP server listening on address {UDP_SERVER_LISTEN_ADDRESS} port {UDP_SERVER_PORT}");
                             }
                             catch (System.Net.Sockets.SocketException ex)
                             {
-                                var errMsg = String.Format("Couldn't start UDP server on port {0}, outside applications won't be able to access pad data ({1})", UDP_SERVER_PORT, ex.SocketErrorCode);
+                                var errMsg = String.Format("Couldn't start UDP server on address {0}:{1}, outside applications won't be able to access pad data ({2})", UDP_SERVER_LISTEN_ADDRESS, UDP_SERVER_PORT, ex.SocketErrorCode);
 
                                 LogDebug(errMsg, true);
                                 AppLogger.LogToTray(errMsg, true, true);
@@ -286,9 +287,11 @@ namespace DS4Windows
             await Task.Delay(100);
 
             var UDP_SERVER_PORT = Global.getUDPServerPortNum();
+            var UDP_SERVER_LISTEN_ADDRESS = Global.getUDPServerListenAddress();
+
             try
             {
-                _udpServer.Start(UDP_SERVER_PORT);
+                _udpServer.Start(UDP_SERVER_PORT, UDP_SERVER_LISTEN_ADDRESS);
                 foreach (DS4Device dev in devices)
                 {
                     dev.queueEvent(() =>
@@ -296,11 +299,11 @@ namespace DS4Windows
                         dev.Report += dev.MotionEvent;
                     });
                 }
-                LogDebug("UDP server listening on port " + UDP_SERVER_PORT);
+                LogDebug($"UDP server listening on address {UDP_SERVER_LISTEN_ADDRESS} port {UDP_SERVER_PORT}");
             }
             catch (System.Net.Sockets.SocketException ex)
             {
-                var errMsg = String.Format("Couldn't start UDP server on port {0}, outside applications won't be able to access pad data ({1})", UDP_SERVER_PORT, ex.SocketErrorCode);
+                var errMsg = String.Format("Couldn't start UDP server on address {0}:{1}, outside applications won't be able to access pad data ({2})", UDP_SERVER_LISTEN_ADDRESS, UDP_SERVER_PORT, ex.SocketErrorCode);
 
                 LogDebug(errMsg, true);
                 AppLogger.LogToTray(errMsg, true, true);
@@ -517,15 +520,16 @@ namespace DS4Windows
                 {
                     //var UDP_SERVER_PORT = 26760;
                     var UDP_SERVER_PORT = Global.getUDPServerPortNum();
+                    var UDP_SERVER_LISTEN_ADDRESS = Global.getUDPServerListenAddress();
 
                     try
                     {
-                        _udpServer.Start(UDP_SERVER_PORT);
-                        LogDebug("UDP server listening on port " + UDP_SERVER_PORT);
+                        _udpServer.Start(UDP_SERVER_PORT, UDP_SERVER_LISTEN_ADDRESS);
+                        LogDebug($"UDP server listening on address {UDP_SERVER_LISTEN_ADDRESS} port {UDP_SERVER_PORT}");
                     }
                     catch (System.Net.Sockets.SocketException ex)
                     {
-                        var errMsg = String.Format("Couldn't start UDP server on port {0}, outside applications won't be able to access pad data ({1})", UDP_SERVER_PORT, ex.SocketErrorCode);
+                        var errMsg = String.Format("Couldn't start UDP server on address {0}:{1}, outside applications won't be able to access pad data ({2})", UDP_SERVER_LISTEN_ADDRESS, UDP_SERVER_PORT, ex.SocketErrorCode);
 
                         LogDebug(errMsg, true);
                         AppLogger.LogToTray(errMsg, true, true);

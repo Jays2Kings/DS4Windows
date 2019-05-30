@@ -335,6 +335,7 @@ namespace DS4Windows.Forms
 
             ckUdpServ.CheckedChanged += CkUdpServ_CheckedChanged;
             nUDUdpPortNum.Leave += NUDUdpPortNum_Leave;
+            tBUdpListenAddress.Leave += TBUdpListenAddress_Leave;
             
             populateHoverTextDict();
 
@@ -431,6 +432,11 @@ namespace DS4Windows.Forms
             timerThread.IsBackground = true;
             timerThread.Priority = ThreadPriority.Lowest;
             timerThread.Start();
+        }
+
+        private void TBUdpListenAddress_Leave(object sender, EventArgs e)
+        {
+            setUDPServerListenAddress(tBUdpListenAddress.Text.Trim());
         }
 
         private void populateHoverTextDict()
@@ -2620,11 +2626,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 nUDUdpPortNum.Enabled = true;
                 tBUdpListenAddress.Enabled = true;
             }
-        }
-
-        private void tBUdpListenAddress_TextChanged(object sender, EventArgs e)
-        {
-            setUDPServerListenAddress(tBUdpListenAddress.Text.Trim());
         }
 
         private void cBFlashWhenLate_CheckedChanged(object sender, EventArgs e)

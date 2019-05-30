@@ -210,6 +210,7 @@
             this.chData});
             resources.ApplyResources(this.lvDebug, "lvDebug");
             this.lvDebug.FullRowSelect = true;
+            this.lvDebug.HideSelection = false;
             this.lvDebug.Name = "lvDebug";
             this.lvDebug.UseCompatibleStateImageBehavior = false;
             this.lvDebug.View = System.Windows.Forms.View.Details;
@@ -1206,12 +1207,11 @@
             0,
             0,
             0});
-            //
+            // 
             // tBUdpListenAddress
-            //
+            // 
             resources.ApplyResources(this.tBUdpListenAddress, "tBUdpListenAddress");
             this.tBUdpListenAddress.Name = "tBUdpListenAddress";
-            this.tBUdpListenAddress.TextChanged += new System.EventHandler(this.tBUdpListenAddress_TextChanged);
             // 
             // languagePackComboBox1
             // 

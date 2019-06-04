@@ -155,7 +155,6 @@
             this.ckUdpServ = new System.Windows.Forms.CheckBox();
             this.nUDUdpPortNum = new System.Windows.Forms.NumericUpDown();
             this.tBUdpListenAddress = new System.Windows.Forms.TextBox();
-            this.languagePackComboBox1 = new DS4Windows.DS4Forms.LanguagePackComboBox();
             this.cBCustomSteam = new System.Windows.Forms.CheckBox();
             this.tBSteamFolder = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -173,6 +172,7 @@
             this.useProfileColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useCustomColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
+            this.langPanel = new System.Windows.Forms.Panel();
             this.pnlButton.SuspendLayout();
             this.cMTaskbar.SuspendLayout();
             this.tabMain.SuspendLayout();
@@ -956,7 +956,7 @@
             this.fLPSettings.Controls.Add(this.cBUpdate);
             this.fLPSettings.Controls.Add(this.pNUpdate);
             this.fLPSettings.Controls.Add(this.panel4);
-            this.fLPSettings.Controls.Add(this.languagePackComboBox1);
+            this.fLPSettings.Controls.Add(this.langPanel);
             this.fLPSettings.Controls.Add(this.cBCustomSteam);
             this.fLPSettings.Controls.Add(this.tBSteamFolder);
             this.fLPSettings.Controls.Add(this.flowLayoutPanel1);
@@ -1213,15 +1213,6 @@
             resources.ApplyResources(this.tBUdpListenAddress, "tBUdpListenAddress");
             this.tBUdpListenAddress.Name = "tBUdpListenAddress";
             // 
-            // languagePackComboBox1
-            // 
-            this.languagePackComboBox1.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.languagePackComboBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.languagePackComboBox1.CausesValidation = false;
-            resources.ApplyResources(this.languagePackComboBox1, "languagePackComboBox1");
-            this.languagePackComboBox1.Name = "languagePackComboBox1";
-            this.languagePackComboBox1.SelectedValueChanged += new System.EventHandler(this.languagePackComboBox1_SelectedValueChanged);
-            // 
             // cBCustomSteam
             // 
             resources.ApplyResources(this.cBCustomSteam, "cBCustomSteam");
@@ -1332,6 +1323,11 @@
             this.useCustomColorToolStripMenuItem.Name = "useCustomColorToolStripMenuItem";
             resources.ApplyResources(this.useCustomColorToolStripMenuItem, "useCustomColorToolStripMenuItem");
             this.useCustomColorToolStripMenuItem.Click += new System.EventHandler(this.useCustomColorToolStripMenuItem_Click);
+            // 
+            // langPanel
+            // 
+            resources.ApplyResources(this.langPanel, "langPanel");
+            this.langPanel.Name = "langPanel";
             // 
             // DS4Form
             // 
@@ -1515,7 +1511,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button exportLogTxtBtn;
         private System.Windows.Forms.Button btnClear;
-        private DS4Forms.LanguagePackComboBox languagePackComboBox1;
         private System.Windows.Forms.ToolStripMenuItem openProgramFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem disconToolStripMenuItem;
@@ -1531,6 +1526,7 @@
         private System.Windows.Forms.TextBox tBUdpListenAddress;
         private System.Windows.Forms.CheckBox cBCustomSteam;
         private System.Windows.Forms.TextBox tBSteamFolder;
+        private System.Windows.Forms.Panel langPanel;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

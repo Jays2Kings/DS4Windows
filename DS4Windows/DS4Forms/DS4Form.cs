@@ -57,6 +57,7 @@ namespace DS4Windows.Forms
         private bool changingService;
         private IntPtr regHandle = new IntPtr();
         private ManagementEventWatcher managementEvWatcher;
+        private DS4Forms.LanguagePackComboBox languagePackComboBox1;
         Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();
         // 0 index is used for application version text. 1 - 4 indices are used for controller status
         string[] notifyText = new string[5]
@@ -96,6 +97,14 @@ namespace DS4Windows.Forms
             Global.SetCulture(UseLang);
 
             InitializeComponent();
+
+            this.languagePackComboBox1 = new DS4Forms.LanguagePackComboBox();
+            this.languagePackComboBox1.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.languagePackComboBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.languagePackComboBox1.CausesValidation = false;
+            this.languagePackComboBox1.Name = "languagePackComboBox1";
+            this.languagePackComboBox1.SelectedValueChanged += new System.EventHandler(this.languagePackComboBox1_SelectedValueChanged);
+            this.langPanel.Controls.Add(languagePackComboBox1);
 
             bnEditC1.Tag = 0;
             bnEditC2.Tag = 1;

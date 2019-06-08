@@ -1,6 +1,8 @@
 # TODO
 
-* Re-evaluate HidGuardian
+* Add cross dead zone (per axis) for sticks
+* Add more curve options
+* ~~Re-evaluate HidGuardian~~
 * ~~Move forms to new namespace~~
 * ~~Finalize DS4 Emulation~~
 * ~~Raise Sixaxis default dead zones~~

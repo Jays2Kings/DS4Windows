@@ -1780,6 +1780,7 @@ namespace DS4Windows
                 case 2: result = "quadratic"; break;
                 case 3: result = "cubic"; break;
                 case 4: result = "easeout-quad"; break;
+                case 5: result = "easeout-cubic"; break;
                 default: break;
             }
 
@@ -1796,6 +1797,7 @@ namespace DS4Windows
                 case "quadratic": id = 2; break;
                 case "cubic": id = 3; break;
                 case "easeout-quad": id = 4; break;
+                case "easeout-cubic": id = 5; break;
                 default: break;
             }
 
@@ -1811,6 +1813,7 @@ namespace DS4Windows
                 case 1: result = "quadratic"; break;
                 case 2: result = "cubic"; break;
                 case 3: result = "easeout-quad"; break;
+                case 4: result = "easeout-cubic"; break;
                 default: break;
             }
 
@@ -1826,6 +1829,7 @@ namespace DS4Windows
                 case "quadratic": id = 1; break;
                 case "cubic": id = 2; break;
                 case "easeout-quad": id = 3; break;
+                case "easeout-cubic": id = 4; break;
                 default: break;
             }
 

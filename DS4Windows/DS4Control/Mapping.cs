@@ -957,6 +957,15 @@ namespace DS4Windows
                     dState.LX = (byte)(-1.0 * outputX * signX * capX + 128.0);
                     dState.LY = (byte)(-1.0 * outputY * signY * capY + 128.0);
                 }
+                else if (lsOutCurveMode == 5)
+                {
+                    double innerX = Math.Abs(tempX) - 1.0;
+                    double innerY = Math.Abs(tempY) - 1.0;
+                    double outputX = innerX * innerX * innerX + 1.0;
+                    double outputY = innerY * innerY * innerY + 1.0;
+                    dState.LX = (byte)(1.0 * outputX * signX * capX + 128.0);
+                    dState.LY = (byte)(1.0 * outputY * signY * capY + 128.0);
+                }
             }
 
             if (getSquareStickRS(device) && (dState.RX != 128 || dState.RY != 128))
@@ -1046,6 +1055,15 @@ namespace DS4Windows
                     dState.RX = (byte)(-1.0 * outputX * signX * capX + 128.0);
                     dState.RY = (byte)(-1.0 * outputY * signY * capY + 128.0);
                 }
+                else if (rsOutCurveMode == 5)
+                {
+                    double innerX = Math.Abs(tempX) - 1.0;
+                    double innerY = Math.Abs(tempY) - 1.0;
+                    double outputX = innerX * innerX * innerX + 1.0;
+                    double outputY = innerY * innerY * innerY + 1.0;
+                    dState.RX = (byte)(1.0 * outputX * signX * capX + 128.0);
+                    dState.RY = (byte)(1.0 * outputY * signY * capY + 128.0);
+                }
             }
 
             int l2OutCurveMode = tempIntArray[device] = getL2OutCurveMode(device);
@@ -1067,6 +1085,12 @@ namespace DS4Windows
                     double output = temp * (temp - 2.0);
                     dState.L2 = (byte)(-1.0 * output * 255.0);
                 }
+                else if (l2OutCurveMode == 4)
+                {
+                    double inner = Math.Abs(temp) - 1.0;
+                    double output = inner * inner * inner + 1.0;
+                    dState.L2 = (byte)(-1.0 * output * 255.0);
+                }
             }
 
             int r2OutCurveMode = tempIntArray[device] = getR2OutCurveMode(device);
@@ -1086,6 +1110,12 @@ namespace DS4Windows
                 else if (r2OutCurveMode == 3)
                 {
                     double output = temp * (temp - 2.0);
+                    dState.R2 = (byte)(-1.0 * output * 255.0);
+                }
+                else if (r2OutCurveMode == 4)
+                {
+                    double inner = Math.Abs(temp) - 1.0;
+                    double output = inner * inner * inner + 1.0;
                     dState.R2 = (byte)(-1.0 * output * 255.0);
                 }
             }
@@ -1170,6 +1200,12 @@ namespace DS4Windows
                         dState.Motion.outputAccelX = (byte)(-1.0 * output *
                             sign * 128.0);
                     }
+                    else if (sxOutCurveMode == 4)
+                    {
+                        double inner = Math.Abs(temp) - 1.0;
+                        double output = inner * inner * inner + 1.0;
+                        dState.Motion.outputAccelX = (byte)(-1.0 * output * 255.0);
+                    }
                 }
 
                 int szOutCurveMode = tempIntArray[device] = getSZOutCurveMode(device);
@@ -1195,6 +1231,12 @@ namespace DS4Windows
                         double output = abs * (abs - 2.0);
                         dState.Motion.outputAccelZ = (byte)(-1.0 * output *
                             sign * 128.0);
+                    }
+                    else if (szOutCurveMode == 4)
+                    {
+                        double inner = Math.Abs(temp) - 1.0;
+                        double output = inner * inner * inner + 1.0;
+                        dState.Motion.outputAccelZ = (byte)(-1.0 * output * 255.0);
                     }
                 }
             }

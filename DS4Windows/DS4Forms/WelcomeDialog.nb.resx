@@ -101,15 +101,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="bnStep1.Text" xml:space="preserve">
-    <value>Trinn 1: Innstaller ViGEmBus-driveren</value>
+    <value>Trinn 1: Installer ViGEmBus-driveren</value>
   </data>
   <data name="button2.Text" xml:space="preserve">
     <value>Trinn 2: Hvis du har Windows ≤7, installer 360-driveren</value>
   </data>
   <data name="labelBluetooth.Text" xml:space="preserve">
-    <value>To set up bluetooth (optional):
-Hold the PS Button and Share for 3 seconds
-The lightbar will begin to double flash</value>
+    <value>For å sette opp Bluetooth (valgfritt):
+Hold inn PS-knappen og Share i 3 sekunder
+Lysplaten vil begynne å dobbeltblinke</value>
   </data>
   <data name="labelUSB.Text" xml:space="preserve">
     <value>Trinn 3: koble til DualShock 4-kontrolleren

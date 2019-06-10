@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="A" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\A.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ActionExists" xml:space="preserve">
     <value>Navnet til denne handlingen finnes allerede</value>
   </data>
@@ -264,81 +260,6 @@
   </data>
   <data name="DS4WindowsCannotEditHere" xml:space="preserve">
     <value>DS4Windows kan ikke redigere innstillinger her, dette vil nå bli lukket</value>
-  </data>
-  <data name="DS4W___White" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4W - White.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4 Config.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_Circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_Circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_Cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_Cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_Down" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_Down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_L1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_L1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_L2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_L2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_Left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_Left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_LS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_RS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_Options" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_ptionss.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_PS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_PS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_R1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_R1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_R2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_R2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_Right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_Right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_RS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_LS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_Share" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_Share.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_Square" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_Square.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_TouchLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_TouchLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_TouchMulti" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_TouchMulti.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_TouchRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_TouchRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_TouchUpper" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_TouchUpper.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_Triangle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_Triangle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Config_Up" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_Up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Controller" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4 Controller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_lightbar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4 lightbar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
     <value>Rediger</value>
@@ -748,17 +669,11 @@
   <data name="Unassigned" xml:space="preserve">
     <value>Ikke tilegnet</value>
   </data>
-  <data name="UP" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UP.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="UpText" xml:space="preserve">
     <value>Opp</value>
   </data>
   <data name="UpToDate" xml:space="preserve">
     <value>Du er nå oppdatert</value>
-  </data>
-  <data name="USB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\USB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="UseControllerForMapping" xml:space="preserve">
     <value>Du kan også bruke kontrolleren din til å endre på kontrollene</value>
@@ -784,41 +699,11 @@
   <data name="WillKeep" xml:space="preserve">
     <value>Vil beholde</value>
   </data>
-  <data name="X" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\X.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="XMLFiles" xml:space="preserve">
     <value>XML-filer (*.xml)</value>
   </data>
-  <data name="Y" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Y.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_360_highlight" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\360 highlight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_360_map" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\360 map.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="OutContNotice" xml:space="preserve">
-    <value>Choose the type of output virtual controller (Applies on profile save)</value>
-  </data>
-  <data name="cancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cancel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\copy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="import" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\import.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="newprofile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\newprofile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Velg utdatatypen til den virtuelle kontroller (Taes i bruk etter profillagring)</value>
   </data>
   <data name="EnableTouchToggle" xml:space="preserve">
     <value>La touchfeltets museetterligning bli skrudd av/på med PS-knappen + touchfelt-klikk.</value>

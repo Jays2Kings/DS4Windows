@@ -514,7 +514,7 @@ med profilen</value>
     <value>Fjern handling</value>
   </data>
   <data name="lbActionsTip.Text" xml:space="preserve">
-    <value>Hold inn de valgte knappen for å utføre en handling, merk av handlingen for å bruke den mens profilen er lastet inn</value>
+    <value>Hold inn de valgte knappene for å utføre en handling, merk av handlingen for å bruke den mens profilen er lastet inn</value>
   </data>
   <data name="tPSpecial.Text" xml:space="preserve">
     <value>Spesialhandlinger</value>
@@ -736,10 +736,10 @@ med profilen</value>
     <value>R3</value>
   </data>
   <data name="fingerOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
-    <value>Finger på berøringsfeltet</value>
+    <value>Finger på berøringsflaten</value>
   </data>
   <data name="fingersOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
-    <value>2 fingre på berøringsfeltet</value>
+    <value>2 fingre på berøringsflaten</value>
   </data>
   <data name="optionsToolStripMenuItem.Text" xml:space="preserve">
     <value>Options</value>
@@ -796,10 +796,10 @@ med profilen</value>
     <value>R3</value>
   </data>
   <data name="oneFingerTouchInvStripMenuItem.Text" xml:space="preserve">
-    <value>Finger på berøringsfeltet</value>
+    <value>Finger på berøringsflaten</value>
   </data>
   <data name="twoFingerTouchInvStripMenuItem.Text" xml:space="preserve">
-    <value>2 fingre på berøringsfeltet</value>
+    <value>2 fingre på berøringsflaten</value>
   </data>
   <data name="optionsTouchInvStripMenuItem.Text" xml:space="preserve">
     <value>Options</value>

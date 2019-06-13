@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActionExists" xml:space="preserve">
-    <value>Navnet til denne handlingen finnes allerede</value>
+    <value>Denne handlingens navn finnes allerede</value>
   </data>
   <data name="AddingToList" xml:space="preserve">
     <value>Legger til i listen ...</value>
@@ -127,13 +127,13 @@
     <value>Legg til programmer</value>
   </data>
   <data name="ALocactionNeeded" xml:space="preserve">
-    <value>En mappeplassering må bli valgt for å fortsette</value>
+    <value>En mappeplassering må velges for å kunne fortsette</value>
   </data>
   <data name="AlwaysRainbow" xml:space="preserve">
     <value>Alltid regnbuemodus</value>
   </data>
   <data name="AssignProfile" xml:space="preserve">
-    <value>Tilegn til kontroller *number*</value>
+    <value>Tildel til kontroller *number*</value>
   </data>
   <data name="B" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\B.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,7 +145,7 @@
     <value>Batteri: *number*%</value>
   </data>
   <data name="BestUsedRightSide" xml:space="preserve">
-    <value>Best egnet med høyresiden som en musefunksjon</value>
+    <value>Mest egnet med høyresiden som en musefunksjon</value>
   </data>
   <data name="Browse" xml:space="preserve">
     <value>Let ...</value>
@@ -154,19 +154,19 @@
     <value>..\Resources\BT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BTPollRate" xml:space="preserve">
-    <value>Bestemmer innhentingsfrekvensen som skal brukes for DS4-maskinvaren når den er koblet til med Bluetooth. (Gjelder etter profillagring)</value>
+    <value>Bestemmer innhentingsfrekvensen til DS4-maskinvaren når den er koblet til med Bluetooth. (Gjelder etter profillagring)</value>
   </data>
   <data name="CannotMoveFiles" xml:space="preserve">
     <value>Klarte ikke å flytte filer til den nye plasseringen, vennligst gi 'DS4Tool'-mappen det nye navnet «DS4Windows»</value>
   </data>
   <data name="CannotWriteHere" xml:space="preserve">
-    <value>Klarte ikke å lagre til den gjeldende plasseringen. Vil du kopiere innstillingene inn i AppData?</value>
+    <value>Klarte ikke å lagre til den valgte plasseringen. Vil du kopiere innstillingene inn i AppData?</value>
   </data>
   <data name="ChargeController" xml:space="preserve">
     <value>Lad batteriet</value>
   </data>
   <data name="Charged" xml:space="preserve">
-    <value>Oppladet</value>
+    <value>Ladet opp</value>
   </data>
   <data name="Charging" xml:space="preserve">
     <value>Lader opp: *number*%</value>
@@ -181,7 +181,7 @@
     <value>Vil du lukke DS4Windows?</value>
   </data>
   <data name="CloseMinimize" xml:space="preserve">
-    <value>Lukk DS4Windows gjennom notifikasjonsikonet</value>
+    <value>Lukk DS4Windows gjennom verktøykasseikonet</value>
   </data>
   <data name="Color" xml:space="preserve">
     <value>Farge</value>
@@ -211,7 +211,7 @@
     <value>Klikk for å kopiere hele fargen</value>
   </data>
   <data name="CouldNotOpenDS4" xml:space="preserve">
-    <value>Advarsel: Klarte ikke å åpne DS4 *Mac address* eksklusivt.</value>
+    <value>Advarsel: Klarte ikke å åpne DS4 *Mac address* i eksklusiv modus.</value>
   </data>
   <data name="Day" xml:space="preserve">
     <value>dag</value>
@@ -229,16 +229,13 @@
     <value>Demp lyset utifra batteri-%</value>
   </data>
   <data name="DinputOnly" xml:space="preserve">
-    <value>Skru av X360-inndata og bare bruk DS4-ens innebygde inndata, skjuling av DS4 må være skrudd av (Kun ved kabeltilkobling)</value>
+    <value>Skru av X360-inndata og bruk kun DS4-ens innebygde inndata, skjuling av DS4 må være skrudd av (Kun ved kabeltilkobling)</value>
   </data>
   <data name="DisconnectBT" xml:space="preserve">
-    <value>Koble ifra BT</value>
+    <value>Koble fra BT</value>
   </data>
   <data name="Disconnected" xml:space="preserve">
     <value>Frakoblet</value>
-  </data>
-  <data name="DOWN" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DOWN.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Downloading" xml:space="preserve">
     <value>Laster ned: *number*%</value>
@@ -249,26 +246,14 @@
   <data name="DownText" xml:space="preserve">
     <value>Ned</value>
   </data>
-  <data name="DS4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="DS4Update" xml:space="preserve">
     <value>En DS4Windows-oppdatering er tilgjengelig!</value>
-  </data>
-  <data name="DS4W" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4W.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DS4WindowsCannotEditHere" xml:space="preserve">
     <value>DS4Windows kan ikke redigere innstillinger her, dette vil nå bli lukket</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
     <value>Rediger</value>
-  </data>
-  <data name="EE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EE.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="export" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\export.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FallBack" xml:space="preserve">
     <value>Fall tilbake</value>
@@ -283,7 +268,7 @@
     <value>5. museknapp opp</value>
   </data>
   <data name="FlashAtTip" xml:space="preserve">
-    <value>Klikk for å endre blinkefargen. Svart = standard farge</value>
+    <value>Klikk for å endre blinkefargen. Svart = standardfargen</value>
   </data>
   <data name="FlushHID" xml:space="preserve">
     <value>Tøm HID</value>
@@ -304,10 +289,10 @@
     <value>Full</value>
   </data>
   <data name="GyroReadout" xml:space="preserve">
-    <value>Klikk for å se målingene til Sixaxis-gyroen</value>
+    <value>Klikk for å se målingene til Sixaxis-gyroskopet</value>
   </data>
   <data name="GyroTriggerBehavior" xml:space="preserve">
-    <value>Merk av for at gyroen skal være aktiv mens flipperknappene er aktive. Fjern merkingen for å skru av gyroen mens flipperknappene er aktive.</value>
+    <value>Merk av for at gyroskopet skal være aktiv samtidig med triggerene. Fjern merkingen for å skru av gyroskopet mens triggerene er aktive.</value>
   </data>
   <data name="GyroX" xml:space="preserve">
     <value>GyroX, venstre og høyre tilt</value>
@@ -325,7 +310,7 @@
     <value>timer</value>
   </data>
   <data name="HoverOverItems" xml:space="preserve">
-    <value>Svev over elementer for å se beskrivelsen eller infoen deres</value>
+    <value>Svev over elementer for å se dere beskrivelse eller informasjon</value>
   </data>
   <data name="IfRemovingDS4Windows" xml:space="preserve">
     <value>Hvis du vil fjerne DS4Windows, kan du slette innstillingene ved å følge denne profilmappelenken</value>
@@ -355,22 +340,13 @@
     <value>Språkpakkeendringer vil bli benyttet etter at DS4Windows-programmet har blitt omstartet.</value>
   </data>
   <data name="LatencyNotOverTen" xml:space="preserve">
-    <value>Kontroller *number* sin latens er nå under 10ms</value>
+    <value>Kontroller *number* sin latens er nå på under 10ms</value>
   </data>
   <data name="LatencyOverTen" xml:space="preserve">
-    <value>Kontroller *number* sin latens er over 10ms</value>
+    <value>Kontroller *number* sin latens er på over 10ms</value>
   </data>
   <data name="LaunchProgram" xml:space="preserve">
     <value>Start *program*</value>
-  </data>
-  <data name="LB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LEFT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LEFT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="left_touch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\left touch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LightByBatteryTip" xml:space="preserve">
     <value>Demp også lyset ved tidsavbrudd når DS4 er fulladet, dersom dette er skrudd på</value>
@@ -381,24 +357,6 @@
   <data name="LoadProfile" xml:space="preserve">
     <value>Last inn *profile*</value>
   </data>
-  <data name="LS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LSD" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LSD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LSL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LSL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LSR" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LSR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LSU" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LSU.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Macro" xml:space="preserve">
     <value>Makro</value>
   </data>
@@ -408,11 +366,8 @@
   <data name="MakeNewProfile" xml:space="preserve">
     <value>Lag en ny profil</value>
   </data>
-  <data name="mouse" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mouse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="MultiAction" xml:space="preserve">
-    <value>Multiknapphandling</value>
+    <value>Flerknapphandling</value>
   </data>
   <data name="NA" xml:space="preserve">
     <value>Irrelevant</value>
@@ -422,9 +377,6 @@
   </data>
   <data name="NoMacroRecorded" xml:space="preserve">
     <value>Ingen makroer ble tatt opp</value>
-  </data>
-  <data name="none" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\none.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="noneProfile" xml:space="preserve">
     <value>(ingen)</value>
@@ -450,14 +402,11 @@
   <data name="OtherFileLocation" xml:space="preserve">
     <value>, andre plasseringsfiler vil bli slettet</value>
   </data>
-  <data name="Pairmode" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Pairmode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="PleaseDownloadUpdater" xml:space="preserve">
-    <value>Vennligst last ned oppdatereren nå, plasser den i programmappen, og gi den navnet DS4Updater.exe hvis du er på x86, og så let etter oppdateringer på nytt</value>
+    <value>Vennligst last ned oppdatereren nå, plassér den i programmappen, og gi den navnet DS4Updater.exe hvis du er på x86, og så let etter oppdateringer på nytt</value>
   </data>
   <data name="PleaseImport" xml:space="preserve">
-    <value>Vennligst importer eller lag en profil</value>
+    <value>Vennligst importer eller opprett en profil</value>
   </data>
   <data name="PlusNewProfile" xml:space="preserve">
     <value>Ny profil</value>
@@ -472,55 +421,16 @@
     <value>Programmer</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
-    <value>EKSPERIMENTELT: Skru automatisk av BT når det kobles til med USB</value>
+    <value>EKSPERIMENTELT: Skru av BT automatisk når det kobles til med USB</value>
   </data>
   <data name="QuitOtherPrograms" xml:space="preserve">
     <value>Du må lukke andre programmer som UWP-apper (Netflix), Steam, Uplay, NVIDIA IN-GAME, osv., før du skrur på «Skjul DS4-kontroller»-innstillingen. For mere informasjon, gå til https://github.com/Ryochan7/DS4Windows/wiki/Exclusive-Mode-(Hide-DS4-Controller-config-option)-tips-and-issues</value>
   </data>
-  <data name="rainbow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rainbow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="rainbowC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rainbowC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="RecordText" xml:space="preserve">
     <value>Ta opp</value>
   </data>
-  <data name="RIGHT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RIGHT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="RightClickPresets" xml:space="preserve">
-    <value>Høyreklikk for å tilegne forhåndsinnstilinger til et kontrollsett</value>
-  </data>
-  <data name="right_touch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\right touch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RSD" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RSD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RSL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RSL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RSR" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RSR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RSU" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RSU.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RunAtStartup" xml:space="preserve">
-    <value>Ber Windows om å starte DS4Windows etter innlogging</value>
-  </data>
-  <data name="saveprofile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\saveprofile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Høyreklikk for å tildele forhåndsinnstilinger til et kontrollsett</value>
   </data>
   <data name="SaveRecordedMacro" xml:space="preserve">
     <value>Vil du lagre den innspilte makroen?</value>
@@ -550,7 +460,7 @@
     <value>Kalibrering av Sixaxis-hjulemulering</value>
   </data>
   <data name="SASteeringWheelEmulationCalibrateInstruction1" xml:space="preserve">
-    <value>(1) Sentrer kontroller, hold den stødig, og trykk på «X»</value>
+    <value>(1) Sentrer kontrolleren, hold den stødig, og trykk på «X»</value>
   </data>
   <data name="SASteeringWheelEmulationCalibrateInstruction2" xml:space="preserve">
     <value>(2) Vri 90° til venstre (eller høyre) og trykk på «X»</value>
@@ -559,22 +469,16 @@
     <value>(3) Vri 90° til høyre (eller venstre) og trykk på «X»</value>
   </data>
   <data name="SASteeringWheelEmulationCalibrateInstruction" xml:space="preserve">
-    <value>Alle kalibreringspunkter er satt når lysplatens farge blir grønn. Når kontrolleren vries, blinker lysplatens farge når kontrolleren er ved et kalibreringspunkt. Godkjenn kalibreringen ved å klikke på OK-knappen</value>
+    <value>Alle kalibreringspunkter er satt når lysplatens farge lyser grønt. Når kontrolleren vris, blinker lysplatens farge når kontrolleren er ved et kalibreringspunkt. Godkjenn kalibreringen ved å klikke på OK-knappen</value>
   </data>
   <data name="SASteeringWheelEmulationCalibrateNoControllerError" xml:space="preserve">
-    <value>Gyro-styrerattemuleringen (Sixaxis) kan ikke kalibreres uten en kontroller. Koble til en kontroller gjennom Bluetooth eller USB</value>
+    <value>Gyroskop-rattvridningsemuleringen (Sixaxis) kan ikke kalibreres uten en kontroller. Koble til en kontroller gjennom Bluetooth eller USB</value>
   </data>
   <data name="SASteeringWheelEmulationCalibrateNoneAxisError" xml:space="preserve">
-    <value>Gyro-styrerattemuleringens akseinnstillinger er satt til INGEN (emulering er ikke benyttet). Vennligst velg en akseinnstilling før du kalibrerer Sixaxis-gyrostyrerattemuleringen</value>
+    <value>Gyroskop-rattvridningsemuleringen akseinnstillinger er satt til INGEN (emulering er ikke i bruk). Vennligst velg en akseinnstilling før du kalibrerer Sixaxis-rattvridningsemuleringen</value>
   </data>
   <data name="SixAxisReading" xml:space="preserve">
-    <value>Klikk for avanserte Sixaxis-målinger</value>
-  </data>
-  <data name="size" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\size.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="START" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\START.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Klikk for å få avanserte Sixaxis-målinger</value>
   </data>
   <data name="Starting" xml:space="preserve">
     <value>Starter opp...</value>
@@ -586,10 +490,10 @@
     <value>Trinn 1: Installer ViGEmBus-driveren</value>
   </data>
   <data name="StopHText" xml:space="preserve">
-    <value>Tung stopp</value>
+    <value>Stopp tungristing</value>
   </data>
   <data name="StopLText" xml:space="preserve">
-    <value>Lett stopp</value>
+    <value>Stopp lettristing</value>
   </data>
   <data name="StoppedDS4Windows" xml:space="preserve">
     <value>Stoppet DS4Windows</value>
@@ -613,7 +517,7 @@
     <value>Sveip til høyre</value>
   </data>
   <data name="SwipeTouchpad" xml:space="preserve">
-    <value>Sveip på touchfeltet for å bytte profiler</value>
+    <value>Sveip på berøringsplaten for å bytte profiler</value>
   </data>
   <data name="SwipeUp" xml:space="preserve">
     <value>Sveip opp</value>
@@ -646,22 +550,22 @@
     <value>Tilt opp</value>
   </data>
   <data name="TouchpadMovementOff" xml:space="preserve">
-    <value>Touchfelt-bevegelser er nå skrudd av</value>
+    <value>Berøringsplate-bevegelser er nå skrudd av</value>
   </data>
   <data name="TouchpadMovementOn" xml:space="preserve">
-    <value>Touchfelt-bevegelser er nå skrudd på</value>
+    <value>Berøringsplate-bevegelser er nå skrudd på</value>
   </data>
   <data name="TouchpadOffTip" xml:space="preserve">
     <value>Skru på på nytt ved å trykke ned PS-knappen + touchfeltet</value>
   </data>
   <data name="TwoFingerSwipe" xml:space="preserve">
-    <value>2-fingret touchfelt-sveip til venstre eller høyre</value>
+    <value>2-fingret Berøringsplate-sveip til venstre eller høyre</value>
   </data>
   <data name="TypeNewName" xml:space="preserve">
-    <value>skriv inn det nye navnet her</value>
+    <value>Skriv inn nytt navn</value>
   </data>
   <data name="TypeProfileName" xml:space="preserve">
-    <value>skriv inn et profilnavn her</value>
+    <value>Skriv inn profilnavn</value>
   </data>
   <data name="UACTask" xml:space="preserve">
     <value>Du må kjøre DS4Windows som administrator for å skru på denne modusen.</value>
@@ -676,19 +580,19 @@
     <value>Du er nå oppdatert</value>
   </data>
   <data name="UseControllerForMapping" xml:space="preserve">
-    <value>Du kan også bruke kontrolleren din til å endre på kontrollene</value>
+    <value>Du kan også bruke kontrolleren din til å endre på knappetildelingene</value>
   </data>
   <data name="UsingExclusive" xml:space="preserve">
-    <value>Bruker eksklusiv modus</value>
+    <value>Benytter eksklusiv modus</value>
   </data>
   <data name="UsingProfile" xml:space="preserve">
-    <value>Kontroller *number* bruker «*Profile name*»-profilen</value>
+    <value>Kontroller *number* benytter «*Profile name*»-profilen</value>
   </data>
   <data name="UsingShared" xml:space="preserve">
-    <value>Bruker delt modus</value>
+    <value>Benytter delt modus</value>
   </data>
   <data name="UsingTPSwipes" xml:space="preserve">
-    <value>Dette skrur av touchfeltets museetterligning</value>
+    <value>Dette skrur av berøringsfeltets museetterligning</value>
   </data>
   <data name="ValidName" xml:space="preserve">
     <value>Vennligst skriv inn et gyldig navn</value>
@@ -703,12 +607,12 @@
     <value>XML-filer (*.xml)</value>
   </data>
   <data name="OutContNotice" xml:space="preserve">
-    <value>Velg utdatatypen til den virtuelle kontroller (Taes i bruk etter profillagring)</value>
+    <value>Velg utdatatypen til den virtuelle kontrolleren (Tas i bruk etter profillagring)</value>
   </data>
   <data name="EnableTouchToggle" xml:space="preserve">
-    <value>La touchfeltets museetterligning bli skrudd av/på med PS-knappen + touchfelt-klikk.</value>
+    <value>La berøringsfeltets museetterligning bli skrudd av/på med PS-knappen + touchfelt-klikk.</value>
   </data>
   <data name="UdpServer" xml:space="preserve">
-    <value>Skru på UDP-tjeneren. Tjenerlytte-adresse og -port. Adresseverdi-innstillinger: 127.0.0.1 kun localhost | 0.0.0.0 alle adresser | Spesifikt verts-navn eller -IP-adresse.</value>
+    <value>Skru på UDP-tjeneren. Tjenerlytte-adresse og -port. Adresseverdi-innstillinger: 127.0.0.1 (kun localhost) | 0.0.0.0 (alle adresser) | Spesifikt verts-navn eller -IP-adresse.</value>
   </data>
 </root>

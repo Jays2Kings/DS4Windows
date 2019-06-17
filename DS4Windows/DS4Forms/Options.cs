@@ -37,12 +37,14 @@ namespace DS4Windows.Forms
         private Bitmap btnLightBgImg;
         private Bitmap btnLightBg;
         private OutContType devOutContType = OutContType.X360;
+        private AdvancedColorDialog advColorDialog;
 
         int tempInt = 0;
 
         public Options(DS4Form rt)
         {
             InitializeComponent();
+            advColorDialog = new AdvancedColorDialog();
             pnlControllerBgImg = (Bitmap)Properties.Resources.DS4_Config.Clone();
             btnLightBg = (Bitmap)Properties.Resources.DS4_lightbar.Clone();
             pnlController.BackgroundImage = null;

@@ -401,7 +401,6 @@
             this.optionsTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shareTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.psTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).BeginInit();
@@ -4606,7 +4605,6 @@
         private System.Windows.Forms.CheckBox cBGyroInvertX;
         private System.Windows.Forms.Label lbGyroInvert;
         private System.Windows.Forms.Panel panel2;
-        private AdvancedColorDialog advColorDialog;
         private System.Windows.Forms.TabPage tPControls;
         private System.Windows.Forms.Label lbControlTip;
         private System.Windows.Forms.Panel pnlController;

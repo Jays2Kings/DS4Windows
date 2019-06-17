@@ -8,7 +8,6 @@ using System.Windows.Forms;
 namespace DS4Windows
 {
     [SuppressUnmanagedCodeSecurity]
-    [System.ComponentModel.DesignerCategory("")]
     public class AdvancedColorDialog : ColorDialog
     {
         #region WinAPI
@@ -18,6 +17,7 @@ namespace DS4Windows
             public string ClassName;
             public string MainWindowTitle;
         }
+        [SuppressUnmanagedCodeSecurity]
         internal class WindowsEnumerator
         {
             private delegate int EnumCallBackDelegate(IntPtr hwnd, int lParam);

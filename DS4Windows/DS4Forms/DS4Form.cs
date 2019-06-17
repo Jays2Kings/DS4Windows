@@ -58,6 +58,7 @@ namespace DS4Windows.Forms
         private IntPtr regHandle = new IntPtr();
         private ManagementEventWatcher managementEvWatcher;
         private DS4Forms.LanguagePackComboBox languagePackComboBox1;
+        private AdvancedColorDialog advColorDialog;
         Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();
         // 0 index is used for application version text. 1 - 4 indices are used for controller status
         string[] notifyText = new string[5]
@@ -97,6 +98,7 @@ namespace DS4Windows.Forms
             Global.SetCulture(UseLang);
 
             InitializeComponent();
+            advColorDialog = new AdvancedColorDialog();
 
             this.languagePackComboBox1 = new DS4Forms.LanguagePackComboBox();
             this.languagePackComboBox1.AutoValidate = System.Windows.Forms.AutoValidate.Disable;

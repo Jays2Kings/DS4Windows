@@ -166,7 +166,9 @@
     <Compile Include="DS4Library\DS4State.cs" />
     <Compile Include="DS4Library\DS4StateExposed.cs" />
     <Compile Include="DS4Library\DS4Touchpad.cs" />
-    <Compile Include="DS4Forms\AdvancedColorDialog.cs" />
+    <Compile Include="DS4Forms\AdvancedColorDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DS4Forms\DS4Form.cs">
       <SubType>Form</SubType>
     </Compile>

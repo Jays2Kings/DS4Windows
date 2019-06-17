@@ -155,6 +155,7 @@
             this.ckUdpServ = new System.Windows.Forms.CheckBox();
             this.nUDUdpPortNum = new System.Windows.Forms.NumericUpDown();
             this.tBUdpListenAddress = new System.Windows.Forms.TextBox();
+            this.langPanel = new System.Windows.Forms.Panel();
             this.cBCustomSteam = new System.Windows.Forms.CheckBox();
             this.tBSteamFolder = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -171,8 +172,6 @@
             this.cMCustomLed = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.useProfileColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useCustomColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.advColorDialog = new DS4Windows.AdvancedColorDialog();
-            this.langPanel = new System.Windows.Forms.Panel();
             this.pnlButton.SuspendLayout();
             this.cMTaskbar.SuspendLayout();
             this.tabMain.SuspendLayout();
@@ -1213,6 +1212,11 @@
             resources.ApplyResources(this.tBUdpListenAddress, "tBUdpListenAddress");
             this.tBUdpListenAddress.Name = "tBUdpListenAddress";
             // 
+            // langPanel
+            // 
+            resources.ApplyResources(this.langPanel, "langPanel");
+            this.langPanel.Name = "langPanel";
+            // 
             // cBCustomSteam
             // 
             resources.ApplyResources(this.cBCustomSteam, "cBCustomSteam");
@@ -1323,11 +1327,6 @@
             this.useCustomColorToolStripMenuItem.Name = "useCustomColorToolStripMenuItem";
             resources.ApplyResources(this.useCustomColorToolStripMenuItem, "useCustomColorToolStripMenuItem");
             this.useCustomColorToolStripMenuItem.Click += new System.EventHandler(this.useCustomColorToolStripMenuItem_Click);
-            // 
-            // langPanel
-            // 
-            resources.ApplyResources(this.langPanel, "langPanel");
-            this.langPanel.Name = "langPanel";
             // 
             // DS4Form
             // 
@@ -1495,7 +1494,6 @@
         private System.Windows.Forms.ContextMenuStrip cMCustomLed;
         private System.Windows.Forms.ToolStripMenuItem useProfileColorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem useCustomColorToolStripMenuItem;
-        private AdvancedColorDialog advColorDialog;
         private System.Windows.Forms.CheckBox cBUseWhiteIcon;
         private System.Windows.Forms.Panel runStartupPanel;
         private System.Windows.Forms.Label label1;

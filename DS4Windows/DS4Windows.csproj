@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -166,7 +166,9 @@
     <Compile Include="DS4Library\DS4State.cs" />
     <Compile Include="DS4Library\DS4StateExposed.cs" />
     <Compile Include="DS4Library\DS4Touchpad.cs" />
-    <Compile Include="DS4Forms\AdvancedColorDialog.cs" />
+    <Compile Include="DS4Forms\AdvancedColorDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DS4Forms\DS4Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1069,6 +1071,7 @@
     <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
     <EmbeddedResource Include="Properties\Resources.ja.resx" />
     <EmbeddedResource Include="Properties\Resources.ko.resx" />
+    <EmbeddedResource Include="Properties\Resources.nb.resx" />
     <EmbeddedResource Include="Properties\Resources.nl.resx" />
     <EmbeddedResource Include="Properties\Resources.pl.resx" />
     <EmbeddedResource Include="Properties\Resources.pt-BR.resx" />
@@ -1206,7 +1209,7 @@
     <PostBuildEvent>rem Copy compiled l18n assemblies to alt folder
 GOTO END
 if not exist $(TargetDir)Lang mkdir $(TargetDir)Lang
-set langs=ar cs de de-DE el es fi fr fr-FR he hu id it it-IT ja ko nl pl ^
+set langs=ar cs de de-DE el es fi fr fr-FR he hu id it it-IT ja ko nb nb-NO nl pl ^
 
 pt-BR ro-RO ru-RU  sl sv tr uk vi zh-CN zh-Hans zh-Hant
 

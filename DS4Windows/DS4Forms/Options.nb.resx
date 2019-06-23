@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+      Version 2.0
+      The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+      Example:
+      ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+      </data>
+      </data>
+                  There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+      Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+      The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+      Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+      mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+      mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cBLightbyBattery.Text" xml:space="preserve">
+    <value>Farge utifra batteri-%</value>
+  </data>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbspc.Text" xml:space="preserve">
+    <value>sek/syklus</value>
+  </data>
+  <data name="lbRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="cBDoubleTap.Text" xml:space="preserve">
+    <value>Dobbeltapping</value>
+  </data>
+  <data name="cBTap.Text" xml:space="preserve">
+    <value>Tapp</value>
+  </data>
+  <data name="cBScroll.Text" xml:space="preserve">
+    <value>Rull</value>
+  </data>
+  <data name="cBSlide.Text" xml:space="preserve">
+    <value>Gli</value>
+  </data>
+  <data name="lbButtonMouseSens.Text" xml:space="preserve">
+    <value>Musesensitivitet:</value>
+  </data>
+  <data name="cBlowerRCOn.Text" xml:space="preserve">
+    <value>Nedre høyre som høyre museknapp</value>
+  </data>
+  <data name="cBTouchpadJitterCompensation.Text" xml:space="preserve">
+    <value>Jitter-kompensasjon</value>
+  </data>
+  <data name="lbL2.Text" xml:space="preserve">
+    <value>L2</value>
+  </data>
+  <data name="lbR2.Text" xml:space="preserve">
+    <value>R2</value>
+  </data>
+  <data name="lbIdleMinutes.Text" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="cBFlushHIDQueue.Text" xml:space="preserve">
+    <value>Tøm HID</value>
+  </data>
+  <data name="btnRumbleHeavyTest.Text" xml:space="preserve">
+    <value>Test tungristing</value>
+  </data>
+  <data name="lbFull.Text" xml:space="preserve">
+    <value>Full:</value>
+  </data>
+  <data name="lbLowRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="lbLowGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbLowBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbEmpty.Text" xml:space="preserve">
+    <value>Tøm:</value>
+  </data>
+  <data name="lbRS.Text" xml:space="preserve">
+    <value>RS</value>
+  </data>
+  <data name="lbLS.Text" xml:space="preserve">
+    <value>LS</value>
+  </data>
+  <data name="trackFrictionLb.Text" xml:space="preserve">
+    <value>Friksjon</value>
+  </data>
+  <data name="trackballCk.Text" xml:space="preserve">
+    <value>Styrekule</value>
+  </data>
+  <data name="touchpadDisInvertButton.Text" xml:space="preserve">
+    <value>Ingen</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Skru av speilvending:</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Speilvend:</value>
+  </data>
+  <data name="cbStartTouchpadOff.Text" xml:space="preserve">
+    <value>Start med gliding/rulling skrudd av</value>
+  </data>
+  <data name="rBTPControls.Text" xml:space="preserve">
+    <value>Bruk som styring</value>
+  </data>
+  <data name="rBTPMouse.Text" xml:space="preserve">
+    <value>Bruk som mus</value>
+  </data>
+  <data name="controlToolStripMenuItem.Text" xml:space="preserve">
+    <value>Styring</value>
+  </data>
+  <data name="defaultToolStripMenuItem.Text" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="tSMIDPadInverted.Text" xml:space="preserve">
+    <value>Speilvendt</value>
+  </data>
+  <data name="tSMIDPadInvertedX.Text" xml:space="preserve">
+    <value>Speilvendt X</value>
+  </data>
+  <data name="tSMIDPadInvertedY.Text" xml:space="preserve">
+    <value>Speilvendt Y</value>
+  </data>
+  <data name="DpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Retningskors</value>
+  </data>
+  <data name="tSMILSInverted.Text" xml:space="preserve">
+    <value>Speilvendt</value>
+  </data>
+  <data name="tSMILSInvertedX.Text" xml:space="preserve">
+    <value>Speilvendt X</value>
+  </data>
+  <data name="tSMILSInvertedY.Text" xml:space="preserve">
+    <value>Speilvendt Y</value>
+  </data>
+  <data name="LSToolStripMenuItem.Text" xml:space="preserve">
+    <value>Venstre styrepinne</value>
+  </data>
+  <data name="tSMIRSInverted.Text" xml:space="preserve">
+    <value>Speilvendt</value>
+  </data>
+  <data name="tSMIRSInvertedX.Text" xml:space="preserve">
+    <value>Speilvendt X</value>
+  </data>
+  <data name="tSMIRSInvertedY.Text" xml:space="preserve">
+    <value>Speilvendt Y</value>
+  </data>
+  <data name="RSToolStripMenuItem.Text" xml:space="preserve">
+    <value>Høyre styrepinne</value>
+  </data>
+  <data name="ABXYToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hovedknapper</value>
+  </data>
+  <data name="wScanCodeWASDToolStripMenuItem.Text" xml:space="preserve">
+    <value>med skannekode</value>
+  </data>
+  <data name="WASDToolStripMenuItem.Text" xml:space="preserve">
+    <value>WASD</value>
+  </data>
+  <data name="wScanCodeArrowKeysToolStripMenuItem.Text" xml:space="preserve">
+    <value>med skannekode</value>
+  </data>
+  <data name="ArrowKeysToolStripMenuItem.Text" xml:space="preserve">
+    <value>Piltaster</value>
+  </data>
+  <data name="tSMIMouseInverted.Text" xml:space="preserve">
+    <value>Speilvendt</value>
+  </data>
+  <data name="tSMIMouseInvertedX.Text" xml:space="preserve">
+    <value>Speilvendt X</value>
+  </data>
+  <data name="tSMIMouseInvertedY.Text" xml:space="preserve">
+    <value>Speilvendt Y</value>
+  </data>
+  <data name="MouseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mus</value>
+  </data>
+  <data name="bnSwipeUp.Text" xml:space="preserve">
+    <value>Sveip opp</value>
+  </data>
+  <data name="lbSwipeUp.Text" xml:space="preserve">
+    <value>Innstillinger</value>
+  </data>
+  <data name="bnSwipeDown.Text" xml:space="preserve">
+    <value>Sveip ned</value>
+  </data>
+  <data name="lbSwipeDown.Text" xml:space="preserve">
+    <value>Innstillinger</value>
+  </data>
+  <data name="bnSwipeLeft.Text" xml:space="preserve">
+    <value>Sveip til venstre</value>
+  </data>
+  <data name="lbSwipeLeft.Text" xml:space="preserve">
+    <value>Innstillinger</value>
+  </data>
+  <data name="bnSwipeRight.Text" xml:space="preserve">
+    <value>Sveip til høyre</value>
+  </data>
+  <data name="lbSwipeRight.Text" xml:space="preserve">
+    <value>Innstillinger</value>
+  </data>
+  <data name="gBTouchpad.Text" xml:space="preserve">
+    <value>Berøringsflate</value>
+  </data>
+  <data name="outcontLb.Text" xml:space="preserve">
+    <value>Kontroller:</value>
+  </data>
+  <data name="btPollRateLabel.Text" xml:space="preserve">
+    <value>BT-innmeldingsfrekvens</value>
+  </data>
+  <data name="enableTouchToggleCheckbox.Text" xml:space="preserve">
+    <value>Skru på berøringsflate-bryterfunksjon</value>
+  </data>
+  <data name="cBDinput.Text" xml:space="preserve">
+    <value>Bruk kun Dinput</value>
+  </data>
+  <data name="cBLaunchProgram.Text" xml:space="preserve">
+    <value>Start programmer 
+med profilen</value>
+  </data>
+  <data name="btnBrowse.Text" xml:space="preserve">
+    <value>Let ...</value>
+  </data>
+  <data name="lbUseController.Text" xml:space="preserve">
+    <value>Bruk kontroller</value>
+  </data>
+  <data name="cBMouseAccel.Text" xml:space="preserve">
+    <value>Museakselerasjon</value>
+  </data>
+  <data name="cBControllerInput.Text" xml:space="preserve">
+    <value>for tilegning og målinger</value>
+  </data>
+  <data name="cBIdleDisconnect.Text" xml:space="preserve">
+    <value>Tidsavbruddsfrakobling</value>
+  </data>
+  <data name="gBOther.Text" xml:space="preserve">
+    <value>Annet</value>
+  </data>
+  <data name="lbRainbowB.Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="lbWhileCharging.Text" xml:space="preserve">
+    <value>Mens det lades:</value>
+  </data>
+  <data name="lbPercentFlashBar.Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="gBLightbar.Text" xml:space="preserve">
+    <value>Lysplate</value>
+  </data>
+  <data name="lbPercentRumble.Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="btnRumbleLightTest.Text" xml:space="preserve">
+    <value>Test av lettristing</value>
+  </data>
+  <data name="gBRumble.Text" xml:space="preserve">
+    <value>Risting</value>
+  </data>
+  <data name="lbSixaxisX.Text" xml:space="preserve">
+    <value>Sixaxis X</value>
+  </data>
+  <data name="lbSixaxisZ.Text" xml:space="preserve">
+    <value>Sixaxis Z</value>
+  </data>
+  <data name="btnSATrack.Text" xml:space="preserve">
+    <value>button1</value>
+  </data>
+  <data name="lbL2Track.Text" xml:space="preserve">
+    <value>L2</value>
+  </data>
+  <data name="lbRSTip.Text" xml:space="preserve">
+    <value>Høyre styrepinne</value>
+  </data>
+  <data name="lbInputDelay.Text" xml:space="preserve">
+    <value>Inndataforsinkelse: N/Ams</value>
+  </data>
+  <data name="lbR2Track.Text" xml:space="preserve">
+    <value>R2</value>
+  </data>
+  <data name="lbLSTip.Text" xml:space="preserve">
+    <value>Venstre styrepinne</value>
+  </data>
+  <data name="lbSATip.Text" xml:space="preserve">
+    <value>Sixaxis: X-aksen er forbeholdt enklere målinger</value>
+  </data>
+  <data name="lb6Accel.Text" xml:space="preserve">
+    <value>Aksl.</value>
+  </data>
+  <data name="lb6Gryo.Text" xml:space="preserve">
+    <value>Gyroskop</value>
+  </data>
+  <data name="btnLSTrack.Text" xml:space="preserve">
+    <value>knapp1</value>
+  </data>
+  <data name="btnRSTrack.Text" xml:space="preserve">
+    <value>knapp1</value>
+  </data>
+  <data name="lbL2TrackS.Text" xml:space="preserve">
+    <value>Kontrollermålinger</value>
+  </data>
+  <data name="lblSteeringWheelEmulationAxis.Text" xml:space="preserve">
+    <value>Rattvridnings-akse</value>
+  </data>
+  <data name="lblSteeringWheelEmulationRange.Text" xml:space="preserve">
+    <value>Rattvridnings-rekkevidde</value>
+  </data>
+  <data name="btnSteeringWheelEmulationCalibrate.Text" xml:space="preserve">
+    <value>Kalibrer ...</value>
+  </data>
+  <data name="lbControlTip.Text" xml:space="preserve">
+    <value>Trykk på lysfeltet for fargevelgeren</value>
+  </data>
+  <data name="bnRSDown.Text" xml:space="preserve">
+    <value>Høyre Y-akse +</value>
+  </data>
+  <data name="bnL3.Text" xml:space="preserve">
+    <value>Venstre styrepinne</value>
+  </data>
+  <data name="bnRSUp.Text" xml:space="preserve">
+    <value>Høyre Y-akse -</value>
+  </data>
+  <data name="bnRSRight.Text" xml:space="preserve">
+    <value>Høyre X-akse +</value>
+  </data>
+  <data name="bnR3.Text" xml:space="preserve">
+    <value>Høyre styrepinne</value>
+  </data>
+  <data name="bnRSLeft.Text" xml:space="preserve">
+    <value>Høyre X-akse -</value>
+  </data>
+  <data name="bnLSLeft.Text" xml:space="preserve">
+    <value>Venstre X-akse -</value>
+  </data>
+  <data name="bnLSUp.Text" xml:space="preserve">
+    <value>Venstre Y-akse -</value>
+  </data>
+  <data name="bnLSRight.Text" xml:space="preserve">
+    <value>Venstre X-akse +</value>
+  </data>
+  <data name="bnLSDown.Text" xml:space="preserve">
+    <value>Venstre Y-akse +</value>
+  </data>
+  <data name="bnR2.Text" xml:space="preserve">
+    <value>Høyre trigger</value>
+  </data>
+  <data name="bnUp.Text" xml:space="preserve">
+    <value>Opp-knapp</value>
+  </data>
+  <data name="bnDown.Text" xml:space="preserve">
+    <value>Ned-knapp</value>
+  </data>
+  <data name="bnTriangle.Text" xml:space="preserve">
+    <value>Y-knapp</value>
+  </data>
+  <data name="bnR1.Text" xml:space="preserve">
+    <value>Høyre bumper</value>
+  </data>
+  <data name="bnSquare.Text" xml:space="preserve">
+    <value>X-knapp</value>
+  </data>
+  <data name="bnRight.Text" xml:space="preserve">
+    <value>Høyre-knapp</value>
+  </data>
+  <data name="bnLeft.Text" xml:space="preserve">
+    <value>Venstre-knapp</value>
+  </data>
+  <data name="bnOptions.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="bnShare.Text" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="bnL1.Text" xml:space="preserve">
+    <value>Venstre bumper</value>
+  </data>
+  <data name="bnTouchRight.Text" xml:space="preserve">
+    <value>Venstre museknapp</value>
+  </data>
+  <data name="bnL2.Text" xml:space="preserve">
+    <value>Venstre trigger</value>
+  </data>
+  <data name="bnTouchLeft.Text" xml:space="preserve">
+    <value>Venstre museknapp</value>
+  </data>
+  <data name="bnTouchMulti.Text" xml:space="preserve">
+    <value>Høyre museknapp</value>
+  </data>
+  <data name="bnTouchUpper.Text" xml:space="preserve">
+    <value>Midtmuseknapp</value>
+  </data>
+  <data name="bnPS.Text" xml:space="preserve">
+    <value>Guide</value>
+  </data>
+  <data name="bnCross.Text" xml:space="preserve">
+    <value>A-knapp</value>
+  </data>
+  <data name="bnCircle.Text" xml:space="preserve">
+    <value>B-knapp</value>
+  </data>
+  <data name="lbControlName.Text" xml:space="preserve">
+    <value>Kryss: A</value>
+  </data>
+  <data name="tPControls.Text" xml:space="preserve">
+    <value>Styring</value>
+  </data>
+  <data name="cHName.Text" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="cHTrigger.Text" xml:space="preserve">
+    <value>Trigger</value>
+  </data>
+  <data name="cHAction.Text" xml:space="preserve">
+    <value>Handling</value>
+  </data>
+  <data name="btnNewAction.Text" xml:space="preserve">
+    <value>Ny handling</value>
+  </data>
+  <data name="btnEditAction.Text" xml:space="preserve">
+    <value>Rediger handling</value>
+  </data>
+  <data name="btnRemAction.Text" xml:space="preserve">
+    <value>Fjern handling</value>
+  </data>
+  <data name="lbActionsTip.Text" xml:space="preserve">
+    <value>Hold inn de valgte knappene for å utføre en handling, merk av handlingen for å bruke den mens profilen er lastet inn</value>
+  </data>
+  <data name="tPSpecial.Text" xml:space="preserve">
+    <value>Spesialhandlinger</value>
+  </data>
+  <data name="tPDeadzone.Text" xml:space="preserve">
+    <value>Dødsone</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Sixaxis Z:</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Sixaxis X:</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>R2:</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>L2:</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>RS:</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>LS:</value>
+  </data>
+  <data name="antiDeadzoneTabPage.Text" xml:space="preserve">
+    <value>Anti-dødsone</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Sixaxis Z:</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Sixaxis X:</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>R2:</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>L2:</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>RS:</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>LS:</value>
+  </data>
+  <data name="maxZoneTabPage.Text" xml:space="preserve">
+    <value>Maksimalsone-faneside</value>
+  </data>
+  <data name="rsSquStickCk.Text" xml:space="preserve">
+    <value>RS</value>
+  </data>
+  <data name="lsSquStickCk.Text" xml:space="preserve">
+    <value>LS</value>
+  </data>
+  <data name="squStickTabPage.Text" xml:space="preserve">
+    <value>Kvadratisk styrepinne</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Sixaxis Z:</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Sixaxis X:</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>R2:</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>L2:</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>RS:</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>LS:</value>
+  </data>
+  <data name="tPOutCurve.Text" xml:space="preserve">
+    <value>Utdatakurve</value>
+  </data>
+  <data name="lbRSCurve.Text" xml:space="preserve">
+    <value>RS</value>
+  </data>
+  <data name="lbRSCurvePercent.Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="lbLSCurvePercent.Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="lbLSCurve.Text" xml:space="preserve">
+    <value>LS</value>
+  </data>
+  <data name="tPCurve.Text" xml:space="preserve">
+    <value>Kurve (Inndata)</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>RS:</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>LS:</value>
+  </data>
+  <data name="tpRotation.Text" xml:space="preserve">
+    <value>Rotasjon</value>
+  </data>
+  <data name="rBSAControls.Text" xml:space="preserve">
+    <value>Bruk som kontroller</value>
+  </data>
+  <data name="rBSAMouse.Text" xml:space="preserve">
+    <value>Bruk som mus</value>
+  </data>
+  <data name="toggleGyroMCb.Text" xml:space="preserve">
+    <value>Skru av/på</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>Dødsone</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Evalueringsforhold:</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>X-akse:</value>
+  </data>
+  <data name="lbGyroSmooth.Text" xml:space="preserve">
+    <value>Utjevning:</value>
+  </data>
+  <data name="lbSmoothWeight.Text" xml:space="preserve">
+    <value>Utjevningstyngde:</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Vertikal skala:</value>
+  </data>
+  <data name="gyroTriggerBehavior.Text" xml:space="preserve">
+    <value>Triggeroppførsel - Vrir på gyroskopet</value>
+  </data>
+  <data name="cBGyroInvertY.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="cBGyroInvertX.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="lbGyroInvert.Text" xml:space="preserve">
+    <value>Speilvend:</value>
+  </data>
+  <data name="lbGyroTriggers.Text" xml:space="preserve">
+    <value>Triggere:</value>
+  </data>
+  <data name="btnGyroTriggers.Text" xml:space="preserve">
+    <value>Ingen</value>
+  </data>
+  <data name="lbGyroSens.Text" xml:space="preserve">
+    <value>Gyroskopsensitivitet:</value>
+  </data>
+  <data name="gBGyro.Text" xml:space="preserve">
+    <value>Gyroskop</value>
+  </data>
+  <data name="lbL2S.Text" xml:space="preserve">
+    <value>L2</value>
+  </data>
+  <data name="lbSixaxisXS.Text" xml:space="preserve">
+    <value>Sixaxis X</value>
+  </data>
+  <data name="lbSixaxisZS.Text" xml:space="preserve">
+    <value>Sixaxis Z</value>
+  </data>
+  <data name="lbR2LS.Text" xml:space="preserve">
+    <value>R2</value>
+  </data>
+  <data name="lbRSS.Text" xml:space="preserve">
+    <value>RS</value>
+  </data>
+  <data name="lbLSS.Text" xml:space="preserve">
+    <value>LS</value>
+  </data>
+  <data name="gBSensitivity.Text" xml:space="preserve">
+    <value>Sensitivitet</value>
+  </data>
+  <data name="crossToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kryss</value>
+  </data>
+  <data name="circleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sirkel</value>
+  </data>
+  <data name="squareToolStripMenuItem.Text" xml:space="preserve">
+    <value>Firkant</value>
+  </data>
+  <data name="triangleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Trekant</value>
+  </data>
+  <data name="l1ToolStripMenuItem.Text" xml:space="preserve">
+    <value>L1</value>
+  </data>
+  <data name="l2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>L2</value>
+  </data>
+  <data name="r1ToolStripMenuItem.Text" xml:space="preserve">
+    <value>R1</value>
+  </data>
+  <data name="r2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>R2</value>
+  </data>
+  <data name="onTouchpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Opp</value>
+  </data>
+  <data name="downToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ned</value>
+  </data>
+  <data name="leftToolStripMenuItem.Text" xml:space="preserve">
+    <value>Venstre</value>
+  </data>
+  <data name="rightToolStripMenuItem.Text" xml:space="preserve">
+    <value>Høyre</value>
+  </data>
+  <data name="l3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>L3</value>
+  </data>
+  <data name="r3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>R3</value>
+  </data>
+  <data name="fingerOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Finger på berøringsflaten</value>
+  </data>
+  <data name="fingersOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>2 fingre på berøringsflaten</value>
+  </data>
+  <data name="optionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="shareToolStripMenuItem.Text" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="pSToolStripMenuItem.Text" xml:space="preserve">
+    <value>PS</value>
+  </data>
+  <data name="alwaysOnToolStripMenuItem.Text" xml:space="preserve">
+    <value>Alltid på</value>
+  </data>
+  <data name="crossTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Kryss</value>
+  </data>
+  <data name="circleTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Sirkel</value>
+  </data>
+  <data name="squareTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Firkant</value>
+  </data>
+  <data name="triangleTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Trekant</value>
+  </data>
+  <data name="l1TouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>L1</value>
+  </data>
+  <data name="l2TouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>L2</value>
+  </data>
+  <data name="r1TouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>R1</value>
+  </data>
+  <data name="r2TouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>R2</value>
+  </data>
+  <data name="upTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Opp</value>
+  </data>
+  <data name="downTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Ned</value>
+  </data>
+  <data name="leftTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Venstre</value>
+  </data>
+  <data name="rightTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Høyre</value>
+  </data>
+  <data name="l3TouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>L3</value>
+  </data>
+  <data name="r3TouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>R3</value>
+  </data>
+  <data name="oneFingerTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Finger på berøringsflaten</value>
+  </data>
+  <data name="twoFingerTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>2 fingre på berøringsflaten</value>
+  </data>
+  <data name="optionsTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="shareTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="psTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>PS</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Profilinnstillinger</value>
+  </data>
+</root>

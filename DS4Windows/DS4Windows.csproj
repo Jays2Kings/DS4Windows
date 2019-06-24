@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -1228,7 +1228,7 @@
     <PostBuildEvent>rem Copy compiled l18n assemblies to alt folder
 GOTO END
 if not exist $(TargetDir)Lang mkdir $(TargetDir)Lang
-set langs=ar cs de de-DE el es fi fr fr-FR he hu id it it-IT ja ko nb nb-NO nl pl ^
+set langs=ar cs de de-DE el es fi fr fr-FR he hu id it it-IT ja ko nb nl pl ^
 
 pt-BR ro-RO ru-RU  sl sv tr uk vi zh-CN zh-Hans zh-Hant
 

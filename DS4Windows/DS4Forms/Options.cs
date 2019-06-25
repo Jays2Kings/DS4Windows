@@ -688,6 +688,7 @@ namespace DS4Windows.Forms
 
                 lsSquStickCk.Checked = squareStickLS[device];
                 rsSquStickCk.Checked = squareStickRS[device];
+                RoundnessNUpDown.Value = (decimal)squareStickRoundness[device];        
 
                 cBDinput.Checked = DinputOnly[device];
                 olddinputcheck = cBDinput.Checked;
@@ -1330,6 +1331,7 @@ namespace DS4Windows.Forms
             SZAntiDeadzone[device] = (double)nUDSixaxisZAntiDead.Value;
             squareStickLS[device] = lsSquStickCk.Checked;
             squareStickRS[device] = rsSquStickCk.Checked;
+            squareStickRoundness[device] = (double)RoundnessNUpDown.Value;
             MouseAccel[device] = cBMouseAccel.Checked;
             DinputOnly[device] = cBDinput.Checked;
             StartTouchpadOff[device] = cbStartTouchpadOff.Checked;
@@ -3154,7 +3156,14 @@ namespace DS4Windows.Forms
             }
         }
 
-        private void OutContTypeCb_SelectedIndexChanged(object sender, EventArgs e)
+        private void RoundnessNUpDown_ValueChanged(object sender, EventArgs e) 
+        {
+            if (loading == false) {
+                squareStickRoundness[device] = (int)RoundnessNUpDown.Value;
+            }
+        }
+
+    private void OutContTypeCb_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (loading == false)
             {
@@ -3178,7 +3187,7 @@ namespace DS4Windows.Forms
             }
         }
 
-        private void trackFrictionNUD_ValueChanged(object sender, EventArgs e)
+    private void trackFrictionNUD_ValueChanged(object sender, EventArgs e)
         {
             if (loading == false)
             {

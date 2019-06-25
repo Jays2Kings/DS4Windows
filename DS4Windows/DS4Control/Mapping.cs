@@ -102,10 +102,9 @@ namespace DS4Windows
                 squared = new DS4Vector2(0.0, 0.0);
             }
 
-            public void CircleToSquare()
+            public void CircleToSquare(double roundness)
             {
                 const double PiOverFour = Math.PI / 4.0;
-                const double roundness = 5.0;
 
                 // Determine the theta angle
                 double angle = Math.Atan2(current.y, -current.x);
@@ -876,9 +875,10 @@ namespace DS4Windows
                 double capY = dState.LY >= 128 ? 127.0 : 128.0;
                 double tempX = (dState.LX - 128.0) / capX;
                 double tempY = (dState.LY - 128.0) / capY;
+                double roundness = getSquareStickRoundness(device);
                 DS4SquareStick sqstick = outSqrStk[device];
                 sqstick.current.x = tempX; sqstick.current.y = tempY;
-                sqstick.CircleToSquare();
+                sqstick.CircleToSquare(roundness);
                 //Console.WriteLine("Input ({0}) | Output ({1})", tempY, sqstick.current.y);
                 tempX = sqstick.current.x < -1.0 ? -1.0 : sqstick.current.x > 1.0
                     ? 1.0 : sqstick.current.x;
@@ -974,9 +974,10 @@ namespace DS4Windows
                 double capY = dState.RY >= 128 ? 127.0 : 128.0;
                 double tempX = (dState.RX - 128.0) / capX;
                 double tempY = (dState.RY - 128.0) / capY;
+                double roundness = getSquareStickRoundness(device);
                 DS4SquareStick sqstick = outSqrStk[device];
                 sqstick.current.x = tempX; sqstick.current.y = tempY;
-                sqstick.CircleToSquare();
+                sqstick.CircleToSquare(roundness);
                 tempX = sqstick.current.x < -1.0 ? -1.0 : sqstick.current.x > 1.0
                     ? 1.0 : sqstick.current.x;
                 tempY = sqstick.current.y < -1.0 ? -1.0 : sqstick.current.y > 1.0

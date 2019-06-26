@@ -215,7 +215,7 @@
     <value>Bind profil/ID</value>
   </data>
   <data name="lbNoControllers.Text" xml:space="preserve">
-    <value>Ingen kontrollere er tilkoblet (Maks 4)</value>
+    <value>Ingen kontrollere er koblet til (Maks 4)</value>
   </data>
   <data name="tabControllers.Text" xml:space="preserve">
     <value>Kontrollere</value>

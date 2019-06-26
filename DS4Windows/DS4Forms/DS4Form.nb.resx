@@ -125,13 +125,13 @@
     <value>Rediger profilen til kontroller 1</value>
   </data>
   <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>ediger profilen til kontroller 2</value>
+    <value>Rediger profilen til kontroller 2</value>
   </data>
   <data name="editProfileForController3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>ediger profilen til kontroller 3</value>
+    <value>Rediger profilen til kontroller 3</value>
   </data>
   <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>ediger profilen til kontroller 4</value>
+    <value>Rediger profilen til kontroller 4</value>
   </data>
   <data name="discon1toolStripMenuItem.Text" xml:space="preserve">
     <value>Koble ifra kontroller 1</value>
@@ -170,10 +170,10 @@
     <value>Kontroller 2</value>
   </data>
   <data name="bnEditC3.Text" xml:space="preserve">
-    <value>Rediger</value>
+    <value>Bytt</value>
   </data>
   <data name="bnEditC4.Text" xml:space="preserve">
-    <value>Rediger</value>
+    <value>Bytt</value>
   </data>
   <data name="lbPad3.Text" xml:space="preserve">
     <value>Kontroller 3</value>
@@ -182,10 +182,10 @@
     <value>Kontroller 4</value>
   </data>
   <data name="bnEditC2.Text" xml:space="preserve">
-    <value>Rediger</value>
+    <value>Bytt</value>
   </data>
   <data name="bnEditC1.Text" xml:space="preserve">
-    <value>Rediger</value>
+    <value>Bytt</value>
   </data>
   <data name="lbSelectedProfile.Text" xml:space="preserve">
     <value>Valgt profil</value>
@@ -215,7 +215,7 @@
     <value>Bind profil/ID</value>
   </data>
   <data name="lbNoControllers.Text" xml:space="preserve">
-    <value>No Controllers Connected (Max 4)</value>
+    <value>Ingen kontrollere er tilkoblet (Maks 4)</value>
   </data>
   <data name="tabControllers.Text" xml:space="preserve">
     <value>Kontrollere</value>

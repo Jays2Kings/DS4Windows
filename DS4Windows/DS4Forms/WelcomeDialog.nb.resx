@@ -104,7 +104,7 @@
     <value>Trinn 1: Installer ViGEmBus-driveren</value>
   </data>
   <data name="button2.Text" xml:space="preserve">
-    <value>Trinn 2: Hvis du har Windows ≤7, installer Xbox 360-driveren</value>
+    <value>Trinn 2: Hvis Windows ≤7, installer X360-driveren</value>
   </data>
   <data name="labelBluetooth.Text" xml:space="preserve">
     <value>For å sette opp Bluetooth (valgfritt):
@@ -114,12 +114,12 @@ Lysplaten vil begynne å blinke dobbelt</value>
   <data name="labelUSB.Text" xml:space="preserve">
     <value>Trinn 3: koble til DualShock 4-kontrolleren
 For å sette opp en kablet/USB-tilkobling: Bare plugg
-en MicroUSB-kabel mellom PC-en din og DualShock 4-en".</value>
+en MicroUSB-kabel mellom PC-en din og DualShock 4-en.</value>
   </data>
   <data name="labelBluetooth2.Text" xml:space="preserve">
     <value>Når det blinker, gå til PC-ens Bluetooth-innstillinger
     og koble til «Wireless Controller»
-Hvis du blir spurt om det, skriv inn sammenkoblingskoden «0000»
+Hvis du blir spurt, skriv inn koblingskoden «0000»
 Når de har blitt koblet sammen, er alt i orden. Tid for moro!</value>
   </data>
   <data name="label1.Text" xml:space="preserve">

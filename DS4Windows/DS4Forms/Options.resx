@@ -7165,14 +7165,62 @@ with profile</value>
   <data name="&gt;&gt;maxZoneTabPage.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="RoundnessNUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>216, 17</value>
+  </data>
+  <data name="RoundnessNUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 20</value>
+  </data>
+  <data name="RoundnessNUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;RoundnessNUpDown.Name" xml:space="preserve">
+    <value>RoundnessNUpDown</value>
+  </data>
+  <data name="&gt;&gt;RoundnessNUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RoundnessNUpDown.Parent" xml:space="preserve">
+    <value>squStickTabPage</value>
+  </data>
+  <data name="&gt;&gt;RoundnessNUpDown.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label28.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
+    <value>141, 19</value>
+  </data>
+  <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 13</value>
+  </data>
+  <data name="label28.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Roundness</value>
+  </data>
+  <data name="&gt;&gt;label28.Name" xml:space="preserve">
+    <value>label28</value>
+  </data>
+  <data name="&gt;&gt;label28.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label28.Parent" xml:space="preserve">
+    <value>squStickTabPage</value>
+  </data>
+  <data name="&gt;&gt;label28.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="rsSquStickCk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 13</value>
+    <value>70, 14</value>
   </data>
   <data name="rsSquStickCk.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
   </data>
   <data name="rsSquStickCk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 24</value>
+    <value>43, 24</value>
   </data>
   <data name="rsSquStickCk.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -7190,16 +7238,16 @@ with profile</value>
     <value>squStickTabPage</value>
   </data>
   <data name="&gt;&gt;rsSquStickCk.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="lsSquStickCk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 13</value>
+    <value>10, 14</value>
   </data>
   <data name="lsSquStickCk.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
   </data>
   <data name="lsSquStickCk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 24</value>
+    <value>48, 24</value>
   </data>
   <data name="lsSquStickCk.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -7217,7 +7265,7 @@ with profile</value>
     <value>squStickTabPage</value>
   </data>
   <data name="&gt;&gt;lsSquStickCk.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="squStickTabPage.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>

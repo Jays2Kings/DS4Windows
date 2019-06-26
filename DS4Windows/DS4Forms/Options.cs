@@ -686,8 +686,9 @@ namespace DS4Windows.Forms
                     btnBrowse.Text = Path.GetFileNameWithoutExtension(LaunchProgram[device]);
                 }
 
-                lsSquStickCk.Checked = squareStickLS[device];
-                rsSquStickCk.Checked = squareStickRS[device];
+                lsSquStickCk.Checked = SquStickInfo[device].lsMode;
+                rsSquStickCk.Checked = SquStickInfo[device].rsMode;
+                RoundnessNUpDown.Value = (decimal)SquStickInfo[device].roundness;
 
                 cBDinput.Checked = DinputOnly[device];
                 olddinputcheck = cBDinput.Checked;
@@ -1328,8 +1329,9 @@ namespace DS4Windows.Forms
             SZMaxzone[device] = (double)nUDSixAxisZMaxZone.Value;
             SXAntiDeadzone[device] = (double)nUDSixaxisXAntiDead.Value;
             SZAntiDeadzone[device] = (double)nUDSixaxisZAntiDead.Value;
-            squareStickLS[device] = lsSquStickCk.Checked;
-            squareStickRS[device] = rsSquStickCk.Checked;
+            SquStickInfo[device].lsMode = lsSquStickCk.Checked;
+            SquStickInfo[device].rsMode = rsSquStickCk.Checked;
+            SquStickInfo[device].roundness = (double)RoundnessNUpDown.Value;
             MouseAccel[device] = cBMouseAccel.Checked;
             DinputOnly[device] = cBDinput.Checked;
             StartTouchpadOff[device] = cbStartTouchpadOff.Checked;
@@ -3142,7 +3144,7 @@ namespace DS4Windows.Forms
         {
             if (loading == false)
             {
-                squareStickLS[device] = lsSquStickCk.Checked;
+                SquStickInfo[device].lsMode = lsSquStickCk.Checked;
             }
         }
 
@@ -3150,7 +3152,14 @@ namespace DS4Windows.Forms
         {
             if (loading == false)
             {
-                squareStickRS[device] = rsSquStickCk.Checked;
+                SquStickInfo[device].rsMode = rsSquStickCk.Checked;
+            }
+        }
+
+        private void RoundnessNUpDown_ValueChanged(object sender, EventArgs e) 
+        {
+            if (loading == false) {
+                SquStickInfo[device].roundness = (int)RoundnessNUpDown.Value;
             }
         }
 

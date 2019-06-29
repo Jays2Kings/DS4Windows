@@ -2551,6 +2551,69 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;lbFrenchT.ZOrder" xml:space="preserve">
     <value>37</value>
   </data>
+  <data name="lbnb.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbnb.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 144</value>
+  </data>
+  <data name="lbnb.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="lbnb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 13</value>
+  </data>
+  <data name="lbnb.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="lbnb.Text" xml:space="preserve">
+    <value>Norwegian/norsk bokmål</value>
+  </data>
+  <data name="&gt;&gt;lbnb.Name" xml:space="preserve">
+    <value>lbnb</value>
+  </data>
+  <data name="&gt;&gt;lbnb.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbnb.Parent" xml:space="preserve">
+    <value>tLPTranslators</value>
+  </data>
+  <data name="&gt;&gt;lbnb.ZOrder" xml:space="preserve">
+    <value>38</value>
+  </data>
+  <data name="lbNorwegianT.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbNorwegianT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbNorwegianT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>147, 144</value>
+  </data>
+  <data name="lbNorwegianT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="lbNorwegianT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 13</value>
+  </data>
+  <data name="lbNorwegianT.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="lbNorwegianT.Text" xml:space="preserve">
+    <value>Imre Kristoffer Eilertsen</value>
+  </data>
+  <data name="&gt;&gt;lbNorwegianT.Name" xml:space="preserve">
+    <value>lbNorwegianT</value>
+  </data>
+  <data name="&gt;&gt;lbNorwegianT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbNorwegianT.Parent" xml:space="preserve">
+    <value>tLPTranslators</value>
+  </data>
+  <data name="&gt;&gt;lbNorwegianT.ZOrder" xml:space="preserve">
+    <value>39</value>
+  </data>
   <data name="lbTranslators.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>

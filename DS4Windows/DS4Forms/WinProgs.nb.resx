@@ -2,41 +2,58 @@
 <root>
   <!-- 
     Microsoft ResX Schema 
-      Version 2.0
-      The primary goals of this format is to allow a simple XML format 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
     that is mostly human readable. The generation and parsing of the 
     various data types are done through the TypeConverter classes 
     associated with the data types.
-      Example:
-      ... ado.net/XML headers & schema ...
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
     <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-      </data>
-      </data>
-                  There are any number of "resheader" rows that contain simple 
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-      Each data row contains a name, and value. The row also contains a 
+    
+    Each data row contains a name, and value. The row also contains a 
     type or mimetype. Type corresponds to a .NET class that support 
     text/value conversion through the TypeConverter architecture. 
     Classes that don't support this are serialized and stored with the 
     mimetype set.
-      The mimetype is used for serialized objects, and tells the 
+    
+    The mimetype is used for serialized objects, and tells the 
     ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-      Note - application/x-microsoft.net.object.binary.base64 is the format 
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
     that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-      mimetype: application/x-microsoft.net.object.binary.base64
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-      mimetype: application/x-microsoft.net.object.soap.base64
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
+
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
@@ -100,41 +117,66 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="bnStep1.Text" xml:space="preserve">
-    <value>Trinn 1: Installer ViGEmBus-driveren</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="bnAddPrograms.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 2</value>
   </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>Trinn 2: Hvis Windows ≤7, installer X360-driveren</value>
+  <data name="bnAddPrograms.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 23</value>
   </data>
-  <data name="labelBluetooth.Text" xml:space="preserve">
-    <value>For å sette opp Bluetooth (valgfritt):
-Hold inn PS-knappen og Share i 3 sekunder
-Lysplaten vil begynne å blinke dobbelt</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bnAddPrograms.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="labelUSB.Text" xml:space="preserve">
-    <value>Trinn 3: koble til DualShock 4-kontrolleren
-For å sette opp en kablet/USB-tilkobling: Bare plugg
-en MicroUSB-kabel mellom PC-en din og DualShock 4-en.</value>
+  <data name="bnAddPrograms.Text" xml:space="preserve">
+    <value>Legg til programmer</value>
   </data>
-  <data name="labelBluetooth2.Text" xml:space="preserve">
-    <value>Når det blinker, gå til PC-ens Bluetooth-innstillinger
-    og koble til «Wireless Controller»
-Hvis du blir spurt, skriv inn koblingskoden «0000»
-Når de har blitt koblet sammen, er alt i orden. Tid for moro!</value>
+  <data name="bnSave.Text" xml:space="preserve">
+    <value>Lagre</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Dersom dette vinduet dukker opp på nytt etter installasjonen, kan du måtte starte PC-en din på nytt eller vente 10-15min på at Windows skal legge merke til driveren</value>
+  <data name="lBController1.Text" xml:space="preserve">
+    <value>Kontroller 1</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Hvis du har brukt en 360-kontroller på denne PC-en før, kan du hoppe over dette</value>
+  <data name="lBController2.Text" xml:space="preserve">
+    <value>Kontroller 2</value>
   </data>
-  <data name="bnFinish.Text" xml:space="preserve">
-    <value>Fullfør</value>
+  <data name="lBController3.Text" xml:space="preserve">
+    <value>Kontroller 3</value>
   </data>
-  <data name="linkBluetoothSettings.Text" xml:space="preserve">
-    <value>Bluetooth-innstillinger</value>
+  <data name="lBController4.Text" xml:space="preserve">
+    <value>Kontroller 4</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Velkommen til DS4Windows</value>
+  <data name="bnDelete.Text" xml:space="preserve">
+    <value>Fjern</value>
+  </data>
+  <data name="nameHeader.Text" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="PathHeader.Text" xml:space="preserve">
+    <value>Filbane</value>
+  </data>
+  <data name="pBProfilesTip.Text" xml:space="preserve">
+    <value>Velg profiler her</value>
+  </data>
+  <data name="bnHideUnchecked.Text" xml:space="preserve">
+    <value>Skjul umerkede</value>
+  </data>
+  <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Legg til startmenyprogrammer</value>
+  </data>
+  <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Legg til Steam-spill</value>
+  </data>
+  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Legg til Origin-spill</value>
+  </data>
+  <data name="addDirectoryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Legg til en mappe</value>
+  </data>
+  <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Let etter andre programmer</value>
+  </data>
+  <data name="cBTurnOffDS4W.Text" xml:space="preserve">
+    <value>Skru av DS4Windows midlertidig Temporarily</value>
   </data>
 </root>

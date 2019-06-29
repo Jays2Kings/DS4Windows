@@ -559,7 +559,7 @@
     <value>Skru på på nytt ved å trykke ned PS-knappen + touchfeltet</value>
   </data>
   <data name="TwoFingerSwipe" xml:space="preserve">
-    <value>2-fingret Berøringsplate-sveip til venstre eller høyre</value>
+    <value>2-fingret berøringsplate-sveip til venstre eller høyre</value>
   </data>
   <data name="TypeNewName" xml:space="preserve">
     <value>Skriv inn nytt navn</value>

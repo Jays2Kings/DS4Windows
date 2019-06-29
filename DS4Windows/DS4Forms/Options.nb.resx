@@ -132,7 +132,7 @@
     <value>Musesensitivitet:</value>
   </data>
   <data name="cBlowerRCOn.Text" xml:space="preserve">
-    <value>Nedre høyre som høyre museknapp</value>
+    <value>↘ som høyre mus</value>
   </data>
   <data name="cBTouchpadJitterCompensation.Text" xml:space="preserve">
     <value>Jitter-kompensasjon</value>
@@ -186,7 +186,7 @@
     <value>Skru av speilvending:</value>
   </data>
   <data name="label15.Text" xml:space="preserve">
-    <value>Speilvend:</value>
+    <value>Speil:</value>
   </data>
   <data name="cbStartTouchpadOff.Text" xml:space="preserve">
     <value>Start med gliding/rulling skrudd av</value>
@@ -297,7 +297,7 @@
     <value>Kontroller:</value>
   </data>
   <data name="btPollRateLabel.Text" xml:space="preserve">
-    <value>BT-innmeldingsfrekvens</value>
+    <value>BT-rapportrate</value>
   </data>
   <data name="enableTouchToggleCheckbox.Text" xml:space="preserve">
     <value>Skru på berøringsflate-bryterfunksjon</value>
@@ -322,7 +322,7 @@ med profilen</value>
     <value>for tilegning og målinger</value>
   </data>
   <data name="cBIdleDisconnect.Text" xml:space="preserve">
-    <value>Tidsavbruddsfrakobling</value>
+    <value>Tidsfrakobling</value>
   </data>
   <data name="gBOther.Text" xml:space="preserve">
     <value>Annet</value>
@@ -562,7 +562,7 @@ med profilen</value>
     <value>LS:</value>
   </data>
   <data name="maxZoneTabPage.Text" xml:space="preserve">
-    <value>Maksimalsone-faneside</value>
+    <value>Makssone-faneside</value>
   </data>
   <data name="rsSquStickCk.Text" xml:space="preserve">
     <value>RS</value>
@@ -812,5 +812,11 @@ med profilen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Profilinnstillinger</value>
+  </data>
+  <data name="cBFlashType.Items" xml:space="preserve">
+    <value>Blink ved</value>
+  </data>
+  <data name="cBFlashType.Items1" xml:space="preserve">
+    <value>Pulsér ved</value>
   </data>
 </root>

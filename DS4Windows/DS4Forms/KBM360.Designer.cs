@@ -216,7 +216,6 @@
             this.pnlDS4Controls = new System.Windows.Forms.Panel();
             this.buttonTmp = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pBHighlight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBMouse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDHeavy)).BeginInit();
@@ -1923,13 +1922,6 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
-            // advColorDialog
-            // 
-            this.advColorDialog.AnyColor = true;
-            this.advColorDialog.Color = System.Drawing.Color.Blue;
-            this.advColorDialog.FullOpen = true;
-            this.advColorDialog.OnUpdateColor += new DS4Windows.AdvancedColorDialog.ColorUpdateHandler(this.advColorDialog_OnUpdateColor);
-            // 
             // KBM360
             // 
             resources.ApplyResources(this, "$this");
@@ -2275,7 +2267,6 @@
         private System.Windows.Forms.Label lbBlueV;
         private System.Windows.Forms.Label lbGreenV;
         private System.Windows.Forms.Label lbRedV;
-        private AdvancedColorDialog advColorDialog;
         private System.Windows.Forms.CheckBox cBMouse;
         private System.Windows.Forms.CheckBox cBLightbar;
         private System.Windows.Forms.RadioButton rBRegular;

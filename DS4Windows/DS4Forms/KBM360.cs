@@ -28,10 +28,13 @@ namespace DS4Windows.Forms
         private bool extraChanged;
         private Bitmap pnl360BgImage;
         private Bitmap pnlDS4BgImage;
+        private AdvancedColorDialog advColorDialog;
 
         public KBM360(int deviceNum, Options ooo, Button buton)
         {
             InitializeComponent();
+            advColorDialog = new AdvancedColorDialog();
+            this.advColorDialog.OnUpdateColor += new AdvancedColorDialog.ColorUpdateHandler(this.advColorDialog_OnUpdateColor);
             pnl360BgImage = (Bitmap)Properties.Resources._360_map.Clone();
             //pnl360Controls.BackgroundImage = null;
             //pnl360Controls.BackgroundImageLayout = ImageLayout.None;

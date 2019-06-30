@@ -5197,93 +5197,6 @@ a key by typing it</value>
   <data name="&gt;&gt;btnESC.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;cBMouse.Name" xml:space="preserve">
-    <value>cBMouse</value>
-  </data>
-  <data name="&gt;&gt;cBMouse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBMouse.Parent" xml:space="preserve">
-    <value>gBExtras</value>
-  </data>
-  <data name="&gt;&gt;cBMouse.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;cBLightbar.Name" xml:space="preserve">
-    <value>cBLightbar</value>
-  </data>
-  <data name="&gt;&gt;cBLightbar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBLightbar.Parent" xml:space="preserve">
-    <value>gBExtras</value>
-  </data>
-  <data name="&gt;&gt;cBLightbar.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lbBlueV.Name" xml:space="preserve">
-    <value>lbBlueV</value>
-  </data>
-  <data name="&gt;&gt;lbBlueV.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbBlueV.Parent" xml:space="preserve">
-    <value>gBExtras</value>
-  </data>
-  <data name="&gt;&gt;lbBlueV.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;lbGreenV.Name" xml:space="preserve">
-    <value>lbGreenV</value>
-  </data>
-  <data name="&gt;&gt;lbGreenV.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbGreenV.Parent" xml:space="preserve">
-    <value>gBExtras</value>
-  </data>
-  <data name="&gt;&gt;lbGreenV.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;lbRedV.Name" xml:space="preserve">
-    <value>lbRedV</value>
-  </data>
-  <data name="&gt;&gt;lbRedV.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRedV.Parent" xml:space="preserve">
-    <value>gBExtras</value>
-  </data>
-  <data name="&gt;&gt;lbRedV.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="gBExtras.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="gBExtras.Location" type="System.Drawing.Point, System.Drawing">
-    <value>871, 0</value>
-  </data>
-  <data name="gBExtras.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 446</value>
-  </data>
-  <data name="gBExtras.TabIndex" type="System.Int32, mscorlib">
-    <value>324</value>
-  </data>
-  <data name="gBExtras.Text" xml:space="preserve">
-    <value>Extras</value>
-  </data>
-  <data name="&gt;&gt;gBExtras.Name" xml:space="preserve">
-    <value>gBExtras</value>
-  </data>
-  <data name="&gt;&gt;gBExtras.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gBExtras.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gBExtras.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="cBMouse.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
@@ -5445,6 +5358,33 @@ a key by typing it</value>
   </data>
   <data name="&gt;&gt;lbRedV.ZOrder" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="gBExtras.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="gBExtras.Location" type="System.Drawing.Point, System.Drawing">
+    <value>871, 0</value>
+  </data>
+  <data name="gBExtras.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 446</value>
+  </data>
+  <data name="gBExtras.TabIndex" type="System.Int32, mscorlib">
+    <value>324</value>
+  </data>
+  <data name="gBExtras.Text" xml:space="preserve">
+    <value>Extras</value>
+  </data>
+  <data name="&gt;&gt;gBExtras.Name" xml:space="preserve">
+    <value>gBExtras</value>
+  </data>
+  <data name="&gt;&gt;gBExtras.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gBExtras.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gBExtras.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="rBRegular.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5617,6 +5557,27 @@ a key by typing it</value>
   <data name="pnl360Controls.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
   </data>
+  <data name="lb360Tip.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lb360Tip.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lb360Tip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>467, 24</value>
+  </data>
+  <data name="lb360Tip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="lb360Tip.TabIndex" type="System.Int32, mscorlib">
+    <value>323</value>
+  </data>
+  <data name="lb360Tip.Text" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="lb360Tip.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;lb360Tip.Name" xml:space="preserve">
     <value>lb360Tip</value>
   </data>
@@ -5652,39 +5613,6 @@ a key by typing it</value>
   </data>
   <data name="&gt;&gt;pnl360Controls.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="lb360Tip.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lb360Tip.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lb360Tip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>467, 24</value>
-  </data>
-  <data name="lb360Tip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>14, 13</value>
-  </data>
-  <data name="lb360Tip.TabIndex" type="System.Int32, mscorlib">
-    <value>323</value>
-  </data>
-  <data name="lb360Tip.Text" xml:space="preserve">
-    <value>A</value>
-  </data>
-  <data name="lb360Tip.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;lb360Tip.Name" xml:space="preserve">
-    <value>lb360Tip</value>
-  </data>
-  <data name="&gt;&gt;lb360Tip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lb360Tip.Parent" xml:space="preserve">
-    <value>pnl360Controls</value>
-  </data>
-  <data name="&gt;&gt;lb360Tip.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="pnlDS4Controls.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
@@ -5773,9 +5701,6 @@ a key by typing it</value>
   <data name="&gt;&gt;pnlDS4Controls.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="advColorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -5785,20 +5710,11 @@ a key by typing it</value>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1038, 446</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Keybaord</value>
-  </data>
-  <data name="&gt;&gt;advColorDialog.Name" xml:space="preserve">
-    <value>advColorDialog</value>
-  </data>
-  <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.7.3.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>KBM360</value>

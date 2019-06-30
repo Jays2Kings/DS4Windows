@@ -85,6 +85,9 @@ namespace DS4Windows.Forms
         [DllImport("psapi.dll")]
         private static extern uint GetModuleFileNameEx(IntPtr hWnd, IntPtr hModule, StringBuilder lpFileName, int nSize);
 
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
+
         public DS4Form(string[] args)
         {
             Global.FindConfigLocation();
@@ -385,6 +388,17 @@ namespace DS4Windows.Forms
             this.LocationChanged += TrackLocationChanged;
             if (!(StartMinimized || mini))
                 Form_Resize(null, null);
+
+            // Write current window class name as InterProcessCommunication identifier. The IPC classname is used in WM_DATACOPY messaging interface. .NET WinForms creates a semi-random clas names per application.
+            StringBuilder wndClassNameStr = new StringBuilder(256);
+            if (GetClassName(this.Handle, wndClassNameStr, wndClassNameStr.Capacity) != 0 && wndClassNameStr.Length > 0)
+            {
+                if (System.IO.File.Exists(appdatapath + "\\IPCClassName.dat") && System.IO.File.ReadAllText(appdatapath + "\\IPCClassName.dat") == wndClassNameStr.ToString())
+                    wndClassNameStr.Clear(); // The wnd classname is still the same, so no need to re-write it
+            
+                if(wndClassNameStr.Length > 0)
+                    System.IO.File.WriteAllText(appdatapath + "\\IPCClassName.dat", wndClassNameStr.ToString());
+            }
 
             Program.rootHub.Debug += On_Debug;
 
@@ -1136,6 +1150,51 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 {
                     systemShutdown = true;
                     break;
+                }
+                case Program.WM_COPYDATA:
+                {
+                        // Received InterProcessCommunication (IPC) message. Handle the requested command
+                        Program.COPYDATASTRUCT cds  = (Program.COPYDATASTRUCT)m.GetLParam(typeof(Program.COPYDATASTRUCT));
+                        if (cds.cbData >= 4)
+                        {
+                            int tdevice = -1;
+
+                            byte[] buffer = new byte[cds.cbData];
+                            Marshal.Copy(cds.lpData, buffer, 0, cds.cbData);
+                            string[] strData = Encoding.ASCII.GetString(buffer).Split('.');
+
+                            if (strData.Length >= 1)
+                            {
+                                strData[0] = strData[0].ToLower();
+
+                                if (strData[0] == "start")
+                                    ServiceStartup(true);
+                                else if (strData[0] == "stop")
+                                    ServiceShutdown(true);
+                                else if (strData[0] == "shutdown")
+                                    ScpForm_Closing(this, new FormClosingEventArgs(CloseReason.ApplicationExitCall, false));
+                                else if (strData[0] == "loadprofile" && strData.Length >= 3)
+                                {
+                                    // Command syntax: LoadProfile.device#.profileName (fex LoadProfile.1.GameSnake)
+                                    if(int.TryParse(strData[1], out tdevice)) tdevice--;
+
+                                    if (tdevice >= 0 && tdevice < 4)
+                                    {
+                                        ProfilePath[tdevice] = strData[2];
+                                        LoadProfile(tdevice, true, Program.rootHub);
+                                    }
+                                }
+                                else if (strData[0] == "loadtempprofile" && strData.Length >= 3)
+                                {
+                                    // Command syntax: LoadTempProfile.device#.profileName (fex LoadTempProfile.1.GameSnake)
+                                    if (int.TryParse(strData[1], out tdevice)) tdevice--;
+
+                                    if (tdevice >= 0 && tdevice < 4)
+                                        LoadTempProfile(tdevice, strData[2], true, Program.rootHub);
+                                }
+                            }
+                        }
+                        break;
                 }
                 default: break;
             }

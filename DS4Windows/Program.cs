@@ -11,6 +11,22 @@ namespace DS4Windows
 {
     static class Program
     {
+        [DllImport("user32.dll", EntryPoint = "FindWindow")]
+        private static extern IntPtr FindWindow(string sClass, string sWindow);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
+        private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, ref COPYDATASTRUCT lParam);
+
+        public const int WM_COPYDATA = 0x004A;
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct COPYDATASTRUCT
+        {
+            public IntPtr dwData;
+            public int cbData;
+            public IntPtr lpData;
+        }
+
         // Add "global\" in front of the EventName, then only one instance is allowed on the
         // whole system, including other users. But the application can not be brought
         // into view, of course. 
@@ -64,6 +80,46 @@ namespace DS4Windows
                     }
 
                     Environment.ExitCode = 0;
+                    return;
+                }
+                else if (s == "command" || s == "-command")
+                {
+                    i++;
+
+                    IntPtr hWndDS4WindowsForm = IntPtr.Zero;
+
+                    Global.FindConfigLocation();
+                    if (args[i].Length > 0 && !string.IsNullOrEmpty(Global.appdatapath) && System.IO.File.Exists(Global.appdatapath + "\\IPCClassName.dat"))
+                    {
+                        hWndDS4WindowsForm = FindWindow(System.IO.File.ReadAllText(Global.appdatapath + "\\IPCClassName.dat"), "DS4Windows");
+                        if (hWndDS4WindowsForm != IntPtr.Zero)
+                        {
+                            COPYDATASTRUCT cds;
+                            cds.lpData = IntPtr.Zero;
+
+                            try
+                            {
+                                cds.dwData = IntPtr.Zero;
+                                cds.cbData = args[i].Length;
+                                cds.lpData = Marshal.StringToHGlobalAnsi(args[i]);
+                                SendMessage(hWndDS4WindowsForm, WM_COPYDATA, IntPtr.Zero, ref cds);
+                            }
+                            finally
+                            {
+                                if(cds.lpData != IntPtr.Zero)
+                                    Marshal.FreeHGlobal(cds.lpData);
+                            }
+                        }
+                        else
+                        {
+                            Environment.ExitCode = 2;
+                        }
+                    }
+                    else
+                    {
+                        Environment.ExitCode = 1;
+                    }
+
                     return;
                 }
             }

@@ -617,9 +617,15 @@ namespace DS4Windows
                 dState.RY = (byte)Math.Round(curvey, 0);
             }
 
-            int lsDeadzone = getLSDeadzone(device);
+            /*int lsDeadzone = getLSDeadzone(device);
             int lsAntiDead = getLSAntiDeadzone(device);
             int lsMaxZone = getLSMaxzone(device);
+            */
+            StickDeadZoneInfo lsMod = GetLSDeadInfo(device);
+            int lsDeadzone = lsMod.deadZone;
+            int lsAntiDead = lsMod.antiDeadZone;
+            int lsMaxZone = lsMod.maxZone;
+
             if (lsDeadzone > 0 || lsAntiDead > 0 || lsMaxZone != 100)
             {
                 double lsSquared = Math.Pow(cState.LX - 128f, 2) + Math.Pow(cState.LY - 128f, 2);
@@ -693,9 +699,14 @@ namespace DS4Windows
                 }
             }
 
-            int rsDeadzone = getRSDeadzone(device);
+            /*int rsDeadzone = getRSDeadzone(device);
             int rsAntiDead = getRSAntiDeadzone(device);
             int rsMaxZone = getRSMaxzone(device);
+            */
+            StickDeadZoneInfo rsMod = GetRSDeadInfo(device);
+            int rsDeadzone = rsMod.deadZone;
+            int rsAntiDead = rsMod.antiDeadZone;
+            int rsMaxZone = rsMod.maxZone;
             if (rsDeadzone > 0 || rsAntiDead > 0 || rsMaxZone != 100)
             {
                 double rsSquared = Math.Pow(cState.RX - 128.0, 2) + Math.Pow(cState.RY - 128.0, 2);

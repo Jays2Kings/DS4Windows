@@ -1016,28 +1016,44 @@ namespace DS4Windows
             return m_Config.SZDeadzone[index];
         }
 
-        public static int[] LSDeadzone => m_Config.LSDeadzone;
+        //public static int[] LSDeadzone => m_Config.LSDeadzone;
         public static int getLSDeadzone(int index)
         {
-            return m_Config.LSDeadzone[index];
+            return m_Config.lsModInfo[index].deadZone;
+            //return m_Config.LSDeadzone[index];
         }
 
-        public static int[] RSDeadzone => m_Config.RSDeadzone;
+        //public static int[] RSDeadzone => m_Config.RSDeadzone;
         public static int getRSDeadzone(int index)
         {
-            return m_Config.RSDeadzone[index];
+            return m_Config.rsModInfo[index].deadZone;
+            //return m_Config.RSDeadzone[index];
         }
 
-        public static int[] LSAntiDeadzone => m_Config.LSAntiDeadzone;
+        //public static int[] LSAntiDeadzone => m_Config.LSAntiDeadzone;
         public static int getLSAntiDeadzone(int index)
         {
-            return m_Config.LSAntiDeadzone[index];
+            return m_Config.lsModInfo[index].antiDeadZone;
+            //return m_Config.LSAntiDeadzone[index];
         }
 
-        public static int[] RSAntiDeadzone => m_Config.RSAntiDeadzone;
+        //public static int[] RSAntiDeadzone => m_Config.RSAntiDeadzone;
         public static int getRSAntiDeadzone(int index)
         {
-            return m_Config.RSAntiDeadzone[index];
+            return m_Config.rsModInfo[index].antiDeadZone;
+            //return m_Config.RSAntiDeadzone[index];
+        }
+
+        public static StickDeadZoneInfo[] LSModInfo => m_Config.lsModInfo;
+        public static StickDeadZoneInfo GetLSDeadInfo(int index)
+        {
+            return m_Config.lsModInfo[index];
+        }
+
+        public static StickDeadZoneInfo[] RSModInfo => m_Config.rsModInfo;
+        public static StickDeadZoneInfo GetRSDeadInfo(int index)
+        {
+            return m_Config.rsModInfo[index];
         }
 
         public static double[] SXAntiDeadzone => m_Config.SXAntiDeadzone;
@@ -1052,16 +1068,18 @@ namespace DS4Windows
             return m_Config.SZAntiDeadzone[index];
         }
 
-        public static int[] LSMaxzone => m_Config.LSMaxzone;
+        //public static int[] LSMaxzone => m_Config.LSMaxzone;
         public static int getLSMaxzone(int index)
         {
-            return m_Config.LSMaxzone[index];
+            return m_Config.lsModInfo[index].maxZone;
+            //return m_Config.LSMaxzone[index];
         }
 
-        public static int[] RSMaxzone => m_Config.RSMaxzone;
+        //public static int[] RSMaxzone => m_Config.RSMaxzone;
         public static int getRSMaxzone(int index)
         {
-            return m_Config.RSMaxzone[index];
+            return m_Config.rsModInfo[index].maxZone;
+            //return m_Config.RSMaxzone[index];
         }
 
         public static double[] SXMaxzone => m_Config.SXMaxzone;
@@ -1568,13 +1586,6 @@ namespace DS4Windows
         }
     }
 
-    public class SquareStickInfo
-    {
-        public bool lsMode;
-        public bool rsMode;
-        public double roundness = 5.0;
-    }
-
     public class BackingStore
     {
         //public String m_Profile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool" + "\\Profiles.xml";
@@ -1602,9 +1613,18 @@ namespace DS4Windows
         public Byte[] rumble = new Byte[5] { 100, 100, 100, 100, 100 };
         public Byte[] touchSensitivity = new Byte[5] { 100, 100, 100, 100, 100 };
         public Byte[] l2Deadzone = new Byte[5] { 0, 0, 0, 0, 0 }, r2Deadzone = new Byte[5] { 0, 0, 0, 0, 0 };
-        public int[] LSDeadzone = new int[5] { 0, 0, 0, 0, 0 }, RSDeadzone = new int[5] { 0, 0, 0, 0, 0 };
-        public int[] LSAntiDeadzone = new int[5] { 0, 0, 0, 0, 0 }, RSAntiDeadzone = new int[5] { 0, 0, 0, 0, 0 };
-        public int[] LSMaxzone = new int[5] { 100, 100, 100, 100, 100 }, RSMaxzone = new int[5] { 100, 100, 100, 100, 100 };
+        public StickDeadZoneInfo[] lsModInfo = new StickDeadZoneInfo[5]
+        {
+            new StickDeadZoneInfo(), new StickDeadZoneInfo(),
+            new StickDeadZoneInfo(), new StickDeadZoneInfo(),
+            new StickDeadZoneInfo()
+        };
+        public StickDeadZoneInfo[] rsModInfo = new StickDeadZoneInfo[5]
+        {
+            new StickDeadZoneInfo(), new StickDeadZoneInfo(),
+            new StickDeadZoneInfo(), new StickDeadZoneInfo(),
+            new StickDeadZoneInfo()
+        };
         public int[] l2AntiDeadzone = new int[5] { 0, 0, 0, 0, 0 }, r2AntiDeadzone = new int[5] { 0, 0, 0, 0, 0 };
         public int[] l2Maxzone = new int[5] { 100, 100, 100, 100, 100 }, r2Maxzone = new int[5] { 100, 100, 100, 100, 100 };
         public double[] LSRotation = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 }, RSRotation = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 };
@@ -1964,12 +1984,12 @@ namespace DS4Windows
                 XmlNode xmlR2Maxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "R2MaxZone", null); xmlR2Maxzone.InnerText = r2Maxzone[device].ToString(); Node.AppendChild(xmlR2Maxzone);
                 XmlNode xmlButtonMouseSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "ButtonMouseSensitivity", null); xmlButtonMouseSensitivity.InnerText = buttonMouseSensitivity[device].ToString(); Node.AppendChild(xmlButtonMouseSensitivity);
                 XmlNode xmlRainbow = m_Xdoc.CreateNode(XmlNodeType.Element, "Rainbow", null); xmlRainbow.InnerText = rainbow[device].ToString(); Node.AppendChild(xmlRainbow);
-                XmlNode xmlLSD = m_Xdoc.CreateNode(XmlNodeType.Element, "LSDeadZone", null); xmlLSD.InnerText = LSDeadzone[device].ToString(); Node.AppendChild(xmlLSD);
-                XmlNode xmlRSD = m_Xdoc.CreateNode(XmlNodeType.Element, "RSDeadZone", null); xmlRSD.InnerText = RSDeadzone[device].ToString(); Node.AppendChild(xmlRSD);
-                XmlNode xmlLSAD = m_Xdoc.CreateNode(XmlNodeType.Element, "LSAntiDeadZone", null); xmlLSAD.InnerText = LSAntiDeadzone[device].ToString(); Node.AppendChild(xmlLSAD);
-                XmlNode xmlRSAD = m_Xdoc.CreateNode(XmlNodeType.Element, "RSAntiDeadZone", null); xmlRSAD.InnerText = RSAntiDeadzone[device].ToString(); Node.AppendChild(xmlRSAD);
-                XmlNode xmlLSMaxZone = m_Xdoc.CreateNode(XmlNodeType.Element, "LSMaxZone", null); xmlLSMaxZone.InnerText = LSMaxzone[device].ToString(); Node.AppendChild(xmlLSMaxZone);
-                XmlNode xmlRSMaxZone = m_Xdoc.CreateNode(XmlNodeType.Element, "RSMaxZone", null); xmlRSMaxZone.InnerText = RSMaxzone[device].ToString(); Node.AppendChild(xmlRSMaxZone);
+                XmlNode xmlLSD = m_Xdoc.CreateNode(XmlNodeType.Element, "LSDeadZone", null); xmlLSD.InnerText = lsModInfo[device].deadZone.ToString(); Node.AppendChild(xmlLSD);
+                XmlNode xmlRSD = m_Xdoc.CreateNode(XmlNodeType.Element, "RSDeadZone", null); xmlRSD.InnerText = rsModInfo[device].deadZone.ToString(); Node.AppendChild(xmlRSD);
+                XmlNode xmlLSAD = m_Xdoc.CreateNode(XmlNodeType.Element, "LSAntiDeadZone", null); xmlLSAD.InnerText = lsModInfo[device].antiDeadZone.ToString(); Node.AppendChild(xmlLSAD);
+                XmlNode xmlRSAD = m_Xdoc.CreateNode(XmlNodeType.Element, "RSAntiDeadZone", null); xmlRSAD.InnerText = rsModInfo[device].antiDeadZone.ToString(); Node.AppendChild(xmlRSAD);
+                XmlNode xmlLSMaxZone = m_Xdoc.CreateNode(XmlNodeType.Element, "LSMaxZone", null); xmlLSMaxZone.InnerText = lsModInfo[device].maxZone.ToString(); Node.AppendChild(xmlLSMaxZone);
+                XmlNode xmlRSMaxZone = m_Xdoc.CreateNode(XmlNodeType.Element, "RSMaxZone", null); xmlRSMaxZone.InnerText = rsModInfo[device].maxZone.ToString(); Node.AppendChild(xmlRSMaxZone);
                 XmlNode xmlLSRotation = m_Xdoc.CreateNode(XmlNodeType.Element, "LSRotation", null); xmlLSRotation.InnerText = Convert.ToInt32(LSRotation[device] * 180.0 / Math.PI).ToString(); Node.AppendChild(xmlLSRotation);
                 XmlNode xmlRSRotation = m_Xdoc.CreateNode(XmlNodeType.Element, "RSRotation", null); xmlRSRotation.InnerText = Convert.ToInt32(RSRotation[device] * 180.0 / Math.PI).ToString(); Node.AppendChild(xmlRSRotation);
 
@@ -2693,28 +2713,28 @@ namespace DS4Windows
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Rainbow"); double.TryParse(Item.InnerText, out rainbow[device]); }
                 catch { rainbow[device] = 0; missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSDeadZone"); int.TryParse(Item.InnerText, out LSDeadzone[device]); }
-                catch { LSDeadzone[device] = 0; missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSDeadZone"); int.TryParse(Item.InnerText, out RSDeadzone[device]); }
-                catch { RSDeadzone[device] = 0; missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSAntiDeadZone"); int.TryParse(Item.InnerText, out LSAntiDeadzone[device]); }
-                catch { LSAntiDeadzone[device] = 0; missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSAntiDeadZone"); int.TryParse(Item.InnerText, out RSAntiDeadzone[device]); }
-                catch { RSAntiDeadzone[device] = 0; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSDeadZone"); int.TryParse(Item.InnerText, out lsModInfo[device].deadZone); }
+                catch { lsModInfo[device].deadZone = 0; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSDeadZone"); int.TryParse(Item.InnerText, out rsModInfo[device].deadZone); }
+                catch { rsModInfo[device].deadZone = 0; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSAntiDeadZone"); int.TryParse(Item.InnerText, out lsModInfo[device].antiDeadZone); }
+                catch { lsModInfo[device].antiDeadZone = 0; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSAntiDeadZone"); int.TryParse(Item.InnerText, out rsModInfo[device].antiDeadZone); }
+                catch { rsModInfo[device].antiDeadZone = 0; missingSetting = true; }
 
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSMaxZone"); int temp = 100;
                     int.TryParse(Item.InnerText, out temp);
-                    LSMaxzone[device] = Math.Min(Math.Max(temp, 0), 100);
+                    lsModInfo[device].maxZone = Math.Min(Math.Max(temp, 0), 100);
                 }
-                catch { LSMaxzone[device] = 100; missingSetting = true; }
+                catch { lsModInfo[device].maxZone = 100; missingSetting = true; }
 
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSMaxZone"); int temp = 100;
                     int.TryParse(Item.InnerText, out temp);
-                    RSMaxzone[device] = Math.Min(Math.Max(temp, 0), 100);
+                    rsModInfo[device].maxZone = Math.Min(Math.Max(temp, 0), 100);
                 }
-                catch { RSMaxzone[device] = 100; missingSetting = true; }
+                catch { rsModInfo[device].maxZone = 100; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXDeadZone"); double.TryParse(Item.InnerText, out SXDeadzone[device]); }
                 catch { SXDeadzone[device] = 0.02; missingSetting = true; }
@@ -4169,9 +4189,9 @@ namespace DS4Windows
             rumble[device] = 100;
             touchSensitivity[device] = 100;
             l2Deadzone[device] = r2Deadzone[device] = 0;
-            LSDeadzone[device] = RSDeadzone[device] = 0;
-            LSAntiDeadzone[device] = RSAntiDeadzone[device] = 0;
-            LSMaxzone[device] = RSMaxzone[device] = 100;
+            lsModInfo[device].deadZone = rsModInfo[device].deadZone = 0;
+            lsModInfo[device].antiDeadZone = rsModInfo[device].antiDeadZone = 0;
+            lsModInfo[device].maxZone = rsModInfo[device].maxZone = 100;
             l2AntiDeadzone[device] = r2AntiDeadzone[device] = 0;
             l2Maxzone[device] = r2Maxzone[device] = 100;
             LSRotation[device] = 0.0;

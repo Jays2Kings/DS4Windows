@@ -509,7 +509,7 @@ namespace DS4Windows.Forms
 
                 try
                 {
-                    nUDLS.Value = Math.Round((decimal)(LSDeadzone[device] / 127d), 3);
+                    nUDLS.Value = Math.Round((decimal)(LSModInfo[device].deadZone / 127d), 3);
                 }
                 catch
                 {
@@ -517,7 +517,7 @@ namespace DS4Windows.Forms
                 }
                 try
                 {
-                    nUDRS.Value = Math.Round((decimal)(RSDeadzone[device] / 127d), 3);
+                    nUDRS.Value = Math.Round((decimal)(RSModInfo[device].deadZone / 127d), 3);
                 }
                 catch
                 {
@@ -526,7 +526,7 @@ namespace DS4Windows.Forms
 
                 try
                 {
-                    nUDLSAntiDead.Value = (decimal)(LSAntiDeadzone[device] / 100d);
+                    nUDLSAntiDead.Value = (decimal)(LSModInfo[device].antiDeadZone / 100d);
                 }
                 catch
                 {
@@ -534,7 +534,7 @@ namespace DS4Windows.Forms
                 }
                 try
                 {
-                    nUDRSAntiDead.Value = (decimal)(RSAntiDeadzone[device] / 100d);
+                    nUDRSAntiDead.Value = (decimal)(RSModInfo[device].antiDeadZone / 100d);
                 }
                 catch
                 {
@@ -543,7 +543,7 @@ namespace DS4Windows.Forms
 
                 try
                 {
-                    nUDLSMaxZone.Value = (decimal)(LSMaxzone[device] / 100d);
+                    nUDLSMaxZone.Value = (decimal)(LSModInfo[device].maxZone / 100d);
                 }
                 catch
                 {
@@ -551,7 +551,7 @@ namespace DS4Windows.Forms
                 }
                 try
                 {
-                    nUDRSMaxZone.Value = (decimal)(RSMaxzone[device] / 100d);
+                    nUDRSMaxZone.Value = (decimal)(RSModInfo[device].maxZone / 100d);
                 }
                 catch
                 {
@@ -1313,12 +1313,12 @@ namespace DS4Windows.Forms
 
             IdleDisconnectTimeout[device] = (int)(nUDIdleDisconnect.Value * 60);
             Rainbow[device] = (int)nUDRainbow.Value;
-            RSDeadzone[device] = (int)Math.Round((nUDRS.Value * 127), 0);
-            LSDeadzone[device] = (int)Math.Round((nUDLS.Value * 127), 0);
-            LSAntiDeadzone[device] = (int)(nUDLSAntiDead.Value * 100);
-            RSAntiDeadzone[device] = (int)(nUDRSAntiDead.Value * 100);
-            LSMaxzone[device] = (int)(nUDLSMaxZone.Value * 100);
-            RSMaxzone[device] = (int)(nUDRSMaxZone.Value * 100);
+            RSModInfo[device].deadZone = (int)Math.Round((nUDRS.Value * 127), 0);
+            LSModInfo[device].deadZone = (int)Math.Round((nUDLS.Value * 127), 0);
+            LSModInfo[device].antiDeadZone = (int)(nUDLSAntiDead.Value * 100);
+            RSModInfo[device].antiDeadZone = (int)(nUDRSAntiDead.Value * 100);
+            LSModInfo[device].maxZone = (int)(nUDLSMaxZone.Value * 100);
+            RSModInfo[device].maxZone = (int)(nUDRSMaxZone.Value * 100);
             LSRotation[device] = (double)nUDLSRotation.Value * Math.PI / 180.0;
             RSRotation[device] = (double)nUDRSRotation.Value * Math.PI / 180.0;
             ButtonMouseSensitivity[device] = (int)numUDMouseSens.Value;
@@ -2068,7 +2068,7 @@ namespace DS4Windows.Forms
         private void numUDRS_ValueChanged(object sender, EventArgs e)
         {
             nUDRS.Value = Math.Round(nUDRS.Value, 2);
-            RSDeadzone[device] = (int)Math.Round((nUDRS.Value * 127),0);
+            RSModInfo[device].deadZone = (int)Math.Round((nUDRS.Value * 127),0);
             pnlRSTrack.BackColor = nUDRS.Value >= 0 ? Color.White : Color.Red;
             pnlRSTrack.Refresh();
         }
@@ -2096,7 +2096,7 @@ namespace DS4Windows.Forms
         private void numUDLS_ValueChanged(object sender, EventArgs e)
         {
             nUDLS.Value = Math.Round(nUDLS.Value, 2);
-            LSDeadzone[device] = (int)Math.Round((nUDLS.Value * 127), 0);
+            LSModInfo[device].deadZone = (int)Math.Round((nUDLS.Value * 127), 0);
             pnlLSTrack.BackColor = nUDLS.Value >= 0 ? Color.White : Color.Red;
             pnlLSTrack.Refresh();
         }
@@ -2735,12 +2735,12 @@ namespace DS4Windows.Forms
 
         private void nUDLSAntiDead_ValueChanged(object sender, EventArgs e)
         {
-            LSAntiDeadzone[device] = (int)(nUDLSAntiDead.Value * 100);
+            LSModInfo[device].antiDeadZone = (int)(nUDLSAntiDead.Value * 100);
         }
 
         private void nUDRSAntiDead_ValueChanged(object sender, EventArgs e)
         {
-            RSAntiDeadzone[device] = (int)(nUDRSAntiDead.Value * 100);
+            RSModInfo[device].antiDeadZone = (int)(nUDRSAntiDead.Value * 100);
         }
 
         private void nUDL2AntiDead_ValueChanged(object sender, EventArgs e)
@@ -2778,12 +2778,12 @@ namespace DS4Windows.Forms
 
         private void nUDRSMaxZone_ValueChanged(object sender, EventArgs e)
         {
-            RSMaxzone[device] = (int)(nUDRSMaxZone.Value * 100);
+            RSModInfo[device].maxZone = (int)(nUDRSMaxZone.Value * 100);
         }
 
         private void nUDLSMaxZone_ValueChanged(object sender, EventArgs e)
         {
-            LSMaxzone[device] = (int)(nUDLSMaxZone.Value * 100);
+            LSModInfo[device].maxZone = (int)(nUDLSMaxZone.Value * 100);
         }
 
         private void nUDL2Maxzone_ValueChanged(object sender, EventArgs e)

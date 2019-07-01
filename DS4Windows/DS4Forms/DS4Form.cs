@@ -68,6 +68,8 @@ namespace DS4Windows.Forms
         private const string UPDATER_VERSION = "1.3.1";
         private const int WM_QUERYENDSESSION = 0x11;
         private const int WM_CLOSE = 0x10;
+        public  const int WM_COPYDATA = 0x004A;
+
         internal string updaterExe = Environment.Is64BitProcess ? "DS4Updater.exe" : "DS4Updater_x86.exe";
 
         [DllImport("user32.dll")]
@@ -86,7 +88,7 @@ namespace DS4Windows.Forms
         private static extern uint GetModuleFileNameEx(IntPtr hWnd, IntPtr hModule, StringBuilder lpFileName, int nSize);
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
+        private static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
 
         public DS4Form(string[] args)
         {
@@ -1151,11 +1153,11 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                     systemShutdown = true;
                     break;
                 }
-                case Program.WM_COPYDATA:
+                case WM_COPYDATA:
                 {
-                        // Received InterProcessCommunication (IPC) message. Handle the requested command
+                        // Received InterProcessCommunication (IPC) message. DS4Win command is embedded as a string value in lpData buffer
                         Program.COPYDATASTRUCT cds  = (Program.COPYDATASTRUCT)m.GetLParam(typeof(Program.COPYDATASTRUCT));
-                        if (cds.cbData >= 4)
+                        if (cds.cbData >= 4 && cds.cbData <= 256)
                         {
                             int tdevice = -1;
 
@@ -1173,24 +1175,25 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                                     ServiceShutdown(true);
                                 else if (strData[0] == "shutdown")
                                     ScpForm_Closing(this, new FormClosingEventArgs(CloseReason.ApplicationExitCall, false));
-                                else if (strData[0] == "loadprofile" && strData.Length >= 3)
+                                else if ( (strData[0] == "loadprofile" || strData[0] == "loadtempprofile") && strData.Length >= 3)
                                 {
-                                    // Command syntax: LoadProfile.device#.profileName (fex LoadProfile.1.GameSnake)
+                                    // Command syntax: LoadProfile.device#.profileName (fex LoadProfile.1.GameSnake or LoadTempProfile.1.WebBrowserSet)
                                     if(int.TryParse(strData[1], out tdevice)) tdevice--;
 
-                                    if (tdevice >= 0 && tdevice < 4)
+                                    if (tdevice >= 0 && tdevice < ControlService.DS4_CONTROLLER_COUNT && File.Exists(Global.appdatapath + "\\Profiles\\" + strData[2] + ".xml"))
                                     {
-                                        ProfilePath[tdevice] = strData[2];
-                                        LoadProfile(tdevice, true, Program.rootHub);
-                                    }
-                                }
-                                else if (strData[0] == "loadtempprofile" && strData.Length >= 3)
-                                {
-                                    // Command syntax: LoadTempProfile.device#.profileName (fex LoadTempProfile.1.GameSnake)
-                                    if (int.TryParse(strData[1], out tdevice)) tdevice--;
+                                        if (strData[0] == "loadprofile")
+                                        {
+                                            ProfilePath[tdevice] = strData[2];
+                                            LoadProfile(tdevice, true, Program.rootHub);
+                                        }
+                                        else
+                                        {
+                                            LoadTempProfile(tdevice, strData[2], true, Program.rootHub);
+                                        }
 
-                                    if (tdevice >= 0 && tdevice < 4)
-                                        LoadTempProfile(tdevice, strData[2], true, Program.rootHub);
+                                        Program.rootHub.LogDebug(Properties.Resources.UsingProfile.Replace("*number*", (tdevice + 1).ToString()).Replace("*Profile name*", strData[2]));
+                                    }
                                 }
                             }
                         }

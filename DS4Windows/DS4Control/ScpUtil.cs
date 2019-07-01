@@ -992,16 +992,30 @@ namespace DS4Windows
             return m_Config.touchpadInvert[index];
         }
 
-        public static byte[] L2Deadzone => m_Config.l2Deadzone;
-        public static byte getL2Deadzone(int index)
+        public static TriggerDeadZoneZInfo[] L2ModInfo => m_Config.l2ModInfo;
+        public static TriggerDeadZoneZInfo GetL2ModInfo(int index)
         {
-            return m_Config.l2Deadzone[index];
+            return m_Config.l2ModInfo[index];
         }
 
-        public static byte[] R2Deadzone => m_Config.r2Deadzone;
+        //public static byte[] L2Deadzone => m_Config.l2Deadzone;
+        public static byte getL2Deadzone(int index)
+        {
+            return m_Config.l2ModInfo[index].deadZone;
+            //return m_Config.l2Deadzone[index];
+        }
+
+        public static TriggerDeadZoneZInfo[] R2ModInfo => m_Config.r2ModInfo;
+        public static TriggerDeadZoneZInfo GetR2ModInfo(int index)
+        {
+            return m_Config.r2ModInfo[index];
+        }
+
+        //public static byte[] R2Deadzone => m_Config.r2Deadzone;
         public static byte getR2Deadzone(int index)
         {
-            return m_Config.r2Deadzone[index];
+            return m_Config.r2ModInfo[index].deadZone;
+            //return m_Config.r2Deadzone[index];
         }
 
         public static double[] SXDeadzone => m_Config.SXDeadzone;
@@ -1094,28 +1108,32 @@ namespace DS4Windows
             return m_Config.SZMaxzone[index];
         }
 
-        public static int[] L2AntiDeadzone => m_Config.l2AntiDeadzone;
+        //public static int[] L2AntiDeadzone => m_Config.l2AntiDeadzone;
         public static int getL2AntiDeadzone(int index)
         {
-            return m_Config.l2AntiDeadzone[index];
+            return m_Config.l2ModInfo[index].antiDeadZone;
+            //return m_Config.l2AntiDeadzone[index];
         }
 
-        public static int[] R2AntiDeadzone => m_Config.r2AntiDeadzone;
+        //public static int[] R2AntiDeadzone => m_Config.r2AntiDeadzone;
         public static int getR2AntiDeadzone(int index)
         {
-            return m_Config.r2AntiDeadzone[index];
+            return m_Config.r2ModInfo[index].antiDeadZone;
+            //return m_Config.r2AntiDeadzone[index];
         }
 
-        public static int[] L2Maxzone => m_Config.l2Maxzone;
+        //public static int[] L2Maxzone => m_Config.l2Maxzone;
         public static int getL2Maxzone(int index)
         {
-            return m_Config.l2Maxzone[index];
+            return m_Config.l2ModInfo[index].maxZone;
+            //return m_Config.l2Maxzone[index];
         }
 
-        public static int[] R2Maxzone => m_Config.r2Maxzone;
+        //public static int[] R2Maxzone => m_Config.r2Maxzone;
         public static int getR2Maxzone(int index)
         {
-            return m_Config.r2Maxzone[index];
+            return m_Config.r2ModInfo[index].maxZone;
+            //return m_Config.r2Maxzone[index];
         }
 
         public static int[] LSCurve => m_Config.lsCurve;
@@ -1612,7 +1630,6 @@ namespace DS4Windows
         public bool[] distanceProfiles = new bool[5] { false, false, false, false, false };
         public Byte[] rumble = new Byte[5] { 100, 100, 100, 100, 100 };
         public Byte[] touchSensitivity = new Byte[5] { 100, 100, 100, 100, 100 };
-        public Byte[] l2Deadzone = new Byte[5] { 0, 0, 0, 0, 0 }, r2Deadzone = new Byte[5] { 0, 0, 0, 0, 0 };
         public StickDeadZoneInfo[] lsModInfo = new StickDeadZoneInfo[5]
         {
             new StickDeadZoneInfo(), new StickDeadZoneInfo(),
@@ -1625,8 +1642,22 @@ namespace DS4Windows
             new StickDeadZoneInfo(), new StickDeadZoneInfo(),
             new StickDeadZoneInfo()
         };
+        public TriggerDeadZoneZInfo[] l2ModInfo = new TriggerDeadZoneZInfo[5]
+        {
+            new TriggerDeadZoneZInfo(), new TriggerDeadZoneZInfo(),
+            new TriggerDeadZoneZInfo(), new TriggerDeadZoneZInfo(),
+            new TriggerDeadZoneZInfo()
+        };
+        public TriggerDeadZoneZInfo[] r2ModInfo = new TriggerDeadZoneZInfo[5]
+        {
+            new TriggerDeadZoneZInfo(), new TriggerDeadZoneZInfo(),
+            new TriggerDeadZoneZInfo(), new TriggerDeadZoneZInfo(),
+            new TriggerDeadZoneZInfo()
+        };
+        /*public Byte[] l2Deadzone = new Byte[5] { 0, 0, 0, 0, 0 }, r2Deadzone = new Byte[5] { 0, 0, 0, 0, 0 };
         public int[] l2AntiDeadzone = new int[5] { 0, 0, 0, 0, 0 }, r2AntiDeadzone = new int[5] { 0, 0, 0, 0, 0 };
         public int[] l2Maxzone = new int[5] { 100, 100, 100, 100, 100 }, r2Maxzone = new int[5] { 100, 100, 100, 100, 100 };
+        */
         public double[] LSRotation = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 }, RSRotation = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 };
         public double[] SXDeadzone = new double[5] { 0.25, 0.25, 0.25, 0.25, 0.25 }, SZDeadzone = new double[5] { 0.25, 0.25, 0.25, 0.25, 0.25 };
         public double[] SXMaxzone = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 },
@@ -1975,13 +2006,13 @@ namespace DS4Windows
                 XmlNode xmlTapSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "tapSensitivity", null); xmlTapSensitivity.InnerText = tapSensitivity[device].ToString(); Node.AppendChild(xmlTapSensitivity);
                 XmlNode xmlDouble = m_Xdoc.CreateNode(XmlNodeType.Element, "doubleTap", null); xmlDouble.InnerText = doubleTap[device].ToString(); Node.AppendChild(xmlDouble);
                 XmlNode xmlScrollSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "scrollSensitivity", null); xmlScrollSensitivity.InnerText = scrollSensitivity[device].ToString(); Node.AppendChild(xmlScrollSensitivity);
-                XmlNode xmlLeftTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "LeftTriggerMiddle", null); xmlLeftTriggerMiddle.InnerText = l2Deadzone[device].ToString(); Node.AppendChild(xmlLeftTriggerMiddle);
-                XmlNode xmlRightTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "RightTriggerMiddle", null); xmlRightTriggerMiddle.InnerText = r2Deadzone[device].ToString(); Node.AppendChild(xmlRightTriggerMiddle);
+                XmlNode xmlLeftTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "LeftTriggerMiddle", null); xmlLeftTriggerMiddle.InnerText = l2ModInfo[device].deadZone.ToString(); Node.AppendChild(xmlLeftTriggerMiddle);
+                XmlNode xmlRightTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "RightTriggerMiddle", null); xmlRightTriggerMiddle.InnerText = r2ModInfo[device].deadZone.ToString(); Node.AppendChild(xmlRightTriggerMiddle);
                 XmlNode xmlTouchpadInvert = m_Xdoc.CreateNode(XmlNodeType.Element, "TouchpadInvert", null); xmlTouchpadInvert.InnerText = touchpadInvert[device].ToString(); Node.AppendChild(xmlTouchpadInvert);
-                XmlNode xmlL2AD = m_Xdoc.CreateNode(XmlNodeType.Element, "L2AntiDeadZone", null); xmlL2AD.InnerText = l2AntiDeadzone[device].ToString(); Node.AppendChild(xmlL2AD);
-                XmlNode xmlR2AD = m_Xdoc.CreateNode(XmlNodeType.Element, "R2AntiDeadZone", null); xmlR2AD.InnerText = r2AntiDeadzone[device].ToString(); Node.AppendChild(xmlR2AD);
-                XmlNode xmlL2Maxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "L2MaxZone", null); xmlL2Maxzone.InnerText = l2Maxzone[device].ToString(); Node.AppendChild(xmlL2Maxzone);
-                XmlNode xmlR2Maxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "R2MaxZone", null); xmlR2Maxzone.InnerText = r2Maxzone[device].ToString(); Node.AppendChild(xmlR2Maxzone);
+                XmlNode xmlL2AD = m_Xdoc.CreateNode(XmlNodeType.Element, "L2AntiDeadZone", null); xmlL2AD.InnerText = l2ModInfo[device].antiDeadZone.ToString(); Node.AppendChild(xmlL2AD);
+                XmlNode xmlR2AD = m_Xdoc.CreateNode(XmlNodeType.Element, "R2AntiDeadZone", null); xmlR2AD.InnerText = r2ModInfo[device].antiDeadZone.ToString(); Node.AppendChild(xmlR2AD);
+                XmlNode xmlL2Maxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "L2MaxZone", null); xmlL2Maxzone.InnerText = l2ModInfo[device].maxZone.ToString(); Node.AppendChild(xmlL2Maxzone);
+                XmlNode xmlR2Maxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "R2MaxZone", null); xmlR2Maxzone.InnerText = r2ModInfo[device].maxZone.ToString(); Node.AppendChild(xmlR2Maxzone);
                 XmlNode xmlButtonMouseSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "ButtonMouseSensitivity", null); xmlButtonMouseSensitivity.InnerText = buttonMouseSensitivity[device].ToString(); Node.AppendChild(xmlButtonMouseSensitivity);
                 XmlNode xmlRainbow = m_Xdoc.CreateNode(XmlNodeType.Element, "Rainbow", null); xmlRainbow.InnerText = rainbow[device].ToString(); Node.AppendChild(xmlRainbow);
                 XmlNode xmlLSD = m_Xdoc.CreateNode(XmlNodeType.Element, "LSDeadZone", null); xmlLSD.InnerText = lsModInfo[device].deadZone.ToString(); Node.AppendChild(xmlLSD);
@@ -2666,30 +2697,30 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TouchpadInvert"); int temp = 0; int.TryParse(Item.InnerText, out temp); touchpadInvert[device] = Math.Min(Math.Max(temp, 0), 3); }
                 catch { touchpadInvert[device] = 0; missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LeftTriggerMiddle"); byte.TryParse(Item.InnerText, out l2Deadzone[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LeftTriggerMiddle"); byte.TryParse(Item.InnerText, out l2ModInfo[device].deadZone); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RightTriggerMiddle"); byte.TryParse(Item.InnerText, out r2Deadzone[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RightTriggerMiddle"); byte.TryParse(Item.InnerText, out r2ModInfo[device].deadZone); }
                 catch { missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2AntiDeadZone"); int.TryParse(Item.InnerText, out l2AntiDeadzone[device]); }
-                catch { l2AntiDeadzone[device] = 0; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2AntiDeadZone"); int.TryParse(Item.InnerText, out l2ModInfo[device].antiDeadZone); }
+                catch { l2ModInfo[device].antiDeadZone = 0; missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2AntiDeadZone"); int.TryParse(Item.InnerText, out r2AntiDeadzone[device]); }
-                catch { r2AntiDeadzone[device] = 0; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2AntiDeadZone"); int.TryParse(Item.InnerText, out r2ModInfo[device].antiDeadZone); }
+                catch { r2ModInfo[device].antiDeadZone = 0; missingSetting = true; }
 
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2MaxZone"); int temp = 100;
                     int.TryParse(Item.InnerText, out temp);
-                    l2Maxzone[device] = Math.Min(Math.Max(temp, 0), 100);
+                    l2ModInfo[device].maxZone = Math.Min(Math.Max(temp, 0), 100);
                 }
-                catch { l2Maxzone[device] = 100; missingSetting = true; }
+                catch { l2ModInfo[device].maxZone = 100; missingSetting = true; }
 
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2MaxZone"); int temp = 100;
                     int.TryParse(Item.InnerText, out temp);
-                    r2Maxzone[device] = Math.Min(Math.Max(temp, 0), 100);
+                    r2ModInfo[device].maxZone = Math.Min(Math.Max(temp, 0), 100);
                 }
-                catch { r2Maxzone[device] = 100; missingSetting = true; }
+                catch { r2ModInfo[device].maxZone = 100; missingSetting = true; }
 
                 try
                 {
@@ -4188,12 +4219,12 @@ namespace DS4Windows
             flashType[device] = 0;
             rumble[device] = 100;
             touchSensitivity[device] = 100;
-            l2Deadzone[device] = r2Deadzone[device] = 0;
+            l2ModInfo[device].deadZone = r2ModInfo[device].deadZone = 0;
             lsModInfo[device].deadZone = rsModInfo[device].deadZone = 0;
             lsModInfo[device].antiDeadZone = rsModInfo[device].antiDeadZone = 0;
             lsModInfo[device].maxZone = rsModInfo[device].maxZone = 100;
-            l2AntiDeadzone[device] = r2AntiDeadzone[device] = 0;
-            l2Maxzone[device] = r2Maxzone[device] = 100;
+            l2ModInfo[device].antiDeadZone = r2ModInfo[device].antiDeadZone = 0;
+            l2ModInfo[device].maxZone = r2ModInfo[device].maxZone = 100;
             LSRotation[device] = 0.0;
             RSRotation[device] = 0.0;
             SXDeadzone[device] = SZDeadzone[device] = 0.25;

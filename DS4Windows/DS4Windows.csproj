@@ -1138,7 +1138,6 @@
     <Content Include="Resources\BACK.png" />
     <Content Include="Resources\BT.png" />
     <Content Include="Resources\checked.png" />
-    <Content Include="Resources\Clock.png" />
     <Content Include="Resources\delete.png" />
     <Content Include="Resources\DOWN.png" />
     <None Include="Resources\DS4 Config.png" />
@@ -1170,8 +1169,6 @@
     <Content Include="Resources\DS4W.ico" />
     <Content Include="Resources\EE.wav" />
     <Content Include="Resources\export.png" />
-    <Content Include="Resources\imageres_import.png" />
-    <Content Include="Resources\imageres_new.png" />
     <Content Include="Resources\LB.png" />
     <None Include="Resources\left touch.png" />
     <Content Include="Resources\LEFT.png" />
@@ -1197,11 +1194,6 @@
     <Content Include="Resources\RSU.png" />
     <Content Include="Resources\RT.png" />
     <Content Include="Resources\saveprofile.png" />
-    <Content Include="Resources\Scp_All.ico" />
-    <Content Include="Resources\shell32 delete.png" />
-    <Content Include="Resources\shell32_copy.png" />
-    <Content Include="Resources\shell32_export.png" />
-    <Content Include="Resources\shell32_new.png" />
     <Content Include="Resources\size.png" />
     <Content Include="Resources\START.png" />
     <Content Include="Resources\UP.png" />

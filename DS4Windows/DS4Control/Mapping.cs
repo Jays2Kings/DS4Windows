@@ -782,9 +782,15 @@ namespace DS4Windows
                 }
             }
 
-            byte l2Deadzone = getL2Deadzone(device);
+            /*byte l2Deadzone = getL2Deadzone(device);
             int l2AntiDeadzone = getL2AntiDeadzone(device);
             int l2Maxzone = getL2Maxzone(device);
+            */
+
+            TriggerDeadZoneZInfo l2ModInfo = GetL2ModInfo(device);
+            byte l2Deadzone = l2ModInfo.deadZone;
+            int l2AntiDeadzone = l2ModInfo.antiDeadZone;
+            int l2Maxzone = l2ModInfo.maxZone;
             if (l2Deadzone > 0 || l2AntiDeadzone > 0 || l2Maxzone != 100)
             {
                 double tempL2Output = cState.L2 / 255.0;
@@ -820,9 +826,14 @@ namespace DS4Windows
                 }
             }
 
-            byte r2Deadzone = getR2Deadzone(device);
+            /*byte r2Deadzone = getR2Deadzone(device);
             int r2AntiDeadzone = getR2AntiDeadzone(device);
             int r2Maxzone = getR2Maxzone(device);
+            */
+            TriggerDeadZoneZInfo r2ModInfo = GetR2ModInfo(device);
+            byte r2Deadzone = r2ModInfo.deadZone;
+            int r2AntiDeadzone = r2ModInfo.antiDeadZone;
+            int r2Maxzone = r2ModInfo.maxZone;
             if (r2Deadzone > 0 || r2AntiDeadzone > 0 || r2Maxzone != 100)
             {
                 double tempR2Output = cState.R2 / 255.0;

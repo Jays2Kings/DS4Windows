@@ -458,7 +458,7 @@ namespace DS4Windows.Forms
 
                 try
                 {
-                    nUDL2.Value = Math.Round((decimal)L2Deadzone[device] / 255, 2);
+                    nUDL2.Value = Math.Round((decimal)L2ModInfo[device].deadZone / 255, 2);
                 }
                 catch
                 {
@@ -466,7 +466,7 @@ namespace DS4Windows.Forms
                 }
                 try
                 {
-                    nUDR2.Value = Math.Round((decimal)R2Deadzone[device] / 255, 2);
+                    nUDR2.Value = Math.Round((decimal)R2ModInfo[device].deadZone / 255, 2);
                 }
                 catch
                 {
@@ -475,7 +475,7 @@ namespace DS4Windows.Forms
 
                 try
                 {
-                    nUDL2AntiDead.Value = (decimal)(L2AntiDeadzone[device] / 100d);
+                    nUDL2AntiDead.Value = (decimal)(L2ModInfo[device].antiDeadZone / 100d);
                 }
                 catch
                 {
@@ -483,7 +483,7 @@ namespace DS4Windows.Forms
                 }
                 try
                 {
-                    nUDR2AntiDead.Value = (decimal)(R2AntiDeadzone[device] / 100d);
+                    nUDR2AntiDead.Value = (decimal)(R2ModInfo[device].antiDeadZone / 100d);
                 }
                 catch
                 {
@@ -492,7 +492,7 @@ namespace DS4Windows.Forms
 
                 try
                 {
-                    nUDL2Maxzone.Value = (decimal)(L2Maxzone[device] / 100d);
+                    nUDL2Maxzone.Value = (decimal)(L2ModInfo[device].maxZone / 100d);
                 }
                 catch
                 {
@@ -500,7 +500,7 @@ namespace DS4Windows.Forms
                 }
                 try
                 {
-                    nUDR2Maxzone.Value = (decimal)(R2Maxzone[device] / 100d);
+                    nUDR2Maxzone.Value = (decimal)(R2ModInfo[device].maxZone / 100d);
                 }
                 catch
                 {
@@ -1296,10 +1296,10 @@ namespace DS4Windows.Forms
             r2OutCurveMode[device] = cBR2OutputCurve.SelectedIndex;
             sxOutCurveMode[device] = cBSixaxisXOutputCurve.SelectedIndex;
             szOutCurveMode[device] = cBSixaxisZOutputCurve.SelectedIndex;
-            L2Deadzone[device] = (byte)Math.Round((nUDL2.Value * 255), 0);
-            R2Deadzone[device] = (byte)Math.Round((nUDR2.Value * 255), 0);
-            L2AntiDeadzone[device] = (int)(nUDL2AntiDead.Value * 100);
-            R2AntiDeadzone[device] = (int)(nUDR2AntiDead.Value * 100);
+            L2ModInfo[device].deadZone = (byte)Math.Round((nUDL2.Value * 255), 0);
+            R2ModInfo[device].deadZone = (byte)Math.Round((nUDR2.Value * 255), 0);
+            L2ModInfo[device].antiDeadZone = (int)(nUDL2AntiDead.Value * 100);
+            R2ModInfo[device].antiDeadZone = (int)(nUDR2AntiDead.Value * 100);
             RumbleBoost[device] = (byte)nUDRumbleBoost.Value;
             TouchSensitivity[device] = (byte)nUDTouch.Value;
             TouchpadJitterCompensation[device] = cBTouchpadJitterCompensation.Checked;
@@ -2034,12 +2034,12 @@ namespace DS4Windows.Forms
 
         private void numUDL2_ValueChanged(object sender, EventArgs e)
         {
-            L2Deadzone[device] = (byte)(nUDL2.Value * 255);
+            L2ModInfo[device].deadZone = (byte)(nUDL2.Value * 255);
         }
 
         private void numUDR2_ValueChanged(object sender, EventArgs e)
         {
-            R2Deadzone[device] = (byte)(nUDR2.Value * 255);
+            R2ModInfo[device].deadZone = (byte)(nUDR2.Value * 255);
         }
 
         private void nUDSX_ValueChanged(object sender, EventArgs e)
@@ -2745,12 +2745,12 @@ namespace DS4Windows.Forms
 
         private void nUDL2AntiDead_ValueChanged(object sender, EventArgs e)
         {
-            L2AntiDeadzone[device] = (int)(nUDL2AntiDead.Value * 100);
+            L2ModInfo[device].antiDeadZone = (int)(nUDL2AntiDead.Value * 100);
         }
 
         private void nUDR2AntiDead_ValueChanged(object sender, EventArgs e)
         {
-            R2AntiDeadzone[device] = (int)(nUDR2AntiDead.Value * 100);
+            R2ModInfo[device].antiDeadZone = (int)(nUDR2AntiDead.Value * 100);
         }
 
         private void lVActions_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -2788,12 +2788,12 @@ namespace DS4Windows.Forms
 
         private void nUDL2Maxzone_ValueChanged(object sender, EventArgs e)
         {
-            L2Maxzone[device] = (int)(nUDL2Maxzone.Value * 100);
+            L2ModInfo[device].maxZone = (int)(nUDL2Maxzone.Value * 100);
         }
 
         private void nUDR2Maxzone_ValueChanged(object sender, EventArgs e)
         {
-            R2Maxzone[device] = (int)(nUDR2Maxzone.Value * 100);
+            R2ModInfo[device].maxZone = (int)(nUDR2Maxzone.Value * 100);
         }
 
         private void btPollRateComboBox_SelectedIndexChanged(object sender, EventArgs e)

@@ -15,4 +15,11 @@ namespace DS4Windows
         public int antiDeadZone;
         public int maxZone = 100;
     }
+
+    public class TriggerDeadZoneZInfo
+    {
+        public byte deadZone; // Trigger deadzone is expressed in axis units
+        public int antiDeadZone;
+        public int maxZone = 100;
+    }
 }

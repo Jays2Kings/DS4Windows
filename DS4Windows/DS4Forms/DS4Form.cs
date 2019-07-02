@@ -1383,7 +1383,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                     }
 
                     Batteries[Index].Text = Program.rootHub.getDS4Battery(Index);
-                    int profileIndex = cbs[Index].FindString(ProfilePath[Index]);
+                    int profileIndex = cbs[Index].FindStringExact(ProfilePath[Index]);
                     if (profileIndex >= 0)
                     {
                         cbs[Index].SelectedValueChanged -= Profile_Changed;

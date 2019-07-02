@@ -59,7 +59,7 @@ namespace DS4Windows.Forms
         private ManagementEventWatcher managementEvWatcher;
         private DS4Forms.LanguagePackComboBox languagePackComboBox1;
         private AdvancedColorDialog advColorDialog;
-        Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();
+        Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();       
         // 0 index is used for application version text. 1 - 4 indices are used for controller status
         string[] notifyText = new string[5]
             { "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion,
@@ -86,9 +86,6 @@ namespace DS4Windows.Forms
 
         [DllImport("psapi.dll")]
         private static extern uint GetModuleFileNameEx(IntPtr hWnd, IntPtr hModule, StringBuilder lpFileName, int nSize);
-
-        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        private static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
 
         public DS4Form(string[] args)
         {
@@ -391,16 +388,7 @@ namespace DS4Windows.Forms
             if (!(StartMinimized || mini))
                 Form_Resize(null, null);
 
-            // Write current window class name as InterProcessCommunication identifier. The IPC classname is used in WM_DATACOPY messaging interface. .NET WinForms creates a semi-random clas names per application.
-            StringBuilder wndClassNameStr = new StringBuilder(256);
-            if (GetClassName(this.Handle, wndClassNameStr, wndClassNameStr.Capacity) != 0 && wndClassNameStr.Length > 0)
-            {
-                if (System.IO.File.Exists(appdatapath + "\\IPCClassName.dat") && System.IO.File.ReadAllText(appdatapath + "\\IPCClassName.dat") == wndClassNameStr.ToString())
-                    wndClassNameStr.Clear(); // The wnd classname is still the same, so no need to re-write it
-            
-                if(wndClassNameStr.Length > 0)
-                    System.IO.File.WriteAllText(appdatapath + "\\IPCClassName.dat", wndClassNameStr.ToString());
-            }
+            Program.CreateIPCClassNameMMF(this.Handle);
 
             Program.rootHub.Debug += On_Debug;
 

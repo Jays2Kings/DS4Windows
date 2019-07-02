@@ -581,7 +581,7 @@ namespace DS4Windows
             return true;
         }
 
-        public void NewReportIncoming(ref DualShockPadMeta padMeta, DS4State hidReport)
+        public void NewReportIncoming(ref DualShockPadMeta padMeta, DS4State hidReport, byte[] outputData)
         {
             if (!running)
                 return;
@@ -647,7 +647,7 @@ namespace DS4Windows
 
             unchecked
             {
-                byte[] outputData = new byte[100];
+                //byte[] outputData = new byte[100];
                 int outIdx = BeginPacket(outputData, 1001);
                 Array.Copy(BitConverter.GetBytes((uint)MessageType.DSUS_PadDataRsp), 0, outputData, outIdx, 4);
                 outIdx += 4;

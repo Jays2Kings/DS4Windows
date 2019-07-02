@@ -58,6 +58,12 @@ namespace DS4Windows
         }
 
         private X360Data[] processingData = new X360Data[4];
+        private byte[][] udpOutBuffers = new byte[4][]
+        {
+            new byte[100], new byte[100],
+            new byte[100], new byte[100]
+        };
+
 
         void GetPadDetailForIdx(int padIdx, ref DualShockPadMeta meta)
         {
@@ -474,7 +480,7 @@ namespace DS4Windows
                         {
                             DualShockPadMeta padDetail = new DualShockPadMeta();
                             GetPadDetailForIdx(tempIdx, ref padDetail);
-                            _udpServer.NewReportIncoming(ref padDetail, CurrentState[tempIdx]);
+                            _udpServer.NewReportIncoming(ref padDetail, CurrentState[tempIdx], udpOutBuffers[tempIdx]);
                         };
                         device.MotionEvent = tempEvnt;
 
@@ -696,7 +702,7 @@ namespace DS4Windows
                             {
                                 DualShockPadMeta padDetail = new DualShockPadMeta();
                                 GetPadDetailForIdx(tempIdx, ref padDetail);
-                                _udpServer.NewReportIncoming(ref padDetail, CurrentState[tempIdx]);
+                                _udpServer.NewReportIncoming(ref padDetail, CurrentState[tempIdx], udpOutBuffers[tempIdx]);
                             };
                             device.MotionEvent = tempEvnt;
 

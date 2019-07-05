@@ -583,6 +583,11 @@ namespace DS4Windows.Forms
                         Program.rootHub.suspending = true;
                         this.Invoke((System.Action)(() => BtnStartStop_Clicked()));
                         wasrunning = true;
+
+                        while (this.changingService)
+                        {
+                            Thread.SpinWait(500);
+                        }
                     }
 
                     break;

@@ -1290,12 +1290,12 @@ namespace DS4Windows.Forms
                 FlashColor[device] = new DS4Color(Color.Black);
 
             BTPollRate[device] = btPollRateComboBox.SelectedIndex;
-            lsOutCurveMode[device] = lsOutCurveComboBox.SelectedIndex;
-            rsOutCurveMode[device] = rsOutCurveComboBox.SelectedIndex;
-            l2OutCurveMode[device] = cBL2OutputCurve.SelectedIndex;
-            r2OutCurveMode[device] = cBR2OutputCurve.SelectedIndex;
-            sxOutCurveMode[device] = cBSixaxisXOutputCurve.SelectedIndex;
-            szOutCurveMode[device] = cBSixaxisZOutputCurve.SelectedIndex;
+            setLsOutCurveMode(device, lsOutCurveComboBox.SelectedIndex);
+            setRsOutCurveMode(device, rsOutCurveComboBox.SelectedIndex);
+            setL2OutCurveMode(device, cBL2OutputCurve.SelectedIndex);
+            setR2OutCurveMode(device, cBR2OutputCurve.SelectedIndex);
+            setSXOutCurveMode(device, cBSixaxisXOutputCurve.SelectedIndex);
+            setSZOutCurveMode(device, cBSixaxisZOutputCurve.SelectedIndex);
             L2ModInfo[device].deadZone = (byte)Math.Round((nUDL2.Value * 255), 0);
             R2ModInfo[device].deadZone = (byte)Math.Round((nUDR2.Value * 255), 0);
             L2ModInfo[device].antiDeadZone = (int)(nUDL2AntiDead.Value * 100);
@@ -2854,7 +2854,7 @@ namespace DS4Windows.Forms
         {
             if (!loading)
             {
-                lsOutCurveMode[device] = lsOutCurveComboBox.SelectedIndex;
+                setLsOutCurveMode(device, lsOutCurveComboBox.SelectedIndex);
             }
         }
 
@@ -2862,7 +2862,7 @@ namespace DS4Windows.Forms
         {
             if (!loading)
             {
-                rsOutCurveMode[device] = rsOutCurveComboBox.SelectedIndex;
+                setRsOutCurveMode(device, rsOutCurveComboBox.SelectedIndex);
             }
         }
 
@@ -2971,7 +2971,7 @@ namespace DS4Windows.Forms
         {
             if (loading == false)
             {
-                l2OutCurveMode[device] = cBL2OutputCurve.SelectedIndex;
+                setL2OutCurveMode(device, cBL2OutputCurve.SelectedIndex);
             }
         }
 
@@ -2979,7 +2979,7 @@ namespace DS4Windows.Forms
         {
             if (loading == false)
             {
-                r2OutCurveMode[device] = cBR2OutputCurve.SelectedIndex;
+                setR2OutCurveMode(device, cBR2OutputCurve.SelectedIndex);
             }
         }
 
@@ -2987,7 +2987,7 @@ namespace DS4Windows.Forms
         {
             if (loading == false)
             {
-                sxOutCurveMode[device] = cBSixaxisXOutputCurve.SelectedIndex;
+                setSXOutCurveMode(device, cBSixaxisXOutputCurve.SelectedIndex);
             }
         }
 
@@ -2995,7 +2995,7 @@ namespace DS4Windows.Forms
         {
             if (loading == false)
             {
-                szOutCurveMode[device] = cBSixaxisZOutputCurve.SelectedIndex;
+                setSZOutCurveMode(device, cBSixaxisZOutputCurve.SelectedIndex);
             }
         }
 

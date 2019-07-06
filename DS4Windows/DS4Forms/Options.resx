@@ -7298,16 +7298,22 @@ with profile</value>
     <value>Linear</value>
   </data>
   <data name="cBSixaxisZOutputCurve.Items1" xml:space="preserve">
-    <value>Quadratic</value>
+    <value>Enhanced Precison</value>
   </data>
   <data name="cBSixaxisZOutputCurve.Items2" xml:space="preserve">
-    <value>Cubic</value>
+    <value>Quadratic</value>
   </data>
   <data name="cBSixaxisZOutputCurve.Items3" xml:space="preserve">
-    <value>Easeout Quad</value>
+    <value>Cubic</value>
   </data>
   <data name="cBSixaxisZOutputCurve.Items4" xml:space="preserve">
+    <value>Easeout Quad</value>
+  </data>
+  <data name="cBSixaxisZOutputCurve.Items5" xml:space="preserve">
     <value>Easeout Cubic</value>
+  </data>
+  <data name="cBSixaxisZOutputCurve.Items6" xml:space="preserve">
+    <value>Custom</value>
   </data>
   <data name="cBSixaxisZOutputCurve.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 28</value>
@@ -7334,16 +7340,22 @@ with profile</value>
     <value>Linear</value>
   </data>
   <data name="cBSixaxisXOutputCurve.Items1" xml:space="preserve">
-    <value>Quadratic</value>
+    <value>Enhanced Precison</value>
   </data>
   <data name="cBSixaxisXOutputCurve.Items2" xml:space="preserve">
-    <value>Cubic</value>
+    <value>Quadratic</value>
   </data>
   <data name="cBSixaxisXOutputCurve.Items3" xml:space="preserve">
-    <value>Easeout Quad</value>
+    <value>Cubic</value>
   </data>
   <data name="cBSixaxisXOutputCurve.Items4" xml:space="preserve">
+    <value>Easeout Quad</value>
+  </data>
+  <data name="cBSixaxisXOutputCurve.Items5" xml:space="preserve">
     <value>Easeout Cubic</value>
+  </data>
+  <data name="cBSixaxisXOutputCurve.Items6" xml:space="preserve">
+    <value>Custom</value>
   </data>
   <data name="cBSixaxisXOutputCurve.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 1</value>
@@ -7430,16 +7442,22 @@ with profile</value>
     <value>Linear</value>
   </data>
   <data name="cBR2OutputCurve.Items1" xml:space="preserve">
-    <value>Quadratic</value>
+    <value>Enhanced Precison</value>
   </data>
   <data name="cBR2OutputCurve.Items2" xml:space="preserve">
-    <value>Cubic</value>
+    <value>Quadratic</value>
   </data>
   <data name="cBR2OutputCurve.Items3" xml:space="preserve">
-    <value>Easeout Quad</value>
+    <value>Cubic</value>
   </data>
   <data name="cBR2OutputCurve.Items4" xml:space="preserve">
+    <value>Easeout Quad</value>
+  </data>
+  <data name="cBR2OutputCurve.Items5" xml:space="preserve">
     <value>Easeout Cubic</value>
+  </data>
+  <data name="cBR2OutputCurve.Items6" xml:space="preserve">
+    <value>Custom</value>
   </data>
   <data name="cBR2OutputCurve.Location" type="System.Drawing.Point, System.Drawing">
     <value>111, 28</value>
@@ -7466,16 +7484,22 @@ with profile</value>
     <value>Linear</value>
   </data>
   <data name="cBL2OutputCurve.Items1" xml:space="preserve">
-    <value>Quadratic</value>
+    <value>Enhanced Precison</value>
   </data>
   <data name="cBL2OutputCurve.Items2" xml:space="preserve">
-    <value>Cubic</value>
+    <value>Quadratic</value>
   </data>
   <data name="cBL2OutputCurve.Items3" xml:space="preserve">
-    <value>Easeout Quad</value>
+    <value>Cubic</value>
   </data>
   <data name="cBL2OutputCurve.Items4" xml:space="preserve">
+    <value>Easeout Quad</value>
+  </data>
+  <data name="cBL2OutputCurve.Items5" xml:space="preserve">
     <value>Easeout Cubic</value>
+  </data>
+  <data name="cBL2OutputCurve.Items6" xml:space="preserve">
+    <value>Custom</value>
   </data>
   <data name="cBL2OutputCurve.Location" type="System.Drawing.Point, System.Drawing">
     <value>31, 28</value>
@@ -7576,6 +7600,9 @@ with profile</value>
   <data name="rsOutCurveComboBox.Items5" xml:space="preserve">
     <value>Easeout Cubic</value>
   </data>
+  <data name="rsOutCurveComboBox.Items6" xml:space="preserve">
+    <value>Custom</value>
+  </data>
   <data name="rsOutCurveComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>111, 3</value>
   </data>
@@ -7614,6 +7641,9 @@ with profile</value>
   </data>
   <data name="lsOutCurveComboBox.Items5" xml:space="preserve">
     <value>Easeout Cubic</value>
+  </data>
+  <data name="lsOutCurveComboBox.Items6" xml:space="preserve">
+    <value>Custom</value>
   </data>
   <data name="lsOutCurveComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>31, 2</value>

@@ -3281,7 +3281,9 @@
             resources.GetString("cBSixaxisZOutputCurve.Items1"),
             resources.GetString("cBSixaxisZOutputCurve.Items2"),
             resources.GetString("cBSixaxisZOutputCurve.Items3"),
-            resources.GetString("cBSixaxisZOutputCurve.Items4")});
+            resources.GetString("cBSixaxisZOutputCurve.Items4"),
+            resources.GetString("cBSixaxisZOutputCurve.Items5"),
+            resources.GetString("cBSixaxisZOutputCurve.Items6")});
       resources.ApplyResources(this.cBSixaxisZOutputCurve, "cBSixaxisZOutputCurve");
       this.cBSixaxisZOutputCurve.Name = "cBSixaxisZOutputCurve";
       this.cBSixaxisZOutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBSixaxisZOutputCurve_SelectedIndexChanged);
@@ -3296,7 +3298,9 @@
             resources.GetString("cBSixaxisXOutputCurve.Items1"),
             resources.GetString("cBSixaxisXOutputCurve.Items2"),
             resources.GetString("cBSixaxisXOutputCurve.Items3"),
-            resources.GetString("cBSixaxisXOutputCurve.Items4")});
+            resources.GetString("cBSixaxisXOutputCurve.Items4"),
+            resources.GetString("cBSixaxisXOutputCurve.Items5"),
+            resources.GetString("cBSixaxisXOutputCurve.Items6")});
       resources.ApplyResources(this.cBSixaxisXOutputCurve, "cBSixaxisXOutputCurve");
       this.cBSixaxisXOutputCurve.Name = "cBSixaxisXOutputCurve";
       this.cBSixaxisXOutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBSixaxisXOutputCurve_SelectedIndexChanged);
@@ -3321,7 +3325,9 @@
             resources.GetString("cBR2OutputCurve.Items1"),
             resources.GetString("cBR2OutputCurve.Items2"),
             resources.GetString("cBR2OutputCurve.Items3"),
-            resources.GetString("cBR2OutputCurve.Items4")});
+            resources.GetString("cBR2OutputCurve.Items4"),
+            resources.GetString("cBR2OutputCurve.Items5"),
+            resources.GetString("cBR2OutputCurve.Items6")});
       resources.ApplyResources(this.cBR2OutputCurve, "cBR2OutputCurve");
       this.cBR2OutputCurve.Name = "cBR2OutputCurve";
       this.cBR2OutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBR2OutputCurve_SelectedIndexChanged);
@@ -3336,7 +3342,9 @@
             resources.GetString("cBL2OutputCurve.Items1"),
             resources.GetString("cBL2OutputCurve.Items2"),
             resources.GetString("cBL2OutputCurve.Items3"),
-            resources.GetString("cBL2OutputCurve.Items4")});
+            resources.GetString("cBL2OutputCurve.Items4"),
+            resources.GetString("cBL2OutputCurve.Items5"),
+            resources.GetString("cBL2OutputCurve.Items6")});
       resources.ApplyResources(this.cBL2OutputCurve, "cBL2OutputCurve");
       this.cBL2OutputCurve.Name = "cBL2OutputCurve";
       this.cBL2OutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBL2OutputCurve_SelectedIndexChanged);
@@ -3362,7 +3370,8 @@
             resources.GetString("rsOutCurveComboBox.Items2"),
             resources.GetString("rsOutCurveComboBox.Items3"),
             resources.GetString("rsOutCurveComboBox.Items4"),
-            resources.GetString("rsOutCurveComboBox.Items5")});
+            resources.GetString("rsOutCurveComboBox.Items5"),
+            resources.GetString("rsOutCurveComboBox.Items6")});
       resources.ApplyResources(this.rsOutCurveComboBox, "rsOutCurveComboBox");
       this.rsOutCurveComboBox.Name = "rsOutCurveComboBox";
       this.rsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.rsOutCurveComboBox_SelectedIndexChanged);
@@ -3378,7 +3387,8 @@
             resources.GetString("lsOutCurveComboBox.Items2"),
             resources.GetString("lsOutCurveComboBox.Items3"),
             resources.GetString("lsOutCurveComboBox.Items4"),
-            resources.GetString("lsOutCurveComboBox.Items5")});
+            resources.GetString("lsOutCurveComboBox.Items5"),
+            resources.GetString("lsOutCurveComboBox.Items6")});
       resources.ApplyResources(this.lsOutCurveComboBox, "lsOutCurveComboBox");
       this.lsOutCurveComboBox.Name = "lsOutCurveComboBox";
       this.lsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.lsOutCurveComboBox_SelectedIndexChanged);

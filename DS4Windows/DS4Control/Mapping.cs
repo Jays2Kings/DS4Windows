@@ -253,11 +253,12 @@ namespace DS4Windows
 
         // Define here to save some time processing.
         // It is enough to feel a difference during gameplay.
-        private static int[] rsOutCurveModeArray = new int[4] { 0, 0, 0, 0 };
-        private static int[] lsOutCurveModeArray = new int[4] { 0, 0, 0, 0 };
-        static bool tempBool = false;
-        private static double[] tempDoubleArray = new double[4] { 0.0, 0.0, 0.0, 0.0 };
-        private static int[] tempIntArray = new int[4] { 0, 0, 0, 0 };
+        // 201907: Commented out these temp variables because those were not actually used anymore (value was assigned but it was never used anywhere)
+        //private static int[] rsOutCurveModeArray = new int[4] { 0, 0, 0, 0 };
+        //private static int[] lsOutCurveModeArray = new int[4] { 0, 0, 0, 0 };
+        //static bool tempBool = false;
+        //private static double[] tempDoubleArray = new double[4] { 0.0, 0.0, 0.0, 0.0 };
+        //private static int[] tempIntArray = new int[4] { 0, 0, 0, 0 };
 
         // Special macros
         static bool altTabDone = true;
@@ -533,11 +534,11 @@ namespace DS4Windows
 
         public static DS4State SetCurveAndDeadzone(int device, DS4State cState, DS4State dState)
         {
-            double rotation = tempDoubleArray[device] = getLSRotation(device);
+            double rotation = /*tempDoubleArray[device] =*/  getLSRotation(device);
             if (rotation > 0.0 || rotation < 0.0)
                 cState.rotateLSCoordinates(rotation);
 
-            double rotationRS = tempDoubleArray[device] = getRSRotation(device);
+            double rotationRS = /*tempDoubleArray[device] =*/ getRSRotation(device);
             if (rotationRS > 0.0 || rotationRS < 0.0)
                 cState.rotateRSCoordinates(rotationRS);
 
@@ -910,86 +911,12 @@ namespace DS4Windows
                 dState.LY = (byte)(tempY * capY + 128.0);
             }
 
-            int lsOutCurveMode = lsOutCurveModeArray[device] = getLsOutCurveMode(device);
-            if (lsOutCurveMode > 0 && (dState.LX != 128 || dState.LY != 128))
+            if (getLsOutCurveMode(device) > 0)
             {
-                double capX = dState.LX >= 128 ? 127.0 : 128.0;
-                double capY = dState.LY >= 128 ? 127.0 : 128.0;
-                double tempX = (dState.LX - 128.0) / capX;
-                double tempY = (dState.LY - 128.0) / capY;
-                double signX = tempX >= 0.0 ? 1.0 : -1.0;
-                double signY = tempY >= 0.0 ? 1.0 : -1.0;
-
-                if (lsOutCurveMode == 1)
-                {
-                    double absX = Math.Abs(tempX);
-                    double absY = Math.Abs(tempY);
-                    double outputX = 0.0;
-                    double outputY = 0.0;
-
-                    if (absX <= 0.4)
-                    {
-                        outputX = 0.55 * absX;
-                    }
-                    else if (absX <= 0.75)
-                    {
-                        outputX = absX - 0.18;
-                    }
-                    else if (absX > 0.75)
-                    {
-                        outputX = (absX * 1.72) - 0.72;
-                    }
-
-                    if (absY <= 0.4)
-                    {
-                        outputY = 0.55 * absY;
-                    }
-                    else if (absY <= 0.75)
-                    {
-                        outputY = absY - 0.18;
-                    }
-                    else if (absY > 0.75)
-                    {
-                        outputY = (absY * 1.72) - 0.72;
-                    }
-
-                    dState.LX = (byte)(outputX * signX * capX + 128.0);
-                    dState.LY = (byte)(outputY * signY * capY + 128.0);
-                }
-                else if (lsOutCurveMode == 2)
-                {
-                    double outputX = tempX * tempX;
-                    double outputY = tempY * tempY;
-                    dState.LX = (byte)(outputX * signX * capX + 128.0);
-                    dState.LY = (byte)(outputY * signY * capY + 128.0);
-                }
-                else if (lsOutCurveMode == 3)
-                {
-                    double outputX = tempX * tempX * tempX;
-                    double outputY = tempY * tempY * tempY;
-                    dState.LX = (byte)(outputX * capX + 128.0);
-                    dState.LY = (byte)(outputY * capY + 128.0);
-                }
-                else if (lsOutCurveMode == 4)
-                {
-                    double absX = Math.Abs(tempX);
-                    double absY = Math.Abs(tempY);
-                    double outputX = absX * (absX - 2.0);
-                    double outputY = absY * (absY - 2.0);
-                    dState.LX = (byte)(-1.0 * outputX * signX * capX + 128.0);
-                    dState.LY = (byte)(-1.0 * outputY * signY * capY + 128.0);
-                }
-                else if (lsOutCurveMode == 5)
-                {
-                    double innerX = Math.Abs(tempX) - 1.0;
-                    double innerY = Math.Abs(tempY) - 1.0;
-                    double outputX = innerX * innerX * innerX + 1.0;
-                    double outputY = innerY * innerY * innerY + 1.0;
-                    dState.LX = (byte)(1.0 * outputX * signX * capX + 128.0);
-                    dState.LY = (byte)(1.0 * outputY * signY * capY + 128.0);
-                }
+                dState.LX = lsOutBezierCurveObj[device].arrayBezierLUT[dState.LX];
+                dState.LY = lsOutBezierCurveObj[device].arrayBezierLUT[dState.LY];
             }
-
+            
             if (squStk.rsMode && (dState.RX != 128 || dState.RY != 128))
             {
                 double capX = dState.RX >= 128 ? 127.0 : 128.0;
@@ -1008,141 +935,19 @@ namespace DS4Windows
                 dState.RY = (byte)(tempY * capY + 128.0);
             }
 
-            int rsOutCurveMode = rsOutCurveModeArray[device] = getRsOutCurveMode(device);
-            if (rsOutCurveMode > 0 && (dState.RX != 128 || dState.RY != 128))
+            if (getRsOutCurveMode(device) > 0)
             {
-                double capX = dState.RX >= 128 ? 127.0 : 128.0;
-                double capY = dState.RY >= 128 ? 127.0 : 128.0;
-                double tempX = (dState.RX - 128.0) / capX;
-                double tempY = (dState.RY - 128.0) / capY;
-                double signX = tempX >= 0.0 ? 1.0 : -1.0;
-                double signY = tempY >= 0.0 ? 1.0 : -1.0;
-
-                if (rsOutCurveMode == 1)
-                {
-                    double absX = Math.Abs(tempX);
-                    double absY = Math.Abs(tempY);
-                    double outputX = 0.0;
-                    double outputY = 0.0;
-
-                    if (absX <= 0.4)
-                    {
-                        outputX = 0.55 * absX;
-                    }
-                    else if (absX <= 0.75)
-                    {
-                        outputX = absX - 0.18;
-                    }
-                    else if (absX > 0.75)
-                    {
-                        outputX = (absX * 1.72) - 0.72;
-                    }
-
-                    if (absY <= 0.4)
-                    {
-                        outputY = 0.55 * absY;
-                    }
-                    else if (absY <= 0.75)
-                    {
-                        outputY = absY - 0.18;
-                    }
-                    else if (absY > 0.75)
-                    {
-                        outputY = (absY * 1.72) - 0.72;
-                    }
-
-                    dState.RX = (byte)(outputX * signX * capX + 128.0);
-                    dState.RY = (byte)(outputY * signY * capY + 128.0);
-                }
-                else if (rsOutCurveMode == 2)
-                {
-                    double outputX = tempX * tempX;
-                    double outputY = tempY * tempY;
-                    dState.RX = (byte)(outputX * signX * capX + 128.0);
-                    dState.RY = (byte)(outputY * signY * capY + 128.0);
-                }
-                else if (rsOutCurveMode == 3)
-                {
-                    double outputX = tempX * tempX * tempX;
-                    double outputY = tempY * tempY * tempY;
-                    dState.RX = (byte)(outputX * capX + 128.0);
-                    dState.RY = (byte)(outputY * capY + 128.0);
-                }
-                else if (rsOutCurveMode == 4)
-                {
-                    double absX = Math.Abs(tempX);
-                    double absY = Math.Abs(tempY);
-                    double outputX = absX * (absX - 2.0);
-                    double outputY = absY * (absY - 2.0);
-                    dState.RX = (byte)(-1.0 * outputX * signX * capX + 128.0);
-                    dState.RY = (byte)(-1.0 * outputY * signY * capY + 128.0);
-                }
-                else if (rsOutCurveMode == 5)
-                {
-                    double innerX = Math.Abs(tempX) - 1.0;
-                    double innerY = Math.Abs(tempY) - 1.0;
-                    double outputX = innerX * innerX * innerX + 1.0;
-                    double outputY = innerY * innerY * innerY + 1.0;
-                    dState.RX = (byte)(1.0 * outputX * signX * capX + 128.0);
-                    dState.RY = (byte)(1.0 * outputY * signY * capY + 128.0);
-                }
+                dState.RX = rsOutBezierCurveObj[device].arrayBezierLUT[dState.RX];
+                dState.RY = rsOutBezierCurveObj[device].arrayBezierLUT[dState.RY];
             }
 
-            int l2OutCurveMode = tempIntArray[device] = getL2OutCurveMode(device);
-            if (l2OutCurveMode > 0 && dState.L2 != 0)
-            {
-                double temp = dState.L2 / 255.0;
-                if (l2OutCurveMode == 1)
-                {
-                    double output = temp * temp;
-                    dState.L2 = (byte)(output * 255.0);
-                }
-                else if (l2OutCurveMode == 2)
-                {
-                    double output = temp * temp * temp;
-                    dState.L2 = (byte)(output * 255.0);
-                }
-                else if (l2OutCurveMode == 3)
-                {
-                    double output = temp * (temp - 2.0);
-                    dState.L2 = (byte)(-1.0 * output * 255.0);
-                }
-                else if (l2OutCurveMode == 4)
-                {
-                    double inner = Math.Abs(temp) - 1.0;
-                    double output = inner * inner * inner + 1.0;
-                    dState.L2 = (byte)(-1.0 * output * 255.0);
-                }
-            }
+            if (getL2OutCurveMode(device) > 0)
+                dState.L2 = l2OutBezierCurveObj[device].arrayBezierLUT[dState.L2];
 
-            int r2OutCurveMode = tempIntArray[device] = getR2OutCurveMode(device);
-            if (r2OutCurveMode > 0 && dState.R2 != 0)
-            {
-                double temp = dState.R2 / 255.0;
-                if (r2OutCurveMode == 1)
-                {
-                    double output = temp * temp;
-                    dState.R2 = (byte)(output * 255.0);
-                }
-                else if (r2OutCurveMode == 2)
-                {
-                    double output = temp * temp * temp;
-                    dState.R2 = (byte)(output * 255.0);
-                }
-                else if (r2OutCurveMode == 3)
-                {
-                    double output = temp * (temp - 2.0);
-                    dState.R2 = (byte)(-1.0 * output * 255.0);
-                }
-                else if (r2OutCurveMode == 4)
-                {
-                    double inner = Math.Abs(temp) - 1.0;
-                    double output = inner * inner * inner + 1.0;
-                    dState.R2 = (byte)(-1.0 * output * 255.0);
-                }
-            }
+            if (getR2OutCurveMode(device) > 0)
+                dState.R2 = r2OutBezierCurveObj[device].arrayBezierLUT[dState.R2];
 
-            bool sOff = tempBool = isUsingSAforMouse(device);
+            bool sOff = /*tempBool =*/ isUsingSAforMouse(device);
             if (sOff == false)
             {
                 int SXD = (int)(128d * getSXDeadzone(device));
@@ -1198,68 +1003,16 @@ namespace DS4Windows
                         (int)Math.Min(128d, szsens * 128d * (absz / 128d));
                 }
 
-                int sxOutCurveMode = tempIntArray[device] = getSXOutCurveMode(device);
-                if (sxOutCurveMode > 0 && dState.Motion.outputAccelX != 0)
+                if (getSXOutCurveMode(device) > 0)
                 {
-                    double temp = dState.Motion.outputAccelX / 128.0;
-                    double sign = Math.Sign(temp);
-                    if (sxOutCurveMode == 1)
-                    {
-                        double output = temp * temp;
-                        result = (int)(output * sign * 128.0);
-                        dState.Motion.outputAccelX = result;
-                    }
-                    else if (sxOutCurveMode == 2)
-                    {
-                        double output = temp * temp * temp;
-                        result = (int)(output * 128.0);
-                        dState.Motion.outputAccelX = result;
-                    }
-                    else if (sxOutCurveMode == 3)
-                    {
-                        double abs = Math.Abs(temp);
-                        double output = abs * (abs - 2.0);
-                        dState.Motion.outputAccelX = (byte)(-1.0 * output *
-                            sign * 128.0);
-                    }
-                    else if (sxOutCurveMode == 4)
-                    {
-                        double inner = Math.Abs(temp) - 1.0;
-                        double output = inner * inner * inner + 1.0;
-                        dState.Motion.outputAccelX = (byte)(-1.0 * output * 255.0);
-                    }
+                    int signSA = Math.Sign(dState.Motion.outputAccelX);
+                    dState.Motion.outputAccelX = sxOutBezierCurveObj[device].arrayBezierLUT[Math.Min(Math.Abs(dState.Motion.outputAccelX), 128)] * signSA;
                 }
 
-                int szOutCurveMode = tempIntArray[device] = getSZOutCurveMode(device);
-                if (szOutCurveMode > 0 && dState.Motion.outputAccelZ != 0)
+                if (getSZOutCurveMode(device) > 0)
                 {
-                    double temp = dState.Motion.outputAccelZ / 128.0;
-                    double sign = Math.Sign(temp);
-                    if (szOutCurveMode == 1)
-                    {
-                        double output = temp * temp;
-                        result = (int)(output * sign * 128.0);
-                        dState.Motion.outputAccelZ = result;
-                    }
-                    else if (szOutCurveMode == 2)
-                    {
-                        double output = temp * temp * temp;
-                        result = (int)(output * 128.0);
-                        dState.Motion.outputAccelZ = result;
-                    }
-                    else if (szOutCurveMode == 3)
-                    {
-                        double abs = Math.Abs(temp);
-                        double output = abs * (abs - 2.0);
-                        dState.Motion.outputAccelZ = (byte)(-1.0 * output *
-                            sign * 128.0);
-                    }
-                    else if (szOutCurveMode == 4)
-                    {
-                        double inner = Math.Abs(temp) - 1.0;
-                        double output = inner * inner * inner + 1.0;
-                        dState.Motion.outputAccelZ = (byte)(-1.0 * output * 255.0);
-                    }
+                    int signSA = Math.Sign(dState.Motion.outputAccelZ);
+                    dState.Motion.outputAccelZ = szOutBezierCurveObj[device].arrayBezierLUT[Math.Min(Math.Abs(dState.Motion.outputAccelZ), 128)] * signSA;
                 }
             }
 
@@ -2064,11 +1817,11 @@ namespace DS4Windows
                                 actionFound = true;
 
                                 DS4Device d = ctrl.DS4Controllers[device];
-                                bool synced = tempBool = d.isSynced();
+                                bool synced = /*tempBool =*/ d.isSynced();
                                 if (synced && !d.isCharging())
                                 {
                                     ConnectionType deviceConn = d.getConnectionType();
-                                    bool exclusive = tempBool = d.isExclusive();
+                                    bool exclusive = /*tempBool =*/ d.isExclusive();
                                     if (deviceConn == ConnectionType.BT)
                                     {
                                         d.DisconnectBT();

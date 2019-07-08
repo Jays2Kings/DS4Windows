@@ -802,12 +802,14 @@ namespace DS4Windows.Forms
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
             string newversion = File.ReadAllText(appdatapath + "\\version.txt").Trim();
+            bool launchUpdate = false;
             if (!string.IsNullOrWhiteSpace(newversion) && version.Replace(',', '.').CompareTo(newversion) != 0)
             {
                 if ((DialogResult)this.Invoke(new Func<DialogResult>(() => {
                     return MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion),
 Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question); })) == DialogResult.Yes)
                 {
+                    launchUpdate = true;
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo(UPDATER_VERSION) != 0)))
                     {
@@ -816,20 +818,25 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                         if (appdatapath == exepath)
                         {
                             wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
-                            Process p = new Process();
-                            p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
-                            p.StartInfo.Arguments = "-autolaunch";
-                            if (AdminNeeded())
-                                p.StartInfo.Verb = "runas";
-
-                            try { p.Start(); Close(); }
-                            catch { }
                         }
                         else
                         {
                             this.BeginInvoke((System.Action)(() => MessageBox.Show(Properties.Resources.PleaseDownloadUpdater)));
                             Process.Start($"https://github.com/Ryochan7/DS4Updater/releases/download/v{UPDATER_VERSION}/{updaterExe}");
+                            launchUpdate = false;
                         }
+                    }
+
+                    if (launchUpdate)
+                    {
+                        Process p = new Process();
+                        p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
+                        p.StartInfo.Arguments = "-autolaunch";
+                        if (AdminNeeded())
+                            p.StartInfo.Verb = "runas";
+
+                        try { p.Start(); Close(); }
+                        catch { }
                     }
                 }
                 else

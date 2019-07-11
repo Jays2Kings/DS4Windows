@@ -361,10 +361,14 @@ namespace DS4Windows.Forms
                     lVPrograms.SelectedItems[0].SubItems[0].Text = Path.GetFileNameWithoutExtension(newPath);
                     lVPrograms.SelectedItems[0].SubItems[1].Text = newPath;
                     if (lVPrograms.SelectedItems[0].SubItems.Count < 3)
-                        if(!String.IsNullOrEmpty(newTitle))
+                    {
+                        if (!String.IsNullOrEmpty(newTitle))
                             lVPrograms.SelectedItems[0].SubItems.Add(newTitle);
+                    }
                     else
+                    {
                         lVPrograms.SelectedItems[0].SubItems[2].Text = newTitle;
+                    }
 
                     if (!String.IsNullOrEmpty(newTitle))
                         lVPrograms.SelectedItems[0].ToolTipText = $"{newPath}  [{newTitle}]";

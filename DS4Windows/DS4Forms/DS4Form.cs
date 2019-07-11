@@ -39,13 +39,21 @@ namespace DS4Windows.Forms
         protected CheckBox[] linkedProfileCB;
         NonFormTimer hotkeysTimer = null;// new NonFormTimer();
         NonFormTimer autoProfilesTimer = null;// new NonFormTimer();
-        string tempProfileProgram = string.Empty;
         double dpix, dpiy;
+
+        List<ProgramPathItem> programpaths = new List<ProgramPathItem>();
         List<string> profilenames = new List<string>();
-        List<string> programpaths = new List<string>();
         List<string>[] proprofiles;
         List<bool> turnOffTempProfiles;
-        
+        ProgramPathItem tempProfileProgram = null;
+
+        public static int autoProfileDebugLogLevel = 0;  // 0=Dont log debug messages about active process and window titles to GUI Log screen. 1=Show debug log messages 
+        private static IntPtr prevForegroundWnd = IntPtr.Zero;
+        private static uint   prevForegroundProcessID = 0;
+        private static string prevForegroundWndTitleName = string.Empty;
+        private static string prevForegroundProcessName = string.Empty;
+        private static StringBuilder autoProfileCheckTextBuilder = null;
+
         private bool systemShutdown = false;
         private bool wasrunning = false;
         Options opt;
@@ -86,6 +94,9 @@ namespace DS4Windows.Forms
 
         [DllImport("psapi.dll")]
         private static extern uint GetModuleFileNameEx(IntPtr hWnd, IntPtr hModule, StringBuilder lpFileName, int nSize);
+
+        [DllImport("user32.dll", CharSet= CharSet.Auto)]
+        private static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nSize);
 
         public DS4Form(string[] args)
         {
@@ -546,20 +557,87 @@ namespace DS4Windows.Forms
             }
         }
 
-        public static string GetTopWindowName()
+        public static bool GetTopWindowName(out string topProcessName, out string topWndTitleName, bool autoProfileTimerCheck = false)
         {
             IntPtr hWnd = GetForegroundWindow();
-            uint lpdwProcessId;
+            if (hWnd == IntPtr.Zero)
+            {
+                // Top window unknown or cannot acquire a handle. Return FALSE and return unknown process and wndTitle values
+                prevForegroundWnd = IntPtr.Zero;
+                prevForegroundProcessID = 0;
+                topProcessName = topWndTitleName = String.Empty;
+                return false;
+            }
+
+            //
+            // If this function was called from "auto-profile watcher timer" then check cached "previous hWnd handle". If the current hWnd is the same
+            // as during the previous check then return cached previous wnd and name values (ie. foreground app and window are assumed to be the same, so no need to re-query names).
+            // This should optimize the auto-profile timer check process and causes less burden to .NET GC collector because StringBuffer is not re-allocated every second.
+            //
+            // Note! hWnd handles may be re-cycled but not during the lifetime of the window. This "cache" optimization still works because when an old window is closed
+            // then foreground window changes to something else and the cached prevForgroundWnd variable is updated to store the new hWnd handle.
+            // It doesn't matter even when the previously cached handle is recycled by WinOS to represent some other window (it is no longer used as a cached value anyway).
+            //
+            if(autoProfileTimerCheck)
+            {
+                if(hWnd == prevForegroundWnd)
+                {
+                    // The active window is still the same. Return cached process and wndTitle values and FALSE to indicate caller that no changes since the last call of this method
+                    topProcessName = prevForegroundProcessName;
+                    topWndTitleName = prevForegroundWndTitleName;
+                    return false;
+                }
+
+                prevForegroundWnd = hWnd;
+            }
+
+            IntPtr hProcess = IntPtr.Zero;
+            uint lpdwProcessId = 0;
             GetWindowThreadProcessId(hWnd, out lpdwProcessId);
 
-            IntPtr hProcess = OpenProcess(0x0410, false, lpdwProcessId);
+            if (autoProfileTimerCheck)
+            {
+                if (autoProfileCheckTextBuilder == null) autoProfileCheckTextBuilder = new StringBuilder(1000);
 
-            StringBuilder text = new StringBuilder(1000);
-            GetModuleFileNameEx(hProcess, IntPtr.Zero, text, text.Capacity);
+                if (lpdwProcessId == prevForegroundProcessID)
+                {
+                    topProcessName = prevForegroundProcessName;
+                }
+                else
+                {
+                    prevForegroundProcessID = lpdwProcessId;
 
-            CloseHandle(hProcess);
+                    hProcess = OpenProcess(0x0410, false, lpdwProcessId);
+                    if (hProcess != IntPtr.Zero) GetModuleFileNameEx(hProcess, IntPtr.Zero, autoProfileCheckTextBuilder, autoProfileCheckTextBuilder.Capacity);
+                    else autoProfileCheckTextBuilder.Clear();
 
-            return text.ToString();
+                    prevForegroundProcessName = topProcessName = autoProfileCheckTextBuilder.Replace('/', '\\').ToString().ToLower();
+                }
+
+                GetWindowText(hWnd, autoProfileCheckTextBuilder, autoProfileCheckTextBuilder.Capacity);
+                prevForegroundWndTitleName = topWndTitleName = autoProfileCheckTextBuilder.ToString().ToLower();
+            }
+            else
+            {
+                // Caller function was not the autoprofile timer check thread, so create a new buffer to make this call thread safe and always query process and window title names.
+                // Note! At the moment DS4Win app doesn't call this method with autoProfileTimerCheck=false option, but this is here just for potential future usage.
+                StringBuilder text = new StringBuilder(1000);
+
+                hProcess = OpenProcess(0x0410, false, lpdwProcessId);
+                if (hProcess != IntPtr.Zero) GetModuleFileNameEx(hProcess, IntPtr.Zero, text, text.Capacity);
+                else text.Clear();
+                topProcessName = text.ToString();
+
+                GetWindowText(hWnd, text, text.Capacity);
+                topWndTitleName = text.ToString();
+            }
+
+            if (hProcess != IntPtr.Zero) CloseHandle(hProcess);
+
+            if(DS4Form.autoProfileDebugLogLevel > 0 )
+                AppLogger.LogToGui($"DEBUG: Auto-Profile. PID={lpdwProcessId}  Path={topProcessName} | WND={hWnd}  Title={topWndTitleName}", false);
+
+            return true;
         }
 
         private void PowerEventArrive(object sender, EventArrivedEventArgs e)
@@ -651,69 +729,110 @@ namespace DS4Windows.Forms
 
         private void CheckAutoProfiles(object sender, EventArgs e)
         {
+            string topProcessName, topWindowTitle;
+            string[] newProfileName = new string[4] { String.Empty, String.Empty, String.Empty, String.Empty };
+            bool turnOffDS4WinApp = false;
+            ProgramPathItem matchingProgramPathItem = null;
+
             autoProfilesTimer.Stop();
 
-            //Check for process for auto profiles
-            if (string.IsNullOrEmpty(tempProfileProgram))
+            if (GetTopWindowName(out topProcessName, out topWindowTitle, true))
             {
-                string windowName = GetTopWindowName().ToLower().Replace('/', '\\');
+                // Find a profile match based on autoprofile program path and wnd title list.
+                // The same program may set different profiles for each of the controllers, so we need an array of newProfileName[controllerIdx] values.
                 for (int i = 0, pathsLen = programpaths.Count; i < pathsLen; i++)
                 {
-                    string name = programpaths[i].ToLower().Replace('/', '\\');
-                    if (name == windowName)
+                    if (programpaths[i].IsMatch(topProcessName, topWindowTitle))
                     {
+                        if (DS4Form.autoProfileDebugLogLevel > 0)
+                            AppLogger.LogToGui($"DEBUG: Auto-Profile. Rule#{i+1}  Path={programpaths[i].path}  Title={programpaths[i].title}", false);
+
                         for (int j = 0; j < 4; j++)
                         {
                             if (proprofiles[j][i] != "(none)" && proprofiles[j][i] != Properties.Resources.noneProfile)
                             {
-                                LoadTempProfile(j, proprofiles[j][i], true, Program.rootHub); // j is controller index, i is filename
-                                //if (LaunchProgram[j] != string.Empty) Process.Start(LaunchProgram[j]);
+                                newProfileName[j] = proprofiles[j][i]; // j is controller index, i is filename
                             }
                         }
 
-                        if (turnOffTempProfiles[i])
-                        {
-                            turnOffTemp = true;
-                            if (btnStartStop.Text == Properties.Resources.StopText)
-                            {
-                                //autoProfilesTimer.Stop();
-                                //hotkeysTimer.Stop();
-                                ChangeAutoProfilesStatus(false);
-                                ChangeHotkeysStatus(false);
-
-                                this.Invoke((System.Action)(() => {
-                                    this.changingService = true;
-                                    BtnStartStop_Clicked();
-                                }));
-
-                                while (this.changingService)
-                                {
-                                    Thread.SpinWait(500);
-                                }
-
-                                this.Invoke((System.Action)(() =>
-                                {
-                                    //hotkeysTimer.Start();
-                                    ChangeHotkeysStatus(true);
-                                    ChangeAutoProfilesStatus(true);
-                                    //autoProfilesTimer.Start();
-                                }));
-                            }
-                        }
-
-                        tempProfileProgram = name;
+                        // Matching autoprofile rule found
+                        turnOffDS4WinApp = turnOffTempProfiles[i];
+                        matchingProgramPathItem = programpaths[i];
                         break;
                     }
                 }
-            }
-            else
-            {
-                string windowName = GetTopWindowName().ToLower().Replace('/', '\\');
-                if (tempProfileProgram != windowName)
+
+                if (matchingProgramPathItem != null)
                 {
-                    tempProfileProgram = string.Empty;
+                    // Program match found. Check if the new profile is different than current profile of the controller. Load the new profile only if it is not already loaded.
                     for (int j = 0; j < 4; j++)
-                        LoadProfile(j, false, Program.rootHub);
+                    {
+                        if (newProfileName[j] != String.Empty)
+                        {
+                            if ((Global.useTempProfile[j] && newProfileName[j] != Global.tempprofilename[j]) || (!Global.useTempProfile[j] && newProfileName[j] != Global.ProfilePath[j]))
+                            {
+                                if (DS4Form.autoProfileDebugLogLevel > 0)
+                                    AppLogger.LogToGui($"DEBUG: Auto-Profile. LoadProfile Controller {j+1}={newProfileName[j]}", false);
+
+                                LoadTempProfile(j, newProfileName[j], true, Program.rootHub); // j is controller index, i is filename
+                                                                                              //if (LaunchProgram[j] != string.Empty) Process.Start(LaunchProgram[j]);
+                            }
+                            else
+                            {
+                                if (DS4Form.autoProfileDebugLogLevel > 0)
+                                    AppLogger.LogToGui($"DEBUG: Auto-Profile. LoadProfile Controller {j + 1}={newProfileName[j]} (already loaded)", false);
+                            }
+                        }
+                    }
+                    
+                    if (turnOffDS4WinApp)
+                    {
+                        turnOffTemp = true;
+                        if (btnStartStop.Text == Properties.Resources.StopText)
+                        {
+                            //autoProfilesTimer.Stop();
+                            //hotkeysTimer.Stop();
+                            ChangeAutoProfilesStatus(false);
+                            ChangeHotkeysStatus(false);
+
+                            this.Invoke((System.Action)(() =>
+                            {
+                                this.changingService = true;
+                                BtnStartStop_Clicked();
+                            }));
+
+                            while (this.changingService)
+                            {
+                                Thread.SpinWait(500);
+                            }
+
+                            this.Invoke((System.Action)(() =>
+                            {
+                            //hotkeysTimer.Start();
+                            ChangeHotkeysStatus(true);
+                                ChangeAutoProfilesStatus(true);
+                            //autoProfilesTimer.Start();
+                        }));
+                        }
+                    }
+
+                    tempProfileProgram = matchingProgramPathItem;
+                }
+                else if (tempProfileProgram != null)
+                {
+                    // The current active program doesn't match any of the programs in autoprofile path list. 
+                    // Unload temp profile if controller is not using the default profile already.
+                    tempProfileProgram = null;
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (Global.useTempProfile[j])
+                        {
+                            if (DS4Form.autoProfileDebugLogLevel > 0)
+                                AppLogger.LogToGui($"DEBUG: Auto-Profile. RestoreProfile Controller {j + 1}={Global.ProfilePath[j]} (default)", false);
+
+                            LoadProfile(j, false, Program.rootHub);
+                        }
+                    }
 
                     if (turnOffTemp)
                     {
@@ -746,18 +865,25 @@ namespace DS4Windows.Forms
             doc.Load(appdatapath + "\\Auto Profiles.xml");
             XmlNodeList programslist = doc.SelectNodes("Programs/Program");
             foreach (XmlNode x in programslist)
-                programpaths.Add(x.Attributes["path"].Value);
+                programpaths.Add(new ProgramPathItem(x.Attributes["path"]?.Value, x.Attributes["title"]?.Value));
 
-            foreach (string s in programpaths)
+            int nodeIdx=0;
+            foreach (ProgramPathItem pathItem in programpaths)
             {
+                XmlNode item;
+
+                nodeIdx++;
                 for (int i = 0; i < 4; i++)
                 {
-                    proprofiles[i].Add(doc.SelectSingleNode("/Programs/Program[@path=\"" + s + "\"]"
-                        + "/Controller" + (i + 1)).InnerText);
+                    item = doc.SelectSingleNode($"/Programs/Program[{nodeIdx}]/Controller{i+1}");
+                    if (item != null)
+                        proprofiles[i].Add(item.InnerText);
+                    else
+                        proprofiles[i].Add("(none)");
                 }
 
-                XmlNode item = doc.SelectSingleNode("/Programs/Program[@path=\"" + s + "\"]"
-                        + "/TurnOff");
+                item = doc.SelectSingleNode($"/Programs/Program[{nodeIdx}]/TurnOff");
+
                 bool turnOff;
                 if (item != null && bool.TryParse(item.InnerText, out turnOff))
                     turnOffTempProfiles.Add(turnOff);
@@ -2699,6 +2825,80 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         private void nUDLatency_ValueChanged(object sender, EventArgs e)
         {
             FlashWhenLateAt = (int)Math.Round(nUDLatency.Value);
+        }
+    }
+
+
+    //
+    // Class to store autoprofile path and title data. Path and Title are pre-stored as lowercase versions (case insensitive search) to speed up IsMatch method in autoprofile timer calls.
+    // AutoProfile thread monitors active processes and windows. Autoprofile search rule can define just a process path or both path and window title search keywords. 
+    // Keyword syntax: xxxx = exact matach, ^xxxx = match to beginning of path or title string. xxxx$ = match to end of string. *xxxx = contains in a string search
+    //
+    public class ProgramPathItem
+    {
+        public string path;
+        public string title;
+        private string path_lowercase;
+        private string title_lowercase;
+
+        public ProgramPathItem(string pathStr, string titleStr)
+        {
+            // Initialize autoprofile search keywords (xxx_tolower). To improve performance the search keyword is pre-calculated in xxx_tolower variables,
+            // so autoprofile timer thread doesn't have to create substrings/replace/tolower string instances every second over and over again.
+            if (!string.IsNullOrEmpty(pathStr))
+            {
+                path = pathStr;
+                path_lowercase = path.ToLower().Replace('/', '\\');
+
+                if (path.Length >= 2)
+                {
+                    if (path[0] == '^') path_lowercase = path_lowercase.Substring(1);
+                    else if (path[path.Length - 1] == '$') path_lowercase = path_lowercase.Substring(0, path_lowercase.Length - 1);
+                    else if (path[0] == '*') path_lowercase = path_lowercase.Substring(1);
+                }
+            }
+            else path = path_lowercase = String.Empty;
+
+            if (!string.IsNullOrEmpty(titleStr))
+            {
+                title = titleStr;
+                title_lowercase = title.ToLower();
+
+                if (title.Length >= 2)
+                {
+                    if (title[0] == '^') title_lowercase = title_lowercase.Substring(1);
+                    else if (title[title.Length - 1] == '$') title_lowercase = title_lowercase.Substring(0, title_lowercase.Length - 1);
+                    else if (title[0] == '*') title_lowercase = title_lowercase.Substring(1);
+                }
+            }
+            else title = title_lowercase = String.Empty;
+        }
+
+        public bool IsMatch(string searchPath, string searchTitle)
+        {
+            bool bPathMatched = true;
+            bool bTitleMwatched = true;
+
+            if (!String.IsNullOrEmpty(path_lowercase))
+            {
+                bPathMatched = (path_lowercase == searchPath
+                    || (path[0] == '^' && searchPath.StartsWith(path_lowercase))
+                    || (path[path.Length - 1] == '$' && searchPath.EndsWith(path_lowercase))
+                    || (path[0] == '*' && searchPath.Contains(path_lowercase))
+                   );
+            }
+
+            if (bPathMatched && !String.IsNullOrEmpty(title_lowercase))
+            {
+                bTitleMwatched = (title_lowercase == searchTitle
+                    || (title[0] == '^' && searchTitle.StartsWith(title_lowercase))
+                    || (title[title.Length - 1] == '$' && searchTitle.EndsWith(title_lowercase))
+                    || (title[0] == '*' && searchTitle.Contains(title_lowercase))
+                   );
+            }
+
+            // If both path and title defined in autoprofile entry then do AND condition (ie. both path and title should match)
+            return bPathMatched && bTitleMwatched;
         }
     }
 }

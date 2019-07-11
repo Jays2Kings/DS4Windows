@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -639,5 +639,20 @@
   </data>
   <data name="tPDeadzone.Text" xml:space="preserve">
     <value>Deadzone</value>
+  </data>
+  <data name="lblSteeringWheelEmulationRange.Text" xml:space="preserve">
+    <value>Rattiohjaimen kääntösäde</value>
+  </data>
+  <data name="lblSteeringWheelEmulationAxis.Text" xml:space="preserve">
+    <value>Rattiohjaimen akseli</value>
+  </data>
+  <data name="lbL2TrackS.Text" xml:space="preserve">
+    <value>Ohjaimen lukemat</value>
+  </data>
+  <data name="btnSteeringWheelEmulationCalibrate.Text" xml:space="preserve">
+    <value>Kalibroi...</value>
+  </data>
+  <data name="rBTPMouse.Text" xml:space="preserve">
+    <value>Käytä hiirenä</value>
   </data>
 </root>

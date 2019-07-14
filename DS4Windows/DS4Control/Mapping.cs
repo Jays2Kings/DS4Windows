@@ -2682,7 +2682,7 @@ namespace DS4Windows
             if (now >= oldnow + TimeSpan.FromMilliseconds(10) && !pressagain)
             {
                 oldnow = now;
-                InputMethods.MouseWheel((int)(getByteMapping(device, control, cState, eState, tp) / 1.5f * (down ? -1 : 1)), 0);
+                InputMethods.MouseWheel((int)(getByteMapping(device, control, cState, eState, tp) / 8.0f * (down ? -1 : 1)), 0);
             }
         }
 

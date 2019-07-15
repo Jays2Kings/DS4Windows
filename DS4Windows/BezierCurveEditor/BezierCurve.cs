@@ -20,7 +20,7 @@
 *
 * This file has few customizations and optimizations for the needs of DS4Windows application (see https://github.com/Ryochan7/DS4Windows).
 * MIT License. Permission is hereby granted, free of charge, to any person to do whatever they want with this C# ported version of BezierCurve calculation code 
-* as long usage is in compliance with the above shown original license, also.
+* as long this part of the code is open sourced and usage is in compliance with the above shown original license, also.
 * 
 * Copyright (c) 2019, MIKA-N (https://github.com/mika-n). 
 * 
@@ -89,6 +89,15 @@ namespace DS4Windows
             if (arrayBezierLUT == null)
                 arrayBezierLUT = new byte[256];
 
+            if (x1 == 99.0)
+            {
+                // If x1 is 99 then curve is a pre-defined fixed curve and not a customizable bezier curve
+                if (y1 == 99.0)
+                    // Enhanced Precision pre-defined curve as it used to be in <=V1.7.12 versions. 
+                    // Initialize it as a lookup table, so runtime re-mapping goes the same way as with true bezier curves.
+                    return InitEnhancedPrecision(gamepadAxisType);
+            }
+
             if (x1 < 0 || x1 > 1 || x2 < 0 || x2 > 1)
                 return false;
                 //throw new Exception("INVALID VALUE. BezierCurve X1 and X2 should be in [0, 1] range");
@@ -153,6 +162,66 @@ namespace DS4Windows
                 arraySampleValues = null;
             }
 
+            return true;
+        }
+
+        // Initialize a special "hard-coded" and pre-defined EnhancedPrecision output curve as a lookup result table
+        private bool InitEnhancedPrecision(AxisType gamepadAxisType)
+        {
+            mX1 = mY1 = 99; // x1=99, y1=99 is a dummy curve identifier of hard-coded EnhancedPrecision "curve"
+            mX2 = mY2 = 0;
+            axisType = gamepadAxisType;
+
+            double axisMaxDouble;
+            double axisCenterPosDouble;
+
+            switch (gamepadAxisType)
+            {
+                case AxisType.LSRS:
+                    axisMaxDouble = 127;     // DS4 LS/RS axis has a "center position" at 128. Left turn has 0..127 positions and right turn 128..255 positions. 
+                    axisCenterPosDouble = 128;
+                    break;
+
+                case AxisType.L2R2:
+                    axisMaxDouble = 255;    // L2R2 analog trigger range 0..255
+                    axisCenterPosDouble = 0;
+                    break;
+
+                default:
+                    axisMaxDouble = 128;    // SixAxis x/z/y range 0..128
+                    axisCenterPosDouble = 0;
+                    break;
+            }
+
+            double abs, output;
+            // double temp, cap, sign;
+
+            for (byte idx = 0; idx <= axisMaxDouble; idx++)
+            {
+                //cap = dState.RX >=128 ? 127.0 : 128.0;
+                //temp = (dState.RX - 128.0) / cap;
+                //sign = temp >= 0.0 ? 1.0 : -1.0;
+                //abs = Math.Abs(temp);
+                //output = 0.0;
+
+                abs = idx / axisMaxDouble; 
+                if (abs <= 0.4)
+                    output = 0.55 * abs;
+                else if (abs <= 0.75)
+                    output = abs - 0.18;
+                else //if (abs > 0.75)
+                    output = (abs * 1.72) - 0.72;
+
+                // dState.RX = output * sign * cap + 128.0;
+                arrayBezierLUT[idx + (byte)axisCenterPosDouble] = (byte)(output * axisMaxDouble + axisCenterPosDouble);
+
+                // Invert curve from a right side of the center position (128) to the left tilted stick axis (or from up tilt to down tilt)
+                if (gamepadAxisType == AxisType.LSRS)
+                    arrayBezierLUT[127 - idx] = (byte)(255 - arrayBezierLUT[idx + (byte)axisCenterPosDouble]);
+
+                // If the axisMaxDouble is 255 then we need this to break the look (byte is unsigned 0..255, so the FOR loop never reaches 256 idx value. C# would throw an overflow exceptio)
+                if (idx == axisMaxDouble) break;
+            }
             return true;
         }
 

@@ -92,10 +92,7 @@ namespace DS4Windows
             if (x1 == 99.0)
             {
                 // If x1 is 99 then curve is a pre-defined fixed curve and not a customizable bezier curve
-                if (y1 == 99.0)
-                    // Enhanced Precision pre-defined curve as it used to be in <=V1.7.12 versions. 
-                    // Initialize it as a lookup table, so runtime re-mapping goes the same way as with true bezier curves.
-                    return InitEnhancedPrecision(gamepadAxisType);
+                if (y1 == 99.0) return InitEnhancedPrecision(gamepadAxisType);
             }
 
             if (x1 < 0 || x1 > 1 || x2 < 0 || x2 > 1)

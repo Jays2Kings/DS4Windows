@@ -607,9 +607,6 @@
   <data name="DpadToolStripMenuItem.Text" xml:space="preserve">
     <value>Dpad</value>
   </data>
-  <data name="gBSensitivity,Text" xml:space="preserve">
-    <value>Herkkyys</value>
-  </data>
   <data name="lb6Gryo.Text" xml:space="preserve">
     <value>Gyro</value>
   </data>
@@ -732,5 +729,17 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Profiiliasetukset</value>
+  </data>
+  <data name="btnSteeringWheelEmulationCalibrate.Text" xml:space="preserve">
+    <value>Kalibroi...</value>
+  </data>
+  <data name="gBSensitivity.Text" xml:space="preserve">
+    <value>Herkkyys</value>
+  </data>
+  <data name="oneFingerTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Sormi kosketuslevyllä</value>
+  </data>
+  <data name="twoFingerTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>2 sormea kosketuslevyllä</value>
   </data>
 </root>

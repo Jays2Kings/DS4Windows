@@ -155,6 +155,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*).
+        /// </summary>
+        public static string AutoProfilePathAndWindowTitleEditTip {
+            get {
+                return ResourceManager.GetString("AutoProfilePathAndWindowTitleEditTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap B {
@@ -1797,6 +1806,15 @@ namespace DS4Windows.Properties {
         public static string Shortcuts {
             get {
                 return ResourceManager.GetString("Shortcuts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If enabled then Log tab page shows detailed messages of auto-profile events..
+        /// </summary>
+        public static string ShowAutoProfileDebugLogTip {
+            get {
+                return ResourceManager.GetString("ShowAutoProfileDebugLogTip", resourceCulture);
             }
         }
         

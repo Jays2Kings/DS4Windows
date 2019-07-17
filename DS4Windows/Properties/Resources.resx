@@ -826,4 +826,10 @@
   <data name="UdpServer" xml:space="preserve">
     <value>Enable UDP server. Server listen address and port. Address value options: 127.0.0.1 localhost only | 0.0.0.0 all addresses | Specific host name or IP address.</value>
   </data>
+  <data name="AutoProfilePathAndWindowTitleEditTip" xml:space="preserve">
+    <value>^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*)</value>
+  </data>
+  <data name="ShowAutoProfileDebugLogTip" xml:space="preserve">
+    <value>If enabled then Log tab page shows detailed messages of auto-profile events.</value>
+  </data>
 </root>

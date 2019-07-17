@@ -603,4 +603,16 @@
   <data name="UdpServer" xml:space="preserve">
     <value>Aktivoi UDP palvelu. Palvelun osoite ja portti. Osoitevaihtoehdot: 127.0.0.1 paikallinen | 0.0.0.0 kaikki liittymät | Tietty palvelinnimi tai IP numero.</value>
   </data>
+  <data name="AutoProfilePathAndWindowTitleEditTip" xml:space="preserve">
+    <value>^ABC = Täsmää merkkijonon alusta (^) | ABC$ = Täsmää merkkijonon lopusta ($) | *ABC = Sisältää merkkijonon.</value>
+  </data>
+  <data name="ShowAutoProfileDebugLogTip" xml:space="preserve">
+    <value>Näytä automaattiprofiilivalintojen tarkempia valvontaviestejä Loki-välilehdellä.</value>
+  </data>
+  <data name="OutContNotice" xml:space="preserve">
+    <value>Valitse virtuaaliohjaimen tyyppi (muutos tulee voimaan profiilin tallennuksen jälkeen)</value>
+  </data>
+  <data name="EnableTouchToggle" xml:space="preserve">
+    <value>Salli kosketuslevyhiiriohjaimen päälle-pois kytkentä PS + kosketuslevynapautuksella.</value>
+  </data>
 </root>

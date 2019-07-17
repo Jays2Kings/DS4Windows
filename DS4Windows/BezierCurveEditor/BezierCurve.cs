@@ -64,7 +64,8 @@ namespace DS4Windows
             }
         }
 
-        // Custom definition set by DS4Windows options screens. This string is not validated, but AsString property returns validated value
+        // Custom definition set by DS4Windows options screens. This string is not validated (ie. the value is as user entered it and could be even ab invalid curve definition strimg value). 
+        // AsString property returns the currently effective and validated value.
         public string CustomDefinition { get; set; }
         public string ToString() { return this.CustomDefinition; }
 

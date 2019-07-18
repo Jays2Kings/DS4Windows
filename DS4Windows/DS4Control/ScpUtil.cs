@@ -1717,7 +1717,7 @@ namespace DS4Windows
             // Set bezier curve obj of axis. 0=Linear (no curve mapping), 1-5=Pre-defined curves, 6=User supplied custom curve string value of a profile (comma separated list of 4 decimal numbers)
             switch (curveOptionValue)
             {
-                case 1: bezierCurveArray[device].InitBezierCurve(99.0, 99.0, 0.00, 0.00, axisType); break;  // Enhanced Precision (hard-coded curve 0.99, 0.99)   (Bezier EnchCurve 0.70, 0.28, 1.00, 1.00)
+                case 1: bezierCurveArray[device].InitBezierCurve(99.0, 99.0, 0.00, 0.00, axisType); break;  // Enhanced Precision (hard-coded curve) (The same curve as bezier 0.70, 0.28, 1.00, 1.00)
                 case 2: bezierCurveArray[device].InitBezierCurve(0.55, 0.09, 0.68, 0.53, axisType); break;  // Quadric
                 case 3: bezierCurveArray[device].InitBezierCurve(0.74, 0.12, 0.64, 0.29, axisType); break;  // Cubic
                 case 4: bezierCurveArray[device].InitBezierCurve(0.00, 0.00, 0.41, 0.96, axisType); break;  // Easeout Quad

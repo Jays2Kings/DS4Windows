@@ -3289,56 +3289,41 @@ namespace DS4Windows.Forms
 
         private void tBCustomOutputCurve_Leave(object sender, EventArgs e)
         {
-            // Focus leaves the custom output curve editbox. Store the new custom curve value into LS/RS/L2/R2/SX/SZ bezierCurve object
-            switch (lbCurveEditorURL.Text.Substring(0, 2))
+            if (loading == false)
             {
-                case "LS":
-                    if (lsOutCurveComboBox.SelectedIndex == lsOutCurveComboBox.Items.Count - 1)
-                    {
-                        lsOutBezierCurveObj[device].CustomDefinition = tBCustomOutputCurve.Text;
-                        lsOutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.LSRS);
-                    }
-                    break;
+                // Focus leaves the custom output curve editbox. Store the new custom curve value into LS/RS/L2/R2/SX/SZ bezierCurve object
+                switch (lbCurveEditorURL.Text.Substring(0, 2))
+                {
+                    case "LS":
+                        if (lsOutCurveComboBox.SelectedIndex == lsOutCurveComboBox.Items.Count - 1)
+                            lsOutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.LSRS, true);
+                        break;
 
-                case "RS":
-                    if (rsOutCurveComboBox.SelectedIndex == rsOutCurveComboBox.Items.Count - 1)
-                    {
-                        rsOutBezierCurveObj[device].CustomDefinition = tBCustomOutputCurve.Text;
-                        rsOutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.LSRS);
-                    }
-                    break;
+                    case "RS":
+                        if (rsOutCurveComboBox.SelectedIndex == rsOutCurveComboBox.Items.Count - 1)
+                            rsOutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.LSRS, true);
+                        break;
 
-                case "L2":
-                    if (cBL2OutputCurve.SelectedIndex == cBL2OutputCurve.Items.Count - 1)
-                    {
-                        l2OutBezierCurveObj[device].CustomDefinition = tBCustomOutputCurve.Text;
-                        l2OutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.L2R2);
-                    }
-                    break;
+                    case "L2":
+                        if (cBL2OutputCurve.SelectedIndex == cBL2OutputCurve.Items.Count - 1)
+                            l2OutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.L2R2, true);
+                        break;
 
-                case "R2":
-                    if (cBR2OutputCurve.SelectedIndex == cBR2OutputCurve.Items.Count - 1) 
-                    {
-                        r2OutBezierCurveObj[device].CustomDefinition = tBCustomOutputCurve.Text;
-                        r2OutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.L2R2);
-                    }
-                    break;
+                    case "R2":
+                        if (cBR2OutputCurve.SelectedIndex == cBR2OutputCurve.Items.Count - 1)
+                            r2OutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.L2R2, true);
+                        break;
 
-                case "SX":
-                    if (cBSixaxisXOutputCurve.SelectedIndex == cBSixaxisXOutputCurve.Items.Count - 1)
-                    {
-                        sxOutBezierCurveObj[device].CustomDefinition = tBCustomOutputCurve.Text;
-                        sxOutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.SA);
-                    }
-                    break;
+                    case "SX":
+                        if (cBSixaxisXOutputCurve.SelectedIndex == cBSixaxisXOutputCurve.Items.Count - 1)
+                            sxOutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.SA, true);
+                        break;
 
-                case "SZ":
-                    if (cBSixaxisZOutputCurve.SelectedIndex == cBSixaxisZOutputCurve.Items.Count - 1)
-                    {
-                        szOutBezierCurveObj[device].CustomDefinition = tBCustomOutputCurve.Text;
-                        szOutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.SA);
-                    }
-                    break;
+                    case "SZ":
+                        if (cBSixaxisZOutputCurve.SelectedIndex == cBSixaxisZOutputCurve.Items.Count - 1)
+                            szOutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.SA, true);
+                        break;
+                }
             }
         }
 

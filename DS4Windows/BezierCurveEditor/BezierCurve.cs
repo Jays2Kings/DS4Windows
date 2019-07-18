@@ -49,7 +49,7 @@ namespace DS4Windows
         private static double SUBDIVISION_PRECISION = 0.0000001;
         private static int    SUBDIVISION_MAX_ITERATIONS = 10;
 
-        private double mX1 = 0, mY1 = 0, mX2 = 0, mY2 = 0;  // Bezier curve definition (0, 0, 0, 0 = Linear)
+        private double mX1 = 0, mY1 = 0, mX2 = 0, mY2 = 0;  // Bezier curve definition (0, 0, 0, 0 = Linear. 99, 99, 0, 0 = Pre-defined hard-coded EnhancedPrecision curve)
 
         // Set or Get string representation of the bezier curve definition value (Note! Set doesn't initialize the lookup table. InitBezierCurve needs to be called to actually initalize the calculation)
         public string AsString
@@ -64,8 +64,7 @@ namespace DS4Windows
             }
         }
 
-        // Custom definition set by DS4Windows options screens. This string is not validated (ie. the value is as user entered it and could be even ab invalid curve definition strimg value). 
-        // AsString property returns the currently effective and validated value.
+        // Custom definition set by DS4Windows options screens. This string is not validated (ie. the value is as user entered it and could be an invalid curve definition). This value is saved in a profile XML file.
         public string CustomDefinition { get; set; }
         public string ToString() { return this.CustomDefinition; }
 
@@ -79,40 +78,51 @@ namespace DS4Windows
             CustomDefinition = "";
         }
 
-        public bool InitBezierCurve(string bezierCurveDefinition, AxisType gamepadAxisType)
+        public bool InitBezierCurve(string bezierCurveDefinition, AxisType gamepadAxisType, bool setCustomDefinitionProperty = false)
         {
+            if (setCustomDefinitionProperty)
+                this.CustomDefinition = bezierCurveDefinition;
+
             this.AsString = bezierCurveDefinition;
             return InitBezierCurve(mX1, mY1, mX2, mY2, gamepadAxisType);
         }
 
         public bool InitBezierCurve(double x1, double y1, double x2, double y2, AxisType gamepadAxisType)
         {
+            bool bRetValue = true;
+
             if (arrayBezierLUT == null)
                 arrayBezierLUT = new byte[256];
 
             if (x1 == 99.0)
             {
-                // If x1 is 99 then curve is a pre-defined fixed curve and not a customizable bezier curve
+                // If curve is "99.0, 99.0, 0.0, 0.0" then curve is a pre-defined fixed EnchPrecision curve and not a customizable bezier curve
                 if (y1 == 99.0) return InitEnhancedPrecision(gamepadAxisType);
             }
 
             if (x1 < 0 || x1 > 1 || x2 < 0 || x2 > 1)
-                return false;
-                //throw new Exception("INVALID VALUE. BezierCurve X1 and X2 should be in [0, 1] range");
-
-            mX1 = x1;
-            mY1 = y1;
-            mX2 = x2;
-            mY2 = y2;
+            {
+                // throw new Exception("INVALID VALUE. BezierCurve X1 and X2 should be in [0, 1] range");
+                AppLogger.LogToGui($"WARNING. Invalid custom bezier curve \"{x1}, {y1}, {x2}, {y2}\" in {gamepadAxisType} axis. x1 and x2 should be in 0..1 range. Using linear curve.", true);
+                mX1 = mY1 = mX2 = mY2 = 0;
+                bRetValue = false;
+            }
+            else
+            {
+                mX1 = x1;
+                mY1 = y1;
+                mX2 = x2;
+                mY2 = y2;
+            }
             axisType = gamepadAxisType;
 
             // If this is linear definition then init the lookup table with 1-on-1 mapping
-            if(x1 == 0 && y1 == 0 && x2 == 0 && y2 == 0)
+            if (x1 == 0 && y1 == 0 && ((x2 == 0 && y2 == 0) || (x2 == 1 && y2 == 1)))
             {
                 for (int idx = 0; idx <= 255; idx++)
                     arrayBezierLUT[idx] = (byte)idx;
 
-                return true;
+                return bRetValue;
             }
 
             try
@@ -160,7 +170,7 @@ namespace DS4Windows
                 arraySampleValues = null;
             }
 
-            return true;
+            return bRetValue;
         }
 
         // Initialize a special "hard-coded" and pre-defined EnhancedPrecision output curve as a lookup result table

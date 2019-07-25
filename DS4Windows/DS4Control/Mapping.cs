@@ -253,11 +253,12 @@ namespace DS4Windows
 
         // Define here to save some time processing.
         // It is enough to feel a difference during gameplay.
-        private static int[] rsOutCurveModeArray = new int[4] { 0, 0, 0, 0 };
-        private static int[] lsOutCurveModeArray = new int[4] { 0, 0, 0, 0 };
-        static bool tempBool = false;
-        private static double[] tempDoubleArray = new double[4] { 0.0, 0.0, 0.0, 0.0 };
-        private static int[] tempIntArray = new int[4] { 0, 0, 0, 0 };
+        // 201907: Commented out these temp variables because those were not actually used anymore (value was assigned but it was never used anywhere)
+        //private static int[] rsOutCurveModeArray = new int[4] { 0, 0, 0, 0 };
+        //private static int[] lsOutCurveModeArray = new int[4] { 0, 0, 0, 0 };
+        //static bool tempBool = false;
+        //private static double[] tempDoubleArray = new double[4] { 0.0, 0.0, 0.0, 0.0 };
+        //private static int[] tempIntArray = new int[4] { 0, 0, 0, 0 };
 
         // Special macros
         static bool altTabDone = true;
@@ -533,11 +534,11 @@ namespace DS4Windows
 
         public static DS4State SetCurveAndDeadzone(int device, DS4State cState, DS4State dState)
         {
-            double rotation = tempDoubleArray[device] = getLSRotation(device);
+            double rotation = /*tempDoubleArray[device] =*/  getLSRotation(device);
             if (rotation > 0.0 || rotation < 0.0)
                 cState.rotateLSCoordinates(rotation);
 
-            double rotationRS = tempDoubleArray[device] = getRSRotation(device);
+            double rotationRS = /*tempDoubleArray[device] =*/ getRSRotation(device);
             if (rotationRS > 0.0 || rotationRS < 0.0)
                 cState.rotateRSCoordinates(rotationRS);
 
@@ -910,7 +911,7 @@ namespace DS4Windows
                 dState.LY = (byte)(tempY * capY + 128.0);
             }
 
-            int lsOutCurveMode = lsOutCurveModeArray[device] = getLsOutCurveMode(device);
+            int lsOutCurveMode = getLsOutCurveMode(device);
             if (lsOutCurveMode > 0 && (dState.LX != 128 || dState.LY != 128))
             {
                 double capX = dState.LX >= 128 ? 127.0 : 128.0;
@@ -988,8 +989,13 @@ namespace DS4Windows
                     dState.LX = (byte)(1.0 * outputX * signX * capX + 128.0);
                     dState.LY = (byte)(1.0 * outputY * signY * capY + 128.0);
                 }
+                else if (lsOutCurveMode == 6)
+                {
+                    dState.LX = lsOutBezierCurveObj[device].arrayBezierLUT[dState.LX];
+                    dState.LY = lsOutBezierCurveObj[device].arrayBezierLUT[dState.LY];
+                }
             }
-
+            
             if (squStk.rsMode && (dState.RX != 128 || dState.RY != 128))
             {
                 double capX = dState.RX >= 128 ? 127.0 : 128.0;
@@ -1008,7 +1014,7 @@ namespace DS4Windows
                 dState.RY = (byte)(tempY * capY + 128.0);
             }
 
-            int rsOutCurveMode = rsOutCurveModeArray[device] = getRsOutCurveMode(device);
+            int rsOutCurveMode = getRsOutCurveMode(device);
             if (rsOutCurveMode > 0 && (dState.RX != 128 || dState.RY != 128))
             {
                 double capX = dState.RX >= 128 ? 127.0 : 128.0;
@@ -1086,9 +1092,14 @@ namespace DS4Windows
                     dState.RX = (byte)(1.0 * outputX * signX * capX + 128.0);
                     dState.RY = (byte)(1.0 * outputY * signY * capY + 128.0);
                 }
+                else if (rsOutCurveMode == 6)
+                {
+                    dState.RX = rsOutBezierCurveObj[device].arrayBezierLUT[dState.RX];
+                    dState.RY = rsOutBezierCurveObj[device].arrayBezierLUT[dState.RY];
+                }
             }
 
-            int l2OutCurveMode = tempIntArray[device] = getL2OutCurveMode(device);
+            int l2OutCurveMode = getL2OutCurveMode(device);
             if (l2OutCurveMode > 0 && dState.L2 != 0)
             {
                 double temp = dState.L2 / 255.0;
@@ -1113,9 +1124,13 @@ namespace DS4Windows
                     double output = inner * inner * inner + 1.0;
                     dState.L2 = (byte)(-1.0 * output * 255.0);
                 }
+                else if (l2OutCurveMode == 5)
+                {
+                    dState.L2 = l2OutBezierCurveObj[device].arrayBezierLUT[dState.L2];
+                }
             }
 
-            int r2OutCurveMode = tempIntArray[device] = getR2OutCurveMode(device);
+            int r2OutCurveMode = getR2OutCurveMode(device);
             if (r2OutCurveMode > 0 && dState.R2 != 0)
             {
                 double temp = dState.R2 / 255.0;
@@ -1140,9 +1155,14 @@ namespace DS4Windows
                     double output = inner * inner * inner + 1.0;
                     dState.R2 = (byte)(-1.0 * output * 255.0);
                 }
+                else if (r2OutCurveMode == 5)
+                {
+                    dState.R2 = r2OutBezierCurveObj[device].arrayBezierLUT[dState.R2];
+                }
             }
+                
 
-            bool sOff = tempBool = isUsingSAforMouse(device);
+            bool sOff = /*tempBool =*/ isUsingSAforMouse(device);
             if (sOff == false)
             {
                 int SXD = (int)(128d * getSXDeadzone(device));
@@ -1198,8 +1218,8 @@ namespace DS4Windows
                         (int)Math.Min(128d, szsens * 128d * (absz / 128d));
                 }
 
-                int sxOutCurveMode = tempIntArray[device] = getSXOutCurveMode(device);
-                if (sxOutCurveMode > 0 && dState.Motion.outputAccelX != 0)
+                int sxOutCurveMode = getSXOutCurveMode(device);
+                if (sxOutCurveMode > 0)
                 {
                     double temp = dState.Motion.outputAccelX / 128.0;
                     double sign = Math.Sign(temp);
@@ -1228,9 +1248,14 @@ namespace DS4Windows
                         double output = inner * inner * inner + 1.0;
                         dState.Motion.outputAccelX = (byte)(-1.0 * output * 255.0);
                     }
+                    else if (sxOutCurveMode == 5)
+                    {
+                        int signSA = Math.Sign(dState.Motion.outputAccelX);
+                        dState.Motion.outputAccelX = sxOutBezierCurveObj[device].arrayBezierLUT[Math.Min(Math.Abs(dState.Motion.outputAccelX), 128)] * signSA;
+                    }
                 }
 
-                int szOutCurveMode = tempIntArray[device] = getSZOutCurveMode(device);
+                int szOutCurveMode = getSZOutCurveMode(device);
                 if (szOutCurveMode > 0 && dState.Motion.outputAccelZ != 0)
                 {
                     double temp = dState.Motion.outputAccelZ / 128.0;
@@ -1259,6 +1284,11 @@ namespace DS4Windows
                         double inner = Math.Abs(temp) - 1.0;
                         double output = inner * inner * inner + 1.0;
                         dState.Motion.outputAccelZ = (byte)(-1.0 * output * 255.0);
+                    }
+                    else if (szOutCurveMode == 5)
+                    {
+                        int signSA = Math.Sign(dState.Motion.outputAccelZ);
+                        dState.Motion.outputAccelZ = szOutBezierCurveObj[device].arrayBezierLUT[Math.Min(Math.Abs(dState.Motion.outputAccelZ), 128)] * signSA;
                     }
                 }
             }
@@ -2064,11 +2094,11 @@ namespace DS4Windows
                                 actionFound = true;
 
                                 DS4Device d = ctrl.DS4Controllers[device];
-                                bool synced = tempBool = d.isSynced();
+                                bool synced = /*tempBool =*/ d.isSynced();
                                 if (synced && !d.isCharging())
                                 {
                                     ConnectionType deviceConn = d.getConnectionType();
-                                    bool exclusive = tempBool = d.isExclusive();
+                                    bool exclusive = /*tempBool =*/ d.isExclusive();
                                     if (deviceConn == ConnectionType.BT)
                                     {
                                         d.DisconnectBT();

@@ -1214,41 +1214,65 @@ namespace DS4Windows
             return m_Config.squStickInfo[device];
         }
 
-        public static int[] lsOutCurveMode => m_Config.lsOutCurveMode;
+        public static void setLsOutCurveMode(int index, int value)
+        {
+            m_Config.setLsOutCurveMode(index, value);
+        }
         public static int getLsOutCurveMode(int index)
         {
-            return m_Config.lsOutCurveMode[index];
+            return m_Config.getLsOutCurveMode(index);
         }
+        public static BezierCurve[] lsOutBezierCurveObj => m_Config.lsOutBezierCurveObj;
 
-        public static int[] rsOutCurveMode => m_Config.rsOutCurveMode;
+        public static void setRsOutCurveMode(int index, int value)
+        {
+            m_Config.setRsOutCurveMode(index, value);
+        }
         public static int getRsOutCurveMode(int index)
         {
-            return m_Config.rsOutCurveMode[index];
+            return m_Config.getRsOutCurveMode(index);
         }
+        public static BezierCurve[] rsOutBezierCurveObj => m_Config.rsOutBezierCurveObj;
 
-        public static int[] l2OutCurveMode => m_Config.l2OutCurveMode;
+        public static void setL2OutCurveMode(int index, int value)
+        {
+            m_Config.setL2OutCurveMode(index, value);
+        }
         public static int getL2OutCurveMode(int index)
         {
-            return m_Config.l2OutCurveMode[index];
+            return m_Config.getL2OutCurveMode(index);
         }
+        public static BezierCurve[] l2OutBezierCurveObj => m_Config.l2OutBezierCurveObj;
 
-        public static int[] r2OutCurveMode => m_Config.r2OutCurveMode;
+        public static void setR2OutCurveMode(int index, int value)
+        {
+            m_Config.setR2OutCurveMode(index, value);
+        }
         public static int getR2OutCurveMode(int index)
         {
-            return m_Config.r2OutCurveMode[index];
+            return m_Config.getR2OutCurveMode(index);
         }
+        public static BezierCurve[] r2OutBezierCurveObj => m_Config.r2OutBezierCurveObj;
 
-        public static int[] sxOutCurveMode => m_Config.sxOutCurveMode;
+        public static void setSXOutCurveMode(int index, int value)
+        {
+            m_Config.setSXOutCurveMode(index, value);
+        }
         public static int getSXOutCurveMode(int index)
         {
-            return m_Config.sxOutCurveMode[index];
+            return m_Config.getSXOutCurveMode(index);
         }
+        public static BezierCurve[] sxOutBezierCurveObj => m_Config.sxOutBezierCurveObj;
 
-        public static int[] szOutCurveMode => m_Config.szOutCurveMode;
+        public static void setSZOutCurveMode(int index, int value)
+        {
+            m_Config.setSZOutCurveMode(index, value);
+        }
         public static int getSZOutCurveMode(int index)
         {
-            return m_Config.szOutCurveMode[index];
+            return m_Config.getSZOutCurveMode(index);
         }
+        public static BezierCurve[] szOutBezierCurveObj => m_Config.szOutBezierCurveObj;
 
         public static bool[] TrackballMode => m_Config.trackballMode;
         public static bool getTrackballMode(int index)
@@ -1687,12 +1711,75 @@ namespace DS4Windows
             new SquareStickInfo(), new SquareStickInfo(),
             new SquareStickInfo(),
         };
-        public int[] lsOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
-        public int[] rsOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
-        public int[] l2OutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
-        public int[] r2OutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
-        public int[] sxOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
-        public int[] szOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
+
+        private void setOutBezierCurveObjArrayItem(BezierCurve[] bezierCurveArray, int device, int curveOptionValue, BezierCurve.AxisType axisType)
+        {
+            // Set bezier curve obj of axis. 0=Linear (no curve mapping), 1-5=Pre-defined curves, 6=User supplied custom curve string value of a profile (comma separated list of 4 decimal numbers)
+            switch (curveOptionValue)
+            {
+                case 1: bezierCurveArray[device].InitBezierCurve(99.0, 99.0, 0.00, 0.00, axisType); break;  // Enhanced Precision (hard-coded curve) (The same curve as bezier 0.70, 0.28, 1.00, 1.00)
+                case 2: bezierCurveArray[device].InitBezierCurve(0.55, 0.09, 0.68, 0.53, axisType); break;  // Quadric
+                case 3: bezierCurveArray[device].InitBezierCurve(0.74, 0.12, 0.64, 0.29, axisType); break;  // Cubic
+                case 4: bezierCurveArray[device].InitBezierCurve(0.00, 0.00, 0.41, 0.96, axisType); break;  // Easeout Quad
+                case 5: bezierCurveArray[device].InitBezierCurve(0.08, 0.22, 0.22, 0.91, axisType); break;  // Easeout Cubic
+                case 6: bezierCurveArray[device].InitBezierCurve(bezierCurveArray[device].CustomDefinition, axisType); break;  // Custom output curve
+            }
+        }
+
+        public BezierCurve[] lsOutBezierCurveObj = new BezierCurve[5] { new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve() };
+        public BezierCurve[] rsOutBezierCurveObj = new BezierCurve[5] { new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve() };
+        public BezierCurve[] l2OutBezierCurveObj = new BezierCurve[5] { new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve() };
+        public BezierCurve[] r2OutBezierCurveObj = new BezierCurve[5] { new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve() };
+        public BezierCurve[] sxOutBezierCurveObj = new BezierCurve[5] { new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve() };
+        public BezierCurve[] szOutBezierCurveObj = new BezierCurve[5] { new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve() };
+
+        private int[] _lsOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
+        public int getLsOutCurveMode(int index) { return _lsOutCurveMode[index];  }
+        public void setLsOutCurveMode(int index, int value)
+        {
+            if (value >= 1) setOutBezierCurveObjArrayItem(lsOutBezierCurveObj, index, value, BezierCurve.AxisType.LSRS);
+            _lsOutCurveMode[index] = value;
+        }
+
+        private int[] _rsOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
+        public int getRsOutCurveMode(int index) { return _rsOutCurveMode[index]; }
+        public void setRsOutCurveMode(int index, int value)
+        {
+            if (value >= 1) setOutBezierCurveObjArrayItem(rsOutBezierCurveObj, index, value, BezierCurve.AxisType.LSRS);
+            _rsOutCurveMode[index] = value;
+        }
+
+        private int[] _l2OutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
+        public int getL2OutCurveMode(int index) { return _l2OutCurveMode[index]; }
+        public void setL2OutCurveMode(int index, int value)
+        {
+            if (value >= 1) setOutBezierCurveObjArrayItem(l2OutBezierCurveObj, index, value, BezierCurve.AxisType.L2R2);
+            _l2OutCurveMode[index] = value;
+        }
+
+        private int[] _r2OutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
+        public int getR2OutCurveMode(int index) { return _r2OutCurveMode[index]; }
+        public void setR2OutCurveMode(int index, int value)
+        {
+            if (value >= 1) setOutBezierCurveObjArrayItem(r2OutBezierCurveObj, index, value, BezierCurve.AxisType.L2R2);
+            _r2OutCurveMode[index] = value;
+        }
+
+        private int[] _sxOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
+        public int getSXOutCurveMode(int index) { return _sxOutCurveMode[index]; }
+        public void setSXOutCurveMode(int index, int value)
+        {
+            if (value >= 1) setOutBezierCurveObjArrayItem(sxOutBezierCurveObj, index, value, BezierCurve.AxisType.SA);
+            _sxOutCurveMode[index] = value;
+        }
+
+        private int[] _szOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
+        public int getSZOutCurveMode(int index) { return _szOutCurveMode[index]; }
+        public void setSZOutCurveMode(int index, int value)
+        {
+            if (value >= 1) setOutBezierCurveObjArrayItem(szOutBezierCurveObj, index, value, BezierCurve.AxisType.SA);
+            _szOutCurveMode[index] = value;
+        }
 
         public DS4Color[] m_LowLeds = new DS4Color[5]
         {
@@ -1838,6 +1925,7 @@ namespace DS4Windows
                 case 3: result = "cubic"; break;
                 case 4: result = "easeout-quad"; break;
                 case 5: result = "easeout-cubic"; break;
+                case 6: result = "custom"; break;
                 default: break;
             }
 
@@ -1855,6 +1943,7 @@ namespace DS4Windows
                 case "cubic": id = 3; break;
                 case "easeout-quad": id = 4; break;
                 case "easeout-cubic": id = 5; break;
+                case "custom": id = 6; break;
                 default: break;
             }
 
@@ -1863,34 +1952,12 @@ namespace DS4Windows
 
         private string axisOutputCurveString(int id)
         {
-            string result = "linear";
-            switch (id)
-            {
-                case 0: break;
-                case 1: result = "quadratic"; break;
-                case 2: result = "cubic"; break;
-                case 3: result = "easeout-quad"; break;
-                case 4: result = "easeout-cubic"; break;
-                default: break;
-            }
-
-            return result;
+            return stickOutputCurveString(id);
         }
 
         private int axisOutputCurveId(string name)
         {
-            int id = 0;
-            switch (name)
-            {
-                case "linear": id = 0; break;
-                case "quadratic": id = 1; break;
-                case "cubic": id = 2; break;
-                case "easeout-quad": id = 3; break;
-                case "easeout-cubic": id = 4; break;
-                default: break;
-            }
-
-            return id;
+            return stickOutputCurveId(name);
         }
 
         private bool SaTriggerCondValue(string text)
@@ -2068,19 +2135,29 @@ namespace DS4Windows
                 XmlNode xmlRSC = m_Xdoc.CreateNode(XmlNodeType.Element, "RSCurve", null); xmlRSC.InnerText = rsCurve[device].ToString(); Node.AppendChild(xmlRSC);
                 XmlNode xmlProfileActions = m_Xdoc.CreateNode(XmlNodeType.Element, "ProfileActions", null); xmlProfileActions.InnerText = string.Join("/", profileActions[device]); Node.AppendChild(xmlProfileActions);
                 XmlNode xmlBTPollRate = m_Xdoc.CreateNode(XmlNodeType.Element, "BTPollRate", null); xmlBTPollRate.InnerText = btPollRate[device].ToString(); Node.AppendChild(xmlBTPollRate);
-                XmlNode xmlLsOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOutputCurveMode", null); xmlLsOutputCurveMode.InnerText = stickOutputCurveString(lsOutCurveMode[device]); Node.AppendChild(xmlLsOutputCurveMode);
-                XmlNode xmlRsOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOutputCurveMode", null); xmlRsOutputCurveMode.InnerText = stickOutputCurveString(rsOutCurveMode[device]); Node.AppendChild(xmlRsOutputCurveMode);
+
+                XmlNode xmlLsOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOutputCurveMode", null); xmlLsOutputCurveMode.InnerText = stickOutputCurveString(getLsOutCurveMode(device)); Node.AppendChild(xmlLsOutputCurveMode);
+                XmlNode xmlLsOutputCurveCustom  = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOutputCurveCustom", null); xmlLsOutputCurveCustom.InnerText = lsOutBezierCurveObj[device].ToString(); Node.AppendChild(xmlLsOutputCurveCustom);
+
+                XmlNode xmlRsOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOutputCurveMode", null); xmlRsOutputCurveMode.InnerText = stickOutputCurveString(getRsOutCurveMode(device)); Node.AppendChild(xmlRsOutputCurveMode);
+                XmlNode xmlRsOutputCurveCustom = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOutputCurveCustom", null); xmlRsOutputCurveCustom.InnerText = rsOutBezierCurveObj[device].ToString(); Node.AppendChild(xmlRsOutputCurveCustom);
 
                 XmlNode xmlLsSquareStickMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LSSquareStick", null); xmlLsSquareStickMode.InnerText = squStickInfo[device].lsMode.ToString(); Node.AppendChild(xmlLsSquareStickMode);
                 XmlNode xmlRsSquareStickMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSSquareStick", null); xmlRsSquareStickMode.InnerText = squStickInfo[device].rsMode.ToString(); Node.AppendChild(xmlRsSquareStickMode);
 
                 XmlNode xmlSquareStickRoundness = m_Xdoc.CreateNode(XmlNodeType.Element, "SquareStickRoundness", null); xmlSquareStickRoundness.InnerText = squStickInfo[device].roundness.ToString(); Node.AppendChild(xmlSquareStickRoundness);
 
-                XmlNode xmlL2OutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "L2OutputCurveMode", null); xmlL2OutputCurveMode.InnerText = axisOutputCurveString(l2OutCurveMode[device]); Node.AppendChild(xmlL2OutputCurveMode);
-                XmlNode xmlR2OutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "R2OutputCurveMode", null); xmlR2OutputCurveMode.InnerText = axisOutputCurveString(r2OutCurveMode[device]); Node.AppendChild(xmlR2OutputCurveMode);
+                XmlNode xmlL2OutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "L2OutputCurveMode", null); xmlL2OutputCurveMode.InnerText = axisOutputCurveString(getL2OutCurveMode(device)); Node.AppendChild(xmlL2OutputCurveMode);
+                XmlNode xmlL2OutputCurveCustom = m_Xdoc.CreateNode(XmlNodeType.Element, "L2OutputCurveCustom", null); xmlL2OutputCurveCustom.InnerText = l2OutBezierCurveObj[device].ToString(); Node.AppendChild(xmlL2OutputCurveCustom);
 
-                XmlNode xmlSXOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "SXOutputCurveMode", null); xmlSXOutputCurveMode.InnerText = axisOutputCurveString(sxOutCurveMode[device]); Node.AppendChild(xmlSXOutputCurveMode);
-                XmlNode xmlSZOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "SZOutputCurveMode", null); xmlSZOutputCurveMode.InnerText = axisOutputCurveString(szOutCurveMode[device]); Node.AppendChild(xmlSZOutputCurveMode);
+                XmlNode xmlR2OutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "R2OutputCurveMode", null); xmlR2OutputCurveMode.InnerText = axisOutputCurveString(getR2OutCurveMode(device)); Node.AppendChild(xmlR2OutputCurveMode);
+                XmlNode xmlR2OutputCurveCustom = m_Xdoc.CreateNode(XmlNodeType.Element, "R2OutputCurveCustom", null); xmlR2OutputCurveCustom.InnerText = r2OutBezierCurveObj[device].ToString(); Node.AppendChild(xmlR2OutputCurveCustom);
+
+                XmlNode xmlSXOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "SXOutputCurveMode", null); xmlSXOutputCurveMode.InnerText = axisOutputCurveString(getSXOutCurveMode(device)); Node.AppendChild(xmlSXOutputCurveMode);
+                XmlNode xmlSXOutputCurveCustom = m_Xdoc.CreateNode(XmlNodeType.Element, "SXOutputCurveCustom", null); xmlSXOutputCurveCustom.InnerText = sxOutBezierCurveObj[device].ToString(); Node.AppendChild(xmlSXOutputCurveCustom);
+
+                XmlNode xmlSZOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "SZOutputCurveMode", null); xmlSZOutputCurveMode.InnerText = axisOutputCurveString(getSZOutCurveMode(device)); Node.AppendChild(xmlSZOutputCurveMode);
+                XmlNode xmlSZOutputCurveCustom = m_Xdoc.CreateNode(XmlNodeType.Element, "SZOutputCurveCustom", null); xmlSZOutputCurveCustom.InnerText = szOutBezierCurveObj[device].ToString(); Node.AppendChild(xmlSZOutputCurveCustom);
 
                 XmlNode xmlTrackBallMode = m_Xdoc.CreateNode(XmlNodeType.Element, "TrackballMode", null); xmlTrackBallMode.InnerText = trackballMode[device].ToString(); Node.AppendChild(xmlTrackBallMode);
                 XmlNode xmlTrackBallFriction = m_Xdoc.CreateNode(XmlNodeType.Element, "TrackballFriction", null); xmlTrackBallFriction.InnerText = trackballFriction[device].ToString(); Node.AppendChild(xmlTrackBallFriction);
@@ -2971,11 +3048,16 @@ namespace DS4Windows
                 }
                 catch { btPollRate[device] = 4; missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSOutputCurveMode"); lsOutCurveMode[device] = stickOutputCurveId(Item.InnerText); }
-                catch { lsOutCurveMode[device] = 0; missingSetting = true; }
+                // Note! xxOutputCurveCustom property needs to be read before xxOutputCurveMode property in case the curveMode is value 6
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSOutputCurveCustom"); lsOutBezierCurveObj[device].CustomDefinition = Item.InnerText; }
+                catch { missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSOutputCurveMode"); setLsOutCurveMode(device, stickOutputCurveId(Item.InnerText)); }
+                catch { setLsOutCurveMode(device, 0); missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSOutputCurveMode"); rsOutCurveMode[device] = stickOutputCurveId(Item.InnerText); }
-                catch { rsOutCurveMode[device] = 0; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSOutputCurveCustom"); rsOutBezierCurveObj[device].CustomDefinition = Item.InnerText; }
+                catch { missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSOutputCurveMode"); setRsOutCurveMode(device, stickOutputCurveId(Item.InnerText)); }
+                catch { setRsOutCurveMode(device, 0); missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSSquareStick"); bool.TryParse(Item.InnerText, out squStickInfo[device].lsMode); }
                 catch { squStickInfo[device].lsMode = false; missingSetting = true; }
@@ -2986,17 +3068,25 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSSquareStick"); bool.TryParse(Item.InnerText, out squStickInfo[device].rsMode); }
                 catch { squStickInfo[device].rsMode = false; missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2OutputCurveMode"); l2OutCurveMode[device] = axisOutputCurveId(Item.InnerText); }
-                catch { l2OutCurveMode[device] = 0; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2OutputCurveCustom"); l2OutBezierCurveObj[device].CustomDefinition = Item.InnerText; }
+                catch { missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2OutputCurveMode"); setL2OutCurveMode(device, axisOutputCurveId(Item.InnerText)); }
+                catch { setL2OutCurveMode(device, 0); missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2OutputCurveMode"); r2OutCurveMode[device] = axisOutputCurveId(Item.InnerText); }
-                catch { r2OutCurveMode[device] = 0; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2OutputCurveCustom"); r2OutBezierCurveObj[device].CustomDefinition = Item.InnerText; }
+                catch { missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2OutputCurveMode"); setR2OutCurveMode(device, axisOutputCurveId(Item.InnerText)); }
+                catch { setR2OutCurveMode(device, 0); missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXOutputCurveMode"); sxOutCurveMode[device] = axisOutputCurveId(Item.InnerText); }
-                catch { sxOutCurveMode[device] = 0; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXOutputCurveCustom"); sxOutBezierCurveObj[device].CustomDefinition = Item.InnerText; }
+                catch { missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXOutputCurveMode"); setSXOutCurveMode(device, axisOutputCurveId(Item.InnerText)); }
+                catch { setSXOutCurveMode(device, 0); missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SZOutputCurveMode"); szOutCurveMode[device] = axisOutputCurveId(Item.InnerText); }
-                catch { szOutCurveMode[device] = 0; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SZOutputCurveCustom"); szOutBezierCurveObj[device].CustomDefinition = Item.InnerText; }
+                catch { missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SZOutputCurveMode"); setSZOutCurveMode(device, axisOutputCurveId(Item.InnerText)); }
+                catch { setSZOutCurveMode(device, 0); missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TrackballMode"); bool.TryParse(Item.InnerText, out trackballMode[device]); }
                 catch { trackballMode[device] = false; missingSetting = true; }
@@ -4283,11 +4373,12 @@ namespace DS4Windows
             squStickInfo[device].lsMode = false;
             squStickInfo[device].rsMode = false;
             squStickInfo[device].roundness = 5;
-            lsOutCurveMode[device] = 0;
-            rsOutCurveMode[device] = 0;
-            l2OutCurveMode[device] = 0;
-            r2OutCurveMode[device] = 0;
-            sxOutCurveMode[device] = szOutCurveMode[device] = 0;
+            setLsOutCurveMode(device, 0);
+            setRsOutCurveMode(device, 0);
+            setL2OutCurveMode(device, 0);
+            setR2OutCurveMode(device, 0);
+            setSXOutCurveMode(device, 0);
+            setSZOutCurveMode(device, 0);
             trackballMode[device] = false;
             trackballFriction[device] = 10.0;
             outputDevType[device] = OutContType.X360;

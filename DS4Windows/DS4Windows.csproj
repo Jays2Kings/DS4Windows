@@ -138,6 +138,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BezierCurveEditor\BezierCurve.cs" />
     <Compile Include="DS4Control\ControlService.cs" />
     <Compile Include="DS4Control\DS4LightBar.cs" />
     <Compile Include="DS4Control\DS4OutDevice.cs" />
@@ -358,12 +359,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DupBox.ar.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DupBox.cs.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DupBox.de-DE.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DupBox.el.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
@@ -1129,6 +1133,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BezierCurveEditor\build.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BezierCurveEditor\index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="HidLibrary\LICENSE" />
     <Content Include="Resources\360 fades.png" />
     <None Include="Resources\360 map.png" />

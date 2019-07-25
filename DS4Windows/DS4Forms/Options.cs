@@ -461,6 +461,8 @@ namespace DS4Windows.Forms
                 cBSixaxisXOutputCurve.SelectedIndex = getSXOutCurveMode(device);
                 cBSixaxisZOutputCurve.SelectedIndex = getSZOutCurveMode(device);
 
+                CustomCurveChecker();
+
                 try
                 {
                     nUDL2.Value = Math.Round((decimal)L2ModInfo[device].deadZone / 255, 2);
@@ -816,6 +818,11 @@ namespace DS4Windows.Forms
                 cBR2OutputCurve.SelectedIndex = 0;
                 cBSixaxisXOutputCurve.SelectedIndex = 0;
                 cBSixaxisZOutputCurve.SelectedIndex = 0;
+
+                tBCustomOutputCurve.Text = String.Empty;
+                lbCurveEditorURL.Text = $"   - {lbCurveEditorURL.Text}";
+                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = false;
+
                 rBTPMouse.Checked = true;
                 rBSAControls.Checked = true;
                 ToggleRainbow(false);
@@ -2859,12 +2866,13 @@ namespace DS4Windows.Forms
         {
             if (!loading)
             {
+                bool customIdx = lsOutCurveComboBox.SelectedIndex == lsOutCurveComboBox.Items.Count - 1;
                 // This same handler is called when combobox label object is clicked. Update curve mode only when sender is ComboxBox with a new selection index
-                if(sender is ComboBox)
+                if (sender is ComboBox && customIdx)
                     setLsOutCurveMode(device, lsOutCurveComboBox.SelectedIndex);
 
-                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = (lsOutCurveComboBox.SelectedIndex == lsOutCurveComboBox.Items.Count - 1);
-                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? lsOutBezierCurveObj[device].ToString() : lsOutBezierCurveObj[device].AsString);
+                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
+                tBCustomOutputCurve.Text = (customIdx ? lsOutBezierCurveObj[device].ToString() : "");
                 lbCurveEditorURL.Text = $"LS - {lbCurveEditorURL.Text.Substring(5)}";
             }
         }
@@ -2873,13 +2881,74 @@ namespace DS4Windows.Forms
         {
             if (!loading)
             {
-                if (sender is ComboBox)
+                bool customIdx = rsOutCurveComboBox.SelectedIndex == rsOutCurveComboBox.Items.Count - 1;
+                if (sender is ComboBox && customIdx)
                     setRsOutCurveMode(device, rsOutCurveComboBox.SelectedIndex);
 
-                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = (rsOutCurveComboBox.SelectedIndex == rsOutCurveComboBox.Items.Count - 1);
-                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? rsOutBezierCurveObj[device].ToString() : rsOutBezierCurveObj[device].AsString);
+                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
+                tBCustomOutputCurve.Text = (customIdx ? rsOutBezierCurveObj[device].ToString() : "");
                 lbCurveEditorURL.Text = $"RS - {lbCurveEditorURL.Text.Substring(5)}";
             }
+        }
+
+        private void CustomCurveChecker()
+        {
+            bool customIdx = lsOutCurveComboBox.SelectedIndex == lsOutCurveComboBox.Items.Count - 1;
+            if (customIdx)
+            {
+                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
+                tBCustomOutputCurve.Text = (customIdx ? lsOutBezierCurveObj[device].ToString() : "");
+                lbCurveEditorURL.Text = $"LS - {lbCurveEditorURL.Text.Substring(5)}";
+                goto end;
+            }
+
+            customIdx = rsOutCurveComboBox.SelectedIndex == rsOutCurveComboBox.Items.Count - 1;
+            if (customIdx)
+            {
+                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
+                tBCustomOutputCurve.Text = (customIdx ? rsOutBezierCurveObj[device].ToString() : "");
+                lbCurveEditorURL.Text = $"RS - {lbCurveEditorURL.Text.Substring(5)}";
+                goto end;
+            }
+
+            customIdx = cBL2OutputCurve.SelectedIndex == cBL2OutputCurve.Items.Count - 1;
+            if (customIdx)
+            {
+                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
+                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? l2OutBezierCurveObj[device].ToString() : "");
+                lbCurveEditorURL.Text = $"L2 - {lbCurveEditorURL.Text.Substring(5)}";
+                goto end;
+            }
+
+            customIdx = cBR2OutputCurve.SelectedIndex == cBR2OutputCurve.Items.Count - 1;
+            if (customIdx)
+            {
+                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
+                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? r2OutBezierCurveObj[device].ToString() : "");
+                lbCurveEditorURL.Text = $"R2 - {lbCurveEditorURL.Text.Substring(5)}";
+                goto end;
+            }
+
+            customIdx = cBSixaxisXOutputCurve.SelectedIndex == cBSixaxisXOutputCurve.Items.Count - 1;
+            if (customIdx)
+            {
+                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
+                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? sxOutBezierCurveObj[device].ToString() : "");
+                lbCurveEditorURL.Text = $"SX - {lbCurveEditorURL.Text.Substring(5)}";
+                goto end;
+            }
+
+            customIdx = cBSixaxisZOutputCurve.SelectedIndex == cBSixaxisZOutputCurve.Items.Count - 1;
+            if (customIdx)
+            {
+                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
+                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? szOutBezierCurveObj[device].ToString() : "");
+                lbCurveEditorURL.Text = $"SZ - {lbCurveEditorURL.Text.Substring(5)}";
+                goto end;
+            }
+
+            end:
+                return;
         }
 
         private void gyroTriggerBehavior_CheckedChanged(object sender, EventArgs e)
@@ -2987,11 +3056,12 @@ namespace DS4Windows.Forms
         {
             if (loading == false)
             {
-                if (sender is ComboBox)
+                bool customIdx = cBL2OutputCurve.SelectedIndex == cBL2OutputCurve.Items.Count - 1;
+                if (sender is ComboBox && customIdx)
                     setL2OutCurveMode(device, cBL2OutputCurve.SelectedIndex);
 
-                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = (cBL2OutputCurve.SelectedIndex == cBL2OutputCurve.Items.Count - 1);
-                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? l2OutBezierCurveObj[device].ToString() : l2OutBezierCurveObj[device].AsString);
+                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
+                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? l2OutBezierCurveObj[device].ToString() : "");
                 lbCurveEditorURL.Text = $"L2 - {lbCurveEditorURL.Text.Substring(5)}";
             }
         }
@@ -3000,11 +3070,12 @@ namespace DS4Windows.Forms
         {
             if (loading == false)
             {
-                if (sender is ComboBox)
+                bool customIdx = cBR2OutputCurve.SelectedIndex == cBR2OutputCurve.Items.Count - 1;
+                if (sender is ComboBox && customIdx)
                     setR2OutCurveMode(device, cBR2OutputCurve.SelectedIndex);
 
-                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = (cBR2OutputCurve.SelectedIndex == cBR2OutputCurve.Items.Count - 1);
-                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? r2OutBezierCurveObj[device].ToString() : r2OutBezierCurveObj[device].AsString);
+                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
+                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? r2OutBezierCurveObj[device].ToString() : "");
                 lbCurveEditorURL.Text = $"R2 - {lbCurveEditorURL.Text.Substring(5)}";
             }
         }
@@ -3013,11 +3084,12 @@ namespace DS4Windows.Forms
         {
             if (loading == false)
             {
-                if (sender is ComboBox)
+                bool customIdx = cBSixaxisXOutputCurve.SelectedIndex == cBSixaxisXOutputCurve.Items.Count - 1;
+                if (sender is ComboBox && customIdx)
                     setSXOutCurveMode(device, cBSixaxisXOutputCurve.SelectedIndex);
 
-                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = (cBSixaxisXOutputCurve.SelectedIndex == cBSixaxisXOutputCurve.Items.Count - 1);
-                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? sxOutBezierCurveObj[device].ToString() : sxOutBezierCurveObj[device].AsString);
+                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
+                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? sxOutBezierCurveObj[device].ToString() : "");
                 lbCurveEditorURL.Text = $"SX - {lbCurveEditorURL.Text.Substring(5)}";
             }
         }
@@ -3026,11 +3098,12 @@ namespace DS4Windows.Forms
         {
             if (loading == false)
             {
-                if (sender is ComboBox)
+                bool customIdx = cBSixaxisZOutputCurve.SelectedIndex == cBSixaxisZOutputCurve.Items.Count - 1;
+                if (sender is ComboBox && customIdx)
                     setSZOutCurveMode(device, cBSixaxisZOutputCurve.SelectedIndex);
 
-                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = (cBSixaxisZOutputCurve.SelectedIndex == cBSixaxisZOutputCurve.Items.Count - 1);
-                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? szOutBezierCurveObj[device].ToString() : szOutBezierCurveObj[device].AsString);
+                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
+                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? szOutBezierCurveObj[device].ToString() : "");
                 lbCurveEditorURL.Text = $"SZ - {lbCurveEditorURL.Text.Substring(5)}";
             }
         }

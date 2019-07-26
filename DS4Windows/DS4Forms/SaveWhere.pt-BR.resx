@@ -121,7 +121,7 @@
     <value>Para aqueles que preferem as Definições normais de instalação gravadas em %appdata%/ds4tool</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Para aqueles que preferem um programa portátil Nota: esta opção não funciona se estiver numa pasta de administrador sem CCU (Controlo de Conta de Utilizador)</value>
+    <value>Para aqueles que preferem um programa portátil Nota: esta opção não funciona se estiver numa pasta de administrador sem CCU (Controle de Conta de Utilizador)</value>
   </data>
   <data name="bnAppdataFolder.Text" xml:space="preserve">
     <value>AppData</value>

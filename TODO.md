@@ -1,8 +1,8 @@
 # TODO
 
 * Add cross dead zone (per axis) for sticks
-* Add more curve options
-* Transition to use Visual Studio 2019
+* ~~Add more curve options~~
+* ~~Transition to use Visual Studio 2019~~
 * ~~Re-evaluate HidGuardian~~
 * ~~Move forms to new namespace~~
 * ~~Finalize DS4 Emulation~~

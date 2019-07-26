@@ -1163,6 +1163,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         {
             var uiContext = SynchronizationContext.Current;
             changingService = true;
+            btnStartStop.Enabled = false;
             TaskRunner.Run(() =>
             {
                 //Thread.CurrentThread.Priority = ThreadPriority.AboveNormal;
@@ -1187,11 +1188,13 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             }
 
             startToolStripMenuItem.Text = btnStartStop.Text = Properties.Resources.StopText;
+            btnStartStop.Enabled = true;
         }
 
         private void ServiceShutdown(bool log)
         {
             changingService = true;
+            btnStartStop.Enabled = false;
             TaskRunner.Run(() =>
             {
                 Program.rootHub.Stop(log);
@@ -1207,6 +1210,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             //hotkeysTimer.Stop();
             //autoProfilesTimer.Stop();
             startToolStripMenuItem.Text = btnStartStop.Text = Properties.Resources.StartText;
+            btnStartStop.Enabled = true;
             blankControllerTab();
             populateFullNotifyText();
         }

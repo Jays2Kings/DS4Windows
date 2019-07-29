@@ -673,7 +673,6 @@ namespace DS4Windows.Forms
                             btnStartStop.Enabled = false;
                         }));
                         changingService = false;
-                        //this.Invoke((System.Action)(() => BtnStartStop_Clicked()));
                         wasrunning = true;
                     }
 

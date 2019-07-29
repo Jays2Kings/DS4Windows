@@ -652,6 +652,7 @@ namespace DS4Windows.Forms
                         DS4LightBar.shuttingdown = false;
                         wasrunning = false;
                         Program.rootHub.suspending = false;
+                        Thread.Sleep(8000);
                         this.Invoke((System.Action)(() => BtnStartStop_Clicked()));
                     }
 
@@ -663,13 +664,16 @@ namespace DS4Windows.Forms
                     {
                         DS4LightBar.shuttingdown = true;
                         Program.rootHub.suspending = true;
-                        this.Invoke((System.Action)(() => BtnStartStop_Clicked()));
-                        wasrunning = true;
+                        changingService = true;
 
-                        while (this.changingService)
-                        {
-                            Thread.SpinWait(500);
-                        }
+                        Program.rootHub.Stop(true);
+
+                        Invoke((System.Action)(() => {
+                            ServiceShutdownFinish();
+                            btnStartStop.Enabled = false;
+                        }));
+                        changingService = false;
+                        wasrunning = true;
                     }
 
                     break;

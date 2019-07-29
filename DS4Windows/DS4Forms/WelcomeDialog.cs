@@ -73,7 +73,7 @@ namespace DS4Windows.Forms
             if (File.Exists(exepath + $"\\{InstFileName}"))
             {
                 bnStep1.Text = Properties.Resources.OpeningInstaller;
-                monitorProc = Process.Start(exepath + $"\\{InstFileName}", "/quiet");
+                monitorProc = Process.Start(exepath + $"\\{InstFileName}");
                 bnStep1.Text = Properties.Resources.Installing;
             }
 

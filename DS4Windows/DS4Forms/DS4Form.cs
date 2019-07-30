@@ -645,6 +645,7 @@ namespace DS4Windows.Forms
             short evType = Convert.ToInt16(e.NewEvent.GetPropertyValue("EventType"));
             switch (evType)
             {
+                // Wakeup from Suspend
                 case 7:
                 {
                     if (btnStartStop.Text == Properties.Resources.StartText && wasrunning)
@@ -652,12 +653,27 @@ namespace DS4Windows.Forms
                         DS4LightBar.shuttingdown = false;
                         wasrunning = false;
                         Program.rootHub.suspending = false;
-                        Thread.Sleep(8000);
-                        this.Invoke((System.Action)(() => BtnStartStop_Clicked()));
+                        Thread.Sleep(16000);
+                        //this.Invoke((System.Action)(() => BtnStartStop_Clicked()));
+                        changingService = true;
+                        SynchronizationContext uiContext = null;
+                        Invoke((System.Action)(() => {
+                            uiContext = SynchronizationContext.Current;
+                            btnStartStop.Enabled = false;
+                        }));
+
+                        Program.rootHub.Start(uiContext);
+
+                        Invoke((System.Action)(() => {
+                            ServiceStartupFinish();
+                        }));
+
+                        changingService = false;
                     }
 
                     break;
                 }
+                // Entering Suspend
                 case 4:
                 {
                     if (btnStartStop.Text == Properties.Resources.StopText)

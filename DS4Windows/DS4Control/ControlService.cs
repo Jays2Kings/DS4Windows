@@ -1314,7 +1314,8 @@ namespace DS4Windows
 
                 if (!recordingMacro && (useTempProfile[ind] ||
                     containsCustomAction(ind) || containsCustomExtras(ind) ||
-                    getProfileActionCount(ind) > 0))
+                    getProfileActionCount(ind) > 0 ||
+                    GetSASteeringWheelEmulationAxis(ind) >= SASteeringWheelEmulationAxisType.VJoy1X))
                 {
                     Mapping.MapCustom(ind, cState, MappedState[ind], ExposedState[ind], touchPad[ind], this);
                     cState = MappedState[ind];
@@ -1340,6 +1341,31 @@ namespace DS4Windows
                         }
                     }
                     */
+                }
+                else
+                {
+                    // UseDInputOnly profile may re-map sixaxis gyro sensor values as a VJoy joystick axis (steering wheel emulation mode using VJoy output device). Handle this option because VJoy output works even in USeDInputOnly mode.
+                    // If steering wheel emulation uses LS/RS/R2/L2 output axies then the profile should NOT use UseDInputOnly option at all because those require a virtual output device.
+                    SASteeringWheelEmulationAxisType steeringWheelMappedAxis = Global.GetSASteeringWheelEmulationAxis(ind);
+                    switch (steeringWheelMappedAxis)
+                    {
+                        case SASteeringWheelEmulationAxisType.None: break;
+
+                        case SASteeringWheelEmulationAxisType.VJoy1X:
+                        case SASteeringWheelEmulationAxisType.VJoy2X:
+                            DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(cState.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_X);
+                            break;
+
+                        case SASteeringWheelEmulationAxisType.VJoy1Y:
+                        case SASteeringWheelEmulationAxisType.VJoy2Y:
+                            DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(cState.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_Y);
+                            break;
+
+                        case SASteeringWheelEmulationAxisType.VJoy1Z:
+                        case SASteeringWheelEmulationAxisType.VJoy2Z:
+                            DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(cState.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_Z);
+                            break;
+                    }
                 }
 
                 // Output any synthetic events.

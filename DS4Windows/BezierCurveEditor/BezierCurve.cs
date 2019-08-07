@@ -68,7 +68,9 @@ namespace DS4Windows
         public string CustomDefinition { get; set; }
         public string ToString() { return this.CustomDefinition; }
 
-        public AxisType axisType;
+        public AxisType axisType;               // Axis type of curve object (LS/RS/R2/L2/SA)
+        private double axisMaxDouble;           // Max range of axis (range of positive values)
+        private double axisCenterPosDouble;     // Center pos of axis (LS/RS has 128 as "stick center", other axies has 0 as zero center point)
 
         // Lookup result table is always either in 0..128 or 0..255 range depending on the DS4 analog axis range. LUT table set as public to let DS4Win reading thread to access it directly (every CPU cycle matters)
         public byte[] arrayBezierLUT = null;  
@@ -94,10 +96,42 @@ namespace DS4Windows
             if (arrayBezierLUT == null)
                 arrayBezierLUT = new byte[256];
 
+            // Axis type and max range per axis
+            axisType = gamepadAxisType;
+            switch (gamepadAxisType)
+            {
+                case AxisType.LSRS:
+                    axisMaxDouble = 127;     // DS4 LS/RS axis has a "center position" at 128. Left turn has 0..127 positions and right turn 128..255 positions
+                    axisCenterPosDouble = 128;
+                    break;
+
+                case AxisType.L2R2:
+                    axisMaxDouble = 255;    // L2R2 analog trigger range 0..255
+                    axisCenterPosDouble = 0;
+                    break;
+
+                default:
+                    axisMaxDouble = 128;    // SixAxis x/z/y range 0..128
+                    axisCenterPosDouble = 0;
+                    break;
+            }
+
+            // If x1 = 99.0 then this is probably just a dummy bezier curve value 
             if (x1 == 99.0)
             {
-                // If curve is "99.0, 99.0, 0.0, 0.0" then curve is a pre-defined fixed EnchPrecision curve and not a customizable bezier curve
-                if (y1 == 99.0) return InitEnhancedPrecision(gamepadAxisType);
+                mX1 = 99.0;
+                mY1 = y1;
+                mX2 = x2;
+                mY2 = y2;
+
+                switch (y1)
+                {
+                    case 91.0: return InitEnhancedPrecision_91();
+                    case 92.0: return InitQuadric_92();
+                    case 93.0: return InitCubic_93();
+                    case 94.0: return InitEaseoutQuad_94();
+                    case 95.0: return InitEaseoutCubic_95();
+                }
             }
 
             if (x1 < 0 || x1 > 1 || x2 < 0 || x2 > 1)
@@ -114,7 +148,6 @@ namespace DS4Windows
                 mX2 = x2;
                 mY2 = y2;
             }
-            axisType = gamepadAxisType;
 
             // If this is linear definition then init the lookup table with 1-on-1 mapping
             if (x1 == 0 && y1 == 0 && ((x2 == 0 && y2 == 0) || (x2 == 1 && y2 == 1)))
@@ -127,27 +160,6 @@ namespace DS4Windows
 
             try
             {
-                double axisMaxDouble;
-                double axisCenterPosDouble;
-
-                switch (gamepadAxisType)
-                {
-                    case AxisType.LSRS:
-                        axisMaxDouble = 127;     // DS4 LS/RS axis has a "center position" at 128. Left turn has 0..127 positions and right turn 128..255 positions. 
-                        axisCenterPosDouble = 128;
-                        break;
-
-                    case AxisType.L2R2:
-                        axisMaxDouble = 255;    // L2R2 analog trigger range 0..255
-                        axisCenterPosDouble = 0;
-                        break;
-
-                    default:
-                        axisMaxDouble = 128;    // SixAxis x/z/y range 0..128
-                        axisCenterPosDouble = 0;
-                        break;
-                }
-
                 arraySampleValues = new double[BezierCurve.kSplineTableSize];
                 for (int idx = 0; idx < BezierCurve.kSplineTableSize; idx++)
                     arraySampleValues[idx] = CalcBezier(idx * BezierCurve.kSampleStepSize, mX1, mX2);
@@ -174,44 +186,12 @@ namespace DS4Windows
         }
 
         // Initialize a special "hard-coded" and pre-defined EnhancedPrecision output curve as a lookup result table
-        private bool InitEnhancedPrecision(AxisType gamepadAxisType)
+        private bool InitEnhancedPrecision_91()
         {
-            mX1 = mY1 = 99; // x1=99, y1=99 is a dummy curve identifier of hard-coded EnhancedPrecision "curve"
-            mX2 = mY2 = 0;
-            axisType = gamepadAxisType;
-
-            double axisMaxDouble;
-            double axisCenterPosDouble;
-
-            switch (gamepadAxisType)
-            {
-                case AxisType.LSRS:
-                    axisMaxDouble = 127;     // DS4 LS/RS axis has a "center position" at 128. Left turn has 0..127 positions and right turn 128..255 positions. 
-                    axisCenterPosDouble = 128;
-                    break;
-
-                case AxisType.L2R2:
-                    axisMaxDouble = 255;    // L2R2 analog trigger range 0..255
-                    axisCenterPosDouble = 0;
-                    break;
-
-                default:
-                    axisMaxDouble = 128;    // SixAxis x/z/y range 0..128
-                    axisCenterPosDouble = 0;
-                    break;
-            }
-
             double abs, output;
-            // double temp, cap, sign;
 
             for (byte idx = 0; idx <= axisMaxDouble; idx++)
             {
-                //cap = dState.RX >=128 ? 127.0 : 128.0;
-                //temp = (dState.RX - 128.0) / cap;
-                //sign = temp >= 0.0 ? 1.0 : -1.0;
-                //abs = Math.Abs(temp);
-                //output = 0.0;
-
                 abs = idx / axisMaxDouble; 
                 if (abs <= 0.4)
                     output = 0.55 * abs;
@@ -220,11 +200,84 @@ namespace DS4Windows
                 else //if (abs > 0.75)
                     output = (abs * 1.72) - 0.72;
 
-                // dState.RX = output * sign * cap + 128.0;
                 arrayBezierLUT[idx + (byte)axisCenterPosDouble] = (byte)(output * axisMaxDouble + axisCenterPosDouble);
 
                 // Invert curve from a right side of the center position (128) to the left tilted stick axis (or from up tilt to down tilt)
-                if (gamepadAxisType == AxisType.LSRS)
+                if (this.axisType == AxisType.LSRS)
+                    arrayBezierLUT[127 - idx] = (byte)(255 - arrayBezierLUT[idx + (byte)axisCenterPosDouble]);
+
+                // If the axisMaxDouble is 255 then we need this to break the look (byte is unsigned 0..255, so the FOR loop never reaches 256 idx value. C# would throw an overflow exceptio)
+                if (idx == axisMaxDouble) break;
+            }
+            return true;
+        }
+
+        private bool InitQuadric_92()
+        {
+            double temp;
+            for (byte idx = 0; idx <= axisMaxDouble; idx++)
+            {
+                temp = idx / axisMaxDouble;
+                arrayBezierLUT[idx + (byte)axisCenterPosDouble] = (byte)((temp * temp * axisMaxDouble) + axisCenterPosDouble);
+
+                // Invert curve from a right side of the center position (128) to the left tilted stick axis (or from up tilt to down tilt)
+                if (this.axisType == AxisType.LSRS)
+                    arrayBezierLUT[127 - idx] = (byte)(255 - arrayBezierLUT[idx + (byte)axisCenterPosDouble]);
+
+                // If the axisMaxDouble is 255 then we need this to break the look (byte is unsigned 0..255, so the FOR loop never reaches 256 idx value. C# would throw an overflow exceptio)
+                if (idx == axisMaxDouble) break;
+            }
+            return true;
+        }
+
+        private bool InitCubic_93()
+        {
+            double temp;
+            for (byte idx = 0; idx <= axisMaxDouble; idx++)
+            {
+                temp = idx / axisMaxDouble;
+                arrayBezierLUT[idx + (byte)axisCenterPosDouble] = (byte)((temp * temp * temp * axisMaxDouble) + axisCenterPosDouble);
+
+                // Invert curve from a right side of the center position (128) to the left tilted stick axis (or from up tilt to down tilt)
+                if (this.axisType == AxisType.LSRS)
+                    arrayBezierLUT[127 - idx] = (byte)(255 - arrayBezierLUT[idx + (byte)axisCenterPosDouble]);
+
+                // If the axisMaxDouble is 255 then we need this to break the look (byte is unsigned 0..255, so the FOR loop never reaches 256 idx value. C# would throw an overflow exceptio)
+                if (idx == axisMaxDouble) break;
+            }
+            return true;
+        }
+
+        private bool InitEaseoutQuad_94()
+        {
+            double abs, output;
+            for (byte idx = 0; idx <= axisMaxDouble; idx++)
+            {
+                abs = idx / axisMaxDouble;
+                output = abs * (abs - 2.0);
+                arrayBezierLUT[idx + (byte)axisCenterPosDouble] = (byte)((-1.0 * output * axisMaxDouble) + axisCenterPosDouble);
+
+                // Invert curve from a right side of the center position (128) to the left tilted stick axis (or from up tilt to down tilt)
+                if (this.axisType == AxisType.LSRS)
+                    arrayBezierLUT[127 - idx] = (byte)(255 - arrayBezierLUT[idx + (byte)axisCenterPosDouble]);
+
+                // If the axisMaxDouble is 255 then we need this to break the look (byte is unsigned 0..255, so the FOR loop never reaches 256 idx value. C# would throw an overflow exceptio)
+                if (idx == axisMaxDouble) break;
+            }
+            return true;
+        }
+
+        private bool InitEaseoutCubic_95()
+        {
+            double inner, output;
+            for (byte idx = 0; idx <= axisMaxDouble; idx++)
+            {
+                inner = (idx / axisMaxDouble) - 1.0;
+                output = (inner * inner * inner) + 1.0;
+                arrayBezierLUT[idx + (byte)axisCenterPosDouble] = (byte)((1.0 * output * axisMaxDouble) + axisCenterPosDouble);
+
+                // Invert curve from a right side of the center position (128) to the left tilted stick axis (or from up tilt to down tilt)
+                if (this.axisType == AxisType.LSRS)
                     arrayBezierLUT[127 - idx] = (byte)(255 - arrayBezierLUT[idx + (byte)axisCenterPosDouble]);
 
                 // If the axisMaxDouble is 255 then we need this to break the look (byte is unsigned 0..255, so the FOR loop never reaches 256 idx value. C# would throw an overflow exceptio)

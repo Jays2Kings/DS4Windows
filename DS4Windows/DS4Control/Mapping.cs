@@ -191,6 +191,7 @@ namespace DS4Windows
         public static bool[] pressedonce = new bool[261], macrodone = new bool[38];
         static bool[] macroControl = new bool[25];
         static uint macroCount = 0;
+        static Dictionary<string, Task>[] macroTaskQueue = new Dictionary<string, Task>[4] { new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>() };
 
         //actions
         public static int[] fadetimer = new int[4] { 0, 0, 0, 0 };
@@ -1240,11 +1241,12 @@ namespace DS4Windows
                         bool active = getBoolMapping2(device, dcs.control, cState, eState, tp, fieldMapping);
                         if (active)
                         {
-                            PlayMacro(device, macroControl, string.Join("/", (int[])action), dcs.control, keyType);
+                            //PlayMacro(device, macroControl, string.Join("/", (int[])action), dcs.control, keyType);
+                            PlayMacro(device, macroControl, String.Empty, null, (int[])action, dcs.control, keyType);
                         }
                         else
                         {
-                            EndMacro(device, macroControl, string.Join("/", (int[])action), dcs.control);
+                            EndMacro(device, macroControl, /*string.Join("/",*/ (int[])action /*)*/, dcs.control);
                         }
 
                         // erase default mappings for things that are remapped
@@ -1679,6 +1681,8 @@ namespace DS4Windows
                                     break;
                                 }
                             }
+                            if (action.typeID == SpecialAction.ActionTypeId.Macro && action.pressRelease && action.firstTouch) // DEBUG: Run macro when trigger keys are released
+                                triggeractivated = !triggeractivated;
                         }
 
                         bool utriggeractivated = true;
@@ -1773,22 +1777,52 @@ namespace DS4Windows
                             else if (action.typeID == SpecialAction.ActionTypeId.Macro)
                             {
                                 actionFound = true;
-
-                                if (!actionDone[index].dev[device])
+                                if (!action.pressRelease)
                                 {
-                                    DS4KeyType keyType = action.keyType;
-                                    actionDone[index].dev[device] = true;
-                                    //foreach (DS4Controls dc in action.trigger)
-                                    for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
+                                    // Macro run when trigger keys are pressed down (the default behaviour)
+                                    if (!actionDone[index].dev[device])
                                     {
-                                        DS4Controls dc = action.trigger[i];
-                                        resetToDefaultValue2(dc, MappedState, outputfieldMapping);
-                                    }
+                                        DS4KeyType keyType = action.keyType;
+                                        actionDone[index].dev[device] = true;
+                                        for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
+                                        {
+                                            DS4Controls dc = action.trigger[i];
+                                            resetToDefaultValue2(dc, MappedState, outputfieldMapping);
+                                        }
 
-                                    PlayMacro(device, macroControl, String.Join("/", action.macro), DS4Controls.None, keyType);
+                                        //AppLogger.LogToGui($"DEBUG: PlayMacro={String.Join("/", action.macro)}  trigger={action.controls}", false);
+                                        PlayMacro(device, macroControl, String.Empty, action.macro, null, DS4Controls.None, keyType, action, actionDone[index]);
+                                    }
+                                    else
+                                    {
+                                        if (!action.keyType.HasFlag(DS4KeyType.RepeatMacro))
+                                            EndMacro(device, macroControl, action.macro, DS4Controls.None);
+                                    }
                                 }
-                                else
-                                    EndMacro(device, macroControl, String.Join("/", action.macro), DS4Controls.None);
+                                else 
+                                {
+                                    // Macro is run when trigger keys are released (optional behaviour of macro special action))
+                                    if (action.firstTouch)
+                                    {
+                                        action.firstTouch = false;
+                                        if (!actionDone[index].dev[device])
+                                        {
+                                            DS4KeyType keyType = action.keyType;
+                                            actionDone[index].dev[device] = true;
+                                            for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
+                                            {
+                                                DS4Controls dc = action.trigger[i];
+                                                resetToDefaultValue2(dc, MappedState, outputfieldMapping);
+                                            }
+
+                                            //AppLogger.LogToGui($"DEBUG: pressRelease PlayMacro={String.Join("/", action.macro)}  trigger={action.controls}", false);
+                                            PlayMacro(device, macroControl, String.Empty, action.macro, null, DS4Controls.None, keyType, action, null);
+                                            //EndMacro(device, macroControl, action.macro, DS4Controls.None);
+                                        }
+                                    }
+                                    else
+                                        action.firstTouch = true;
+                                }
                             }
                             else if (action.typeID == SpecialAction.ActionTypeId.Key)
                             {
@@ -2044,7 +2078,8 @@ namespace DS4Windows
                                     if ((DateTime.UtcNow - action.TimeofEnd) > TimeSpan.FromMilliseconds(150))
                                     {
                                         if (macro != "")
-                                            PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
+                                            //PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
+                                            PlayMacro(device, macroControl, macro, null, null, DS4Controls.None, DS4KeyType.None);
 
                                         tappedOnce = false;
                                         action.tappedOnce = false;
@@ -2070,7 +2105,8 @@ namespace DS4Windows
                                     }
 
                                     if (macro != "")
-                                        PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
+                                        //PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
+                                        PlayMacro(device, macroControl, macro, null, null, DS4Controls.None, DS4KeyType.None);
 
                                     firstTouch = false;
                                     action.firstTouch = false;
@@ -2094,7 +2130,8 @@ namespace DS4Windows
                                     }
 
                                     if (macro != "")
-                                        PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
+                                        //PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
+                                        PlayMacro(device, macroControl, macro, null, null, DS4Controls.None, DS4KeyType.None);
 
                                     secondtouchbegin = false;
                                     action.secondtouchbegin = false;
@@ -2194,208 +2231,435 @@ namespace DS4Windows
             }
         }
 
-        private static async void PlayMacro(int device, bool[] macrocontrol, string macro, DS4Controls control, DS4KeyType keyType)
+        /*
+                private static async void PlayMacro(int device, bool[] macrocontrol, string macro, DS4Controls control, DS4KeyType keyType)
+                {
+                    if (macro.StartsWith("164/9/9/164") || macro.StartsWith("18/9/9/18"))
+                    {
+                        string[] skeys;
+                        int wait = 1000;
+                        if (!string.IsNullOrEmpty(macro))
+                        {
+                            skeys = macro.Split('/');
+                            ushort delay;
+                            if (ushort.TryParse(skeys[skeys.Length - 1], out delay) && delay > 300)
+                                wait = delay - 300;
+                        }
+                        AltTabSwapping(wait, device);
+                        if (control != DS4Controls.None)
+                            macrodone[DS4ControltoInt(control)] = true;
+                    }
+                    else
+                    {
+                        string[] skeys;
+                        int[] keys;
+                        if (!string.IsNullOrEmpty(macro))
+                        {
+                            skeys = macro.Split('/');
+                            keys = new int[skeys.Length];
+                        }
+                        else
+                        {
+                            skeys = new string[0];
+                            keys = new int[0];
+                        }
+                        for (int i = 0; i < keys.Length; i++)
+                            keys[i] = int.Parse(skeys[i]);
+                        bool[] keydown = new bool[286];
+                        if (control == DS4Controls.None || !macrodone[DS4ControltoInt(control)])
+                        {
+                            if (control != DS4Controls.None)
+                                macrodone[DS4ControltoInt(control)] = true;
+                            foreach (int i in keys)
+                            {
+                                if (i >= 1000000000)
+                                {
+                                    if (i > 1000000000)
+                                    {
+                                        string lb = i.ToString().Substring(1);
+                                        byte r = (byte)(int.Parse(lb[0].ToString()) * 100 + int.Parse(lb[1].ToString()) * 10 + int.Parse(lb[2].ToString()));
+                                        byte g = (byte)(int.Parse(lb[3].ToString()) * 100 + int.Parse(lb[4].ToString()) * 10 + int.Parse(lb[5].ToString()));
+                                        byte b = (byte)(int.Parse(lb[6].ToString()) * 100 + int.Parse(lb[7].ToString()) * 10 + int.Parse(lb[8].ToString()));
+                                        DS4LightBar.forcelight[device] = true;
+                                        DS4LightBar.forcedFlash[device] = 0;
+                                        DS4LightBar.forcedColor[device] = new DS4Color(r, g, b);
+                                    }
+                                    else
+                                    {
+                                        DS4LightBar.forcedFlash[device] = 0;
+                                        DS4LightBar.forcelight[device] = false;
+                                    }
+                                }
+                                else if (i >= 1000000)
+                                {
+                                    DS4Device d = Program.rootHub.DS4Controllers[device];
+                                    string r = i.ToString().Substring(1);
+                                    byte heavy = (byte)(int.Parse(r[0].ToString()) * 100 + int.Parse(r[1].ToString()) * 10 + int.Parse(r[2].ToString()));
+                                    byte light = (byte)(int.Parse(r[3].ToString()) * 100 + int.Parse(r[4].ToString()) * 10 + int.Parse(r[5].ToString()));
+                                    d.setRumble(light, heavy);
+                                }
+                                else if (i >= 300) //ints over 300 used to delay
+                                    await Task.Delay(i - 300);
+                                else if (!keydown[i])
+                                {
+                                    if (i == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN); //anything above 255 is not a keyvalue
+                                    else if (i == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
+                                    else if (i == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
+                                    else if (i == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1);
+                                    else if (i == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2);
+                                    else if (i == 261) { macroControl[0] = true; macroCount++; }
+                                    else if (i == 262) { macroControl[1] = true; macroCount++; }
+                                    else if (i == 263) { macroControl[2] = true; macroCount++; }
+                                    else if (i == 264) { macroControl[3] = true; macroCount++; }
+                                    else if (i == 265) { macroControl[4] = true; macroCount++; }
+                                    else if (i == 266) { macroControl[5] = true; macroCount++; }
+                                    else if (i == 267) { macroControl[6] = true; macroCount++; }
+                                    else if (i == 268) { macroControl[7] = true; macroCount++; }
+                                    else if (i == 269) { macroControl[8] = true; macroCount++; }
+                                    else if (i == 270) { macroControl[9] = true; macroCount++; }
+                                    else if (i == 271) { macroControl[10] = true; macroCount++; }
+                                    else if (i == 272) { macroControl[11] = true; macroCount++; }
+                                    else if (i == 273) { macroControl[12] = true; macroCount++; }
+                                    else if (i == 274) { macroControl[13] = true; macroCount++; }
+                                    else if (i == 275) { macroControl[14] = true; macroCount++; }
+                                    else if (i == 276) { macroControl[15] = true; macroCount++; }
+                                    else if (i == 277) { macroControl[16] = true; macroCount++; }
+                                    else if (i == 278) { macroControl[17] = true; macroCount++; }
+                                    else if (i == 279) { macroControl[18] = true; macroCount++; }
+                                    else if (i == 280) { macroControl[19] = true; macroCount++; }
+                                    else if (i == 281) { macroControl[20] = true; macroCount++; }
+                                    else if (i == 282) { macroControl[21] = true; macroCount++; }
+                                    else if (i == 283) { macroControl[22] = true; macroCount++; }
+                                    else if (i == 284) { macroControl[23] = true;macroCount++; }
+                                    else if (i == 285) { macroControl[24] = true; macroCount++; }
+                                    else if (keyType.HasFlag(DS4KeyType.ScanCode))
+                                        InputMethods.performSCKeyPress((ushort)i);
+                                    else
+                                        InputMethods.performKeyPress((ushort)i);
+                                    keydown[i] = true;
+                                }
+                                else
+                                {
+                                    if (i == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
+                                    else if (i == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
+                                    else if (i == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
+                                    else if (i == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
+                                    else if (i == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
+                                    else if (i == 261) { macroControl[0] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 262) { macroControl[1] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 263) { macroControl[2] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 264) { macroControl[3] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 265) { macroControl[4] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 266) { macroControl[5] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 267) { macroControl[6] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 268) { macroControl[7] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 269) { macroControl[8] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 270) { macroControl[9] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 271) { macroControl[10] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 272) { macroControl[11] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 273) { macroControl[12] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 274) { macroControl[13] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 275) { macroControl[14] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 276) { macroControl[15] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 277) { macroControl[16] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 278) { macroControl[17] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 279) { macroControl[18] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 280) { macroControl[19] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 281) { macroControl[20] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 282) { macroControl[21] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 283) { macroControl[22] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 284) { macroControl[23] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 285) { macroControl[24] = false; if (macroCount > 0) macroCount--; }
+                                    else if (keyType.HasFlag(DS4KeyType.ScanCode))
+                                        InputMethods.performSCKeyRelease((ushort)i);
+                                    else
+                                        InputMethods.performKeyRelease((ushort)i);
+                                    keydown[i] = false;
+                                }
+                            }
+                            for (int i = 0, arlength = keydown.Length; i < arlength; i++)
+                            {
+                                if (keydown[i])
+                                {
+                                    if (i == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
+                                    else if (i == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
+                                    else if (i == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
+                                    else if (i == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
+                                    else if (i == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
+                                    else if (i == 261) { macroControl[0] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 262) { macroControl[1] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 263) { macroControl[2] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 264) { macroControl[3] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 265) { macroControl[4] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 266) { macroControl[5] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 267) { macroControl[6] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 268) { macroControl[7] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 269) { macroControl[8] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 270) { macroControl[9] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 271) { macroControl[10] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 272) { macroControl[11] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 273) { macroControl[12] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 274) { macroControl[13] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 275) { macroControl[14] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 276) { macroControl[15] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 277) { macroControl[16] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 278) { macroControl[17] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 279) { macroControl[18] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 280) { macroControl[19] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 281) { macroControl[20] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 282) { macroControl[21] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 283) { macroControl[22] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 284) { macroControl[23] = false; if (macroCount > 0) macroCount--; }
+                                    else if (i == 285) { macroControl[24] = false; if (macroCount > 0) macroCount--; }
+                                    else if (keyType.HasFlag(DS4KeyType.ScanCode))
+                                        InputMethods.performSCKeyRelease((ushort)i);
+                                    else
+                                        InputMethods.performKeyRelease((ushort)i);
+                                }
+                            }
+
+                            DS4LightBar.forcedFlash[device] = 0;
+                            DS4LightBar.forcelight[device] = false;
+                            Program.rootHub.DS4Controllers[device].setRumble(0, 0);
+                            if (keyType.HasFlag(DS4KeyType.HoldMacro))
+                            {
+                                await Task.Delay(50);
+                                if (control != DS4Controls.None)
+                                    macrodone[DS4ControltoInt(control)] = false;
+                            }
+                        }
+                    }
+                }
+        */
+
+        // PlayMacro as a background task. If the macroPlayQueueName is defined then play macro only when the previous macro in the same queue 
+        // has completed already (ie. if the same macro trigger key has both key down and key release macros then those are run synchronized).
+        private static void PlayMacro(int device, bool[] macrocontrol, string macroStr, List<int> macroLst, int[] macroArr, DS4Controls control, DS4KeyType keyType, SpecialAction action = null, ActionState actionDoneState = null)
         {
-            if (macro.StartsWith("164/9/9/164") || macro.StartsWith("18/9/9/18"))
+            if (action != null && action.synchronized)
+            {
+                // Run special action macros in synchronized order (ie. FirstIn-FirstOut). The trigger control name string is the execution queue identifier (ie. each unique trigger combination has an own synchronization queue).
+                if (!macroTaskQueue[device].TryGetValue(action.controls, out Task prevTask))
+                    macroTaskQueue[device].Add(action.controls, (Task.Factory.StartNew(() => PlayMacroTask(device, macroControl, macroStr, macroLst, macroArr, control, keyType, action, actionDoneState))) );
+                else
+                    macroTaskQueue[device][action.controls] = prevTask.ContinueWith((x) => PlayMacroTask(device, macroControl, macroStr, macroLst, macroArr, control, keyType, action, actionDoneState));                       
+            }
+            else
+                // Run macro as "fire and forget" background task. No need to wait for completion of any of the other macros. 
+                // If the same trigger macro is re-launched while previous macro is still running then the order of parallel macros is not guaranteed.
+                Task.Factory.StartNew(() => PlayMacroTask(device, macroControl, macroStr, macroLst, macroArr, control, keyType, action, actionDoneState));
+        }
+
+        // Play through a macro. The macro steps are defined either as string, List or Array object (always only one of those parameters is set to a valid value)
+        private static /*async*/ void PlayMacroTask(int device, bool[] macrocontrol, string macroStr, List<int> macroLst, int[] macroArr, DS4Controls control, DS4KeyType keyType, SpecialAction action, ActionState actionDoneState)
+        {
+            if(!String.IsNullOrEmpty(macroStr))
             {
                 string[] skeys;
-                int wait = 1000;
-                if (!string.IsNullOrEmpty(macro))
-                {
-                    skeys = macro.Split('/');
-                    ushort delay;
-                    if (ushort.TryParse(skeys[skeys.Length - 1], out delay) && delay > 300)
-                        wait = delay - 300;
-                }
+
+                skeys = macroStr.Split('/');
+                macroArr = new int[skeys.Length];
+                for (int i = 0; i < macroArr.Length; i++)
+                    macroArr[i] = int.Parse(skeys[i]);
+            }
+
+            // macro.StartsWith("164/9/9/164") || macro.StartsWith("18/9/9/18")
+            if ( (macroLst != null && macroLst.Count >= 4 && ((macroLst[0] == 164 && macroLst[1] == 9 && macroLst[2] == 9 && macroLst[3] == 164) || (macroLst[0] == 18 && macroLst[1] == 9 && macroLst[2] == 9 && macroLst[3] == 18))) 
+              || (macroArr != null && macroArr.Length>= 4 && ((macroArr[0] == 164 && macroArr[1] == 9 && macroArr[2] == 9 && macroArr[3] == 164) || (macroArr[0] == 18 && macroArr[1] == 9 && macroArr[2] == 9 && macroArr[3] == 18)))
+            )
+            {
+                int wait;
+                if(macroLst != null)
+                    wait = macroLst[macroLst.Count - 1];
+                else
+                    wait = macroArr[macroArr.Length - 1];
+
+                if (wait <= 300 || wait > ushort.MaxValue)
+                    wait = 1000;
+                else
+                    wait -= 300;
+
                 AltTabSwapping(wait, device);
                 if (control != DS4Controls.None)
                     macrodone[DS4ControltoInt(control)] = true;
             }
-            else
+            else if(control == DS4Controls.None || !macrodone[DS4ControltoInt(control)])
             {
-                string[] skeys;
-                int[] keys;
-                if (!string.IsNullOrEmpty(macro))
+                int macroCodeValue;
+                bool[] keydown = new bool[286];
+
+                if (control != DS4Controls.None)
+                    macrodone[DS4ControltoInt(control)] = true;
+
+                // Play macro codes and simulate key down/up events (note! The same key may go through several up and down events during the same macro).
+                // If the return value is TRUE then this async method should do a asynchronized delay (the usual Thread.Sleep doesnt work here because it would block the main gamepad reading thread also).
+                if (macroLst != null)
                 {
-                    skeys = macro.Split('/');
-                    keys = new int[skeys.Length];
+                    for (int i = 0; i < macroLst.Count; i++)
+                    {
+                        macroCodeValue = macroLst[i];
+                        if (PlayMacroCodeValue(device, macrocontrol, keyType, macroCodeValue, keydown))
+                            //await Task.Delay(macroCodeValue - 300);
+                            Task.Delay(macroCodeValue - 300).Wait();
+                    }
                 }
                 else
                 {
-                    skeys = new string[0];
-                    keys = new int[0];
-                }
-                for (int i = 0; i < keys.Length; i++)
-                    keys[i] = int.Parse(skeys[i]);
-                bool[] keydown = new bool[286];
-                if (control == DS4Controls.None || !macrodone[DS4ControltoInt(control)])
-                {
-                    if (control != DS4Controls.None)
-                        macrodone[DS4ControltoInt(control)] = true;
-                    foreach (int i in keys)
+                    for (int i = 0; i < macroArr.Length; i++)
                     {
-                        if (i >= 1000000000)
-                        {
-                            string lb = i.ToString().Substring(1);
-                            if (i > 1000000000)
-                            {
-                                byte r = (byte)(int.Parse(lb[0].ToString()) * 100 + int.Parse(lb[1].ToString()) * 10 + int.Parse(lb[2].ToString()));
-                                byte g = (byte)(int.Parse(lb[3].ToString()) * 100 + int.Parse(lb[4].ToString()) * 10 + int.Parse(lb[5].ToString()));
-                                byte b = (byte)(int.Parse(lb[6].ToString()) * 100 + int.Parse(lb[7].ToString()) * 10 + int.Parse(lb[8].ToString()));
-                                DS4LightBar.forcelight[device] = true;
-                                DS4LightBar.forcedFlash[device] = 0;
-                                DS4LightBar.forcedColor[device] = new DS4Color(r, g, b);
-                            }
-                            else
-                            {
-                                DS4LightBar.forcedFlash[device] = 0;
-                                DS4LightBar.forcelight[device] = false;
-                            }
-                        }
-                        else if (i >= 1000000)
-                        {
-                            DS4Device d = Program.rootHub.DS4Controllers[device];
-                            string r = i.ToString().Substring(1);
-                            byte heavy = (byte)(int.Parse(r[0].ToString()) * 100 + int.Parse(r[1].ToString()) * 10 + int.Parse(r[2].ToString()));
-                            byte light = (byte)(int.Parse(r[3].ToString()) * 100 + int.Parse(r[4].ToString()) * 10 + int.Parse(r[5].ToString()));
-                            d.setRumble(light, heavy);
-                        }
-                        else if (i >= 300) //ints over 300 used to delay
-                            await Task.Delay(i - 300);
-                        else if (!keydown[i])
-                        {
-                            if (i == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN); //anything above 255 is not a keyvalue
-                            else if (i == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
-                            else if (i == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
-                            else if (i == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1);
-                            else if (i == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2);
-                            else if (i == 261) { macroControl[0] = true; macroCount++; }
-                            else if (i == 262) { macroControl[1] = true; macroCount++; }
-                            else if (i == 263) { macroControl[2] = true; macroCount++; }
-                            else if (i == 264) { macroControl[3] = true; macroCount++; }
-                            else if (i == 265) { macroControl[4] = true; macroCount++; }
-                            else if (i == 266) { macroControl[5] = true; macroCount++; }
-                            else if (i == 267) { macroControl[6] = true; macroCount++; }
-                            else if (i == 268) { macroControl[7] = true; macroCount++; }
-                            else if (i == 269) { macroControl[8] = true; macroCount++; }
-                            else if (i == 270) { macroControl[9] = true; macroCount++; }
-                            else if (i == 271) { macroControl[10] = true; macroCount++; }
-                            else if (i == 272) { macroControl[11] = true; macroCount++; }
-                            else if (i == 273) { macroControl[12] = true; macroCount++; }
-                            else if (i == 274) { macroControl[13] = true; macroCount++; }
-                            else if (i == 275) { macroControl[14] = true; macroCount++; }
-                            else if (i == 276) { macroControl[15] = true; macroCount++; }
-                            else if (i == 277) { macroControl[16] = true; macroCount++; }
-                            else if (i == 278) { macroControl[17] = true; macroCount++; }
-                            else if (i == 279) { macroControl[18] = true; macroCount++; }
-                            else if (i == 280) { macroControl[19] = true; macroCount++; }
-                            else if (i == 281) { macroControl[20] = true; macroCount++; }
-                            else if (i == 282) { macroControl[21] = true; macroCount++; }
-                            else if (i == 283) { macroControl[22] = true; macroCount++; }
-                            else if (i == 284) { macroControl[23] = true;macroCount++; }
-                            else if (i == 285) { macroControl[24] = true; macroCount++; }
-                            else if (keyType.HasFlag(DS4KeyType.ScanCode))
-                                InputMethods.performSCKeyPress((ushort)i);
-                            else
-                                InputMethods.performKeyPress((ushort)i);
-                            keydown[i] = true;
-                        }
-                        else
-                        {
-                            if (i == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
-                            else if (i == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
-                            else if (i == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
-                            else if (i == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
-                            else if (i == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
-                            else if (i == 261) { macroControl[0] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 262) { macroControl[1] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 263) { macroControl[2] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 264) { macroControl[3] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 265) { macroControl[4] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 266) { macroControl[5] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 267) { macroControl[6] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 268) { macroControl[7] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 269) { macroControl[8] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 270) { macroControl[9] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 271) { macroControl[10] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 272) { macroControl[11] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 273) { macroControl[12] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 274) { macroControl[13] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 275) { macroControl[14] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 276) { macroControl[15] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 277) { macroControl[16] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 278) { macroControl[17] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 279) { macroControl[18] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 280) { macroControl[19] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 281) { macroControl[20] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 282) { macroControl[21] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 283) { macroControl[22] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 284) { macroControl[23] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 285) { macroControl[24] = false; if (macroCount > 0) macroCount--; }
-                            else if (keyType.HasFlag(DS4KeyType.ScanCode))
-                                InputMethods.performSCKeyRelease((ushort)i);
-                            else
-                                InputMethods.performKeyRelease((ushort)i);
-                            keydown[i] = false;
-                        }
+                        macroCodeValue = macroArr[i];
+                        if (PlayMacroCodeValue(device, macrocontrol, keyType, macroCodeValue, keydown))
+                            //await Task.Delay(macroCodeValue - 300);
+                            Task.Delay(macroCodeValue - 300).Wait();
                     }
+                }
+
+                // The macro is finished. If any of the keys is still in down state then release a key state (ie. simulate key up event) unless special action specified to keep the last state as it is left in a macro
+                if (action == null || !action.keepKeyState)
+                {
                     for (int i = 0, arlength = keydown.Length; i < arlength; i++)
                     {
                         if (keydown[i])
-                        {
-                            if (i == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
-                            else if (i == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
-                            else if (i == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
-                            else if (i == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
-                            else if (i == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
-                            else if (i == 261) { macroControl[0] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 262) { macroControl[1] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 263) { macroControl[2] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 264) { macroControl[3] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 265) { macroControl[4] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 266) { macroControl[5] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 267) { macroControl[6] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 268) { macroControl[7] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 269) { macroControl[8] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 270) { macroControl[9] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 271) { macroControl[10] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 272) { macroControl[11] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 273) { macroControl[12] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 274) { macroControl[13] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 275) { macroControl[14] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 276) { macroControl[15] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 277) { macroControl[16] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 278) { macroControl[17] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 279) { macroControl[18] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 280) { macroControl[19] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 281) { macroControl[20] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 282) { macroControl[21] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 283) { macroControl[22] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 284) { macroControl[23] = false; if (macroCount > 0) macroCount--; }
-                            else if (i == 285) { macroControl[24] = false; if (macroCount > 0) macroCount--; }
-                            else if (keyType.HasFlag(DS4KeyType.ScanCode))
-                                InputMethods.performSCKeyRelease((ushort)i);
-                            else
-                                InputMethods.performKeyRelease((ushort)i);
-                        }
-                    }
-
-                    DS4LightBar.forcedFlash[device] = 0;
-                    DS4LightBar.forcelight[device] = false;
-                    Program.rootHub.DS4Controllers[device].setRumble(0, 0);
-                    if (keyType.HasFlag(DS4KeyType.HoldMacro))
-                    {
-                        await Task.Delay(50);
-                        if (control != DS4Controls.None)
-                            macrodone[DS4ControltoInt(control)] = false;
+                            PlayMacroCodeValue(device, macrocontrol, keyType, i, keydown);
                     }
                 }
+
+                DS4LightBar.forcedFlash[device] = 0;
+                DS4LightBar.forcelight[device] = false;
+
+                // No need to zero out rumble after a macro because it may conflict with a game generated rumble events (ie. macro would stop a game generated rumble effect).
+                // If macro generated rumble effects then the macro proabbly sends a "rumble zero" event also. If it doesn't then a rumble watchdog timer will eventually stop the rumble.
+                //Program.rootHub.DS4Controllers[device].setRumble(0, 0);
+
+                if (keyType.HasFlag(DS4KeyType.HoldMacro))
+                {
+                    //await Task.Delay(50);
+                    Task.Delay(50).Wait();
+                    if (control != DS4Controls.None)
+                        macrodone[DS4ControltoInt(control)] = false;
+                }
             }
+
+            // If a special action macro has "Repeat while held" option and actionDoneState object is defined then reset the action back to "not done" status in order to re-fire it if the trigger key is still held down
+            if (actionDoneState != null && keyType.HasFlag(DS4KeyType.RepeatMacro))
+                actionDoneState.dev[device] = false;
+        }
+
+        private static bool PlayMacroCodeValue(int device, bool[] macrocontrol, DS4KeyType keyType, int macroCodeValue, bool[] keydown)
+        {
+            bool doDelayOnCaller = false;
+            if (macroCodeValue >= 261 && macroCodeValue <= 285)
+            {
+                // Gamepad button up or down macro event. macroCodeValue index value is the button identifier (codeValue-261 = idx in 0..24 range)
+                if (!keydown[macroCodeValue])
+                {
+                    macroControl[macroCodeValue - 261] = keydown[macroCodeValue] = true;
+                    macroCount++;
+                }
+                else
+                {
+                    macroControl[macroCodeValue - 261] = keydown[macroCodeValue] = false;
+                    if (macroCount > 0) macroCount--;
+                }
+            }
+            else if (macroCodeValue < 300)
+            {
+                // Keyboard key or mouse button macro event
+                if (!keydown[macroCodeValue])
+                {
+                    switch (macroCodeValue)
+                    {
+                        //anything above 255 is not a keyvalue
+                        case 256: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN); break;
+                        case 257: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN); break;
+                        case 258: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN); break;
+                        case 259: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1); break;
+                        case 260: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2); break;
+
+                        default:
+                            if (keyType.HasFlag(DS4KeyType.ScanCode)) InputMethods.performSCKeyPress((ushort)macroCodeValue);
+                            else InputMethods.performKeyPress((ushort)macroCodeValue);
+                            break;
+                    }
+                    keydown[macroCodeValue] = true;
+                }
+                else
+                {
+                    switch (macroCodeValue)
+                    {
+                        //anything above 255 is not a keyvalue
+                        case 256: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); break;
+                        case 257: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP); break;
+                        case 258: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP); break;
+                        case 259: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1); break;
+                        case 260: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2); break;
+
+                        default:
+                            if (keyType.HasFlag(DS4KeyType.ScanCode)) InputMethods.performSCKeyRelease((ushort)macroCodeValue);
+                            else InputMethods.performKeyRelease((ushort)macroCodeValue);
+                            break;
+                    }
+                    keydown[macroCodeValue] = false;
+                }
+            }
+            else if (macroCodeValue >= 1000000000)
+            {
+                // Lightbar color event
+                if (macroCodeValue > 1000000000)
+                {
+                    string lb = macroCodeValue.ToString().Substring(1);
+                    byte r = (byte)(int.Parse(lb[0].ToString()) * 100 + int.Parse(lb[1].ToString()) * 10 + int.Parse(lb[2].ToString()));
+                    byte g = (byte)(int.Parse(lb[3].ToString()) * 100 + int.Parse(lb[4].ToString()) * 10 + int.Parse(lb[5].ToString()));
+                    byte b = (byte)(int.Parse(lb[6].ToString()) * 100 + int.Parse(lb[7].ToString()) * 10 + int.Parse(lb[8].ToString()));
+                    DS4LightBar.forcelight[device] = true;
+                    DS4LightBar.forcedFlash[device] = 0;
+                    DS4LightBar.forcedColor[device] = new DS4Color(r, g, b);
+                }
+                else
+                {
+                    DS4LightBar.forcedFlash[device] = 0;
+                    DS4LightBar.forcelight[device] = false;
+                }
+            }
+            else if (macroCodeValue >= 1000000)
+            {
+                // Rumble event
+                DS4Device d = Program.rootHub.DS4Controllers[device];
+                string r = macroCodeValue.ToString().Substring(1);
+                byte heavy = (byte)(int.Parse(r[0].ToString()) * 100 + int.Parse(r[1].ToString()) * 10 + int.Parse(r[2].ToString()));
+                byte light = (byte)(int.Parse(r[3].ToString()) * 100 + int.Parse(r[4].ToString()) * 10 + int.Parse(r[5].ToString()));
+                d.setRumble(light, heavy);
+            }
+            else
+            {
+                // Delay specification. Indicate to caller that it should do a delay of macroCodeValue-300 msecs
+                doDelayOnCaller = true;
+            }
+
+            return doDelayOnCaller;
         }
 
         private static void EndMacro(int device, bool[] macrocontrol, string macro, DS4Controls control)
         {
             if ((macro.StartsWith("164/9/9/164") || macro.StartsWith("18/9/9/18")) && !altTabDone)
+                AltTabSwappingRelease();
+
+            if (control != DS4Controls.None)
+                macrodone[DS4ControltoInt(control)] = false;
+        }
+
+        private static void EndMacro(int device, bool[] macrocontrol, List<int> macro, DS4Controls control)
+        {
+            if(macro.Count >= 4 && ((macro[0] == 164 && macro[1] == 9 && macro[2] == 9 && macro[3] == 164) || (macro[0] == 18 && macro[1] == 9 && macro[2] == 9 && macro[3] == 18)) && !altTabDone)
+                AltTabSwappingRelease();
+
+            if (control != DS4Controls.None)
+                macrodone[DS4ControltoInt(control)] = false;
+        }
+
+        private static void EndMacro(int device, bool[] macrocontrol, int[] macro, DS4Controls control)
+        {
+            if (macro.Length >= 4 && ((macro[0] == 164 && macro[1] == 9 && macro[2] == 9 && macro[3] == 164) || (macro[0] == 18 && macro[1] == 9 && macro[2] == 9 && macro[3] == 18)) && !altTabDone)
                 AltTabSwappingRelease();
 
             if (control != DS4Controls.None)

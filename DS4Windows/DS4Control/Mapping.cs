@@ -1241,12 +1241,11 @@ namespace DS4Windows
                         bool active = getBoolMapping2(device, dcs.control, cState, eState, tp, fieldMapping);
                         if (active)
                         {
-                            //PlayMacro(device, macroControl, string.Join("/", (int[])action), dcs.control, keyType);
                             PlayMacro(device, macroControl, String.Empty, null, (int[])action, dcs.control, keyType);
                         }
                         else
                         {
-                            EndMacro(device, macroControl, /*string.Join("/",*/ (int[])action /*)*/, dcs.control);
+                            EndMacro(device, macroControl, (int[])action, dcs.control);
                         }
 
                         // erase default mappings for things that are remapped
@@ -1790,7 +1789,6 @@ namespace DS4Windows
                                             resetToDefaultValue2(dc, MappedState, outputfieldMapping);
                                         }
 
-                                        //AppLogger.LogToGui($"DEBUG: PlayMacro={String.Join("/", action.macro)}  trigger={action.controls}", false);
                                         PlayMacro(device, macroControl, String.Empty, action.macro, null, DS4Controls.None, keyType, action, actionDone[index]);
                                     }
                                     else
@@ -1815,9 +1813,7 @@ namespace DS4Windows
                                                 resetToDefaultValue2(dc, MappedState, outputfieldMapping);
                                             }
 
-                                            //AppLogger.LogToGui($"DEBUG: pressRelease PlayMacro={String.Join("/", action.macro)}  trigger={action.controls}", false);
                                             PlayMacro(device, macroControl, String.Empty, action.macro, null, DS4Controls.None, keyType, action, null);
-                                            //EndMacro(device, macroControl, action.macro, DS4Controls.None);
                                         }
                                     }
                                     else
@@ -2078,7 +2074,6 @@ namespace DS4Windows
                                     if ((DateTime.UtcNow - action.TimeofEnd) > TimeSpan.FromMilliseconds(150))
                                     {
                                         if (macro != "")
-                                            //PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
                                             PlayMacro(device, macroControl, macro, null, null, DS4Controls.None, DS4KeyType.None);
 
                                         tappedOnce = false;
@@ -2105,7 +2100,6 @@ namespace DS4Windows
                                     }
 
                                     if (macro != "")
-                                        //PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
                                         PlayMacro(device, macroControl, macro, null, null, DS4Controls.None, DS4KeyType.None);
 
                                     firstTouch = false;
@@ -2130,7 +2124,6 @@ namespace DS4Windows
                                     }
 
                                     if (macro != "")
-                                        //PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
                                         PlayMacro(device, macroControl, macro, null, null, DS4Controls.None, DS4KeyType.None);
 
                                     secondtouchbegin = false;

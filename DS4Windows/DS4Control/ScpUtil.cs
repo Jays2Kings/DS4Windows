@@ -4468,7 +4468,7 @@ namespace DS4Windows
                 }
                 if (extras.Contains("Scan Code"))
                     keyType |= DS4KeyType.ScanCode;
-                if (extras.Contains("Release"))
+                if (extras.Contains("RunOnRelease"))
                     pressRelease = true;
                 if (extras.Contains("Sync"))
                     synchronized = true;

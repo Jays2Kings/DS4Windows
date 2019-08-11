@@ -202,6 +202,21 @@
     <value>Kytke pois painamalla</value>
   </data>
   <data name="cbProfileAutoUntrigger.Text" xml:space="preserve">
-    <value>Poiskytkentä liipaisimen vapautuksella</value>
+    <value>Poiskytkentä painikkeen vapautuksella</value>
+  </data>
+  <data name="cBActions.Items8" xml:space="preserve">
+    <value>Sixaxis rattiohjainemuloinnin kalibrointi</value>
+  </data>
+  <data name="cBMacroKeepKeyState.Text" xml:space="preserve">
+    <value>Säilytä napin tila</value>
+  </data>
+  <data name="cBMacroRepeat.Text" xml:space="preserve">
+    <value>Toista painettaessa</value>
+  </data>
+  <data name="cBMacroRunOnRelease.Text" xml:space="preserve">
+    <value>Suorita painikkeen vapautuksella</value>
+  </data>
+  <data name="cBMacroSyncRun.Text" xml:space="preserve">
+    <value>Synkronoitu suoritus</value>
   </data>
 </root>

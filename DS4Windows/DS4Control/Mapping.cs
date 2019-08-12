@@ -2548,7 +2548,9 @@ namespace DS4Windows
             }
         }
 
-        // Play macro as a background task
+        // Play macro as a background task. Optionally the new macro play waits for completion of a previous macro execution (synchronized macro special action). 
+        // Macro steps are defined either as macrostr string value, macroLst list<int> object or as macroArr integer array. Only one of these should have a valid macro definition when this method is called.
+        // If the macro definition is a macroStr string value then it will be converted as integer array on the fl. If steps are already defined as list or array of integers then there is no need to do type cast conversion.
         private static void PlayMacro(int device, bool[] macrocontrol, string macroStr, List<int> macroLst, int[] macroArr, DS4Controls control, DS4KeyType keyType, SpecialAction action = null, ActionState actionDoneState = null)
         {
             if (action != null && action.synchronized)
@@ -2607,7 +2609,7 @@ namespace DS4Windows
                     macrodone[DS4ControltoInt(control)] = true;
 
                 // Play macro codes and simulate key down/up events (note! The same key may go through several up and down events during the same macro).
-                // If the return value is TRUE then this async method should do a asynchronized delay (the usual Thread.Sleep doesnt work here because it would block the main gamepad reading thread also).
+                // If the return value is TRUE then this method should do a asynchronized delay (the usual Thread.Sleep doesnt work here because it would block the main gamepad reading thread).
                 if (macroLst != null)
                 {
                     for (int i = 0; i < macroLst.Count; i++)

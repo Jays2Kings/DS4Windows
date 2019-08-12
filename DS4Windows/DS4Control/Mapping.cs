@@ -2002,7 +2002,9 @@ namespace DS4Windows
                                     break;
                                 }
                             }
-                            if (action.typeID == SpecialAction.ActionTypeId.Macro && action.pressRelease && action.firstTouch) // DEBUG: Run macro when trigger keys are released
+
+                            // If special action macro is set to run on key release then activate the trigger status only when the trigger key is released
+                            if (action.typeID == SpecialAction.ActionTypeId.Macro && action.pressRelease && action.firstTouch)
                                 triggeractivated = !triggeractivated;
                         }
 
@@ -2650,7 +2652,7 @@ namespace DS4Windows
                 }
             }
 
-            // If a special action macro has "Repeat while held" option and actionDoneState object is defined then reset the action back to "not done" status in order to re-fire it if the trigger key is still held down
+            // If a special action type of Macro has "Repeat while held" option and actionDoneState object is defined then reset the action back to "not done" status in order to re-fire it if the trigger key is still held down
             if (actionDoneState != null && keyType.HasFlag(DS4KeyType.RepeatMacro))
                 actionDoneState.dev[device] = false;
         }

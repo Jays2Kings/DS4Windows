@@ -1106,26 +1106,38 @@ namespace DS4Windows
                 double temp = dState.L2 / 255.0;
                 if (l2OutCurveMode == 1)
                 {
-                    double output = temp * temp;
+                    double output;
+
+                    if (temp <= 0.4)
+                        output = 0.55 * temp;
+                    else if (temp <= 0.75)
+                        output = temp - 0.18;
+                    else // if (temp > 0.75)
+                        output = (temp * 1.72) - 0.72;
                     dState.L2 = (byte)(output * 255.0);
                 }
                 else if (l2OutCurveMode == 2)
                 {
-                    double output = temp * temp * temp;
+                    double output = temp * temp;
                     dState.L2 = (byte)(output * 255.0);
                 }
                 else if (l2OutCurveMode == 3)
                 {
+                    double output = temp * temp * temp;
+                    dState.L2 = (byte)(output * 255.0);
+                }
+                else if (l2OutCurveMode == 4)
+                {
                     double output = temp * (temp - 2.0);
                     dState.L2 = (byte)(-1.0 * output * 255.0);
                 }
-                else if (l2OutCurveMode == 4)
+                else if (l2OutCurveMode == 5)
                 {
                     double inner = Math.Abs(temp) - 1.0;
                     double output = inner * inner * inner + 1.0;
                     dState.L2 = (byte)(-1.0 * output * 255.0);
                 }
-                else if (l2OutCurveMode == 5)
+                else if (l2OutCurveMode == 6)
                 {
                     dState.L2 = l2OutBezierCurveObj[device].arrayBezierLUT[dState.L2];
                 }
@@ -1137,26 +1149,38 @@ namespace DS4Windows
                 double temp = dState.R2 / 255.0;
                 if (r2OutCurveMode == 1)
                 {
-                    double output = temp * temp;
+                    double output;
+
+                    if (temp <= 0.4)
+                        output = 0.55 * temp;
+                    else if (temp <= 0.75)
+                        output = temp - 0.18;
+                    else // if (temp > 0.75)
+                        output = (temp * 1.72) - 0.72;
                     dState.R2 = (byte)(output * 255.0);
                 }
                 else if (r2OutCurveMode == 2)
                 {
-                    double output = temp * temp * temp;
+                    double output = temp * temp;
                     dState.R2 = (byte)(output * 255.0);
                 }
                 else if (r2OutCurveMode == 3)
                 {
+                    double output = temp * temp * temp;
+                    dState.R2 = (byte)(output * 255.0);
+                }
+                else if (r2OutCurveMode == 4)
+                {
                     double output = temp * (temp - 2.0);
                     dState.R2 = (byte)(-1.0 * output * 255.0);
                 }
-                else if (r2OutCurveMode == 4)
+                else if (r2OutCurveMode == 5)
                 {
                     double inner = Math.Abs(temp) - 1.0;
                     double output = inner * inner * inner + 1.0;
                     dState.R2 = (byte)(-1.0 * output * 255.0);
                 }
-                else if (r2OutCurveMode == 5)
+                else if (r2OutCurveMode == 6)
                 {
                     dState.R2 = r2OutBezierCurveObj[device].arrayBezierLUT[dState.R2];
                 }
@@ -1226,30 +1250,43 @@ namespace DS4Windows
                     double sign = Math.Sign(temp);
                     if (sxOutCurveMode == 1)
                     {
+                        double output;
+                        double abs = Math.Abs(temp);
+
+                        if (abs <= 0.4)
+                            output = 0.55 * abs;
+                        else if (abs <= 0.75)
+                            output = abs - 0.18;
+                        else // if (abs > 0.75)
+                            output = (abs * 1.72) - 0.72;
+                        dState.Motion.outputAccelX = (byte)(output * sign * 128.0);
+                    }
+                    else if (sxOutCurveMode == 2)
+                    {
                         double output = temp * temp;
                         result = (int)(output * sign * 128.0);
                         dState.Motion.outputAccelX = result;
                     }
-                    else if (sxOutCurveMode == 2)
+                    else if (sxOutCurveMode == 3)
                     {
                         double output = temp * temp * temp;
                         result = (int)(output * 128.0);
                         dState.Motion.outputAccelX = result;
                     }
-                    else if (sxOutCurveMode == 3)
+                    else if (sxOutCurveMode == 4)
                     {
                         double abs = Math.Abs(temp);
                         double output = abs * (abs - 2.0);
                         dState.Motion.outputAccelX = (byte)(-1.0 * output *
                             sign * 128.0);
                     }
-                    else if (sxOutCurveMode == 4)
+                    else if (sxOutCurveMode == 5)
                     {
                         double inner = Math.Abs(temp) - 1.0;
                         double output = inner * inner * inner + 1.0;
                         dState.Motion.outputAccelX = (byte)(-1.0 * output * 255.0);
                     }
-                    else if (sxOutCurveMode == 5)
+                    else if (sxOutCurveMode == 6)
                     {
                         int signSA = Math.Sign(dState.Motion.outputAccelX);
                         dState.Motion.outputAccelX = sxOutBezierCurveObj[device].arrayBezierLUT[Math.Min(Math.Abs(dState.Motion.outputAccelX), 128)] * signSA;
@@ -1263,30 +1300,43 @@ namespace DS4Windows
                     double sign = Math.Sign(temp);
                     if (szOutCurveMode == 1)
                     {
+                        double output;
+                        double abs = Math.Abs(temp);
+
+                        if (abs <= 0.4)
+                            output = 0.55 * abs;
+                        else if (abs <= 0.75)
+                            output = abs - 0.18;
+                        else // if (abs > 0.75)
+                            output = (abs * 1.72) - 0.72;
+                        dState.Motion.outputAccelZ = (byte)(output * sign * 128.0);
+                    }
+                    else if (szOutCurveMode == 2)
+                    {
                         double output = temp * temp;
                         result = (int)(output * sign * 128.0);
                         dState.Motion.outputAccelZ = result;
                     }
-                    else if (szOutCurveMode == 2)
+                    else if (szOutCurveMode == 3)
                     {
                         double output = temp * temp * temp;
                         result = (int)(output * 128.0);
                         dState.Motion.outputAccelZ = result;
                     }
-                    else if (szOutCurveMode == 3)
+                    else if (szOutCurveMode == 4)
                     {
                         double abs = Math.Abs(temp);
                         double output = abs * (abs - 2.0);
                         dState.Motion.outputAccelZ = (byte)(-1.0 * output *
                             sign * 128.0);
                     }
-                    else if (szOutCurveMode == 4)
+                    else if (szOutCurveMode == 5)
                     {
                         double inner = Math.Abs(temp) - 1.0;
                         double output = inner * inner * inner + 1.0;
                         dState.Motion.outputAccelZ = (byte)(-1.0 * output * 255.0);
                     }
-                    else if (szOutCurveMode == 5)
+                    else if (szOutCurveMode == 6)
                     {
                         int signSA = Math.Sign(dState.Motion.outputAccelZ);
                         dState.Motion.outputAccelZ = szOutBezierCurveObj[device].arrayBezierLUT[Math.Min(Math.Abs(dState.Motion.outputAccelZ), 128)] * signSA;

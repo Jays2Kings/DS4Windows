@@ -55,9 +55,14 @@
             this.lbHoldForProg = new System.Windows.Forms.Label();
             this.lbSecsProg = new System.Windows.Forms.Label();
             this.pnlMacro = new System.Windows.Forms.Panel();
+            this.cBMacroRepeat = new System.Windows.Forms.CheckBox();
+            this.cBMacroKeepKeyState = new System.Windows.Forms.CheckBox();
+            this.cBMacroSyncRun = new System.Windows.Forms.CheckBox();
+            this.cBMacroRunOnRelease = new System.Windows.Forms.CheckBox();
             this.cBMacroScanCode = new System.Windows.Forms.CheckBox();
             this.lbMacroRecorded = new System.Windows.Forms.Label();
             this.pnlProfile = new System.Windows.Forms.Panel();
+            this.cbProfileAutoUntrigger = new System.Windows.Forms.CheckBox();
             this.lbUnloadTipProfile = new System.Windows.Forms.Label();
             this.pnlDisconnectBT = new System.Windows.Forms.Panel();
             this.nUDDCBT = new System.Windows.Forms.NumericUpDown();
@@ -86,7 +91,7 @@
             this.lbDTapDVR = new System.Windows.Forms.Label();
             this.lbHoldDVR = new System.Windows.Forms.Label();
             this.lbTapDVR = new System.Windows.Forms.Label();
-            this.cbProfileAutoUntrigger = new System.Windows.Forms.CheckBox();
+            this.tp = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).BeginInit();
             this.pnlProgram.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDProg)).BeginInit();
@@ -365,11 +370,39 @@
             // 
             // pnlMacro
             // 
+            this.pnlMacro.Controls.Add(this.cBMacroRepeat);
+            this.pnlMacro.Controls.Add(this.cBMacroKeepKeyState);
+            this.pnlMacro.Controls.Add(this.cBMacroSyncRun);
+            this.pnlMacro.Controls.Add(this.cBMacroRunOnRelease);
             this.pnlMacro.Controls.Add(this.cBMacroScanCode);
             this.pnlMacro.Controls.Add(this.btnRecordMacro);
             this.pnlMacro.Controls.Add(this.lbMacroRecorded);
             resources.ApplyResources(this.pnlMacro, "pnlMacro");
             this.pnlMacro.Name = "pnlMacro";
+            // 
+            // cBMacroRepeat
+            // 
+            resources.ApplyResources(this.cBMacroRepeat, "cBMacroRepeat");
+            this.cBMacroRepeat.Name = "cBMacroRepeat";
+            this.cBMacroRepeat.UseVisualStyleBackColor = true;
+            // 
+            // cBMacroKeepKeyState
+            // 
+            resources.ApplyResources(this.cBMacroKeepKeyState, "cBMacroKeepKeyState");
+            this.cBMacroKeepKeyState.Name = "cBMacroKeepKeyState";
+            this.cBMacroKeepKeyState.UseVisualStyleBackColor = true;
+            // 
+            // cBMacroSyncRun
+            // 
+            resources.ApplyResources(this.cBMacroSyncRun, "cBMacroSyncRun");
+            this.cBMacroSyncRun.Name = "cBMacroSyncRun";
+            this.cBMacroSyncRun.UseVisualStyleBackColor = true;
+            // 
+            // cBMacroRunOnRelease
+            // 
+            resources.ApplyResources(this.cBMacroRunOnRelease, "cBMacroRunOnRelease");
+            this.cBMacroRunOnRelease.Name = "cBMacroRunOnRelease";
+            this.cBMacroRunOnRelease.UseVisualStyleBackColor = true;
             // 
             // cBMacroScanCode
             // 
@@ -390,6 +423,12 @@
             this.pnlProfile.Controls.Add(this.btnSetUTriggerProfile);
             resources.ApplyResources(this.pnlProfile, "pnlProfile");
             this.pnlProfile.Name = "pnlProfile";
+            // 
+            // cbProfileAutoUntrigger
+            // 
+            resources.ApplyResources(this.cbProfileAutoUntrigger, "cbProfileAutoUntrigger");
+            this.cbProfileAutoUntrigger.Name = "cbProfileAutoUntrigger";
+            this.cbProfileAutoUntrigger.UseVisualStyleBackColor = true;
             // 
             // lbUnloadTipProfile
             // 
@@ -598,17 +637,12 @@
             resources.ApplyResources(this.lbTapDVR, "lbTapDVR");
             this.lbTapDVR.Name = "lbTapDVR";
             // 
-            // cbProfileAutoUntrigger
-            // 
-            resources.ApplyResources(this.cbProfileAutoUntrigger, "cbProfileAutoUntrigger");
-            this.cbProfileAutoUntrigger.Name = "cbProfileAutoUntrigger";
-            this.cbProfileAutoUntrigger.UseVisualStyleBackColor = true;
-            // 
             // SpecActions
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.pnlMacro);
             this.Controls.Add(this.pnlGameDVR);
             this.Controls.Add(this.tBName);
             this.Controls.Add(this.cBActions);
@@ -619,7 +653,6 @@
             this.Controls.Add(this.lVUnloadTrigger);
             this.Controls.Add(this.btnBorder);
             this.Controls.Add(this.pnlKeys);
-            this.Controls.Add(this.pnlMacro);
             this.Controls.Add(this.pnlProfile);
             this.Controls.Add(this.pnlProgram);
             this.Controls.Add(this.pnlBatteryCheck);
@@ -633,6 +666,7 @@
             this.pnlMacro.ResumeLayout(false);
             this.pnlMacro.PerformLayout();
             this.pnlProfile.ResumeLayout(false);
+            this.pnlProfile.PerformLayout();
             this.pnlDisconnectBT.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nUDDCBT)).EndInit();
             this.pnlKeys.ResumeLayout(false);
@@ -707,5 +741,10 @@
         public System.Windows.Forms.Button btnHoldT;
         public System.Windows.Forms.Button btnSTapT;
         private System.Windows.Forms.CheckBox cbProfileAutoUntrigger;
+        private System.Windows.Forms.CheckBox cBMacroKeepKeyState;
+        private System.Windows.Forms.CheckBox cBMacroSyncRun;
+        private System.Windows.Forms.CheckBox cBMacroRunOnRelease;
+        private System.Windows.Forms.CheckBox cBMacroRepeat;
+        private System.Windows.Forms.ToolTip tp;
     }
 }

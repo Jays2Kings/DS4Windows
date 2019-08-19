@@ -615,4 +615,19 @@
   <data name="EnableTouchToggle" xml:space="preserve">
     <value>Salli kosketuslevyhiiriohjaimen päälle-pois kytkentä PS + kosketuslevynapautuksella.</value>
   </data>
+  <data name="MacroScanCodeTip" xml:space="preserve">
+    <value>Käytä scan code näppäinkoodeja makrossa</value>
+  </data>
+  <data name="MacroRunOnReleaseTip" xml:space="preserve">
+    <value>Suorita makro painikkeen vapautuksella</value>
+  </data>
+  <data name="MacroSynchronizedRunTip" xml:space="preserve">
+    <value>Suorita useampi makro synkronoidussa järjestyksessä (esim painikkeen aktivoinnin makro suoritetaan kokonaisuudessa ennen painikkeen vapautuksen makroa)</value>
+  </data>
+  <data name="MacroRepeatTip" xml:space="preserve">
+    <value>Toista makron suoritusta painikkeen painamisen ajan</value>
+  </data>
+  <data name="MacroKeepKeyStateTip" xml:space="preserve">
+    <value>Säilytä napin tilatieto kun makron suoritus on päättynyt (jos makro jättää napin Painettu-tilaan, niin makron suoritus ei automaattisesti palauta napin tilatietoa takaisin oletustilaan)</value>
+  </data>
 </root>

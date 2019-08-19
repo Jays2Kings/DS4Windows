@@ -1281,11 +1281,56 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Keep the last key state when macro execution is completed (ie. if a key is left in down state then it is not automatically reset back to default state).
+        /// </summary>
+        public static string MacroKeepKeyStateTip {
+            get {
+                return ResourceManager.GetString("MacroKeepKeyStateTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Macro Recorded.
         /// </summary>
         public static string MacroRecorded {
             get {
                 return ResourceManager.GetString("MacroRecorded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repeat a macro while the trigger key is held down.
+        /// </summary>
+        public static string MacroRepeatTip {
+            get {
+                return ResourceManager.GetString("MacroRepeatTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run a macro on the trigger key release.
+        /// </summary>
+        public static string MacroRunOnReleaseTip {
+            get {
+                return ResourceManager.GetString("MacroRunOnReleaseTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use a scan code value of keyboard keys in a macro.
+        /// </summary>
+        public static string MacroScanCodeTip {
+            get {
+                return ResourceManager.GetString("MacroScanCodeTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run multiple macros in synchronized order if the same trigger has several macros (key down macro completed before key release macro is run).
+        /// </summary>
+        public static string MacroSynchronizedRunTip {
+            get {
+                return ResourceManager.GetString("MacroSynchronizedRunTip", resourceCulture);
             }
         }
         

@@ -814,7 +814,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lVTrigger.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="btnRecordMacro.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -841,7 +841,7 @@
     <value>pnlMacro</value>
   </data>
   <data name="&gt;&gt;btnRecordMacro.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>5</value>
   </data>
   <data name="btnBrowse.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -889,7 +889,7 @@
     <value>pnlProfile</value>
   </data>
   <data name="&gt;&gt;cBProfiles.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnSave.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -922,7 +922,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSave.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -952,7 +952,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="lbName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -982,7 +982,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lbName.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="tBName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1006,7 +1006,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tBName.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="cBActions.Items" xml:space="preserve">
     <value>-Select an Action-</value>
@@ -1054,7 +1054,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cBActions.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -1147,7 +1147,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnBorder.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="btnSetUTriggerProfile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1174,7 +1174,7 @@
     <value>pnlProfile</value>
   </data>
   <data name="&gt;&gt;btnSetUTriggerProfile.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="lVUnloadTrigger.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
@@ -1870,7 +1870,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lVUnloadTrigger.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="tBArg.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 91</value>
@@ -2031,6 +2031,114 @@
   <data name="&gt;&gt;pnlProgram.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
+  <data name="cBMacroRepeat.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBMacroRepeat.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 120</value>
+  </data>
+  <data name="cBMacroRepeat.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 17</value>
+  </data>
+  <data name="cBMacroRepeat.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="cBMacroRepeat.Text" xml:space="preserve">
+    <value>Repeat while held</value>
+  </data>
+  <data name="&gt;&gt;cBMacroRepeat.Name" xml:space="preserve">
+    <value>cBMacroRepeat</value>
+  </data>
+  <data name="&gt;&gt;cBMacroRepeat.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBMacroRepeat.Parent" xml:space="preserve">
+    <value>pnlMacro</value>
+  </data>
+  <data name="&gt;&gt;cBMacroRepeat.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cBMacroKeepKeyState.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBMacroKeepKeyState.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 97</value>
+  </data>
+  <data name="cBMacroKeepKeyState.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 17</value>
+  </data>
+  <data name="cBMacroKeepKeyState.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="cBMacroKeepKeyState.Text" xml:space="preserve">
+    <value>Keep key state</value>
+  </data>
+  <data name="&gt;&gt;cBMacroKeepKeyState.Name" xml:space="preserve">
+    <value>cBMacroKeepKeyState</value>
+  </data>
+  <data name="&gt;&gt;cBMacroKeepKeyState.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBMacroKeepKeyState.Parent" xml:space="preserve">
+    <value>pnlMacro</value>
+  </data>
+  <data name="&gt;&gt;cBMacroKeepKeyState.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="cBMacroSyncRun.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBMacroSyncRun.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 74</value>
+  </data>
+  <data name="cBMacroSyncRun.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 17</value>
+  </data>
+  <data name="cBMacroSyncRun.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="cBMacroSyncRun.Text" xml:space="preserve">
+    <value>Synchronized run</value>
+  </data>
+  <data name="&gt;&gt;cBMacroSyncRun.Name" xml:space="preserve">
+    <value>cBMacroSyncRun</value>
+  </data>
+  <data name="&gt;&gt;cBMacroSyncRun.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBMacroSyncRun.Parent" xml:space="preserve">
+    <value>pnlMacro</value>
+  </data>
+  <data name="&gt;&gt;cBMacroSyncRun.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="cBMacroRunOnRelease.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBMacroRunOnRelease.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 51</value>
+  </data>
+  <data name="cBMacroRunOnRelease.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 17</value>
+  </data>
+  <data name="cBMacroRunOnRelease.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="cBMacroRunOnRelease.Text" xml:space="preserve">
+    <value>Run on trigger release</value>
+  </data>
+  <data name="&gt;&gt;cBMacroRunOnRelease.Name" xml:space="preserve">
+    <value>cBMacroRunOnRelease</value>
+  </data>
+  <data name="&gt;&gt;cBMacroRunOnRelease.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBMacroRunOnRelease.Parent" xml:space="preserve">
+    <value>pnlMacro</value>
+  </data>
+  <data name="&gt;&gt;cBMacroRunOnRelease.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="cBMacroScanCode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2038,7 +2146,7 @@
     <value>NoControl</value>
   </data>
   <data name="cBMacroScanCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 30</value>
+    <value>4, 29</value>
   </data>
   <data name="cBMacroScanCode.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 17</value>
@@ -2059,13 +2167,13 @@
     <value>pnlMacro</value>
   </data>
   <data name="&gt;&gt;cBMacroScanCode.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
   <data name="lbMacroRecorded.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="lbMacroRecorded.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 50</value>
+    <value>0, 141</value>
   </data>
   <data name="lbMacroRecorded.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 23</value>
@@ -2086,13 +2194,13 @@
     <value>pnlMacro</value>
   </data>
   <data name="&gt;&gt;lbMacroRecorded.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>6</value>
   </data>
   <data name="pnlMacro.Location" type="System.Drawing.Point, System.Drawing">
     <value>206, 58</value>
   </data>
   <data name="pnlMacro.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 94</value>
+    <value>163, 165</value>
   </data>
   <data name="pnlMacro.TabIndex" type="System.Int32, mscorlib">
     <value>261</value>
@@ -2110,66 +2218,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnlMacro.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="lbUnloadTipProfile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbUnloadTipProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 95</value>
-  </data>
-  <data name="lbUnloadTipProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
-  </data>
-  <data name="lbUnloadTipProfile.TabIndex" type="System.Int32, mscorlib">
-    <value>259</value>
-  </data>
-  <data name="&gt;&gt;lbUnloadTipProfile.Name" xml:space="preserve">
-    <value>lbUnloadTipProfile</value>
-  </data>
-  <data name="&gt;&gt;lbUnloadTipProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbUnloadTipProfile.Parent" xml:space="preserve">
-    <value>pnlProfile</value>
-  </data>
-  <data name="&gt;&gt;lbUnloadTipProfile.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="pnlProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 58</value>
-  </data>
-  <data name="pnlProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 121</value>
-  </data>
-  <data name="pnlProfile.TabIndex" type="System.Int32, mscorlib">
-    <value>262</value>
-  </data>
-  <data name="pnlProfile.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;pnlProfile.Name" xml:space="preserve">
-    <value>pnlProfile</value>
-  </data>
-  <data name="&gt;&gt;pnlProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlProfile.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pnlProfile.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;cbProfileAutoUntrigger.Name" xml:space="preserve">
-    <value>cbProfileAutoUntrigger</value>
-  </data>
-  <data name="&gt;&gt;cbProfileAutoUntrigger.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cbProfileAutoUntrigger.Parent" xml:space="preserve">
-    <value>pnlProfile</value>
-  </data>
-  <data name="&gt;&gt;cbProfileAutoUntrigger.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="cbProfileAutoUntrigger.AutoSize" type="System.Boolean, mscorlib">
@@ -2198,6 +2246,54 @@
   </data>
   <data name="&gt;&gt;cbProfileAutoUntrigger.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="lbUnloadTipProfile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbUnloadTipProfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 95</value>
+  </data>
+  <data name="lbUnloadTipProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="lbUnloadTipProfile.TabIndex" type="System.Int32, mscorlib">
+    <value>259</value>
+  </data>
+  <data name="&gt;&gt;lbUnloadTipProfile.Name" xml:space="preserve">
+    <value>lbUnloadTipProfile</value>
+  </data>
+  <data name="&gt;&gt;lbUnloadTipProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbUnloadTipProfile.Parent" xml:space="preserve">
+    <value>pnlProfile</value>
+  </data>
+  <data name="&gt;&gt;lbUnloadTipProfile.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pnlProfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>206, 58</value>
+  </data>
+  <data name="pnlProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 121</value>
+  </data>
+  <data name="pnlProfile.TabIndex" type="System.Int32, mscorlib">
+    <value>262</value>
+  </data>
+  <data name="pnlProfile.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;pnlProfile.Name" xml:space="preserve">
+    <value>pnlProfile</value>
+  </data>
+  <data name="&gt;&gt;pnlProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlProfile.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlProfile.ZOrder" xml:space="preserve">
+    <value>11</value>
   </data>
   <data name="nUDDCBT.Location" type="System.Drawing.Point, System.Drawing">
     <value>56, 3</value>
@@ -2446,7 +2542,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnlKeys.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="pBGraident.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2941,8 +3037,11 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnlGameDVR.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
+  <metadata name="tp.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>267, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -2978,6 +3077,12 @@
   </data>
   <data name="&gt;&gt;cHUnloadTrigger.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tp.Name" xml:space="preserve">
+    <value>tp</value>
+  </data>
+  <data name="&gt;&gt;tp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>SpecActions</value>

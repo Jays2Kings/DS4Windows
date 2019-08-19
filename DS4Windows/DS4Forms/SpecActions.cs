@@ -61,6 +61,13 @@ namespace DS4Windows.Forms
             advColorDialog = new AdvancedColorDialog();
             advColorDialog.FullOpen = true;
             advColorDialog.OnUpdateColor += new AdvancedColorDialog.ColorUpdateHandler(this.advColorDialog_OnUpdateColor);
+
+            tp.SetToolTip(cBMacroScanCode, Properties.Resources.MacroScanCodeTip);
+            tp.SetToolTip(cBMacroRunOnRelease, Properties.Resources.MacroRunOnReleaseTip);
+            tp.SetToolTip(cBMacroRepeat, Properties.Resources.MacroRepeatTip);
+            tp.SetToolTip(cBMacroSyncRun, Properties.Resources.MacroSynchronizedRunTip);
+            tp.SetToolTip(cBMacroKeepKeyState, Properties.Resources.MacroKeepKeyStateTip);
+
         }
 
         void LoadAction()
@@ -81,6 +88,10 @@ namespace DS4Windows.Forms
                     macrostag = act.macro; 
                     lbMacroRecorded.Text = "Macro Recored";
                     cBMacroScanCode.Checked = act.keyType.HasFlag(DS4KeyType.ScanCode);
+                    cBMacroRunOnRelease.Checked = act.pressRelease;
+                    cBMacroSyncRun.Checked = act.synchronized;
+                    cBMacroKeepKeyState.Checked = act.keepKeyState;
+                    cBMacroRepeat.Checked = act.keyType.HasFlag(DS4KeyType.RepeatMacro);
                     break;
                 case "Program": 
                     cBActions.SelectedIndex = 2; 
@@ -251,7 +262,13 @@ namespace DS4Windows.Forms
                             actRe = true;
                             if (!string.IsNullOrEmpty(oldprofilename) && oldprofilename != tBName.Text)
                                 Global.RemoveAction(oldprofilename);
-                            Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, String.Join("/", macrostag), edit, (cBMacroScanCode.Checked ? "Scan Code" : ""));
+                            Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, String.Join("/", macrostag), edit, String.Join("/", new string[] {
+                                  (cBMacroScanCode.Checked ? "Scan Code" : null),
+                                  (cBMacroRunOnRelease.Checked ? "RunOnRelease" : null),
+                                  (cBMacroSyncRun.Checked ? "Sync" : null),
+                                  (cBMacroKeepKeyState.Checked ? "KeepKeyState" : null),
+                                  (cBMacroRepeat.Checked ? "Repeat" : null) }.Where(s => !String.IsNullOrEmpty(s))
+                                  ));
                         }
                         break;
                     case 2:

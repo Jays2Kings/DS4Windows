@@ -832,4 +832,19 @@
   <data name="ShowAutoProfileDebugLogTip" xml:space="preserve">
     <value>If enabled then Log tab page shows detailed messages of auto-profile events.</value>
   </data>
+  <data name="MacroScanCodeTip" xml:space="preserve">
+    <value>Use a scan code value of keyboard keys in a macro</value>
+  </data>
+  <data name="MacroRunOnReleaseTip" xml:space="preserve">
+    <value>Run a macro on the trigger key release</value>
+  </data>
+  <data name="MacroSynchronizedRunTip" xml:space="preserve">
+    <value>Run multiple macros in synchronized order if the same trigger has several macros (key down macro completed before key release macro is run)</value>
+  </data>
+  <data name="MacroRepeatTip" xml:space="preserve">
+    <value>Repeat a macro while the trigger key is held down</value>
+  </data>
+  <data name="MacroKeepKeyStateTip" xml:space="preserve">
+    <value>Keep the last key state when macro execution is completed (ie. if a key is left in down state then it is not automatically reset back to default state)</value>
+  </data>
 </root>

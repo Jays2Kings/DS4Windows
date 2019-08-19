@@ -833,9 +833,9 @@
             // 
             // tSTBProfile
             // 
+            resources.ApplyResources(this.tSTBProfile, "tSTBProfile");
             this.tSTBProfile.ForeColor = System.Drawing.SystemColors.GrayText;
             this.tSTBProfile.Name = "tSTBProfile";
-            resources.ApplyResources(this.tSTBProfile, "tSTBProfile");
             this.tSTBProfile.Enter += new System.EventHandler(this.tBProfile_Enter);
             this.tSTBProfile.Leave += new System.EventHandler(this.tBProfile_Leave);
             this.tSTBProfile.TextChanged += new System.EventHandler(this.tBProfile_TextChanged);

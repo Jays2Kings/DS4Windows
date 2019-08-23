@@ -961,7 +961,7 @@ namespace DS4Windows.Forms
                 gyroOutputMode.SelectedIndex = 0;
                 gyroMStickTrigBehaveCk.Checked = false;
                 gyroMouseStickEvalCombo.SelectedIndex = 0;
-                gyroMouseStickDZ.Value = 50;
+                gyroMouseStickDZ.Value = 40;
                 gyroMouseStickMaxZ.Value = 880;
                 gyroMouseStickAntiDeadX.Value = 0.35m;
                 gyroMouseStickAntiDeadY.Value = 0.35m;

@@ -2089,7 +2089,7 @@
             0});
             this.gyroMouseStickDZ.Name = "gyroMouseStickDZ";
             this.gyroMouseStickDZ.Value = new decimal(new int[] {
-            50,
+            40,
             0,
             0,
             0});

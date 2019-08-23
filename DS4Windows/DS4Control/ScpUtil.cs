@@ -4551,7 +4551,7 @@ namespace DS4Windows
             gyroOutMode[device] = GyroOutMode.Controls;
             sAMouseStickTriggers[device] = string.Empty;
             sAMouseStickTriggerCond[device] = false;
-            gyroMStickInfo[device].deadZone = 50; gyroMStickInfo[device].maxZone = 880;
+            gyroMStickInfo[device].deadZone = 40; gyroMStickInfo[device].maxZone = 880;
             gyroMStickInfo[device].antiDeadX = 0.35; gyroMStickInfo[device].antiDeadY = 0.35;
             gyroMStickInfo[device].inverted = 0;
             sASteeringWheelEmulationAxis[device] = SASteeringWheelEmulationAxisType.None;

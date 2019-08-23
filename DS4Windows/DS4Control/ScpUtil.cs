@@ -2259,7 +2259,7 @@ namespace DS4Windows
                 XmlNode xmlGyroOutMode = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroOutputMode", null); xmlGyroOutMode.InnerText = GetGyroOutModeString(gyroOutMode[device]); Node.AppendChild(xmlGyroOutMode);
                 XmlNode xmlGyroMStickTriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickTriggers", null); xmlGyroMStickTriggers.InnerText = sAMouseStickTriggers[device].ToString(); Node.AppendChild(xmlGyroMStickTriggers);
                 XmlNode xmlGyroMStickTriggerCond = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickTriggerCond", null); xmlGyroMStickTriggerCond.InnerText = SaTriggerCondString(sAMouseStickTriggerCond[device]); Node.AppendChild(xmlGyroMStickTriggerCond);
-                XmlNode xmlGyroMStickTriggerTurns = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMousestickTriggerTurns", null); xmlGyroMStickTriggerTurns.InnerText = gyroMouseStickTriggerTurns[device].ToString(); Node.AppendChild(xmlGyroMStickTriggerTurns);
+                XmlNode xmlGyroMStickTriggerTurns = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickTriggerTurns", null); xmlGyroMStickTriggerTurns.InnerText = gyroMouseStickTriggerTurns[device].ToString(); Node.AppendChild(xmlGyroMStickTriggerTurns);
                 XmlNode xmlGyroMStickHAxis = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickHAxis", null); xmlGyroMStickHAxis.InnerText = gyroMouseStickHorizontalAxis[device].ToString(); Node.AppendChild(xmlGyroMStickHAxis);
                 XmlNode xmlGyroMStickDZ = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickDeadZone", null); xmlGyroMStickDZ.InnerText = gyroMStickInfo[device].deadZone.ToString(); Node.AppendChild(xmlGyroMStickDZ);
                 XmlNode xmlGyroMStickMaxZ = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickMaxZone", null); xmlGyroMStickMaxZ.InnerText = gyroMStickInfo[device].maxZone.ToString(); Node.AppendChild(xmlGyroMStickMaxZ);
@@ -3137,7 +3137,7 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickTriggerCond"); sAMouseStickTriggerCond[device] = SaTriggerCondValue(Item.InnerText); }
                 catch { sAMouseStickTriggerCond[device] = true; missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMousestickTriggerTurns"); bool.TryParse(Item.InnerText, out gyroTriggerTurns[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickTriggerTurns"); bool.TryParse(Item.InnerText, out gyroMouseStickTriggerTurns[device]); }
                 catch { gyroMouseStickTriggerTurns[device] = true; missingSetting = true; }
 
 
@@ -4550,7 +4550,7 @@ namespace DS4Windows
             sATriggerCond[device] = true;
             gyroOutMode[device] = GyroOutMode.Controls;
             sAMouseStickTriggers[device] = string.Empty;
-            sAMouseStickTriggerCond[device] = false;
+            sAMouseStickTriggerCond[device] = true;
             gyroMStickInfo[device].deadZone = 40; gyroMStickInfo[device].maxZone = 880;
             gyroMStickInfo[device].antiDeadX = 0.35; gyroMStickInfo[device].antiDeadY = 0.35;
             gyroMStickInfo[device].inverted = 0;

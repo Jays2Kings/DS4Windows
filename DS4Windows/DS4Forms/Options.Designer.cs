@@ -195,6 +195,24 @@
             this.lblSteeringWheelEmulationRange = new System.Windows.Forms.Label();
             this.cBSteeringWheelEmulationRange = new System.Windows.Forms.ComboBox();
             this.btnSteeringWheelEmulationCalibrate = new System.Windows.Forms.Button();
+            this.gyroMouseJoyFLP = new System.Windows.Forms.FlowLayoutPanel();
+            this.label36 = new System.Windows.Forms.Label();
+            this.btnGyroMStickTrig = new System.Windows.Forms.Button();
+            this.gyroMStickTrigBehaveCk = new System.Windows.Forms.CheckBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.gyroMouseStickDZ = new System.Windows.Forms.NumericUpDown();
+            this.label30 = new System.Windows.Forms.Label();
+            this.gyroMouseStickMaxZ = new System.Windows.Forms.NumericUpDown();
+            this.label31 = new System.Windows.Forms.Label();
+            this.gyroMouseStickAntiDeadX = new System.Windows.Forms.NumericUpDown();
+            this.label32 = new System.Windows.Forms.Label();
+            this.gyroMouseStickAntiDeadY = new System.Windows.Forms.NumericUpDown();
+            this.label35 = new System.Windows.Forms.Label();
+            this.gyroMouseStickEvalCombo = new System.Windows.Forms.ComboBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.gyroMousestickXAxisCom = new System.Windows.Forms.ComboBox();
+            this.gyroMouseStickInvertXCk = new System.Windows.Forms.CheckBox();
+            this.gyroMouseStickInvertYCk = new System.Windows.Forms.CheckBox();
             this.tCControls = new System.Windows.Forms.TabControl();
             this.tPControls = new System.Windows.Forms.TabPage();
             this.lBControls = new System.Windows.Forms.ListBox();
@@ -326,8 +344,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.fLPSettings = new System.Windows.Forms.FlowLayoutPanel();
             this.gBGyro = new System.Windows.Forms.GroupBox();
-            this.rBSAControls = new System.Windows.Forms.RadioButton();
-            this.rBSAMouse = new System.Windows.Forms.RadioButton();
+            this.label34 = new System.Windows.Forms.Label();
+            this.gyroOutputMode = new System.Windows.Forms.ComboBox();
             this.pnlSAMouse = new System.Windows.Forms.Panel();
             this.toggleGyroMCb = new System.Windows.Forms.CheckBox();
             this.label27 = new System.Windows.Forms.Label();
@@ -452,6 +470,11 @@
             this.pnlLSTrack.SuspendLayout();
             this.pnlRSTrack.SuspendLayout();
             this.fLPTiltControls.SuspendLayout();
+            this.gyroMouseJoyFLP.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickDZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickMaxZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadY)).BeginInit();
             this.tCControls.SuspendLayout();
             this.tPControls.SuspendLayout();
             this.pnlController.SuspendLayout();
@@ -2008,6 +2031,180 @@
             this.btnSteeringWheelEmulationCalibrate.UseVisualStyleBackColor = true;
             this.btnSteeringWheelEmulationCalibrate.Click += new System.EventHandler(this.btnSteeringWheelEmulationCalibrate_Click);
             // 
+            // gyroMouseJoyFLP
+            // 
+            this.gyroMouseJoyFLP.Controls.Add(this.label36);
+            this.gyroMouseJoyFLP.Controls.Add(this.btnGyroMStickTrig);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickTrigBehaveCk);
+            this.gyroMouseJoyFLP.Controls.Add(this.label29);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickDZ);
+            this.gyroMouseJoyFLP.Controls.Add(this.label30);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickMaxZ);
+            this.gyroMouseJoyFLP.Controls.Add(this.label31);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickAntiDeadX);
+            this.gyroMouseJoyFLP.Controls.Add(this.label32);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickAntiDeadY);
+            this.gyroMouseJoyFLP.Controls.Add(this.label35);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickEvalCombo);
+            this.gyroMouseJoyFLP.Controls.Add(this.label33);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMousestickXAxisCom);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickInvertXCk);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickInvertYCk);
+            resources.ApplyResources(this.gyroMouseJoyFLP, "gyroMouseJoyFLP");
+            this.gyroMouseJoyFLP.Name = "gyroMouseJoyFLP";
+            // 
+            // label36
+            // 
+            resources.ApplyResources(this.label36, "label36");
+            this.label36.Name = "label36";
+            // 
+            // btnGyroMStickTrig
+            // 
+            resources.ApplyResources(this.btnGyroMStickTrig, "btnGyroMStickTrig");
+            this.btnGyroMStickTrig.Name = "btnGyroMStickTrig";
+            this.btnGyroMStickTrig.UseVisualStyleBackColor = true;
+            this.btnGyroMStickTrig.Click += new System.EventHandler(this.BtnGyroMStickTrig_Click);
+            // 
+            // gyroMStickTrigBehaveCk
+            // 
+            this.gyroMStickTrigBehaveCk.Checked = true;
+            this.gyroMStickTrigBehaveCk.CheckState = System.Windows.Forms.CheckState.Checked;
+            resources.ApplyResources(this.gyroMStickTrigBehaveCk, "gyroMStickTrigBehaveCk");
+            this.gyroMStickTrigBehaveCk.Name = "gyroMStickTrigBehaveCk";
+            this.gyroMStickTrigBehaveCk.UseVisualStyleBackColor = true;
+            this.gyroMStickTrigBehaveCk.CheckedChanged += new System.EventHandler(this.GyroMStickTrigBehaveCk_CheckedChanged);
+            // 
+            // label29
+            // 
+            resources.ApplyResources(this.label29, "label29");
+            this.label29.Name = "label29";
+            // 
+            // gyroMouseStickDZ
+            // 
+            resources.ApplyResources(this.gyroMouseStickDZ, "gyroMouseStickDZ");
+            this.gyroMouseStickDZ.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.gyroMouseStickDZ.Name = "gyroMouseStickDZ";
+            this.gyroMouseStickDZ.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.gyroMouseStickDZ.ValueChanged += new System.EventHandler(this.GyroMouseStickDZ_ValueChanged);
+            // 
+            // label30
+            // 
+            resources.ApplyResources(this.label30, "label30");
+            this.label30.Name = "label30";
+            // 
+            // gyroMouseStickMaxZ
+            // 
+            resources.ApplyResources(this.gyroMouseStickMaxZ, "gyroMouseStickMaxZ");
+            this.gyroMouseStickMaxZ.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.gyroMouseStickMaxZ.Name = "gyroMouseStickMaxZ";
+            this.gyroMouseStickMaxZ.Value = new decimal(new int[] {
+            880,
+            0,
+            0,
+            0});
+            this.gyroMouseStickMaxZ.ValueChanged += new System.EventHandler(this.GyroMouseStickMaxZ_ValueChanged);
+            // 
+            // label31
+            // 
+            resources.ApplyResources(this.label31, "label31");
+            this.label31.Name = "label31";
+            // 
+            // gyroMouseStickAntiDeadX
+            // 
+            this.gyroMouseStickAntiDeadX.DecimalPlaces = 2;
+            resources.ApplyResources(this.gyroMouseStickAntiDeadX, "gyroMouseStickAntiDeadX");
+            this.gyroMouseStickAntiDeadX.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.gyroMouseStickAntiDeadX.Name = "gyroMouseStickAntiDeadX";
+            this.gyroMouseStickAntiDeadX.Value = new decimal(new int[] {
+            35,
+            0,
+            0,
+            131072});
+            this.gyroMouseStickAntiDeadX.ValueChanged += new System.EventHandler(this.GyroMouseStickAntiDeadX_ValueChanged);
+            // 
+            // label32
+            // 
+            resources.ApplyResources(this.label32, "label32");
+            this.label32.Name = "label32";
+            // 
+            // gyroMouseStickAntiDeadY
+            // 
+            this.gyroMouseStickAntiDeadY.DecimalPlaces = 2;
+            resources.ApplyResources(this.gyroMouseStickAntiDeadY, "gyroMouseStickAntiDeadY");
+            this.gyroMouseStickAntiDeadY.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.gyroMouseStickAntiDeadY.Name = "gyroMouseStickAntiDeadY";
+            this.gyroMouseStickAntiDeadY.Value = new decimal(new int[] {
+            35,
+            0,
+            0,
+            131072});
+            this.gyroMouseStickAntiDeadY.ValueChanged += new System.EventHandler(this.GyroMouseSStickAntiDeadY_ValueChanged);
+            // 
+            // label35
+            // 
+            resources.ApplyResources(this.label35, "label35");
+            this.label35.Name = "label35";
+            // 
+            // gyroMouseStickEvalCombo
+            // 
+            this.gyroMouseStickEvalCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gyroMouseStickEvalCombo.FormattingEnabled = true;
+            this.gyroMouseStickEvalCombo.Items.AddRange(new object[] {
+            resources.GetString("gyroMouseStickEvalCombo.Items"),
+            resources.GetString("gyroMouseStickEvalCombo.Items1")});
+            resources.ApplyResources(this.gyroMouseStickEvalCombo, "gyroMouseStickEvalCombo");
+            this.gyroMouseStickEvalCombo.Name = "gyroMouseStickEvalCombo";
+            this.gyroMouseStickEvalCombo.SelectedIndexChanged += new System.EventHandler(this.GyroMouseStickEvalCombo_SelectedIndexChanged);
+            // 
+            // label33
+            // 
+            resources.ApplyResources(this.label33, "label33");
+            this.label33.Name = "label33";
+            // 
+            // gyroMousestickXAxisCom
+            // 
+            this.gyroMousestickXAxisCom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gyroMousestickXAxisCom.FormattingEnabled = true;
+            this.gyroMousestickXAxisCom.Items.AddRange(new object[] {
+            resources.GetString("gyroMousestickXAxisCom.Items"),
+            resources.GetString("gyroMousestickXAxisCom.Items1")});
+            resources.ApplyResources(this.gyroMousestickXAxisCom, "gyroMousestickXAxisCom");
+            this.gyroMousestickXAxisCom.Name = "gyroMousestickXAxisCom";
+            // 
+            // gyroMouseStickInvertXCk
+            // 
+            resources.ApplyResources(this.gyroMouseStickInvertXCk, "gyroMouseStickInvertXCk");
+            this.gyroMouseStickInvertXCk.Name = "gyroMouseStickInvertXCk";
+            this.gyroMouseStickInvertXCk.UseVisualStyleBackColor = true;
+            this.gyroMouseStickInvertXCk.CheckedChanged += new System.EventHandler(this.GyroMouseStickInvert_CheckedChanged);
+            // 
+            // gyroMouseStickInvertYCk
+            // 
+            resources.ApplyResources(this.gyroMouseStickInvertYCk, "gyroMouseStickInvertYCk");
+            this.gyroMouseStickInvertYCk.Name = "gyroMouseStickInvertYCk";
+            this.gyroMouseStickInvertYCk.UseVisualStyleBackColor = true;
+            this.gyroMouseStickInvertYCk.CheckedChanged += new System.EventHandler(this.GyroMouseStickInvert_CheckedChanged);
+            // 
             // tCControls
             // 
             this.tCControls.Controls.Add(this.tPControls);
@@ -3553,29 +3750,31 @@
             // gBGyro
             // 
             this.gBGyro.BackColor = System.Drawing.SystemColors.Control;
-            this.gBGyro.Controls.Add(this.rBSAControls);
-            this.gBGyro.Controls.Add(this.rBSAMouse);
+            this.gBGyro.Controls.Add(this.gyroMouseJoyFLP);
+            this.gBGyro.Controls.Add(this.label34);
+            this.gBGyro.Controls.Add(this.gyroOutputMode);
             this.gBGyro.Controls.Add(this.fLPTiltControls);
             this.gBGyro.Controls.Add(this.pnlSAMouse);
             resources.ApplyResources(this.gBGyro, "gBGyro");
             this.gBGyro.Name = "gBGyro";
             this.gBGyro.TabStop = false;
             // 
-            // rBSAControls
+            // label34
             // 
-            resources.ApplyResources(this.rBSAControls, "rBSAControls");
-            this.rBSAControls.Name = "rBSAControls";
-            this.rBSAControls.TabStop = true;
-            this.rBSAControls.UseVisualStyleBackColor = true;
-            this.rBSAControls.CheckedChanged += new System.EventHandler(this.useSAforMouse_CheckedChanged);
+            resources.ApplyResources(this.label34, "label34");
+            this.label34.Name = "label34";
             // 
-            // rBSAMouse
+            // gyroOutputMode
             // 
-            resources.ApplyResources(this.rBSAMouse, "rBSAMouse");
-            this.rBSAMouse.Name = "rBSAMouse";
-            this.rBSAMouse.TabStop = true;
-            this.rBSAMouse.UseVisualStyleBackColor = true;
-            this.rBSAMouse.CheckedChanged += new System.EventHandler(this.useSAforMouse_CheckedChanged);
+            this.gyroOutputMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gyroOutputMode.FormattingEnabled = true;
+            this.gyroOutputMode.Items.AddRange(new object[] {
+            resources.GetString("gyroOutputMode.Items"),
+            resources.GetString("gyroOutputMode.Items1"),
+            resources.GetString("gyroOutputMode.Items2")});
+            resources.ApplyResources(this.gyroOutputMode, "gyroOutputMode");
+            this.gyroOutputMode.Name = "gyroOutputMode";
+            this.gyroOutputMode.SelectedIndexChanged += new System.EventHandler(this.GyroOutputMode_SelectedIndexChanged);
             // 
             // pnlSAMouse
             // 
@@ -4412,6 +4611,12 @@
             this.pnlRSTrack.ResumeLayout(false);
             this.fLPTiltControls.ResumeLayout(false);
             this.fLPTiltControls.PerformLayout();
+            this.gyroMouseJoyFLP.ResumeLayout(false);
+            this.gyroMouseJoyFLP.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickDZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickMaxZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadY)).EndInit();
             this.tCControls.ResumeLayout(false);
             this.tPControls.ResumeLayout(false);
             this.pnlController.ResumeLayout(false);
@@ -4641,8 +4846,6 @@
         private System.Windows.Forms.Label lbSwipeLeft;
         private System.Windows.Forms.Label lbSwipeRight;
         private System.Windows.Forms.Panel pnlTPMouse;
-        private System.Windows.Forms.RadioButton rBSAControls;
-        private System.Windows.Forms.RadioButton rBSAMouse;
         private System.Windows.Forms.Label lbGyroZN;
         private System.Windows.Forms.Label lbGyroZP;
         private System.Windows.Forms.Label lbGyroXP;
@@ -4854,5 +5057,25 @@
     private System.Windows.Forms.NumericUpDown RoundnessNUpDown;
         private System.Windows.Forms.LinkLabel lbCurveEditorURL;
         private System.Windows.Forms.TextBox tBCustomOutputCurve;
+        private System.Windows.Forms.FlowLayoutPanel gyroMouseJoyFLP;
+        private System.Windows.Forms.ComboBox gyroOutputMode;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.NumericUpDown gyroMouseStickDZ;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.NumericUpDown gyroMouseStickMaxZ;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.NumericUpDown gyroMouseStickAntiDeadX;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.NumericUpDown gyroMouseStickAntiDeadY;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.ComboBox gyroMousestickXAxisCom;
+        private System.Windows.Forms.CheckBox gyroMouseStickInvertXCk;
+        private System.Windows.Forms.CheckBox gyroMouseStickInvertYCk;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Button btnGyroMStickTrig;
+        private System.Windows.Forms.CheckBox gyroMStickTrigBehaveCk;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.ComboBox gyroMouseStickEvalCombo;
     }
 }

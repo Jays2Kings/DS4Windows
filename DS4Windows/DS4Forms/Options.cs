@@ -56,10 +56,10 @@ namespace DS4Windows.Forms
             root = rt;
             btnRumbleHeavyTest.Text = Properties.Resources.TestHText;
             btnRumbleLightTest.Text = Properties.Resources.TestLText;
-            rBTPControls.Text = rBSAControls.Text;
-            rBTPMouse.Text = rBSAMouse.Text;
-            rBTPControls.Location = rBSAControls.Location;
-            rBTPMouse.Location = rBSAMouse.Location;
+            //rBTPControls.Text = rBSAControls.Text;
+            //rBTPMouse.Text = rBSAMouse.Text;
+            //rBTPControls.Location = rBSAControls.Location;
+            //rBTPMouse.Location = rBSAMouse.Location;
             Visible = false;
             colored = btnRainbow.Image;
             greyscale = GreyscaleImage((Bitmap)btnRainbow.Image);
@@ -702,8 +702,29 @@ namespace DS4Windows.Forms
                 cbStartTouchpadOff.Checked = StartTouchpadOff[device];
                 rBTPControls.Checked = UseTPforControls[device];
                 rBTPMouse.Checked = !UseTPforControls[device];
-                rBSAMouse.Checked = UseSAforMouse[device];
-                rBSAControls.Checked = !UseSAforMouse[device];
+                GyroOutMode gyroOut = GyroOutputMode[device];
+                if (gyroOut == GyroOutMode.Mouse)
+                {
+                    pnlSAMouse.Visible = true;
+                    fLPTiltControls.Visible = false;
+                    gyroMouseJoyFLP.Visible = false;
+                    gyroOutputMode.SelectedIndex = 1;
+                }
+                else if (gyroOut == GyroOutMode.Controls)
+                {
+                    pnlSAMouse.Visible = false;
+                    fLPTiltControls.Visible = true;
+                    gyroMouseJoyFLP.Visible = false;
+                    gyroOutputMode.SelectedIndex = 0;
+                }
+                else if (gyroOut == GyroOutMode.MouseJoystick)
+                {
+                    pnlSAMouse.Visible = false;
+                    fLPTiltControls.Visible = false;
+                    gyroMouseJoyFLP.Visible = true;
+                    gyroOutputMode.SelectedIndex = 2;
+                }
+
                 nUDLSCurve.Value = LSCurve[device];
                 nUDRSCurve.Value = RSCurve[device];
                 cBControllerInput.Checked = DS4Mapping;
@@ -714,47 +735,23 @@ namespace DS4Windows.Forms
                     Program.rootHub.touchPad[device]?.ResetTrackAccel(TrackballFriction[device]);
                 }
 
-                for (int i = 0, arlen = cMGyroTriggers.Items.Count; i < arlen; i++)
-                {
-                    ((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked = false;
-                }
+                ResetGyroTriggers();
 
                 for (int i = 0, arlen = cMTouchDisableInvert.Items.Count; i < arlen; i++)
                 {
                     ((ToolStripMenuItem)cMTouchDisableInvert.Items[i]).Checked = false;
                 }
 
-                string[] satriggers = SATriggers[device].Split(',');
+                string[] satriggers;
+                satriggers = SATriggers[device].Split(',');
+                btnGyroTriggers.Text = GetGyroTriggerActionString(ref satriggers);
+                if (gyroOut == GyroOutMode.Mouse) MarkCurrentGyroTriggers(ref satriggers);
+
+                satriggers = SAMousestickTriggers[device].Split(',');
+                btnGyroMStickTrig.Text = GetGyroTriggerActionString(ref satriggers);
+                if (gyroOut == GyroOutMode.MouseJoystick) MarkCurrentGyroTriggers(ref satriggers);
+
                 List<string> s = new List<string>();
-                int gyroTriggerCount = cMGyroTriggers.Items.Count;
-                for (int i = 0, satrigLen = satriggers.Length; i < satrigLen; i++)
-                {
-                    int tr = 0;
-                    if (int.TryParse(satriggers[i], out tr))
-                    {
-                        if (tr < gyroTriggerCount && tr > -1)
-                        {
-                            ((ToolStripMenuItem)cMGyroTriggers.Items[tr]).Checked = true;
-                            s.Add(cMGyroTriggers.Items[tr].Text);
-                        }
-                        else
-                        {
-                            ((ToolStripMenuItem)cMGyroTriggers.Items[gyroTriggerCount - 1]).Checked = true;
-                            s.Add(cMGyroTriggers.Items[gyroTriggerCount - 1].Text);
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        ((ToolStripMenuItem)cMGyroTriggers.Items[gyroTriggerCount - 1]).Checked = true;
-                        s.Add(cMGyroTriggers.Items[gyroTriggerCount - 1].Text);
-                        break;
-                    }
-                }
-
-                btnGyroTriggers.Text = string.Join(", ", s);
-                s.Clear();
-
                 int[] touchDisInvTriggers = TouchDisInvertTriggers[device];
                 int touchDisableInvCount = cMTouchDisableInvert.Items.Count;
                 for (int i = 0, trigLen = touchDisInvTriggers.Length; i < trigLen; i++)
@@ -806,6 +803,32 @@ namespace DS4Windows.Forms
                         defaults = xboxDefaults;
                         break;
                 }
+
+                switch (GyroOutputMode[device])
+                {
+                    case GyroOutMode.Controls:
+                        gyroOutputMode.SelectedIndex = 0;
+                        break;
+                    case GyroOutMode.Mouse:
+                        gyroOutputMode.SelectedIndex = 1;
+                        break;
+                    case GyroOutMode.MouseJoystick:
+                        gyroOutputMode.SelectedIndex = 2;
+                        break;
+                    default:
+                        break;
+                }
+
+                gyroMStickTrigBehaveCk.Checked = GyroMouseStickTriggerTurns[device];
+                gyroMouseStickEvalCombo.SelectedIndex = SAMouseStickTriggerCond[device] ? 0 : 1;
+                GyroMouseStickInfo gyroMouseStickInfo = GyroMouseStickInf[device];
+                gyroMouseStickDZ.Value = gyroMouseStickInfo.deadZone;
+                gyroMouseStickMaxZ.Value = gyroMouseStickInfo.maxZone;
+                gyroMouseStickAntiDeadX.Value = (decimal)gyroMouseStickInfo.antiDeadX;
+                gyroMouseStickAntiDeadY.Value = (decimal)gyroMouseStickInfo.antiDeadY;
+                gyroMousestickXAxisCom.SelectedIndex = GyroMouseStickHorizontalAxis[device];
+                gyroMouseStickInvertXCk.Checked = (gyroMouseStickInfo.inverted & 1) == 1;
+                gyroMouseStickInvertYCk.Checked = (gyroMouseStickInfo.inverted & 2) == 2;
             }
             else
             {
@@ -824,11 +847,11 @@ namespace DS4Windows.Forms
                 tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = false;
 
                 rBTPMouse.Checked = true;
-                rBSAControls.Checked = true;
+                //rBSAControls.Checked = true;
                 ToggleRainbow(false);
                 cBDinput.Checked = false;
                 cbStartTouchpadOff.Checked = false;
-                rBSAControls.Checked = true;
+                //rBSAControls.Checked = true;
                 rBTPMouse.Checked = true;
 
                 switch (device)
@@ -912,10 +935,7 @@ namespace DS4Windows.Forms
                     Program.rootHub.touchPad[device]?.ResetTrackAccel(10.0);
                 }
 
-                for (int i = 0, arlen = cMGyroTriggers.Items.Count - 1; i < arlen; i++)
-                {
-                    ((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked = false;
-                }
+                ResetGyroTriggers();
                 ((ToolStripMenuItem)cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1]).Checked = true;
 
                 for (int i = 0, arlen = cMTouchDisableInvert.Items.Count; i < arlen; i++)
@@ -937,6 +957,18 @@ namespace DS4Windows.Forms
                 cBSteeringWheelEmulationAxis.SelectedIndex = 0;
                 cBSteeringWheelEmulationRange.SelectedIndex = cBSteeringWheelEmulationRange.Items.IndexOf("360");
                 OutContTypeCb.SelectedIndex = 0;
+
+                gyroOutputMode.SelectedIndex = 0;
+                gyroMStickTrigBehaveCk.Checked = false;
+                gyroMouseStickEvalCombo.SelectedIndex = 0;
+                gyroMouseStickDZ.Value = 50;
+                gyroMouseStickMaxZ.Value = 880;
+                gyroMouseStickAntiDeadX.Value = 0.35m;
+                gyroMouseStickAntiDeadY.Value = 0.35m;
+                gyroMousestickXAxisCom.SelectedIndex = 0;
+                gyroMouseStickInvertXCk.Checked = false;
+                gyroMouseStickInvertYCk.Checked = false;
+
                 Set();
             }
             
@@ -1015,6 +1047,80 @@ namespace DS4Windows.Forms
             btnRSTrackS.Visible = on;
             btnSATrack.Visible = on;
             btnSATrackS.Visible = on;
+        }
+
+        private void ResetGyroTriggers()
+        {
+            loading = true;
+            for (int i = 0, arlen = cMGyroTriggers.Items.Count; i < arlen; i++)
+            {
+                ((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked = false;
+            }
+
+            loading = false;
+        }
+
+        private string GetGyroTriggerActionString(ref string[] satriggers)
+        {
+            List<string> s = new List<string>();
+            int gyroTriggerCount = cMGyroTriggers.Items.Count;
+            for (int i = 0, satrigLen = satriggers.Length; i < satrigLen; i++)
+            {
+                int tr = 0;
+                if (int.TryParse(satriggers[i], out tr))
+                {
+                    if (tr < gyroTriggerCount && tr > -1)
+                    {
+                        ((ToolStripMenuItem)cMGyroTriggers.Items[tr]).Checked = true;
+                        s.Add(cMGyroTriggers.Items[tr].Text);
+                    }
+                    else
+                    {
+                        ((ToolStripMenuItem)cMGyroTriggers.Items[gyroTriggerCount - 1]).Checked = true;
+                        s.Add(cMGyroTriggers.Items[gyroTriggerCount - 1].Text);
+                        break;
+                    }
+                }
+                else
+                {
+                    ((ToolStripMenuItem)cMGyroTriggers.Items[gyroTriggerCount - 1]).Checked = true;
+                    s.Add(cMGyroTriggers.Items[gyroTriggerCount - 1].Text);
+                    break;
+                }
+            }
+
+            string result = string.Join(", ", s);
+            return result;
+        }
+
+        private void MarkCurrentGyroTriggers(ref string[] satriggers)
+        {
+            loading = true;
+            int gyroTriggerCount = cMGyroTriggers.Items.Count;
+            ((ToolStripMenuItem)cMGyroTriggers.Items[gyroTriggerCount - 1]).Checked = false;
+            for (int i = 0, satrigLen = satriggers.Length; i < satrigLen; i++)
+            {
+                int tr = 0;
+                if (int.TryParse(satriggers[i], out tr))
+                {
+                    if (tr < gyroTriggerCount && tr > -1)
+                    {
+                        ((ToolStripMenuItem)cMGyroTriggers.Items[tr]).Checked = true;
+                    }
+                    else
+                    {
+                        ((ToolStripMenuItem)cMGyroTriggers.Items[gyroTriggerCount - 1]).Checked = true;
+                        break;
+                    }
+                }
+                else
+                {
+                    ((ToolStripMenuItem)cMGyroTriggers.Items[gyroTriggerCount - 1]).Checked = true;
+                    break;
+                }
+            }
+
+            loading = false;
         }
 
         private void ControllerReadout_Tick(object sender, EventArgs e)
@@ -1348,7 +1454,7 @@ namespace DS4Windows.Forms
             DinputOnly[device] = cBDinput.Checked;
             StartTouchpadOff[device] = cbStartTouchpadOff.Checked;
             UseTPforControls[device] = rBTPControls.Checked;
-            UseSAforMouse[device] = rBSAMouse.Checked;
+            //UseSAforMouse[device] = rBSAMouse.Checked;
             DS4Mapping = cBControllerInput.Checked;
             LSCurve[device] = (int)Math.Round(nUDLSCurve.Value, 0);
             RSCurve[device] = (int)Math.Round(nUDRSCurve.Value, 0);
@@ -1364,8 +1470,9 @@ namespace DS4Windows.Forms
             calculateProfileActionDicts(device);
             cacheProfileCustomsFlags(device);
             pnlTPMouse.Visible = rBTPMouse.Checked;
-            pnlSAMouse.Visible = rBSAMouse.Checked;
-            fLPTiltControls.Visible = rBSAControls.Checked;
+            pnlSAMouse.Visible = false;
+            fLPTiltControls.Visible = false;
+            gyroMouseJoyFLP.Visible = false;
             fLPTouchSwipe.Visible = rBTPControls.Checked;
             TrackballMode[device] = trackballCk.Checked;
             TrackballFriction[device] = (double)trackFrictionNUD.Value;
@@ -1393,7 +1500,7 @@ namespace DS4Windows.Forms
             GyroInvert[device] = invert;
 
             List<int> ints = new List<int>();
-            for (int i = 0, trigLen = cMGyroTriggers.Items.Count - 1; i < trigLen; i++)
+            /*for (int i = 0, trigLen = cMGyroTriggers.Items.Count - 1; i < trigLen; i++)
             {
                 if (((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked)
                     ints.Add(i);
@@ -1404,6 +1511,7 @@ namespace DS4Windows.Forms
 
             SATriggers[device] = string.Join(",", ints);
             SetSaTriggerCond(device, triggerCondAndCombo.SelectedItem.ToString().ToLower());
+            */
 
             ints.Clear();
             for (int i = 0, trigLen = cMTouchDisableInvert.Items.Count; i < trigLen; i++)
@@ -1433,6 +1541,43 @@ namespace DS4Windows.Forms
             {
                 Global.OutContType[device] = tempType;
             }
+
+            switch (gyroOutputMode.SelectedIndex)
+            {
+                case 0:
+                    GyroOutputMode[device] = GyroOutMode.Controls;
+                    break;
+                case 1:
+                    GyroOutputMode[device] = GyroOutMode.Mouse;
+                    break;
+                case 2:
+                    GyroOutputMode[device] = GyroOutMode.MouseJoystick;
+                    break;
+                default:
+                    break;
+            }
+
+            GyroMouseStickTriggerTurns[device] = gyroMStickTrigBehaveCk.Checked;
+            SetSaMouseStickTriggerCond(device,
+                gyroMouseStickEvalCombo.SelectedItem.ToString().ToLower());
+
+            if (GyroMouseStickDead())
+            {
+                GyroMouseStickInf[device].deadZone = (int)gyroMouseStickDZ.Value;
+                GyroMouseStickInf[device].maxZone = (int)gyroMouseStickMaxZ.Value;
+            }
+            else
+            {
+                GyroMouseStickInf[device].deadZone = (int)gyroMouseStickMaxZ.Value;
+                GyroMouseStickInf[device].maxZone = (int)gyroMouseStickMaxZ.Value;
+            }
+            
+            GyroMouseStickInf[device].antiDeadX = (double)gyroMouseStickAntiDeadX.Value;
+            GyroMouseStickInf[device].antiDeadY = (double)gyroMouseStickAntiDeadY.Value;
+            GyroMouseStickHorizontalAxis[device] = gyroMousestickXAxisCom.SelectedIndex;
+            uint tempInvert = 0;
+            if (gyroMouseStickInvertXCk.Checked) tempInvert |= 1 << 0;
+            if (gyroMouseStickInvertYCk.Checked) tempInvert |= 1 << 1;
         }
 
         private void Show_ControlsBtn(object sender, EventArgs e)
@@ -2678,12 +2823,13 @@ namespace DS4Windows.Forms
                 DS4LightBar.forcelight[device] = false;
         }
 
-        private void useSAforMouse_CheckedChanged(object sender, EventArgs e)
+        /*private void useSAforMouse_CheckedChanged(object sender, EventArgs e)
         {
             UseSAforMouse[device] = rBSAMouse.Checked;
             pnlSAMouse.Visible = rBSAMouse.Checked;
             fLPTiltControls.Visible = rBSAControls.Checked;
         }
+        */
 
         private void btnGyroTriggers_Click(object sender, EventArgs e)
         {
@@ -2722,9 +2868,19 @@ namespace DS4Windows.Forms
                     s.Add(cMGyroTriggers.Items[gyroTriggerCount - 1].Text);
                 }
 
-                SATriggers[device] = string.Join(",", ints);
-                if (s.Count > 0)
-                    btnGyroTriggers.Text = string.Join(", ", s);
+                int gyroOutIdx = gyroOutputMode.SelectedIndex;
+                if (gyroOutIdx == 1)
+                {
+                    SATriggers[device] = string.Join(",", ints);
+                    if (s.Count > 0)
+                        btnGyroTriggers.Text = string.Join(", ", s);
+                }
+                else if (gyroOutIdx == 2)
+                {
+                    SAMousestickTriggers[device] = string.Join(",", ints);
+                    if (s.Count > 0)
+                        btnGyroMStickTrig.Text = string.Join(", ", s);
+                }
             }
         }
 
@@ -3397,6 +3553,128 @@ namespace DS4Windows.Forms
                             szOutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.SA, true);
                         break;
                 }
+            }
+        }
+
+        private void GyroOutputMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                int choice = gyroOutputMode.SelectedIndex;
+                if (choice == 0)
+                {
+                    fLPTiltControls.Visible = true;
+                    pnlSAMouse.Visible = false;
+                    gyroMouseJoyFLP.Visible = false;
+                }
+                else if (choice == 1)
+                {
+                    fLPTiltControls.Visible = false;
+                    pnlSAMouse.Visible = true;
+                    gyroMouseJoyFLP.Visible = false;
+                    ResetGyroTriggers();
+                    string[] satriggers = SATriggers[device].Split(',');
+                    MarkCurrentGyroTriggers(ref satriggers);
+                }
+                else if (choice == 2)
+                {
+                    fLPTiltControls.Visible = false;
+                    pnlSAMouse.Visible = false;
+                    gyroMouseJoyFLP.Visible = true;
+                    ResetGyroTriggers();
+                    string[] satriggers = SAMousestickTriggers[device].Split(',');
+                    MarkCurrentGyroTriggers(ref satriggers);
+                }
+
+                switch(choice)
+                {
+                    case 0:
+                        GyroOutputMode[device] = GyroOutMode.Controls;
+                        break;
+                    case 1:
+                        GyroOutputMode[device] = GyroOutMode.Mouse;
+                        break;
+                    case 2:
+                        GyroOutputMode[device] = GyroOutMode.MouseJoystick;
+                        break;
+                    default:
+                        break;
+                }
+
+                if (device < 4)
+                    Program.rootHub.touchPad[device]?.ResetToggleGyroM();
+            }
+        }
+
+        private void BtnGyroMStickTrig_Click(object sender, EventArgs e)
+        {
+            Control button = (Control)sender;
+            cMGyroTriggers.Show(button, new Point(0, button.Height));
+        }
+
+        private void GyroMStickTrigBehaveCk_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                GyroMouseStickTriggerTurns[device] = gyroMStickTrigBehaveCk.Checked;
+                if (device < 4)
+                    Program.rootHub.touchPad[device]?.ResetToggleGyroM();
+            }
+        }
+
+        private void GyroMouseStickEvalCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                string temp = gyroMouseStickEvalCombo.SelectedItem.ToString();
+                SetSaMouseStickTriggerCond(device, temp);
+            }
+        }
+
+        private void GyroMouseStickDZ_ValueChanged(object sender, EventArgs e)
+        {
+            if (loading == false && GyroMouseStickDead())
+            {
+                GyroMouseStickInf[device].deadZone = (int)gyroMouseStickDZ.Value;
+            }
+        }
+
+        private void GyroMouseStickMaxZ_ValueChanged(object sender, EventArgs e)
+        {
+            if (loading == false && GyroMouseStickDead())
+            {
+                GyroMouseStickInf[device].maxZone = (int)gyroMouseStickMaxZ.Value;
+            }
+        }
+
+        private bool GyroMouseStickDead()
+        {
+            return gyroMouseStickDZ.Value <= gyroMouseStickMaxZ.Value;
+        }
+
+        private void GyroMouseStickAntiDeadX_ValueChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                GyroMouseStickInf[device].antiDeadX = (double)gyroMouseStickAntiDeadX.Value;
+            }
+        }
+
+        private void GyroMouseSStickAntiDeadY_ValueChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                GyroMouseStickInf[device].antiDeadY = (double)gyroMouseStickAntiDeadY.Value;
+            }
+        }
+
+        private void GyroMouseStickInvert_CheckedChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                uint value = 0;
+                if (gyroMouseStickInvertXCk.Checked) value |= 1 << 0;
+                if (gyroMouseStickInvertYCk.Checked) value |= 1 << 1;
             }
         }
 

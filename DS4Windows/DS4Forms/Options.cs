@@ -804,21 +804,6 @@ namespace DS4Windows.Forms
                         break;
                 }
 
-                switch (GyroOutputMode[device])
-                {
-                    case GyroOutMode.Controls:
-                        gyroOutputMode.SelectedIndex = 0;
-                        break;
-                    case GyroOutMode.Mouse:
-                        gyroOutputMode.SelectedIndex = 1;
-                        break;
-                    case GyroOutMode.MouseJoystick:
-                        gyroOutputMode.SelectedIndex = 2;
-                        break;
-                    default:
-                        break;
-                }
-
                 gyroMStickTrigBehaveCk.Checked = GyroMouseStickTriggerTurns[device];
                 gyroMouseStickEvalCombo.SelectedIndex = SAMouseStickTriggerCond[device] ? 0 : 1;
                 GyroMouseStickInfo gyroMouseStickInfo = GyroMouseStickInf[device];
@@ -1071,19 +1056,16 @@ namespace DS4Windows.Forms
                 {
                     if (tr < gyroTriggerCount && tr > -1)
                     {
-                        ((ToolStripMenuItem)cMGyroTriggers.Items[tr]).Checked = true;
                         s.Add(cMGyroTriggers.Items[tr].Text);
                     }
                     else
                     {
-                        ((ToolStripMenuItem)cMGyroTriggers.Items[gyroTriggerCount - 1]).Checked = true;
                         s.Add(cMGyroTriggers.Items[gyroTriggerCount - 1].Text);
                         break;
                     }
                 }
                 else
                 {
-                    ((ToolStripMenuItem)cMGyroTriggers.Items[gyroTriggerCount - 1]).Checked = true;
                     s.Add(cMGyroTriggers.Items[gyroTriggerCount - 1].Text);
                     break;
                 }

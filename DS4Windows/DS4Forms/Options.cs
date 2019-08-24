@@ -1578,6 +1578,7 @@ namespace DS4Windows.Forms
             uint tempInvert = 0;
             if (gyroMouseStickInvertXCk.Checked) tempInvert |= 1 << 0;
             if (gyroMouseStickInvertYCk.Checked) tempInvert |= 1 << 1;
+            GyroMouseStickInf[device].inverted = tempInvert;
         }
 
         private void Show_ControlsBtn(object sender, EventArgs e)
@@ -3675,6 +3676,7 @@ namespace DS4Windows.Forms
                 uint value = 0;
                 if (gyroMouseStickInvertXCk.Checked) value |= 1 << 0;
                 if (gyroMouseStickInvertYCk.Checked) value |= 1 << 1;
+                GyroMouseStickInf[device].inverted = value;
             }
         }
 

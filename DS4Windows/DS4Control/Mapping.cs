@@ -160,6 +160,9 @@ namespace DS4Windows
         static DS4SquareStick[] outSqrStk = new DS4SquareStick[4] { new DS4SquareStick(),
         new DS4SquareStick(), new DS4SquareStick(), new DS4SquareStick()};
 
+        public static byte[] gyroStickX = new byte[4] { 128, 128, 128, 128 };
+        public static byte[] gyroStickY = new byte[4] { 128, 128, 128, 128 };
+
         static ReaderWriterLockSlim syncStateLock = new ReaderWriterLockSlim();
 
         public static SyntheticState globalState = new SyntheticState();
@@ -1869,6 +1872,12 @@ namespace DS4Windows
             {
                 MappedState.SASteeringWheelEmulationUnit = Mapping.Scale360degreeGyroAxis(device, eState, ctrl);
             }
+
+            ref byte gyroTempX = ref gyroStickX[device];
+            if (gyroTempX != 128) MappedState.RX = gyroTempX;
+            ref byte gyroTempY = ref gyroStickY[device];
+            if (gyroTempY != 128) MappedState.RY = gyroTempY;
+            gyroTempX = gyroTempY = 128;
 
             calculateFinalMouseMovement(ref tempMouseDeltaX, ref tempMouseDeltaY,
                 out mouseDeltaX, out mouseDeltaY);

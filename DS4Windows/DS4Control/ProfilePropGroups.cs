@@ -22,4 +22,19 @@ namespace DS4Windows
         public int antiDeadZone;
         public int maxZone = 100;
     }
+
+    public class GyroMouseInfo
+    {
+
+    }
+
+    public class GyroMouseStickInfo
+    {
+        public int deadZone;
+        public int maxZone;
+        public double antiDeadX;
+        public double antiDeadY;
+        // Flags representing invert axis choices
+        public uint inverted;
+    }
 }

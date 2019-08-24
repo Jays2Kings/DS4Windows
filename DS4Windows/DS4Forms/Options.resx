@@ -4327,10 +4327,10 @@
     <value>12</value>
   </data>
   <data name="fLPTiltControls.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 43</value>
+    <value>6, 47</value>
   </data>
   <data name="fLPTiltControls.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 203</value>
+    <value>271, 195</value>
   </data>
   <data name="fLPTiltControls.TabIndex" type="System.Int32, mscorlib">
     <value>254</value>
@@ -4345,7 +4345,484 @@
     <value>gBGyro</value>
   </data>
   <data name="&gt;&gt;fLPTiltControls.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label36.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label36.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label36.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="label36.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 13</value>
+  </data>
+  <data name="label36.TabIndex" type="System.Int32, mscorlib">
+    <value>275</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>Triggers:</value>
+  </data>
+  <data name="label36.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;label36.Name" xml:space="preserve">
+    <value>label36</value>
+  </data>
+  <data name="&gt;&gt;label36.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label36.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;label36.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnGyroMStickTrig.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnGyroMStickTrig.Location" type="System.Drawing.Point, System.Drawing">
+    <value>56, 2</value>
+  </data>
+  <data name="btnGyroMStickTrig.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="btnGyroMStickTrig.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 25</value>
+  </data>
+  <data name="btnGyroMStickTrig.TabIndex" type="System.Int32, mscorlib">
+    <value>274</value>
+  </data>
+  <data name="btnGyroMStickTrig.Text" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;btnGyroMStickTrig.Name" xml:space="preserve">
+    <value>btnGyroMStickTrig</value>
+  </data>
+  <data name="&gt;&gt;btnGyroMStickTrig.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnGyroMStickTrig.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;btnGyroMStickTrig.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="gyroMStickTrigBehaveCk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="gyroMStickTrigBehaveCk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 32</value>
+  </data>
+  <data name="gyroMStickTrigBehaveCk.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="gyroMStickTrigBehaveCk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 17</value>
+  </data>
+  <data name="gyroMStickTrigBehaveCk.TabIndex" type="System.Int32, mscorlib">
+    <value>276</value>
+  </data>
+  <data name="gyroMStickTrigBehaveCk.Text" xml:space="preserve">
+    <value>Trigger Behavior - Turns Gyro</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickTrigBehaveCk.Name" xml:space="preserve">
+    <value>gyroMStickTrigBehaveCk</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickTrigBehaveCk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickTrigBehaveCk.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickTrigBehaveCk.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="label29.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 52</value>
+  </data>
+  <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 13</value>
+  </data>
+  <data name="label29.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>Dead Zone:</value>
+  </data>
+  <data name="&gt;&gt;label29.Name" xml:space="preserve">
+    <value>label29</value>
+  </data>
+  <data name="&gt;&gt;label29.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label29.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;label29.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="gyroMouseStickDZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>73, 55</value>
+  </data>
+  <data name="gyroMouseStickDZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 20</value>
+  </data>
+  <data name="gyroMouseStickDZ.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickDZ.Name" xml:space="preserve">
+    <value>gyroMouseStickDZ</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickDZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickDZ.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickDZ.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="label30.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label30.Location" type="System.Drawing.Point, System.Drawing">
+    <value>120, 52</value>
+  </data>
+  <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 13</value>
+  </data>
+  <data name="label30.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>Max Zone:</value>
+  </data>
+  <data name="&gt;&gt;label30.Name" xml:space="preserve">
+    <value>label30</value>
+  </data>
+  <data name="&gt;&gt;label30.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label30.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;label30.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="gyroMouseStickMaxZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>184, 55</value>
+  </data>
+  <data name="gyroMouseStickMaxZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="gyroMouseStickMaxZ.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickMaxZ.Name" xml:space="preserve">
+    <value>gyroMouseStickMaxZ</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickMaxZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickMaxZ.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickMaxZ.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label31.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label31.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 78</value>
+  </data>
+  <data name="label31.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 13</value>
+  </data>
+  <data name="label31.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>Minimum X:</value>
+  </data>
+  <data name="&gt;&gt;label31.Name" xml:space="preserve">
+    <value>label31</value>
+  </data>
+  <data name="&gt;&gt;label31.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label31.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;label31.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="gyroMouseStickAntiDeadX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>70, 81</value>
+  </data>
+  <data name="gyroMouseStickAntiDeadX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 20</value>
+  </data>
+  <data name="gyroMouseStickAntiDeadX.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickAntiDeadX.Name" xml:space="preserve">
+    <value>gyroMouseStickAntiDeadX</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickAntiDeadX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickAntiDeadX.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickAntiDeadX.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="label32.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label32.Location" type="System.Drawing.Point, System.Drawing">
+    <value>126, 78</value>
+  </data>
+  <data name="label32.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 13</value>
+  </data>
+  <data name="label32.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>Minimum Y:</value>
+  </data>
+  <data name="&gt;&gt;label32.Name" xml:space="preserve">
+    <value>label32</value>
+  </data>
+  <data name="&gt;&gt;label32.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label32.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;label32.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="gyroMouseStickAntiDeadY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>193, 81</value>
+  </data>
+  <data name="gyroMouseStickAntiDeadY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 20</value>
+  </data>
+  <data name="gyroMouseStickAntiDeadY.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickAntiDeadY.Name" xml:space="preserve">
+    <value>gyroMouseStickAntiDeadY</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickAntiDeadY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickAntiDeadY.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickAntiDeadY.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="label35.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label35.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label35.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 104</value>
+  </data>
+  <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 13</value>
+  </data>
+  <data name="label35.TabIndex" type="System.Int32, mscorlib">
+    <value>278</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>Eval Cond:</value>
+  </data>
+  <data name="&gt;&gt;label35.Name" xml:space="preserve">
+    <value>label35</value>
+  </data>
+  <data name="&gt;&gt;label35.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label35.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;label35.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="gyroMouseStickEvalCombo.Items" xml:space="preserve">
+    <value>And</value>
+  </data>
+  <data name="gyroMouseStickEvalCombo.Items1" xml:space="preserve">
+    <value>Or</value>
+  </data>
+  <data name="gyroMouseStickEvalCombo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>68, 107</value>
+  </data>
+  <data name="gyroMouseStickEvalCombo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 21</value>
+  </data>
+  <data name="gyroMouseStickEvalCombo.TabIndex" type="System.Int32, mscorlib">
+    <value>277</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickEvalCombo.Name" xml:space="preserve">
+    <value>gyroMouseStickEvalCombo</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickEvalCombo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickEvalCombo.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickEvalCombo.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="label33.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label33.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 104</value>
+  </data>
+  <data name="label33.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 13</value>
+  </data>
+  <data name="label33.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>X Axis:</value>
+  </data>
+  <data name="&gt;&gt;label33.Name" xml:space="preserve">
+    <value>label33</value>
+  </data>
+  <data name="&gt;&gt;label33.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label33.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;label33.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="gyroMousestickXAxisCom.Items" xml:space="preserve">
+    <value>Yaw</value>
+  </data>
+  <data name="gyroMousestickXAxisCom.Items1" xml:space="preserve">
+    <value>Roll</value>
+  </data>
+  <data name="gyroMousestickXAxisCom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>191, 107</value>
+  </data>
+  <data name="gyroMousestickXAxisCom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 21</value>
+  </data>
+  <data name="gyroMousestickXAxisCom.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;gyroMousestickXAxisCom.Name" xml:space="preserve">
+    <value>gyroMousestickXAxisCom</value>
+  </data>
+  <data name="&gt;&gt;gyroMousestickXAxisCom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMousestickXAxisCom.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMousestickXAxisCom.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="gyroMouseStickInvertXCk.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="gyroMouseStickInvertXCk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 134</value>
+  </data>
+  <data name="gyroMouseStickInvertXCk.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="gyroMouseStickInvertXCk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 17</value>
+  </data>
+  <data name="gyroMouseStickInvertXCk.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="gyroMouseStickInvertXCk.Text" xml:space="preserve">
+    <value>Invert X</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickInvertXCk.Name" xml:space="preserve">
+    <value>gyroMouseStickInvertXCk</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickInvertXCk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickInvertXCk.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickInvertXCk.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="gyroMouseStickInvertYCk.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="gyroMouseStickInvertYCk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>72, 134</value>
+  </data>
+  <data name="gyroMouseStickInvertYCk.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="gyroMouseStickInvertYCk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 17</value>
+  </data>
+  <data name="gyroMouseStickInvertYCk.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="gyroMouseStickInvertYCk.Text" xml:space="preserve">
+    <value>Invert Y</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickInvertYCk.Name" xml:space="preserve">
+    <value>gyroMouseStickInvertYCk</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickInvertYCk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickInvertYCk.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickInvertYCk.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="gyroMouseJoyFLP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 47</value>
+  </data>
+  <data name="gyroMouseJoyFLP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 181</value>
+  </data>
+  <data name="gyroMouseJoyFLP.TabIndex" type="System.Int32, mscorlib">
+    <value>260</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseJoyFLP.Name" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseJoyFLP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseJoyFLP.Parent" xml:space="preserve">
+    <value>gBGyro</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseJoyFLP.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="tPControls.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8169,71 +8646,62 @@
   <data name="fLPSettings.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="rBSAControls.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label34.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="rBSAControls.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="label34.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 17</value>
   </data>
-  <data name="rBSAControls.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 20</value>
+  <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 13</value>
   </data>
-  <data name="rBSAControls.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
+  <data name="label34.TabIndex" type="System.Int32, mscorlib">
+    <value>261</value>
   </data>
-  <data name="rBSAControls.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 17</value>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Output Mode:</value>
   </data>
-  <data name="rBSAControls.TabIndex" type="System.Int32, mscorlib">
-    <value>258</value>
+  <data name="&gt;&gt;label34.Name" xml:space="preserve">
+    <value>label34</value>
   </data>
-  <data name="rBSAControls.Text" xml:space="preserve">
-    <value>Use for Controls</value>
+  <data name="&gt;&gt;label34.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;rBSAControls.Name" xml:space="preserve">
-    <value>rBSAControls</value>
-  </data>
-  <data name="&gt;&gt;rBSAControls.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rBSAControls.Parent" xml:space="preserve">
+  <data name="&gt;&gt;label34.Parent" xml:space="preserve">
     <value>gBGyro</value>
   </data>
-  <data name="&gt;&gt;rBSAControls.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="rBSAMouse.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rBSAMouse.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rBSAMouse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 20</value>
-  </data>
-  <data name="rBSAMouse.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="rBSAMouse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 17</value>
-  </data>
-  <data name="rBSAMouse.TabIndex" type="System.Int32, mscorlib">
-    <value>257</value>
-  </data>
-  <data name="rBSAMouse.Text" xml:space="preserve">
-    <value>Use as Mouse</value>
-  </data>
-  <data name="&gt;&gt;rBSAMouse.Name" xml:space="preserve">
-    <value>rBSAMouse</value>
-  </data>
-  <data name="&gt;&gt;rBSAMouse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rBSAMouse.Parent" xml:space="preserve">
-    <value>gBGyro</value>
-  </data>
-  <data name="&gt;&gt;rBSAMouse.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;label34.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="gyroOutputMode.Items" xml:space="preserve">
+    <value>Controls</value>
+  </data>
+  <data name="gyroOutputMode.Items1" xml:space="preserve">
+    <value>Mouse</value>
+  </data>
+  <data name="gyroOutputMode.Items2" xml:space="preserve">
+    <value>Mouse Joystick</value>
+  </data>
+  <data name="gyroOutputMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>122, 15</value>
+  </data>
+  <data name="gyroOutputMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 21</value>
+  </data>
+  <data name="gyroOutputMode.TabIndex" type="System.Int32, mscorlib">
+    <value>260</value>
+  </data>
+  <data name="&gt;&gt;gyroOutputMode.Name" xml:space="preserve">
+    <value>gyroOutputMode</value>
+  </data>
+  <data name="&gt;&gt;gyroOutputMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroOutputMode.Parent" xml:space="preserve">
+    <value>gBGyro</value>
+  </data>
+  <data name="&gt;&gt;gyroOutputMode.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="toggleGyroMCb.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8872,13 +9340,13 @@
     <value>21</value>
   </data>
   <data name="pnlSAMouse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 39</value>
+    <value>4, 47</value>
   </data>
   <data name="pnlSAMouse.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="pnlSAMouse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 207</value>
+    <value>263, 222</value>
   </data>
   <data name="pnlSAMouse.TabIndex" type="System.Int32, mscorlib">
     <value>259</value>
@@ -8893,13 +9361,13 @@
     <value>gBGyro</value>
   </data>
   <data name="&gt;&gt;pnlSAMouse.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="gBGyro.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 242</value>
   </data>
   <data name="gBGyro.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 257</value>
+    <value>272, 256</value>
   </data>
   <data name="gBGyro.TabIndex" type="System.Int32, mscorlib">
     <value>248</value>
@@ -9556,7 +10024,7 @@
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>47</value>
+    <value>114</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>96, 96</value>

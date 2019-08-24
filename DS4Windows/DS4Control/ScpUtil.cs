@@ -3552,7 +3552,8 @@ namespace DS4Windows
             containsCustomAction[device] = HasCustomActions(device);
             containsCustomExtras[device] = HasCustomExtras(device);
 
-            Program.rootHub.touchPad[device]?.ResetToggleGyroM();
+            if (device < 4)
+                Program.rootHub.touchPad[device]?.ResetToggleGyroM();
 
             // If a device exists, make sure to transfer relevant profile device
             // options to device instance

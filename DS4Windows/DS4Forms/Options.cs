@@ -735,7 +735,7 @@ namespace DS4Windows.Forms
                     Program.rootHub.touchPad[device]?.ResetTrackAccel(TrackballFriction[device]);
                 }
 
-                ResetGyroTriggers();
+                ResetGyroTriggers(true);
 
                 for (int i = 0, arlen = cMTouchDisableInvert.Items.Count; i < arlen; i++)
                 {
@@ -745,11 +745,11 @@ namespace DS4Windows.Forms
                 string[] satriggers;
                 satriggers = SATriggers[device].Split(',');
                 btnGyroTriggers.Text = GetGyroTriggerActionString(ref satriggers);
-                if (gyroOut == GyroOutMode.Mouse) MarkCurrentGyroTriggers(ref satriggers);
+                if (gyroOut == GyroOutMode.Mouse) MarkCurrentGyroTriggers(ref satriggers, true);
 
                 satriggers = SAMousestickTriggers[device].Split(',');
                 btnGyroMStickTrig.Text = GetGyroTriggerActionString(ref satriggers);
-                if (gyroOut == GyroOutMode.MouseJoystick) MarkCurrentGyroTriggers(ref satriggers);
+                if (gyroOut == GyroOutMode.MouseJoystick) MarkCurrentGyroTriggers(ref satriggers, true);
 
                 List<string> s = new List<string>();
                 int[] touchDisInvTriggers = TouchDisInvertTriggers[device];
@@ -935,7 +935,7 @@ namespace DS4Windows.Forms
                     Program.rootHub.touchPad[device]?.ResetTrackAccel(10.0);
                 }
 
-                ResetGyroTriggers();
+                ResetGyroTriggers(true);
                 ((ToolStripMenuItem)cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1]).Checked = true;
 
                 for (int i = 0, arlen = cMTouchDisableInvert.Items.Count; i < arlen; i++)
@@ -1049,7 +1049,7 @@ namespace DS4Windows.Forms
             btnSATrackS.Visible = on;
         }
 
-        private void ResetGyroTriggers()
+        private void ResetGyroTriggers(bool loadstate = false)
         {
             loading = true;
             for (int i = 0, arlen = cMGyroTriggers.Items.Count; i < arlen; i++)
@@ -1057,7 +1057,7 @@ namespace DS4Windows.Forms
                 ((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked = false;
             }
 
-            loading = false;
+            loading = loadstate;
         }
 
         private string GetGyroTriggerActionString(ref string[] satriggers)
@@ -1093,7 +1093,7 @@ namespace DS4Windows.Forms
             return result;
         }
 
-        private void MarkCurrentGyroTriggers(ref string[] satriggers)
+        private void MarkCurrentGyroTriggers(ref string[] satriggers, bool loadstate = false)
         {
             loading = true;
             int gyroTriggerCount = cMGyroTriggers.Items.Count;
@@ -1120,7 +1120,7 @@ namespace DS4Windows.Forms
                 }
             }
 
-            loading = false;
+            loading = loadstate;
         }
 
         private void ControllerReadout_Tick(object sender, EventArgs e)

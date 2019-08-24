@@ -75,7 +75,8 @@ namespace DS4Windows
 
         public virtual void sixaxisMoved(DS4SixAxis sender, SixAxisEventArgs arg)
         {
-            if (Global.isUsingSAforMouse(deviceNum) && Global.getGyroSensitivity(deviceNum) > 0)
+            GyroOutMode outMode = Global.GetGyroOutMode(deviceNum);
+            if (outMode == GyroOutMode.Mouse && Global.getGyroSensitivity(deviceNum) > 0)
             {
                 s = dev.getCurrentStateRef();
 
@@ -124,7 +125,192 @@ namespace DS4Windows
                     cursor.sixaxisMoved(arg);
                 else
                     cursor.mouseRemainderReset();
+
             }
+            else if (outMode == GyroOutMode.MouseJoystick)
+            {
+                s = dev.getCurrentStateRef();
+
+                useReverseRatchet = Global.GetGyroMouseStickTriggerTurns(deviceNum);
+                int i = 0;
+                string[] ss = Global.GetSAMousestickTriggers(deviceNum).Split(',');
+                bool andCond = Global.GetSAMouseStickTriggerCond(deviceNum);
+                triggeractivated = andCond ? true : false;
+                if (!string.IsNullOrEmpty(ss[0]))
+                {
+                    string s = string.Empty;
+                    for (int index = 0, arlen = ss.Length; index < arlen; index++)
+                    {
+                        s = ss[index];
+                        if (andCond && !(int.TryParse(s, out i) && getDS4ControlsByName(i)))
+                        {
+                            triggeractivated = false;
+                            break;
+                        }
+                        else if (!andCond && int.TryParse(s, out i) && getDS4ControlsByName(i))
+                        {
+                            triggeractivated = true;
+                            break;
+                        }
+                    }
+                }
+
+                previousTriggerActivated = triggeractivated;
+                if (toggleGyroMouse)
+                {
+                    if (triggeractivated && triggeractivated != previousTriggerActivated)
+                    {
+                        currentToggleGyroM = !currentToggleGyroM;
+                    }
+
+                    previousTriggerActivated = triggeractivated;
+                    triggeractivated = currentToggleGyroM;
+                }
+                else
+                {
+                    previousTriggerActivated = triggeractivated;
+                }
+
+                if (useReverseRatchet && triggeractivated)
+                    SixMouseStick(arg);
+                else if (!useReverseRatchet && !triggeractivated)
+                    SixMouseStick(arg);
+                //else
+                //    SixMouseReset(arg);
+            }
+        }
+
+        /*private const int GyroMouseStickDeadZone = 50;
+        private const int GyroMouseStickMaxZone = 880;
+        private const int GyroMouseStickFuzz = 20;
+        private const int SMOOTH_BUFFER_LEN = 3;
+        private int[] xSmoothBuffer = new int[SMOOTH_BUFFER_LEN];
+        private int[] ySmoothBuffer = new int[SMOOTH_BUFFER_LEN];
+        private int smoothBufferTail = 0;
+
+        private void SixMouseReset(SixAxisEventArgs args)
+        {
+            int iIndex = smoothBufferTail % SMOOTH_BUFFER_LEN;
+            xSmoothBuffer[iIndex] = 0;
+            ySmoothBuffer[iIndex] = 0;
+            smoothBufferTail = iIndex + 1;
+        }
+        */
+
+        private void SixMouseStick(SixAxisEventArgs arg)
+        {
+            int deltaX = 0, deltaY = 0;
+            deltaX = Global.getGyroMouseStickHorizontalAxis(0) == 0 ? arg.sixAxis.gyroYawFull :
+                arg.sixAxis.gyroRollFull;
+            deltaY = -arg.sixAxis.gyroPitchFull;
+            //int inputX = deltaX, inputY = deltaY;
+            int maxDirX = deltaX >= 0 ? 127 : -128;
+            int maxDirY = deltaY >= 0 ? 127 : -128;
+
+            GyroMouseStickInfo msinfo = Global.GetGyroMouseStickInfo(deviceNum);
+
+            double tempAngle = Math.Atan2(-deltaY, deltaX);
+            double normX = Math.Abs(Math.Cos(tempAngle));
+            double normY = Math.Abs(Math.Sin(tempAngle));
+            int signX = Math.Sign(deltaX);
+            int signY = Math.Sign(deltaY);
+
+            int deadzoneX = (int)Math.Abs(normX * msinfo.deadZone);
+            int deadzoneY = (int)Math.Abs(normY * msinfo.deadZone);
+
+            int maxValX = signX * msinfo.maxZone;
+            int maxValY = signY * msinfo.maxZone;
+
+            double xratio = 0.0, yratio = 0.0;
+            double antiX = msinfo.antiDeadX * normX;
+            double antiY = msinfo.antiDeadY * normY;
+
+            if (Math.Abs(deltaX) > deadzoneX)
+            {
+                deltaX -= signX * deadzoneX;
+                deltaX = (deltaX < 0 && deltaX < maxValX) ? maxValX :
+                    (deltaX > 0 && deltaX > maxValX) ? maxValX : deltaX;
+                //if (deltaX != maxValX) deltaX -= deltaX % (signX * GyroMouseFuzz);
+            }
+            else
+            {
+                deltaX = 0;
+            }
+
+            if (Math.Abs(deltaY) > deadzoneY)
+            {
+                deltaY -= signY * deadzoneY;
+                deltaY = (deltaY < 0 && deltaY < maxValY) ? maxValY :
+                    (deltaY > 0 && deltaY > maxValY) ? maxValY : deltaY;
+                //if (deltaY != maxValY) deltaY -= deltaY % (signY * GyroMouseFuzz);
+            }
+            else
+            {
+                deltaY = 0;
+            }
+
+            /*int iIndex = smoothBufferTail % SMOOTH_BUFFER_LEN;
+            xSmoothBuffer[iIndex] = deltaX;
+            ySmoothBuffer[iIndex] = deltaY;
+            smoothBufferTail = iIndex + 1;
+
+            double currentWeight = 1.0;
+            double finalWeight = 0.0;
+            double x_out = 0.0, y_out = 0.0;
+            int idx = 0;
+            for (int i = 0; i < SMOOTH_BUFFER_LEN; i++)
+            {
+                idx = (smoothBufferTail - i - 1 + SMOOTH_BUFFER_LEN) % SMOOTH_BUFFER_LEN;
+                x_out += xSmoothBuffer[idx] * currentWeight;
+                y_out += ySmoothBuffer[idx] * currentWeight;
+                finalWeight += currentWeight;
+                currentWeight *= 0.5;
+            }
+
+            x_out /= finalWeight;
+            deltaX = (int)x_out;
+            y_out /= finalWeight;
+            deltaY = (int)y_out;
+
+            maxValX = deltaX < 0 ? -msinfo.maxZone : msinfo.maxZone;
+            maxValY = deltaY < 0 ? -msinfo.maxZone : msinfo.maxZone;
+            maxDirX = deltaX >= 0 ? 127 : -128;
+            maxDirY = deltaY >= 0 ? 127 : -128;
+            */
+
+            if (deltaX != 0) xratio = deltaX / (double)maxValX;
+            if (deltaY != 0) yratio = deltaY / (double)maxValY;
+
+            double xNorm = 0.0, yNorm = 0.0;
+            if (xratio != 0.0)
+            {
+                xNorm = (1.0 - antiX) * xratio + antiX;
+            }
+
+            if (yratio != 0.0)
+            {
+                yNorm = (1.0 - antiY) * yratio + antiY;
+            }
+
+            if (msinfo.inverted != 0)
+            {
+                if ((msinfo.inverted & 1) == 1)
+                {
+                    // Invert max dir value
+                    maxDirX = deltaX >= 0 ? -128 : 127;
+                }
+
+                if ((msinfo.inverted & 2) == 2)
+                {
+                    // Invert max dir value
+                    maxDirY = deltaY >= 0 ? -128 : 127;
+                }
+            }
+
+            byte axisXOut = (byte)(xNorm * maxDirX + 128.0);
+            byte axisYOut = (byte)(yNorm * maxDirY + 128.0);
+            Mapping.gyroStickX[deviceNum] = axisXOut;
+            Mapping.gyroStickY[deviceNum] = axisYOut;
         }
 
         private bool getDS4ControlsByName(int key)

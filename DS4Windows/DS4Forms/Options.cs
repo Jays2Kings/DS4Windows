@@ -959,12 +959,12 @@ namespace DS4Windows.Forms
                 OutContTypeCb.SelectedIndex = 0;
 
                 gyroOutputMode.SelectedIndex = 0;
-                gyroMStickTrigBehaveCk.Checked = false;
+                gyroMStickTrigBehaveCk.Checked = true;
                 gyroMouseStickEvalCombo.SelectedIndex = 0;
-                gyroMouseStickDZ.Value = 40;
-                gyroMouseStickMaxZ.Value = 880;
-                gyroMouseStickAntiDeadX.Value = 0.35m;
-                gyroMouseStickAntiDeadY.Value = 0.35m;
+                gyroMouseStickDZ.Value = 30;
+                gyroMouseStickMaxZ.Value = 840;
+                gyroMouseStickAntiDeadX.Value = 0.4m;
+                gyroMouseStickAntiDeadY.Value = 0.4m;
                 gyroMousestickXAxisCom.SelectedIndex = 0;
                 gyroMouseStickInvertXCk.Checked = false;
                 gyroMouseStickInvertYCk.Checked = false;

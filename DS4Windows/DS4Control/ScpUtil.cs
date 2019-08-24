@@ -3146,28 +3146,28 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickDeadZone"); int.TryParse(Item.InnerText, out int temp);
                     gyroMStickInfo[device].deadZone = temp; }
-                catch { gyroMStickInfo[device].deadZone = 50;  missingSetting = true; }
+                catch { gyroMStickInfo[device].deadZone = 30;  missingSetting = true; }
 
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickMaxZone"); int.TryParse(Item.InnerText, out int temp);
                     gyroMStickInfo[device].maxZone = temp;
                 }
-                catch { gyroMStickInfo[device].maxZone = 880; missingSetting = true; }
+                catch { gyroMStickInfo[device].maxZone = 840; missingSetting = true; }
 
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickAntiDeadX"); double.TryParse(Item.InnerText, out double temp);
                     gyroMStickInfo[device].antiDeadX = temp;
                 }
-                catch { gyroMStickInfo[device].antiDeadX = 0.35; missingSetting = true; }
+                catch { gyroMStickInfo[device].antiDeadX = 0.4; missingSetting = true; }
 
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickAntiDeadY"); double.TryParse(Item.InnerText, out double temp);
                     gyroMStickInfo[device].antiDeadY = temp;
                 }
-                catch { gyroMStickInfo[device].antiDeadY = 0.35; missingSetting = true; }
+                catch { gyroMStickInfo[device].antiDeadY = 0.4; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickInvert"); uint.TryParse(Item.InnerText, out gyroMStickInfo[device].inverted); }
                 catch { gyroMStickInfo[device].inverted = 0; missingSetting = true; }
@@ -4552,8 +4552,8 @@ namespace DS4Windows
             gyroOutMode[device] = GyroOutMode.Controls;
             sAMouseStickTriggers[device] = string.Empty;
             sAMouseStickTriggerCond[device] = true;
-            gyroMStickInfo[device].deadZone = 40; gyroMStickInfo[device].maxZone = 880;
-            gyroMStickInfo[device].antiDeadX = 0.35; gyroMStickInfo[device].antiDeadY = 0.35;
+            gyroMStickInfo[device].deadZone = 30; gyroMStickInfo[device].maxZone = 840;
+            gyroMStickInfo[device].antiDeadX = 0.4; gyroMStickInfo[device].antiDeadY = 0.4;
             gyroMStickInfo[device].inverted = 0;
             sASteeringWheelEmulationAxis[device] = SASteeringWheelEmulationAxisType.None;
             sASteeringWheelEmulationRange[device] = 360;

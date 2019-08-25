@@ -944,6 +944,9 @@ namespace DS4Windows.Forms
                 OutContTypeCb.SelectedIndex = 0;
 
                 gyroOutputMode.SelectedIndex = 0;
+                pnlSAMouse.Visible = false;
+                fLPTiltControls.Visible = true;
+                gyroMouseJoyFLP.Visible = false;
                 gyroMStickTrigBehaveCk.Checked = true;
                 gyroMouseStickEvalCombo.SelectedIndex = 0;
                 gyroMouseStickDZ.Value = 30;

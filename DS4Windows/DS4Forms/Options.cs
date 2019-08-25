@@ -903,6 +903,7 @@ namespace DS4Windows.Forms
 
                 lsSquStickCk.Checked = false;
                 rsSquStickCk.Checked = false;
+                RoundnessNUpDown.Value = 5.0m;
 
                 cBLaunchProgram.Checked = false;
                 pBProgram.Image = null;

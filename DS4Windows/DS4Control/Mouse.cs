@@ -155,7 +155,6 @@ namespace DS4Windows
                     }
                 }
 
-                previousTriggerActivated = triggeractivated;
                 if (toggleGyroMouse)
                 {
                     if (triggeractivated && triggeractivated != previousTriggerActivated)

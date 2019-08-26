@@ -199,6 +199,7 @@
             this.label36 = new System.Windows.Forms.Label();
             this.btnGyroMStickTrig = new System.Windows.Forms.Button();
             this.gyroMStickTrigBehaveCk = new System.Windows.Forms.CheckBox();
+            this.gyroMStickToggleCk = new System.Windows.Forms.CheckBox();
             this.label29 = new System.Windows.Forms.Label();
             this.gyroMouseStickDZ = new System.Windows.Forms.NumericUpDown();
             this.label30 = new System.Windows.Forms.Label();
@@ -2036,6 +2037,7 @@
             this.gyroMouseJoyFLP.Controls.Add(this.label36);
             this.gyroMouseJoyFLP.Controls.Add(this.btnGyroMStickTrig);
             this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickTrigBehaveCk);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickToggleCk);
             this.gyroMouseJoyFLP.Controls.Add(this.label29);
             this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickDZ);
             this.gyroMouseJoyFLP.Controls.Add(this.label30);
@@ -2073,6 +2075,13 @@
             this.gyroMStickTrigBehaveCk.Name = "gyroMStickTrigBehaveCk";
             this.gyroMStickTrigBehaveCk.UseVisualStyleBackColor = true;
             this.gyroMStickTrigBehaveCk.CheckedChanged += new System.EventHandler(this.GyroMStickTrigBehaveCk_CheckedChanged);
+            // 
+            // gyroMStickToggleCk
+            // 
+            resources.ApplyResources(this.gyroMStickToggleCk, "gyroMStickToggleCk");
+            this.gyroMStickToggleCk.Name = "gyroMStickToggleCk";
+            this.gyroMStickToggleCk.UseVisualStyleBackColor = true;
+            this.gyroMStickToggleCk.CheckedChanged += new System.EventHandler(this.GyroMStickToggleCk_CheckedChanged);
             // 
             // label29
             // 
@@ -5082,5 +5091,6 @@
         private System.Windows.Forms.CheckBox gyroMStickTrigBehaveCk;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.ComboBox gyroMouseStickEvalCombo;
+        private System.Windows.Forms.CheckBox gyroMStickToggleCk;
     }
 }

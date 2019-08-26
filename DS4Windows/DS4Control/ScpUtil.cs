@@ -3153,7 +3153,7 @@ namespace DS4Windows
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickMaxZone"); int.TryParse(Item.InnerText, out int temp);
                     gyroMStickInfo[device].maxZone = temp;
                 }
-                catch { gyroMStickInfo[device].maxZone = 840; missingSetting = true; }
+                catch { gyroMStickInfo[device].maxZone = 830; missingSetting = true; }
 
                 try
                 {
@@ -4552,7 +4552,7 @@ namespace DS4Windows
             gyroOutMode[device] = GyroOutMode.Controls;
             sAMouseStickTriggers[device] = string.Empty;
             sAMouseStickTriggerCond[device] = true;
-            gyroMStickInfo[device].deadZone = 30; gyroMStickInfo[device].maxZone = 840;
+            gyroMStickInfo[device].deadZone = 30; gyroMStickInfo[device].maxZone = 830;
             gyroMStickInfo[device].antiDeadX = 0.4; gyroMStickInfo[device].antiDeadY = 0.4;
             gyroMStickInfo[device].inverted = 0;
             sASteeringWheelEmulationAxis[device] = SASteeringWheelEmulationAxisType.None;

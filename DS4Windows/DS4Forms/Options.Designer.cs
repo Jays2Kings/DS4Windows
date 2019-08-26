@@ -2089,7 +2089,7 @@
             0});
             this.gyroMouseStickDZ.Name = "gyroMouseStickDZ";
             this.gyroMouseStickDZ.Value = new decimal(new int[] {
-            40,
+            30,
             0,
             0,
             0});
@@ -2110,7 +2110,7 @@
             0});
             this.gyroMouseStickMaxZ.Name = "gyroMouseStickMaxZ";
             this.gyroMouseStickMaxZ.Value = new decimal(new int[] {
-            880,
+            830,
             0,
             0,
             0});

@@ -814,6 +814,7 @@ namespace DS4Windows.Forms
                 gyroMousestickXAxisCom.SelectedIndex = GyroMouseStickHorizontalAxis[device];
                 gyroMouseStickInvertXCk.Checked = (gyroMouseStickInfo.inverted & 1) == 1;
                 gyroMouseStickInvertYCk.Checked = (gyroMouseStickInfo.inverted & 2) == 2;
+                gyroMStickToggleCk.Checked = GyroMouseStickToggle[device];
             }
             else
             {
@@ -957,6 +958,8 @@ namespace DS4Windows.Forms
                 gyroMousestickXAxisCom.SelectedIndex = 0;
                 gyroMouseStickInvertXCk.Checked = false;
                 gyroMouseStickInvertYCk.Checked = false;
+                gyroMStickTrigBehaveCk.Checked = false;
+                gyroMStickToggleCk.Checked = false;
 
                 Set();
             }
@@ -1474,7 +1477,7 @@ namespace DS4Windows.Forms
             GyroSmoothingWeight[device] = (double)nUDGyroSmoothWeight.Value;
             GyroMouseHorizontalAxis[device] = cBGyroMouseXAxis.SelectedIndex;
             SetGyroMouseDeadZone(device, (int)gyroMouseDzNUD.Value, Program.rootHub);
-            SetGyroMouseToggle(device, toggleGyroMCb.Checked, Program.rootHub);
+            //SetGyroMouseToggle(device, toggleGyroMCb.Checked, Program.rootHub);
 
             int invert = 0;
             if (cBGyroInvertX.Checked)
@@ -1535,9 +1538,12 @@ namespace DS4Windows.Forms
                     break;
                 case 1:
                     GyroOutputMode[device] = GyroOutMode.Mouse;
+                    SetGyroMouseToggle(device, toggleGyroMCb.Checked, Program.rootHub);
                     break;
                 case 2:
                     GyroOutputMode[device] = GyroOutMode.MouseJoystick;
+                    SetGyroMouseStickToggle(device,
+                        gyroMStickToggleCk.Checked, Program.rootHub);
                     break;
                 default:
                     break;
@@ -3663,6 +3669,15 @@ namespace DS4Windows.Forms
                 if (gyroMouseStickInvertXCk.Checked) value |= 1 << 0;
                 if (gyroMouseStickInvertYCk.Checked) value |= 1 << 1;
                 GyroMouseStickInf[device].inverted = value;
+            }
+        }
+
+        private void GyroMStickToggleCk_CheckedChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                Global.SetGyroMouseStickToggle(device,
+                    gyroMStickToggleCk.Checked, Program.rootHub);
             }
         }
 

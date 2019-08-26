@@ -133,7 +133,7 @@ namespace DS4Windows
 
                 useReverseRatchet = Global.GetGyroMouseStickTriggerTurns(deviceNum);
                 int i = 0;
-                string[] ss = Global.GetSAMousestickTriggers(deviceNum).Split(',');
+                string[] ss = Global.GetSAMouseStickTriggers(deviceNum).Split(',');
                 bool andCond = Global.GetSAMouseStickTriggerCond(deviceNum);
                 triggeractivated = andCond ? true : false;
                 if (!string.IsNullOrEmpty(ss[0]))
@@ -155,7 +155,6 @@ namespace DS4Windows
                     }
                 }
 
-                previousTriggerActivated = triggeractivated;
                 if (toggleGyroMouse)
                 {
                     if (triggeractivated && triggeractivated != previousTriggerActivated)

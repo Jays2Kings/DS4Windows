@@ -862,7 +862,7 @@ namespace DS4Windows
         }
 
         public static string[] SAMousestickTriggers => m_Config.sAMouseStickTriggers;
-        public static string GetSAMousestickTriggers(int device)
+        public static string GetSAMouseStickTriggers(int device)
         {
             return m_Config.sAMouseStickTriggers[device];
         }
@@ -895,6 +895,10 @@ namespace DS4Windows
         {
             return m_Config.gyroMStickInfo[device];
         }
+
+        public static bool[] GyroMouseStickToggle => m_Config.gyroMouseStickToggle;
+        public static void SetGyroMouseStickToggle(int index, bool value, ControlService control)
+            => m_Config.SetGyroMouseStickToggle(index, value, control);
 
         public static SASteeringWheelEmulationAxisType[] SASteeringWheelEmulationAxis => m_Config.sASteeringWheelEmulationAxis;
         public static SASteeringWheelEmulationAxisType GetSASteeringWheelEmulationAxis(int index)
@@ -1894,6 +1898,8 @@ namespace DS4Windows
             new GyroMouseStickInfo(), new GyroMouseStickInfo(),
             new GyroMouseStickInfo()
         };
+        public bool[] gyroMouseStickToggle = new bool[5] { false, false, false,
+            false, false };
 
         public SASteeringWheelEmulationAxisType[] sASteeringWheelEmulationAxis = new SASteeringWheelEmulationAxisType[5] { SASteeringWheelEmulationAxisType.None, SASteeringWheelEmulationAxisType.None, SASteeringWheelEmulationAxisType.None, SASteeringWheelEmulationAxisType.None, SASteeringWheelEmulationAxisType.None };
         public int[] sASteeringWheelEmulationRange = new int[5] { 360, 360, 360, 360, 360 };
@@ -2066,6 +2072,13 @@ namespace DS4Windows
         public void SetGyroMouseToggle(int index, bool value, ControlService control)
         {
             gyroMouseToggle[index] = value;
+            if (index < 4 && control.touchPad[index] != null)
+                control.touchPad[index].ToggleGyroMouse = value;
+        }
+
+        public void SetGyroMouseStickToggle(int index, bool value, ControlService control)
+        {
+            gyroMouseStickToggle[index] = value;
             if (index < 4 && control.touchPad[index] != null)
                 control.touchPad[index].ToggleGyroMouse = value;
         }
@@ -2266,6 +2279,7 @@ namespace DS4Windows
                 XmlNode xmlGyroMStickAntiDX = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickAntiDeadX", null); xmlGyroMStickAntiDX.InnerText = gyroMStickInfo[device].antiDeadX.ToString(); Node.AppendChild(xmlGyroMStickAntiDX);
                 XmlNode xmlGyroMStickAntiDY = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickAntiDeadY", null); xmlGyroMStickAntiDY.InnerText = gyroMStickInfo[device].antiDeadY.ToString(); Node.AppendChild(xmlGyroMStickAntiDY);
                 XmlNode xmlGyroMStickInvert = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickInvert", null); xmlGyroMStickInvert.InnerText = gyroMStickInfo[device].inverted.ToString(); Node.AppendChild(xmlGyroMStickInvert);
+                XmlNode xmlGyroMStickToggle = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickToggle", null); xmlGyroMStickToggle.InnerText = gyroMouseStickToggle[device].ToString(); Node.AppendChild(xmlGyroMStickToggle);
 
                 XmlNode xmlLSC = m_Xdoc.CreateNode(XmlNodeType.Element, "LSCurve", null); xmlLSC.InnerText = lsCurve[device].ToString(); Node.AppendChild(xmlLSC);
                 XmlNode xmlRSC = m_Xdoc.CreateNode(XmlNodeType.Element, "RSCurve", null); xmlRSC.InnerText = rsCurve[device].ToString(); Node.AppendChild(xmlRSC);
@@ -3140,7 +3154,6 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickTriggerTurns"); bool.TryParse(Item.InnerText, out gyroMouseStickTriggerTurns[device]); }
                 catch { gyroMouseStickTriggerTurns[device] = true; missingSetting = true; }
 
-
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickHAxis"); int temp = 0; int.TryParse(Item.InnerText, out temp); gyroMouseStickHorizontalAxis[device] = Math.Min(Math.Max(0, temp), 1); }
                 catch { gyroMouseStickHorizontalAxis[device] = 0; missingSetting = true; }
 
@@ -3171,6 +3184,13 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickInvert"); uint.TryParse(Item.InnerText, out gyroMStickInfo[device].inverted); }
                 catch { gyroMStickInfo[device].inverted = 0; missingSetting = true; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickToggle"); bool.TryParse(Item.InnerText, out bool temp);
+                    gyroMouseStickToggle[device] = temp;
+                }
+                catch { gyroMouseStickToggle[device] = false; missingSetting = true; }
 
 
                 try
@@ -3217,9 +3237,9 @@ namespace DS4Windows
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseToggle"); bool.TryParse(Item.InnerText, out bool temp);
-                    SetGyroMouseToggle(device, temp, control);
+                    gyroMouseToggle[device] = temp;
                 }
-                catch { SetGyroMouseToggle(device, false, control); missingSetting = true; }
+                catch { gyroMouseToggle[device] = false; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSCurve"); int.TryParse(Item.InnerText, out lsCurve[device]); }
                 catch { lsCurve[device] = 0; missingSetting = true; }
@@ -3553,7 +3573,20 @@ namespace DS4Windows
             containsCustomExtras[device] = HasCustomExtras(device);
 
             if (device < 4)
+            {
                 Program.rootHub.touchPad[device]?.ResetToggleGyroM();
+                GyroOutMode currentGyro = gyroOutMode[device];
+                if (currentGyro == GyroOutMode.Mouse)
+                {
+                    control.touchPad[device].ToggleGyroMouse =
+                        gyroMouseToggle[device];
+                }
+                else if (currentGyro == GyroOutMode.MouseJoystick)
+                {
+                    control.touchPad[device].ToggleGyroMouse =
+                        gyroMouseStickToggle[device];
+                }
+            }
 
             // If a device exists, make sure to transfer relevant profile device
             // options to device instance
@@ -4555,6 +4588,7 @@ namespace DS4Windows
             gyroMStickInfo[device].deadZone = 30; gyroMStickInfo[device].maxZone = 830;
             gyroMStickInfo[device].antiDeadX = 0.4; gyroMStickInfo[device].antiDeadY = 0.4;
             gyroMStickInfo[device].inverted = 0;
+            gyroMouseStickToggle[device] = false;
             sASteeringWheelEmulationAxis[device] = SASteeringWheelEmulationAxisType.None;
             sASteeringWheelEmulationRange[device] = 360;
             touchDisInvertTriggers[device] = new int[1] { -1 };
@@ -4566,6 +4600,7 @@ namespace DS4Windows
             gyroSmoothing[device] = false;
             gyroSmoothWeight[device] = 0.5;
             gyroMouseHorizontalAxis[device] = 0;
+            gyroMouseToggle[device] = false;
             squStickInfo[device].lsMode = false;
             squStickInfo[device].rsMode = false;
             squStickInfo[device].roundness = 5.0;

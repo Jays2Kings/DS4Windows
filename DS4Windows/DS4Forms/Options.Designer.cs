@@ -424,6 +424,9 @@
             this.optionsTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shareTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.psTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label37 = new System.Windows.Forms.Label();
+            this.gyroMStickVertScaleNUD = new System.Windows.Forms.NumericUpDown();
+            this.label38 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).BeginInit();
@@ -525,6 +528,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
             this.cMGyroTriggers.SuspendLayout();
             this.cMTouchDisableInvert.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickVertScaleNUD)).BeginInit();
             this.SuspendLayout();
             // 
             // lowColorChooserButton
@@ -2046,6 +2050,9 @@
             this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickAntiDeadX);
             this.gyroMouseJoyFLP.Controls.Add(this.label32);
             this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickAntiDeadY);
+            this.gyroMouseJoyFLP.Controls.Add(this.label37);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickVertScaleNUD);
+            this.gyroMouseJoyFLP.Controls.Add(this.label38);
             this.gyroMouseJoyFLP.Controls.Add(this.label35);
             this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickEvalCombo);
             this.gyroMouseJoyFLP.Controls.Add(this.label33);
@@ -4557,6 +4564,32 @@
             resources.ApplyResources(this.psTouchInvStripMenuItem, "psTouchInvStripMenuItem");
             this.psTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
             // 
+            // label37
+            // 
+            resources.ApplyResources(this.label37, "label37");
+            this.label37.Name = "label37";
+            // 
+            // gyroMStickVertScaleNUD
+            // 
+            resources.ApplyResources(this.gyroMStickVertScaleNUD, "gyroMStickVertScaleNUD");
+            this.gyroMStickVertScaleNUD.Maximum = new decimal(new int[] {
+            400,
+            0,
+            0,
+            0});
+            this.gyroMStickVertScaleNUD.Name = "gyroMStickVertScaleNUD";
+            this.gyroMStickVertScaleNUD.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.gyroMStickVertScaleNUD.ValueChanged += new System.EventHandler(this.GyroMStickVertScaleNUD_ValueChanged);
+            // 
+            // label38
+            // 
+            resources.ApplyResources(this.label38, "label38");
+            this.label38.Name = "label38";
+            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -4690,6 +4723,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
             this.cMGyroTriggers.ResumeLayout(false);
             this.cMTouchDisableInvert.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickVertScaleNUD)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -5092,5 +5126,8 @@
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.ComboBox gyroMouseStickEvalCombo;
         private System.Windows.Forms.CheckBox gyroMStickToggleCk;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.NumericUpDown gyroMStickVertScaleNUD;
+        private System.Windows.Forms.Label label38;
     }
 }

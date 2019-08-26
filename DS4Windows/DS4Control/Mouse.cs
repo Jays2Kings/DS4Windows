@@ -277,6 +277,12 @@ namespace DS4Windows
             maxDirY = deltaY >= 0 ? 127 : -128;
             */
 
+            if (msinfo.vertScale != 100)
+            {
+                double verticalScale = msinfo.vertScale * 0.01;
+                deltaY = (int)(deltaY * verticalScale);
+            }
+
             if (deltaX != 0) xratio = deltaX / (double)maxValX;
             if (deltaY != 0) yratio = deltaY / (double)maxValY;
 

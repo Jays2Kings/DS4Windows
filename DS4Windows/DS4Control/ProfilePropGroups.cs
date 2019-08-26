@@ -34,6 +34,7 @@ namespace DS4Windows
         public int maxZone;
         public double antiDeadX;
         public double antiDeadY;
+        public int vertScale;
         // Flags representing invert axis choices
         public uint inverted;
     }

@@ -815,6 +815,7 @@ namespace DS4Windows.Forms
                 gyroMouseStickInvertXCk.Checked = (gyroMouseStickInfo.inverted & 1) == 1;
                 gyroMouseStickInvertYCk.Checked = (gyroMouseStickInfo.inverted & 2) == 2;
                 gyroMStickToggleCk.Checked = GyroMouseStickToggle[device];
+                gyroMStickVertScaleNUD.Value = gyroMouseStickInfo.vertScale;
             }
             else
             {
@@ -960,6 +961,7 @@ namespace DS4Windows.Forms
                 gyroMouseStickInvertYCk.Checked = false;
                 gyroMStickTrigBehaveCk.Checked = false;
                 gyroMStickToggleCk.Checked = false;
+                gyroMStickVertScaleNUD.Value = 100;
 
                 Set();
             }
@@ -1571,6 +1573,7 @@ namespace DS4Windows.Forms
             if (gyroMouseStickInvertXCk.Checked) tempInvert |= 1 << 0;
             if (gyroMouseStickInvertYCk.Checked) tempInvert |= 1 << 1;
             GyroMouseStickInf[device].inverted = tempInvert;
+            GyroMouseStickInf[device].vertScale = (int)gyroMStickVertScaleNUD.Value;
         }
 
         private void Show_ControlsBtn(object sender, EventArgs e)
@@ -3682,6 +3685,14 @@ namespace DS4Windows.Forms
             {
                 Global.SetGyroMouseStickToggle(device,
                     gyroMStickToggleCk.Checked, Program.rootHub);
+            }
+        }
+
+        private void GyroMStickVertScaleNUD_ValueChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                GyroMouseStickInf[device].vertScale = (int)gyroMStickVertScaleNUD.Value;
             }
         }
 

@@ -3431,6 +3431,11 @@
             0,
             0});
             this.RoundnessNUpDown.Name = "RoundnessNUpDown";
+            this.RoundnessNUpDown.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            65536});
             this.RoundnessNUpDown.ValueChanged += new System.EventHandler(this.RoundnessNUpDown_ValueChanged);
             // 
             // label28

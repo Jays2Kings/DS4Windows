@@ -4568,7 +4568,7 @@ namespace DS4Windows
             gyroMouseHorizontalAxis[device] = 0;
             squStickInfo[device].lsMode = false;
             squStickInfo[device].rsMode = false;
-            squStickInfo[device].roundness = 5;
+            squStickInfo[device].roundness = 5.0;
             setLsOutCurveMode(device, 0);
             setRsOutCurveMode(device, 0);
             setL2OutCurveMode(device, 0);

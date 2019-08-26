@@ -862,7 +862,7 @@ namespace DS4Windows
         }
 
         public static string[] SAMousestickTriggers => m_Config.sAMouseStickTriggers;
-        public static string GetSAMousestickTriggers(int device)
+        public static string GetSAMouseStickTriggers(int device)
         {
             return m_Config.sAMouseStickTriggers[device];
         }

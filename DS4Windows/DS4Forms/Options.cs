@@ -3586,9 +3586,13 @@ namespace DS4Windows.Forms
                         break;
                     case 1:
                         GyroOutputMode[device] = GyroOutMode.Mouse;
+                        SetGyroMouseToggle(device, toggleGyroMCb.Checked,
+                            Program.rootHub);
                         break;
                     case 2:
                         GyroOutputMode[device] = GyroOutMode.MouseJoystick;
+                        SetGyroMouseStickToggle(device,
+                            gyroMStickToggleCk.Checked, Program.rootHub);
                         break;
                     default:
                         break;

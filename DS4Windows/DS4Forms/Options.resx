@@ -5367,6 +5367,243 @@
   <data name="&gt;&gt;btnSteeringWheelEmulationCalibrate.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
+  <data name="&gt;&gt;label36.Name" xml:space="preserve">
+    <value>label36</value>
+  </data>
+  <data name="&gt;&gt;label36.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label36.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;label36.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnGyroMStickTrig.Name" xml:space="preserve">
+    <value>btnGyroMStickTrig</value>
+  </data>
+  <data name="&gt;&gt;btnGyroMStickTrig.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnGyroMStickTrig.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;btnGyroMStickTrig.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickTrigBehaveCk.Name" xml:space="preserve">
+    <value>gyroMStickTrigBehaveCk</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickTrigBehaveCk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickTrigBehaveCk.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickTrigBehaveCk.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickToggleCk.Name" xml:space="preserve">
+    <value>gyroMStickToggleCk</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickToggleCk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickToggleCk.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickToggleCk.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;label29.Name" xml:space="preserve">
+    <value>label29</value>
+  </data>
+  <data name="&gt;&gt;label29.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label29.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;label29.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickDZ.Name" xml:space="preserve">
+    <value>gyroMouseStickDZ</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickDZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickDZ.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickDZ.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;label30.Name" xml:space="preserve">
+    <value>label30</value>
+  </data>
+  <data name="&gt;&gt;label30.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label30.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;label30.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickMaxZ.Name" xml:space="preserve">
+    <value>gyroMouseStickMaxZ</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickMaxZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickMaxZ.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickMaxZ.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;label31.Name" xml:space="preserve">
+    <value>label31</value>
+  </data>
+  <data name="&gt;&gt;label31.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label31.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;label31.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickAntiDeadX.Name" xml:space="preserve">
+    <value>gyroMouseStickAntiDeadX</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickAntiDeadX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickAntiDeadX.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickAntiDeadX.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;label32.Name" xml:space="preserve">
+    <value>label32</value>
+  </data>
+  <data name="&gt;&gt;label32.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label32.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;label32.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickAntiDeadY.Name" xml:space="preserve">
+    <value>gyroMouseStickAntiDeadY</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickAntiDeadY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickAntiDeadY.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickAntiDeadY.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;label35.Name" xml:space="preserve">
+    <value>label35</value>
+  </data>
+  <data name="&gt;&gt;label35.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label35.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;label35.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickEvalCombo.Name" xml:space="preserve">
+    <value>gyroMouseStickEvalCombo</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickEvalCombo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickEvalCombo.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickEvalCombo.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;label33.Name" xml:space="preserve">
+    <value>label33</value>
+  </data>
+  <data name="&gt;&gt;label33.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label33.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;label33.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;gyroMousestickXAxisCom.Name" xml:space="preserve">
+    <value>gyroMousestickXAxisCom</value>
+  </data>
+  <data name="&gt;&gt;gyroMousestickXAxisCom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMousestickXAxisCom.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMousestickXAxisCom.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickInvertXCk.Name" xml:space="preserve">
+    <value>gyroMouseStickInvertXCk</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickInvertXCk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickInvertXCk.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickInvertXCk.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickInvertYCk.Name" xml:space="preserve">
+    <value>gyroMouseStickInvertYCk</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickInvertYCk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickInvertYCk.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseStickInvertYCk.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="gyroMouseJoyFLP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 47</value>
+  </data>
+  <data name="gyroMouseJoyFLP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 181</value>
+  </data>
+  <data name="gyroMouseJoyFLP.TabIndex" type="System.Int32, mscorlib">
+    <value>260</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseJoyFLP.Name" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseJoyFLP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseJoyFLP.Parent" xml:space="preserve">
+    <value>gBGyro</value>
+  </data>
+  <data name="&gt;&gt;gyroMouseJoyFLP.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="label36.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -5849,27 +6086,6 @@
   </data>
   <data name="&gt;&gt;gyroMouseStickInvertYCk.ZOrder" xml:space="preserve">
     <value>17</value>
-  </data>
-  <data name="gyroMouseJoyFLP.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 47</value>
-  </data>
-  <data name="gyroMouseJoyFLP.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 181</value>
-  </data>
-  <data name="gyroMouseJoyFLP.TabIndex" type="System.Int32, mscorlib">
-    <value>260</value>
-  </data>
-  <data name="&gt;&gt;gyroMouseJoyFLP.Name" xml:space="preserve">
-    <value>gyroMouseJoyFLP</value>
-  </data>
-  <data name="&gt;&gt;gyroMouseJoyFLP.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gyroMouseJoyFLP.Parent" xml:space="preserve">
-    <value>gBGyro</value>
-  </data>
-  <data name="&gt;&gt;gyroMouseJoyFLP.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="&gt;&gt;tPControls.Name" xml:space="preserve">
     <value>tPControls</value>

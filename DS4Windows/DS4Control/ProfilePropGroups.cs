@@ -37,5 +37,7 @@ namespace DS4Windows
         public int vertScale;
         // Flags representing invert axis choices
         public uint inverted;
+        public bool useSmoothing;
+        public double smoothWeight;
     }
 }

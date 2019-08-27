@@ -4936,7 +4936,7 @@
     <value>6, 47</value>
   </data>
   <data name="fLPTiltControls.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 195</value>
+    <value>271, 199</value>
   </data>
   <data name="fLPTiltControls.TabIndex" type="System.Int32, mscorlib">
     <value>254</value>
@@ -5679,6 +5679,81 @@
   <data name="&gt;&gt;gyroMouseStickAntiDeadY.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
+  <data name="label37.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label37.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 104</value>
+  </data>
+  <data name="label37.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 13</value>
+  </data>
+  <data name="label37.TabIndex" type="System.Int32, mscorlib">
+    <value>280</value>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>Vertical Scale:</value>
+  </data>
+  <data name="&gt;&gt;label37.Name" xml:space="preserve">
+    <value>label37</value>
+  </data>
+  <data name="&gt;&gt;label37.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label37.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;label37.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="gyroMStickVertScaleNUD.Location" type="System.Drawing.Point, System.Drawing">
+    <value>84, 107</value>
+  </data>
+  <data name="gyroMStickVertScaleNUD.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 20</value>
+  </data>
+  <data name="gyroMStickVertScaleNUD.TabIndex" type="System.Int32, mscorlib">
+    <value>281</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickVertScaleNUD.Name" xml:space="preserve">
+    <value>gyroMStickVertScaleNUD</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickVertScaleNUD.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickVertScaleNUD.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickVertScaleNUD.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="label38.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 104</value>
+  </data>
+  <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 23</value>
+  </data>
+  <data name="label38.TabIndex" type="System.Int32, mscorlib">
+    <value>282</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="label38.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label38.Name" xml:space="preserve">
+    <value>label38</value>
+  </data>
+  <data name="&gt;&gt;label38.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label38.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;label38.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
   <data name="label35.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -5686,7 +5761,7 @@
     <value>NoControl</value>
   </data>
   <data name="label35.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 104</value>
+    <value>3, 130</value>
   </data>
   <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 13</value>
@@ -5707,7 +5782,7 @@
     <value>gyroMouseJoyFLP</value>
   </data>
   <data name="&gt;&gt;label35.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>15</value>
   </data>
   <data name="gyroMouseStickEvalCombo.Items" xml:space="preserve">
     <value>And</value>
@@ -5716,7 +5791,7 @@
     <value>Or</value>
   </data>
   <data name="gyroMouseStickEvalCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>68, 107</value>
+    <value>68, 133</value>
   </data>
   <data name="gyroMouseStickEvalCombo.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 21</value>
@@ -5734,13 +5809,13 @@
     <value>gyroMouseJoyFLP</value>
   </data>
   <data name="&gt;&gt;gyroMouseStickEvalCombo.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>16</value>
   </data>
   <data name="label33.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label33.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 104</value>
+    <value>146, 130</value>
   </data>
   <data name="label33.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 13</value>
@@ -5761,7 +5836,7 @@
     <value>gyroMouseJoyFLP</value>
   </data>
   <data name="&gt;&gt;label33.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>17</value>
   </data>
   <data name="gyroMousestickXAxisCom.Items" xml:space="preserve">
     <value>Yaw</value>
@@ -5770,7 +5845,7 @@
     <value>Roll</value>
   </data>
   <data name="gyroMousestickXAxisCom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>191, 107</value>
+    <value>191, 133</value>
   </data>
   <data name="gyroMousestickXAxisCom.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 21</value>
@@ -5788,19 +5863,16 @@
     <value>gyroMouseJoyFLP</value>
   </data>
   <data name="&gt;&gt;gyroMousestickXAxisCom.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="gyroMouseStickInvertXCk.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>18</value>
   </data>
   <data name="gyroMouseStickInvertXCk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 134</value>
+    <value>3, 160</value>
   </data>
   <data name="gyroMouseStickInvertXCk.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>Yes</value>
+    <value>No</value>
   </data>
   <data name="gyroMouseStickInvertXCk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 17</value>
+    <value>96, 17</value>
   </data>
   <data name="gyroMouseStickInvertXCk.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -5818,19 +5890,16 @@
     <value>gyroMouseJoyFLP</value>
   </data>
   <data name="&gt;&gt;gyroMouseStickInvertXCk.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="gyroMouseStickInvertYCk.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>19</value>
   </data>
   <data name="gyroMouseStickInvertYCk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>72, 134</value>
+    <value>105, 160</value>
   </data>
   <data name="gyroMouseStickInvertYCk.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>Yes</value>
+    <value>No</value>
   </data>
   <data name="gyroMouseStickInvertYCk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 17</value>
+    <value>127, 17</value>
   </data>
   <data name="gyroMouseStickInvertYCk.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -5848,13 +5917,91 @@
     <value>gyroMouseJoyFLP</value>
   </data>
   <data name="&gt;&gt;gyroMouseStickInvertYCk.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>20</value>
+  </data>
+  <data name="gyroMStickUseSmoothCk.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="gyroMStickUseSmoothCk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 183</value>
+  </data>
+  <data name="gyroMStickUseSmoothCk.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="gyroMStickUseSmoothCk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 17</value>
+  </data>
+  <data name="gyroMStickUseSmoothCk.TabIndex" type="System.Int32, mscorlib">
+    <value>283</value>
+  </data>
+  <data name="gyroMStickUseSmoothCk.Text" xml:space="preserve">
+    <value>Smoothing</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickUseSmoothCk.Name" xml:space="preserve">
+    <value>gyroMStickUseSmoothCk</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickUseSmoothCk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickUseSmoothCk.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickUseSmoothCk.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="label39.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 180</value>
+  </data>
+  <data name="label39.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 23</value>
+  </data>
+  <data name="label39.TabIndex" type="System.Int32, mscorlib">
+    <value>285</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Weight:</value>
+  </data>
+  <data name="label39.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label39.Name" xml:space="preserve">
+    <value>label39</value>
+  </data>
+  <data name="&gt;&gt;label39.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label39.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;label39.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="gyroMStickSmoothWeightNUD.Location" type="System.Drawing.Point, System.Drawing">
+    <value>151, 183</value>
+  </data>
+  <data name="gyroMStickSmoothWeightNUD.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 20</value>
+  </data>
+  <data name="gyroMStickSmoothWeightNUD.TabIndex" type="System.Int32, mscorlib">
+    <value>284</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickSmoothWeightNUD.Name" xml:space="preserve">
+    <value>gyroMStickSmoothWeightNUD</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickSmoothWeightNUD.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickSmoothWeightNUD.Parent" xml:space="preserve">
+    <value>gyroMouseJoyFLP</value>
+  </data>
+  <data name="&gt;&gt;gyroMStickSmoothWeightNUD.ZOrder" xml:space="preserve">
+    <value>23</value>
   </data>
   <data name="gyroMouseJoyFLP.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 47</value>
   </data>
   <data name="gyroMouseJoyFLP.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 181</value>
+    <value>252, 210</value>
   </data>
   <data name="gyroMouseJoyFLP.TabIndex" type="System.Int32, mscorlib">
     <value>260</value>

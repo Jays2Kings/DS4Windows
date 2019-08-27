@@ -174,14 +174,11 @@ namespace DS4Windows
                     SixMouseStick(arg);
                 else if (!useReverseRatchet && !triggeractivated)
                     SixMouseStick(arg);
-                //else
-                //    SixMouseReset(arg);
+                else
+                    SixMouseReset(arg);
             }
         }
 
-        /*private const int GyroMouseStickDeadZone = 50;
-        private const int GyroMouseStickMaxZone = 880;
-        private const int GyroMouseStickFuzz = 20;
         private const int SMOOTH_BUFFER_LEN = 3;
         private int[] xSmoothBuffer = new int[SMOOTH_BUFFER_LEN];
         private int[] ySmoothBuffer = new int[SMOOTH_BUFFER_LEN];
@@ -194,7 +191,6 @@ namespace DS4Windows
             ySmoothBuffer[iIndex] = 0;
             smoothBufferTail = iIndex + 1;
         }
-        */
 
         private void SixMouseStick(SixAxisEventArgs arg)
         {
@@ -248,34 +244,42 @@ namespace DS4Windows
                 deltaY = 0;
             }
 
-            /*int iIndex = smoothBufferTail % SMOOTH_BUFFER_LEN;
-            xSmoothBuffer[iIndex] = deltaX;
-            ySmoothBuffer[iIndex] = deltaY;
-            smoothBufferTail = iIndex + 1;
-
-            double currentWeight = 1.0;
-            double finalWeight = 0.0;
-            double x_out = 0.0, y_out = 0.0;
-            int idx = 0;
-            for (int i = 0; i < SMOOTH_BUFFER_LEN; i++)
+            if (msinfo.useSmoothing)
             {
-                idx = (smoothBufferTail - i - 1 + SMOOTH_BUFFER_LEN) % SMOOTH_BUFFER_LEN;
-                x_out += xSmoothBuffer[idx] * currentWeight;
-                y_out += ySmoothBuffer[idx] * currentWeight;
-                finalWeight += currentWeight;
-                currentWeight *= 0.5;
+                int iIndex = smoothBufferTail % SMOOTH_BUFFER_LEN;
+                xSmoothBuffer[iIndex] = deltaX;
+                ySmoothBuffer[iIndex] = deltaY;
+                smoothBufferTail = iIndex + 1;
+
+                double currentWeight = 1.0;
+                double finalWeight = 0.0;
+                double x_out = 0.0, y_out = 0.0;
+                int idx = 0;
+                for (int i = 0; i < SMOOTH_BUFFER_LEN; i++)
+                {
+                    idx = (smoothBufferTail - i - 1 + SMOOTH_BUFFER_LEN) % SMOOTH_BUFFER_LEN;
+                    x_out += xSmoothBuffer[idx] * currentWeight;
+                    y_out += ySmoothBuffer[idx] * currentWeight;
+                    finalWeight += currentWeight;
+                    currentWeight *= msinfo.smoothWeight;
+                }
+
+                x_out /= finalWeight;
+                deltaX = (int)x_out;
+                y_out /= finalWeight;
+                deltaY = (int)y_out;
+
+                maxValX = deltaX < 0 ? -msinfo.maxZone : msinfo.maxZone;
+                maxValY = deltaY < 0 ? -msinfo.maxZone : msinfo.maxZone;
+                maxDirX = deltaX >= 0 ? 127 : -128;
+                maxDirY = deltaY >= 0 ? 127 : -128;
             }
 
-            x_out /= finalWeight;
-            deltaX = (int)x_out;
-            y_out /= finalWeight;
-            deltaY = (int)y_out;
-
-            maxValX = deltaX < 0 ? -msinfo.maxZone : msinfo.maxZone;
-            maxValY = deltaY < 0 ? -msinfo.maxZone : msinfo.maxZone;
-            maxDirX = deltaX >= 0 ? 127 : -128;
-            maxDirY = deltaY >= 0 ? 127 : -128;
-            */
+            if (msinfo.vertScale != 100)
+            {
+                double verticalScale = msinfo.vertScale * 0.01;
+                deltaY = (int)(deltaY * verticalScale);
+            }
 
             if (deltaX != 0) xratio = deltaX / (double)maxValX;
             if (deltaY != 0) yratio = deltaY / (double)maxValY;

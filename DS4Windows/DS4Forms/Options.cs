@@ -815,6 +815,10 @@ namespace DS4Windows.Forms
                 gyroMouseStickInvertXCk.Checked = (gyroMouseStickInfo.inverted & 1) == 1;
                 gyroMouseStickInvertYCk.Checked = (gyroMouseStickInfo.inverted & 2) == 2;
                 gyroMStickToggleCk.Checked = GyroMouseStickToggle[device];
+                gyroMStickVertScaleNUD.Value = gyroMouseStickInfo.vertScale;
+                gyroMStickUseSmoothCk.Checked = gyroMouseStickInfo.useSmoothing;
+                gyroMStickSmoothWeightNUD.Enabled = gyroMouseStickInfo.useSmoothing;
+                gyroMStickSmoothWeightNUD.Value = (decimal)gyroMouseStickInfo.smoothWeight;
             }
             else
             {
@@ -960,6 +964,10 @@ namespace DS4Windows.Forms
                 gyroMouseStickInvertYCk.Checked = false;
                 gyroMStickTrigBehaveCk.Checked = false;
                 gyroMStickToggleCk.Checked = false;
+                gyroMStickVertScaleNUD.Value = 100;
+                gyroMStickUseSmoothCk.Checked = false;
+                gyroMStickSmoothWeightNUD.Enabled = false;
+                gyroMStickSmoothWeightNUD.Value = 0.5m;
 
                 Set();
             }
@@ -1553,24 +1561,29 @@ namespace DS4Windows.Forms
             SetSaMouseStickTriggerCond(device,
                 gyroMouseStickEvalCombo.SelectedItem.ToString().ToLower());
 
+
+            GyroMouseStickInfo gyroMouseStickInfo = GyroMouseStickInf[device];
             if (GyroMouseStickDead())
             {
-                GyroMouseStickInf[device].deadZone = (int)gyroMouseStickDZ.Value;
-                GyroMouseStickInf[device].maxZone = (int)gyroMouseStickMaxZ.Value;
+                gyroMouseStickInfo.deadZone = (int)gyroMouseStickDZ.Value;
+                gyroMouseStickInfo.maxZone = (int)gyroMouseStickMaxZ.Value;
             }
             else
             {
-                GyroMouseStickInf[device].deadZone = (int)gyroMouseStickMaxZ.Value;
-                GyroMouseStickInf[device].maxZone = (int)gyroMouseStickMaxZ.Value;
+                gyroMouseStickInfo.deadZone = (int)gyroMouseStickMaxZ.Value;
+                gyroMouseStickInfo.maxZone = (int)gyroMouseStickMaxZ.Value;
             }
-            
-            GyroMouseStickInf[device].antiDeadX = (double)gyroMouseStickAntiDeadX.Value;
-            GyroMouseStickInf[device].antiDeadY = (double)gyroMouseStickAntiDeadY.Value;
+
+            gyroMouseStickInfo.antiDeadX = (double)gyroMouseStickAntiDeadX.Value;
+            gyroMouseStickInfo.antiDeadY = (double)gyroMouseStickAntiDeadY.Value;
             GyroMouseStickHorizontalAxis[device] = gyroMousestickXAxisCom.SelectedIndex;
             uint tempInvert = 0;
             if (gyroMouseStickInvertXCk.Checked) tempInvert |= 1 << 0;
             if (gyroMouseStickInvertYCk.Checked) tempInvert |= 1 << 1;
-            GyroMouseStickInf[device].inverted = tempInvert;
+            gyroMouseStickInfo.inverted = tempInvert;
+            gyroMouseStickInfo.vertScale = (int)gyroMStickVertScaleNUD.Value;
+            gyroMouseStickInfo.useSmoothing = gyroMStickUseSmoothCk.Checked;
+            gyroMouseStickInfo.smoothWeight = (double)gyroMStickSmoothWeightNUD.Value;
         }
 
         private void Show_ControlsBtn(object sender, EventArgs e)
@@ -3586,9 +3599,13 @@ namespace DS4Windows.Forms
                         break;
                     case 1:
                         GyroOutputMode[device] = GyroOutMode.Mouse;
+                        SetGyroMouseToggle(device, toggleGyroMCb.Checked,
+                            Program.rootHub);
                         break;
                     case 2:
                         GyroOutputMode[device] = GyroOutMode.MouseJoystick;
+                        SetGyroMouseStickToggle(device,
+                            gyroMStickToggleCk.Checked, Program.rootHub);
                         break;
                     default:
                         break;
@@ -3678,6 +3695,34 @@ namespace DS4Windows.Forms
             {
                 Global.SetGyroMouseStickToggle(device,
                     gyroMStickToggleCk.Checked, Program.rootHub);
+            }
+        }
+
+        private void GyroMStickVertScaleNUD_ValueChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                GyroMouseStickInf[device].vertScale = (int)gyroMStickVertScaleNUD.Value;
+            }
+        }
+
+        private void GyroMStickSmoothWeightNUD_ValueChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                GyroMouseStickInf[device].smoothWeight =
+                    (double)gyroMStickSmoothWeightNUD.Value;
+            }
+        }
+
+        private void GyroMStickUseSmoothCk_CheckedChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                GyroMouseStickInf[device].useSmoothing =
+                    gyroMStickUseSmoothCk.Checked;
+                gyroMStickSmoothWeightNUD.Enabled =
+                    GyroMouseStickInf[device].useSmoothing;
             }
         }
 

@@ -2975,13 +2975,13 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Rainbow"); double.TryParse(Item.InnerText, out rainbow[device]); }
                 catch { rainbow[device] = 0; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSDeadZone"); int.TryParse(Item.InnerText, out lsModInfo[device].deadZone); }
-                catch { lsModInfo[device].deadZone = 0; missingSetting = true; }
+                catch { lsModInfo[device].deadZone = 10; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSDeadZone"); int.TryParse(Item.InnerText, out rsModInfo[device].deadZone); }
-                catch { rsModInfo[device].deadZone = 0; missingSetting = true; }
+                catch { rsModInfo[device].deadZone = 10; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSAntiDeadZone"); int.TryParse(Item.InnerText, out lsModInfo[device].antiDeadZone); }
-                catch { lsModInfo[device].antiDeadZone = 0; missingSetting = true; }
+                catch { lsModInfo[device].antiDeadZone = 25; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSAntiDeadZone"); int.TryParse(Item.InnerText, out rsModInfo[device].antiDeadZone); }
-                catch { rsModInfo[device].antiDeadZone = 0; missingSetting = true; }
+                catch { rsModInfo[device].antiDeadZone = 25; missingSetting = true; }
 
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSMaxZone"); int temp = 100;
@@ -4548,8 +4548,8 @@ namespace DS4Windows
             rumble[device] = 100;
             touchSensitivity[device] = 100;
             l2ModInfo[device].deadZone = r2ModInfo[device].deadZone = 0;
-            lsModInfo[device].deadZone = rsModInfo[device].deadZone = 0;
-            lsModInfo[device].antiDeadZone = rsModInfo[device].antiDeadZone = 0;
+            lsModInfo[device].deadZone = rsModInfo[device].deadZone = 10;
+            lsModInfo[device].antiDeadZone = rsModInfo[device].antiDeadZone = 25;
             lsModInfo[device].maxZone = rsModInfo[device].maxZone = 100;
             l2ModInfo[device].antiDeadZone = r2ModInfo[device].antiDeadZone = 0;
             l2ModInfo[device].maxZone = r2ModInfo[device].maxZone = 100;

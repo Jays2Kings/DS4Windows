@@ -520,7 +520,7 @@ namespace DS4Windows.Forms
                 }
                 catch
                 {
-                    nUDLS.Value = 0;
+                    nUDLS.Value = 0.08m;
                 }
                 try
                 {
@@ -528,7 +528,7 @@ namespace DS4Windows.Forms
                 }
                 catch
                 {
-                    nUDRS.Value = 0;
+                    nUDRS.Value = 0.08m;
                 }
 
                 try
@@ -537,7 +537,7 @@ namespace DS4Windows.Forms
                 }
                 catch
                 {
-                    nUDLSAntiDead.Value = 0;
+                    nUDLSAntiDead.Value = 0.20m;
                 }
                 try
                 {
@@ -545,7 +545,7 @@ namespace DS4Windows.Forms
                 }
                 catch
                 {
-                    nUDRSAntiDead.Value = 0;
+                    nUDRSAntiDead.Value = 0.20m;
                 }
 
                 try
@@ -884,10 +884,10 @@ namespace DS4Windows.Forms
                 nUDR2.Value = 0;
                 nUDL2Maxzone.Value = 1;
                 nUDR2Maxzone.Value = 1;
-                nUDLS.Value = 0;
-                nUDRS.Value = 0;
-                nUDLSAntiDead.Value = 0;
-                nUDRSAntiDead.Value = 0;
+                nUDLS.Value = 0.08m;
+                nUDRS.Value = 0.08m;
+                nUDLSAntiDead.Value = 0.20m;
+                nUDRSAntiDead.Value = 0.20m;
                 nUDLSMaxZone.Value = 1;
                 nUDRSMaxZone.Value = 1;
                 nUDLSRotation.Value = 0;

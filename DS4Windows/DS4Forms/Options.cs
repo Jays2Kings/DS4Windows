@@ -372,7 +372,7 @@ namespace DS4Windows.Forms
             gyroMouseStickAntiDeadY.ValueChanged += GyroMouseSStickAntiDeadY_ValueChanged;
             gyroMStickVertScaleNUD.ValueChanged += GyroMStickVertScaleNUD_ValueChanged;
             gyroMouseStickEvalCombo.SelectedIndexChanged += GyroMouseStickEvalCombo_SelectedIndexChanged;
-            //gyroMousestickXAxisCom.SelectedIndexChanged += 
+            gyroMousestickXAxisCom.SelectedIndexChanged += GyroMousestickXAxisCom_SelectedIndexChanged;
             gyroMouseStickInvertXCk.CheckedChanged += GyroMouseStickInvert_CheckedChanged;
             gyroMouseStickInvertYCk.CheckedChanged += GyroMouseStickInvert_CheckedChanged;
             gyroMStickUseSmoothCk.CheckedChanged += GyroMStickUseSmoothCk_CheckedChanged;
@@ -3831,6 +3831,14 @@ namespace DS4Windows.Forms
                     gyroMStickUseSmoothCk.Checked;
                 gyroMStickSmoothWeightNUD.Enabled =
                     GyroMouseStickInf[device].useSmoothing;
+            }
+        }
+
+        private void GyroMousestickXAxisCom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                GyroMouseStickHorizontalAxis[device] = gyroMousestickXAxisCom.SelectedIndex;
             }
         }
 

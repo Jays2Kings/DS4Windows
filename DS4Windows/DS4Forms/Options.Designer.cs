@@ -260,73 +260,6 @@
             this.nUDRainbowB = new System.Windows.Forms.NumericUpDown();
             this.nUDRainbow = new System.Windows.Forms.NumericUpDown();
             this.lbspc = new System.Windows.Forms.Label();
-            this.tabGyro = new System.Windows.Forms.TabPage();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.label34 = new System.Windows.Forms.Label();
-            this.gyroOutputMode = new System.Windows.Forms.ComboBox();
-            this.gyroMouseJoyFLP = new System.Windows.Forms.FlowLayoutPanel();
-            this.label36 = new System.Windows.Forms.Label();
-            this.btnGyroMStickTrig = new System.Windows.Forms.Button();
-            this.gyroMStickTrigBehaveCk = new System.Windows.Forms.CheckBox();
-            this.gyroMStickToggleCk = new System.Windows.Forms.CheckBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.gyroMouseStickDZ = new System.Windows.Forms.NumericUpDown();
-            this.label30 = new System.Windows.Forms.Label();
-            this.gyroMouseStickMaxZ = new System.Windows.Forms.NumericUpDown();
-            this.label31 = new System.Windows.Forms.Label();
-            this.gyroMouseStickAntiDeadX = new System.Windows.Forms.NumericUpDown();
-            this.label32 = new System.Windows.Forms.Label();
-            this.gyroMouseStickAntiDeadY = new System.Windows.Forms.NumericUpDown();
-            this.label37 = new System.Windows.Forms.Label();
-            this.gyroMStickVertScaleNUD = new System.Windows.Forms.NumericUpDown();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.gyroMouseStickEvalCombo = new System.Windows.Forms.ComboBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.gyroMousestickXAxisCom = new System.Windows.Forms.ComboBox();
-            this.gyroMouseStickInvertXCk = new System.Windows.Forms.CheckBox();
-            this.gyroMouseStickInvertYCk = new System.Windows.Forms.CheckBox();
-            this.gyroMStickUseSmoothCk = new System.Windows.Forms.CheckBox();
-            this.label39 = new System.Windows.Forms.Label();
-            this.gyroMStickSmoothWeightNUD = new System.Windows.Forms.NumericUpDown();
-            this.fLPTiltControls = new System.Windows.Forms.FlowLayoutPanel();
-            this.bnGyroZN = new System.Windows.Forms.Button();
-            this.lbGyroZN = new System.Windows.Forms.Label();
-            this.bnGyroZP = new System.Windows.Forms.Button();
-            this.lbGyroZP = new System.Windows.Forms.Label();
-            this.bnGyroXP = new System.Windows.Forms.Button();
-            this.lbGyroXP = new System.Windows.Forms.Label();
-            this.bnGyroXN = new System.Windows.Forms.Button();
-            this.lbGyroXN = new System.Windows.Forms.Label();
-            this.lblSteeringWheelEmulationAxis = new System.Windows.Forms.Label();
-            this.cBSteeringWheelEmulationAxis = new System.Windows.Forms.ComboBox();
-            this.lblSteeringWheelEmulationRange = new System.Windows.Forms.Label();
-            this.cBSteeringWheelEmulationRange = new System.Windows.Forms.ComboBox();
-            this.btnSteeringWheelEmulationCalibrate = new System.Windows.Forms.Button();
-            this.pnlSAMouse = new System.Windows.Forms.Panel();
-            this.toggleGyroMCb = new System.Windows.Forms.CheckBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.gyroMouseDzNUD = new System.Windows.Forms.NumericUpDown();
-            this.label26 = new System.Windows.Forms.Label();
-            this.triggerCondAndCombo = new System.Windows.Forms.ComboBox();
-            this.cBGyroMouseXAxis = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.lbGyroSmooth = new System.Windows.Forms.Label();
-            this.cBGyroSmooth = new System.Windows.Forms.CheckBox();
-            this.lbSmoothWeight = new System.Windows.Forms.Label();
-            this.nUDGyroSmoothWeight = new System.Windows.Forms.NumericUpDown();
-            this.label12 = new System.Windows.Forms.Label();
-            this.nUDGyroMouseVertScale = new System.Windows.Forms.NumericUpDown();
-            this.label11 = new System.Windows.Forms.Label();
-            this.gyroTriggerBehavior = new System.Windows.Forms.CheckBox();
-            this.cBGyroInvertY = new System.Windows.Forms.CheckBox();
-            this.cBGyroInvertX = new System.Windows.Forms.CheckBox();
-            this.lbGyroInvert = new System.Windows.Forms.Label();
-            this.lbGyroTriggers = new System.Windows.Forms.Label();
-            this.btnGyroTriggers = new System.Windows.Forms.Button();
-            this.nUDGyroSensitivity = new System.Windows.Forms.NumericUpDown();
-            this.lbGyroSens = new System.Windows.Forms.Label();
             this.tabAxis = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -412,6 +345,73 @@
             this.label62 = new System.Windows.Forms.Label();
             this.nUDSX = new System.Windows.Forms.NumericUpDown();
             this.label61 = new System.Windows.Forms.Label();
+            this.tabGyro = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label34 = new System.Windows.Forms.Label();
+            this.gyroOutputMode = new System.Windows.Forms.ComboBox();
+            this.gyroMouseJoyFLP = new System.Windows.Forms.FlowLayoutPanel();
+            this.label36 = new System.Windows.Forms.Label();
+            this.btnGyroMStickTrig = new System.Windows.Forms.Button();
+            this.gyroMStickTrigBehaveCk = new System.Windows.Forms.CheckBox();
+            this.gyroMStickToggleCk = new System.Windows.Forms.CheckBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.gyroMouseStickDZ = new System.Windows.Forms.NumericUpDown();
+            this.label30 = new System.Windows.Forms.Label();
+            this.gyroMouseStickMaxZ = new System.Windows.Forms.NumericUpDown();
+            this.label31 = new System.Windows.Forms.Label();
+            this.gyroMouseStickAntiDeadX = new System.Windows.Forms.NumericUpDown();
+            this.label32 = new System.Windows.Forms.Label();
+            this.gyroMouseStickAntiDeadY = new System.Windows.Forms.NumericUpDown();
+            this.label37 = new System.Windows.Forms.Label();
+            this.gyroMStickVertScaleNUD = new System.Windows.Forms.NumericUpDown();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.gyroMouseStickEvalCombo = new System.Windows.Forms.ComboBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.gyroMousestickXAxisCom = new System.Windows.Forms.ComboBox();
+            this.gyroMouseStickInvertXCk = new System.Windows.Forms.CheckBox();
+            this.gyroMouseStickInvertYCk = new System.Windows.Forms.CheckBox();
+            this.gyroMStickUseSmoothCk = new System.Windows.Forms.CheckBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.gyroMStickSmoothWeightNUD = new System.Windows.Forms.NumericUpDown();
+            this.fLPTiltControls = new System.Windows.Forms.FlowLayoutPanel();
+            this.bnGyroZN = new System.Windows.Forms.Button();
+            this.lbGyroZN = new System.Windows.Forms.Label();
+            this.bnGyroZP = new System.Windows.Forms.Button();
+            this.lbGyroZP = new System.Windows.Forms.Label();
+            this.bnGyroXP = new System.Windows.Forms.Button();
+            this.lbGyroXP = new System.Windows.Forms.Label();
+            this.bnGyroXN = new System.Windows.Forms.Button();
+            this.lbGyroXN = new System.Windows.Forms.Label();
+            this.lblSteeringWheelEmulationAxis = new System.Windows.Forms.Label();
+            this.cBSteeringWheelEmulationAxis = new System.Windows.Forms.ComboBox();
+            this.lblSteeringWheelEmulationRange = new System.Windows.Forms.Label();
+            this.cBSteeringWheelEmulationRange = new System.Windows.Forms.ComboBox();
+            this.btnSteeringWheelEmulationCalibrate = new System.Windows.Forms.Button();
+            this.pnlSAMouse = new System.Windows.Forms.Panel();
+            this.toggleGyroMCb = new System.Windows.Forms.CheckBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.gyroMouseDzNUD = new System.Windows.Forms.NumericUpDown();
+            this.label26 = new System.Windows.Forms.Label();
+            this.triggerCondAndCombo = new System.Windows.Forms.ComboBox();
+            this.cBGyroMouseXAxis = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lbGyroSmooth = new System.Windows.Forms.Label();
+            this.cBGyroSmooth = new System.Windows.Forms.CheckBox();
+            this.lbSmoothWeight = new System.Windows.Forms.Label();
+            this.nUDGyroSmoothWeight = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
+            this.nUDGyroMouseVertScale = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.gyroTriggerBehavior = new System.Windows.Forms.CheckBox();
+            this.cBGyroInvertY = new System.Windows.Forms.CheckBox();
+            this.cBGyroInvertX = new System.Windows.Forms.CheckBox();
+            this.lbGyroInvert = new System.Windows.Forms.Label();
+            this.lbGyroTriggers = new System.Windows.Forms.Label();
+            this.btnGyroTriggers = new System.Windows.Forms.Button();
+            this.nUDGyroSensitivity = new System.Windows.Forms.NumericUpDown();
+            this.lbGyroSens = new System.Windows.Forms.Label();
             this.tabOther = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.gBRumble = new System.Windows.Forms.GroupBox();
@@ -493,22 +493,6 @@
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbowB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
-            this.tabGyro.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.gyroMouseJoyFLP.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickDZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickMaxZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickVertScaleNUD)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickSmoothWeightNUD)).BeginInit();
-            this.fLPTiltControls.SuspendLayout();
-            this.pnlSAMouse.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseDzNUD)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSmoothWeight)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroMouseVertScale)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSensitivity)).BeginInit();
             this.tabAxis.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -546,6 +530,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisXMaxZone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSX)).BeginInit();
+            this.tabGyro.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.gyroMouseJoyFLP.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickDZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickMaxZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickVertScaleNUD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickSmoothWeightNUD)).BeginInit();
+            this.fLPTiltControls.SuspendLayout();
+            this.pnlSAMouse.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseDzNUD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSmoothWeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroMouseVertScale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSensitivity)).BeginInit();
             this.tabOther.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
             this.gBRumble.SuspendLayout();
@@ -2752,590 +2752,6 @@
             resources.ApplyResources(this.lbspc, "lbspc");
             this.lbspc.Name = "lbspc";
             // 
-            // tabGyro
-            // 
-            this.tabGyro.Controls.Add(this.flowLayoutPanel2);
-            resources.ApplyResources(this.tabGyro, "tabGyro");
-            this.tabGyro.Name = "tabGyro";
-            this.tabGyro.UseVisualStyleBackColor = true;
-            // 
-            // flowLayoutPanel2
-            // 
-            resources.ApplyResources(this.flowLayoutPanel2, "flowLayoutPanel2");
-            this.flowLayoutPanel2.Controls.Add(this.panel6);
-            this.flowLayoutPanel2.Controls.Add(this.gyroMouseJoyFLP);
-            this.flowLayoutPanel2.Controls.Add(this.fLPTiltControls);
-            this.flowLayoutPanel2.Controls.Add(this.pnlSAMouse);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.label34);
-            this.panel6.Controls.Add(this.gyroOutputMode);
-            resources.ApplyResources(this.panel6, "panel6");
-            this.panel6.Name = "panel6";
-            // 
-            // label34
-            // 
-            resources.ApplyResources(this.label34, "label34");
-            this.label34.Name = "label34";
-            // 
-            // gyroOutputMode
-            // 
-            this.gyroOutputMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.gyroOutputMode.FormattingEnabled = true;
-            this.gyroOutputMode.Items.AddRange(new object[] {
-            resources.GetString("gyroOutputMode.Items"),
-            resources.GetString("gyroOutputMode.Items1"),
-            resources.GetString("gyroOutputMode.Items2")});
-            resources.ApplyResources(this.gyroOutputMode, "gyroOutputMode");
-            this.gyroOutputMode.Name = "gyroOutputMode";
-            // 
-            // gyroMouseJoyFLP
-            // 
-            this.gyroMouseJoyFLP.Controls.Add(this.label36);
-            this.gyroMouseJoyFLP.Controls.Add(this.btnGyroMStickTrig);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickTrigBehaveCk);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickToggleCk);
-            this.gyroMouseJoyFLP.Controls.Add(this.label29);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickDZ);
-            this.gyroMouseJoyFLP.Controls.Add(this.label30);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickMaxZ);
-            this.gyroMouseJoyFLP.Controls.Add(this.label31);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickAntiDeadX);
-            this.gyroMouseJoyFLP.Controls.Add(this.label32);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickAntiDeadY);
-            this.gyroMouseJoyFLP.Controls.Add(this.label37);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickVertScaleNUD);
-            this.gyroMouseJoyFLP.Controls.Add(this.label38);
-            this.gyroMouseJoyFLP.Controls.Add(this.label35);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickEvalCombo);
-            this.gyroMouseJoyFLP.Controls.Add(this.label33);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMousestickXAxisCom);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickInvertXCk);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickInvertYCk);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickUseSmoothCk);
-            this.gyroMouseJoyFLP.Controls.Add(this.label39);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickSmoothWeightNUD);
-            resources.ApplyResources(this.gyroMouseJoyFLP, "gyroMouseJoyFLP");
-            this.gyroMouseJoyFLP.Name = "gyroMouseJoyFLP";
-            // 
-            // label36
-            // 
-            resources.ApplyResources(this.label36, "label36");
-            this.label36.Name = "label36";
-            // 
-            // btnGyroMStickTrig
-            // 
-            resources.ApplyResources(this.btnGyroMStickTrig, "btnGyroMStickTrig");
-            this.btnGyroMStickTrig.Name = "btnGyroMStickTrig";
-            this.btnGyroMStickTrig.UseVisualStyleBackColor = true;
-            // 
-            // gyroMStickTrigBehaveCk
-            // 
-            this.gyroMStickTrigBehaveCk.Checked = true;
-            this.gyroMStickTrigBehaveCk.CheckState = System.Windows.Forms.CheckState.Checked;
-            resources.ApplyResources(this.gyroMStickTrigBehaveCk, "gyroMStickTrigBehaveCk");
-            this.gyroMStickTrigBehaveCk.Name = "gyroMStickTrigBehaveCk";
-            this.gyroMStickTrigBehaveCk.UseVisualStyleBackColor = true;
-            // 
-            // gyroMStickToggleCk
-            // 
-            resources.ApplyResources(this.gyroMStickToggleCk, "gyroMStickToggleCk");
-            this.gyroMStickToggleCk.Name = "gyroMStickToggleCk";
-            this.gyroMStickToggleCk.UseVisualStyleBackColor = true;
-            // 
-            // label29
-            // 
-            resources.ApplyResources(this.label29, "label29");
-            this.label29.Name = "label29";
-            // 
-            // gyroMouseStickDZ
-            // 
-            resources.ApplyResources(this.gyroMouseStickDZ, "gyroMouseStickDZ");
-            this.gyroMouseStickDZ.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.gyroMouseStickDZ.Name = "gyroMouseStickDZ";
-            this.gyroMouseStickDZ.Value = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            // 
-            // label30
-            // 
-            resources.ApplyResources(this.label30, "label30");
-            this.label30.Name = "label30";
-            // 
-            // gyroMouseStickMaxZ
-            // 
-            resources.ApplyResources(this.gyroMouseStickMaxZ, "gyroMouseStickMaxZ");
-            this.gyroMouseStickMaxZ.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.gyroMouseStickMaxZ.Name = "gyroMouseStickMaxZ";
-            this.gyroMouseStickMaxZ.Value = new decimal(new int[] {
-            830,
-            0,
-            0,
-            0});
-            // 
-            // label31
-            // 
-            resources.ApplyResources(this.label31, "label31");
-            this.label31.Name = "label31";
-            // 
-            // gyroMouseStickAntiDeadX
-            // 
-            this.gyroMouseStickAntiDeadX.DecimalPlaces = 2;
-            resources.ApplyResources(this.gyroMouseStickAntiDeadX, "gyroMouseStickAntiDeadX");
-            this.gyroMouseStickAntiDeadX.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.gyroMouseStickAntiDeadX.Name = "gyroMouseStickAntiDeadX";
-            this.gyroMouseStickAntiDeadX.Value = new decimal(new int[] {
-            35,
-            0,
-            0,
-            131072});
-            // 
-            // label32
-            // 
-            resources.ApplyResources(this.label32, "label32");
-            this.label32.Name = "label32";
-            // 
-            // gyroMouseStickAntiDeadY
-            // 
-            this.gyroMouseStickAntiDeadY.DecimalPlaces = 2;
-            resources.ApplyResources(this.gyroMouseStickAntiDeadY, "gyroMouseStickAntiDeadY");
-            this.gyroMouseStickAntiDeadY.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.gyroMouseStickAntiDeadY.Name = "gyroMouseStickAntiDeadY";
-            this.gyroMouseStickAntiDeadY.Value = new decimal(new int[] {
-            35,
-            0,
-            0,
-            131072});
-            // 
-            // label37
-            // 
-            resources.ApplyResources(this.label37, "label37");
-            this.label37.Name = "label37";
-            // 
-            // gyroMStickVertScaleNUD
-            // 
-            resources.ApplyResources(this.gyroMStickVertScaleNUD, "gyroMStickVertScaleNUD");
-            this.gyroMStickVertScaleNUD.Maximum = new decimal(new int[] {
-            400,
-            0,
-            0,
-            0});
-            this.gyroMStickVertScaleNUD.Name = "gyroMStickVertScaleNUD";
-            this.gyroMStickVertScaleNUD.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // label38
-            // 
-            resources.ApplyResources(this.label38, "label38");
-            this.label38.Name = "label38";
-            // 
-            // label35
-            // 
-            resources.ApplyResources(this.label35, "label35");
-            this.label35.Name = "label35";
-            // 
-            // gyroMouseStickEvalCombo
-            // 
-            this.gyroMouseStickEvalCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.gyroMouseStickEvalCombo.FormattingEnabled = true;
-            this.gyroMouseStickEvalCombo.Items.AddRange(new object[] {
-            resources.GetString("gyroMouseStickEvalCombo.Items"),
-            resources.GetString("gyroMouseStickEvalCombo.Items1")});
-            resources.ApplyResources(this.gyroMouseStickEvalCombo, "gyroMouseStickEvalCombo");
-            this.gyroMouseStickEvalCombo.Name = "gyroMouseStickEvalCombo";
-            // 
-            // label33
-            // 
-            resources.ApplyResources(this.label33, "label33");
-            this.label33.Name = "label33";
-            // 
-            // gyroMousestickXAxisCom
-            // 
-            this.gyroMousestickXAxisCom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.gyroMousestickXAxisCom.FormattingEnabled = true;
-            this.gyroMousestickXAxisCom.Items.AddRange(new object[] {
-            resources.GetString("gyroMousestickXAxisCom.Items"),
-            resources.GetString("gyroMousestickXAxisCom.Items1")});
-            resources.ApplyResources(this.gyroMousestickXAxisCom, "gyroMousestickXAxisCom");
-            this.gyroMousestickXAxisCom.Name = "gyroMousestickXAxisCom";
-            // 
-            // gyroMouseStickInvertXCk
-            // 
-            resources.ApplyResources(this.gyroMouseStickInvertXCk, "gyroMouseStickInvertXCk");
-            this.gyroMouseStickInvertXCk.Name = "gyroMouseStickInvertXCk";
-            this.gyroMouseStickInvertXCk.UseVisualStyleBackColor = true;
-            // 
-            // gyroMouseStickInvertYCk
-            // 
-            resources.ApplyResources(this.gyroMouseStickInvertYCk, "gyroMouseStickInvertYCk");
-            this.gyroMouseStickInvertYCk.Name = "gyroMouseStickInvertYCk";
-            this.gyroMouseStickInvertYCk.UseVisualStyleBackColor = true;
-            // 
-            // gyroMStickUseSmoothCk
-            // 
-            resources.ApplyResources(this.gyroMStickUseSmoothCk, "gyroMStickUseSmoothCk");
-            this.gyroMStickUseSmoothCk.Name = "gyroMStickUseSmoothCk";
-            this.gyroMStickUseSmoothCk.UseVisualStyleBackColor = true;
-            // 
-            // label39
-            // 
-            resources.ApplyResources(this.label39, "label39");
-            this.label39.Name = "label39";
-            // 
-            // gyroMStickSmoothWeightNUD
-            // 
-            this.gyroMStickSmoothWeightNUD.DecimalPlaces = 3;
-            resources.ApplyResources(this.gyroMStickSmoothWeightNUD, "gyroMStickSmoothWeightNUD");
-            this.gyroMStickSmoothWeightNUD.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.gyroMStickSmoothWeightNUD.Name = "gyroMStickSmoothWeightNUD";
-            this.gyroMStickSmoothWeightNUD.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            // 
-            // fLPTiltControls
-            // 
-            this.fLPTiltControls.Controls.Add(this.bnGyroZN);
-            this.fLPTiltControls.Controls.Add(this.lbGyroZN);
-            this.fLPTiltControls.Controls.Add(this.bnGyroZP);
-            this.fLPTiltControls.Controls.Add(this.lbGyroZP);
-            this.fLPTiltControls.Controls.Add(this.bnGyroXP);
-            this.fLPTiltControls.Controls.Add(this.lbGyroXP);
-            this.fLPTiltControls.Controls.Add(this.bnGyroXN);
-            this.fLPTiltControls.Controls.Add(this.lbGyroXN);
-            this.fLPTiltControls.Controls.Add(this.lblSteeringWheelEmulationAxis);
-            this.fLPTiltControls.Controls.Add(this.cBSteeringWheelEmulationAxis);
-            this.fLPTiltControls.Controls.Add(this.lblSteeringWheelEmulationRange);
-            this.fLPTiltControls.Controls.Add(this.cBSteeringWheelEmulationRange);
-            this.fLPTiltControls.Controls.Add(this.btnSteeringWheelEmulationCalibrate);
-            resources.ApplyResources(this.fLPTiltControls, "fLPTiltControls");
-            this.fLPTiltControls.Name = "fLPTiltControls";
-            // 
-            // bnGyroZN
-            // 
-            this.bnGyroZN.ContextMenuStrip = this.cMSPresets;
-            resources.ApplyResources(this.bnGyroZN, "bnGyroZN");
-            this.bnGyroZN.Name = "bnGyroZN";
-            this.bnGyroZN.UseVisualStyleBackColor = true;
-            // 
-            // lbGyroZN
-            // 
-            resources.ApplyResources(this.lbGyroZN, "lbGyroZN");
-            this.lbGyroZN.Name = "lbGyroZN";
-            // 
-            // bnGyroZP
-            // 
-            this.bnGyroZP.ContextMenuStrip = this.cMSPresets;
-            resources.ApplyResources(this.bnGyroZP, "bnGyroZP");
-            this.bnGyroZP.Name = "bnGyroZP";
-            this.bnGyroZP.UseVisualStyleBackColor = true;
-            // 
-            // lbGyroZP
-            // 
-            resources.ApplyResources(this.lbGyroZP, "lbGyroZP");
-            this.lbGyroZP.Name = "lbGyroZP";
-            // 
-            // bnGyroXP
-            // 
-            this.bnGyroXP.ContextMenuStrip = this.cMSPresets;
-            resources.ApplyResources(this.bnGyroXP, "bnGyroXP");
-            this.bnGyroXP.Name = "bnGyroXP";
-            this.bnGyroXP.UseVisualStyleBackColor = true;
-            // 
-            // lbGyroXP
-            // 
-            resources.ApplyResources(this.lbGyroXP, "lbGyroXP");
-            this.lbGyroXP.Name = "lbGyroXP";
-            // 
-            // bnGyroXN
-            // 
-            this.bnGyroXN.ContextMenuStrip = this.cMSPresets;
-            resources.ApplyResources(this.bnGyroXN, "bnGyroXN");
-            this.bnGyroXN.Name = "bnGyroXN";
-            this.bnGyroXN.UseVisualStyleBackColor = true;
-            // 
-            // lbGyroXN
-            // 
-            resources.ApplyResources(this.lbGyroXN, "lbGyroXN");
-            this.lbGyroXN.Name = "lbGyroXN";
-            // 
-            // lblSteeringWheelEmulationAxis
-            // 
-            resources.ApplyResources(this.lblSteeringWheelEmulationAxis, "lblSteeringWheelEmulationAxis");
-            this.lblSteeringWheelEmulationAxis.Name = "lblSteeringWheelEmulationAxis";
-            // 
-            // cBSteeringWheelEmulationAxis
-            // 
-            this.cBSteeringWheelEmulationAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBSteeringWheelEmulationAxis.FormattingEnabled = true;
-            this.cBSteeringWheelEmulationAxis.Items.AddRange(new object[] {
-            resources.GetString("cBSteeringWheelEmulationAxis.Items"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items1"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items2"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items3"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items4"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items5"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items6"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items7"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items8"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items9"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items10"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items11")});
-            resources.ApplyResources(this.cBSteeringWheelEmulationAxis, "cBSteeringWheelEmulationAxis");
-            this.cBSteeringWheelEmulationAxis.Name = "cBSteeringWheelEmulationAxis";
-            // 
-            // lblSteeringWheelEmulationRange
-            // 
-            resources.ApplyResources(this.lblSteeringWheelEmulationRange, "lblSteeringWheelEmulationRange");
-            this.lblSteeringWheelEmulationRange.Name = "lblSteeringWheelEmulationRange";
-            // 
-            // cBSteeringWheelEmulationRange
-            // 
-            this.cBSteeringWheelEmulationRange.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBSteeringWheelEmulationRange.FormattingEnabled = true;
-            this.cBSteeringWheelEmulationRange.Items.AddRange(new object[] {
-            resources.GetString("cBSteeringWheelEmulationRange.Items"),
-            resources.GetString("cBSteeringWheelEmulationRange.Items1"),
-            resources.GetString("cBSteeringWheelEmulationRange.Items2"),
-            resources.GetString("cBSteeringWheelEmulationRange.Items3"),
-            resources.GetString("cBSteeringWheelEmulationRange.Items4"),
-            resources.GetString("cBSteeringWheelEmulationRange.Items5"),
-            resources.GetString("cBSteeringWheelEmulationRange.Items6"),
-            resources.GetString("cBSteeringWheelEmulationRange.Items7"),
-            resources.GetString("cBSteeringWheelEmulationRange.Items8")});
-            resources.ApplyResources(this.cBSteeringWheelEmulationRange, "cBSteeringWheelEmulationRange");
-            this.cBSteeringWheelEmulationRange.Name = "cBSteeringWheelEmulationRange";
-            // 
-            // btnSteeringWheelEmulationCalibrate
-            // 
-            resources.ApplyResources(this.btnSteeringWheelEmulationCalibrate, "btnSteeringWheelEmulationCalibrate");
-            this.btnSteeringWheelEmulationCalibrate.Name = "btnSteeringWheelEmulationCalibrate";
-            this.btnSteeringWheelEmulationCalibrate.UseVisualStyleBackColor = true;
-            // 
-            // pnlSAMouse
-            // 
-            this.pnlSAMouse.Controls.Add(this.toggleGyroMCb);
-            this.pnlSAMouse.Controls.Add(this.label27);
-            this.pnlSAMouse.Controls.Add(this.gyroMouseDzNUD);
-            this.pnlSAMouse.Controls.Add(this.label26);
-            this.pnlSAMouse.Controls.Add(this.triggerCondAndCombo);
-            this.pnlSAMouse.Controls.Add(this.cBGyroMouseXAxis);
-            this.pnlSAMouse.Controls.Add(this.label16);
-            this.pnlSAMouse.Controls.Add(this.lbGyroSmooth);
-            this.pnlSAMouse.Controls.Add(this.cBGyroSmooth);
-            this.pnlSAMouse.Controls.Add(this.lbSmoothWeight);
-            this.pnlSAMouse.Controls.Add(this.nUDGyroSmoothWeight);
-            this.pnlSAMouse.Controls.Add(this.label12);
-            this.pnlSAMouse.Controls.Add(this.nUDGyroMouseVertScale);
-            this.pnlSAMouse.Controls.Add(this.label11);
-            this.pnlSAMouse.Controls.Add(this.gyroTriggerBehavior);
-            this.pnlSAMouse.Controls.Add(this.cBGyroInvertY);
-            this.pnlSAMouse.Controls.Add(this.cBGyroInvertX);
-            this.pnlSAMouse.Controls.Add(this.lbGyroInvert);
-            this.pnlSAMouse.Controls.Add(this.lbGyroTriggers);
-            this.pnlSAMouse.Controls.Add(this.btnGyroTriggers);
-            this.pnlSAMouse.Controls.Add(this.nUDGyroSensitivity);
-            this.pnlSAMouse.Controls.Add(this.lbGyroSens);
-            resources.ApplyResources(this.pnlSAMouse, "pnlSAMouse");
-            this.pnlSAMouse.Name = "pnlSAMouse";
-            // 
-            // toggleGyroMCb
-            // 
-            resources.ApplyResources(this.toggleGyroMCb, "toggleGyroMCb");
-            this.toggleGyroMCb.Name = "toggleGyroMCb";
-            this.toggleGyroMCb.UseVisualStyleBackColor = true;
-            // 
-            // label27
-            // 
-            resources.ApplyResources(this.label27, "label27");
-            this.label27.Name = "label27";
-            // 
-            // gyroMouseDzNUD
-            // 
-            resources.ApplyResources(this.gyroMouseDzNUD, "gyroMouseDzNUD");
-            this.gyroMouseDzNUD.Name = "gyroMouseDzNUD";
-            this.gyroMouseDzNUD.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            // 
-            // label26
-            // 
-            resources.ApplyResources(this.label26, "label26");
-            this.label26.Name = "label26";
-            // 
-            // triggerCondAndCombo
-            // 
-            this.triggerCondAndCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.triggerCondAndCombo.FormattingEnabled = true;
-            this.triggerCondAndCombo.Items.AddRange(new object[] {
-            resources.GetString("triggerCondAndCombo.Items"),
-            resources.GetString("triggerCondAndCombo.Items1")});
-            resources.ApplyResources(this.triggerCondAndCombo, "triggerCondAndCombo");
-            this.triggerCondAndCombo.Name = "triggerCondAndCombo";
-            // 
-            // cBGyroMouseXAxis
-            // 
-            this.cBGyroMouseXAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBGyroMouseXAxis.FormattingEnabled = true;
-            this.cBGyroMouseXAxis.Items.AddRange(new object[] {
-            resources.GetString("cBGyroMouseXAxis.Items"),
-            resources.GetString("cBGyroMouseXAxis.Items1")});
-            resources.ApplyResources(this.cBGyroMouseXAxis, "cBGyroMouseXAxis");
-            this.cBGyroMouseXAxis.Name = "cBGyroMouseXAxis";
-            // 
-            // label16
-            // 
-            resources.ApplyResources(this.label16, "label16");
-            this.label16.Name = "label16";
-            // 
-            // lbGyroSmooth
-            // 
-            resources.ApplyResources(this.lbGyroSmooth, "lbGyroSmooth");
-            this.lbGyroSmooth.Name = "lbGyroSmooth";
-            // 
-            // cBGyroSmooth
-            // 
-            resources.ApplyResources(this.cBGyroSmooth, "cBGyroSmooth");
-            this.cBGyroSmooth.Name = "cBGyroSmooth";
-            this.cBGyroSmooth.UseVisualStyleBackColor = true;
-            // 
-            // lbSmoothWeight
-            // 
-            resources.ApplyResources(this.lbSmoothWeight, "lbSmoothWeight");
-            this.lbSmoothWeight.Name = "lbSmoothWeight";
-            // 
-            // nUDGyroSmoothWeight
-            // 
-            this.nUDGyroSmoothWeight.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDGyroSmoothWeight, "nUDGyroSmoothWeight");
-            this.nUDGyroSmoothWeight.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDGyroSmoothWeight.Name = "nUDGyroSmoothWeight";
-            this.nUDGyroSmoothWeight.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            // 
-            // label12
-            // 
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.Name = "label12";
-            // 
-            // nUDGyroMouseVertScale
-            // 
-            this.nUDGyroMouseVertScale.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDGyroMouseVertScale, "nUDGyroMouseVertScale");
-            this.nUDGyroMouseVertScale.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nUDGyroMouseVertScale.Name = "nUDGyroMouseVertScale";
-            this.nUDGyroMouseVertScale.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // label11
-            // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            // 
-            // gyroTriggerBehavior
-            // 
-            resources.ApplyResources(this.gyroTriggerBehavior, "gyroTriggerBehavior");
-            this.gyroTriggerBehavior.Checked = true;
-            this.gyroTriggerBehavior.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.gyroTriggerBehavior.Name = "gyroTriggerBehavior";
-            this.gyroTriggerBehavior.UseVisualStyleBackColor = true;
-            // 
-            // cBGyroInvertY
-            // 
-            resources.ApplyResources(this.cBGyroInvertY, "cBGyroInvertY");
-            this.cBGyroInvertY.Name = "cBGyroInvertY";
-            this.cBGyroInvertY.UseVisualStyleBackColor = true;
-            // 
-            // cBGyroInvertX
-            // 
-            resources.ApplyResources(this.cBGyroInvertX, "cBGyroInvertX");
-            this.cBGyroInvertX.Name = "cBGyroInvertX";
-            this.cBGyroInvertX.UseVisualStyleBackColor = true;
-            // 
-            // lbGyroInvert
-            // 
-            resources.ApplyResources(this.lbGyroInvert, "lbGyroInvert");
-            this.lbGyroInvert.Name = "lbGyroInvert";
-            // 
-            // lbGyroTriggers
-            // 
-            resources.ApplyResources(this.lbGyroTriggers, "lbGyroTriggers");
-            this.lbGyroTriggers.Name = "lbGyroTriggers";
-            // 
-            // btnGyroTriggers
-            // 
-            resources.ApplyResources(this.btnGyroTriggers, "btnGyroTriggers");
-            this.btnGyroTriggers.Name = "btnGyroTriggers";
-            this.btnGyroTriggers.UseVisualStyleBackColor = true;
-            // 
-            // nUDGyroSensitivity
-            // 
-            resources.ApplyResources(this.nUDGyroSensitivity, "nUDGyroSensitivity");
-            this.nUDGyroSensitivity.Maximum = new decimal(new int[] {
-            300,
-            0,
-            0,
-            0});
-            this.nUDGyroSensitivity.Name = "nUDGyroSensitivity";
-            this.nUDGyroSensitivity.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // lbGyroSens
-            // 
-            resources.ApplyResources(this.lbGyroSens, "lbGyroSens");
-            this.lbGyroSens.Name = "lbGyroSens";
-            // 
             // tabAxis
             // 
             this.tabAxis.Controls.Add(this.flowLayoutPanel3);
@@ -4366,6 +3782,590 @@
             resources.ApplyResources(this.label61, "label61");
             this.label61.Name = "label61";
             // 
+            // tabGyro
+            // 
+            this.tabGyro.Controls.Add(this.flowLayoutPanel2);
+            resources.ApplyResources(this.tabGyro, "tabGyro");
+            this.tabGyro.Name = "tabGyro";
+            this.tabGyro.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel2
+            // 
+            resources.ApplyResources(this.flowLayoutPanel2, "flowLayoutPanel2");
+            this.flowLayoutPanel2.Controls.Add(this.panel6);
+            this.flowLayoutPanel2.Controls.Add(this.gyroMouseJoyFLP);
+            this.flowLayoutPanel2.Controls.Add(this.fLPTiltControls);
+            this.flowLayoutPanel2.Controls.Add(this.pnlSAMouse);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.label34);
+            this.panel6.Controls.Add(this.gyroOutputMode);
+            resources.ApplyResources(this.panel6, "panel6");
+            this.panel6.Name = "panel6";
+            // 
+            // label34
+            // 
+            resources.ApplyResources(this.label34, "label34");
+            this.label34.Name = "label34";
+            // 
+            // gyroOutputMode
+            // 
+            this.gyroOutputMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gyroOutputMode.FormattingEnabled = true;
+            this.gyroOutputMode.Items.AddRange(new object[] {
+            resources.GetString("gyroOutputMode.Items"),
+            resources.GetString("gyroOutputMode.Items1"),
+            resources.GetString("gyroOutputMode.Items2")});
+            resources.ApplyResources(this.gyroOutputMode, "gyroOutputMode");
+            this.gyroOutputMode.Name = "gyroOutputMode";
+            // 
+            // gyroMouseJoyFLP
+            // 
+            this.gyroMouseJoyFLP.Controls.Add(this.label36);
+            this.gyroMouseJoyFLP.Controls.Add(this.btnGyroMStickTrig);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickTrigBehaveCk);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickToggleCk);
+            this.gyroMouseJoyFLP.Controls.Add(this.label29);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickDZ);
+            this.gyroMouseJoyFLP.Controls.Add(this.label30);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickMaxZ);
+            this.gyroMouseJoyFLP.Controls.Add(this.label31);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickAntiDeadX);
+            this.gyroMouseJoyFLP.Controls.Add(this.label32);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickAntiDeadY);
+            this.gyroMouseJoyFLP.Controls.Add(this.label37);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickVertScaleNUD);
+            this.gyroMouseJoyFLP.Controls.Add(this.label38);
+            this.gyroMouseJoyFLP.Controls.Add(this.label35);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickEvalCombo);
+            this.gyroMouseJoyFLP.Controls.Add(this.label33);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMousestickXAxisCom);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickInvertXCk);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickInvertYCk);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickUseSmoothCk);
+            this.gyroMouseJoyFLP.Controls.Add(this.label39);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickSmoothWeightNUD);
+            resources.ApplyResources(this.gyroMouseJoyFLP, "gyroMouseJoyFLP");
+            this.gyroMouseJoyFLP.Name = "gyroMouseJoyFLP";
+            // 
+            // label36
+            // 
+            resources.ApplyResources(this.label36, "label36");
+            this.label36.Name = "label36";
+            // 
+            // btnGyroMStickTrig
+            // 
+            resources.ApplyResources(this.btnGyroMStickTrig, "btnGyroMStickTrig");
+            this.btnGyroMStickTrig.Name = "btnGyroMStickTrig";
+            this.btnGyroMStickTrig.UseVisualStyleBackColor = true;
+            // 
+            // gyroMStickTrigBehaveCk
+            // 
+            this.gyroMStickTrigBehaveCk.Checked = true;
+            this.gyroMStickTrigBehaveCk.CheckState = System.Windows.Forms.CheckState.Checked;
+            resources.ApplyResources(this.gyroMStickTrigBehaveCk, "gyroMStickTrigBehaveCk");
+            this.gyroMStickTrigBehaveCk.Name = "gyroMStickTrigBehaveCk";
+            this.gyroMStickTrigBehaveCk.UseVisualStyleBackColor = true;
+            // 
+            // gyroMStickToggleCk
+            // 
+            resources.ApplyResources(this.gyroMStickToggleCk, "gyroMStickToggleCk");
+            this.gyroMStickToggleCk.Name = "gyroMStickToggleCk";
+            this.gyroMStickToggleCk.UseVisualStyleBackColor = true;
+            // 
+            // label29
+            // 
+            resources.ApplyResources(this.label29, "label29");
+            this.label29.Name = "label29";
+            // 
+            // gyroMouseStickDZ
+            // 
+            resources.ApplyResources(this.gyroMouseStickDZ, "gyroMouseStickDZ");
+            this.gyroMouseStickDZ.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.gyroMouseStickDZ.Name = "gyroMouseStickDZ";
+            this.gyroMouseStickDZ.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
+            // label30
+            // 
+            resources.ApplyResources(this.label30, "label30");
+            this.label30.Name = "label30";
+            // 
+            // gyroMouseStickMaxZ
+            // 
+            resources.ApplyResources(this.gyroMouseStickMaxZ, "gyroMouseStickMaxZ");
+            this.gyroMouseStickMaxZ.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.gyroMouseStickMaxZ.Name = "gyroMouseStickMaxZ";
+            this.gyroMouseStickMaxZ.Value = new decimal(new int[] {
+            830,
+            0,
+            0,
+            0});
+            // 
+            // label31
+            // 
+            resources.ApplyResources(this.label31, "label31");
+            this.label31.Name = "label31";
+            // 
+            // gyroMouseStickAntiDeadX
+            // 
+            this.gyroMouseStickAntiDeadX.DecimalPlaces = 2;
+            resources.ApplyResources(this.gyroMouseStickAntiDeadX, "gyroMouseStickAntiDeadX");
+            this.gyroMouseStickAntiDeadX.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.gyroMouseStickAntiDeadX.Name = "gyroMouseStickAntiDeadX";
+            this.gyroMouseStickAntiDeadX.Value = new decimal(new int[] {
+            35,
+            0,
+            0,
+            131072});
+            // 
+            // label32
+            // 
+            resources.ApplyResources(this.label32, "label32");
+            this.label32.Name = "label32";
+            // 
+            // gyroMouseStickAntiDeadY
+            // 
+            this.gyroMouseStickAntiDeadY.DecimalPlaces = 2;
+            resources.ApplyResources(this.gyroMouseStickAntiDeadY, "gyroMouseStickAntiDeadY");
+            this.gyroMouseStickAntiDeadY.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.gyroMouseStickAntiDeadY.Name = "gyroMouseStickAntiDeadY";
+            this.gyroMouseStickAntiDeadY.Value = new decimal(new int[] {
+            35,
+            0,
+            0,
+            131072});
+            // 
+            // label37
+            // 
+            resources.ApplyResources(this.label37, "label37");
+            this.label37.Name = "label37";
+            // 
+            // gyroMStickVertScaleNUD
+            // 
+            resources.ApplyResources(this.gyroMStickVertScaleNUD, "gyroMStickVertScaleNUD");
+            this.gyroMStickVertScaleNUD.Maximum = new decimal(new int[] {
+            400,
+            0,
+            0,
+            0});
+            this.gyroMStickVertScaleNUD.Name = "gyroMStickVertScaleNUD";
+            this.gyroMStickVertScaleNUD.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // label38
+            // 
+            resources.ApplyResources(this.label38, "label38");
+            this.label38.Name = "label38";
+            // 
+            // label35
+            // 
+            resources.ApplyResources(this.label35, "label35");
+            this.label35.Name = "label35";
+            // 
+            // gyroMouseStickEvalCombo
+            // 
+            this.gyroMouseStickEvalCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gyroMouseStickEvalCombo.FormattingEnabled = true;
+            this.gyroMouseStickEvalCombo.Items.AddRange(new object[] {
+            resources.GetString("gyroMouseStickEvalCombo.Items"),
+            resources.GetString("gyroMouseStickEvalCombo.Items1")});
+            resources.ApplyResources(this.gyroMouseStickEvalCombo, "gyroMouseStickEvalCombo");
+            this.gyroMouseStickEvalCombo.Name = "gyroMouseStickEvalCombo";
+            // 
+            // label33
+            // 
+            resources.ApplyResources(this.label33, "label33");
+            this.label33.Name = "label33";
+            // 
+            // gyroMousestickXAxisCom
+            // 
+            this.gyroMousestickXAxisCom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gyroMousestickXAxisCom.FormattingEnabled = true;
+            this.gyroMousestickXAxisCom.Items.AddRange(new object[] {
+            resources.GetString("gyroMousestickXAxisCom.Items"),
+            resources.GetString("gyroMousestickXAxisCom.Items1")});
+            resources.ApplyResources(this.gyroMousestickXAxisCom, "gyroMousestickXAxisCom");
+            this.gyroMousestickXAxisCom.Name = "gyroMousestickXAxisCom";
+            // 
+            // gyroMouseStickInvertXCk
+            // 
+            resources.ApplyResources(this.gyroMouseStickInvertXCk, "gyroMouseStickInvertXCk");
+            this.gyroMouseStickInvertXCk.Name = "gyroMouseStickInvertXCk";
+            this.gyroMouseStickInvertXCk.UseVisualStyleBackColor = true;
+            // 
+            // gyroMouseStickInvertYCk
+            // 
+            resources.ApplyResources(this.gyroMouseStickInvertYCk, "gyroMouseStickInvertYCk");
+            this.gyroMouseStickInvertYCk.Name = "gyroMouseStickInvertYCk";
+            this.gyroMouseStickInvertYCk.UseVisualStyleBackColor = true;
+            // 
+            // gyroMStickUseSmoothCk
+            // 
+            resources.ApplyResources(this.gyroMStickUseSmoothCk, "gyroMStickUseSmoothCk");
+            this.gyroMStickUseSmoothCk.Name = "gyroMStickUseSmoothCk";
+            this.gyroMStickUseSmoothCk.UseVisualStyleBackColor = true;
+            // 
+            // label39
+            // 
+            resources.ApplyResources(this.label39, "label39");
+            this.label39.Name = "label39";
+            // 
+            // gyroMStickSmoothWeightNUD
+            // 
+            this.gyroMStickSmoothWeightNUD.DecimalPlaces = 3;
+            resources.ApplyResources(this.gyroMStickSmoothWeightNUD, "gyroMStickSmoothWeightNUD");
+            this.gyroMStickSmoothWeightNUD.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.gyroMStickSmoothWeightNUD.Name = "gyroMStickSmoothWeightNUD";
+            this.gyroMStickSmoothWeightNUD.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            // 
+            // fLPTiltControls
+            // 
+            this.fLPTiltControls.Controls.Add(this.bnGyroZN);
+            this.fLPTiltControls.Controls.Add(this.lbGyroZN);
+            this.fLPTiltControls.Controls.Add(this.bnGyroZP);
+            this.fLPTiltControls.Controls.Add(this.lbGyroZP);
+            this.fLPTiltControls.Controls.Add(this.bnGyroXP);
+            this.fLPTiltControls.Controls.Add(this.lbGyroXP);
+            this.fLPTiltControls.Controls.Add(this.bnGyroXN);
+            this.fLPTiltControls.Controls.Add(this.lbGyroXN);
+            this.fLPTiltControls.Controls.Add(this.lblSteeringWheelEmulationAxis);
+            this.fLPTiltControls.Controls.Add(this.cBSteeringWheelEmulationAxis);
+            this.fLPTiltControls.Controls.Add(this.lblSteeringWheelEmulationRange);
+            this.fLPTiltControls.Controls.Add(this.cBSteeringWheelEmulationRange);
+            this.fLPTiltControls.Controls.Add(this.btnSteeringWheelEmulationCalibrate);
+            resources.ApplyResources(this.fLPTiltControls, "fLPTiltControls");
+            this.fLPTiltControls.Name = "fLPTiltControls";
+            // 
+            // bnGyroZN
+            // 
+            this.bnGyroZN.ContextMenuStrip = this.cMSPresets;
+            resources.ApplyResources(this.bnGyroZN, "bnGyroZN");
+            this.bnGyroZN.Name = "bnGyroZN";
+            this.bnGyroZN.UseVisualStyleBackColor = true;
+            // 
+            // lbGyroZN
+            // 
+            resources.ApplyResources(this.lbGyroZN, "lbGyroZN");
+            this.lbGyroZN.Name = "lbGyroZN";
+            // 
+            // bnGyroZP
+            // 
+            this.bnGyroZP.ContextMenuStrip = this.cMSPresets;
+            resources.ApplyResources(this.bnGyroZP, "bnGyroZP");
+            this.bnGyroZP.Name = "bnGyroZP";
+            this.bnGyroZP.UseVisualStyleBackColor = true;
+            // 
+            // lbGyroZP
+            // 
+            resources.ApplyResources(this.lbGyroZP, "lbGyroZP");
+            this.lbGyroZP.Name = "lbGyroZP";
+            // 
+            // bnGyroXP
+            // 
+            this.bnGyroXP.ContextMenuStrip = this.cMSPresets;
+            resources.ApplyResources(this.bnGyroXP, "bnGyroXP");
+            this.bnGyroXP.Name = "bnGyroXP";
+            this.bnGyroXP.UseVisualStyleBackColor = true;
+            // 
+            // lbGyroXP
+            // 
+            resources.ApplyResources(this.lbGyroXP, "lbGyroXP");
+            this.lbGyroXP.Name = "lbGyroXP";
+            // 
+            // bnGyroXN
+            // 
+            this.bnGyroXN.ContextMenuStrip = this.cMSPresets;
+            resources.ApplyResources(this.bnGyroXN, "bnGyroXN");
+            this.bnGyroXN.Name = "bnGyroXN";
+            this.bnGyroXN.UseVisualStyleBackColor = true;
+            // 
+            // lbGyroXN
+            // 
+            resources.ApplyResources(this.lbGyroXN, "lbGyroXN");
+            this.lbGyroXN.Name = "lbGyroXN";
+            // 
+            // lblSteeringWheelEmulationAxis
+            // 
+            resources.ApplyResources(this.lblSteeringWheelEmulationAxis, "lblSteeringWheelEmulationAxis");
+            this.lblSteeringWheelEmulationAxis.Name = "lblSteeringWheelEmulationAxis";
+            // 
+            // cBSteeringWheelEmulationAxis
+            // 
+            this.cBSteeringWheelEmulationAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBSteeringWheelEmulationAxis.FormattingEnabled = true;
+            this.cBSteeringWheelEmulationAxis.Items.AddRange(new object[] {
+            resources.GetString("cBSteeringWheelEmulationAxis.Items"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items1"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items2"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items3"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items4"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items5"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items6"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items7"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items8"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items9"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items10"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items11")});
+            resources.ApplyResources(this.cBSteeringWheelEmulationAxis, "cBSteeringWheelEmulationAxis");
+            this.cBSteeringWheelEmulationAxis.Name = "cBSteeringWheelEmulationAxis";
+            // 
+            // lblSteeringWheelEmulationRange
+            // 
+            resources.ApplyResources(this.lblSteeringWheelEmulationRange, "lblSteeringWheelEmulationRange");
+            this.lblSteeringWheelEmulationRange.Name = "lblSteeringWheelEmulationRange";
+            // 
+            // cBSteeringWheelEmulationRange
+            // 
+            this.cBSteeringWheelEmulationRange.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBSteeringWheelEmulationRange.FormattingEnabled = true;
+            this.cBSteeringWheelEmulationRange.Items.AddRange(new object[] {
+            resources.GetString("cBSteeringWheelEmulationRange.Items"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items1"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items2"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items3"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items4"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items5"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items6"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items7"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items8")});
+            resources.ApplyResources(this.cBSteeringWheelEmulationRange, "cBSteeringWheelEmulationRange");
+            this.cBSteeringWheelEmulationRange.Name = "cBSteeringWheelEmulationRange";
+            // 
+            // btnSteeringWheelEmulationCalibrate
+            // 
+            resources.ApplyResources(this.btnSteeringWheelEmulationCalibrate, "btnSteeringWheelEmulationCalibrate");
+            this.btnSteeringWheelEmulationCalibrate.Name = "btnSteeringWheelEmulationCalibrate";
+            this.btnSteeringWheelEmulationCalibrate.UseVisualStyleBackColor = true;
+            // 
+            // pnlSAMouse
+            // 
+            this.pnlSAMouse.Controls.Add(this.toggleGyroMCb);
+            this.pnlSAMouse.Controls.Add(this.label27);
+            this.pnlSAMouse.Controls.Add(this.gyroMouseDzNUD);
+            this.pnlSAMouse.Controls.Add(this.label26);
+            this.pnlSAMouse.Controls.Add(this.triggerCondAndCombo);
+            this.pnlSAMouse.Controls.Add(this.cBGyroMouseXAxis);
+            this.pnlSAMouse.Controls.Add(this.label16);
+            this.pnlSAMouse.Controls.Add(this.lbGyroSmooth);
+            this.pnlSAMouse.Controls.Add(this.cBGyroSmooth);
+            this.pnlSAMouse.Controls.Add(this.lbSmoothWeight);
+            this.pnlSAMouse.Controls.Add(this.nUDGyroSmoothWeight);
+            this.pnlSAMouse.Controls.Add(this.label12);
+            this.pnlSAMouse.Controls.Add(this.nUDGyroMouseVertScale);
+            this.pnlSAMouse.Controls.Add(this.label11);
+            this.pnlSAMouse.Controls.Add(this.gyroTriggerBehavior);
+            this.pnlSAMouse.Controls.Add(this.cBGyroInvertY);
+            this.pnlSAMouse.Controls.Add(this.cBGyroInvertX);
+            this.pnlSAMouse.Controls.Add(this.lbGyroInvert);
+            this.pnlSAMouse.Controls.Add(this.lbGyroTriggers);
+            this.pnlSAMouse.Controls.Add(this.btnGyroTriggers);
+            this.pnlSAMouse.Controls.Add(this.nUDGyroSensitivity);
+            this.pnlSAMouse.Controls.Add(this.lbGyroSens);
+            resources.ApplyResources(this.pnlSAMouse, "pnlSAMouse");
+            this.pnlSAMouse.Name = "pnlSAMouse";
+            // 
+            // toggleGyroMCb
+            // 
+            resources.ApplyResources(this.toggleGyroMCb, "toggleGyroMCb");
+            this.toggleGyroMCb.Name = "toggleGyroMCb";
+            this.toggleGyroMCb.UseVisualStyleBackColor = true;
+            // 
+            // label27
+            // 
+            resources.ApplyResources(this.label27, "label27");
+            this.label27.Name = "label27";
+            // 
+            // gyroMouseDzNUD
+            // 
+            resources.ApplyResources(this.gyroMouseDzNUD, "gyroMouseDzNUD");
+            this.gyroMouseDzNUD.Name = "gyroMouseDzNUD";
+            this.gyroMouseDzNUD.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // label26
+            // 
+            resources.ApplyResources(this.label26, "label26");
+            this.label26.Name = "label26";
+            // 
+            // triggerCondAndCombo
+            // 
+            this.triggerCondAndCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.triggerCondAndCombo.FormattingEnabled = true;
+            this.triggerCondAndCombo.Items.AddRange(new object[] {
+            resources.GetString("triggerCondAndCombo.Items"),
+            resources.GetString("triggerCondAndCombo.Items1")});
+            resources.ApplyResources(this.triggerCondAndCombo, "triggerCondAndCombo");
+            this.triggerCondAndCombo.Name = "triggerCondAndCombo";
+            // 
+            // cBGyroMouseXAxis
+            // 
+            this.cBGyroMouseXAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBGyroMouseXAxis.FormattingEnabled = true;
+            this.cBGyroMouseXAxis.Items.AddRange(new object[] {
+            resources.GetString("cBGyroMouseXAxis.Items"),
+            resources.GetString("cBGyroMouseXAxis.Items1")});
+            resources.ApplyResources(this.cBGyroMouseXAxis, "cBGyroMouseXAxis");
+            this.cBGyroMouseXAxis.Name = "cBGyroMouseXAxis";
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
+            // 
+            // lbGyroSmooth
+            // 
+            resources.ApplyResources(this.lbGyroSmooth, "lbGyroSmooth");
+            this.lbGyroSmooth.Name = "lbGyroSmooth";
+            // 
+            // cBGyroSmooth
+            // 
+            resources.ApplyResources(this.cBGyroSmooth, "cBGyroSmooth");
+            this.cBGyroSmooth.Name = "cBGyroSmooth";
+            this.cBGyroSmooth.UseVisualStyleBackColor = true;
+            // 
+            // lbSmoothWeight
+            // 
+            resources.ApplyResources(this.lbSmoothWeight, "lbSmoothWeight");
+            this.lbSmoothWeight.Name = "lbSmoothWeight";
+            // 
+            // nUDGyroSmoothWeight
+            // 
+            this.nUDGyroSmoothWeight.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDGyroSmoothWeight, "nUDGyroSmoothWeight");
+            this.nUDGyroSmoothWeight.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDGyroSmoothWeight.Name = "nUDGyroSmoothWeight";
+            this.nUDGyroSmoothWeight.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
+            // nUDGyroMouseVertScale
+            // 
+            this.nUDGyroMouseVertScale.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDGyroMouseVertScale, "nUDGyroMouseVertScale");
+            this.nUDGyroMouseVertScale.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nUDGyroMouseVertScale.Name = "nUDGyroMouseVertScale";
+            this.nUDGyroMouseVertScale.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // gyroTriggerBehavior
+            // 
+            resources.ApplyResources(this.gyroTriggerBehavior, "gyroTriggerBehavior");
+            this.gyroTriggerBehavior.Checked = true;
+            this.gyroTriggerBehavior.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.gyroTriggerBehavior.Name = "gyroTriggerBehavior";
+            this.gyroTriggerBehavior.UseVisualStyleBackColor = true;
+            // 
+            // cBGyroInvertY
+            // 
+            resources.ApplyResources(this.cBGyroInvertY, "cBGyroInvertY");
+            this.cBGyroInvertY.Name = "cBGyroInvertY";
+            this.cBGyroInvertY.UseVisualStyleBackColor = true;
+            // 
+            // cBGyroInvertX
+            // 
+            resources.ApplyResources(this.cBGyroInvertX, "cBGyroInvertX");
+            this.cBGyroInvertX.Name = "cBGyroInvertX";
+            this.cBGyroInvertX.UseVisualStyleBackColor = true;
+            // 
+            // lbGyroInvert
+            // 
+            resources.ApplyResources(this.lbGyroInvert, "lbGyroInvert");
+            this.lbGyroInvert.Name = "lbGyroInvert";
+            // 
+            // lbGyroTriggers
+            // 
+            resources.ApplyResources(this.lbGyroTriggers, "lbGyroTriggers");
+            this.lbGyroTriggers.Name = "lbGyroTriggers";
+            // 
+            // btnGyroTriggers
+            // 
+            resources.ApplyResources(this.btnGyroTriggers, "btnGyroTriggers");
+            this.btnGyroTriggers.Name = "btnGyroTriggers";
+            this.btnGyroTriggers.UseVisualStyleBackColor = true;
+            // 
+            // nUDGyroSensitivity
+            // 
+            resources.ApplyResources(this.nUDGyroSensitivity, "nUDGyroSensitivity");
+            this.nUDGyroSensitivity.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.nUDGyroSensitivity.Name = "nUDGyroSensitivity";
+            this.nUDGyroSensitivity.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // lbGyroSens
+            // 
+            resources.ApplyResources(this.lbGyroSens, "lbGyroSens");
+            this.lbGyroSens.Name = "lbGyroSens";
+            // 
             // tabOther
             // 
             this.tabOther.Controls.Add(this.flowLayoutPanel4);
@@ -4712,26 +4712,6 @@
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbowB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).EndInit();
-            this.tabGyro.ResumeLayout(false);
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.gyroMouseJoyFLP.ResumeLayout(false);
-            this.gyroMouseJoyFLP.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickDZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickMaxZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickVertScaleNUD)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickSmoothWeightNUD)).EndInit();
-            this.fLPTiltControls.ResumeLayout(false);
-            this.fLPTiltControls.PerformLayout();
-            this.pnlSAMouse.ResumeLayout(false);
-            this.pnlSAMouse.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseDzNUD)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSmoothWeight)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroMouseVertScale)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSensitivity)).EndInit();
             this.tabAxis.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -4774,6 +4754,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisXMaxZone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSX)).EndInit();
+            this.tabGyro.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.gyroMouseJoyFLP.ResumeLayout(false);
+            this.gyroMouseJoyFLP.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickDZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickMaxZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickVertScaleNUD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickSmoothWeightNUD)).EndInit();
+            this.fLPTiltControls.ResumeLayout(false);
+            this.fLPTiltControls.PerformLayout();
+            this.pnlSAMouse.ResumeLayout(false);
+            this.pnlSAMouse.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseDzNUD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSmoothWeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroMouseVertScale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSensitivity)).EndInit();
             this.tabOther.ResumeLayout(false);
             this.flowLayoutPanel4.ResumeLayout(false);
             this.flowLayoutPanel4.PerformLayout();

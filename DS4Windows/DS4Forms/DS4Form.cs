@@ -1819,7 +1819,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             opt.Visible = true;
 
             tabMain.SelectedIndex = 1;
-            opt.SetFlowAutoScroll();
         }
 
         public void OptionsClosed()

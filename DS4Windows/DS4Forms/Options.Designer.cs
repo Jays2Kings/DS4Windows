@@ -30,16 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Options));
-            this.lowColorChooserButton = new System.Windows.Forms.Button();
-            this.nUDRainbow = new System.Windows.Forms.NumericUpDown();
-            this.tBBlueBar = new System.Windows.Forms.TrackBar();
-            this.tBGreenBar = new System.Windows.Forms.TrackBar();
-            this.tBRedBar = new System.Windows.Forms.TrackBar();
             this.cBLightbyBattery = new System.Windows.Forms.CheckBox();
-            this.lbBlue = new System.Windows.Forms.Label();
-            this.lbGreen = new System.Windows.Forms.Label();
-            this.lbspc = new System.Windows.Forms.Label();
-            this.lbRed = new System.Windows.Forms.Label();
             this.cBDoubleTap = new System.Windows.Forms.CheckBox();
             this.cBTap = new System.Windows.Forms.CheckBox();
             this.nUDTap = new System.Windows.Forms.NumericUpDown();
@@ -47,33 +38,8 @@
             this.cBSlide = new System.Windows.Forms.CheckBox();
             this.nUDScroll = new System.Windows.Forms.NumericUpDown();
             this.nUDTouch = new System.Windows.Forms.NumericUpDown();
-            this.lbButtonMouseSens = new System.Windows.Forms.Label();
             this.cBlowerRCOn = new System.Windows.Forms.CheckBox();
             this.cBTouchpadJitterCompensation = new System.Windows.Forms.CheckBox();
-            this.lbL2 = new System.Windows.Forms.Label();
-            this.lbR2 = new System.Windows.Forms.Label();
-            this.lbIdleMinutes = new System.Windows.Forms.Label();
-            this.nUDIdleDisconnect = new System.Windows.Forms.NumericUpDown();
-            this.nUDR2 = new System.Windows.Forms.NumericUpDown();
-            this.cBFlushHIDQueue = new System.Windows.Forms.CheckBox();
-            this.nUDRumbleBoost = new System.Windows.Forms.NumericUpDown();
-            this.btnRumbleHeavyTest = new System.Windows.Forms.Button();
-            this.lbFull = new System.Windows.Forms.Label();
-            this.lbLowRed = new System.Windows.Forms.Label();
-            this.lbLowGreen = new System.Windows.Forms.Label();
-            this.lbLowBlue = new System.Windows.Forms.Label();
-            this.tBLowRedBar = new System.Windows.Forms.TrackBar();
-            this.tBLowGreenBar = new System.Windows.Forms.TrackBar();
-            this.tBLowBlueBar = new System.Windows.Forms.TrackBar();
-            this.lbEmpty = new System.Windows.Forms.Label();
-            this.pnlFull = new System.Windows.Forms.Panel();
-            this.pnlLowBattery = new System.Windows.Forms.Panel();
-            this.lbRS = new System.Windows.Forms.Label();
-            this.lbLS = new System.Windows.Forms.Label();
-            this.nUDRS = new System.Windows.Forms.NumericUpDown();
-            this.numUDMouseSens = new System.Windows.Forms.NumericUpDown();
-            this.nUDLS = new System.Windows.Forms.NumericUpDown();
-            this.nUDL2 = new System.Windows.Forms.NumericUpDown();
             this.gBTouchpad = new System.Windows.Forms.GroupBox();
             this.pnlTPMouse = new System.Windows.Forms.Panel();
             this.trackFrictionLb = new System.Windows.Forms.Label();
@@ -120,39 +86,6 @@
             this.lbSwipeLeft = new System.Windows.Forms.Label();
             this.bnSwipeRight = new System.Windows.Forms.Button();
             this.lbSwipeRight = new System.Windows.Forms.Label();
-            this.gBOther = new System.Windows.Forms.GroupBox();
-            this.OutContTypeCb = new System.Windows.Forms.ComboBox();
-            this.outcontLb = new System.Windows.Forms.Label();
-            this.btPollRateLabel = new System.Windows.Forms.Label();
-            this.btPollRateComboBox = new System.Windows.Forms.ComboBox();
-            this.enableTouchToggleCheckbox = new System.Windows.Forms.CheckBox();
-            this.cBDinput = new System.Windows.Forms.CheckBox();
-            this.pBProgram = new System.Windows.Forms.PictureBox();
-            this.cBLaunchProgram = new System.Windows.Forms.CheckBox();
-            this.btnBrowse = new System.Windows.Forms.Button();
-            this.lbUseController = new System.Windows.Forms.Label();
-            this.cBMouseAccel = new System.Windows.Forms.CheckBox();
-            this.nUDSixaxis = new System.Windows.Forms.NumericUpDown();
-            this.cBControllerInput = new System.Windows.Forms.CheckBox();
-            this.cBIdleDisconnect = new System.Windows.Forms.CheckBox();
-            this.gBLightbar = new System.Windows.Forms.GroupBox();
-            this.btnRainbow = new System.Windows.Forms.Button();
-            this.lbRainbowB = new System.Windows.Forms.Label();
-            this.nUDRainbowB = new System.Windows.Forms.NumericUpDown();
-            this.cBFlashType = new System.Windows.Forms.ComboBox();
-            this.cBWhileCharging = new System.Windows.Forms.ComboBox();
-            this.btnFlashColor = new System.Windows.Forms.Button();
-            this.btnChargingColor = new System.Windows.Forms.Button();
-            this.lbWhileCharging = new System.Windows.Forms.Label();
-            this.lbPercentFlashBar = new System.Windows.Forms.Label();
-            this.nUDflashLED = new System.Windows.Forms.NumericUpDown();
-            this.gBRumble = new System.Windows.Forms.GroupBox();
-            this.lbPercentRumble = new System.Windows.Forms.Label();
-            this.btnRumbleLightTest = new System.Windows.Forms.Button();
-            this.lbSixaxisX = new System.Windows.Forms.Label();
-            this.lbSixaxisZ = new System.Windows.Forms.Label();
-            this.nUDSZ = new System.Windows.Forms.NumericUpDown();
-            this.nUDSX = new System.Windows.Forms.NumericUpDown();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lbL2TrackS = new System.Windows.Forms.TabPage();
             this.pnlSATrack = new System.Windows.Forms.Panel();
@@ -181,45 +114,6 @@
             this.pnlRSTrack = new System.Windows.Forms.Panel();
             this.btnRSTrackS = new System.Windows.Forms.Button();
             this.btnRSTrack = new System.Windows.Forms.Button();
-            this.fLPTiltControls = new System.Windows.Forms.FlowLayoutPanel();
-            this.bnGyroZN = new System.Windows.Forms.Button();
-            this.lbGyroZN = new System.Windows.Forms.Label();
-            this.bnGyroZP = new System.Windows.Forms.Button();
-            this.lbGyroZP = new System.Windows.Forms.Label();
-            this.bnGyroXP = new System.Windows.Forms.Button();
-            this.lbGyroXP = new System.Windows.Forms.Label();
-            this.bnGyroXN = new System.Windows.Forms.Button();
-            this.lbGyroXN = new System.Windows.Forms.Label();
-            this.lblSteeringWheelEmulationAxis = new System.Windows.Forms.Label();
-            this.cBSteeringWheelEmulationAxis = new System.Windows.Forms.ComboBox();
-            this.lblSteeringWheelEmulationRange = new System.Windows.Forms.Label();
-            this.cBSteeringWheelEmulationRange = new System.Windows.Forms.ComboBox();
-            this.btnSteeringWheelEmulationCalibrate = new System.Windows.Forms.Button();
-            this.gyroMouseJoyFLP = new System.Windows.Forms.FlowLayoutPanel();
-            this.label36 = new System.Windows.Forms.Label();
-            this.btnGyroMStickTrig = new System.Windows.Forms.Button();
-            this.gyroMStickTrigBehaveCk = new System.Windows.Forms.CheckBox();
-            this.gyroMStickToggleCk = new System.Windows.Forms.CheckBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.gyroMouseStickDZ = new System.Windows.Forms.NumericUpDown();
-            this.label30 = new System.Windows.Forms.Label();
-            this.gyroMouseStickMaxZ = new System.Windows.Forms.NumericUpDown();
-            this.label31 = new System.Windows.Forms.Label();
-            this.gyroMouseStickAntiDeadX = new System.Windows.Forms.NumericUpDown();
-            this.label32 = new System.Windows.Forms.Label();
-            this.gyroMouseStickAntiDeadY = new System.Windows.Forms.NumericUpDown();
-            this.label37 = new System.Windows.Forms.Label();
-            this.gyroMStickVertScaleNUD = new System.Windows.Forms.NumericUpDown();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.gyroMouseStickEvalCombo = new System.Windows.Forms.ComboBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.gyroMousestickXAxisCom = new System.Windows.Forms.ComboBox();
-            this.gyroMouseStickInvertXCk = new System.Windows.Forms.CheckBox();
-            this.gyroMouseStickInvertYCk = new System.Windows.Forms.CheckBox();
-            this.gyroMStickUseSmoothCk = new System.Windows.Forms.CheckBox();
-            this.label39 = new System.Windows.Forms.Label();
-            this.gyroMStickSmoothWeightNUD = new System.Windows.Forms.NumericUpDown();
             this.tCControls = new System.Windows.Forms.TabControl();
             this.tPControls = new System.Windows.Forms.TabPage();
             this.lBControls = new System.Windows.Forms.ListBox();
@@ -289,106 +183,6 @@
             this.btnEditAction = new System.Windows.Forms.Button();
             this.btnRemAction = new System.Windows.Forms.Button();
             this.lbActionsTip = new System.Windows.Forms.Label();
-            this.tCSens = new System.Windows.Forms.TabControl();
-            this.tPDeadzone = new System.Windows.Forms.TabPage();
-            this.antiDeadzoneTabPage = new System.Windows.Forms.TabPage();
-            this.nUDSixaxisZAntiDead = new System.Windows.Forms.NumericUpDown();
-            this.nUDSixaxisXAntiDead = new System.Windows.Forms.NumericUpDown();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.nUDR2AntiDead = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.nUDL2AntiDead = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
-            this.nUDRSAntiDead = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.nUDLSAntiDead = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.maxZoneTabPage = new System.Windows.Forms.TabPage();
-            this.nUDSixAxisZMaxZone = new System.Windows.Forms.NumericUpDown();
-            this.nUDSixAxisXMaxZone = new System.Windows.Forms.NumericUpDown();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.nUDR2Maxzone = new System.Windows.Forms.NumericUpDown();
-            this.nUDL2Maxzone = new System.Windows.Forms.NumericUpDown();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.nUDRSMaxZone = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
-            this.nUDLSMaxZone = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
-            this.squStickTabPage = new System.Windows.Forms.TabPage();
-            this.RoundnessNUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label28 = new System.Windows.Forms.Label();
-            this.rsSquStickCk = new System.Windows.Forms.CheckBox();
-            this.lsSquStickCk = new System.Windows.Forms.CheckBox();
-            this.tPOutCurve = new System.Windows.Forms.TabPage();
-            this.lbCurveEditorURL = new System.Windows.Forms.LinkLabel();
-            this.tBCustomOutputCurve = new System.Windows.Forms.TextBox();
-            this.cBSixaxisZOutputCurve = new System.Windows.Forms.ComboBox();
-            this.cBSixaxisXOutputCurve = new System.Windows.Forms.ComboBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.cBR2OutputCurve = new System.Windows.Forms.ComboBox();
-            this.cBL2OutputCurve = new System.Windows.Forms.ComboBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.rsOutCurveComboBox = new System.Windows.Forms.ComboBox();
-            this.lsOutCurveComboBox = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.tPCurve = new System.Windows.Forms.TabPage();
-            this.nUDLSCurve = new System.Windows.Forms.NumericUpDown();
-            this.nUDRSCurve = new System.Windows.Forms.NumericUpDown();
-            this.lbRSCurve = new System.Windows.Forms.Label();
-            this.lbRSCurvePercent = new System.Windows.Forms.Label();
-            this.lbLSCurvePercent = new System.Windows.Forms.Label();
-            this.lbLSCurve = new System.Windows.Forms.Label();
-            this.tpRotation = new System.Windows.Forms.TabPage();
-            this.nUDRSRotation = new System.Windows.Forms.NumericUpDown();
-            this.label14 = new System.Windows.Forms.Label();
-            this.nUDLSRotation = new System.Windows.Forms.NumericUpDown();
-            this.label13 = new System.Windows.Forms.Label();
-            this.fLPSettings = new System.Windows.Forms.FlowLayoutPanel();
-            this.gBGyro = new System.Windows.Forms.GroupBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.gyroOutputMode = new System.Windows.Forms.ComboBox();
-            this.pnlSAMouse = new System.Windows.Forms.Panel();
-            this.toggleGyroMCb = new System.Windows.Forms.CheckBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.gyroMouseDzNUD = new System.Windows.Forms.NumericUpDown();
-            this.label26 = new System.Windows.Forms.Label();
-            this.triggerCondAndCombo = new System.Windows.Forms.ComboBox();
-            this.cBGyroMouseXAxis = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.lbGyroSmooth = new System.Windows.Forms.Label();
-            this.cBGyroSmooth = new System.Windows.Forms.CheckBox();
-            this.lbSmoothWeight = new System.Windows.Forms.Label();
-            this.nUDGyroSmoothWeight = new System.Windows.Forms.NumericUpDown();
-            this.label12 = new System.Windows.Forms.Label();
-            this.nUDGyroMouseVertScale = new System.Windows.Forms.NumericUpDown();
-            this.label11 = new System.Windows.Forms.Label();
-            this.gyroTriggerBehavior = new System.Windows.Forms.CheckBox();
-            this.cBGyroInvertY = new System.Windows.Forms.CheckBox();
-            this.cBGyroInvertX = new System.Windows.Forms.CheckBox();
-            this.lbGyroInvert = new System.Windows.Forms.Label();
-            this.lbGyroTriggers = new System.Windows.Forms.Label();
-            this.btnGyroTriggers = new System.Windows.Forms.Button();
-            this.nUDGyroSensitivity = new System.Windows.Forms.NumericUpDown();
-            this.lbGyroSens = new System.Windows.Forms.Label();
-            this.gBSensitivity = new System.Windows.Forms.GroupBox();
-            this.lbL2S = new System.Windows.Forms.Label();
-            this.nUDL2S = new System.Windows.Forms.NumericUpDown();
-            this.nUDLSS = new System.Windows.Forms.NumericUpDown();
-            this.lbSixaxisXS = new System.Windows.Forms.Label();
-            this.nUDR2S = new System.Windows.Forms.NumericUpDown();
-            this.lbSixaxisZS = new System.Windows.Forms.Label();
-            this.nUDRSS = new System.Windows.Forms.NumericUpDown();
-            this.lbR2LS = new System.Windows.Forms.Label();
-            this.nUDSXS = new System.Windows.Forms.NumericUpDown();
-            this.lbRSS = new System.Windows.Forms.Label();
-            this.lbLSS = new System.Windows.Forms.Label();
-            this.nUDSZS = new System.Windows.Forms.NumericUpDown();
             this.cMGyroTriggers = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.crossToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.circleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -430,39 +224,234 @@
             this.optionsTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shareTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.psTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBRedBar)).BeginInit();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabLightbar = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlFull = new System.Windows.Forms.Panel();
+            this.lbFull = new System.Windows.Forms.Label();
+            this.lbRed = new System.Windows.Forms.Label();
+            this.lbGreen = new System.Windows.Forms.Label();
+            this.lbBlue = new System.Windows.Forms.Label();
+            this.tBRedBar = new System.Windows.Forms.TrackBar();
+            this.tBGreenBar = new System.Windows.Forms.TrackBar();
+            this.tBBlueBar = new System.Windows.Forms.TrackBar();
+            this.pnlLowBattery = new System.Windows.Forms.Panel();
+            this.lowColorChooserButton = new System.Windows.Forms.Button();
+            this.lbLowRed = new System.Windows.Forms.Label();
+            this.lbLowGreen = new System.Windows.Forms.Label();
+            this.lbLowBlue = new System.Windows.Forms.Label();
+            this.tBLowRedBar = new System.Windows.Forms.TrackBar();
+            this.tBLowGreenBar = new System.Windows.Forms.TrackBar();
+            this.tBLowBlueBar = new System.Windows.Forms.TrackBar();
+            this.lbEmpty = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.cBFlashType = new System.Windows.Forms.ComboBox();
+            this.btnFlashColor = new System.Windows.Forms.Button();
+            this.lbPercentFlashBar = new System.Windows.Forms.Label();
+            this.nUDflashLED = new System.Windows.Forms.NumericUpDown();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.cBWhileCharging = new System.Windows.Forms.ComboBox();
+            this.btnChargingColor = new System.Windows.Forms.Button();
+            this.lbWhileCharging = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnRainbow = new System.Windows.Forms.Button();
+            this.lbRainbowB = new System.Windows.Forms.Label();
+            this.nUDRainbowB = new System.Windows.Forms.NumericUpDown();
+            this.nUDRainbow = new System.Windows.Forms.NumericUpDown();
+            this.lbspc = new System.Windows.Forms.Label();
+            this.tabGyro = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label34 = new System.Windows.Forms.Label();
+            this.gyroOutputMode = new System.Windows.Forms.ComboBox();
+            this.gyroMouseJoyFLP = new System.Windows.Forms.FlowLayoutPanel();
+            this.label36 = new System.Windows.Forms.Label();
+            this.btnGyroMStickTrig = new System.Windows.Forms.Button();
+            this.gyroMStickTrigBehaveCk = new System.Windows.Forms.CheckBox();
+            this.gyroMStickToggleCk = new System.Windows.Forms.CheckBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.gyroMouseStickDZ = new System.Windows.Forms.NumericUpDown();
+            this.label30 = new System.Windows.Forms.Label();
+            this.gyroMouseStickMaxZ = new System.Windows.Forms.NumericUpDown();
+            this.label31 = new System.Windows.Forms.Label();
+            this.gyroMouseStickAntiDeadX = new System.Windows.Forms.NumericUpDown();
+            this.label32 = new System.Windows.Forms.Label();
+            this.gyroMouseStickAntiDeadY = new System.Windows.Forms.NumericUpDown();
+            this.label37 = new System.Windows.Forms.Label();
+            this.gyroMStickVertScaleNUD = new System.Windows.Forms.NumericUpDown();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.gyroMouseStickEvalCombo = new System.Windows.Forms.ComboBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.gyroMousestickXAxisCom = new System.Windows.Forms.ComboBox();
+            this.gyroMouseStickInvertXCk = new System.Windows.Forms.CheckBox();
+            this.gyroMouseStickInvertYCk = new System.Windows.Forms.CheckBox();
+            this.gyroMStickUseSmoothCk = new System.Windows.Forms.CheckBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.gyroMStickSmoothWeightNUD = new System.Windows.Forms.NumericUpDown();
+            this.fLPTiltControls = new System.Windows.Forms.FlowLayoutPanel();
+            this.bnGyroZN = new System.Windows.Forms.Button();
+            this.lbGyroZN = new System.Windows.Forms.Label();
+            this.bnGyroZP = new System.Windows.Forms.Button();
+            this.lbGyroZP = new System.Windows.Forms.Label();
+            this.bnGyroXP = new System.Windows.Forms.Button();
+            this.lbGyroXP = new System.Windows.Forms.Label();
+            this.bnGyroXN = new System.Windows.Forms.Button();
+            this.lbGyroXN = new System.Windows.Forms.Label();
+            this.lblSteeringWheelEmulationAxis = new System.Windows.Forms.Label();
+            this.cBSteeringWheelEmulationAxis = new System.Windows.Forms.ComboBox();
+            this.lblSteeringWheelEmulationRange = new System.Windows.Forms.Label();
+            this.cBSteeringWheelEmulationRange = new System.Windows.Forms.ComboBox();
+            this.btnSteeringWheelEmulationCalibrate = new System.Windows.Forms.Button();
+            this.pnlSAMouse = new System.Windows.Forms.Panel();
+            this.toggleGyroMCb = new System.Windows.Forms.CheckBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.gyroMouseDzNUD = new System.Windows.Forms.NumericUpDown();
+            this.label26 = new System.Windows.Forms.Label();
+            this.triggerCondAndCombo = new System.Windows.Forms.ComboBox();
+            this.cBGyroMouseXAxis = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lbGyroSmooth = new System.Windows.Forms.Label();
+            this.cBGyroSmooth = new System.Windows.Forms.CheckBox();
+            this.lbSmoothWeight = new System.Windows.Forms.Label();
+            this.nUDGyroSmoothWeight = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
+            this.nUDGyroMouseVertScale = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.gyroTriggerBehavior = new System.Windows.Forms.CheckBox();
+            this.cBGyroInvertY = new System.Windows.Forms.CheckBox();
+            this.cBGyroInvertX = new System.Windows.Forms.CheckBox();
+            this.lbGyroInvert = new System.Windows.Forms.Label();
+            this.lbGyroTriggers = new System.Windows.Forms.Label();
+            this.btnGyroTriggers = new System.Windows.Forms.Button();
+            this.nUDGyroSensitivity = new System.Windows.Forms.NumericUpDown();
+            this.lbGyroSens = new System.Windows.Forms.Label();
+            this.tabAxis = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tBCustomOutputCurve = new System.Windows.Forms.TextBox();
+            this.lbCurveEditorURL = new System.Windows.Forms.LinkLabel();
+            this.nUDLSS = new System.Windows.Forms.NumericUpDown();
+            this.label69 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.RoundnessNUpDown = new System.Windows.Forms.NumericUpDown();
+            this.lsSquStickCk = new System.Windows.Forms.CheckBox();
+            this.nUDLSRotation = new System.Windows.Forms.NumericUpDown();
+            this.label45 = new System.Windows.Forms.Label();
+            this.nUDLSCurve = new System.Windows.Forms.NumericUpDown();
+            this.lbLSCurvePercent = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.lsOutCurveComboBox = new System.Windows.Forms.ComboBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.nUDLSAntiDead = new System.Windows.Forms.NumericUpDown();
+            this.label42 = new System.Windows.Forms.Label();
+            this.nUDLSMaxZone = new System.Windows.Forms.NumericUpDown();
+            this.label41 = new System.Windows.Forms.Label();
+            this.nUDLS = new System.Windows.Forms.NumericUpDown();
+            this.label40 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.nUDRSS = new System.Windows.Forms.NumericUpDown();
+            this.label70 = new System.Windows.Forms.Label();
+            this.rsOutCurveComboBox = new System.Windows.Forms.ComboBox();
+            this.nUDRSRotation = new System.Windows.Forms.NumericUpDown();
+            this.label52 = new System.Windows.Forms.Label();
+            this.lbRSCurvePercent = new System.Windows.Forms.Label();
+            this.nUDRSCurve = new System.Windows.Forms.NumericUpDown();
+            this.label51 = new System.Windows.Forms.Label();
+            this.rsSquStickCk = new System.Windows.Forms.CheckBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
+            this.nUDRSAntiDead = new System.Windows.Forms.NumericUpDown();
+            this.label49 = new System.Windows.Forms.Label();
+            this.nUDRSMaxZone = new System.Windows.Forms.NumericUpDown();
+            this.label48 = new System.Windows.Forms.Label();
+            this.nUDRS = new System.Windows.Forms.NumericUpDown();
+            this.label47 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.nUDL2S = new System.Windows.Forms.NumericUpDown();
+            this.label71 = new System.Windows.Forms.Label();
+            this.cBL2OutputCurve = new System.Windows.Forms.ComboBox();
+            this.nUDL2AntiDead = new System.Windows.Forms.NumericUpDown();
+            this.nUDL2Maxzone = new System.Windows.Forms.NumericUpDown();
+            this.nUDL2 = new System.Windows.Forms.NumericUpDown();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.nUDR2S = new System.Windows.Forms.NumericUpDown();
+            this.label72 = new System.Windows.Forms.Label();
+            this.cBR2OutputCurve = new System.Windows.Forms.ComboBox();
+            this.nUDR2AntiDead = new System.Windows.Forms.NumericUpDown();
+            this.nUDR2Maxzone = new System.Windows.Forms.NumericUpDown();
+            this.nUDR2 = new System.Windows.Forms.NumericUpDown();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label60 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.nUDSZS = new System.Windows.Forms.NumericUpDown();
+            this.nUDSXS = new System.Windows.Forms.NumericUpDown();
+            this.label74 = new System.Windows.Forms.Label();
+            this.label73 = new System.Windows.Forms.Label();
+            this.cBSixaxisZOutputCurve = new System.Windows.Forms.ComboBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.cBSixaxisXOutputCurve = new System.Windows.Forms.ComboBox();
+            this.label67 = new System.Windows.Forms.Label();
+            this.nUDSixaxisZAntiDead = new System.Windows.Forms.NumericUpDown();
+            this.label66 = new System.Windows.Forms.Label();
+            this.nUDSixaxisXAntiDead = new System.Windows.Forms.NumericUpDown();
+            this.label65 = new System.Windows.Forms.Label();
+            this.nUDSixAxisZMaxZone = new System.Windows.Forms.NumericUpDown();
+            this.label64 = new System.Windows.Forms.Label();
+            this.nUDSixAxisXMaxZone = new System.Windows.Forms.NumericUpDown();
+            this.label63 = new System.Windows.Forms.Label();
+            this.nUDSZ = new System.Windows.Forms.NumericUpDown();
+            this.label62 = new System.Windows.Forms.Label();
+            this.nUDSX = new System.Windows.Forms.NumericUpDown();
+            this.label61 = new System.Windows.Forms.Label();
+            this.tabOther = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.gBRumble = new System.Windows.Forms.GroupBox();
+            this.lbPercentRumble = new System.Windows.Forms.Label();
+            this.btnRumbleLightTest = new System.Windows.Forms.Button();
+            this.btnRumbleHeavyTest = new System.Windows.Forms.Button();
+            this.nUDRumbleBoost = new System.Windows.Forms.NumericUpDown();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.lbUseController = new System.Windows.Forms.Label();
+            this.nUDSixaxis = new System.Windows.Forms.NumericUpDown();
+            this.cBControllerInput = new System.Windows.Forms.CheckBox();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.lbButtonMouseSens = new System.Windows.Forms.Label();
+            this.numUDMouseSens = new System.Windows.Forms.NumericUpDown();
+            this.cBMouseAccel = new System.Windows.Forms.CheckBox();
+            this.enableTouchToggleCheckbox = new System.Windows.Forms.CheckBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.pBProgram = new System.Windows.Forms.PictureBox();
+            this.cBLaunchProgram = new System.Windows.Forms.CheckBox();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.cBDinput = new System.Windows.Forms.CheckBox();
+            this.cBFlushHIDQueue = new System.Windows.Forms.CheckBox();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.nUDIdleDisconnect = new System.Windows.Forms.NumericUpDown();
+            this.cBIdleDisconnect = new System.Windows.Forms.CheckBox();
+            this.lbIdleMinutes = new System.Windows.Forms.Label();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.btPollRateLabel = new System.Windows.Forms.Label();
+            this.btPollRateComboBox = new System.Windows.Forms.ComboBox();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.OutContTypeCb = new System.Windows.Forms.ComboBox();
+            this.outcontLb = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nUDTap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDScroll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDTouch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDIdleDisconnect)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDR2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRumbleBoost)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBLowRedBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBLowGreenBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBLowBlueBar)).BeginInit();
-            this.pnlFull.SuspendLayout();
-            this.pnlLowBattery.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDMouseSens)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2)).BeginInit();
             this.gBTouchpad.SuspendLayout();
             this.pnlTPMouse.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackFrictionNUD)).BeginInit();
             this.fLPTouchSwipe.SuspendLayout();
             this.cMSPresets.SuspendLayout();
-            this.gBOther.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).BeginInit();
-            this.gBLightbar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRainbowB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
-            this.gBRumble.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSX)).BeginInit();
             this.lbL2TrackS.SuspendLayout();
             this.pnlSATrack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tBR2)).BeginInit();
@@ -476,14 +465,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelZ)).BeginInit();
             this.pnlLSTrack.SuspendLayout();
             this.pnlRSTrack.SuspendLayout();
-            this.fLPTiltControls.SuspendLayout();
-            this.gyroMouseJoyFLP.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickDZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickMaxZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickVertScaleNUD)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickSmoothWeightNUD)).BeginInit();
             this.tCControls.SuspendLayout();
             this.tPControls.SuspendLayout();
             this.pnlController.SuspendLayout();
@@ -492,106 +473,94 @@
             this.pnlActions.SuspendLayout();
             this.panel2.SuspendLayout();
             this.fLPActionButtons.SuspendLayout();
-            this.tCSens.SuspendLayout();
-            this.tPDeadzone.SuspendLayout();
-            this.antiDeadzoneTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxisZAntiDead)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxisXAntiDead)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDR2AntiDead)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2AntiDead)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSAntiDead)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLSAntiDead)).BeginInit();
-            this.maxZoneTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisZMaxZone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisXMaxZone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDR2Maxzone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).BeginInit();
-            this.squStickTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RoundnessNUpDown)).BeginInit();
-            this.tPOutCurve.SuspendLayout();
-            this.tPCurve.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).BeginInit();
-            this.tpRotation.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLSRotation)).BeginInit();
-            this.fLPSettings.SuspendLayout();
-            this.gBGyro.SuspendLayout();
+            this.cMGyroTriggers.SuspendLayout();
+            this.cMTouchDisableInvert.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabLightbar.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.pnlFull.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tBRedBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
+            this.pnlLowBattery.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tBLowRedBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBLowGreenBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBLowBlueBar)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRainbowB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
+            this.tabGyro.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.gyroMouseJoyFLP.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickDZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickMaxZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickVertScaleNUD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickSmoothWeightNUD)).BeginInit();
+            this.fLPTiltControls.SuspendLayout();
             this.pnlSAMouse.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gyroMouseDzNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSmoothWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroMouseVertScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSensitivity)).BeginInit();
-            this.gBSensitivity.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2S)).BeginInit();
+            this.tabAxis.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDR2S)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RoundnessNUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSRotation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSAntiDead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLS)).BeginInit();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSAntiDead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRS)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2S)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2AntiDead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDR2S)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDR2AntiDead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDR2Maxzone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDR2)).BeginInit();
+            this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
-            this.cMGyroTriggers.SuspendLayout();
-            this.cMTouchDisableInvert.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxisZAntiDead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxisXAntiDead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisZMaxZone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisXMaxZone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSX)).BeginInit();
+            this.tabOther.SuspendLayout();
+            this.flowLayoutPanel4.SuspendLayout();
+            this.gBRumble.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRumbleBoost)).BeginInit();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).BeginInit();
+            this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDMouseSens)).BeginInit();
+            this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).BeginInit();
+            this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDIdleDisconnect)).BeginInit();
+            this.panel11.SuspendLayout();
+            this.panel12.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lowColorChooserButton
-            // 
-            this.lowColorChooserButton.BackColor = System.Drawing.Color.White;
-            resources.ApplyResources(this.lowColorChooserButton, "lowColorChooserButton");
-            this.lowColorChooserButton.Name = "lowColorChooserButton";
-            this.lowColorChooserButton.UseVisualStyleBackColor = false;
-            this.lowColorChooserButton.Click += new System.EventHandler(this.lowColorChooserButton_Click);
-            // 
-            // nUDRainbow
-            // 
-            resources.ApplyResources(this.nUDRainbow, "nUDRainbow");
-            this.nUDRainbow.Maximum = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
-            this.nUDRainbow.Name = "nUDRainbow";
-            this.nUDRainbow.ValueChanged += new System.EventHandler(this.numUDRainbow_ValueChanged);
-            // 
-            // tBBlueBar
-            // 
-            resources.ApplyResources(this.tBBlueBar, "tBBlueBar");
-            this.tBBlueBar.BackColor = System.Drawing.Color.Blue;
-            this.tBBlueBar.Maximum = 255;
-            this.tBBlueBar.Name = "tBBlueBar";
-            this.tBBlueBar.TickFrequency = 25;
-            this.tBBlueBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.tBBlueBar.Value = 255;
-            this.tBBlueBar.ValueChanged += new System.EventHandler(this.MainBar_ValueChanged);
-            this.tBBlueBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.tBBlueBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
-            // 
-            // tBGreenBar
-            // 
-            resources.ApplyResources(this.tBGreenBar, "tBGreenBar");
-            this.tBGreenBar.BackColor = System.Drawing.Color.Green;
-            this.tBGreenBar.Maximum = 255;
-            this.tBGreenBar.Name = "tBGreenBar";
-            this.tBGreenBar.TickFrequency = 25;
-            this.tBGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.tBGreenBar.Value = 255;
-            this.tBGreenBar.ValueChanged += new System.EventHandler(this.MainBar_ValueChanged);
-            this.tBGreenBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.tBGreenBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
-            // 
-            // tBRedBar
-            // 
-            resources.ApplyResources(this.tBRedBar, "tBRedBar");
-            this.tBRedBar.BackColor = System.Drawing.Color.Red;
-            this.tBRedBar.Maximum = 255;
-            this.tBRedBar.Name = "tBRedBar";
-            this.tBRedBar.TickFrequency = 25;
-            this.tBRedBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.tBRedBar.Value = 255;
-            this.tBRedBar.ValueChanged += new System.EventHandler(this.MainBar_ValueChanged);
-            this.tBRedBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.tBRedBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
             // cBLightbyBattery
             // 
@@ -599,26 +568,6 @@
             this.cBLightbyBattery.Name = "cBLightbyBattery";
             this.cBLightbyBattery.UseVisualStyleBackColor = true;
             this.cBLightbyBattery.CheckedChanged += new System.EventHandler(this.ledAsBatteryIndicator_CheckedChanged);
-            // 
-            // lbBlue
-            // 
-            resources.ApplyResources(this.lbBlue, "lbBlue");
-            this.lbBlue.Name = "lbBlue";
-            // 
-            // lbGreen
-            // 
-            resources.ApplyResources(this.lbGreen, "lbGreen");
-            this.lbGreen.Name = "lbGreen";
-            // 
-            // lbspc
-            // 
-            resources.ApplyResources(this.lbspc, "lbspc");
-            this.lbspc.Name = "lbspc";
-            // 
-            // lbRed
-            // 
-            resources.ApplyResources(this.lbRed, "lbRed");
-            this.lbRed.Name = "lbRed";
             // 
             // cBDoubleTap
             // 
@@ -713,11 +662,6 @@
             0});
             this.nUDTouch.ValueChanged += new System.EventHandler(this.numUDTouch_ValueChanged);
             // 
-            // lbButtonMouseSens
-            // 
-            resources.ApplyResources(this.lbButtonMouseSens, "lbButtonMouseSens");
-            this.lbButtonMouseSens.Name = "lbButtonMouseSens";
-            // 
             // cBlowerRCOn
             // 
             resources.ApplyResources(this.cBlowerRCOn, "cBlowerRCOn");
@@ -733,257 +677,6 @@
             this.cBTouchpadJitterCompensation.Name = "cBTouchpadJitterCompensation";
             this.cBTouchpadJitterCompensation.UseVisualStyleBackColor = true;
             this.cBTouchpadJitterCompensation.CheckedChanged += new System.EventHandler(this.touchpadJitterCompensation_CheckedChanged);
-            // 
-            // lbL2
-            // 
-            resources.ApplyResources(this.lbL2, "lbL2");
-            this.lbL2.Name = "lbL2";
-            // 
-            // lbR2
-            // 
-            resources.ApplyResources(this.lbR2, "lbR2");
-            this.lbR2.Name = "lbR2";
-            // 
-            // lbIdleMinutes
-            // 
-            resources.ApplyResources(this.lbIdleMinutes, "lbIdleMinutes");
-            this.lbIdleMinutes.Name = "lbIdleMinutes";
-            // 
-            // nUDIdleDisconnect
-            // 
-            this.nUDIdleDisconnect.DecimalPlaces = 1;
-            resources.ApplyResources(this.nUDIdleDisconnect, "nUDIdleDisconnect");
-            this.nUDIdleDisconnect.Maximum = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
-            this.nUDIdleDisconnect.Name = "nUDIdleDisconnect";
-            this.nUDIdleDisconnect.ValueChanged += new System.EventHandler(this.nUDIdleDisconnect_ValueChanged);
-            // 
-            // nUDR2
-            // 
-            this.nUDR2.DecimalPlaces = 2;
-            this.nUDR2.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDR2, "nUDR2");
-            this.nUDR2.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDR2.Name = "nUDR2";
-            this.nUDR2.ValueChanged += new System.EventHandler(this.numUDR2_ValueChanged);
-            // 
-            // cBFlushHIDQueue
-            // 
-            resources.ApplyResources(this.cBFlushHIDQueue, "cBFlushHIDQueue");
-            this.cBFlushHIDQueue.Name = "cBFlushHIDQueue";
-            this.cBFlushHIDQueue.UseVisualStyleBackColor = true;
-            this.cBFlushHIDQueue.CheckedChanged += new System.EventHandler(this.flushHIDQueue_CheckedChanged);
-            // 
-            // nUDRumbleBoost
-            // 
-            resources.ApplyResources(this.nUDRumbleBoost, "nUDRumbleBoost");
-            this.nUDRumbleBoost.Maximum = new decimal(new int[] {
-            150,
-            0,
-            0,
-            0});
-            this.nUDRumbleBoost.Name = "nUDRumbleBoost";
-            this.nUDRumbleBoost.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.nUDRumbleBoost.ValueChanged += new System.EventHandler(this.rumbleBoostBar_ValueChanged);
-            // 
-            // btnRumbleHeavyTest
-            // 
-            resources.ApplyResources(this.btnRumbleHeavyTest, "btnRumbleHeavyTest");
-            this.btnRumbleHeavyTest.Name = "btnRumbleHeavyTest";
-            this.btnRumbleHeavyTest.UseVisualStyleBackColor = true;
-            this.btnRumbleHeavyTest.Click += new System.EventHandler(this.btnRumbleHeavyTest_Click);
-            // 
-            // lbFull
-            // 
-            resources.ApplyResources(this.lbFull, "lbFull");
-            this.lbFull.Name = "lbFull";
-            // 
-            // lbLowRed
-            // 
-            resources.ApplyResources(this.lbLowRed, "lbLowRed");
-            this.lbLowRed.Name = "lbLowRed";
-            // 
-            // lbLowGreen
-            // 
-            resources.ApplyResources(this.lbLowGreen, "lbLowGreen");
-            this.lbLowGreen.Name = "lbLowGreen";
-            // 
-            // lbLowBlue
-            // 
-            resources.ApplyResources(this.lbLowBlue, "lbLowBlue");
-            this.lbLowBlue.Name = "lbLowBlue";
-            // 
-            // tBLowRedBar
-            // 
-            resources.ApplyResources(this.tBLowRedBar, "tBLowRedBar");
-            this.tBLowRedBar.BackColor = System.Drawing.Color.Red;
-            this.tBLowRedBar.Maximum = 255;
-            this.tBLowRedBar.Name = "tBLowRedBar";
-            this.tBLowRedBar.TickFrequency = 25;
-            this.tBLowRedBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.tBLowRedBar.Value = 255;
-            this.tBLowRedBar.ValueChanged += new System.EventHandler(this.LowBar_ValueChanged);
-            this.tBLowRedBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.tBLowRedBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
-            // 
-            // tBLowGreenBar
-            // 
-            resources.ApplyResources(this.tBLowGreenBar, "tBLowGreenBar");
-            this.tBLowGreenBar.BackColor = System.Drawing.Color.Green;
-            this.tBLowGreenBar.Maximum = 255;
-            this.tBLowGreenBar.Name = "tBLowGreenBar";
-            this.tBLowGreenBar.TickFrequency = 25;
-            this.tBLowGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.tBLowGreenBar.Value = 255;
-            this.tBLowGreenBar.ValueChanged += new System.EventHandler(this.LowBar_ValueChanged);
-            this.tBLowGreenBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.tBLowGreenBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
-            // 
-            // tBLowBlueBar
-            // 
-            resources.ApplyResources(this.tBLowBlueBar, "tBLowBlueBar");
-            this.tBLowBlueBar.BackColor = System.Drawing.Color.Blue;
-            this.tBLowBlueBar.Maximum = 255;
-            this.tBLowBlueBar.Name = "tBLowBlueBar";
-            this.tBLowBlueBar.TickFrequency = 25;
-            this.tBLowBlueBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.tBLowBlueBar.Value = 255;
-            this.tBLowBlueBar.ValueChanged += new System.EventHandler(this.LowBar_ValueChanged);
-            this.tBLowBlueBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.tBLowBlueBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
-            // 
-            // lbEmpty
-            // 
-            resources.ApplyResources(this.lbEmpty, "lbEmpty");
-            this.lbEmpty.Name = "lbEmpty";
-            this.lbEmpty.Click += new System.EventHandler(this.lbEmpty_Click);
-            // 
-            // pnlFull
-            // 
-            this.pnlFull.Controls.Add(this.lbFull);
-            this.pnlFull.Controls.Add(this.lbRed);
-            this.pnlFull.Controls.Add(this.lbGreen);
-            this.pnlFull.Controls.Add(this.lbBlue);
-            this.pnlFull.Controls.Add(this.tBRedBar);
-            this.pnlFull.Controls.Add(this.tBGreenBar);
-            this.pnlFull.Controls.Add(this.tBBlueBar);
-            resources.ApplyResources(this.pnlFull, "pnlFull");
-            this.pnlFull.Name = "pnlFull";
-            // 
-            // pnlLowBattery
-            // 
-            this.pnlLowBattery.Controls.Add(this.lowColorChooserButton);
-            this.pnlLowBattery.Controls.Add(this.lbLowRed);
-            this.pnlLowBattery.Controls.Add(this.lbLowGreen);
-            this.pnlLowBattery.Controls.Add(this.lbLowBlue);
-            this.pnlLowBattery.Controls.Add(this.tBLowRedBar);
-            this.pnlLowBattery.Controls.Add(this.tBLowGreenBar);
-            this.pnlLowBattery.Controls.Add(this.tBLowBlueBar);
-            this.pnlLowBattery.Controls.Add(this.lbEmpty);
-            resources.ApplyResources(this.pnlLowBattery, "pnlLowBattery");
-            this.pnlLowBattery.Name = "pnlLowBattery";
-            // 
-            // lbRS
-            // 
-            resources.ApplyResources(this.lbRS, "lbRS");
-            this.lbRS.Name = "lbRS";
-            // 
-            // lbLS
-            // 
-            resources.ApplyResources(this.lbLS, "lbLS");
-            this.lbLS.Name = "lbLS";
-            // 
-            // nUDRS
-            // 
-            this.nUDRS.DecimalPlaces = 2;
-            this.nUDRS.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDRS, "nUDRS");
-            this.nUDRS.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDRS.Name = "nUDRS";
-            this.nUDRS.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            131072});
-            this.nUDRS.ValueChanged += new System.EventHandler(this.numUDRS_ValueChanged);
-            // 
-            // numUDMouseSens
-            // 
-            resources.ApplyResources(this.numUDMouseSens, "numUDMouseSens");
-            this.numUDMouseSens.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numUDMouseSens.Name = "numUDMouseSens";
-            this.numUDMouseSens.Value = new decimal(new int[] {
-            25,
-            0,
-            0,
-            0});
-            this.numUDMouseSens.ValueChanged += new System.EventHandler(this.numUDMouseSens_ValueChanged);
-            // 
-            // nUDLS
-            // 
-            this.nUDLS.DecimalPlaces = 2;
-            this.nUDLS.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDLS, "nUDLS");
-            this.nUDLS.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDLS.Name = "nUDLS";
-            this.nUDLS.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            131072});
-            this.nUDLS.ValueChanged += new System.EventHandler(this.numUDLS_ValueChanged);
-            // 
-            // nUDL2
-            // 
-            this.nUDL2.DecimalPlaces = 2;
-            this.nUDL2.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDL2, "nUDL2");
-            this.nUDL2.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDL2.Name = "nUDL2";
-            this.nUDL2.ValueChanged += new System.EventHandler(this.numUDL2_ValueChanged);
             // 
             // gBTouchpad
             // 
@@ -1361,351 +1054,6 @@
             resources.ApplyResources(this.lbSwipeRight, "lbSwipeRight");
             this.lbSwipeRight.Name = "lbSwipeRight";
             // 
-            // gBOther
-            // 
-            this.gBOther.BackColor = System.Drawing.SystemColors.Control;
-            this.gBOther.Controls.Add(this.OutContTypeCb);
-            this.gBOther.Controls.Add(this.outcontLb);
-            this.gBOther.Controls.Add(this.btPollRateLabel);
-            this.gBOther.Controls.Add(this.btPollRateComboBox);
-            this.gBOther.Controls.Add(this.enableTouchToggleCheckbox);
-            this.gBOther.Controls.Add(this.cBDinput);
-            this.gBOther.Controls.Add(this.pBProgram);
-            this.gBOther.Controls.Add(this.cBLaunchProgram);
-            this.gBOther.Controls.Add(this.btnBrowse);
-            this.gBOther.Controls.Add(this.lbUseController);
-            this.gBOther.Controls.Add(this.cBMouseAccel);
-            this.gBOther.Controls.Add(this.nUDSixaxis);
-            this.gBOther.Controls.Add(this.cBControllerInput);
-            this.gBOther.Controls.Add(this.nUDIdleDisconnect);
-            this.gBOther.Controls.Add(this.cBIdleDisconnect);
-            this.gBOther.Controls.Add(this.lbButtonMouseSens);
-            this.gBOther.Controls.Add(this.numUDMouseSens);
-            this.gBOther.Controls.Add(this.cBFlushHIDQueue);
-            this.gBOther.Controls.Add(this.lbIdleMinutes);
-            resources.ApplyResources(this.gBOther, "gBOther");
-            this.gBOther.Name = "gBOther";
-            this.gBOther.TabStop = false;
-            // 
-            // OutContTypeCb
-            // 
-            this.OutContTypeCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.OutContTypeCb.FormattingEnabled = true;
-            this.OutContTypeCb.Items.AddRange(new object[] {
-            resources.GetString("OutContTypeCb.Items"),
-            resources.GetString("OutContTypeCb.Items1")});
-            resources.ApplyResources(this.OutContTypeCb, "OutContTypeCb");
-            this.OutContTypeCb.Name = "OutContTypeCb";
-            // 
-            // outcontLb
-            // 
-            resources.ApplyResources(this.outcontLb, "outcontLb");
-            this.outcontLb.Name = "outcontLb";
-            // 
-            // btPollRateLabel
-            // 
-            resources.ApplyResources(this.btPollRateLabel, "btPollRateLabel");
-            this.btPollRateLabel.Name = "btPollRateLabel";
-            // 
-            // btPollRateComboBox
-            // 
-            this.btPollRateComboBox.BackColor = System.Drawing.SystemColors.Window;
-            this.btPollRateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.btPollRateComboBox.FormattingEnabled = true;
-            this.btPollRateComboBox.Items.AddRange(new object[] {
-            resources.GetString("btPollRateComboBox.Items"),
-            resources.GetString("btPollRateComboBox.Items1"),
-            resources.GetString("btPollRateComboBox.Items2"),
-            resources.GetString("btPollRateComboBox.Items3"),
-            resources.GetString("btPollRateComboBox.Items4"),
-            resources.GetString("btPollRateComboBox.Items5"),
-            resources.GetString("btPollRateComboBox.Items6"),
-            resources.GetString("btPollRateComboBox.Items7"),
-            resources.GetString("btPollRateComboBox.Items8"),
-            resources.GetString("btPollRateComboBox.Items9"),
-            resources.GetString("btPollRateComboBox.Items10"),
-            resources.GetString("btPollRateComboBox.Items11"),
-            resources.GetString("btPollRateComboBox.Items12"),
-            resources.GetString("btPollRateComboBox.Items13"),
-            resources.GetString("btPollRateComboBox.Items14"),
-            resources.GetString("btPollRateComboBox.Items15"),
-            resources.GetString("btPollRateComboBox.Items16")});
-            resources.ApplyResources(this.btPollRateComboBox, "btPollRateComboBox");
-            this.btPollRateComboBox.Name = "btPollRateComboBox";
-            this.btPollRateComboBox.SelectedIndexChanged += new System.EventHandler(this.btPollRateComboBox_SelectedIndexChanged);
-            // 
-            // enableTouchToggleCheckbox
-            // 
-            resources.ApplyResources(this.enableTouchToggleCheckbox, "enableTouchToggleCheckbox");
-            this.enableTouchToggleCheckbox.Name = "enableTouchToggleCheckbox";
-            this.enableTouchToggleCheckbox.UseVisualStyleBackColor = true;
-            this.enableTouchToggleCheckbox.CheckedChanged += new System.EventHandler(this.enableTouchToggleCheckbox_CheckedChanged);
-            // 
-            // cBDinput
-            // 
-            resources.ApplyResources(this.cBDinput, "cBDinput");
-            this.cBDinput.Name = "cBDinput";
-            this.cBDinput.UseVisualStyleBackColor = true;
-            this.cBDinput.CheckedChanged += new System.EventHandler(this.CBDinput_CheckedChanged);
-            // 
-            // pBProgram
-            // 
-            resources.ApplyResources(this.pBProgram, "pBProgram");
-            this.pBProgram.Name = "pBProgram";
-            this.pBProgram.TabStop = false;
-            // 
-            // cBLaunchProgram
-            // 
-            resources.ApplyResources(this.cBLaunchProgram, "cBLaunchProgram");
-            this.cBLaunchProgram.Name = "cBLaunchProgram";
-            this.cBLaunchProgram.UseVisualStyleBackColor = true;
-            this.cBLaunchProgram.CheckedChanged += new System.EventHandler(this.cBLaunchProgram_CheckedChanged);
-            // 
-            // btnBrowse
-            // 
-            resources.ApplyResources(this.btnBrowse, "btnBrowse");
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.UseVisualStyleBackColor = true;
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
-            // 
-            // lbUseController
-            // 
-            resources.ApplyResources(this.lbUseController, "lbUseController");
-            this.lbUseController.Name = "lbUseController";
-            // 
-            // cBMouseAccel
-            // 
-            resources.ApplyResources(this.cBMouseAccel, "cBMouseAccel");
-            this.cBMouseAccel.Name = "cBMouseAccel";
-            this.cBMouseAccel.UseVisualStyleBackColor = true;
-            this.cBMouseAccel.CheckedChanged += new System.EventHandler(this.cBMouseAccel_CheckedChanged);
-            // 
-            // nUDSixaxis
-            // 
-            resources.ApplyResources(this.nUDSixaxis, "nUDSixaxis");
-            this.nUDSixaxis.Maximum = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            this.nUDSixaxis.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDSixaxis.Name = "nUDSixaxis";
-            this.nUDSixaxis.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // cBControllerInput
-            // 
-            resources.ApplyResources(this.cBControllerInput, "cBControllerInput");
-            this.cBControllerInput.Checked = true;
-            this.cBControllerInput.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBControllerInput.Name = "cBControllerInput";
-            this.cBControllerInput.UseVisualStyleBackColor = true;
-            this.cBControllerInput.CheckedChanged += new System.EventHandler(this.cBControllerInput_CheckedChanged);
-            // 
-            // cBIdleDisconnect
-            // 
-            resources.ApplyResources(this.cBIdleDisconnect, "cBIdleDisconnect");
-            this.cBIdleDisconnect.Checked = true;
-            this.cBIdleDisconnect.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBIdleDisconnect.Name = "cBIdleDisconnect";
-            this.cBIdleDisconnect.UseVisualStyleBackColor = true;
-            this.cBIdleDisconnect.CheckedChanged += new System.EventHandler(this.cBIdleDisconnect_CheckedChanged);
-            // 
-            // gBLightbar
-            // 
-            this.gBLightbar.BackColor = System.Drawing.SystemColors.Control;
-            this.gBLightbar.Controls.Add(this.btnRainbow);
-            this.gBLightbar.Controls.Add(this.lbRainbowB);
-            this.gBLightbar.Controls.Add(this.nUDRainbowB);
-            this.gBLightbar.Controls.Add(this.cBFlashType);
-            this.gBLightbar.Controls.Add(this.cBWhileCharging);
-            this.gBLightbar.Controls.Add(this.btnFlashColor);
-            this.gBLightbar.Controls.Add(this.btnChargingColor);
-            this.gBLightbar.Controls.Add(this.lbWhileCharging);
-            this.gBLightbar.Controls.Add(this.lbPercentFlashBar);
-            this.gBLightbar.Controls.Add(this.nUDflashLED);
-            this.gBLightbar.Controls.Add(this.nUDRainbow);
-            this.gBLightbar.Controls.Add(this.lbspc);
-            this.gBLightbar.Controls.Add(this.cBLightbyBattery);
-            this.gBLightbar.Controls.Add(this.pnlLowBattery);
-            this.gBLightbar.Controls.Add(this.pnlFull);
-            resources.ApplyResources(this.gBLightbar, "gBLightbar");
-            this.gBLightbar.Name = "gBLightbar";
-            this.gBLightbar.TabStop = false;
-            // 
-            // btnRainbow
-            // 
-            this.btnRainbow.Image = global::DS4Windows.Properties.Resources.rainbow;
-            resources.ApplyResources(this.btnRainbow, "btnRainbow");
-            this.btnRainbow.Name = "btnRainbow";
-            this.btnRainbow.UseVisualStyleBackColor = true;
-            this.btnRainbow.Click += new System.EventHandler(this.btnRainbow_Click);
-            // 
-            // lbRainbowB
-            // 
-            resources.ApplyResources(this.lbRainbowB, "lbRainbowB");
-            this.lbRainbowB.Name = "lbRainbowB";
-            // 
-            // nUDRainbowB
-            // 
-            resources.ApplyResources(this.nUDRainbowB, "nUDRainbowB");
-            this.nUDRainbowB.Maximum = new decimal(new int[] {
-            150,
-            0,
-            0,
-            0});
-            this.nUDRainbowB.Name = "nUDRainbowB";
-            this.nUDRainbowB.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // cBFlashType
-            // 
-            this.cBFlashType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBFlashType.FormattingEnabled = true;
-            this.cBFlashType.Items.AddRange(new object[] {
-            resources.GetString("cBFlashType.Items"),
-            resources.GetString("cBFlashType.Items1")});
-            resources.ApplyResources(this.cBFlashType, "cBFlashType");
-            this.cBFlashType.Name = "cBFlashType";
-            this.cBFlashType.SelectedIndexChanged += new System.EventHandler(this.cBFlashType_SelectedIndexChanged);
-            // 
-            // cBWhileCharging
-            // 
-            this.cBWhileCharging.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBWhileCharging.FormattingEnabled = true;
-            this.cBWhileCharging.Items.AddRange(new object[] {
-            resources.GetString("cBWhileCharging.Items"),
-            resources.GetString("cBWhileCharging.Items1"),
-            resources.GetString("cBWhileCharging.Items2"),
-            resources.GetString("cBWhileCharging.Items3")});
-            resources.ApplyResources(this.cBWhileCharging, "cBWhileCharging");
-            this.cBWhileCharging.Name = "cBWhileCharging";
-            this.cBWhileCharging.SelectedIndexChanged += new System.EventHandler(this.cBWhileCharging_SelectedIndexChanged);
-            // 
-            // btnFlashColor
-            // 
-            this.btnFlashColor.BackColor = System.Drawing.Color.White;
-            resources.ApplyResources(this.btnFlashColor, "btnFlashColor");
-            this.btnFlashColor.Name = "btnFlashColor";
-            this.btnFlashColor.UseVisualStyleBackColor = false;
-            this.btnFlashColor.Click += new System.EventHandler(this.btnFlashColor_Click);
-            // 
-            // btnChargingColor
-            // 
-            this.btnChargingColor.BackColor = System.Drawing.Color.White;
-            resources.ApplyResources(this.btnChargingColor, "btnChargingColor");
-            this.btnChargingColor.Name = "btnChargingColor";
-            this.btnChargingColor.UseVisualStyleBackColor = false;
-            this.btnChargingColor.Click += new System.EventHandler(this.btnChargingColor_Click);
-            // 
-            // lbWhileCharging
-            // 
-            resources.ApplyResources(this.lbWhileCharging, "lbWhileCharging");
-            this.lbWhileCharging.Name = "lbWhileCharging";
-            // 
-            // lbPercentFlashBar
-            // 
-            resources.ApplyResources(this.lbPercentFlashBar, "lbPercentFlashBar");
-            this.lbPercentFlashBar.Name = "lbPercentFlashBar";
-            // 
-            // nUDflashLED
-            // 
-            this.nUDflashLED.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDflashLED, "nUDflashLED");
-            this.nUDflashLED.Name = "nUDflashLED";
-            this.nUDflashLED.ValueChanged += new System.EventHandler(this.nUDflashLED_ValueChanged);
-            // 
-            // gBRumble
-            // 
-            this.gBRumble.BackColor = System.Drawing.SystemColors.Control;
-            this.gBRumble.Controls.Add(this.lbPercentRumble);
-            this.gBRumble.Controls.Add(this.btnRumbleLightTest);
-            this.gBRumble.Controls.Add(this.btnRumbleHeavyTest);
-            this.gBRumble.Controls.Add(this.nUDRumbleBoost);
-            resources.ApplyResources(this.gBRumble, "gBRumble");
-            this.gBRumble.Name = "gBRumble";
-            this.gBRumble.TabStop = false;
-            // 
-            // lbPercentRumble
-            // 
-            resources.ApplyResources(this.lbPercentRumble, "lbPercentRumble");
-            this.lbPercentRumble.Name = "lbPercentRumble";
-            // 
-            // btnRumbleLightTest
-            // 
-            resources.ApplyResources(this.btnRumbleLightTest, "btnRumbleLightTest");
-            this.btnRumbleLightTest.Name = "btnRumbleLightTest";
-            this.btnRumbleLightTest.UseVisualStyleBackColor = true;
-            this.btnRumbleLightTest.Click += new System.EventHandler(this.btnRumbleLightTest_Click);
-            // 
-            // lbSixaxisX
-            // 
-            resources.ApplyResources(this.lbSixaxisX, "lbSixaxisX");
-            this.lbSixaxisX.Name = "lbSixaxisX";
-            // 
-            // lbSixaxisZ
-            // 
-            resources.ApplyResources(this.lbSixaxisZ, "lbSixaxisZ");
-            this.lbSixaxisZ.Name = "lbSixaxisZ";
-            // 
-            // nUDSZ
-            // 
-            this.nUDSZ.DecimalPlaces = 2;
-            this.nUDSZ.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDSZ, "nUDSZ");
-            this.nUDSZ.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDSZ.Name = "nUDSZ";
-            this.nUDSZ.Value = new decimal(new int[] {
-            25,
-            0,
-            0,
-            131072});
-            this.nUDSZ.ValueChanged += new System.EventHandler(this.nUDSZ_ValueChanged);
-            // 
-            // nUDSX
-            // 
-            this.nUDSX.DecimalPlaces = 2;
-            this.nUDSX.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDSX, "nUDSX");
-            this.nUDSX.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDSX.Name = "nUDSX";
-            this.nUDSX.Value = new decimal(new int[] {
-            25,
-            0,
-            0,
-            131072});
-            this.nUDSX.ValueChanged += new System.EventHandler(this.nUDSX_ValueChanged);
-            // 
             // lbL2TrackS
             // 
             this.lbL2TrackS.BackColor = System.Drawing.Color.Transparent;
@@ -1923,375 +1271,6 @@
             resources.ApplyResources(this.btnRSTrack, "btnRSTrack");
             this.btnRSTrack.Name = "btnRSTrack";
             this.btnRSTrack.UseVisualStyleBackColor = false;
-            // 
-            // fLPTiltControls
-            // 
-            this.fLPTiltControls.Controls.Add(this.bnGyroZN);
-            this.fLPTiltControls.Controls.Add(this.lbGyroZN);
-            this.fLPTiltControls.Controls.Add(this.bnGyroZP);
-            this.fLPTiltControls.Controls.Add(this.lbGyroZP);
-            this.fLPTiltControls.Controls.Add(this.bnGyroXP);
-            this.fLPTiltControls.Controls.Add(this.lbGyroXP);
-            this.fLPTiltControls.Controls.Add(this.bnGyroXN);
-            this.fLPTiltControls.Controls.Add(this.lbGyroXN);
-            this.fLPTiltControls.Controls.Add(this.lblSteeringWheelEmulationAxis);
-            this.fLPTiltControls.Controls.Add(this.cBSteeringWheelEmulationAxis);
-            this.fLPTiltControls.Controls.Add(this.lblSteeringWheelEmulationRange);
-            this.fLPTiltControls.Controls.Add(this.cBSteeringWheelEmulationRange);
-            this.fLPTiltControls.Controls.Add(this.btnSteeringWheelEmulationCalibrate);
-            resources.ApplyResources(this.fLPTiltControls, "fLPTiltControls");
-            this.fLPTiltControls.Name = "fLPTiltControls";
-            // 
-            // bnGyroZN
-            // 
-            this.bnGyroZN.ContextMenuStrip = this.cMSPresets;
-            resources.ApplyResources(this.bnGyroZN, "bnGyroZN");
-            this.bnGyroZN.Name = "bnGyroZN";
-            this.bnGyroZN.UseVisualStyleBackColor = true;
-            this.bnGyroZN.Click += new System.EventHandler(this.Show_ControlsBn);
-            // 
-            // lbGyroZN
-            // 
-            resources.ApplyResources(this.lbGyroZN, "lbGyroZN");
-            this.lbGyroZN.Name = "lbGyroZN";
-            // 
-            // bnGyroZP
-            // 
-            this.bnGyroZP.ContextMenuStrip = this.cMSPresets;
-            resources.ApplyResources(this.bnGyroZP, "bnGyroZP");
-            this.bnGyroZP.Name = "bnGyroZP";
-            this.bnGyroZP.UseVisualStyleBackColor = true;
-            this.bnGyroZP.Click += new System.EventHandler(this.Show_ControlsBn);
-            // 
-            // lbGyroZP
-            // 
-            resources.ApplyResources(this.lbGyroZP, "lbGyroZP");
-            this.lbGyroZP.Name = "lbGyroZP";
-            // 
-            // bnGyroXP
-            // 
-            this.bnGyroXP.ContextMenuStrip = this.cMSPresets;
-            resources.ApplyResources(this.bnGyroXP, "bnGyroXP");
-            this.bnGyroXP.Name = "bnGyroXP";
-            this.bnGyroXP.UseVisualStyleBackColor = true;
-            this.bnGyroXP.Click += new System.EventHandler(this.Show_ControlsBn);
-            // 
-            // lbGyroXP
-            // 
-            resources.ApplyResources(this.lbGyroXP, "lbGyroXP");
-            this.lbGyroXP.Name = "lbGyroXP";
-            // 
-            // bnGyroXN
-            // 
-            this.bnGyroXN.ContextMenuStrip = this.cMSPresets;
-            resources.ApplyResources(this.bnGyroXN, "bnGyroXN");
-            this.bnGyroXN.Name = "bnGyroXN";
-            this.bnGyroXN.UseVisualStyleBackColor = true;
-            this.bnGyroXN.Click += new System.EventHandler(this.Show_ControlsBn);
-            // 
-            // lbGyroXN
-            // 
-            resources.ApplyResources(this.lbGyroXN, "lbGyroXN");
-            this.lbGyroXN.Name = "lbGyroXN";
-            // 
-            // lblSteeringWheelEmulationAxis
-            // 
-            resources.ApplyResources(this.lblSteeringWheelEmulationAxis, "lblSteeringWheelEmulationAxis");
-            this.lblSteeringWheelEmulationAxis.Name = "lblSteeringWheelEmulationAxis";
-            // 
-            // cBSteeringWheelEmulationAxis
-            // 
-            this.cBSteeringWheelEmulationAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBSteeringWheelEmulationAxis.FormattingEnabled = true;
-            this.cBSteeringWheelEmulationAxis.Items.AddRange(new object[] {
-            resources.GetString("cBSteeringWheelEmulationAxis.Items"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items1"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items2"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items3"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items4"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items5"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items6"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items7"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items8"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items9"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items10"),
-            resources.GetString("cBSteeringWheelEmulationAxis.Items11")});
-            resources.ApplyResources(this.cBSteeringWheelEmulationAxis, "cBSteeringWheelEmulationAxis");
-            this.cBSteeringWheelEmulationAxis.Name = "cBSteeringWheelEmulationAxis";
-            this.cBSteeringWheelEmulationAxis.SelectedIndexChanged += new System.EventHandler(this.cBSteeringWheelEmulationAxis_SelectedIndexChanged);
-            // 
-            // lblSteeringWheelEmulationRange
-            // 
-            resources.ApplyResources(this.lblSteeringWheelEmulationRange, "lblSteeringWheelEmulationRange");
-            this.lblSteeringWheelEmulationRange.Name = "lblSteeringWheelEmulationRange";
-            // 
-            // cBSteeringWheelEmulationRange
-            // 
-            this.cBSteeringWheelEmulationRange.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBSteeringWheelEmulationRange.FormattingEnabled = true;
-            this.cBSteeringWheelEmulationRange.Items.AddRange(new object[] {
-            resources.GetString("cBSteeringWheelEmulationRange.Items"),
-            resources.GetString("cBSteeringWheelEmulationRange.Items1"),
-            resources.GetString("cBSteeringWheelEmulationRange.Items2"),
-            resources.GetString("cBSteeringWheelEmulationRange.Items3"),
-            resources.GetString("cBSteeringWheelEmulationRange.Items4"),
-            resources.GetString("cBSteeringWheelEmulationRange.Items5"),
-            resources.GetString("cBSteeringWheelEmulationRange.Items6"),
-            resources.GetString("cBSteeringWheelEmulationRange.Items7"),
-            resources.GetString("cBSteeringWheelEmulationRange.Items8")});
-            resources.ApplyResources(this.cBSteeringWheelEmulationRange, "cBSteeringWheelEmulationRange");
-            this.cBSteeringWheelEmulationRange.Name = "cBSteeringWheelEmulationRange";
-            this.cBSteeringWheelEmulationRange.SelectedIndexChanged += new System.EventHandler(this.cBSteeringWheelEmulationRange_SelectedIndexChanged);
-            // 
-            // btnSteeringWheelEmulationCalibrate
-            // 
-            resources.ApplyResources(this.btnSteeringWheelEmulationCalibrate, "btnSteeringWheelEmulationCalibrate");
-            this.btnSteeringWheelEmulationCalibrate.Name = "btnSteeringWheelEmulationCalibrate";
-            this.btnSteeringWheelEmulationCalibrate.UseVisualStyleBackColor = true;
-            this.btnSteeringWheelEmulationCalibrate.Click += new System.EventHandler(this.btnSteeringWheelEmulationCalibrate_Click);
-            // 
-            // gyroMouseJoyFLP
-            // 
-            this.gyroMouseJoyFLP.Controls.Add(this.label36);
-            this.gyroMouseJoyFLP.Controls.Add(this.btnGyroMStickTrig);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickTrigBehaveCk);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickToggleCk);
-            this.gyroMouseJoyFLP.Controls.Add(this.label29);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickDZ);
-            this.gyroMouseJoyFLP.Controls.Add(this.label30);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickMaxZ);
-            this.gyroMouseJoyFLP.Controls.Add(this.label31);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickAntiDeadX);
-            this.gyroMouseJoyFLP.Controls.Add(this.label32);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickAntiDeadY);
-            this.gyroMouseJoyFLP.Controls.Add(this.label37);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickVertScaleNUD);
-            this.gyroMouseJoyFLP.Controls.Add(this.label38);
-            this.gyroMouseJoyFLP.Controls.Add(this.label35);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickEvalCombo);
-            this.gyroMouseJoyFLP.Controls.Add(this.label33);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMousestickXAxisCom);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickInvertXCk);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickInvertYCk);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickUseSmoothCk);
-            this.gyroMouseJoyFLP.Controls.Add(this.label39);
-            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickSmoothWeightNUD);
-            resources.ApplyResources(this.gyroMouseJoyFLP, "gyroMouseJoyFLP");
-            this.gyroMouseJoyFLP.Name = "gyroMouseJoyFLP";
-            // 
-            // label36
-            // 
-            resources.ApplyResources(this.label36, "label36");
-            this.label36.Name = "label36";
-            // 
-            // btnGyroMStickTrig
-            // 
-            resources.ApplyResources(this.btnGyroMStickTrig, "btnGyroMStickTrig");
-            this.btnGyroMStickTrig.Name = "btnGyroMStickTrig";
-            this.btnGyroMStickTrig.UseVisualStyleBackColor = true;
-            this.btnGyroMStickTrig.Click += new System.EventHandler(this.BtnGyroMStickTrig_Click);
-            // 
-            // gyroMStickTrigBehaveCk
-            // 
-            this.gyroMStickTrigBehaveCk.Checked = true;
-            this.gyroMStickTrigBehaveCk.CheckState = System.Windows.Forms.CheckState.Checked;
-            resources.ApplyResources(this.gyroMStickTrigBehaveCk, "gyroMStickTrigBehaveCk");
-            this.gyroMStickTrigBehaveCk.Name = "gyroMStickTrigBehaveCk";
-            this.gyroMStickTrigBehaveCk.UseVisualStyleBackColor = true;
-            this.gyroMStickTrigBehaveCk.CheckedChanged += new System.EventHandler(this.GyroMStickTrigBehaveCk_CheckedChanged);
-            // 
-            // gyroMStickToggleCk
-            // 
-            resources.ApplyResources(this.gyroMStickToggleCk, "gyroMStickToggleCk");
-            this.gyroMStickToggleCk.Name = "gyroMStickToggleCk";
-            this.gyroMStickToggleCk.UseVisualStyleBackColor = true;
-            this.gyroMStickToggleCk.CheckedChanged += new System.EventHandler(this.GyroMStickToggleCk_CheckedChanged);
-            // 
-            // label29
-            // 
-            resources.ApplyResources(this.label29, "label29");
-            this.label29.Name = "label29";
-            // 
-            // gyroMouseStickDZ
-            // 
-            resources.ApplyResources(this.gyroMouseStickDZ, "gyroMouseStickDZ");
-            this.gyroMouseStickDZ.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.gyroMouseStickDZ.Name = "gyroMouseStickDZ";
-            this.gyroMouseStickDZ.Value = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.gyroMouseStickDZ.ValueChanged += new System.EventHandler(this.GyroMouseStickDZ_ValueChanged);
-            // 
-            // label30
-            // 
-            resources.ApplyResources(this.label30, "label30");
-            this.label30.Name = "label30";
-            // 
-            // gyroMouseStickMaxZ
-            // 
-            resources.ApplyResources(this.gyroMouseStickMaxZ, "gyroMouseStickMaxZ");
-            this.gyroMouseStickMaxZ.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.gyroMouseStickMaxZ.Name = "gyroMouseStickMaxZ";
-            this.gyroMouseStickMaxZ.Value = new decimal(new int[] {
-            830,
-            0,
-            0,
-            0});
-            this.gyroMouseStickMaxZ.ValueChanged += new System.EventHandler(this.GyroMouseStickMaxZ_ValueChanged);
-            // 
-            // label31
-            // 
-            resources.ApplyResources(this.label31, "label31");
-            this.label31.Name = "label31";
-            // 
-            // gyroMouseStickAntiDeadX
-            // 
-            this.gyroMouseStickAntiDeadX.DecimalPlaces = 2;
-            resources.ApplyResources(this.gyroMouseStickAntiDeadX, "gyroMouseStickAntiDeadX");
-            this.gyroMouseStickAntiDeadX.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.gyroMouseStickAntiDeadX.Name = "gyroMouseStickAntiDeadX";
-            this.gyroMouseStickAntiDeadX.Value = new decimal(new int[] {
-            35,
-            0,
-            0,
-            131072});
-            this.gyroMouseStickAntiDeadX.ValueChanged += new System.EventHandler(this.GyroMouseStickAntiDeadX_ValueChanged);
-            // 
-            // label32
-            // 
-            resources.ApplyResources(this.label32, "label32");
-            this.label32.Name = "label32";
-            // 
-            // gyroMouseStickAntiDeadY
-            // 
-            this.gyroMouseStickAntiDeadY.DecimalPlaces = 2;
-            resources.ApplyResources(this.gyroMouseStickAntiDeadY, "gyroMouseStickAntiDeadY");
-            this.gyroMouseStickAntiDeadY.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.gyroMouseStickAntiDeadY.Name = "gyroMouseStickAntiDeadY";
-            this.gyroMouseStickAntiDeadY.Value = new decimal(new int[] {
-            35,
-            0,
-            0,
-            131072});
-            this.gyroMouseStickAntiDeadY.ValueChanged += new System.EventHandler(this.GyroMouseSStickAntiDeadY_ValueChanged);
-            // 
-            // label37
-            // 
-            resources.ApplyResources(this.label37, "label37");
-            this.label37.Name = "label37";
-            // 
-            // gyroMStickVertScaleNUD
-            // 
-            resources.ApplyResources(this.gyroMStickVertScaleNUD, "gyroMStickVertScaleNUD");
-            this.gyroMStickVertScaleNUD.Maximum = new decimal(new int[] {
-            400,
-            0,
-            0,
-            0});
-            this.gyroMStickVertScaleNUD.Name = "gyroMStickVertScaleNUD";
-            this.gyroMStickVertScaleNUD.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.gyroMStickVertScaleNUD.ValueChanged += new System.EventHandler(this.GyroMStickVertScaleNUD_ValueChanged);
-            // 
-            // label38
-            // 
-            resources.ApplyResources(this.label38, "label38");
-            this.label38.Name = "label38";
-            // 
-            // label35
-            // 
-            resources.ApplyResources(this.label35, "label35");
-            this.label35.Name = "label35";
-            // 
-            // gyroMouseStickEvalCombo
-            // 
-            this.gyroMouseStickEvalCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.gyroMouseStickEvalCombo.FormattingEnabled = true;
-            this.gyroMouseStickEvalCombo.Items.AddRange(new object[] {
-            resources.GetString("gyroMouseStickEvalCombo.Items"),
-            resources.GetString("gyroMouseStickEvalCombo.Items1")});
-            resources.ApplyResources(this.gyroMouseStickEvalCombo, "gyroMouseStickEvalCombo");
-            this.gyroMouseStickEvalCombo.Name = "gyroMouseStickEvalCombo";
-            this.gyroMouseStickEvalCombo.SelectedIndexChanged += new System.EventHandler(this.GyroMouseStickEvalCombo_SelectedIndexChanged);
-            // 
-            // label33
-            // 
-            resources.ApplyResources(this.label33, "label33");
-            this.label33.Name = "label33";
-            // 
-            // gyroMousestickXAxisCom
-            // 
-            this.gyroMousestickXAxisCom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.gyroMousestickXAxisCom.FormattingEnabled = true;
-            this.gyroMousestickXAxisCom.Items.AddRange(new object[] {
-            resources.GetString("gyroMousestickXAxisCom.Items"),
-            resources.GetString("gyroMousestickXAxisCom.Items1")});
-            resources.ApplyResources(this.gyroMousestickXAxisCom, "gyroMousestickXAxisCom");
-            this.gyroMousestickXAxisCom.Name = "gyroMousestickXAxisCom";
-            // 
-            // gyroMouseStickInvertXCk
-            // 
-            resources.ApplyResources(this.gyroMouseStickInvertXCk, "gyroMouseStickInvertXCk");
-            this.gyroMouseStickInvertXCk.Name = "gyroMouseStickInvertXCk";
-            this.gyroMouseStickInvertXCk.UseVisualStyleBackColor = true;
-            this.gyroMouseStickInvertXCk.CheckedChanged += new System.EventHandler(this.GyroMouseStickInvert_CheckedChanged);
-            // 
-            // gyroMouseStickInvertYCk
-            // 
-            resources.ApplyResources(this.gyroMouseStickInvertYCk, "gyroMouseStickInvertYCk");
-            this.gyroMouseStickInvertYCk.Name = "gyroMouseStickInvertYCk";
-            this.gyroMouseStickInvertYCk.UseVisualStyleBackColor = true;
-            this.gyroMouseStickInvertYCk.CheckedChanged += new System.EventHandler(this.GyroMouseStickInvert_CheckedChanged);
-            // 
-            // gyroMStickUseSmoothCk
-            // 
-            resources.ApplyResources(this.gyroMStickUseSmoothCk, "gyroMStickUseSmoothCk");
-            this.gyroMStickUseSmoothCk.Name = "gyroMStickUseSmoothCk";
-            this.gyroMStickUseSmoothCk.UseVisualStyleBackColor = true;
-            this.gyroMStickUseSmoothCk.CheckedChanged += new System.EventHandler(this.GyroMStickUseSmoothCk_CheckedChanged);
-            // 
-            // label39
-            // 
-            resources.ApplyResources(this.label39, "label39");
-            this.label39.Name = "label39";
-            // 
-            // gyroMStickSmoothWeightNUD
-            // 
-            this.gyroMStickSmoothWeightNUD.DecimalPlaces = 3;
-            resources.ApplyResources(this.gyroMStickSmoothWeightNUD, "gyroMStickSmoothWeightNUD");
-            this.gyroMStickSmoothWeightNUD.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.gyroMStickSmoothWeightNUD.Name = "gyroMStickSmoothWeightNUD";
-            this.gyroMStickSmoothWeightNUD.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.gyroMStickSmoothWeightNUD.ValueChanged += new System.EventHandler(this.GyroMStickSmoothWeightNUD_ValueChanged);
             // 
             // tCControls
             // 
@@ -3133,1170 +2112,6 @@
             resources.ApplyResources(this.lbActionsTip, "lbActionsTip");
             this.lbActionsTip.Name = "lbActionsTip";
             // 
-            // tCSens
-            // 
-            this.tCSens.Controls.Add(this.tPDeadzone);
-            this.tCSens.Controls.Add(this.antiDeadzoneTabPage);
-            this.tCSens.Controls.Add(this.maxZoneTabPage);
-            this.tCSens.Controls.Add(this.squStickTabPage);
-            this.tCSens.Controls.Add(this.tPOutCurve);
-            this.tCSens.Controls.Add(this.tPCurve);
-            this.tCSens.Controls.Add(this.tpRotation);
-            resources.ApplyResources(this.tCSens, "tCSens");
-            this.tCSens.Name = "tCSens";
-            this.tCSens.SelectedIndex = 0;
-            // 
-            // tPDeadzone
-            // 
-            this.tPDeadzone.BackColor = System.Drawing.SystemColors.Control;
-            this.tPDeadzone.Controls.Add(this.lbL2);
-            this.tPDeadzone.Controls.Add(this.nUDL2);
-            this.tPDeadzone.Controls.Add(this.nUDLS);
-            this.tPDeadzone.Controls.Add(this.lbSixaxisX);
-            this.tPDeadzone.Controls.Add(this.nUDR2);
-            this.tPDeadzone.Controls.Add(this.lbSixaxisZ);
-            this.tPDeadzone.Controls.Add(this.nUDRS);
-            this.tPDeadzone.Controls.Add(this.lbR2);
-            this.tPDeadzone.Controls.Add(this.nUDSX);
-            this.tPDeadzone.Controls.Add(this.lbRS);
-            this.tPDeadzone.Controls.Add(this.lbLS);
-            this.tPDeadzone.Controls.Add(this.nUDSZ);
-            resources.ApplyResources(this.tPDeadzone, "tPDeadzone");
-            this.tPDeadzone.Name = "tPDeadzone";
-            // 
-            // antiDeadzoneTabPage
-            // 
-            this.antiDeadzoneTabPage.BackColor = System.Drawing.SystemColors.Control;
-            this.antiDeadzoneTabPage.Controls.Add(this.nUDSixaxisZAntiDead);
-            this.antiDeadzoneTabPage.Controls.Add(this.nUDSixaxisXAntiDead);
-            this.antiDeadzoneTabPage.Controls.Add(this.label20);
-            this.antiDeadzoneTabPage.Controls.Add(this.label19);
-            this.antiDeadzoneTabPage.Controls.Add(this.nUDR2AntiDead);
-            this.antiDeadzoneTabPage.Controls.Add(this.label3);
-            this.antiDeadzoneTabPage.Controls.Add(this.nUDL2AntiDead);
-            this.antiDeadzoneTabPage.Controls.Add(this.label4);
-            this.antiDeadzoneTabPage.Controls.Add(this.nUDRSAntiDead);
-            this.antiDeadzoneTabPage.Controls.Add(this.label2);
-            this.antiDeadzoneTabPage.Controls.Add(this.nUDLSAntiDead);
-            this.antiDeadzoneTabPage.Controls.Add(this.label1);
-            resources.ApplyResources(this.antiDeadzoneTabPage, "antiDeadzoneTabPage");
-            this.antiDeadzoneTabPage.Name = "antiDeadzoneTabPage";
-            // 
-            // nUDSixaxisZAntiDead
-            // 
-            this.nUDSixaxisZAntiDead.DecimalPlaces = 2;
-            this.nUDSixaxisZAntiDead.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDSixaxisZAntiDead, "nUDSixaxisZAntiDead");
-            this.nUDSixaxisZAntiDead.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDSixaxisZAntiDead.Name = "nUDSixaxisZAntiDead";
-            this.nUDSixaxisZAntiDead.ValueChanged += new System.EventHandler(this.nUDSixaxisZAntiDead_ValueChanged);
-            // 
-            // nUDSixaxisXAntiDead
-            // 
-            this.nUDSixaxisXAntiDead.DecimalPlaces = 2;
-            this.nUDSixaxisXAntiDead.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDSixaxisXAntiDead, "nUDSixaxisXAntiDead");
-            this.nUDSixaxisXAntiDead.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDSixaxisXAntiDead.Name = "nUDSixaxisXAntiDead";
-            this.nUDSixaxisXAntiDead.ValueChanged += new System.EventHandler(this.nUDSixaxisXAntiDead_ValueChanged);
-            // 
-            // label20
-            // 
-            resources.ApplyResources(this.label20, "label20");
-            this.label20.Name = "label20";
-            // 
-            // label19
-            // 
-            resources.ApplyResources(this.label19, "label19");
-            this.label19.Name = "label19";
-            // 
-            // nUDR2AntiDead
-            // 
-            this.nUDR2AntiDead.DecimalPlaces = 2;
-            this.nUDR2AntiDead.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDR2AntiDead, "nUDR2AntiDead");
-            this.nUDR2AntiDead.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDR2AntiDead.Name = "nUDR2AntiDead";
-            this.nUDR2AntiDead.ValueChanged += new System.EventHandler(this.nUDR2AntiDead_ValueChanged);
-            // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
-            // 
-            // nUDL2AntiDead
-            // 
-            this.nUDL2AntiDead.DecimalPlaces = 2;
-            this.nUDL2AntiDead.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDL2AntiDead, "nUDL2AntiDead");
-            this.nUDL2AntiDead.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDL2AntiDead.Name = "nUDL2AntiDead";
-            this.nUDL2AntiDead.ValueChanged += new System.EventHandler(this.nUDL2AntiDead_ValueChanged);
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
-            // 
-            // nUDRSAntiDead
-            // 
-            this.nUDRSAntiDead.DecimalPlaces = 2;
-            this.nUDRSAntiDead.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDRSAntiDead, "nUDRSAntiDead");
-            this.nUDRSAntiDead.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDRSAntiDead.Name = "nUDRSAntiDead";
-            this.nUDRSAntiDead.Value = new decimal(new int[] {
-            20,
-            0,
-            0,
-            131072});
-            this.nUDRSAntiDead.ValueChanged += new System.EventHandler(this.nUDRSAntiDead_ValueChanged);
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            // 
-            // nUDLSAntiDead
-            // 
-            this.nUDLSAntiDead.DecimalPlaces = 2;
-            this.nUDLSAntiDead.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDLSAntiDead, "nUDLSAntiDead");
-            this.nUDLSAntiDead.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDLSAntiDead.Name = "nUDLSAntiDead";
-            this.nUDLSAntiDead.Value = new decimal(new int[] {
-            20,
-            0,
-            0,
-            131072});
-            this.nUDLSAntiDead.ValueChanged += new System.EventHandler(this.nUDLSAntiDead_ValueChanged);
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // maxZoneTabPage
-            // 
-            this.maxZoneTabPage.BackColor = System.Drawing.SystemColors.Control;
-            this.maxZoneTabPage.Controls.Add(this.nUDSixAxisZMaxZone);
-            this.maxZoneTabPage.Controls.Add(this.nUDSixAxisXMaxZone);
-            this.maxZoneTabPage.Controls.Add(this.label18);
-            this.maxZoneTabPage.Controls.Add(this.label17);
-            this.maxZoneTabPage.Controls.Add(this.nUDR2Maxzone);
-            this.maxZoneTabPage.Controls.Add(this.nUDL2Maxzone);
-            this.maxZoneTabPage.Controls.Add(this.label8);
-            this.maxZoneTabPage.Controls.Add(this.label7);
-            this.maxZoneTabPage.Controls.Add(this.nUDRSMaxZone);
-            this.maxZoneTabPage.Controls.Add(this.label6);
-            this.maxZoneTabPage.Controls.Add(this.nUDLSMaxZone);
-            this.maxZoneTabPage.Controls.Add(this.label5);
-            resources.ApplyResources(this.maxZoneTabPage, "maxZoneTabPage");
-            this.maxZoneTabPage.Name = "maxZoneTabPage";
-            // 
-            // nUDSixAxisZMaxZone
-            // 
-            this.nUDSixAxisZMaxZone.DecimalPlaces = 2;
-            this.nUDSixAxisZMaxZone.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDSixAxisZMaxZone, "nUDSixAxisZMaxZone");
-            this.nUDSixAxisZMaxZone.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDSixAxisZMaxZone.Name = "nUDSixAxisZMaxZone";
-            this.nUDSixAxisZMaxZone.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDSixAxisZMaxZone.ValueChanged += new System.EventHandler(this.nUDSixAxisZMaxZone_ValueChanged);
-            // 
-            // nUDSixAxisXMaxZone
-            // 
-            this.nUDSixAxisXMaxZone.DecimalPlaces = 2;
-            this.nUDSixAxisXMaxZone.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDSixAxisXMaxZone, "nUDSixAxisXMaxZone");
-            this.nUDSixAxisXMaxZone.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDSixAxisXMaxZone.Name = "nUDSixAxisXMaxZone";
-            this.nUDSixAxisXMaxZone.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDSixAxisXMaxZone.ValueChanged += new System.EventHandler(this.nUDSixAxisXMaxZone_ValueChanged);
-            // 
-            // label18
-            // 
-            resources.ApplyResources(this.label18, "label18");
-            this.label18.Name = "label18";
-            // 
-            // label17
-            // 
-            resources.ApplyResources(this.label17, "label17");
-            this.label17.Name = "label17";
-            // 
-            // nUDR2Maxzone
-            // 
-            this.nUDR2Maxzone.DecimalPlaces = 2;
-            this.nUDR2Maxzone.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDR2Maxzone, "nUDR2Maxzone");
-            this.nUDR2Maxzone.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDR2Maxzone.Name = "nUDR2Maxzone";
-            this.nUDR2Maxzone.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDR2Maxzone.ValueChanged += new System.EventHandler(this.nUDR2Maxzone_ValueChanged);
-            // 
-            // nUDL2Maxzone
-            // 
-            this.nUDL2Maxzone.DecimalPlaces = 2;
-            this.nUDL2Maxzone.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDL2Maxzone, "nUDL2Maxzone");
-            this.nUDL2Maxzone.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDL2Maxzone.Name = "nUDL2Maxzone";
-            this.nUDL2Maxzone.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDL2Maxzone.ValueChanged += new System.EventHandler(this.nUDL2Maxzone_ValueChanged);
-            // 
-            // label8
-            // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
-            // 
-            // label7
-            // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
-            // 
-            // nUDRSMaxZone
-            // 
-            this.nUDRSMaxZone.DecimalPlaces = 2;
-            this.nUDRSMaxZone.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDRSMaxZone, "nUDRSMaxZone");
-            this.nUDRSMaxZone.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDRSMaxZone.Name = "nUDRSMaxZone";
-            this.nUDRSMaxZone.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDRSMaxZone.ValueChanged += new System.EventHandler(this.nUDRSMaxZone_ValueChanged);
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
-            // 
-            // nUDLSMaxZone
-            // 
-            this.nUDLSMaxZone.DecimalPlaces = 2;
-            this.nUDLSMaxZone.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDLSMaxZone, "nUDLSMaxZone");
-            this.nUDLSMaxZone.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDLSMaxZone.Name = "nUDLSMaxZone";
-            this.nUDLSMaxZone.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDLSMaxZone.ValueChanged += new System.EventHandler(this.nUDLSMaxZone_ValueChanged);
-            // 
-            // label5
-            // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
-            // 
-            // squStickTabPage
-            // 
-            this.squStickTabPage.Controls.Add(this.RoundnessNUpDown);
-            this.squStickTabPage.Controls.Add(this.label28);
-            this.squStickTabPage.Controls.Add(this.rsSquStickCk);
-            this.squStickTabPage.Controls.Add(this.lsSquStickCk);
-            resources.ApplyResources(this.squStickTabPage, "squStickTabPage");
-            this.squStickTabPage.Name = "squStickTabPage";
-            this.squStickTabPage.UseVisualStyleBackColor = true;
-            // 
-            // RoundnessNUpDown
-            // 
-            this.RoundnessNUpDown.DecimalPlaces = 1;
-            this.RoundnessNUpDown.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.RoundnessNUpDown, "RoundnessNUpDown");
-            this.RoundnessNUpDown.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.RoundnessNUpDown.Name = "RoundnessNUpDown";
-            this.RoundnessNUpDown.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            65536});
-            this.RoundnessNUpDown.ValueChanged += new System.EventHandler(this.RoundnessNUpDown_ValueChanged);
-            // 
-            // label28
-            // 
-            resources.ApplyResources(this.label28, "label28");
-            this.label28.Name = "label28";
-            // 
-            // rsSquStickCk
-            // 
-            resources.ApplyResources(this.rsSquStickCk, "rsSquStickCk");
-            this.rsSquStickCk.Name = "rsSquStickCk";
-            this.rsSquStickCk.UseVisualStyleBackColor = true;
-            this.rsSquStickCk.Click += new System.EventHandler(this.rsSquStickCk_Click);
-            // 
-            // lsSquStickCk
-            // 
-            resources.ApplyResources(this.lsSquStickCk, "lsSquStickCk");
-            this.lsSquStickCk.Name = "lsSquStickCk";
-            this.lsSquStickCk.UseVisualStyleBackColor = true;
-            this.lsSquStickCk.Click += new System.EventHandler(this.lsSquStickCk_Click);
-            // 
-            // tPOutCurve
-            // 
-            this.tPOutCurve.BackColor = System.Drawing.SystemColors.Control;
-            this.tPOutCurve.Controls.Add(this.lbCurveEditorURL);
-            this.tPOutCurve.Controls.Add(this.tBCustomOutputCurve);
-            this.tPOutCurve.Controls.Add(this.cBSixaxisZOutputCurve);
-            this.tPOutCurve.Controls.Add(this.cBSixaxisXOutputCurve);
-            this.tPOutCurve.Controls.Add(this.label24);
-            this.tPOutCurve.Controls.Add(this.label23);
-            this.tPOutCurve.Controls.Add(this.cBR2OutputCurve);
-            this.tPOutCurve.Controls.Add(this.cBL2OutputCurve);
-            this.tPOutCurve.Controls.Add(this.label22);
-            this.tPOutCurve.Controls.Add(this.label21);
-            this.tPOutCurve.Controls.Add(this.rsOutCurveComboBox);
-            this.tPOutCurve.Controls.Add(this.lsOutCurveComboBox);
-            this.tPOutCurve.Controls.Add(this.label10);
-            this.tPOutCurve.Controls.Add(this.label9);
-            resources.ApplyResources(this.tPOutCurve, "tPOutCurve");
-            this.tPOutCurve.Name = "tPOutCurve";
-            // 
-            // lbCurveEditorURL
-            // 
-            resources.ApplyResources(this.lbCurveEditorURL, "lbCurveEditorURL");
-            this.lbCurveEditorURL.Name = "lbCurveEditorURL";
-            this.lbCurveEditorURL.TabStop = true;
-            this.lbCurveEditorURL.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbCurveEditorURL_LinkClicked);
-            // 
-            // tBCustomOutputCurve
-            // 
-            resources.ApplyResources(this.tBCustomOutputCurve, "tBCustomOutputCurve");
-            this.tBCustomOutputCurve.Name = "tBCustomOutputCurve";
-            this.tBCustomOutputCurve.Leave += new System.EventHandler(this.tBCustomOutputCurve_Leave);
-            // 
-            // cBSixaxisZOutputCurve
-            // 
-            this.cBSixaxisZOutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBSixaxisZOutputCurve.DropDownWidth = 70;
-            this.cBSixaxisZOutputCurve.FormattingEnabled = true;
-            this.cBSixaxisZOutputCurve.Items.AddRange(new object[] {
-            resources.GetString("cBSixaxisZOutputCurve.Items"),
-            resources.GetString("cBSixaxisZOutputCurve.Items1"),
-            resources.GetString("cBSixaxisZOutputCurve.Items2"),
-            resources.GetString("cBSixaxisZOutputCurve.Items3"),
-            resources.GetString("cBSixaxisZOutputCurve.Items4"),
-            resources.GetString("cBSixaxisZOutputCurve.Items5"),
-            resources.GetString("cBSixaxisZOutputCurve.Items6")});
-            resources.ApplyResources(this.cBSixaxisZOutputCurve, "cBSixaxisZOutputCurve");
-            this.cBSixaxisZOutputCurve.Name = "cBSixaxisZOutputCurve";
-            this.cBSixaxisZOutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBSixaxisZOutputCurve_SelectedIndexChanged);
-            // 
-            // cBSixaxisXOutputCurve
-            // 
-            this.cBSixaxisXOutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBSixaxisXOutputCurve.DropDownWidth = 70;
-            this.cBSixaxisXOutputCurve.FormattingEnabled = true;
-            this.cBSixaxisXOutputCurve.Items.AddRange(new object[] {
-            resources.GetString("cBSixaxisXOutputCurve.Items"),
-            resources.GetString("cBSixaxisXOutputCurve.Items1"),
-            resources.GetString("cBSixaxisXOutputCurve.Items2"),
-            resources.GetString("cBSixaxisXOutputCurve.Items3"),
-            resources.GetString("cBSixaxisXOutputCurve.Items4"),
-            resources.GetString("cBSixaxisXOutputCurve.Items5"),
-            resources.GetString("cBSixaxisXOutputCurve.Items6")});
-            resources.ApplyResources(this.cBSixaxisXOutputCurve, "cBSixaxisXOutputCurve");
-            this.cBSixaxisXOutputCurve.Name = "cBSixaxisXOutputCurve";
-            this.cBSixaxisXOutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBSixaxisXOutputCurve_SelectedIndexChanged);
-            // 
-            // label24
-            // 
-            resources.ApplyResources(this.label24, "label24");
-            this.label24.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label24.Name = "label24";
-            this.label24.Click += new System.EventHandler(this.cBSixaxisZOutputCurve_SelectedIndexChanged);
-            // 
-            // label23
-            // 
-            resources.ApplyResources(this.label23, "label23");
-            this.label23.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label23.Name = "label23";
-            this.label23.Click += new System.EventHandler(this.cBSixaxisXOutputCurve_SelectedIndexChanged);
-            // 
-            // cBR2OutputCurve
-            // 
-            this.cBR2OutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBR2OutputCurve.DropDownWidth = 70;
-            this.cBR2OutputCurve.FormattingEnabled = true;
-            this.cBR2OutputCurve.Items.AddRange(new object[] {
-            resources.GetString("cBR2OutputCurve.Items"),
-            resources.GetString("cBR2OutputCurve.Items1"),
-            resources.GetString("cBR2OutputCurve.Items2"),
-            resources.GetString("cBR2OutputCurve.Items3"),
-            resources.GetString("cBR2OutputCurve.Items4"),
-            resources.GetString("cBR2OutputCurve.Items5"),
-            resources.GetString("cBR2OutputCurve.Items6")});
-            resources.ApplyResources(this.cBR2OutputCurve, "cBR2OutputCurve");
-            this.cBR2OutputCurve.Name = "cBR2OutputCurve";
-            this.cBR2OutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBR2OutputCurve_SelectedIndexChanged);
-            // 
-            // cBL2OutputCurve
-            // 
-            this.cBL2OutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBL2OutputCurve.DropDownWidth = 70;
-            this.cBL2OutputCurve.FormattingEnabled = true;
-            this.cBL2OutputCurve.Items.AddRange(new object[] {
-            resources.GetString("cBL2OutputCurve.Items"),
-            resources.GetString("cBL2OutputCurve.Items1"),
-            resources.GetString("cBL2OutputCurve.Items2"),
-            resources.GetString("cBL2OutputCurve.Items3"),
-            resources.GetString("cBL2OutputCurve.Items4"),
-            resources.GetString("cBL2OutputCurve.Items5"),
-            resources.GetString("cBL2OutputCurve.Items6")});
-            resources.ApplyResources(this.cBL2OutputCurve, "cBL2OutputCurve");
-            this.cBL2OutputCurve.Name = "cBL2OutputCurve";
-            this.cBL2OutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBL2OutputCurve_SelectedIndexChanged);
-            // 
-            // label22
-            // 
-            resources.ApplyResources(this.label22, "label22");
-            this.label22.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label22.Name = "label22";
-            this.label22.Click += new System.EventHandler(this.cBR2OutputCurve_SelectedIndexChanged);
-            // 
-            // label21
-            // 
-            resources.ApplyResources(this.label21, "label21");
-            this.label21.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label21.Name = "label21";
-            this.label21.Click += new System.EventHandler(this.cBL2OutputCurve_SelectedIndexChanged);
-            // 
-            // rsOutCurveComboBox
-            // 
-            this.rsOutCurveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.rsOutCurveComboBox.DropDownWidth = 120;
-            this.rsOutCurveComboBox.FormattingEnabled = true;
-            this.rsOutCurveComboBox.Items.AddRange(new object[] {
-            resources.GetString("rsOutCurveComboBox.Items"),
-            resources.GetString("rsOutCurveComboBox.Items1"),
-            resources.GetString("rsOutCurveComboBox.Items2"),
-            resources.GetString("rsOutCurveComboBox.Items3"),
-            resources.GetString("rsOutCurveComboBox.Items4"),
-            resources.GetString("rsOutCurveComboBox.Items5"),
-            resources.GetString("rsOutCurveComboBox.Items6")});
-            resources.ApplyResources(this.rsOutCurveComboBox, "rsOutCurveComboBox");
-            this.rsOutCurveComboBox.Name = "rsOutCurveComboBox";
-            this.rsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.rsOutCurveComboBox_SelectedIndexChanged);
-            // 
-            // lsOutCurveComboBox
-            // 
-            this.lsOutCurveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.lsOutCurveComboBox.DropDownWidth = 120;
-            this.lsOutCurveComboBox.FormattingEnabled = true;
-            this.lsOutCurveComboBox.Items.AddRange(new object[] {
-            resources.GetString("lsOutCurveComboBox.Items"),
-            resources.GetString("lsOutCurveComboBox.Items1"),
-            resources.GetString("lsOutCurveComboBox.Items2"),
-            resources.GetString("lsOutCurveComboBox.Items3"),
-            resources.GetString("lsOutCurveComboBox.Items4"),
-            resources.GetString("lsOutCurveComboBox.Items5"),
-            resources.GetString("lsOutCurveComboBox.Items6")});
-            resources.ApplyResources(this.lsOutCurveComboBox, "lsOutCurveComboBox");
-            this.lsOutCurveComboBox.Name = "lsOutCurveComboBox";
-            this.lsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.lsOutCurveComboBox_SelectedIndexChanged);
-            // 
-            // label10
-            // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label10.Name = "label10";
-            this.label10.Click += new System.EventHandler(this.rsOutCurveComboBox_SelectedIndexChanged);
-            // 
-            // label9
-            // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label9.Name = "label9";
-            this.label9.Click += new System.EventHandler(this.lsOutCurveComboBox_SelectedIndexChanged);
-            // 
-            // tPCurve
-            // 
-            this.tPCurve.BackColor = System.Drawing.SystemColors.Control;
-            this.tPCurve.Controls.Add(this.nUDLSCurve);
-            this.tPCurve.Controls.Add(this.nUDRSCurve);
-            this.tPCurve.Controls.Add(this.lbRSCurve);
-            this.tPCurve.Controls.Add(this.lbRSCurvePercent);
-            this.tPCurve.Controls.Add(this.lbLSCurvePercent);
-            this.tPCurve.Controls.Add(this.lbLSCurve);
-            resources.ApplyResources(this.tPCurve, "tPCurve");
-            this.tPCurve.Name = "tPCurve";
-            // 
-            // nUDLSCurve
-            // 
-            this.nUDLSCurve.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDLSCurve, "nUDLSCurve");
-            this.nUDLSCurve.Name = "nUDLSCurve";
-            this.nUDLSCurve.ValueChanged += new System.EventHandler(this.nUDLSCurve_ValueChanged);
-            // 
-            // nUDRSCurve
-            // 
-            this.nUDRSCurve.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDRSCurve, "nUDRSCurve");
-            this.nUDRSCurve.Name = "nUDRSCurve";
-            this.nUDRSCurve.ValueChanged += new System.EventHandler(this.nUDRSCurve_ValueChanged);
-            // 
-            // lbRSCurve
-            // 
-            resources.ApplyResources(this.lbRSCurve, "lbRSCurve");
-            this.lbRSCurve.Name = "lbRSCurve";
-            // 
-            // lbRSCurvePercent
-            // 
-            resources.ApplyResources(this.lbRSCurvePercent, "lbRSCurvePercent");
-            this.lbRSCurvePercent.Name = "lbRSCurvePercent";
-            // 
-            // lbLSCurvePercent
-            // 
-            resources.ApplyResources(this.lbLSCurvePercent, "lbLSCurvePercent");
-            this.lbLSCurvePercent.Name = "lbLSCurvePercent";
-            // 
-            // lbLSCurve
-            // 
-            resources.ApplyResources(this.lbLSCurve, "lbLSCurve");
-            this.lbLSCurve.Name = "lbLSCurve";
-            // 
-            // tpRotation
-            // 
-            this.tpRotation.BackColor = System.Drawing.SystemColors.Control;
-            this.tpRotation.Controls.Add(this.nUDRSRotation);
-            this.tpRotation.Controls.Add(this.label14);
-            this.tpRotation.Controls.Add(this.nUDLSRotation);
-            this.tpRotation.Controls.Add(this.label13);
-            resources.ApplyResources(this.tpRotation, "tpRotation");
-            this.tpRotation.Name = "tpRotation";
-            // 
-            // nUDRSRotation
-            // 
-            resources.ApplyResources(this.nUDRSRotation, "nUDRSRotation");
-            this.nUDRSRotation.Maximum = new decimal(new int[] {
-            180,
-            0,
-            0,
-            0});
-            this.nUDRSRotation.Minimum = new decimal(new int[] {
-            180,
-            0,
-            0,
-            -2147483648});
-            this.nUDRSRotation.Name = "nUDRSRotation";
-            this.nUDRSRotation.ValueChanged += new System.EventHandler(this.nUDRSRotation_ValueChanged);
-            // 
-            // label14
-            // 
-            resources.ApplyResources(this.label14, "label14");
-            this.label14.Name = "label14";
-            // 
-            // nUDLSRotation
-            // 
-            resources.ApplyResources(this.nUDLSRotation, "nUDLSRotation");
-            this.nUDLSRotation.Maximum = new decimal(new int[] {
-            180,
-            0,
-            0,
-            0});
-            this.nUDLSRotation.Minimum = new decimal(new int[] {
-            180,
-            0,
-            0,
-            -2147483648});
-            this.nUDLSRotation.Name = "nUDLSRotation";
-            this.nUDLSRotation.ValueChanged += new System.EventHandler(this.nUDLSRotation_ValueChanged);
-            // 
-            // label13
-            // 
-            resources.ApplyResources(this.label13, "label13");
-            this.label13.Name = "label13";
-            // 
-            // fLPSettings
-            // 
-            resources.ApplyResources(this.fLPSettings, "fLPSettings");
-            this.fLPSettings.BackColor = System.Drawing.SystemColors.Control;
-            this.fLPSettings.Controls.Add(this.gBLightbar);
-            this.fLPSettings.Controls.Add(this.gBGyro);
-            this.fLPSettings.Controls.Add(this.gBRumble);
-            this.fLPSettings.Controls.Add(this.tCSens);
-            this.fLPSettings.Controls.Add(this.gBSensitivity);
-            this.fLPSettings.Controls.Add(this.gBOther);
-            this.fLPSettings.Name = "fLPSettings";
-            // 
-            // gBGyro
-            // 
-            this.gBGyro.BackColor = System.Drawing.SystemColors.Control;
-            this.gBGyro.Controls.Add(this.gyroMouseJoyFLP);
-            this.gBGyro.Controls.Add(this.label34);
-            this.gBGyro.Controls.Add(this.gyroOutputMode);
-            this.gBGyro.Controls.Add(this.fLPTiltControls);
-            this.gBGyro.Controls.Add(this.pnlSAMouse);
-            resources.ApplyResources(this.gBGyro, "gBGyro");
-            this.gBGyro.Name = "gBGyro";
-            this.gBGyro.TabStop = false;
-            // 
-            // label34
-            // 
-            resources.ApplyResources(this.label34, "label34");
-            this.label34.Name = "label34";
-            // 
-            // gyroOutputMode
-            // 
-            this.gyroOutputMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.gyroOutputMode.FormattingEnabled = true;
-            this.gyroOutputMode.Items.AddRange(new object[] {
-            resources.GetString("gyroOutputMode.Items"),
-            resources.GetString("gyroOutputMode.Items1"),
-            resources.GetString("gyroOutputMode.Items2")});
-            resources.ApplyResources(this.gyroOutputMode, "gyroOutputMode");
-            this.gyroOutputMode.Name = "gyroOutputMode";
-            this.gyroOutputMode.SelectedIndexChanged += new System.EventHandler(this.GyroOutputMode_SelectedIndexChanged);
-            // 
-            // pnlSAMouse
-            // 
-            this.pnlSAMouse.Controls.Add(this.toggleGyroMCb);
-            this.pnlSAMouse.Controls.Add(this.label27);
-            this.pnlSAMouse.Controls.Add(this.gyroMouseDzNUD);
-            this.pnlSAMouse.Controls.Add(this.label26);
-            this.pnlSAMouse.Controls.Add(this.triggerCondAndCombo);
-            this.pnlSAMouse.Controls.Add(this.cBGyroMouseXAxis);
-            this.pnlSAMouse.Controls.Add(this.label16);
-            this.pnlSAMouse.Controls.Add(this.lbGyroSmooth);
-            this.pnlSAMouse.Controls.Add(this.cBGyroSmooth);
-            this.pnlSAMouse.Controls.Add(this.lbSmoothWeight);
-            this.pnlSAMouse.Controls.Add(this.nUDGyroSmoothWeight);
-            this.pnlSAMouse.Controls.Add(this.label12);
-            this.pnlSAMouse.Controls.Add(this.nUDGyroMouseVertScale);
-            this.pnlSAMouse.Controls.Add(this.label11);
-            this.pnlSAMouse.Controls.Add(this.gyroTriggerBehavior);
-            this.pnlSAMouse.Controls.Add(this.cBGyroInvertY);
-            this.pnlSAMouse.Controls.Add(this.cBGyroInvertX);
-            this.pnlSAMouse.Controls.Add(this.lbGyroInvert);
-            this.pnlSAMouse.Controls.Add(this.lbGyroTriggers);
-            this.pnlSAMouse.Controls.Add(this.btnGyroTriggers);
-            this.pnlSAMouse.Controls.Add(this.nUDGyroSensitivity);
-            this.pnlSAMouse.Controls.Add(this.lbGyroSens);
-            resources.ApplyResources(this.pnlSAMouse, "pnlSAMouse");
-            this.pnlSAMouse.Name = "pnlSAMouse";
-            // 
-            // toggleGyroMCb
-            // 
-            resources.ApplyResources(this.toggleGyroMCb, "toggleGyroMCb");
-            this.toggleGyroMCb.Name = "toggleGyroMCb";
-            this.toggleGyroMCb.UseVisualStyleBackColor = true;
-            this.toggleGyroMCb.Click += new System.EventHandler(this.toggleGyroMCb_Click);
-            // 
-            // label27
-            // 
-            resources.ApplyResources(this.label27, "label27");
-            this.label27.Name = "label27";
-            // 
-            // gyroMouseDzNUD
-            // 
-            resources.ApplyResources(this.gyroMouseDzNUD, "gyroMouseDzNUD");
-            this.gyroMouseDzNUD.Name = "gyroMouseDzNUD";
-            this.gyroMouseDzNUD.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.gyroMouseDzNUD.ValueChanged += new System.EventHandler(this.gyroMouseDzNUD_ValueChanged);
-            // 
-            // label26
-            // 
-            resources.ApplyResources(this.label26, "label26");
-            this.label26.Name = "label26";
-            // 
-            // triggerCondAndCombo
-            // 
-            this.triggerCondAndCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.triggerCondAndCombo.FormattingEnabled = true;
-            this.triggerCondAndCombo.Items.AddRange(new object[] {
-            resources.GetString("triggerCondAndCombo.Items"),
-            resources.GetString("triggerCondAndCombo.Items1")});
-            resources.ApplyResources(this.triggerCondAndCombo, "triggerCondAndCombo");
-            this.triggerCondAndCombo.Name = "triggerCondAndCombo";
-            // 
-            // cBGyroMouseXAxis
-            // 
-            this.cBGyroMouseXAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBGyroMouseXAxis.FormattingEnabled = true;
-            this.cBGyroMouseXAxis.Items.AddRange(new object[] {
-            resources.GetString("cBGyroMouseXAxis.Items"),
-            resources.GetString("cBGyroMouseXAxis.Items1")});
-            resources.ApplyResources(this.cBGyroMouseXAxis, "cBGyroMouseXAxis");
-            this.cBGyroMouseXAxis.Name = "cBGyroMouseXAxis";
-            this.cBGyroMouseXAxis.SelectedIndexChanged += new System.EventHandler(this.cBGyroMouseXAxis_SelectedIndexChanged);
-            // 
-            // label16
-            // 
-            resources.ApplyResources(this.label16, "label16");
-            this.label16.Name = "label16";
-            // 
-            // lbGyroSmooth
-            // 
-            resources.ApplyResources(this.lbGyroSmooth, "lbGyroSmooth");
-            this.lbGyroSmooth.Name = "lbGyroSmooth";
-            // 
-            // cBGyroSmooth
-            // 
-            resources.ApplyResources(this.cBGyroSmooth, "cBGyroSmooth");
-            this.cBGyroSmooth.Name = "cBGyroSmooth";
-            this.cBGyroSmooth.UseVisualStyleBackColor = true;
-            this.cBGyroSmooth.CheckedChanged += new System.EventHandler(this.cBGyroSmooth_CheckedChanged);
-            // 
-            // lbSmoothWeight
-            // 
-            resources.ApplyResources(this.lbSmoothWeight, "lbSmoothWeight");
-            this.lbSmoothWeight.Name = "lbSmoothWeight";
-            // 
-            // nUDGyroSmoothWeight
-            // 
-            this.nUDGyroSmoothWeight.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDGyroSmoothWeight, "nUDGyroSmoothWeight");
-            this.nUDGyroSmoothWeight.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDGyroSmoothWeight.Name = "nUDGyroSmoothWeight";
-            this.nUDGyroSmoothWeight.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.nUDGyroSmoothWeight.ValueChanged += new System.EventHandler(this.nUDGyroSmoothWeight_ValueChanged);
-            // 
-            // label12
-            // 
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.Name = "label12";
-            // 
-            // nUDGyroMouseVertScale
-            // 
-            this.nUDGyroMouseVertScale.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDGyroMouseVertScale, "nUDGyroMouseVertScale");
-            this.nUDGyroMouseVertScale.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nUDGyroMouseVertScale.Name = "nUDGyroMouseVertScale";
-            this.nUDGyroMouseVertScale.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.nUDGyroMouseVertScale.ValueChanged += new System.EventHandler(this.nUDGyroMouseVertScale_ValueChanged);
-            // 
-            // label11
-            // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            // 
-            // gyroTriggerBehavior
-            // 
-            resources.ApplyResources(this.gyroTriggerBehavior, "gyroTriggerBehavior");
-            this.gyroTriggerBehavior.Checked = true;
-            this.gyroTriggerBehavior.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.gyroTriggerBehavior.Name = "gyroTriggerBehavior";
-            this.gyroTriggerBehavior.UseVisualStyleBackColor = true;
-            this.gyroTriggerBehavior.CheckedChanged += new System.EventHandler(this.gyroTriggerBehavior_CheckedChanged);
-            // 
-            // cBGyroInvertY
-            // 
-            resources.ApplyResources(this.cBGyroInvertY, "cBGyroInvertY");
-            this.cBGyroInvertY.Name = "cBGyroInvertY";
-            this.cBGyroInvertY.UseVisualStyleBackColor = true;
-            this.cBGyroInvertY.CheckedChanged += new System.EventHandler(this.cBGyroInvert_CheckChanged);
-            // 
-            // cBGyroInvertX
-            // 
-            resources.ApplyResources(this.cBGyroInvertX, "cBGyroInvertX");
-            this.cBGyroInvertX.Name = "cBGyroInvertX";
-            this.cBGyroInvertX.UseVisualStyleBackColor = true;
-            this.cBGyroInvertX.CheckedChanged += new System.EventHandler(this.cBGyroInvert_CheckChanged);
-            // 
-            // lbGyroInvert
-            // 
-            resources.ApplyResources(this.lbGyroInvert, "lbGyroInvert");
-            this.lbGyroInvert.Name = "lbGyroInvert";
-            // 
-            // lbGyroTriggers
-            // 
-            resources.ApplyResources(this.lbGyroTriggers, "lbGyroTriggers");
-            this.lbGyroTriggers.Name = "lbGyroTriggers";
-            // 
-            // btnGyroTriggers
-            // 
-            resources.ApplyResources(this.btnGyroTriggers, "btnGyroTriggers");
-            this.btnGyroTriggers.Name = "btnGyroTriggers";
-            this.btnGyroTriggers.UseVisualStyleBackColor = true;
-            this.btnGyroTriggers.Click += new System.EventHandler(this.btnGyroTriggers_Click);
-            // 
-            // nUDGyroSensitivity
-            // 
-            resources.ApplyResources(this.nUDGyroSensitivity, "nUDGyroSensitivity");
-            this.nUDGyroSensitivity.Maximum = new decimal(new int[] {
-            300,
-            0,
-            0,
-            0});
-            this.nUDGyroSensitivity.Name = "nUDGyroSensitivity";
-            this.nUDGyroSensitivity.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.nUDGyroSensitivity.ValueChanged += new System.EventHandler(this.nUDGyroSensitivity_ValueChanged);
-            // 
-            // lbGyroSens
-            // 
-            resources.ApplyResources(this.lbGyroSens, "lbGyroSens");
-            this.lbGyroSens.Name = "lbGyroSens";
-            // 
-            // gBSensitivity
-            // 
-            this.gBSensitivity.BackColor = System.Drawing.SystemColors.Control;
-            this.gBSensitivity.Controls.Add(this.lbL2S);
-            this.gBSensitivity.Controls.Add(this.nUDL2S);
-            this.gBSensitivity.Controls.Add(this.nUDLSS);
-            this.gBSensitivity.Controls.Add(this.lbSixaxisXS);
-            this.gBSensitivity.Controls.Add(this.nUDR2S);
-            this.gBSensitivity.Controls.Add(this.lbSixaxisZS);
-            this.gBSensitivity.Controls.Add(this.nUDRSS);
-            this.gBSensitivity.Controls.Add(this.lbR2LS);
-            this.gBSensitivity.Controls.Add(this.nUDSXS);
-            this.gBSensitivity.Controls.Add(this.lbRSS);
-            this.gBSensitivity.Controls.Add(this.lbLSS);
-            this.gBSensitivity.Controls.Add(this.nUDSZS);
-            resources.ApplyResources(this.gBSensitivity, "gBSensitivity");
-            this.gBSensitivity.Name = "gBSensitivity";
-            this.gBSensitivity.TabStop = false;
-            // 
-            // lbL2S
-            // 
-            resources.ApplyResources(this.lbL2S, "lbL2S");
-            this.lbL2S.Name = "lbL2S";
-            // 
-            // nUDL2S
-            // 
-            this.nUDL2S.DecimalPlaces = 2;
-            this.nUDL2S.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDL2S, "nUDL2S");
-            this.nUDL2S.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nUDL2S.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nUDL2S.Name = "nUDL2S";
-            this.nUDL2S.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDL2S.ValueChanged += new System.EventHandler(this.nUDL2Sens_ValueChanged);
-            // 
-            // nUDLSS
-            // 
-            this.nUDLSS.DecimalPlaces = 2;
-            this.nUDLSS.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDLSS, "nUDLSS");
-            this.nUDLSS.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nUDLSS.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.nUDLSS.Name = "nUDLSS";
-            this.nUDLSS.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDLSS.ValueChanged += new System.EventHandler(this.nUDLSSens_ValueChanged);
-            // 
-            // lbSixaxisXS
-            // 
-            resources.ApplyResources(this.lbSixaxisXS, "lbSixaxisXS");
-            this.lbSixaxisXS.Name = "lbSixaxisXS";
-            // 
-            // nUDR2S
-            // 
-            this.nUDR2S.DecimalPlaces = 2;
-            this.nUDR2S.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDR2S, "nUDR2S");
-            this.nUDR2S.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nUDR2S.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nUDR2S.Name = "nUDR2S";
-            this.nUDR2S.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDR2S.ValueChanged += new System.EventHandler(this.nUDR2Sens_ValueChanged);
-            // 
-            // lbSixaxisZS
-            // 
-            resources.ApplyResources(this.lbSixaxisZS, "lbSixaxisZS");
-            this.lbSixaxisZS.Name = "lbSixaxisZS";
-            // 
-            // nUDRSS
-            // 
-            this.nUDRSS.DecimalPlaces = 2;
-            this.nUDRSS.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDRSS, "nUDRSS");
-            this.nUDRSS.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nUDRSS.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.nUDRSS.Name = "nUDRSS";
-            this.nUDRSS.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDRSS.ValueChanged += new System.EventHandler(this.nUDRSSens_ValueChanged);
-            // 
-            // lbR2LS
-            // 
-            resources.ApplyResources(this.lbR2LS, "lbR2LS");
-            this.lbR2LS.Name = "lbR2LS";
-            // 
-            // nUDSXS
-            // 
-            this.nUDSXS.DecimalPlaces = 2;
-            this.nUDSXS.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDSXS, "nUDSXS");
-            this.nUDSXS.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nUDSXS.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.nUDSXS.Name = "nUDSXS";
-            this.nUDSXS.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDSXS.ValueChanged += new System.EventHandler(this.nUDSXSens_ValueChanged);
-            // 
-            // lbRSS
-            // 
-            resources.ApplyResources(this.lbRSS, "lbRSS");
-            this.lbRSS.Name = "lbRSS";
-            // 
-            // lbLSS
-            // 
-            resources.ApplyResources(this.lbLSS, "lbLSS");
-            this.lbLSS.Name = "lbLSS";
-            // 
-            // nUDSZS
-            // 
-            this.nUDSZS.DecimalPlaces = 2;
-            this.nUDSZS.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDSZS, "nUDSZS");
-            this.nUDSZS.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nUDSZS.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.nUDSZS.Name = "nUDSZS";
-            this.nUDSZS.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDSZS.ValueChanged += new System.EventHandler(this.nUDSZSens_ValueChanged);
-            // 
             // cMGyroTriggers
             // 
             this.cMGyroTriggers.BackColor = System.Drawing.SystemColors.Control;
@@ -4646,38 +2461,2201 @@
             resources.ApplyResources(this.psTouchInvStripMenuItem, "psTouchInvStripMenuItem");
             this.psTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabLightbar);
+            this.tabControl1.Controls.Add(this.tabAxis);
+            this.tabControl1.Controls.Add(this.tabGyro);
+            this.tabControl1.Controls.Add(this.tabOther);
+            resources.ApplyResources(this.tabControl1, "tabControl1");
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            // 
+            // tabLightbar
+            // 
+            this.tabLightbar.Controls.Add(this.flowLayoutPanel1);
+            resources.ApplyResources(this.tabLightbar, "tabLightbar");
+            this.tabLightbar.Name = "tabLightbar";
+            this.tabLightbar.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel1
+            // 
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.Controls.Add(this.panel1);
+            this.flowLayoutPanel1.Controls.Add(this.panel3);
+            this.flowLayoutPanel1.Controls.Add(this.panel4);
+            this.flowLayoutPanel1.Controls.Add(this.cBLightbyBattery);
+            this.flowLayoutPanel1.Controls.Add(this.panel5);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.pnlFull);
+            this.panel1.Controls.Add(this.pnlLowBattery);
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Name = "panel1";
+            // 
+            // pnlFull
+            // 
+            this.pnlFull.Controls.Add(this.lbFull);
+            this.pnlFull.Controls.Add(this.lbRed);
+            this.pnlFull.Controls.Add(this.lbGreen);
+            this.pnlFull.Controls.Add(this.lbBlue);
+            this.pnlFull.Controls.Add(this.tBRedBar);
+            this.pnlFull.Controls.Add(this.tBGreenBar);
+            this.pnlFull.Controls.Add(this.tBBlueBar);
+            resources.ApplyResources(this.pnlFull, "pnlFull");
+            this.pnlFull.Name = "pnlFull";
+            // 
+            // lbFull
+            // 
+            resources.ApplyResources(this.lbFull, "lbFull");
+            this.lbFull.Name = "lbFull";
+            // 
+            // lbRed
+            // 
+            resources.ApplyResources(this.lbRed, "lbRed");
+            this.lbRed.Name = "lbRed";
+            // 
+            // lbGreen
+            // 
+            resources.ApplyResources(this.lbGreen, "lbGreen");
+            this.lbGreen.Name = "lbGreen";
+            // 
+            // lbBlue
+            // 
+            resources.ApplyResources(this.lbBlue, "lbBlue");
+            this.lbBlue.Name = "lbBlue";
+            // 
+            // tBRedBar
+            // 
+            resources.ApplyResources(this.tBRedBar, "tBRedBar");
+            this.tBRedBar.BackColor = System.Drawing.Color.Red;
+            this.tBRedBar.Maximum = 255;
+            this.tBRedBar.Name = "tBRedBar";
+            this.tBRedBar.TickFrequency = 25;
+            this.tBRedBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBRedBar.Value = 255;
+            // 
+            // tBGreenBar
+            // 
+            resources.ApplyResources(this.tBGreenBar, "tBGreenBar");
+            this.tBGreenBar.BackColor = System.Drawing.Color.Green;
+            this.tBGreenBar.Maximum = 255;
+            this.tBGreenBar.Name = "tBGreenBar";
+            this.tBGreenBar.TickFrequency = 25;
+            this.tBGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBGreenBar.Value = 255;
+            // 
+            // tBBlueBar
+            // 
+            resources.ApplyResources(this.tBBlueBar, "tBBlueBar");
+            this.tBBlueBar.BackColor = System.Drawing.Color.Blue;
+            this.tBBlueBar.Maximum = 255;
+            this.tBBlueBar.Name = "tBBlueBar";
+            this.tBBlueBar.TickFrequency = 25;
+            this.tBBlueBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBBlueBar.Value = 255;
+            // 
+            // pnlLowBattery
+            // 
+            this.pnlLowBattery.Controls.Add(this.lowColorChooserButton);
+            this.pnlLowBattery.Controls.Add(this.lbLowRed);
+            this.pnlLowBattery.Controls.Add(this.lbLowGreen);
+            this.pnlLowBattery.Controls.Add(this.lbLowBlue);
+            this.pnlLowBattery.Controls.Add(this.tBLowRedBar);
+            this.pnlLowBattery.Controls.Add(this.tBLowGreenBar);
+            this.pnlLowBattery.Controls.Add(this.tBLowBlueBar);
+            this.pnlLowBattery.Controls.Add(this.lbEmpty);
+            resources.ApplyResources(this.pnlLowBattery, "pnlLowBattery");
+            this.pnlLowBattery.Name = "pnlLowBattery";
+            // 
+            // lowColorChooserButton
+            // 
+            this.lowColorChooserButton.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.lowColorChooserButton, "lowColorChooserButton");
+            this.lowColorChooserButton.Name = "lowColorChooserButton";
+            this.lowColorChooserButton.UseVisualStyleBackColor = false;
+            // 
+            // lbLowRed
+            // 
+            resources.ApplyResources(this.lbLowRed, "lbLowRed");
+            this.lbLowRed.Name = "lbLowRed";
+            // 
+            // lbLowGreen
+            // 
+            resources.ApplyResources(this.lbLowGreen, "lbLowGreen");
+            this.lbLowGreen.Name = "lbLowGreen";
+            // 
+            // lbLowBlue
+            // 
+            resources.ApplyResources(this.lbLowBlue, "lbLowBlue");
+            this.lbLowBlue.Name = "lbLowBlue";
+            // 
+            // tBLowRedBar
+            // 
+            resources.ApplyResources(this.tBLowRedBar, "tBLowRedBar");
+            this.tBLowRedBar.BackColor = System.Drawing.Color.Red;
+            this.tBLowRedBar.Maximum = 255;
+            this.tBLowRedBar.Name = "tBLowRedBar";
+            this.tBLowRedBar.TickFrequency = 25;
+            this.tBLowRedBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBLowRedBar.Value = 255;
+            // 
+            // tBLowGreenBar
+            // 
+            resources.ApplyResources(this.tBLowGreenBar, "tBLowGreenBar");
+            this.tBLowGreenBar.BackColor = System.Drawing.Color.Green;
+            this.tBLowGreenBar.Maximum = 255;
+            this.tBLowGreenBar.Name = "tBLowGreenBar";
+            this.tBLowGreenBar.TickFrequency = 25;
+            this.tBLowGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBLowGreenBar.Value = 255;
+            // 
+            // tBLowBlueBar
+            // 
+            resources.ApplyResources(this.tBLowBlueBar, "tBLowBlueBar");
+            this.tBLowBlueBar.BackColor = System.Drawing.Color.Blue;
+            this.tBLowBlueBar.Maximum = 255;
+            this.tBLowBlueBar.Name = "tBLowBlueBar";
+            this.tBLowBlueBar.TickFrequency = 25;
+            this.tBLowBlueBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBLowBlueBar.Value = 255;
+            // 
+            // lbEmpty
+            // 
+            resources.ApplyResources(this.lbEmpty, "lbEmpty");
+            this.lbEmpty.Name = "lbEmpty";
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.cBFlashType);
+            this.panel3.Controls.Add(this.btnFlashColor);
+            this.panel3.Controls.Add(this.lbPercentFlashBar);
+            this.panel3.Controls.Add(this.nUDflashLED);
+            resources.ApplyResources(this.panel3, "panel3");
+            this.panel3.Name = "panel3";
+            // 
+            // cBFlashType
+            // 
+            this.cBFlashType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBFlashType.FormattingEnabled = true;
+            this.cBFlashType.Items.AddRange(new object[] {
+            resources.GetString("cBFlashType.Items"),
+            resources.GetString("cBFlashType.Items1")});
+            resources.ApplyResources(this.cBFlashType, "cBFlashType");
+            this.cBFlashType.Name = "cBFlashType";
+            // 
+            // btnFlashColor
+            // 
+            this.btnFlashColor.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.btnFlashColor, "btnFlashColor");
+            this.btnFlashColor.Name = "btnFlashColor";
+            this.btnFlashColor.UseVisualStyleBackColor = false;
+            // 
+            // lbPercentFlashBar
+            // 
+            resources.ApplyResources(this.lbPercentFlashBar, "lbPercentFlashBar");
+            this.lbPercentFlashBar.Name = "lbPercentFlashBar";
+            // 
+            // nUDflashLED
+            // 
+            this.nUDflashLED.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDflashLED, "nUDflashLED");
+            this.nUDflashLED.Name = "nUDflashLED";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.cBWhileCharging);
+            this.panel4.Controls.Add(this.btnChargingColor);
+            this.panel4.Controls.Add(this.lbWhileCharging);
+            resources.ApplyResources(this.panel4, "panel4");
+            this.panel4.Name = "panel4";
+            // 
+            // cBWhileCharging
+            // 
+            this.cBWhileCharging.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBWhileCharging.FormattingEnabled = true;
+            this.cBWhileCharging.Items.AddRange(new object[] {
+            resources.GetString("cBWhileCharging.Items"),
+            resources.GetString("cBWhileCharging.Items1"),
+            resources.GetString("cBWhileCharging.Items2"),
+            resources.GetString("cBWhileCharging.Items3")});
+            resources.ApplyResources(this.cBWhileCharging, "cBWhileCharging");
+            this.cBWhileCharging.Name = "cBWhileCharging";
+            // 
+            // btnChargingColor
+            // 
+            this.btnChargingColor.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.btnChargingColor, "btnChargingColor");
+            this.btnChargingColor.Name = "btnChargingColor";
+            this.btnChargingColor.UseVisualStyleBackColor = false;
+            // 
+            // lbWhileCharging
+            // 
+            resources.ApplyResources(this.lbWhileCharging, "lbWhileCharging");
+            this.lbWhileCharging.Name = "lbWhileCharging";
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.btnRainbow);
+            this.panel5.Controls.Add(this.lbRainbowB);
+            this.panel5.Controls.Add(this.nUDRainbowB);
+            this.panel5.Controls.Add(this.nUDRainbow);
+            this.panel5.Controls.Add(this.lbspc);
+            resources.ApplyResources(this.panel5, "panel5");
+            this.panel5.Name = "panel5";
+            // 
+            // btnRainbow
+            // 
+            this.btnRainbow.Image = global::DS4Windows.Properties.Resources.rainbow;
+            resources.ApplyResources(this.btnRainbow, "btnRainbow");
+            this.btnRainbow.Name = "btnRainbow";
+            this.btnRainbow.UseVisualStyleBackColor = true;
+            // 
+            // lbRainbowB
+            // 
+            resources.ApplyResources(this.lbRainbowB, "lbRainbowB");
+            this.lbRainbowB.Name = "lbRainbowB";
+            // 
+            // nUDRainbowB
+            // 
+            resources.ApplyResources(this.nUDRainbowB, "nUDRainbowB");
+            this.nUDRainbowB.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.nUDRainbowB.Name = "nUDRainbowB";
+            this.nUDRainbowB.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // nUDRainbow
+            // 
+            resources.ApplyResources(this.nUDRainbow, "nUDRainbow");
+            this.nUDRainbow.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.nUDRainbow.Name = "nUDRainbow";
+            // 
+            // lbspc
+            // 
+            resources.ApplyResources(this.lbspc, "lbspc");
+            this.lbspc.Name = "lbspc";
+            // 
+            // tabGyro
+            // 
+            this.tabGyro.Controls.Add(this.flowLayoutPanel2);
+            resources.ApplyResources(this.tabGyro, "tabGyro");
+            this.tabGyro.Name = "tabGyro";
+            this.tabGyro.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel2
+            // 
+            resources.ApplyResources(this.flowLayoutPanel2, "flowLayoutPanel2");
+            this.flowLayoutPanel2.Controls.Add(this.panel6);
+            this.flowLayoutPanel2.Controls.Add(this.gyroMouseJoyFLP);
+            this.flowLayoutPanel2.Controls.Add(this.fLPTiltControls);
+            this.flowLayoutPanel2.Controls.Add(this.pnlSAMouse);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.label34);
+            this.panel6.Controls.Add(this.gyroOutputMode);
+            resources.ApplyResources(this.panel6, "panel6");
+            this.panel6.Name = "panel6";
+            // 
+            // label34
+            // 
+            resources.ApplyResources(this.label34, "label34");
+            this.label34.Name = "label34";
+            // 
+            // gyroOutputMode
+            // 
+            this.gyroOutputMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gyroOutputMode.FormattingEnabled = true;
+            this.gyroOutputMode.Items.AddRange(new object[] {
+            resources.GetString("gyroOutputMode.Items"),
+            resources.GetString("gyroOutputMode.Items1"),
+            resources.GetString("gyroOutputMode.Items2")});
+            resources.ApplyResources(this.gyroOutputMode, "gyroOutputMode");
+            this.gyroOutputMode.Name = "gyroOutputMode";
+            // 
+            // gyroMouseJoyFLP
+            // 
+            this.gyroMouseJoyFLP.Controls.Add(this.label36);
+            this.gyroMouseJoyFLP.Controls.Add(this.btnGyroMStickTrig);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickTrigBehaveCk);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickToggleCk);
+            this.gyroMouseJoyFLP.Controls.Add(this.label29);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickDZ);
+            this.gyroMouseJoyFLP.Controls.Add(this.label30);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickMaxZ);
+            this.gyroMouseJoyFLP.Controls.Add(this.label31);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickAntiDeadX);
+            this.gyroMouseJoyFLP.Controls.Add(this.label32);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickAntiDeadY);
+            this.gyroMouseJoyFLP.Controls.Add(this.label37);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickVertScaleNUD);
+            this.gyroMouseJoyFLP.Controls.Add(this.label38);
+            this.gyroMouseJoyFLP.Controls.Add(this.label35);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickEvalCombo);
+            this.gyroMouseJoyFLP.Controls.Add(this.label33);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMousestickXAxisCom);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickInvertXCk);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMouseStickInvertYCk);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickUseSmoothCk);
+            this.gyroMouseJoyFLP.Controls.Add(this.label39);
+            this.gyroMouseJoyFLP.Controls.Add(this.gyroMStickSmoothWeightNUD);
+            resources.ApplyResources(this.gyroMouseJoyFLP, "gyroMouseJoyFLP");
+            this.gyroMouseJoyFLP.Name = "gyroMouseJoyFLP";
+            // 
+            // label36
+            // 
+            resources.ApplyResources(this.label36, "label36");
+            this.label36.Name = "label36";
+            // 
+            // btnGyroMStickTrig
+            // 
+            resources.ApplyResources(this.btnGyroMStickTrig, "btnGyroMStickTrig");
+            this.btnGyroMStickTrig.Name = "btnGyroMStickTrig";
+            this.btnGyroMStickTrig.UseVisualStyleBackColor = true;
+            // 
+            // gyroMStickTrigBehaveCk
+            // 
+            this.gyroMStickTrigBehaveCk.Checked = true;
+            this.gyroMStickTrigBehaveCk.CheckState = System.Windows.Forms.CheckState.Checked;
+            resources.ApplyResources(this.gyroMStickTrigBehaveCk, "gyroMStickTrigBehaveCk");
+            this.gyroMStickTrigBehaveCk.Name = "gyroMStickTrigBehaveCk";
+            this.gyroMStickTrigBehaveCk.UseVisualStyleBackColor = true;
+            // 
+            // gyroMStickToggleCk
+            // 
+            resources.ApplyResources(this.gyroMStickToggleCk, "gyroMStickToggleCk");
+            this.gyroMStickToggleCk.Name = "gyroMStickToggleCk";
+            this.gyroMStickToggleCk.UseVisualStyleBackColor = true;
+            // 
+            // label29
+            // 
+            resources.ApplyResources(this.label29, "label29");
+            this.label29.Name = "label29";
+            // 
+            // gyroMouseStickDZ
+            // 
+            resources.ApplyResources(this.gyroMouseStickDZ, "gyroMouseStickDZ");
+            this.gyroMouseStickDZ.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.gyroMouseStickDZ.Name = "gyroMouseStickDZ";
+            this.gyroMouseStickDZ.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
+            // label30
+            // 
+            resources.ApplyResources(this.label30, "label30");
+            this.label30.Name = "label30";
+            // 
+            // gyroMouseStickMaxZ
+            // 
+            resources.ApplyResources(this.gyroMouseStickMaxZ, "gyroMouseStickMaxZ");
+            this.gyroMouseStickMaxZ.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.gyroMouseStickMaxZ.Name = "gyroMouseStickMaxZ";
+            this.gyroMouseStickMaxZ.Value = new decimal(new int[] {
+            830,
+            0,
+            0,
+            0});
+            // 
+            // label31
+            // 
+            resources.ApplyResources(this.label31, "label31");
+            this.label31.Name = "label31";
+            // 
+            // gyroMouseStickAntiDeadX
+            // 
+            this.gyroMouseStickAntiDeadX.DecimalPlaces = 2;
+            resources.ApplyResources(this.gyroMouseStickAntiDeadX, "gyroMouseStickAntiDeadX");
+            this.gyroMouseStickAntiDeadX.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.gyroMouseStickAntiDeadX.Name = "gyroMouseStickAntiDeadX";
+            this.gyroMouseStickAntiDeadX.Value = new decimal(new int[] {
+            35,
+            0,
+            0,
+            131072});
+            // 
+            // label32
+            // 
+            resources.ApplyResources(this.label32, "label32");
+            this.label32.Name = "label32";
+            // 
+            // gyroMouseStickAntiDeadY
+            // 
+            this.gyroMouseStickAntiDeadY.DecimalPlaces = 2;
+            resources.ApplyResources(this.gyroMouseStickAntiDeadY, "gyroMouseStickAntiDeadY");
+            this.gyroMouseStickAntiDeadY.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.gyroMouseStickAntiDeadY.Name = "gyroMouseStickAntiDeadY";
+            this.gyroMouseStickAntiDeadY.Value = new decimal(new int[] {
+            35,
+            0,
+            0,
+            131072});
+            // 
+            // label37
+            // 
+            resources.ApplyResources(this.label37, "label37");
+            this.label37.Name = "label37";
+            // 
+            // gyroMStickVertScaleNUD
+            // 
+            resources.ApplyResources(this.gyroMStickVertScaleNUD, "gyroMStickVertScaleNUD");
+            this.gyroMStickVertScaleNUD.Maximum = new decimal(new int[] {
+            400,
+            0,
+            0,
+            0});
+            this.gyroMStickVertScaleNUD.Name = "gyroMStickVertScaleNUD";
+            this.gyroMStickVertScaleNUD.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // label38
+            // 
+            resources.ApplyResources(this.label38, "label38");
+            this.label38.Name = "label38";
+            // 
+            // label35
+            // 
+            resources.ApplyResources(this.label35, "label35");
+            this.label35.Name = "label35";
+            // 
+            // gyroMouseStickEvalCombo
+            // 
+            this.gyroMouseStickEvalCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gyroMouseStickEvalCombo.FormattingEnabled = true;
+            this.gyroMouseStickEvalCombo.Items.AddRange(new object[] {
+            resources.GetString("gyroMouseStickEvalCombo.Items"),
+            resources.GetString("gyroMouseStickEvalCombo.Items1")});
+            resources.ApplyResources(this.gyroMouseStickEvalCombo, "gyroMouseStickEvalCombo");
+            this.gyroMouseStickEvalCombo.Name = "gyroMouseStickEvalCombo";
+            // 
+            // label33
+            // 
+            resources.ApplyResources(this.label33, "label33");
+            this.label33.Name = "label33";
+            // 
+            // gyroMousestickXAxisCom
+            // 
+            this.gyroMousestickXAxisCom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gyroMousestickXAxisCom.FormattingEnabled = true;
+            this.gyroMousestickXAxisCom.Items.AddRange(new object[] {
+            resources.GetString("gyroMousestickXAxisCom.Items"),
+            resources.GetString("gyroMousestickXAxisCom.Items1")});
+            resources.ApplyResources(this.gyroMousestickXAxisCom, "gyroMousestickXAxisCom");
+            this.gyroMousestickXAxisCom.Name = "gyroMousestickXAxisCom";
+            // 
+            // gyroMouseStickInvertXCk
+            // 
+            resources.ApplyResources(this.gyroMouseStickInvertXCk, "gyroMouseStickInvertXCk");
+            this.gyroMouseStickInvertXCk.Name = "gyroMouseStickInvertXCk";
+            this.gyroMouseStickInvertXCk.UseVisualStyleBackColor = true;
+            // 
+            // gyroMouseStickInvertYCk
+            // 
+            resources.ApplyResources(this.gyroMouseStickInvertYCk, "gyroMouseStickInvertYCk");
+            this.gyroMouseStickInvertYCk.Name = "gyroMouseStickInvertYCk";
+            this.gyroMouseStickInvertYCk.UseVisualStyleBackColor = true;
+            // 
+            // gyroMStickUseSmoothCk
+            // 
+            resources.ApplyResources(this.gyroMStickUseSmoothCk, "gyroMStickUseSmoothCk");
+            this.gyroMStickUseSmoothCk.Name = "gyroMStickUseSmoothCk";
+            this.gyroMStickUseSmoothCk.UseVisualStyleBackColor = true;
+            // 
+            // label39
+            // 
+            resources.ApplyResources(this.label39, "label39");
+            this.label39.Name = "label39";
+            // 
+            // gyroMStickSmoothWeightNUD
+            // 
+            this.gyroMStickSmoothWeightNUD.DecimalPlaces = 3;
+            resources.ApplyResources(this.gyroMStickSmoothWeightNUD, "gyroMStickSmoothWeightNUD");
+            this.gyroMStickSmoothWeightNUD.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.gyroMStickSmoothWeightNUD.Name = "gyroMStickSmoothWeightNUD";
+            this.gyroMStickSmoothWeightNUD.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            // 
+            // fLPTiltControls
+            // 
+            this.fLPTiltControls.Controls.Add(this.bnGyroZN);
+            this.fLPTiltControls.Controls.Add(this.lbGyroZN);
+            this.fLPTiltControls.Controls.Add(this.bnGyroZP);
+            this.fLPTiltControls.Controls.Add(this.lbGyroZP);
+            this.fLPTiltControls.Controls.Add(this.bnGyroXP);
+            this.fLPTiltControls.Controls.Add(this.lbGyroXP);
+            this.fLPTiltControls.Controls.Add(this.bnGyroXN);
+            this.fLPTiltControls.Controls.Add(this.lbGyroXN);
+            this.fLPTiltControls.Controls.Add(this.lblSteeringWheelEmulationAxis);
+            this.fLPTiltControls.Controls.Add(this.cBSteeringWheelEmulationAxis);
+            this.fLPTiltControls.Controls.Add(this.lblSteeringWheelEmulationRange);
+            this.fLPTiltControls.Controls.Add(this.cBSteeringWheelEmulationRange);
+            this.fLPTiltControls.Controls.Add(this.btnSteeringWheelEmulationCalibrate);
+            resources.ApplyResources(this.fLPTiltControls, "fLPTiltControls");
+            this.fLPTiltControls.Name = "fLPTiltControls";
+            // 
+            // bnGyroZN
+            // 
+            this.bnGyroZN.ContextMenuStrip = this.cMSPresets;
+            resources.ApplyResources(this.bnGyroZN, "bnGyroZN");
+            this.bnGyroZN.Name = "bnGyroZN";
+            this.bnGyroZN.UseVisualStyleBackColor = true;
+            // 
+            // lbGyroZN
+            // 
+            resources.ApplyResources(this.lbGyroZN, "lbGyroZN");
+            this.lbGyroZN.Name = "lbGyroZN";
+            // 
+            // bnGyroZP
+            // 
+            this.bnGyroZP.ContextMenuStrip = this.cMSPresets;
+            resources.ApplyResources(this.bnGyroZP, "bnGyroZP");
+            this.bnGyroZP.Name = "bnGyroZP";
+            this.bnGyroZP.UseVisualStyleBackColor = true;
+            // 
+            // lbGyroZP
+            // 
+            resources.ApplyResources(this.lbGyroZP, "lbGyroZP");
+            this.lbGyroZP.Name = "lbGyroZP";
+            // 
+            // bnGyroXP
+            // 
+            this.bnGyroXP.ContextMenuStrip = this.cMSPresets;
+            resources.ApplyResources(this.bnGyroXP, "bnGyroXP");
+            this.bnGyroXP.Name = "bnGyroXP";
+            this.bnGyroXP.UseVisualStyleBackColor = true;
+            // 
+            // lbGyroXP
+            // 
+            resources.ApplyResources(this.lbGyroXP, "lbGyroXP");
+            this.lbGyroXP.Name = "lbGyroXP";
+            // 
+            // bnGyroXN
+            // 
+            this.bnGyroXN.ContextMenuStrip = this.cMSPresets;
+            resources.ApplyResources(this.bnGyroXN, "bnGyroXN");
+            this.bnGyroXN.Name = "bnGyroXN";
+            this.bnGyroXN.UseVisualStyleBackColor = true;
+            // 
+            // lbGyroXN
+            // 
+            resources.ApplyResources(this.lbGyroXN, "lbGyroXN");
+            this.lbGyroXN.Name = "lbGyroXN";
+            // 
+            // lblSteeringWheelEmulationAxis
+            // 
+            resources.ApplyResources(this.lblSteeringWheelEmulationAxis, "lblSteeringWheelEmulationAxis");
+            this.lblSteeringWheelEmulationAxis.Name = "lblSteeringWheelEmulationAxis";
+            // 
+            // cBSteeringWheelEmulationAxis
+            // 
+            this.cBSteeringWheelEmulationAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBSteeringWheelEmulationAxis.FormattingEnabled = true;
+            this.cBSteeringWheelEmulationAxis.Items.AddRange(new object[] {
+            resources.GetString("cBSteeringWheelEmulationAxis.Items"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items1"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items2"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items3"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items4"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items5"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items6"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items7"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items8"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items9"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items10"),
+            resources.GetString("cBSteeringWheelEmulationAxis.Items11")});
+            resources.ApplyResources(this.cBSteeringWheelEmulationAxis, "cBSteeringWheelEmulationAxis");
+            this.cBSteeringWheelEmulationAxis.Name = "cBSteeringWheelEmulationAxis";
+            // 
+            // lblSteeringWheelEmulationRange
+            // 
+            resources.ApplyResources(this.lblSteeringWheelEmulationRange, "lblSteeringWheelEmulationRange");
+            this.lblSteeringWheelEmulationRange.Name = "lblSteeringWheelEmulationRange";
+            // 
+            // cBSteeringWheelEmulationRange
+            // 
+            this.cBSteeringWheelEmulationRange.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBSteeringWheelEmulationRange.FormattingEnabled = true;
+            this.cBSteeringWheelEmulationRange.Items.AddRange(new object[] {
+            resources.GetString("cBSteeringWheelEmulationRange.Items"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items1"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items2"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items3"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items4"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items5"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items6"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items7"),
+            resources.GetString("cBSteeringWheelEmulationRange.Items8")});
+            resources.ApplyResources(this.cBSteeringWheelEmulationRange, "cBSteeringWheelEmulationRange");
+            this.cBSteeringWheelEmulationRange.Name = "cBSteeringWheelEmulationRange";
+            // 
+            // btnSteeringWheelEmulationCalibrate
+            // 
+            resources.ApplyResources(this.btnSteeringWheelEmulationCalibrate, "btnSteeringWheelEmulationCalibrate");
+            this.btnSteeringWheelEmulationCalibrate.Name = "btnSteeringWheelEmulationCalibrate";
+            this.btnSteeringWheelEmulationCalibrate.UseVisualStyleBackColor = true;
+            // 
+            // pnlSAMouse
+            // 
+            this.pnlSAMouse.Controls.Add(this.toggleGyroMCb);
+            this.pnlSAMouse.Controls.Add(this.label27);
+            this.pnlSAMouse.Controls.Add(this.gyroMouseDzNUD);
+            this.pnlSAMouse.Controls.Add(this.label26);
+            this.pnlSAMouse.Controls.Add(this.triggerCondAndCombo);
+            this.pnlSAMouse.Controls.Add(this.cBGyroMouseXAxis);
+            this.pnlSAMouse.Controls.Add(this.label16);
+            this.pnlSAMouse.Controls.Add(this.lbGyroSmooth);
+            this.pnlSAMouse.Controls.Add(this.cBGyroSmooth);
+            this.pnlSAMouse.Controls.Add(this.lbSmoothWeight);
+            this.pnlSAMouse.Controls.Add(this.nUDGyroSmoothWeight);
+            this.pnlSAMouse.Controls.Add(this.label12);
+            this.pnlSAMouse.Controls.Add(this.nUDGyroMouseVertScale);
+            this.pnlSAMouse.Controls.Add(this.label11);
+            this.pnlSAMouse.Controls.Add(this.gyroTriggerBehavior);
+            this.pnlSAMouse.Controls.Add(this.cBGyroInvertY);
+            this.pnlSAMouse.Controls.Add(this.cBGyroInvertX);
+            this.pnlSAMouse.Controls.Add(this.lbGyroInvert);
+            this.pnlSAMouse.Controls.Add(this.lbGyroTriggers);
+            this.pnlSAMouse.Controls.Add(this.btnGyroTriggers);
+            this.pnlSAMouse.Controls.Add(this.nUDGyroSensitivity);
+            this.pnlSAMouse.Controls.Add(this.lbGyroSens);
+            resources.ApplyResources(this.pnlSAMouse, "pnlSAMouse");
+            this.pnlSAMouse.Name = "pnlSAMouse";
+            // 
+            // toggleGyroMCb
+            // 
+            resources.ApplyResources(this.toggleGyroMCb, "toggleGyroMCb");
+            this.toggleGyroMCb.Name = "toggleGyroMCb";
+            this.toggleGyroMCb.UseVisualStyleBackColor = true;
+            // 
+            // label27
+            // 
+            resources.ApplyResources(this.label27, "label27");
+            this.label27.Name = "label27";
+            // 
+            // gyroMouseDzNUD
+            // 
+            resources.ApplyResources(this.gyroMouseDzNUD, "gyroMouseDzNUD");
+            this.gyroMouseDzNUD.Name = "gyroMouseDzNUD";
+            this.gyroMouseDzNUD.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // label26
+            // 
+            resources.ApplyResources(this.label26, "label26");
+            this.label26.Name = "label26";
+            // 
+            // triggerCondAndCombo
+            // 
+            this.triggerCondAndCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.triggerCondAndCombo.FormattingEnabled = true;
+            this.triggerCondAndCombo.Items.AddRange(new object[] {
+            resources.GetString("triggerCondAndCombo.Items"),
+            resources.GetString("triggerCondAndCombo.Items1")});
+            resources.ApplyResources(this.triggerCondAndCombo, "triggerCondAndCombo");
+            this.triggerCondAndCombo.Name = "triggerCondAndCombo";
+            // 
+            // cBGyroMouseXAxis
+            // 
+            this.cBGyroMouseXAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBGyroMouseXAxis.FormattingEnabled = true;
+            this.cBGyroMouseXAxis.Items.AddRange(new object[] {
+            resources.GetString("cBGyroMouseXAxis.Items"),
+            resources.GetString("cBGyroMouseXAxis.Items1")});
+            resources.ApplyResources(this.cBGyroMouseXAxis, "cBGyroMouseXAxis");
+            this.cBGyroMouseXAxis.Name = "cBGyroMouseXAxis";
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
+            // 
+            // lbGyroSmooth
+            // 
+            resources.ApplyResources(this.lbGyroSmooth, "lbGyroSmooth");
+            this.lbGyroSmooth.Name = "lbGyroSmooth";
+            // 
+            // cBGyroSmooth
+            // 
+            resources.ApplyResources(this.cBGyroSmooth, "cBGyroSmooth");
+            this.cBGyroSmooth.Name = "cBGyroSmooth";
+            this.cBGyroSmooth.UseVisualStyleBackColor = true;
+            // 
+            // lbSmoothWeight
+            // 
+            resources.ApplyResources(this.lbSmoothWeight, "lbSmoothWeight");
+            this.lbSmoothWeight.Name = "lbSmoothWeight";
+            // 
+            // nUDGyroSmoothWeight
+            // 
+            this.nUDGyroSmoothWeight.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDGyroSmoothWeight, "nUDGyroSmoothWeight");
+            this.nUDGyroSmoothWeight.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDGyroSmoothWeight.Name = "nUDGyroSmoothWeight";
+            this.nUDGyroSmoothWeight.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
+            // nUDGyroMouseVertScale
+            // 
+            this.nUDGyroMouseVertScale.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDGyroMouseVertScale, "nUDGyroMouseVertScale");
+            this.nUDGyroMouseVertScale.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nUDGyroMouseVertScale.Name = "nUDGyroMouseVertScale";
+            this.nUDGyroMouseVertScale.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // gyroTriggerBehavior
+            // 
+            resources.ApplyResources(this.gyroTriggerBehavior, "gyroTriggerBehavior");
+            this.gyroTriggerBehavior.Checked = true;
+            this.gyroTriggerBehavior.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.gyroTriggerBehavior.Name = "gyroTriggerBehavior";
+            this.gyroTriggerBehavior.UseVisualStyleBackColor = true;
+            // 
+            // cBGyroInvertY
+            // 
+            resources.ApplyResources(this.cBGyroInvertY, "cBGyroInvertY");
+            this.cBGyroInvertY.Name = "cBGyroInvertY";
+            this.cBGyroInvertY.UseVisualStyleBackColor = true;
+            // 
+            // cBGyroInvertX
+            // 
+            resources.ApplyResources(this.cBGyroInvertX, "cBGyroInvertX");
+            this.cBGyroInvertX.Name = "cBGyroInvertX";
+            this.cBGyroInvertX.UseVisualStyleBackColor = true;
+            // 
+            // lbGyroInvert
+            // 
+            resources.ApplyResources(this.lbGyroInvert, "lbGyroInvert");
+            this.lbGyroInvert.Name = "lbGyroInvert";
+            // 
+            // lbGyroTriggers
+            // 
+            resources.ApplyResources(this.lbGyroTriggers, "lbGyroTriggers");
+            this.lbGyroTriggers.Name = "lbGyroTriggers";
+            // 
+            // btnGyroTriggers
+            // 
+            resources.ApplyResources(this.btnGyroTriggers, "btnGyroTriggers");
+            this.btnGyroTriggers.Name = "btnGyroTriggers";
+            this.btnGyroTriggers.UseVisualStyleBackColor = true;
+            // 
+            // nUDGyroSensitivity
+            // 
+            resources.ApplyResources(this.nUDGyroSensitivity, "nUDGyroSensitivity");
+            this.nUDGyroSensitivity.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.nUDGyroSensitivity.Name = "nUDGyroSensitivity";
+            this.nUDGyroSensitivity.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // lbGyroSens
+            // 
+            resources.ApplyResources(this.lbGyroSens, "lbGyroSens");
+            this.lbGyroSens.Name = "lbGyroSens";
+            // 
+            // tabAxis
+            // 
+            this.tabAxis.Controls.Add(this.flowLayoutPanel3);
+            resources.ApplyResources(this.tabAxis, "tabAxis");
+            this.tabAxis.Name = "tabAxis";
+            this.tabAxis.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel3
+            // 
+            resources.ApplyResources(this.flowLayoutPanel3, "flowLayoutPanel3");
+            this.flowLayoutPanel3.Controls.Add(this.groupBox1);
+            this.flowLayoutPanel3.Controls.Add(this.groupBox2);
+            this.flowLayoutPanel3.Controls.Add(this.groupBox3);
+            this.flowLayoutPanel3.Controls.Add(this.groupBox4);
+            this.flowLayoutPanel3.Controls.Add(this.groupBox5);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tBCustomOutputCurve);
+            this.groupBox1.Controls.Add(this.lbCurveEditorURL);
+            this.groupBox1.Controls.Add(this.nUDLSS);
+            this.groupBox1.Controls.Add(this.label69);
+            this.groupBox1.Controls.Add(this.label46);
+            this.groupBox1.Controls.Add(this.RoundnessNUpDown);
+            this.groupBox1.Controls.Add(this.lsSquStickCk);
+            this.groupBox1.Controls.Add(this.nUDLSRotation);
+            this.groupBox1.Controls.Add(this.label45);
+            this.groupBox1.Controls.Add(this.nUDLSCurve);
+            this.groupBox1.Controls.Add(this.lbLSCurvePercent);
+            this.groupBox1.Controls.Add(this.label44);
+            this.groupBox1.Controls.Add(this.lsOutCurveComboBox);
+            this.groupBox1.Controls.Add(this.label43);
+            this.groupBox1.Controls.Add(this.nUDLSAntiDead);
+            this.groupBox1.Controls.Add(this.label42);
+            this.groupBox1.Controls.Add(this.nUDLSMaxZone);
+            this.groupBox1.Controls.Add(this.label41);
+            this.groupBox1.Controls.Add(this.nUDLS);
+            this.groupBox1.Controls.Add(this.label40);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // tBCustomOutputCurve
+            // 
+            resources.ApplyResources(this.tBCustomOutputCurve, "tBCustomOutputCurve");
+            this.tBCustomOutputCurve.Name = "tBCustomOutputCurve";
+            // 
+            // lbCurveEditorURL
+            // 
+            resources.ApplyResources(this.lbCurveEditorURL, "lbCurveEditorURL");
+            this.lbCurveEditorURL.Name = "lbCurveEditorURL";
+            this.lbCurveEditorURL.TabStop = true;
+            // 
+            // nUDLSS
+            // 
+            this.nUDLSS.DecimalPlaces = 2;
+            this.nUDLSS.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDLSS, "nUDLSS");
+            this.nUDLSS.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nUDLSS.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.nUDLSS.Name = "nUDLSS";
+            this.nUDLSS.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label69
+            // 
+            resources.ApplyResources(this.label69, "label69");
+            this.label69.Name = "label69";
+            // 
+            // label46
+            // 
+            resources.ApplyResources(this.label46, "label46");
+            this.label46.Name = "label46";
+            // 
+            // RoundnessNUpDown
+            // 
+            this.RoundnessNUpDown.DecimalPlaces = 1;
+            this.RoundnessNUpDown.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.RoundnessNUpDown, "RoundnessNUpDown");
+            this.RoundnessNUpDown.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.RoundnessNUpDown.Name = "RoundnessNUpDown";
+            this.RoundnessNUpDown.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            65536});
+            // 
+            // lsSquStickCk
+            // 
+            resources.ApplyResources(this.lsSquStickCk, "lsSquStickCk");
+            this.lsSquStickCk.Name = "lsSquStickCk";
+            this.lsSquStickCk.UseVisualStyleBackColor = true;
+            // 
+            // nUDLSRotation
+            // 
+            resources.ApplyResources(this.nUDLSRotation, "nUDLSRotation");
+            this.nUDLSRotation.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.nUDLSRotation.Minimum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            -2147483648});
+            this.nUDLSRotation.Name = "nUDLSRotation";
+            // 
+            // label45
+            // 
+            resources.ApplyResources(this.label45, "label45");
+            this.label45.Name = "label45";
+            // 
+            // nUDLSCurve
+            // 
+            this.nUDLSCurve.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDLSCurve, "nUDLSCurve");
+            this.nUDLSCurve.Name = "nUDLSCurve";
+            // 
+            // lbLSCurvePercent
+            // 
+            resources.ApplyResources(this.lbLSCurvePercent, "lbLSCurvePercent");
+            this.lbLSCurvePercent.Name = "lbLSCurvePercent";
+            // 
+            // label44
+            // 
+            resources.ApplyResources(this.label44, "label44");
+            this.label44.Name = "label44";
+            // 
+            // lsOutCurveComboBox
+            // 
+            this.lsOutCurveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.lsOutCurveComboBox.DropDownWidth = 120;
+            this.lsOutCurveComboBox.FormattingEnabled = true;
+            this.lsOutCurveComboBox.Items.AddRange(new object[] {
+            resources.GetString("lsOutCurveComboBox.Items"),
+            resources.GetString("lsOutCurveComboBox.Items1"),
+            resources.GetString("lsOutCurveComboBox.Items2"),
+            resources.GetString("lsOutCurveComboBox.Items3"),
+            resources.GetString("lsOutCurveComboBox.Items4"),
+            resources.GetString("lsOutCurveComboBox.Items5"),
+            resources.GetString("lsOutCurveComboBox.Items6")});
+            resources.ApplyResources(this.lsOutCurveComboBox, "lsOutCurveComboBox");
+            this.lsOutCurveComboBox.Name = "lsOutCurveComboBox";
+            // 
+            // label43
+            // 
+            resources.ApplyResources(this.label43, "label43");
+            this.label43.Name = "label43";
+            // 
+            // nUDLSAntiDead
+            // 
+            this.nUDLSAntiDead.DecimalPlaces = 2;
+            this.nUDLSAntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDLSAntiDead, "nUDLSAntiDead");
+            this.nUDLSAntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDLSAntiDead.Name = "nUDLSAntiDead";
+            this.nUDLSAntiDead.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            131072});
+            // 
+            // label42
+            // 
+            resources.ApplyResources(this.label42, "label42");
+            this.label42.Name = "label42";
+            // 
+            // nUDLSMaxZone
+            // 
+            this.nUDLSMaxZone.DecimalPlaces = 2;
+            this.nUDLSMaxZone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDLSMaxZone, "nUDLSMaxZone");
+            this.nUDLSMaxZone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDLSMaxZone.Name = "nUDLSMaxZone";
+            this.nUDLSMaxZone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label41
+            // 
+            resources.ApplyResources(this.label41, "label41");
+            this.label41.Name = "label41";
+            // 
+            // nUDLS
+            // 
+            this.nUDLS.DecimalPlaces = 2;
+            this.nUDLS.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDLS, "nUDLS");
+            this.nUDLS.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDLS.Name = "nUDLS";
+            this.nUDLS.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            131072});
+            // 
+            // label40
+            // 
+            resources.ApplyResources(this.label40, "label40");
+            this.label40.Name = "label40";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.nUDRSS);
+            this.groupBox2.Controls.Add(this.label70);
+            this.groupBox2.Controls.Add(this.rsOutCurveComboBox);
+            this.groupBox2.Controls.Add(this.nUDRSRotation);
+            this.groupBox2.Controls.Add(this.label52);
+            this.groupBox2.Controls.Add(this.lbRSCurvePercent);
+            this.groupBox2.Controls.Add(this.nUDRSCurve);
+            this.groupBox2.Controls.Add(this.label51);
+            this.groupBox2.Controls.Add(this.rsSquStickCk);
+            this.groupBox2.Controls.Add(this.numericUpDown1);
+            this.groupBox2.Controls.Add(this.label28);
+            this.groupBox2.Controls.Add(this.label50);
+            this.groupBox2.Controls.Add(this.nUDRSAntiDead);
+            this.groupBox2.Controls.Add(this.label49);
+            this.groupBox2.Controls.Add(this.nUDRSMaxZone);
+            this.groupBox2.Controls.Add(this.label48);
+            this.groupBox2.Controls.Add(this.nUDRS);
+            this.groupBox2.Controls.Add(this.label47);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // nUDRSS
+            // 
+            this.nUDRSS.DecimalPlaces = 2;
+            this.nUDRSS.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDRSS, "nUDRSS");
+            this.nUDRSS.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nUDRSS.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.nUDRSS.Name = "nUDRSS";
+            this.nUDRSS.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label70
+            // 
+            resources.ApplyResources(this.label70, "label70");
+            this.label70.Name = "label70";
+            // 
+            // rsOutCurveComboBox
+            // 
+            this.rsOutCurveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.rsOutCurveComboBox.DropDownWidth = 120;
+            this.rsOutCurveComboBox.FormattingEnabled = true;
+            this.rsOutCurveComboBox.Items.AddRange(new object[] {
+            resources.GetString("rsOutCurveComboBox.Items"),
+            resources.GetString("rsOutCurveComboBox.Items1"),
+            resources.GetString("rsOutCurveComboBox.Items2"),
+            resources.GetString("rsOutCurveComboBox.Items3"),
+            resources.GetString("rsOutCurveComboBox.Items4"),
+            resources.GetString("rsOutCurveComboBox.Items5"),
+            resources.GetString("rsOutCurveComboBox.Items6")});
+            resources.ApplyResources(this.rsOutCurveComboBox, "rsOutCurveComboBox");
+            this.rsOutCurveComboBox.Name = "rsOutCurveComboBox";
+            // 
+            // nUDRSRotation
+            // 
+            resources.ApplyResources(this.nUDRSRotation, "nUDRSRotation");
+            this.nUDRSRotation.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.nUDRSRotation.Minimum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            -2147483648});
+            this.nUDRSRotation.Name = "nUDRSRotation";
+            // 
+            // label52
+            // 
+            resources.ApplyResources(this.label52, "label52");
+            this.label52.Name = "label52";
+            // 
+            // lbRSCurvePercent
+            // 
+            resources.ApplyResources(this.lbRSCurvePercent, "lbRSCurvePercent");
+            this.lbRSCurvePercent.Name = "lbRSCurvePercent";
+            // 
+            // nUDRSCurve
+            // 
+            this.nUDRSCurve.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDRSCurve, "nUDRSCurve");
+            this.nUDRSCurve.Name = "nUDRSCurve";
+            // 
+            // label51
+            // 
+            resources.ApplyResources(this.label51, "label51");
+            this.label51.Name = "label51";
+            // 
+            // rsSquStickCk
+            // 
+            resources.ApplyResources(this.rsSquStickCk, "rsSquStickCk");
+            this.rsSquStickCk.Name = "rsSquStickCk";
+            this.rsSquStickCk.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.DecimalPlaces = 1;
+            this.numericUpDown1.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            65536});
+            // 
+            // label28
+            // 
+            resources.ApplyResources(this.label28, "label28");
+            this.label28.Name = "label28";
+            // 
+            // label50
+            // 
+            resources.ApplyResources(this.label50, "label50");
+            this.label50.Name = "label50";
+            // 
+            // nUDRSAntiDead
+            // 
+            this.nUDRSAntiDead.DecimalPlaces = 2;
+            this.nUDRSAntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDRSAntiDead, "nUDRSAntiDead");
+            this.nUDRSAntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDRSAntiDead.Name = "nUDRSAntiDead";
+            this.nUDRSAntiDead.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            131072});
+            // 
+            // label49
+            // 
+            resources.ApplyResources(this.label49, "label49");
+            this.label49.Name = "label49";
+            // 
+            // nUDRSMaxZone
+            // 
+            this.nUDRSMaxZone.DecimalPlaces = 2;
+            this.nUDRSMaxZone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDRSMaxZone, "nUDRSMaxZone");
+            this.nUDRSMaxZone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDRSMaxZone.Name = "nUDRSMaxZone";
+            this.nUDRSMaxZone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label48
+            // 
+            resources.ApplyResources(this.label48, "label48");
+            this.label48.Name = "label48";
+            // 
+            // nUDRS
+            // 
+            this.nUDRS.DecimalPlaces = 2;
+            this.nUDRS.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDRS, "nUDRS");
+            this.nUDRS.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDRS.Name = "nUDRS";
+            this.nUDRS.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            131072});
+            // 
+            // label47
+            // 
+            resources.ApplyResources(this.label47, "label47");
+            this.label47.Name = "label47";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.nUDL2S);
+            this.groupBox3.Controls.Add(this.label71);
+            this.groupBox3.Controls.Add(this.cBL2OutputCurve);
+            this.groupBox3.Controls.Add(this.nUDL2AntiDead);
+            this.groupBox3.Controls.Add(this.nUDL2Maxzone);
+            this.groupBox3.Controls.Add(this.nUDL2);
+            this.groupBox3.Controls.Add(this.label54);
+            this.groupBox3.Controls.Add(this.label55);
+            this.groupBox3.Controls.Add(this.label56);
+            this.groupBox3.Controls.Add(this.label57);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.TabStop = false;
+            // 
+            // nUDL2S
+            // 
+            this.nUDL2S.DecimalPlaces = 2;
+            this.nUDL2S.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDL2S, "nUDL2S");
+            this.nUDL2S.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDL2S.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDL2S.Name = "nUDL2S";
+            this.nUDL2S.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label71
+            // 
+            resources.ApplyResources(this.label71, "label71");
+            this.label71.Name = "label71";
+            // 
+            // cBL2OutputCurve
+            // 
+            this.cBL2OutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBL2OutputCurve.DropDownWidth = 70;
+            this.cBL2OutputCurve.FormattingEnabled = true;
+            this.cBL2OutputCurve.Items.AddRange(new object[] {
+            resources.GetString("cBL2OutputCurve.Items"),
+            resources.GetString("cBL2OutputCurve.Items1"),
+            resources.GetString("cBL2OutputCurve.Items2"),
+            resources.GetString("cBL2OutputCurve.Items3"),
+            resources.GetString("cBL2OutputCurve.Items4"),
+            resources.GetString("cBL2OutputCurve.Items5"),
+            resources.GetString("cBL2OutputCurve.Items6")});
+            resources.ApplyResources(this.cBL2OutputCurve, "cBL2OutputCurve");
+            this.cBL2OutputCurve.Name = "cBL2OutputCurve";
+            // 
+            // nUDL2AntiDead
+            // 
+            this.nUDL2AntiDead.DecimalPlaces = 2;
+            this.nUDL2AntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDL2AntiDead, "nUDL2AntiDead");
+            this.nUDL2AntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDL2AntiDead.Name = "nUDL2AntiDead";
+            // 
+            // nUDL2Maxzone
+            // 
+            this.nUDL2Maxzone.DecimalPlaces = 2;
+            this.nUDL2Maxzone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDL2Maxzone, "nUDL2Maxzone");
+            this.nUDL2Maxzone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDL2Maxzone.Name = "nUDL2Maxzone";
+            this.nUDL2Maxzone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nUDL2
+            // 
+            this.nUDL2.DecimalPlaces = 2;
+            this.nUDL2.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDL2, "nUDL2");
+            this.nUDL2.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDL2.Name = "nUDL2";
+            // 
+            // label54
+            // 
+            resources.ApplyResources(this.label54, "label54");
+            this.label54.Name = "label54";
+            // 
+            // label55
+            // 
+            resources.ApplyResources(this.label55, "label55");
+            this.label55.Name = "label55";
+            // 
+            // label56
+            // 
+            resources.ApplyResources(this.label56, "label56");
+            this.label56.Name = "label56";
+            // 
+            // label57
+            // 
+            resources.ApplyResources(this.label57, "label57");
+            this.label57.Name = "label57";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.nUDR2S);
+            this.groupBox4.Controls.Add(this.label72);
+            this.groupBox4.Controls.Add(this.cBR2OutputCurve);
+            this.groupBox4.Controls.Add(this.nUDR2AntiDead);
+            this.groupBox4.Controls.Add(this.nUDR2Maxzone);
+            this.groupBox4.Controls.Add(this.nUDR2);
+            this.groupBox4.Controls.Add(this.label53);
+            this.groupBox4.Controls.Add(this.label58);
+            this.groupBox4.Controls.Add(this.label59);
+            this.groupBox4.Controls.Add(this.label60);
+            resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.TabStop = false;
+            // 
+            // nUDR2S
+            // 
+            this.nUDR2S.DecimalPlaces = 2;
+            this.nUDR2S.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDR2S, "nUDR2S");
+            this.nUDR2S.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDR2S.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDR2S.Name = "nUDR2S";
+            this.nUDR2S.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label72
+            // 
+            resources.ApplyResources(this.label72, "label72");
+            this.label72.Name = "label72";
+            // 
+            // cBR2OutputCurve
+            // 
+            this.cBR2OutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBR2OutputCurve.DropDownWidth = 70;
+            this.cBR2OutputCurve.FormattingEnabled = true;
+            this.cBR2OutputCurve.Items.AddRange(new object[] {
+            resources.GetString("cBR2OutputCurve.Items"),
+            resources.GetString("cBR2OutputCurve.Items1"),
+            resources.GetString("cBR2OutputCurve.Items2"),
+            resources.GetString("cBR2OutputCurve.Items3"),
+            resources.GetString("cBR2OutputCurve.Items4"),
+            resources.GetString("cBR2OutputCurve.Items5"),
+            resources.GetString("cBR2OutputCurve.Items6")});
+            resources.ApplyResources(this.cBR2OutputCurve, "cBR2OutputCurve");
+            this.cBR2OutputCurve.Name = "cBR2OutputCurve";
+            // 
+            // nUDR2AntiDead
+            // 
+            this.nUDR2AntiDead.DecimalPlaces = 2;
+            this.nUDR2AntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDR2AntiDead, "nUDR2AntiDead");
+            this.nUDR2AntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDR2AntiDead.Name = "nUDR2AntiDead";
+            // 
+            // nUDR2Maxzone
+            // 
+            this.nUDR2Maxzone.DecimalPlaces = 2;
+            this.nUDR2Maxzone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDR2Maxzone, "nUDR2Maxzone");
+            this.nUDR2Maxzone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDR2Maxzone.Name = "nUDR2Maxzone";
+            this.nUDR2Maxzone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nUDR2
+            // 
+            this.nUDR2.DecimalPlaces = 2;
+            this.nUDR2.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDR2, "nUDR2");
+            this.nUDR2.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDR2.Name = "nUDR2";
+            // 
+            // label53
+            // 
+            resources.ApplyResources(this.label53, "label53");
+            this.label53.Name = "label53";
+            // 
+            // label58
+            // 
+            resources.ApplyResources(this.label58, "label58");
+            this.label58.Name = "label58";
+            // 
+            // label59
+            // 
+            resources.ApplyResources(this.label59, "label59");
+            this.label59.Name = "label59";
+            // 
+            // label60
+            // 
+            resources.ApplyResources(this.label60, "label60");
+            this.label60.Name = "label60";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.nUDSZS);
+            this.groupBox5.Controls.Add(this.nUDSXS);
+            this.groupBox5.Controls.Add(this.label74);
+            this.groupBox5.Controls.Add(this.label73);
+            this.groupBox5.Controls.Add(this.cBSixaxisZOutputCurve);
+            this.groupBox5.Controls.Add(this.label68);
+            this.groupBox5.Controls.Add(this.cBSixaxisXOutputCurve);
+            this.groupBox5.Controls.Add(this.label67);
+            this.groupBox5.Controls.Add(this.nUDSixaxisZAntiDead);
+            this.groupBox5.Controls.Add(this.label66);
+            this.groupBox5.Controls.Add(this.nUDSixaxisXAntiDead);
+            this.groupBox5.Controls.Add(this.label65);
+            this.groupBox5.Controls.Add(this.nUDSixAxisZMaxZone);
+            this.groupBox5.Controls.Add(this.label64);
+            this.groupBox5.Controls.Add(this.nUDSixAxisXMaxZone);
+            this.groupBox5.Controls.Add(this.label63);
+            this.groupBox5.Controls.Add(this.nUDSZ);
+            this.groupBox5.Controls.Add(this.label62);
+            this.groupBox5.Controls.Add(this.nUDSX);
+            this.groupBox5.Controls.Add(this.label61);
+            resources.ApplyResources(this.groupBox5, "groupBox5");
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.TabStop = false;
+            // 
+            // nUDSZS
+            // 
+            this.nUDSZS.DecimalPlaces = 2;
+            this.nUDSZS.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDSZS, "nUDSZS");
+            this.nUDSZS.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nUDSZS.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.nUDSZS.Name = "nUDSZS";
+            this.nUDSZS.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nUDSXS
+            // 
+            this.nUDSXS.DecimalPlaces = 2;
+            this.nUDSXS.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDSXS, "nUDSXS");
+            this.nUDSXS.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nUDSXS.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.nUDSXS.Name = "nUDSXS";
+            this.nUDSXS.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label74
+            // 
+            resources.ApplyResources(this.label74, "label74");
+            this.label74.Name = "label74";
+            // 
+            // label73
+            // 
+            resources.ApplyResources(this.label73, "label73");
+            this.label73.Name = "label73";
+            // 
+            // cBSixaxisZOutputCurve
+            // 
+            this.cBSixaxisZOutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBSixaxisZOutputCurve.DropDownWidth = 70;
+            this.cBSixaxisZOutputCurve.FormattingEnabled = true;
+            this.cBSixaxisZOutputCurve.Items.AddRange(new object[] {
+            resources.GetString("cBSixaxisZOutputCurve.Items"),
+            resources.GetString("cBSixaxisZOutputCurve.Items1"),
+            resources.GetString("cBSixaxisZOutputCurve.Items2"),
+            resources.GetString("cBSixaxisZOutputCurve.Items3"),
+            resources.GetString("cBSixaxisZOutputCurve.Items4"),
+            resources.GetString("cBSixaxisZOutputCurve.Items5"),
+            resources.GetString("cBSixaxisZOutputCurve.Items6")});
+            resources.ApplyResources(this.cBSixaxisZOutputCurve, "cBSixaxisZOutputCurve");
+            this.cBSixaxisZOutputCurve.Name = "cBSixaxisZOutputCurve";
+            // 
+            // label68
+            // 
+            resources.ApplyResources(this.label68, "label68");
+            this.label68.Name = "label68";
+            // 
+            // cBSixaxisXOutputCurve
+            // 
+            this.cBSixaxisXOutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBSixaxisXOutputCurve.DropDownWidth = 70;
+            this.cBSixaxisXOutputCurve.FormattingEnabled = true;
+            this.cBSixaxisXOutputCurve.Items.AddRange(new object[] {
+            resources.GetString("cBSixaxisXOutputCurve.Items"),
+            resources.GetString("cBSixaxisXOutputCurve.Items1"),
+            resources.GetString("cBSixaxisXOutputCurve.Items2"),
+            resources.GetString("cBSixaxisXOutputCurve.Items3"),
+            resources.GetString("cBSixaxisXOutputCurve.Items4"),
+            resources.GetString("cBSixaxisXOutputCurve.Items5"),
+            resources.GetString("cBSixaxisXOutputCurve.Items6")});
+            resources.ApplyResources(this.cBSixaxisXOutputCurve, "cBSixaxisXOutputCurve");
+            this.cBSixaxisXOutputCurve.Name = "cBSixaxisXOutputCurve";
+            // 
+            // label67
+            // 
+            resources.ApplyResources(this.label67, "label67");
+            this.label67.Name = "label67";
+            // 
+            // nUDSixaxisZAntiDead
+            // 
+            this.nUDSixaxisZAntiDead.DecimalPlaces = 2;
+            this.nUDSixaxisZAntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDSixaxisZAntiDead, "nUDSixaxisZAntiDead");
+            this.nUDSixaxisZAntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixaxisZAntiDead.Name = "nUDSixaxisZAntiDead";
+            // 
+            // label66
+            // 
+            resources.ApplyResources(this.label66, "label66");
+            this.label66.Name = "label66";
+            // 
+            // nUDSixaxisXAntiDead
+            // 
+            this.nUDSixaxisXAntiDead.DecimalPlaces = 2;
+            this.nUDSixaxisXAntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDSixaxisXAntiDead, "nUDSixaxisXAntiDead");
+            this.nUDSixaxisXAntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixaxisXAntiDead.Name = "nUDSixaxisXAntiDead";
+            // 
+            // label65
+            // 
+            resources.ApplyResources(this.label65, "label65");
+            this.label65.Name = "label65";
+            // 
+            // nUDSixAxisZMaxZone
+            // 
+            this.nUDSixAxisZMaxZone.DecimalPlaces = 2;
+            this.nUDSixAxisZMaxZone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDSixAxisZMaxZone, "nUDSixAxisZMaxZone");
+            this.nUDSixAxisZMaxZone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixAxisZMaxZone.Name = "nUDSixAxisZMaxZone";
+            this.nUDSixAxisZMaxZone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label64
+            // 
+            resources.ApplyResources(this.label64, "label64");
+            this.label64.Name = "label64";
+            // 
+            // nUDSixAxisXMaxZone
+            // 
+            this.nUDSixAxisXMaxZone.DecimalPlaces = 2;
+            this.nUDSixAxisXMaxZone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDSixAxisXMaxZone, "nUDSixAxisXMaxZone");
+            this.nUDSixAxisXMaxZone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixAxisXMaxZone.Name = "nUDSixAxisXMaxZone";
+            this.nUDSixAxisXMaxZone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label63
+            // 
+            resources.ApplyResources(this.label63, "label63");
+            this.label63.Name = "label63";
+            // 
+            // nUDSZ
+            // 
+            this.nUDSZ.DecimalPlaces = 2;
+            this.nUDSZ.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDSZ, "nUDSZ");
+            this.nUDSZ.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSZ.Name = "nUDSZ";
+            this.nUDSZ.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            131072});
+            // 
+            // label62
+            // 
+            resources.ApplyResources(this.label62, "label62");
+            this.label62.Name = "label62";
+            // 
+            // nUDSX
+            // 
+            this.nUDSX.DecimalPlaces = 2;
+            this.nUDSX.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDSX, "nUDSX");
+            this.nUDSX.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSX.Name = "nUDSX";
+            this.nUDSX.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            131072});
+            // 
+            // label61
+            // 
+            resources.ApplyResources(this.label61, "label61");
+            this.label61.Name = "label61";
+            // 
+            // tabOther
+            // 
+            this.tabOther.Controls.Add(this.flowLayoutPanel4);
+            resources.ApplyResources(this.tabOther, "tabOther");
+            this.tabOther.Name = "tabOther";
+            this.tabOther.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel4
+            // 
+            resources.ApplyResources(this.flowLayoutPanel4, "flowLayoutPanel4");
+            this.flowLayoutPanel4.Controls.Add(this.gBRumble);
+            this.flowLayoutPanel4.Controls.Add(this.panel7);
+            this.flowLayoutPanel4.Controls.Add(this.panel8);
+            this.flowLayoutPanel4.Controls.Add(this.cBMouseAccel);
+            this.flowLayoutPanel4.Controls.Add(this.enableTouchToggleCheckbox);
+            this.flowLayoutPanel4.Controls.Add(this.panel9);
+            this.flowLayoutPanel4.Controls.Add(this.cBDinput);
+            this.flowLayoutPanel4.Controls.Add(this.cBFlushHIDQueue);
+            this.flowLayoutPanel4.Controls.Add(this.panel10);
+            this.flowLayoutPanel4.Controls.Add(this.panel11);
+            this.flowLayoutPanel4.Controls.Add(this.panel12);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            // 
+            // gBRumble
+            // 
+            this.gBRumble.BackColor = System.Drawing.SystemColors.Control;
+            this.gBRumble.Controls.Add(this.lbPercentRumble);
+            this.gBRumble.Controls.Add(this.btnRumbleLightTest);
+            this.gBRumble.Controls.Add(this.btnRumbleHeavyTest);
+            this.gBRumble.Controls.Add(this.nUDRumbleBoost);
+            resources.ApplyResources(this.gBRumble, "gBRumble");
+            this.gBRumble.Name = "gBRumble";
+            this.gBRumble.TabStop = false;
+            // 
+            // lbPercentRumble
+            // 
+            resources.ApplyResources(this.lbPercentRumble, "lbPercentRumble");
+            this.lbPercentRumble.Name = "lbPercentRumble";
+            // 
+            // btnRumbleLightTest
+            // 
+            resources.ApplyResources(this.btnRumbleLightTest, "btnRumbleLightTest");
+            this.btnRumbleLightTest.Name = "btnRumbleLightTest";
+            this.btnRumbleLightTest.UseVisualStyleBackColor = true;
+            // 
+            // btnRumbleHeavyTest
+            // 
+            resources.ApplyResources(this.btnRumbleHeavyTest, "btnRumbleHeavyTest");
+            this.btnRumbleHeavyTest.Name = "btnRumbleHeavyTest";
+            this.btnRumbleHeavyTest.UseVisualStyleBackColor = true;
+            // 
+            // nUDRumbleBoost
+            // 
+            resources.ApplyResources(this.nUDRumbleBoost, "nUDRumbleBoost");
+            this.nUDRumbleBoost.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.nUDRumbleBoost.Name = "nUDRumbleBoost";
+            this.nUDRumbleBoost.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.lbUseController);
+            this.panel7.Controls.Add(this.nUDSixaxis);
+            this.panel7.Controls.Add(this.cBControllerInput);
+            resources.ApplyResources(this.panel7, "panel7");
+            this.panel7.Name = "panel7";
+            // 
+            // lbUseController
+            // 
+            resources.ApplyResources(this.lbUseController, "lbUseController");
+            this.lbUseController.Name = "lbUseController";
+            // 
+            // nUDSixaxis
+            // 
+            resources.ApplyResources(this.nUDSixaxis, "nUDSixaxis");
+            this.nUDSixaxis.Maximum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.nUDSixaxis.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixaxis.Name = "nUDSixaxis";
+            this.nUDSixaxis.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // cBControllerInput
+            // 
+            resources.ApplyResources(this.cBControllerInput, "cBControllerInput");
+            this.cBControllerInput.Checked = true;
+            this.cBControllerInput.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBControllerInput.Name = "cBControllerInput";
+            this.cBControllerInput.UseVisualStyleBackColor = true;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.lbButtonMouseSens);
+            this.panel8.Controls.Add(this.numUDMouseSens);
+            resources.ApplyResources(this.panel8, "panel8");
+            this.panel8.Name = "panel8";
+            // 
+            // lbButtonMouseSens
+            // 
+            resources.ApplyResources(this.lbButtonMouseSens, "lbButtonMouseSens");
+            this.lbButtonMouseSens.Name = "lbButtonMouseSens";
+            // 
+            // numUDMouseSens
+            // 
+            resources.ApplyResources(this.numUDMouseSens, "numUDMouseSens");
+            this.numUDMouseSens.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numUDMouseSens.Name = "numUDMouseSens";
+            this.numUDMouseSens.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            // 
+            // cBMouseAccel
+            // 
+            resources.ApplyResources(this.cBMouseAccel, "cBMouseAccel");
+            this.cBMouseAccel.Name = "cBMouseAccel";
+            this.cBMouseAccel.UseVisualStyleBackColor = true;
+            // 
+            // enableTouchToggleCheckbox
+            // 
+            resources.ApplyResources(this.enableTouchToggleCheckbox, "enableTouchToggleCheckbox");
+            this.enableTouchToggleCheckbox.Name = "enableTouchToggleCheckbox";
+            this.enableTouchToggleCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.pBProgram);
+            this.panel9.Controls.Add(this.cBLaunchProgram);
+            this.panel9.Controls.Add(this.btnBrowse);
+            resources.ApplyResources(this.panel9, "panel9");
+            this.panel9.Name = "panel9";
+            // 
+            // pBProgram
+            // 
+            resources.ApplyResources(this.pBProgram, "pBProgram");
+            this.pBProgram.Name = "pBProgram";
+            this.pBProgram.TabStop = false;
+            // 
+            // cBLaunchProgram
+            // 
+            resources.ApplyResources(this.cBLaunchProgram, "cBLaunchProgram");
+            this.cBLaunchProgram.Name = "cBLaunchProgram";
+            this.cBLaunchProgram.UseVisualStyleBackColor = true;
+            // 
+            // btnBrowse
+            // 
+            resources.ApplyResources(this.btnBrowse, "btnBrowse");
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.UseVisualStyleBackColor = true;
+            // 
+            // cBDinput
+            // 
+            resources.ApplyResources(this.cBDinput, "cBDinput");
+            this.cBDinput.Name = "cBDinput";
+            this.cBDinput.UseVisualStyleBackColor = true;
+            // 
+            // cBFlushHIDQueue
+            // 
+            resources.ApplyResources(this.cBFlushHIDQueue, "cBFlushHIDQueue");
+            this.cBFlushHIDQueue.Name = "cBFlushHIDQueue";
+            this.cBFlushHIDQueue.UseVisualStyleBackColor = true;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.nUDIdleDisconnect);
+            this.panel10.Controls.Add(this.cBIdleDisconnect);
+            this.panel10.Controls.Add(this.lbIdleMinutes);
+            resources.ApplyResources(this.panel10, "panel10");
+            this.panel10.Name = "panel10";
+            // 
+            // nUDIdleDisconnect
+            // 
+            this.nUDIdleDisconnect.DecimalPlaces = 1;
+            resources.ApplyResources(this.nUDIdleDisconnect, "nUDIdleDisconnect");
+            this.nUDIdleDisconnect.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.nUDIdleDisconnect.Name = "nUDIdleDisconnect";
+            // 
+            // cBIdleDisconnect
+            // 
+            resources.ApplyResources(this.cBIdleDisconnect, "cBIdleDisconnect");
+            this.cBIdleDisconnect.Checked = true;
+            this.cBIdleDisconnect.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBIdleDisconnect.Name = "cBIdleDisconnect";
+            this.cBIdleDisconnect.UseVisualStyleBackColor = true;
+            // 
+            // lbIdleMinutes
+            // 
+            resources.ApplyResources(this.lbIdleMinutes, "lbIdleMinutes");
+            this.lbIdleMinutes.Name = "lbIdleMinutes";
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.btPollRateLabel);
+            this.panel11.Controls.Add(this.btPollRateComboBox);
+            resources.ApplyResources(this.panel11, "panel11");
+            this.panel11.Name = "panel11";
+            // 
+            // btPollRateLabel
+            // 
+            resources.ApplyResources(this.btPollRateLabel, "btPollRateLabel");
+            this.btPollRateLabel.Name = "btPollRateLabel";
+            // 
+            // btPollRateComboBox
+            // 
+            this.btPollRateComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.btPollRateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.btPollRateComboBox.FormattingEnabled = true;
+            this.btPollRateComboBox.Items.AddRange(new object[] {
+            resources.GetString("btPollRateComboBox.Items"),
+            resources.GetString("btPollRateComboBox.Items1"),
+            resources.GetString("btPollRateComboBox.Items2"),
+            resources.GetString("btPollRateComboBox.Items3"),
+            resources.GetString("btPollRateComboBox.Items4"),
+            resources.GetString("btPollRateComboBox.Items5"),
+            resources.GetString("btPollRateComboBox.Items6"),
+            resources.GetString("btPollRateComboBox.Items7"),
+            resources.GetString("btPollRateComboBox.Items8"),
+            resources.GetString("btPollRateComboBox.Items9"),
+            resources.GetString("btPollRateComboBox.Items10"),
+            resources.GetString("btPollRateComboBox.Items11"),
+            resources.GetString("btPollRateComboBox.Items12"),
+            resources.GetString("btPollRateComboBox.Items13"),
+            resources.GetString("btPollRateComboBox.Items14"),
+            resources.GetString("btPollRateComboBox.Items15"),
+            resources.GetString("btPollRateComboBox.Items16")});
+            resources.ApplyResources(this.btPollRateComboBox, "btPollRateComboBox");
+            this.btPollRateComboBox.Name = "btPollRateComboBox";
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.OutContTypeCb);
+            this.panel12.Controls.Add(this.outcontLb);
+            resources.ApplyResources(this.panel12, "panel12");
+            this.panel12.Name = "panel12";
+            // 
+            // OutContTypeCb
+            // 
+            this.OutContTypeCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.OutContTypeCb.FormattingEnabled = true;
+            this.OutContTypeCb.Items.AddRange(new object[] {
+            resources.GetString("OutContTypeCb.Items"),
+            resources.GetString("OutContTypeCb.Items1")});
+            resources.ApplyResources(this.OutContTypeCb, "OutContTypeCb");
+            this.OutContTypeCb.Name = "OutContTypeCb";
+            // 
+            // outcontLb
+            // 
+            resources.ApplyResources(this.outcontLb, "outcontLb");
+            this.outcontLb.Name = "outcontLb";
+            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.Controls.Add(this.fLPSettings);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.tCControls);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Options";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Options_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBRedBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDTap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDScroll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDTouch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDIdleDisconnect)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDR2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRumbleBoost)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBLowRedBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBLowGreenBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBLowBlueBar)).EndInit();
-            this.pnlFull.ResumeLayout(false);
-            this.pnlFull.PerformLayout();
-            this.pnlLowBattery.ResumeLayout(false);
-            this.pnlLowBattery.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDMouseSens)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2)).EndInit();
             this.gBTouchpad.ResumeLayout(false);
             this.gBTouchpad.PerformLayout();
             this.pnlTPMouse.ResumeLayout(false);
@@ -4685,18 +4663,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackFrictionNUD)).EndInit();
             this.fLPTouchSwipe.ResumeLayout(false);
             this.cMSPresets.ResumeLayout(false);
-            this.gBOther.ResumeLayout(false);
-            this.gBOther.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).EndInit();
-            this.gBLightbar.ResumeLayout(false);
-            this.gBLightbar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRainbowB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).EndInit();
-            this.gBRumble.ResumeLayout(false);
-            this.gBRumble.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSX)).EndInit();
             this.lbL2TrackS.ResumeLayout(false);
             this.lbL2TrackS.PerformLayout();
             this.pnlSATrack.ResumeLayout(false);
@@ -4712,16 +4678,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelZ)).EndInit();
             this.pnlLSTrack.ResumeLayout(false);
             this.pnlRSTrack.ResumeLayout(false);
-            this.fLPTiltControls.ResumeLayout(false);
-            this.fLPTiltControls.PerformLayout();
-            this.gyroMouseJoyFLP.ResumeLayout(false);
-            this.gyroMouseJoyFLP.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickDZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickMaxZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickVertScaleNUD)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickSmoothWeightNUD)).EndInit();
             this.tCControls.ResumeLayout(false);
             this.tPControls.ResumeLayout(false);
             this.pnlController.ResumeLayout(false);
@@ -4730,75 +4686,122 @@
             this.pnlActions.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.fLPActionButtons.ResumeLayout(false);
-            this.tCSens.ResumeLayout(false);
-            this.tPDeadzone.ResumeLayout(false);
-            this.tPDeadzone.PerformLayout();
-            this.antiDeadzoneTabPage.ResumeLayout(false);
-            this.antiDeadzoneTabPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxisZAntiDead)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxisXAntiDead)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDR2AntiDead)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2AntiDead)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSAntiDead)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLSAntiDead)).EndInit();
-            this.maxZoneTabPage.ResumeLayout(false);
-            this.maxZoneTabPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisZMaxZone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisXMaxZone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDR2Maxzone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).EndInit();
-            this.squStickTabPage.ResumeLayout(false);
-            this.squStickTabPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RoundnessNUpDown)).EndInit();
-            this.tPOutCurve.ResumeLayout(false);
-            this.tPOutCurve.PerformLayout();
-            this.tPCurve.ResumeLayout(false);
-            this.tPCurve.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).EndInit();
-            this.tpRotation.ResumeLayout(false);
-            this.tpRotation.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLSRotation)).EndInit();
-            this.fLPSettings.ResumeLayout(false);
-            this.gBGyro.ResumeLayout(false);
-            this.gBGyro.PerformLayout();
+            this.cMGyroTriggers.ResumeLayout(false);
+            this.cMTouchDisableInvert.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabLightbar.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.pnlFull.ResumeLayout(false);
+            this.pnlFull.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tBRedBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).EndInit();
+            this.pnlLowBattery.ResumeLayout(false);
+            this.pnlLowBattery.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tBLowRedBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBLowGreenBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBLowBlueBar)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRainbowB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).EndInit();
+            this.tabGyro.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.gyroMouseJoyFLP.ResumeLayout(false);
+            this.gyroMouseJoyFLP.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickDZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickMaxZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMouseStickAntiDeadY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickVertScaleNUD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gyroMStickSmoothWeightNUD)).EndInit();
+            this.fLPTiltControls.ResumeLayout(false);
+            this.fLPTiltControls.PerformLayout();
             this.pnlSAMouse.ResumeLayout(false);
             this.pnlSAMouse.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gyroMouseDzNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSmoothWeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroMouseVertScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSensitivity)).EndInit();
-            this.gBSensitivity.ResumeLayout(false);
-            this.gBSensitivity.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2S)).EndInit();
+            this.tabAxis.ResumeLayout(false);
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDR2S)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RoundnessNUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSRotation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSAntiDead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLS)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSAntiDead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRS)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2S)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2AntiDead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDR2S)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDR2AntiDead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDR2Maxzone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDR2)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
-            this.cMGyroTriggers.ResumeLayout(false);
-            this.cMTouchDisableInvert.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxisZAntiDead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxisXAntiDead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisZMaxZone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisXMaxZone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSX)).EndInit();
+            this.tabOther.ResumeLayout(false);
+            this.flowLayoutPanel4.ResumeLayout(false);
+            this.flowLayoutPanel4.PerformLayout();
+            this.gBRumble.ResumeLayout(false);
+            this.gBRumble.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRumbleBoost)).EndInit();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).EndInit();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDMouseSens)).EndInit();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).EndInit();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDIdleDisconnect)).EndInit();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        
-        //private System.Windows.Forms.TrackBar tBsixaxisGyroX;
-        //private System.Windows.Forms.TrackBar tBsixaxisGyroY;
-        private System.Windows.Forms.NumericUpDown nUDRainbow;
-        private System.Windows.Forms.Button lowColorChooserButton;
-        private System.Windows.Forms.TrackBar tBBlueBar;
-        private System.Windows.Forms.TrackBar tBGreenBar;
-        private System.Windows.Forms.TrackBar tBRedBar;
         private System.Windows.Forms.CheckBox cBLightbyBattery;
-        private System.Windows.Forms.Label lbBlue;
-        private System.Windows.Forms.Label lbGreen;
-        private System.Windows.Forms.Label lbspc;
-        private System.Windows.Forms.Label lbRed;
         private System.Windows.Forms.CheckBox cBDoubleTap;
         private System.Windows.Forms.CheckBox cBTap;
         private System.Windows.Forms.NumericUpDown nUDTap;
@@ -4806,56 +4809,10 @@
         private System.Windows.Forms.CheckBox cBSlide;
         private System.Windows.Forms.NumericUpDown nUDScroll;
         private System.Windows.Forms.NumericUpDown nUDTouch;
-        private System.Windows.Forms.Label lbButtonMouseSens;
         private System.Windows.Forms.CheckBox cBlowerRCOn;
         private System.Windows.Forms.CheckBox cBTouchpadJitterCompensation;
-        private System.Windows.Forms.Label lbL2;
-        private System.Windows.Forms.Label lbR2;
-        private System.Windows.Forms.Label lbIdleMinutes;
-        private System.Windows.Forms.NumericUpDown nUDIdleDisconnect;
-        private System.Windows.Forms.NumericUpDown nUDR2;
-        private System.Windows.Forms.CheckBox cBFlushHIDQueue;
-        private System.Windows.Forms.NumericUpDown nUDRumbleBoost;
-        private System.Windows.Forms.Button btnRumbleHeavyTest;
-        private System.Windows.Forms.Label lbFull;
-        private System.Windows.Forms.Label lbLowRed;
-        private System.Windows.Forms.Label lbLowGreen;
-        private System.Windows.Forms.Label lbLowBlue;
-        private System.Windows.Forms.TrackBar tBLowRedBar;
-        private System.Windows.Forms.TrackBar tBLowGreenBar;
-        private System.Windows.Forms.TrackBar tBLowBlueBar;
-        private System.Windows.Forms.Label lbEmpty;
-        private System.Windows.Forms.Panel pnlLowBattery;
-        private System.Windows.Forms.Panel pnlFull;
-        private System.Windows.Forms.Label lbRS;
-        private System.Windows.Forms.Label lbLS;
-        private System.Windows.Forms.NumericUpDown nUDRS;
-        private System.Windows.Forms.NumericUpDown numUDMouseSens;
-        private System.Windows.Forms.NumericUpDown nUDL2;
-        private System.Windows.Forms.NumericUpDown nUDLS;
         private System.Windows.Forms.GroupBox gBTouchpad;
-        private System.Windows.Forms.GroupBox gBOther;
-        private System.Windows.Forms.GroupBox gBLightbar;
-        private System.Windows.Forms.GroupBox gBRumble;
-        private System.Windows.Forms.CheckBox cBControllerInput;
-        private System.Windows.Forms.NumericUpDown nUDSixaxis;
-        private System.Windows.Forms.NumericUpDown nUDflashLED;
-        private System.Windows.Forms.Label lbPercentFlashBar;
-        private System.Windows.Forms.Label lbWhileCharging;
-        private System.Windows.Forms.Button btnChargingColor;
-        private System.Windows.Forms.CheckBox cBIdleDisconnect;
-        private System.Windows.Forms.Label lbSixaxisX;
-        private System.Windows.Forms.Label lbSixaxisZ;
-        private System.Windows.Forms.NumericUpDown nUDSZ;
-        private System.Windows.Forms.NumericUpDown nUDSX;
-        private System.Windows.Forms.Label lbPercentRumble;
-        private System.Windows.Forms.CheckBox cBMouseAccel;
-        private System.Windows.Forms.Label lbUseController;
-        private System.Windows.Forms.CheckBox cBLaunchProgram;
-        private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.PictureBox pBProgram;
-        private System.Windows.Forms.CheckBox cBDinput;
         private System.Windows.Forms.CheckBox cbStartTouchpadOff;
         private System.Windows.Forms.TabPage lbL2TrackS;
         private System.Windows.Forms.Panel pnlSixaxis;
@@ -4877,18 +4834,12 @@
         private System.Windows.Forms.Button btnLSTrack;
         private System.Windows.Forms.TrackBar tBR2;
         private System.Windows.Forms.TrackBar tBL2;
-        private System.Windows.Forms.FlowLayoutPanel fLPTiltControls;
-        private System.Windows.Forms.Button bnGyroZN;
-        private System.Windows.Forms.Button bnGyroZP;
-        private System.Windows.Forms.Button bnGyroXP;
-        private System.Windows.Forms.Button bnGyroXN;
         private System.Windows.Forms.TabControl tCControls;
         private System.Windows.Forms.FlowLayoutPanel fLPTouchSwipe;
         private System.Windows.Forms.Button bnSwipeUp;
         private System.Windows.Forms.Button bnSwipeDown;
         private System.Windows.Forms.Button bnSwipeLeft;
         private System.Windows.Forms.Button bnSwipeRight;
-        private System.Windows.Forms.Button btnRumbleLightTest;
         private System.Windows.Forms.TabPage tPSpecial;
         private System.Windows.Forms.Button btnRemAction;
         private System.Windows.Forms.Button btnNewAction;
@@ -4900,15 +4851,6 @@
         private System.Windows.Forms.FlowLayoutPanel fLPActionButtons;
         public System.Windows.Forms.ListView lVActions;
         private System.Windows.Forms.Label lbActionsTip;
-        private System.Windows.Forms.TabControl tCSens;
-        private System.Windows.Forms.TabPage tPDeadzone;
-        private System.Windows.Forms.TabPage tPCurve;
-        private System.Windows.Forms.NumericUpDown nUDLSCurve;
-        private System.Windows.Forms.NumericUpDown nUDRSCurve;
-        private System.Windows.Forms.Label lbRSCurve;
-        private System.Windows.Forms.Label lbRSCurvePercent;
-        private System.Windows.Forms.Label lbLSCurvePercent;
-        private System.Windows.Forms.Label lbLSCurve;
         private System.Windows.Forms.ContextMenuStrip cMSPresets;
         private System.Windows.Forms.ToolStripMenuItem defaultToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem WASDToolStripMenuItem;
@@ -4934,30 +4876,14 @@
         private System.Windows.Forms.ToolStripMenuItem tSMIMouseInverted;
         private System.Windows.Forms.ToolStripMenuItem tSMIMouseInvertedX;
         private System.Windows.Forms.ToolStripMenuItem tSMIMouseInvertedY;
-        private System.Windows.Forms.ComboBox cBWhileCharging;
-        private System.Windows.Forms.Button btnFlashColor;
-        private System.Windows.Forms.ComboBox cBFlashType;
-        private System.Windows.Forms.Label lbRainbowB;
-        private System.Windows.Forms.NumericUpDown nUDRainbowB;
         private System.Windows.Forms.Button btnRSTrack;
-        private System.Windows.Forms.FlowLayoutPanel fLPSettings;
         private System.Windows.Forms.RadioButton rBTPControls;
         private System.Windows.Forms.RadioButton rBTPMouse;
-        private System.Windows.Forms.GroupBox gBGyro;
-        private System.Windows.Forms.Label lbGyroSens;
-        private System.Windows.Forms.NumericUpDown nUDGyroSensitivity;
         private System.Windows.Forms.Label lbSwipeUp;
         private System.Windows.Forms.Label lbSwipeDown;
         private System.Windows.Forms.Label lbSwipeLeft;
         private System.Windows.Forms.Label lbSwipeRight;
         private System.Windows.Forms.Panel pnlTPMouse;
-        private System.Windows.Forms.Label lbGyroZN;
-        private System.Windows.Forms.Label lbGyroZP;
-        private System.Windows.Forms.Label lbGyroXP;
-        private System.Windows.Forms.Label lbGyroXN;
-        private System.Windows.Forms.Panel pnlSAMouse;
-        private System.Windows.Forms.Label lbGyroTriggers;
-        private System.Windows.Forms.Button btnGyroTriggers;
         private System.Windows.Forms.ContextMenuStrip cMGyroTriggers;
         private System.Windows.Forms.ToolStripMenuItem crossToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem circleToolStripMenuItem;
@@ -4977,9 +4903,6 @@
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem shareToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pSToolStripMenuItem;
-        private System.Windows.Forms.CheckBox cBGyroInvertY;
-        private System.Windows.Forms.CheckBox cBGyroInvertX;
-        private System.Windows.Forms.Label lbGyroInvert;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TabPage tPControls;
         private System.Windows.Forms.Label lbControlTip;
@@ -5037,87 +4960,16 @@
         private System.Windows.Forms.Button bnL1;
         private System.Windows.Forms.Button bnL2;
         private System.Windows.Forms.Button bnPS;
-        private System.Windows.Forms.GroupBox gBSensitivity;
-        private System.Windows.Forms.Label lbL2S;
-        private System.Windows.Forms.NumericUpDown nUDL2S;
-        private System.Windows.Forms.NumericUpDown nUDLSS;
-        private System.Windows.Forms.Label lbSixaxisXS;
-        private System.Windows.Forms.NumericUpDown nUDR2S;
-        private System.Windows.Forms.Label lbSixaxisZS;
-        private System.Windows.Forms.NumericUpDown nUDRSS;
-        private System.Windows.Forms.Label lbR2LS;
-        private System.Windows.Forms.NumericUpDown nUDSXS;
-        private System.Windows.Forms.Label lbRSS;
-        private System.Windows.Forms.Label lbLSS;
-        private System.Windows.Forms.NumericUpDown nUDSZS;
         private System.Windows.Forms.Button btnLSTrackS;
         private System.Windows.Forms.Button btnSATrackS;
         private System.Windows.Forms.Button btnRSTrackS;
         private System.Windows.Forms.Panel pnlRSTrack;
         private System.Windows.Forms.Panel pnlLSTrack;
         private System.Windows.Forms.Panel pnlSATrack;
-        private System.Windows.Forms.Button btnRainbow;
         private System.Windows.Forms.ToolStripMenuItem alwaysOnToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem fingerOnTouchpadToolStripMenuItem;
-        private System.Windows.Forms.TabPage antiDeadzoneTabPage;
-        private System.Windows.Forms.NumericUpDown nUDRSAntiDead;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown nUDLSAntiDead;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown nUDR2AntiDead;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown nUDL2AntiDead;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox enableTouchToggleCheckbox;
-        private System.Windows.Forms.TabPage maxZoneTabPage;
-        private System.Windows.Forms.NumericUpDown nUDRSMaxZone;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown nUDLSMaxZone;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown nUDR2Maxzone;
-        private System.Windows.Forms.NumericUpDown nUDL2Maxzone;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label btPollRateLabel;
-        private System.Windows.Forms.ComboBox btPollRateComboBox;
-        private System.Windows.Forms.TabPage tPOutCurve;
-        private System.Windows.Forms.ComboBox rsOutCurveComboBox;
-        private System.Windows.Forms.ComboBox lsOutCurveComboBox;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.CheckBox gyroTriggerBehavior;
-        private System.Windows.Forms.NumericUpDown nUDGyroMouseVertScale;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label lbSmoothWeight;
-        private System.Windows.Forms.NumericUpDown nUDGyroSmoothWeight;
-        private System.Windows.Forms.CheckBox cBGyroSmooth;
-        private System.Windows.Forms.Label lbGyroSmooth;
-        private System.Windows.Forms.TabPage tpRotation;
-        private System.Windows.Forms.NumericUpDown nUDRSRotation;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.NumericUpDown nUDLSRotation;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox touchpadInvertComboBox;
-        private System.Windows.Forms.ComboBox cBGyroMouseXAxis;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.NumericUpDown nUDSixAxisZMaxZone;
-        private System.Windows.Forms.NumericUpDown nUDSixAxisXMaxZone;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.NumericUpDown nUDSixaxisZAntiDead;
-        private System.Windows.Forms.NumericUpDown nUDSixaxisXAntiDead;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.ComboBox cBR2OutputCurve;
-        private System.Windows.Forms.ComboBox cBL2OutputCurve;
-        private System.Windows.Forms.ComboBox cBSixaxisZOutputCurve;
-        private System.Windows.Forms.ComboBox cBSixaxisXOutputCurve;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.ContextMenuStrip cMTouchDisableInvert;
         private System.Windows.Forms.ToolStripMenuItem crossTouchInvStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem circleTouchInvStripMenuItem;
@@ -5143,27 +4995,52 @@
         private System.Windows.Forms.Label trackFrictionLb;
         private System.Windows.Forms.NumericUpDown trackFrictionNUD;
         private System.Windows.Forms.CheckBox trackballCk;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.ComboBox triggerCondAndCombo;
-        private System.Windows.Forms.Label lblSteeringWheelEmulationAxis;
-        private System.Windows.Forms.ComboBox cBSteeringWheelEmulationAxis;
-        private System.Windows.Forms.Label lblSteeringWheelEmulationRange;
-        private System.Windows.Forms.ComboBox cBSteeringWheelEmulationRange;
-        private System.Windows.Forms.Button btnSteeringWheelEmulationCalibrate;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.NumericUpDown gyroMouseDzNUD;
-        private System.Windows.Forms.CheckBox toggleGyroMCb;
-        private System.Windows.Forms.TabPage squStickTabPage;
-        private System.Windows.Forms.CheckBox rsSquStickCk;
-        private System.Windows.Forms.CheckBox lsSquStickCk;
-        private System.Windows.Forms.ComboBox OutContTypeCb;
-        private System.Windows.Forms.Label outcontLb;
-    private System.Windows.Forms.Label label28;
-    private System.Windows.Forms.NumericUpDown RoundnessNUpDown;
-        private System.Windows.Forms.LinkLabel lbCurveEditorURL;
-        private System.Windows.Forms.TextBox tBCustomOutputCurve;
-        private System.Windows.Forms.FlowLayoutPanel gyroMouseJoyFLP;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabLightbar;
+        private System.Windows.Forms.TabPage tabGyro;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlFull;
+        private System.Windows.Forms.Label lbFull;
+        private System.Windows.Forms.Label lbRed;
+        private System.Windows.Forms.Label lbGreen;
+        private System.Windows.Forms.Label lbBlue;
+        private System.Windows.Forms.TrackBar tBRedBar;
+        private System.Windows.Forms.TrackBar tBGreenBar;
+        private System.Windows.Forms.TrackBar tBBlueBar;
+        private System.Windows.Forms.Panel pnlLowBattery;
+        private System.Windows.Forms.Button lowColorChooserButton;
+        private System.Windows.Forms.Label lbLowRed;
+        private System.Windows.Forms.Label lbLowGreen;
+        private System.Windows.Forms.Label lbLowBlue;
+        private System.Windows.Forms.TrackBar tBLowRedBar;
+        private System.Windows.Forms.TrackBar tBLowGreenBar;
+        private System.Windows.Forms.TrackBar tBLowBlueBar;
+        private System.Windows.Forms.Label lbEmpty;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.ComboBox cBFlashType;
+        private System.Windows.Forms.Button btnFlashColor;
+        private System.Windows.Forms.Label lbPercentFlashBar;
+        private System.Windows.Forms.NumericUpDown nUDflashLED;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.ComboBox cBWhileCharging;
+        private System.Windows.Forms.Button btnChargingColor;
+        private System.Windows.Forms.Label lbWhileCharging;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button btnRainbow;
+        private System.Windows.Forms.Label lbRainbowB;
+        private System.Windows.Forms.NumericUpDown nUDRainbowB;
+        private System.Windows.Forms.NumericUpDown nUDRainbow;
+        private System.Windows.Forms.Label lbspc;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label34;
         private System.Windows.Forms.ComboBox gyroOutputMode;
+        private System.Windows.Forms.FlowLayoutPanel gyroMouseJoyFLP;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Button btnGyroMStickTrig;
+        private System.Windows.Forms.CheckBox gyroMStickTrigBehaveCk;
+        private System.Windows.Forms.CheckBox gyroMStickToggleCk;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.NumericUpDown gyroMouseStickDZ;
         private System.Windows.Forms.Label label30;
@@ -5172,22 +5049,171 @@
         private System.Windows.Forms.NumericUpDown gyroMouseStickAntiDeadX;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.NumericUpDown gyroMouseStickAntiDeadY;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.NumericUpDown gyroMStickVertScaleNUD;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.ComboBox gyroMouseStickEvalCombo;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.ComboBox gyroMousestickXAxisCom;
         private System.Windows.Forms.CheckBox gyroMouseStickInvertXCk;
         private System.Windows.Forms.CheckBox gyroMouseStickInvertYCk;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Button btnGyroMStickTrig;
-        private System.Windows.Forms.CheckBox gyroMStickTrigBehaveCk;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.ComboBox gyroMouseStickEvalCombo;
-        private System.Windows.Forms.CheckBox gyroMStickToggleCk;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.NumericUpDown gyroMStickVertScaleNUD;
-        private System.Windows.Forms.Label label38;
         private System.Windows.Forms.CheckBox gyroMStickUseSmoothCk;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.NumericUpDown gyroMStickSmoothWeightNUD;
+        private System.Windows.Forms.FlowLayoutPanel fLPTiltControls;
+        private System.Windows.Forms.Button bnGyroZN;
+        private System.Windows.Forms.Label lbGyroZN;
+        private System.Windows.Forms.Button bnGyroZP;
+        private System.Windows.Forms.Label lbGyroZP;
+        private System.Windows.Forms.Button bnGyroXP;
+        private System.Windows.Forms.Label lbGyroXP;
+        private System.Windows.Forms.Button bnGyroXN;
+        private System.Windows.Forms.Label lbGyroXN;
+        private System.Windows.Forms.Label lblSteeringWheelEmulationAxis;
+        private System.Windows.Forms.ComboBox cBSteeringWheelEmulationAxis;
+        private System.Windows.Forms.Label lblSteeringWheelEmulationRange;
+        private System.Windows.Forms.ComboBox cBSteeringWheelEmulationRange;
+        private System.Windows.Forms.Button btnSteeringWheelEmulationCalibrate;
+        private System.Windows.Forms.Panel pnlSAMouse;
+        private System.Windows.Forms.CheckBox toggleGyroMCb;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.NumericUpDown gyroMouseDzNUD;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.ComboBox triggerCondAndCombo;
+        private System.Windows.Forms.ComboBox cBGyroMouseXAxis;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lbGyroSmooth;
+        private System.Windows.Forms.CheckBox cBGyroSmooth;
+        private System.Windows.Forms.Label lbSmoothWeight;
+        private System.Windows.Forms.NumericUpDown nUDGyroSmoothWeight;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.NumericUpDown nUDGyroMouseVertScale;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.CheckBox gyroTriggerBehavior;
+        private System.Windows.Forms.CheckBox cBGyroInvertY;
+        private System.Windows.Forms.CheckBox cBGyroInvertX;
+        private System.Windows.Forms.Label lbGyroInvert;
+        private System.Windows.Forms.Label lbGyroTriggers;
+        private System.Windows.Forms.Button btnGyroTriggers;
+        private System.Windows.Forms.NumericUpDown nUDGyroSensitivity;
+        private System.Windows.Forms.Label lbGyroSens;
+        private System.Windows.Forms.TabPage tabAxis;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.NumericUpDown RoundnessNUpDown;
+        private System.Windows.Forms.CheckBox lsSquStickCk;
+        private System.Windows.Forms.NumericUpDown nUDLSRotation;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.NumericUpDown nUDLSCurve;
+        private System.Windows.Forms.Label lbLSCurvePercent;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.ComboBox lsOutCurveComboBox;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.NumericUpDown nUDLSAntiDead;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.NumericUpDown nUDLSMaxZone;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.NumericUpDown nUDLS;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox rsOutCurveComboBox;
+        private System.Windows.Forms.NumericUpDown nUDRSRotation;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Label lbRSCurvePercent;
+        private System.Windows.Forms.NumericUpDown nUDRSCurve;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.CheckBox rsSquStickCk;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.NumericUpDown nUDRSAntiDead;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.NumericUpDown nUDRSMaxZone;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.NumericUpDown nUDRS;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ComboBox cBL2OutputCurve;
+        private System.Windows.Forms.NumericUpDown nUDL2AntiDead;
+        private System.Windows.Forms.NumericUpDown nUDL2Maxzone;
+        private System.Windows.Forms.NumericUpDown nUDL2;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox tBCustomOutputCurve;
+        private System.Windows.Forms.LinkLabel lbCurveEditorURL;
+        private System.Windows.Forms.NumericUpDown nUDLSS;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.NumericUpDown nUDRSS;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.NumericUpDown nUDL2S;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.NumericUpDown nUDR2S;
+        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.ComboBox cBR2OutputCurve;
+        private System.Windows.Forms.NumericUpDown nUDR2AntiDead;
+        private System.Windows.Forms.NumericUpDown nUDR2Maxzone;
+        private System.Windows.Forms.NumericUpDown nUDR2;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.NumericUpDown nUDSZS;
+        private System.Windows.Forms.NumericUpDown nUDSXS;
+        private System.Windows.Forms.Label label74;
+        private System.Windows.Forms.Label label73;
+        private System.Windows.Forms.ComboBox cBSixaxisZOutputCurve;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.ComboBox cBSixaxisXOutputCurve;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.NumericUpDown nUDSixaxisZAntiDead;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.NumericUpDown nUDSixaxisXAntiDead;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.NumericUpDown nUDSixAxisZMaxZone;
+        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.NumericUpDown nUDSixAxisXMaxZone;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.NumericUpDown nUDSZ;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.NumericUpDown nUDSX;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.TabPage tabOther;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.GroupBox gBRumble;
+        private System.Windows.Forms.Label lbPercentRumble;
+        private System.Windows.Forms.Button btnRumbleLightTest;
+        private System.Windows.Forms.Button btnRumbleHeavyTest;
+        private System.Windows.Forms.NumericUpDown nUDRumbleBoost;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label lbUseController;
+        private System.Windows.Forms.NumericUpDown nUDSixaxis;
+        private System.Windows.Forms.CheckBox cBControllerInput;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label lbButtonMouseSens;
+        private System.Windows.Forms.NumericUpDown numUDMouseSens;
+        private System.Windows.Forms.CheckBox cBMouseAccel;
+        private System.Windows.Forms.CheckBox enableTouchToggleCheckbox;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.PictureBox pBProgram;
+        private System.Windows.Forms.CheckBox cBLaunchProgram;
+        private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.CheckBox cBDinput;
+        private System.Windows.Forms.CheckBox cBFlushHIDQueue;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.NumericUpDown nUDIdleDisconnect;
+        private System.Windows.Forms.CheckBox cBIdleDisconnect;
+        private System.Windows.Forms.Label lbIdleMinutes;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Label btPollRateLabel;
+        private System.Windows.Forms.ComboBox btPollRateComboBox;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.ComboBox OutContTypeCb;
+        private System.Windows.Forms.Label outcontLb;
     }
 }

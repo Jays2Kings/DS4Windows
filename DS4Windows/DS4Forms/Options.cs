@@ -29,7 +29,6 @@ namespace DS4Windows.Forms
         public bool saving, loading;
         public bool actionTabSeen = false;
         public static Size mSize { get; private set; }
-        private Size settingsSize;
         private Dictionary<Control, int> hoverIndexDict = new Dictionary<Control, int>();
         private Dictionary<Control, Bitmap> hoverImageDict = new Dictionary<Control, Bitmap>();
         private Dictionary<Control, Label> hoverLabelDict = new Dictionary<Control, Label>();
@@ -51,7 +50,6 @@ namespace DS4Windows.Forms
             pnlController.BackgroundImage = null;
             pnlController.BackgroundImageLayout = ImageLayout.None;
             mSize = MaximumSize;
-            settingsSize = fLPSettings.Size;
             MaximumSize = new Size(0, 0);
             root = rt;
             btnRumbleHeavyTest.Text = Properties.Resources.TestHText;
@@ -63,7 +61,6 @@ namespace DS4Windows.Forms
             Visible = false;
             colored = btnRainbow.Image;
             greyscale = GreyscaleImage((Bitmap)btnRainbow.Image);
-            fLPSettings.FlowDirection = FlowDirection.TopDown;
 
             foreach (Control control in tPControls.Controls)
             {
@@ -158,6 +155,8 @@ namespace DS4Windows.Forms
             tBCustomOutputCurve.Text = String.Empty;
             lbCurveEditorURL.Text = $"   - {lbCurveEditorURL.Text}";
             tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = false;
+
+            SetupEvents();
         }
 
         private void TriggerCondAndCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -167,12 +166,6 @@ namespace DS4Windows.Forms
                 string temp = triggerCondAndCombo.SelectedItem.ToString().ToLower();
                 SetSaTriggerCond(device, triggerCondAndCombo.SelectedItem.ToString().ToLower());
             }
-        }
-
-        public void SetFlowAutoScroll()
-        {
-            fLPSettings.AutoScroll = false;
-            fLPSettings.AutoScroll = true;
         }
 
         private void populateHoverIndexDict()
@@ -325,6 +318,121 @@ namespace DS4Windows.Forms
             ds4Defaults["bnPS"] = "PS";
             ds4Defaults["bnCross"] = "Cross";
             ds4Defaults["bnCircle"] = "Circle";
+        }
+
+        private void SetupEvents()
+        {
+            // Axis Config Events
+            nUDLS.ValueChanged += numUDLS_ValueChanged;
+            nUDLSMaxZone.ValueChanged += nUDLSMaxZone_ValueChanged;
+            nUDLSAntiDead.ValueChanged += nUDLSMaxZone_ValueChanged;
+            nUDLSS.ValueChanged += nUDLSSens_ValueChanged;
+            lsOutCurveComboBox.SelectedIndexChanged += lsOutCurveComboBox_SelectedIndexChanged;
+            lsSquStickCk.Click += lsSquStickCk_Click;
+            RoundnessNUpDown.ValueChanged += RoundnessNUpDown_ValueChanged;
+            nUDLSCurve.ValueChanged += nUDLSCurve_ValueChanged;
+            nUDLSRotation.ValueChanged += nUDLSRotation_ValueChanged;
+            nUDRS.ValueChanged += numUDRS_ValueChanged;
+            nUDRSMaxZone.ValueChanged += nUDRSMaxZone_ValueChanged;
+            nUDRSAntiDead.ValueChanged += nUDRSAntiDead_ValueChanged;
+            nUDRSS.ValueChanged += nUDRSSens_ValueChanged;
+            rsOutCurveComboBox.SelectedIndexChanged += rsOutCurveComboBox_SelectedIndexChanged;
+            rsSquStickCk.Click += rsSquStickCk_Click;
+            nUDRSCurve.ValueChanged += nUDRSCurve_ValueChanged;
+            nUDRSRotation.ValueChanged += nUDRSRotation_ValueChanged;
+            nUDL2.ValueChanged += numUDL2_ValueChanged;
+            nUDL2Maxzone.ValueChanged += nUDL2Maxzone_ValueChanged;
+            nUDL2AntiDead.ValueChanged += nUDL2AntiDead_ValueChanged;
+            nUDL2S.ValueChanged += nUDL2Sens_ValueChanged;
+            cBL2OutputCurve.SelectedIndexChanged += cBL2OutputCurve_SelectedIndexChanged;
+            nUDR2.ValueChanged += numUDR2_ValueChanged;
+            nUDR2Maxzone.ValueChanged += nUDR2Maxzone_ValueChanged;
+            nUDR2AntiDead.ValueChanged += nUDR2AntiDead_ValueChanged;
+            nUDR2S.ValueChanged += nUDR2Sens_ValueChanged;
+            cBR2OutputCurve.SelectedIndexChanged += cBR2OutputCurve_SelectedIndexChanged;
+            nUDSX.ValueChanged += nUDSX_ValueChanged;
+            nUDSZ.ValueChanged += nUDSZ_ValueChanged;
+            nUDSixAxisXMaxZone.ValueChanged += nUDSixAxisXMaxZone_ValueChanged;
+            nUDSixAxisZMaxZone.ValueChanged += nUDSixAxisZMaxZone_ValueChanged;
+            nUDSixaxisXAntiDead.ValueChanged += nUDSixaxisXAntiDead_ValueChanged;
+            nUDSixaxisZAntiDead.ValueChanged += nUDSixaxisZAntiDead_ValueChanged;
+            nUDSXS.ValueChanged += nUDSXSens_ValueChanged;
+            nUDSZS.ValueChanged += nUDSZSens_ValueChanged;
+            cBSixaxisXOutputCurve.SelectedIndexChanged += cBSixaxisXOutputCurve_SelectedIndexChanged;
+            cBSixaxisZOutputCurve.SelectedIndexChanged += cBSixaxisZOutputCurve_SelectedIndexChanged;
+
+            // Gyro events
+            gyroOutputMode.SelectedIndexChanged += GyroOutputMode_SelectedIndexChanged;
+            btnGyroMStickTrig.Click += BtnGyroMStickTrig_Click;
+            gyroMStickTrigBehaveCk.CheckedChanged += GyroMStickTrigBehaveCk_CheckedChanged;
+            gyroMStickToggleCk.CheckedChanged += GyroMStickToggleCk_CheckedChanged;
+            gyroMouseStickDZ.ValueChanged += GyroMouseStickDZ_ValueChanged;
+            gyroMouseStickMaxZ.ValueChanged += GyroMouseStickMaxZ_ValueChanged;
+            gyroMouseStickAntiDeadX.ValueChanged += GyroMouseStickAntiDeadX_ValueChanged;
+            gyroMouseStickAntiDeadY.ValueChanged += GyroMouseSStickAntiDeadY_ValueChanged;
+            gyroMStickVertScaleNUD.ValueChanged += GyroMStickVertScaleNUD_ValueChanged;
+            gyroMouseStickEvalCombo.SelectedIndexChanged += GyroMouseStickEvalCombo_SelectedIndexChanged;
+            //gyroMousestickXAxisCom.SelectedIndexChanged += 
+            gyroMouseStickInvertXCk.CheckedChanged += GyroMouseStickInvert_CheckedChanged;
+            gyroMouseStickInvertYCk.CheckedChanged += GyroMouseStickInvert_CheckedChanged;
+            gyroMStickUseSmoothCk.CheckedChanged += GyroMStickUseSmoothCk_CheckedChanged;
+            gyroMStickSmoothWeightNUD.ValueChanged += GyroMStickSmoothWeightNUD_ValueChanged;
+            // Gyro Mouse
+            btnGyroTriggers.Click += btnGyroTriggers_Click;
+            gyroTriggerBehavior.CheckedChanged += gyroTriggerBehavior_CheckedChanged;
+            nUDGyroSensitivity.ValueChanged += nUDGyroSensitivity_ValueChanged;
+            nUDGyroMouseVertScale.ValueChanged += nUDGyroMouseVertScale_ValueChanged;
+            triggerCondAndCombo.SelectedIndexChanged += TriggerCondAndCombo_SelectedIndexChanged;
+            cBGyroMouseXAxis.SelectedIndexChanged += cBGyroMouseXAxis_SelectedIndexChanged;
+            cBGyroInvertX.CheckedChanged += cBGyroInvert_CheckChanged;
+            cBGyroInvertY.CheckedChanged += cBGyroInvert_CheckChanged;
+            cBGyroSmooth.CheckedChanged += cBGyroSmooth_CheckedChanged;
+            nUDGyroSmoothWeight.ValueChanged += nUDGyroSmoothWeight_ValueChanged;
+            gyroMouseDzNUD.ValueChanged += gyroMouseDzNUD_ValueChanged;
+            toggleGyroMCb.CheckedChanged += toggleGyroMCb_Click;
+            // Gyro Controls
+            //bnGyroZN.Click += 
+            //bnGyroZP.Click += 
+            //bnGyroXP.Click +=
+            //bnGyroXN.Click += 
+            cBSteeringWheelEmulationAxis.SelectedIndexChanged += cBSteeringWheelEmulationAxis_SelectedIndexChanged;
+            cBSteeringWheelEmulationRange.SelectedIndexChanged += cBSteeringWheelEmulationRange_SelectedIndexChanged;
+            btnSteeringWheelEmulationCalibrate.Click += btnSteeringWheelEmulationCalibrate_Click;
+
+            // Lightbar Events
+            lbEmpty.Click += lbEmpty_Click;
+            lowColorChooserButton.Click += lowColorChooserButton_Click;
+            tBRedBar.ValueChanged += MainBar_ValueChanged;
+            tBGreenBar.ValueChanged += MainBar_ValueChanged;
+            tBBlueBar.ValueChanged += MainBar_ValueChanged;
+            tBLowRedBar.ValueChanged += LowBar_ValueChanged;
+            tBLowGreenBar.ValueChanged += LowBar_ValueChanged;
+            tBLowBlueBar.ValueChanged += LowBar_ValueChanged;
+            btnFlashColor.Click += btnFlashColor_Click;
+            btnChargingColor.Click += btnChargingColor_Click;
+            cBWhileCharging.SelectedIndexChanged += cBWhileCharging_SelectedIndexChanged;
+            nUDflashLED.ValueChanged += nUDflashLED_ValueChanged;
+            cBFlashType.SelectedIndexChanged += cBFlashType_SelectedIndexChanged;
+            cBLightbyBattery.Click += ledAsBatteryIndicator_CheckedChanged;
+            btnRainbow.Click += btnRainbow_Click;
+            nUDRainbow.ValueChanged += numUDRainbow_ValueChanged;
+
+            // Other events
+            nUDRumbleBoost.ValueChanged += rumbleBoostBar_ValueChanged;
+            btnRumbleHeavyTest.Click += btnRumbleHeavyTest_Click;
+            btnRumbleLightTest.Click += btnRumbleLightTest_Click;
+            cBControllerInput.CheckedChanged += cBControllerInput_CheckedChanged;
+            numUDMouseSens.ValueChanged += numUDMouseSens_ValueChanged;
+            cBMouseAccel.CheckedChanged += cBMouseAccel_CheckedChanged;
+            enableTouchToggleCheckbox.CheckedChanged += enableTouchToggleCheckbox_CheckedChanged;
+            cBLaunchProgram.CheckedChanged += cBLaunchProgram_CheckedChanged;
+            btnBrowse.Click += btnBrowse_Click;
+            cBDinput.Click += CBDinput_CheckedChanged;
+            cBFlushHIDQueue.CheckedChanged += flushHIDQueue_CheckedChanged;
+            cBIdleDisconnect.CheckedChanged += cBIdleDisconnect_CheckedChanged;
+            nUDIdleDisconnect.ValueChanged += nUDIdleDisconnect_ValueChanged;
+            btPollRateComboBox.SelectedIndexChanged += btPollRateComboBox_SelectedIndexChanged;
+            OutContTypeCb.SelectedIndexChanged += OutContTypeCb_SelectedIndexChanged;
         }
 
         public void Reload(int deviceNum, string name)

@@ -4605,6 +4605,7 @@ namespace DS4Windows
             gyroMStickInfo[device].inverted = 0; gyroMStickInfo[device].vertScale = 100;
             gyroMouseStickToggle[device] = false;
             gyroMStickInfo[device].useSmoothing = false; gyroMStickInfo[device].smoothWeight = 0.5;
+            gyroMouseStickTriggerTurns[device] = true;
             sASteeringWheelEmulationAxis[device] = SASteeringWheelEmulationAxisType.None;
             sASteeringWheelEmulationRange[device] = 360;
             touchDisInvertTriggers[device] = new int[1] { -1 };

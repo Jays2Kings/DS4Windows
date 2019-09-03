@@ -391,10 +391,10 @@ namespace DS4Windows.Forms
             gyroMouseDzNUD.ValueChanged += gyroMouseDzNUD_ValueChanged;
             toggleGyroMCb.CheckedChanged += toggleGyroMCb_Click;
             // Gyro Controls
-            //bnGyroZN.Click += 
-            //bnGyroZP.Click += 
-            //bnGyroXP.Click +=
-            //bnGyroXN.Click += 
+            bnGyroZN.Click += Show_ControlsBn;
+            bnGyroZP.Click += Show_ControlsBn;
+            bnGyroXP.Click += Show_ControlsBn;
+            bnGyroXN.Click += Show_ControlsBn;
             cBSteeringWheelEmulationAxis.SelectedIndexChanged += cBSteeringWheelEmulationAxis_SelectedIndexChanged;
             cBSteeringWheelEmulationRange.SelectedIndexChanged += cBSteeringWheelEmulationRange_SelectedIndexChanged;
             btnSteeringWheelEmulationCalibrate.Click += btnSteeringWheelEmulationCalibrate_Click;

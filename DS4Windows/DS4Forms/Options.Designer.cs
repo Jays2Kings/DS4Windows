@@ -444,6 +444,16 @@
             this.panel12 = new System.Windows.Forms.Panel();
             this.OutContTypeCb = new System.Windows.Forms.ComboBox();
             this.outcontLb = new System.Windows.Forms.Label();
+            this.tBRSCustomOutputCurve = new System.Windows.Forms.TextBox();
+            this.lbRSCurveEditorURL = new System.Windows.Forms.LinkLabel();
+            this.tBL2CustomOutputCurve = new System.Windows.Forms.TextBox();
+            this.lbL2CurveEditorURL = new System.Windows.Forms.LinkLabel();
+            this.tBR2CustomOutputCurve = new System.Windows.Forms.TextBox();
+            this.lbR2CurveEditorURL = new System.Windows.Forms.LinkLabel();
+            this.tBSixXCustomOutputCurve = new System.Windows.Forms.TextBox();
+            this.lbSixXCurveEditorURL = new System.Windows.Forms.LinkLabel();
+            this.tBSixZCustomOutputCurve = new System.Windows.Forms.TextBox();
+            this.lbSixZCurveEditorURL = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.nUDTap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDScroll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDTouch)).BeginInit();
@@ -3010,6 +3020,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.tBRSCustomOutputCurve);
+            this.groupBox2.Controls.Add(this.lbRSCurveEditorURL);
             this.groupBox2.Controls.Add(this.nUDRSS);
             this.groupBox2.Controls.Add(this.label70);
             this.groupBox2.Controls.Add(this.rsOutCurveComboBox);
@@ -3236,6 +3248,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.tBL2CustomOutputCurve);
+            this.groupBox3.Controls.Add(this.lbL2CurveEditorURL);
             this.groupBox3.Controls.Add(this.nUDL2S);
             this.groupBox3.Controls.Add(this.label71);
             this.groupBox3.Controls.Add(this.cBL2OutputCurve);
@@ -3372,6 +3386,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.tBR2CustomOutputCurve);
+            this.groupBox4.Controls.Add(this.lbR2CurveEditorURL);
             this.groupBox4.Controls.Add(this.nUDR2S);
             this.groupBox4.Controls.Add(this.label72);
             this.groupBox4.Controls.Add(this.cBR2OutputCurve);
@@ -3508,6 +3524,10 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.tBSixZCustomOutputCurve);
+            this.groupBox5.Controls.Add(this.lbSixZCurveEditorURL);
+            this.groupBox5.Controls.Add(this.tBSixXCustomOutputCurve);
+            this.groupBox5.Controls.Add(this.lbSixXCurveEditorURL);
             this.groupBox5.Controls.Add(this.nUDSZS);
             this.groupBox5.Controls.Add(this.nUDSXS);
             this.groupBox5.Controls.Add(this.label74);
@@ -4642,6 +4662,61 @@
             resources.ApplyResources(this.outcontLb, "outcontLb");
             this.outcontLb.Name = "outcontLb";
             // 
+            // tBRSCustomOutputCurve
+            // 
+            resources.ApplyResources(this.tBRSCustomOutputCurve, "tBRSCustomOutputCurve");
+            this.tBRSCustomOutputCurve.Name = "tBRSCustomOutputCurve";
+            // 
+            // lbRSCurveEditorURL
+            // 
+            resources.ApplyResources(this.lbRSCurveEditorURL, "lbRSCurveEditorURL");
+            this.lbRSCurveEditorURL.Name = "lbRSCurveEditorURL";
+            this.lbRSCurveEditorURL.TabStop = true;
+            // 
+            // tBL2CustomOutputCurve
+            // 
+            resources.ApplyResources(this.tBL2CustomOutputCurve, "tBL2CustomOutputCurve");
+            this.tBL2CustomOutputCurve.Name = "tBL2CustomOutputCurve";
+            // 
+            // lbL2CurveEditorURL
+            // 
+            resources.ApplyResources(this.lbL2CurveEditorURL, "lbL2CurveEditorURL");
+            this.lbL2CurveEditorURL.Name = "lbL2CurveEditorURL";
+            this.lbL2CurveEditorURL.TabStop = true;
+            // 
+            // tBR2CustomOutputCurve
+            // 
+            resources.ApplyResources(this.tBR2CustomOutputCurve, "tBR2CustomOutputCurve");
+            this.tBR2CustomOutputCurve.Name = "tBR2CustomOutputCurve";
+            // 
+            // lbR2CurveEditorURL
+            // 
+            resources.ApplyResources(this.lbR2CurveEditorURL, "lbR2CurveEditorURL");
+            this.lbR2CurveEditorURL.Name = "lbR2CurveEditorURL";
+            this.lbR2CurveEditorURL.TabStop = true;
+            // 
+            // tBSixXCustomOutputCurve
+            // 
+            resources.ApplyResources(this.tBSixXCustomOutputCurve, "tBSixXCustomOutputCurve");
+            this.tBSixXCustomOutputCurve.Name = "tBSixXCustomOutputCurve";
+            // 
+            // lbSixXCurveEditorURL
+            // 
+            resources.ApplyResources(this.lbSixXCurveEditorURL, "lbSixXCurveEditorURL");
+            this.lbSixXCurveEditorURL.Name = "lbSixXCurveEditorURL";
+            this.lbSixXCurveEditorURL.TabStop = true;
+            // 
+            // tBSixZCustomOutputCurve
+            // 
+            resources.ApplyResources(this.tBSixZCustomOutputCurve, "tBSixZCustomOutputCurve");
+            this.tBSixZCustomOutputCurve.Name = "tBSixZCustomOutputCurve";
+            // 
+            // lbSixZCurveEditorURL
+            // 
+            resources.ApplyResources(this.lbSixZCurveEditorURL, "lbSixZCurveEditorURL");
+            this.lbSixZCurveEditorURL.Name = "lbSixZCurveEditorURL";
+            this.lbSixZCurveEditorURL.TabStop = true;
+            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -5215,5 +5290,15 @@
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.ComboBox OutContTypeCb;
         private System.Windows.Forms.Label outcontLb;
+        private System.Windows.Forms.TextBox tBRSCustomOutputCurve;
+        private System.Windows.Forms.LinkLabel lbRSCurveEditorURL;
+        private System.Windows.Forms.TextBox tBL2CustomOutputCurve;
+        private System.Windows.Forms.LinkLabel lbL2CurveEditorURL;
+        private System.Windows.Forms.TextBox tBR2CustomOutputCurve;
+        private System.Windows.Forms.LinkLabel lbR2CurveEditorURL;
+        private System.Windows.Forms.TextBox tBSixZCustomOutputCurve;
+        private System.Windows.Forms.LinkLabel lbSixZCurveEditorURL;
+        private System.Windows.Forms.TextBox tBSixXCustomOutputCurve;
+        private System.Windows.Forms.LinkLabel lbSixXCurveEditorURL;
     }
 }

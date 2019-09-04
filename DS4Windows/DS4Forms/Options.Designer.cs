@@ -284,6 +284,8 @@
             this.nUDLS = new System.Windows.Forms.NumericUpDown();
             this.label40 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tBRSCustomOutputCurve = new System.Windows.Forms.TextBox();
+            this.lbRSCurveEditorURL = new System.Windows.Forms.LinkLabel();
             this.nUDRSS = new System.Windows.Forms.NumericUpDown();
             this.label70 = new System.Windows.Forms.Label();
             this.rsOutCurveComboBox = new System.Windows.Forms.ComboBox();
@@ -303,6 +305,8 @@
             this.nUDRS = new System.Windows.Forms.NumericUpDown();
             this.label47 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tBL2CustomOutputCurve = new System.Windows.Forms.TextBox();
+            this.lbL2CurveEditorURL = new System.Windows.Forms.LinkLabel();
             this.nUDL2S = new System.Windows.Forms.NumericUpDown();
             this.label71 = new System.Windows.Forms.Label();
             this.cBL2OutputCurve = new System.Windows.Forms.ComboBox();
@@ -314,6 +318,8 @@
             this.label56 = new System.Windows.Forms.Label();
             this.label57 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.tBR2CustomOutputCurve = new System.Windows.Forms.TextBox();
+            this.lbR2CurveEditorURL = new System.Windows.Forms.LinkLabel();
             this.nUDR2S = new System.Windows.Forms.NumericUpDown();
             this.label72 = new System.Windows.Forms.Label();
             this.cBR2OutputCurve = new System.Windows.Forms.ComboBox();
@@ -325,6 +331,10 @@
             this.label59 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tBSixZCustomOutputCurve = new System.Windows.Forms.TextBox();
+            this.lbSixZCurveEditorURL = new System.Windows.Forms.LinkLabel();
+            this.tBSixXCustomOutputCurve = new System.Windows.Forms.TextBox();
+            this.lbSixXCurveEditorURL = new System.Windows.Forms.LinkLabel();
             this.nUDSZS = new System.Windows.Forms.NumericUpDown();
             this.nUDSXS = new System.Windows.Forms.NumericUpDown();
             this.label74 = new System.Windows.Forms.Label();
@@ -444,16 +454,6 @@
             this.panel12 = new System.Windows.Forms.Panel();
             this.OutContTypeCb = new System.Windows.Forms.ComboBox();
             this.outcontLb = new System.Windows.Forms.Label();
-            this.tBRSCustomOutputCurve = new System.Windows.Forms.TextBox();
-            this.lbRSCurveEditorURL = new System.Windows.Forms.LinkLabel();
-            this.tBL2CustomOutputCurve = new System.Windows.Forms.TextBox();
-            this.lbL2CurveEditorURL = new System.Windows.Forms.LinkLabel();
-            this.tBR2CustomOutputCurve = new System.Windows.Forms.TextBox();
-            this.lbR2CurveEditorURL = new System.Windows.Forms.LinkLabel();
-            this.tBSixXCustomOutputCurve = new System.Windows.Forms.TextBox();
-            this.lbSixXCurveEditorURL = new System.Windows.Forms.LinkLabel();
-            this.tBSixZCustomOutputCurve = new System.Windows.Forms.TextBox();
-            this.lbSixZCurveEditorURL = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.nUDTap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDScroll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDTouch)).BeginInit();
@@ -3044,6 +3044,17 @@
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
+            // tBRSCustomOutputCurve
+            // 
+            resources.ApplyResources(this.tBRSCustomOutputCurve, "tBRSCustomOutputCurve");
+            this.tBRSCustomOutputCurve.Name = "tBRSCustomOutputCurve";
+            // 
+            // lbRSCurveEditorURL
+            // 
+            resources.ApplyResources(this.lbRSCurveEditorURL, "lbRSCurveEditorURL");
+            this.lbRSCurveEditorURL.Name = "lbRSCurveEditorURL";
+            this.lbRSCurveEditorURL.TabStop = true;
+            // 
             // nUDRSS
             // 
             this.nUDRSS.DecimalPlaces = 2;
@@ -3264,6 +3275,17 @@
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
             // 
+            // tBL2CustomOutputCurve
+            // 
+            resources.ApplyResources(this.tBL2CustomOutputCurve, "tBL2CustomOutputCurve");
+            this.tBL2CustomOutputCurve.Name = "tBL2CustomOutputCurve";
+            // 
+            // lbL2CurveEditorURL
+            // 
+            resources.ApplyResources(this.lbL2CurveEditorURL, "lbL2CurveEditorURL");
+            this.lbL2CurveEditorURL.Name = "lbL2CurveEditorURL";
+            this.lbL2CurveEditorURL.TabStop = true;
+            // 
             // nUDL2S
             // 
             this.nUDL2S.DecimalPlaces = 2;
@@ -3401,6 +3423,17 @@
             resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
+            // 
+            // tBR2CustomOutputCurve
+            // 
+            resources.ApplyResources(this.tBR2CustomOutputCurve, "tBR2CustomOutputCurve");
+            this.tBR2CustomOutputCurve.Name = "tBR2CustomOutputCurve";
+            // 
+            // lbR2CurveEditorURL
+            // 
+            resources.ApplyResources(this.lbR2CurveEditorURL, "lbR2CurveEditorURL");
+            this.lbR2CurveEditorURL.Name = "lbR2CurveEditorURL";
+            this.lbR2CurveEditorURL.TabStop = true;
             // 
             // nUDR2S
             // 
@@ -3551,6 +3584,28 @@
             resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
+            // 
+            // tBSixZCustomOutputCurve
+            // 
+            resources.ApplyResources(this.tBSixZCustomOutputCurve, "tBSixZCustomOutputCurve");
+            this.tBSixZCustomOutputCurve.Name = "tBSixZCustomOutputCurve";
+            // 
+            // lbSixZCurveEditorURL
+            // 
+            resources.ApplyResources(this.lbSixZCurveEditorURL, "lbSixZCurveEditorURL");
+            this.lbSixZCurveEditorURL.Name = "lbSixZCurveEditorURL";
+            this.lbSixZCurveEditorURL.TabStop = true;
+            // 
+            // tBSixXCustomOutputCurve
+            // 
+            resources.ApplyResources(this.tBSixXCustomOutputCurve, "tBSixXCustomOutputCurve");
+            this.tBSixXCustomOutputCurve.Name = "tBSixXCustomOutputCurve";
+            // 
+            // lbSixXCurveEditorURL
+            // 
+            resources.ApplyResources(this.lbSixXCurveEditorURL, "lbSixXCurveEditorURL");
+            this.lbSixXCurveEditorURL.Name = "lbSixXCurveEditorURL";
+            this.lbSixXCurveEditorURL.TabStop = true;
             // 
             // nUDSZS
             // 
@@ -4661,61 +4716,6 @@
             // 
             resources.ApplyResources(this.outcontLb, "outcontLb");
             this.outcontLb.Name = "outcontLb";
-            // 
-            // tBRSCustomOutputCurve
-            // 
-            resources.ApplyResources(this.tBRSCustomOutputCurve, "tBRSCustomOutputCurve");
-            this.tBRSCustomOutputCurve.Name = "tBRSCustomOutputCurve";
-            // 
-            // lbRSCurveEditorURL
-            // 
-            resources.ApplyResources(this.lbRSCurveEditorURL, "lbRSCurveEditorURL");
-            this.lbRSCurveEditorURL.Name = "lbRSCurveEditorURL";
-            this.lbRSCurveEditorURL.TabStop = true;
-            // 
-            // tBL2CustomOutputCurve
-            // 
-            resources.ApplyResources(this.tBL2CustomOutputCurve, "tBL2CustomOutputCurve");
-            this.tBL2CustomOutputCurve.Name = "tBL2CustomOutputCurve";
-            // 
-            // lbL2CurveEditorURL
-            // 
-            resources.ApplyResources(this.lbL2CurveEditorURL, "lbL2CurveEditorURL");
-            this.lbL2CurveEditorURL.Name = "lbL2CurveEditorURL";
-            this.lbL2CurveEditorURL.TabStop = true;
-            // 
-            // tBR2CustomOutputCurve
-            // 
-            resources.ApplyResources(this.tBR2CustomOutputCurve, "tBR2CustomOutputCurve");
-            this.tBR2CustomOutputCurve.Name = "tBR2CustomOutputCurve";
-            // 
-            // lbR2CurveEditorURL
-            // 
-            resources.ApplyResources(this.lbR2CurveEditorURL, "lbR2CurveEditorURL");
-            this.lbR2CurveEditorURL.Name = "lbR2CurveEditorURL";
-            this.lbR2CurveEditorURL.TabStop = true;
-            // 
-            // tBSixXCustomOutputCurve
-            // 
-            resources.ApplyResources(this.tBSixXCustomOutputCurve, "tBSixXCustomOutputCurve");
-            this.tBSixXCustomOutputCurve.Name = "tBSixXCustomOutputCurve";
-            // 
-            // lbSixXCurveEditorURL
-            // 
-            resources.ApplyResources(this.lbSixXCurveEditorURL, "lbSixXCurveEditorURL");
-            this.lbSixXCurveEditorURL.Name = "lbSixXCurveEditorURL";
-            this.lbSixXCurveEditorURL.TabStop = true;
-            // 
-            // tBSixZCustomOutputCurve
-            // 
-            resources.ApplyResources(this.tBSixZCustomOutputCurve, "tBSixZCustomOutputCurve");
-            this.tBSixZCustomOutputCurve.Name = "tBSixZCustomOutputCurve";
-            // 
-            // lbSixZCurveEditorURL
-            // 
-            resources.ApplyResources(this.lbSixZCurveEditorURL, "lbSixZCurveEditorURL");
-            this.lbSixZCurveEditorURL.Name = "lbSixZCurveEditorURL";
-            this.lbSixZCurveEditorURL.TabStop = true;
             // 
             // Options
             // 

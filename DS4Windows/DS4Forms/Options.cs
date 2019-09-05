@@ -29,7 +29,6 @@ namespace DS4Windows.Forms
         public bool saving, loading;
         public bool actionTabSeen = false;
         public static Size mSize { get; private set; }
-        private Size settingsSize;
         private Dictionary<Control, int> hoverIndexDict = new Dictionary<Control, int>();
         private Dictionary<Control, Bitmap> hoverImageDict = new Dictionary<Control, Bitmap>();
         private Dictionary<Control, Label> hoverLabelDict = new Dictionary<Control, Label>();
@@ -51,7 +50,6 @@ namespace DS4Windows.Forms
             pnlController.BackgroundImage = null;
             pnlController.BackgroundImageLayout = ImageLayout.None;
             mSize = MaximumSize;
-            settingsSize = fLPSettings.Size;
             MaximumSize = new Size(0, 0);
             root = rt;
             btnRumbleHeavyTest.Text = Properties.Resources.TestHText;
@@ -63,7 +61,6 @@ namespace DS4Windows.Forms
             Visible = false;
             colored = btnRainbow.Image;
             greyscale = GreyscaleImage((Bitmap)btnRainbow.Image);
-            fLPSettings.FlowDirection = FlowDirection.TopDown;
 
             foreach (Control control in tPControls.Controls)
             {
@@ -156,8 +153,20 @@ namespace DS4Windows.Forms
             populateHoverLabelDict();
 
             tBCustomOutputCurve.Text = String.Empty;
-            lbCurveEditorURL.Text = $"   - {lbCurveEditorURL.Text}";
+            //lbCurveEditorURL.Text = $"   - {lbCurveEditorURL.Text}";
             tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = false;
+            tBRSCustomOutputCurve.Text = String.Empty;
+            tBRSCustomOutputCurve.Enabled = lbRSCurveEditorURL.Enabled = false;
+            tBL2CustomOutputCurve.Text = String.Empty;
+            tBL2CustomOutputCurve.Enabled = lbL2CurveEditorURL.Enabled = false;
+            tBR2CustomOutputCurve.Text = String.Empty;
+            tBR2CustomOutputCurve.Enabled = lbR2CurveEditorURL.Enabled = false;
+            tBSixXCustomOutputCurve.Text = String.Empty;
+            tBSixXCustomOutputCurve.Enabled = lbSixXCurveEditorURL.Enabled = false;
+            tBSixZCustomOutputCurve.Text = String.Empty;
+            tBSixZCustomOutputCurve.Enabled = lbSixZCurveEditorURL.Enabled = false;
+
+            SetupEvents();
         }
 
         private void TriggerCondAndCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -167,12 +176,6 @@ namespace DS4Windows.Forms
                 string temp = triggerCondAndCombo.SelectedItem.ToString().ToLower();
                 SetSaTriggerCond(device, triggerCondAndCombo.SelectedItem.ToString().ToLower());
             }
-        }
-
-        public void SetFlowAutoScroll()
-        {
-            fLPSettings.AutoScroll = false;
-            fLPSettings.AutoScroll = true;
         }
 
         private void populateHoverIndexDict()
@@ -325,6 +328,208 @@ namespace DS4Windows.Forms
             ds4Defaults["bnPS"] = "PS";
             ds4Defaults["bnCross"] = "Cross";
             ds4Defaults["bnCircle"] = "Circle";
+        }
+
+        private void SetupEvents()
+        {
+            // Axis Config Events
+            nUDLS.ValueChanged += numUDLS_ValueChanged;
+            nUDLSMaxZone.ValueChanged += nUDLSMaxZone_ValueChanged;
+            nUDLSAntiDead.ValueChanged += nUDLSMaxZone_ValueChanged;
+            nUDLSS.ValueChanged += nUDLSSens_ValueChanged;
+            lsOutCurveComboBox.SelectedIndexChanged += lsOutCurveComboBox_SelectedIndexChanged;
+            lsSquStickCk.Click += lsSquStickCk_Click;
+            RoundnessNUpDown.ValueChanged += RoundnessNUpDown_ValueChanged;
+            nUDLSCurve.ValueChanged += nUDLSCurve_ValueChanged;
+            nUDLSRotation.ValueChanged += nUDLSRotation_ValueChanged;
+            tBCustomOutputCurve.Leave += tBCustomOutputCurve_Leave;
+            lbCurveEditorURL.LinkClicked += lbCurveEditorURL_LinkClicked;
+            nUDRS.ValueChanged += numUDRS_ValueChanged;
+            nUDRSMaxZone.ValueChanged += nUDRSMaxZone_ValueChanged;
+            nUDRSAntiDead.ValueChanged += nUDRSAntiDead_ValueChanged;
+            nUDRSS.ValueChanged += nUDRSSens_ValueChanged;
+            rsOutCurveComboBox.SelectedIndexChanged += rsOutCurveComboBox_SelectedIndexChanged;
+            tBRSCustomOutputCurve.Leave += TBRSCustomOutputCurve_Leave;
+            lbRSCurveEditorURL.Click += LbRSCurveEditorURL_Click;
+            rsSquStickCk.Click += rsSquStickCk_Click;
+            nUDRSCurve.ValueChanged += nUDRSCurve_ValueChanged;
+            nUDRSRotation.ValueChanged += nUDRSRotation_ValueChanged;
+            nUDL2.ValueChanged += numUDL2_ValueChanged;
+            nUDL2Maxzone.ValueChanged += nUDL2Maxzone_ValueChanged;
+            nUDL2AntiDead.ValueChanged += nUDL2AntiDead_ValueChanged;
+            nUDL2S.ValueChanged += nUDL2Sens_ValueChanged;
+            cBL2OutputCurve.SelectedIndexChanged += cBL2OutputCurve_SelectedIndexChanged;
+            tBL2CustomOutputCurve.Leave += TBL2CustomOutputCurve_Leave;
+            lbL2CurveEditorURL.Click += LbL2CurveEditorURL_Click;
+            nUDR2.ValueChanged += numUDR2_ValueChanged;
+            nUDR2Maxzone.ValueChanged += nUDR2Maxzone_ValueChanged;
+            nUDR2AntiDead.ValueChanged += nUDR2AntiDead_ValueChanged;
+            nUDR2S.ValueChanged += nUDR2Sens_ValueChanged;
+            cBR2OutputCurve.SelectedIndexChanged += cBR2OutputCurve_SelectedIndexChanged;
+            tBR2CustomOutputCurve.Leave += TBR2CustomOutputCurve_Leave;
+            lbR2CurveEditorURL.Click += LbR2CurveEditorURL_Click;
+            nUDSX.ValueChanged += nUDSX_ValueChanged;
+            nUDSZ.ValueChanged += nUDSZ_ValueChanged;
+            nUDSixAxisXMaxZone.ValueChanged += nUDSixAxisXMaxZone_ValueChanged;
+            nUDSixAxisZMaxZone.ValueChanged += nUDSixAxisZMaxZone_ValueChanged;
+            nUDSixaxisXAntiDead.ValueChanged += nUDSixaxisXAntiDead_ValueChanged;
+            nUDSixaxisZAntiDead.ValueChanged += nUDSixaxisZAntiDead_ValueChanged;
+            nUDSXS.ValueChanged += nUDSXSens_ValueChanged;
+            nUDSZS.ValueChanged += nUDSZSens_ValueChanged;
+            cBSixaxisXOutputCurve.SelectedIndexChanged += cBSixaxisXOutputCurve_SelectedIndexChanged;
+            tBSixXCustomOutputCurve.Leave += TBSixXCustomOutputCurve_Leave;
+            lbSixXCurveEditorURL.Click += LbSixXCurveEditorURL_Click;
+            cBSixaxisZOutputCurve.SelectedIndexChanged += cBSixaxisZOutputCurve_SelectedIndexChanged;
+            tBSixZCustomOutputCurve.Leave += TBSixZCustomOutputCurve_Leave;
+            lbSixZCurveEditorURL.Click += LbSixZCurveEditorURL_Click;
+
+            // Gyro events
+            gyroOutputMode.SelectedIndexChanged += GyroOutputMode_SelectedIndexChanged;
+            btnGyroMStickTrig.Click += BtnGyroMStickTrig_Click;
+            gyroMStickTrigBehaveCk.CheckedChanged += GyroMStickTrigBehaveCk_CheckedChanged;
+            gyroMStickToggleCk.CheckedChanged += GyroMStickToggleCk_CheckedChanged;
+            gyroMouseStickDZ.ValueChanged += GyroMouseStickDZ_ValueChanged;
+            gyroMouseStickMaxZ.ValueChanged += GyroMouseStickMaxZ_ValueChanged;
+            gyroMouseStickAntiDeadX.ValueChanged += GyroMouseStickAntiDeadX_ValueChanged;
+            gyroMouseStickAntiDeadY.ValueChanged += GyroMouseSStickAntiDeadY_ValueChanged;
+            gyroMStickVertScaleNUD.ValueChanged += GyroMStickVertScaleNUD_ValueChanged;
+            gyroMouseStickEvalCombo.SelectedIndexChanged += GyroMouseStickEvalCombo_SelectedIndexChanged;
+            gyroMousestickXAxisCom.SelectedIndexChanged += GyroMousestickXAxisCom_SelectedIndexChanged;
+            gyroMouseStickInvertXCk.CheckedChanged += GyroMouseStickInvert_CheckedChanged;
+            gyroMouseStickInvertYCk.CheckedChanged += GyroMouseStickInvert_CheckedChanged;
+            gyroMStickUseSmoothCk.CheckedChanged += GyroMStickUseSmoothCk_CheckedChanged;
+            gyroMStickSmoothWeightNUD.ValueChanged += GyroMStickSmoothWeightNUD_ValueChanged;
+            // Gyro Mouse
+            btnGyroTriggers.Click += btnGyroTriggers_Click;
+            gyroTriggerBehavior.CheckedChanged += gyroTriggerBehavior_CheckedChanged;
+            nUDGyroSensitivity.ValueChanged += nUDGyroSensitivity_ValueChanged;
+            nUDGyroMouseVertScale.ValueChanged += nUDGyroMouseVertScale_ValueChanged;
+            triggerCondAndCombo.SelectedIndexChanged += TriggerCondAndCombo_SelectedIndexChanged;
+            cBGyroMouseXAxis.SelectedIndexChanged += cBGyroMouseXAxis_SelectedIndexChanged;
+            cBGyroInvertX.CheckedChanged += cBGyroInvert_CheckChanged;
+            cBGyroInvertY.CheckedChanged += cBGyroInvert_CheckChanged;
+            cBGyroSmooth.CheckedChanged += cBGyroSmooth_CheckedChanged;
+            nUDGyroSmoothWeight.ValueChanged += nUDGyroSmoothWeight_ValueChanged;
+            gyroMouseDzNUD.ValueChanged += gyroMouseDzNUD_ValueChanged;
+            toggleGyroMCb.CheckedChanged += toggleGyroMCb_Click;
+            // Gyro Controls
+            bnGyroZN.Click += Show_ControlsBn;
+            bnGyroZP.Click += Show_ControlsBn;
+            bnGyroXP.Click += Show_ControlsBn;
+            bnGyroXN.Click += Show_ControlsBn;
+            cBSteeringWheelEmulationAxis.SelectedIndexChanged += cBSteeringWheelEmulationAxis_SelectedIndexChanged;
+            cBSteeringWheelEmulationRange.SelectedIndexChanged += cBSteeringWheelEmulationRange_SelectedIndexChanged;
+            btnSteeringWheelEmulationCalibrate.Click += btnSteeringWheelEmulationCalibrate_Click;
+
+            // Lightbar Events
+            lbEmpty.Click += lbEmpty_Click;
+            lowColorChooserButton.Click += lowColorChooserButton_Click;
+            tBRedBar.ValueChanged += MainBar_ValueChanged;
+            tBGreenBar.ValueChanged += MainBar_ValueChanged;
+            tBBlueBar.ValueChanged += MainBar_ValueChanged;
+            tBLowRedBar.ValueChanged += LowBar_ValueChanged;
+            tBLowGreenBar.ValueChanged += LowBar_ValueChanged;
+            tBLowBlueBar.ValueChanged += LowBar_ValueChanged;
+            btnFlashColor.Click += btnFlashColor_Click;
+            btnChargingColor.Click += btnChargingColor_Click;
+            cBWhileCharging.SelectedIndexChanged += cBWhileCharging_SelectedIndexChanged;
+            nUDflashLED.ValueChanged += nUDflashLED_ValueChanged;
+            cBFlashType.SelectedIndexChanged += cBFlashType_SelectedIndexChanged;
+            cBLightbyBattery.Click += ledAsBatteryIndicator_CheckedChanged;
+            btnRainbow.Click += btnRainbow_Click;
+            nUDRainbow.ValueChanged += numUDRainbow_ValueChanged;
+
+            // Other events
+            nUDRumbleBoost.ValueChanged += rumbleBoostBar_ValueChanged;
+            btnRumbleHeavyTest.Click += btnRumbleHeavyTest_Click;
+            btnRumbleLightTest.Click += btnRumbleLightTest_Click;
+            cBControllerInput.CheckedChanged += cBControllerInput_CheckedChanged;
+            numUDMouseSens.ValueChanged += numUDMouseSens_ValueChanged;
+            cBMouseAccel.CheckedChanged += cBMouseAccel_CheckedChanged;
+            enableTouchToggleCheckbox.CheckedChanged += enableTouchToggleCheckbox_CheckedChanged;
+            cBLaunchProgram.CheckedChanged += cBLaunchProgram_CheckedChanged;
+            btnBrowse.Click += btnBrowse_Click;
+            cBDinput.Click += CBDinput_CheckedChanged;
+            cBFlushHIDQueue.CheckedChanged += flushHIDQueue_CheckedChanged;
+            cBIdleDisconnect.CheckedChanged += cBIdleDisconnect_CheckedChanged;
+            nUDIdleDisconnect.ValueChanged += nUDIdleDisconnect_ValueChanged;
+            btPollRateComboBox.SelectedIndexChanged += btPollRateComboBox_SelectedIndexChanged;
+            OutContTypeCb.SelectedIndexChanged += OutContTypeCb_SelectedIndexChanged;
+        }
+
+        private void LbSixZCurveEditorURL_Click(object sender, EventArgs e)
+        {
+            string customDefinition = szOutBezierCurveObj[device].ToString();
+            LaunchCurveEditor(customDefinition);
+        }
+
+        private void LbSixXCurveEditorURL_Click(object sender, EventArgs e)
+        {
+            string customDefinition = sxOutBezierCurveObj[device].ToString();
+            LaunchCurveEditor(customDefinition);
+        }
+
+        private void LbR2CurveEditorURL_Click(object sender, EventArgs e)
+        {
+            string customDefinition = r2OutBezierCurveObj[device].ToString();
+            LaunchCurveEditor(customDefinition);
+        }
+
+        private void LbRSCurveEditorURL_Click(object sender, EventArgs e)
+        {
+            string customDefinition = rsOutBezierCurveObj[device].ToString();
+            LaunchCurveEditor(customDefinition);
+        }
+
+        private void LbL2CurveEditorURL_Click(object sender, EventArgs e)
+        {
+            string customDefinition = l2OutBezierCurveObj[device].ToString();
+            LaunchCurveEditor(customDefinition);
+        }
+
+        private void TBSixZCustomOutputCurve_Leave(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                if (cBSixaxisZOutputCurve.SelectedIndex == cBSixaxisZOutputCurve.Items.Count - 1)
+                    szOutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.SA, true);
+            }
+        }
+
+        private void TBSixXCustomOutputCurve_Leave(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                if (cBSixaxisXOutputCurve.SelectedIndex == cBSixaxisXOutputCurve.Items.Count - 1)
+                    sxOutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.SA, true);
+            }
+        }
+
+        private void TBR2CustomOutputCurve_Leave(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                if (cBR2OutputCurve.SelectedIndex == cBR2OutputCurve.Items.Count - 1)
+                    r2OutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.L2R2, true);
+            }
+        }
+
+        private void TBL2CustomOutputCurve_Leave(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                if (cBL2OutputCurve.SelectedIndex == cBL2OutputCurve.Items.Count - 1)
+                    l2OutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.L2R2, true);
+            }
+        }
+
+        private void TBRSCustomOutputCurve_Leave(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                if (rsOutCurveComboBox.SelectedIndex == rsOutCurveComboBox.Items.Count - 1)
+                    rsOutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.LSRS, true);
+            }
         }
 
         public void Reload(int deviceNum, string name)
@@ -833,8 +1038,18 @@ namespace DS4Windows.Forms
                 cBSixaxisZOutputCurve.SelectedIndex = 0;
 
                 tBCustomOutputCurve.Text = String.Empty;
-                lbCurveEditorURL.Text = $"   - {lbCurveEditorURL.Text}";
+                //lbCurveEditorURL.Text = $"   - {lbCurveEditorURL.Text}";
                 tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = false;
+                tBRSCustomOutputCurve.Text = String.Empty;
+                tBRSCustomOutputCurve.Enabled = lbRSCurveEditorURL.Enabled = false;
+                tBL2CustomOutputCurve.Text = String.Empty;
+                tBL2CustomOutputCurve.Enabled = lbL2CurveEditorURL.Enabled = false;
+                tBR2CustomOutputCurve.Text = String.Empty;
+                tBR2CustomOutputCurve.Enabled = lbR2CurveEditorURL.Enabled = false;
+                tBSixXCustomOutputCurve.Text = String.Empty;
+                tBSixXCustomOutputCurve.Enabled = lbSixXCurveEditorURL.Enabled = false;
+                tBSixZCustomOutputCurve.Text = String.Empty;
+                tBSixZCustomOutputCurve.Enabled = lbSixZCurveEditorURL.Enabled = false;
 
                 rBTPMouse.Checked = true;
                 //rBSAControls.Checked = true;
@@ -3035,7 +3250,7 @@ namespace DS4Windows.Forms
 
                 tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
                 tBCustomOutputCurve.Text = (customIdx ? lsOutBezierCurveObj[device].ToString() : "");
-                lbCurveEditorURL.Text = $"LS - {lbCurveEditorURL.Text.Substring(5)}";
+                //lbCurveEditorURL.Text = $"LS - {lbCurveEditorURL.Text.Substring(5)}";
             }
         }
 
@@ -3047,9 +3262,9 @@ namespace DS4Windows.Forms
                 if (sender is ComboBox && customIdx)
                     setRsOutCurveMode(device, rsOutCurveComboBox.SelectedIndex);
 
-                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
-                tBCustomOutputCurve.Text = (customIdx ? rsOutBezierCurveObj[device].ToString() : "");
-                lbCurveEditorURL.Text = $"RS - {lbCurveEditorURL.Text.Substring(5)}";
+                tBRSCustomOutputCurve.Enabled = lbRSCurveEditorURL.Enabled = customIdx;
+                tBRSCustomOutputCurve.Text = (customIdx ? rsOutBezierCurveObj[device].ToString() : "");
+                //lbCurveEditorURL.Text = $"RS - {lbCurveEditorURL.Text.Substring(5)}";
             }
         }
 
@@ -3060,52 +3275,52 @@ namespace DS4Windows.Forms
             {
                 tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
                 tBCustomOutputCurve.Text = (customIdx ? lsOutBezierCurveObj[device].ToString() : "");
-                lbCurveEditorURL.Text = $"LS - {lbCurveEditorURL.Text.Substring(5)}";
+                //lbCurveEditorURL.Text = $"LS - {lbCurveEditorURL.Text.Substring(5)}";
                 goto end;
             }
 
             customIdx = rsOutCurveComboBox.SelectedIndex == rsOutCurveComboBox.Items.Count - 1;
             if (customIdx)
             {
-                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
-                tBCustomOutputCurve.Text = (customIdx ? rsOutBezierCurveObj[device].ToString() : "");
-                lbCurveEditorURL.Text = $"RS - {lbCurveEditorURL.Text.Substring(5)}";
+                tBRSCustomOutputCurve.Enabled = lbRSCurveEditorURL.Enabled = customIdx;
+                tBRSCustomOutputCurve.Text = (customIdx ? rsOutBezierCurveObj[device].ToString() : "");
+                //lbCurveEditorURL.Text = $"RS - {lbCurveEditorURL.Text.Substring(5)}";
                 goto end;
             }
 
             customIdx = cBL2OutputCurve.SelectedIndex == cBL2OutputCurve.Items.Count - 1;
             if (customIdx)
             {
-                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
-                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? l2OutBezierCurveObj[device].ToString() : "");
-                lbCurveEditorURL.Text = $"L2 - {lbCurveEditorURL.Text.Substring(5)}";
+                tBL2CustomOutputCurve.Enabled = lbL2CurveEditorURL.Enabled = customIdx;
+                tBL2CustomOutputCurve.Text = (tBL2CustomOutputCurve.Enabled ? l2OutBezierCurveObj[device].ToString() : "");
+                //lbCurveEditorURL.Text = $"L2 - {lbCurveEditorURL.Text.Substring(5)}";
                 goto end;
             }
 
             customIdx = cBR2OutputCurve.SelectedIndex == cBR2OutputCurve.Items.Count - 1;
             if (customIdx)
             {
-                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
-                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? r2OutBezierCurveObj[device].ToString() : "");
-                lbCurveEditorURL.Text = $"R2 - {lbCurveEditorURL.Text.Substring(5)}";
+                tBR2CustomOutputCurve.Enabled = lbR2CurveEditorURL.Enabled = customIdx;
+                tBR2CustomOutputCurve.Text = (tBR2CustomOutputCurve.Enabled ? r2OutBezierCurveObj[device].ToString() : "");
+                //lbCurveEditorURL.Text = $"R2 - {lbCurveEditorURL.Text.Substring(5)}";
                 goto end;
             }
 
             customIdx = cBSixaxisXOutputCurve.SelectedIndex == cBSixaxisXOutputCurve.Items.Count - 1;
             if (customIdx)
             {
-                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
-                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? sxOutBezierCurveObj[device].ToString() : "");
-                lbCurveEditorURL.Text = $"SX - {lbCurveEditorURL.Text.Substring(5)}";
+                tBSixXCustomOutputCurve.Enabled = lbSixXCurveEditorURL.Enabled = customIdx;
+                tBSixXCustomOutputCurve.Text = (tBSixXCustomOutputCurve.Enabled ? sxOutBezierCurveObj[device].ToString() : "");
+                //lbCurveEditorURL.Text = $"SX - {lbCurveEditorURL.Text.Substring(5)}";
                 goto end;
             }
 
             customIdx = cBSixaxisZOutputCurve.SelectedIndex == cBSixaxisZOutputCurve.Items.Count - 1;
             if (customIdx)
             {
-                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
-                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? szOutBezierCurveObj[device].ToString() : "");
-                lbCurveEditorURL.Text = $"SZ - {lbCurveEditorURL.Text.Substring(5)}";
+                tBSixZCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
+                tBSixZCustomOutputCurve.Text = (tBSixZCustomOutputCurve.Enabled ? szOutBezierCurveObj[device].ToString() : "");
+                //lbCurveEditorURL.Text = $"SZ - {lbCurveEditorURL.Text.Substring(5)}";
                 goto end;
             }
 
@@ -3222,9 +3437,9 @@ namespace DS4Windows.Forms
                 if (sender is ComboBox && customIdx)
                     setL2OutCurveMode(device, cBL2OutputCurve.SelectedIndex);
 
-                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
-                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? l2OutBezierCurveObj[device].ToString() : "");
-                lbCurveEditorURL.Text = $"L2 - {lbCurveEditorURL.Text.Substring(5)}";
+                tBL2CustomOutputCurve.Enabled = lbL2CurveEditorURL.Enabled = customIdx;
+                tBL2CustomOutputCurve.Text = (tBL2CustomOutputCurve.Enabled ? l2OutBezierCurveObj[device].ToString() : "");
+                //lbCurveEditorURL.Text = $"L2 - {lbCurveEditorURL.Text.Substring(5)}";
             }
         }
 
@@ -3236,9 +3451,9 @@ namespace DS4Windows.Forms
                 if (sender is ComboBox && customIdx)
                     setR2OutCurveMode(device, cBR2OutputCurve.SelectedIndex);
 
-                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
-                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? r2OutBezierCurveObj[device].ToString() : "");
-                lbCurveEditorURL.Text = $"R2 - {lbCurveEditorURL.Text.Substring(5)}";
+                tBR2CustomOutputCurve.Enabled = lbR2CurveEditorURL.Enabled = customIdx;
+                tBR2CustomOutputCurve.Text = (tBR2CustomOutputCurve.Enabled ? r2OutBezierCurveObj[device].ToString() : "");
+                //lbCurveEditorURL.Text = $"R2 - {lbCurveEditorURL.Text.Substring(5)}";
             }
         }
 
@@ -3250,9 +3465,9 @@ namespace DS4Windows.Forms
                 if (sender is ComboBox && customIdx)
                     setSXOutCurveMode(device, cBSixaxisXOutputCurve.SelectedIndex);
 
-                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
-                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? sxOutBezierCurveObj[device].ToString() : "");
-                lbCurveEditorURL.Text = $"SX - {lbCurveEditorURL.Text.Substring(5)}";
+                tBSixXCustomOutputCurve.Enabled = lbSixXCurveEditorURL.Enabled = customIdx;
+                tBSixXCustomOutputCurve.Text = (tBSixXCustomOutputCurve.Enabled ? sxOutBezierCurveObj[device].ToString() : "");
+                //lbCurveEditorURL.Text = $"SX - {lbCurveEditorURL.Text.Substring(5)}";
             }
         }
 
@@ -3264,9 +3479,9 @@ namespace DS4Windows.Forms
                 if (sender is ComboBox && customIdx)
                     setSZOutCurveMode(device, cBSixaxisZOutputCurve.SelectedIndex);
 
-                tBCustomOutputCurve.Enabled = lbCurveEditorURL.Enabled = customIdx;
-                tBCustomOutputCurve.Text = (tBCustomOutputCurve.Enabled ? szOutBezierCurveObj[device].ToString() : "");
-                lbCurveEditorURL.Text = $"SZ - {lbCurveEditorURL.Text.Substring(5)}";
+                tBSixZCustomOutputCurve.Enabled = lbSixZCurveEditorURL.Enabled = customIdx;
+                tBSixZCustomOutputCurve.Text = (tBSixZCustomOutputCurve.Enabled ? szOutBezierCurveObj[device].ToString() : "");
+                //lbCurveEditorURL.Text = $"SZ - {lbCurveEditorURL.Text.Substring(5)}";
             }
         }
 
@@ -3458,20 +3673,8 @@ namespace DS4Windows.Forms
             }
         }
 
-        private void lbCurveEditorURL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {            
-            string customDefinition;
-            switch (lbCurveEditorURL.Text.Substring(0, 2))
-            {
-                case "LS": customDefinition = lsOutBezierCurveObj[device].ToString(); break;
-                case "RS": customDefinition = rsOutBezierCurveObj[device].ToString(); break;
-                case "L2": customDefinition = l2OutBezierCurveObj[device].ToString(); break;
-                case "R2": customDefinition = r2OutBezierCurveObj[device].ToString(); break;
-                case "SX": customDefinition = sxOutBezierCurveObj[device].ToString(); break;
-                case "SZ": customDefinition = szOutBezierCurveObj[device].ToString(); break;
-                default: customDefinition = String.Empty; break;
-            }
-
+        private void LaunchCurveEditor(string customDefinition)
+        {
             // Custom curve editor web link clicked. Open the bezier curve editor web app usign the default browser app and pass on current custom definition as a query string parameter.
             // The Process.Start command using HTML page doesn't support query parameters, so if there is a custom curve definition then lookup the default browser executable name from a sysreg.
             string defaultBrowserCmd = String.Empty;
@@ -3492,7 +3695,7 @@ namespace DS4Windows.Forms
                             defaultBrowserCmd = browserPathCmdKey?.GetValue(null).ToString();
                         }
 
-                        if(!String.IsNullOrEmpty(defaultBrowserCmd))
+                        if (!String.IsNullOrEmpty(defaultBrowserCmd))
                         {
                             int iStartPos = (defaultBrowserCmd[0] == '"' ? 1 : 0);
                             defaultBrowserCmd = defaultBrowserCmd.Substring(iStartPos, defaultBrowserCmd.LastIndexOf(".exe") + 4 - iStartPos);
@@ -3522,43 +3725,19 @@ namespace DS4Windows.Forms
             }
         }
 
+        private void lbCurveEditorURL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {            
+            string customDefinition = lsOutBezierCurveObj[device].ToString();
+            LaunchCurveEditor(customDefinition);
+        }
+
         private void tBCustomOutputCurve_Leave(object sender, EventArgs e)
         {
             if (loading == false)
             {
                 // Focus leaves the custom output curve editbox. Store the new custom curve value into LS/RS/L2/R2/SX/SZ bezierCurve object
-                switch (lbCurveEditorURL.Text.Substring(0, 2))
-                {
-                    case "LS":
-                        if (lsOutCurveComboBox.SelectedIndex == lsOutCurveComboBox.Items.Count - 1)
-                            lsOutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.LSRS, true);
-                        break;
-
-                    case "RS":
-                        if (rsOutCurveComboBox.SelectedIndex == rsOutCurveComboBox.Items.Count - 1)
-                            rsOutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.LSRS, true);
-                        break;
-
-                    case "L2":
-                        if (cBL2OutputCurve.SelectedIndex == cBL2OutputCurve.Items.Count - 1)
-                            l2OutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.L2R2, true);
-                        break;
-
-                    case "R2":
-                        if (cBR2OutputCurve.SelectedIndex == cBR2OutputCurve.Items.Count - 1)
-                            r2OutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.L2R2, true);
-                        break;
-
-                    case "SX":
-                        if (cBSixaxisXOutputCurve.SelectedIndex == cBSixaxisXOutputCurve.Items.Count - 1)
-                            sxOutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.SA, true);
-                        break;
-
-                    case "SZ":
-                        if (cBSixaxisZOutputCurve.SelectedIndex == cBSixaxisZOutputCurve.Items.Count - 1)
-                            szOutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.SA, true);
-                        break;
-                }
+                if (lsOutCurveComboBox.SelectedIndex == lsOutCurveComboBox.Items.Count - 1)
+                    lsOutBezierCurveObj[device].InitBezierCurve(tBCustomOutputCurve.Text, BezierCurve.AxisType.LSRS, true);
             }
         }
 
@@ -3723,6 +3902,14 @@ namespace DS4Windows.Forms
                     gyroMStickUseSmoothCk.Checked;
                 gyroMStickSmoothWeightNUD.Enabled =
                     GyroMouseStickInf[device].useSmoothing;
+            }
+        }
+
+        private void GyroMousestickXAxisCom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                GyroMouseStickHorizontalAxis[device] = gyroMousestickXAxisCom.SelectedIndex;
             }
         }
 

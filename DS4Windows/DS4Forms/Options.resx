@@ -7183,7 +7183,7 @@
     <value>3</value>
   </data>
   <data name="tBSixZCustomOutputCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>124, 415</value>
+    <value>121, 391</value>
   </data>
   <data name="tBSixZCustomOutputCurve.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 20</value>
@@ -7213,7 +7213,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbSixZCurveEditorURL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>296, 419</value>
+    <value>293, 395</value>
   </data>
   <data name="lbSixZCurveEditorURL.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 13</value>
@@ -7237,7 +7237,7 @@
     <value>1</value>
   </data>
   <data name="tBSixXCustomOutputCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>124, 343</value>
+    <value>121, 319</value>
   </data>
   <data name="tBSixXCustomOutputCurve.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 20</value>
@@ -7267,7 +7267,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbSixXCurveEditorURL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>296, 347</value>
+    <value>293, 323</value>
   </data>
   <data name="lbSixXCurveEditorURL.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 13</value>
@@ -7291,7 +7291,7 @@
     <value>3</value>
   </data>
   <data name="nUDSZS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 264</value>
+    <value>128, 239</value>
   </data>
   <data name="nUDSZS.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
@@ -7315,7 +7315,7 @@
     <value>4</value>
   </data>
   <data name="nUDSXS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>128, 227</value>
+    <value>16, 239</value>
   </data>
   <data name="nUDSXS.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 20</value>
@@ -7342,7 +7342,7 @@
     <value>NoControl</value>
   </data>
   <data name="label74.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 266</value>
+    <value>125, 221</value>
   </data>
   <data name="label74.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 13</value>
@@ -7372,7 +7372,7 @@
     <value>NoControl</value>
   </data>
   <data name="label73.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 233</value>
+    <value>13, 221</value>
   </data>
   <data name="label73.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 13</value>
@@ -7417,7 +7417,7 @@
     <value>Custom</value>
   </data>
   <data name="cBSixaxisZOutputCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>124, 380</value>
+    <value>121, 356</value>
   </data>
   <data name="cBSixaxisZOutputCurve.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 21</value>
@@ -7444,7 +7444,7 @@
     <value>NoControl</value>
   </data>
   <data name="label68.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 383</value>
+    <value>13, 359</value>
   </data>
   <data name="label68.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
@@ -7489,7 +7489,7 @@
     <value>Custom</value>
   </data>
   <data name="cBSixaxisXOutputCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 305</value>
+    <value>123, 281</value>
   </data>
   <data name="cBSixaxisXOutputCurve.Size" type="System.Drawing.Size, System.Drawing">
     <value>108, 21</value>
@@ -7516,7 +7516,7 @@
     <value>NoControl</value>
   </data>
   <data name="label67.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 305</value>
+    <value>13, 281</value>
   </data>
   <data name="label67.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
@@ -7540,7 +7540,7 @@
     <value>11</value>
   </data>
   <data name="nUDSixaxisZAntiDead.Location" type="System.Drawing.Point, System.Drawing">
-    <value>128, 195</value>
+    <value>127, 181</value>
   </data>
   <data name="nUDSixaxisZAntiDead.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 20</value>
@@ -7567,7 +7567,7 @@
     <value>NoControl</value>
   </data>
   <data name="label66.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 197</value>
+    <value>124, 156</value>
   </data>
   <data name="label66.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 13</value>
@@ -7591,7 +7591,7 @@
     <value>13</value>
   </data>
   <data name="nUDSixaxisXAntiDead.Location" type="System.Drawing.Point, System.Drawing">
-    <value>128, 162</value>
+    <value>16, 181</value>
   </data>
   <data name="nUDSixaxisXAntiDead.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 20</value>
@@ -7618,7 +7618,7 @@
     <value>NoControl</value>
   </data>
   <data name="label65.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 164</value>
+    <value>13, 155</value>
   </data>
   <data name="label65.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 13</value>
@@ -7642,7 +7642,7 @@
     <value>15</value>
   </data>
   <data name="nUDSixAxisZMaxZone.Location" type="System.Drawing.Point, System.Drawing">
-    <value>128, 126</value>
+    <value>128, 116</value>
   </data>
   <data name="nUDSixAxisZMaxZone.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 20</value>
@@ -7669,7 +7669,7 @@
     <value>NoControl</value>
   </data>
   <data name="label64.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 126</value>
+    <value>125, 88</value>
   </data>
   <data name="label64.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 13</value>
@@ -7693,7 +7693,7 @@
     <value>17</value>
   </data>
   <data name="nUDSixAxisXMaxZone.Location" type="System.Drawing.Point, System.Drawing">
-    <value>128, 94</value>
+    <value>16, 118</value>
   </data>
   <data name="nUDSixAxisXMaxZone.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 20</value>
@@ -7720,7 +7720,7 @@
     <value>NoControl</value>
   </data>
   <data name="label63.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 94</value>
+    <value>14, 87</value>
   </data>
   <data name="label63.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 13</value>
@@ -7744,7 +7744,7 @@
     <value>19</value>
   </data>
   <data name="nUDSZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>128, 58</value>
+    <value>128, 50</value>
   </data>
   <data name="nUDSZ.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
@@ -7774,7 +7774,7 @@
     <value>NoControl</value>
   </data>
   <data name="label62.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 58</value>
+    <value>125, 24</value>
   </data>
   <data name="label62.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 13</value>
@@ -7798,7 +7798,7 @@
     <value>21</value>
   </data>
   <data name="nUDSX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>128, 24</value>
+    <value>17, 48</value>
   </data>
   <data name="nUDSX.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 20</value>
@@ -7852,7 +7852,7 @@
     <value>3, 1103</value>
   </data>
   <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>424, 461</value>
+    <value>424, 429</value>
   </data>
   <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>

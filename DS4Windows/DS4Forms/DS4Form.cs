@@ -34,6 +34,7 @@ namespace DS4Windows.Forms
         private Button[] ebns;
         private Button[] lights;
         private PictureBox[] statPB;
+        private PictureBox[] exclusivePB;
         private ToolStripMenuItem[] shortcuts;
         private ToolStripMenuItem[] disconnectShortcuts;
         protected CheckBox[] linkedProfileCB;
@@ -138,6 +139,7 @@ namespace DS4Windows.Forms
             ebns = new Button[4] { bnEditC1, bnEditC2, bnEditC3, bnEditC4 };
             lights = new Button[4] { bnLight1, bnLight2, bnLight3, bnLight4 };
             statPB = new PictureBox[4] { pBStatus1, pBStatus2, pBStatus3, pBStatus4 };
+            exclusivePB = new PictureBox[4] { exclusivePB1, exclusivePB2, exclusivePB3, exclusivePB4 };
             shortcuts = new ToolStripMenuItem[4] { (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[0],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[1],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
@@ -530,6 +532,7 @@ namespace DS4Windows.Forms
                 if (Index < ControlService.DS4_CONTROLLER_COUNT)
                 {
                     statPB[Index].Visible = false;
+                    exclusivePB[Index].Visible = false;
                     toolTip1.SetToolTip(statPB[Index], "");
                     Batteries[Index].Text = Properties.Resources.NA;
                     Pads[Index].Text = Properties.Resources.Disconnected;
@@ -1544,6 +1547,17 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                         default: statPB[Index].Visible = false; toolTip1.SetToolTip(statPB[Index], ""); break;
                     }
 
+                    exclusivePB[Index].Visible = true;
+                    DS4Device dev = Program.rootHub.DS4Controllers[Index];
+                    if (dev != null)
+                    {
+                        exclusivePB[Index].Image = dev.IsExclusive ? Properties.Resources._checked : Properties.Resources.cancel;
+                    }
+                    else
+                    {
+                        exclusivePB[Index].Image = Properties.Resources.cancel;
+                    }
+                     
                     Batteries[Index].Text = Program.rootHub.getDS4Battery(Index);
                     int profileIndex = cbs[Index].FindStringExact(ProfilePath[Index]);
                     if (profileIndex >= 0)
@@ -1593,6 +1607,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             Pads[devIndex].Text = Properties.Resources.Disconnected;
             Enable_Controls(devIndex, false);
             statPB[devIndex].Visible = false;
+            exclusivePB[devIndex].Visible = false;
             toolTip1.SetToolTip(statPB[devIndex], "");
 
             DS4Device[] devices = Program.rootHub.DS4Controllers;

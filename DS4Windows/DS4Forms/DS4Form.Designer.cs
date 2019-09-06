@@ -172,6 +172,11 @@
             this.cMCustomLed = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.useProfileColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useCustomColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label3 = new System.Windows.Forms.Label();
+            this.exclusivePB1 = new System.Windows.Forms.PictureBox();
+            this.exclusivePB2 = new System.Windows.Forms.PictureBox();
+            this.exclusivePB3 = new System.Windows.Forms.PictureBox();
+            this.exclusivePB4 = new System.Windows.Forms.PictureBox();
             this.pnlButton.SuspendLayout();
             this.cMTaskbar.SuspendLayout();
             this.tabMain.SuspendLayout();
@@ -200,6 +205,10 @@
             this.tabLog.SuspendLayout();
             this.panel3.SuspendLayout();
             this.cMCustomLed.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.exclusivePB1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exclusivePB2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exclusivePB3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exclusivePB4)).BeginInit();
             this.SuspendLayout();
             // 
             // lvDebug
@@ -421,39 +430,44 @@
             // tLPControllers
             // 
             resources.ApplyResources(this.tLPControllers, "tLPControllers");
-            this.tLPControllers.Controls.Add(this.bnLight3, 6, 3);
+            this.tLPControllers.Controls.Add(this.label3, 2, 0);
+            this.tLPControllers.Controls.Add(this.bnLight3, 7, 3);
             this.tLPControllers.Controls.Add(this.pBStatus1, 1, 1);
             this.tLPControllers.Controls.Add(this.lbPad1, 0, 1);
             this.tLPControllers.Controls.Add(this.lbPad2, 0, 2);
-            this.tLPControllers.Controls.Add(this.bnEditC3, 5, 3);
-            this.tLPControllers.Controls.Add(this.bnEditC4, 5, 4);
+            this.tLPControllers.Controls.Add(this.bnEditC3, 6, 3);
+            this.tLPControllers.Controls.Add(this.bnEditC4, 6, 4);
             this.tLPControllers.Controls.Add(this.lbPad3, 0, 3);
             this.tLPControllers.Controls.Add(this.lbPad4, 0, 4);
-            this.tLPControllers.Controls.Add(this.cBController1, 4, 1);
-            this.tLPControllers.Controls.Add(this.bnEditC2, 5, 2);
-            this.tLPControllers.Controls.Add(this.cBController2, 4, 2);
-            this.tLPControllers.Controls.Add(this.cBController3, 4, 3);
-            this.tLPControllers.Controls.Add(this.bnEditC1, 5, 1);
-            this.tLPControllers.Controls.Add(this.cBController4, 4, 4);
-            this.tLPControllers.Controls.Add(this.lbSelectedProfile, 4, 0);
+            this.tLPControllers.Controls.Add(this.cBController1, 5, 1);
+            this.tLPControllers.Controls.Add(this.bnEditC2, 6, 2);
+            this.tLPControllers.Controls.Add(this.cBController2, 5, 2);
+            this.tLPControllers.Controls.Add(this.cBController3, 5, 3);
+            this.tLPControllers.Controls.Add(this.bnEditC1, 6, 1);
+            this.tLPControllers.Controls.Add(this.cBController4, 5, 4);
+            this.tLPControllers.Controls.Add(this.lbSelectedProfile, 5, 0);
             this.tLPControllers.Controls.Add(this.lbID, 0, 0);
             this.tLPControllers.Controls.Add(this.lbStatus, 1, 0);
-            this.tLPControllers.Controls.Add(this.lbBattery, 2, 0);
-            this.tLPControllers.Controls.Add(this.lbBatt1, 2, 1);
-            this.tLPControllers.Controls.Add(this.lbBatt2, 2, 2);
-            this.tLPControllers.Controls.Add(this.lbBatt3, 2, 3);
-            this.tLPControllers.Controls.Add(this.lbBatt4, 2, 4);
+            this.tLPControllers.Controls.Add(this.lbBattery, 3, 0);
+            this.tLPControllers.Controls.Add(this.lbBatt1, 3, 1);
+            this.tLPControllers.Controls.Add(this.lbBatt2, 3, 2);
+            this.tLPControllers.Controls.Add(this.lbBatt3, 3, 3);
+            this.tLPControllers.Controls.Add(this.lbBatt4, 3, 4);
             this.tLPControllers.Controls.Add(this.pBStatus2, 1, 2);
             this.tLPControllers.Controls.Add(this.pBStatus3, 1, 3);
             this.tLPControllers.Controls.Add(this.pBStatus4, 1, 4);
-            this.tLPControllers.Controls.Add(this.bnLight1, 6, 1);
-            this.tLPControllers.Controls.Add(this.bnLight2, 6, 2);
-            this.tLPControllers.Controls.Add(this.bnLight4, 6, 4);
-            this.tLPControllers.Controls.Add(this.lbLinkProfile, 3, 0);
-            this.tLPControllers.Controls.Add(this.linkCB1, 3, 1);
-            this.tLPControllers.Controls.Add(this.linkCB2, 3, 2);
-            this.tLPControllers.Controls.Add(this.linkCB3, 3, 3);
-            this.tLPControllers.Controls.Add(this.linkCB4, 3, 4);
+            this.tLPControllers.Controls.Add(this.bnLight1, 7, 1);
+            this.tLPControllers.Controls.Add(this.bnLight2, 7, 2);
+            this.tLPControllers.Controls.Add(this.bnLight4, 7, 4);
+            this.tLPControllers.Controls.Add(this.lbLinkProfile, 4, 0);
+            this.tLPControllers.Controls.Add(this.linkCB1, 4, 1);
+            this.tLPControllers.Controls.Add(this.linkCB2, 4, 2);
+            this.tLPControllers.Controls.Add(this.linkCB3, 4, 3);
+            this.tLPControllers.Controls.Add(this.linkCB4, 4, 4);
+            this.tLPControllers.Controls.Add(this.exclusivePB1, 2, 1);
+            this.tLPControllers.Controls.Add(this.exclusivePB2, 2, 2);
+            this.tLPControllers.Controls.Add(this.exclusivePB3, 2, 3);
+            this.tLPControllers.Controls.Add(this.exclusivePB4, 2, 4);
             this.tLPControllers.Name = "tLPControllers";
             // 
             // bnLight3
@@ -1328,6 +1342,39 @@
             resources.ApplyResources(this.useCustomColorToolStripMenuItem, "useCustomColorToolStripMenuItem");
             this.useCustomColorToolStripMenuItem.Click += new System.EventHandler(this.useCustomColorToolStripMenuItem_Click);
             // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // exclusivePB1
+            // 
+            resources.ApplyResources(this.exclusivePB1, "exclusivePB1");
+            this.exclusivePB1.Image = global::DS4Windows.Properties.Resources.none;
+            this.exclusivePB1.Name = "exclusivePB1";
+            this.exclusivePB1.TabStop = false;
+            // 
+            // exclusivePB2
+            // 
+            resources.ApplyResources(this.exclusivePB2, "exclusivePB2");
+            this.exclusivePB2.Image = global::DS4Windows.Properties.Resources.none;
+            this.exclusivePB2.Name = "exclusivePB2";
+            this.exclusivePB2.TabStop = false;
+            // 
+            // exclusivePB3
+            // 
+            resources.ApplyResources(this.exclusivePB3, "exclusivePB3");
+            this.exclusivePB3.Image = global::DS4Windows.Properties.Resources.none;
+            this.exclusivePB3.Name = "exclusivePB3";
+            this.exclusivePB3.TabStop = false;
+            // 
+            // exclusivePB4
+            // 
+            resources.ApplyResources(this.exclusivePB4, "exclusivePB4");
+            this.exclusivePB4.Image = global::DS4Windows.Properties.Resources.none;
+            this.exclusivePB4.Name = "exclusivePB4";
+            this.exclusivePB4.TabStop = false;
+            // 
             // DS4Form
             // 
             resources.ApplyResources(this, "$this");
@@ -1377,6 +1424,10 @@
             this.tabLog.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.cMCustomLed.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.exclusivePB1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exclusivePB2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exclusivePB3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exclusivePB4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1525,6 +1576,11 @@
         private System.Windows.Forms.CheckBox cBCustomSteam;
         private System.Windows.Forms.TextBox tBSteamFolder;
         private System.Windows.Forms.Panel langPanel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox exclusivePB1;
+        private System.Windows.Forms.PictureBox exclusivePB2;
+        private System.Windows.Forms.PictureBox exclusivePB3;
+        private System.Windows.Forms.PictureBox exclusivePB4;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

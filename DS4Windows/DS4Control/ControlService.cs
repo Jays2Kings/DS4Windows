@@ -140,6 +140,8 @@ namespace DS4Windows
         private object busEvtQueueLock = new object();
         public ControlService()
         {
+            Crc32Algorithm.InitializeTable(DS4Device.DefaultPolynomial);
+
             //sp.Stream = Properties.Resources.EE;
             // Cause thread affinity to not be tied to main GUI thread
             tempThread = new Thread(() => {

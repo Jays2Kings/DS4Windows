@@ -459,7 +459,6 @@ namespace DS4Windows
 
             touchpad = new DS4Touchpad();
             sixAxis = new DS4SixAxis();
-            Crc32Algorithm.InitializeTable(DefaultPolynomial);
             if (runCalib)
                 RefreshCalibration();
 
@@ -727,7 +726,7 @@ namespace DS4Windows
 
 
         const int BT_INPUT_REPORT_CRC32_POS = BT_OUTPUT_REPORT_LENGTH - 4; //last 4 bytes of the 78-sized input report are crc32
-        const uint DefaultPolynomial = 0xedb88320u;
+        public const uint DefaultPolynomial = 0xedb88320u;
         uint HamSeed = 2351727372;
 
         private unsafe void performDs4Input()

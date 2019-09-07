@@ -1883,6 +1883,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Roundness of Square Stick corners.
+        /// </summary>
+        public static string SquareStickRoundness {
+            get {
+                return ResourceManager.GetString("SquareStickRoundness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap START {

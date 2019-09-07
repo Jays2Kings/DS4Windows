@@ -399,14 +399,17 @@ namespace DS4Windows
         private bool timeoutEvent = false;
         private bool runCalib;
         private bool hasInputEvts = false;
+        private string displayName;
+        public string DisplayName => displayName;
         public bool ShouldRunCalib()
         {
             return runCalib;
         }
 
-        public DS4Device(HidDevice hidDevice)
+        public DS4Device(HidDevice hidDevice, string disName)
         {
             hDevice = hidDevice;
+            displayName = disName;
             conType = HidConnectionType(hDevice);
             Mac = hDevice.readSerial();
             runCalib = true;

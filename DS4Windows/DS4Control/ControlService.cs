@@ -140,6 +140,8 @@ namespace DS4Windows
         private object busEvtQueueLock = new object();
         public ControlService()
         {
+            Crc32Algorithm.InitializeTable(DS4Device.DefaultPolynomial);
+
             //sp.Stream = Properties.Resources.EE;
             // Cause thread affinity to not be tied to main GUI thread
             tempThread = new Thread(() => {
@@ -401,7 +403,8 @@ namespace DS4Windows
                         DS4Device device = devEnum.Current;
                         //DS4Device device = devices.ElementAt(i);
                         if (showlog)
-                            LogDebug(Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
+                            LogDebug(Properties.Resources.FoundController + " " + device.getMacAddress() + " (" + device.getConnectionType() + ") (" +
+                                device.DisplayName + ")");
 
                         Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
                         task.Start();
@@ -664,7 +667,9 @@ namespace DS4Windows
                     {
                         if (DS4Controllers[Index] == null)
                         {
-                            LogDebug(Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
+                            //LogDebug(Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
+                            LogDebug(Properties.Resources.FoundController + " " + device.getMacAddress() + " (" + device.getConnectionType() + ") (" +
+                                device.DisplayName + ")");
                             Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
                             task.Start();
                             DS4Controllers[Index] = device;

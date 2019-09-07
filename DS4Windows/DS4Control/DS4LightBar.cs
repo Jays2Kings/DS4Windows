@@ -76,10 +76,17 @@ namespace DS4Windows
                         else if (counters[deviceNum] > 180000)
                             counters[deviceNum] = 0;
 
+                        double maxSat = GetMaxSatRainbow(deviceNum);
                         if (getLedAsBatteryIndicator(deviceNum))
-                            color = HuetoRGB((float)counters[deviceNum] % 360, (byte)(device.getBattery() * 2.55));
+                        {
+                            byte useSat = (byte)(maxSat == 1.0 ?
+                                device.getBattery() * 2.55 :
+                                device.getBattery() * 2.55 * maxSat);
+                            color = HuetoRGB((float)counters[deviceNum] % 360, useSat);
+                        }
                         else
-                            color = HuetoRGB((float)counters[deviceNum] % 360, 255);
+                            color = HuetoRGB((float)counters[deviceNum] % 360,
+                                (byte)(maxSat == 1.0 ? 255 : 255 * maxSat));
 
                     }
                     else if (getLedAsBatteryIndicator(deviceNum))

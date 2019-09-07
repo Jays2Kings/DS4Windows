@@ -438,6 +438,7 @@ namespace DS4Windows.Forms
             cBLightbyBattery.Click += ledAsBatteryIndicator_CheckedChanged;
             btnRainbow.Click += btnRainbow_Click;
             nUDRainbow.ValueChanged += numUDRainbow_ValueChanged;
+            maxRainSatTB.ValueChanged += MaxRainSatTB_ValueChanged;
 
             // Other events
             nUDRumbleBoost.ValueChanged += rumbleBoostBar_ValueChanged;
@@ -455,6 +456,14 @@ namespace DS4Windows.Forms
             nUDIdleDisconnect.ValueChanged += nUDIdleDisconnect_ValueChanged;
             btPollRateComboBox.SelectedIndexChanged += btPollRateComboBox_SelectedIndexChanged;
             OutContTypeCb.SelectedIndexChanged += OutContTypeCb_SelectedIndexChanged;
+        }
+
+        private void MaxRainSatTB_ValueChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                MaxSatRainbow[device] = maxRainSatTB.Value / 100.0;
+            }
         }
 
         private void LbSixZCurveEditorURL_Click(object sender, EventArgs e)
@@ -624,6 +633,8 @@ namespace DS4Windows.Forms
                 }
                 else
                     btnFlashColor.BackColor = Color.FromArgb(fColor.red, fColor.green, fColor.blue);
+
+                maxRainSatTB.Value = (int)(MaxSatRainbow[device] * 100.0);
 
                 nUDRumbleBoost.Value = RumbleBoost[device];
                 nUDTouch.Value = TouchSensitivity[device];
@@ -1095,6 +1106,7 @@ namespace DS4Windows.Forms
                 pBHoveredButton.Image = null;
 
                 nUDRainbow.Value = 0;
+                maxRainSatTB.Value = 100;
                 nUDL2.Value = 0;
                 nUDR2.Value = 0;
                 nUDL2Maxzone.Value = 1;
@@ -1643,6 +1655,7 @@ namespace DS4Windows.Forms
 
             IdleDisconnectTimeout[device] = (int)(nUDIdleDisconnect.Value * 60);
             Rainbow[device] = (int)nUDRainbow.Value;
+            MaxSatRainbow[device] = maxRainSatTB.Value / 100.0;
             RSModInfo[device].deadZone = (int)Math.Round((nUDRS.Value * 127), 0);
             LSModInfo[device].deadZone = (int)Math.Round((nUDLS.Value * 127), 0);
             LSModInfo[device].antiDeadZone = (int)(nUDLSAntiDead.Value * 100);

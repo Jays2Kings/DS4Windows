@@ -759,6 +759,12 @@ namespace DS4Windows
             return m_Config.rainbow[index];
         }
 
+        public static double[] MaxSatRainbow => m_Config.maxRainbowSat;
+        public static double GetMaxSatRainbow(int index)
+        {
+            return m_Config.maxRainbowSat[index];
+        }
+
         public static bool[] FlushHIDQueue => m_Config.flushHIDQueue;
         public static bool getFlushHIDQueue(int index)
         {
@@ -1879,6 +1885,8 @@ namespace DS4Windows
             new DS4Color(Color.Blue)
         };
 
+        public double[] maxRainbowSat = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 };
+
         public int[] chargingType = new int[5] { 0, 0, 0, 0, 0 };
         public string[] launchProgram = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         public bool[] dinputOnly = new bool[5] { false, false, false, false, false };
@@ -2217,6 +2225,7 @@ namespace DS4Windows
                 XmlNode xmlR2Maxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "R2MaxZone", null); xmlR2Maxzone.InnerText = r2ModInfo[device].maxZone.ToString(); Node.AppendChild(xmlR2Maxzone);
                 XmlNode xmlButtonMouseSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "ButtonMouseSensitivity", null); xmlButtonMouseSensitivity.InnerText = buttonMouseSensitivity[device].ToString(); Node.AppendChild(xmlButtonMouseSensitivity);
                 XmlNode xmlRainbow = m_Xdoc.CreateNode(XmlNodeType.Element, "Rainbow", null); xmlRainbow.InnerText = rainbow[device].ToString(); Node.AppendChild(xmlRainbow);
+                XmlNode xmlMaxSatRainbow = m_Xdoc.CreateNode(XmlNodeType.Element, "MaxSatRainbow", null); xmlMaxSatRainbow.InnerText = Convert.ToInt32(maxRainbowSat[device] * 100.0).ToString(); Node.AppendChild(xmlMaxSatRainbow);
                 XmlNode xmlLSD = m_Xdoc.CreateNode(XmlNodeType.Element, "LSDeadZone", null); xmlLSD.InnerText = lsModInfo[device].deadZone.ToString(); Node.AppendChild(xmlLSD);
                 XmlNode xmlRSD = m_Xdoc.CreateNode(XmlNodeType.Element, "RSDeadZone", null); xmlRSD.InnerText = rsModInfo[device].deadZone.ToString(); Node.AppendChild(xmlRSD);
                 XmlNode xmlLSAD = m_Xdoc.CreateNode(XmlNodeType.Element, "LSAntiDeadZone", null); xmlLSAD.InnerText = lsModInfo[device].antiDeadZone.ToString(); Node.AppendChild(xmlLSAD);
@@ -2974,6 +2983,11 @@ namespace DS4Windows
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Rainbow"); double.TryParse(Item.InnerText, out rainbow[device]); }
                 catch { rainbow[device] = 0; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/MaxSatRainbow");
+                    int.TryParse(Item.InnerText, out int temp);
+                    maxRainbowSat[device] = Math.Max(0, Math.Min(100, temp)) / 100.0;
+                }
+                catch { maxRainbowSat[device] = 1.0; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSDeadZone"); int.TryParse(Item.InnerText, out lsModInfo[device].deadZone); }
                 catch { lsModInfo[device].deadZone = 10; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSDeadZone"); int.TryParse(Item.InnerText, out rsModInfo[device].deadZone); }
@@ -4566,6 +4580,7 @@ namespace DS4Windows
             scrollSensitivity[device] = 0;
             touchpadInvert[device] = 0;
             rainbow[device] = 0;
+            maxRainbowSat[device] = 1.0;
             flashAt[device] = 0;
             mouseAccel[device] = false;
             btPollRate[device] = 4;

@@ -1147,6 +1147,7 @@
     <Content Include="Resources\B.png" />
     <Content Include="Resources\BACK.png" />
     <Content Include="Resources\BT.png" />
+    <Content Include="Resources\cancel.png" />
     <Content Include="Resources\checked.png" />
     <Content Include="Resources\delete.png" />
     <Content Include="Resources\DOWN.png" />

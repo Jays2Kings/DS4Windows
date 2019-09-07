@@ -11,10 +11,12 @@ namespace DS4Windows
     {
         public readonly int vid;
         public readonly int pid;
-        internal VidPidInfo(int vid, int pid)
+        public readonly string name;
+        internal VidPidInfo(int vid, int pid, string name = "Generic DS4")
         {
             this.vid = vid;
             this.pid = pid;
+            this.name = name;
         }
     }
 
@@ -35,22 +37,21 @@ namespace DS4Windows
 
         private static VidPidInfo[] knownDevices =
         {
-            new VidPidInfo(SONY_VID, 0xBA0),
-            new VidPidInfo(SONY_VID, 0x5C4),
-            new VidPidInfo(SONY_VID, 0x09CC),
+            new VidPidInfo(SONY_VID, 0xBA0, "Sony WA"),
+            new VidPidInfo(SONY_VID, 0x5C4, "DS4 v.1"),
+            new VidPidInfo(SONY_VID, 0x09CC, "DS4 v.2"),
             new VidPidInfo(RAZER_VID, 0x1000),
             new VidPidInfo(NACON_VID, 0x0D01),
             new VidPidInfo(NACON_VID, 0x0D02),
-            new VidPidInfo(HORI_VID, 0x00EE),    // Hori PS4 Mini Wired Gamepad
+            new VidPidInfo(HORI_VID, 0x00EE, "Hori PS4 Mini"),    // Hori PS4 Mini Wired Gamepad
             new VidPidInfo(0x7545, 0x0104),
-            new VidPidInfo(0x2E95, 0x7725), // Scuf Vantage gamepad
-            new VidPidInfo(0x11C0, 0x4001), // PS4 Fun Controller
-            new VidPidInfo(RAZER_VID, 0x1007), // Razer Raiju Tournament Edition
-            new VidPidInfo(RAZER_VID, 0x1004), // Razer Raiju Ultimate Edition (wired)
-            new VidPidInfo(RAZER_VID, 0x1009), // Razer Raiju Ultimate Edition (BT). Doesn't work yet for some reason even when non-steam Razer driver lists the BT Razer Ultimate with this ID.
-            new VidPidInfo(SONY_VID, 0x05C5), // CronusMax (PS4 Output Mode)
-            new VidPidInfo(0x0C12, 0x57AB), // Warrior Joypad JS083 (wired). Custom lightbar color doesn't work, but everything else works OK (except touchpad and gyro because the gamepad doesnt have those).
-            new VidPidInfo(0x0C12, 0x0E16), // Steel Play Metaltech P4 (wired)
+            new VidPidInfo(0x2E95, 0x7725, "Scuf Vantage"), // Scuf Vantage gamepad
+            new VidPidInfo(0x11C0, 0x4001, "PS4 Fun"), // PS4 Fun Controller
+            new VidPidInfo(RAZER_VID, 0x1007, "Razer Raiju TE"), // Razer Raiju Tournament Edition
+            new VidPidInfo(RAZER_VID, 0x1004, "Razer Raiju UE USB"), // Razer Raiju Ultimate Edition (wired)
+            new VidPidInfo(RAZER_VID, 0x1009, "Razer Raiju UE BT"), // Razer Raiju Ultimate Edition (BT). Doesn't work yet for some reason even when non-steam Razer driver lists the BT Razer Ultimate with this ID.
+            new VidPidInfo(SONY_VID, 0x05C5, "CronusMax (PS4 Mode)"), // CronusMax (PS4 Output Mode)
+            new VidPidInfo(0x0C12, 0x57AB, "Warrior Joypad JS083"), // Warrior Joypad JS083 (wired). Custom lightbar color doesn't work, but everything else works OK (except touchpad and gyro because the gamepad doesnt have those).
         };
 
         private static string devicePathToInstanceId(string devicePath)
@@ -102,6 +103,8 @@ namespace DS4Windows
                     else if (DevicePaths.Contains(hDevice.DevicePath))
                         continue; // BT/USB endpoint already open once
 
+                    VidPidInfo metainfo = knownDevices.Single(x => x.vid == hDevice.Attributes.VendorId &&
+                        x.pid == hDevice.Attributes.ProductId);
                     if (!hDevice.IsOpen)
                     {
                         hDevice.OpenDevice(isExclusiveMode);
@@ -165,7 +168,7 @@ namespace DS4Windows
                         }
                         else
                         {
-                            DS4Device ds4Device = new DS4Device(hDevice);
+                            DS4Device ds4Device = new DS4Device(hDevice, metainfo.name);
                             //ds4Device.Removal += On_Removal;
                             if (!ds4Device.ExitOutputThread)
                             {

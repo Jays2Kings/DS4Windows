@@ -256,8 +256,6 @@
             this.lbWhileCharging = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnRainbow = new System.Windows.Forms.Button();
-            this.lbRainbowB = new System.Windows.Forms.Label();
-            this.nUDRainbowB = new System.Windows.Forms.NumericUpDown();
             this.nUDRainbow = new System.Windows.Forms.NumericUpDown();
             this.lbspc = new System.Windows.Forms.Label();
             this.tabAxis = new System.Windows.Forms.TabPage();
@@ -454,6 +452,8 @@
             this.panel12 = new System.Windows.Forms.Panel();
             this.OutContTypeCb = new System.Windows.Forms.ComboBox();
             this.outcontLb = new System.Windows.Forms.Label();
+            this.maxRainSatTB = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nUDTap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDScroll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDTouch)).BeginInit();
@@ -501,7 +501,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRainbowB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             this.tabAxis.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
@@ -570,6 +569,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDIdleDisconnect)).BeginInit();
             this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maxRainSatTB)).BeginInit();
             this.SuspendLayout();
             // 
             // cBLightbyBattery
@@ -2712,9 +2712,9 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.label1);
+            this.panel5.Controls.Add(this.maxRainSatTB);
             this.panel5.Controls.Add(this.btnRainbow);
-            this.panel5.Controls.Add(this.lbRainbowB);
-            this.panel5.Controls.Add(this.nUDRainbowB);
             this.panel5.Controls.Add(this.nUDRainbow);
             this.panel5.Controls.Add(this.lbspc);
             resources.ApplyResources(this.panel5, "panel5");
@@ -2726,26 +2726,6 @@
             resources.ApplyResources(this.btnRainbow, "btnRainbow");
             this.btnRainbow.Name = "btnRainbow";
             this.btnRainbow.UseVisualStyleBackColor = true;
-            // 
-            // lbRainbowB
-            // 
-            resources.ApplyResources(this.lbRainbowB, "lbRainbowB");
-            this.lbRainbowB.Name = "lbRainbowB";
-            // 
-            // nUDRainbowB
-            // 
-            resources.ApplyResources(this.nUDRainbowB, "nUDRainbowB");
-            this.nUDRainbowB.Maximum = new decimal(new int[] {
-            150,
-            0,
-            0,
-            0});
-            this.nUDRainbowB.Name = "nUDRainbowB";
-            this.nUDRainbowB.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
             // 
             // nUDRainbow
             // 
@@ -4717,6 +4697,19 @@
             resources.ApplyResources(this.outcontLb, "outcontLb");
             this.outcontLb.Name = "outcontLb";
             // 
+            // maxRainSatTB
+            // 
+            resources.ApplyResources(this.maxRainSatTB, "maxRainSatTB");
+            this.maxRainSatTB.Maximum = 100;
+            this.maxRainSatTB.Name = "maxRainSatTB";
+            this.maxRainSatTB.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.maxRainSatTB.Value = 100;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -4785,7 +4778,6 @@
             this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRainbowB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).EndInit();
             this.tabAxis.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
@@ -4871,6 +4863,7 @@
             this.panel11.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maxRainSatTB)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -5103,8 +5096,6 @@
         private System.Windows.Forms.Label lbWhileCharging;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button btnRainbow;
-        private System.Windows.Forms.Label lbRainbowB;
-        private System.Windows.Forms.NumericUpDown nUDRainbowB;
         private System.Windows.Forms.NumericUpDown nUDRainbow;
         private System.Windows.Forms.Label lbspc;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
@@ -5300,5 +5291,7 @@
         private System.Windows.Forms.LinkLabel lbSixZCurveEditorURL;
         private System.Windows.Forms.TextBox tBSixXCustomOutputCurve;
         private System.Windows.Forms.LinkLabel lbSixXCurveEditorURL;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TrackBar maxRainSatTB;
     }
 }

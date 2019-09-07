@@ -1874,9 +1874,25 @@ namespace DS4Windows
             }
 
             ref byte gyroTempX = ref gyroStickX[device];
-            if (gyroTempX != 128) MappedState.RX = gyroTempX;
+            if (gyroTempX != 128)
+            {
+                if (MappedState.RX != 128)
+                    MappedState.RX = Math.Abs(gyroTempX - 128) > Math.Abs(MappedState.RX - 128) ?
+                        gyroTempX : MappedState.RX;
+                else
+                    MappedState.RX = gyroTempX;
+            }
+
             ref byte gyroTempY = ref gyroStickY[device];
-            if (gyroTempY != 128) MappedState.RY = gyroTempY;
+            if (gyroTempY != 128)
+            {
+                if (MappedState.RY != 128)
+                    MappedState.RY = Math.Abs(gyroTempY - 128) > Math.Abs(MappedState.RY - 128) ?
+                        gyroTempY : MappedState.RY;
+                else
+                    MappedState.RY = gyroTempY;
+            }
+
             gyroTempX = gyroTempY = 128;
 
             calculateFinalMouseMovement(ref tempMouseDeltaX, ref tempMouseDeltaY,

@@ -52,6 +52,7 @@ namespace DS4Windows
             new VidPidInfo(RAZER_VID, 0x1009, "Razer Raiju UE BT"), // Razer Raiju Ultimate Edition (BT). Doesn't work yet for some reason even when non-steam Razer driver lists the BT Razer Ultimate with this ID.
             new VidPidInfo(SONY_VID, 0x05C5, "CronusMax (PS4 Mode)"), // CronusMax (PS4 Output Mode)
             new VidPidInfo(0x0C12, 0x57AB, "Warrior Joypad JS083"), // Warrior Joypad JS083 (wired). Custom lightbar color doesn't work, but everything else works OK (except touchpad and gyro because the gamepad doesnt have those).
+            new VidPidInfo(0x0C12, 0x0E16, "Steel Play MetalTech"), // Steel Play Metaltech P4 (wired)
         };
 
         private static string devicePathToInstanceId(string devicePath)

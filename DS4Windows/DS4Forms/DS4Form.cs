@@ -1547,14 +1547,15 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                         default: statPB[Index].Visible = false; toolTip1.SetToolTip(statPB[Index], ""); break;
                     }
 
-                    exclusivePB[Index].Visible = true;
                     DS4Device dev = Program.rootHub.DS4Controllers[Index];
                     if (dev != null)
                     {
+                        exclusivePB[Index].Visible = true;
                         exclusivePB[Index].Image = dev.IsExclusive ? Properties.Resources._checked : Properties.Resources.cancel;
                     }
                     else
                     {
+                        exclusivePB[Index].Visible = false;
                         exclusivePB[Index].Image = Properties.Resources.cancel;
                     }
                      

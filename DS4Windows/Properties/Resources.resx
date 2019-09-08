@@ -847,4 +847,7 @@
   <data name="MacroKeepKeyStateTip" xml:space="preserve">
     <value>Keep the last key state when macro execution is completed (ie. if a key is left in down state then it is not automatically reset back to default state)</value>
   </data>
+  <data name="SquareStickRoundness" xml:space="preserve">
+    <value>Roundness of Square Stick corners</value>
+  </data>
 </root>

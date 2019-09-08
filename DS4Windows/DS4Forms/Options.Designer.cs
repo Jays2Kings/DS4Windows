@@ -255,17 +255,30 @@
             this.btnChargingColor = new System.Windows.Forms.Button();
             this.lbWhileCharging = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.maxRainSatTB = new System.Windows.Forms.TrackBar();
             this.btnRainbow = new System.Windows.Forms.Button();
             this.nUDRainbow = new System.Windows.Forms.NumericUpDown();
             this.lbspc = new System.Windows.Forms.Label();
             this.tabAxis = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tBCustomOutputCurve = new System.Windows.Forms.TextBox();
-            this.lbCurveEditorURL = new System.Windows.Forms.LinkLabel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.nUDRSRotation = new System.Windows.Forms.NumericUpDown();
+            this.btnRSCurveEditor = new System.Windows.Forms.Button();
+            this.lbRSCurvePercent = new System.Windows.Forms.Label();
+            this.tBRSCustomOutputCurve = new System.Windows.Forms.TextBox();
+            this.nUDRSCurve = new System.Windows.Forms.NumericUpDown();
+            this.BtnLSCurveEditor = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.rsSquStickCk = new System.Windows.Forms.CheckBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tBLSCustomOutputCurve = new System.Windows.Forms.TextBox();
+            this.rsOutCurveComboBox = new System.Windows.Forms.ComboBox();
+            this.nUDRSS = new System.Windows.Forms.NumericUpDown();
             this.nUDLSS = new System.Windows.Forms.NumericUpDown();
             this.label69 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
             this.RoundnessNUpDown = new System.Windows.Forms.NumericUpDown();
             this.lsSquStickCk = new System.Windows.Forms.CheckBox();
             this.nUDLSRotation = new System.Windows.Forms.NumericUpDown();
@@ -275,39 +288,30 @@
             this.label44 = new System.Windows.Forms.Label();
             this.lsOutCurveComboBox = new System.Windows.Forms.ComboBox();
             this.label43 = new System.Windows.Forms.Label();
+            this.nUDRSAntiDead = new System.Windows.Forms.NumericUpDown();
             this.nUDLSAntiDead = new System.Windows.Forms.NumericUpDown();
             this.label42 = new System.Windows.Forms.Label();
+            this.nUDRSMaxZone = new System.Windows.Forms.NumericUpDown();
             this.nUDLSMaxZone = new System.Windows.Forms.NumericUpDown();
             this.label41 = new System.Windows.Forms.Label();
+            this.nUDRS = new System.Windows.Forms.NumericUpDown();
             this.nUDLS = new System.Windows.Forms.NumericUpDown();
             this.label40 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.tBRSCustomOutputCurve = new System.Windows.Forms.TextBox();
-            this.lbRSCurveEditorURL = new System.Windows.Forms.LinkLabel();
-            this.nUDRSS = new System.Windows.Forms.NumericUpDown();
-            this.label70 = new System.Windows.Forms.Label();
-            this.rsOutCurveComboBox = new System.Windows.Forms.ComboBox();
-            this.nUDRSRotation = new System.Windows.Forms.NumericUpDown();
-            this.label52 = new System.Windows.Forms.Label();
-            this.lbRSCurvePercent = new System.Windows.Forms.Label();
-            this.nUDRSCurve = new System.Windows.Forms.NumericUpDown();
-            this.label51 = new System.Windows.Forms.Label();
-            this.rsSquStickCk = new System.Windows.Forms.CheckBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label50 = new System.Windows.Forms.Label();
-            this.nUDRSAntiDead = new System.Windows.Forms.NumericUpDown();
-            this.label49 = new System.Windows.Forms.Label();
-            this.nUDRSMaxZone = new System.Windows.Forms.NumericUpDown();
-            this.label48 = new System.Windows.Forms.Label();
-            this.nUDRS = new System.Windows.Forms.NumericUpDown();
-            this.label47 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnR2CurveEditor = new System.Windows.Forms.Button();
+            this.btnL2CurveEditor = new System.Windows.Forms.Button();
+            this.tBR2CustomOutputCurve = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.nUDR2S = new System.Windows.Forms.NumericUpDown();
             this.tBL2CustomOutputCurve = new System.Windows.Forms.TextBox();
-            this.lbL2CurveEditorURL = new System.Windows.Forms.LinkLabel();
+            this.cBR2OutputCurve = new System.Windows.Forms.ComboBox();
             this.nUDL2S = new System.Windows.Forms.NumericUpDown();
+            this.nUDR2AntiDead = new System.Windows.Forms.NumericUpDown();
             this.label71 = new System.Windows.Forms.Label();
+            this.nUDR2Maxzone = new System.Windows.Forms.NumericUpDown();
             this.cBL2OutputCurve = new System.Windows.Forms.ComboBox();
+            this.nUDR2 = new System.Windows.Forms.NumericUpDown();
             this.nUDL2AntiDead = new System.Windows.Forms.NumericUpDown();
             this.nUDL2Maxzone = new System.Windows.Forms.NumericUpDown();
             this.nUDL2 = new System.Windows.Forms.NumericUpDown();
@@ -315,42 +319,26 @@
             this.label55 = new System.Windows.Forms.Label();
             this.label56 = new System.Windows.Forms.Label();
             this.label57 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.tBR2CustomOutputCurve = new System.Windows.Forms.TextBox();
-            this.lbR2CurveEditorURL = new System.Windows.Forms.LinkLabel();
-            this.nUDR2S = new System.Windows.Forms.NumericUpDown();
-            this.label72 = new System.Windows.Forms.Label();
-            this.cBR2OutputCurve = new System.Windows.Forms.ComboBox();
-            this.nUDR2AntiDead = new System.Windows.Forms.NumericUpDown();
-            this.nUDR2Maxzone = new System.Windows.Forms.NumericUpDown();
-            this.nUDR2 = new System.Windows.Forms.NumericUpDown();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnSixZCurveEditor = new System.Windows.Forms.Button();
+            this.btnSixXCurveEditor = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.tBSixZCustomOutputCurve = new System.Windows.Forms.TextBox();
-            this.lbSixZCurveEditorURL = new System.Windows.Forms.LinkLabel();
             this.tBSixXCustomOutputCurve = new System.Windows.Forms.TextBox();
-            this.lbSixXCurveEditorURL = new System.Windows.Forms.LinkLabel();
             this.nUDSZS = new System.Windows.Forms.NumericUpDown();
             this.nUDSXS = new System.Windows.Forms.NumericUpDown();
-            this.label74 = new System.Windows.Forms.Label();
             this.label73 = new System.Windows.Forms.Label();
             this.cBSixaxisZOutputCurve = new System.Windows.Forms.ComboBox();
-            this.label68 = new System.Windows.Forms.Label();
             this.cBSixaxisXOutputCurve = new System.Windows.Forms.ComboBox();
             this.label67 = new System.Windows.Forms.Label();
             this.nUDSixaxisZAntiDead = new System.Windows.Forms.NumericUpDown();
-            this.label66 = new System.Windows.Forms.Label();
             this.nUDSixaxisXAntiDead = new System.Windows.Forms.NumericUpDown();
             this.label65 = new System.Windows.Forms.Label();
             this.nUDSixAxisZMaxZone = new System.Windows.Forms.NumericUpDown();
-            this.label64 = new System.Windows.Forms.Label();
             this.nUDSixAxisXMaxZone = new System.Windows.Forms.NumericUpDown();
             this.label63 = new System.Windows.Forms.Label();
             this.nUDSZ = new System.Windows.Forms.NumericUpDown();
-            this.label62 = new System.Windows.Forms.Label();
             this.nUDSX = new System.Windows.Forms.NumericUpDown();
             this.label61 = new System.Windows.Forms.Label();
             this.tabGyro = new System.Windows.Forms.TabPage();
@@ -452,8 +440,6 @@
             this.panel12 = new System.Windows.Forms.Panel();
             this.OutContTypeCb = new System.Windows.Forms.ComboBox();
             this.outcontLb = new System.Windows.Forms.Label();
-            this.maxRainSatTB = new System.Windows.Forms.TrackBar();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nUDTap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDScroll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDTouch)).BeginInit();
@@ -501,35 +487,34 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maxRainSatTB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             this.tabAxis.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RoundnessNUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSRotation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLSAntiDead)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLS)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSAntiDead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSAntiDead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLS)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2S)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2AntiDead)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2)).BeginInit();
-            this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDR2S)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2S)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDR2AntiDead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDR2Maxzone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDR2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2AntiDead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).BeginInit();
@@ -569,7 +554,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDIdleDisconnect)).BeginInit();
             this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.maxRainSatTB)).BeginInit();
             this.SuspendLayout();
             // 
             // cBLightbyBattery
@@ -2720,6 +2704,19 @@
             resources.ApplyResources(this.panel5, "panel5");
             this.panel5.Name = "panel5";
             // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // maxRainSatTB
+            // 
+            resources.ApplyResources(this.maxRainSatTB, "maxRainSatTB");
+            this.maxRainSatTB.Maximum = 100;
+            this.maxRainSatTB.Name = "maxRainSatTB";
+            this.maxRainSatTB.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.maxRainSatTB.Value = 100;
+            // 
             // btnRainbow
             // 
             this.btnRainbow.Image = global::DS4Windows.Properties.Resources.rainbow;
@@ -2753,19 +2750,28 @@
             // 
             resources.ApplyResources(this.flowLayoutPanel3, "flowLayoutPanel3");
             this.flowLayoutPanel3.Controls.Add(this.groupBox1);
-            this.flowLayoutPanel3.Controls.Add(this.groupBox2);
             this.flowLayoutPanel3.Controls.Add(this.groupBox3);
-            this.flowLayoutPanel3.Controls.Add(this.groupBox4);
             this.flowLayoutPanel3.Controls.Add(this.groupBox5);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.tBCustomOutputCurve);
-            this.groupBox1.Controls.Add(this.lbCurveEditorURL);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.nUDRSRotation);
+            this.groupBox1.Controls.Add(this.btnRSCurveEditor);
+            this.groupBox1.Controls.Add(this.lbRSCurvePercent);
+            this.groupBox1.Controls.Add(this.tBRSCustomOutputCurve);
+            this.groupBox1.Controls.Add(this.nUDRSCurve);
+            this.groupBox1.Controls.Add(this.BtnLSCurveEditor);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.rsSquStickCk);
+            this.groupBox1.Controls.Add(this.numericUpDown1);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.tBLSCustomOutputCurve);
+            this.groupBox1.Controls.Add(this.rsOutCurveComboBox);
+            this.groupBox1.Controls.Add(this.nUDRSS);
             this.groupBox1.Controls.Add(this.nUDLSS);
             this.groupBox1.Controls.Add(this.label69);
-            this.groupBox1.Controls.Add(this.label46);
             this.groupBox1.Controls.Add(this.RoundnessNUpDown);
             this.groupBox1.Controls.Add(this.lsSquStickCk);
             this.groupBox1.Controls.Add(this.nUDLSRotation);
@@ -2775,26 +2781,156 @@
             this.groupBox1.Controls.Add(this.label44);
             this.groupBox1.Controls.Add(this.lsOutCurveComboBox);
             this.groupBox1.Controls.Add(this.label43);
+            this.groupBox1.Controls.Add(this.nUDRSAntiDead);
             this.groupBox1.Controls.Add(this.nUDLSAntiDead);
             this.groupBox1.Controls.Add(this.label42);
+            this.groupBox1.Controls.Add(this.nUDRSMaxZone);
             this.groupBox1.Controls.Add(this.nUDLSMaxZone);
             this.groupBox1.Controls.Add(this.label41);
+            this.groupBox1.Controls.Add(this.nUDRS);
             this.groupBox1.Controls.Add(this.nUDLS);
             this.groupBox1.Controls.Add(this.label40);
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
-            // tBCustomOutputCurve
+            // label4
             // 
-            resources.ApplyResources(this.tBCustomOutputCurve, "tBCustomOutputCurve");
-            this.tBCustomOutputCurve.Name = "tBCustomOutputCurve";
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
             // 
-            // lbCurveEditorURL
+            // nUDRSRotation
             // 
-            resources.ApplyResources(this.lbCurveEditorURL, "lbCurveEditorURL");
-            this.lbCurveEditorURL.Name = "lbCurveEditorURL";
-            this.lbCurveEditorURL.TabStop = true;
+            resources.ApplyResources(this.nUDRSRotation, "nUDRSRotation");
+            this.nUDRSRotation.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.nUDRSRotation.Minimum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            -2147483648});
+            this.nUDRSRotation.Name = "nUDRSRotation";
+            // 
+            // btnRSCurveEditor
+            // 
+            resources.ApplyResources(this.btnRSCurveEditor, "btnRSCurveEditor");
+            this.btnRSCurveEditor.Name = "btnRSCurveEditor";
+            this.btnRSCurveEditor.UseVisualStyleBackColor = true;
+            this.btnRSCurveEditor.Click += new System.EventHandler(this.BtnCurveEditor_Click);
+            // 
+            // lbRSCurvePercent
+            // 
+            resources.ApplyResources(this.lbRSCurvePercent, "lbRSCurvePercent");
+            this.lbRSCurvePercent.Name = "lbRSCurvePercent";
+            // 
+            // tBRSCustomOutputCurve
+            // 
+            resources.ApplyResources(this.tBRSCustomOutputCurve, "tBRSCustomOutputCurve");
+            this.tBRSCustomOutputCurve.Name = "tBRSCustomOutputCurve";
+            // 
+            // nUDRSCurve
+            // 
+            this.nUDRSCurve.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDRSCurve, "nUDRSCurve");
+            this.nUDRSCurve.Name = "nUDRSCurve";
+            // 
+            // BtnLSCurveEditor
+            // 
+            resources.ApplyResources(this.BtnLSCurveEditor, "BtnLSCurveEditor");
+            this.BtnLSCurveEditor.Name = "BtnLSCurveEditor";
+            this.BtnLSCurveEditor.UseVisualStyleBackColor = true;
+            this.BtnLSCurveEditor.Click += new System.EventHandler(this.BtnCurveEditor_Click);
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // rsSquStickCk
+            // 
+            resources.ApplyResources(this.rsSquStickCk, "rsSquStickCk");
+            this.rsSquStickCk.Name = "rsSquStickCk";
+            this.rsSquStickCk.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.DecimalPlaces = 1;
+            this.numericUpDown1.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            65536});
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // tBLSCustomOutputCurve
+            // 
+            resources.ApplyResources(this.tBLSCustomOutputCurve, "tBLSCustomOutputCurve");
+            this.tBLSCustomOutputCurve.Name = "tBLSCustomOutputCurve";
+            // 
+            // rsOutCurveComboBox
+            // 
+            this.rsOutCurveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.rsOutCurveComboBox.DropDownWidth = 120;
+            this.rsOutCurveComboBox.FormattingEnabled = true;
+            this.rsOutCurveComboBox.Items.AddRange(new object[] {
+            resources.GetString("rsOutCurveComboBox.Items"),
+            resources.GetString("rsOutCurveComboBox.Items1"),
+            resources.GetString("rsOutCurveComboBox.Items2"),
+            resources.GetString("rsOutCurveComboBox.Items3"),
+            resources.GetString("rsOutCurveComboBox.Items4"),
+            resources.GetString("rsOutCurveComboBox.Items5"),
+            resources.GetString("rsOutCurveComboBox.Items6")});
+            resources.ApplyResources(this.rsOutCurveComboBox, "rsOutCurveComboBox");
+            this.rsOutCurveComboBox.Name = "rsOutCurveComboBox";
+            // 
+            // nUDRSS
+            // 
+            this.nUDRSS.DecimalPlaces = 2;
+            this.nUDRSS.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDRSS, "nUDRSS");
+            this.nUDRSS.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nUDRSS.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.nUDRSS.Name = "nUDRSS";
+            this.nUDRSS.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUDLSS
             // 
@@ -2826,11 +2962,6 @@
             // 
             resources.ApplyResources(this.label69, "label69");
             this.label69.Name = "label69";
-            // 
-            // label46
-            // 
-            resources.ApplyResources(this.label46, "label46");
-            this.label46.Name = "label46";
             // 
             // RoundnessNUpDown
             // 
@@ -2920,6 +3051,27 @@
             resources.ApplyResources(this.label43, "label43");
             this.label43.Name = "label43";
             // 
+            // nUDRSAntiDead
+            // 
+            this.nUDRSAntiDead.DecimalPlaces = 2;
+            this.nUDRSAntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDRSAntiDead, "nUDRSAntiDead");
+            this.nUDRSAntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDRSAntiDead.Name = "nUDRSAntiDead";
+            this.nUDRSAntiDead.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            131072});
+            // 
             // nUDLSAntiDead
             // 
             this.nUDLSAntiDead.DecimalPlaces = 2;
@@ -2945,6 +3097,27 @@
             // 
             resources.ApplyResources(this.label42, "label42");
             this.label42.Name = "label42";
+            // 
+            // nUDRSMaxZone
+            // 
+            this.nUDRSMaxZone.DecimalPlaces = 2;
+            this.nUDRSMaxZone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDRSMaxZone, "nUDRSMaxZone");
+            this.nUDRSMaxZone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDRSMaxZone.Name = "nUDRSMaxZone";
+            this.nUDRSMaxZone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUDLSMaxZone
             // 
@@ -2972,6 +3145,27 @@
             resources.ApplyResources(this.label41, "label41");
             this.label41.Name = "label41";
             // 
+            // nUDRS
+            // 
+            this.nUDRS.DecimalPlaces = 2;
+            this.nUDRS.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDRS, "nUDRS");
+            this.nUDRS.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDRS.Name = "nUDRS";
+            this.nUDRS.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            131072});
+            // 
             // nUDLS
             // 
             this.nUDLS.DecimalPlaces = 2;
@@ -2998,252 +3192,22 @@
             resources.ApplyResources(this.label40, "label40");
             this.label40.Name = "label40";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.tBRSCustomOutputCurve);
-            this.groupBox2.Controls.Add(this.lbRSCurveEditorURL);
-            this.groupBox2.Controls.Add(this.nUDRSS);
-            this.groupBox2.Controls.Add(this.label70);
-            this.groupBox2.Controls.Add(this.rsOutCurveComboBox);
-            this.groupBox2.Controls.Add(this.nUDRSRotation);
-            this.groupBox2.Controls.Add(this.label52);
-            this.groupBox2.Controls.Add(this.lbRSCurvePercent);
-            this.groupBox2.Controls.Add(this.nUDRSCurve);
-            this.groupBox2.Controls.Add(this.label51);
-            this.groupBox2.Controls.Add(this.rsSquStickCk);
-            this.groupBox2.Controls.Add(this.numericUpDown1);
-            this.groupBox2.Controls.Add(this.label28);
-            this.groupBox2.Controls.Add(this.label50);
-            this.groupBox2.Controls.Add(this.nUDRSAntiDead);
-            this.groupBox2.Controls.Add(this.label49);
-            this.groupBox2.Controls.Add(this.nUDRSMaxZone);
-            this.groupBox2.Controls.Add(this.label48);
-            this.groupBox2.Controls.Add(this.nUDRS);
-            this.groupBox2.Controls.Add(this.label47);
-            resources.ApplyResources(this.groupBox2, "groupBox2");
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.TabStop = false;
-            // 
-            // tBRSCustomOutputCurve
-            // 
-            resources.ApplyResources(this.tBRSCustomOutputCurve, "tBRSCustomOutputCurve");
-            this.tBRSCustomOutputCurve.Name = "tBRSCustomOutputCurve";
-            // 
-            // lbRSCurveEditorURL
-            // 
-            resources.ApplyResources(this.lbRSCurveEditorURL, "lbRSCurveEditorURL");
-            this.lbRSCurveEditorURL.Name = "lbRSCurveEditorURL";
-            this.lbRSCurveEditorURL.TabStop = true;
-            // 
-            // nUDRSS
-            // 
-            this.nUDRSS.DecimalPlaces = 2;
-            this.nUDRSS.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDRSS, "nUDRSS");
-            this.nUDRSS.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nUDRSS.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.nUDRSS.Name = "nUDRSS";
-            this.nUDRSS.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label70
-            // 
-            resources.ApplyResources(this.label70, "label70");
-            this.label70.Name = "label70";
-            // 
-            // rsOutCurveComboBox
-            // 
-            this.rsOutCurveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.rsOutCurveComboBox.DropDownWidth = 120;
-            this.rsOutCurveComboBox.FormattingEnabled = true;
-            this.rsOutCurveComboBox.Items.AddRange(new object[] {
-            resources.GetString("rsOutCurveComboBox.Items"),
-            resources.GetString("rsOutCurveComboBox.Items1"),
-            resources.GetString("rsOutCurveComboBox.Items2"),
-            resources.GetString("rsOutCurveComboBox.Items3"),
-            resources.GetString("rsOutCurveComboBox.Items4"),
-            resources.GetString("rsOutCurveComboBox.Items5"),
-            resources.GetString("rsOutCurveComboBox.Items6")});
-            resources.ApplyResources(this.rsOutCurveComboBox, "rsOutCurveComboBox");
-            this.rsOutCurveComboBox.Name = "rsOutCurveComboBox";
-            // 
-            // nUDRSRotation
-            // 
-            resources.ApplyResources(this.nUDRSRotation, "nUDRSRotation");
-            this.nUDRSRotation.Maximum = new decimal(new int[] {
-            180,
-            0,
-            0,
-            0});
-            this.nUDRSRotation.Minimum = new decimal(new int[] {
-            180,
-            0,
-            0,
-            -2147483648});
-            this.nUDRSRotation.Name = "nUDRSRotation";
-            // 
-            // label52
-            // 
-            resources.ApplyResources(this.label52, "label52");
-            this.label52.Name = "label52";
-            // 
-            // lbRSCurvePercent
-            // 
-            resources.ApplyResources(this.lbRSCurvePercent, "lbRSCurvePercent");
-            this.lbRSCurvePercent.Name = "lbRSCurvePercent";
-            // 
-            // nUDRSCurve
-            // 
-            this.nUDRSCurve.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDRSCurve, "nUDRSCurve");
-            this.nUDRSCurve.Name = "nUDRSCurve";
-            // 
-            // label51
-            // 
-            resources.ApplyResources(this.label51, "label51");
-            this.label51.Name = "label51";
-            // 
-            // rsSquStickCk
-            // 
-            resources.ApplyResources(this.rsSquStickCk, "rsSquStickCk");
-            this.rsSquStickCk.Name = "rsSquStickCk";
-            this.rsSquStickCk.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.DecimalPlaces = 1;
-            this.numericUpDown1.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            65536});
-            // 
-            // label28
-            // 
-            resources.ApplyResources(this.label28, "label28");
-            this.label28.Name = "label28";
-            // 
-            // label50
-            // 
-            resources.ApplyResources(this.label50, "label50");
-            this.label50.Name = "label50";
-            // 
-            // nUDRSAntiDead
-            // 
-            this.nUDRSAntiDead.DecimalPlaces = 2;
-            this.nUDRSAntiDead.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDRSAntiDead, "nUDRSAntiDead");
-            this.nUDRSAntiDead.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDRSAntiDead.Name = "nUDRSAntiDead";
-            this.nUDRSAntiDead.Value = new decimal(new int[] {
-            20,
-            0,
-            0,
-            131072});
-            // 
-            // label49
-            // 
-            resources.ApplyResources(this.label49, "label49");
-            this.label49.Name = "label49";
-            // 
-            // nUDRSMaxZone
-            // 
-            this.nUDRSMaxZone.DecimalPlaces = 2;
-            this.nUDRSMaxZone.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDRSMaxZone, "nUDRSMaxZone");
-            this.nUDRSMaxZone.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDRSMaxZone.Name = "nUDRSMaxZone";
-            this.nUDRSMaxZone.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label48
-            // 
-            resources.ApplyResources(this.label48, "label48");
-            this.label48.Name = "label48";
-            // 
-            // nUDRS
-            // 
-            this.nUDRS.DecimalPlaces = 2;
-            this.nUDRS.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDRS, "nUDRS");
-            this.nUDRS.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDRS.Name = "nUDRS";
-            this.nUDRS.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            131072});
-            // 
-            // label47
-            // 
-            resources.ApplyResources(this.label47, "label47");
-            this.label47.Name = "label47";
-            // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnR2CurveEditor);
+            this.groupBox3.Controls.Add(this.btnL2CurveEditor);
+            this.groupBox3.Controls.Add(this.tBR2CustomOutputCurve);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.nUDR2S);
             this.groupBox3.Controls.Add(this.tBL2CustomOutputCurve);
-            this.groupBox3.Controls.Add(this.lbL2CurveEditorURL);
+            this.groupBox3.Controls.Add(this.cBR2OutputCurve);
             this.groupBox3.Controls.Add(this.nUDL2S);
+            this.groupBox3.Controls.Add(this.nUDR2AntiDead);
             this.groupBox3.Controls.Add(this.label71);
+            this.groupBox3.Controls.Add(this.nUDR2Maxzone);
             this.groupBox3.Controls.Add(this.cBL2OutputCurve);
+            this.groupBox3.Controls.Add(this.nUDR2);
             this.groupBox3.Controls.Add(this.nUDL2AntiDead);
             this.groupBox3.Controls.Add(this.nUDL2Maxzone);
             this.groupBox3.Controls.Add(this.nUDL2);
@@ -3255,16 +3219,81 @@
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
             // 
+            // btnR2CurveEditor
+            // 
+            resources.ApplyResources(this.btnR2CurveEditor, "btnR2CurveEditor");
+            this.btnR2CurveEditor.Name = "btnR2CurveEditor";
+            this.btnR2CurveEditor.UseVisualStyleBackColor = true;
+            this.btnR2CurveEditor.Click += new System.EventHandler(this.BtnCurveEditor_Click);
+            // 
+            // btnL2CurveEditor
+            // 
+            resources.ApplyResources(this.btnL2CurveEditor, "btnL2CurveEditor");
+            this.btnL2CurveEditor.Name = "btnL2CurveEditor";
+            this.btnL2CurveEditor.UseVisualStyleBackColor = true;
+            this.btnL2CurveEditor.Click += new System.EventHandler(this.BtnCurveEditor_Click);
+            // 
+            // tBR2CustomOutputCurve
+            // 
+            resources.ApplyResources(this.tBR2CustomOutputCurve, "tBR2CustomOutputCurve");
+            this.tBR2CustomOutputCurve.Name = "tBR2CustomOutputCurve";
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // nUDR2S
+            // 
+            this.nUDR2S.DecimalPlaces = 2;
+            this.nUDR2S.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDR2S, "nUDR2S");
+            this.nUDR2S.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDR2S.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDR2S.Name = "nUDR2S";
+            this.nUDR2S.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // tBL2CustomOutputCurve
             // 
             resources.ApplyResources(this.tBL2CustomOutputCurve, "tBL2CustomOutputCurve");
             this.tBL2CustomOutputCurve.Name = "tBL2CustomOutputCurve";
             // 
-            // lbL2CurveEditorURL
+            // cBR2OutputCurve
             // 
-            resources.ApplyResources(this.lbL2CurveEditorURL, "lbL2CurveEditorURL");
-            this.lbL2CurveEditorURL.Name = "lbL2CurveEditorURL";
-            this.lbL2CurveEditorURL.TabStop = true;
+            this.cBR2OutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBR2OutputCurve.DropDownWidth = 70;
+            this.cBR2OutputCurve.FormattingEnabled = true;
+            this.cBR2OutputCurve.Items.AddRange(new object[] {
+            resources.GetString("cBR2OutputCurve.Items"),
+            resources.GetString("cBR2OutputCurve.Items1"),
+            resources.GetString("cBR2OutputCurve.Items2"),
+            resources.GetString("cBR2OutputCurve.Items3"),
+            resources.GetString("cBR2OutputCurve.Items4"),
+            resources.GetString("cBR2OutputCurve.Items5"),
+            resources.GetString("cBR2OutputCurve.Items6")});
+            resources.ApplyResources(this.cBR2OutputCurve, "cBR2OutputCurve");
+            this.cBR2OutputCurve.Name = "cBR2OutputCurve";
             // 
             // nUDL2S
             // 
@@ -3292,10 +3321,47 @@
             0,
             0});
             // 
+            // nUDR2AntiDead
+            // 
+            this.nUDR2AntiDead.DecimalPlaces = 2;
+            this.nUDR2AntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDR2AntiDead, "nUDR2AntiDead");
+            this.nUDR2AntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDR2AntiDead.Name = "nUDR2AntiDead";
+            // 
             // label71
             // 
             resources.ApplyResources(this.label71, "label71");
             this.label71.Name = "label71";
+            // 
+            // nUDR2Maxzone
+            // 
+            this.nUDR2Maxzone.DecimalPlaces = 2;
+            this.nUDR2Maxzone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDR2Maxzone, "nUDR2Maxzone");
+            this.nUDR2Maxzone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDR2Maxzone.Name = "nUDR2Maxzone";
+            this.nUDR2Maxzone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // cBL2OutputCurve
             // 
@@ -3312,6 +3378,22 @@
             resources.GetString("cBL2OutputCurve.Items6")});
             resources.ApplyResources(this.cBL2OutputCurve, "cBL2OutputCurve");
             this.cBL2OutputCurve.Name = "cBL2OutputCurve";
+            // 
+            // nUDR2
+            // 
+            this.nUDR2.DecimalPlaces = 2;
+            this.nUDR2.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDR2, "nUDR2");
+            this.nUDR2.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDR2.Name = "nUDR2";
             // 
             // nUDL2AntiDead
             // 
@@ -3386,206 +3468,66 @@
             resources.ApplyResources(this.label57, "label57");
             this.label57.Name = "label57";
             // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.tBR2CustomOutputCurve);
-            this.groupBox4.Controls.Add(this.lbR2CurveEditorURL);
-            this.groupBox4.Controls.Add(this.nUDR2S);
-            this.groupBox4.Controls.Add(this.label72);
-            this.groupBox4.Controls.Add(this.cBR2OutputCurve);
-            this.groupBox4.Controls.Add(this.nUDR2AntiDead);
-            this.groupBox4.Controls.Add(this.nUDR2Maxzone);
-            this.groupBox4.Controls.Add(this.nUDR2);
-            this.groupBox4.Controls.Add(this.label53);
-            this.groupBox4.Controls.Add(this.label58);
-            this.groupBox4.Controls.Add(this.label59);
-            this.groupBox4.Controls.Add(this.label60);
-            resources.ApplyResources(this.groupBox4, "groupBox4");
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.TabStop = false;
-            // 
-            // tBR2CustomOutputCurve
-            // 
-            resources.ApplyResources(this.tBR2CustomOutputCurve, "tBR2CustomOutputCurve");
-            this.tBR2CustomOutputCurve.Name = "tBR2CustomOutputCurve";
-            // 
-            // lbR2CurveEditorURL
-            // 
-            resources.ApplyResources(this.lbR2CurveEditorURL, "lbR2CurveEditorURL");
-            this.lbR2CurveEditorURL.Name = "lbR2CurveEditorURL";
-            this.lbR2CurveEditorURL.TabStop = true;
-            // 
-            // nUDR2S
-            // 
-            this.nUDR2S.DecimalPlaces = 2;
-            this.nUDR2S.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDR2S, "nUDR2S");
-            this.nUDR2S.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nUDR2S.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nUDR2S.Name = "nUDR2S";
-            this.nUDR2S.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label72
-            // 
-            resources.ApplyResources(this.label72, "label72");
-            this.label72.Name = "label72";
-            // 
-            // cBR2OutputCurve
-            // 
-            this.cBR2OutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBR2OutputCurve.DropDownWidth = 70;
-            this.cBR2OutputCurve.FormattingEnabled = true;
-            this.cBR2OutputCurve.Items.AddRange(new object[] {
-            resources.GetString("cBR2OutputCurve.Items"),
-            resources.GetString("cBR2OutputCurve.Items1"),
-            resources.GetString("cBR2OutputCurve.Items2"),
-            resources.GetString("cBR2OutputCurve.Items3"),
-            resources.GetString("cBR2OutputCurve.Items4"),
-            resources.GetString("cBR2OutputCurve.Items5"),
-            resources.GetString("cBR2OutputCurve.Items6")});
-            resources.ApplyResources(this.cBR2OutputCurve, "cBR2OutputCurve");
-            this.cBR2OutputCurve.Name = "cBR2OutputCurve";
-            // 
-            // nUDR2AntiDead
-            // 
-            this.nUDR2AntiDead.DecimalPlaces = 2;
-            this.nUDR2AntiDead.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDR2AntiDead, "nUDR2AntiDead");
-            this.nUDR2AntiDead.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDR2AntiDead.Name = "nUDR2AntiDead";
-            // 
-            // nUDR2Maxzone
-            // 
-            this.nUDR2Maxzone.DecimalPlaces = 2;
-            this.nUDR2Maxzone.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDR2Maxzone, "nUDR2Maxzone");
-            this.nUDR2Maxzone.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDR2Maxzone.Name = "nUDR2Maxzone";
-            this.nUDR2Maxzone.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // nUDR2
-            // 
-            this.nUDR2.DecimalPlaces = 2;
-            this.nUDR2.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDR2, "nUDR2");
-            this.nUDR2.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDR2.Name = "nUDR2";
-            // 
-            // label53
-            // 
-            resources.ApplyResources(this.label53, "label53");
-            this.label53.Name = "label53";
-            // 
-            // label58
-            // 
-            resources.ApplyResources(this.label58, "label58");
-            this.label58.Name = "label58";
-            // 
-            // label59
-            // 
-            resources.ApplyResources(this.label59, "label59");
-            this.label59.Name = "label59";
-            // 
-            // label60
-            // 
-            resources.ApplyResources(this.label60, "label60");
-            this.label60.Name = "label60";
-            // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.btnSixZCurveEditor);
+            this.groupBox5.Controls.Add(this.btnSixXCurveEditor);
+            this.groupBox5.Controls.Add(this.label8);
+            this.groupBox5.Controls.Add(this.label7);
             this.groupBox5.Controls.Add(this.tBSixZCustomOutputCurve);
-            this.groupBox5.Controls.Add(this.lbSixZCurveEditorURL);
             this.groupBox5.Controls.Add(this.tBSixXCustomOutputCurve);
-            this.groupBox5.Controls.Add(this.lbSixXCurveEditorURL);
             this.groupBox5.Controls.Add(this.nUDSZS);
             this.groupBox5.Controls.Add(this.nUDSXS);
-            this.groupBox5.Controls.Add(this.label74);
             this.groupBox5.Controls.Add(this.label73);
             this.groupBox5.Controls.Add(this.cBSixaxisZOutputCurve);
-            this.groupBox5.Controls.Add(this.label68);
             this.groupBox5.Controls.Add(this.cBSixaxisXOutputCurve);
             this.groupBox5.Controls.Add(this.label67);
             this.groupBox5.Controls.Add(this.nUDSixaxisZAntiDead);
-            this.groupBox5.Controls.Add(this.label66);
             this.groupBox5.Controls.Add(this.nUDSixaxisXAntiDead);
             this.groupBox5.Controls.Add(this.label65);
             this.groupBox5.Controls.Add(this.nUDSixAxisZMaxZone);
-            this.groupBox5.Controls.Add(this.label64);
             this.groupBox5.Controls.Add(this.nUDSixAxisXMaxZone);
             this.groupBox5.Controls.Add(this.label63);
             this.groupBox5.Controls.Add(this.nUDSZ);
-            this.groupBox5.Controls.Add(this.label62);
             this.groupBox5.Controls.Add(this.nUDSX);
             this.groupBox5.Controls.Add(this.label61);
             resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
             // 
+            // btnSixZCurveEditor
+            // 
+            resources.ApplyResources(this.btnSixZCurveEditor, "btnSixZCurveEditor");
+            this.btnSixZCurveEditor.Name = "btnSixZCurveEditor";
+            this.btnSixZCurveEditor.UseVisualStyleBackColor = true;
+            this.btnSixZCurveEditor.Click += new System.EventHandler(this.BtnCurveEditor_Click);
+            // 
+            // btnSixXCurveEditor
+            // 
+            resources.ApplyResources(this.btnSixXCurveEditor, "btnSixXCurveEditor");
+            this.btnSixXCurveEditor.Name = "btnSixXCurveEditor";
+            this.btnSixXCurveEditor.UseVisualStyleBackColor = true;
+            this.btnSixXCurveEditor.Click += new System.EventHandler(this.BtnCurveEditor_Click);
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
             // tBSixZCustomOutputCurve
             // 
             resources.ApplyResources(this.tBSixZCustomOutputCurve, "tBSixZCustomOutputCurve");
             this.tBSixZCustomOutputCurve.Name = "tBSixZCustomOutputCurve";
             // 
-            // lbSixZCurveEditorURL
-            // 
-            resources.ApplyResources(this.lbSixZCurveEditorURL, "lbSixZCurveEditorURL");
-            this.lbSixZCurveEditorURL.Name = "lbSixZCurveEditorURL";
-            this.lbSixZCurveEditorURL.TabStop = true;
-            // 
             // tBSixXCustomOutputCurve
             // 
             resources.ApplyResources(this.tBSixXCustomOutputCurve, "tBSixXCustomOutputCurve");
             this.tBSixXCustomOutputCurve.Name = "tBSixXCustomOutputCurve";
-            // 
-            // lbSixXCurveEditorURL
-            // 
-            resources.ApplyResources(this.lbSixXCurveEditorURL, "lbSixXCurveEditorURL");
-            this.lbSixXCurveEditorURL.Name = "lbSixXCurveEditorURL";
-            this.lbSixXCurveEditorURL.TabStop = true;
             // 
             // nUDSZS
             // 
@@ -3639,11 +3581,6 @@
             0,
             0});
             // 
-            // label74
-            // 
-            resources.ApplyResources(this.label74, "label74");
-            this.label74.Name = "label74";
-            // 
             // label73
             // 
             resources.ApplyResources(this.label73, "label73");
@@ -3664,11 +3601,6 @@
             resources.GetString("cBSixaxisZOutputCurve.Items6")});
             resources.ApplyResources(this.cBSixaxisZOutputCurve, "cBSixaxisZOutputCurve");
             this.cBSixaxisZOutputCurve.Name = "cBSixaxisZOutputCurve";
-            // 
-            // label68
-            // 
-            resources.ApplyResources(this.label68, "label68");
-            this.label68.Name = "label68";
             // 
             // cBSixaxisXOutputCurve
             // 
@@ -3706,11 +3638,6 @@
             0,
             0});
             this.nUDSixaxisZAntiDead.Name = "nUDSixaxisZAntiDead";
-            // 
-            // label66
-            // 
-            resources.ApplyResources(this.label66, "label66");
-            this.label66.Name = "label66";
             // 
             // nUDSixaxisXAntiDead
             // 
@@ -3753,11 +3680,6 @@
             0,
             0,
             0});
-            // 
-            // label64
-            // 
-            resources.ApplyResources(this.label64, "label64");
-            this.label64.Name = "label64";
             // 
             // nUDSixAxisXMaxZone
             // 
@@ -3805,11 +3727,6 @@
             0,
             0,
             131072});
-            // 
-            // label62
-            // 
-            resources.ApplyResources(this.label62, "label62");
-            this.label62.Name = "label62";
             // 
             // nUDSX
             // 
@@ -4697,19 +4614,6 @@
             resources.ApplyResources(this.outcontLb, "outcontLb");
             this.outcontLb.Name = "outcontLb";
             // 
-            // maxRainSatTB
-            // 
-            resources.ApplyResources(this.maxRainSatTB, "maxRainSatTB");
-            this.maxRainSatTB.Maximum = 100;
-            this.maxRainSatTB.Name = "maxRainSatTB";
-            this.maxRainSatTB.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.maxRainSatTB.Value = 100;
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -4778,39 +4682,36 @@
             this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maxRainSatTB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).EndInit();
             this.tabAxis.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RoundnessNUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSRotation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLSAntiDead)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLS)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSAntiDead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSAntiDead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLS)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2S)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2AntiDead)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDR2S)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2S)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDR2AntiDead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDR2Maxzone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDR2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2AntiDead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
@@ -4863,7 +4764,6 @@
             this.panel11.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.maxRainSatTB)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -5167,7 +5067,6 @@
         private System.Windows.Forms.TabPage tabAxis;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label46;
         private System.Windows.Forms.NumericUpDown RoundnessNUpDown;
         private System.Windows.Forms.CheckBox lsSquStickCk;
         private System.Windows.Forms.NumericUpDown nUDLSRotation;
@@ -5183,23 +5082,15 @@
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.NumericUpDown nUDLS;
         private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox rsOutCurveComboBox;
         private System.Windows.Forms.NumericUpDown nUDRSRotation;
-        private System.Windows.Forms.Label label52;
         private System.Windows.Forms.Label lbRSCurvePercent;
         private System.Windows.Forms.NumericUpDown nUDRSCurve;
-        private System.Windows.Forms.Label label51;
         private System.Windows.Forms.CheckBox rsSquStickCk;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label50;
         private System.Windows.Forms.NumericUpDown nUDRSAntiDead;
-        private System.Windows.Forms.Label label49;
         private System.Windows.Forms.NumericUpDown nUDRSMaxZone;
-        private System.Windows.Forms.Label label48;
         private System.Windows.Forms.NumericUpDown nUDRS;
-        private System.Windows.Forms.Label label47;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox cBL2OutputCurve;
         private System.Windows.Forms.NumericUpDown nUDL2AntiDead;
@@ -5209,44 +5100,31 @@
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.Label label56;
         private System.Windows.Forms.Label label57;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox tBCustomOutputCurve;
-        private System.Windows.Forms.LinkLabel lbCurveEditorURL;
+        private System.Windows.Forms.TextBox tBLSCustomOutputCurve;
         private System.Windows.Forms.NumericUpDown nUDLSS;
         private System.Windows.Forms.Label label69;
         private System.Windows.Forms.NumericUpDown nUDRSS;
-        private System.Windows.Forms.Label label70;
         private System.Windows.Forms.NumericUpDown nUDL2S;
         private System.Windows.Forms.Label label71;
         private System.Windows.Forms.NumericUpDown nUDR2S;
-        private System.Windows.Forms.Label label72;
         private System.Windows.Forms.ComboBox cBR2OutputCurve;
         private System.Windows.Forms.NumericUpDown nUDR2AntiDead;
         private System.Windows.Forms.NumericUpDown nUDR2Maxzone;
         private System.Windows.Forms.NumericUpDown nUDR2;
-        private System.Windows.Forms.Label label53;
-        private System.Windows.Forms.Label label58;
-        private System.Windows.Forms.Label label59;
-        private System.Windows.Forms.Label label60;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.NumericUpDown nUDSZS;
         private System.Windows.Forms.NumericUpDown nUDSXS;
-        private System.Windows.Forms.Label label74;
         private System.Windows.Forms.Label label73;
         private System.Windows.Forms.ComboBox cBSixaxisZOutputCurve;
-        private System.Windows.Forms.Label label68;
         private System.Windows.Forms.ComboBox cBSixaxisXOutputCurve;
         private System.Windows.Forms.Label label67;
         private System.Windows.Forms.NumericUpDown nUDSixaxisZAntiDead;
-        private System.Windows.Forms.Label label66;
         private System.Windows.Forms.NumericUpDown nUDSixaxisXAntiDead;
         private System.Windows.Forms.Label label65;
         private System.Windows.Forms.NumericUpDown nUDSixAxisZMaxZone;
-        private System.Windows.Forms.Label label64;
         private System.Windows.Forms.NumericUpDown nUDSixAxisXMaxZone;
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.NumericUpDown nUDSZ;
-        private System.Windows.Forms.Label label62;
         private System.Windows.Forms.NumericUpDown nUDSX;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.TabPage tabOther;
@@ -5282,16 +5160,24 @@
         private System.Windows.Forms.ComboBox OutContTypeCb;
         private System.Windows.Forms.Label outcontLb;
         private System.Windows.Forms.TextBox tBRSCustomOutputCurve;
-        private System.Windows.Forms.LinkLabel lbRSCurveEditorURL;
         private System.Windows.Forms.TextBox tBL2CustomOutputCurve;
-        private System.Windows.Forms.LinkLabel lbL2CurveEditorURL;
         private System.Windows.Forms.TextBox tBR2CustomOutputCurve;
-        private System.Windows.Forms.LinkLabel lbR2CurveEditorURL;
         private System.Windows.Forms.TextBox tBSixZCustomOutputCurve;
-        private System.Windows.Forms.LinkLabel lbSixZCurveEditorURL;
         private System.Windows.Forms.TextBox tBSixXCustomOutputCurve;
-        private System.Windows.Forms.LinkLabel lbSixXCurveEditorURL;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TrackBar maxRainSatTB;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnRSCurveEditor;
+        private System.Windows.Forms.Button BtnLSCurveEditor;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnR2CurveEditor;
+        private System.Windows.Forms.Button btnL2CurveEditor;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnSixZCurveEditor;
+        private System.Windows.Forms.Button btnSixXCurveEditor;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
     }
 }

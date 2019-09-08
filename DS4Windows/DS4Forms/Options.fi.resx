@@ -742,4 +742,46 @@
   <data name="twoFingerTouchInvStripMenuItem.Text" xml:space="preserve">
     <value>2 sormea kosketuslevyllä</value>
   </data>
+  <data name="btnSATrack.Text" xml:space="preserve">
+    <value>nappi1</value>
+  </data>
+  <data name="circleTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Ympyrä</value>
+  </data>
+  <data name="circleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ympyrä</value>
+  </data>
+  <data name="lBControls.Items1" xml:space="preserve">
+    <value>Ympyrä:</value>
+  </data>
+  <data name="gyroOutputMode.Items" xml:space="preserve">
+    <value>Kontrollit</value>
+  </data>
+  <data name="downTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Alas</value>
+  </data>
+  <data name="downToolStripMenuItem.Text" xml:space="preserve">
+    <value>Alas</value>
+  </data>
+  <data name="lBControls.Items7" xml:space="preserve">
+    <value>Alas:</value>
+  </data>
+  <data name="gyroMStickUseSmoothCk.Text" xml:space="preserve">
+    <value>Tasaaminen</value>
+  </data>
+  <data name="gyroMStickToggleCk.Text" xml:space="preserve">
+    <value>Kytke</value>
+  </data>
+  <data name="squareTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Neliö</value>
+  </data>
+  <data name="squareToolStripMenuItem.Text" xml:space="preserve">
+    <value>Neliö</value>
+  </data>
+  <data name="lBControls.Items2" xml:space="preserve">
+    <value>Neliö :</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Neliötikku</value>
+  </data>
 </root>

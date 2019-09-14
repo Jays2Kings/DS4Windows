@@ -2819,7 +2819,6 @@
             resources.ApplyResources(this.btnRSCurveEditor, "btnRSCurveEditor");
             this.btnRSCurveEditor.Name = "btnRSCurveEditor";
             this.btnRSCurveEditor.UseVisualStyleBackColor = true;
-            this.btnRSCurveEditor.Click += new System.EventHandler(this.BtnCurveEditor_Click);
             // 
             // lbRSCurvePercent
             // 
@@ -2846,7 +2845,6 @@
             resources.ApplyResources(this.BtnLSCurveEditor, "BtnLSCurveEditor");
             this.BtnLSCurveEditor.Name = "BtnLSCurveEditor";
             this.BtnLSCurveEditor.UseVisualStyleBackColor = true;
-            this.BtnLSCurveEditor.Click += new System.EventHandler(this.BtnCurveEditor_Click);
             // 
             // label3
             // 
@@ -3224,14 +3222,12 @@
             resources.ApplyResources(this.btnR2CurveEditor, "btnR2CurveEditor");
             this.btnR2CurveEditor.Name = "btnR2CurveEditor";
             this.btnR2CurveEditor.UseVisualStyleBackColor = true;
-            this.btnR2CurveEditor.Click += new System.EventHandler(this.BtnCurveEditor_Click);
             // 
             // btnL2CurveEditor
             // 
             resources.ApplyResources(this.btnL2CurveEditor, "btnL2CurveEditor");
             this.btnL2CurveEditor.Name = "btnL2CurveEditor";
             this.btnL2CurveEditor.UseVisualStyleBackColor = true;
-            this.btnL2CurveEditor.Click += new System.EventHandler(this.BtnCurveEditor_Click);
             // 
             // tBR2CustomOutputCurve
             // 
@@ -3500,14 +3496,12 @@
             resources.ApplyResources(this.btnSixZCurveEditor, "btnSixZCurveEditor");
             this.btnSixZCurveEditor.Name = "btnSixZCurveEditor";
             this.btnSixZCurveEditor.UseVisualStyleBackColor = true;
-            this.btnSixZCurveEditor.Click += new System.EventHandler(this.BtnCurveEditor_Click);
             // 
             // btnSixXCurveEditor
             // 
             resources.ApplyResources(this.btnSixXCurveEditor, "btnSixXCurveEditor");
             this.btnSixXCurveEditor.Name = "btnSixXCurveEditor";
             this.btnSixXCurveEditor.UseVisualStyleBackColor = true;
-            this.btnSixXCurveEditor.Click += new System.EventHandler(this.BtnCurveEditor_Click);
             // 
             // label8
             // 

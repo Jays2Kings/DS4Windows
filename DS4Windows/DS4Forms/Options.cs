@@ -341,12 +341,14 @@ namespace DS4Windows.Forms
             nUDLSCurve.ValueChanged += nUDLSCurve_ValueChanged;
             nUDLSRotation.ValueChanged += nUDLSRotation_ValueChanged;
             tBLSCustomOutputCurve.Leave += tBCustomOutputCurve_Leave;
+            BtnLSCurveEditor.Click += BtnCurveEditor_Click;
             nUDRS.ValueChanged += numUDRS_ValueChanged;
             nUDRSMaxZone.ValueChanged += nUDRSMaxZone_ValueChanged;
             nUDRSAntiDead.ValueChanged += nUDRSAntiDead_ValueChanged;
             nUDRSS.ValueChanged += nUDRSSens_ValueChanged;
             rsOutCurveComboBox.SelectedIndexChanged += rsOutCurveComboBox_SelectedIndexChanged;
             tBRSCustomOutputCurve.Leave += TBRSCustomOutputCurve_Leave;
+            btnRSCurveEditor.Click += BtnCurveEditor_Click;
             rsSquStickCk.Click += rsSquStickCk_Click;
             nUDRSCurve.ValueChanged += nUDRSCurve_ValueChanged;
             nUDRSRotation.ValueChanged += nUDRSRotation_ValueChanged;
@@ -356,12 +358,14 @@ namespace DS4Windows.Forms
             nUDL2S.ValueChanged += nUDL2Sens_ValueChanged;
             cBL2OutputCurve.SelectedIndexChanged += cBL2OutputCurve_SelectedIndexChanged;
             tBL2CustomOutputCurve.Leave += TBL2CustomOutputCurve_Leave;
+            btnL2CurveEditor.Click += BtnCurveEditor_Click;
             nUDR2.ValueChanged += numUDR2_ValueChanged;
             nUDR2Maxzone.ValueChanged += nUDR2Maxzone_ValueChanged;
             nUDR2AntiDead.ValueChanged += nUDR2AntiDead_ValueChanged;
             nUDR2S.ValueChanged += nUDR2Sens_ValueChanged;
             cBR2OutputCurve.SelectedIndexChanged += cBR2OutputCurve_SelectedIndexChanged;
             tBR2CustomOutputCurve.Leave += TBR2CustomOutputCurve_Leave;
+            btnR2CurveEditor.Click += BtnCurveEditor_Click;
             nUDSX.ValueChanged += nUDSX_ValueChanged;
             nUDSZ.ValueChanged += nUDSZ_ValueChanged;
             nUDSixAxisXMaxZone.ValueChanged += nUDSixAxisXMaxZone_ValueChanged;
@@ -372,8 +376,10 @@ namespace DS4Windows.Forms
             nUDSZS.ValueChanged += nUDSZSens_ValueChanged;
             cBSixaxisXOutputCurve.SelectedIndexChanged += cBSixaxisXOutputCurve_SelectedIndexChanged;
             tBSixXCustomOutputCurve.Leave += TBSixXCustomOutputCurve_Leave;
+            btnSixXCurveEditor.Click += BtnCurveEditor_Click;
             cBSixaxisZOutputCurve.SelectedIndexChanged += cBSixaxisZOutputCurve_SelectedIndexChanged;
             tBSixZCustomOutputCurve.Leave += TBSixZCustomOutputCurve_Leave;
+            btnSixZCurveEditor.Click += BtnCurveEditor_Click;
 
             // Gyro events
             gyroOutputMode.SelectedIndexChanged += GyroOutputMode_SelectedIndexChanged;

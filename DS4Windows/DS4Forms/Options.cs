@@ -164,7 +164,7 @@ namespace DS4Windows.Forms
             SetupEvents();
 
             tp.SetToolTip(RoundnessNUpDown, Properties.Resources.SquareStickRoundness);
-            tp.SetToolTip(numericUpDown1, Properties.Resources.SquareStickRoundness);
+            tp.SetToolTip(RoundnessRsNUD, Properties.Resources.SquareStickRoundness);
         }
 
         private void TriggerCondAndCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -350,6 +350,7 @@ namespace DS4Windows.Forms
             tBRSCustomOutputCurve.Leave += TBRSCustomOutputCurve_Leave;
             btnRSCurveEditor.Click += BtnCurveEditor_Click;
             rsSquStickCk.Click += rsSquStickCk_Click;
+            RoundnessRsNUD.ValueChanged += RoundnessRsNUD_ValueChanged;
             nUDRSCurve.ValueChanged += nUDRSCurve_ValueChanged;
             nUDRSRotation.ValueChanged += nUDRSRotation_ValueChanged;
             nUDL2.ValueChanged += numUDL2_ValueChanged;
@@ -454,6 +455,14 @@ namespace DS4Windows.Forms
             nUDIdleDisconnect.ValueChanged += nUDIdleDisconnect_ValueChanged;
             btPollRateComboBox.SelectedIndexChanged += btPollRateComboBox_SelectedIndexChanged;
             OutContTypeCb.SelectedIndexChanged += OutContTypeCb_SelectedIndexChanged;
+        }
+
+        private void RoundnessRsNUD_ValueChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                SquStickInfo[device].rsRoundness = (double)RoundnessRsNUD.Value;
+            }
         }
 
         private void MaxRainSatTB_ValueChanged(object sender, EventArgs e)
@@ -899,7 +908,8 @@ namespace DS4Windows.Forms
 
                 lsSquStickCk.Checked = SquStickInfo[device].lsMode;
                 rsSquStickCk.Checked = SquStickInfo[device].rsMode;
-                RoundnessNUpDown.Value = (decimal)SquStickInfo[device].roundness;
+                RoundnessNUpDown.Value = (decimal)SquStickInfo[device].lsRoundness;
+                RoundnessRsNUD.Value = (decimal)SquStickInfo[device].rsRoundness;
 
                 cBDinput.Checked = DinputOnly[device];
                 olddinputcheck = cBDinput.Checked;
@@ -1119,6 +1129,7 @@ namespace DS4Windows.Forms
                 lsSquStickCk.Checked = false;
                 rsSquStickCk.Checked = false;
                 RoundnessNUpDown.Value = 5.0m;
+                RoundnessRsNUD.Value = 5.0m;
 
                 cBLaunchProgram.Checked = false;
                 pBProgram.Image = null;
@@ -1657,7 +1668,8 @@ namespace DS4Windows.Forms
             SZAntiDeadzone[device] = (double)nUDSixaxisZAntiDead.Value;
             SquStickInfo[device].lsMode = lsSquStickCk.Checked;
             SquStickInfo[device].rsMode = rsSquStickCk.Checked;
-            SquStickInfo[device].roundness = (double)RoundnessNUpDown.Value;
+            SquStickInfo[device].lsRoundness = (double)RoundnessNUpDown.Value;
+            SquStickInfo[device].rsRoundness = (double)RoundnessRsNUD.Value;
             MouseAccel[device] = cBMouseAccel.Checked;
             DinputOnly[device] = cBDinput.Checked;
             StartTouchpadOff[device] = cbStartTouchpadOff.Checked;
@@ -3601,7 +3613,7 @@ namespace DS4Windows.Forms
         private void RoundnessNUpDown_ValueChanged(object sender, EventArgs e) 
         {
             if (loading == false) {
-                SquStickInfo[device].roundness = (int)RoundnessNUpDown.Value;
+                SquStickInfo[device].lsRoundness = (double)RoundnessNUpDown.Value;
             }
         }
 

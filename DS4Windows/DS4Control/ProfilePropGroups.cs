@@ -6,7 +6,8 @@ namespace DS4Windows
     {
         public bool lsMode;
         public bool rsMode;
-        public double roundness = 5.0;
+        public double lsRoundness = 5.0;
+        public double rsRoundness = 5.0;
     }
 
     public class StickDeadZoneInfo

@@ -272,7 +272,7 @@
             this.BtnLSCurveEditor = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.rsSquStickCk = new System.Windows.Forms.CheckBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.RoundnessRsNUD = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.tBLSCustomOutputCurve = new System.Windows.Forms.TextBox();
             this.rsOutCurveComboBox = new System.Windows.Forms.ComboBox();
@@ -494,7 +494,7 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RoundnessRsNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RoundnessNUpDown)).BeginInit();
@@ -2765,7 +2765,7 @@
             this.groupBox1.Controls.Add(this.BtnLSCurveEditor);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.rsSquStickCk);
-            this.groupBox1.Controls.Add(this.numericUpDown1);
+            this.groupBox1.Controls.Add(this.RoundnessRsNUD);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.tBLSCustomOutputCurve);
             this.groupBox1.Controls.Add(this.rsOutCurveComboBox);
@@ -2857,22 +2857,22 @@
             this.rsSquStickCk.Name = "rsSquStickCk";
             this.rsSquStickCk.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown1
+            // RoundnessRsNUD
             // 
-            this.numericUpDown1.DecimalPlaces = 1;
-            this.numericUpDown1.Increment = new decimal(new int[] {
+            this.RoundnessRsNUD.DecimalPlaces = 1;
+            this.RoundnessRsNUD.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            resources.ApplyResources(this.RoundnessRsNUD, "RoundnessRsNUD");
+            this.RoundnessRsNUD.Maximum = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.RoundnessRsNUD.Name = "RoundnessRsNUD";
+            this.RoundnessRsNUD.Value = new decimal(new int[] {
             50,
             0,
             0,
@@ -4684,7 +4684,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RoundnessRsNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RoundnessNUpDown)).EndInit();
@@ -5081,7 +5081,7 @@
         private System.Windows.Forms.Label lbRSCurvePercent;
         private System.Windows.Forms.NumericUpDown nUDRSCurve;
         private System.Windows.Forms.CheckBox rsSquStickCk;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown RoundnessRsNUD;
         private System.Windows.Forms.NumericUpDown nUDRSAntiDead;
         private System.Windows.Forms.NumericUpDown nUDRSMaxZone;
         private System.Windows.Forms.NumericUpDown nUDRS;

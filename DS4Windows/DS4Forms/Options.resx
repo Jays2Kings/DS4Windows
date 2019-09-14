@@ -5580,25 +5580,25 @@
   <data name="&gt;&gt;rsSquStickCk.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="numericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="RoundnessRsNUD.Location" type="System.Drawing.Point, System.Drawing">
     <value>285, 190</value>
   </data>
-  <data name="numericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="RoundnessRsNUD.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
   </data>
-  <data name="numericUpDown1.TabIndex" type="System.Int32, mscorlib">
+  <data name="RoundnessRsNUD.TabIndex" type="System.Int32, mscorlib">
     <value>221</value>
   </data>
-  <data name="&gt;&gt;numericUpDown1.Name" xml:space="preserve">
-    <value>numericUpDown1</value>
+  <data name="&gt;&gt;RoundnessRsNUD.Name" xml:space="preserve">
+    <value>RoundnessRsNUD</value>
   </data>
-  <data name="&gt;&gt;numericUpDown1.Type" xml:space="preserve">
+  <data name="&gt;&gt;RoundnessRsNUD.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;numericUpDown1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;RoundnessRsNUD.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;numericUpDown1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;RoundnessRsNUD.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">

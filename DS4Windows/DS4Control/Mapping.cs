@@ -905,7 +905,7 @@ namespace DS4Windows
                 double tempY = (dState.LY - 128.0) / capY;
                 DS4SquareStick sqstick = outSqrStk[device];
                 sqstick.current.x = tempX; sqstick.current.y = tempY;
-                sqstick.CircleToSquare(squStk.roundness);
+                sqstick.CircleToSquare(squStk.lsRoundness);
                 //Console.WriteLine("Input ({0}) | Output ({1})", tempY, sqstick.current.y);
                 tempX = sqstick.current.x < -1.0 ? -1.0 : sqstick.current.x > 1.0
                     ? 1.0 : sqstick.current.x;
@@ -1008,7 +1008,7 @@ namespace DS4Windows
                 double tempY = (dState.RY - 128.0) / capY;
                 DS4SquareStick sqstick = outSqrStk[device];
                 sqstick.current.x = tempX; sqstick.current.y = tempY;
-                sqstick.CircleToSquare(squStk.roundness);
+                sqstick.CircleToSquare(squStk.rsRoundness);
                 tempX = sqstick.current.x < -1.0 ? -1.0 : sqstick.current.x > 1.0
                     ? 1.0 : sqstick.current.x;
                 tempY = sqstick.current.y < -1.0 ? -1.0 : sqstick.current.y > 1.0

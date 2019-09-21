@@ -1940,6 +1940,11 @@ namespace DS4Windows
                         actionDoneCount--;
                     }
 
+                    if (action == null)
+                    {
+                        continue;
+                    }
+
                     double time = 0.0;
                     //If a key or button is assigned to the trigger, a key special action is used like
                     //a quick tap to use and hold to use the regular custom button/key

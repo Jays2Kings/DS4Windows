@@ -1949,7 +1949,7 @@ namespace DS4Windows.Forms
             }
 
             if (!saving && !loading && tb != null)
-                tp.Show(tb.Value.ToString(), tb, (int)(dpix * 100), 0, 2000);
+                tp.Show(tb.Value.ToString(), tb, (int)(dpix * 100), 0, 1000);
         }
 
         int bgc = 245; //Color of the form background, If greyscale color
@@ -2121,6 +2121,7 @@ namespace DS4Windows.Forms
             inputtimer.Stop();
             sixaxisTimer.Stop();
             root.OptionsClosed();
+            tp.Dispose();
             Visible = false;
             e.Cancel = false;
         }
@@ -2515,7 +2516,7 @@ namespace DS4Windows.Forms
         private void LightBar_MouseDown(object sender, MouseEventArgs e)
         {
             if (!saving && !loading)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 1000);
         }
 
         private void Lightbar_MouseUp(object sender, MouseEventArgs e)

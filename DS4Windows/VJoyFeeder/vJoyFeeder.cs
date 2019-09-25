@@ -155,11 +155,11 @@ namespace DS4Windows.VJoyFeeder
             };
 
             [StructLayout(LayoutKind.Sequential)]
-            private struct FFB_DATA
+            public /*private*/ struct FFB_DATA
             {
-                private UInt32 size;
-                private UInt32 cmd;
-                private IntPtr data;
+                public /*private*/ UInt32 size;
+                public /*private*/ UInt32 cmd;
+                public /*private*/ IntPtr data;
             }
 
             [StructLayout(LayoutKind.Explicit)]
@@ -630,11 +630,49 @@ namespace DS4Windows.VJoyFeeder
 
     public class vJoyFeeder
     {
+        private class vJoyFFBEffectStatus
+        {
+            public byte masterGain;
+
+            public FFBEType activeEffect;
+
+            //public int effectPeriod_Magnitude;
+
+            public uint effectSqr_Magnitude;
+            public byte effectSqr_Gain;
+            public ushort effectSqr_Duration;
+
+            public uint effectSine_Magnitude;
+            public byte effectSine_Gain;
+            public ushort effectSine_Duration;
+
+            public uint  effectConstant_Magnitude;
+            public byte effectConstant_Gain;
+            public ushort effectConstant_Duration;
+
+            public uint effectPeriodic_Magnitude;
+            public uint effectPeriodic_Period;
+            public uint effectPeriodic_Phase;
+            public short effectPeriodic_Offset;
+
+            public vJoyFFBEffectStatus()  { activeEffect = FFBEType.ET_NONE;  }
+            ~vJoyFFBEffectStatus() { }
+        }
+
         private static readonly object vJoyLocker = new object();
 
-        static bool vJoyInitialized = false;
-        static bool vJoyAvailable = false;
-        static VJoy vJoyObj = null; 
+        private static int[] vJoyInitialized = { 0, 0, 0};       // 0=Not initialized, 1=Initialized OK, 2=Initialized ERROR (ie. vJoy is not available)
+        private static int[] vJoyFFBInitialized = { 0, 0, 0 };   // 0=Not initialized, 1=Initialized OK, 2=Initialized ERROR (ie. FFB is not available)
+
+        private static vJoyFFBEffectStatus[] vJoyFFB_Effect = { new vJoyFFBEffectStatus(), new vJoyFFBEffectStatus(), new vJoyFFBEffectStatus() };
+        //private static byte[] vJoyFFB_Gain = { 0, 0, 0 };                     // FFB gain 0..255 (=effect force)
+        //private static int[]  vJoyFFB_Effect_Constant_Magnitude = { 0, 0, 0 }; // FFB Const effect magnitude (-10000..10000). TODO: How gain and magnitude are related and mapped as 0..255 rumble effect?
+
+        private static VJoy vJoyObj = null;
+
+        // Mapping between DS4 controller object indexes and vJoy joystick# (index is vJoyID and the value is DS controller number). The first item in the array is preserved for future use and is not yet used.
+        // At the moment SA steering wheel emulation supports only vJoy1 and vJoy2 joysticks, so if there are more than two DS conrollers then only the first two registered DS controllers will receive vJoy FFB events.
+        private static int[] vJoyDSDeviceMap = {0, -1, -1 }; 
 
         vJoyFeeder()
         {
@@ -646,14 +684,89 @@ namespace DS4Windows.VJoyFeeder
             // Do nothing
         }
 
-        public static void InitializeVJoyDevice(uint vJoyID, HID_USAGES axis)
+        private static bool MapSASteeringWheelEmulationAxisTypeToVJoyAxis(SASteeringWheelEmulationAxisType saAxisType, ref uint vJoyID, ref HID_USAGES vJoyAxis)
+        {
+            vJoyID = ((((uint)saAxisType) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1;
+
+            if (vJoyID > vJoyInitialized.Length-1 || vJoyID < 1)
+                return false;
+
+            switch (saAxisType)
+            {
+                case SASteeringWheelEmulationAxisType.VJoy1X:
+                case SASteeringWheelEmulationAxisType.VJoy2X:
+                    vJoyAxis = HID_USAGES.HID_USAGE_X;
+                    return true;
+
+                case SASteeringWheelEmulationAxisType.VJoy1Y:
+                case SASteeringWheelEmulationAxisType.VJoy2Y:
+                    vJoyAxis = HID_USAGES.HID_USAGE_Y;
+                    return true;
+
+                case SASteeringWheelEmulationAxisType.VJoy1Z:
+                case SASteeringWheelEmulationAxisType.VJoy2Z:
+                    vJoyAxis = HID_USAGES.HID_USAGE_Z;
+                    return true;
+            }
+
+            return false;
+        }
+
+        public static bool Connect(SASteeringWheelEmulationAxisType saAxisType, int dsDeviceID, bool enableForcefeedback = true)
+        {
+            uint vJoyID = 0;
+            HID_USAGES vJoyAxis = HID_USAGES.HID_USAGE_X;
+
+            if (MapSASteeringWheelEmulationAxisTypeToVJoyAxis(saAxisType, ref vJoyID, ref vJoyAxis))
+            {
+                vJoyDSDeviceMap[vJoyID] = -1;
+                if (vJoyInitialized[vJoyID] == 1 || InitializeVJoyDevice(vJoyID, vJoyAxis))
+                {
+                    vJoyDSDeviceMap[vJoyID] = dsDeviceID;
+                    if (enableForcefeedback)
+                        EnableForceFeedbackEvents(vJoyID, vJoyAxis);
+                    else
+                        DisableForceFeedbackEvents(vJoyID);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static void Disconnect(int dsDeviceID, bool vJoyRelease = false)
+        {
+            for (uint idx = 1; idx < vJoyDSDeviceMap.Length; idx++)
+            {
+                if (vJoyDSDeviceMap[idx] == dsDeviceID)
+                {
+                    DisableForceFeedbackEvents(idx);
+                    vJoyDSDeviceMap[idx] = -1;                    
+
+                    if (vJoyRelease)
+                    {
+                        vJoyInitialized[idx] = 0;
+                        try
+                        {
+                            vJoyObj.RelinquishVJD(idx);
+                        }
+                        catch { }
+                    }
+                    break;
+                }
+            }
+        }
+
+        private static bool InitializeVJoyDevice(uint vJoyID, HID_USAGES axis)
         {
             lock (vJoyLocker)
             {
-                if (vJoyInitialized) return;
+                // If vJoy is not in "uninitialized" state then no need to re-initialize it (1 = OK state, 2=ERROR state)
+                if (vJoyInitialized[vJoyID] != 0)
+                    return (vJoyInitialized[vJoyID] == 1);
 
-                vJoyInitialized = true;
-                AppLogger.LogToGui("Initializing VJoy virtual joystick driver via vJoyInterface.dll interface", false);
+                AppLogger.LogToGui($"Initializing VJoy joystick #{vJoyID} via vJoyInterface.dll interface", false);
+                vJoyInitialized[vJoyID] = 2;
 
                 try
                 {
@@ -661,7 +774,7 @@ namespace DS4Windows.VJoyFeeder
 
                     if (vJoyObj.vJoyEnabled() && vJoyObj.GetVJDAxisExist(vJoyID, axis))
                     {
-                        AppLogger.LogToGui("Connection to VJoy virtual joystick established", false);
+                        AppLogger.LogToGui($"Connection to VJoy joystick #{vJoyID} established", false);
                         AppLogger.LogToGui($"VJoy driver. Vendor={vJoyObj.GetvJoyManufacturerString()}  Product={vJoyObj.GetvJoyProductString()}  Version={vJoyObj.GetvJoySerialNumberString()}  Device#={vJoyID}  Axis={axis}", false);
 
                         // Test if DLL matches the driver
@@ -672,44 +785,304 @@ namespace DS4Windows.VJoyFeeder
                         VjdStat status = vJoyObj.GetVJDStatus(vJoyID);
                         if ((status == VjdStat.VJD_STAT_OWN) || ((status == VjdStat.VJD_STAT_FREE) && (!vJoyObj.AcquireVJD(vJoyID))))
                         {
-                            vJoyAvailable = false;
+                            //vJoyAvailable = false;
                             AppLogger.LogToGui("ERROR. Failed to acquire vJoy device# {vJoyID}. Use another VJoy device or make sure there are no other VJoy feeder apps using the same device", false);
+                            return false;
                         }
                         else
                         {
                             //vJoyObj.GetVJDAxisMax(vJoyID, axis, ref vJoyAxisMaxValue);
                             //AppLogger.LogToGui($"VJoy axis {axis} max value={vJoyAxisMaxValue}", false);
                             vJoyObj.ResetVJD(vJoyID);
-                            vJoyAvailable = true;
+                            //vJoyAvailable = true;
                         }
                     }
                     else
                     {
-                        vJoyAvailable = false;
+                        //vJoyAvailable = false;
                         AppLogger.LogToGui($"ERROR. VJoy device# {vJoyID} or {axis} axis not available. Check vJoy driver installation and configuration", false);
+                        return false;
                     }
                 }
                 catch
                 {
-                    vJoyAvailable = false;
+                    //vJoyAvailable = false;
                     AppLogger.LogToGui("ERROR. vJoy initialization failed. Make sure that DS4Windows application can find vJoyInterface.dll library file", false);
+                    return false;
+                }
+
+                vJoyInitialized[vJoyID] = 1;
+            }
+
+            return true;
+        }
+
+        // Handler function to receive force feedback callback events from an application. data is FFB data blcok and userData is an index to DS4Win controller object (0..3)
+        private static void FfbNotificationHandler(IntPtr data, IntPtr userData)
+        {
+            FFBPType dataPacketType;
+            uint vJoyID;
+                       
+            if (data != IntPtr.Zero /*&& vJoyObj.Ffb_h_Type(data, ref dataPacketType) == 0 */)
+            {
+                // vJoyInterface does have various Ffb_h_xxx helper functions to read properties of data structure, but calling each of those DLL export functions several times per second takes time.
+                // Instead, let's do C# unsafe pointer access here to directly access the data buffer to improve performance (unmanaged pointers are a lot faster than marshalling unmanaged data as managed data or calling DLL export functions all the time)
+                unsafe
+                {
+                    VJoy.FFB_DATA* pFFBData = (VJoy.FFB_DATA*)data;
+
+                    // Check the validity of FFB packet and get a packet type
+                    if (pFFBData->size < 10)
+                        return;
+
+                    // Get vJoyID of the event source and check if FFB is enabled for it
+                    vJoyID = (uint)((((byte*)pFFBData->data)[0] & 0xF0) >> 4);
+                    if (vJoyID > 2 || vJoyFFBInitialized[vJoyID] != 1)
+                        return;
+
+                    dataPacketType = (FFBPType) (((byte*)pFFBData->data)[0] & 0x0F) + (pFFBData->cmd == /*IOCTL_HID_SET_FEATURE*/ 0xB0191 ? 0x10 : 0);
+
+                    //AppLogger.LogToGui($"FFB vJoyID={vJoyID} Size={pFFBData->size} Cmd={pFFBData->cmd} PacketType={dataPacketType} {((byte*)pFFBData->data)[0]}", false);
+
+                    switch(dataPacketType)
+                    {
+                        case FFBPType.PT_CTRLREP:
+                            byte heavyMotor = 0, lightMotor = 0;
+                            FFB_CTRL ctrlRep = (FFB_CTRL)((byte*)pFFBData->data)[1];
+
+                            if (ctrlRep == FFB_CTRL.CTRL_DEVCONT)
+                            {
+                                if (vJoyFFB_Effect[vJoyID].activeEffect == FFBEType.ET_SQR)
+                                    MapFFBMagnitudeGainToRumble(vJoyFFB_Effect[vJoyID].masterGain, vJoyFFB_Effect[vJoyID].effectSqr_Gain, vJoyFFB_Effect[vJoyID].effectSqr_Magnitude, ref heavyMotor, ref lightMotor);
+                                else if (vJoyFFB_Effect[vJoyID].activeEffect == FFBEType.ET_SINE)
+                                    MapFFBMagnitudeGainToRumble(vJoyFFB_Effect[vJoyID].masterGain, vJoyFFB_Effect[vJoyID].effectSine_Gain, vJoyFFB_Effect[vJoyID].effectSine_Magnitude, ref heavyMotor, ref lightMotor);
+
+                                //if (vJoyFFB_Effect[vJoyID].activeEffect == FFBEType.ET_CONST)
+                                //    MapFFBMagnitudeGainToRumble(vJoyFFB_Effect[vJoyID].masterGain, vJoyFFB_Effect[vJoyID].effectConstant_Gain, vJoyFFB_Effect[vJoyID].effectConstant_Magnitude, ref heavyMotor, ref lightMotor);
+                                //else if (vJoyFFB_Effect[vJoyID].activeEffect == FFBEType.ET_)
+                                //    MapFFBMagnitudeGainToRumble(vJoyFFB_Effect[vJoyID].masterGain, vJoyFFB_Effect[vJoyID].effectConstant_Gain, vJoyFFB_Effect[vJoyID].effectConstant_Magnitude, ref heavyMotor, ref lightMotor);
+                            }
+                            else if (ctrlRep == FFB_CTRL.CTRL_DEVRST)
+                                vJoyFFB_Effect[vJoyID].activeEffect = FFBEType.ET_NONE;
+
+                            DS4Windows.Program.rootHub.setRumble(heavyMotor, lightMotor, vJoyDSDeviceMap[vJoyID]);
+
+                            AppLogger.LogToGui($"{dataPacketType}  Ctrl={ctrlRep}  activeEffect={vJoyFFB_Effect[vJoyID].activeEffect}  heavyMotor={heavyMotor}  lightMotor={lightMotor}", false);
+                            break;
+                    }
+                }
+
+                //vJoyObj.Ffb_h_Type(data, ref dataPacketType);
+                //AppLogger.LogToGui($"FFB event PacketType={dataPacketType} UserData={userData}", false);
+
+                switch (dataPacketType)
+                {
+                    case FFBPType.PT_EFOPREP:
+                        byte heavyMotor = 0, lightMotor = 0;
+                        VJoy.FFB_EFF_OP opRep = new VJoy.FFB_EFF_OP();
+
+                        if (vJoyObj.Ffb_h_EffOp(data, ref opRep) == 0)
+                        {
+                            if (opRep.EffectOp != FFBOP.EFF_STOP)
+                            {
+                                if (vJoyFFB_Effect[vJoyID].activeEffect == FFBEType.ET_SQR)
+                                    MapFFBMagnitudeGainToRumble(vJoyFFB_Effect[vJoyID].masterGain, vJoyFFB_Effect[vJoyID].effectSqr_Gain, vJoyFFB_Effect[vJoyID].effectSqr_Magnitude, ref heavyMotor, ref lightMotor);
+                                else if (vJoyFFB_Effect[vJoyID].activeEffect == FFBEType.ET_SINE)
+                                    MapFFBMagnitudeGainToRumble(vJoyFFB_Effect[vJoyID].masterGain, vJoyFFB_Effect[vJoyID].effectSine_Gain, vJoyFFB_Effect[vJoyID].effectSine_Magnitude, ref heavyMotor, ref lightMotor);
+
+                                //if (vJoyFFB_Effect[vJoyID].activeEffect == FFBEType.ET_CONST)
+                                //    MapFFBMagnitudeGainToRumble(vJoyFFB_Effect[vJoyID].masterGain, vJoyFFB_Effect[vJoyID].effectConstant_Gain, vJoyFFB_Effect[vJoyID].effectConstant_Magnitude, ref heavyMotor, ref lightMotor);
+                                //else if (vJoyFFB_Effect[vJoyID].activeEffect == FFBEType.ET_)
+                                //    MapFFBMagnitudeGainToRumble(vJoyFFB_Effect[vJoyID].masterGain, vJoyFFB_Effect[vJoyID].effectConstant_Gain, vJoyFFB_Effect[vJoyID].effectConstant_Magnitude, ref heavyMotor, ref lightMotor);
+                            }
+
+                            DS4Windows.Program.rootHub.setRumble(heavyMotor, lightMotor, vJoyDSDeviceMap[vJoyID]);
+
+                            AppLogger.LogToGui($"{dataPacketType}  EffectOp={opRep.EffectOp}  Loop={opRep.LoopCount}  activeEffect={vJoyFFB_Effect[vJoyID].activeEffect}  heavyMotor={heavyMotor}  lightMotor={lightMotor}  BlockIdx={opRep.EffectBlockIndex}", false);
+                        }
+                        break;
+
+                    case FFBPType.PT_EFFREP:
+                        // TODO: ET_SQR effect is a crash effect. 
+                        VJoy.FFB_EFF_REPORT effRep = new VJoy.FFB_EFF_REPORT();
+                        if (vJoyObj.Ffb_h_Eff_Report(data, ref effRep) == 0)
+                        {
+                            if (effRep.EffectType == FFBEType.ET_SQR)
+                            {
+                                vJoyFFB_Effect[vJoyID].effectSqr_Magnitude = vJoyFFB_Effect[vJoyID].effectPeriodic_Magnitude;
+                                vJoyFFB_Effect[vJoyID].effectSqr_Gain = effRep.Gain;
+                                vJoyFFB_Effect[vJoyID].effectSqr_Duration = effRep.Duration;
+                            }
+                            else if (effRep.EffectType == FFBEType.ET_SINE)
+                            {
+                                vJoyFFB_Effect[vJoyID].effectSine_Magnitude = vJoyFFB_Effect[vJoyID].effectPeriodic_Magnitude;
+                                vJoyFFB_Effect[vJoyID].effectSine_Gain = effRep.Gain;
+                                vJoyFFB_Effect[vJoyID].effectSine_Duration = effRep.Duration;
+                            }
+
+                            //if (effRep.EffectType == FFBEType.ET_CONST)
+                            //{
+                            //    vJoyFFB_Effect[vJoyID].effectConstant_Gain = effRep.Gain;
+                            //    vJoyFFB_Effect[vJoyID].effectConstant_Duration = effRep.Duration;
+                            //}
+
+                            vJoyFFB_Effect[vJoyID].activeEffect = effRep.EffectType;
+
+                            AppLogger.LogToGui($"{dataPacketType}  EffectType={effRep.EffectType}  Duration={effRep.Duration}  Gain={effRep.Gain}  TrigerBtn={effRep.TrigerBtn}  TrigerRpt={effRep.TrigerRpt}   Polar={effRep.Polar}  SamplePrd={effRep.SamplePrd}  Direction={effRep.Direction}  DirXY={effRep.DirX},{effRep.DirY}  BlockIdx={effRep.EffectBlockIndex}", false);
+                        }
+                        break;
+
+                    
+                    case FFBPType.PT_CONSTREP:
+                        VJoy.FFB_EFF_CONSTANT constRep = new VJoy.FFB_EFF_CONSTANT();
+                        if (vJoyObj.Ffb_h_Eff_Constant(data, ref constRep) == 0)
+                        {
+                            //vJoyFFB_Effect[vJoyID].activeEffect = FFBEType.ET_CONST;
+                            //vJoyFFB_Effect[vJoyID].effectConstant_Magnitude = Math.Abs(constRep.Magnitude);
+
+                            AppLogger.LogToGui($"{dataPacketType}  Magnitude={constRep.Magnitude}  BlockIdx={constRep.EffectBlockIndex}", false);
+                        }
+                        break;
+                    
+                    //case FFBPType.PT_CTRLREP:
+                        // CTRL_DEVRST  = Device reset. Clear all effects and stop FFB
+                        // CTRL_STOPALL = Stop all FFB effects 
+                   //     FFB_CTRL ctrlRep = new FFB_CTRL();
+                   //     if (vJoyObj.Ffb_h_DevCtrl(data, ref ctrlRep) == 0)
+                   //         AppLogger.LogToGui($"   Ctrl={ctrlRep}", false);
+                   //     break;
+
+                    case FFBPType.PT_PRIDREP:
+                        VJoy.FFB_EFF_PERIOD periodRep = new VJoy.FFB_EFF_PERIOD();
+                        if (vJoyObj.Ffb_h_Eff_Period(data, ref periodRep) == 0)
+                        {
+                            vJoyFFB_Effect[vJoyID].effectPeriodic_Magnitude = periodRep.Magnitude;
+                            vJoyFFB_Effect[vJoyID].effectPeriodic_Period = periodRep.Period;
+                            vJoyFFB_Effect[vJoyID].effectPeriodic_Phase = periodRep.Phase;
+                            vJoyFFB_Effect[vJoyID].effectPeriodic_Offset = periodRep.Offset;
+                            AppLogger.LogToGui($"{dataPacketType}  Period={periodRep.Period}  Magnitude={periodRep.Magnitude}  Phase={periodRep.Phase}  Offset={periodRep.Offset}  BlockIdx={periodRep.EffectBlockIndex}", false);
+                        }
+                        break;
+
+                    case FFBPType.PT_GAINREP:
+                        // Gain = Effect force 0..255
+                        byte gain = 0;
+                        if (vJoyObj.Ffb_h_DevGain(data, ref gain) == 0)
+                        {
+                            vJoyFFB_Effect[vJoyID].masterGain = gain;
+                            AppLogger.LogToGui($"{dataPacketType}  Gain={gain}", false);
+                        }
+                        break;
+                }
+                //Program.rootHub.setRumble(128, 128, ((int)userData));
+            }
+
+            //public UInt32 Ffb_h_Type(IntPtr Packet, ref FFBPType Type) { return _Ffb_h_Type(Packet, ref Type); }
+            //public UInt32 Ffb_h_EffOp(IntPtr Packet, ref FFB_EFF_OP Operation) { return _Ffb_h_EffOp(Packet, ref Operation); }            
+        }
+
+        private static bool EnableForceFeedbackEvents(uint vJoyID, HID_USAGES vJoyAxis)
+        {
+            if (vJoyInitialized[vJoyID] != 1)
+                return false;
+
+            if (vJoyFFBInitialized[vJoyID] != 0)
+                return (vJoyFFBInitialized[vJoyID] == 1);
+
+            //if (!vJoyInitialized[vJoyID])
+            //    InitializeVJoyDevice(vJoyID, vJoyAxis);
+
+            lock (vJoyLocker)
+            {
+                if (vJoyFFBInitialized[vJoyID] != 0)
+                    return (vJoyFFBInitialized[vJoyID] == 1);
+
+                vJoyFFBInitialized[vJoyID] = 2;
+                AppLogger.LogToGui($"Initializing FFB effects in VJoy joystick #{vJoyID}", false);
+
+                try
+                {
+                    if (vJoyObj.FfbStart(vJoyID))
+                    {
+                        vJoyFFBInitialized[vJoyID] = 1;
+                        vJoyObj.FfbRegisterGenCB(FfbNotificationHandler, (IntPtr)0);
+                    }
+                    else
+                        AppLogger.LogToGui("ERROR. vJoy FFB initialization failed", false);
+                }
+                catch
+                {
+                    AppLogger.LogToGui("ERROR. vJoy FFB initialization failed", false);
                 }
             }
+
+            return (vJoyFFBInitialized[vJoyID] == 1);
+        }
+
+        private static double MapFFBMagnitudeGainToRumble(byte masterGain, byte effectGain, uint effectMagnitude, ref byte heavyMotor, ref byte lightMotor)
+        {
+            // Map magnitude 0..10000 and gain 0..255 to rumble range 0..765 
+            //   Range        0 = rumble off
+            //           1..255 = light motor only
+            //         256..510 = heavy motor only
+            //         511..765 = both motors
+            // TODO: combined motor magnitude range linearity?
+
+            double rumbleRange = (((effectMagnitude - 0.0) * (765.0 - 0.0)) / (10000.0 - 0.0)) + 0.0;
+            rumbleRange = (rumbleRange * (effectGain / 255.0)) * (masterGain / 255.0);
+
+            heavyMotor = 0;
+            lightMotor = (rumbleRange >= 255 ? (byte)255 : ((byte)rumbleRange));
+
+            return rumbleRange;
+        }
+
+        public static bool EnableForceFeedbackEvents(SASteeringWheelEmulationAxisType saAxisType)
+        {
+            uint vJoyID = 0;
+            HID_USAGES vJoyAxis = HID_USAGES.HID_USAGE_X;
+
+            if (MapSASteeringWheelEmulationAxisTypeToVJoyAxis(saAxisType, ref vJoyID, ref vJoyAxis))
+                return EnableForceFeedbackEvents(vJoyID, vJoyAxis);
+            else
+                return false;
+        }
+
+        private static void DisableForceFeedbackEvents(uint vJoyID)
+        {
+            if (vJoyFFBInitialized[vJoyID] == 1)
+            {
+                vJoyFFBInitialized[vJoyID] = 0;
+                vJoyObj.FfbStop(vJoyID);
+            }
+        }
+
+        public static void DisableForceFeedbackEvents(SASteeringWheelEmulationAxisType saAxisType)
+        {
+            uint vJoyID = 0;
+            HID_USAGES vJoyAxis = HID_USAGES.HID_USAGE_X;
+
+            if (MapSASteeringWheelEmulationAxisTypeToVJoyAxis(saAxisType, ref vJoyID, ref vJoyAxis))
+                DisableForceFeedbackEvents(vJoyID);
         }
 
         // Feed axis value to VJoy virtual joystic driver (DS4Windows sixaxis (SA) motion sensor steering wheel emulation feature can optionally feed VJoy analog axis instead of ScpVBus x360 axis
         public static void FeedAxisValue(int value, uint vJoyID, HID_USAGES axis)
         {
-            if (vJoyAvailable)
+            if (vJoyInitialized[vJoyID] == 1)
             {
                 vJoyObj.SetAxis(value, vJoyID, axis);
             }
-            else if (!vJoyInitialized)
+            else if (vJoyInitialized[vJoyID] == 0)
             {
                 // If this was the first call to this FeedAxisValue function and VJoy driver connection is not yet initialized
                 // then try to do it now. Subsequent calls will see the the vJoy as available (if connection succeeded) and 
                 // there is no need to re-initialize the connection everytime the feeder is used.
                 InitializeVJoyDevice(vJoyID, axis);
+
+                // TODO: Move to separate initialization call in ControlService and attach true device ID (now 0 is hard coded)
+                //EnableForceFeedbackEvents(vJoyID, axis);
+                Connect(SASteeringWheelEmulationAxisType.VJoy1X, 0, true);  // false = no FFB, true=FFB-to-rumble conversion enabled
             }
         }
     }

@@ -103,6 +103,7 @@ namespace DS4Windows.Forms
         {
             Global.FindConfigLocation();
 
+            bool firstRun = Global.firstRun;
             if (Global.firstRun)
             {
                 new SaveWhere(Global.multisavespots).ShowDialog();
@@ -183,7 +184,7 @@ namespace DS4Windows.Forms
             blankControllerTab();
 
             Directory.CreateDirectory(appdatapath);
-            if (!Save()) //if can't write to file
+            if (firstRun && !Save()) //if can't write to file
             {
                 if (MessageBox.Show("Cannot write at current location\nCopy Settings to appdata?", "DS4Windows",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)

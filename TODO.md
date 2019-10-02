@@ -1,5 +1,6 @@
 # TODO
 
+* Check TouchpadInvert setting
 * Add cross dead zone (per axis) for sticks
 * ~~Add more curve options~~
 * ~~Transition to use Visual Studio 2019~~

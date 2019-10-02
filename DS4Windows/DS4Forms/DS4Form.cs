@@ -397,10 +397,14 @@ namespace DS4Windows.Forms
                 }
             }
 
+            Form_Resize(null, null);
+            if (!(StartMinimized || mini))
+            {
+                Show();
+            }
+
             this.Resize += Form_Resize;
             this.LocationChanged += TrackLocationChanged;
-            if (!(StartMinimized || mini))
-                Form_Resize(null, null);
 
             Program.CreateIPCClassNameMMF(this.Handle);
 

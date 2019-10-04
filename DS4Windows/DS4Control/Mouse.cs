@@ -359,7 +359,7 @@ namespace DS4Windows
                     tempBool = true;
                     for (int i = 0, arlen = disArray.Length; tempBool && i < arlen; i++)
                     {
-                        if (getDS4ControlsByName(disArray[i]) == false)
+                        if (disArray[i] == -1 || getDS4ControlsByName(disArray[i]) == false)
                             tempBool = false;
                     }
 

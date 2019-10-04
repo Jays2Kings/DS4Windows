@@ -644,6 +644,7 @@ namespace DS4Windows.Forms
                 cBTouchpadJitterCompensation.Checked = TouchpadJitterCompensation[device];
 
                 tempInt = TouchpadInvert[device];
+                // Array values are set up so Array.IndexOf call is not necessary
                 touchpadInvertComboBox.SelectedIndex = touchpadInvertToValue[tempInt];
 
                 cBlowerRCOn.Checked = LowerRCOn[device];

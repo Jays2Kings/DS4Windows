@@ -644,6 +644,7 @@ namespace DS4Windows.Forms
                 cBTouchpadJitterCompensation.Checked = TouchpadJitterCompensation[device];
 
                 tempInt = TouchpadInvert[device];
+                // Array values are set up so Array.IndexOf call is not necessary
                 touchpadInvertComboBox.SelectedIndex = touchpadInvertToValue[tempInt];
 
                 cBlowerRCOn.Checked = LowerRCOn[device];
@@ -2222,10 +2223,10 @@ namespace DS4Windows.Forms
             lbGyroXP.Text = UpdateButtonList(bnGyroXP);                        
         }
 
-        private string UpdateButtonList(Button button, bool shift =false)
+        private string UpdateButtonList(Button button, bool shift = false)
         {
             object tagO = GetDS4Action(device, button.Name, shift);
-            bool SC = GetDS4KeyType(device, button.Name, false).HasFlag(DS4KeyType.ScanCode);
+            bool SC = GetDS4KeyType(device, button.Name, shift).HasFlag(DS4KeyType.ScanCode);
             bool extracontrol = button.Name.Contains("Gyro") || button.Name.Contains("Swipe");
             if (tagO != null)
             {

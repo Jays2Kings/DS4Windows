@@ -1895,8 +1895,8 @@ namespace DS4Windows
         public bool[] useSAforMouse = new bool[5] { false, false, false, false, false };
         public GyroOutMode[] gyroOutMode = new GyroOutMode[5] { GyroOutMode.Controls, GyroOutMode.Controls,
             GyroOutMode.Controls, GyroOutMode.Controls, GyroOutMode.Controls };
-        public string[] sATriggers = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
-        public string[] sAMouseStickTriggers = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+        public string[] sATriggers = new string[5] { "-1", "-1", "-1", "-1", "-1" };
+        public string[] sAMouseStickTriggers = new string[5] { "-1", "-1", "-1", "-1", "-1" };
         public bool[] sATriggerCond = new bool[5] { true, true, true, true, true };
         public bool[] sAMouseStickTriggerCond = new bool[5] { true, true, true, true, true };
         public bool[] gyroMouseStickTriggerTurns = new bool[5] { true, true, true, true, true };
@@ -3148,7 +3148,7 @@ namespace DS4Windows
                 catch { gyroOutMode[device] = GyroOutMode.Controls; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SATriggers"); sATriggers[device] = Item.InnerText; }
-                catch { sATriggers[device] = ""; missingSetting = true; }
+                catch { sATriggers[device] = "-1"; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SATriggerCond"); sATriggerCond[device] = SaTriggerCondValue(Item.InnerText); }
                 catch { sATriggerCond[device] = true; missingSetting = true; }
@@ -3164,7 +3164,7 @@ namespace DS4Windows
                 catch { PortOldGyroSettings(device); missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickTriggers"); sAMouseStickTriggers[device] = Item.InnerText; }
-                catch { sAMouseStickTriggers[device] = ""; missingSetting = true; }
+                catch { sAMouseStickTriggers[device] = "-1"; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickTriggerCond"); sAMouseStickTriggerCond[device] = SaTriggerCondValue(Item.InnerText); }
                 catch { sAMouseStickTriggerCond[device] = true; missingSetting = true; }
@@ -4613,10 +4613,10 @@ namespace DS4Windows
             startTouchpadOff[device] = false;
             useTPforControls[device] = false;
             useSAforMouse[device] = false;
-            sATriggers[device] = string.Empty;
+            sATriggers[device] = "-1";
             sATriggerCond[device] = true;
             gyroOutMode[device] = GyroOutMode.Controls;
-            sAMouseStickTriggers[device] = string.Empty;
+            sAMouseStickTriggers[device] = "-1";
             sAMouseStickTriggerCond[device] = true;
             gyroMStickInfo[device].deadZone = 30; gyroMStickInfo[device].maxZone = 830;
             gyroMStickInfo[device].antiDeadX = 0.4; gyroMStickInfo[device].antiDeadY = 0.4;

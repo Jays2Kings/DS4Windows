@@ -2223,10 +2223,10 @@ namespace DS4Windows.Forms
             lbGyroXP.Text = UpdateButtonList(bnGyroXP);                        
         }
 
-        private string UpdateButtonList(Button button, bool shift =false)
+        private string UpdateButtonList(Button button, bool shift = false)
         {
             object tagO = GetDS4Action(device, button.Name, shift);
-            bool SC = GetDS4KeyType(device, button.Name, false).HasFlag(DS4KeyType.ScanCode);
+            bool SC = GetDS4KeyType(device, button.Name, shift).HasFlag(DS4KeyType.ScanCode);
             bool extracontrol = button.Name.Contains("Gyro") || button.Name.Contains("Swipe");
             if (tagO != null)
             {

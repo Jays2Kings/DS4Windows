@@ -88,6 +88,7 @@
             this.lVMacros.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.cHMacro});
             this.lVMacros.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lVMacros.HideSelection = false;
             this.lVMacros.LargeImageList = this.iLKeys;
             this.lVMacros.MultiSelect = false;
             this.lVMacros.Name = "lVMacros";
@@ -166,15 +167,15 @@
             // 
             // pBRtouch
             // 
-            resources.ApplyResources(this.pBRtouch, "pBRtouch");
             this.pBRtouch.Image = global::DS4Windows.Properties.Resources.right_touch;
+            resources.ApplyResources(this.pBRtouch, "pBRtouch");
             this.pBRtouch.Name = "pBRtouch";
             this.pBRtouch.TabStop = false;
             // 
             // pBLtouch
             // 
-            resources.ApplyResources(this.pBLtouch, "pBLtouch");
             this.pBLtouch.Image = global::DS4Windows.Properties.Resources.left_touch;
+            resources.ApplyResources(this.pBLtouch, "pBLtouch");
             this.pBLtouch.Name = "pBLtouch";
             this.pBLtouch.TabStop = false;
             // 
@@ -227,7 +228,6 @@
             // 
             // openPresets
             // 
-            this.openPresets.FileName = "openFileDialog1";
             resources.ApplyResources(this.openPresets, "openPresets");
             // 
             // lbMacroOrder
@@ -242,24 +242,24 @@
             // 
             // cMSLoadPresets
             // 
-            resources.ApplyResources(this.cMSLoadPresets, "cMSLoadPresets");
             this.cMSLoadPresets.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cMSLoadPresets.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.altTabToolStripMenuItem,
             this.fromFileToolStripMenuItem});
             this.cMSLoadPresets.Name = "cMSLoadPresets";
             this.cMSLoadPresets.ShowImageMargin = false;
+            resources.ApplyResources(this.cMSLoadPresets, "cMSLoadPresets");
             // 
             // altTabToolStripMenuItem
             // 
-            resources.ApplyResources(this.altTabToolStripMenuItem, "altTabToolStripMenuItem");
             this.altTabToolStripMenuItem.Name = "altTabToolStripMenuItem";
+            resources.ApplyResources(this.altTabToolStripMenuItem, "altTabToolStripMenuItem");
             this.altTabToolStripMenuItem.Click += new System.EventHandler(this.altTabToolStripMenuItem_Click);
             // 
             // fromFileToolStripMenuItem
             // 
-            resources.ApplyResources(this.fromFileToolStripMenuItem, "fromFileToolStripMenuItem");
             this.fromFileToolStripMenuItem.Name = "fromFileToolStripMenuItem";
+            resources.ApplyResources(this.fromFileToolStripMenuItem, "fromFileToolStripMenuItem");
             this.fromFileToolStripMenuItem.Click += new System.EventHandler(this.fromFileToolStripMenuItem_Click);
             // 
             // RecordBox

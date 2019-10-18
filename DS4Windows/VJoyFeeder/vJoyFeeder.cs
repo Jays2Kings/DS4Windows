@@ -1082,7 +1082,7 @@ namespace DS4Windows.VJoyFeeder
 
                 // TODO: Move to separate initialization call in ControlService and attach true device ID (now 0 is hard coded)
                 //EnableForceFeedbackEvents(vJoyID, axis);
-                Connect(SASteeringWheelEmulationAxisType.VJoy1X, 0, true);  // false = no FFB, true=FFB-to-rumble conversion enabled
+                Connect(SASteeringWheelEmulationAxisType.VJoy1X, 0, false);  // false = no FFB, true=FFB-to-rumble conversion enabled
             }
         }
     }

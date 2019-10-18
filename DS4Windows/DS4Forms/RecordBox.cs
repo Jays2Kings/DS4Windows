@@ -42,7 +42,7 @@ namespace DS4Windows.Forms
             AddtoDS4List();
             //ds4.Tick += ds4_Tick;
             ds4.Elapsed += Ds4_Tick;
-            ds4.Interval = 1;
+            ds4.Interval = 10;
             if (kbm.macrostag.Count > 0)
             {
                 macros.AddRange(kbm.macrostag);
@@ -66,7 +66,7 @@ namespace DS4Windows.Forms
 
             //ds4.Tick += ds4_Tick;
             ds4.Elapsed += Ds4_Tick;
-            ds4.Interval = 1;
+            ds4.Interval = 10;
             lbRecordTip.Visible = false;
             cBStyle.Visible = false;
             pnlMouseButtons.Location = new Point(pnlMouseButtons.Location.X, pnlMouseButtons.Location.Y - 75);

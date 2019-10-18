@@ -1005,6 +1005,7 @@ namespace DS4Windows.Forms
                 if (idxSASteeringWheelEmulationRange >= 0) cBSteeringWheelEmulationRange.SelectedIndex = idxSASteeringWheelEmulationRange;
 
                 OutContType tempOutType = Global.OutContType[device];
+                Global.outDevTypeTemp[device] = tempOutType;
                 devOutContType = tempOutType;
                 switch(tempOutType)
                 {
@@ -1190,6 +1191,8 @@ namespace DS4Windows.Forms
                 gyroMStickUseSmoothCk.Checked = false;
                 gyroMStickSmoothWeightNUD.Enabled = false;
                 gyroMStickSmoothWeightNUD.Value = 0.5m;
+                Global.outDevTypeTemp[device] = OutContType.X360;
+                devOutContType = OutContType.X360;
 
                 Set();
             }
@@ -3638,6 +3641,7 @@ namespace DS4Windows.Forms
                     default: break;
                 }
 
+                Global.outDevTypeTemp[device] = tempType;
                 devOutContType = tempType;
                 UpdateLists();
             }

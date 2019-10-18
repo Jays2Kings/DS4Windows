@@ -39,6 +39,7 @@ namespace DS4Windows.Forms
             //pnl360Controls.BackgroundImage = null;
             //pnl360Controls.BackgroundImageLayout = ImageLayout.None;
             use360 = true;
+            device = deviceNum;
             pnl360Controls.Paint -= pnl360Controls_Paint;
             if (Global.outDevTypeTemp[device] == OutContType.DS4)
             {
@@ -49,7 +50,6 @@ namespace DS4Windows.Forms
                 pnlDS4Controls.Show();
             }
 
-            device = deviceNum;
             ops = ooo;
             button = buton;
             DS4ControlSettings dcs = Global.getDS4CSetting(device, button.Name);

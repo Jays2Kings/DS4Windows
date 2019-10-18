@@ -117,8 +117,9 @@
     <WarningLevel>1</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.8.0.0, Culture=neutral, PublicKeyToken=c416bc1b32d97233, processorArchitecture=MSIL">
-      <HintPath>..\packages\TaskScheduler.2.8.0\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
+    <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.8.15.0, Culture=neutral, PublicKeyToken=c416bc1b32d97233, processorArchitecture=MSIL">
+      <HintPath>..\packages\TaskScheduler.2.8.15\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Nefarius.ViGEm.Client" Condition="'$(Platform)' == 'x64'">
       <HintPath>.\libs\x64\Nefarius.ViGEm.Client\Nefarius.ViGEm.Client.dll</HintPath>
@@ -1122,7 +1123,6 @@
     <EmbeddedResource Include="Properties\Resources.zh-hans.resx" />
     <EmbeddedResource Include="Properties\Resources.zh-Hant.resx" />
     <None Include="app.manifest" />
-    <None Include="packages.config" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1141,6 +1141,7 @@
     </Content>
     <Content Include="HidLibrary\LICENSE" />
     <Content Include="Resources\360 fades.png" />
+    <None Include="packages.config" />
     <None Include="Resources\360 map.png" />
     <None Include="Resources\360 highlight.png" />
     <Content Include="Resources\A.PNG" />

@@ -73,7 +73,7 @@ namespace DS4Windows.Forms
             if (File.Exists(exepath + $"\\{InstFileName}"))
             {
                 bnStep1.Text = Properties.Resources.OpeningInstaller;
-                monitorProc = Process.Start(exepath + $"\\{InstFileName}");
+                monitorProc = Process.Start(exepath + $"\\{InstFileName}", "/exenoupdates");
                 bnStep1.Text = Properties.Resources.Installing;
             }
 

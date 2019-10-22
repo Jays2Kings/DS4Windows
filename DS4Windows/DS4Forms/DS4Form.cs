@@ -397,12 +397,6 @@ namespace DS4Windows.Forms
                 }
             }
 
-            Form_Resize(null, null);
-            if (!(StartMinimized || mini))
-            {
-                Show();
-            }
-
             this.Resize += Form_Resize;
             this.LocationChanged += TrackLocationChanged;
 
@@ -465,6 +459,9 @@ namespace DS4Windows.Forms
             timerThread.IsBackground = true;
             timerThread.Priority = ThreadPriority.Lowest;
             timerThread.Start();
+
+            // Have Form_Resize run to honor minimize setting
+            Show();
         }
 
         private void TBUdpListenAddress_Leave(object sender, EventArgs e)

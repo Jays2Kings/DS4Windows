@@ -36,7 +36,6 @@ namespace DS4Windows.Forms
         private Bitmap pnlControllerBgImg;
         private Bitmap btnLightBgImg;
         private Bitmap btnLightBg;
-        private OutContType devOutContType = OutContType.X360;
         private AdvancedColorDialog advColorDialog;
 
         int tempInt = 0;
@@ -575,7 +574,6 @@ namespace DS4Windows.Forms
 
                 LoadProfile(device, false, Program.rootHub);
 
-                //devOutContType = Global.OutContType[device];
                 Global.outDevTypeTemp[device] = Global.OutContType[device];
 
                 if (Rainbow[device] == 0)
@@ -1005,8 +1003,8 @@ namespace DS4Windows.Forms
                 if (idxSASteeringWheelEmulationRange >= 0) cBSteeringWheelEmulationRange.SelectedIndex = idxSASteeringWheelEmulationRange;
 
                 OutContType tempOutType = Global.OutContType[device];
-                Global.outDevTypeTemp[device] = tempOutType;
-                devOutContType = tempOutType;
+                //Global.outDevTypeTemp[device] = tempOutType;
+                //devOutContType = tempOutType;
                 switch(tempOutType)
                 {
                     case OutContType.DS4:
@@ -1192,7 +1190,6 @@ namespace DS4Windows.Forms
                 gyroMStickSmoothWeightNUD.Enabled = false;
                 gyroMStickSmoothWeightNUD.Value = 0.5m;
                 Global.outDevTypeTemp[device] = OutContType.X360;
-                devOutContType = OutContType.X360;
 
                 Set();
             }
@@ -2245,7 +2242,7 @@ namespace DS4Windows.Forms
                 else if (tagO is X360Controls)
                 {
                     string tag;
-                    tag = KBM360.getX360ControlsByName((X360Controls)tagO, devOutContType);
+                    tag = KBM360.getX360ControlsByName((X360Controls)tagO, Global.outDevTypeTemp[device]);
                     return tag;
                 }
                 else if (tagO is string)
@@ -3642,7 +3639,6 @@ namespace DS4Windows.Forms
                 }
 
                 Global.outDevTypeTemp[device] = tempType;
-                devOutContType = tempType;
                 UpdateLists();
             }
         }

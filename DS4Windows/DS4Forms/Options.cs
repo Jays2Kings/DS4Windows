@@ -1758,10 +1758,7 @@ namespace DS4Windows.Forms
                 default: break;
             }
 
-            if (Global.outDevTypeTemp[device] != tempType)
-            {
-                Global.OutContType[device] = tempType;
-            }
+            Global.OutContType[device] = tempType;
 
             switch (gyroOutputMode.SelectedIndex)
             {

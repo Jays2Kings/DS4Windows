@@ -250,9 +250,14 @@ namespace DS4Windows
         public static bool[] useDInputOnly = new bool[5] { true, true, true, true, true };
         public static bool[] linkedProfileCheck = new bool[4] { true, true, true, true };
         public static bool[] touchpadActive = new bool[5] { true, true, true, true, true };
+        // Used to hold device type desired from Profile Editor
         public static OutContType[] outDevTypeTemp = new OutContType[5] { DS4Windows.OutContType.X360, DS4Windows.OutContType.X360,
             DS4Windows.OutContType.X360, DS4Windows.OutContType.X360,
             DS4Windows.OutContType.X360 };
+        // Used to hold the currently active controller output type in use for a slot
+        public static OutContType[] activeOutDevType = new OutContType[5] { DS4Windows.OutContType.None, DS4Windows.OutContType.None,
+            DS4Windows.OutContType.None, DS4Windows.OutContType.None,
+            DS4Windows.OutContType.None };
         public static bool vigemInstalled = IsViGEmBusInstalled();
         public static string vigembusVersion = ViGEmBusVersion();
 
@@ -1973,6 +1978,7 @@ namespace DS4Windows
 
         public bool[] trackballMode = new bool[5] { false, false, false, false, false };
         public double[] trackballFriction = new double[5] { 10.0, 10.0, 10.0, 10.0, 10.0 };
+        // Used to hold the controller type desired in a profile
         public OutContType[] outputDevType = new OutContType[5] { OutContType.X360,
             OutContType.X360, OutContType.X360,
             OutContType.X360, OutContType.X360 };
@@ -2800,7 +2806,7 @@ namespace DS4Windows
                     DS4LightBar.forcedFlash[device] = 0;
                 }
 
-                OutContType oldContType = outputDevType[device];
+                OutContType oldContType = Global.activeOutDevType[device];
 
                 // Make sure to reset currently set profile values before parsing
                 ResetProfile(device);
@@ -3641,11 +3647,13 @@ namespace DS4Windows
                                 tempOutDev.Disconnect();
                                 tempOutDev = null;
                                 control.outputDevices[device] = null;
+                                Global.activeOutDevType[device] = OutContType.None;
                             }
 
                             OutContType tempContType = outputDevType[device];
                             if (tempContType == OutContType.X360)
                             {
+                                Global.activeOutDevType[device] = OutContType.X360;
                                 Xbox360OutDevice tempXbox = new Xbox360OutDevice(control.vigemTestClient);
                                 control.outputDevices[device] = tempXbox;
                                 tempXbox.cont.FeedbackReceived += (eventsender, args) =>
@@ -3658,6 +3666,7 @@ namespace DS4Windows
                             }
                             else if (tempContType == OutContType.DS4)
                             {
+                                Global.activeOutDevType[device] = OutContType.DS4;
                                 DS4OutDevice tempDS4 = new DS4OutDevice(control.vigemTestClient);
                                 control.outputDevices[device] = tempDS4;
                                 tempDS4.cont.FeedbackReceived += (eventsender, args) =>
@@ -3679,6 +3688,7 @@ namespace DS4Windows
                             control.outputDevices[device] = null;
                             Global.useDInputOnly[device] = true;
                             AppLogger.LogToGui(tempType + " Controller #" + (device + 1) + " unplugged", false);
+                            Global.activeOutDevType[device] = OutContType.None;
                         }
 
                         tempDev.setRumble(0, 0);

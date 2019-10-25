@@ -442,6 +442,7 @@ namespace DS4Windows
                             if (contType == OutContType.X360)
                             {
                                 LogDebug("Plugging in X360 Controller #" + (i + 1));
+                                Global.activeOutDevType[i] = OutContType.X360;
                                 Xbox360OutDevice tempXbox = new Xbox360OutDevice(vigemTestClient);
                                 outputDevices[i] = tempXbox;
                                 int devIndex = i;
@@ -456,6 +457,7 @@ namespace DS4Windows
                             else if (contType == OutContType.DS4)
                             {
                                 LogDebug("Plugging in DS4 Controller #" + (i + 1));
+                                Global.activeOutDevType[i] = OutContType.DS4;
                                 DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
                                 outputDevices[i] = tempDS4;
                                 int devIndex = i;
@@ -471,6 +473,7 @@ namespace DS4Windows
                         else
                         {
                             useDInputOnly[i] = true;
+                            Global.activeOutDevType[i] = OutContType.None;
                         }
 
                         int tempIdx = i;
@@ -606,6 +609,7 @@ namespace DS4Windows
                         outputDevices[i]?.Disconnect();
                         outputDevices[i] = null;
                         useDInputOnly[i] = true;
+                        Global.activeOutDevType[i] = OutContType.None;
                         DS4Controllers[i] = null;
                         touchPad[i] = null;
                         lag[i] = false;
@@ -723,6 +727,7 @@ namespace DS4Windows
                                 if (contType == OutContType.X360)
                                 {
                                     LogDebug("Plugging in X360 Controller #" + (Index + 1));
+                                    Global.activeOutDevType[Index] = OutContType.X360;
                                     Xbox360OutDevice tempXbox = new Xbox360OutDevice(vigemTestClient);
                                     outputDevices[Index] = tempXbox;
                                     int devIndex = Index;
@@ -737,6 +742,7 @@ namespace DS4Windows
                                 else if (contType == OutContType.DS4)
                                 {
                                     LogDebug("Plugging in DS4 Controller #" + (Index + 1));
+                                    Global.activeOutDevType[Index] = OutContType.DS4;
                                     DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
                                     outputDevices[Index] = tempDS4;
                                     int devIndex = Index;
@@ -753,6 +759,7 @@ namespace DS4Windows
                             else
                             {
                                 useDInputOnly[Index] = true;
+                                Global.activeOutDevType[Index] = OutContType.None;
                             }
 
                             TouchPadOn(Index, device);
@@ -1225,6 +1232,7 @@ namespace DS4Windows
                     lag[ind] = false;
                     inWarnMonitor[ind] = false;
                     useDInputOnly[ind] = true;
+                    Global.activeOutDevType[ind] = OutContType.None;
                     uiContext?.Post(new SendOrPostCallback((state) =>
                     {
                         OnControllerRemoved(this, ind);

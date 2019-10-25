@@ -1122,6 +1122,7 @@ namespace DS4Windows
                         outputDevices[ind] = null;
                         useDInputOnly[ind] = true;
                         LogDebug(tempType + " Controller #" + (ind + 1) + " unplugged");
+                        Global.activeOutDevType[ind] = OutContType.None;
                     }
                 }
                 else
@@ -1132,6 +1133,7 @@ namespace DS4Windows
                         if (conType == OutContType.X360)
                         {
                             LogDebug("Plugging in X360 Controller #" + (ind + 1));
+                            Global.activeOutDevType[ind] = OutContType.X360;
                             Xbox360OutDevice tempXbox = new Xbox360OutDevice(vigemTestClient);
                             outputDevices[ind] = tempXbox;
                             tempXbox.cont.FeedbackReceived += (eventsender, args) =>
@@ -1145,6 +1147,7 @@ namespace DS4Windows
                         else if (conType == OutContType.DS4)
                         {
                             LogDebug("Plugging in DS4 Controller #" + (ind + 1));
+                            Global.activeOutDevType[ind] = OutContType.DS4;
                             DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
                             outputDevices[ind] = tempDS4;
                             int devIndex = ind;

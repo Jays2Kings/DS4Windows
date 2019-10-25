@@ -35,16 +35,19 @@ namespace DS4Windows
         internal const int NACON_VID = 0x146B;
         internal const int HORI_VID = 0x0F0D;
 
+        // https://support.steampowered.com/kb_article.php?ref=5199-TOKV-4426&l=english web site has a list of other PS4 compatible device VID/PID values and brand names. 
+        // However, not all those are guaranteed to work with DS4Windows app so support is added case by case when users of DS4Windows app tests non-official DS4 gamepads.
+
         private static VidPidInfo[] knownDevices =
         {
             new VidPidInfo(SONY_VID, 0xBA0, "Sony WA"),
             new VidPidInfo(SONY_VID, 0x5C4, "DS4 v.1"),
             new VidPidInfo(SONY_VID, 0x09CC, "DS4 v.2"),
-            new VidPidInfo(RAZER_VID, 0x1000),
-            new VidPidInfo(NACON_VID, 0x0D01),
-            new VidPidInfo(NACON_VID, 0x0D02),
+            new VidPidInfo(RAZER_VID, 0x1000, "Razer Raiju PS4"),
+            new VidPidInfo(NACON_VID, 0x0D01, "Nacon Revol Pro v.1"),
+            new VidPidInfo(NACON_VID, 0x0D02, "Nacon Revol Pro v.2"),
             new VidPidInfo(HORI_VID, 0x00EE, "Hori PS4 Mini"),    // Hori PS4 Mini Wired Gamepad
-            new VidPidInfo(0x7545, 0x0104),
+            new VidPidInfo(0x7545, 0x0104, "Armor 3 LU Cobra"), // Armor 3 Level Up Cobra
             new VidPidInfo(0x2E95, 0x7725, "Scuf Vantage"), // Scuf Vantage gamepad
             new VidPidInfo(0x11C0, 0x4001, "PS4 Fun"), // PS4 Fun Controller
             new VidPidInfo(RAZER_VID, 0x1007, "Razer Raiju TE"), // Razer Raiju Tournament Edition
@@ -53,6 +56,8 @@ namespace DS4Windows
             new VidPidInfo(SONY_VID, 0x05C5, "CronusMax (PS4 Mode)"), // CronusMax (PS4 Output Mode)
             new VidPidInfo(0x0C12, 0x57AB, "Warrior Joypad JS083"), // Warrior Joypad JS083 (wired). Custom lightbar color doesn't work, but everything else works OK (except touchpad and gyro because the gamepad doesnt have those).
             new VidPidInfo(0x0C12, 0x0E16, "Steel Play MetalTech"), // Steel Play Metaltech P4 (wired)
+            new VidPidInfo(NACON_VID, 0x0D08, "Nacon Revol U Pro"), // Nacon Revolution Unlimited Pro
+            new VidPidInfo(HORI_VID, 0x0084, "Hori Fighting Cmd"), // Hori Fighting Commander (special kind of gamepad without touchpad or sticks. There is a hardware switch to alter d-pad type between dpad and LS/RS)
         };
 
         private static string devicePathToInstanceId(string devicePath)

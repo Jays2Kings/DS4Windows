@@ -248,7 +248,7 @@ namespace DS4Windows
         public static bool[] useTempProfile = new bool[5] { false, false, false, false, false };
         public static bool[] tempprofileDistance = new bool[5] { false, false, false, false, false };
         public static bool[] useDInputOnly = new bool[5] { true, true, true, true, true };
-        public static bool[] linkedProfileCheck = new bool[4] { true, true, true, true };
+        public static bool[] linkedProfileCheck = new bool[4] { false, false, false, false };
         public static bool[] touchpadActive = new bool[5] { true, true, true, true, true };
         // Used to hold device type desired from Profile Editor
         public static OutContType[] outDevTypeTemp = new OutContType[5] { DS4Windows.OutContType.X360, DS4Windows.OutContType.X360,

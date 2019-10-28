@@ -436,6 +436,7 @@ namespace DS4Windows.Forms
             Thread timerThread = new Thread(() =>
             {
                 hotkeysTimer = new NonFormTimer();
+                hotkeysTimer.Interval = 20;
                 //hotkeysTimer.Elapsed += Hotkeys;
                 hotkeysTimer.AutoReset = false;
                 if (SwipeProfiles)

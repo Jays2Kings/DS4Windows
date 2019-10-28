@@ -555,6 +555,7 @@ namespace DS4Windows.Forms
                 while (processes.Length > 0)
                 {
                     Thread.Sleep(500);
+                    processes = Process.GetProcessesByName("DS4Updater");
                 }
 
                 File.Delete(exepath + "\\DS4Updater.exe");

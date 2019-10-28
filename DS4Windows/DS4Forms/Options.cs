@@ -160,8 +160,6 @@ namespace DS4Windows.Forms
 
             CustomCurveChecker();
 
-            SetupEvents();
-
             tp.SetToolTip(RoundnessNUpDown, Properties.Resources.SquareStickRoundness);
             tp.SetToolTip(RoundnessRsNUD, Properties.Resources.SquareStickRoundness);
         }
@@ -332,7 +330,7 @@ namespace DS4Windows.Forms
             // Axis Config Events
             nUDLS.ValueChanged += numUDLS_ValueChanged;
             nUDLSMaxZone.ValueChanged += nUDLSMaxZone_ValueChanged;
-            nUDLSAntiDead.ValueChanged += nUDLSMaxZone_ValueChanged;
+            nUDLSAntiDead.ValueChanged += nUDLSAntiDead_ValueChanged;
             nUDLSS.ValueChanged += nUDLSSens_ValueChanged;
             lsOutCurveComboBox.SelectedIndexChanged += lsOutCurveComboBox_SelectedIndexChanged;
             lsSquStickCk.Click += lsSquStickCk_Click;
@@ -1199,6 +1197,8 @@ namespace DS4Windows.Forms
             lVActions.ItemCheck += new ItemCheckEventHandler(this.lVActions_ItemCheck);
             loading = false;
             saving = false;
+
+            SetupEvents();
         }
 
         public void LoadActions(bool newp)

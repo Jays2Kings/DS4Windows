@@ -962,9 +962,14 @@ namespace DS4Windows.Forms
             bool launchUpdate = false;
             if (!string.IsNullOrWhiteSpace(newversion) && version.Replace(',', '.').CompareTo(newversion) != 0)
             {
-                if ((DialogResult)this.Invoke(new Func<DialogResult>(() => {
-                    return MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion),
-Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question); })) == DialogResult.Yes)
+                DialogResult result = DialogResult.No;
+                this.Invoke((System.Action)(() =>
+                {
+                    MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion),
+Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                }));
+
+                if (result == DialogResult.Yes)
                 {
                     launchUpdate = true;
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
@@ -986,14 +991,21 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
                     if (launchUpdate)
                     {
-                        Process p = new Process();
-                        p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
-                        p.StartInfo.Arguments = "-autolaunch";
-                        if (AdminNeeded())
-                            p.StartInfo.Verb = "runas";
+                        using (Process p = new Process())
+                        {
+                            p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
+                            p.StartInfo.Arguments = "-autolaunch";
+                            if (AdminNeeded())
+                                p.StartInfo.Verb = "runas";
 
-                        try { p.Start(); Close(); }
-                        catch { }
+                            try { p.Start(); }
+                            catch (Exception) { launchUpdate = false; }
+                        }
+                    }
+
+                    if (launchUpdate)
+                    {
+                        Close();
                     }
                 }
                 else
@@ -2356,14 +2368,19 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version2 = fvi.FileVersion;
             string newversion2 = File.ReadAllText(appdatapath + "\\version.txt").Trim();
+            bool launchUpdate = false;
             if (!string.IsNullOrWhiteSpace(newversion2) && version2.Replace(',', '.').CompareTo(newversion2) != 0)
             {
-                if ((DialogResult)this.Invoke(new Func<DialogResult>(() =>
+                DialogResult result = DialogResult.No;
+                this.Invoke((System.Action)(() =>
                 {
-                    return MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion2),
-                    Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                })) == DialogResult.Yes)
+                    MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion2),
+Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                }));
+
+                if (result == DialogResult.Yes)
                 {
+                    launchUpdate = true;
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
                          && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo(UPDATER_VERSION) != 0)))
                     {
@@ -2375,17 +2392,28 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                         {
                             this.BeginInvoke((System.Action)(() => MessageBox.Show(Properties.Resources.PleaseDownloadUpdater)));
                             Process.Start($"https://github.com/Ryochan7/DS4Updater/releases/download/v{UPDATER_VERSION}/{updaterExe}");
+                            launchUpdate = false;
                         }
                     }
 
-                    Process p = new Process();
-                    p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
-                    p.StartInfo.Arguments = "-autolaunch";
-                    if (AdminNeeded())
-                        p.StartInfo.Verb = "runas";
+                    if (launchUpdate)
+                    {
+                        using (Process p = new Process())
+                        {
+                            p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
+                            p.StartInfo.Arguments = "-autolaunch";
+                            if (AdminNeeded())
+                                p.StartInfo.Verb = "runas";
 
-                    try { p.Start(); Close(); }
-                    catch { }
+                            try { p.Start(); }
+                            catch (Exception) { launchUpdate = false; }
+                        }
+                    }
+
+                    if (launchUpdate)
+                    {
+                        Close();
+                    }
                 }
                 else
                     File.Delete(appdatapath + "\\version.txt");

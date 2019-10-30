@@ -346,9 +346,18 @@ namespace DS4Windows.Forms
 
                 if (onlylnkpath != Process.GetCurrentProcess().MainModule.FileName)
                 {
-                    File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
-                    appShortcutToStartup();
-                    changeStartupRoutine();
+                    try
+                    {
+                        File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
+                        appShortcutToStartup();
+                        changeStartupRoutine();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("No access to Autorun/DS4Windows.lnk\nPlease check file permissions", "DS4Windows");
+                        StartWindowsCheckBox.Checked = false;
+                        runStartupPanel.Visible = false;
+                    }
                 }
             }
 

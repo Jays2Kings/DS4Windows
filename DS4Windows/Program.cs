@@ -39,6 +39,7 @@ namespace DS4Windows
         public static ControlService rootHub;
         private static Thread testThread;
         private static Thread controlThread;
+        private static System.Threading.Timer collectTimer;
         private static Form ds4form;
 
         private static MemoryMappedFile ipcClassNameMMF = null; // MemoryMappedFile for inter-process communication used to hold className of DS4Form window
@@ -192,12 +193,20 @@ namespace DS4Windows
 
         private static void createControlService()
         {
-            controlThread = new Thread(() => { rootHub = new ControlService(); });
+            controlThread = new Thread(() => {
+                rootHub = new ControlService();
+                collectTimer = new System.Threading.Timer(GarbageTask, null, 30000, 30000);
+            });
             controlThread.Priority = ThreadPriority.Normal;
             controlThread.IsBackground = true;
             controlThread.Start();
             while (controlThread.IsAlive)
                 Thread.SpinWait(500);
+        }
+
+        private static void GarbageTask(object state)
+        {
+            GC.Collect(0, GCCollectionMode.Forced, false);
         }
 
         private static void CreateTempWorkerThread()

@@ -346,9 +346,18 @@ namespace DS4Windows.Forms
 
                 if (onlylnkpath != Process.GetCurrentProcess().MainModule.FileName)
                 {
-                    File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
-                    appShortcutToStartup();
-                    changeStartupRoutine();
+                    string ds4lnkpath = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk";
+                    if (!new FileInfo(ds4lnkpath).IsReadOnly)
+                    {
+                        File.Delete(ds4lnkpath);
+                        appShortcutToStartup();
+                        changeStartupRoutine();
+                    }
+                    else
+                    {
+                        StartWindowsCheckBox.Checked = false;
+                        runStartupPanel.Visible = false;
+                    }
                 }
             }
 

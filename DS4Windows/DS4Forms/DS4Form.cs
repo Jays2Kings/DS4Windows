@@ -974,7 +974,7 @@ namespace DS4Windows.Forms
                 DialogResult result = DialogResult.No;
                 this.Invoke((System.Action)(() =>
                 {
-                    MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion),
+                    result = MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion),
 Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 }));
 
@@ -1014,7 +1014,10 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
                     if (launchUpdate)
                     {
-                        Close();
+                        this.BeginInvoke((System.Action)(() =>
+                        {
+                            Close();
+                        }));
                     }
                 }
                 else
@@ -2383,7 +2386,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 DialogResult result = DialogResult.No;
                 this.Invoke((System.Action)(() =>
                 {
-                    MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion2),
+                    result = MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion2),
 Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 }));
 
@@ -2421,7 +2424,10 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
                     if (launchUpdate)
                     {
-                        Close();
+                        this.BeginInvoke((System.Action)(() =>
+                        {
+                            Close();
+                        }));
                     }
                 }
                 else

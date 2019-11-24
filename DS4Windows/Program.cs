@@ -11,6 +11,7 @@ using System.Text;
 
 namespace DS4Windows
 {
+    [System.Security.SuppressUnmanagedCodeSecurity]
     static class Program
     {
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]

@@ -58,6 +58,7 @@ namespace DS4Windows
             new VidPidInfo(0x0C12, 0x0E16, "Steel Play MetalTech"), // Steel Play Metaltech P4 (wired)
             new VidPidInfo(NACON_VID, 0x0D08, "Nacon Revol U Pro"), // Nacon Revolution Unlimited Pro
             new VidPidInfo(HORI_VID, 0x0084, "Hori Fighting Cmd"), // Hori Fighting Commander (special kind of gamepad without touchpad or sticks. There is a hardware switch to alter d-pad type between dpad and LS/RS)
+            new VidPidInfo(NACON_VID, 0x0D13, "Nacon Revol Pro v.3"),
         };
 
         private static string devicePathToInstanceId(string devicePath)

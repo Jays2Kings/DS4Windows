@@ -1691,9 +1691,9 @@ namespace DS4Windows.Forms
             calculateProfileActionDicts(device);
             cacheProfileCustomsFlags(device);
             pnlTPMouse.Visible = rBTPMouse.Checked;
-            pnlSAMouse.Visible = false;
-            fLPTiltControls.Visible = false;
-            gyroMouseJoyFLP.Visible = false;
+            //pnlSAMouse.Visible = false;
+            //fLPTiltControls.Visible = false;
+            //gyroMouseJoyFLP.Visible = false;
             fLPTouchSwipe.Visible = rBTPControls.Checked;
             TrackballMode[device] = trackballCk.Checked;
             TrackballFriction[device] = (double)trackFrictionNUD.Value;

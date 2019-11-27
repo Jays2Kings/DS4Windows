@@ -550,7 +550,16 @@ namespace DS4Windows
             }
             else
             {
-                string logMessage = "Could not connect to ViGEmBus. Please check the status of the System device in Device Manager and if Visual C++ 2017 Redistributable is installed.";
+                string logMessage = string.Empty;
+                if (!vigemInstalled)
+                {
+                    logMessage = "ViGEmBus is not installed";
+                }
+                else
+                {
+                    logMessage = "Could not connect to ViGEmBus. Please check the status of the System device in Device Manager and if Visual C++ 2017 Redistributable is installed.";
+                }
+
                 LogDebug(logMessage);
                 AppLogger.LogToTray(logMessage);
             }

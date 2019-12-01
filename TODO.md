@@ -1,5 +1,6 @@
 # TODO
 
+* Add maximum stick output limit in some way
 * ~~Check Options save~~
 * ~~Check TouchpadInvert setting~~
 * Add cross dead zone (per axis) for sticks

@@ -3642,53 +3642,22 @@ namespace DS4Windows
                             OutputDevice tempOutDev = control.outputDevices[device];
                             if (tempOutDev != null)
                             {
-                                string tempType = tempOutDev.GetDeviceType();
-                                AppLogger.LogToGui("Unplug " + tempType + " Controller #" + (device + 1), false);
-                                tempOutDev.Disconnect();
+                                //string tempType = tempOutDev.GetDeviceType();
+                                //AppLogger.LogToGui("Unplug " + tempType + " Controller #" + (device + 1), false);
+                                //tempOutDev.Disconnect();
                                 tempOutDev = null;
-                                control.outputDevices[device] = null;
+                                //control.outputDevices[device] = null;
                                 Global.activeOutDevType[device] = OutContType.None;
+                                control.UnplugOutDev(device, tempDev);
                             }
 
                             OutContType tempContType = outputDevType[device];
-                            if (tempContType == OutContType.X360)
-                            {
-                                Global.activeOutDevType[device] = OutContType.X360;
-                                Xbox360OutDevice tempXbox = new Xbox360OutDevice(control.vigemTestClient);
-                                control.outputDevices[device] = tempXbox;
-                                tempXbox.cont.FeedbackReceived += (eventsender, args) =>
-                                {
-                                    control.SetDevRumble(tempDev, args.LargeMotor, args.SmallMotor, device);
-                                };
-
-                                tempXbox.Connect();
-                                AppLogger.LogToGui("X360 Controller #" + (device + 1) + " connected", false);
-                            }
-                            else if (tempContType == OutContType.DS4)
-                            {
-                                Global.activeOutDevType[device] = OutContType.DS4;
-                                DS4OutDevice tempDS4 = new DS4OutDevice(control.vigemTestClient);
-                                control.outputDevices[device] = tempDS4;
-                                tempDS4.cont.FeedbackReceived += (eventsender, args) =>
-                                {
-                                    control.SetDevRumble(tempDev, args.LargeMotor, args.SmallMotor, device);
-                                };
-
-                                tempDS4.Connect();
-                                AppLogger.LogToGui("DS4 Controller #" + (device + 1) + " connected", false);
-                            }
-
-                            Global.useDInputOnly[device] = false;
-                            
+                            control.PluginOutDev(device, tempDev);
                         }
                         else if (xinputStatus && !xinputPlug)
                         {
-                            string tempType = control.outputDevices[device].GetDeviceType();
-                            control.outputDevices[device].Disconnect();
-                            control.outputDevices[device] = null;
-                            Global.useDInputOnly[device] = true;
-                            AppLogger.LogToGui(tempType + " Controller #" + (device + 1) + " unplugged", false);
                             Global.activeOutDevType[device] = OutContType.None;
+                            control.UnplugOutDev(device, tempDev);
                         }
 
                         tempDev.setRumble(0, 0);

@@ -50,6 +50,7 @@ namespace DS4Windows
         public bool suspending;
         //SoundPlayer sp = new SoundPlayer();
         private UdpServer _udpServer;
+        private OutputSlotManager outputslotMan;
 
         private class X360Data
         {
@@ -193,6 +194,8 @@ namespace DS4Windows
                 PreviousState[i] = new DS4State();
                 ExposedState[i] = new DS4StateExposed(CurrentState[i]);
             }
+
+            outputslotMan = new OutputSlotManager();
         }
 
         private void TestQueueBus(Action temp)
@@ -366,58 +369,53 @@ namespace DS4Windows
             {
                 if (contType == OutContType.X360)
                 {
-                    //LogDebug("Plugging in X360 Controller for input #" + (index + 1));
+                    LogDebug("Plugging in X360 Controller for input #" + (index + 1));
                     activeOutDevType[index] = OutContType.X360;
 
-                    Xbox360OutDevice tempXbox = new Xbox360OutDevice(vigemTestClient);
-                    //Xbox360OutDevice tempXbox = outputslotMan.AllocateController(OutContType.X360, vigemTestClient)
-                    //    as Xbox360OutDevice;
-                    outputDevices[index] = tempXbox;
+                    //Xbox360OutDevice tempXbox = new Xbox360OutDevice(vigemTestClient);
+                    Xbox360OutDevice tempXbox = outputslotMan.AllocateController(OutContType.X360, vigemTestClient)
+                        as Xbox360OutDevice;
+                    //outputDevices[index] = tempXbox;
                     int devIndex = index;
                     tempXbox.cont.FeedbackReceived += (sender, args) =>
                     {
                         SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
                     };
 
-                    //outputslotMan.DeferredPlugin(tempXbox, index, outputDevices);
-                    tempXbox.Connect();
-                    LogDebug("X360 Controller #" + (index + 1) + " connected");
+                    outputslotMan.DeferredPlugin(tempXbox, index, outputDevices);
                 }
                 else if (contType == OutContType.DS4)
                 {
-                    //LogDebug("Plugging in DS4 Controller for input #" + (index + 1));
+                    LogDebug("Plugging in DS4 Controller for input #" + (index + 1));
                     activeOutDevType[index] = OutContType.DS4;
-                    DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
-                    //DS4OutDevice tempDS4 = outputslotMan.AllocateController(OutContType.DS4, vigemTestClient)
-                    //    as DS4OutDevice;
-                    outputDevices[index] = tempDS4;
+                    //DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
+                    DS4OutDevice tempDS4 = outputslotMan.AllocateController(OutContType.DS4, vigemTestClient)
+                        as DS4OutDevice;
+                    //outputDevices[index] = tempDS4;
                     int devIndex = index;
                     tempDS4.cont.FeedbackReceived += (sender, args) =>
                     {
                         SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
                     };
 
-                    //outputslotMan.DeferredPlugin(tempDS4, index, outputDevices);
-                    tempDS4.Connect();
-                    LogDebug("DS4 Controller #" + (index + 1) + " connected");
+                    outputslotMan.DeferredPlugin(tempDS4, index, outputDevices);
                 }
             }
 
             useDInputOnly[index] = false;
         }
 
-        public void UnplugOutDev(int index, DS4Device device)
+        public void UnplugOutDev(int index, DS4Device device, bool immediate = false)
         {
             if (!useDInputOnly[index])
             {
                 //OutContType contType = Global.OutContType[index];
                 string tempType = outputDevices[index].GetDeviceType();
+                LogDebug("Unplugging " + tempType + " Controller for input #" + (index + 1), false);
                 OutputDevice dev = outputDevices[index];
                 outputDevices[index] = null;
                 activeOutDevType[index] = OutContType.None;
-                //outputslotMan.DeferredRemoval(dev);
-                dev.Disconnect();
-                LogDebug(tempType + " Controller # " + (index + 1) + " unplugged");
+                outputslotMan.DeferredRemoval(dev, index, outputDevices, immediate);
                 useDInputOnly[index] = true;
             }
         }
@@ -646,10 +644,15 @@ namespace DS4Windows
                         }
 
                         CurrentState[i].Battery = PreviousState[i].Battery = 0; // Reset for the next connection's initial status change.
-                        outputDevices[i]?.Disconnect();
-                        outputDevices[i] = null;
-                        useDInputOnly[i] = true;
-                        Global.activeOutDevType[i] = OutContType.None;
+                        OutputDevice tempout = outputDevices[i];
+                        if (tempout != null)
+                        {
+                            UnplugOutDev(i, tempDevice, true);
+                        }
+
+                        //outputDevices[i] = null;
+                        //useDInputOnly[i] = true;
+                        //Global.activeOutDevType[i] = OutContType.None;
                         DS4Controllers[i] = null;
                         touchPad[i] = null;
                         lag[i] = false;
@@ -668,6 +671,11 @@ namespace DS4Windows
 
                 if (showlog)
                     LogDebug(Properties.Resources.StoppedDS4Windows);
+
+                while (outputslotMan.RunningQueue)
+                {
+                    Thread.SpinWait(500);
+                }
 
                 stopViGEm();
             }

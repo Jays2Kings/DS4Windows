@@ -1016,6 +1016,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                     {
                         this.BeginInvoke((System.Action)(() =>
                         {
+                            contextclose = true;
                             Close();
                         }));
                     }
@@ -2426,6 +2427,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                     {
                         this.BeginInvoke((System.Action)(() =>
                         {
+                            contextclose = true;
                             Close();
                         }));
                     }

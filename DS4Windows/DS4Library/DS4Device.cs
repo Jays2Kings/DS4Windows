@@ -427,8 +427,9 @@ namespace DS4Windows
                         audio = new DS4Audio();
                         micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture);
                     }
-                    else if (tempAttr.VendorId == 0x146B)
+                    else if (tempAttr.VendorId == 0x146B && (tempAttr.ProductId == 0x0D01 || tempAttr.ProductId == 0x0D02))
                     {
+                        // The old logic didn't run gyro calibration for any of the Nacon gamepads. Nowadays there are Nacon gamepads with full PS4 compatible gyro, so skip the calibration only for old Nacon devices (is that skip even necessary?)
                         runCalib = false;
                     }
                     else if (tempAttr.VendorId == DS4Devices.RAZER_VID &&

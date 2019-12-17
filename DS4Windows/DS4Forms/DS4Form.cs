@@ -156,9 +156,23 @@ namespace DS4Windows.Forms
             WqlEventQuery q = new WqlEventQuery();
             ManagementScope scope = new ManagementScope("root\\CIMV2");
             q.EventClassName = "Win32_PowerManagementEvent";
-            managementEvWatcher = new ManagementEventWatcher(scope, q);
-            managementEvWatcher.EventArrived += PowerEventArrive;
-            managementEvWatcher.Start();
+            try
+            {
+                scope.Connect();
+            }
+            catch (COMException) { }
+
+            if (scope.IsConnected)
+            {
+                managementEvWatcher = new ManagementEventWatcher(scope, q);
+                managementEvWatcher.EventArrived += PowerEventArrive;
+                managementEvWatcher.Start();
+            }
+            else
+            {
+                LogDebug(DateTime.Now,
+                    "Could not connect to Windows Management Instrumentation service. Suspend support not enabled.", true);
+            }
 
             tSOptions.Visible = false;
 

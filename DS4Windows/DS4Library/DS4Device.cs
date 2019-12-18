@@ -241,6 +241,7 @@ namespace DS4Windows
         public object removeLocker = new object();
 
         public string MacAddress =>  Mac;
+        public event EventHandler MacAddressChanged;
         public string getMacAddress()
         {
             return this.Mac;
@@ -277,12 +278,15 @@ namespace DS4Windows
         }
 
         public int Battery => battery;
+        public delegate void BatteryUpdateHandler(object sender, EventArgs e);
+        public event EventHandler BatteryChanged;
         public int getBattery()
         {
             return battery;
         }
 
         public bool Charging => charging;
+        public event EventHandler ChargingChanged;
         public bool isCharging()
         {
             return charging;
@@ -754,6 +758,7 @@ namespace DS4Windows
 
                 int maxBatteryValue = 0;
                 int tempBattery = 0;
+                bool tempCharging = charging;
                 uint tempStamp = 0;
                 double elapsedDeltaTime = 0.0;
                 uint tempDelta = 0;
@@ -931,13 +936,26 @@ namespace DS4Windows
                     tempByte = inputReport[7];
                     cState.PS = (tempByte & (1 << 0)) != 0;
                     cState.TouchButton = (tempByte & 0x02) != 0;
+                    cState.TouchButton = (tempByte & 0x02) != 0;
                     cState.FrameCounter = (byte)(tempByte >> 2);
 
                     tempByte = inputReport[30];
-                    charging = (tempByte & 0x10) != 0;
+                    tempCharging = (tempByte & 0x10) != 0;
+                    if (tempCharging != charging)
+                    {
+                        charging = tempCharging;
+                        ChargingChanged?.Invoke(this, EventArgs.Empty);
+                    }
+
                     maxBatteryValue = charging ? BATTERY_MAX_USB : BATTERY_MAX;
                     tempBattery = (tempByte & 0x0f) * 100 / maxBatteryValue;
-                    battery = Math.Min((byte)tempBattery, (byte)100);
+                    tempBattery = Math.Min(tempBattery, 100);
+                    if (tempBattery != battery)
+                    {
+                        battery = tempBattery;
+                        BatteryChanged?.Invoke(this, EventArgs.Empty);
+                    }
+
                     cState.Battery = (byte)battery;
                     //System.Diagnostics.Debug.WriteLine("CURRENT BATTERY: " + (inputReport[30] & 0x0f) + " | " + tempBattery + " | " + battery);
                     if (tempByte != priorInputReport30)
@@ -1113,12 +1131,13 @@ namespace DS4Windows
 
                     if (conType == ConnectionType.BT && oldCharging != charging)
                     {
-                        if (Global.getQuickCharge() && charging)
+                        /*if (Global.getQuickCharge() && charging)
                         {
                             DisconnectBT(true);
                             timeoutExecuted = true;
                             return;
                         }
+                        */
                     }
 
                     if (Report != null)
@@ -1530,6 +1549,7 @@ namespace DS4Windows
             {
                 Mac = tempMac;
                 SerialChange?.Invoke(this, EventArgs.Empty);
+                MacAddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 

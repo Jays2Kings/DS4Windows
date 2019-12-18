@@ -1,0 +1,450 @@
+﻿<UserControl x:Class="DS4WinWPF.DS4Forms.SpecialActionEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture=""
+             lex:ResxLocalizationProvider.DefaultAssembly="DS4Windows"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
+             xmlns:entity="clr-namespace:DS4WinWPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="420">
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top" Margin="4,8,4,8">
+            <Label Content="Name:" DockPanel.Dock="Left" />
+            <TextBox x:Name="actionNameTxt" Text="{Binding ActionName,FallbackValue=Name,ValidatesOnNotifyDataErrors=True}"
+                     Margin="8,0,0,0" DockPanel.Dock="Right" VerticalContentAlignment="Center" />
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Bottom">
+            <DockPanel DockPanel.Dock="Left">
+                <ListView x:Name="triggersListView" Tag="{Binding TriggerError, ValidatesOnNotifyDataErrors=True}" Width="200">
+                    <ListView.View>
+                        <GridView>
+                            <GridView.Columns>
+                                <GridViewColumn Header="Trigger" Width="170">
+                                    <GridViewColumn.HeaderContainerStyle>
+                                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                        </Style>
+                                    </GridViewColumn.HeaderContainerStyle>
+                                </GridViewColumn>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                    <ListViewItem>
+                        <CheckBox x:Name="crossTrigCk" Content="Cross" Tag="Cross" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="circleTrigCk" Content="Circle" Tag="Circle" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="squareTrigCk" Content="Square" Tag="Square" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="triangleTrigCk" Content="Triangle" Tag="Triangle" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="optionsTrigCk" Content="Options" Tag="Options" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="shareTrigCk" Content="Share" Tag="Share" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="upTrigCk" Content="Up" Tag="Up" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="downTrigCk" Content="Down" Tag="Down" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="leftTrigCk" Content="Left" Tag="Left" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="rightTrigCk" Content="Right" Tag="Right" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="psTrigCk" Content="PS" Tag="PS" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="l1TrigCk" Content="L1" Tag="L1" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="r1TrigCk" Content="R1" Tag="R1" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="l2TrigCk" Content="L2" Tag="L2" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="r2TrigCk" Content="R2" Tag="R2" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="l3TrigCk" Content="L3" Tag="L3" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="r3TrigCk" Content="R3" Tag="R3" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="leftTouchTrigCk" Content="Left Touch" Tag="Left Touch" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="upperTouchTrigCk" Content="Upper Touch" Tag="Upper Touch" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="multitouchTrigCk" Content="Multitouch" Tag="Multitouch" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="rightTouchTrigCk" Content="Right Touch" Tag="Right Touch" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="lsuTrigCk" Content="Left Stick Up" Tag="Left Stick Up" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="lsdTrigCk" Content="Left Stick Down" Tag="Left Stick Down" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="lslTrigCk" Content="Left Stick Left" Tag="Left Stick Left" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="lsrTrigCk" Content="Left Stick Right" Tag="Left Stick Right" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="rsuTrigCk" Content="Right Stick Up" Tag="Right Stick Up" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="rsdTrigCk" Content="Right Stick Down" Tag="Right Stick Down" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="rslTrigCk" Content="Right Stick Left" Tag="Right Stick Left" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="rsrTrigCk" Content="Right Stick Right" Tag="Right Stick Right" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="swipeUpTrigCk" Content="Swipe Up" Tag="Swipe Up" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="swipeDownTrigCk" Content="Swipe Down" Tag="Swipe Down" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="swipeLeftTrigCk" Content="Swipe Left" Tag="Swipe Left" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="swipeRightTrigCk" Content="Swipe Right" Tag="Swipe Right" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="tiltUpTrigCk" Content="Tilt Up" Tag="Tilt Up" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="tiltDownTrigCk" Content="Tilt Down" Tag="Tilt Down" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="tiltLeftTrigCk" Content="Tilt Left" Tag="Tilt Left" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="tiltRightTrigCk" Content="Tilt Right" Tag="Tilt Right" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                </ListView>
+
+                <ListView x:Name="unloadTriggersListView" Width="200" Visibility="Collapsed">
+                    <ListView.View>
+                        <GridView>
+                            <GridView.Columns>
+                                <GridViewColumn Header="Unload Trigger" Width="170">
+                                    <GridViewColumn.HeaderContainerStyle>
+                                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                        </Style>
+                                    </GridViewColumn.HeaderContainerStyle>
+                                </GridViewColumn>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadCrossTrigCk" Content="Cross" Tag="Cross" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadCircleTrigCk" Content="Circle" Tag="Circle" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadSquareTrigCk" Content="Square" Tag="Square" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadTriangleTrigCk" Content="Triangle" Tag="Triangle" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadOptionsTrigCk" Content="Options" Tag="Options" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadShareTrigCk" Content="Share" Tag="Share" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadUpTrigCk" Content="Up" Tag="Up" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadDownTrigCk" Content="Down" Tag="Down" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadLeftTrigCk" Content="Left" Tag="Left" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadRightTrigCk" Content="Right" Tag="Right" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadPsTrigCk" Content="PS" Tag="PS" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadL1TrigCk" Content="L1" Tag="L1" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadR1TrigCk" Content="R1" Tag="R1" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadL2TrigCk" Content="L2" Tag="L2" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadR2TrigCk" Content="R2" Tag="R2" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadL3TrigCk" Content="L3" Tag="L3" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadR3TrigCk" Content="R3" Tag="R3" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadLeftTouchTrigCk" Content="Left Touch" Tag="Left Touch" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadUpperTouchTrigCk" Content="Upper Touch" Tag="Upper Touch" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadMultitouchTrigCk" Content="Multitouch" Tag="Multitouch" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadRightTouchTrigCk" Content="Right Touch" Tag="Right Touch" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadLsuTrigCk" Content="Left Stick Up" Tag="Left Stick Up" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadLsdTrigCk" Content="Left Stick Down" Tag="Left Stick Down" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadLslTrigCk" Content="Left Stick Left" Tag="Left Stick Left" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadLsrTrigCk" Content="Left Stick Right" Tag="Left Stick Right" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadRsuTrigCk" Content="Right Stick Up" Tag="Right Stick Up" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadRsdTrigCk" Content="Right Stick Down" Tag="Right Stick Down" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadRslTrigCk" Content="Right Stick Left" Tag="Right Stick Left" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadRsrTrigCk" Content="Right Stick Right" Tag="Right Stick Right" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadSwipeUpTrigCk" Content="Swipe Up" Tag="Swipe Up" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadSwipeDownTrigCk" Content="Swipe Down" Tag="Swipe Down" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadSwipeLeftTrigCk" Content="Swipe Left" Tag="Swipe Left" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadSwipeRightTrigCk" Content="Swipe Right" Tag="Swipe Right" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadTiltUpTrigCk" Content="Tilt Up" Tag="Tilt Up" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadTiltDownTrigCk" Content="Tilt Down" Tag="Tilt Down" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadTiltLeftTrigCk" Content="Tilt Left" Tag="Tilt Left" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadTiltRightTrigCk" Content="Tilt Right" Tag="Tilt Right" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                </ListView>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Left" Margin="8,0,0,0">
+                <DockPanel.Resources>
+                    <Thickness x:Key="spaceMargin" Bottom="8" />
+                </DockPanel.Resources>
+                <StackPanel>
+                    <ComboBox x:Name="actionTypeCombo" SelectedIndex="{Binding ActionTypeIndex,FallbackValue=0}" Margin="0,0,0,8">
+                        <ComboBoxItem Content="-Select an Action-" />
+                        <ComboBoxItem Content="Record a macro" />
+                        <ComboBoxItem Content="Launch a program" />
+                        <ComboBoxItem Content="Load a profile" />
+                        <ComboBoxItem Content="Press/Toggle key" />
+                        <ComboBoxItem Content="Disconnect from Bluetooth" />
+                        <ComboBoxItem Content="Check Battery Life" />
+                        <ComboBoxItem Content="Multi-action Button" />
+                        <ComboBoxItem Content="Calibration of sixaxis wheel calibration" />
+                    </ComboBox>
+
+                    <TabControl x:Name="actionTypeTabControl" SelectedIndex="{Binding ActionTypeIndex}" BorderBrush="{x:Null}">
+                        <TabItem x:Name="blankActTab" Header="">
+
+                        </TabItem>
+                        <TabItem x:Name="macroActTab" Header="Macro">
+                            <StackPanel Margin="{StaticResource spaceMargin}">
+                                <Button x:Name="recordMacroBtn" Content="Record a macro"
+                                        Tag="{Binding Macro,Mode=OneWay,ValidatesOnNotifyDataErrors=True}" Margin="{StaticResource spaceMargin}"
+                                        Click="RecordMacroBtn_Click" />
+                                <CheckBox Content="Scan Code" Margin="{StaticResource spaceMargin}" IsChecked="{Binding UseScanCode}" />
+                                <CheckBox Content="Run on Trigger Release" Margin="{StaticResource spaceMargin}" IsChecked="{Binding RunTriggerRelease}" />
+                                <CheckBox Content="Synchronized Run" Margin="{StaticResource spaceMargin}" IsChecked="{Binding SyncRun}" />
+                                <CheckBox Content="Keep key state" Margin="{StaticResource spaceMargin}" IsChecked="{Binding KeepKeyState}" />
+                                <CheckBox Content="Repeat while held" Margin="{StaticResource spaceMargin}" IsChecked="{Binding RepeatHeld}" />
+                                <TextBlock Text="{Binding Macrostring,FallbackValue='Macro Recorded'}" Margin="{StaticResource spaceMargin}" />
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem x:Name="launchProgActTab" Header="Launch Program">
+                            <StackPanel Margin="{StaticResource spaceMargin}">
+                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                    <Label Content="Hold for "></Label>
+                                    <xctk:IntegerUpDown Value="{Binding Delay}" Width="60" Minimum="0" Maximum="60" />
+                                    <Label Content="secs" />
+                                </StackPanel>
+                                <Button x:Name="launchProgBrowseBtn" Content="{lex:Loc Browse}" Margin="{StaticResource spaceMargin}"
+                                        Click="LaunchProgBrowseBtn_Click" />
+                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                    <Label Content="{Binding ProgramName}" Width="150" HorizontalContentAlignment="Center" />
+                                    <Image Source="{Binding ProgramIcon}" Width="32" Height="32" Margin="10,0,0,0" />
+                                </StackPanel>
+                                <StackPanel Margin="{StaticResource spaceMargin}">
+                                    <Label Content="Arguments"/>
+                                    <TextBox Text="" />
+                                </StackPanel>
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem x:Name="loadProfileTab" Header="Load Profile">
+                            <StackPanel Margin="{StaticResource spaceMargin}">
+                                <ComboBox SelectedIndex="{Binding ProfileIndex,FallbackValue=0}"
+                                          Margin="{StaticResource spaceMargin}">
+                                    <ComboBox.Resources>
+                                        <DataTemplate DataType="{x:Type ComboBoxItem}">
+                                            <TextBlock Text="{Binding Content}" />
+                                        </DataTemplate>
+
+                                        <DataTemplate DataType="{x:Type entity:ProfileEntity}">
+                                            <TextBlock Text="{Binding Name}" />
+                                        </DataTemplate>
+                                        <CollectionViewSource x:Key="profileListViewSource" Source="{Binding ProfileList.ProfileListCol,Mode=OneWay}" />
+                                    </ComboBox.Resources>
+                                    <ComboBox.ItemsSource>
+                                        <CompositeCollection>
+                                            <ComboBoxItem Content="(none)"/>
+                                            <CollectionContainer x:Name="profileCollection"
+                                                                 Collection="{Binding Source={StaticResource profileListViewSource}}" />
+                                        </CompositeCollection>
+                                    </ComboBox.ItemsSource>
+                                </ComboBox>
+                                <Button x:Name="loadProfUnloadBtn" Content="Set Unload Trigger" Margin="{StaticResource spaceMargin}"
+                                        IsEnabled="{Binding UnloadEnabled}" Click="LoadProfUnloadBtn_Click" />
+                                <CheckBox Content="Unload on trigger release" Margin="{StaticResource spaceMargin}" IsChecked="{Binding AutoUntrigger}" />
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem x:Name="pressKetActTab" Header="Press Key">
+                            <StackPanel Margin="{StaticResource spaceMargin}">
+                                <Button x:Name="pressKeySelectBtn" Content="{Binding DescribeText,FallbackValue='Select a Key'}"
+                                        Margin="{StaticResource spaceMargin}" Click="PressKeySelectBtn_Click" />
+                                <Button x:Name="pressKeyToggleTriggerBtn" Content="Set Unload Trigger"
+                                        Tag="{Binding UnloadError,ValidatesOnNotifyDataErrors=True}"
+                                        Visibility="{Binding ShowToggleControls}"
+                                        Margin="{StaticResource spaceMargin}" Click="PressKeyToggleTriggerBtn_Click" />
+
+                                <StackPanel Margin="{StaticResource spaceMargin}" Visibility="{Binding ShowToggleControls}">
+                                    <Label Content="Untoggle key by" />
+                                    <ComboBox x:Name="pressReleaseKeyCombo" SelectedIndex="{Binding PressReleaseIndex}">
+                                        <ComboBoxItem Content="pressing unload trigger" />
+                                        <ComboBoxItem Content="releasing unload trigger" />
+                                    </ComboBox>
+                                </StackPanel>
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem x:Name="disconnectBTTab" Header="DisBT">
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <Label Content="Hold for "></Label>
+                                <xctk:IntegerUpDown Value="{Binding HoldInterval}" Width="60" Minimum="0" Maximum="60" />
+                                <Label Content="secs" />
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem x:Name="checkBatteryTab" Header="Check Battery">
+                            <StackPanel Margin="{StaticResource spaceMargin}">
+                                <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
+                                    <Label Content="Hold for "></Label>
+                                    <xctk:IntegerUpDown Value="{Binding Delay}" Width="60" Minimum="0" Maximum="60" />
+                                    <Label Content="secs" />
+                                </StackPanel>
+                                <CheckBox Content="via notification" IsChecked="{Binding Notification}" Margin="{StaticResource spaceMargin}" />
+                                <CheckBox Content="via lightbar" IsChecked="{Binding Lightbar}" Margin="{StaticResource spaceMargin}" />
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8,0,8">
+                                    <StackPanel HorizontalAlignment="Left">
+                                        <Button x:Name="batteryLowColorBtn" Width="20" Height="20" Click="BatteryEmptyColorBtn_Click">
+                                            <Button.Background>
+                                                <SolidColorBrush Color="{Binding EmptyColor,FallbackValue=#FFFF0000}"/>
+                                            </Button.Background>
+                                        </Button>
+                                        <Label Content="0%" />
+                                    </StackPanel>
+                                    <Button Width="130" Height="20" VerticalAlignment="Top" Focusable="False" Margin="10,0,0,0">
+                                        <Button.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                <GradientStop Color="{Binding EmptyColor,FallbackValue=#FFFF0000}"/>
+                                                <GradientStop Color="{Binding FullColor,FallbackValue=#FF00FF00}" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Button.Background>
+                                    </Button>
+                                    <StackPanel Width="50">
+                                        <Button x:Name="batteryFullColorBtn" Width="20" Height="20"
+                                                HorizontalAlignment="Center" Click="BatteryFullColorBtn_Click">
+                                            <Button.Background>
+                                                <SolidColorBrush Color="{Binding FullColor,FallbackValue=#FF00FF00}"/>
+                                            </Button.Background>
+                                        </Button>
+                                        <Label Content="100%" Padding="0,5" HorizontalAlignment="Center" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem x:Name="multiActTab" Header="MultiAct">
+                            <StackPanel Margin="{StaticResource spaceMargin}">
+                                <Label Content="Tap Trigger" Margin="{StaticResource spaceMargin}" />
+                                <Button x:Name="multiTapTrigBtn" Content="{Binding TapMacroText,FallbackValue='Select a macro'}"
+                                        Margin="{StaticResource spaceMargin}" Click="MultiTapTrigBtn_Click" />
+                                <Label Content="Hold Trigger" Margin="{StaticResource spaceMargin}" />
+                                <Button x:Name="multiHoldTapTrigBtn" Content="{Binding HoldMacroText,FallbackValue='Select a macro'}"
+                                        Margin="{StaticResource spaceMargin}" Click="MultiHoldTapTrigBtn_Click" />
+                                <Label Content="Double Tap Trigger" Margin="{StaticResource spaceMargin}" />
+                                <Button x:Name="multiDoubleTapTrigBtn" Content="{Binding DoubleTapMacroText,FallbackValue='Select a macro'}"
+                                        Margin="{StaticResource spaceMargin}" Click="MultiDoubleTapTrigBtn_Click" />
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem x:Name="sixaxisWheelCalibrateTab" Header="Sixaxis Wheel">
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <Label Content="Hold for "></Label>
+                                <xctk:IntegerUpDown Value="{Binding Delay}" Width="60" Minimum="0" Maximum="60" />
+                                <Label Content="secs" />
+                            </StackPanel>
+                        </TabItem>
+                    </TabControl>
+
+                    <UniformGrid Rows="1">
+                        <Button x:Name="saveBtn" Content="{lex:Loc Save}" Margin="0,0,5,0" Click="SaveBtn_Click" />
+                        <Button x:Name="cancelBtn" Content="{lex:Loc Cancel}" Margin="5,0,0,0" Click="CancelBtn_Click" />
+                    </UniformGrid>
+                </StackPanel>
+            </DockPanel>
+        </DockPanel>
+    </DockPanel>
+</UserControl>

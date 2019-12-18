@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DS4Windows.Properties {
+namespace DS4WinWPF.Properties {
     using System;
     
     
@@ -19,7 +19,7 @@ namespace DS4Windows.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -39,7 +39,7 @@ namespace DS4Windows.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DS4Windows.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DS4WinWPF.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -1056,7 +1056,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Input Delay: *number*ms.
+        ///   Looks up a localized string similar to Input Delay: {0} ms.
         /// </summary>
         public static string InputDelay {
             get {
@@ -1737,7 +1737,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (2) Turn to 90° left (or right) position and press &quot;X&quot;.
+        ///   Looks up a localized string similar to (2) Turn to 90Â° left (or right) position and press &quot;X&quot;.
         /// </summary>
         public static string SASteeringWheelEmulationCalibrateInstruction2 {
             get {
@@ -1746,7 +1746,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (3) Turn to 90° right (or left) position and press &quot;X&quot;.
+        ///   Looks up a localized string similar to (3) Turn to 90Â° right (or left) position and press &quot;X&quot;.
         /// </summary>
         public static string SASteeringWheelEmulationCalibrateInstruction3 {
             get {
@@ -2246,7 +2246,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Controller *number* is using Profile “*Profile name*&quot;.
+        ///   Looks up a localized string similar to Controller *number* is using Profile &quot;*Profile name*&quot;.
         /// </summary>
         public static string UsingProfile {
             get {

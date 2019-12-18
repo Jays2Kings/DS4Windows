@@ -11,6 +11,7 @@ using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace DS4Windows
 {
@@ -238,7 +239,10 @@ namespace DS4Windows
     {
         protected static BackingStore m_Config = new BackingStore();
         protected static Int32 m_IdleTimeout = 600000;
-        public static readonly string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
+        public static string exelocation = Assembly.GetExecutingAssembly().Location;
+        public static string exedirpath = Directory.GetParent(exelocation).FullName;
+        public static FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(exelocation);
+        public static string exeversion = fileVersion.ProductVersion;
         public static string appdatapath;
         public static bool firstRun = false;
         public static bool multisavespots = false;
@@ -265,7 +269,7 @@ namespace DS4Windows
             X360Controls.LYNeg, X360Controls.LYPos, X360Controls.RXNeg, X360Controls.RXPos, X360Controls.RYNeg, X360Controls.RYPos,
             X360Controls.LB, X360Controls.LT, X360Controls.LS, X360Controls.RB, X360Controls.RT, X360Controls.RS, X360Controls.X,
             X360Controls.Y, X360Controls.B, X360Controls.A, X360Controls.DpadUp, X360Controls.DpadRight, X360Controls.DpadDown,
-            X360Controls.DpadLeft, X360Controls.Guide, X360Controls.None, X360Controls.None, X360Controls.None, X360Controls.None,
+            X360Controls.DpadLeft, X360Controls.Guide, X360Controls.LeftMouse, X360Controls.RightMouse, X360Controls.MiddleMouse, X360Controls.LeftMouse,
             X360Controls.Back, X360Controls.Start, X360Controls.None, X360Controls.None, X360Controls.None, X360Controls.None,
             X360Controls.None, X360Controls.None, X360Controls.None, X360Controls.None
         };
@@ -286,6 +290,162 @@ namespace DS4Windows
             return temp;
         })();
 
+        public static Dictionary<X360Controls, string> xboxDefaultNames = new Dictionary<X360Controls, string>()
+        {
+            [X360Controls.LXNeg] = "Left X-Axis-",
+            [X360Controls.LXPos] = "Left X-Axis+",
+            [X360Controls.LYNeg] = "Left Y-Axis-",
+            [X360Controls.LYPos] = "Left Y-Axis+",
+            [X360Controls.RXNeg] = "Right X-Axis-",
+            [X360Controls.RXPos] = "Right X-Axis+",
+            [X360Controls.RYNeg] = "Right Y-Axis-",
+            [X360Controls.RYPos] = "Right Y-Axis+",
+            [X360Controls.LB] = "Left Bumper",
+            [X360Controls.LT] = "Left Trigger",
+            [X360Controls.LS] = "Left Stick",
+            [X360Controls.RB] = "Right Bumper",
+            [X360Controls.RT] = "Right Trigger",
+            [X360Controls.RS] = "Right Stick",
+            [X360Controls.X] = "X Button",
+            [X360Controls.Y] = "Y Button",
+            [X360Controls.B] = "B Button",
+            [X360Controls.A] = "A Button",
+            [X360Controls.DpadUp] = "Up Button",
+            [X360Controls.DpadRight] = "Right Button",
+            [X360Controls.DpadDown] = "Down Button",
+            [X360Controls.DpadLeft] = "Left Button",
+            [X360Controls.Guide] = "Guide",
+            [X360Controls.Back] = "Back",
+            [X360Controls.Start] = "Start",
+            [X360Controls.LeftMouse] = "Left Mouse Button",
+            [X360Controls.RightMouse] = "Right Mouse Button",
+            [X360Controls.MiddleMouse] = "Middle Mouse Button",
+            [X360Controls.FourthMouse] = "4th Mouse Button",
+            [X360Controls.FifthMouse] = "5th Mouse Button",
+            [X360Controls.WUP] = "Mouse Wheel Up",
+            [X360Controls.WDOWN] = "Mouse Wheel Down",
+            [X360Controls.MouseUp] = "Mouse Up",
+            [X360Controls.MouseDown] = "Mouse Down",
+            [X360Controls.MouseLeft] = "Mouse Left",
+            [X360Controls.MouseRight] = "Mouse Right",
+            [X360Controls.Unbound] = "Unbound",
+        };
+
+        public static Dictionary<X360Controls, string> ds4DefaultNames = new Dictionary<X360Controls, string>()
+        {
+            [X360Controls.LXNeg] = "Left X-Axis-",
+            [X360Controls.LXPos] = "Left X-Axis+",
+            [X360Controls.LYNeg] = "Left Y-Axis-",
+            [X360Controls.LYPos] = "Left Y-Axis+",
+            [X360Controls.RXNeg] = "Right X-Axis-",
+            [X360Controls.RXPos] = "Right X-Axis+",
+            [X360Controls.RYNeg] = "Right Y-Axis-",
+            [X360Controls.RYPos] = "Right Y-Axis+",
+            [X360Controls.LB] = "L1",
+            [X360Controls.LT] = "L2",
+            [X360Controls.LS] = "L3",
+            [X360Controls.RB] = "R1",
+            [X360Controls.RT] = "R2",
+            [X360Controls.RS] = "R3",
+            [X360Controls.X] = "Square",
+            [X360Controls.Y] = "Triangle",
+            [X360Controls.B] = "Circle",
+            [X360Controls.A] = "Cross",
+            [X360Controls.DpadUp] = "Dpad Up",
+            [X360Controls.DpadRight] = "Dpad Right",
+            [X360Controls.DpadDown] = "Dpad Down",
+            [X360Controls.DpadLeft] = "Dpad Left",
+            [X360Controls.Guide] = "PS",
+            [X360Controls.Back] = "Share",
+            [X360Controls.Start] = "Options",
+            [X360Controls.LeftMouse] = "Left Mouse Button",
+            [X360Controls.RightMouse] = "Right Mouse Button",
+            [X360Controls.MiddleMouse] = "Middle Mouse Button",
+            [X360Controls.FourthMouse] = "4th Mouse Button",
+            [X360Controls.FifthMouse] = "5th Mouse Button",
+            [X360Controls.WUP] = "Mouse Wheel Up",
+            [X360Controls.WDOWN] = "Mouse Wheel Down",
+            [X360Controls.MouseUp] = "Mouse Up",
+            [X360Controls.MouseDown] = "Mouse Down",
+            [X360Controls.MouseLeft] = "Mouse Left",
+            [X360Controls.MouseRight] = "Mouse Right",
+            [X360Controls.Unbound] = "Unbound",
+        };
+
+        public static string getX360ControlString(X360Controls key, OutContType conType)
+        {
+            string result = string.Empty;
+            if (conType == DS4Windows.OutContType.X360)
+            {
+                xboxDefaultNames.TryGetValue(key, out result);
+            }
+            else if (conType == DS4Windows.OutContType.DS4)
+            {
+                ds4DefaultNames.TryGetValue(key, out result);
+            }
+
+            return result;
+        }
+
+        public static Dictionary<DS4Controls, string> ds4inputNames = new Dictionary<DS4Controls, string>()
+        {
+            [DS4Controls.LXNeg] = "Left X-Axis-",
+            [DS4Controls.LXPos] = "Left X-Axis+",
+            [DS4Controls.LYNeg] = "Left Y-Axis-",
+            [DS4Controls.LYPos] = "Left Y-Axis+",
+            [DS4Controls.RXNeg] = "Right X-Axis-",
+            [DS4Controls.RXPos] = "Right X-Axis+",
+            [DS4Controls.RYNeg] = "Right Y-Axis-",
+            [DS4Controls.RYPos] = "Right Y-Axis+",
+            [DS4Controls.L1] = "L1",
+            [DS4Controls.L2] = "L2",
+            [DS4Controls.L3] = "L3",
+            [DS4Controls.R1] = "R1",
+            [DS4Controls.R2] = "R2",
+            [DS4Controls.R3] = "R3",
+            [DS4Controls.Square] = "Square",
+            [DS4Controls.Triangle] = "Triangle",
+            [DS4Controls.Circle] = "Circle",
+            [DS4Controls.Cross] = "Cross",
+            [DS4Controls.DpadUp] = "Dpad Up",
+            [DS4Controls.DpadRight] = "Dpad Right",
+            [DS4Controls.DpadDown] = "Dpad Down",
+            [DS4Controls.DpadLeft] = "Dpad Left",
+            [DS4Controls.PS] = "PS",
+            [DS4Controls.Share] = "Share",
+            [DS4Controls.Options] = "Options",
+            [DS4Controls.TouchLeft] = "Left Touch",
+            [DS4Controls.TouchUpper] = "Upper Touch",
+            [DS4Controls.TouchMulti] = "Multitouch",
+            [DS4Controls.TouchRight] = "Right Touch",
+            [DS4Controls.GyroXPos] = "Gyro X+",
+            [DS4Controls.GyroXNeg] = "Gyro X-",
+            [DS4Controls.GyroZPos] = "Gyro Z+",
+            [DS4Controls.GyroZNeg] = "Gyro Z+-",
+            [DS4Controls.SwipeLeft] = "Swipe Left",
+            [DS4Controls.SwipeRight] = "Swipe Right",
+            [DS4Controls.SwipeUp] = "Swipe Up",
+            [DS4Controls.SwipeUp] = "Swipe Up",
+            [DS4Controls.SwipeDown] = "None",
+        };
+
+        public static Dictionary<DS4Controls, int> macroDS4Values = new Dictionary<DS4Controls, int>()
+        {
+            [DS4Controls.Cross] = 261, [DS4Controls.Circle] = 262,
+            [DS4Controls.Square] = 263, [DS4Controls.Triangle] = 264,
+            [DS4Controls.Options] = 265, [DS4Controls.Share] = 266,
+            [DS4Controls.DpadUp] = 267, [DS4Controls.DpadDown] = 268,
+            [DS4Controls.DpadLeft] = 269, [DS4Controls.DpadRight] = 270,
+            [DS4Controls.PS] = 271, [DS4Controls.L1] = 272,
+            [DS4Controls.R1] = 273, [DS4Controls.L2] = 274,
+            [DS4Controls.R2] = 275, [DS4Controls.L3] = 276,
+            [DS4Controls.R3] = 277, [DS4Controls.LXPos] = 278,
+            [DS4Controls.LXNeg] = 279, [DS4Controls.LYPos] = 280,
+            [DS4Controls.LYNeg] = 281, [DS4Controls.RXPos] = 282,
+            [DS4Controls.RXNeg] = 283, [DS4Controls.RYPos] = 284,
+            [DS4Controls.RYNeg] = 285,
+        };
+
         public static void SaveWhere(string path)
         {
             appdatapath = path;
@@ -293,6 +453,36 @@ namespace DS4Windows
             m_Config.m_Actions = appdatapath + "\\Actions.xml";
             m_Config.m_linkedProfiles = Global.appdatapath + "\\LinkedProfiles.xml";
             m_Config.m_controllerConfigs = Global.appdatapath + "\\ControllerConfigs.xml";
+        }
+
+        public static bool SaveDefault(string path)
+        {
+            Boolean Saved = true;
+            XmlDocument m_Xdoc = new XmlDocument();
+            try
+            {
+                XmlNode Node;
+
+                m_Xdoc.RemoveAll();
+
+                Node = m_Xdoc.CreateXmlDeclaration("1.0", "utf-8", String.Empty);
+                m_Xdoc.AppendChild(Node);
+
+                Node = m_Xdoc.CreateComment(string.Format(" Profile Configuration Data. {0} ", DateTime.Now));
+                m_Xdoc.AppendChild(Node);
+
+                Node = m_Xdoc.CreateWhitespace("\r\n");
+                m_Xdoc.AppendChild(Node);
+
+                Node = m_Xdoc.CreateNode(XmlNodeType.Element, "Profile", null);
+
+                m_Xdoc.AppendChild(Node);
+
+                m_Xdoc.Save(path);
+            }
+            catch { Saved = false; }
+
+            return Saved;
         }
 
         /// <summary>
@@ -303,8 +493,8 @@ namespace DS4Windows
         {
             try
             {
-                File.WriteAllText(exepath + "\\test.txt", "test");
-                File.Delete(exepath + "\\test.txt");
+                File.WriteAllText(exedirpath + "\\test.txt", "test");
+                File.Delete(exedirpath + "\\test.txt");
                 return false;
             }
             catch (UnauthorizedAccessException)
@@ -451,17 +641,17 @@ namespace DS4Windows
 
         public static void FindConfigLocation()
         {
-            if (File.Exists(exepath + "\\Auto Profiles.xml")
+            if (File.Exists(exedirpath + "\\Auto Profiles.xml")
                 && File.Exists(appDataPpath + "\\Auto Profiles.xml"))
             {
                 Global.firstRun = true;
                 Global.multisavespots = true;
             }
-            else if (File.Exists(exepath + "\\Auto Profiles.xml"))
-                SaveWhere(exepath);
+            else if (File.Exists(exedirpath + "\\Auto Profiles.xml"))
+                SaveWhere(exedirpath);
             else if (File.Exists(appDataPpath + "\\Auto Profiles.xml"))
                 SaveWhere(appDataPpath);
-            else if (!File.Exists(exepath + "\\Auto Profiles.xml")
+            else if (!File.Exists(exedirpath + "\\Auto Profiles.xml")
                 && !File.Exists(appDataPpath + "\\Auto Profiles.xml"))
             {
                 Global.firstRun = true;
@@ -515,6 +705,33 @@ namespace DS4Windows
                 }
             }
             catch { }
+        }
+
+        public static bool CreateAutoProfiles(string m_Profile)
+        {
+            bool Saved = true;
+
+            try
+            {
+                XmlNode Node;
+                XmlDocument doc = new XmlDocument();
+
+                Node = doc.CreateXmlDeclaration("1.0", "utf-8", String.Empty);
+                doc.AppendChild(Node);
+
+                Node = doc.CreateComment(string.Format(" Auto-Profile Configuration Data. {0} ", DateTime.Now));
+                doc.AppendChild(Node);
+
+                Node = doc.CreateWhitespace("\r\n");
+                doc.AppendChild(Node);
+
+                Node = doc.CreateNode(XmlNodeType.Element, "Programs", "");
+                doc.AppendChild(Node);
+                doc.Save(m_Profile);
+            }
+            catch { Saved = false; }
+
+            return Saved;
         }
 
         public static event EventHandler<EventArgs> ControllerStatusChange; // called when a controller is added/removed/battery or touchpad mode changes/etc.
@@ -1552,6 +1769,15 @@ namespace DS4Windows
             tempprofilename[device] = name;
             useTempProfile[device] = true;
             tempprofileDistance[device] = name.ToLower().Contains("distance");
+        }
+
+        public static void LoadBlankDevProfile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
+        {
+            m_Config.LoadBlankProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            tempprofilename[device] = string.Empty;
+            useTempProfile[device] = false;
+            tempprofileDistance[device] = false;
         }
 
         public static bool Save()
@@ -3346,31 +3572,8 @@ namespace DS4Windows
                 // performing this upon program startup before loading devices.
                 if (xinputChange)
                 {
-                    if (device < 4)
-                    {
-                        DS4Device tempDevice = control.DS4Controllers[device];
-                        bool exists = tempBool = (tempDevice != null);
-                        bool synced = tempBool = exists ? tempDevice.isSynced() : false;
-                        bool isAlive = tempBool = exists ? tempDevice.IsAlive() : false;
-                        if (dinputOnly[device] != oldUseDInputOnly)
-                        {
-                            if (dinputOnly[device] == true)
-                            {
-                                xinputPlug = false;
-                                xinputStatus = true;
-                            }
-                            else if (synced && isAlive)
-                            {
-                                xinputPlug = true;
-                                xinputStatus = true;
-                            }
-                        }
-                        else if (oldContType != outputDevType[device])
-                        {
-                            xinputPlug = true;
-                            xinputStatus = true;
-                        }
-                    }
+                    CheckOldDevicestatus(device, control, oldContType,
+                        out xinputPlug, out xinputStatus);
                 }
 
                 try
@@ -3630,41 +3833,7 @@ namespace DS4Windows
             // options to device instance
             if (postLoad && device < 4)
             {
-                DS4Device tempDev = control.DS4Controllers[device];
-                if (tempDev != null && tempDev.isSynced())
-                {
-                    tempDev.queueEvent(() =>
-                    {
-                        tempDev.setIdleTimeout(idleDisconnectTimeout[device]);
-                        tempDev.setBTPollRate(btPollRate[device]);
-                        if (xinputStatus && xinputPlug)
-                        {
-                            OutputDevice tempOutDev = control.outputDevices[device];
-                            if (tempOutDev != null)
-                            {
-                                //string tempType = tempOutDev.GetDeviceType();
-                                //AppLogger.LogToGui("Unplug " + tempType + " Controller #" + (device + 1), false);
-                                //tempOutDev.Disconnect();
-                                tempOutDev = null;
-                                //control.outputDevices[device] = null;
-                                Global.activeOutDevType[device] = OutContType.None;
-                                control.UnplugOutDev(device, tempDev);
-                            }
-
-                            OutContType tempContType = outputDevType[device];
-                            control.PluginOutDev(device, tempDev);
-                        }
-                        else if (xinputStatus && !xinputPlug)
-                        {
-                            Global.activeOutDevType[device] = OutContType.None;
-                            control.UnplugOutDev(device, tempDev);
-                        }
-
-                        tempDev.setRumble(0, 0);
-                    });
-
-                    Program.rootHub.touchPad[device]?.ResetTrackAccel(trackballFriction[device]);
-                }
+                PostLoadSnippet(device, control, xinputStatus, xinputPlug);
             }
 
             return Loaded;
@@ -4629,6 +4798,111 @@ namespace DS4Windows
             trackballFriction[device] = 10.0;
             outputDevType[device] = OutContType.X360;
             ds4Mapping = false;
+        }
+
+        public void LoadBlankProfile(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true, bool postLoad = true)
+        {
+            bool xinputPlug = false;
+            bool xinputStatus = false;
+
+            OutContType oldContType = Global.activeOutDevType[device];
+
+            // Make sure to reset currently set profile values before parsing
+            ResetProfile(device);
+
+            // Only change xinput devices under certain conditions. Avoid
+            // performing this upon program startup before loading devices.
+            if (xinputChange)
+            {
+                CheckOldDevicestatus(device, control, oldContType,
+                    out xinputPlug, out xinputStatus);
+            }
+
+            foreach (DS4ControlSettings dcs in ds4settings[device])
+                dcs.Reset();
+
+            profileActions[device].Clear();
+            containsCustomAction[device] = false;
+            containsCustomExtras[device] = false;
+
+            // If a device exists, make sure to transfer relevant profile device
+            // options to device instance
+            if (postLoad && device < 4)
+            {
+                PostLoadSnippet(device, control, xinputStatus, xinputPlug);
+            }
+        }
+
+        private void CheckOldDevicestatus(int device, ControlService control,
+            OutContType oldContType, out bool xinputPlug, out bool xinputStatus)
+        {
+            xinputPlug = false;
+            xinputStatus = false;
+
+            if (device < 4)
+            {
+                bool oldUseDInputOnly = Global.useDInputOnly[device];
+                DS4Device tempDevice = control.DS4Controllers[device];
+                bool exists = tempBool = (tempDevice != null);
+                bool synced = tempBool = exists ? tempDevice.isSynced() : false;
+                bool isAlive = tempBool = exists ? tempDevice.IsAlive() : false;
+                if (dinputOnly[device] != oldUseDInputOnly)
+                {
+                    if (dinputOnly[device] == true)
+                    {
+                        xinputPlug = false;
+                        xinputStatus = true;
+                    }
+                    else if (synced && isAlive)
+                    {
+                        xinputPlug = true;
+                        xinputStatus = true;
+                    }
+                }
+                else if (oldContType != outputDevType[device])
+                {
+                    xinputPlug = true;
+                    xinputStatus = true;
+                }
+            }
+        }
+
+        private void PostLoadSnippet(int device, ControlService control, bool xinputStatus, bool xinputPlug)
+        {
+            DS4Device tempDev = control.DS4Controllers[device];
+            if (tempDev != null && tempDev.isSynced())
+            {
+                tempDev.queueEvent(() =>
+                {
+                    tempDev.setIdleTimeout(idleDisconnectTimeout[device]);
+                    tempDev.setBTPollRate(btPollRate[device]);
+                    if (xinputStatus && xinputPlug)
+                    {
+                        OutputDevice tempOutDev = control.outputDevices[device];
+                        if (tempOutDev != null)
+                        {
+                            tempOutDev = null;
+                            Global.activeOutDevType[device] = OutContType.None;
+                            control.UnplugOutDev(device, tempDev);
+                        }
+
+                        OutContType tempContType = outputDevType[device];
+                        control.PluginOutDev(device, tempDev);
+                        //Global.useDInputOnly[device] = false;
+
+                    }
+                    else if (xinputStatus && !xinputPlug)
+                    {
+                        Global.activeOutDevType[device] = OutContType.None;
+                        control.UnplugOutDev(device, tempDev);
+                    }
+
+                    tempDev.setRumble(0, 0);
+                });
+
+                Program.rootHub.touchPad[device]?.ResetTrackAccel(trackballFriction[device]);
+            }
         }
     }
 

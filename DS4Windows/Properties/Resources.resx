@@ -293,7 +293,7 @@
     <value>..\Resources\DS4-Config_RS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DS4_Config_Options" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4-Config_ptionss.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\DS4-Config_options.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DS4_Config_PS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DS4-Config_PS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -410,7 +410,7 @@
     <value>If removing DS4Windows, You can delete the settings following the profile folder link</value>
   </data>
   <data name="InputDelay" xml:space="preserve">
-    <value>Input Delay: *number*ms</value>
+    <value>Input Delay: {0} ms</value>
   </data>
   <data name="InstallComplete" xml:space="preserve">
     <value>Install Complete</value>
@@ -632,10 +632,10 @@
     <value>(1) Center the controller, hold it steady and press "X"</value>
   </data>
   <data name="SASteeringWheelEmulationCalibrateInstruction2" xml:space="preserve">
-    <value>(2) Turn to 90° left (or right) position and press "X"</value>
+    <value>(2) Turn to 90Â° left (or right) position and press "X"</value>
   </data>
   <data name="SASteeringWheelEmulationCalibrateInstruction3" xml:space="preserve">
-    <value>(3) Turn to 90° right (or left) position and press "X"</value>
+    <value>(3) Turn to 90Â° right (or left) position and press "X"</value>
   </data>
   <data name="SASteeringWheelEmulationCalibrateInstruction" xml:space="preserve">
     <value>All calibraton points are set when lightbar color turns to green. While turning the controller the lightbar color flashes when the controller is at calibration point. Accept calibration with OK button</value>
@@ -767,7 +767,7 @@
     <value>Using Exclusive Mode</value>
   </data>
   <data name="UsingProfile" xml:space="preserve">
-    <value>Controller *number* is using Profile “*Profile name*"</value>
+    <value>Controller *number* is using Profile "*Profile name*"</value>
   </data>
   <data name="UsingShared" xml:space="preserve">
     <value>Using Shared Mode</value>

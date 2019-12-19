@@ -74,7 +74,7 @@ namespace DS4Windows.Forms
             { "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion,
             string.Empty, string.Empty, string.Empty, string.Empty };
 
-        private const string UPDATER_VERSION = "1.3.1";
+        private const string UPDATER_VERSION = "1.4.0";
         private const int WM_QUERYENDSESSION = 0x11;
         private const int WM_CLOSE = 0x10;
         public  const int WM_COPYDATA = 0x004A;

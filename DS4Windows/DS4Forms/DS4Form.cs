@@ -572,7 +572,7 @@ namespace DS4Windows.Forms
 
         private void UpdateTheUpdater()
         {
-            if (File.Exists(exepath + "\\Update Files\\DS4Updater.exe"))
+            if (File.Exists(exepath + "\\Update Files\\DS4Windows\\DS4Updater.exe"))
             {
                 Process[] processes = Process.GetProcessesByName("DS4Updater");
                 while (processes.Length > 0)
@@ -582,8 +582,8 @@ namespace DS4Windows.Forms
                 }
 
                 File.Delete(exepath + "\\DS4Updater.exe");
-                File.Move(exepath + "\\Update Files\\DS4Updater.exe", exepath + "\\DS4Updater.exe");
-                Directory.Delete(exepath + "\\Update Files");
+                File.Move(exepath + "\\Update Files\\DS4Windows\\DS4Updater.exe", exepath + "\\DS4Updater.exe");
+                Directory.Delete(exepath + "\\Update Files", true);
             }
         }
 

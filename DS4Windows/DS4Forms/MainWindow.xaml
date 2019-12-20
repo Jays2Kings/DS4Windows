@@ -316,7 +316,7 @@
                                     <TextBlock Text="{lex:Loc DriverSetup}" TextDecorations="Underline" Foreground="#FF3881D8" Cursor="Hand" />
                                 </Button>
                                 <Button x:Name="checkUpdatesBtn" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}"
-                                    Style="{StaticResource NoBGHoverBtn}">
+                                    Style="{StaticResource NoBGHoverBtn}" Click="CheckUpdatesBtn_Click">
                                     <!--="CheckUpdatesBtn_Click">-->
                                     <TextBlock Text="{lex:Loc CheckUpdateNow}" TextDecorations="Underline" Foreground="#FF3881D8" Cursor="Hand" />
                                 </Button>

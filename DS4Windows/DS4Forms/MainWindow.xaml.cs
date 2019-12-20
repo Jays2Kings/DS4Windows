@@ -385,7 +385,7 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
 
         private void UpdateTheUpdater()
         {
-            if (File.Exists(Global.exedirpath + "\\Update Files\\DS4Updater.exe"))
+            if (File.Exists(Global.exedirpath + "\\Update Files\\DS4Windows\\DS4Updater.exe"))
             {
                 Process[] processes = Process.GetProcessesByName("DS4Updater");
                 while (processes.Length > 0)
@@ -395,9 +395,9 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
                 }
 
                 File.Delete(Global.exedirpath + "\\DS4Updater.exe");
-                File.Move(Global.exedirpath + "\\Update Files\\DS4Updater.exe",
+                File.Move(Global.exedirpath + "\\Update Files\\DS4Windows\\DS4Updater.exe",
                     Global.exedirpath + "\\DS4Updater.exe");
-                Directory.Delete(Global.exedirpath + "\\Update Files");
+                Directory.Delete(Global.exedirpath + "\\Update Files", true);
             }
         }
 

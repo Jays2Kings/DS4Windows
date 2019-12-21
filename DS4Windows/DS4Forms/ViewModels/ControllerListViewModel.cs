@@ -405,5 +405,21 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 SelectedIndex = profileListHolder.ProfileListCol.IndexOf(temp);
             }
         }
+
+        public void RequestDisconnect()
+        {
+            if (device.Synced && !device.Charging)
+            {
+                if (device.ConnectionType == ConnectionType.BT)
+                {
+                    //device.StopUpdate();
+                    device.DisconnectBT();
+                }
+                else if (device.ConnectionType == ConnectionType.SONYWA)
+                {
+                    device.DisconnectDongle();
+                }
+            }
+        }
     }
 }

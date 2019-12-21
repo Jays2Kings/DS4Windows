@@ -705,19 +705,7 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
         private void ContStatusImg_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             CompositeDeviceModel item = conLvViewModel.CurrentItem;
-            DS4Device tempDev = item.Device;
-            if (tempDev.Synced && !tempDev.Charging)
-            {
-                if (tempDev.ConnectionType == ConnectionType.BT)
-                {
-                    //tempDev.StopUpdate();
-                    tempDev.DisconnectBT();
-                }
-                else if (tempDev.ConnectionType == ConnectionType.SONYWA)
-                {
-                    tempDev.DisconnectDongle();
-                }
-            }
+            item.RequestDisconnect();
         }
 
         private void ExportLogBtn_Click(object sender, RoutedEventArgs e)

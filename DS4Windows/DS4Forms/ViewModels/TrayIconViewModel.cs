@@ -198,7 +198,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             {
                 if (tempDev.ConnectionType == ConnectionType.BT)
                 {
-                    tempDev.StopUpdate();
+                    //tempDev.StopUpdate();
                     tempDev.DisconnectBT();
                 }
                 else if (tempDev.ConnectionType == ConnectionType.SONYWA)

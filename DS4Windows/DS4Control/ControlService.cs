@@ -491,6 +491,7 @@ namespace DS4Windows
                         device.SyncChange += this.On_SyncChange;
                         device.SyncChange += DS4Devices.UpdateSerial;
                         device.SerialChange += this.On_SerialChange;
+                        device.ChargingChanged += CheckQuickCharge;
 
                         touchPad[i] = new Mouse(i, device);
 
@@ -614,6 +615,16 @@ namespace DS4Windows
             ServiceStarted?.Invoke(this, EventArgs.Empty);
             RunningChanged?.Invoke(this, EventArgs.Empty);
             return true;
+        }
+
+        private void CheckQuickCharge(object sender, EventArgs e)
+        {
+            DS4Device device = sender as DS4Device;
+            if (device.ConnectionType == ConnectionType.BT && getQuickCharge() &&
+                device.Charging)
+            {
+                device.DisconnectBT();
+            }
         }
 
         public bool Stop(bool showlog = true)
@@ -754,6 +765,7 @@ namespace DS4Windows
                             device.SyncChange += this.On_SyncChange;
                             device.SyncChange += DS4Devices.UpdateSerial;
                             device.SerialChange += this.On_SerialChange;
+                            device.ChargingChanged += CheckQuickCharge;
 
                             touchPad[Index] = new Mouse(Index, device);
 

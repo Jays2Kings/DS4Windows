@@ -727,47 +727,56 @@ namespace DS4WinWPF.DS4Forms
                 ConvertFromString("pack://application:,,,/DS4Windows;component/Resources/DS4 Config.png") as ImageSource;
             conImageBrush.ImageSource = temp;
 
-            Canvas.SetLeft(aBtn, 459); Canvas.SetTop(aBtn, 144);
-
-            Canvas.SetLeft(bBtn, 491); Canvas.SetTop(bBtn, 119);
-            Canvas.SetLeft(xBtn, 426); Canvas.SetTop(xBtn, 119);
-            Canvas.SetLeft(yBtn, 458); Canvas.SetTop(yBtn, 89);
-            Canvas.SetLeft(lbBtn, 176); Canvas.SetTop(lbBtn, 24);
+            Canvas.SetLeft(aBtn, 442); Canvas.SetTop(aBtn, 148);
+            Canvas.SetLeft(bBtn, 474); Canvas.SetTop(bBtn, 120);
+            Canvas.SetLeft(xBtn, 408); Canvas.SetTop(xBtn, 116);
+            Canvas.SetLeft(yBtn, 440); Canvas.SetTop(yBtn, 90);
+            Canvas.SetLeft(lbBtn, 154); Canvas.SetTop(lbBtn, 24);
             lbBtn.Width = 46; lbBtn.Height = 20;
-            Canvas.SetLeft(rbBtn, 449); Canvas.SetTop(rbBtn, 24);
-            rbBtn.Width = 46; rbBtn.Height = 20;
-            Canvas.SetLeft(ltBtn, 177); Canvas.SetTop(ltBtn, 2);
-            ltBtn.Width = 46; ltBtn.Height = 20;
-            Canvas.SetLeft(rtBtn, 445); Canvas.SetTop(rtBtn, 2);
-            rtBtn.Width = 46; rtBtn.Height = 20;
-            Canvas.SetLeft(rtBtn, 445); Canvas.SetTop(rtBtn, 2);
-            rtBtn.Width = 46; rtBtn.Height = 20;
-            Canvas.SetLeft(backBtn, 237); Canvas.SetTop(backBtn, 74);
-            Canvas.SetLeft(startBtn, 415); Canvas.SetTop(startBtn, 74);
-            Canvas.SetLeft(guideBtn, 320); Canvas.SetTop(guideBtn, 163);
-            Canvas.SetLeft(guideBtn, 320); Canvas.SetTop(guideBtn, 163);
 
-            Canvas.SetLeft(lsbBtn, 258); Canvas.SetTop(lsbBtn, 182);
-            Canvas.SetLeft(lsuBtn, 250); Canvas.SetTop(lsuBtn, 169);
+            Canvas.SetLeft(rbBtn, 428); Canvas.SetTop(rbBtn, 24);
+            rbBtn.Width = 46; rbBtn.Height = 20;
+
+            Canvas.SetLeft(ltBtn, 162); Canvas.SetTop(ltBtn, 6);
+            ltBtn.Width = 46; ltBtn.Height = 20;
+
+            Canvas.SetLeft(rtBtn, 428); Canvas.SetTop(rtBtn, 6);
+            rtBtn.Width = 46; rtBtn.Height = 20;
+
+            Canvas.SetLeft(backBtn, 218); Canvas.SetTop(backBtn, 76);
+            Canvas.SetLeft(startBtn, 395); Canvas.SetTop(startBtn, 76);
+            Canvas.SetLeft(guideBtn, 303); Canvas.SetTop(guideBtn, 162);
+
+            Canvas.SetLeft(lsbBtn, 238); Canvas.SetTop(lsbBtn, 182);
+            Canvas.SetLeft(lsuBtn, 230); Canvas.SetTop(lsuBtn, 160);
             lsuBtn.Width = 32; lsuBtn.Height = 16;
-            Canvas.SetLeft(lsrBtn, 276); Canvas.SetTop(lsrBtn, 180);
-            lsrBtn.Width = 16; lsrBtn.Height = 24;
-            Canvas.SetLeft(lsdBtn, 251); Canvas.SetTop(lsdBtn, 200);
-            lsdBtn.Width = 28; lsdBtn.Height = 16;
-            Canvas.SetLeft(lslBtn, 240); Canvas.SetTop(lslBtn, 176);
+
+            Canvas.SetLeft(lsrBtn, 264); Canvas.SetTop(lsrBtn, 176);
+            lsrBtn.Width = 16; lsrBtn.Height = 28;
+
+            Canvas.SetLeft(lsdBtn, 232); Canvas.SetTop(lsdBtn, 202);
+            lsdBtn.Width = 32; lsdBtn.Height = 16;
+
+            Canvas.SetLeft(lslBtn, 216); Canvas.SetTop(lslBtn, 176);
             lslBtn.Width = 16; lslBtn.Height = 28;
 
-            Canvas.SetLeft(rsbBtn, 396); Canvas.SetTop(rsbBtn, 194);
-            Canvas.SetLeft(rsuBtn, 391); Canvas.SetTop(rsuBtn, 168);
-            Canvas.SetLeft(rsrBtn, 414); Canvas.SetTop(rsrBtn, 176);
-            Canvas.SetLeft(rsdBtn, 391); Canvas.SetTop(rsdBtn, 198);
-            Canvas.SetLeft(rslBtn, 378); Canvas.SetTop(rslBtn, 176);
+            Canvas.SetLeft(rsbBtn, 377); Canvas.SetTop(rsbBtn, 184);
+            Canvas.SetLeft(rsuBtn, 370); Canvas.SetTop(rsuBtn, 160);
+            rsuBtn.Width = 32; rsuBtn.Height = 16;
+
+            Canvas.SetLeft(rsrBtn, 400); Canvas.SetTop(rsrBtn, 176);
+            rsrBtn.Width = 16; rsrBtn.Height = 28;
+
+            Canvas.SetLeft(rsdBtn, 370); Canvas.SetTop(rsdBtn, 200);
+            rsdBtn.Width = 32; rsdBtn.Height = 16;
+
+            Canvas.SetLeft(rslBtn, 352); Canvas.SetTop(rslBtn, 176);
             rslBtn.Width = 16; rslBtn.Height = 28;
 
-            Canvas.SetLeft(dpadUBtn, 189); Canvas.SetTop(dpadUBtn, 104);
-            Canvas.SetLeft(dpadRBtn, 212); Canvas.SetTop(dpadRBtn, 112);
-            Canvas.SetLeft(dpadDBtn, 190); Canvas.SetTop(dpadDBtn, 140);
-            Canvas.SetLeft(dpadLBtn, 166); Canvas.SetTop(dpadLBtn, 112);
+            Canvas.SetLeft(dpadUBtn, 170); Canvas.SetTop(dpadUBtn, 100);
+            Canvas.SetLeft(dpadRBtn, 194); Canvas.SetTop(dpadRBtn, 112);
+            Canvas.SetLeft(dpadDBtn, 170); Canvas.SetTop(dpadDBtn, 144);
+            Canvas.SetLeft(dpadLBtn, 144); Canvas.SetTop(dpadLBtn, 112);
         }
 
         private void RegBindRadio_Click(object sender, RoutedEventArgs e)

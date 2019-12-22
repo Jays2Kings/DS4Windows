@@ -100,7 +100,7 @@
                                     </Style.Triggers>
                                 </Style>
                             </Button.Style>
-                            <Rectangle x:Name="lightbarRect" Fill="{Binding MainColorString,FallbackValue=Green}" Width="{Binding Path=Width, ElementName=ds4LightbarColorBtn}"
+                            <Rectangle x:Name="lightbarRect" Fill="{Binding LightbarBrush,FallbackValue=Green}" Width="{Binding Path=Width, ElementName=ds4LightbarColorBtn}"
                                        Height="{Binding Path=Height, ElementName=ds4LightbarColorBtn}">
                                 <Rectangle.OpacityMask>
                                     <ImageBrush ImageSource="/DS4Windows;component/Resources/DS4 lightbar.png" />

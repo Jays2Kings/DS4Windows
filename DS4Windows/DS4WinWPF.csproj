@@ -410,6 +410,8 @@
     <Content Include="BezierCurveEditor\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\rainbowCCrop.png" />
+    <Resource Include="Resources\rainbowC.png" />
     <Resource Include="Resources\DS4 lightbar.png" />
     <Resource Include="Resources\keydown.png" />
     <Resource Include="Resources\keyup.png" />

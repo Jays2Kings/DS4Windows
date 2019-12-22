@@ -20,6 +20,36 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private int funcDevNum;
         public int FuncDevNum { get => funcDevNum; }
 
+        private ImageBrush lightbarImgBrush = new ImageBrush();
+        private SolidColorBrush lightbarColBrush = new SolidColorBrush();
+
+        public System.Windows.Media.Brush LightbarBrush
+        {
+            get
+            {
+                System.Windows.Media.Brush tempBrush;
+                ref DS4Color color = ref Global.MainColor[device];
+                if (!RainbowExists)
+                {
+                    lightbarColBrush.Color = new System.Windows.Media.Color()
+                    {
+                        A = 255,
+                        R = color.red,
+                        G = color.green,
+                        B = color.blue
+                    };
+                    tempBrush = lightbarColBrush as System.Windows.Media.Brush;
+                }
+                else
+                {
+                    tempBrush = lightbarImgBrush as System.Windows.Media.Brush;
+                }
+
+                return tempBrush;
+            }
+        }
+        public event EventHandler LightbarBrushChanged;
+
         public System.Windows.Media.Color MainColor
         {
             get
@@ -1372,21 +1402,34 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             Global.outDevTypeTemp[device] = OutContType.X360;
             tempBtPollRate = Global.BTPollRate[device];
 
+            ImageSourceConverter sourceConverter = new ImageSourceConverter();
+            ImageSource temp = sourceConverter.
+                ConvertFromString("pack://application:,,,/DS4Windows;component/Resources/rainbowCCrop.png") as ImageSource;
+            lightbarImgBrush.ImageSource = temp.Clone();
+
             MainColorChanged += ProfileSettingsViewModel_MainColorChanged;
             MainColorRChanged += (sender, args) =>
             {
                 MainColorRStringChanged?.Invoke(this, EventArgs.Empty);
                 MainColorStringChanged?.Invoke(this, EventArgs.Empty);
+                LightbarBrushChanged?.Invoke(this, EventArgs.Empty);
             };
             MainColorGChanged += (sender, args) =>
             {
                 MainColorGStringChanged?.Invoke(this, EventArgs.Empty);
                 MainColorStringChanged?.Invoke(this, EventArgs.Empty);
+                LightbarBrushChanged?.Invoke(this, EventArgs.Empty);
             };
             MainColorBChanged += (sender, args) =>
             {
                 MainColorBStringChanged?.Invoke(this, EventArgs.Empty);
                 MainColorStringChanged?.Invoke(this, EventArgs.Empty);
+                LightbarBrushChanged?.Invoke(this, EventArgs.Empty);
+            };
+
+            RainbowChanged += (sender, args) =>
+            {
+                LightbarBrushChanged?.Invoke(this, EventArgs.Empty);
             };
         }
 
@@ -1396,6 +1439,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             MainColorRChanged?.Invoke(this, EventArgs.Empty);
             MainColorGChanged?.Invoke(this, EventArgs.Empty);
             MainColorBChanged?.Invoke(this, EventArgs.Empty);
+            LightbarBrushChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public void UpdateFlashColor(System.Windows.Media.Color color)

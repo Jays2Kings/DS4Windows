@@ -1213,6 +1213,7 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
 
         private void NotifyIcon_TrayMiddleMouseDown(object sender, RoutedEventArgs e)
         {
+            contextclose = true;
             Close();
         }
 

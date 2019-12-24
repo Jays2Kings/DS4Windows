@@ -52,6 +52,7 @@ namespace DS4WinWPF.DS4Forms
         private bool keepsize;
         private bool controllerReadingsTabActive = false;
         public bool Keepsize { get => keepsize; }
+        public int DeviceNum { get => deviceNum; }
 
         private NonFormTimer inputTimer;
 

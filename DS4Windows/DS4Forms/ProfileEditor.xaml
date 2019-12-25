@@ -620,7 +620,8 @@
                             <ComboBoxItem Content="Flash at"/>
                             <ComboBoxItem Content="Pulse at"/>
                         </ComboBox>
-                        <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding FlashAt}" MinWidth="50" />
+                        <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding FlashAt}" MinWidth="50"
+                                            Minimum="0" Maximum="100" Increment="10" />
                         <Label Content="%" />
                         <Button x:Name="flashColorBtn" Width="20" Height="20" Background="{Binding FlashColor,FallbackValue=Blue}"
                                 ToolTip="{lex:Loc Resources:FlashAtTip}" Click="FlashColorBtn_Click" />
@@ -648,7 +649,7 @@
                                 <Image Source="/DS4Windows;component/Resources/rainbow.png" />
                             </Button.Content>
                         </Button>
-                        <xctk:IntegerUpDown MinWidth="30" Height="30" Minimum="0" Maximum="60" Margin="8,0,0,0"
+                        <xctk:IntegerUpDown MinWidth="30" Height="30" Minimum="0" Maximum="60" Increment="1" Margin="8,0,0,0"
                                             Value="{Binding Rainbow,FallbackValue=5}" IsEnabled="{Binding RainbowExists}" />
                         <Label Content="secs/cycle" Padding="0" Margin="8,0,0,0" VerticalContentAlignment="Center" />
                         <StackPanel Margin="8,0,0,0">
@@ -769,7 +770,7 @@
                         <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
                             <Label Content="Vertical Scale:" />
                             <xctk:IntegerUpDown d:IsHidden="True" MinWidth="50" Margin="8,0,0,0" Value="{Binding GyroVertScale}"
-                                                Minimum="0" Maximum="500" />
+                                                Minimum="0" Maximum="400" Increment="10" />
                             <Label Content="%" />
                         </StackPanel>
 
@@ -872,7 +873,8 @@
 
                         <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
                             <Label Content="Vertical Scale" />
-                            <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickVertScale}" MinWidth="60" />
+                            <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickVertScale}" MinWidth="60"
+                                                Minimum="0" Maximum="400" Increment="10" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
@@ -934,7 +936,8 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="40" Margin="0,4,0,0">
                         <Label Content="Mouse Sensitivity" VerticalAlignment="Center" />
-                        <xctk:IntegerUpDown d:IsHidden="True" MinWidth="50" Height="20" Value="25" Margin="10,0,0,0" />
+                        <xctk:IntegerUpDown d:IsHidden="True" MinWidth="50" Height="20" Value="25"
+                                            Minimum="0" Maximum="255" Increment="1" Margin="10,0,0,0" />
                     </StackPanel>
                     <CheckBox Content="Mouse Acceleration" IsChecked="{Binding MouseAcceleration}" Margin="0,6,0,0" />
                     <CheckBox Content="Enable Touchpad Toggle" IsChecked="{Binding EnableTouchpadToggle}" Margin="0,6,0,0" />

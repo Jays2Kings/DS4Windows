@@ -25,12 +25,14 @@
 
                     <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
                         <Label Content="Heavy" Width="50" />
-                        <xctk:IntegerUpDown Value="{Binding HeavyRumble}" MinWidth="60" Margin="20,0,0,0" />
+                        <xctk:IntegerUpDown Value="{Binding HeavyRumble}" MinWidth="60" Margin="20,0,0,0"
+                                            Minimum="0" Maximum="255" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
                         <Label Content="Light" Width="50" />
-                        <xctk:IntegerUpDown Value="{Binding LightRumble}" MinWidth="60" Margin="20,0,0,0" />
+                        <xctk:IntegerUpDown Value="{Binding LightRumble}" MinWidth="60" Margin="20,0,0,0"
+                                            Minimum="0" Maximum="255" />
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical">
@@ -52,12 +54,14 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
                             <Label Content="Flash Rate"/>
-                            <xctk:IntegerUpDown MinWidth="50" Value="{Binding FlashRate}" />
+                            <xctk:IntegerUpDown MinWidth="50" Value="{Binding FlashRate}"
+                                                Minimum="0" Maximum="20" />
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
                             <CheckBox Content="Change Mouse Sensitivity" IsChecked="{Binding UseMouseSens}"
                                       Margin="{StaticResource spaceMargin}" />
-                            <xctk:IntegerUpDown Value="{Binding MouseSens}" MinWidth="50" Height="20" />
+                            <xctk:IntegerUpDown Value="{Binding MouseSens}" MinWidth="50" Height="20"
+                                                Minimum="0" Maximum="255" />
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>

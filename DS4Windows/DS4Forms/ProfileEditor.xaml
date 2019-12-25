@@ -673,23 +673,23 @@
 
                     <StackPanel x:Name="gyroControlsPanel" Visibility="Visible">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <Button x:Name="gyroZNBtn" Content="Tilt Up" Width="100"/>
+                            <Button x:Name="gyroZNBtn" Content="Tilt Up" Width="100" Tag="33" Click="TiltControlsButton_Click" />
                             <Label x:Name="gyroZNLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <Button x:Name="gyroZPBtn" Content="Tilt Down" Width="100"/>
+                            <Button x:Name="gyroZPBtn" Content="Tilt Down" Width="100" Tag="32" Click="TiltControlsButton_Click" />
                             <Label x:Name="gyroZPLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <Button x:Name="gyroXNBtn" Content="Tilt Left" Width="100"/>
-                            <Label x:Name="gyroXNLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
+                            <Button x:Name="gyroXPBtn" Content="Tilt Left" Width="100" Tag="30" Click="TiltControlsButton_Click" />
+                            <Label x:Name="gyroXLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <Button x:Name="gyroXPBtn" Content="Tilt Right" Width="100"/>
-                            <Label x:Name="gyroXLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
+                            <Button x:Name="gyroXNBtn" Content="Tilt Right" Width="100" Tag="31" Click="TiltControlsButton_Click" />
+                            <Label x:Name="gyroXNLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">

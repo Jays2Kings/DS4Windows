@@ -1243,5 +1243,17 @@ namespace DS4WinWPF.DS4Forms
                 conReadingsUserCon.EnableControl(false);
             }
         }
+
+        private void TiltControlsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            DS4Controls control = (DS4Controls)Convert.ToInt32(btn.Tag);
+            MappedControl mpControl = mappingListVM.ControlMap[control];
+            BindingWindow window = new BindingWindow(deviceNum, mpControl.Setting);
+            window.Owner = App.Current.MainWindow;
+            window.ShowDialog();
+            mpControl.UpdateMappingName();
+            UpdateHighlightLabel(mpControl);
+        }
     }
 }

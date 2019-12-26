@@ -421,7 +421,7 @@ namespace DS4Windows
             [DS4Controls.GyroXPos] = "Gyro X+",
             [DS4Controls.GyroXNeg] = "Gyro X-",
             [DS4Controls.GyroZPos] = "Gyro Z+",
-            [DS4Controls.GyroZNeg] = "Gyro Z+-",
+            [DS4Controls.GyroZNeg] = "Gyro Z-",
             [DS4Controls.SwipeLeft] = "Swipe Left",
             [DS4Controls.SwipeRight] = "Swipe Right",
             [DS4Controls.SwipeUp] = "Swipe Up",

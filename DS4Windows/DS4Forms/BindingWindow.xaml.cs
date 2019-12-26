@@ -488,7 +488,7 @@ namespace DS4WinWPF.DS4Forms
                 new BindAssociation() { outputType = BindAssociation.OutType.Key, outkey = 0x52 });
             rKey.Click += OutputKeyBtn_Click;
             associatedBindings.Add(tKey,
-                new BindAssociation() { outputType = BindAssociation.OutType.Key, outkey = 0x55 });
+                new BindAssociation() { outputType = BindAssociation.OutType.Key, outkey = 0x54 });
             tKey.Click += OutputKeyBtn_Click;
             associatedBindings.Add(yKey,
                 new BindAssociation() { outputType = BindAssociation.OutType.Key, outkey = 0x59 });

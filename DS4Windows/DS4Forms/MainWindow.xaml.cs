@@ -1213,6 +1213,7 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
 
         private void NotifyIcon_TrayMiddleMouseDown(object sender, RoutedEventArgs e)
         {
+            contextclose = true;
             Close();
         }
 
@@ -1283,6 +1284,11 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
         private void Editor_CreatedProfile(ProfileEditor sender, string profile)
         {
             profileListHolder.AddProfileSort(profile);
+            int devnum = sender.DeviceNum;
+            if (devnum >= 0 && devnum+1 <= conLvViewModel.ControllerCol.Count)
+            {
+                conLvViewModel.ControllerCol[devnum].ChangeSelectedProfile(profile);
+            }
         }
 
         private void NotifyIcon_TrayMouseDoubleClick(object sender, RoutedEventArgs e)

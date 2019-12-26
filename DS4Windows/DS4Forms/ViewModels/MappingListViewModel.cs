@@ -67,8 +67,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
             mappings.Add(new MappedControl(devIndex, DS4Controls.GyroZNeg, "Tilt Up", devType));
             mappings.Add(new MappedControl(devIndex, DS4Controls.GyroZPos, "Tilt Down", devType));
-            mappings.Add(new MappedControl(devIndex, DS4Controls.GyroXNeg, "Tilt Left", devType));
-            mappings.Add(new MappedControl(devIndex, DS4Controls.GyroXPos, "Tilt Right", devType));
+            mappings.Add(new MappedControl(devIndex, DS4Controls.GyroXPos, "Tilt Left", devType));
+            mappings.Add(new MappedControl(devIndex, DS4Controls.GyroXNeg, "Tilt Right", devType));
 
             mappings.Add(new MappedControl(devIndex, DS4Controls.SwipeUp, "Swipe Up", devType));
             mappings.Add(new MappedControl(devIndex, DS4Controls.SwipeDown, "Swipe Down", devType));

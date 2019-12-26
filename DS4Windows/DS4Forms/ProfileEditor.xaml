@@ -289,7 +289,7 @@
                         <Setter Property="Height" Value="30" />
                     </Style>
                 </TabItem.Resources>
-                <ScrollViewer CanContentScroll="True">
+                <ScrollViewer>
                     <StackPanel>
                         <GroupBox Header="LS &amp; RS">
                             <Grid>

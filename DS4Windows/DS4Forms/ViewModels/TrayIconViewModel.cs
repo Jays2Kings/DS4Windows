@@ -308,10 +308,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             {
                 controllerList.RemoveAt(idx);
                 RemoveDeviceEvents(currentDev);
-                PopulateToolText();
             }
 
             _colLocker.ExitWriteLock();
+
+            PopulateToolText();
         }
 
         private void HookEvents(object sender, EventArgs e)

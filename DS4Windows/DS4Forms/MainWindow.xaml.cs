@@ -1275,19 +1275,23 @@ Suspend support not enabled.", true);
 
         private void ShowProfileEditor(int device, ProfileEntity entity = null)
         {
-            profOptsToolbar.Visibility = Visibility.Collapsed;
-            profilesListBox.Visibility = Visibility.Collapsed;
+            if (editor == null)
+            {
+                profOptsToolbar.Visibility = Visibility.Collapsed;
+                profilesListBox.Visibility = Visibility.Collapsed;
 
-            preserveSize = false;
-            oldSize.Width = Width;
-            oldSize.Height = Height;
-            this.Width = 1000;
-            this.Height = 650;
-            editor = new ProfileEditor(device);
-            editor.CreatedProfile += Editor_CreatedProfile;
-            editor.Closed += ProfileEditor_Closed;
-            profDockPanel.Children.Add(editor);
-            editor.Reload(device, entity);
+                preserveSize = false;
+                oldSize.Width = Width;
+                oldSize.Height = Height;
+                this.Width = 1000;
+                this.Height = 650;
+                editor = new ProfileEditor(device);
+                editor.CreatedProfile += Editor_CreatedProfile;
+                editor.Closed += ProfileEditor_Closed;
+                profDockPanel.Children.Add(editor);
+                editor.Reload(device, entity);
+            }
+            
         }
 
         private void Editor_CreatedProfile(ProfileEditor sender, string profile)

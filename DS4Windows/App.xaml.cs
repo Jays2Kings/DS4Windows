@@ -244,6 +244,7 @@ namespace DS4WinWPF
             }
             else if (parser.Driverinstall)
             {
+                CreateBaseThread();
                 DS4Forms.WelcomeDialog dialog = new DS4Forms.WelcomeDialog(true);
                 dialog.ShowDialog();
                 runShutdown = false;
@@ -301,6 +302,20 @@ namespace DS4WinWPF
                 requestClient = new HttpClient();
                 collectTimer = new Timer(GarbageTask, null, 30000, 30000);
 
+            });
+            controlThread.Priority = ThreadPriority.Normal;
+            controlThread.IsBackground = true;
+            controlThread.Start();
+            while (controlThread.IsAlive)
+                Thread.SpinWait(500);
+        }
+
+        private void CreateBaseThread()
+        {
+            controlThread = new Thread(() => {
+                DS4Windows.Program.rootHub = rootHub;
+                requestClient = new HttpClient();
+                collectTimer = new Timer(GarbageTask, null, 30000, 30000);
             });
             controlThread.Priority = ThreadPriority.Normal;
             controlThread.IsBackground = true;

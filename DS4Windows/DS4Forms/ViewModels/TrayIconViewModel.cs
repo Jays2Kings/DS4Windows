@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Threading;
 using System.Windows.Controls;
 using DS4Windows;
 
@@ -9,7 +9,9 @@ namespace DS4WinWPF.DS4Forms.ViewModels
     public class TrayIconViewModel
     {
         private string tooltipText = "DS4Windows";
-        private string iconSource = "/DS4Windows;component/Resources/DS4W.ico";
+        public const string ICON_COLOR = "/DS4Windows;component/Resources/DS4W.ico";
+        public const string ICON_WHITE = "/DS4Windows;component/Resources/DS4W - White.ico";
+        private string iconSource = ICON_COLOR;
         public const string ballonTitle = "DS4Windows";
         public static string trayTitle = $"DS4Windows v{Global.exeversion}";
         private ContextMenu contextMenu;
@@ -42,6 +44,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public event EventHandler RequestOpen;
         public event EventHandler RequestMinimize;
 
+        private ReaderWriterLockSlim _colLocker = new ReaderWriterLockSlim();
         private List<ControllerHolder> controllerList = new List<ControllerHolder>();
         private ProfileList profileListHolder;
         private ControlService controlService;
@@ -56,6 +59,9 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             this.profileListHolder = profileListHolder;
             this.controlService = service;
             contextMenu = new ContextMenu();
+            iconSource = Global.UseWhiteIcon ? "/DS4Windows;component/Resources/DS4W - White.ico" :
+                "/DS4Windows;component/Resources/DS4W.ico";
+
             PopulateControllerList();
             PopulateToolText();
             PopulateContextMenu();
@@ -79,22 +85,28 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         private void ClearControllerList(object sender, EventArgs e)
         {
+            _colLocker.EnterWriteLock();
             controllerList.Clear();
+            _colLocker.ExitWriteLock();
         }
 
         private void UnhookEvents(object sender, EventArgs e)
         {
+            _colLocker.EnterReadLock();
             foreach (ControllerHolder holder in controllerList)
             {
                 DS4Device currentDev = holder.Device;
                 RemoveDeviceEvents(currentDev);
             }
+            _colLocker.ExitReadLock();
         }
 
         private void Service_HotplugController(ControlService sender, DS4Device device, int index)
         {
             SetupDeviceEvents(device);
+            _colLocker.EnterWriteLock();
             controllerList.Add(new ControllerHolder(device, index));
+            _colLocker.ExitWriteLock();
         }
 
         private void ProfileListCol_CollectionChanged(object sender,
@@ -115,6 +127,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             MenuItem item;
             int idx = 0;
 
+            _colLocker.EnterReadLock();
             foreach (ControllerHolder holder in controllerList)
             {
                 DS4Device currentDev = holder.Device;
@@ -156,6 +169,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 idx++;
             }
 
+            _colLocker.ExitReadLock();
+
             items.Add(item);
             items.Add(new Separator());
             item = new MenuItem() { Header = "Open" };
@@ -188,7 +203,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             ProfileSelected?.Invoke(this, holder, item.Header.ToString());
         }
 
-        private void DisconnectMenuItem_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void DisconnectMenuItem_Click(object sender,
+            System.Windows.RoutedEventArgs e)
         {
             MenuItem item = sender as MenuItem;
             int idx = Convert.ToInt32(item.Tag);
@@ -214,11 +230,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             //IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
             int idx = 0;
+            _colLocker.EnterWriteLock();
             foreach (DS4Device currentDev in controlService.slotManager.ControllerColl)
             {
                 controllerList.Add(new ControllerHolder(currentDev, idx));
                 idx++;
             }
+            _colLocker.ExitWriteLock();
         }
 
         private void StartPopulateText(object sender, EventArgs e)
@@ -234,12 +252,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             //IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
             int idx = 1;
             //foreach (DS4Device currentDev in devices)
+            _colLocker.EnterReadLock();
             foreach (ControllerHolder holder in controllerList)
             {
                 DS4Device currentDev = holder.Device;
                 items.Add($"{idx}: {currentDev.ConnectionType} {currentDev.Battery}%{(currentDev.Charging ? "+" : "")}");
                 idx++;
             }
+            _colLocker.ExitReadLock();
 
             TooltipText = string.Join("\n", items);
         }
@@ -248,11 +268,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             //IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
             //foreach (DS4Device currentDev in devices)
+            _colLocker.EnterReadLock();
             foreach (ControllerHolder holder in controllerList)
             {
                 DS4Device currentDev = holder.Device;
                 SetupDeviceEvents(currentDev);
             }
+            _colLocker.ExitReadLock();
         }
 
         private void SetupDeviceEvents(DS4Device device)
@@ -274,6 +296,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             DS4Device currentDev = sender as DS4Device;
             ControllerHolder item = null;
             int idx = 0;
+
+            _colLocker.EnterWriteLock();
             foreach (ControllerHolder holder in controllerList)
             {
                 if (currentDev == holder.Device)
@@ -289,8 +313,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             {
                 controllerList.RemoveAt(idx);
                 RemoveDeviceEvents(currentDev);
-                PopulateToolText();
             }
+
+            _colLocker.ExitWriteLock();
+
+            PopulateToolText();
         }
 
         private void HookEvents(object sender, EventArgs e)

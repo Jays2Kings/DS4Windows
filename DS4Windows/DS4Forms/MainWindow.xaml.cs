@@ -77,8 +77,6 @@ namespace DS4WinWPF.DS4Forms
             ChangeControllerPanel();
             trayIconVM = new TrayIconViewModel(App.rootHub, profileListHolder);
             notifyIcon.DataContext = trayIconVM;
-            notifyIcon.Icon = Global.UseWhiteIcon ? Properties.Resources.DS4W___White :
-                Properties.Resources.DS4W;
 
             if (Global.StartMinimized || parser.Mini)
             {
@@ -259,9 +257,11 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
             autoProfileHolder.AutoProfileColl.CollectionChanged += AutoProfileColl_CollectionChanged;
             //autoProfControl.AutoProfVM.AutoProfileSystemChange += AutoProfVM_AutoProfileSystemChange;
 
+            bool wmiConnected = false;
             WqlEventQuery q = new WqlEventQuery();
             ManagementScope scope = new ManagementScope("root\\CIMV2");
             q.EventClassName = "Win32_PowerManagementEvent";
+
             try
             {
                 scope.Connect();
@@ -270,13 +270,20 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
 
             if (scope.IsConnected)
             {
+                wmiConnected = true;
                 managementEvWatcher = new ManagementEventWatcher(scope, q);
                 managementEvWatcher.EventArrived += PowerEventArrive;
-                managementEvWatcher.Start();
+                try
+                {
+                    managementEvWatcher.Start();
+                }
+                catch (ManagementException) { wmiConnected = false; }
             }
-            else
+
+            if (!wmiConnected)
             {
-                AppLogger.LogToGui("Could not connect to Windows Management Instrumentation service. Suspend support not enabled.", true);
+                AppLogger.LogToGui(@"Could not connect to Windows Management Instrumentation service.
+Suspend support not enabled.", true);
             }
         }
 
@@ -991,13 +998,15 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
         private async void HideDS4ContCk_Click(object sender, RoutedEventArgs e)
         {
             StartStopBtn.IsEnabled = false;
-            bool checkStatus = hideDS4ContCk.IsChecked == true;
+            //bool checkStatus = hideDS4ContCk.IsChecked == true;
+            hideDS4ContCk.IsEnabled = false;
             await Task.Run(() =>
             {
                 App.rootHub.Stop();
                 App.rootHub.Start();
             });
 
+            hideDS4ContCk.IsEnabled = true;
             StartStopBtn.IsEnabled = true;
         }
 
@@ -1064,7 +1073,7 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
         private void UseWhiteDS4IconCk_Click(object sender, RoutedEventArgs e)
         {
             bool status = useWhiteDS4IconCk.IsChecked == true;
-            notifyIcon.Icon = status ? Properties.Resources.DS4W___White : Properties.Resources.DS4W;
+            trayIconVM.IconSource = status ? TrayIconViewModel.ICON_WHITE : TrayIconViewModel.ICON_COLOR;
         }
 
         private void CheckDrivers()
@@ -1266,19 +1275,23 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
 
         private void ShowProfileEditor(int device, ProfileEntity entity = null)
         {
-            profOptsToolbar.Visibility = Visibility.Collapsed;
-            profilesListBox.Visibility = Visibility.Collapsed;
+            if (editor == null)
+            {
+                profOptsToolbar.Visibility = Visibility.Collapsed;
+                profilesListBox.Visibility = Visibility.Collapsed;
 
-            preserveSize = false;
-            oldSize.Width = Width;
-            oldSize.Height = Height;
-            this.Width = 1000;
-            this.Height = 650;
-            editor = new ProfileEditor(device);
-            editor.CreatedProfile += Editor_CreatedProfile;
-            editor.Closed += ProfileEditor_Closed;
-            profDockPanel.Children.Add(editor);
-            editor.Reload(device, entity);
+                preserveSize = false;
+                oldSize.Width = Width;
+                oldSize.Height = Height;
+                this.Width = 1000;
+                this.Height = 650;
+                editor = new ProfileEditor(device);
+                editor.CreatedProfile += Editor_CreatedProfile;
+                editor.Closed += ProfileEditor_Closed;
+                profDockPanel.Children.Add(editor);
+                editor.Reload(device, entity);
+            }
+            
         }
 
         private void Editor_CreatedProfile(ProfileEditor sender, string profile)

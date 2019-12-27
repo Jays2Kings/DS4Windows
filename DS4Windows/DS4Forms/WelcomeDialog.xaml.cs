@@ -61,7 +61,7 @@ namespace DS4WinWPF.DS4Forms
                 // This is your progress event!
                 // It will fire on every buffer fill so don't do anything expensive.
                 // Writing to the console IS expensive, so don't do the following in practice...
-                vigemInstallBtn.Content = Properties.Resources.Downloading.Replace("*number*",
+                vigemInstallBtn.Content = Properties.Resources.Downloading.Replace("*number*%",
                     x.PercentComplete.ToString("P"));
                 //Console.WriteLine(x.PercentComplete.ToString("P"));
             });

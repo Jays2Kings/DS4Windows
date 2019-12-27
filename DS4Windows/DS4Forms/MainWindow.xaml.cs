@@ -991,13 +991,15 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
         private async void HideDS4ContCk_Click(object sender, RoutedEventArgs e)
         {
             StartStopBtn.IsEnabled = false;
-            bool checkStatus = hideDS4ContCk.IsChecked == true;
+            //bool checkStatus = hideDS4ContCk.IsChecked == true;
+            hideDS4ContCk.IsEnabled = false;
             await Task.Run(() =>
             {
                 App.rootHub.Stop();
                 App.rootHub.Start();
             });
 
+            hideDS4ContCk.IsEnabled = true;
             StartStopBtn.IsEnabled = true;
         }
 

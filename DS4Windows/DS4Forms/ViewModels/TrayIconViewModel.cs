@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Windows.Controls;
 using DS4Windows;
@@ -59,8 +60,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             this.profileListHolder = profileListHolder;
             this.controlService = service;
             contextMenu = new ContextMenu();
-            iconSource = Global.UseWhiteIcon ? "/DS4Windows;component/Resources/DS4W - White.ico" :
-                "/DS4Windows;component/Resources/DS4W.ico";
+            iconSource = Global.UseWhiteIcon ? ICON_WHITE : ICON_COLOR;
 
             PopulateControllerList();
             PopulateToolText();
@@ -179,10 +179,18 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             item = new MenuItem() { Header = "Minimize" };
             item.Click += MinimizeMenuItem_Click;
             items.Add(item);
+            item = new MenuItem() { Header = "Open Program Folder" };
+            item.Click += OpenProgramFolderItem_Click;
+            items.Add(item);
             items.Add(new Separator());
             item = new MenuItem() { Header = "Exit (Middle Mouse)" };
             item.Click += ExitMenuItem_Click;
             items.Add(item);
+        }
+
+        private void OpenProgramFolderItem_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Process.Start(Global.exedirpath);
         }
 
         private void OpenMenuItem_Click(object sender, System.Windows.RoutedEventArgs e)

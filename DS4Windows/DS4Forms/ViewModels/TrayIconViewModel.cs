@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
 using DS4Windows;
 
@@ -16,6 +17,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public const string ballonTitle = "DS4Windows";
         public static string trayTitle = $"DS4Windows v{Global.exeversion}";
         private ContextMenu contextMenu;
+        private MenuItem changeServiceItem;
 
         public string TooltipText { get => tooltipText;
             set
@@ -44,6 +46,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public event EventHandler RequestShutdown;
         public event EventHandler RequestOpen;
         public event EventHandler RequestMinimize;
+        public event EventHandler RequestServiceChange;
 
         private ReaderWriterLockSlim _colLocker = new ReaderWriterLockSlim();
         private List<ControllerHolder> controllerList = new List<ControllerHolder>();
@@ -61,6 +64,10 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             this.controlService = service;
             contextMenu = new ContextMenu();
             iconSource = Global.UseWhiteIcon ? ICON_WHITE : ICON_COLOR;
+            changeServiceItem = new MenuItem() { Header = "Start",
+                FontWeight = FontWeights.Bold };
+            changeServiceItem.Click += ChangeControlServiceItem_Click;
+            changeServiceItem.IsEnabled = false;
 
             PopulateControllerList();
             PopulateToolText();
@@ -74,6 +81,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             service.PreServiceStop += ClearToolText;
             service.PreServiceStop += UnhookEvents;
             service.PreServiceStop += ClearControllerList;
+            service.RunningChanged += Service_RunningChanged;
             service.HotplugController += Service_HotplugController;
             /*tester.StartControllers += HookBatteryUpdate;
             tester.StartControllers += StartPopulateText;
@@ -81,6 +89,16 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             tester.HotplugControllers += HookBatteryUpdate;
             tester.HotplugControllers += StartPopulateText;
             */
+        }
+
+        private void Service_RunningChanged(object sender, EventArgs e)
+        {
+            string temp = controlService.running ? "Stop" : "Start";
+            App.Current.Dispatcher.BeginInvoke((Action)(() =>
+            {
+                changeServiceItem.Header = temp;
+                changeServiceItem.IsEnabled = true;
+            }));
         }
 
         private void ClearControllerList(object sender, EventArgs e)
@@ -173,6 +191,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
             items.Add(item);
             items.Add(new Separator());
+            item = changeServiceItem;
+            items.Add(item);
             item = new MenuItem() { Header = "Open" };
             item.Click += OpenMenuItem_Click;
             items.Add(item);
@@ -186,6 +206,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             item = new MenuItem() { Header = "Exit (Middle Mouse)" };
             item.Click += ExitMenuItem_Click;
             items.Add(item);
+        }
+
+        private void ChangeControlServiceItem_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            changeServiceItem.IsEnabled = false;
+            RequestServiceChange?.Invoke(this, EventArgs.Empty);
         }
 
         private void OpenProgramFolderItem_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -348,7 +374,10 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             contextMenu.Items.Clear();
             ItemCollection items = contextMenu.Items;
-            MenuItem item = new MenuItem() { Header = "Open" };
+            MenuItem item;
+            item = changeServiceItem;
+            items.Add(item);
+            item = new MenuItem() { Header = "Open" };
             item.Click += OpenMenuItem_Click;
             items.Add(item);
             item = new MenuItem() { Header = "Minimize" };

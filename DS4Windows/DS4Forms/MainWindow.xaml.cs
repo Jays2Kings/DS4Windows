@@ -77,8 +77,6 @@ namespace DS4WinWPF.DS4Forms
             ChangeControllerPanel();
             trayIconVM = new TrayIconViewModel(App.rootHub, profileListHolder);
             notifyIcon.DataContext = trayIconVM;
-            notifyIcon.Icon = Global.UseWhiteIcon ? Properties.Resources.DS4W___White :
-                Properties.Resources.DS4W;
 
             if (Global.StartMinimized || parser.Mini)
             {
@@ -1066,7 +1064,7 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
         private void UseWhiteDS4IconCk_Click(object sender, RoutedEventArgs e)
         {
             bool status = useWhiteDS4IconCk.IsChecked == true;
-            notifyIcon.Icon = status ? Properties.Resources.DS4W___White : Properties.Resources.DS4W;
+            trayIconVM.IconSource = status ? TrayIconViewModel.ICON_WHITE : TrayIconViewModel.ICON_COLOR;
         }
 
         private void CheckDrivers()

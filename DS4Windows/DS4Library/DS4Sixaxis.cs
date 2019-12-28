@@ -255,5 +255,18 @@ namespace DS4Windows
                 }
             }
         }
+
+        public bool fixupInvertedGyroAxis()
+        {
+            // Some, not all, DS4 rev1 gamepads have an inverted YAW gyro axis calibration value (sensNumber>0 but at the same time sensDenom value is <0 while other two axies have both attributes >0).
+            // If this gamepad has YAW calibration with weird mixed values then fix it automatically to workaround inverted YAW axis problem.
+            if ((calibrationData[1].sensNumer > 0 && calibrationData[1].sensDenom < 0) && calibrationData[0].sensDenom > 0 && calibrationData[2].sensDenom > 0)
+            {
+                calibrationData[1].sensDenom *= -1;
+                return true; // Fixed inverted axis
+            }
+            return false; // No need to fix anything
+        }
+
     }
 }

@@ -1656,7 +1656,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 triggerName.Add("Always On");
             }
 
-            GyroMouseStickTrigDisplay = string.Join(", ", triggerName.ToArray());
+            GyroMouseTrigDisplay = string.Join(", ", triggerName.ToArray());
         }
 
         public void UpdateGyroMouseStickTrig(ContextMenu menu, bool alwaysOnChecked)

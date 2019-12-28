@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-
-using System.Media;
 using System.Threading.Tasks;
-using static DS4Windows.Global;
 using System.Threading;
 using System.Diagnostics;
+using static DS4Windows.Global;
 using Nefarius.ViGEm.Client;
-using Nefarius.ViGEm.Client.Targets;
-using Nefarius.ViGEm.Client.Targets.Xbox360;
-using Nefarius.ViGEm.Client.Targets.DualShock4;
 
 namespace DS4Windows
 {
@@ -40,6 +34,7 @@ namespace DS4Windows
         };
         */
         Thread tempThread;
+        Thread tempBusThread;
         public List<string> affectedDevs = new List<string>()
         {
             @"HID\VID_054C&PID_05C4",
@@ -154,7 +149,7 @@ namespace DS4Windows
 
             //sp.Stream = DS4WinWPF.Properties.Resources.EE;
             // Cause thread affinity to not be tied to main GUI thread
-            tempThread = new Thread(() => {
+            tempBusThread = new Thread(() => {
                 //_udpServer = new UdpServer(GetPadDetailForIdx);
                 busThrRunning = true;
 
@@ -174,9 +169,9 @@ namespace DS4Windows
                         Monitor.Wait(busThrLck);
                 }
             });
-            tempThread.Priority = ThreadPriority.Normal;
-            tempThread.IsBackground = true;
-            tempThread.Start();
+            tempBusThread.Priority = ThreadPriority.Normal;
+            tempBusThread.IsBackground = true;
+            tempBusThread.Start();
             //while (_udpServer == null)
             //{
             //    Thread.SpinWait(500);
@@ -353,17 +348,12 @@ namespace DS4Windows
             {
                 Thread.SpinWait(500);
             }
+
+            tempThread = null;
         }
 
         private void stopViGEm()
         {
-            if (tempThread != null)
-            {
-                tempThread.Interrupt();
-                tempThread.Join();
-                tempThread = null;
-            }
-
             if (vigemTestClient != null)
             {
                 vigemTestClient.Dispose();

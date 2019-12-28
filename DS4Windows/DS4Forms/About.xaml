@@ -48,8 +48,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
                         <Label Content="Translators:" Margin="0,20,0,0" />
                     </StackPanel>
                     <TextBox TextWrapping="Wrap" xml:space="preserve" IsReadOnly="True"
-                             DockPanel.Dock="Bottom" VerticalScrollBarVisibility="Auto" Margin="10,0,10,10">glorianni - Russian
-Ryochan7 - Japanese</TextBox>
+                             DockPanel.Dock="Bottom" VerticalScrollBarVisibility="Auto" Margin="10,0,10,10">Ryochan7 - Japanese</TextBox>
                 </DockPanel>
             </TabItem>
             <TabItem Header="Tip">

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -11,7 +13,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 {
     public class ControllerListViewModel
     {
-        private object _colLockobj = new object();
+        //private object _colLockobj = new object();
+        private ReaderWriterLockSlim _colListLocker = new ReaderWriterLockSlim();
         private ObservableCollection<CompositeDeviceModel> controllerCol =
             new ObservableCollection<CompositeDeviceModel>();
         private Dictionary<int, CompositeDeviceModel> controllerDict =
@@ -56,27 +59,60 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 idx++;
             }
 
-            BindingOperations.EnableCollectionSynchronization(controllerCol, _colLockobj);
+            //BindingOperations.EnableCollectionSynchronization(controllerCol, _colLockobj);
+            BindingOperations.EnableCollectionSynchronization(controllerCol, _colListLocker,
+                ColLockCallback);
+        }
+
+        private void ColLockCallback(IEnumerable collection, object context,
+            Action accessMethod, bool writeAccess)
+        {
+            if (writeAccess)
+            {
+                _colListLocker.EnterWriteLock();
+            }
+            else
+            {
+                _colListLocker.EnterReadLock();
+            }
+
+            accessMethod?.Invoke();
+
+            if (writeAccess)
+            {
+                _colListLocker.ExitWriteLock();
+            }
+            else
+            {
+                _colListLocker.ExitReadLock();
+            }
         }
 
         private void Service_HotplugController(ControlService sender, DS4Device device, int index)
         {
             CompositeDeviceModel temp = new CompositeDeviceModel(device,
                 index, Global.ProfilePath[index], profileListHolder);
+            _colListLocker.EnterWriteLock();
             controllerCol.Add(temp);
             controllerDict.Add(index, temp);
+            _colListLocker.ExitWriteLock();
+
             device.Removal += Controller_Removal;
         }
 
         private void ClearControllerList(object sender, EventArgs e)
         {
+            _colListLocker.EnterReadLock();
             foreach (CompositeDeviceModel temp in controllerCol)
             {
                 temp.Device.Removal -= Controller_Removal;
             }
+            _colListLocker.ExitReadLock();
 
+            _colListLocker.EnterWriteLock();
             controllerCol.Clear();
             controllerDict.Clear();
+            _colListLocker.ExitWriteLock();
         }
 
         private void ControllersChanged(object sender, EventArgs e)
@@ -85,7 +121,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             foreach (DS4Device currentDev in controlService.slotManager.ControllerColl)
             {
                 bool found = false;
-                foreach(CompositeDeviceModel temp in controllerCol)
+                _colListLocker.EnterReadLock();
+                foreach (CompositeDeviceModel temp in controllerCol)
                 {
                     if (temp.Device == currentDev)
                     {
@@ -93,16 +130,20 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         break;
                     }
                 }
+                _colListLocker.ExitReadLock();
 
 
                 if (!found)
                 {
                     //int idx = controllerCol.Count;
+                    _colListLocker.EnterWriteLock();
                     int idx = controlService.slotManager.ReverseControllerDict[currentDev];
                     CompositeDeviceModel temp = new CompositeDeviceModel(currentDev,
                         idx, Global.ProfilePath[idx], profileListHolder);
                     controllerCol.Add(temp);
                     controllerDict.Add(idx, temp);
+                    _colListLocker.ExitWriteLock();
+
                     currentDev.Removal += Controller_Removal;
                 }
             }
@@ -111,6 +152,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private void Controller_Removal(object sender, EventArgs e)
         {
             DS4Device currentDev = sender as DS4Device;
+            _colListLocker.EnterReadLock();
             foreach (CompositeDeviceModel temp in controllerCol)
             {
                 if (temp.Device == currentDev)
@@ -120,6 +162,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     break;
                 }
             }
+            _colListLocker.ExitReadLock();
         }
     }
 

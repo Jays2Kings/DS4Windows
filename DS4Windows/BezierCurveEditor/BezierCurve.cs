@@ -66,7 +66,7 @@ namespace DS4Windows
 
         // Custom definition set by DS4Windows options screens. This string is not validated (ie. the value is as user entered it and could be an invalid curve definition). This value is saved in a profile XML file.
         public string CustomDefinition { get; set; }
-        public string ToString() { return this.CustomDefinition; }
+        public override string ToString() { return this.CustomDefinition; }
 
         public AxisType axisType;               // Axis type of curve object (LS/RS/R2/L2/SA)
         private double axisMaxDouble;           // Max range of axis (range of positive values)

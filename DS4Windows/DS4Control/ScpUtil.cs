@@ -966,6 +966,12 @@ namespace DS4Windows
             get { return m_Config.customSteamFolder; }
         }
 
+        public static bool AutoProfileRevertDefaultProfile
+        {
+            set { m_Config.autoProfileRevertDefaultProfile = value; }
+            get { return m_Config.autoProfileRevertDefaultProfile; }
+        }
+
         // controller/profile specfic values
         public static int[] ButtonMouseSensitivity => m_Config.buttonMouseSensitivity;
 
@@ -2208,6 +2214,9 @@ namespace DS4Windows
         public OutContType[] outputDevType = new OutContType[5] { OutContType.X360,
             OutContType.X360, OutContType.X360,
             OutContType.X360, OutContType.X360 };
+
+        // TRUE=AutoProfile reverts to default profile if current foreground process is unknown, FALSE=Leave existing profile active when a foreground proces is unknown (ie. no matching auto-profile rule)
+        public bool autoProfileRevertDefaultProfile = true;
 
         bool tempBool = false;
 
@@ -3960,6 +3969,8 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/CustomSteamFolder"); customSteamFolder = Item.InnerText; }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/AutoProfileRevertDefaultProfile"); Boolean.TryParse(Item.InnerText, out autoProfileRevertDefaultProfile); }
+                    catch { missingSetting = true; }
 
                     for (int i = 0; i < 4; i++)
                     {
@@ -4032,6 +4043,7 @@ namespace DS4Windows
             XmlNode xmlUDPServListenAddress = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerListenAddress", null); xmlUDPServListenAddress.InnerText = udpServListenAddress; Node.AppendChild(xmlUDPServListenAddress);
             XmlNode xmlUseCustomSteamFolder = m_Xdoc.CreateNode(XmlNodeType.Element, "UseCustomSteamFolder", null); xmlUseCustomSteamFolder.InnerText = useCustomSteamFolder.ToString(); Node.AppendChild(xmlUseCustomSteamFolder);
             XmlNode xmlCustomSteamFolder = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomSteamFolder", null); xmlCustomSteamFolder.InnerText = customSteamFolder; Node.AppendChild(xmlCustomSteamFolder);
+            XmlNode xmlAutoProfileRevertDefaultProfile = m_Xdoc.CreateNode(XmlNodeType.Element, "AutoProfileRevertDefaultProfile", null); xmlAutoProfileRevertDefaultProfile.InnerText = autoProfileRevertDefaultProfile.ToString(); Node.AppendChild(xmlAutoProfileRevertDefaultProfile);
 
             for (int i = 0; i < 4; i++)
             {

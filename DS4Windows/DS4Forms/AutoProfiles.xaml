@@ -120,6 +120,7 @@
                 <TextBox Text="{Binding Title, UpdateSourceTrigger=LostFocus}" Margin="{StaticResource spaceMargin}" />
                 <Border Height="4" Background="#FFDADADA" Margin="0,10,0,0" />
             </StackPanel>
+            <CheckBox x:Name="revertDefaultProfileOnUnknownCk" Content="Revert to default profile on unknown" Margin="0,10,0,0" IsChecked="{Binding RevertDefaultProfileOnUnknown}" />
             <CheckBox x:Name="showAutoDebugCk" Content="Show auto-profile debug messages" Margin="0,10,0,0" Click="ShowAutoDebugCk_Click" />
         </StackPanel>
         <DockPanel>

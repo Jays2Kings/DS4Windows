@@ -529,7 +529,8 @@ namespace DS4Windows
 
                 sixAxis.setCalibrationData(ref calibration, conType == ConnectionType.USB);
 
-                if ((hDevice.Attributes.ProductId == 0x5C4 && hDevice.Attributes.VendorId == 0x054C) && sixAxis.fixupInvertedGyroAxis())
+                if (hDevice.Attributes.ProductId == 0x5C4 && hDevice.Attributes.VendorId == 0x054C &&
+                    sixAxis.fixupInvertedGyroAxis())
                     AppLogger.LogToGui($"Automatically fixed inverted YAW gyro axis in DS4 v.1 BT gamepad ({Mac.ToString()})", false);
             }
             else

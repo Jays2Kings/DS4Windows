@@ -18,6 +18,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public static string trayTitle = $"DS4Windows v{Global.exeversion}";
         private ContextMenu contextMenu;
         private MenuItem changeServiceItem;
+        private MenuItem openItem;
+        private MenuItem minimizeItem;
+        private MenuItem openProgramItem;
+        private MenuItem closeItem;
+
 
         public string TooltipText { get => tooltipText;
             set
@@ -68,6 +73,15 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 FontWeight = FontWeights.Bold };
             changeServiceItem.Click += ChangeControlServiceItem_Click;
             changeServiceItem.IsEnabled = false;
+
+            openItem = new MenuItem() { Header = "Open" };
+            openItem.Click += OpenMenuItem_Click;
+            minimizeItem = new MenuItem() { Header = "Minimize" };
+            minimizeItem.Click += MinimizeMenuItem_Click;
+            openProgramItem = new MenuItem() { Header = "Open Program Folder" };
+            openProgramItem.Click += OpenProgramFolderItem_Click;
+            closeItem = new MenuItem() { Header = "Exit (Middle Mouse)" }; ;
+            closeItem.Click += ExitMenuItem_Click;
 
             PopulateControllerList();
             PopulateToolText();
@@ -187,25 +201,16 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 idx++;
             }
 
+            if (idx == 0)
+            {
+                item.IsEnabled = false;
+            }
+
             _colLocker.ExitReadLock();
 
             items.Add(item);
             items.Add(new Separator());
-            item = changeServiceItem;
-            items.Add(item);
-            item = new MenuItem() { Header = "Open" };
-            item.Click += OpenMenuItem_Click;
-            items.Add(item);
-            item = new MenuItem() { Header = "Minimize" };
-            item.Click += MinimizeMenuItem_Click;
-            items.Add(item);
-            item = new MenuItem() { Header = "Open Program Folder" };
-            item.Click += OpenProgramFolderItem_Click;
-            items.Add(item);
-            items.Add(new Separator());
-            item = new MenuItem() { Header = "Exit (Middle Mouse)" };
-            item.Click += ExitMenuItem_Click;
-            items.Add(item);
+            PopulateStaticItems();
         }
 
         private void ChangeControlServiceItem_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -370,23 +375,21 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             //contextMenu.Items.Clear();
         }
 
+        private void PopulateStaticItems()
+        {
+            ItemCollection items = contextMenu.Items;
+            items.Add(changeServiceItem);
+            items.Add(openItem);
+            items.Add(minimizeItem);
+            items.Add(openProgramItem);
+            items.Add(new Separator());
+            items.Add(closeItem);
+        }
+
         public void ClearContextMenu()
         {
             contextMenu.Items.Clear();
-            ItemCollection items = contextMenu.Items;
-            MenuItem item;
-            item = changeServiceItem;
-            items.Add(item);
-            item = new MenuItem() { Header = "Open" };
-            item.Click += OpenMenuItem_Click;
-            items.Add(item);
-            item = new MenuItem() { Header = "Minimize" };
-            item.Click += MinimizeMenuItem_Click;
-            items.Add(item);
-            items.Add(new Separator());
-            item = new MenuItem() { Header = "Exit (Middle Mouse)" };
-            item.Click += ExitMenuItem_Click;
-            items.Add(item);
+            PopulateStaticItems();
         }
 
         private void ExitMenuItem_Click(object sender, System.Windows.RoutedEventArgs e)

@@ -87,17 +87,26 @@ namespace DS4WinWPF.DS4Forms
             {
                 File.Move(tempInstFileName, filename);
             }
+            success = false; // Reset for later check
 
             if (File.Exists(DS4Windows.Global.exedirpath + $"\\{InstFileName}"))
             {
                 //vigemInstallBtn.Content = Properties.Resources.OpeningInstaller;
                 monitorProc = Process.Start(DS4Windows.Global.exedirpath + $"\\{InstFileName}");
                 vigemInstallBtn.Content = Properties.Resources.Installing;
+                success = true;
             }
 
-            monitorTimer = new NonFormTimer();
-            monitorTimer.Elapsed += ViGEmInstallTimer_Tick;
-            monitorTimer.Start();
+            if (success)
+            {
+                monitorTimer = new NonFormTimer();
+                monitorTimer.Elapsed += ViGEmInstallTimer_Tick;
+                monitorTimer.Start();
+            }
+            else
+            {
+                vigemInstallBtn.Content = Properties.Resources.InstallFailed;
+            }
         }
 
         private void ViGEmInstallTimer_Tick(object sender, System.Timers.ElapsedEventArgs e)

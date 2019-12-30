@@ -62,6 +62,23 @@ namespace DS4WinWPF.DS4Forms
         private void SetupLateEvents()
         {
             macroListBox.SelectionChanged += MacroListBox_SelectionChanged;
+            recordBoxVM.MacroSteps.CollectionChanged += MacroSteps_CollectionChanged;
+        }
+
+        private void MacroSteps_CollectionChanged(object sender,
+            System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            {
+                Dispatcher.BeginInvoke((Action)(() =>
+                {
+                    int count = recordBoxVM.MacroSteps.Count;
+                    if (count > 0)
+                    {
+                        macroListBox.ScrollIntoView(recordBoxVM.MacroSteps[count - 1]);
+                    }
+                }));
+            }
         }
 
         private void MacroListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -271,12 +288,14 @@ namespace DS4WinWPF.DS4Forms
                     recordBoxVM.KeysdownMap.Add(value, true);
                 }
 
+                e.Handled = true;
                 //Console.WriteLine(e.Key);
                 //Console.WriteLine(e.SystemKey);
             }
             else if (e.Key == Key.Delete && recordBoxVM.MacroStepIndex >= 0)
             {
                 recordBoxVM.MacroSteps.RemoveAt(recordBoxVM.MacroStepIndex);
+                e.Handled = true;
             }
         }
 
@@ -294,6 +313,7 @@ namespace DS4WinWPF.DS4Forms
                     recordBoxVM.KeysdownMap.Remove(value);
                 }
 
+                e.Handled = true;
                 //Console.WriteLine(e.Key);
                 //Console.WriteLine(e.SystemKey);
             }
@@ -499,6 +519,7 @@ namespace DS4WinWPF.DS4Forms
                             DS4Windows.MacroStep.StepType.ActDown, DS4Windows.MacroStep.StepOutput.Button);
                 recordBoxVM.AddMacroStep(step);
                 recordBoxVM.KeysdownMap.Add(value, true);
+                e.Handled = true;
             }
         }
 
@@ -521,6 +542,7 @@ namespace DS4WinWPF.DS4Forms
                             DS4Windows.MacroStep.StepType.ActUp, DS4Windows.MacroStep.StepOutput.Button);
                 recordBoxVM.AddMacroStep(step);
                 recordBoxVM.KeysdownMap.Remove(value);
+                e.Handled = true;
             }
         }
     }

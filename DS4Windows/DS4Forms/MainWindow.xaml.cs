@@ -301,7 +301,10 @@ Suspend support not enabled.", true);
                 Dispatcher.BeginInvoke((Action)(() =>
                 {
                     int count = logListView.Items.Count;
-                    logListView.ScrollIntoView(logvm.LogItems[count > 0 ? count-1 : 0]);
+                    if (count > 0)
+                    {
+                        logListView.ScrollIntoView(logvm.LogItems[count - 1]);
+                    }
                 }));
             }
         }

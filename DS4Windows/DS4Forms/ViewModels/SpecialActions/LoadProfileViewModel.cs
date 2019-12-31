@@ -70,7 +70,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels.SpecialActions
 
                 Global.SaveAction(action.name, action.controls, 3, profilename, edit,
                     action.ucontrols +
-                    (autoUntrigger ? ((action.ucontrols?.Length ?? 0) > 0 ? "/" : "") + "AutomaticUntrigger" : ""));
+                    (autoUntrigger ? (action.ucontrols.Length > 0 ? "/" : "") + "AutomaticUntrigger" : ""));
             }
         }
 

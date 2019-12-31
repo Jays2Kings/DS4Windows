@@ -118,7 +118,7 @@
                                         <RadioButton x:Name="useTouchControlsRadio" Content="Use As Controls" GroupName="tpMode" Click="UseTouchControlsRadio_Click" Margin="10,0,0,0" />
                                     </StackPanel>
 
-                                    <StackPanel x:Name="useMousePanel" Margin="0,10,0,0">
+                                    <StackPanel x:Name="useMousePanel" Margin="0,10,0,0" Visibility="Visible">
                                         <StackPanel Orientation="Horizontal">
                                             <StackPanel Orientation="Horizontal" Height="20">
                                                 <CheckBox Content="{lex:Loc TouchSlide}" IsChecked="{Binding TouchSenExists}" />
@@ -206,19 +206,19 @@
 
                                     <StackPanel x:Name="useControlsPanel" Margin="0,10,0,0" Visibility="Collapsed">
                                         <StackPanel Orientation="Horizontal">
-                                            <Button x:Name="swipeUpBtn" Content="Swipe Up" Width="70" />
+                                            <Button x:Name="swipeUpBtn" Content="Swipe Up" Width="70" Tag="36" Click="SwipeControlsButton_Click" />
                                             <Label x:Name="swipeUpLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                                            <Button x:Name="swipeDownBtn" Content="Swipe Down" Width="70" />
+                                            <Button x:Name="swipeDownBtn" Content="Swipe Down" Width="70" Tag="37" Click="SwipeControlsButton_Click" />
                                             <Label x:Name="swipeDownLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                                            <Button x:Name="swipeLeftBtn" Content="Swipe Left" Width="70" />
+                                            <Button x:Name="swipeLeftBtn" Content="Swipe Left" Width="70" Tag="34" Click="SwipeControlsButton_Click" />
                                             <Label x:Name="swipeLeftLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                                            <Button x:Name="swipeRightBtn" Content="Swipe Right" Width="70" />
+                                            <Button x:Name="swipeRightBtn" Content="Swipe Right" Width="70" Tag="35" Click="SwipeControlsButton_Click" />
                                             <Label x:Name="swipeRightLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
                                         </StackPanel>
                                     </StackPanel>

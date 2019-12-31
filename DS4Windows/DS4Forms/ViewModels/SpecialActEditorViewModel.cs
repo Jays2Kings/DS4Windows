@@ -69,7 +69,10 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             {
                 foreach (string s in action.ucontrols.Split('/'))
                 {
-                    controlUnloadTriggerList.Add(s);
+                    if (s != "AutomaticUntrigger")
+                    {
+                        controlUnloadTriggerList.Add(s);
+                    }
                 }
             }
 

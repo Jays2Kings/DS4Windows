@@ -205,7 +205,7 @@
     <value>エクスポート</value>
   </data>
   <data name="Full" xml:space="preserve">
-    <value>まンぷく</value>
+    <value>満タン</value>
   </data>
   <data name="Gyro" xml:space="preserve">
     <value>ジャイロ</value>
@@ -256,7 +256,7 @@
     <value>削除</value>
   </data>
   <data name="RemoveAction" xml:space="preserve">
-    <value>アクシヨンを除き去</value>
+    <value>アクシヨンを除去</value>
   </data>
   <data name="RightStick" xml:space="preserve">
     <value>右ステイック</value>
@@ -283,13 +283,13 @@
     <value>最小化の状態で起動</value>
   </data>
   <data name="StartText" xml:space="preserve">
-    <value>はじめ</value>
+    <value>開始</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>状態</value>
   </data>
   <data name="StopText" xml:space="preserve">
-    <value>止まる</value>
+    <value>停止</value>
   </data>
   <data name="TouchScroll" xml:space="preserve">
     <value>スクロール</value>

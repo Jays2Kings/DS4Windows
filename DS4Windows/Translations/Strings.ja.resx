@@ -166,7 +166,7 @@
     <value>閉じるﾎﾞﾀﾝで最小化</value>
   </data>
   <data name="Color" xml:space="preserve">
-    <value>いろ</value>
+    <value>色</value>
   </data>
   <data name="Controller1Text" xml:space="preserve">
     <value>コントローラー1</value>
@@ -190,7 +190,7 @@
     <value>削除</value>
   </data>
   <data name="DriverSetup" xml:space="preserve">
-    <value>ドライブのセットアップ</value>
+    <value>ドライバーのセットアップ</value>
   </data>
   <data name="Duplicate" xml:space="preserve">
     <value>複製</value>
@@ -199,7 +199,7 @@
     <value>編集</value>
   </data>
   <data name="EditAction" xml:space="preserve">
-    <value>アクシヨンを編集</value>
+    <value>アクションを編集</value>
   </data>
   <data name="Export" xml:space="preserve">
     <value>エクスポート</value>
@@ -229,10 +229,10 @@
     <value>新規</value>
   </data>
   <data name="NewAction" xml:space="preserve">
-    <value>新規アクシヨン</value>
+    <value>新規アクション</value>
   </data>
   <data name="NewProfile" xml:space="preserve">
-    <value>新規プロフアイル</value>
+    <value>新規プロファイル</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>なし</value>
@@ -244,7 +244,7 @@
     <value>プロフアイル</value>
   </data>
   <data name="ProfileFolder" xml:space="preserve">
-    <value>プロフアイルフオルダ</value>
+    <value>プロフアイルフォルダ</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
     <value>急速充電</value>
@@ -256,7 +256,7 @@
     <value>削除</value>
   </data>
   <data name="RemoveAction" xml:space="preserve">
-    <value>アクシヨンを除去</value>
+    <value>アクションを除去</value>
   </data>
   <data name="RightStick" xml:space="preserve">
     <value>右ステイック</value>

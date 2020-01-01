@@ -63,6 +63,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels.SpecialActions
             if (profileIndex > 0)
             {
                 string profilename = profileList.ProfileListCol[profileIndex - 1].Name;
+                if (action.ucontrols == null)
+                {
+                    action.ucontrols = string.Empty;
+                }
+
                 Global.SaveAction(action.name, action.controls, 3, profilename, edit,
                     action.ucontrols +
                     (autoUntrigger ? (action.ucontrols.Length > 0 ? "/" : "") + "AutomaticUntrigger" : ""));

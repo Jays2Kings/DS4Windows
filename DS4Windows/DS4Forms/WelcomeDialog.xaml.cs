@@ -14,7 +14,7 @@ namespace DS4WinWPF.DS4Forms
     public partial class WelcomeDialog : Window
     {
         private const string InstallerDL =
-            "https://github.com/ViGEm/ViGEmBus/releases/download/v1.16.112/ViGEmBus_Setup_1.16.115.exe";
+            "https://github.com/ViGEm/ViGEmBus/releases/download/setup-v1.16.115/ViGEmBus_Setup_1.16.115.exe";
         private const string InstFileName = "ViGEmBus_Setup_1.16.115.exe";
         private string tempInstFileName;
 
@@ -87,17 +87,26 @@ namespace DS4WinWPF.DS4Forms
             {
                 File.Move(tempInstFileName, filename);
             }
+            success = false; // Reset for later check
 
             if (File.Exists(DS4Windows.Global.exedirpath + $"\\{InstFileName}"))
             {
                 //vigemInstallBtn.Content = Properties.Resources.OpeningInstaller;
                 monitorProc = Process.Start(DS4Windows.Global.exedirpath + $"\\{InstFileName}");
                 vigemInstallBtn.Content = Properties.Resources.Installing;
+                success = true;
             }
 
-            monitorTimer = new NonFormTimer();
-            monitorTimer.Elapsed += ViGEmInstallTimer_Tick;
-            monitorTimer.Start();
+            if (success)
+            {
+                monitorTimer = new NonFormTimer();
+                monitorTimer.Elapsed += ViGEmInstallTimer_Tick;
+                monitorTimer.Start();
+            }
+            else
+            {
+                vigemInstallBtn.Content = Properties.Resources.InstallFailed;
+            }
         }
 
         private void ViGEmInstallTimer_Tick(object sender, System.Timers.ElapsedEventArgs e)

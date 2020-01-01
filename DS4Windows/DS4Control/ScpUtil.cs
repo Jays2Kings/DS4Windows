@@ -425,8 +425,7 @@ namespace DS4Windows
             [DS4Controls.SwipeLeft] = "Swipe Left",
             [DS4Controls.SwipeRight] = "Swipe Right",
             [DS4Controls.SwipeUp] = "Swipe Up",
-            [DS4Controls.SwipeUp] = "Swipe Up",
-            [DS4Controls.SwipeDown] = "None",
+            [DS4Controls.SwipeDown] = "Swipe Down",
         };
 
         public static Dictionary<DS4Controls, int> macroDS4Values = new Dictionary<DS4Controls, int>()

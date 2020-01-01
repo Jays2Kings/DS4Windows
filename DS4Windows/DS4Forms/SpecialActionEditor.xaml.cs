@@ -124,27 +124,43 @@ namespace DS4WinWPF.DS4Forms
         private void LoadAction(DS4Windows.SpecialAction specialAction)
         {
             specialActVM.LoadAction(specialAction);
-            foreach(string control in specialActVM.ControlTriggerList)
+            string[] tempTriggers = specialActVM.ControlTriggerList.ToArray();
+            foreach (string control in tempTriggers)
             {
-                foreach(CheckBox box in triggerBoxes)
+                bool found = false;
+                foreach (CheckBox box in triggerBoxes)
                 {
                     if (box.Tag.ToString() == control)
                     {
                         box.IsChecked = true;
+                        found = true;
                         break;
                     }
                 }
+
+                if (!found)
+                {
+                    specialActVM.ControlTriggerList.Remove(control);
+                }
             }
 
-            foreach (string control in specialActVM.ControlUnloadTriggerList)
+            tempTriggers = specialActVM.ControlUnloadTriggerList.ToArray();
+            foreach (string control in tempTriggers)
             {
+                bool found = false;
                 foreach (CheckBox box in unloadTriggerBoxes)
                 {
                     if (box.Tag.ToString() == control)
                     {
                         box.IsChecked = true;
+                        found = true;
                         break;
                     }
+                }
+
+                if (!found)
+                {
+                    specialActVM.ControlUnloadTriggerList.Remove(control);
                 }
             }
 

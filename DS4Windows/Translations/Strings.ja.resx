@@ -121,13 +121,13 @@
     <value>加速度</value>
   </data>
   <data name="Action" xml:space="preserve">
-    <value>アクシヨン</value>
+    <value>アクション</value>
   </data>
   <data name="Add Programs" xml:space="preserve">
     <value>プログラムを追加</value>
   </data>
   <data name="AddDirectory" xml:space="preserve">
-    <value>Add Directory</value>
+    <value>ディレクトリを追加</value>
   </data>
   <data name="AddStartMenuPrograms" xml:space="preserve">
     <value>スタートメニューのプログラムを追加</value>

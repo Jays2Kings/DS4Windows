@@ -241,10 +241,10 @@
     <value>パス</value>
   </data>
   <data name="Profile" xml:space="preserve">
-    <value>プロフアイル</value>
+    <value>プロファイル</value>
   </data>
   <data name="ProfileFolder" xml:space="preserve">
-    <value>プロフアイルフォルダ</value>
+    <value>プロファイルフォルダ</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
     <value>急速充電</value>
@@ -265,7 +265,7 @@
     <value>振動</value>
   </data>
   <data name="RunAtStartup" xml:space="preserve">
-    <value>システム起動時ﾆ開始</value>
+    <value>システム起動時に開始</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>保存</value>

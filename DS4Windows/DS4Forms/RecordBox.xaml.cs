@@ -279,10 +279,15 @@ namespace DS4WinWPF.DS4Forms
             if (recordBoxVM.Recording)
             {
                 int value = KeyInterop.VirtualKeyFromKey(e.Key);
+
+                // If the key is System key (ie. e.Key doesnt have a real key code) then map the system key to Win32 virtualKey value (in some keyboard layouts LeftAlt is one of those problematic keys)
+                if (value == 0 && e.Key == Key.System && e.SystemKey == Key.LeftAlt)
+                    value = 164; // Win32 keycode VK_LMENU (=LeftAlt)
+
                 recordBoxVM.KeysdownMap.TryGetValue(value, out bool isdown);
                 if (!isdown)
                 {
-                    DS4Windows.MacroStep step = new DS4Windows.MacroStep(KeyInterop.VirtualKeyFromKey(e.Key), e.Key.ToString(),
+                    DS4Windows.MacroStep step = new DS4Windows.MacroStep(value, ( (e.Key != Key.System || value == 0) ? e.Key.ToString() : e.SystemKey.ToString() ),
                             DS4Windows.MacroStep.StepType.ActDown, DS4Windows.MacroStep.StepOutput.Key);
                     recordBoxVM.AddMacroStep(step);
                     recordBoxVM.KeysdownMap.Add(value, true);
@@ -304,10 +309,14 @@ namespace DS4WinWPF.DS4Forms
             if (recordBoxVM.Recording)
             {
                 int value = KeyInterop.VirtualKeyFromKey(e.Key);
+
+                if (value == 0 && e.Key == Key.System && e.SystemKey == Key.LeftAlt)
+                    value = 164; // Win32 keycode VK_LMENU (=LeftAlt)
+
                 recordBoxVM.KeysdownMap.TryGetValue(value, out bool isdown);
                 if (isdown)
                 {
-                    DS4Windows.MacroStep step = new DS4Windows.MacroStep(KeyInterop.VirtualKeyFromKey(e.Key), e.Key.ToString(),
+                    DS4Windows.MacroStep step = new DS4Windows.MacroStep(value, ( (e.Key != Key.System || value == 0) ? e.Key.ToString() : e.SystemKey.ToString() ),
                             DS4Windows.MacroStep.StepType.ActUp, DS4Windows.MacroStep.StepOutput.Key);
                     recordBoxVM.AddMacroStep(step);
                     recordBoxVM.KeysdownMap.Remove(value);

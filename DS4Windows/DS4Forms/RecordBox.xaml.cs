@@ -278,11 +278,12 @@ namespace DS4WinWPF.DS4Forms
         {
             if (recordBoxVM.Recording)
             {
-                int value = KeyInterop.VirtualKeyFromKey(e.Key);
+                Key tempKey = e.SystemKey == Key.None ? e.Key : e.SystemKey;
+                int value = KeyInterop.VirtualKeyFromKey(tempKey);
                 recordBoxVM.KeysdownMap.TryGetValue(value, out bool isdown);
                 if (!isdown)
                 {
-                    DS4Windows.MacroStep step = new DS4Windows.MacroStep(KeyInterop.VirtualKeyFromKey(e.Key), e.Key.ToString(),
+                    DS4Windows.MacroStep step = new DS4Windows.MacroStep(value, tempKey.ToString(),
                             DS4Windows.MacroStep.StepType.ActDown, DS4Windows.MacroStep.StepOutput.Key);
                     recordBoxVM.AddMacroStep(step);
                     recordBoxVM.KeysdownMap.Add(value, true);
@@ -303,11 +304,12 @@ namespace DS4WinWPF.DS4Forms
         {
             if (recordBoxVM.Recording)
             {
-                int value = KeyInterop.VirtualKeyFromKey(e.Key);
+                Key tempKey = e.SystemKey == Key.None ? e.Key : e.SystemKey;
+                int value = KeyInterop.VirtualKeyFromKey(tempKey);
                 recordBoxVM.KeysdownMap.TryGetValue(value, out bool isdown);
                 if (isdown)
                 {
-                    DS4Windows.MacroStep step = new DS4Windows.MacroStep(KeyInterop.VirtualKeyFromKey(e.Key), e.Key.ToString(),
+                    DS4Windows.MacroStep step = new DS4Windows.MacroStep(value, tempKey.ToString(),
                             DS4Windows.MacroStep.StepType.ActUp, DS4Windows.MacroStep.StepOutput.Key);
                     recordBoxVM.AddMacroStep(step);
                     recordBoxVM.KeysdownMap.Remove(value);

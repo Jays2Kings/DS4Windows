@@ -173,6 +173,19 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
 
+        private bool viewEnabled = true;
+        public bool ViewEnabled
+        {
+            get => viewEnabled;
+            set
+            {
+                viewEnabled = value;
+                ViewEnabledChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler ViewEnabledChanged;
+
+
         public SettingsViewModel()
         {
             checkEveryUnitIdx = 1;

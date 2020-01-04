@@ -32,6 +32,7 @@ namespace DS4WinWPF.DS4Forms
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowsViewModel mainWinVM;
         private StatusLogMsg lastLogMsg = new StatusLogMsg();
         private ProfileList profileListHolder = new ProfileList();
         private LogViewModel logvm;
@@ -57,6 +58,9 @@ namespace DS4WinWPF.DS4Forms
         public MainWindow(ArgumentParser parser)
         {
             InitializeComponent();
+
+            mainWinVM = new MainWindowsViewModel();
+            DataContext = mainWinVM;
 
             App root = Application.Current as App;
             settingsWrapVM = new SettingsViewModel();
@@ -257,6 +261,7 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
             autoprofileChecker.RequestServiceChange += AutoprofileChecker_RequestServiceChange;
             autoProfileHolder.AutoProfileColl.CollectionChanged += AutoProfileColl_CollectionChanged;
             //autoProfControl.AutoProfVM.AutoProfileSystemChange += AutoProfVM_AutoProfileSystemChange;
+            mainWinVM.FullTabsEnabledChanged += MainWinVM_FullTabsEnabledChanged;
 
             bool wmiConnected = false;
             WqlEventQuery q = new WqlEventQuery();
@@ -286,6 +291,11 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
                 AppLogger.LogToGui(@"Could not connect to Windows Management Instrumentation service.
 Suspend support not enabled.", true);
             }
+        }
+
+        private void MainWinVM_FullTabsEnabledChanged(object sender, EventArgs e)
+        {
+            settingsWrapVM.ViewEnabled = mainWinVM.FullTabsEnabled;
         }
 
         private void TrayIconVM_RequestServiceChange(object sender, EventArgs e)
@@ -1274,6 +1284,7 @@ Suspend support not enabled.", true);
 
             editor = null;
             mainTabCon.SelectedIndex = 0;
+            mainWinVM.FullTabsEnabled = true;
             //Task.Run(() => GC.Collect(0, GCCollectionMode.Forced, false));
         }
 
@@ -1288,6 +1299,7 @@ Suspend support not enabled.", true);
             {
                 profOptsToolbar.Visibility = Visibility.Collapsed;
                 profilesListBox.Visibility = Visibility.Collapsed;
+                mainWinVM.FullTabsEnabled = false;
 
                 preserveSize = false;
                 oldSize.Width = Width;

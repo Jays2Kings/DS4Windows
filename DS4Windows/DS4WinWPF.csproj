@@ -225,6 +225,7 @@
     <Compile Include="DS4Forms\ViewModels\BindingWindowViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\ControllerListViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\LanguagePackViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\MainWindowsViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\MappingListViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\ProfileSettingsViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\RecordBoxViewModel.cs" />

@@ -37,7 +37,7 @@
             </DockPanel>
         </StackPanel>
         <TabControl x:Name="mainTabCon" DockPanel.Dock="Top" SelectionChanged="MainTabCon_SelectionChanged">
-            <TabItem Header="{lex:Loc Controllers}">
+            <TabItem Header="{lex:Loc Controllers}" IsEnabled="{Binding FullTabsEnabled,Mode=OneWay}">
                 <Grid>
                     <Label x:Name="noContLb" Visibility="Hidden" Content="No Controllers Connected (Max 4)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
                     <ListView x:Name="controllerLV" ItemsSource="{Binding ControllerCol}" SelectionMode="Single" SelectedIndex="{Binding CurrentIndex, Mode=OneWayToSource}" Margin="0">
@@ -201,12 +201,12 @@
                     </ListBox>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="{lex:Loc AutoProfiles}">
+            <TabItem Header="{lex:Loc AutoProfiles}" IsEnabled="{Binding FullTabsEnabled,Mode=OneWay}">
                 <local:AutoProfiles x:Name="autoProfControl">
 
                 </local:AutoProfiles>
             </TabItem>
-            <TabItem x:Name="settingsTab" Header="{lex:Loc Settings}">
+            <TabItem x:Name="settingsTab" Header="{lex:Loc Settings}" IsEnabled="{Binding ViewEnabled,Mode=OneWay}">
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                     <WrapPanel Orientation="Vertical" Margin="8,16,8,8">
                         <WrapPanel.Resources>

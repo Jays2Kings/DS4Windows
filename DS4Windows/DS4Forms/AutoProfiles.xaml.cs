@@ -67,6 +67,8 @@ namespace DS4WinWPF.DS4Forms
             programListLV.DataContext = autoProfVM;
             programListLV.ItemsSource = autoProfVM.ProgramColl;
 
+            revertDefaultProfileOnUnknownCk.DataContext = autoProfVM;
+
             autoProfVM.SearchFinished += AutoProfVM_SearchFinished;
             autoProfVM.CurrentItemChange += AutoProfVM_CurrentItemChange;
 

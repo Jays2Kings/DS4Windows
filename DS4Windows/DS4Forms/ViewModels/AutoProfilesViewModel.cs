@@ -50,6 +50,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public delegate void AutoProfileStateHandler(AutoProfilesViewModel sender, bool state);
         public event AutoProfileStateHandler AutoProfileSystemChange;
 
+        public bool RevertDefaultProfileOnUnknown
+        {
+            get => DS4Windows.Global.AutoProfileRevertDefaultProfile;
+            set => DS4Windows.Global.AutoProfileRevertDefaultProfile = value;
+        }
+
         public AutoProfilesViewModel(AutoProfileHolder autoProfileHolder, ProfileList profileList)
         {
             programColl = new ObservableCollection<ProgramItem>();

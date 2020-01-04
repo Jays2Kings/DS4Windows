@@ -99,10 +99,18 @@ namespace DS4WinWPF
                     {
                         if (Global.useTempProfile[j])
                         {
-                            if (autoProfileDebugLogLevel > 0)
-                                DS4Windows.AppLogger.LogToGui($"DEBUG: Auto-Profile. RestoreProfile Controller {j + 1}={Global.ProfilePath[j]} (default)", false);
+                            if (DS4Windows.Global.AutoProfileRevertDefaultProfile)
+                            {
+                                if (autoProfileDebugLogLevel > 0)
+                                    DS4Windows.AppLogger.LogToGui($"DEBUG: Auto-Profile. Unknown process. Reverting to default profile. Controller {j + 1}={Global.ProfilePath[j]} (default)", false);
 
-                            Global.LoadProfile(j, false, Program.rootHub);
+                                Global.LoadProfile(j, false, Program.rootHub);
+                            }
+                            else
+                            {
+                                if (autoProfileDebugLogLevel > 0)
+                                    DS4Windows.AppLogger.LogToGui($"DEBUG: Auto-Profile. Unknown process. Existing profile left as active. Controller {j + 1}={Global.tempprofilename[j]}", false);
+                            }
                         }
                     }
 

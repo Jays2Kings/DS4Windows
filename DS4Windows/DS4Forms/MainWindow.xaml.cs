@@ -46,7 +46,6 @@ namespace DS4WinWPF.DS4Forms
         private AutoProfileHolder autoProfileHolder;
         private NonFormTimer hotkeysTimer;
         private NonFormTimer autoProfilesTimer;
-        private static int autoProfileDebugLogLevel = 0; // 0=Dont log debug messages about active process and window titles to GUI Log screen. 1=Show debug log messages
         private AutoProfileChecker autoprofileChecker;
         private ProfileEditor editor;
         private bool preserveSize = true;
@@ -359,8 +358,7 @@ Suspend support not enabled.", true);
 
         private void AutoProfControl_AutoDebugChanged(object sender, EventArgs e)
         {
-            autoprofileChecker.AutoProfileDebugLogLevel =
-                autoProfileDebugLogLevel = autoProfControl.AutoDebug == true ? 1 : 0;
+            autoprofileChecker.AutoProfileDebugLogLevel = autoProfControl.AutoDebug == true ? 1 : 0;
         }
 
         private void PowerEventArrive(object sender, EventArrivedEventArgs e)

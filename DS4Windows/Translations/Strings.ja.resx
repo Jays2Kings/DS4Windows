@@ -121,13 +121,13 @@
     <value>加速度</value>
   </data>
   <data name="Action" xml:space="preserve">
-    <value>アクシヨン</value>
+    <value>アクション</value>
   </data>
   <data name="Add Programs" xml:space="preserve">
     <value>プログラムを追加</value>
   </data>
   <data name="AddDirectory" xml:space="preserve">
-    <value>Add Directory</value>
+    <value>ディレクトリを追加</value>
   </data>
   <data name="AddStartMenuPrograms" xml:space="preserve">
     <value>スタートメニューのプログラムを追加</value>
@@ -166,7 +166,7 @@
     <value>閉じるﾎﾞﾀﾝで最小化</value>
   </data>
   <data name="Color" xml:space="preserve">
-    <value>いろ</value>
+    <value>色</value>
   </data>
   <data name="Controller1Text" xml:space="preserve">
     <value>コントローラー1</value>
@@ -190,7 +190,7 @@
     <value>削除</value>
   </data>
   <data name="DriverSetup" xml:space="preserve">
-    <value>ドライブのセットアップ</value>
+    <value>ドライバーのセットアップ</value>
   </data>
   <data name="Duplicate" xml:space="preserve">
     <value>複製</value>
@@ -199,13 +199,13 @@
     <value>編集</value>
   </data>
   <data name="EditAction" xml:space="preserve">
-    <value>アクシヨンを編集</value>
+    <value>アクションを編集</value>
   </data>
   <data name="Export" xml:space="preserve">
     <value>エクスポート</value>
   </data>
   <data name="Full" xml:space="preserve">
-    <value>まンぷく</value>
+    <value>満タン</value>
   </data>
   <data name="Gyro" xml:space="preserve">
     <value>ジャイロ</value>
@@ -229,10 +229,10 @@
     <value>新規</value>
   </data>
   <data name="NewAction" xml:space="preserve">
-    <value>新規アクシヨン</value>
+    <value>新規アクション</value>
   </data>
   <data name="NewProfile" xml:space="preserve">
-    <value>新規プロフアイル</value>
+    <value>新規プロファイル</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>なし</value>
@@ -241,10 +241,10 @@
     <value>パス</value>
   </data>
   <data name="Profile" xml:space="preserve">
-    <value>プロフアイル</value>
+    <value>プロファイル</value>
   </data>
   <data name="ProfileFolder" xml:space="preserve">
-    <value>プロフアイルフオルダ</value>
+    <value>プロファイルフォルダ</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
     <value>急速充電</value>
@@ -256,7 +256,7 @@
     <value>削除</value>
   </data>
   <data name="RemoveAction" xml:space="preserve">
-    <value>アクシヨンを除き去</value>
+    <value>アクションを除去</value>
   </data>
   <data name="RightStick" xml:space="preserve">
     <value>右ステイック</value>
@@ -265,7 +265,7 @@
     <value>振動</value>
   </data>
   <data name="RunAtStartup" xml:space="preserve">
-    <value>システム起動時ﾆ開始</value>
+    <value>システム起動時に開始</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>保存</value>
@@ -283,13 +283,13 @@
     <value>最小化の状態で起動</value>
   </data>
   <data name="StartText" xml:space="preserve">
-    <value>はじめ</value>
+    <value>開始</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>状態</value>
   </data>
   <data name="StopText" xml:space="preserve">
-    <value>止まる</value>
+    <value>停止</value>
   </data>
   <data name="TouchScroll" xml:space="preserve">
     <value>スクロール</value>

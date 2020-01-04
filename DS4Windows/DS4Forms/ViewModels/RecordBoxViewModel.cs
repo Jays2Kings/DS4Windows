@@ -308,22 +308,21 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         continue;
                     }
 
-                    keysdownMap.TryGetValue((int)dc, out bool isdown);
+                    int macroValue = Global.macroDS4Values[dc];
+                    keysdownMap.TryGetValue(macroValue, out bool isdown);
                     if (!isdown && Mapping.getBoolMapping(0, dc, cState, null, null))
                     {
-                        int macroValue = Global.macroDS4Values[dc];
                         MacroStep step = new MacroStep(macroValue, MacroParser.macroInputNames[macroValue],
                                 MacroStep.StepType.ActDown, MacroStep.StepOutput.Button);
                         AddMacroStep(step);
-                        keysdownMap.Add((int)dc, true);
+                        keysdownMap.Add(macroValue, true);
                     }
                     else if (isdown && !Mapping.getBoolMapping(0, dc, cState, null, null))
                     {
-                        int macroValue = Global.macroDS4Values[dc];
                         MacroStep step = new MacroStep(macroValue, MacroParser.macroInputNames[macroValue],
                                 MacroStep.StepType.ActUp, MacroStep.StepOutput.Button);
                         AddMacroStep(step);
-                        keysdownMap.Remove((int)dc);
+                        keysdownMap.Remove(macroValue);
                     }
                 }
             }

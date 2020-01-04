@@ -136,7 +136,8 @@ namespace DS4WinWPF.DS4Forms
                 recordBtn.Content = "Stop";
                 if (recordBoxVM.MacroStepIndex == -1)
                 {
-                    recordBoxVM.MacroSteps.Clear();
+                    // Don't clear macro steps in RECORD button because nowadays there is a separate CLEAR button. RECORD btn without a selection appends new steps to existing macro sequence
+                    //recordBoxVM.MacroSteps.Clear();
                 }
                 else
                 {
@@ -192,6 +193,15 @@ namespace DS4WinWPF.DS4Forms
             recordBoxVM.MacroStepIndex = -1;
         }
 
+        private void ClearStepsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!recordBoxVM.Recording)
+            {
+                recordBoxVM.MacroStepIndex = -1;
+                recordBoxVM.MacroSteps.Clear();
+            }
+        }
+
         private void Enable_Controls(bool on)
         {
             macroListBox.IsEnabled = on;
@@ -201,6 +211,7 @@ namespace DS4WinWPF.DS4Forms
             loadPresetBtn.IsEnabled = on;
             savePresetBtn.IsEnabled = on;
             macroModeCombo.IsEnabled = on;
+            clearStepsBtn.IsEnabled = on;
         }
 
         private void ChangeLightbarAction()

@@ -108,6 +108,9 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
 
             BindingOperations.EnableCollectionSynchronization(macroSteps, _colLockobj);
+            
+            // By default RECORD button appends new steps. User must select (click) an existing step to insert new steps in front of the selected step
+            this.MacroStepIndex = -1;
         }
 
         public void LoadMacro()

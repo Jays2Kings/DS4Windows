@@ -187,8 +187,7 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear
-        ///.
+        ///   Looks up a localized string similar to Clear.
         /// </summary>
         public static string Clear {
             get {
@@ -503,6 +502,24 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to sec.
+        /// </summary>
+        public static string RumbleMaxSecs {
+            get {
+                return ResourceManager.GetString("RumbleMaxSecs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto stop rumble in secs (0=auto stop disabled).
+        /// </summary>
+        public static string RumbleMaxSecsTip {
+            get {
+                return ResourceManager.GetString("RumbleMaxSecsTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Run At Startup.
         /// </summary>
         public static string RunAtStartup {
@@ -584,8 +601,7 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scroll
-        ///.
+        ///   Looks up a localized string similar to Scroll.
         /// </summary>
         public static string TouchScroll {
             get {

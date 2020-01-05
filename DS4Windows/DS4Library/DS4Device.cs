@@ -329,6 +329,24 @@ namespace DS4Windows
             return currentHap.RumbleMotorStrengthLeftHeavySlow;
         }
 
+
+        private int rumbleAutostopTime = 0;
+        public int RumbleAutostopTime
+        {
+            get { return rumbleAutostopTime; }
+            set
+            {
+                // Value in milliseconds
+                rumbleAutostopTime = value;
+
+                // If autostop timer is disabled (value 0) then stop existing autostop timer otherwise restart it
+                if (value <= 0)
+                    rumbleAutostopTimer.Reset();
+                else
+                    rumbleAutostopTimer.Restart();
+            }
+        }
+
         public DS4Color LightBarColor
         {
             get { return currentHap.LightBarColor; }
@@ -1251,7 +1269,7 @@ namespace DS4Windows
                 if (rumbleAutostopTimer.IsRunning)
                 {
                     // Workaround to a bug in ViGem driver. Force stop potentially stuck rumble motor on the next output report if there haven't been new rumble events within X seconds
-                    if (rumbleAutostopTimer.ElapsedMilliseconds >= 2000L)
+                    if (rumbleAutostopTimer.ElapsedMilliseconds >= rumbleAutostopTime)
                         setRumble(0, 0);
                 }
 
@@ -1445,10 +1463,14 @@ namespace DS4Windows
             testRumble.RumbleMotorStrengthLeftHeavySlow = leftHeavySlowMotor;
             testRumble.RumbleMotorsExplicitlyOff = rightLightFastMotor == 0 && leftHeavySlowMotor == 0;
 
-            if (testRumble.RumbleMotorsExplicitlyOff)
-                rumbleAutostopTimer.Reset();   // Stop an autostop timer because ViGem driver sent properly a zero rumble notification
-            else
-                rumbleAutostopTimer.Restart(); // Start an autostop timer to stop potentially stuck rumble motor because of lost rumble notification events from ViGem driver
+            // If rumble autostop timer (msecs) is enabled for this device then restart autostop timer everytime rumble is modified (or stop the timer if rumble is set to zero)
+            if (rumbleAutostopTime > 0)
+            {
+                if (testRumble.RumbleMotorsExplicitlyOff)
+                    rumbleAutostopTimer.Reset();   // Stop an autostop timer because ViGem driver sent properly a zero rumble notification
+                else
+                    rumbleAutostopTimer.Restart(); // Start an autostop timer to stop potentially stuck rumble motor because of lost rumble notification events from ViGem driver
+            }
         }
 
         private void MergeStates()

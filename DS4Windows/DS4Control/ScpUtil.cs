@@ -980,6 +980,20 @@ namespace DS4Windows
             return m_Config.rumble[index];
         }
 
+        public static void setRumbleAutostopTime(int index, int value)
+        {
+            m_Config.rumbleAutostopTime[index] = value;
+            
+            DS4Device tempDev = Program.rootHub.DS4Controllers[index];
+            if (tempDev != null && tempDev.isSynced())
+                tempDev.RumbleAutostopTime = value;
+        }
+
+        public static int getRumbleAutostopTime(int index)
+        {
+            return m_Config.rumbleAutostopTime[index];
+        }
+
         public static double[] Rainbow => m_Config.rainbow;
         public static double getRainbow(int index)
         {
@@ -1949,6 +1963,7 @@ namespace DS4Windows
         // Cache properties instead of performing a string comparison every frame
         public bool[] distanceProfiles = new bool[5] { false, false, false, false, false };
         public Byte[] rumble = new Byte[5] { 100, 100, 100, 100, 100 };
+        public int[] rumbleAutostopTime = new int[5] { 0, 0, 0, 0, 0 }; // Value in milliseconds (0=autustop timer disabled)
         public Byte[] touchSensitivity = new Byte[5] { 100, 100, 100, 100, 100 };
         public StickDeadZoneInfo[] lsModInfo = new StickDeadZoneInfo[5]
         {
@@ -2438,6 +2453,7 @@ namespace DS4Windows
                 xmlColor.InnerText = m_Leds[device].red.ToString() + "," + m_Leds[device].green.ToString() + "," + m_Leds[device].blue.ToString();
                 Node.AppendChild(xmlColor);
                 XmlNode xmlRumbleBoost = m_Xdoc.CreateNode(XmlNodeType.Element, "RumbleBoost", null); xmlRumbleBoost.InnerText = rumble[device].ToString(); Node.AppendChild(xmlRumbleBoost);
+                XmlNode xmlRumbleAutostopTime = m_Xdoc.CreateNode(XmlNodeType.Element, "RumbleAutostopTime", null); xmlRumbleAutostopTime.InnerText = rumbleAutostopTime[device].ToString(); Node.AppendChild(xmlRumbleAutostopTime);
                 XmlNode xmlLedAsBatteryIndicator = m_Xdoc.CreateNode(XmlNodeType.Element, "ledAsBatteryIndicator", null); xmlLedAsBatteryIndicator.InnerText = ledAsBattery[device].ToString(); Node.AppendChild(xmlLedAsBatteryIndicator);
                 XmlNode xmlLowBatteryFlash = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashType", null); xmlLowBatteryFlash.InnerText = flashType[device].ToString(); Node.AppendChild(xmlLowBatteryFlash);
                 XmlNode xmlFlashBatterAt = m_Xdoc.CreateNode(XmlNodeType.Element, "flashBatteryAt", null); xmlFlashBatterAt.InnerText = flashAt[device].ToString(); Node.AppendChild(xmlFlashBatterAt);
@@ -3082,6 +3098,9 @@ namespace DS4Windows
                 }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RumbleBoost"); Byte.TryParse(Item.InnerText, out rumble[device]); }
+                catch { missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RumbleAutostopTime"); Int32.TryParse(Item.InnerText, out rumbleAutostopTime[device]); }
                 catch { missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ledAsBatteryIndicator"); Boolean.TryParse(Item.InnerText, out ledAsBattery[device]); }
@@ -4722,6 +4741,7 @@ namespace DS4Windows
             ledAsBattery[device] = false;
             flashType[device] = 0;
             rumble[device] = 100;
+            rumbleAutostopTime[device] = 0;
             touchSensitivity[device] = 100;
             l2ModInfo[device].deadZone = r2ModInfo[device].deadZone = 0;
             lsModInfo[device].deadZone = rsModInfo[device].deadZone = 10;
@@ -4909,7 +4929,8 @@ namespace DS4Windows
                         control.UnplugOutDev(device, tempDev);
                     }
 
-                    tempDev.setRumble(0, 0);
+                    tempDev.RumbleAutostopTime = rumbleAutostopTime[device];
+                    tempDev.setRumble(0, 0);                    
                 });
 
                 Program.rootHub.touchPad[device]?.ResetTrackAccel(trackballFriction[device]);

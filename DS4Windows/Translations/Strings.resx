@@ -306,4 +306,10 @@
   <data name="WarningsOnly" xml:space="preserve">
     <value>Warnings only</value>
   </data>
+  <data name="RumbleMaxSecs" xml:space="preserve">
+    <value>sec</value>
+  </data>
+  <data name="RumbleMaxSecsTip" xml:space="preserve">
+    <value>Auto stop rumble in secs (0=auto stop disabled)</value>
+  </data>
 </root>

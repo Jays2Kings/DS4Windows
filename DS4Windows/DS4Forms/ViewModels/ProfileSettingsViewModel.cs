@@ -342,6 +342,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.RumbleBoost[device] = (byte)value;
         }
 
+        public int RumbleAutostopTime
+        {
+            // RumbleAutostopTime value is in milliseconds in XML config file, but GUI uses just seconds
+            get => Global.getRumbleAutostopTime(device) / 1000;
+            set => Global.setRumbleAutostopTime(device, value * 1000);
+        }
+
         private bool heavyRumbleActive;
         public bool HeavyRumbleActive
         {

@@ -910,9 +910,11 @@
                 <StackPanel>
                     <GroupBox Header="{lex:Loc Rumble}" MinHeight="50" Margin="4,4,4,0" Padding="0,4,0,4">
                         <UniformGrid Rows="1" Columns="3">
-                            <UniformGrid Columns="2">
-                                <xctk:IntegerUpDown x:Name="RumbleBoostIUD" d:IsHidden="True" MinWidth="60" Value="{Binding RumbleBoost}" Minimum="0" Maximum="200" Increment="10" />
+                            <UniformGrid Columns="4" HorizontalAlignment="Left">
+                                <xctk:IntegerUpDown x:Name="RumbleBoostIUD" d:IsHidden="True" Value="{Binding RumbleBoost}" Minimum="0" Maximum="200" Increment="10" />
                                 <Label Content="%" />
+                                <xctk:IntegerUpDown x:Name="RumbleAutostopTimeIUD" d:IsHidden="True" Value="{Binding RumbleAutostopTime}" Minimum="0" Maximum="3600" Increment="1" ToolTip="{lex:Loc RumbleMaxSecsTip}"/>
+                                <Label Content="{lex:Loc RumbleMaxSecs}" />
                             </UniformGrid>
 
                             <Button x:Name="heavyRumbleTestBtn" Content="Test Heavy" Margin="10,0,0,0" Click="HeavyRumbleTestBtn_Click" />

@@ -69,12 +69,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             this.controlService = service;
             contextMenu = new ContextMenu();
             iconSource = Global.UseWhiteIcon ? ICON_WHITE : ICON_COLOR;
-            changeServiceItem = new MenuItem() { Header = "Start",
-                FontWeight = FontWeights.Bold };
+            changeServiceItem = new MenuItem() { Header = "Start" };
             changeServiceItem.Click += ChangeControlServiceItem_Click;
             changeServiceItem.IsEnabled = false;
 
-            openItem = new MenuItem() { Header = "Open" };
+            openItem = new MenuItem() { Header = "Open",
+                FontWeight = FontWeights.Bold };
             openItem.Click += OpenMenuItem_Click;
             minimizeItem = new MenuItem() { Header = "Minimize" };
             minimizeItem.Click += MinimizeMenuItem_Click;

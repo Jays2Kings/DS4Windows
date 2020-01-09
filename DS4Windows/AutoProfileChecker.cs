@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
+using System.Diagnostics; // StopWatch
+using System.Threading; // Sleep
 using System.Threading.Tasks;
 using DS4Windows;
 
@@ -61,6 +63,17 @@ namespace DS4WinWPF
 
                 if (matchedProfileEntity != null)
                 {
+                    bool forceLoadProfile = false;
+
+                    if (!turnOffDS4WinApp && turnOffTemp)
+                    {
+                        // DS4Win was temporarily turned off by another auto-profile rule. Turn DS4Win on before trying to load a new profile because otherwise the new profile won't do anything.
+                        // Force load the profile when DS4Win service afer waking up DS4Win service to make sure that the new profile will be active.
+                        turnOffTemp = false;
+                        SetAndWaitServiceStatus(true);
+                        forceLoadProfile = true;
+                    }
+
                     // Program match found. Check if the new profile is different than current profile of the controller. Load the new profile only if it is not already loaded.
                     for (int j = 0; j < 4; j++)
                     {
@@ -68,7 +81,8 @@ namespace DS4WinWPF
                         if (tempname != string.Empty && tempname != "(none)")
                         {
                             if ((Global.useTempProfile[j] && tempname != Global.tempprofilename[j]) ||
-                                (!Global.useTempProfile[j] && tempname != Global.ProfilePath[j]))
+                                (!Global.useTempProfile[j] && tempname != Global.ProfilePath[j]) ||
+                                forceLoadProfile)
                             {
                                 if (autoProfileDebugLogLevel > 0)
                                     DS4Windows.AppLogger.LogToGui($"DEBUG: Auto-Profile. LoadProfile Controller {j + 1}={tempname}", false);
@@ -87,13 +101,31 @@ namespace DS4WinWPF
                     if (turnOffDS4WinApp)
                     {
                         turnOffTemp = true;
-                        RequestServiceChange?.Invoke(this, false);
+                        if (App.rootHub.running)
+                        {
+                            if (autoProfileDebugLogLevel > 0)
+                                DS4Windows.AppLogger.LogToGui($"DEBUG: Auto-Profile. Turning DS4Windows temporarily off", false);
+
+                            SetAndWaitServiceStatus(false);
+                        }
                     }
 
                     tempAutoProfile = matchedProfileEntity;
                 }
                 else if (tempAutoProfile != null)
                 {
+                    if (turnOffTemp && DS4Windows.Global.AutoProfileRevertDefaultProfile)
+                    {
+                        turnOffTemp = false;
+                        if (!App.rootHub.running)
+                        {
+                            if (autoProfileDebugLogLevel > 0)
+                                DS4Windows.AppLogger.LogToGui($"DEBUG: Auto-Profile. Turning DS4Windows on before reverting to default profile", false);
+
+                            SetAndWaitServiceStatus(true);
+                        }
+                    }
+
                     tempAutoProfile = null;
                     for (int j = 0; j < 4; j++)
                     {
@@ -112,12 +144,6 @@ namespace DS4WinWPF
                                     DS4Windows.AppLogger.LogToGui($"DEBUG: Auto-Profile. Unknown process. Existing profile left as active. Controller {j + 1}={Global.tempprofilename[j]}", false);
                             }
                         }
-                    }
-
-                    if (turnOffTemp)
-                    {
-                        turnOffTemp = false;
-                        RequestServiceChange?.Invoke(this, true);
                     }
                 }
             }
@@ -183,6 +209,25 @@ namespace DS4WinWPF
                 DS4Windows.AppLogger.LogToGui($"DEBUG: Auto-Profile. PID={lpdwProcessId}  Path={topProcessName} | WND={hWnd}  Title={topWndTitleName}", false);
 
             return true;
+        }
+
+        private void SetAndWaitServiceStatus(bool serviceRunningStatus)
+        {
+            // Start or Stop the service only if it is not already in the requested state
+            if (App.rootHub.running != serviceRunningStatus)
+            {
+                RequestServiceChange?.Invoke(this, serviceRunningStatus);
+
+                // Wait until DS4Win app service is running or stopped (as requested by serviceRunningStatus value) or timeout.
+                // LoadProfile call fails if a new profile is loaded while DS4Win service is still in stopped state (ie the loaded temp profile doesn't do anything).
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                while (App.rootHub.running != serviceRunningStatus && sw.Elapsed.TotalSeconds < 10)
+                {
+                    Thread.Sleep(500);
+                }
+                Thread.Sleep(500);
+            }
         }
 
         [DllImport("user32.dll")]

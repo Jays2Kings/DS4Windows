@@ -30,6 +30,7 @@ namespace DS4WinWPF.DS4Forms
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    [System.Security.SuppressUnmanagedCodeSecurity]
     public partial class MainWindow : Window
     {
         private MainWindowsViewModel mainWinVM;

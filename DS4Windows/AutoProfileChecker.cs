@@ -224,9 +224,9 @@ namespace DS4WinWPF
                 sw.Start();
                 while (App.rootHub.running != serviceRunningStatus && sw.Elapsed.TotalSeconds < 10)
                 {
-                    Thread.Sleep(500);
+                    Thread.SpinWait(1000);
                 }
-                Thread.Sleep(500);
+                Thread.SpinWait(1000);
             }
         }
 

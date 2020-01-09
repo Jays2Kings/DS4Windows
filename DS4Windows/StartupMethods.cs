@@ -9,6 +9,7 @@ using Task = Microsoft.Win32.TaskScheduler.Task;
 
 namespace DS4WinWPF
 {
+    [System.Security.SuppressUnmanagedCodeSecurity]
     public static class StartupMethods
     {
         public static string lnkpath = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk";

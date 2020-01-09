@@ -107,7 +107,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         break;
                     case DS4ControlSettings.ActionType.Key:
                         shiftOutBind.outputType = OutBinding.OutType.Key;
-                        shiftOutBind.outkey = (int)setting.shiftAction;
+                        shiftOutBind.outkey = Convert.ToInt32(setting.shiftAction);
                         shiftOutBind.hasScanCode = sc;
                         shiftOutBind.toggle = toggle;
                         break;

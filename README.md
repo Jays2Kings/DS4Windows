@@ -46,6 +46,10 @@ using Microsoft BT stack. Toshiba's adapters currently do not work.
 [Minds @ds4windows](https://www.minds.com/ds4windows/)  
 Gab Social: @ds4windows
 
+### Other
+
+[Backloggery](https://backloggery.com/ryochan7)
+
 ## Device Detection Issue
 
 If your DS4 is not detected by DS4Windows and the lightbar continues to

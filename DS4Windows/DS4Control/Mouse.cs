@@ -421,7 +421,7 @@ namespace DS4Windows
             if (!Global.UseTPforControls[deviceNum])
             {
                 Array.Clear(trackballXBuffer, 0, TRACKBALL_BUFFER_LEN);
-                Array.Clear(trackballXBuffer, 0, TRACKBALL_BUFFER_LEN);
+                Array.Clear(trackballYBuffer, 0, TRACKBALL_BUFFER_LEN);
                 trackballXVel = 0.0;
                 trackballYVel = 0.0;
                 trackballActive = false;

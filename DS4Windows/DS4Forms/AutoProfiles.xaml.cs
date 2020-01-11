@@ -66,7 +66,7 @@ namespace DS4WinWPF.DS4Forms
             autoProfVM = new AutoProfilesViewModel(autoProfileHolder, profileList);
             programListLV.DataContext = autoProfVM;
             programListLV.ItemsSource = autoProfVM.ProgramColl;
-
+            
             revertDefaultProfileOnUnknownCk.DataContext = autoProfVM;
 
             autoProfVM.SearchFinished += AutoProfVM_SearchFinished;
@@ -275,6 +275,15 @@ namespace DS4WinWPF.DS4Forms
             else
             {
                 this.IsEnabled = true;
+            }
+        }
+
+        private void MoveUpDownAutoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (autoProfVM.SelectedItem != null && sender != null)
+            {
+                if(autoProfVM.MoveItemUpDown(autoProfVM.SelectedItem, ((sender as MenuItem).Name == "MoveUp") ? -1 : 1))
+                    autoProfVM.AutoProfileHolder.Save(DS4Windows.Global.appdatapath + @"\Auto Profiles.xml");
             }
         }
     }

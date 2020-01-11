@@ -312,4 +312,13 @@
   <data name="RumbleMaxSecsTip" xml:space="preserve">
     <value>Auto stop rumble in secs (0=auto stop disabled)</value>
   </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Window Title</value>
+  </data>
+  <data name="MoveUp" xml:space="preserve">
+    <value>Move Up</value>
+  </data>
+  <data name="MoveDown" xml:space="preserve">
+    <value>Move Down</value>
+  </data>
 </root>

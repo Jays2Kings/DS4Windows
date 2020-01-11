@@ -1053,6 +1053,7 @@ namespace DS4WinWPF.DS4Forms
             {
                 DS4Windows.SpecialAction action = DS4Windows.Global.GetAction(actionName);
                 SpecialActionItem newitem = specialActionsVM.CreateActionItem(action);
+                newitem.Active = true;
                 specialActionsVM.ActionCol.Add(newitem);
                 specialActionDockPanel.Children.Remove(actEditor);
                 baseSpeActPanel.Visibility = Visibility.Visible;

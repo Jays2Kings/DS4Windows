@@ -310,6 +310,6 @@
     <value>sekunda</value>
   </data>
   <data name="RumbleMaxSecsTip" xml:space="preserve">
-    <value>Automaticky vypnout vybrace po sekundách ( 0 = automatické vypnutí vibrací vypnuto)</value>
+    <value>Automaticky vypnout vibrace po sekundách ( 0 = automatické vypnutí vibrací vypnuto)</value>
   </data>
 </root>

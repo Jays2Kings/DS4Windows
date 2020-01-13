@@ -133,6 +133,24 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Process path. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*).
+        /// </summary>
+        public static string AutoProfPathTip {
+            get {
+                return ResourceManager.GetString("AutoProfPathTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Window title. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*).
+        /// </summary>
+        public static string AutoProfTitleTip {
+            get {
+                return ResourceManager.GetString("AutoProfTitleTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Battery.
         /// </summary>
         public static string Battery {

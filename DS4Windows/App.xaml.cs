@@ -430,6 +430,20 @@ namespace DS4WinWPF
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
+            Logger logger = logHolder.Logger;
+            logger.Info("Request App Shutdown");
+            CleanShutdown();
+        }
+
+        private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
+        {
+            Logger logger = logHolder.Logger;
+            logger.Info("User Session Ending");
+            CleanShutdown();
+        }
+
+        private void CleanShutdown()
+        {
             if (runShutdown)
             {
                 if (rootHub != null)
@@ -456,6 +470,9 @@ namespace DS4WinWPF
 
                 if (ipcClassNameMMA != null) ipcClassNameMMA.Dispose();
                 if (ipcClassNameMMF != null) ipcClassNameMMF.Dispose();
+
+                LogManager.Flush();
+                LogManager.Shutdown();
             }
         }
     }

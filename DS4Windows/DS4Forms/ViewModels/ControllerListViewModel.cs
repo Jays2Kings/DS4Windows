@@ -152,17 +152,30 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private void Controller_Removal(object sender, EventArgs e)
         {
             DS4Device currentDev = sender as DS4Device;
+            CompositeDeviceModel found = null;
             _colListLocker.EnterReadLock();
             foreach (CompositeDeviceModel temp in controllerCol)
             {
                 if (temp.Device == currentDev)
                 {
-                    controllerCol.Remove(temp);
-                    controllerDict.Remove(temp.DevIndex);
+                    found = temp;
                     break;
                 }
             }
             _colListLocker.ExitReadLock();
+
+            if (found != null)
+            {
+                _colListLocker.EnterWriteLock();
+                controllerCol.Remove(found);
+                controllerDict.Remove(found.DevIndex);
+                System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                {
+                    Global.Save();
+                });
+                Global.linkedProfileCheck[found.DevIndex] = false;
+                _colListLocker.ExitWriteLock();
+            }
         }
     }
 

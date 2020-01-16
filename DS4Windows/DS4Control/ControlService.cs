@@ -1284,7 +1284,6 @@ namespace DS4Windows
                     inWarnMonitor[ind] = false;
                     useDInputOnly[ind] = true;
                     Global.activeOutDevType[ind] = OutContType.None;
-                    Global.linkedProfileCheck[ind] = false;
                     /*uiContext?.Post(new SendOrPostCallback((state) =>
                     {
                         OnControllerRemoved(this, ind);

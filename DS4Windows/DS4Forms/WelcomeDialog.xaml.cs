@@ -14,8 +14,8 @@ namespace DS4WinWPF.DS4Forms
     public partial class WelcomeDialog : Window
     {
         private const string InstallerDL =
-            "https://github.com/ViGEm/ViGEmBus/releases/download/setup-v1.16.115/ViGEmBus_Setup_1.16.115.exe";
-        private const string InstFileName = "ViGEmBus_Setup_1.16.115.exe";
+            "https://github.com/ViGEm/ViGEmBus/releases/download/setup-v1.16.116/ViGEmBus_Setup_1.16.116.exe";
+        private const string InstFileName = "ViGEmBus_Setup_1.16.116.exe";
         private string tempInstFileName;
 
         Process monitorProc;

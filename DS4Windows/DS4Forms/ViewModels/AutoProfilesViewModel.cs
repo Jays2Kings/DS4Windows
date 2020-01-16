@@ -326,6 +326,28 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
             return result;
         }
+
+        public bool MoveItemUpDown(ProgramItem item, int moveDirection)
+        {
+            // Move autoprofile item up (-1) or down (1) both in listView (programColl) and in autoProfileHolder data structure (will be written into AutoProfiles.xml file)
+            bool itemMoved = true;
+            int oldIdx = programColl.IndexOf(item);
+
+            if (moveDirection == -1 && oldIdx > 0 && oldIdx < autoProfileHolder.AutoProfileColl.Count)
+            {
+                programColl.Move(oldIdx, oldIdx - 1);
+                autoProfileHolder.AutoProfileColl.Move(oldIdx, oldIdx - 1);
+            }
+            else if (moveDirection == 1 && oldIdx >= 0 && oldIdx < programColl.Count - 1 && oldIdx < autoProfileHolder.AutoProfileColl.Count - 1)
+            {    
+                programColl.Move(oldIdx, oldIdx + 1);
+                autoProfileHolder.AutoProfileColl.Move(oldIdx, oldIdx + 1);
+            }
+            else
+                itemMoved = false;
+
+            return itemMoved;
+        }
     }
 
     public class ProgramItem

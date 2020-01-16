@@ -116,8 +116,8 @@
                 </Grid>
                 <CheckBox Content="Turn Off DS4Window Temporarily" Margin="{StaticResource spaceMargin}"
                           IsChecked="{Binding Turnoff}" />
-                <TextBox Text="{Binding Path}" Margin="{StaticResource spaceMargin}" />
-                <TextBox Text="{Binding Title, UpdateSourceTrigger=LostFocus}" Margin="{StaticResource spaceMargin}" />
+                <TextBox Text="{Binding Path}" Margin="{StaticResource spaceMargin}" ToolTip="{lex:Loc AutoProfPathTip}"/>
+                <TextBox Text="{Binding Title, UpdateSourceTrigger=LostFocus}" Margin="{StaticResource spaceMargin}" ToolTip="{lex:Loc AutoProfTitleTip}"/>
                 <Border Height="4" Background="#FFDADADA" Margin="0,10,0,0" />
             </StackPanel>
             <CheckBox x:Name="revertDefaultProfileOnUnknownCk" Content="Revert to default profile on unknown" Margin="0,10,0,0" IsChecked="{Binding RevertDefaultProfileOnUnknown}" />
@@ -152,10 +152,16 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="{lex:Loc Path}" Width="600" DisplayMemberBinding="{Binding Path}"/>
-                        <GridViewColumn Header="Window Title" Width="Auto" DisplayMemberBinding="{Binding Title}"/>
+                        <GridViewColumn Header="{lex:Loc WindowTitle}" Width="Auto" DisplayMemberBinding="{Binding Title}"/>
                     </GridView>
                 </ListView.View>
-           </ListView>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="{lex:Loc MoveUp}" Name="MoveUp" Click="MoveUpDownAutoBtn_Click"/>
+                        <MenuItem Header="{lex:Loc MoveDown}" Name="MoveDown" Click="MoveUpDownAutoBtn_Click"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
         </DockPanel>
     </DockPanel>
 </UserControl>

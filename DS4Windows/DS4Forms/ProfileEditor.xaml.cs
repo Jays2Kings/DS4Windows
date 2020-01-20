@@ -1051,12 +1051,14 @@ namespace DS4WinWPF.DS4Forms
             };
             actEditor.Saved += (sender2, actionName) =>
             {
-                DS4Windows.SpecialAction action = DS4Windows.Global.GetAction(actionName);
+                SpecialAction action = Global.GetAction(actionName);
                 SpecialActionItem newitem = specialActionsVM.CreateActionItem(action);
                 newitem.Active = true;
                 specialActionsVM.ActionCol.Add(newitem);
                 specialActionDockPanel.Children.Remove(actEditor);
                 baseSpeActPanel.Visibility = Visibility.Visible;
+
+                specialActionsVM.ExportEnabledActions();
             };
         }
 

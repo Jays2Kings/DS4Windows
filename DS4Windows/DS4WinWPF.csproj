@@ -367,6 +367,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Translations\Strings.cs.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Translations\Strings.es.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Strings.resx</DependentUpon>
@@ -487,7 +491,7 @@
     <PostBuildEvent>rem Copy compiled l18n assemblies to alt folder
 GOTO END
 if not exist $(TargetDir)Lang mkdir $(TargetDir)Lang
-set langs=es it ja pt-BR ru
+set langs=cs es it ja pt-BR ru
 
 for %25%25l in (%25langs%25) do (
   xcopy $(TargetDir)%25%25l $(TargetDir)Lang\%25%25l\ /s /y

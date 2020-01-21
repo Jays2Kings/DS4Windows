@@ -686,13 +686,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public double LSMaxOutput
         {
             get => Global.LSModInfo[device].maxOutput / 100.0;
-            set => Global.LSModInfo[device].maxOutput = (int)(value * 100.0);
+            set => Global.LSModInfo[device].maxOutput = value * 100.0;
         }
 
         public double RSMaxOutput
         {
             get => Global.RSModInfo[device].maxOutput / 100.0;
-            set => Global.RSModInfo[device].maxOutput = (int)(value * 100.0);
+            set => Global.RSModInfo[device].maxOutput = value * 100.0;
         }
 
         public double LSSens

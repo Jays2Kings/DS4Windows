@@ -817,7 +817,8 @@ namespace DS4Windows
             byte l2Deadzone = l2ModInfo.deadZone;
             int l2AntiDeadzone = l2ModInfo.antiDeadZone;
             int l2Maxzone = l2ModInfo.maxZone;
-            if (l2Deadzone > 0 || l2AntiDeadzone > 0 || l2Maxzone != 100)
+            double l2MaxOutput = l2ModInfo.maxOutput;
+            if (l2Deadzone > 0 || l2AntiDeadzone > 0 || l2Maxzone != 100 || l2MaxOutput != 100.0)
             {
                 double tempL2Output = cState.L2 / 255.0;
                 double tempL2AntiDead = 0.0;
@@ -835,6 +836,12 @@ namespace DS4Windows
                     {
                         tempL2Output = 0.0;
                     }
+                }
+
+                if (l2MaxOutput != 100.0)
+                {
+                    double maxOutRatio = l2MaxOutput / 100.0;
+                    tempL2Output = Math.Min(Math.Max(tempL2Output, 0.0), maxOutRatio);
                 }
 
                 if (l2AntiDeadzone > 0)
@@ -860,7 +867,8 @@ namespace DS4Windows
             byte r2Deadzone = r2ModInfo.deadZone;
             int r2AntiDeadzone = r2ModInfo.antiDeadZone;
             int r2Maxzone = r2ModInfo.maxZone;
-            if (r2Deadzone > 0 || r2AntiDeadzone > 0 || r2Maxzone != 100)
+            double r2MaxOutput = r2ModInfo.maxOutput;
+            if (r2Deadzone > 0 || r2AntiDeadzone > 0 || r2Maxzone != 100 || r2MaxOutput != 100.0)
             {
                 double tempR2Output = cState.R2 / 255.0;
                 double tempR2AntiDead = 0.0;
@@ -878,6 +886,12 @@ namespace DS4Windows
                     {
                         tempR2Output = 0.0;
                     }
+                }
+
+                if (r2MaxOutput != 100.0)
+                {
+                    double maxOutRatio = r2MaxOutput / 100.0;
+                    tempR2Output = Math.Min(Math.Max(tempR2Output, 0.0), maxOutRatio);
                 }
 
                 if (r2AntiDeadzone > 0)

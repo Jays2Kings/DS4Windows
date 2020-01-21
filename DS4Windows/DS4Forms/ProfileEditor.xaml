@@ -425,6 +425,7 @@
                                     <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
                                     <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
                                     <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
+                                    <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
                                 </Grid.RowDefinitions>
 
                                 <Grid.ColumnDefinitions>
@@ -454,14 +455,20 @@
                                 <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding R2AntiDeadZone}" MinWidth="50" Grid.Row="3" Grid.Column="2" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
-                                <Label Content="Sensitivity:" Grid.Row="4" Grid.Column="0" />
-                                <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding L2Sens}" MinWidth="50" Grid.Row="4" Grid.Column="1" Maximum="10.0" Minimum="0.1" Increment="0.1"
+                                <Label Content="Max Output:" Grid.Row="4" Grid.Column="0" />
+                                <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding L2MaxOutput}" MinWidth="50" Grid.Row="4" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
-                                <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding R2Sens}" MinWidth="50" Grid.Row="4" Grid.Column="2" Maximum="10.0" Minimum="0.1" Increment="0.1"
+                                <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding R2MaxOutput}" MinWidth="50" Grid.Row="4" Grid.Column="2" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
-                                <Label Content="Output Curve:" Grid.Row="5" Grid.Column="0" />
-                                <ComboBox Grid.Row="5" Grid.Column="1" SelectedIndex="{Binding L2OutputCurveIndex}"
+                                <Label Content="Sensitivity:" Grid.Row="5" Grid.Column="0" />
+                                <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding L2Sens}" MinWidth="50" Grid.Row="5" Grid.Column="1" Maximum="10.0" Minimum="0.1" Increment="0.1"
+                                                   Margin="{StaticResource spaceMargin}" />
+                                <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding R2Sens}" MinWidth="50" Grid.Row="5" Grid.Column="2" Maximum="10.0" Minimum="0.1" Increment="0.1"
+                                                   Margin="{StaticResource spaceMargin}" />
+
+                                <Label Content="Output Curve:" Grid.Row="6" Grid.Column="0" />
+                                <ComboBox Grid.Row="6" Grid.Column="1" SelectedIndex="{Binding L2OutputCurveIndex}"
                                           Margin="{StaticResource spaceMargin}">
                                     <ComboBoxItem Content="Linear" />
                                     <ComboBoxItem Content="Enhanced Precision" />
@@ -471,7 +478,7 @@
                                     <ComboBoxItem Content="Easeout Cubic" />
                                     <ComboBoxItem Content="Custom" />
                                 </ComboBox>
-                                <ComboBox Grid.Row="5" Grid.Column="2" SelectedIndex="{Binding R2OutputCurveIndex}"
+                                <ComboBox Grid.Row="6" Grid.Column="2" SelectedIndex="{Binding R2OutputCurveIndex}"
                                           Margin="{StaticResource spaceMargin}">
                                     <ComboBoxItem Content="Linear" />
                                     <ComboBoxItem Content="Enhanced Precision" />
@@ -482,13 +489,13 @@
                                     <ComboBoxItem Content="Custom" />
                                 </ComboBox>
 
-                                <DockPanel Grid.Row="6" Grid.Column="1" IsEnabled="{Binding L2CustomCurveSelected}">
+                                <DockPanel Grid.Row="7" Grid.Column="1" IsEnabled="{Binding L2CustomCurveSelected}">
                                     <Button x:Name="l2CustomEditorBtn" Content="..." Tag="L2" Width="20" DockPanel.Dock="Right" Click="CustomEditorBtn_Click"
                                             Margin="{StaticResource spaceMargin}" />
                                     <TextBox Text="{Binding L2CustomCurve,FallbackValue='0.00, 0.00, 1.00, 1.00'}" DockPanel.Dock="Left"
                                              Margin="{StaticResource spaceMargin}" />
                                 </DockPanel>
-                                <DockPanel Grid.Row="6" Grid.Column="2"  IsEnabled="{Binding R2CustomCurveSelected}">
+                                <DockPanel Grid.Row="7" Grid.Column="2"  IsEnabled="{Binding R2CustomCurveSelected}">
                                     <Button x:Name="r2CustomEditorBtn" Content="..." Tag="R2" Width="20" DockPanel.Dock="Right" Click="CustomEditorBtn_Click"
                                             Margin="{StaticResource spaceMargin}" />
                                     <TextBox Text="{Binding R2CustomCurve,FallbackValue='0.00, 0.00, 1.00, 1.00'}" DockPanel.Dock="Left"

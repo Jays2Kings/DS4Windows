@@ -2479,6 +2479,8 @@ namespace DS4Windows
                 XmlNode xmlR2AD = m_Xdoc.CreateNode(XmlNodeType.Element, "R2AntiDeadZone", null); xmlR2AD.InnerText = r2ModInfo[device].antiDeadZone.ToString(); Node.AppendChild(xmlR2AD);
                 XmlNode xmlL2Maxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "L2MaxZone", null); xmlL2Maxzone.InnerText = l2ModInfo[device].maxZone.ToString(); Node.AppendChild(xmlL2Maxzone);
                 XmlNode xmlR2Maxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "R2MaxZone", null); xmlR2Maxzone.InnerText = r2ModInfo[device].maxZone.ToString(); Node.AppendChild(xmlR2Maxzone);
+                XmlNode xmlL2MaxOutput = m_Xdoc.CreateNode(XmlNodeType.Element, "L2MaxOutput", null); xmlL2MaxOutput.InnerText = l2ModInfo[device].maxOutput.ToString(); Node.AppendChild(xmlL2MaxOutput);
+                XmlNode xmlR2MaxOutput = m_Xdoc.CreateNode(XmlNodeType.Element, "R2MaxOutput", null); xmlR2MaxOutput.InnerText = r2ModInfo[device].maxOutput.ToString(); Node.AppendChild(xmlR2MaxOutput);
                 XmlNode xmlButtonMouseSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "ButtonMouseSensitivity", null); xmlButtonMouseSensitivity.InnerText = buttonMouseSensitivity[device].ToString(); Node.AppendChild(xmlButtonMouseSensitivity);
                 XmlNode xmlRainbow = m_Xdoc.CreateNode(XmlNodeType.Element, "Rainbow", null); xmlRainbow.InnerText = rainbow[device].ToString(); Node.AppendChild(xmlRainbow);
                 XmlNode xmlMaxSatRainbow = m_Xdoc.CreateNode(XmlNodeType.Element, "MaxSatRainbow", null); xmlMaxSatRainbow.InnerText = Convert.ToInt32(maxRainbowSat[device] * 100.0).ToString(); Node.AppendChild(xmlMaxSatRainbow);
@@ -3222,6 +3224,22 @@ namespace DS4Windows
                     r2ModInfo[device].maxZone = Math.Min(Math.Max(temp, 0), 100);
                 }
                 catch { r2ModInfo[device].maxZone = 100; missingSetting = true; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2MaxOutput"); double temp = 100.0;
+                    temp = double.Parse(Item.InnerText);
+                    l2ModInfo[device].maxOutput = Math.Min(Math.Max(temp, 0.0), 100.0);
+                }
+                catch { l2ModInfo[device].maxOutput = 100.0; missingSetting = true; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2MaxOutput"); double temp = 100.0;
+                    temp =  double.Parse(Item.InnerText);
+                    r2ModInfo[device].maxOutput = Math.Min(Math.Max(temp, 0.0), 100.0);
+                }
+                catch { r2ModInfo[device].maxOutput = 100.0; missingSetting = true; }
 
                 try
                 {
@@ -4768,6 +4786,7 @@ namespace DS4Windows
             lsModInfo[device].maxOutput = rsModInfo[device].maxOutput = 100.0;
             l2ModInfo[device].antiDeadZone = r2ModInfo[device].antiDeadZone = 0;
             l2ModInfo[device].maxZone = r2ModInfo[device].maxZone = 100;
+            l2ModInfo[device].maxOutput = r2ModInfo[device].maxOutput = 100.0;
             LSRotation[device] = 0.0;
             RSRotation[device] = 0.0;
             SXDeadzone[device] = SZDeadzone[device] = 0.25;

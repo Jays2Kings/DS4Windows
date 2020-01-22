@@ -275,7 +275,7 @@ namespace DS4Windows
         public static int prevmouseaccel = 0;
         private static double horizontalRemainder = 0.0, verticalRemainder = 0.0;
         private const int MOUSESPEEDFACTOR = 48;
-        private const double MOUSESTICKOFFSET = 0.0495;
+        private const double MOUSESTICKOFFSET = 0.20;
 
         public static void Commit(int device)
         {

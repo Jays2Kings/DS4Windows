@@ -9,7 +9,7 @@ namespace DS4Windows
 {
     public class OutputSlotManager
     {
-        private const int DELAY_TIME = 100; // measured in ms
+        private const int DELAY_TIME = 200; // measured in ms
 
         private Dictionary<int, OutputDevice> devictDict = new Dictionary<int, OutputDevice>();
         private Dictionary<OutputDevice, int> revDevictDict = new Dictionary<OutputDevice, int>();

@@ -296,9 +296,9 @@
                         <local:LanguagePackControl Margin="{StaticResource spaceMargin}" />
                         <StackPanel Margin="{StaticResource spaceMargin}">
                             <CheckBox x:Name="customSteamCk" Content="Use custom Steam Folder" Margin="{StaticResource spaceMargin}"
-                                  IsChecked="{Binding UseCustomSteamFolder}" Click="CustomSteamCk_Click"  />
+                                  IsChecked="{Binding UseCustomSteamFolder}" />
                             <TextBox x:Name="customSteamTxt" Text="{Binding CustomSteamFolder, UpdateSourceTrigger=LostFocus}"
-                                 IsEnabled="False" />
+                                 IsEnabled="{Binding UseCustomSteamFolder}" />
                         </StackPanel>
 
                         <GroupBox Width="200" Header="Utils" BorderThickness="2" Margin="{StaticResource spaceMargin}"

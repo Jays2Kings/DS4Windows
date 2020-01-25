@@ -1244,12 +1244,6 @@ Suspend support not enabled.", true);
             Close();
         }
 
-        private void CustomSteamCk_Click(object sender, RoutedEventArgs e)
-        {
-            bool state = customSteamCk.IsChecked == true;
-            customSteamTxt.IsEnabled = state;
-        }
-
         private void SwipeTouchCk_Click(object sender, RoutedEventArgs e)
         {
             bool status = swipeTouchCk.IsChecked == true;

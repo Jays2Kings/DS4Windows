@@ -1342,5 +1342,10 @@ Suspend support not enabled.", true);
                 ShowProfileEditor(4, entity);
             }
         }
+
+        private void Html5GameBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://html5gamepad.com/");
+        }
     }
 }

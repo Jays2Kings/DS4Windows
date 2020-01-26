@@ -312,6 +312,10 @@
                                     Style="{StaticResource NoBGHoverBtn}" Click="ControlPanelBtn_Click" >
                                     <TextBlock Text="{lex:Loc ControlPanel}" TextDecorations="Underline" Foreground="#FF3881D8" Cursor="Hand" />
                                 </Button>
+                                <Button x:Name="html5GameBtn" BorderThickness="0" Margin="0,0,0,4" Background="{x:Null}" BorderBrush="{x:Null}"
+                                    Style="{StaticResource NoBGHoverBtn}" Click="Html5GameBtn_Click" >
+                                    <TextBlock Text="{lex:Loc GamepadTest}" TextDecorations="Underline" Foreground="#FF3881D8" Cursor="Hand" />
+                                </Button>
                                 <Button x:Name="driverSetupBtn" BorderThickness="0" Margin="0,0,0,4" Background="{x:Null}" BorderBrush="{x:Null}"
                                    Style="{StaticResource NoBGHoverBtn}"  Click="DriverSetupBtn_Click">
                                     <TextBlock Text="{lex:Loc DriverSetup}" TextDecorations="Underline" Foreground="#FF3881D8" Cursor="Hand" />

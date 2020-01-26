@@ -349,6 +349,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gamepad Test.
+        /// </summary>
+        public static string GamepadTest {
+            get {
+                return ResourceManager.GetString("GamepadTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gyro.
         /// </summary>
         public static string Gyro {

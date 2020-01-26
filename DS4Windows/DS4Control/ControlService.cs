@@ -165,7 +165,7 @@ namespace DS4Windows
             //    Thread.SpinWait(500);
             //}
 
-            if (Global.IsHidGuardianInstalled())
+            if (Global.hidguardInstalled)
             {
                 ProcessStartInfo startInfo =
                     new ProcessStartInfo(Global.exedirpath + "\\HidGuardHelper.exe");
@@ -422,6 +422,10 @@ namespace DS4Windows
                     LogDebug(DS4WinWPF.Properties.Resources.Starting);
 
                 LogDebug($"Connection to ViGEmBus {Global.vigembusVersion} established");
+                if (Global.hidguardInstalled)
+                {
+                    LogDebug($"HidGuardian In Use");
+                }
 
                 DS4Devices.isExclusiveMode = getUseExclusiveMode();
                 //uiContext = tempui as SynchronizationContext;

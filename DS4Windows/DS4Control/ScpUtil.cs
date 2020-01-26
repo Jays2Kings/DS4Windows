@@ -263,6 +263,7 @@ namespace DS4Windows
             DS4Windows.OutContType.None, DS4Windows.OutContType.None,
             DS4Windows.OutContType.None };
         public static bool vigemInstalled = IsViGEmBusInstalled();
+        public static bool hidguardInstalled = IsHidGuardianInstalled();
         public static string vigembusVersion = ViGEmBusVersion();
 
         public static X360Controls[] defaultButtonMapping = { X360Controls.None, X360Controls.LXNeg, X360Controls.LXPos,

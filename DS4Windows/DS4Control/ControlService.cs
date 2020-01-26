@@ -28,11 +28,6 @@ namespace DS4Windows
         bool[] held = new bool[DS4_CONTROLLER_COUNT];
         int[] oldmouse = new int[DS4_CONTROLLER_COUNT] { -1, -1, -1, -1 };
         public OutputDevice[] outputDevices = new OutputDevice[4] { null, null, null, null };
-        //public Xbox360Controller[] x360controls = new Xbox360Controller[4] { null, null, null, null };
-        /*private Xbox360Report[] x360reports = new Xbox360Report[4] { new Xbox360Report(), new Xbox360Report(),
-            new Xbox360Report(), new Xbox360Report()
-        };
-        */
         Thread tempThread;
         Thread tempBusThread;
         public List<string> affectedDevs = new List<string>()
@@ -838,118 +833,6 @@ namespace DS4Windows
             return true;
         }
 
-        /*private void testNewReport(ref Xbox360Report xboxreport, DS4State state,
-            int device)
-        {
-            Xbox360Buttons tempButtons = 0;
-
-            unchecked
-            {
-                if (state.Share) tempButtons |= Xbox360Buttons.Back;
-                if (state.L3) tempButtons |= Xbox360Buttons.LeftThumb;
-                if (state.R3) tempButtons |= Xbox360Buttons.RightThumb;
-                if (state.Options) tempButtons |= Xbox360Buttons.Start;
-
-                if (state.DpadUp) tempButtons |= Xbox360Buttons.Up;
-                if (state.DpadRight) tempButtons |= Xbox360Buttons.Right;
-                if (state.DpadDown) tempButtons |= Xbox360Buttons.Down;
-                if (state.DpadLeft) tempButtons |= Xbox360Buttons.Left;
-
-                if (state.L1) tempButtons |= Xbox360Buttons.LeftShoulder;
-                if (state.R1) tempButtons |= Xbox360Buttons.RightShoulder;
-
-                if (state.Triangle) tempButtons |= Xbox360Buttons.Y;
-                if (state.Circle) tempButtons |= Xbox360Buttons.B;
-                if (state.Cross) tempButtons |= Xbox360Buttons.A;
-                if (state.Square) tempButtons |= Xbox360Buttons.X;
-                if (state.PS) tempButtons |= Xbox360Buttons.Guide;
-                xboxreport.SetButtonsFull(tempButtons);
-            }
-
-            xboxreport.LeftTrigger = state.L2;
-            xboxreport.RightTrigger = state.R2;
-
-            SASteeringWheelEmulationAxisType steeringWheelMappedAxis = Global.GetSASteeringWheelEmulationAxis(device);
-            switch (steeringWheelMappedAxis)
-            {
-                case SASteeringWheelEmulationAxisType.None:
-                    xboxreport.LeftThumbX = AxisScale(state.LX, false);
-                    xboxreport.LeftThumbY = AxisScale(state.LY, true);
-                    xboxreport.RightThumbX = AxisScale(state.RX, false);
-                    xboxreport.RightThumbY = AxisScale(state.RY, true);
-                    break;
-
-                case SASteeringWheelEmulationAxisType.LX:
-                    xboxreport.LeftThumbX = (short)state.SASteeringWheelEmulationUnit;
-                    xboxreport.LeftThumbY = AxisScale(state.LY, true);
-                    xboxreport.RightThumbX = AxisScale(state.RX, false);
-                    xboxreport.RightThumbY = AxisScale(state.RY, true);
-                    break;
-
-                case SASteeringWheelEmulationAxisType.LY:
-                    xboxreport.LeftThumbX = AxisScale(state.LX, false);
-                    xboxreport.LeftThumbY = (short)state.SASteeringWheelEmulationUnit;
-                    xboxreport.RightThumbX = AxisScale(state.RX, false);
-                    xboxreport.RightThumbY = AxisScale(state.RY, true);
-                    break;
-
-                case SASteeringWheelEmulationAxisType.RX:
-                    xboxreport.LeftThumbX = AxisScale(state.LX, false);
-                    xboxreport.LeftThumbY = AxisScale(state.LY, true);
-                    xboxreport.RightThumbX = (short)state.SASteeringWheelEmulationUnit;
-                    xboxreport.RightThumbY = AxisScale(state.RY, true);
-                    break;
-
-                case SASteeringWheelEmulationAxisType.RY:
-                    xboxreport.LeftThumbX = AxisScale(state.LX, false);
-                    xboxreport.LeftThumbY = AxisScale(state.LY, true);
-                    xboxreport.RightThumbX = AxisScale(state.RX, false);
-                    xboxreport.RightThumbY = (short)state.SASteeringWheelEmulationUnit;
-                    break;
-
-                case SASteeringWheelEmulationAxisType.L2R2:
-                    xboxreport.LeftTrigger = xboxreport.RightTrigger = 0;
-                    if (state.SASteeringWheelEmulationUnit >= 0) xboxreport.LeftTrigger = (Byte)state.SASteeringWheelEmulationUnit;
-                    else xboxreport.RightTrigger = (Byte)state.SASteeringWheelEmulationUnit;
-                    goto case SASteeringWheelEmulationAxisType.None;
-
-                case SASteeringWheelEmulationAxisType.VJoy1X:
-                case SASteeringWheelEmulationAxisType.VJoy2X:
-                    DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(state.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_X);
-                    goto case SASteeringWheelEmulationAxisType.None;
-
-                case SASteeringWheelEmulationAxisType.VJoy1Y:
-                case SASteeringWheelEmulationAxisType.VJoy2Y:
-                    DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(state.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_Y);
-                    goto case SASteeringWheelEmulationAxisType.None;
-
-                case SASteeringWheelEmulationAxisType.VJoy1Z:
-                case SASteeringWheelEmulationAxisType.VJoy2Z:
-                    DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(state.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_Z);
-                    goto case SASteeringWheelEmulationAxisType.None;
-
-                default:
-                    // Should never come here but just in case use the NONE case as default handler....
-                    goto case SASteeringWheelEmulationAxisType.None;
-            }
-        }
-        */
-
-        /*private short AxisScale(Int32 Value, Boolean Flip)
-        {
-            unchecked
-            {
-                Value -= 0x80;
-
-                //float temp = (Value - (-128)) / (float)inputResolution;
-                float temp = (Value - (-128)) * reciprocalInputResolution;
-                if (Flip) temp = (temp - 0.5f) * -1.0f + 0.5f;
-
-                return (short)(temp * outputResolution + (-32768));
-            }
-        }
-        */
-
         private void CheckProfileOptions(int ind, DS4Device device, bool startUp=false)
         {
             device.setIdleTimeout(getIdleDisconnectTimeout(ind));
@@ -1166,11 +1049,6 @@ namespace DS4Windows
                 {
                     if (!useDInputOnly[ind])
                     {
-                        //string tempType = outputDevices[ind].GetDeviceType();
-                        //outputDevices[ind].Disconnect();
-                        //outputDevices[ind] = null;
-                        //useDInputOnly[ind] = true;
-                        //LogDebug(tempType + " Controller #" + (ind + 1) + " unplugged");
                         Global.activeOutDevType[ind] = OutContType.None;
                         UnplugOutDev(ind, device);
                     }
@@ -1180,39 +1058,6 @@ namespace DS4Windows
                     if (!getDInputOnly(ind))
                     {
                         PluginOutDev(ind, device);
-                        /*OutContType conType = Global.OutContType[ind];
-                        if (conType == OutContType.X360)
-                        {
-                            LogDebug("Plugging in X360 Controller #" + (ind + 1));
-                            Global.activeOutDevType[ind] = OutContType.X360;
-                            Xbox360OutDevice tempXbox = new Xbox360OutDevice(vigemTestClient);
-                            outputDevices[ind] = tempXbox;
-                            tempXbox.cont.FeedbackReceived += (eventsender, args) =>
-                            {
-                                SetDevRumble(device, args.LargeMotor, args.SmallMotor, ind);
-                            };
-
-                            tempXbox.Connect();
-                            LogDebug("X360 Controller #" + (ind + 1) + " connected");
-                        }
-                        else if (conType == OutContType.DS4)
-                        {
-                            LogDebug("Plugging in DS4 Controller #" + (ind + 1));
-                            Global.activeOutDevType[ind] = OutContType.DS4;
-                            DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
-                            outputDevices[ind] = tempDS4;
-                            int devIndex = ind;
-                            tempDS4.cont.FeedbackReceived += (eventsender, args) =>
-                            {
-                                SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
-                            };
-
-                            tempDS4.Connect();
-                            LogDebug("DS4 Controller #" + (ind + 1) + " connected");
-                        }
-                        */
-
-                        //useDInputOnly[ind] = false;
                     }
                 }
             }

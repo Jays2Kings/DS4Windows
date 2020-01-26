@@ -11,8 +11,8 @@ namespace DS4Windows
     {
         private const int DELAY_TIME = 200; // measured in ms
 
-        private Dictionary<int, OutputDevice> devictDict = new Dictionary<int, OutputDevice>();
-        private Dictionary<OutputDevice, int> revDevictDict = new Dictionary<OutputDevice, int>();
+        private Dictionary<int, OutputDevice> deviceDict = new Dictionary<int, OutputDevice>();
+        private Dictionary<OutputDevice, int> revDeviceDict = new Dictionary<OutputDevice, int>();
         private OutputDevice[] outputDevices = new OutputDevice[4];
         private Queue<Action> actions = new Queue<Action>();
         private object actionLock = new object();
@@ -101,8 +101,8 @@ namespace DS4Windows
                 {
                     outputDevice.Connect();
                     outputDevices[slot] = outputDevice;
-                    devictDict.Add(slot, outputDevice);
-                    revDevictDict.Add(outputDevice, slot);
+                    deviceDict.Add(slot, outputDevice);
+                    revDeviceDict.Add(outputDevice, slot);
                     Task.Delay(DELAY_TIME).Wait();
                     outdevs[inIdx] = outputDevice;
                 }
@@ -120,12 +120,12 @@ namespace DS4Windows
         {
             Action tempAction = new Action(() =>
             {
-                if (revDevictDict.ContainsKey(outputDevice))
+                if (revDeviceDict.ContainsKey(outputDevice))
                 {
-                    int slot = revDevictDict[outputDevice];
+                    int slot = revDeviceDict[outputDevice];
                     outputDevices[slot] = null;
-                    devictDict.Remove(slot);
-                    revDevictDict.Remove(outputDevice);
+                    deviceDict.Remove(slot);
+                    revDeviceDict.Remove(outputDevice);
                     outputDevice.Disconnect();
                     outdevs[inIdx] = null;
                     if (!immediate)

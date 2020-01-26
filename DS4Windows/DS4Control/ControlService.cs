@@ -137,7 +137,8 @@ namespace DS4Windows
 
             //sp.Stream = DS4WinWPF.Properties.Resources.EE;
             // Cause thread affinity to not be tied to main GUI thread
-            tempBusThread = new Thread(() => {
+            tempBusThread = new Thread(() =>
+            {
                 //_udpServer = new UdpServer(GetPadDetailForIdx);
                 busThrRunning = true;
 
@@ -165,18 +166,6 @@ namespace DS4Windows
             //    Thread.SpinWait(500);
             //}
 
-            if (Global.hidguardInstalled)
-            {
-                ProcessStartInfo startInfo =
-                    new ProcessStartInfo(Global.exedirpath + "\\HidGuardHelper.exe");
-                startInfo.Verb = "runas";
-                startInfo.Arguments = Process.GetCurrentProcess().Id.ToString();
-                startInfo.WorkingDirectory = Global.exedirpath;
-                try
-                { Process tempProc = Process.Start(startInfo); tempProc.Dispose(); }
-                catch { }
-            }
-
             for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
             {
                 MappedState[i] = new DS4State();
@@ -187,6 +176,22 @@ namespace DS4Windows
             }
 
             outputslotMan = new OutputSlotManager();
+        }
+
+        public void LaunchHidGuardHelper()
+        {
+            if (Global.hidguardInstalled)
+            {
+                LogDebug("HidGuardian in use. Launching HidGuardHelper.");
+                ProcessStartInfo startInfo =
+                    new ProcessStartInfo(Global.exedirpath + "\\HidGuardHelper.exe");
+                startInfo.Verb = "runas";
+                startInfo.Arguments = Process.GetCurrentProcess().Id.ToString();
+                startInfo.WorkingDirectory = Global.exedirpath;
+                try
+                { Process tempProc = Process.Start(startInfo); tempProc.Dispose(); }
+                catch { }
+            }
         }
 
         private void TestQueueBus(Action temp)
@@ -422,10 +427,6 @@ namespace DS4Windows
                     LogDebug(DS4WinWPF.Properties.Resources.Starting);
 
                 LogDebug($"Connection to ViGEmBus {Global.vigembusVersion} established");
-                if (Global.hidguardInstalled)
-                {
-                    LogDebug($"HidGuardian In Use");
-                }
 
                 DS4Devices.isExclusiveMode = getUseExclusiveMode();
                 //uiContext = tempui as SynchronizationContext;

@@ -160,6 +160,7 @@ namespace DS4WinWPF
 
             SetUICulture(DS4Windows.Global.UseLang);
             DS4Windows.Global.LoadLinkedProfiles();
+            rootHub.LaunchHidGuardHelper();
             DS4Forms.MainWindow window = new DS4Forms.MainWindow(parser);
             MainWindow = window;
             window.Show();

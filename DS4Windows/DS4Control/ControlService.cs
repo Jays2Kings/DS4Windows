@@ -51,13 +51,6 @@ namespace DS4Windows
         public delegate void HotplugControllerHandler(ControlService sender, DS4Device device, int index);
         public event HotplugControllerHandler HotplugController;
 
-        private class X360Data
-        {
-            public byte[] Report = new byte[28];
-            public byte[] Rumble = new byte[8];
-        }
-
-        private X360Data[] processingData = new X360Data[4];
         private byte[][] udpOutBuffers = new byte[4][]
         {
             new byte[100], new byte[100],
@@ -186,7 +179,6 @@ namespace DS4Windows
 
             for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
             {
-                processingData[i] = new X360Data();
                 MappedState[i] = new DS4State();
                 CurrentState[i] = new DS4State();
                 TempState[i] = new DS4State();

@@ -1166,16 +1166,22 @@ Suspend support not enabled.", true);
                 filename = profileListHolder.ProfileListCol[idx].Name;
                 dupBox.OldFilename = filename;
                 dupBoxBar.Visibility = Visibility.Visible;
-                dupBox.Save += (sender2, profilename) =>
-                {
-                    profileListHolder.AddProfileSort(profilename);
-                    dupBoxBar.Visibility = Visibility.Collapsed;
-                };
-                dupBox.Cancel += (sender2, args) =>
-                {
-                    dupBoxBar.Visibility = Visibility.Collapsed;
-                };
+                dupBox.Save -= DupBox_Save;
+                dupBox.Cancel -= DupBox_Cancel;
+                dupBox.Save += DupBox_Save;
+                dupBox.Cancel += DupBox_Cancel;
             }
+        }
+
+        private void DupBox_Cancel(object sender, EventArgs e)
+        {
+            dupBoxBar.Visibility = Visibility.Collapsed;
+        }
+
+        private void DupBox_Save(DupBox sender, string profilename)
+        {
+            profileListHolder.AddProfileSort(profilename);
+            dupBoxBar.Visibility = Visibility.Collapsed;
         }
 
         private void DeleteProfBtn_Click(object sender, RoutedEventArgs e)

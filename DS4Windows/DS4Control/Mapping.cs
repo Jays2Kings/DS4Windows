@@ -837,6 +837,11 @@ namespace DS4Windows
                         tempL2Output = 0.0;
                     }
                 }
+                else
+                {
+                    double current = Global.Clamp(0, dState.L2, maxValue);
+                    tempL2Output = current / maxValue;
+                }
 
                 if (l2MaxOutput != 100.0)
                 {
@@ -886,6 +891,11 @@ namespace DS4Windows
                     {
                         tempR2Output = 0.0;
                     }
+                }
+                else
+                {
+                    double current = Global.Clamp(0, dState.R2, maxValue);
+                    tempR2Output = current / maxValue;
                 }
 
                 if (r2MaxOutput != 100.0)

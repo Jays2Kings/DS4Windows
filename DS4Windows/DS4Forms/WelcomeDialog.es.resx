@@ -121,20 +121,20 @@
     <value>Paso 1: Instalar el Driver DS4</value>
   </data>
   <data name="button2.Text" xml:space="preserve">
-    <value>Paso 2: Si usas Windows 7 o inferior, instala el Driver 360</value>
+    <value>Paso 2: Si usas Windows 7 o inferior, instala el Driver de Xbox 360</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="linkBluetoothSettings.Size" type="System.Drawing.Size, System.Drawing">
     <value>135, 13</value>
   </data>
   <data name="linkBluetoothSettings.Text" xml:space="preserve">
-    <value>Configuracion de Bluetooth</value>
+    <value>Configuración del Bluetooth</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Si esta ventana reaparece despues de instalar, necesitas reiniciar tu PC o esperar 10-15 minutos a que Windows reconozca el driver</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Si usas un Controlador X360 en esta PC, puedes omitir esto</value>
+    <value>Si usas un Controlador de Xbox 360 en esta PC, puedes omitir esto</value>
   </data>
   <data name="bnFinish.Text" xml:space="preserve">
     <value>Finalizado</value>
@@ -143,12 +143,12 @@
     <value>Bienvenido a DS4Windows</value>
   </data>
   <data name="labelBluetooth.Text" xml:space="preserve">
-    <value>Para configurar el bluetooth (opcional): Mantenga presionado el botón PS y Share durante 3 segundos. La luz del controlador comenzará a parpadear.</value>
+    <value>Para configurar el bluetooth (opcional): Mantenga presionado el botón PS y Share durante 3 segundos. La luz del control comenzará a parpadear.</value>
   </data>
   <data name="labelUSB.Text" xml:space="preserve">
-    <value>Paso 3: Para conectar el control DS4 por medio de cable usb sólo debe conectar el cable microusb en el DS4 y el usb común en la PC.</value>
+    <value>Paso 3: Para conectar el control DS4 por medio de un cable USB sólo debe conectar el cable micro USB en el DS4 y el USB común en la PC.</value>
   </data>
   <data name="labelBluetooth2.Text" xml:space="preserve">
-    <value>Una vez que esté parpadeando, vaya a Configuración de Bluetooth y conéctese al "Wireless Controller". Si le pide un código de emparejamiento, utilice el "0000". Una vez emparejado, el controlador estará listo. ¡A divertirse!</value>
+    <value>Una vez que esté parpadeando, vaya a Configuración del Bluetooth y conéctese al "Wireless Controller". Si le pide un código de emparejamiento, utilice el "0000". Una vez emparejado, el control estará listo. ¡A divertirse!</value>
   </data>
 </root>

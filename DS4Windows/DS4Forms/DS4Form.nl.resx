@@ -187,9 +187,6 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Sluiten (Scroll klik)</value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>Alleen de DS4 Controller Aansluiten (experimenteel)</value>
-  </data>
   <data name="pBStatus1.Location" type="System.Drawing.Point, System.Drawing">
     <value>483, 26</value>
   </data>

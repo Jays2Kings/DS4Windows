@@ -149,25 +149,25 @@
     <value>280, 24</value>
   </data>
   <data name="editProfileForController1ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Editar perfil del Controlador 1</value>
+    <value>Editar perfil del Control 1</value>
   </data>
   <data name="editProfileForController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>280, 24</value>
   </data>
   <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Editar perfil del Controlador 2</value>
+    <value>Editar perfil del Control 2</value>
   </data>
   <data name="editProfileForController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>280, 24</value>
   </data>
   <data name="editProfileForController3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Editar perfil del Controlador 3</value>
+    <value>Editar perfil del Control 3</value>
   </data>
   <data name="editProfileForController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>280, 24</value>
   </data>
   <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Editar perfil del Controlador 4</value>
+    <value>Editar perfil del Control 4</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>277, 6</value>
@@ -302,10 +302,10 @@
     <value>34, 28</value>
   </data>
   <data name="lbNoControllers.Text" xml:space="preserve">
-    <value>Ningún controlador conectado (Máx 4)</value>
+    <value>Ningún control conectado (Máx 4)</value>
   </data>
   <data name="tabControllers.Text" xml:space="preserve">
-    <value>Controladores</value>
+    <value>Control</value>
   </data>
   <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 24</value>
@@ -317,25 +317,25 @@
     <value>240, 24</value>
   </data>
   <data name="assignToController1ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Asignar al Controlador 1</value>
+    <value>Asignar al Control 1</value>
   </data>
   <data name="assignToController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 24</value>
   </data>
   <data name="assignToController2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Asignar al Controlador 2</value>
+    <value>Asignar al Control 2</value>
   </data>
   <data name="assignToController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 24</value>
   </data>
   <data name="assignToController3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Asignar al Controlador 3</value>
+    <value>Asignar al Control 3</value>
   </data>
   <data name="assignToController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 24</value>
   </data>
   <data name="assignToController4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Asignar al Controlador 4</value>
+    <value>Asignar al Control 4</value>
   </data>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 24</value>
@@ -464,13 +464,13 @@
     <value>185, 21</value>
   </data>
   <data name="hideDS4CheckBox.Text" xml:space="preserve">
-    <value>Ocultar Controlador DS4</value>
+    <value>Ocultar Control DS4</value>
   </data>
   <data name="cBSwipeProfiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>305, 21</value>
   </data>
   <data name="cBSwipeProfiles.Text" xml:space="preserve">
-    <value>Deslizar el panel táctil para cambiar de perfil</value>
+    <value>Deslice el panel táctil para cambiar de perfil</value>
   </data>
   <data name="StartWindowsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>198, 21</value>
@@ -599,7 +599,7 @@
     <value>235, 17</value>
   </data>
   <data name="linkSetup.Text" xml:space="preserve">
-    <value>Controlador/Configuración de Driver</value>
+    <value>Control/Configuración de Driver</value>
   </data>
   <data name="lLBUpdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>261, 17</value>
@@ -627,9 +627,6 @@
   </data>
   <data name="cMCustomLed.Size" type="System.Drawing.Size, System.Drawing">
     <value>197, 56</value>
-  </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>Conectar DS4 exclusivamente (experimental)</value>
   </data>
   <data name="cBoxNotifications.Items" xml:space="preserve">
     <value>Ninguna</value>

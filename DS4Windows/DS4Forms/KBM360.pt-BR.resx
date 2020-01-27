@@ -156,7 +156,7 @@ uma chave, digitando-a</value>
     <value>98, 17</value>
   </data>
   <data name="X360Label.Text" xml:space="preserve">
-    <value>Controlos X360</value>
+    <value>Controles X360</value>
   </data>
   <data name="KBMlabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 17</value>
@@ -186,7 +186,7 @@ uma chave, digitando-a</value>
     <value>Padrão</value>
   </data>
   <data name="cBMouse.Text" xml:space="preserve">
-    <value>Mudar Sensibilidade do Controlo</value>
+    <value>Mudar Sensibilidade do Controle</value>
   </data>
   <data name="cBLightbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 21</value>

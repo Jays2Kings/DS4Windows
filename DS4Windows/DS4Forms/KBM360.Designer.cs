@@ -1,4 +1,4 @@
-﻿namespace DS4Windows
+﻿namespace DS4Windows.Forms
 {
     partial class KBM360
     {
@@ -213,7 +213,9 @@
             this.cBShiftButton = new System.Windows.Forms.ComboBox();
             this.pnl360Controls = new System.Windows.Forms.Panel();
             this.lb360Tip = new System.Windows.Forms.Label();
-            this.advColorDialog = new DS4Windows.AdvancedColorDialog();
+            this.pnlDS4Controls = new System.Windows.Forms.Panel();
+            this.buttonTmp = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pBHighlight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBMouse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDHeavy)).BeginInit();
@@ -225,20 +227,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDMouse)).BeginInit();
             this.gBExtras.SuspendLayout();
             this.pnl360Controls.SuspendLayout();
+            this.pnlDS4Controls.SuspendLayout();
             this.SuspendLayout();
             // 
             // pBHighlight
             // 
-            resources.ApplyResources(this.pBHighlight, "pBHighlight");
             this.pBHighlight.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.pBHighlight, "pBHighlight");
             this.pBHighlight.Image = global::DS4Windows.Properties.Resources._360_highlight;
             this.pBHighlight.Name = "pBHighlight";
             this.pBHighlight.TabStop = false;
             // 
             // pBMouse
             // 
-            resources.ApplyResources(this.pBMouse, "pBMouse");
             this.pBMouse.Image = global::DS4Windows.Properties.Resources.mouse;
+            resources.ApplyResources(this.pBMouse, "pBMouse");
             this.pBMouse.Name = "pBMouse";
             this.pBMouse.TabStop = false;
             // 
@@ -1078,8 +1081,8 @@
             // 
             // bnColor
             // 
-            resources.ApplyResources(this.bnColor, "bnColor");
             this.bnColor.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.bnColor, "bnColor");
             this.bnColor.Name = "bnColor";
             this.bnColor.UseVisualStyleBackColor = false;
             this.bnColor.Click += new System.EventHandler(this.bnColor_Click);
@@ -1117,8 +1120,8 @@
             // 
             // lBTip
             // 
-            resources.ApplyResources(this.lBTip, "lBTip");
             this.lBTip.ForeColor = System.Drawing.SystemColors.GrayText;
+            resources.ApplyResources(this.lBTip, "lBTip");
             this.lBTip.Name = "lBTip";
             // 
             // btnD
@@ -1131,11 +1134,11 @@
             // 
             // btnAButton
             // 
-            resources.ApplyResources(this.btnAButton, "btnAButton");
             this.btnAButton.BackColor = System.Drawing.Color.Transparent;
             this.btnAButton.FlatAppearance.BorderSize = 0;
             this.btnAButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnAButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnAButton, "btnAButton");
             this.btnAButton.Name = "btnAButton";
             this.btnAButton.TabStop = false;
             this.btnAButton.Tag = "X360A Button";
@@ -1153,11 +1156,11 @@
             // 
             // btnGuide
             // 
-            resources.ApplyResources(this.btnGuide, "btnGuide");
             this.btnGuide.BackColor = System.Drawing.Color.Transparent;
             this.btnGuide.FlatAppearance.BorderSize = 0;
             this.btnGuide.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnGuide.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnGuide, "btnGuide");
             this.btnGuide.Name = "btnGuide";
             this.btnGuide.TabStop = false;
             this.btnGuide.Tag = "X360Guide";
@@ -1175,11 +1178,11 @@
             // 
             // btnStart
             // 
-            resources.ApplyResources(this.btnStart, "btnStart");
             this.btnStart.BackColor = System.Drawing.Color.Transparent;
             this.btnStart.FlatAppearance.BorderSize = 0;
             this.btnStart.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnStart.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnStart, "btnStart");
             this.btnStart.Name = "btnStart";
             this.btnStart.TabStop = false;
             this.btnStart.Tag = "X360Start";
@@ -1197,11 +1200,11 @@
             // 
             // btnBack
             // 
-            resources.ApplyResources(this.btnBack, "btnBack");
             this.btnBack.BackColor = System.Drawing.Color.Transparent;
             this.btnBack.FlatAppearance.BorderSize = 0;
             this.btnBack.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnBack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnBack, "btnBack");
             this.btnBack.Name = "btnBack";
             this.btnBack.TabStop = false;
             this.btnBack.Tag = "X360Back";
@@ -1219,11 +1222,11 @@
             // 
             // btnBButton
             // 
-            resources.ApplyResources(this.btnBButton, "btnBButton");
             this.btnBButton.BackColor = System.Drawing.Color.Transparent;
             this.btnBButton.FlatAppearance.BorderSize = 0;
             this.btnBButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnBButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnBButton, "btnBButton");
             this.btnBButton.Name = "btnBButton";
             this.btnBButton.TabStop = false;
             this.btnBButton.Tag = "X360B Button";
@@ -1241,11 +1244,11 @@
             // 
             // btnXButton
             // 
-            resources.ApplyResources(this.btnXButton, "btnXButton");
             this.btnXButton.BackColor = System.Drawing.Color.Transparent;
             this.btnXButton.FlatAppearance.BorderSize = 0;
             this.btnXButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnXButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnXButton, "btnXButton");
             this.btnXButton.Name = "btnXButton";
             this.btnXButton.TabStop = false;
             this.btnXButton.Tag = "X360X Button";
@@ -1263,11 +1266,11 @@
             // 
             // btnYButton
             // 
-            resources.ApplyResources(this.btnYButton, "btnYButton");
             this.btnYButton.BackColor = System.Drawing.Color.Transparent;
             this.btnYButton.FlatAppearance.BorderSize = 0;
             this.btnYButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnYButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnYButton, "btnYButton");
             this.btnYButton.Name = "btnYButton";
             this.btnYButton.TabStop = false;
             this.btnYButton.Tag = "X360Y Button";
@@ -1285,11 +1288,11 @@
             // 
             // btnLB
             // 
-            resources.ApplyResources(this.btnLB, "btnLB");
             this.btnLB.BackColor = System.Drawing.Color.Transparent;
             this.btnLB.FlatAppearance.BorderSize = 0;
             this.btnLB.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnLB.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnLB, "btnLB");
             this.btnLB.Name = "btnLB";
             this.btnLB.TabStop = false;
             this.btnLB.Tag = "X360Left Bumper";
@@ -1307,11 +1310,11 @@
             // 
             // btnDpadRight
             // 
-            resources.ApplyResources(this.btnDpadRight, "btnDpadRight");
             this.btnDpadRight.BackColor = System.Drawing.Color.Transparent;
             this.btnDpadRight.FlatAppearance.BorderSize = 0;
             this.btnDpadRight.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnDpadRight.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnDpadRight, "btnDpadRight");
             this.btnDpadRight.Name = "btnDpadRight";
             this.btnDpadRight.TabStop = false;
             this.btnDpadRight.Tag = "X360Right Button";
@@ -1329,11 +1332,11 @@
             // 
             // btnDpadUp
             // 
-            resources.ApplyResources(this.btnDpadUp, "btnDpadUp");
             this.btnDpadUp.BackColor = System.Drawing.Color.Transparent;
             this.btnDpadUp.FlatAppearance.BorderSize = 0;
             this.btnDpadUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnDpadUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnDpadUp, "btnDpadUp");
             this.btnDpadUp.Name = "btnDpadUp";
             this.btnDpadUp.TabStop = false;
             this.btnDpadUp.Tag = "X360Up Button";
@@ -1351,11 +1354,11 @@
             // 
             // btnDpadDown
             // 
-            resources.ApplyResources(this.btnDpadDown, "btnDpadDown");
             this.btnDpadDown.BackColor = System.Drawing.Color.Transparent;
             this.btnDpadDown.FlatAppearance.BorderSize = 0;
             this.btnDpadDown.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnDpadDown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnDpadDown, "btnDpadDown");
             this.btnDpadDown.Name = "btnDpadDown";
             this.btnDpadDown.TabStop = false;
             this.btnDpadDown.Tag = "X360Down Button";
@@ -1373,11 +1376,11 @@
             // 
             // btnDpadLeft
             // 
-            resources.ApplyResources(this.btnDpadLeft, "btnDpadLeft");
             this.btnDpadLeft.BackColor = System.Drawing.Color.Transparent;
             this.btnDpadLeft.FlatAppearance.BorderSize = 0;
             this.btnDpadLeft.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnDpadLeft.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnDpadLeft, "btnDpadLeft");
             this.btnDpadLeft.Name = "btnDpadLeft";
             this.btnDpadLeft.TabStop = false;
             this.btnDpadLeft.Tag = "X360Left Button";
@@ -1395,11 +1398,11 @@
             // 
             // btnLT
             // 
-            resources.ApplyResources(this.btnLT, "btnLT");
             this.btnLT.BackColor = System.Drawing.Color.Transparent;
             this.btnLT.FlatAppearance.BorderSize = 0;
             this.btnLT.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnLT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnLT, "btnLT");
             this.btnLT.ForeColor = System.Drawing.Color.Transparent;
             this.btnLT.Name = "btnLT";
             this.btnLT.TabStop = false;
@@ -1473,11 +1476,11 @@
             // 
             // btnRSLeft
             // 
-            resources.ApplyResources(this.btnRSLeft, "btnRSLeft");
             this.btnRSLeft.BackColor = System.Drawing.Color.Transparent;
             this.btnRSLeft.FlatAppearance.BorderSize = 0;
             this.btnRSLeft.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnRSLeft.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnRSLeft, "btnRSLeft");
             this.btnRSLeft.Name = "btnRSLeft";
             this.btnRSLeft.TabStop = false;
             this.btnRSLeft.Tag = "X360Right X-Axis-";
@@ -1495,11 +1498,11 @@
             // 
             // btnRSDown
             // 
-            resources.ApplyResources(this.btnRSDown, "btnRSDown");
             this.btnRSDown.BackColor = System.Drawing.Color.Transparent;
             this.btnRSDown.FlatAppearance.BorderSize = 0;
             this.btnRSDown.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnRSDown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnRSDown, "btnRSDown");
             this.btnRSDown.Name = "btnRSDown";
             this.btnRSDown.TabStop = false;
             this.btnRSDown.Tag = "X360Right Y-Axis+";
@@ -1517,11 +1520,11 @@
             // 
             // btnRSRight
             // 
-            resources.ApplyResources(this.btnRSRight, "btnRSRight");
             this.btnRSRight.BackColor = System.Drawing.Color.Transparent;
             this.btnRSRight.FlatAppearance.BorderSize = 0;
             this.btnRSRight.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnRSRight.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnRSRight, "btnRSRight");
             this.btnRSRight.Name = "btnRSRight";
             this.btnRSRight.TabStop = false;
             this.btnRSRight.Tag = "X360Right X-Axis+";
@@ -1539,11 +1542,11 @@
             // 
             // btnRB
             // 
-            resources.ApplyResources(this.btnRB, "btnRB");
             this.btnRB.BackColor = System.Drawing.Color.Transparent;
             this.btnRB.FlatAppearance.BorderSize = 0;
             this.btnRB.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnRB.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnRB, "btnRB");
             this.btnRB.Name = "btnRB";
             this.btnRB.TabStop = false;
             this.btnRB.Tag = "X360Right Bumper";
@@ -1561,11 +1564,11 @@
             // 
             // btnLSLeft
             // 
-            resources.ApplyResources(this.btnLSLeft, "btnLSLeft");
             this.btnLSLeft.BackColor = System.Drawing.Color.Transparent;
             this.btnLSLeft.FlatAppearance.BorderSize = 0;
             this.btnLSLeft.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnLSLeft.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnLSLeft, "btnLSLeft");
             this.btnLSLeft.Name = "btnLSLeft";
             this.btnLSLeft.TabStop = false;
             this.btnLSLeft.Tag = "X360Left X-Axis-";
@@ -1583,11 +1586,11 @@
             // 
             // btnRSUp
             // 
-            resources.ApplyResources(this.btnRSUp, "btnRSUp");
             this.btnRSUp.BackColor = System.Drawing.Color.Transparent;
             this.btnRSUp.FlatAppearance.BorderSize = 0;
             this.btnRSUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnRSUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnRSUp, "btnRSUp");
             this.btnRSUp.Name = "btnRSUp";
             this.btnRSUp.TabStop = false;
             this.btnRSUp.Tag = "X360Right Y-Axis-";
@@ -1605,11 +1608,11 @@
             // 
             // btnLSDown
             // 
-            resources.ApplyResources(this.btnLSDown, "btnLSDown");
             this.btnLSDown.BackColor = System.Drawing.Color.Transparent;
             this.btnLSDown.FlatAppearance.BorderSize = 0;
             this.btnLSDown.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnLSDown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnLSDown, "btnLSDown");
             this.btnLSDown.Name = "btnLSDown";
             this.btnLSDown.TabStop = false;
             this.btnLSDown.Tag = "X360Left Y-Axis+";
@@ -1627,11 +1630,11 @@
             // 
             // btnRT
             // 
-            resources.ApplyResources(this.btnRT, "btnRT");
             this.btnRT.BackColor = System.Drawing.Color.Transparent;
             this.btnRT.FlatAppearance.BorderSize = 0;
             this.btnRT.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnRT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnRT, "btnRT");
             this.btnRT.Name = "btnRT";
             this.btnRT.TabStop = false;
             this.btnRT.Tag = "X360Right Trigger";
@@ -1649,11 +1652,11 @@
             // 
             // btnLSRight
             // 
-            resources.ApplyResources(this.btnLSRight, "btnLSRight");
             this.btnLSRight.BackColor = System.Drawing.Color.Transparent;
             this.btnLSRight.FlatAppearance.BorderSize = 0;
             this.btnLSRight.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnLSRight.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnLSRight, "btnLSRight");
             this.btnLSRight.Name = "btnLSRight";
             this.btnLSRight.TabStop = false;
             this.btnLSRight.Tag = "X360Left X-Axis+";
@@ -1671,11 +1674,11 @@
             // 
             // btnRSClick
             // 
-            resources.ApplyResources(this.btnRSClick, "btnRSClick");
             this.btnRSClick.BackColor = System.Drawing.Color.Transparent;
             this.btnRSClick.FlatAppearance.BorderSize = 0;
             this.btnRSClick.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnRSClick.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnRSClick, "btnRSClick");
             this.btnRSClick.Name = "btnRSClick";
             this.btnRSClick.TabStop = false;
             this.btnRSClick.Tag = "X360Right Stick";
@@ -1693,11 +1696,11 @@
             // 
             // btnLSUp
             // 
-            resources.ApplyResources(this.btnLSUp, "btnLSUp");
             this.btnLSUp.BackColor = System.Drawing.Color.Transparent;
             this.btnLSUp.FlatAppearance.BorderSize = 0;
             this.btnLSUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnLSUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnLSUp, "btnLSUp");
             this.btnLSUp.Name = "btnLSUp";
             this.btnLSUp.TabStop = false;
             this.btnLSUp.Tag = "X360Left Y-Axis-";
@@ -1707,11 +1710,11 @@
             // 
             // btnLSClick
             // 
-            resources.ApplyResources(this.btnLSClick, "btnLSClick");
             this.btnLSClick.BackColor = System.Drawing.Color.Transparent;
             this.btnLSClick.FlatAppearance.BorderSize = 0;
             this.btnLSClick.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnLSClick.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnLSClick, "btnLSClick");
             this.btnLSClick.Name = "btnLSClick";
             this.btnLSClick.TabStop = false;
             this.btnLSClick.Tag = "X360Left Stick";
@@ -1751,7 +1754,6 @@
             // 
             // gBExtras
             // 
-            resources.ApplyResources(this.gBExtras, "gBExtras");
             this.gBExtras.Controls.Add(this.nUDMouse);
             this.gBExtras.Controls.Add(this.cBMouse);
             this.gBExtras.Controls.Add(this.cBLightbar);
@@ -1774,6 +1776,7 @@
             this.gBExtras.Controls.Add(this.tBGreenBar);
             this.gBExtras.Controls.Add(this.tBRedBar);
             this.gBExtras.Controls.Add(this.lBTip);
+            resources.ApplyResources(this.gBExtras, "gBExtras");
             this.gBExtras.Name = "gBExtras";
             this.gBExtras.TabStop = false;
             // 
@@ -1824,7 +1827,6 @@
             // 
             // cBShiftButton
             // 
-            resources.ApplyResources(this.cBShiftButton, "cBShiftButton");
             this.cBShiftButton.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBShiftButton.FormattingEnabled = true;
             this.cBShiftButton.Items.AddRange(new object[] {
@@ -1855,12 +1857,13 @@
             resources.GetString("cBShiftButton.Items24"),
             resources.GetString("cBShiftButton.Items25"),
             resources.GetString("cBShiftButton.Items26")});
+            resources.ApplyResources(this.cBShiftButton, "cBShiftButton");
             this.cBShiftButton.Name = "cBShiftButton";
             // 
             // pnl360Controls
             // 
-            resources.ApplyResources(this.pnl360Controls, "pnl360Controls");
             this.pnl360Controls.BackgroundImage = global::DS4Windows.Properties.Resources._360_map;
+            resources.ApplyResources(this.pnl360Controls, "pnl360Controls");
             this.pnl360Controls.Controls.Add(this.lb360Tip);
             this.pnl360Controls.Controls.Add(this.pBHighlight);
             this.pnl360Controls.Controls.Add(this.btnGuide);
@@ -1890,6 +1893,7 @@
             this.pnl360Controls.Controls.Add(this.btnDpadDown);
             this.pnl360Controls.Controls.Add(this.btnDpadUp);
             this.pnl360Controls.Name = "pnl360Controls";
+            this.pnl360Controls.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl360Controls_Paint);
             // 
             // lb360Tip
             // 
@@ -1898,17 +1902,32 @@
             this.lb360Tip.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lb360Tip.Name = "lb360Tip";
             // 
-            // advColorDialog
+            // pnlDS4Controls
             // 
-            this.advColorDialog.AnyColor = true;
-            this.advColorDialog.Color = System.Drawing.Color.Blue;
-            this.advColorDialog.FullOpen = true;
-            this.advColorDialog.OnUpdateColor += new DS4Windows.AdvancedColorDialog.ColorUpdateHandler(this.advColorDialog_OnUpdateColor);
+            this.pnlDS4Controls.BackgroundImage = global::DS4Windows.Properties.Resources.DS4_Config;
+            resources.ApplyResources(this.pnlDS4Controls, "pnlDS4Controls");
+            this.pnlDS4Controls.Controls.Add(this.buttonTmp);
+            this.pnlDS4Controls.Controls.Add(this.label1);
+            this.pnlDS4Controls.Name = "pnlDS4Controls";
+            // 
+            // buttonTmp
+            // 
+            this.buttonTmp.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.buttonTmp, "buttonTmp");
+            this.buttonTmp.Name = "buttonTmp";
+            this.buttonTmp.UseVisualStyleBackColor = false;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
             // 
             // KBM360
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.pnlDS4Controls);
+            this.Controls.Add(this.pnl360Controls);
             this.Controls.Add(this.cBShiftButton);
             this.Controls.Add(this.rBShiftModifer);
             this.Controls.Add(this.rBRegular);
@@ -2042,7 +2061,6 @@
             this.Controls.Add(this.btnCAPS);
             this.Controls.Add(this.btnNUM0);
             this.Controls.Add(this.pBMouse);
-            this.Controls.Add(this.pnl360Controls);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -2063,6 +2081,8 @@
             this.gBExtras.PerformLayout();
             this.pnl360Controls.ResumeLayout(false);
             this.pnl360Controls.PerformLayout();
+            this.pnlDS4Controls.ResumeLayout(false);
+            this.pnlDS4Controls.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2247,7 +2267,6 @@
         private System.Windows.Forms.Label lbBlueV;
         private System.Windows.Forms.Label lbGreenV;
         private System.Windows.Forms.Label lbRedV;
-        private AdvancedColorDialog advColorDialog;
         private System.Windows.Forms.CheckBox cBMouse;
         private System.Windows.Forms.CheckBox cBLightbar;
         private System.Windows.Forms.RadioButton rBRegular;
@@ -2255,5 +2274,8 @@
         private System.Windows.Forms.ComboBox cBShiftButton;
         private System.Windows.Forms.Panel pnl360Controls;
         private System.Windows.Forms.Label lb360Tip;
+        private System.Windows.Forms.Panel pnlDS4Controls;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonTmp;
     }
 }

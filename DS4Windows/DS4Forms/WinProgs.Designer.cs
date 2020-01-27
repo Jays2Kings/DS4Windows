@@ -1,4 +1,4 @@
-﻿namespace DS4Windows
+﻿namespace DS4Windows.Forms
 {
     partial class WinProgs
     {
@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WinProgs));
             this.bnAddPrograms = new System.Windows.Forms.Button();
-            this.lBProgramPath = new System.Windows.Forms.Label();
             this.cBProfile1 = new System.Windows.Forms.ComboBox();
             this.cBProfile2 = new System.Windows.Forms.ComboBox();
             this.cBProfile3 = new System.Windows.Forms.ComboBox();
@@ -47,6 +46,7 @@
             this.lVPrograms = new System.Windows.Forms.ListView();
             this.nameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PathHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.WndTitleHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pBProfilesTip = new System.Windows.Forms.Label();
             this.bnHideUnchecked = new System.Windows.Forms.Button();
             this.cMSPrograms = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -56,6 +56,10 @@
             this.addDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.browseForOtherProgramsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cBTurnOffDS4W = new System.Windows.Forms.CheckBox();
+            this.cBAutoProfileDebugLog = new System.Windows.Forms.CheckBox();
+            this.tBPath = new System.Windows.Forms.TextBox();
+            this.tBWndTitle = new System.Windows.Forms.TextBox();
+            this.lBDividerLine1 = new System.Windows.Forms.Label();
             this.cMSPrograms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,12 +69,6 @@
             this.bnAddPrograms.Name = "bnAddPrograms";
             this.bnAddPrograms.UseVisualStyleBackColor = true;
             this.bnAddPrograms.Click += new System.EventHandler(this.bnAddPrograms_Click);
-            // 
-            // lBProgramPath
-            // 
-            resources.ApplyResources(this.lBProgramPath, "lBProgramPath");
-            this.lBProgramPath.Name = "lBProgramPath";
-            this.lBProgramPath.TextChanged += new System.EventHandler(this.lBProgramPath_TextChanged);
             // 
             // cBProfile1
             // 
@@ -154,7 +152,8 @@
             this.lVPrograms.CheckBoxes = true;
             this.lVPrograms.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameHeader,
-            this.PathHeader});
+            this.PathHeader,
+            this.WndTitleHeader});
             this.lVPrograms.FullRowSelect = true;
             this.lVPrograms.HideSelection = false;
             this.lVPrograms.LargeImageList = this.iLIcons;
@@ -164,7 +163,6 @@
             this.lVPrograms.SmallImageList = this.iLIcons;
             this.lVPrograms.UseCompatibleStateImageBehavior = false;
             this.lVPrograms.View = System.Windows.Forms.View.Details;
-            this.lVPrograms.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listView1_ItemCheck);
             this.lVPrograms.SelectedIndexChanged += new System.EventHandler(this.lBProgramPath_SelectedIndexChanged);
             // 
             // nameHeader
@@ -174,6 +172,10 @@
             // PathHeader
             // 
             resources.ApplyResources(this.PathHeader, "PathHeader");
+            // 
+            // WndTitleHeader
+            // 
+            resources.ApplyResources(this.WndTitleHeader, "WndTitleHeader");
             // 
             // pBProfilesTip
             // 
@@ -191,7 +193,6 @@
             // 
             // cMSPrograms
             // 
-            resources.ApplyResources(this.cMSPrograms, "cMSPrograms");
             this.cMSPrograms.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cMSPrograms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addProgramsFromStartMenuToolStripMenuItem,
@@ -201,35 +202,36 @@
             this.browseForOtherProgramsToolStripMenuItem});
             this.cMSPrograms.Name = "contextMenuStrip1";
             this.cMSPrograms.ShowImageMargin = false;
+            resources.ApplyResources(this.cMSPrograms, "cMSPrograms");
             // 
             // addProgramsFromStartMenuToolStripMenuItem
             // 
-            resources.ApplyResources(this.addProgramsFromStartMenuToolStripMenuItem, "addProgramsFromStartMenuToolStripMenuItem");
             this.addProgramsFromStartMenuToolStripMenuItem.Name = "addProgramsFromStartMenuToolStripMenuItem";
+            resources.ApplyResources(this.addProgramsFromStartMenuToolStripMenuItem, "addProgramsFromStartMenuToolStripMenuItem");
             this.addProgramsFromStartMenuToolStripMenuItem.Click += new System.EventHandler(this.addProgramsFromStartMenuToolStripMenuItem_Click);
             // 
             // addSteamGamesToolStripMenuItem
             // 
-            resources.ApplyResources(this.addSteamGamesToolStripMenuItem, "addSteamGamesToolStripMenuItem");
             this.addSteamGamesToolStripMenuItem.Name = "addSteamGamesToolStripMenuItem";
+            resources.ApplyResources(this.addSteamGamesToolStripMenuItem, "addSteamGamesToolStripMenuItem");
             this.addSteamGamesToolStripMenuItem.Click += new System.EventHandler(this.addSteamGamesToolStripMenuItem_Click);
             // 
             // addOriginGamesToolStripMenuItem
             // 
-            resources.ApplyResources(this.addOriginGamesToolStripMenuItem, "addOriginGamesToolStripMenuItem");
             this.addOriginGamesToolStripMenuItem.Name = "addOriginGamesToolStripMenuItem";
+            resources.ApplyResources(this.addOriginGamesToolStripMenuItem, "addOriginGamesToolStripMenuItem");
             this.addOriginGamesToolStripMenuItem.Click += new System.EventHandler(this.addOriginGamesToolStripMenuItem_Click);
             // 
             // addDirectoryToolStripMenuItem
             // 
-            resources.ApplyResources(this.addDirectoryToolStripMenuItem, "addDirectoryToolStripMenuItem");
             this.addDirectoryToolStripMenuItem.Name = "addDirectoryToolStripMenuItem";
+            resources.ApplyResources(this.addDirectoryToolStripMenuItem, "addDirectoryToolStripMenuItem");
             this.addDirectoryToolStripMenuItem.Click += new System.EventHandler(this.addDirectoryToolStripMenuItem_Click);
             // 
             // browseForOtherProgramsToolStripMenuItem
             // 
-            resources.ApplyResources(this.browseForOtherProgramsToolStripMenuItem, "browseForOtherProgramsToolStripMenuItem");
             this.browseForOtherProgramsToolStripMenuItem.Name = "browseForOtherProgramsToolStripMenuItem";
+            resources.ApplyResources(this.browseForOtherProgramsToolStripMenuItem, "browseForOtherProgramsToolStripMenuItem");
             this.browseForOtherProgramsToolStripMenuItem.Click += new System.EventHandler(this.browseForOtherProgramsToolStripMenuItem_Click);
             // 
             // cBTurnOffDS4W
@@ -239,13 +241,42 @@
             this.cBTurnOffDS4W.UseVisualStyleBackColor = true;
             this.cBTurnOffDS4W.CheckedChanged += new System.EventHandler(this.cBTurnOffDS4W_CheckedChanged);
             // 
+            // cBAutoProfileDebugLog
+            // 
+            resources.ApplyResources(this.cBAutoProfileDebugLog, "cBAutoProfileDebugLog");
+            this.cBAutoProfileDebugLog.Name = "cBAutoProfileDebugLog";
+            this.cBAutoProfileDebugLog.UseVisualStyleBackColor = true;
+            this.cBAutoProfileDebugLog.CheckedChanged += new System.EventHandler(this.cBAutoProfileDebugLog_CheckedChanged);
+            // 
+            // tBPath
+            // 
+            resources.ApplyResources(this.tBPath, "tBPath");
+            this.tBPath.Name = "tBPath";
+            this.tBPath.TextChanged += new System.EventHandler(this.tBPath_TextChanged);
+            // 
+            // tBWndTitle
+            // 
+            resources.ApplyResources(this.tBWndTitle, "tBWndTitle");
+            this.tBWndTitle.Name = "tBWndTitle";
+            this.tBWndTitle.TextChanged += new System.EventHandler(this.tBPath_TextChanged);
+            // 
+            // lBDividerLine1
+            // 
+            resources.ApplyResources(this.lBDividerLine1, "lBDividerLine1");
+            this.lBDividerLine1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lBDividerLine1.Name = "lBDividerLine1";
+            // 
             // WinProgs
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.cBTurnOffDS4W);
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.pBProfilesTip);
+            this.Controls.Add(this.lBDividerLine1);
+            this.Controls.Add(this.tBWndTitle);
+            this.Controls.Add(this.tBPath);
+            this.Controls.Add(this.cBAutoProfileDebugLog);
+            this.Controls.Add(this.cBTurnOffDS4W);
             this.Controls.Add(this.bnHideUnchecked);
             this.Controls.Add(this.bnAddPrograms);
             this.Controls.Add(this.lVPrograms);
@@ -257,7 +288,6 @@
             this.Controls.Add(this.cBProfile3);
             this.Controls.Add(this.cBProfile2);
             this.Controls.Add(this.cBProfile1);
-            this.Controls.Add(this.lBProgramPath);
             this.Controls.Add(this.bnDelete);
             this.Controls.Add(this.bnSave);
             this.Name = "WinProgs";
@@ -270,7 +300,6 @@
         #endregion
 
         private System.Windows.Forms.Button bnAddPrograms;
-        private System.Windows.Forms.Label lBProgramPath;
         private System.Windows.Forms.ComboBox cBProfile1;
         private System.Windows.Forms.ComboBox cBProfile2;
         private System.Windows.Forms.ComboBox cBProfile3;
@@ -295,5 +324,10 @@
         private System.Windows.Forms.ToolStripMenuItem browseForOtherProgramsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addDirectoryToolStripMenuItem;
         private System.Windows.Forms.CheckBox cBTurnOffDS4W;
+        private System.Windows.Forms.CheckBox cBAutoProfileDebugLog;
+        private System.Windows.Forms.ColumnHeader WndTitleHeader;
+        private System.Windows.Forms.TextBox tBPath;
+        private System.Windows.Forms.TextBox tBWndTitle;
+        private System.Windows.Forms.Label lBDividerLine1;
     }
 }

@@ -119,91 +119,103 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cBLightbyBattery.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 21</value>
+    <value>118, 17</value>
   </data>
   <data name="cBLightbyBattery.Text" xml:space="preserve">
     <value>顏色依電量%變化</value>
   </data>
+  <data name="lbBlue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 77</value>
+  </data>
   <data name="lbBlue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>19, 17</value>
+    <value>19, 13</value>
   </data>
   <data name="lbBlue.Text" xml:space="preserve">
     <value>藍</value>
+  </data>
+  <data name="lbGreen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 55</value>
+  </data>
+  <data name="lbGreen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>19, 13</value>
   </data>
   <data name="lbGreen.Text" xml:space="preserve">
     <value>綠</value>
   </data>
   <data name="lbspc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 17</value>
+    <value>48, 13</value>
   </data>
   <data name="lbspc.Text" xml:space="preserve">
     <value>秒/循環</value>
   </data>
+  <data name="lbRed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 29</value>
+  </data>
   <data name="lbRed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>19, 17</value>
+    <value>19, 13</value>
   </data>
   <data name="lbRed.Text" xml:space="preserve">
     <value>紅</value>
   </data>
   <data name="cBDoubleTap.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 21</value>
+    <value>50, 17</value>
   </data>
   <data name="cBDoubleTap.Text" xml:space="preserve">
     <value>雙擊</value>
   </data>
   <data name="cBTap.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 21</value>
+    <value>50, 17</value>
   </data>
   <data name="cBTap.Text" xml:space="preserve">
     <value>點擊</value>
   </data>
   <data name="cBScroll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 21</value>
+    <value>50, 17</value>
   </data>
   <data name="cBScroll.Text" xml:space="preserve">
     <value>捲動</value>
   </data>
   <data name="cBSlide.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 21</value>
+    <value>50, 17</value>
   </data>
   <data name="cBSlide.Text" xml:space="preserve">
     <value>滑動</value>
   </data>
   <data name="lbButtonMouseSens.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 17</value>
+    <value>73, 13</value>
   </data>
   <data name="lbButtonMouseSens.Text" xml:space="preserve">
     <value>滑鼠靈敏度：</value>
   </data>
   <data name="cBlowerRCOn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 21</value>
+    <value>110, 17</value>
   </data>
   <data name="cBlowerRCOn.Text" xml:space="preserve">
     <value>右下角設為右鍵</value>
   </data>
   <data name="cBTouchpadJitterCompensation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 21</value>
+    <value>74, 17</value>
   </data>
   <data name="cBTouchpadJitterCompensation.Text" xml:space="preserve">
     <value>抖動補償</value>
   </data>
   <data name="lbIdleMinutes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 59</value>
+    <value>155, 66</value>
   </data>
   <data name="lbIdleMinutes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 17</value>
+    <value>31, 13</value>
   </data>
   <data name="lbIdleMinutes.Text" xml:space="preserve">
     <value>分鐘</value>
   </data>
   <data name="nUDIdleDisconnect.Location" type="System.Drawing.Point, System.Drawing">
-    <value>102, 55</value>
+    <value>100, 62</value>
   </data>
   <data name="cBFlushHIDQueue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>45, 213</value>
+    <value>10, 201</value>
   </data>
   <data name="cBFlushHIDQueue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 21</value>
+    <value>72, 17</value>
   </data>
   <data name="cBFlushHIDQueue.Text" xml:space="preserve">
     <value>刷新 HID</value>
@@ -212,233 +224,254 @@
     <value>測試強震</value>
   </data>
   <data name="lbFull.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 17</value>
+    <value>37, 13</value>
   </data>
   <data name="lbFull.Text" xml:space="preserve">
     <value>滿電：</value>
   </data>
+  <data name="lbLowRed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 30</value>
+  </data>
   <data name="lbLowRed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>19, 17</value>
+    <value>19, 13</value>
   </data>
   <data name="lbLowRed.Text" xml:space="preserve">
     <value>紅</value>
   </data>
+  <data name="lbLowGreen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 51</value>
+  </data>
+  <data name="lbLowGreen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>19, 13</value>
+  </data>
   <data name="lbLowGreen.Text" xml:space="preserve">
     <value>綠</value>
   </data>
+  <data name="lbLowBlue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 74</value>
+  </data>
   <data name="lbLowBlue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>19, 17</value>
+    <value>19, 13</value>
   </data>
   <data name="lbLowBlue.Text" xml:space="preserve">
     <value>藍</value>
   </data>
   <data name="lbEmpty.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 17</value>
+    <value>37, 13</value>
   </data>
   <data name="lbEmpty.Text" xml:space="preserve">
     <value>沒電：</value>
   </data>
   <data name="numUDMouseSens.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 19</value>
+    <value>84, 17</value>
   </data>
   <data name="gBTouchpad.Text" xml:space="preserve">
     <value>觸控版</value>
   </data>
   <data name="pnlTPMouse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 60</value>
+    <value>3, 36</value>
   </data>
   <data name="cbStartTouchpadOff.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 21</value>
+    <value>139, 17</value>
   </data>
   <data name="cbStartTouchpadOff.Text" xml:space="preserve">
     <value>開啟時滑動/捲動關閉</value>
   </data>
-  <data name="fLPShiftTouchSwipe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 61</value>
+  <data name="fLPTouchSwipe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 40</value>
+  </data>
+  <data name="fLPTouchSwipe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 153</value>
   </data>
   <data name="cMSPresets.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 244</value>
+    <value>128, 208</value>
   </data>
   <data name="controlToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 26</value>
+    <value>127, 22</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 6</value>
+    <value>124, 6</value>
   </data>
   <data name="defaultToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 26</value>
+    <value>127, 22</value>
   </data>
   <data name="defaultToolStripMenuItem.Text" xml:space="preserve">
     <value>預設</value>
   </data>
   <data name="DpadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 26</value>
+    <value>127, 22</value>
   </data>
   <data name="DpadToolStripMenuItem.Text" xml:space="preserve">
     <value>十字鍵</value>
   </data>
   <data name="tSMIDPadInverted.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 26</value>
+    <value>110, 22</value>
   </data>
   <data name="tSMIDPadInverted.Text" xml:space="preserve">
     <value>反轉</value>
   </data>
   <data name="tSMIDPadInvertedX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 26</value>
+    <value>110, 22</value>
   </data>
   <data name="tSMIDPadInvertedX.Text" xml:space="preserve">
     <value>反轉 X</value>
   </data>
   <data name="tSMIDPadInvertedY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 26</value>
+    <value>110, 22</value>
   </data>
   <data name="tSMIDPadInvertedY.Text" xml:space="preserve">
     <value>反轉 Y</value>
   </data>
   <data name="LSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 26</value>
+    <value>127, 22</value>
   </data>
   <data name="LSToolStripMenuItem.Text" xml:space="preserve">
     <value>左搖桿</value>
   </data>
   <data name="tSMILSInverted.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 26</value>
+    <value>110, 22</value>
   </data>
   <data name="tSMILSInverted.Text" xml:space="preserve">
     <value>反轉</value>
   </data>
   <data name="tSMILSInvertedX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 26</value>
+    <value>110, 22</value>
   </data>
   <data name="tSMILSInvertedX.Text" xml:space="preserve">
     <value>反轉 X</value>
   </data>
   <data name="tSMILSInvertedY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 26</value>
+    <value>110, 22</value>
   </data>
   <data name="tSMILSInvertedY.Text" xml:space="preserve">
     <value>反轉 Y</value>
   </data>
   <data name="RSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 26</value>
+    <value>127, 22</value>
   </data>
   <data name="RSToolStripMenuItem.Text" xml:space="preserve">
     <value>右搖桿</value>
   </data>
   <data name="tSMIRSInverted.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 26</value>
+    <value>110, 22</value>
   </data>
   <data name="tSMIRSInverted.Text" xml:space="preserve">
     <value>反轉</value>
   </data>
   <data name="tSMIRSInvertedX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 26</value>
+    <value>110, 22</value>
   </data>
   <data name="tSMIRSInvertedX.Text" xml:space="preserve">
     <value>反轉 X</value>
   </data>
   <data name="tSMIRSInvertedY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 26</value>
+    <value>110, 22</value>
   </data>
   <data name="tSMIRSInvertedY.Text" xml:space="preserve">
     <value>反轉 Y</value>
   </data>
   <data name="ABXYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 26</value>
+    <value>127, 22</value>
   </data>
   <data name="ABXYToolStripMenuItem.Text" xml:space="preserve">
     <value>右側四個按鈕</value>
   </data>
   <data name="WASDToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 26</value>
+    <value>127, 22</value>
   </data>
   <data name="wScanCodeWASDToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>164, 26</value>
+    <value>139, 22</value>
   </data>
   <data name="wScanCodeWASDToolStripMenuItem.Text" xml:space="preserve">
     <value>用掃描代碼</value>
   </data>
   <data name="ArrowKeysToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 26</value>
+    <value>127, 22</value>
   </data>
   <data name="ArrowKeysToolStripMenuItem.Text" xml:space="preserve">
     <value>方向鍵</value>
   </data>
   <data name="wScanCodeArrowKeysToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>164, 26</value>
+    <value>139, 22</value>
   </data>
   <data name="wScanCodeArrowKeysToolStripMenuItem.Text" xml:space="preserve">
     <value>用掃描代碼</value>
   </data>
   <data name="MouseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 26</value>
+    <value>127, 22</value>
   </data>
   <data name="MouseToolStripMenuItem.Text" xml:space="preserve">
     <value>滑鼠</value>
   </data>
   <data name="tSMIMouseInverted.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 26</value>
+    <value>110, 22</value>
   </data>
   <data name="tSMIMouseInverted.Text" xml:space="preserve">
     <value>反轉</value>
   </data>
   <data name="tSMIMouseInvertedX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 26</value>
+    <value>110, 22</value>
   </data>
   <data name="tSMIMouseInvertedX.Text" xml:space="preserve">
     <value>反轉 X</value>
   </data>
   <data name="tSMIMouseInvertedY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 26</value>
+    <value>110, 22</value>
   </data>
   <data name="tSMIMouseInvertedY.Text" xml:space="preserve">
     <value>反轉 Y</value>
   </data>
-  <data name="fLPTouchSwipe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 61</value>
+  <data name="gBOther.Size" type="System.Drawing.Size, System.Drawing">
+    <value>272, 245</value>
   </data>
   <data name="gBOther.Text" xml:space="preserve">
     <value>其它</value>
   </data>
+  <data name="btPollRateLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 226</value>
+  </data>
+  <data name="btPollRateComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>83, 221</value>
+  </data>
+  <data name="enableTouchToggleCheckbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 179</value>
+  </data>
   <data name="cBDinput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 184</value>
+    <value>8, 158</value>
   </data>
   <data name="cBDinput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 21</value>
+    <value>96, 17</value>
   </data>
   <data name="cBDinput.Text" xml:space="preserve">
     <value>只使用 Dinput</value>
   </data>
   <data name="pBProgram.Location" type="System.Drawing.Point, System.Drawing">
-    <value>197, 133</value>
+    <value>183, 125</value>
   </data>
   <data name="cBLaunchProgram.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 131</value>
+    <value>6, 122</value>
   </data>
   <data name="cBLaunchProgram.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 38</value>
+    <value>86, 30</value>
   </data>
   <data name="cBLaunchProgram.Text" xml:space="preserve">
     <value>啟用程式
 使用設定檔</value>
   </data>
   <data name="btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>107, 135</value>
+    <value>100, 125</value>
   </data>
   <data name="btnBrowse.Text" xml:space="preserve">
     <value>瀏覽...</value>
   </data>
   <data name="lbUseController.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 17</value>
+    <value>67, 13</value>
   </data>
   <data name="lbUseController.Text" xml:space="preserve">
     <value>使用控制器</value>
   </data>
-  <data name="cBMouseAccel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 20</value>
-  </data>
   <data name="cBMouseAccel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 21</value>
+    <value>74, 17</value>
   </data>
   <data name="cBMouseAccel.Text" xml:space="preserve">
     <value>滑鼠加速</value>
@@ -450,13 +483,13 @@
     <value>128, 93</value>
   </data>
   <data name="cBControllerInput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 21</value>
+    <value>110, 17</value>
   </data>
   <data name="cBControllerInput.Text" xml:space="preserve">
     <value>用於映射和讀出</value>
   </data>
   <data name="cBIdleDisconnect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 21</value>
+    <value>86, 17</value>
   </data>
   <data name="cBIdleDisconnect.Text" xml:space="preserve">
     <value>閒置時斷開</value>
@@ -483,31 +516,10 @@
     <value>顏色</value>
   </data>
   <data name="lbWhileCharging.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 17</value>
+    <value>61, 13</value>
   </data>
   <data name="lbWhileCharging.Text" xml:space="preserve">
     <value>當改變時：</value>
-  </data>
-  <data name="cBShiftLight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 21</value>
-  </data>
-  <data name="cBShiftLight.Text" xml:space="preserve">
-    <value>shift mode 時用另一種顏色</value>
-  </data>
-  <data name="lbShiftRed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>19, 17</value>
-  </data>
-  <data name="lbShiftRed.Text" xml:space="preserve">
-    <value>紅</value>
-  </data>
-  <data name="lbShiftGreen.Text" xml:space="preserve">
-    <value>綠</value>
-  </data>
-  <data name="lbShiftBlue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>19, 17</value>
-  </data>
-  <data name="lbShiftBlue.Text" xml:space="preserve">
-    <value>藍</value>
   </data>
   <data name="gBRumble.Text" xml:space="preserve">
     <value>震動</value>
@@ -519,7 +531,7 @@
     <value>右搖桿</value>
   </data>
   <data name="lbInputDelay.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 17</value>
+    <value>94, 13</value>
   </data>
   <data name="lbInputDelay.Text" xml:space="preserve">
     <value>輸入延遲: N/Ams</value>
@@ -531,34 +543,16 @@
     <value>六軸：X軸已反轉來方便閱讀</value>
   </data>
   <data name="lb6Accel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 17</value>
+    <value>31, 13</value>
   </data>
   <data name="lb6Accel.Text" xml:space="preserve">
     <value>加速</value>
   </data>
   <data name="lb6Gryo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 17</value>
+    <value>43, 13</value>
   </data>
   <data name="lb6Gryo.Text" xml:space="preserve">
     <value>陀螺儀</value>
-  </data>
-  <data name="lbHold.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 17</value>
-  </data>
-  <data name="lbHold.Text" xml:space="preserve">
-    <value>按住</value>
-  </data>
-  <data name="lbtoUse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 17</value>
-  </data>
-  <data name="lbtoUse.Text" xml:space="preserve">
-    <value>來使用這些控制</value>
-  </data>
-  <data name="cBShiftControl.Items" xml:space="preserve">
-    <value>(無)/shift 關閉</value>
-  </data>
-  <data name="cBShiftControl.Items26" xml:space="preserve">
-    <value>觸控版 (未點擊)</value>
   </data>
   <data name="tPControls.Text" xml:space="preserve">
     <value>控制器</value>
@@ -597,119 +591,103 @@
     <value>死區</value>
   </data>
   <data name="rBSAControls.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 21</value>
+    <value>85, 17</value>
   </data>
   <data name="rBSAControls.Text" xml:space="preserve">
     <value>當成控制器</value>
   </data>
   <data name="rBSAMouse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 21</value>
+    <value>73, 17</value>
   </data>
   <data name="rBSAMouse.Text" xml:space="preserve">
     <value>當成滑鼠</value>
   </data>
   <data name="lbGyroInvert.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 17</value>
+    <value>31, 13</value>
   </data>
   <data name="lbGyroInvert.Text" xml:space="preserve">
     <value>反轉</value>
   </data>
   <data name="lbGyroTriggers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 17</value>
+    <value>55, 13</value>
   </data>
   <data name="lbGyroTriggers.Text" xml:space="preserve">
     <value>啟動按鍵</value>
   </data>
   <data name="lbGyroSens.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 17</value>
+    <value>79, 13</value>
   </data>
   <data name="lbGyroSens.Text" xml:space="preserve">
     <value>陀螺儀靈敏度</value>
   </data>
   <data name="cMGyroTriggers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 524</value>
+    <value>172, 444</value>
   </data>
   <data name="crossToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="circleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="squareToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="triangleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="l1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="l2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="r1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="r2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="onTouchpadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="downToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="leftToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="rightToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="l3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="r3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="fingerOnTouchpadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="fingerOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
     <value>手指放在觸摸板</value>
   </data>
   <data name="fingersOnTouchpadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="fingersOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
     <value>2手指放在觸摸板</value>
   </data>
   <data name="optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="shareToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
   <data name="pSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>171, 22</value>
   </data>
-  <data name="resetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
-  </data>
-  <data name="resetToolStripMenuItem.Text" xml:space="preserve">
-    <value>重置</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
-  </data>
-  <data name="gBSensitivity,Text" xml:space="preserve">
-    <value>靈敏度</value>
-  </data>
-  <data name="tPController.Text" xml:space="preserve">
-    <value>控制器讀數</value>
-  </data>
-  <data name="tPShiftMod.Text" xml:space="preserve">
-    <value>Shift Modifier</value>
+  <data name="alwaysOnToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 22</value>
   </data>
   <data name="alwaysOnToolStripMenuItem.Text" xml:space="preserve">
     <value>總是啟用</value>

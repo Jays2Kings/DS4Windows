@@ -1,4 +1,4 @@
-﻿namespace DS4Windows
+﻿namespace DS4Windows.Forms
 {
     partial class DS4Form
     {
@@ -33,28 +33,32 @@
             this.lvDebug = new System.Windows.Forms.ListView();
             this.chTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
             this.pnlButton = new System.Windows.Forms.Panel();
             this.llbHelp = new System.Windows.Forms.LinkLabel();
             this.lbTest = new System.Windows.Forms.Label();
             this.btnStartStop = new System.Windows.Forms.Button();
             this.lbLastMessage = new System.Windows.Forms.Label();
-            this.btnClear = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.cMTaskbar = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editProfileForController1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editProfileForController2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editProfileForController3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editProfileForController4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.disconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.discon1toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.discon2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.discon3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.discon4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openProgramFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.openProfiles = new System.Windows.Forms.OpenFileDialog();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabControllers = new System.Windows.Forms.TabPage();
-            this.btnConnectDS4Win10 = new System.Windows.Forms.Button();
             this.tLPControllers = new System.Windows.Forms.TableLayoutPanel();
             this.bnLight3 = new System.Windows.Forms.Button();
             this.pBStatus1 = new System.Windows.Forms.PictureBox();
@@ -84,6 +88,11 @@
             this.bnLight1 = new System.Windows.Forms.Button();
             this.bnLight2 = new System.Windows.Forms.Button();
             this.bnLight4 = new System.Windows.Forms.Button();
+            this.lbLinkProfile = new System.Windows.Forms.Label();
+            this.linkCB1 = new System.Windows.Forms.CheckBox();
+            this.linkCB2 = new System.Windows.Forms.CheckBox();
+            this.linkCB3 = new System.Windows.Forms.CheckBox();
+            this.linkCB4 = new System.Windows.Forms.CheckBox();
             this.lbNoControllers = new System.Windows.Forms.Label();
             this.tabProfiles = new System.Windows.Forms.TabPage();
             this.lBProfiles = new System.Windows.Forms.ListBox();
@@ -118,7 +127,11 @@
             this.hideDS4CheckBox = new System.Windows.Forms.CheckBox();
             this.cBSwipeProfiles = new System.Windows.Forms.CheckBox();
             this.StartWindowsCheckBox = new System.Windows.Forms.CheckBox();
-            this.startMinimizedCheckBox = new System.Windows.Forms.CheckBox();
+            this.runStartupPanel = new System.Windows.Forms.Panel();
+            this.uacPictureBox = new System.Windows.Forms.PictureBox();
+            this.runStartTaskRadio = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.runStartProgRadio = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbNotifications = new System.Windows.Forms.Label();
             this.cBoxNotifications = new System.Windows.Forms.ComboBox();
@@ -127,32 +140,43 @@
             this.nUDLatency = new System.Windows.Forms.NumericUpDown();
             this.lbMsLatency = new System.Windows.Forms.Label();
             this.cBFlashWhenLate = new System.Windows.Forms.CheckBox();
+            this.startMinimizedCheckBox = new System.Windows.Forms.CheckBox();
+            this.mintoTaskCheckBox = new System.Windows.Forms.CheckBox();
             this.cBCloseMini = new System.Windows.Forms.CheckBox();
             this.cBQuickCharge = new System.Windows.Forms.CheckBox();
-            this.cBDownloadLangauge = new System.Windows.Forms.CheckBox();
+            this.cBUseWhiteIcon = new System.Windows.Forms.CheckBox();
             this.cBUpdate = new System.Windows.Forms.CheckBox();
             this.pNUpdate = new System.Windows.Forms.Panel();
             this.cBUpdateTime = new System.Windows.Forms.ComboBox();
             this.lbCheckEvery = new System.Windows.Forms.Label();
             this.nUDUpdateTime = new System.Windows.Forms.NumericUpDown();
-            this.pnlXIPorts = new System.Windows.Forms.Panel();
-            this.lbUseXIPorts = new System.Windows.Forms.Label();
-            this.nUDXIPorts = new System.Windows.Forms.NumericUpDown();
-            this.lbLastXIPort = new System.Windows.Forms.Label();
-            this.cBUseWhiteIcon = new System.Windows.Forms.CheckBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ckUdpServ = new System.Windows.Forms.CheckBox();
+            this.nUDUdpPortNum = new System.Windows.Forms.NumericUpDown();
+            this.tBUdpListenAddress = new System.Windows.Forms.TextBox();
+            this.langPanel = new System.Windows.Forms.Panel();
+            this.cBCustomSteam = new System.Windows.Forms.CheckBox();
+            this.tBSteamFolder = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.linkProfiles = new System.Windows.Forms.LinkLabel();
             this.lnkControllers = new System.Windows.Forms.LinkLabel();
-            this.linkUninstall = new System.Windows.Forms.LinkLabel();
             this.linkSetup = new System.Windows.Forms.LinkLabel();
             this.lLBUpdate = new System.Windows.Forms.LinkLabel();
             this.tabLog = new System.Windows.Forms.TabPage();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.exportLogTxtBtn = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.saveProfiles = new System.Windows.Forms.SaveFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.cMCustomLed = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.useProfileColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useCustomColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.advColorDialog = new DS4Windows.AdvancedColorDialog();
+            this.label3 = new System.Windows.Forms.Label();
+            this.exclusivePB1 = new System.Windows.Forms.PictureBox();
+            this.exclusivePB2 = new System.Windows.Forms.PictureBox();
+            this.exclusivePB3 = new System.Windows.Forms.PictureBox();
+            this.exclusivePB4 = new System.Windows.Forms.PictureBox();
             this.pnlButton.SuspendLayout();
             this.cMTaskbar.SuspendLayout();
             this.tabMain.SuspendLayout();
@@ -168,16 +192,23 @@
             this.toolStrip1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.fLPSettings.SuspendLayout();
+            this.runStartupPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uacPictureBox)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLatency)).BeginInit();
             this.pNUpdate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDUpdateTime)).BeginInit();
-            this.pnlXIPorts.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDXIPorts)).BeginInit();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDUdpPortNum)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.tabLog.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.cMCustomLed.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.exclusivePB1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exclusivePB2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exclusivePB3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exclusivePB4)).BeginInit();
             this.SuspendLayout();
             // 
             // lvDebug
@@ -187,6 +218,7 @@
             this.chData});
             resources.ApplyResources(this.lvDebug, "lvDebug");
             this.lvDebug.FullRowSelect = true;
+            this.lvDebug.HideSelection = false;
             this.lvDebug.Name = "lvDebug";
             this.lvDebug.UseCompatibleStateImageBehavior = false;
             this.lvDebug.View = System.Windows.Forms.View.Details;
@@ -199,11 +231,6 @@
             // chData
             // 
             resources.ApplyResources(this.chData, "chData");
-            // 
-            // tmrUpdate
-            // 
-            this.tmrUpdate.Interval = 1;
-            this.tmrUpdate.Tick += new System.EventHandler(this.ControllerStatusChange);
             // 
             // pnlButton
             // 
@@ -233,7 +260,7 @@
             resources.ApplyResources(this.btnStartStop, "btnStartStop");
             this.btnStartStop.Name = "btnStartStop";
             this.btnStartStop.UseVisualStyleBackColor = true;
-            this.btnStartStop.Click += new System.EventHandler(this.btnStartStop_Click);
+            this.btnStartStop.Click += new System.EventHandler(this.BtnStartStop_Click);
             // 
             // lbLastMessage
             // 
@@ -241,13 +268,6 @@
             this.lbLastMessage.ForeColor = System.Drawing.SystemColors.GrayText;
             this.lbLastMessage.Name = "lbLastMessage";
             this.lbLastMessage.MouseHover += new System.EventHandler(this.lbLastMessage_MouseHover);
-            // 
-            // btnClear
-            // 
-            resources.ApplyResources(this.btnClear, "btnClear");
-            this.btnClear.Name = "btnClear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // notifyIcon1
             // 
@@ -266,9 +286,12 @@
             this.editProfileForController2ToolStripMenuItem,
             this.editProfileForController3ToolStripMenuItem,
             this.editProfileForController4ToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.disconToolStripMenuItem,
             this.toolStripSeparator1,
             this.startToolStripMenuItem,
             this.openToolStripMenuItem,
+            this.openProgramFolderToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.cMTaskbar.Name = "cMTaskbar";
             resources.ApplyResources(this.cMTaskbar, "cMTaskbar");
@@ -302,6 +325,49 @@
             this.editProfileForController4ToolStripMenuItem.Tag = "4";
             this.editProfileForController4ToolStripMenuItem.Click += new System.EventHandler(this.editMenu_Click);
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
+            // 
+            // disconToolStripMenuItem
+            // 
+            this.disconToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.discon1toolStripMenuItem,
+            this.discon2ToolStripMenuItem,
+            this.discon3ToolStripMenuItem,
+            this.discon4ToolStripMenuItem});
+            this.disconToolStripMenuItem.Name = "disconToolStripMenuItem";
+            resources.ApplyResources(this.disconToolStripMenuItem, "disconToolStripMenuItem");
+            // 
+            // discon1toolStripMenuItem
+            // 
+            this.discon1toolStripMenuItem.Name = "discon1toolStripMenuItem";
+            resources.ApplyResources(this.discon1toolStripMenuItem, "discon1toolStripMenuItem");
+            this.discon1toolStripMenuItem.Tag = "0";
+            this.discon1toolStripMenuItem.Click += new System.EventHandler(this.DiscontoolStripMenuItem_Click);
+            // 
+            // discon2ToolStripMenuItem
+            // 
+            this.discon2ToolStripMenuItem.Name = "discon2ToolStripMenuItem";
+            resources.ApplyResources(this.discon2ToolStripMenuItem, "discon2ToolStripMenuItem");
+            this.discon2ToolStripMenuItem.Tag = "1";
+            this.discon2ToolStripMenuItem.Click += new System.EventHandler(this.DiscontoolStripMenuItem_Click);
+            // 
+            // discon3ToolStripMenuItem
+            // 
+            this.discon3ToolStripMenuItem.Name = "discon3ToolStripMenuItem";
+            resources.ApplyResources(this.discon3ToolStripMenuItem, "discon3ToolStripMenuItem");
+            this.discon3ToolStripMenuItem.Tag = "2";
+            this.discon3ToolStripMenuItem.Click += new System.EventHandler(this.DiscontoolStripMenuItem_Click);
+            // 
+            // discon4ToolStripMenuItem
+            // 
+            this.discon4ToolStripMenuItem.Name = "discon4ToolStripMenuItem";
+            resources.ApplyResources(this.discon4ToolStripMenuItem, "discon4ToolStripMenuItem");
+            this.discon4ToolStripMenuItem.Tag = "3";
+            this.discon4ToolStripMenuItem.Click += new System.EventHandler(this.DiscontoolStripMenuItem_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -318,6 +384,12 @@
             resources.ApplyResources(this.openToolStripMenuItem, "openToolStripMenuItem");
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // openProgramFolderToolStripMenuItem
+            // 
+            this.openProgramFolderToolStripMenuItem.Name = "openProgramFolderToolStripMenuItem";
+            resources.ApplyResources(this.openProgramFolderToolStripMenuItem, "openProgramFolderToolStripMenuItem");
+            this.openProgramFolderToolStripMenuItem.Click += new System.EventHandler(this.OpenProgramFolderToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -349,51 +421,53 @@
             // 
             // tabControllers
             // 
-            this.tabControllers.Controls.Add(this.btnConnectDS4Win10);
             this.tabControllers.Controls.Add(this.tLPControllers);
             this.tabControllers.Controls.Add(this.lbNoControllers);
             resources.ApplyResources(this.tabControllers, "tabControllers");
             this.tabControllers.Name = "tabControllers";
             this.tabControllers.UseVisualStyleBackColor = true;
             // 
-            // btnConnectDS4Win10
-            // 
-            resources.ApplyResources(this.btnConnectDS4Win10, "btnConnectDS4Win10");
-            this.btnConnectDS4Win10.Name = "btnConnectDS4Win10";
-            this.btnConnectDS4Win10.UseVisualStyleBackColor = true;
-            this.btnConnectDS4Win10.Click += new System.EventHandler(this.btnConnectDS4Win10_Click);
-            // 
             // tLPControllers
             // 
             resources.ApplyResources(this.tLPControllers, "tLPControllers");
-            this.tLPControllers.Controls.Add(this.bnLight3, 5, 3);
+            this.tLPControllers.Controls.Add(this.label3, 2, 0);
+            this.tLPControllers.Controls.Add(this.bnLight3, 7, 3);
             this.tLPControllers.Controls.Add(this.pBStatus1, 1, 1);
             this.tLPControllers.Controls.Add(this.lbPad1, 0, 1);
             this.tLPControllers.Controls.Add(this.lbPad2, 0, 2);
-            this.tLPControllers.Controls.Add(this.bnEditC3, 4, 3);
-            this.tLPControllers.Controls.Add(this.bnEditC4, 4, 4);
+            this.tLPControllers.Controls.Add(this.bnEditC3, 6, 3);
+            this.tLPControllers.Controls.Add(this.bnEditC4, 6, 4);
             this.tLPControllers.Controls.Add(this.lbPad3, 0, 3);
             this.tLPControllers.Controls.Add(this.lbPad4, 0, 4);
-            this.tLPControllers.Controls.Add(this.cBController1, 3, 1);
-            this.tLPControllers.Controls.Add(this.bnEditC2, 4, 2);
-            this.tLPControllers.Controls.Add(this.cBController2, 3, 2);
-            this.tLPControllers.Controls.Add(this.cBController3, 3, 3);
-            this.tLPControllers.Controls.Add(this.bnEditC1, 4, 1);
-            this.tLPControllers.Controls.Add(this.cBController4, 3, 4);
-            this.tLPControllers.Controls.Add(this.lbSelectedProfile, 3, 0);
+            this.tLPControllers.Controls.Add(this.cBController1, 5, 1);
+            this.tLPControllers.Controls.Add(this.bnEditC2, 6, 2);
+            this.tLPControllers.Controls.Add(this.cBController2, 5, 2);
+            this.tLPControllers.Controls.Add(this.cBController3, 5, 3);
+            this.tLPControllers.Controls.Add(this.bnEditC1, 6, 1);
+            this.tLPControllers.Controls.Add(this.cBController4, 5, 4);
+            this.tLPControllers.Controls.Add(this.lbSelectedProfile, 5, 0);
             this.tLPControllers.Controls.Add(this.lbID, 0, 0);
             this.tLPControllers.Controls.Add(this.lbStatus, 1, 0);
-            this.tLPControllers.Controls.Add(this.lbBattery, 2, 0);
-            this.tLPControllers.Controls.Add(this.lbBatt1, 2, 1);
-            this.tLPControllers.Controls.Add(this.lbBatt2, 2, 2);
-            this.tLPControllers.Controls.Add(this.lbBatt3, 2, 3);
-            this.tLPControllers.Controls.Add(this.lbBatt4, 2, 4);
+            this.tLPControllers.Controls.Add(this.lbBattery, 3, 0);
+            this.tLPControllers.Controls.Add(this.lbBatt1, 3, 1);
+            this.tLPControllers.Controls.Add(this.lbBatt2, 3, 2);
+            this.tLPControllers.Controls.Add(this.lbBatt3, 3, 3);
+            this.tLPControllers.Controls.Add(this.lbBatt4, 3, 4);
             this.tLPControllers.Controls.Add(this.pBStatus2, 1, 2);
             this.tLPControllers.Controls.Add(this.pBStatus3, 1, 3);
             this.tLPControllers.Controls.Add(this.pBStatus4, 1, 4);
-            this.tLPControllers.Controls.Add(this.bnLight1, 5, 1);
-            this.tLPControllers.Controls.Add(this.bnLight2, 5, 2);
-            this.tLPControllers.Controls.Add(this.bnLight4, 5, 4);
+            this.tLPControllers.Controls.Add(this.bnLight1, 7, 1);
+            this.tLPControllers.Controls.Add(this.bnLight2, 7, 2);
+            this.tLPControllers.Controls.Add(this.bnLight4, 7, 4);
+            this.tLPControllers.Controls.Add(this.lbLinkProfile, 4, 0);
+            this.tLPControllers.Controls.Add(this.linkCB1, 4, 1);
+            this.tLPControllers.Controls.Add(this.linkCB2, 4, 2);
+            this.tLPControllers.Controls.Add(this.linkCB3, 4, 3);
+            this.tLPControllers.Controls.Add(this.linkCB4, 4, 4);
+            this.tLPControllers.Controls.Add(this.exclusivePB1, 2, 1);
+            this.tLPControllers.Controls.Add(this.exclusivePB2, 2, 2);
+            this.tLPControllers.Controls.Add(this.exclusivePB3, 2, 3);
+            this.tLPControllers.Controls.Add(this.exclusivePB4, 2, 4);
             this.tLPControllers.Name = "tLPControllers";
             // 
             // bnLight3
@@ -435,7 +509,7 @@
             // 
             resources.ApplyResources(this.bnEditC3, "bnEditC3");
             this.bnEditC3.Name = "bnEditC3";
-            this.bnEditC3.Tag = "2";
+            this.bnEditC3.Tag = "";
             this.bnEditC3.UseVisualStyleBackColor = true;
             this.bnEditC3.Click += new System.EventHandler(this.editButtons_Click);
             // 
@@ -443,7 +517,7 @@
             // 
             resources.ApplyResources(this.bnEditC4, "bnEditC4");
             this.bnEditC4.Name = "bnEditC4";
-            this.bnEditC4.Tag = "3";
+            this.bnEditC4.Tag = "";
             this.bnEditC4.UseVisualStyleBackColor = true;
             this.bnEditC4.Click += new System.EventHandler(this.editButtons_Click);
             // 
@@ -476,7 +550,7 @@
             // 
             resources.ApplyResources(this.bnEditC2, "bnEditC2");
             this.bnEditC2.Name = "bnEditC2";
-            this.bnEditC2.Tag = "1";
+            this.bnEditC2.Tag = "";
             this.bnEditC2.UseVisualStyleBackColor = true;
             this.bnEditC2.Click += new System.EventHandler(this.editButtons_Click);
             // 
@@ -502,7 +576,7 @@
             // 
             resources.ApplyResources(this.bnEditC1, "bnEditC1");
             this.bnEditC1.Name = "bnEditC1";
-            this.bnEditC1.Tag = "0";
+            this.bnEditC1.Tag = "";
             this.bnEditC1.UseVisualStyleBackColor = true;
             this.bnEditC1.Click += new System.EventHandler(this.editButtons_Click);
             // 
@@ -612,6 +686,43 @@
             this.bnLight4.UseVisualStyleBackColor = false;
             this.bnLight4.Click += new System.EventHandler(this.EditCustomLed);
             // 
+            // lbLinkProfile
+            // 
+            resources.ApplyResources(this.lbLinkProfile, "lbLinkProfile");
+            this.lbLinkProfile.Name = "lbLinkProfile";
+            // 
+            // linkCB1
+            // 
+            resources.ApplyResources(this.linkCB1, "linkCB1");
+            this.linkCB1.Name = "linkCB1";
+            this.linkCB1.Tag = "0";
+            this.linkCB1.UseVisualStyleBackColor = true;
+            this.linkCB1.CheckedChanged += new System.EventHandler(this.linkCB_CheckedChanged);
+            // 
+            // linkCB2
+            // 
+            resources.ApplyResources(this.linkCB2, "linkCB2");
+            this.linkCB2.Name = "linkCB2";
+            this.linkCB2.Tag = "1";
+            this.linkCB2.UseVisualStyleBackColor = true;
+            this.linkCB2.CheckedChanged += new System.EventHandler(this.linkCB_CheckedChanged);
+            // 
+            // linkCB3
+            // 
+            resources.ApplyResources(this.linkCB3, "linkCB3");
+            this.linkCB3.Name = "linkCB3";
+            this.linkCB3.Tag = "2";
+            this.linkCB3.UseVisualStyleBackColor = true;
+            this.linkCB3.CheckedChanged += new System.EventHandler(this.linkCB_CheckedChanged);
+            // 
+            // linkCB4
+            // 
+            resources.ApplyResources(this.linkCB4, "linkCB4");
+            this.linkCB4.Name = "linkCB4";
+            this.linkCB4.Tag = "3";
+            this.linkCB4.UseVisualStyleBackColor = true;
+            this.linkCB4.CheckedChanged += new System.EventHandler(this.linkCB_CheckedChanged);
+            // 
             // lbNoControllers
             // 
             resources.ApplyResources(this.lbNoControllers, "lbNoControllers");
@@ -631,9 +742,8 @@
             this.lBProfiles.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lBProfiles.ContextMenuStrip = this.cMProfile;
             resources.ApplyResources(this.lBProfiles, "lBProfiles");
-            this.lBProfiles.FormattingEnabled = true;
-            this.lBProfiles.MultiColumn = true;
             this.lBProfiles.Name = "lBProfiles";
+            this.lBProfiles.SelectedIndexChanged += new System.EventHandler(this.lBProfiles_SelectedIndexChanged);
             this.lBProfiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lBProfiles_KeyDown);
             this.lBProfiles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lBProfiles_MouseDoubleClick);
             this.lBProfiles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lBProfiles_MouseDown);
@@ -737,9 +847,9 @@
             // 
             // tSTBProfile
             // 
+            resources.ApplyResources(this.tSTBProfile, "tSTBProfile");
             this.tSTBProfile.ForeColor = System.Drawing.SystemColors.GrayText;
             this.tSTBProfile.Name = "tSTBProfile";
-            resources.ApplyResources(this.tSTBProfile, "tSTBProfile");
             this.tSTBProfile.Enter += new System.EventHandler(this.tBProfile_Enter);
             this.tSTBProfile.Leave += new System.EventHandler(this.tBProfile_Leave);
             this.tSTBProfile.TextChanged += new System.EventHandler(this.tBProfile_TextChanged);
@@ -755,7 +865,7 @@
             // tSBCancel
             // 
             this.tSBCancel.AutoToolTip = false;
-            this.tSBCancel.Image = global::DS4Windows.Properties.Resources.delete;
+            this.tSBCancel.Image = global::DS4Windows.Properties.Resources.cancel;
             resources.ApplyResources(this.tSBCancel, "tSBCancel");
             this.tSBCancel.Name = "tSBCancel";
             this.tSBCancel.Click += new System.EventHandler(this.tSBCancel_Click);
@@ -795,22 +905,22 @@
             // 
             // tsBEditProfile
             // 
-            this.tsBEditProfile.Image = global::DS4Windows.Properties.Resources.edit;
             resources.ApplyResources(this.tsBEditProfile, "tsBEditProfile");
+            this.tsBEditProfile.Image = global::DS4Windows.Properties.Resources.edit;
             this.tsBEditProfile.Name = "tsBEditProfile";
             this.tsBEditProfile.Click += new System.EventHandler(this.tsBNEditProfile_Click);
             // 
             // tsBDeleteProfile
             // 
-            this.tsBDeleteProfile.Image = global::DS4Windows.Properties.Resources.delete;
             resources.ApplyResources(this.tsBDeleteProfile, "tsBDeleteProfile");
+            this.tsBDeleteProfile.Image = global::DS4Windows.Properties.Resources.delete;
             this.tsBDeleteProfile.Name = "tsBDeleteProfile";
             this.tsBDeleteProfile.Click += new System.EventHandler(this.tsBDeleteProfle_Click);
             // 
             // tSBDupProfile
             // 
-            this.tSBDupProfile.Image = global::DS4Windows.Properties.Resources.copy;
             resources.ApplyResources(this.tSBDupProfile, "tSBDupProfile");
+            this.tSBDupProfile.Image = global::DS4Windows.Properties.Resources.copy;
             this.tSBDupProfile.Name = "tSBDupProfile";
             this.tSBDupProfile.Click += new System.EventHandler(this.tSBDupProfile_Click);
             // 
@@ -823,8 +933,8 @@
             // 
             // tSBExportProfile
             // 
-            this.tSBExportProfile.Image = global::DS4Windows.Properties.Resources.export;
             resources.ApplyResources(this.tSBExportProfile, "tSBExportProfile");
+            this.tSBExportProfile.Image = global::DS4Windows.Properties.Resources.export;
             this.tSBExportProfile.Name = "tSBExportProfile";
             this.tSBExportProfile.Click += new System.EventHandler(this.tSBExportProfile_Click);
             // 
@@ -847,17 +957,21 @@
             this.fLPSettings.Controls.Add(this.hideDS4CheckBox);
             this.fLPSettings.Controls.Add(this.cBSwipeProfiles);
             this.fLPSettings.Controls.Add(this.StartWindowsCheckBox);
-            this.fLPSettings.Controls.Add(this.startMinimizedCheckBox);
+            this.fLPSettings.Controls.Add(this.runStartupPanel);
             this.fLPSettings.Controls.Add(this.panel1);
             this.fLPSettings.Controls.Add(this.cBDisconnectBT);
             this.fLPSettings.Controls.Add(this.panel2);
+            this.fLPSettings.Controls.Add(this.startMinimizedCheckBox);
+            this.fLPSettings.Controls.Add(this.mintoTaskCheckBox);
             this.fLPSettings.Controls.Add(this.cBCloseMini);
             this.fLPSettings.Controls.Add(this.cBQuickCharge);
             this.fLPSettings.Controls.Add(this.cBUseWhiteIcon);
-            this.fLPSettings.Controls.Add(this.cBDownloadLangauge);
             this.fLPSettings.Controls.Add(this.cBUpdate);
             this.fLPSettings.Controls.Add(this.pNUpdate);
-            this.fLPSettings.Controls.Add(this.pnlXIPorts);
+            this.fLPSettings.Controls.Add(this.panel4);
+            this.fLPSettings.Controls.Add(this.langPanel);
+            this.fLPSettings.Controls.Add(this.cBCustomSteam);
+            this.fLPSettings.Controls.Add(this.tBSteamFolder);
             this.fLPSettings.Controls.Add(this.flowLayoutPanel1);
             this.fLPSettings.Name = "fLPSettings";
             // 
@@ -865,7 +979,7 @@
             // 
             resources.ApplyResources(this.hideDS4CheckBox, "hideDS4CheckBox");
             this.hideDS4CheckBox.Name = "hideDS4CheckBox";
-            this.hideDS4CheckBox.UseVisualStyleBackColor = true;
+            this.hideDS4CheckBox.UseVisualStyleBackColor = false;
             this.hideDS4CheckBox.CheckedChanged += new System.EventHandler(this.hideDS4CheckBox_CheckedChanged);
             // 
             // cBSwipeProfiles
@@ -874,7 +988,7 @@
             this.cBSwipeProfiles.Checked = true;
             this.cBSwipeProfiles.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cBSwipeProfiles.Name = "cBSwipeProfiles";
-            this.cBSwipeProfiles.UseVisualStyleBackColor = true;
+            this.cBSwipeProfiles.UseVisualStyleBackColor = false;
             this.cBSwipeProfiles.CheckedChanged += new System.EventHandler(this.cBSwipeProfiles_CheckedChanged);
             // 
             // StartWindowsCheckBox
@@ -884,12 +998,43 @@
             this.StartWindowsCheckBox.UseVisualStyleBackColor = true;
             this.StartWindowsCheckBox.CheckedChanged += new System.EventHandler(this.StartWindowsCheckBox_CheckedChanged);
             // 
-            // startMinimizedCheckBox
+            // runStartupPanel
             // 
-            resources.ApplyResources(this.startMinimizedCheckBox, "startMinimizedCheckBox");
-            this.startMinimizedCheckBox.Name = "startMinimizedCheckBox";
-            this.startMinimizedCheckBox.UseVisualStyleBackColor = true;
-            this.startMinimizedCheckBox.CheckedChanged += new System.EventHandler(this.startMinimizedCheckBox_CheckedChanged);
+            this.runStartupPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.runStartupPanel.Controls.Add(this.uacPictureBox);
+            this.runStartupPanel.Controls.Add(this.runStartTaskRadio);
+            this.runStartupPanel.Controls.Add(this.label1);
+            this.runStartupPanel.Controls.Add(this.runStartProgRadio);
+            resources.ApplyResources(this.runStartupPanel, "runStartupPanel");
+            this.runStartupPanel.Name = "runStartupPanel";
+            // 
+            // uacPictureBox
+            // 
+            resources.ApplyResources(this.uacPictureBox, "uacPictureBox");
+            this.uacPictureBox.Name = "uacPictureBox";
+            this.uacPictureBox.TabStop = false;
+            // 
+            // runStartTaskRadio
+            // 
+            resources.ApplyResources(this.runStartTaskRadio, "runStartTaskRadio");
+            this.runStartTaskRadio.Name = "runStartTaskRadio";
+            this.runStartTaskRadio.TabStop = true;
+            this.runStartTaskRadio.UseVisualStyleBackColor = false;
+            this.runStartTaskRadio.Click += new System.EventHandler(this.runStartTaskRadio_Click);
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // runStartProgRadio
+            // 
+            resources.ApplyResources(this.runStartProgRadio, "runStartProgRadio");
+            this.runStartProgRadio.Checked = true;
+            this.runStartProgRadio.Name = "runStartProgRadio";
+            this.runStartProgRadio.TabStop = true;
+            this.runStartProgRadio.UseVisualStyleBackColor = false;
+            this.runStartProgRadio.Click += new System.EventHandler(this.runStartProgRadio_Click);
             // 
             // panel1
             // 
@@ -940,7 +1085,7 @@
             0});
             this.nUDLatency.Name = "nUDLatency";
             this.nUDLatency.Value = new decimal(new int[] {
-            10,
+            20,
             0,
             0,
             0});
@@ -957,8 +1102,21 @@
             this.cBFlashWhenLate.Checked = true;
             this.cBFlashWhenLate.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cBFlashWhenLate.Name = "cBFlashWhenLate";
-            this.cBFlashWhenLate.UseVisualStyleBackColor = true;
+            this.cBFlashWhenLate.UseVisualStyleBackColor = false;
             this.cBFlashWhenLate.CheckedChanged += new System.EventHandler(this.cBFlashWhenLate_CheckedChanged);
+            // 
+            // startMinimizedCheckBox
+            // 
+            resources.ApplyResources(this.startMinimizedCheckBox, "startMinimizedCheckBox");
+            this.startMinimizedCheckBox.Name = "startMinimizedCheckBox";
+            this.startMinimizedCheckBox.UseVisualStyleBackColor = true;
+            this.startMinimizedCheckBox.CheckedChanged += new System.EventHandler(this.startMinimizedCheckBox_CheckedChanged);
+            // 
+            // mintoTaskCheckBox
+            // 
+            resources.ApplyResources(this.mintoTaskCheckBox, "mintoTaskCheckBox");
+            this.mintoTaskCheckBox.Name = "mintoTaskCheckBox";
+            this.mintoTaskCheckBox.UseVisualStyleBackColor = true;
             // 
             // cBCloseMini
             // 
@@ -974,20 +1132,18 @@
             this.cBQuickCharge.UseVisualStyleBackColor = true;
             this.cBQuickCharge.CheckedChanged += new System.EventHandler(this.cBQuickCharge_CheckedChanged);
             // 
-            // cBDownloadLangauge
+            // cBUseWhiteIcon
             // 
-            resources.ApplyResources(this.cBDownloadLangauge, "cBDownloadLangauge");
-            this.cBDownloadLangauge.Checked = true;
-            this.cBDownloadLangauge.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBDownloadLangauge.Name = "cBDownloadLangauge";
-            this.cBDownloadLangauge.UseVisualStyleBackColor = true;
-            this.cBDownloadLangauge.CheckedChanged += new System.EventHandler(this.cBDownloadLangauge_CheckedChanged);
+            resources.ApplyResources(this.cBUseWhiteIcon, "cBUseWhiteIcon");
+            this.cBUseWhiteIcon.Name = "cBUseWhiteIcon";
+            this.cBUseWhiteIcon.UseVisualStyleBackColor = true;
+            this.cBUseWhiteIcon.CheckedChanged += new System.EventHandler(this.cBUseWhiteIcon_CheckedChanged);
             // 
             // cBUpdate
             // 
             resources.ApplyResources(this.cBUpdate, "cBUpdate");
             this.cBUpdate.Name = "cBUpdate";
-            this.cBUpdate.UseVisualStyleBackColor = true;
+            this.cBUpdate.UseVisualStyleBackColor = false;
             this.cBUpdate.CheckedChanged += new System.EventHandler(this.cBUpdate_CheckedChanged);
             // 
             // pNUpdate
@@ -1025,64 +1181,79 @@
             this.nUDUpdateTime.Name = "nUDUpdateTime";
             this.nUDUpdateTime.ValueChanged += new System.EventHandler(this.nUDUpdateTime_ValueChanged);
             // 
-            // pnlXIPorts
+            // panel4
             // 
-            this.pnlXIPorts.Controls.Add(this.lbUseXIPorts);
-            this.pnlXIPorts.Controls.Add(this.nUDXIPorts);
-            this.pnlXIPorts.Controls.Add(this.lbLastXIPort);
-            resources.ApplyResources(this.pnlXIPorts, "pnlXIPorts");
-            this.pnlXIPorts.Name = "pnlXIPorts";
-            this.pnlXIPorts.MouseEnter += new System.EventHandler(this.pnlXIPorts_MouseEnter);
-            this.pnlXIPorts.MouseLeave += new System.EventHandler(this.pnlXIPorts_MouseLeave);
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Controls.Add(this.ckUdpServ);
+            this.panel4.Controls.Add(this.nUDUdpPortNum);
+            this.panel4.Controls.Add(this.tBUdpListenAddress);
+            resources.ApplyResources(this.panel4, "panel4");
+            this.panel4.Name = "panel4";
             // 
-            // lbUseXIPorts
+            // label2
             // 
-            resources.ApplyResources(this.lbUseXIPorts, "lbUseXIPorts");
-            this.lbUseXIPorts.Name = "lbUseXIPorts";
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
             // 
-            // nUDXIPorts
+            // ckUdpServ
             // 
-            resources.ApplyResources(this.nUDXIPorts, "nUDXIPorts");
-            this.nUDXIPorts.Maximum = new decimal(new int[] {
-            11,
+            resources.ApplyResources(this.ckUdpServ, "ckUdpServ");
+            this.ckUdpServ.Name = "ckUdpServ";
+            this.ckUdpServ.UseVisualStyleBackColor = true;
+            // 
+            // nUDUdpPortNum
+            // 
+            resources.ApplyResources(this.nUDUdpPortNum, "nUDUdpPortNum");
+            this.nUDUdpPortNum.Maximum = new decimal(new int[] {
+            65535,
             0,
             0,
             0});
-            this.nUDXIPorts.Minimum = new decimal(new int[] {
-            1,
+            this.nUDUdpPortNum.Minimum = new decimal(new int[] {
+            1024,
             0,
             0,
             0});
-            this.nUDXIPorts.Name = "nUDXIPorts";
-            this.nUDXIPorts.Value = new decimal(new int[] {
-            1,
+            this.nUDUdpPortNum.Name = "nUDUdpPortNum";
+            this.nUDUdpPortNum.Value = new decimal(new int[] {
+            26760,
             0,
             0,
             0});
-            this.nUDXIPorts.ValueChanged += new System.EventHandler(this.nUDXIPorts_ValueChanged);
-            this.nUDXIPorts.Enter += new System.EventHandler(this.nUDXIPorts_Enter);
-            this.nUDXIPorts.Leave += new System.EventHandler(this.nUDXIPorts_Leave);
             // 
-            // lbLastXIPort
+            // tBUdpListenAddress
             // 
-            resources.ApplyResources(this.lbLastXIPort, "lbLastXIPort");
-            this.lbLastXIPort.Name = "lbLastXIPort";
+            resources.ApplyResources(this.tBUdpListenAddress, "tBUdpListenAddress");
+            this.tBUdpListenAddress.Name = "tBUdpListenAddress";
             // 
-            // cBUseWhiteIcon
+            // langPanel
             // 
-            resources.ApplyResources(this.cBUseWhiteIcon, "cBUseWhiteIcon");
-            this.cBUseWhiteIcon.Name = "cBUseWhiteIcon";
-            this.cBUseWhiteIcon.UseVisualStyleBackColor = true;
-            this.cBUseWhiteIcon.CheckedChanged += new System.EventHandler(this.cBUseWhiteIcon_CheckedChanged);
+            resources.ApplyResources(this.langPanel, "langPanel");
+            this.langPanel.Name = "langPanel";
+            // 
+            // cBCustomSteam
+            // 
+            resources.ApplyResources(this.cBCustomSteam, "cBCustomSteam");
+            this.cBCustomSteam.Name = "cBCustomSteam";
+            this.cBCustomSteam.UseVisualStyleBackColor = false;
+            this.cBCustomSteam.CheckedChanged += new System.EventHandler(this.cBCustomSteam_CheckedChanged);
+            // 
+            // tBSteamFolder
+            // 
+            resources.ApplyResources(this.tBSteamFolder, "tBSteamFolder");
+            this.tBSteamFolder.Name = "tBSteamFolder";
+            this.tBSteamFolder.TextChanged += new System.EventHandler(this.tBSteamFolder_TextChanged);
             // 
             // flowLayoutPanel1
             // 
-            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.Window;
+            this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel1.Controls.Add(this.linkProfiles);
             this.flowLayoutPanel1.Controls.Add(this.lnkControllers);
-            this.flowLayoutPanel1.Controls.Add(this.linkUninstall);
             this.flowLayoutPanel1.Controls.Add(this.linkSetup);
             this.flowLayoutPanel1.Controls.Add(this.lLBUpdate);
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
             // linkProfiles
@@ -1098,13 +1269,6 @@
             this.lnkControllers.Name = "lnkControllers";
             this.lnkControllers.TabStop = true;
             this.lnkControllers.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkControllers_LinkClicked);
-            // 
-            // linkUninstall
-            // 
-            resources.ApplyResources(this.linkUninstall, "linkUninstall");
-            this.linkUninstall.Name = "linkUninstall";
-            this.linkUninstall.TabStop = true;
-            this.linkUninstall.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkUninstall_LinkClicked);
             // 
             // linkSetup
             // 
@@ -1123,10 +1287,31 @@
             // tabLog
             // 
             this.tabLog.Controls.Add(this.lvDebug);
-            this.tabLog.Controls.Add(this.btnClear);
+            this.tabLog.Controls.Add(this.panel3);
             resources.ApplyResources(this.tabLog, "tabLog");
             this.tabLog.Name = "tabLog";
             this.tabLog.UseVisualStyleBackColor = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.exportLogTxtBtn);
+            this.panel3.Controls.Add(this.btnClear);
+            resources.ApplyResources(this.panel3, "panel3");
+            this.panel3.Name = "panel3";
+            // 
+            // exportLogTxtBtn
+            // 
+            resources.ApplyResources(this.exportLogTxtBtn, "exportLogTxtBtn");
+            this.exportLogTxtBtn.Name = "exportLogTxtBtn";
+            this.exportLogTxtBtn.UseVisualStyleBackColor = true;
+            this.exportLogTxtBtn.Click += new System.EventHandler(this.exportLogTxtBtn_Click);
+            // 
+            // btnClear
+            // 
+            resources.ApplyResources(this.btnClear, "btnClear");
+            this.btnClear.Name = "btnClear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // saveProfiles
             // 
@@ -1157,29 +1342,53 @@
             resources.ApplyResources(this.useCustomColorToolStripMenuItem, "useCustomColorToolStripMenuItem");
             this.useCustomColorToolStripMenuItem.Click += new System.EventHandler(this.useCustomColorToolStripMenuItem_Click);
             // 
-            // advColorDialog
+            // label3
             // 
-            this.advColorDialog.OnUpdateColor += new DS4Windows.AdvancedColorDialog.ColorUpdateHandler(this.advColorDialog_OnUpdateColor);
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // exclusivePB1
+            // 
+            resources.ApplyResources(this.exclusivePB1, "exclusivePB1");
+            this.exclusivePB1.Image = global::DS4Windows.Properties.Resources.none;
+            this.exclusivePB1.Name = "exclusivePB1";
+            this.exclusivePB1.TabStop = false;
+            // 
+            // exclusivePB2
+            // 
+            resources.ApplyResources(this.exclusivePB2, "exclusivePB2");
+            this.exclusivePB2.Image = global::DS4Windows.Properties.Resources.none;
+            this.exclusivePB2.Name = "exclusivePB2";
+            this.exclusivePB2.TabStop = false;
+            // 
+            // exclusivePB3
+            // 
+            resources.ApplyResources(this.exclusivePB3, "exclusivePB3");
+            this.exclusivePB3.Image = global::DS4Windows.Properties.Resources.none;
+            this.exclusivePB3.Name = "exclusivePB3";
+            this.exclusivePB3.TabStop = false;
+            // 
+            // exclusivePB4
+            // 
+            resources.ApplyResources(this.exclusivePB4, "exclusivePB4");
+            this.exclusivePB4.Image = global::DS4Windows.Properties.Resources.none;
+            this.exclusivePB4.Name = "exclusivePB4";
+            this.exclusivePB4.TabStop = false;
             // 
             // DS4Form
             // 
-            this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.pnlButton);
             this.Name = "DS4Form";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ScpForm_Closing);
-            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.ScpForm_DragDrop);
-            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.ScpForm_DragEnter);
-            this.Resize += new System.EventHandler(this.Form_Resize);
             this.pnlButton.ResumeLayout(false);
             this.pnlButton.PerformLayout();
             this.cMTaskbar.ResumeLayout(false);
             this.tabMain.ResumeLayout(false);
             this.tabControllers.ResumeLayout(false);
-            this.tabControllers.PerformLayout();
             this.tLPControllers.ResumeLayout(false);
             this.tLPControllers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBStatus1)).EndInit();
@@ -1196,6 +1405,9 @@
             this.tabSettings.ResumeLayout(false);
             this.fLPSettings.ResumeLayout(false);
             this.fLPSettings.PerformLayout();
+            this.runStartupPanel.ResumeLayout(false);
+            this.runStartupPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uacPictureBox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1204,13 +1416,18 @@
             this.pNUpdate.ResumeLayout(false);
             this.pNUpdate.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDUpdateTime)).EndInit();
-            this.pnlXIPorts.ResumeLayout(false);
-            this.pnlXIPorts.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDXIPorts)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDUdpPortNum)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.tabLog.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.cMCustomLed.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.exclusivePB1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exclusivePB2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exclusivePB3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exclusivePB4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1220,10 +1437,8 @@
         private System.Windows.Forms.ListView lvDebug;
         private System.Windows.Forms.ColumnHeader chTime;
         private System.Windows.Forms.ColumnHeader chData;
-        private System.Windows.Forms.Timer tmrUpdate;
         private System.Windows.Forms.Panel pnlButton;
         private System.Windows.Forms.Button btnStartStop;
-        private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip cMTaskbar;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
@@ -1264,7 +1479,6 @@
         private System.Windows.Forms.Label lbSelectedProfile;
         private System.Windows.Forms.Label lbID;
         private System.Windows.Forms.Label lbStatus;
-        private System.Windows.Forms.Label lbBattery;
         private System.Windows.Forms.Label lbBatt1;
         private System.Windows.Forms.Label lbBatt2;
         private System.Windows.Forms.Label lbBatt3;
@@ -1307,22 +1521,16 @@
         private System.Windows.Forms.CheckBox StartWindowsCheckBox;
         private System.Windows.Forms.CheckBox startMinimizedCheckBox;
         private System.Windows.Forms.LinkLabel linkProfiles;
-        private System.Windows.Forms.LinkLabel linkUninstall;
         private System.Windows.Forms.CheckBox cBDisconnectBT;
         private System.Windows.Forms.CheckBox cBSwipeProfiles;
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
         public System.Windows.Forms.Label lbLastMessage;
         private System.Windows.Forms.CheckBox cBQuickCharge;
-        private System.Windows.Forms.Panel pnlXIPorts;
-        private System.Windows.Forms.Label lbUseXIPorts;
-        private System.Windows.Forms.NumericUpDown nUDXIPorts;
-        private System.Windows.Forms.Label lbLastXIPort;
         public System.Windows.Forms.ListBox lBProfiles;
         private System.Windows.Forms.CheckBox cBCloseMini;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label lbNoControllers;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.CheckBox cBDownloadLangauge;
         private System.Windows.Forms.CheckBox cBFlashWhenLate;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbNotifications;
@@ -1330,7 +1538,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.NumericUpDown nUDLatency;
         private System.Windows.Forms.Label lbMsLatency;
-        private System.Windows.Forms.Button btnConnectDS4Win10;
         private System.Windows.Forms.Button bnLight3;
         private System.Windows.Forms.Button bnLight1;
         private System.Windows.Forms.Button bnLight2;
@@ -1338,8 +1545,42 @@
         private System.Windows.Forms.ContextMenuStrip cMCustomLed;
         private System.Windows.Forms.ToolStripMenuItem useProfileColorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem useCustomColorToolStripMenuItem;
-        private AdvancedColorDialog advColorDialog;
         private System.Windows.Forms.CheckBox cBUseWhiteIcon;
+        private System.Windows.Forms.Panel runStartupPanel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton runStartProgRadio;
+        private System.Windows.Forms.RadioButton runStartTaskRadio;
+        private System.Windows.Forms.PictureBox uacPictureBox;
+        private System.Windows.Forms.Label lbBattery;
+        private System.Windows.Forms.Label lbLinkProfile;
+        private System.Windows.Forms.CheckBox linkCB1;
+        private System.Windows.Forms.CheckBox linkCB2;
+        private System.Windows.Forms.CheckBox linkCB3;
+        private System.Windows.Forms.CheckBox linkCB4;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button exportLogTxtBtn;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.ToolStripMenuItem openProgramFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem disconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem discon1toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem discon2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem discon3ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem discon4ToolStripMenuItem;
+        private System.Windows.Forms.CheckBox mintoTaskCheckBox;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox ckUdpServ;
+        private System.Windows.Forms.NumericUpDown nUDUdpPortNum;
+        private System.Windows.Forms.TextBox tBUdpListenAddress;
+        private System.Windows.Forms.CheckBox cBCustomSteam;
+        private System.Windows.Forms.TextBox tBSteamFolder;
+        private System.Windows.Forms.Panel langPanel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox exclusivePB1;
+        private System.Windows.Forms.PictureBox exclusivePB2;
+        private System.Windows.Forms.PictureBox exclusivePB3;
+        private System.Windows.Forms.PictureBox exclusivePB4;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

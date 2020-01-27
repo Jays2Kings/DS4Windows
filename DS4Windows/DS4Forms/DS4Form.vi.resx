@@ -6362,9 +6362,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 </value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>Kết nối DS4 qua cmd (thử nghiệm)</value>
-  </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
     <value>1083, 94</value>
   </data>

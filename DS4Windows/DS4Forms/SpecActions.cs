@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 using System.IO;
 using System.Xml;
-namespace DS4Windows
+namespace DS4Windows.Forms
 {
     public partial class SpecActions : Form
     {
@@ -57,6 +57,17 @@ namespace DS4Windows
                 LoadAction();
                 loadingAction = false;
             }
+
+            advColorDialog = new AdvancedColorDialog();
+            advColorDialog.FullOpen = true;
+            advColorDialog.OnUpdateColor += new AdvancedColorDialog.ColorUpdateHandler(this.advColorDialog_OnUpdateColor);
+
+            tp.SetToolTip(cBMacroScanCode, Properties.Resources.MacroScanCodeTip);
+            tp.SetToolTip(cBMacroRunOnRelease, Properties.Resources.MacroRunOnReleaseTip);
+            tp.SetToolTip(cBMacroRepeat, Properties.Resources.MacroRepeatTip);
+            tp.SetToolTip(cBMacroSyncRun, Properties.Resources.MacroSynchronizedRunTip);
+            tp.SetToolTip(cBMacroKeepKeyState, Properties.Resources.MacroKeepKeyStateTip);
+
         }
 
         void LoadAction()
@@ -77,6 +88,10 @@ namespace DS4Windows
                     macrostag = act.macro; 
                     lbMacroRecorded.Text = "Macro Recored";
                     cBMacroScanCode.Checked = act.keyType.HasFlag(DS4KeyType.ScanCode);
+                    cBMacroRunOnRelease.Checked = act.pressRelease;
+                    cBMacroSyncRun.Checked = act.synchronized;
+                    cBMacroKeepKeyState.Checked = act.keepKeyState;
+                    cBMacroRepeat.Checked = act.keyType.HasFlag(DS4KeyType.RepeatMacro);
                     break;
                 case "Program": 
                     cBActions.SelectedIndex = 2; 
@@ -88,13 +103,17 @@ namespace DS4Windows
                 case "Profile": 
                     cBActions.SelectedIndex = 3;
                     cBProfiles.Text = act.details;
-                    foreach (string s in act.ucontrols.Split('/'))
-                        foreach (ListViewItem lvi in lVUnloadTrigger.Items)
-                            if (lvi.Text == s)
-                            {
-                                lvi.Checked = true;
-                                break;
-                            }
+                    if (act.ucontrols != null)
+                    {
+                        foreach (string s in act.ucontrols.Split('/'))
+                            foreach (ListViewItem lvi in lVUnloadTrigger.Items)
+                                if (lvi.Text == s)
+                                {
+                                    lvi.Checked = true;
+                                    break;
+                                }
+                    }
+                    cbProfileAutoUntrigger.Checked = act.automaticUntrigger;
                     break;
                 case "Key":
                     cBActions.SelectedIndex = 4;
@@ -177,6 +196,10 @@ namespace DS4Windows
                     cBHoldDVR.SelectedIndex = int.Parse(dets[1]);
                     cBDTapDVR.SelectedIndex = int.Parse(dets[2]);*/
                     break;
+                case "SASteeringWheelEmulationCalibrate":
+                    cBActions.SelectedIndex = 8;
+                    nUDDCBT.Value = (decimal)act.delayTime;
+                    break;
             }
         }
 
@@ -239,7 +262,13 @@ namespace DS4Windows
                             actRe = true;
                             if (!string.IsNullOrEmpty(oldprofilename) && oldprofilename != tBName.Text)
                                 Global.RemoveAction(oldprofilename);
-                            Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, String.Join("/", macrostag), edit, (cBMacroScanCode.Checked ? "Scan Code" : ""));
+                            Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, String.Join("/", macrostag), edit, String.Join("/", new string[] {
+                                  (cBMacroScanCode.Checked ? "Scan Code" : null),
+                                  (cBMacroRunOnRelease.Checked ? "RunOnRelease" : null),
+                                  (cBMacroSyncRun.Checked ? "Sync" : null),
+                                  (cBMacroKeepKeyState.Checked ? "KeepKeyState" : null),
+                                  (cBMacroRepeat.Checked ? "Repeat" : null) }.Where(s => !String.IsNullOrEmpty(s))
+                                  ));
                         }
                         break;
                     case 2:
@@ -253,13 +282,13 @@ namespace DS4Windows
                         }
                         break;
                     case 3:
-                        if (cBProfiles.SelectedIndex > 0 && ucontrols.Count > 0)
+                        if (cBProfiles.SelectedIndex > 0 /*&& ucontrols.Count > 0*/)
                         {
                             action = Properties.Resources.LoadProfile.Replace("*profile*", cBProfiles.Text);
                             actRe = true;
                             if (!string.IsNullOrEmpty(oldprofilename) && oldprofilename != tBName.Text)
                                 Global.RemoveAction(oldprofilename);
-                            Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, cBProfiles.Text, edit, String.Join("/", ucontrols));
+                            Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, cBProfiles.Text, edit, String.Join("/", ucontrols) + (cbProfileAutoUntrigger.Checked ? (ucontrols.Count > 0 ? "/" : "") + "AutomaticUntrigger" : "") );
                         }
                         else
                             btnSetUTriggerProfile.ForeColor = Color.Red;
@@ -331,6 +360,13 @@ namespace DS4Windows
 
                         }
                         break;
+                    case 8:
+                        action = Properties.Resources.SASteeringWheelEmulationCalibrate;
+                        actRe = true;
+                        if (!string.IsNullOrEmpty(oldprofilename) && oldprofilename != tBName.Text)
+                            Global.RemoveAction(oldprofilename);
+                        Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, Math.Round(nUDDCBT.Value, 1).ToString(), edit);
+                        break;
                 }
                 if (actRe)
                 {                    
@@ -368,7 +404,7 @@ namespace DS4Windows
             pnlProgram.Visible = i == 2;
             pnlProfile.Visible = i == 3;
             pnlKeys.Visible = i == 4;
-            pnlDisconnectBT.Visible = i == 5;
+            pnlDisconnectBT.Visible = i == 5 || i == 8;  // SASteeringWheelEmulationCalibrate action #8 re-uses DisconnectBT panel ("hold for X secs" detail option)
             pnlBatteryCheck.Visible = i == 6;
             pnlGameDVR.Visible = i == 7;
             btnSave.Enabled = i > 0;
@@ -476,11 +512,10 @@ namespace DS4Windows
             e.Graphics.FillRectangle(linGrBrush, 0, 0, pBGraident.Width, pBGraident.Height);
         }
 
-        private void advColorDialog_OnUpdateColor(object sender, EventArgs e)
+        private void advColorDialog_OnUpdateColor(Color color, EventArgs e)
         {
-            if (sender is Color && device < 4)
+            if (device < 4)
             {
-                Color color = (Color)sender;
                 DS4Color dcolor = new DS4Color { red = color.R, green = color.G, blue = color.B };
                 DS4LightBar.forcedColor[device] = dcolor;
                 DS4LightBar.forcedFlash[device] = 0;

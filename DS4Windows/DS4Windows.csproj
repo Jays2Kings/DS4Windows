@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,10 +9,27 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DS4Windows</RootNamespace>
     <AssemblyName>DS4Windows</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -27,51 +44,106 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>DS4Windows.Program</StartupObject>
   </PropertyGroup>
-  <PropertyGroup />
   <PropertyGroup>
     <ApplicationIcon>Resources\DS4W.ico</ApplicationIcon>
   </PropertyGroup>
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>none</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DefineConstants>WIN64</DefineConstants>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <LangVersion>7.3</LangVersion>
+    <DebugSymbols>false</DebugSymbols>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <WarningLevel>1</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>none</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.3</LangVersion>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <WarningLevel>1</WarningLevel>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.8.17.0, Culture=neutral, PublicKeyToken=c416bc1b32d97233, processorArchitecture=MSIL">
+      <HintPath>..\packages\TaskScheduler.2.8.17\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Nefarius.ViGEm.Client" Condition="'$(Platform)' == 'x64'">
+      <HintPath>.\libs\x64\Nefarius.ViGEm.Client\Nefarius.ViGEm.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Nefarius.ViGEm.Client" Condition="'$(Platform)' == 'x86'">
+      <HintPath>.\libs\x86\Nefarius.ViGEm.Client\Nefarius.ViGEm.Client.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DS4Control\ControlSerivce.cs" />
+    <Compile Include="BezierCurveEditor\BezierCurve.cs" />
+    <Compile Include="DS4Control\ControlService.cs" />
     <Compile Include="DS4Control\DS4LightBar.cs" />
+    <Compile Include="DS4Control\DS4OutDevice.cs" />
+    <Compile Include="DS4Control\DS4StateFieldMapping.cs" />
     <Compile Include="DS4Control\InputMethods.cs" />
     <Compile Include="DS4Control\ITouchpadBehaviour.cs" />
     <Compile Include="DS4Control\Log.cs" />
@@ -79,38 +151,29 @@
     <Compile Include="DS4Control\Mouse.cs" />
     <Compile Include="DS4Control\MouseCursor.cs" />
     <Compile Include="DS4Control\MouseWheel.cs" />
-    <Compile Include="DS4Control\ScpDevice.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DS4Control\ScpDevice.Designer.cs">
-      <DependentUpon>ScpDevice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DS4Control\ScpHub.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DS4Control\ScpHub.Designer.cs">
-      <DependentUpon>ScpHub.cs</DependentUpon>
-    </Compile>
+    <Compile Include="DS4Control\OutputDevice.cs" />
+    <Compile Include="DS4Control\OutputSlotManager.cs" />
+    <Compile Include="DS4Control\ProfilePropGroups.cs" />
     <Compile Include="DS4Control\ScpUtil.cs" />
-    <Compile Include="DS4Control\X360Device.cs">
-      <SubType>Component</SubType>
+    <Compile Include="DS4Control\UdpServer.cs" />
+    <Compile Include="DS4Control\Util.cs" />
+    <Compile Include="DS4Control\Xbox360OutDevice.cs" />
+    <Compile Include="DS4Forms\LanguagePackComboBox.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DS4Control\X360Device.designer.cs">
-      <DependentUpon>X360Device.cs</DependentUpon>
+    <Compile Include="DS4Forms\LanguagePackComboBox.Designer.cs">
+      <DependentUpon>LanguagePackComboBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="DS4Library\Crc32.cs" />
+    <Compile Include="DS4Library\DS4Audio.cs" />
     <Compile Include="DS4Library\DS4Device.cs" />
     <Compile Include="DS4Library\DS4Devices.cs" />
     <Compile Include="DS4Library\DS4Sixaxis.cs" />
     <Compile Include="DS4Library\DS4State.cs" />
     <Compile Include="DS4Library\DS4StateExposed.cs" />
     <Compile Include="DS4Library\DS4Touchpad.cs" />
-    <Compile Include="DS4Forms\AdvancedColorDialog.cs" />
-    <Compile Include="DS4Forms\AdvancedComboBox.cs" />
-    <Compile Include="DS4Forms\Alreadyrunning.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DS4Forms\Alreadyrunning.Designer.cs">
-      <DependentUpon>Alreadyrunning.cs</DependentUpon>
+    <Compile Include="DS4Forms\AdvancedColorDialog.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="DS4Forms\DS4Form.cs">
       <SubType>Form</SubType>
@@ -161,7 +224,6 @@
     <Compile Include="DS4Forms\SaveWhere.Designer.cs">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </Compile>
-    <Compile Include="DS4Forms\Settings.cs" />
     <Compile Include="DS4Forms\SpecActions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,98 +249,127 @@
     <Compile Include="HidLibrary\HidDevices.cs" />
     <Compile Include="HidLibrary\NativeMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="DS4Forms\Alreadyrunning.resx">
-      <DependentUpon>Alreadyrunning.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="Settings.cs" />
+    <Compile Include="VJoyFeeder\vJoyFeeder.cs" />
     <EmbeddedResource Include="DS4Forms\DS4Form.ar.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.cs.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.de-DE.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.el.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.es.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.fi.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.fr-FR.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.he.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.hu.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.id.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.it-IT.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.ja.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.ko.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\DS4Form.nb.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.nl.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.pl.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.pt-BR.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.ro-RO.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.ru-RU.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.sl.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.sv.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.tr.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.uk.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.vi.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.zh-Hans.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.zh-Hant.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Keyboard.resx">
       <DependentUpon>DS4Keyboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DupBox.ar.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DupBox.cs.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DupBox.de-DE.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DupBox.el.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
@@ -308,6 +399,9 @@
       <DependentUpon>DupBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DupBox.ko.resx">
+      <DependentUpon>DupBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\DupBox.nb.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DupBox.nl.resx">
@@ -386,6 +480,9 @@
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\Hotkeys.ko.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\Hotkeys.nb.resx">
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\Hotkeys.nl.resx">
@@ -505,6 +602,9 @@
     <EmbeddedResource Include="DS4Forms\KBM360.zh-Hant.resx">
       <DependentUpon>KBM360.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\LanguagePackComboBox.resx">
+      <DependentUpon>LanguagePackComboBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\Options.ar.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
@@ -544,6 +644,9 @@
     <EmbeddedResource Include="DS4Forms\Options.ko.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\Options.nb.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\Options.nl.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
@@ -555,6 +658,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\Options.resx">
       <DependentUpon>Options.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\Options.ro-RO.resx">
       <DependentUpon>Options.cs</DependentUpon>
@@ -700,6 +804,9 @@
     <EmbeddedResource Include="DS4Forms\SaveWhere.ko.resx">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\SaveWhere.nb.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\SaveWhere.nl.resx">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </EmbeddedResource>
@@ -778,6 +885,9 @@
     <EmbeddedResource Include="DS4Forms\SpecActions.ko.resx">
       <DependentUpon>SpecActions.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\SpecActions.nb.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\SpecActions.nl.resx">
       <DependentUpon>SpecActions.cs</DependentUpon>
     </EmbeddedResource>
@@ -789,6 +899,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\SpecActions.resx">
       <DependentUpon>SpecActions.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\SpecActions.ro-RO.resx">
       <DependentUpon>SpecActions.cs</DependentUpon>
@@ -854,6 +965,9 @@
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\WelcomeDialog.ko.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\WelcomeDialog.nb.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\WelcomeDialog.nl.resx">
@@ -934,6 +1048,9 @@
     <EmbeddedResource Include="DS4Forms\WinProgs.ko.resx">
       <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\WinProgs.nb.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\WinProgs.nl.resx">
       <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
@@ -977,7 +1094,9 @@
     <EmbeddedResource Include="Properties\Resources.cs.resx" />
     <EmbeddedResource Include="Properties\Resources.de-DE.resx" />
     <EmbeddedResource Include="Properties\Resources.el.resx" />
-    <EmbeddedResource Include="Properties\Resources.es.resx" />
+    <EmbeddedResource Include="Properties\Resources.es.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.fi.resx" />
     <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
     <EmbeddedResource Include="Properties\Resources.he.resx" />
@@ -986,11 +1105,12 @@
     <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
     <EmbeddedResource Include="Properties\Resources.ja.resx" />
     <EmbeddedResource Include="Properties\Resources.ko.resx" />
+    <EmbeddedResource Include="Properties\Resources.nb.resx" />
     <EmbeddedResource Include="Properties\Resources.nl.resx" />
     <EmbeddedResource Include="Properties\Resources.pl.resx" />
     <EmbeddedResource Include="Properties\Resources.pt-BR.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -1004,46 +1124,33 @@
     <EmbeddedResource Include="Properties\Resources.zh-hans.resx" />
     <EmbeddedResource Include="Properties\Resources.zh-Hant.resx" />
     <None Include="app.manifest" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="IWshRuntimeLibrary">
-      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="HidLibrary\LICENSE.htm" />
+    <Content Include="BezierCurveEditor\build.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BezierCurveEditor\index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="HidLibrary\LICENSE" />
     <Content Include="Resources\360 fades.png" />
+    <None Include="packages.config" />
     <None Include="Resources\360 map.png" />
     <None Include="Resources\360 highlight.png" />
     <Content Include="Resources\A.PNG" />
     <Content Include="Resources\B.png" />
     <Content Include="Resources\BACK.png" />
     <Content Include="Resources\BT.png" />
+    <Content Include="Resources\cancel.png" />
     <Content Include="Resources\checked.png" />
-    <Content Include="Resources\Clock.png" />
     <Content Include="Resources\delete.png" />
     <Content Include="Resources\DOWN.png" />
     <None Include="Resources\DS4 Config.png" />
@@ -1075,8 +1182,6 @@
     <Content Include="Resources\DS4W.ico" />
     <Content Include="Resources\EE.wav" />
     <Content Include="Resources\export.png" />
-    <Content Include="Resources\imageres_import.png" />
-    <Content Include="Resources\imageres_new.png" />
     <Content Include="Resources\LB.png" />
     <None Include="Resources\left touch.png" />
     <Content Include="Resources\LEFT.png" />
@@ -1102,11 +1207,6 @@
     <Content Include="Resources\RSU.png" />
     <Content Include="Resources\RT.png" />
     <Content Include="Resources\saveprofile.png" />
-    <Content Include="Resources\Scp_All.ico" />
-    <Content Include="Resources\shell32 delete.png" />
-    <Content Include="Resources\shell32_copy.png" />
-    <Content Include="Resources\shell32_export.png" />
-    <Content Include="Resources\shell32_new.png" />
     <Content Include="Resources\size.png" />
     <Content Include="Resources\START.png" />
     <Content Include="Resources\UP.png" />
@@ -1117,7 +1217,44 @@
     <Content Include="Resources\xbox_360_controller.png" />
     <Content Include="Resources\Y.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="PostBuildMacros">
+    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+      <Output TaskParameter="Assemblies" ItemName="Targets" />
+    </GetAssemblyIdentity>
+    <ItemGroup>
+      <VersionNumber Include="$([System.Text.RegularExpressions.Regex]::Replace(&quot;%(Targets.Version)&quot;, &quot;^(.+?)(\.0+)$&quot;, &quot;$1&quot;))" />
+    </ItemGroup>
+  </Target>
+  <PropertyGroup>
+    <PostBuildEventDependsOn>
+      $(PostBuildEventDependsOn);
+      PostBuildMacros;
+    </PostBuildEventDependsOn>
+    <PostBuildEvent>rem Copy compiled l18n assemblies to alt folder
+GOTO END
+if not exist $(TargetDir)Lang mkdir $(TargetDir)Lang
+set langs=ar cs de de-DE el es fi fr fr-FR he hu id it it-IT ja ko nb nl pl ^
+
+pt-BR ro-RO ru-RU  sl sv tr uk vi zh-CN zh-Hans zh-Hant
+
+for %25%25l in (%25langs%25) do (
+  xcopy $(TargetDir)%25%25l $(TargetDir)Lang\%25%25l\ /s /y
+)
+
+echo @(VersionNumber)&gt; $(ProjectDir)\newest.txt
+
+:END
+</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

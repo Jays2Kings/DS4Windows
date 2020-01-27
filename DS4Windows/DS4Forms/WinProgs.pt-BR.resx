@@ -128,25 +128,25 @@
     <value>55, 13</value>
   </data>
   <data name="lBController1.Text" xml:space="preserve">
-    <value>Controlo 1</value>
+    <value>Controle 1</value>
   </data>
   <data name="lBController2.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 13</value>
   </data>
   <data name="lBController2.Text" xml:space="preserve">
-    <value>Controlo 2</value>
+    <value>Controle 2</value>
   </data>
   <data name="lBController3.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 13</value>
   </data>
   <data name="lBController3.Text" xml:space="preserve">
-    <value>Controlo 3</value>
+    <value>Controle 3</value>
   </data>
   <data name="lBController4.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 13</value>
   </data>
   <data name="lBController4.Text" xml:space="preserve">
-    <value>Controlo 4</value>
+    <value>Controle 4</value>
   </data>
   <data name="bnDelete.Text" xml:space="preserve">
     <value>Remover</value>

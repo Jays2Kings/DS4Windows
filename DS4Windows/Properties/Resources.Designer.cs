@@ -19,10 +19,10 @@ namespace DS4Windows.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace DS4Windows.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DS4Windows.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace DS4Windows.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _360_highlight {
+        public static System.Drawing.Bitmap _360_highlight {
             get {
                 object obj = ResourceManager.GetObject("_360_highlight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _360_map {
+        public static System.Drawing.Bitmap _360_map {
             get {
                 object obj = ResourceManager.GetObject("_360_map", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _checked {
+        public static System.Drawing.Bitmap _checked {
             get {
                 object obj = ResourceManager.GetObject("_checked", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +93,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap A {
+        public static System.Drawing.Bitmap A {
             get {
                 object obj = ResourceManager.GetObject("A", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +103,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Name of this action already exists.
         /// </summary>
-        internal static string ActionExists {
+        public static string ActionExists {
             get {
                 return ResourceManager.GetString("ActionExists", resourceCulture);
             }
@@ -112,7 +112,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Adding to list....
         /// </summary>
-        internal static string AddingToList {
+        public static string AddingToList {
             get {
                 return ResourceManager.GetString("AddingToList", resourceCulture);
             }
@@ -121,7 +121,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Add Programs.
         /// </summary>
-        internal static string AddPrograms {
+        public static string AddPrograms {
             get {
                 return ResourceManager.GetString("AddPrograms", resourceCulture);
             }
@@ -130,7 +130,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to A location must be picked to continue.
         /// </summary>
-        internal static string ALocactionNeeded {
+        public static string ALocactionNeeded {
             get {
                 return ResourceManager.GetString("ALocactionNeeded", resourceCulture);
             }
@@ -139,7 +139,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Always Rainbow Mode.
         /// </summary>
-        internal static string AlwaysRainbow {
+        public static string AlwaysRainbow {
             get {
                 return ResourceManager.GetString("AlwaysRainbow", resourceCulture);
             }
@@ -148,16 +148,25 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Assign to Controller *number*.
         /// </summary>
-        internal static string AssignProfile {
+        public static string AssignProfile {
             get {
                 return ResourceManager.GetString("AssignProfile", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*).
+        /// </summary>
+        public static string AutoProfilePathAndWindowTitleEditTip {
+            get {
+                return ResourceManager.GetString("AutoProfilePathAndWindowTitleEditTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap B {
+        public static System.Drawing.Bitmap B {
             get {
                 object obj = ResourceManager.GetObject("B", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -167,7 +176,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BACK {
+        public static System.Drawing.Bitmap BACK {
             get {
                 object obj = ResourceManager.GetObject("BACK", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -177,7 +186,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Battery: *number*%.
         /// </summary>
-        internal static string Battery {
+        public static string Battery {
             get {
                 return ResourceManager.GetString("Battery", resourceCulture);
             }
@@ -186,7 +195,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Best used with right side as a mouse function.
         /// </summary>
-        internal static string BestUsedRightSide {
+        public static string BestUsedRightSide {
             get {
                 return ResourceManager.GetString("BestUsedRightSide", resourceCulture);
             }
@@ -195,7 +204,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Browse....
         /// </summary>
-        internal static string Browse {
+        public static string Browse {
             get {
                 return ResourceManager.GetString("Browse", resourceCulture);
             }
@@ -204,7 +213,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BT {
+        public static System.Drawing.Bitmap BT {
             get {
                 object obj = ResourceManager.GetObject("BT", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -212,9 +221,28 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Determines the poll rate used for the DS4 hardware when connected via Bluetooth. (Applies on profile save).
+        /// </summary>
+        public static string BTPollRate {
+            get {
+                return ResourceManager.GetString("BTPollRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap cancel {
+            get {
+                object obj = ResourceManager.GetObject("cancel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot move files to new location, Please rename the DS4Tool folder to &quot;DS4Windows&quot;.
         /// </summary>
-        internal static string CannotMoveFiles {
+        public static string CannotMoveFiles {
             get {
                 return ResourceManager.GetString("CannotMoveFiles", resourceCulture);
             }
@@ -223,7 +251,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cannot write at current location. Copy Settings to appdata?.
         /// </summary>
-        internal static string CannotWriteHere {
+        public static string CannotWriteHere {
             get {
                 return ResourceManager.GetString("CannotWriteHere", resourceCulture);
             }
@@ -232,7 +260,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Charge the battery.
         /// </summary>
-        internal static string ChargeController {
+        public static string ChargeController {
             get {
                 return ResourceManager.GetString("ChargeController", resourceCulture);
             }
@@ -241,7 +269,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Charged.
         /// </summary>
-        internal static string Charged {
+        public static string Charged {
             get {
                 return ResourceManager.GetString("Charged", resourceCulture);
             }
@@ -250,7 +278,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Charging: *number*%.
         /// </summary>
-        internal static string Charging {
+        public static string Charging {
             get {
                 return ResourceManager.GetString("Charging", resourceCulture);
             }
@@ -259,16 +287,25 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Check Battery.
         /// </summary>
-        internal static string CheckBattery {
+        public static string CheckBattery {
             get {
                 return ResourceManager.GetString("CheckBattery", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This will disconnect all your connected controllers. Proceed?.
+        /// </summary>
+        public static string CloseConfirm {
+            get {
+                return ResourceManager.GetString("CloseConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close DS4Windows?.
         /// </summary>
-        internal static string CloseDS4W {
+        public static string CloseDS4W {
             get {
                 return ResourceManager.GetString("CloseDS4W", resourceCulture);
             }
@@ -277,7 +314,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Close DS4Windows via the notification icon.
         /// </summary>
-        internal static string CloseMinimize {
+        public static string CloseMinimize {
             get {
                 return ResourceManager.GetString("CloseMinimize", resourceCulture);
             }
@@ -286,25 +323,34 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Color.
         /// </summary>
-        internal static string Color {
+        public static string Color {
             get {
                 return ResourceManager.GetString("Color", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Color by Battey %.
+        ///   Looks up a localized string similar to Color by Battery %.
         /// </summary>
-        internal static string ColorByBattery {
+        public static string ColorByBattery {
             get {
                 return ResourceManager.GetString("ColorByBattery", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm....
+        /// </summary>
+        public static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Connecting....
         /// </summary>
-        internal static string Connecting {
+        public static string Connecting {
             get {
                 return ResourceManager.GetString("Connecting", resourceCulture);
             }
@@ -313,7 +359,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Edit Profile for Controller *number*.
         /// </summary>
-        internal static string ContextEdit {
+        public static string ContextEdit {
             get {
                 return ResourceManager.GetString("ContextEdit", resourceCulture);
             }
@@ -322,7 +368,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Make Profile for Controller *number*.
         /// </summary>
-        internal static string ContextNew {
+        public static string ContextNew {
             get {
                 return ResourceManager.GetString("ContextNew", resourceCulture);
             }
@@ -331,7 +377,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Controller *Mac address* was removed or lost connection.
         /// </summary>
-        internal static string ControllerWasRemoved {
+        public static string ControllerWasRemoved {
             get {
                 return ResourceManager.GetString("ControllerWasRemoved", resourceCulture);
             }
@@ -340,7 +386,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap copy {
+        public static System.Drawing.Bitmap copy {
             get {
                 object obj = ResourceManager.GetObject("copy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -350,7 +396,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Copy complete, please relaunch DS4Windows and remove settings from Program Directory.
         /// </summary>
-        internal static string CopyComplete {
+        public static string CopyComplete {
             get {
                 return ResourceManager.GetString("CopyComplete", resourceCulture);
             }
@@ -359,7 +405,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Click to copy the full color.
         /// </summary>
-        internal static string CopyFullColor {
+        public static string CopyFullColor {
             get {
                 return ResourceManager.GetString("CopyFullColor", resourceCulture);
             }
@@ -368,7 +414,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Warning: Could not open DS4 *Mac address* exclusively..
         /// </summary>
-        internal static string CouldNotOpenDS4 {
+        public static string CouldNotOpenDS4 {
             get {
                 return ResourceManager.GetString("CouldNotOpenDS4", resourceCulture);
             }
@@ -377,7 +423,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to day.
         /// </summary>
-        internal static string Day {
+        public static string Day {
             get {
                 return ResourceManager.GetString("Day", resourceCulture);
             }
@@ -386,7 +432,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to days.
         /// </summary>
-        internal static string Days {
+        public static string Days {
             get {
                 return ResourceManager.GetString("Days", resourceCulture);
             }
@@ -395,7 +441,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap delete {
+        public static System.Drawing.Bitmap delete {
             get {
                 object obj = ResourceManager.GetObject("delete", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -405,16 +451,16 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Delete Profile?.
         /// </summary>
-        internal static string DeleteProfile {
+        public static string DeleteProfile {
             get {
                 return ResourceManager.GetString("DeleteProfile", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dim by Battey %.
+        ///   Looks up a localized string similar to Dim by Battery %.
         /// </summary>
-        internal static string DimByBattery {
+        public static string DimByBattery {
             get {
                 return ResourceManager.GetString("DimByBattery", resourceCulture);
             }
@@ -423,7 +469,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Turn off X360 input and only use the DS4&apos;s native input, hide ds4 must be off (Wired Only).
         /// </summary>
-        internal static string DinputOnly {
+        public static string DinputOnly {
             get {
                 return ResourceManager.GetString("DinputOnly", resourceCulture);
             }
@@ -432,7 +478,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Disconnect BT.
         /// </summary>
-        internal static string DisconnectBT {
+        public static string DisconnectBT {
             get {
                 return ResourceManager.GetString("DisconnectBT", resourceCulture);
             }
@@ -441,7 +487,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Disconnected.
         /// </summary>
-        internal static string Disconnected {
+        public static string Disconnected {
             get {
                 return ResourceManager.GetString("Disconnected", resourceCulture);
             }
@@ -450,7 +496,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DOWN {
+        public static System.Drawing.Bitmap DOWN {
             get {
                 object obj = ResourceManager.GetObject("DOWN", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -460,7 +506,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Downloading *number*%.
         /// </summary>
-        internal static string Downloading {
+        public static string Downloading {
             get {
                 return ResourceManager.GetString("Downloading", resourceCulture);
             }
@@ -469,7 +515,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Download Version *number* now?.
         /// </summary>
-        internal static string DownloadVersion {
+        public static string DownloadVersion {
             get {
                 return ResourceManager.GetString("DownloadVersion", resourceCulture);
             }
@@ -478,7 +524,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Down.
         /// </summary>
-        internal static string DownText {
+        public static string DownText {
             get {
                 return ResourceManager.GetString("DownText", resourceCulture);
             }
@@ -487,7 +533,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon DS4 {
+        public static System.Drawing.Icon DS4 {
             get {
                 object obj = ResourceManager.GetObject("DS4", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
@@ -497,7 +543,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config {
+        public static System.Drawing.Bitmap DS4_Config {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -507,7 +553,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_Circle {
+        public static System.Drawing.Bitmap DS4_Config_Circle {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_Circle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -517,7 +563,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_Cross {
+        public static System.Drawing.Bitmap DS4_Config_Cross {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_Cross", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -527,7 +573,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_Down {
+        public static System.Drawing.Bitmap DS4_Config_Down {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_Down", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -537,7 +583,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_L1 {
+        public static System.Drawing.Bitmap DS4_Config_L1 {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_L1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -547,7 +593,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_L2 {
+        public static System.Drawing.Bitmap DS4_Config_L2 {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_L2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -557,7 +603,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_Left {
+        public static System.Drawing.Bitmap DS4_Config_Left {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_Left", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -567,7 +613,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_LS {
+        public static System.Drawing.Bitmap DS4_Config_LS {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_LS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -577,7 +623,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_Options {
+        public static System.Drawing.Bitmap DS4_Config_Options {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_Options", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -587,7 +633,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_PS {
+        public static System.Drawing.Bitmap DS4_Config_PS {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_PS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -597,7 +643,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_R1 {
+        public static System.Drawing.Bitmap DS4_Config_R1 {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_R1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -607,7 +653,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_R2 {
+        public static System.Drawing.Bitmap DS4_Config_R2 {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_R2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -617,7 +663,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_Right {
+        public static System.Drawing.Bitmap DS4_Config_Right {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_Right", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -627,7 +673,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_RS {
+        public static System.Drawing.Bitmap DS4_Config_RS {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_RS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -637,7 +683,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_Share {
+        public static System.Drawing.Bitmap DS4_Config_Share {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_Share", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -647,7 +693,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_Square {
+        public static System.Drawing.Bitmap DS4_Config_Square {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_Square", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -657,7 +703,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_TouchLeft {
+        public static System.Drawing.Bitmap DS4_Config_TouchLeft {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_TouchLeft", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -667,7 +713,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_TouchMulti {
+        public static System.Drawing.Bitmap DS4_Config_TouchMulti {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_TouchMulti", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -677,7 +723,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_TouchRight {
+        public static System.Drawing.Bitmap DS4_Config_TouchRight {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_TouchRight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -687,7 +733,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_TouchUpper {
+        public static System.Drawing.Bitmap DS4_Config_TouchUpper {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_TouchUpper", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -697,7 +743,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_Triangle {
+        public static System.Drawing.Bitmap DS4_Config_Triangle {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_Triangle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -707,7 +753,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Config_Up {
+        public static System.Drawing.Bitmap DS4_Config_Up {
             get {
                 object obj = ResourceManager.GetObject("DS4_Config_Up", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -717,7 +763,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Controller {
+        public static System.Drawing.Bitmap DS4_Controller {
             get {
                 object obj = ResourceManager.GetObject("DS4_Controller", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -727,7 +773,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_lightbar {
+        public static System.Drawing.Bitmap DS4_lightbar {
             get {
                 object obj = ResourceManager.GetObject("DS4_lightbar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -737,7 +783,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to DS4Windows Update Available!.
         /// </summary>
-        internal static string DS4Update {
+        public static string DS4Update {
             get {
                 return ResourceManager.GetString("DS4Update", resourceCulture);
             }
@@ -746,7 +792,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon DS4W {
+        public static System.Drawing.Icon DS4W {
             get {
                 object obj = ResourceManager.GetObject("DS4W", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
@@ -756,7 +802,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon DS4W___White {
+        public static System.Drawing.Icon DS4W___White {
             get {
                 object obj = ResourceManager.GetObject("DS4W___White", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
@@ -766,7 +812,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to DS4Windows cannot edit settings here, This will now close.
         /// </summary>
-        internal static string DS4WindowsCannotEditHere {
+        public static string DS4WindowsCannotEditHere {
             get {
                 return ResourceManager.GetString("DS4WindowsCannotEditHere", resourceCulture);
             }
@@ -775,7 +821,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap edit {
+        public static System.Drawing.Bitmap edit {
             get {
                 object obj = ResourceManager.GetObject("edit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -785,7 +831,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
-        internal static string EditProfile {
+        public static string EditProfile {
             get {
                 return ResourceManager.GetString("EditProfile", resourceCulture);
             }
@@ -794,16 +840,25 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream EE {
+        public static System.IO.UnmanagedMemoryStream EE {
             get {
                 return ResourceManager.GetStream("EE", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow touchpad mouse function to get toggled with PS + Touchpad Click..
+        /// </summary>
+        public static string EnableTouchToggle {
+            get {
+                return ResourceManager.GetString("EnableTouchToggle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap export {
+        public static System.Drawing.Bitmap export {
             get {
                 object obj = ResourceManager.GetObject("export", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -813,7 +868,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Fall Back.
         /// </summary>
-        internal static string FallBack {
+        public static string FallBack {
             get {
                 return ResourceManager.GetString("FallBack", resourceCulture);
             }
@@ -822,7 +877,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Fall Back to *button*.
         /// </summary>
-        internal static string FallBackTo {
+        public static string FallBackTo {
             get {
                 return ResourceManager.GetString("FallBackTo", resourceCulture);
             }
@@ -831,7 +886,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 5th Mouse Button Down.
         /// </summary>
-        internal static string FifthMouseDown {
+        public static string FifthMouseDown {
             get {
                 return ResourceManager.GetString("FifthMouseDown", resourceCulture);
             }
@@ -840,7 +895,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 5th Mouse Button Up.
         /// </summary>
-        internal static string FifthMouseUp {
+        public static string FifthMouseUp {
             get {
                 return ResourceManager.GetString("FifthMouseUp", resourceCulture);
             }
@@ -849,7 +904,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Click to change flash color. Black = default color.
         /// </summary>
-        internal static string FlashAtTip {
+        public static string FlashAtTip {
             get {
                 return ResourceManager.GetString("FlashAtTip", resourceCulture);
             }
@@ -858,7 +913,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Flush HID.
         /// </summary>
-        internal static string FlushHID {
+        public static string FlushHID {
             get {
                 return ResourceManager.GetString("FlushHID", resourceCulture);
             }
@@ -867,7 +922,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Flush HID Queue after each reading.
         /// </summary>
-        internal static string FlushHIDTip {
+        public static string FlushHIDTip {
             get {
                 return ResourceManager.GetString("FlushHIDTip", resourceCulture);
             }
@@ -876,7 +931,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Found Controller:.
         /// </summary>
-        internal static string FoundController {
+        public static string FoundController {
             get {
                 return ResourceManager.GetString("FoundController", resourceCulture);
             }
@@ -885,7 +940,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 4th Mouse Button Down.
         /// </summary>
-        internal static string FourthMouseDown {
+        public static string FourthMouseDown {
             get {
                 return ResourceManager.GetString("FourthMouseDown", resourceCulture);
             }
@@ -894,7 +949,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 4th Mouse Button Up.
         /// </summary>
-        internal static string FourthMouseUp {
+        public static string FourthMouseUp {
             get {
                 return ResourceManager.GetString("FourthMouseUp", resourceCulture);
             }
@@ -903,7 +958,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Full.
         /// </summary>
-        internal static string Full {
+        public static string Full {
             get {
                 return ResourceManager.GetString("Full", resourceCulture);
             }
@@ -912,16 +967,25 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Click to see readout of Sixaxis Gyro.
         /// </summary>
-        internal static string GyroReadout {
+        public static string GyroReadout {
             get {
                 return ResourceManager.GetString("GyroReadout", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check to have gyro active while trigger is active. Uncheck to disable gyro while trigger is active..
+        /// </summary>
+        public static string GyroTriggerBehavior {
+            get {
+                return ResourceManager.GetString("GyroTriggerBehavior", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GyroX, Left and Right Tilt.
         /// </summary>
-        internal static string GyroX {
+        public static string GyroX {
             get {
                 return ResourceManager.GetString("GyroX", resourceCulture);
             }
@@ -930,7 +994,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to GyroY, Forward and Back Tilt.
         /// </summary>
-        internal static string GyroY {
+        public static string GyroY {
             get {
                 return ResourceManager.GetString("GyroY", resourceCulture);
             }
@@ -939,7 +1003,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to GyroZ, Up and Down Tilt.
         /// </summary>
-        internal static string GyroZ {
+        public static string GyroZ {
             get {
                 return ResourceManager.GetString("GyroZ", resourceCulture);
             }
@@ -948,7 +1012,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to hour.
         /// </summary>
-        internal static string Hour {
+        public static string Hour {
             get {
                 return ResourceManager.GetString("Hour", resourceCulture);
             }
@@ -957,7 +1021,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to hours.
         /// </summary>
-        internal static string Hours {
+        public static string Hours {
             get {
                 return ResourceManager.GetString("Hours", resourceCulture);
             }
@@ -966,7 +1030,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Hover over items to see description or more about.
         /// </summary>
-        internal static string HoverOverItems {
+        public static string HoverOverItems {
             get {
                 return ResourceManager.GetString("HoverOverItems", resourceCulture);
             }
@@ -975,7 +1039,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to If removing DS4Windows, You can delete the settings following the profile folder link.
         /// </summary>
-        internal static string IfRemovingDS4Windows {
+        public static string IfRemovingDS4Windows {
             get {
                 return ResourceManager.GetString("IfRemovingDS4Windows", resourceCulture);
             }
@@ -984,7 +1048,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap import {
+        public static System.Drawing.Bitmap import {
             get {
                 object obj = ResourceManager.GetObject("import", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -994,7 +1058,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Input Delay: *number*ms.
         /// </summary>
-        internal static string InputDelay {
+        public static string InputDelay {
             get {
                 return ResourceManager.GetString("InputDelay", resourceCulture);
             }
@@ -1003,7 +1067,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Install Complete.
         /// </summary>
-        internal static string InstallComplete {
+        public static string InstallComplete {
             get {
                 return ResourceManager.GetString("InstallComplete", resourceCulture);
             }
@@ -1012,7 +1076,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Install Drivers here.
         /// </summary>
-        internal static string InstallDriver {
+        public static string InstallDriver {
             get {
                 return ResourceManager.GetString("InstallDriver", resourceCulture);
             }
@@ -1021,7 +1085,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Install Failed, Please Retry.
         /// </summary>
-        internal static string InstallFailed {
+        public static string InstallFailed {
             get {
                 return ResourceManager.GetString("InstallFailed", resourceCulture);
             }
@@ -1030,7 +1094,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Installing....
         /// </summary>
-        internal static string Installing {
+        public static string Installing {
             get {
                 return ResourceManager.GetString("Installing", resourceCulture);
             }
@@ -1039,7 +1103,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Use Sixaxis to help calculate touchpad movement.
         /// </summary>
-        internal static string Jitter {
+        public static string Jitter {
             get {
                 return ResourceManager.GetString("Jitter", resourceCulture);
             }
@@ -1048,16 +1112,25 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Keep this window size after closing.
         /// </summary>
-        internal static string KeepThisSize {
+        public static string KeepThisSize {
             get {
                 return ResourceManager.GetString("KeepThisSize", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language pack change will take effect after DS4Windows application is restarted..
+        /// </summary>
+        public static string LanguagePackApplyRestartRequired {
+            get {
+                return ResourceManager.GetString("LanguagePackApplyRestartRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Controller *number*&apos;s latency now under 10ms.
         /// </summary>
-        internal static string LatencyNotOverTen {
+        public static string LatencyNotOverTen {
             get {
                 return ResourceManager.GetString("LatencyNotOverTen", resourceCulture);
             }
@@ -1066,7 +1139,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Controller *number*&apos;s latency over 10ms.
         /// </summary>
-        internal static string LatencyOverTen {
+        public static string LatencyOverTen {
             get {
                 return ResourceManager.GetString("LatencyOverTen", resourceCulture);
             }
@@ -1075,7 +1148,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Launch *program*.
         /// </summary>
-        internal static string LaunchProgram {
+        public static string LaunchProgram {
             get {
                 return ResourceManager.GetString("LaunchProgram", resourceCulture);
             }
@@ -1084,7 +1157,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LB {
+        public static System.Drawing.Bitmap LB {
             get {
                 object obj = ResourceManager.GetObject("LB", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1094,7 +1167,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LEFT {
+        public static System.Drawing.Bitmap LEFT {
             get {
                 object obj = ResourceManager.GetObject("LEFT", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1104,7 +1177,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap left_touch {
+        public static System.Drawing.Bitmap left_touch {
             get {
                 object obj = ResourceManager.GetObject("left_touch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1112,9 +1185,9 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Also dim light by idle timeout if on.
+        ///   Looks up a localized string similar to Also dim light by idle timeout if enabled when DS4 is fully charged.
         /// </summary>
-        internal static string LightByBatteryTip {
+        public static string LightByBatteryTip {
             get {
                 return ResourceManager.GetString("LightByBatteryTip", resourceCulture);
             }
@@ -1123,7 +1196,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Loading....
         /// </summary>
-        internal static string Loading {
+        public static string Loading {
             get {
                 return ResourceManager.GetString("Loading", resourceCulture);
             }
@@ -1132,7 +1205,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Load *profile*.
         /// </summary>
-        internal static string LoadProfile {
+        public static string LoadProfile {
             get {
                 return ResourceManager.GetString("LoadProfile", resourceCulture);
             }
@@ -1141,7 +1214,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LS {
+        public static System.Drawing.Bitmap LS {
             get {
                 object obj = ResourceManager.GetObject("LS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1151,7 +1224,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LSD {
+        public static System.Drawing.Bitmap LSD {
             get {
                 object obj = ResourceManager.GetObject("LSD", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1161,7 +1234,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LSL {
+        public static System.Drawing.Bitmap LSL {
             get {
                 object obj = ResourceManager.GetObject("LSL", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1171,7 +1244,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LSR {
+        public static System.Drawing.Bitmap LSR {
             get {
                 object obj = ResourceManager.GetObject("LSR", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1181,7 +1254,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LSU {
+        public static System.Drawing.Bitmap LSU {
             get {
                 object obj = ResourceManager.GetObject("LSU", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1191,7 +1264,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LT {
+        public static System.Drawing.Bitmap LT {
             get {
                 object obj = ResourceManager.GetObject("LT", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1201,25 +1274,70 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Macro.
         /// </summary>
-        internal static string Macro {
+        public static string Macro {
             get {
                 return ResourceManager.GetString("Macro", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Keep the last key state when macro execution is completed (ie. if a key is left in down state then it is not automatically reset back to default state).
+        /// </summary>
+        public static string MacroKeepKeyStateTip {
+            get {
+                return ResourceManager.GetString("MacroKeepKeyStateTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Macro Recorded.
         /// </summary>
-        internal static string MacroRecorded {
+        public static string MacroRecorded {
             get {
                 return ResourceManager.GetString("MacroRecorded", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Repeat a macro while the trigger key is held down.
+        /// </summary>
+        public static string MacroRepeatTip {
+            get {
+                return ResourceManager.GetString("MacroRepeatTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run a macro on the trigger key release.
+        /// </summary>
+        public static string MacroRunOnReleaseTip {
+            get {
+                return ResourceManager.GetString("MacroRunOnReleaseTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use a scan code value of keyboard keys in a macro.
+        /// </summary>
+        public static string MacroScanCodeTip {
+            get {
+                return ResourceManager.GetString("MacroScanCodeTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run multiple macros in synchronized order if the same trigger has several macros (key down macro completed before key release macro is run).
+        /// </summary>
+        public static string MacroSynchronizedRunTip {
+            get {
+                return ResourceManager.GetString("MacroSynchronizedRunTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Make a New Profile.
         /// </summary>
-        internal static string MakeNewProfile {
+        public static string MakeNewProfile {
             get {
                 return ResourceManager.GetString("MakeNewProfile", resourceCulture);
             }
@@ -1228,7 +1346,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mouse {
+        public static System.Drawing.Bitmap mouse {
             get {
                 object obj = ResourceManager.GetObject("mouse", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1238,7 +1356,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Mutli-Action Button.
         /// </summary>
-        internal static string MultiAction {
+        public static string MultiAction {
             get {
                 return ResourceManager.GetString("MultiAction", resourceCulture);
             }
@@ -1247,7 +1365,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to N/A.
         /// </summary>
-        internal static string NA {
+        public static string NA {
             get {
                 return ResourceManager.GetString("NA", resourceCulture);
             }
@@ -1256,7 +1374,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to New.
         /// </summary>
-        internal static string New {
+        public static string New {
             get {
                 return ResourceManager.GetString("New", resourceCulture);
             }
@@ -1265,7 +1383,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap newprofile {
+        public static System.Drawing.Bitmap newprofile {
             get {
                 object obj = ResourceManager.GetObject("newprofile", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1275,7 +1393,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to No macro was recorded.
         /// </summary>
-        internal static string NoMacroRecorded {
+        public static string NoMacroRecorded {
             get {
                 return ResourceManager.GetString("NoMacroRecorded", resourceCulture);
             }
@@ -1284,7 +1402,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap none {
+        public static System.Drawing.Bitmap none {
             get {
                 object obj = ResourceManager.GetObject("none", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1294,7 +1412,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to (none).
         /// </summary>
-        internal static string noneProfile {
+        public static string noneProfile {
             get {
                 return ResourceManager.GetString("noneProfile", resourceCulture);
             }
@@ -1303,7 +1421,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to none.
         /// </summary>
-        internal static string NoneText {
+        public static string NoneText {
             get {
                 return ResourceManager.GetString("NoneText", resourceCulture);
             }
@@ -1312,7 +1430,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to No Profile Loaded.
         /// </summary>
-        internal static string NoProfileLoaded {
+        public static string NoProfileLoaded {
             get {
                 return ResourceManager.GetString("NoProfileLoaded", resourceCulture);
             }
@@ -1321,7 +1439,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Controller *number* is not using a profile.
         /// </summary>
-        internal static string NotUsingProfile {
+        public static string NotUsingProfile {
             get {
                 return ResourceManager.GetString("NotUsingProfile", resourceCulture);
             }
@@ -1330,7 +1448,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Not valid.
         /// </summary>
-        internal static string NotValid {
+        public static string NotValid {
             get {
                 return ResourceManager.GetString("NotValid", resourceCulture);
             }
@@ -1339,7 +1457,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Opening Installer.
         /// </summary>
-        internal static string OpeningInstaller {
+        public static string OpeningInstaller {
             get {
                 return ResourceManager.GetString("OpeningInstaller", resourceCulture);
             }
@@ -1348,7 +1466,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Please Open ScpDriver.exe.
         /// </summary>
-        internal static string OpenScpDriver {
+        public static string OpenScpDriver {
             get {
                 return ResourceManager.GetString("OpenScpDriver", resourceCulture);
             }
@@ -1357,16 +1475,25 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to , other location files will be deleted.
         /// </summary>
-        internal static string OtherFileLocation {
+        public static string OtherFileLocation {
             get {
                 return ResourceManager.GetString("OtherFileLocation", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose the type of output virtual controller (Applies on profile save).
+        /// </summary>
+        public static string OutContNotice {
+            get {
+                return ResourceManager.GetString("OutContNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Pairmode {
+        public static System.Drawing.Bitmap Pairmode {
             get {
                 object obj = ResourceManager.GetObject("Pairmode", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1374,9 +1501,9 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please Download the Updater now, and place it in the programs folder, then check for update again.
+        ///   Looks up a localized string similar to Please Download the Updater now, place it in the programs folder and rename to DS4Updater.exe if on x86, then check for update again.
         /// </summary>
-        internal static string PleaseDownloadUpdater {
+        public static string PleaseDownloadUpdater {
             get {
                 return ResourceManager.GetString("PleaseDownloadUpdater", resourceCulture);
             }
@@ -1385,7 +1512,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Please import or make a profile.
         /// </summary>
-        internal static string PleaseImport {
+        public static string PleaseImport {
             get {
                 return ResourceManager.GetString("PleaseImport", resourceCulture);
             }
@@ -1394,7 +1521,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to New Profile.
         /// </summary>
-        internal static string PlusNewProfile {
+        public static string PlusNewProfile {
             get {
                 return ResourceManager.GetString("PlusNewProfile", resourceCulture);
             }
@@ -1403,7 +1530,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to *Profile name* cannot be restored..
         /// </summary>
-        internal static string ProfileCannotRestore {
+        public static string ProfileCannotRestore {
             get {
                 return ResourceManager.GetString("ProfileCannotRestore", resourceCulture);
             }
@@ -1412,7 +1539,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Profile Folder Moved to program folder.
         /// </summary>
-        internal static string ProfileFolderMoved {
+        public static string ProfileFolderMoved {
             get {
                 return ResourceManager.GetString("ProfileFolderMoved", resourceCulture);
             }
@@ -1421,25 +1548,25 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Programs.
         /// </summary>
-        internal static string Programs {
+        public static string Programs {
             get {
                 return ResourceManager.GetString("Programs", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EXPERIMENTAL: Auto-Disable BT when conencting to USB.
+        ///   Looks up a localized string similar to EXPERIMENTAL: Auto-Disable BT when connecting to USB.
         /// </summary>
-        internal static string QuickCharge {
+        public static string QuickCharge {
             get {
                 return ResourceManager.GetString("QuickCharge", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You must quit other applications like Steam, Uplay before activating the &apos;Hide DS4 Controller&apos; option.&quot;.
+        ///   Looks up a localized string similar to You must quit other applications like UWP apps (Netflix), Steam, Uplay, NVIDIA IN-GAME before activating the &apos;Hide DS4 Controller&apos; option. For more info check https://github.com/Ryochan7/DS4Windows/wiki/Exclusive-Mode-(Hide-DS4-Controller-config-option)-tips-and-issues.
         /// </summary>
-        internal static string QuitOtherPrograms {
+        public static string QuitOtherPrograms {
             get {
                 return ResourceManager.GetString("QuitOtherPrograms", resourceCulture);
             }
@@ -1448,7 +1575,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rainbow {
+        public static System.Drawing.Bitmap rainbow {
             get {
                 object obj = ResourceManager.GetObject("rainbow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1458,7 +1585,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rainbowC {
+        public static System.Drawing.Bitmap rainbowC {
             get {
                 object obj = ResourceManager.GetObject("rainbowC", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1468,7 +1595,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap RB {
+        public static System.Drawing.Bitmap RB {
             get {
                 object obj = ResourceManager.GetObject("RB", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1478,7 +1605,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Record.
         /// </summary>
-        internal static string RecordText {
+        public static string RecordText {
             get {
                 return ResourceManager.GetString("RecordText", resourceCulture);
             }
@@ -1487,7 +1614,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap RIGHT {
+        public static System.Drawing.Bitmap RIGHT {
             get {
                 object obj = ResourceManager.GetObject("RIGHT", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1497,7 +1624,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap right_touch {
+        public static System.Drawing.Bitmap right_touch {
             get {
                 object obj = ResourceManager.GetObject("right_touch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1507,7 +1634,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Right Click to set presets for a set of controls.
         /// </summary>
-        internal static string RightClickPresets {
+        public static string RightClickPresets {
             get {
                 return ResourceManager.GetString("RightClickPresets", resourceCulture);
             }
@@ -1516,7 +1643,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap RS {
+        public static System.Drawing.Bitmap RS {
             get {
                 object obj = ResourceManager.GetObject("RS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1526,7 +1653,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap RSD {
+        public static System.Drawing.Bitmap RSD {
             get {
                 object obj = ResourceManager.GetObject("RSD", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1536,7 +1663,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap RSL {
+        public static System.Drawing.Bitmap RSL {
             get {
                 object obj = ResourceManager.GetObject("RSL", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1546,7 +1673,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap RSR {
+        public static System.Drawing.Bitmap RSR {
             get {
                 object obj = ResourceManager.GetObject("RSR", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1556,7 +1683,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap RSU {
+        public static System.Drawing.Bitmap RSU {
             get {
                 object obj = ResourceManager.GetObject("RSU", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1566,7 +1693,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap RT {
+        public static System.Drawing.Bitmap RT {
             get {
                 object obj = ResourceManager.GetObject("RT", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1574,9 +1701,81 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tells Windows to start DS4Windows after login.
+        /// </summary>
+        public static string RunAtStartup {
+            get {
+                return ResourceManager.GetString("RunAtStartup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calibration of sixaxis wheel emulation.
+        /// </summary>
+        public static string SASteeringWheelEmulationCalibrate {
+            get {
+                return ResourceManager.GetString("SASteeringWheelEmulationCalibrate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All calibraton points are set when lightbar color turns to green. While turning the controller the lightbar color flashes when the controller is at calibration point. Accept calibration with OK button.
+        /// </summary>
+        public static string SASteeringWheelEmulationCalibrateInstruction {
+            get {
+                return ResourceManager.GetString("SASteeringWheelEmulationCalibrateInstruction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (1) Center the controller, hold it steady and press &quot;X&quot;.
+        /// </summary>
+        public static string SASteeringWheelEmulationCalibrateInstruction1 {
+            get {
+                return ResourceManager.GetString("SASteeringWheelEmulationCalibrateInstruction1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (2) Turn to 90° left (or right) position and press &quot;X&quot;.
+        /// </summary>
+        public static string SASteeringWheelEmulationCalibrateInstruction2 {
+            get {
+                return ResourceManager.GetString("SASteeringWheelEmulationCalibrateInstruction2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (3) Turn to 90° right (or left) position and press &quot;X&quot;.
+        /// </summary>
+        public static string SASteeringWheelEmulationCalibrateInstruction3 {
+            get {
+                return ResourceManager.GetString("SASteeringWheelEmulationCalibrateInstruction3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot calibrate gyro (sixaxis) steering wheel emulation values without a controller. Connect a controller via bluetooth or usb.
+        /// </summary>
+        public static string SASteeringWheelEmulationCalibrateNoControllerError {
+            get {
+                return ResourceManager.GetString("SASteeringWheelEmulationCalibrateNoControllerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gyro steering wheel emulation axis option is set to NONE (emulation is not used). Please select an axis option before calibrating the sixaxis gyro steering wheel emulation.
+        /// </summary>
+        public static string SASteeringWheelEmulationCalibrateNoneAxisError {
+            get {
+                return ResourceManager.GetString("SASteeringWheelEmulationCalibrateNoneAxisError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap saveprofile {
+        public static System.Drawing.Bitmap saveprofile {
             get {
                 object obj = ResourceManager.GetObject("saveprofile", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1586,7 +1785,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Save Recorded Macro?.
         /// </summary>
-        internal static string SaveRecordedMacro {
+        public static string SaveRecordedMacro {
             get {
                 return ResourceManager.GetString("SaveRecordedMacro", resourceCulture);
             }
@@ -1595,16 +1794,16 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Scan Code.
         /// </summary>
-        internal static string ScanCode {
+        public static string ScanCode {
             get {
                 return ResourceManager.GetString("ScanCode", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Searching for controllers….
+        ///   Looks up a localized string similar to Searching for controllers....
         /// </summary>
-        internal static string SearchingController {
+        public static string SearchingController {
             get {
                 return ResourceManager.GetString("SearchingController", resourceCulture);
             }
@@ -1613,7 +1812,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Select an action for *action*.
         /// </summary>
-        internal static string SelectActionTitle {
+        public static string SelectActionTitle {
             get {
                 return ResourceManager.GetString("SelectActionTitle", resourceCulture);
             }
@@ -1622,7 +1821,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Select a macro.
         /// </summary>
-        internal static string SelectMacro {
+        public static string SelectMacro {
             get {
                 return ResourceManager.GetString("SelectMacro", resourceCulture);
             }
@@ -1631,7 +1830,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Set Regular Trigger.
         /// </summary>
-        internal static string SetRegularTrigger {
+        public static string SetRegularTrigger {
             get {
                 return ResourceManager.GetString("SetRegularTrigger", resourceCulture);
             }
@@ -1640,7 +1839,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Set Unload Trigger.
         /// </summary>
-        internal static string SetUnloadTrigger {
+        public static string SetUnloadTrigger {
             get {
                 return ResourceManager.GetString("SetUnloadTrigger", resourceCulture);
             }
@@ -1649,16 +1848,25 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Shortcuts.
         /// </summary>
-        internal static string Shortcuts {
+        public static string Shortcuts {
             get {
                 return ResourceManager.GetString("Shortcuts", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If enabled then Log tab page shows detailed messages of auto-profile events..
+        /// </summary>
+        public static string ShowAutoProfileDebugLogTip {
+            get {
+                return ResourceManager.GetString("ShowAutoProfileDebugLogTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click for advanced Sixaxis reading.
         /// </summary>
-        internal static string SixAxisReading {
+        public static string SixAxisReading {
             get {
                 return ResourceManager.GetString("SixAxisReading", resourceCulture);
             }
@@ -1667,7 +1875,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap size {
+        public static System.Drawing.Bitmap size {
             get {
                 object obj = ResourceManager.GetObject("size", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1675,9 +1883,18 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Roundness of Square Stick corners.
+        /// </summary>
+        public static string SquareStickRoundness {
+            get {
+                return ResourceManager.GetString("SquareStickRoundness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap START {
+        public static System.Drawing.Bitmap START {
             get {
                 object obj = ResourceManager.GetObject("START", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1687,7 +1904,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Starting....
         /// </summary>
-        internal static string Starting {
+        public static string Starting {
             get {
                 return ResourceManager.GetString("Starting", resourceCulture);
             }
@@ -1696,16 +1913,16 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
-        internal static string StartText {
+        public static string StartText {
             get {
                 return ResourceManager.GetString("StartText", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Step 1: Install the DS4 Driver.
+        ///   Looks up a localized string similar to Step 1: Install the ViGEmBus Driver.
         /// </summary>
-        internal static string Step1 {
+        public static string Step1 {
             get {
                 return ResourceManager.GetString("Step1", resourceCulture);
             }
@@ -1714,7 +1931,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Stop Heavy.
         /// </summary>
-        internal static string StopHText {
+        public static string StopHText {
             get {
                 return ResourceManager.GetString("StopHText", resourceCulture);
             }
@@ -1723,7 +1940,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Stop Light.
         /// </summary>
-        internal static string StopLText {
+        public static string StopLText {
             get {
                 return ResourceManager.GetString("StopLText", resourceCulture);
             }
@@ -1732,7 +1949,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Stopped DS4Windows.
         /// </summary>
-        internal static string StoppedDS4Windows {
+        public static string StoppedDS4Windows {
             get {
                 return ResourceManager.GetString("StoppedDS4Windows", resourceCulture);
             }
@@ -1741,7 +1958,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Stopping DS4 Controllers.
         /// </summary>
-        internal static string StoppingDS4 {
+        public static string StoppingDS4 {
             get {
                 return ResourceManager.GetString("StoppingDS4", resourceCulture);
             }
@@ -1750,7 +1967,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Stopping X360 Controllers.
         /// </summary>
-        internal static string StoppingX360 {
+        public static string StoppingX360 {
             get {
                 return ResourceManager.GetString("StoppingX360", resourceCulture);
             }
@@ -1759,7 +1976,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Stop.
         /// </summary>
-        internal static string StopText {
+        public static string StopText {
             get {
                 return ResourceManager.GetString("StopText", resourceCulture);
             }
@@ -1768,7 +1985,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Swipe Down.
         /// </summary>
-        internal static string SwipeDown {
+        public static string SwipeDown {
             get {
                 return ResourceManager.GetString("SwipeDown", resourceCulture);
             }
@@ -1777,7 +1994,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Swipe Left.
         /// </summary>
-        internal static string SwipeLeft {
+        public static string SwipeLeft {
             get {
                 return ResourceManager.GetString("SwipeLeft", resourceCulture);
             }
@@ -1786,7 +2003,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Swipe Right.
         /// </summary>
-        internal static string SwipeRight {
+        public static string SwipeRight {
             get {
                 return ResourceManager.GetString("SwipeRight", resourceCulture);
             }
@@ -1795,7 +2012,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Swipe Touchpad to change profiles.
         /// </summary>
-        internal static string SwipeTouchpad {
+        public static string SwipeTouchpad {
             get {
                 return ResourceManager.GetString("SwipeTouchpad", resourceCulture);
             }
@@ -1804,7 +2021,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Swipe Up.
         /// </summary>
-        internal static string SwipeUp {
+        public static string SwipeUp {
             get {
                 return ResourceManager.GetString("SwipeUp", resourceCulture);
             }
@@ -1813,7 +2030,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Tap and hold to drag, slight delay with single taps.
         /// </summary>
-        internal static string TapAndHold {
+        public static string TapAndHold {
             get {
                 return ResourceManager.GetString("TapAndHold", resourceCulture);
             }
@@ -1822,7 +2039,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Test Heavy.
         /// </summary>
-        internal static string TestHText {
+        public static string TestHText {
             get {
                 return ResourceManager.GetString("TestHText", resourceCulture);
             }
@@ -1831,7 +2048,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Test Light.
         /// </summary>
-        internal static string TestLText {
+        public static string TestLText {
             get {
                 return ResourceManager.GetString("TestLText", resourceCulture);
             }
@@ -1840,7 +2057,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Test.
         /// </summary>
-        internal static string TestText {
+        public static string TestText {
             get {
                 return ResourceManager.GetString("TestText", resourceCulture);
             }
@@ -1849,7 +2066,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Text Document (*.txt).
         /// </summary>
-        internal static string TextDocs {
+        public static string TextDocs {
             get {
                 return ResourceManager.GetString("TextDocs", resourceCulture);
             }
@@ -1858,7 +2075,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Tilt Down.
         /// </summary>
-        internal static string TiltDown {
+        public static string TiltDown {
             get {
                 return ResourceManager.GetString("TiltDown", resourceCulture);
             }
@@ -1867,7 +2084,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Tilt Left.
         /// </summary>
-        internal static string TiltLeft {
+        public static string TiltLeft {
             get {
                 return ResourceManager.GetString("TiltLeft", resourceCulture);
             }
@@ -1876,7 +2093,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Tilt Right.
         /// </summary>
-        internal static string TiltRight {
+        public static string TiltRight {
             get {
                 return ResourceManager.GetString("TiltRight", resourceCulture);
             }
@@ -1885,7 +2102,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Tilt Up.
         /// </summary>
-        internal static string TiltUp {
+        public static string TiltUp {
             get {
                 return ResourceManager.GetString("TiltUp", resourceCulture);
             }
@@ -1894,7 +2111,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Touchpad Movement is now Off.
         /// </summary>
-        internal static string TouchpadMovementOff {
+        public static string TouchpadMovementOff {
             get {
                 return ResourceManager.GetString("TouchpadMovementOff", resourceCulture);
             }
@@ -1903,7 +2120,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Touchpad Movement is now On.
         /// </summary>
-        internal static string TouchpadMovementOn {
+        public static string TouchpadMovementOn {
             get {
                 return ResourceManager.GetString("TouchpadMovementOn", resourceCulture);
             }
@@ -1912,7 +2129,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Re-enable by pressing PS+Touchpad.
         /// </summary>
-        internal static string TouchpadOffTip {
+        public static string TouchpadOffTip {
             get {
                 return ResourceManager.GetString("TouchpadOffTip", resourceCulture);
             }
@@ -1921,7 +2138,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 2 finger touchpad swipe left or right.
         /// </summary>
-        internal static string TwoFingerSwipe {
+        public static string TwoFingerSwipe {
             get {
                 return ResourceManager.GetString("TwoFingerSwipe", resourceCulture);
             }
@@ -1930,7 +2147,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to type new name here.
         /// </summary>
-        internal static string TypeNewName {
+        public static string TypeNewName {
             get {
                 return ResourceManager.GetString("TypeNewName", resourceCulture);
             }
@@ -1939,16 +2156,34 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to type profile name here.
         /// </summary>
-        internal static string TypeProfileName {
+        public static string TypeProfileName {
             get {
                 return ResourceManager.GetString("TypeProfileName", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You need to run DS4Windows as the Administrator in order to activate this mode..
+        /// </summary>
+        public static string UACTask {
+            get {
+                return ResourceManager.GetString("UACTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable UDP server. Server listen address and port. Address value options: 127.0.0.1 localhost only | 0.0.0.0 all addresses | Specific host name or IP address..
+        /// </summary>
+        public static string UdpServer {
+            get {
+                return ResourceManager.GetString("UdpServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unassigned.
         /// </summary>
-        internal static string Unassigned {
+        public static string Unassigned {
             get {
                 return ResourceManager.GetString("Unassigned", resourceCulture);
             }
@@ -1957,7 +2192,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap UP {
+        public static System.Drawing.Bitmap UP {
             get {
                 object obj = ResourceManager.GetObject("UP", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1967,7 +2202,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Up.
         /// </summary>
-        internal static string UpText {
+        public static string UpText {
             get {
                 return ResourceManager.GetString("UpText", resourceCulture);
             }
@@ -1976,7 +2211,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You are up to date.
         /// </summary>
-        internal static string UpToDate {
+        public static string UpToDate {
             get {
                 return ResourceManager.GetString("UpToDate", resourceCulture);
             }
@@ -1985,7 +2220,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap USB {
+        public static System.Drawing.Bitmap USB {
             get {
                 object obj = ResourceManager.GetObject("USB", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1995,7 +2230,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You can also use your controller to change controls.
         /// </summary>
-        internal static string UseControllerForMapping {
+        public static string UseControllerForMapping {
             get {
                 return ResourceManager.GetString("UseControllerForMapping", resourceCulture);
             }
@@ -2004,7 +2239,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Using Exclusive Mode.
         /// </summary>
-        internal static string UsingExclusive {
+        public static string UsingExclusive {
             get {
                 return ResourceManager.GetString("UsingExclusive", resourceCulture);
             }
@@ -2013,7 +2248,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Controller *number* is using Profile “*Profile name*&quot;.
         /// </summary>
-        internal static string UsingProfile {
+        public static string UsingProfile {
             get {
                 return ResourceManager.GetString("UsingProfile", resourceCulture);
             }
@@ -2022,7 +2257,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Using Shared Mode.
         /// </summary>
-        internal static string UsingShared {
+        public static string UsingShared {
             get {
                 return ResourceManager.GetString("UsingShared", resourceCulture);
             }
@@ -2031,7 +2266,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to This disables the Touchpad as a mouse.
         /// </summary>
-        internal static string UsingTPSwipes {
+        public static string UsingTPSwipes {
             get {
                 return ResourceManager.GetString("UsingTPSwipes", resourceCulture);
             }
@@ -2040,7 +2275,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Please enter a valid name.
         /// </summary>
-        internal static string ValidName {
+        public static string ValidName {
             get {
                 return ResourceManager.GetString("ValidName", resourceCulture);
             }
@@ -2049,7 +2284,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Wait *number*ms.
         /// </summary>
-        internal static string WaitMS {
+        public static string WaitMS {
             get {
                 return ResourceManager.GetString("WaitMS", resourceCulture);
             }
@@ -2058,7 +2293,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Will Keep.
         /// </summary>
-        internal static string WillKeep {
+        public static string WillKeep {
             get {
                 return ResourceManager.GetString("WillKeep", resourceCulture);
             }
@@ -2067,7 +2302,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap X {
+        public static System.Drawing.Bitmap X {
             get {
                 object obj = ResourceManager.GetObject("X", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2075,18 +2310,9 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use higher ports if you get conflicts in other emulating X360 programs, such as SCP&apos;s tool.
-        /// </summary>
-        internal static string XinputPorts {
-            get {
-                return ResourceManager.GetString("XinputPorts", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to XML Files (*.xml).
         /// </summary>
-        internal static string XMLFiles {
+        public static string XMLFiles {
             get {
                 return ResourceManager.GetString("XMLFiles", resourceCulture);
             }
@@ -2095,7 +2321,7 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Y {
+        public static System.Drawing.Bitmap Y {
             get {
                 object obj = ResourceManager.GetObject("Y", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -189,9 +189,6 @@
   </data>
   <data name="tabControllers.Text" xml:space="preserve">
     <value>Ohjaimet</value>
-  </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>Liitä vain DS4-ohjain (exclusive mode) (kokeellinen)</value>
   </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
     <value>1074, 94</value>
@@ -633,5 +630,59 @@
   </data>
   <data name="lbID.Text" xml:space="preserve">
     <value>ID</value>
+  </data>
+  <data name="lbPad2.Text" xml:space="preserve">
+    <value>Ohjain 2</value>
+  </data>
+  <data name="lbPad3.Text" xml:space="preserve">
+    <value>Ohjain 3</value>
+  </data>
+  <data name="lbPad4.Text" xml:space="preserve">
+    <value>Ohjain 4</value>
+  </data>
+  <data name="discon1toolStripMenuItem.Text" xml:space="preserve">
+    <value>Katkaise yhteys ohjain 1</value>
+  </data>
+  <data name="discon2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Katkaise yhteys ohjain 2</value>
+  </data>
+  <data name="discon3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Katkaise yhteys ohjain 3</value>
+  </data>
+  <data name="discon4ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Katkaise yhteys ohjain 4</value>
+  </data>
+  <data name="lbLinkProfile.Text" xml:space="preserve">
+    <value>Linkitä profiili/ID</value>
+  </data>
+  <data name="mintoTaskCheckBox.Text" xml:space="preserve">
+    <value>Minimoi tehtäväpalkkiin</value>
+  </data>
+  <data name="openProgramFolderToolStripMenuItem.Text" xml:space="preserve">
+    <value>Avaa ohjelmakansio</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Portti</value>
+  </data>
+  <data name="runStartProgRadio.Text" xml:space="preserve">
+    <value>Ohjelmana</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Avaustapa:</value>
+  </data>
+  <data name="ckUdpServ.Text" xml:space="preserve">
+    <value>UDP palvelin</value>
+  </data>
+  <data name="runStartTaskRadio.Text" xml:space="preserve">
+    <value>Ajoitettuna tehtävänä</value>
+  </data>
+  <data name="cBCustomSteam.Text" xml:space="preserve">
+    <value>Käytä vaihtoehtoista Steam-kansiota</value>
+  </data>
+  <data name="cBUseWhiteIcon.Text" xml:space="preserve">
+    <value>Valkoinen DS4Windows-kuvake</value>
+  </data>
+  <data name="disconToolStripMenuItem.Text" xml:space="preserve">
+    <value>Yhteyskatkaisun menu</value>
   </data>
 </root>

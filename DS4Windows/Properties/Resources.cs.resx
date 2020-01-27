@@ -126,6 +126,9 @@
   <data name="AddPrograms" xml:space="preserve">
     <value>Přidat programy</value>
   </data>
+  <data name="LanguagePackApplyRestartRequired" xml:space="preserve">
+    <value>Změna jazykového balíčku se projeví po restartu aplikace DS4Windows.</value>
+  </data>
   <data name="TestText" xml:space="preserve">
     <value>Test</value>
   </data>

@@ -181,9 +181,6 @@
   <data name="tabControllers.Text" xml:space="preserve">
     <value>Χειριστήρια</value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>Σύνδεσε το DS4 αποκλειστικά(δοκιμαστικό)</value>
-  </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
     <value>1076, 94</value>
   </data>

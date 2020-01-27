@@ -408,7 +408,7 @@
     <value>95, 17</value>
   </data>
   <data name="lbUseController.Text" xml:space="preserve">
-    <value>Usar Controlo</value>
+    <value>Usar Controle</value>
   </data>
   <data name="cBMouseAccel.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -498,7 +498,7 @@
     <value>Testar Vibração Fraca</value>
   </data>
   <data name="tPController.Text" xml:space="preserve">
-    <value>Leitura do Controlo</value>
+    <value>Leitura do Controle</value>
   </data>
   <data name="lbRSTip.Text" xml:space="preserve">
     <value>Analógico Direito</value>
@@ -534,7 +534,7 @@
     <value>(Nada)/Modo Shift</value>
   </data>
   <data name="tPControls.Text" xml:space="preserve">
-    <value>Controlos</value>
+    <value>Controles</value>
   </data>
   <data name="tPSpecial.Text" xml:space="preserve">
     <value>Ações Especiais</value>
@@ -621,7 +621,7 @@
     <value>Gatilhos:</value>
   </data>
   <data name="rBSAControls.Text" xml:space="preserve">
-    <value>Usar para Controlos</value>
+    <value>Usar para Controles</value>
   </data>
   <data name="rBSAMouse.Text" xml:space="preserve">
     <value>Usar como Rato</value>

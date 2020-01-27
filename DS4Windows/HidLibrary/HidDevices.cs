@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 
@@ -34,6 +33,43 @@ namespace DS4Windows
         {
             return EnumerateDevices().Select(x => new HidDevice(x.Path, x.Description)).Where(x => x.Attributes.VendorId == vendorId && 
                                                                                   productIds.Contains(x.Attributes.ProductId));
+        }
+
+        public static IEnumerable<HidDevice> Enumerate(int[] vendorIds, params int[] productIds)
+        {
+            return EnumerateDevices().Select(x => new HidDevice(x.Path, x.Description)).Where(x => vendorIds.Contains(x.Attributes.VendorId) &&
+                                                                                  productIds.Contains(x.Attributes.ProductId));
+        }
+
+        public static IEnumerable<HidDevice> EnumerateDS4(VidPidInfo[] devInfo)
+        {
+            //int iDebugDevCount = 0;
+            List<HidDevice> foundDevs = new List<HidDevice>();
+            int devInfoLen = devInfo.Length;
+            IEnumerable<DeviceInfo> temp = EnumerateDevices();
+            for (var devEnum = temp.GetEnumerator(); devEnum.MoveNext();)
+            //for (int i = 0, len = temp.Count(); i < len; i++)
+            {
+                DeviceInfo x = devEnum.Current;
+                //DeviceInfo x = temp.ElementAt(i);               
+                HidDevice tempDev = new HidDevice(x.Path, x.Description);
+                //iDebugDevCount++;
+                //AppLogger.LogToGui($"DEBUG: HID#{iDebugDevCount} Path={x.Path}  Description={x.Description}  VID={tempDev.Attributes.VendorHexId}  PID={tempDev.Attributes.ProductHexId}  Usage=0x{tempDev.Capabilities.Usage.ToString("X")}  Version=0x{tempDev.Attributes.Version.ToString("X")}", false);
+                bool found = false;
+                for (int j = 0; !found && j < devInfoLen; j++)
+                {
+                    VidPidInfo tempInfo = devInfo[j];
+                    if (tempDev.Capabilities.Usage == 0x05 &&
+                        tempDev.Attributes.VendorId == tempInfo.vid &&
+                        tempDev.Attributes.ProductId == tempInfo.pid)
+                    {
+                        found = true;
+                        foundDevs.Add(tempDev);
+                    }
+                }
+            }
+
+            return foundDevs;
         }
 
         public static IEnumerable<HidDevice> Enumerate(int vendorId)

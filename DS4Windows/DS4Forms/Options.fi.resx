@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -365,7 +365,7 @@
     <value>154, 21</value>
   </data>
   <data name="cBDinput.Text" xml:space="preserve">
-    <value>käytä vain Dinput:ia</value>
+    <value>Käytä vain Dinput:ia</value>
   </data>
   <data name="cBLaunchProgram.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 38</value>
@@ -494,7 +494,7 @@
     <value>Pidä valittuja näppäimiä pohjassa tehdäksesi valitun toiminnon. Valitse toiminto käyttääksesi sitä tässä profiilissa.</value>
   </data>
   <data name="tPCurve.Text" xml:space="preserve">
-    <value>Kurvi</value>
+    <value>Kurvi (sisään)</value>
   </data>
   <data name="rBSAControls.Size" type="System.Drawing.Size, System.Drawing">
     <value>140, 21</value>
@@ -607,9 +607,6 @@
   <data name="DpadToolStripMenuItem.Text" xml:space="preserve">
     <value>Dpad</value>
   </data>
-  <data name="gBSensitivity,Text" xml:space="preserve">
-    <value>Herkkyys</value>
-  </data>
   <data name="lb6Gryo.Text" xml:space="preserve">
     <value>Gyro</value>
   </data>
@@ -639,5 +636,152 @@
   </data>
   <data name="tPDeadzone.Text" xml:space="preserve">
     <value>Deadzone</value>
+  </data>
+  <data name="trackballCk.Text" xml:space="preserve">
+    <value>Pallohiiri</value>
+  </data>
+  <data name="trackFrictionLb.Text" xml:space="preserve">
+    <value>Kitka</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Kääntö pois:</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Kääntö:</value>
+  </data>
+  <data name="rBTPControls.Text" xml:space="preserve">
+    <value>Käytä ohjaimena:</value>
+  </data>
+  <data name="rBTPMouse.Text" xml:space="preserve">
+    <value>Käytä hiirenä:</value>
+  </data>
+  <data name="controlToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ohjain</value>
+  </data>
+  <data name="bnSwipeUp.Text" xml:space="preserve">
+    <value>Pyyhkäisy ylös</value>
+  </data>
+  <data name="lbSwipeUp.Text" xml:space="preserve">
+    <value>Asetukset</value>
+  </data>
+  <data name="bnSwipeDown.Text" xml:space="preserve">
+    <value>Pyyhkäisy alas</value>
+  </data>
+  <data name="lbSwipeDown.Text" xml:space="preserve">
+    <value>Asetukset</value>
+  </data>
+  <data name="bnSwipeLeft.Text" xml:space="preserve">
+    <value>Pyyhkäisy vasen</value>
+  </data>
+  <data name="lbSwipeLeft.Text" xml:space="preserve">
+    <value>Asetukset</value>
+  </data>
+  <data name="bnSwipeRight.Text" xml:space="preserve">
+    <value>Pyyhkäisy oikea</value>
+  </data>
+  <data name="lbSwipeRight.Text" xml:space="preserve">
+    <value>Asetukset</value>
+  </data>
+  <data name="outcontLb.Text" xml:space="preserve">
+    <value>Ohjain:</value>
+  </data>
+  <data name="btPollRateLabel.Text" xml:space="preserve">
+    <value>BT lukutaajuus</value>
+  </data>
+  <data name="enableTouchToggleCheckbox.Text" xml:space="preserve">
+    <value>Käytä kosketuslevyn kytkentää</value>
+  </data>
+  <data name="btnLSTrack.Text" xml:space="preserve">
+    <value>nappi1</value>
+  </data>
+  <data name="btnRSTrack.Text" xml:space="preserve">
+    <value>nappi1</value>
+  </data>
+  <data name="lbL2TrackS.Text" xml:space="preserve">
+    <value>Ohjaimen tilatiedot</value>
+  </data>
+  <data name="lblSteeringWheelEmulationAxis.Text" xml:space="preserve">
+    <value>Ratin akseli</value>
+  </data>
+  <data name="lblSteeringWheelEmulationRange.Text" xml:space="preserve">
+    <value>Ratin kääntösäde</value>
+  </data>
+  <data name="lbCurveEditorURL.Text" xml:space="preserve">
+    <value>Custom kurvieditointi</value>
+  </data>
+  <data name="tPOutCurve.Text" xml:space="preserve">
+    <value>Kurvi (ulos)</value>
+  </data>
+  <data name="tpRotation.Text" xml:space="preserve">
+    <value>Kierto</value>
+  </data>
+  <data name="toggleGyroMCb.Text" xml:space="preserve">
+    <value>Kytke</value>
+  </data>
+  <data name="lbGyroSmooth.Text" xml:space="preserve">
+    <value>Tasaaminen:</value>
+  </data>
+  <data name="lbSmoothWeight.Text" xml:space="preserve">
+    <value>Tasauksen painotus:</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Pystyskaalaus:</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Profiiliasetukset</value>
+  </data>
+  <data name="btnSteeringWheelEmulationCalibrate.Text" xml:space="preserve">
+    <value>Kalibroi...</value>
+  </data>
+  <data name="gBSensitivity.Text" xml:space="preserve">
+    <value>Herkkyys</value>
+  </data>
+  <data name="oneFingerTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Sormi kosketuslevyllä</value>
+  </data>
+  <data name="twoFingerTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>2 sormea kosketuslevyllä</value>
+  </data>
+  <data name="btnSATrack.Text" xml:space="preserve">
+    <value>nappi1</value>
+  </data>
+  <data name="circleTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Ympyrä</value>
+  </data>
+  <data name="circleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ympyrä</value>
+  </data>
+  <data name="lBControls.Items1" xml:space="preserve">
+    <value>Ympyrä:</value>
+  </data>
+  <data name="gyroOutputMode.Items" xml:space="preserve">
+    <value>Kontrollit</value>
+  </data>
+  <data name="downTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Alas</value>
+  </data>
+  <data name="downToolStripMenuItem.Text" xml:space="preserve">
+    <value>Alas</value>
+  </data>
+  <data name="lBControls.Items7" xml:space="preserve">
+    <value>Alas:</value>
+  </data>
+  <data name="gyroMStickUseSmoothCk.Text" xml:space="preserve">
+    <value>Tasaaminen</value>
+  </data>
+  <data name="gyroMStickToggleCk.Text" xml:space="preserve">
+    <value>Kytke</value>
+  </data>
+  <data name="squareTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Neliö</value>
+  </data>
+  <data name="squareToolStripMenuItem.Text" xml:space="preserve">
+    <value>Neliö</value>
+  </data>
+  <data name="lBControls.Items2" xml:space="preserve">
+    <value>Neliö :</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Neliötikku</value>
   </data>
 </root>

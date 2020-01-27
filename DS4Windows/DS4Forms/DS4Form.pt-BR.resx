@@ -143,25 +143,25 @@
     <value>255, 26</value>
   </data>
   <data name="editProfileForController1ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Editar Perfil do Controlo 1</value>
+    <value>Editar Perfil do Controle 1</value>
   </data>
   <data name="editProfileForController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>255, 26</value>
   </data>
   <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Editar Perfil do Controlo 2</value>
+    <value>Editar Perfil do Controle 2</value>
   </data>
   <data name="editProfileForController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>255, 26</value>
   </data>
   <data name="editProfileForController3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Editar Perfil do Controlo 3</value>
+    <value>Editar Perfil do Controle 3</value>
   </data>
   <data name="editProfileForController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>255, 26</value>
   </data>
   <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Editar Perfil do Controlo 4</value>
+    <value>Editar Perfil do Controle 4</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 6</value>
@@ -186,9 +186,6 @@
   </data>
   <data name="cMTaskbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>256, 192</value>
-  </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>Conectar exclusivamente o DS4 (experimental)</value>
   </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
     <value>1038, 94</value>
@@ -305,10 +302,10 @@
     <value>80, 28</value>
   </data>
   <data name="lbNoControllers.Text" xml:space="preserve">
-    <value>Nenhum Controlo Conectado (Max. 4)</value>
+    <value>Nenhum Controle Conectado (Max. 4)</value>
   </data>
   <data name="tabControllers.Text" xml:space="preserve">
-    <value>Controlos</value>
+    <value>Controles</value>
   </data>
   <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 26</value>
@@ -320,25 +317,25 @@
     <value>202, 26</value>
   </data>
   <data name="assignToController1ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Definir Controlo 1</value>
+    <value>Definir Controle 1</value>
   </data>
   <data name="assignToController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 26</value>
   </data>
   <data name="assignToController2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Definir Controlo 2</value>
+    <value>Definir Controle 2</value>
   </data>
   <data name="assignToController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 26</value>
   </data>
   <data name="assignToController3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Definir Controlo 3</value>
+    <value>Definir Controle 3</value>
   </data>
   <data name="assignToController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 26</value>
   </data>
   <data name="assignToController4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Definir Controlo 4</value>
+    <value>Definir Controle 4</value>
   </data>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 26</value>
@@ -599,7 +596,7 @@
     <value>124, 17</value>
   </data>
   <data name="lnkControllers.Text" xml:space="preserve">
-    <value>Painel de Controlo</value>
+    <value>Painel de Controle</value>
   </data>
   <data name="linkUninstall.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 17</value>
@@ -611,7 +608,7 @@
     <value>168, 17</value>
   </data>
   <data name="linkSetup.Text" xml:space="preserve">
-    <value>Controlo/Configuração da Drive</value>
+    <value>Controle/Configuração da Drive</value>
   </data>
   <data name="lLBUpdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>143, 17</value>

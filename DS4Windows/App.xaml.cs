@@ -431,9 +431,12 @@ namespace DS4WinWPF
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            Logger logger = logHolder.Logger;
-            logger.Info("Request App Shutdown");
-            CleanShutdown();
+            if (runShutdown)
+            {
+                Logger logger = logHolder.Logger;
+                logger.Info("Request App Shutdown");
+                CleanShutdown();
+            }
         }
 
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)

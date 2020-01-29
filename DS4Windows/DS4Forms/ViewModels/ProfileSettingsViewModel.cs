@@ -379,6 +379,32 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.DS4Mapping = value;
         }
 
+        public int ButtonMouseSensitivity
+        {
+            get => Global.ButtonMouseSensitivity[device];
+            set
+            {
+                int temp = Global.ButtonMouseSensitivity[device];
+                if (temp == value) return;
+                Global.ButtonMouseSensitivity[device] = value;
+                ButtonMouseSensitivityChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler ButtonMouseSensitivityChanged;
+
+        private int outputMouseSpeed;
+        public int OutputMouseSpeed
+        {
+            get => outputMouseSpeed;
+            set
+            {
+                if (value == outputMouseSpeed) return;
+                outputMouseSpeed = value;
+                OutputMouseSpeedChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler OutputMouseSpeedChanged;
+
         public bool MouseAcceleration
         {
             get => Global.MouseAccel[device];
@@ -1433,6 +1459,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             Global.outDevTypeTemp[device] = OutContType.X360;
             tempBtPollRate = Global.BTPollRate[device];
 
+            outputMouseSpeed = CalculateOutputMouseSpeed(ButtonMouseSensitivity);
+
             ImageSourceConverter sourceConverter = new ImageSourceConverter();
             ImageSource temp = sourceConverter.
                 ConvertFromString("pack://application:,,,/DS4Windows;component/Resources/rainbowCCrop.png") as ImageSource;
@@ -1461,6 +1489,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             RainbowChanged += (sender, args) =>
             {
                 LightbarBrushChanged?.Invoke(this, EventArgs.Empty);
+            };
+
+            ButtonMouseSensitivityChanged += (sender, args) =>
+            {
+                OutputMouseSpeed =  CalculateOutputMouseSpeed(ButtonMouseSensitivity);
             };
         }
 
@@ -1763,6 +1796,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
 
             GyroMouseStickTrigDisplay = string.Join(", ", triggerName.ToArray());
+        }
+
+        private int CalculateOutputMouseSpeed(int mouseSpeed)
+        {
+            int result = mouseSpeed * Mapping.MOUSESPEEDFACTOR;
+            return result;
         }
 
         public void LaunchCurveEditor(string customDefinition)

@@ -952,8 +952,11 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="40" Margin="0,4,0,0">
                         <Label Content="Mouse Sensitivity" VerticalAlignment="Center" />
-                        <xctk:IntegerUpDown d:IsHidden="True" MinWidth="50" Height="20" Value="25"
+                        <xctk:IntegerUpDown d:IsHidden="True" MinWidth="50" Height="20"
+                                            Value="{Binding ButtonMouseSensitivity,FallbackValue=25}"
                                             Minimum="0" Maximum="255" Increment="1" Margin="10,0,0,0" />
+                        <TextBlock Text="{Binding OutputMouseSpeed,StringFormat='\{0} pps'}"
+                                   MinWidth="50" VerticalAlignment="Center"  Margin="10,0,0,0" />
                     </StackPanel>
                     <CheckBox Content="Mouse Acceleration" IsChecked="{Binding MouseAcceleration}" Margin="0,6,0,0" />
                     <CheckBox Content="Enable Touchpad Toggle" IsChecked="{Binding EnableTouchpadToggle}" Margin="0,6,0,0" />

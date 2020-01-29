@@ -120,7 +120,10 @@ namespace DS4WinWPF.DS4Forms
             timerThread.Priority = ThreadPriority.Lowest;
             timerThread.Start();
             timerThread.Join();
+        }
 
+        public void LateChecks(ArgumentParser parser)
+        {
             Task.Run(() =>
             {
                 CheckDrivers();

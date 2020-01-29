@@ -924,11 +924,18 @@
                 <StackPanel>
                     <GroupBox Header="{lex:Loc Rumble}" MinHeight="50" Margin="4,4,4,0" Padding="0,4,0,4">
                         <UniformGrid Rows="1" Columns="3">
-                            <UniformGrid Columns="4" HorizontalAlignment="Left">
-                                <xctk:IntegerUpDown x:Name="RumbleBoostIUD" d:IsHidden="True" Value="{Binding RumbleBoost}" Minimum="0" Maximum="200" Increment="10" />
-                                <Label Content="%" />
-                                <xctk:IntegerUpDown x:Name="RumbleAutostopTimeIUD" d:IsHidden="True" Value="{Binding RumbleAutostopTime}" Minimum="0" Maximum="3600" Increment="1" ToolTip="{lex:Loc RumbleMaxSecsTip}"/>
-                                <Label Content="{lex:Loc RumbleMaxSecs}" />
+                            <UniformGrid Columns="2" HorizontalAlignment="Left">
+                                <DockPanel>
+                                    <Label Content="%" DockPanel.Dock="Right" />
+                                    <xctk:IntegerUpDown x:Name="RumbleBoostIUD" d:IsHidden="True" Value="{Binding RumbleBoost}" Minimum="0" Maximum="200" Increment="10"
+                                                       MinWidth="50" DockPanel.Dock="Left" />
+                                </DockPanel>
+
+                                <DockPanel>
+                                    <Label Content="{lex:Loc RumbleMaxSecs}" DockPanel.Dock="Right" />
+                                    <xctk:IntegerUpDown x:Name="RumbleAutostopTimeIUD" d:IsHidden="True" Value="{Binding RumbleAutostopTime}" Minimum="0" Maximum="3600" Increment="1" ToolTip="{lex:Loc RumbleMaxSecsTip}"
+                                                       MinWidth="50" DockPanel.Dock="Left"/>
+                                </DockPanel>
                             </UniformGrid>
 
                             <Button x:Name="heavyRumbleTestBtn" Content="Test Heavy" Margin="10,0,0,0" Click="HeavyRumbleTestBtn_Click" />

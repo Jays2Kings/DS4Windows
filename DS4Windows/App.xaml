@@ -16,5 +16,10 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+            <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+            <Setter Property="TextOptions.TextHintingMode" Value="Fixed" />
+        </Style>
     </Application.Resources>
 </Application>

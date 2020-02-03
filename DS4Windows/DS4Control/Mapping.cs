@@ -3776,7 +3776,7 @@ namespace DS4Windows
                     {
                         if (sOff == false && fieldMap.gryodirs[controlNum] > 0)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - fieldMap.gryodirs[controlNum]);
+                            if (alt) result = (byte)Math.Min(255, 128 + fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 128 - fieldMap.gryodirs[controlNum]);
                         }
                         else result = falseVal;
                         break;
@@ -3785,7 +3785,7 @@ namespace DS4Windows
                     {
                         if (sOff == false && fieldMap.gryodirs[controlNum] < 0)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + -fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - -fieldMap.gryodirs[controlNum]);
+                            if (alt) result = (byte)Math.Min(255, 128 + -fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 128 - -fieldMap.gryodirs[controlNum]);
                         }
                         else result = falseVal;
                         break;
@@ -3794,7 +3794,7 @@ namespace DS4Windows
                     {
                         if (sOff == false && fieldMap.gryodirs[controlNum] > 0)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - fieldMap.gryodirs[controlNum]);
+                            if (alt) result = (byte)Math.Min(255, 128 + fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 128 - fieldMap.gryodirs[controlNum]);
                         }
                         else return falseVal;
                         break;
@@ -3803,7 +3803,7 @@ namespace DS4Windows
                     {
                         if (sOff == false && fieldMap.gryodirs[controlNum] < 0)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + -fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - -fieldMap.gryodirs[controlNum]);
+                            if (alt) result = (byte)Math.Min(255, 128 + -fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 128 - -fieldMap.gryodirs[controlNum]);
                         }
                         else result = falseVal;
                         break;

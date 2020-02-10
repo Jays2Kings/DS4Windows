@@ -979,28 +979,28 @@ namespace DS4Windows
 
                     if (absX <= 0.4)
                     {
-                        outputX = 0.55 * absX;
+                        outputX = 0.7 * absX;
                     }
                     else if (absX <= 0.75)
                     {
-                        outputX = absX - 0.18;
+                        outputX = absX - 0.12;
                     }
                     else if (absX > 0.75)
                     {
-                        outputX = (absX * 1.72) - 0.72;
+                        outputX = (absX * 1.48) - 0.48;
                     }
 
                     if (absY <= 0.4)
                     {
-                        outputY = 0.55 * absY;
+                        outputY = 0.7 * absY;
                     }
                     else if (absY <= 0.75)
                     {
-                        outputY = absY - 0.18;
+                        outputY = absY - 0.12;
                     }
                     else if (absY > 0.75)
                     {
-                        outputY = (absY * 1.72) - 0.72;
+                        outputY = (absY * 1.48) - 0.48;
                     }
 
                     dState.LX = (byte)(outputX * signX * capX + 128.0);
@@ -1082,28 +1082,28 @@ namespace DS4Windows
 
                     if (absX <= 0.4)
                     {
-                        outputX = 0.55 * absX;
+                        outputX = 0.7 * absX;
                     }
                     else if (absX <= 0.75)
                     {
-                        outputX = absX - 0.18;
+                        outputX = absX - 0.12;
                     }
                     else if (absX > 0.75)
                     {
-                        outputX = (absX * 1.72) - 0.72;
+                        outputX = (absX * 1.48) - 0.48;
                     }
 
                     if (absY <= 0.4)
                     {
-                        outputY = 0.55 * absY;
+                        outputY = 0.7 * absY;
                     }
                     else if (absY <= 0.75)
                     {
-                        outputY = absY - 0.18;
+                        outputY = absY - 0.12;
                     }
                     else if (absY > 0.75)
                     {
-                        outputY = (absY * 1.72) - 0.72;
+                        outputY = (absY * 1.48) - 0.48;
                     }
 
                     dState.RX = (byte)(outputX * signX * capX + 128.0);

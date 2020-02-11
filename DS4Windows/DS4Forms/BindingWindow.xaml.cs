@@ -160,7 +160,7 @@ namespace DS4WinWPF.DS4Forms
             Button button = sender as Button;
             if (associatedBindings.TryGetValue(button, out BindAssociation bind))
             {
-                if (defaultControl == bind.control)
+                if (defaultControl == bind.control && !binding.IsShift())
                 {
                     binding.outputType = OutBinding.OutType.Default;
                 }

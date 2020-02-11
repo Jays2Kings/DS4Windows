@@ -1521,7 +1521,7 @@ namespace DS4Windows
                 return false;
             if (cState.DpadUp || cState.DpadLeft || cState.DpadDown || cState.DpadRight)
                 return false;
-            if (cState.L3 || cState.R3 || cState.L1 || cState.R1 || cState.Share || cState.Options)
+            if (cState.L3 || cState.R3 || cState.L1 || cState.R1 || cState.Share || cState.Options || cState.PS)
                 return false;
             if (cState.L2 != 0 || cState.R2 != 0)
                 return false;

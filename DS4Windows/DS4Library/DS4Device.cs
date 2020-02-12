@@ -770,6 +770,7 @@ namespace DS4Windows
                 long oldtime = 0;
                 string currerror = string.Empty;
                 long curtime = 0;
+                long testelapsed = 0;
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
                 timeoutEvent = false;
@@ -895,14 +896,20 @@ namespace DS4Windows
                         }
                     }
 
-                    curTimeDouble = sw.Elapsed.TotalMilliseconds;
-                    curtime = sw.ElapsedMilliseconds;
-
-                    lastTimeElapsed = curtime - oldtime;
-                    lastTimeElapsedDouble = (curTimeDouble - oldTimeDouble);
-
+                    curtime = Stopwatch.GetTimestamp();
+                    testelapsed = curtime - oldtime;
+                    lastTimeElapsedDouble = testelapsed * (1.0 / Stopwatch.Frequency) * 1000.0;
+                    lastTimeElapsed = (long)lastTimeElapsedDouble;
                     oldtime = curtime;
-                    oldTimeDouble = curTimeDouble;
+
+                    //curTimeDouble = sw.Elapsed.TotalMilliseconds;
+                    //curtime = sw.ElapsedMilliseconds;
+
+                    //lastTimeElapsed = curtime - oldtime;
+                    //lastTimeElapsedDouble = (curTimeDouble - oldTimeDouble);
+
+                    //oldtime = curtime;
+                    //oldTimeDouble = curTimeDouble;
 
                     if (conType == ConnectionType.BT && btInputReport[0] != 0x11)
                     {

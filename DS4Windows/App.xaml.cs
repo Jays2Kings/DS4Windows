@@ -16,6 +16,7 @@ using System.Windows;
 using System.Windows.Interop;
 using WPFLocalizeExtension.Engine;
 using NLog;
+using System.Windows.Media;
 
 namespace DS4WinWPF
 {
@@ -107,6 +108,7 @@ namespace DS4WinWPF
             CreateTempWorkerThread();
 
             CreateControlService();
+            RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
 
             DS4Windows.Global.FindConfigLocation();
             bool firstRun = DS4Windows.Global.firstRun;

@@ -20,6 +20,27 @@ namespace DS4Windows
         }
     }
 
+    public class RequestElevationArgs : EventArgs
+    {
+        public const int STATUS_SUCCESS = 0;
+        public const int STATUS_INIT_FAILURE = -1;
+        private int statusCode = STATUS_INIT_FAILURE;
+        private string instanceId;
+        public int StatusCode
+        {
+            get => statusCode;
+            set => statusCode = value;
+        }
+        public string InstanceId { get => instanceId; }
+
+        public RequestElevationArgs(string instanceId)
+        {
+            this.instanceId = instanceId;
+        }
+    }
+
+    public delegate void RequestElevationDelegate(RequestElevationArgs args);
+
     public class DS4Devices
     {
         // (HID device path, DS4Device)
@@ -29,6 +50,7 @@ namespace DS4Windows
         // Keep instance of opened exclusive mode devices not in use (Charging while using BT connection)
         private static List<HidDevice> DisabledDevices = new List<HidDevice>();
         private static Stopwatch sw = new Stopwatch();
+        public static event RequestElevationDelegate RequestElevation;
         public static bool isExclusiveMode = false;
         internal const int SONY_VID = 0x054C;
         internal const int RAZER_VID = 0x1532;
@@ -120,24 +142,18 @@ namespace DS4Windows
                         {
                             try
                             {
+                                // Check if running with elevated permissions
                                 WindowsIdentity identity = WindowsIdentity.GetCurrent();
                                 WindowsPrincipal principal = new WindowsPrincipal(identity);
                                 bool elevated = principal.IsInRole(WindowsBuiltInRole.Administrator);
 
                                 if (!elevated)
                                 {
-                                    // Launches an elevated child process to re-enable device
-                                    string exeName = Process.GetCurrentProcess().MainModule.FileName;
-                                    ProcessStartInfo startInfo = new ProcessStartInfo(exeName);
-                                    startInfo.Verb = "runas";
-                                    startInfo.Arguments = "re-enabledevice " + devicePathToInstanceId(hDevice.DevicePath);
-                                    Process child = Process.Start(startInfo);
-
-                                    if (!child.WaitForExit(30000))
-                                    {
-                                        child.Kill();
-                                    }
-                                    else if (child.ExitCode == 0)
+                                    // Tell the client to launch routine to re-enable a device
+                                    RequestElevationArgs eleArgs = 
+                                        new RequestElevationArgs(devicePathToInstanceId(hDevice.DevicePath));
+                                    RequestElevation?.Invoke(eleArgs);
+                                    if (eleArgs.StatusCode == RequestElevationArgs.STATUS_SUCCESS)
                                     {
                                         hDevice.OpenDevice(isExclusiveMode);
                                     }

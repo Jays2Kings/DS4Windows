@@ -176,6 +176,31 @@ namespace DS4Windows
             }
 
             outputslotMan = new OutputSlotManager();
+            DS4Devices.RequestElevation += DS4Devices_RequestElevation;
+        }
+
+        private void DS4Devices_RequestElevation(RequestElevationArgs args)
+        {
+            // Launches an elevated child process to re-enable device
+            string exeName = Global.exelocation;
+            ProcessStartInfo startInfo = new ProcessStartInfo(exeName);
+            startInfo.Verb = "runas";
+            startInfo.Arguments = "re-enabledevice " + args.InstanceId;
+
+            try
+            {
+                Process child = Process.Start(startInfo);
+                if (!child.WaitForExit(30000))
+                {
+                    child.Kill();
+                }
+                else
+                {
+                    args.StatusCode = child.ExitCode;
+                }
+                child.Dispose();
+            }
+            catch { }
         }
 
         public void LaunchHidGuardHelper()

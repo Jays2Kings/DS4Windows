@@ -182,8 +182,8 @@ namespace DS4Windows
         private void DS4Devices_RequestElevation(RequestElevationArgs args)
         {
             // Launches an elevated child process to re-enable device
-            string exeName = Global.exelocation;
-            ProcessStartInfo startInfo = new ProcessStartInfo(exeName);
+            ProcessStartInfo startInfo =
+                new ProcessStartInfo(Global.exelocation);
             startInfo.Verb = "runas";
             startInfo.Arguments = "re-enabledevice " + args.InstanceId;
 

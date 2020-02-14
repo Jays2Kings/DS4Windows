@@ -391,7 +391,7 @@ namespace DS4Windows
             }
 
             //System.Threading.Thread.Sleep(50);
-            sw.Restart();
+            /*sw.Restart();
             while (sw.ElapsedMilliseconds < 50)
             {
                 // Use SpinWait to keep control of current thread. Using Sleep could potentially
@@ -399,6 +399,7 @@ namespace DS4Windows
                 System.Threading.Thread.SpinWait(100);
             }
             sw.Stop();
+            */
 
             NativeMethods.SetupDiDestroyDeviceInfoList(deviceInfoSet);
         }

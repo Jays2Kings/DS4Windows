@@ -115,7 +115,8 @@
                                 <StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                                         <RadioButton x:Name="useTouchMouseRadio" Content="Use As Mouse" GroupName="tpMode" Click="UseTouchMouseRadio_Click" />
-                                        <RadioButton x:Name="useTouchControlsRadio" Content="Use As Controls" GroupName="tpMode" Click="UseTouchControlsRadio_Click" Margin="10,0,0,0" />
+                                        <RadioButton x:Name="useTouchControlsRadio" Content="Use As Controls" GroupName="tpMode" Click="UseTouchControlsRadio_Click" Margin="10,0,0,0"
+                                                     ToolTip="{lex:Loc Resources:UsingTPSwipes}" />
                                     </StackPanel>
 
                                     <StackPanel x:Name="useMousePanel" Margin="0,10,0,0" Visibility="Visible">
@@ -162,7 +163,8 @@
 
                                         <StackPanel Orientation="Horizontal">
                                             <StackPanel Orientation="Horizontal" Height="20">
-                                                <CheckBox Content="Lower Right as RMB" IsChecked="{Binding LowerRightTouchRMB}" />
+                                                <CheckBox Content="Lower Right as RMB" IsChecked="{Binding LowerRightTouchRMB}"
+                                                          ToolTip="{lex:Loc Resources:BestUsedRightSide}" />
                                             </StackPanel>
 
                                             <StackPanel Orientation="Vertical" MinWidth="80" Margin="10,0,0,0">
@@ -943,7 +945,7 @@
                         </UniformGrid>
                     </GroupBox>
                     <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                        <Label Content="Use Controller" />
+                        <Label Content="Use Controller" ToolTip="{lex:Loc Resources:UseControllerForMapping}" />
                         <xctk:IntegerUpDown x:Name="useControllerUD" d:IsHidden="True" Width="40" Margin="8,0,0,0"
                                             Value="0" Minimum="0" Maximum="4" IsEnabled="False"
                                             ToolTip="{lex:Loc Resources:UseControllerForMapping}" />
@@ -966,7 +968,8 @@
                                    MinWidth="50" VerticalAlignment="Center"  Margin="10,0,0,0" />
                     </StackPanel>
                     <CheckBox Content="Mouse Acceleration" IsChecked="{Binding MouseAcceleration}" Margin="0,6,0,0" />
-                    <CheckBox Content="Enable Touchpad Toggle" IsChecked="{Binding EnableTouchpadToggle}" Margin="0,6,0,0" />
+                    <CheckBox Content="Enable Touchpad Toggle" IsChecked="{Binding EnableTouchpadToggle}" Margin="0,6,0,0"
+                              ToolTip="{lex:Loc Resources:EnableTouchToggle}" />
                     <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
                         <CheckBox x:Name="launchProgCk" Content="Launch program with profile" IsChecked="{Binding LaunchProgramExists}" IsEnabled="{Binding LaunchProgramExists}" />
                         <Button x:Name="launchProgBrowseBtn" Content="{Binding LaunchProgramName,FallbackValue={lex:Loc Browse}}" Click="LaunchProgBrowseBtn_Click" Width="80" Height="30" Margin="20,0,0,0" />

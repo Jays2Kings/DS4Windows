@@ -671,7 +671,7 @@ namespace DS4WinWPF.DS4Forms
                 new BindAssociation() { outputType = BindAssociation.OutType.Key, outkey = 0x90 });
             numlockBtn.Click += OutputKeyBtn_Click;
             associatedBindings.Add(numdivideBtn,
-                new BindAssociation() { outputType = BindAssociation.OutType.Key, outkey = 0x64 });
+                new BindAssociation() { outputType = BindAssociation.OutType.Key, outkey = 0x6F });
             numdivideBtn.Click += OutputKeyBtn_Click;
             associatedBindings.Add(nummultiBtn,
                 new BindAssociation() { outputType = BindAssociation.OutType.Key, outkey = 0x6A });

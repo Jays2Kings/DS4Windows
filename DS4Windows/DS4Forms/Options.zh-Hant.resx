@@ -714,4 +714,7 @@
   <data name="alwaysOnToolStripMenuItem.Text" xml:space="preserve">
     <value>總是啟用</value>
   </data>
+  <data name="cBGyroBoth.Text" xml:space="preserve">
+    <value>同時</value>
+  </data>
 </root>

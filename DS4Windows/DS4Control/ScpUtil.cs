@@ -287,6 +287,7 @@ namespace DS4Windows
         public static bool[] UseTPforControls => m_Config.useTPforControls;
         public static bool[] UseSAforMouse => m_Config.useSAforMouse;
         public static string[] SATriggers => m_Config.sATriggers;
+        public static bool[] BothTrigger => m_Config.bothTrigger;
         public static int[] GyroSensitivity => m_Config.gyroSensitivity;
         public static int[] GyroInvert => m_Config.gyroInvert;
         public static DS4Color[] MainColor => m_Config.m_Leds; 
@@ -573,6 +574,7 @@ namespace DS4Windows
         public bool[] useTPforControls = { false, false, false, false, false };
         public bool[] useSAforMouse = { false, false, false, false, false };
         public string[] sATriggers = { "", "", "", "", "" };
+        public bool[] bothTrigger = { false, false, false, false, false};
         public int[] lsCurve = { 0, 0, 0, 0, 0 };
         public int[] rsCurve = { 0, 0, 0, 0, 0 };
         public Boolean useExclusiveMode = false;
@@ -770,6 +772,7 @@ namespace DS4Windows
                 XmlNode xmlUseTPforControls = m_Xdoc.CreateNode(XmlNodeType.Element, "UseTPforControls", null); xmlUseTPforControls.InnerText = useTPforControls[device].ToString(); Node.AppendChild(xmlUseTPforControls);
                 XmlNode xmlUseSAforMouse = m_Xdoc.CreateNode(XmlNodeType.Element, "UseSAforMouse", null); xmlUseSAforMouse.InnerText = useSAforMouse[device].ToString(); Node.AppendChild(xmlUseSAforMouse);
                 XmlNode xmlSATriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "SATriggers", null); xmlSATriggers.InnerText = sATriggers[device].ToString(); Node.AppendChild(xmlSATriggers);
+                XmlNode xmlBothTrigger = m_Xdoc.CreateNode(XmlNodeType.Element, "BothTrigger", null); xmlBothTrigger.InnerText = bothTrigger[device].ToString(); Node.AppendChild(xmlBothTrigger);
                 XmlNode xmlGyroSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroSensitivity", null); xmlGyroSensitivity.InnerText = gyroSensitivity[device].ToString(); Node.AppendChild(xmlGyroSensitivity);
                 XmlNode xmlGyroInvert = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroInvert", null); xmlGyroInvert.InnerText = gyroInvert[device].ToString(); Node.AppendChild(xmlGyroInvert);
                 XmlNode xmlLSC = m_Xdoc.CreateNode(XmlNodeType.Element, "LSCurve", null); xmlLSC.InnerText = lsCurve[device].ToString(); Node.AppendChild(xmlLSC);
@@ -1453,6 +1456,9 @@ namespace DS4Windows
                 try
                 { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SATriggers"); sATriggers[device] = Item.InnerText; }
                 catch { sATriggers[device] = ""; missingSetting = true; }
+                try
+                { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/BothTrigger"); Boolean.TryParse(Item.InnerText, out bothTrigger[device]); }
+                catch { bothTrigger[device] = false; missingSetting = true; }
                 try
                 { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroSensitivity"); int.TryParse(Item.InnerText, out gyroSensitivity[device]); }
                 catch { gyroSensitivity[device] = 100; missingSetting = true; }

@@ -317,6 +317,7 @@ namespace DS4Windows
                 nUDLSCurve.Value = LSCurve[device];
                 nUDRSCurve.Value = RSCurve[device];
                 cBControllerInput.Checked = DS4Mapping;
+                cBGyroBoth.Checked = BothTrigger[device];
 
                 string[] satriggers = SATriggers[device].Split(',');
                 List<string> s = new List<string>();
@@ -422,6 +423,7 @@ namespace DS4Windows
                 nUDGyroSensitivity.Value = 100;
                 cBGyroInvertX.Checked = false;
                 cBGyroInvertY.Checked = false;
+                cBGyroBoth.Checked = false;
                 Set();
             }
             
@@ -1050,6 +1052,8 @@ namespace DS4Windows
             if (cBGyroInvertY.Checked)
                 invert += 1;
             GyroInvert[device] = invert;
+
+            BothTrigger[device] = cBGyroBoth.Checked;
 
             List<int> ints = new List<int>();
             for (int i = 0; i < cMGyroTriggers.Items.Count - 1; i++)
@@ -2284,10 +2288,17 @@ namespace DS4Windows
         private void SATrigger_CheckedChanged(object sender, EventArgs e)
         {
             if (sender != cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1] && ((ToolStripMenuItem)sender).Checked)
+            {
+                cBGyroBoth.Enabled = true; //re-enable cBGyroBoth checkbox
                 ((ToolStripMenuItem)cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1]).Checked = false;
+            }
+
             if (((ToolStripMenuItem)cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1]).Checked) //always on
+            {
+                cBGyroBoth.Enabled = false; //disable cBGyroBoth checkbox
                 for (int i = 0; i < cMGyroTriggers.Items.Count - 1; i++)
                     ((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked = false;
+            }
 
             List <int> ints = new List<int>();
             List<string> s = new List<string>();
@@ -2332,6 +2343,20 @@ namespace DS4Windows
                 RSSens[device] = (double)nUDRSS.Value;
                 SXSens[device] = (double)nUDSXS.Value;
                 SZSens[device] = (double)nUDSZS.Value;
+            }
+        }
+
+        private void cBGyroBoth_CheckedChanged(object sender, EventArgs e)
+        {
+            BothTrigger[device] = cBGyroBoth.Checked;
+        }
+
+        private void cBGyroBoth_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!cBGyroBoth.Enabled) //disabled
+            {
+                cBGyroBoth.Checked = false;
+                BothTrigger[device] = false;
             }
         }
 

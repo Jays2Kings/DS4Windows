@@ -408,12 +408,19 @@
                                 </StackPanel>
 
                                 <Label Content="Rotation:" Grid.Row="10" Grid.Column="0" />
-                                <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding LSRotation}"
-                                                    Grid.Row="10" Grid.Column="1" Minimum="-180" Maximum="180"
+                                <DockPanel Grid.Row="10" Grid.Column="1">
+                                    <TextBlock Text="&#xb0;" DockPanel.Dock="Right" FontSize="18" Margin="{StaticResource spaceMargin}" />
+                                    <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding LSRotation}"
+                                                    Minimum="-180" Maximum="180"
                                                     Margin="{StaticResource spaceMargin}" />
-                                <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding RSRotation}"
-                                                    Grid.Row="10" Grid.Column="2" Minimum="-180" Maximum="180"
+                                </DockPanel>
+
+                                <DockPanel Grid.Row="10" Grid.Column="2">
+                                    <TextBlock Text="&#xb0;" DockPanel.Dock="Right" FontSize="18" Margin="{StaticResource spaceMargin}" />
+                                    <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding RSRotation}"
+                                                    Minimum="-180" Maximum="180"
                                                     Margin="{StaticResource spaceMargin}" />
+                                </DockPanel>
                             </Grid>
                         </GroupBox>
 

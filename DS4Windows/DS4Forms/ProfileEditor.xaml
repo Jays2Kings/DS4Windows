@@ -636,8 +636,8 @@
                             <ComboBoxItem Content="Flash at"/>
                             <ComboBoxItem Content="Pulse at"/>
                         </ComboBox>
-                        <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding FlashAt}" MinWidth="50"
-                                            Minimum="0" Maximum="100" Increment="10" />
+                        <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding FlashAt,FallbackValue=0}" MinWidth="50"
+                                            Minimum="-1" Maximum="100" Increment="10" />
                         <Label Content="%" />
                         <Button x:Name="flashColorBtn" Width="20" Height="20" Background="{Binding FlashColor,FallbackValue=Blue}"
                                 ToolTip="{lex:Loc Resources:FlashAtTip}" Click="FlashColorBtn_Click" />

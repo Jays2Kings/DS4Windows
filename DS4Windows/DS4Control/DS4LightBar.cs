@@ -42,22 +42,25 @@ namespace DS4Windows
         public static void updateLightBar(DS4Device device, int deviceNum)
         {
             DS4Color color;
-            if (!defaultLight && !forcelight[deviceNum])
+            bool useForceLight = forcelight[deviceNum];
+            LightbarSettingInfo lightbarSettingInfo = getLightbarSettingsInfo(deviceNum);
+            LightbarDS4WinInfo lightModeInfo = lightbarSettingInfo.ds4winSettings;
+            if (!defaultLight && !useForceLight)
             {
-                if (getUseCustomLed(deviceNum))
+                if (lightModeInfo.useCustomLed)
                 {
-                    if (getLedAsBatteryIndicator(deviceNum))
+                    if (lightModeInfo.ledAsBattery)
                     {
-                        ref DS4Color fullColor = ref getCustomColor(deviceNum);
-                        ref DS4Color lowColor = ref getLowColor(deviceNum);
+                        ref DS4Color fullColor = ref lightModeInfo.m_CustomLed; // ref getCustomColor(deviceNum);
+                        ref DS4Color lowColor = ref lightModeInfo.m_LowLed; //ref getLowColor(deviceNum);
                         color = getTransitionedColor(ref lowColor, ref fullColor, device.getBattery());
                     }
                     else
-                        color = getCustomColor(deviceNum);
+                        color = lightModeInfo.m_CustomLed; //getCustomColor(deviceNum);
                 }
                 else
                 {
-                    double rainbow = getRainbow(deviceNum);
+                    double rainbow = lightModeInfo.rainbow;// getRainbow(deviceNum);
                     if (rainbow > 0)
                     {
                         // Display rainbow
@@ -76,8 +79,8 @@ namespace DS4Windows
                         else if (counters[deviceNum] > 180000)
                             counters[deviceNum] = 0;
 
-                        double maxSat = GetMaxSatRainbow(deviceNum);
-                        if (getLedAsBatteryIndicator(deviceNum))
+                        double maxSat = lightModeInfo.maxRainbowSat; // GetMaxSatRainbow(deviceNum);
+                        if (lightModeInfo.ledAsBattery)
                         {
                             byte useSat = (byte)(maxSat == 1.0 ?
                                 device.getBattery() * 2.55 :
@@ -89,10 +92,10 @@ namespace DS4Windows
                                 (byte)(maxSat == 1.0 ? 255 : 255 * maxSat));
 
                     }
-                    else if (getLedAsBatteryIndicator(deviceNum))
+                    else if (lightModeInfo.ledAsBattery)
                     {
-                        ref DS4Color fullColor = ref getMainColor(deviceNum);
-                        ref DS4Color lowColor = ref getLowColor(deviceNum);
+                        ref DS4Color fullColor = ref lightModeInfo.m_Led; //ref getMainColor(deviceNum);
+                        ref DS4Color lowColor = ref lightModeInfo.m_LowLed; //ref getLowColor(deviceNum);
                         color = getTransitionedColor(ref lowColor, ref fullColor, device.getBattery());
                     }
                     else
@@ -101,15 +104,15 @@ namespace DS4Windows
                     }
                 }
 
-                if (device.getBattery() <= getFlashAt(deviceNum) && !defaultLight && !device.isCharging())
+                if (device.getBattery() <= lightModeInfo.flashAt && !defaultLight && !device.isCharging())
                 {
-                    ref DS4Color flashColor = ref getFlashColor(deviceNum);
+                    ref DS4Color flashColor = ref lightModeInfo.m_FlashLed; //ref getFlashColor(deviceNum);
                     if (!(flashColor.red == 0 &&
                         flashColor.green == 0 &&
                         flashColor.blue == 0))
                         color = flashColor;
 
-                    if (getFlashType(deviceNum) == 1)
+                    if (lightModeInfo.flashType == 1)
                     {
                         double ratio = 0.0;
 
@@ -158,10 +161,10 @@ namespace DS4Windows
                 }
 
                 int idleDisconnectTimeout = getIdleDisconnectTimeout(deviceNum);
-                if (idleDisconnectTimeout > 0 && getLedAsBatteryIndicator(deviceNum) &&
+                if (idleDisconnectTimeout > 0 && lightModeInfo.ledAsBattery &&
                     (!device.isCharging() || device.getBattery() >= 100))
                 {
-                    //Fade lightbar by idle time
+                    // Fade lightbar by idle time
                     TimeSpan timeratio = new TimeSpan(DateTime.UtcNow.Ticks - device.lastActive.Ticks);
                     double botratio = timeratio.TotalMilliseconds;
                     double topratio = TimeSpan.FromSeconds(idleDisconnectTimeout).TotalMilliseconds;
@@ -182,7 +185,7 @@ namespace DS4Windows
 
                 if (device.isCharging() && device.getBattery() < 100)
                 {
-                    switch (getChargingType(deviceNum))
+                    switch (lightModeInfo.chargingType)
                     {
                         case 1:
                         {
@@ -243,14 +246,14 @@ namespace DS4Windows
                         }
                         case 3:
                         {
-                            color = getChargingColor(deviceNum);
+                            color = lightModeInfo.m_ChargingLed; //getChargingColor(deviceNum);
                             break;
                         }
                         default: break;
                     }
                 }
             }
-            else if (forcelight[deviceNum])
+            else if (useForceLight)
             {
                 color = forcedColor[deviceNum];
             }
@@ -297,12 +300,12 @@ namespace DS4Windows
 
             if (haptics.IsLightBarSet())
             {
-                if (forcelight[deviceNum] && forcedFlash[deviceNum] > 0)
+                if (useForceLight && forcedFlash[deviceNum] > 0)
                 {
                     haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)(25 - forcedFlash[deviceNum]);
                     haptics.LightBarExplicitlyOff = true;
                 }
-                else if (device.getBattery() <= getFlashAt(deviceNum) && getFlashType(deviceNum) == 0 && !defaultLight && !device.isCharging())
+                else if (device.getBattery() <= lightModeInfo.flashAt && lightModeInfo.flashType == 0 && !defaultLight && !device.isCharging())
                 {
                     int level = device.getBattery() / 10;
                     if (level >= 10)

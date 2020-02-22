@@ -43,4 +43,56 @@ namespace DS4Windows
         public bool useSmoothing;
         public double smoothWeight;
     }
+
+    public enum LightbarMode : uint
+    {
+        None,
+        DS4Win,
+        Passthru,
+    }
+
+    public class LightbarDS4WinInfo
+    {
+        public bool useCustomLed;
+        public bool ledAsBattery;
+        public DS4Color m_CustomLed = new DS4Color(0, 0, 255);
+        public DS4Color m_Led;
+        public DS4Color m_LowLed;
+        public DS4Color m_ChargingLed;
+        public DS4Color m_FlashLed;
+        public double rainbow;
+        public double maxRainbowSat = 1.0;
+        public int flashAt;
+        public byte flashType;
+        public int chargingType;
+    }
+
+    public class LightbarSettingInfo
+    {
+        public LightbarMode mode = LightbarMode.DS4Win;
+        public LightbarDS4WinInfo ds4winSettings = new LightbarDS4WinInfo();
+        public LightbarMode Mode
+        {
+            get => mode;
+            set
+            {
+                if (mode == value) return;
+                mode = value;
+                ChangedMode?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler ChangedMode;
+
+        public LightbarSettingInfo()
+        {
+            /*ChangedMode += (sender, e) =>
+            {
+                if (mode != LightbarMode.DS4Win)
+                {
+                    ds4winSettings = null;
+                }
+            };
+            */
+        }
+    }
 }

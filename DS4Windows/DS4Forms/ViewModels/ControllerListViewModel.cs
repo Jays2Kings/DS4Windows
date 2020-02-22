@@ -198,13 +198,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             get
             {
                 DS4Color color;
-                if (Global.UseCustomLed[devIndex])
+                if (Global.LightbarSettingsInfo[devIndex].ds4winSettings.useCustomLed)
                 {
-                    color = Global.CustomColor[devIndex];
+                    color = Global.LightbarSettingsInfo[devIndex].ds4winSettings.m_CustomLed; //Global.CustomColor[devIndex];
                 }
                 else
                 {
-                    color = Global.MainColor[devIndex];
+                    color = Global.LightbarSettingsInfo[devIndex].ds4winSettings.m_Led;
                 }
                 return $"#FF{color.red.ToString("X2")}{color.green.ToString("X2")}{color.blue.ToString("X2")}";
             }
@@ -217,7 +217,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             get
             {
                 DS4Color color;
-                color = Global.CustomColor[devIndex];
+                color = Global.LightbarSettingsInfo[devIndex].ds4winSettings.m_CustomLed;
                 return new Color() { R = color.red, G = color.green, B = color.blue, A = 255 };
             }
         }
@@ -321,7 +321,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 HookEvents(true);
             }
 
-            useCustomColor = Global.UseCustomLed[devIndex];
+            useCustomColor = Global.LightbarSettingsInfo[devIndex].ds4winSettings.useCustomLed;
         }
 
         public void ChangeSelectedProfile()
@@ -428,7 +428,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             useCustomColor = false;
             RefreshLightContext();
-            Global.UseCustomLed[devIndex] = false;
+            Global.LightbarSettingsInfo[devIndex].ds4winSettings.useCustomLed = false;
             LightColorChanged?.Invoke(this, EventArgs.Empty);
         }
 
@@ -436,7 +436,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             useCustomColor = true;
             RefreshLightContext();
-            Global.UseCustomLed[devIndex] = true;
+            Global.LightbarSettingsInfo[devIndex].ds4winSettings.useCustomLed = true;
             LightColorChanged?.Invoke(this, EventArgs.Empty);
             RequestColorPicker?.Invoke(this);
         }
@@ -449,7 +449,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public void UpdateCustomLightColor(Color color)
         {
-            Global.CustomColor[devIndex] = new DS4Color() { red = color.R, green = color.G, blue = color.B };
+            Global.LightbarSettingsInfo[devIndex].ds4winSettings.m_CustomLed = new DS4Color() { red = color.R, green = color.G, blue = color.B };
             LightColorChanged?.Invoke(this, EventArgs.Empty);
         }
 

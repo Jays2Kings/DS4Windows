@@ -45,7 +45,8 @@ namespace DS4Windows
             bool useForceLight = forcelight[deviceNum];
             LightbarSettingInfo lightbarSettingInfo = getLightbarSettingsInfo(deviceNum);
             LightbarDS4WinInfo lightModeInfo = lightbarSettingInfo.ds4winSettings;
-            if (!defaultLight && !useForceLight && lightbarSettingInfo.mode == LightbarMode.DS4Win)
+            bool useLightRoutine = lightbarSettingInfo.mode == LightbarMode.DS4Win;
+            if (!defaultLight && !useForceLight && useLightRoutine)
             {
                 if (lightModeInfo.useCustomLed)
                 {
@@ -256,87 +257,94 @@ namespace DS4Windows
             else if (useForceLight)
             {
                 color = forcedColor[deviceNum];
+                useLightRoutine = true;
             }
             else if (shuttingdown)
+            {
                 color = new DS4Color(0, 0, 0);
+                useLightRoutine = true;
+            }
             else
             {
                 if (device.getConnectionType() == ConnectionType.BT)
                     color = new DS4Color(32, 64, 64);
                 else
                     color = new DS4Color(0, 0, 0);
+
+                useLightRoutine = true;
             }
 
-            bool distanceprofile = DistanceProfiles[deviceNum] || tempprofileDistance[deviceNum];
-            //distanceprofile = (ProfilePath[deviceNum].ToLower().Contains("distance") || tempprofilename[deviceNum].ToLower().Contains("distance"));
-            if (distanceprofile && !defaultLight)
+            if (useLightRoutine)
             {
-                // Thing I did for Distance
-                float rumble = device.getLeftHeavySlowRumble() / 2.55f;
-                byte max = Max(color.red, Max(color.green, color.blue));
-                if (device.getLeftHeavySlowRumble() > 100)
+                bool distanceprofile = DistanceProfiles[deviceNum] || tempprofileDistance[deviceNum];
+                //distanceprofile = (ProfilePath[deviceNum].ToLower().Contains("distance") || tempprofilename[deviceNum].ToLower().Contains("distance"));
+                if (distanceprofile && !defaultLight)
                 {
-                    DS4Color maxCol = new DS4Color(max, max, 0);
-                    DS4Color redCol = new DS4Color(255, 0, 0);
-                    color = getTransitionedColor(ref maxCol, ref redCol, rumble);
+                    // Thing I did for Distance
+                    float rumble = device.getLeftHeavySlowRumble() / 2.55f;
+                    byte max = Max(color.red, Max(color.green, color.blue));
+                    if (device.getLeftHeavySlowRumble() > 100)
+                    {
+                        DS4Color maxCol = new DS4Color(max, max, 0);
+                        DS4Color redCol = new DS4Color(255, 0, 0);
+                        color = getTransitionedColor(ref maxCol, ref redCol, rumble);
+                    }
+                    else
+                    {
+                        DS4Color maxCol = new DS4Color(max, max, 0);
+                        DS4Color redCol = new DS4Color(255, 0, 0);
+                        DS4Color tempCol = getTransitionedColor(ref maxCol,
+                            ref redCol, 39.6078f);
+                        color = getTransitionedColor(ref color, ref tempCol,
+                            device.getLeftHeavySlowRumble());
+                    }
                 }
-                    
+
+                DS4HapticState haptics = new DS4HapticState
+                {
+                    LightBarColor = color
+                };
+
+                if (haptics.IsLightBarSet())
+                {
+                    if (useForceLight && forcedFlash[deviceNum] > 0)
+                    {
+                        haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)(25 - forcedFlash[deviceNum]);
+                        haptics.LightBarExplicitlyOff = true;
+                    }
+                    else if (device.getBattery() <= lightModeInfo.flashAt && lightModeInfo.flashType == 0 && !defaultLight && !device.isCharging())
+                    {
+                        int level = device.getBattery() / 10;
+                        if (level >= 10)
+                            level = 10; // all values of >~100% are rendered the same
+
+                        haptics.LightBarFlashDurationOn = BatteryIndicatorDurations[level, 0];
+                        haptics.LightBarFlashDurationOff = BatteryIndicatorDurations[level, 1];
+                    }
+                    else if (distanceprofile && device.getLeftHeavySlowRumble() > 155) //also part of Distance
+                    {
+                        haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)((-device.getLeftHeavySlowRumble() + 265));
+                        haptics.LightBarExplicitlyOff = true;
+                    }
+                    else
+                    {
+                        //haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 1;
+                        haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 0;
+                        haptics.LightBarExplicitlyOff = true;
+                    }
+                }
                 else
                 {
-                    DS4Color maxCol = new DS4Color(max, max, 0);
-                    DS4Color redCol = new DS4Color(255, 0, 0);
-                    DS4Color tempCol = getTransitionedColor(ref maxCol,
-                        ref redCol, 39.6078f);
-                    color = getTransitionedColor(ref color, ref tempCol,
-                        device.getLeftHeavySlowRumble());
-                }
-                    
-            }
-
-            DS4HapticState haptics = new DS4HapticState
-            {
-                LightBarColor = color
-            };
-
-            if (haptics.IsLightBarSet())
-            {
-                if (useForceLight && forcedFlash[deviceNum] > 0)
-                {
-                    haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)(25 - forcedFlash[deviceNum]);
                     haptics.LightBarExplicitlyOff = true;
                 }
-                else if (device.getBattery() <= lightModeInfo.flashAt && lightModeInfo.flashType == 0 && !defaultLight && !device.isCharging())
-                {
-                    int level = device.getBattery() / 10;
-                    if (level >= 10)
-                        level = 10; // all values of >~100% are rendered the same
 
-                    haptics.LightBarFlashDurationOn = BatteryIndicatorDurations[level, 0];
-                    haptics.LightBarFlashDurationOff = BatteryIndicatorDurations[level, 1];
-                }
-                else if (distanceprofile && device.getLeftHeavySlowRumble() > 155) //also part of Distance
-                {
-                    haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)((-device.getLeftHeavySlowRumble() + 265));
-                    haptics.LightBarExplicitlyOff = true;
-                }
-                else
-                {
-                    //haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 1;
-                    haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 0;
-                    haptics.LightBarExplicitlyOff = true;
-                }
+                byte tempLightBarOnDuration = device.getLightBarOnDuration();
+                if (tempLightBarOnDuration != haptics.LightBarFlashDurationOn && tempLightBarOnDuration != 1 && haptics.LightBarFlashDurationOn == 0)
+                    haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 1;
+
+                device.SetHapticState(ref haptics);
+                //device.pushHapticState(ref haptics);
             }
-            else
-            {
-                haptics.LightBarExplicitlyOff = true;
-            }
-
-            byte tempLightBarOnDuration = device.getLightBarOnDuration();
-            if (tempLightBarOnDuration != haptics.LightBarFlashDurationOn && tempLightBarOnDuration != 1 && haptics.LightBarFlashDurationOn == 0)
-                haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 1;
-
-            device.SetHapticState(ref haptics);
-            //device.pushHapticState(ref haptics);
         }
 
         public static bool defaultLight = false, shuttingdown = false;

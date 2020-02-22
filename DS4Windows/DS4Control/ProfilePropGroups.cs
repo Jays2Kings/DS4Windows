@@ -62,7 +62,7 @@ namespace DS4Windows
         public DS4Color m_FlashLed;
         public double rainbow;
         public double maxRainbowSat = 1.0;
-        public int flashAt;
+        public int flashAt; // Battery % when flashing occurs. <0 means disabled
         public byte flashType;
         public int chargingType;
     }

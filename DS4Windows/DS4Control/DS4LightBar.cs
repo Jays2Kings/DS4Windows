@@ -45,7 +45,7 @@ namespace DS4Windows
             bool useForceLight = forcelight[deviceNum];
             LightbarSettingInfo lightbarSettingInfo = getLightbarSettingsInfo(deviceNum);
             LightbarDS4WinInfo lightModeInfo = lightbarSettingInfo.ds4winSettings;
-            if (!defaultLight && !useForceLight)
+            if (!defaultLight && !useForceLight && lightbarSettingInfo.mode == LightbarMode.DS4Win)
             {
                 if (lightModeInfo.useCustomLed)
                 {

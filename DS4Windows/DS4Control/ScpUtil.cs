@@ -2369,6 +2369,41 @@ namespace DS4Windows
             return result;
         }
 
+        private string GetLightbarModeString(LightbarMode mode)
+        {
+            string result = "DS4Win";
+            switch (mode)
+            {
+                case LightbarMode.DS4Win:
+                    result = "DS4Win";
+                    break;
+                case LightbarMode.Passthru:
+                    result = "Passthru";
+                    break;
+                default:
+                    break;
+            }
+            return result;
+        }
+
+        private LightbarMode GetLightbarModeType(string modeString)
+        {
+            LightbarMode result = LightbarMode.DS4Win;
+            switch (modeString)
+            {
+                case "DS4Win":
+                    result = LightbarMode.DS4Win;
+                    break;
+                case "Passthru":
+                    result = LightbarMode.Passthru;
+                    break;
+                default:
+                    break;
+            }
+
+            return result;
+        }
+
         public bool SaveProfile(int device, string propath)
         {
             bool Saved = true;
@@ -2394,7 +2429,8 @@ namespace DS4Windows
 
                 Node = m_Xdoc.CreateNode(XmlNodeType.Element, "DS4Windows", null);
 
-                LightbarDS4WinInfo lightInfo = lightbarSettingInfo[device].ds4winSettings;
+                LightbarSettingInfo lightbarSettings = lightbarSettingInfo[device];
+                LightbarDS4WinInfo lightInfo = lightbarSettings.ds4winSettings;
 
                 XmlNode xmlFlushHIDQueue = m_Xdoc.CreateNode(XmlNodeType.Element, "flushHIDQueue", null); xmlFlushHIDQueue.InnerText = flushHIDQueue[device].ToString(); Node.AppendChild(xmlFlushHIDQueue);
                 XmlNode xmlTouchToggle = m_Xdoc.CreateNode(XmlNodeType.Element, "touchToggle", null); xmlTouchToggle.InnerText = enableTouchToggle[device].ToString(); Node.AppendChild(xmlTouchToggle);
@@ -2404,6 +2440,7 @@ namespace DS4Windows
                 Node.AppendChild(xmlColor);
                 XmlNode xmlRumbleBoost = m_Xdoc.CreateNode(XmlNodeType.Element, "RumbleBoost", null); xmlRumbleBoost.InnerText = rumble[device].ToString(); Node.AppendChild(xmlRumbleBoost);
                 XmlNode xmlRumbleAutostopTime = m_Xdoc.CreateNode(XmlNodeType.Element, "RumbleAutostopTime", null); xmlRumbleAutostopTime.InnerText = rumbleAutostopTime[device].ToString(); Node.AppendChild(xmlRumbleAutostopTime);
+                XmlNode xmlLightbarMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LightbarMode", null); xmlLightbarMode.InnerText = GetLightbarModeString(lightbarSettings.mode); Node.AppendChild(xmlLightbarMode);
                 XmlNode xmlLedAsBatteryIndicator = m_Xdoc.CreateNode(XmlNodeType.Element, "ledAsBatteryIndicator", null); xmlLedAsBatteryIndicator.InnerText = lightInfo.ledAsBattery.ToString(); Node.AppendChild(xmlLedAsBatteryIndicator);
                 XmlNode xmlLowBatteryFlash = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashType", null); xmlLowBatteryFlash.InnerText = lightInfo.flashType.ToString(); Node.AppendChild(xmlLowBatteryFlash);
                 XmlNode xmlFlashBatterAt = m_Xdoc.CreateNode(XmlNodeType.Element, "flashBatteryAt", null); xmlFlashBatterAt.InnerText = lightInfo.flashAt.ToString(); Node.AppendChild(xmlFlashBatterAt);
@@ -3011,7 +3048,8 @@ namespace DS4Windows
                 }
 
                 OutContType oldContType = Global.activeOutDevType[device];
-                LightbarDS4WinInfo lightInfo = lightbarSettingInfo[device].ds4winSettings;
+                LightbarSettingInfo lightbarSettings = lightbarSettingInfo[device];
+                LightbarDS4WinInfo lightInfo = lightbarSettings.ds4winSettings;
 
                 // Make sure to reset currently set profile values before parsing
                 ResetProfile(device);
@@ -3024,6 +3062,14 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/idleDisconnectTimeout"); Int32.TryParse(Item.InnerText, out idleDisconnectTimeout[device]); }
                 catch { missingSetting = true; }
+
+                try {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LightbarMode");
+                    string tempMode = Item.InnerText;
+                    lightbarSettings.mode = GetLightbarModeType(tempMode);
+                }
+                catch { lightbarSettings.mode = LightbarMode.DS4Win; missingSetting = true; }
+
                 //New method for saving color
                 try
                 {
@@ -3406,7 +3452,10 @@ namespace DS4Windows
                 catch { sASteeringWheelEmulationRange[device] = 360; missingSetting = true; }
 
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroOutputMode"); GyroOutMode.TryParse(Item.InnerText, out gyroOutMode[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroOutputMode");
+                    string tempMode = Item.InnerText;
+                    gyroOutMode[device] = GetGyroOutModeType(tempMode);
+                }
                 catch { PortOldGyroSettings(device); missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickTriggers"); sAMouseStickTriggers[device] = Item.InnerText; }
@@ -3527,7 +3576,7 @@ namespace DS4Windows
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/BTPollRate");
                     int temp = 0;
                     int.TryParse(Item.InnerText, out temp);
-                    btPollRate[device] = (temp >= 0 && temp <= 16) ? temp : 0;
+                    btPollRate[device] = (temp >= 0 && temp <= 16) ? temp : 4;
                 }
                 catch { btPollRate[device] = 4; missingSetting = true; }
 
@@ -4755,7 +4804,9 @@ namespace DS4Windows
             mouseAccel[device] = false;
             btPollRate[device] = 4;
 
-            LightbarDS4WinInfo lightInfo = lightbarSettingInfo[device].ds4winSettings;
+            LightbarSettingInfo lightbarSettings = lightbarSettingInfo[device];
+            LightbarDS4WinInfo lightInfo = lightbarSettings.ds4winSettings;
+            lightbarSettings.Mode = LightbarMode.DS4Win;
             lightInfo.m_LowLed = new DS4Color(Color.Black);
             //m_LowLeds[device] = new DS4Color(Color.Black);
 

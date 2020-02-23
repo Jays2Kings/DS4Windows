@@ -23,6 +23,58 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private ImageBrush lightbarImgBrush = new ImageBrush();
         private SolidColorBrush lightbarColBrush = new SolidColorBrush();
 
+        public int LightbarModeIndex
+        {
+            get
+            {
+                int index = 0;
+                switch(Global.LightbarSettingsInfo[device].Mode)
+                {
+                    case LightbarMode.DS4Win:
+                        index = 0; break;
+                    case LightbarMode.Passthru:
+                        index = 1; break;
+                    default: break;
+                }
+
+                return index;
+            }
+            set
+            {
+                LightbarMode temp = LightbarMode.DS4Win;
+                switch(value)
+                {
+                    case 0:
+                        temp = LightbarMode.DS4Win; break;
+                    case 1:
+                        temp = LightbarMode.Passthru; break;
+                    default: break;
+                }
+
+                Global.LightbarSettingsInfo[device].Mode = temp;
+                LightbarModeIndexChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler LightbarModeIndexChanged;
+
+        public Visibility DS4WinLightVisible
+        {
+            get
+            {
+                Visibility temp = Visibility.Visible;
+                switch(Global.LightbarSettingsInfo[device].Mode)
+                {
+                    case LightbarMode.DS4Win:
+                        temp = Visibility.Visible; break;
+                    case LightbarMode.Passthru:
+                        temp = Visibility.Collapsed; break;
+                }
+
+                return temp;
+            }
+        }
+        public event EventHandler DS4WinLightVisibleChanged;
+
         public System.Windows.Media.Brush LightbarBrush
         {
             get
@@ -601,7 +653,6 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 Global.GyroOutputMode[device] = temp;
             }
         }
-
 
         public OutContType ContType
         {
@@ -1494,6 +1545,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             ButtonMouseSensitivityChanged += (sender, args) =>
             {
                 OutputMouseSpeed = CalculateOutputMouseSpeed(ButtonMouseSensitivity);
+            };
+
+            LightbarModeIndexChanged += (sender, args) =>
+            {
+                DS4WinLightVisibleChanged?.Invoke(this, EventArgs.Empty);
             };
         }
 

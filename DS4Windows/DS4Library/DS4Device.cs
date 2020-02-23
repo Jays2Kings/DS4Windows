@@ -17,6 +17,7 @@ namespace DS4Windows
         public byte red;
         public byte green;
         public byte blue;
+
         public DS4Color(Color c)
         {
             red = c.R;

@@ -41,11 +41,12 @@ namespace DS4Windows
 
         public static void updateLightBar(DS4Device device, int deviceNum)
         {
-            DS4Color color;
+            DS4Color color = new DS4Color();
             bool useForceLight = forcelight[deviceNum];
             LightbarSettingInfo lightbarSettingInfo = getLightbarSettingsInfo(deviceNum);
             LightbarDS4WinInfo lightModeInfo = lightbarSettingInfo.ds4winSettings;
             bool useLightRoutine = lightbarSettingInfo.mode == LightbarMode.DS4Win;
+            //bool useLightRoutine = false;
             if (!defaultLight && !useForceLight && useLightRoutine)
             {
                 if (lightModeInfo.useCustomLed)
@@ -264,14 +265,12 @@ namespace DS4Windows
                 color = new DS4Color(0, 0, 0);
                 useLightRoutine = true;
             }
-            else
+            else if (useLightRoutine)
             {
                 if (device.getConnectionType() == ConnectionType.BT)
                     color = new DS4Color(32, 64, 64);
                 else
                     color = new DS4Color(0, 0, 0);
-
-                useLightRoutine = true;
             }
 
             if (useLightRoutine)

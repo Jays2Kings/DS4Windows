@@ -1146,17 +1146,6 @@ namespace DS4Windows
                         }
                     }
 
-                    if (conType == ConnectionType.BT && oldCharging != charging)
-                    {
-                        /*if (Global.getQuickCharge() && charging)
-                        {
-                            DisconnectBT(true);
-                            timeoutExecuted = true;
-                            return;
-                        }
-                        */
-                    }
-
                     if (Report != null)
                         Report(this, EventArgs.Empty);
 

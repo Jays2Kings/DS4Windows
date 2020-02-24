@@ -253,9 +253,6 @@
   <data name="EditProfile" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="EE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EE.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="FallBack" xml:space="preserve">
     <value>Fall Back</value>
   </data>

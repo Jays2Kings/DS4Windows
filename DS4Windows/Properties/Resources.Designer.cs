@@ -478,15 +478,6 @@ namespace DS4WinWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        public static System.IO.UnmanagedMemoryStream EE {
-            get {
-                return ResourceManager.GetStream("EE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Allow touchpad mouse function to get toggled with PS + Touchpad Click..
         /// </summary>
         public static string EnableTouchToggle {

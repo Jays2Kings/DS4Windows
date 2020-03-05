@@ -1917,6 +1917,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             tempControllerIndex = ControllerTypeIndex;
             Global.outDevTypeTemp[device] = Global.OutContType[device];
             tempBtPollRate = Global.BTPollRate[device];
+            outputMouseSpeed = CalculateOutputMouseSpeed(ButtonMouseSensitivity);
         }
     }
 }

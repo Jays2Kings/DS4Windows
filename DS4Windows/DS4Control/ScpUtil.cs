@@ -4786,8 +4786,8 @@ namespace DS4Windows
         {
             buttonMouseSensitivity[device] = 25;
             flushHIDQueue[device] = false;
-            enableTouchToggle[device] = false;
-            idleDisconnectTimeout[device] = 0;
+            enableTouchToggle[device] = true;
+            idleDisconnectTimeout[device] = 300;
             touchpadJitterCompensation[device] = true;
             lowerRCOn[device] = false;
             

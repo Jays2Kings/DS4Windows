@@ -1036,7 +1036,7 @@ namespace DS4Windows
                             touchpad.handleTouchpad(inputReport, cState, touchOffset);
                         }
                     }
-                    catch { currerror = "Index out of bounds: touchpad"; }
+                    catch (Exception ex) { currerror = $"Touchpad: {ex.Message}"; }
 
                     // Store Gyro and Accel values
                     //Array.Copy(inputReport, 13, gyro, 0, 6);

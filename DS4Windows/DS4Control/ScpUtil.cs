@@ -4796,7 +4796,7 @@ namespace DS4Windows
             touchSensitivity[device] = 100;
             l2ModInfo[device].deadZone = r2ModInfo[device].deadZone = 0;
             lsModInfo[device].deadZone = rsModInfo[device].deadZone = 10;
-            lsModInfo[device].antiDeadZone = rsModInfo[device].antiDeadZone = 25;
+            lsModInfo[device].antiDeadZone = rsModInfo[device].antiDeadZone = 20;
             lsModInfo[device].maxZone = rsModInfo[device].maxZone = 100;
             lsModInfo[device].maxOutput = rsModInfo[device].maxOutput = 100.0;
             l2ModInfo[device].antiDeadZone = r2ModInfo[device].antiDeadZone = 0;

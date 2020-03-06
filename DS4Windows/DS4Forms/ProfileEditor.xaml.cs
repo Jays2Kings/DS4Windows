@@ -1270,5 +1270,36 @@ namespace DS4WinWPF.DS4Forms
             mpControl.UpdateMappingName();
             UpdateHighlightLabel(mpControl);
         }
+
+        private void ConBtn_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Button btn = sender as Button;
+            MappedControl mpControl = mappingListVM.Mappings[mappingListVM.SelectedIndex];
+            profileSettingsVM.PresetMenuUtil.SetHighlightControl(mpControl.Control);
+            ContextMenu cm = conCanvas.FindResource("presetMenu") as ContextMenu;
+            MenuItem temp = cm.Items[0] as MenuItem;
+            temp.Header = profileSettingsVM.PresetMenuUtil.PresetInputLabel;
+            cm.PlacementTarget = btn;
+            cm.IsOpen = true;
+        }
+
+        private void PresetMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem item = sender as MenuItem;
+            int baseTag = Convert.ToInt32(item.Tag);
+            int subTag = Convert.ToInt32(item.CommandParameter);
+            if (baseTag >= 0 && subTag >= 0)
+            {
+                List<DS4Controls> controls =
+                    profileSettingsVM.PresetMenuUtil.ModifySettingWithPreset(baseTag, subTag);
+                foreach(DS4Controls control in controls)
+                {
+                    MappedControl mpControl = mappingListVM.ControlMap[control];
+                    mpControl.UpdateMappingName();
+                }
+
+                highlightControlDisplayLb.Content = "";
+            }
+        }
     }
 }

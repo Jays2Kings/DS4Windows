@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -1502,6 +1503,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public event EventHandler GyroMouseStickTrigDisplayChanged;
 
+        private PresetMenuHelper presetMenuUtil;
+        public PresetMenuHelper PresetMenuUtil
+        {
+            get => presetMenuUtil;
+        }
+
+
         public ProfileSettingsViewModel(int device)
         {
             this.device = device;
@@ -1516,6 +1524,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             ImageSource temp = sourceConverter.
                 ConvertFromString("pack://application:,,,/DS4Windows;component/Resources/rainbowCCrop.png") as ImageSource;
             lightbarImgBrush.ImageSource = temp.Clone();
+
+            presetMenuUtil = new PresetMenuHelper(device);
 
             MainColorChanged += ProfileSettingsViewModel_MainColorChanged;
             MainColorRChanged += (sender, args) =>
@@ -1918,6 +1928,315 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             Global.outDevTypeTemp[device] = Global.OutContType[device];
             tempBtPollRate = Global.BTPollRate[device];
             outputMouseSpeed = CalculateOutputMouseSpeed(ButtonMouseSensitivity);
+        }
+    }
+
+    public class PresetMenuHelper
+    {
+        public enum ControlSelection : uint
+        {
+            None,
+            LeftStick,
+            RightStick,
+            DPad,
+        }
+
+        private Dictionary<ControlSelection, string> presetInputLabelDict =
+            new Dictionary<ControlSelection, string>()
+            {
+                [ControlSelection.None] = "None",
+                [ControlSelection.DPad] = "DPad",
+                [ControlSelection.LeftStick] = "Left Stick",
+                [ControlSelection.RightStick] = "Right Stick",
+            };
+
+        public Dictionary<ControlSelection, string> PresetInputLabelDict
+        {
+            get => presetInputLabelDict;
+        }
+
+        public string PresetInputLabel
+        {
+            get => presetInputLabelDict[highlightControl];
+        }
+
+        private ControlSelection highlightControl = ControlSelection.None;
+
+        public ControlSelection HighlightControl {
+            get => highlightControl;
+        }
+
+        private int deviceNum;
+
+        public PresetMenuHelper(int device)
+        {
+            deviceNum = device;
+        }
+
+        public ControlSelection PresetTagIndex(DS4Controls control)
+        {
+            ControlSelection controlInput = ControlSelection.None;
+            switch (control)
+            {
+                case DS4Controls.DpadUp:
+                case DS4Controls.DpadDown:
+                case DS4Controls.DpadLeft:
+                case DS4Controls.DpadRight:
+                    controlInput = ControlSelection.DPad;
+                    break;
+                case DS4Controls.LXNeg:
+                case DS4Controls.LXPos:
+                case DS4Controls.LYNeg:
+                case DS4Controls.LYPos:
+                    controlInput = ControlSelection.LeftStick;
+                    break;
+                case DS4Controls.RXNeg:
+                case DS4Controls.RXPos:
+                case DS4Controls.RYNeg:
+                case DS4Controls.RYPos:
+                    controlInput = ControlSelection.RightStick;
+                    break;
+                default:
+                    break;
+            }
+
+
+            return controlInput;
+        }
+
+        public void SetHighlightControl(DS4Controls control)
+        {
+            ControlSelection controlInput = PresetTagIndex(control);
+            highlightControl = controlInput;
+        }
+
+        public List<DS4Controls> ModifySettingWithPreset(int baseTag, int subTag)
+        {
+            List<object> actionBtns = new List<object>(5);
+            List<DS4Controls> inputControls = new List<DS4Controls>(5);
+            if (baseTag == 0)
+            {
+                actionBtns.AddRange(new object[5]
+                {
+                    null, null, null, null, null,
+                });
+            }
+            else if (baseTag == 1)
+            {
+                switch(subTag)
+                {
+                    case 0:
+                        actionBtns.AddRange(new object[4]
+                        {
+                            X360Controls.DpadUp, X360Controls.DpadDown,
+                            X360Controls.DpadLeft, X360Controls.DpadRight,
+                        });
+                        break;
+                    case 1:
+                        actionBtns.AddRange(new object[4]
+                        {
+                            X360Controls.DpadDown, X360Controls.DpadUp,
+                            X360Controls.DpadRight, X360Controls.DpadLeft,
+                        });
+                        break;
+                    case 2:
+                        actionBtns.AddRange(new object[4]
+                        {
+                            X360Controls.DpadUp, X360Controls.DpadDown,
+                            X360Controls.DpadRight, X360Controls.DpadLeft,
+                        });
+                        break;
+                    case 3:
+                        actionBtns.AddRange(new object[4]
+                        {
+                            X360Controls.DpadDown, X360Controls.DpadUp,
+                            X360Controls.DpadLeft, X360Controls.DpadRight,
+                        });
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (baseTag == 2)
+            {
+                switch (subTag)
+                {
+                    case 0:
+                        actionBtns.AddRange(new object[5]
+                        {
+                            X360Controls.LYNeg, X360Controls.LYPos,
+                            X360Controls.LXNeg, X360Controls.LXPos, X360Controls.LS,
+                        });
+                        break;
+                    case 1:
+                        actionBtns.AddRange(new object[5]
+                        {
+                            X360Controls.LYPos, X360Controls.LYNeg,
+                            X360Controls.LXPos, X360Controls.LXNeg, X360Controls.LS,
+                        });
+                        break;
+                    case 2:
+                        actionBtns.AddRange(new object[5]
+                        {
+                            X360Controls.LYNeg, X360Controls.LYPos,
+                            X360Controls.LXPos, X360Controls.LXNeg, X360Controls.LS,
+                        });
+                        break;
+                    case 3:
+                        actionBtns.AddRange(new object[5]
+                        {
+                            X360Controls.LYPos, X360Controls.LYNeg,
+                            X360Controls.LXNeg, X360Controls.LXPos, X360Controls.LS,
+                        });
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (baseTag == 3)
+            {
+                switch (subTag)
+                {
+                    case 0:
+                        actionBtns.AddRange(new object[5]
+                        {
+                            X360Controls.RYNeg, X360Controls.RYPos,
+                            X360Controls.RXNeg, X360Controls.RXPos, X360Controls.RS,
+                        });
+                        break;
+                    case 1:
+                        actionBtns.AddRange(new object[5]
+                        {
+                            X360Controls.RYPos, X360Controls.RYNeg,
+                            X360Controls.RXPos, X360Controls.RXNeg, X360Controls.RS,
+                        });
+                        break;
+                    case 2:
+                        actionBtns.AddRange(new object[5]
+                        {
+                            X360Controls.RYNeg, X360Controls.RYPos,
+                            X360Controls.RXPos, X360Controls.RXNeg, X360Controls.RS,
+                        });
+                        break;
+                    case 3:
+                        actionBtns.AddRange(new object[5]
+                        {
+                            X360Controls.RYPos, X360Controls.RYNeg,
+                            X360Controls.RXNeg, X360Controls.RXPos, X360Controls.RS,
+                        });
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (baseTag == 4)
+            {
+                actionBtns.AddRange(new object[4]
+                {
+                    X360Controls.Y, X360Controls.A, X360Controls.X, X360Controls.B,
+                });
+            }
+            else if (baseTag == 5)
+            {
+                actionBtns.AddRange(new object[4]
+                {
+                    KeyInterop.VirtualKeyFromKey(Key.W), KeyInterop.VirtualKeyFromKey(Key.S),
+                    KeyInterop.VirtualKeyFromKey(Key.A), KeyInterop.VirtualKeyFromKey(Key.D),
+                });
+            }
+            else if (baseTag == 6)
+            {
+                actionBtns.AddRange(new object[4]
+                {
+                    KeyInterop.VirtualKeyFromKey(Key.Up), KeyInterop.VirtualKeyFromKey(Key.Down),
+                    KeyInterop.VirtualKeyFromKey(Key.Left), KeyInterop.VirtualKeyFromKey(Key.Right),
+                });
+            }
+            else if (baseTag == 7)
+            {
+                switch (subTag)
+                {
+                    case 0:
+                        actionBtns.AddRange(new object[4]
+                        {
+                            X360Controls.MouseUp, X360Controls.MouseDown,
+                            X360Controls.MouseLeft, X360Controls.MouseRight,
+                        });
+                        break;
+                    case 1:
+                        actionBtns.AddRange(new object[4]
+                        {
+                            X360Controls.MouseDown, X360Controls.MouseUp,
+                            X360Controls.MouseRight, X360Controls.MouseLeft,
+                        });
+                        break;
+                    case 2:
+                        actionBtns.AddRange(new object[4]
+                        {
+                            X360Controls.MouseUp, X360Controls.MouseDown,
+                            X360Controls.MouseRight, X360Controls.MouseLeft,
+                        });
+                        break;
+                    case 3:
+                        actionBtns.AddRange(new object[4]
+                        {
+                            X360Controls.MouseDown, X360Controls.MouseUp,
+                            X360Controls.MouseLeft, X360Controls.MouseRight,
+                        });
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+
+            switch (highlightControl)
+            {
+                case ControlSelection.DPad:
+                    inputControls.AddRange(new DS4Controls[4]
+                    {
+                        DS4Controls.DpadUp, DS4Controls.DpadDown,
+                        DS4Controls.DpadLeft, DS4Controls.DpadRight,
+                    });
+                    break;
+                case ControlSelection.LeftStick:
+                    inputControls.AddRange(new DS4Controls[5]
+                    {
+                        DS4Controls.LYNeg, DS4Controls.LYPos,
+                        DS4Controls.LXNeg, DS4Controls.LXPos, DS4Controls.L3,
+                    });
+                    break;
+                case ControlSelection.RightStick:
+                    inputControls.AddRange(new DS4Controls[5]
+                    {
+                        DS4Controls.RYNeg, DS4Controls.RYPos,
+                        DS4Controls.RXNeg, DS4Controls.RXPos, DS4Controls.R3,
+                    });
+                    break;
+                case ControlSelection.None:
+                default:
+                    break;
+            }
+
+            int idx = 0;
+            foreach(DS4Controls dsControl in inputControls)
+            {
+                DS4ControlSettings setting = Global.getDS4CSetting(deviceNum, dsControl);
+                setting.Reset();
+                if (idx < actionBtns.Count && actionBtns[idx] != null)
+                {
+                    object outAct = actionBtns[idx];
+                    X360Controls defaultControl = Global.defaultButtonMapping[(int)dsControl];
+                    if (!(outAct is X360Controls) || defaultControl != (X360Controls)outAct)
+                    {
+                        setting.UpdateSettings(false, outAct, null, DS4KeyType.None);
+                    }
+                }
+
+                idx++;
+            }
+
+            return inputControls;
         }
     }
 }

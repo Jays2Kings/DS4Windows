@@ -1988,12 +1988,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 case DS4Controls.LXPos:
                 case DS4Controls.LYNeg:
                 case DS4Controls.LYPos:
+                case DS4Controls.L3:
                     controlInput = ControlSelection.LeftStick;
                     break;
                 case DS4Controls.RXNeg:
                 case DS4Controls.RXPos:
                 case DS4Controls.RYNeg:
                 case DS4Controls.RYPos:
+                case DS4Controls.R3:
                     controlInput = ControlSelection.RightStick;
                     break;
                 default:

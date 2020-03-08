@@ -18,7 +18,7 @@ namespace DS4Windows
 
         // old Real RX RY LX LY value
         //static byte[,] oldRealAxis = new byte[5, 4];
-        static byte[,,] oldRealAxisPlus = new byte[5, 4, 13];
+        static byte[,,] oldRealAxisPlus = new byte[5, 4, 12];
         //[device, axis, oldbyte]
 
 
@@ -246,7 +246,7 @@ namespace DS4Windows
             }
 
             oldAxis[device, AxisId] = res;
-            oldRealAxisPlus[device, AxisId, 12] = oldRealAxisPlus[device, AxisId, 11];
+            //oldRealAxisPlus[device, AxisId, 12] = oldRealAxisPlus[device, AxisId, 11];
             oldRealAxisPlus[device, AxisId, 11] = oldRealAxisPlus[device, AxisId, 10];
             oldRealAxisPlus[device, AxisId, 10] = oldRealAxisPlus[device, AxisId, 9];
             oldRealAxisPlus[device, AxisId, 9] = oldRealAxisPlus[device, AxisId, 8];
@@ -370,7 +370,7 @@ namespace DS4Windows
             //oldRealAxisPlus[device, AxisId, 15] = oldRealAxisPlus[device, AxisId, 14];
             //oldRealAxisPlus[device, AxisId, 14] = oldRealAxisPlus[device, AxisId, 13];
             //oldRealAxisPlus[device, AxisId, 13] = oldRealAxisPlus[device, AxisId, 12];
-            oldRealAxisPlus[device, AxisId, 12] = oldRealAxisPlus[device, AxisId, 11];
+            //oldRealAxisPlus[device, AxisId, 12] = oldRealAxisPlus[device, AxisId, 11];
             oldRealAxisPlus[device, AxisId, 11] = oldRealAxisPlus[device, AxisId, 10];
             oldRealAxisPlus[device, AxisId, 10] = oldRealAxisPlus[device, AxisId, 9];
             oldRealAxisPlus[device, AxisId, 9] = oldRealAxisPlus[device, AxisId, 8];

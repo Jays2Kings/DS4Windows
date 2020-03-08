@@ -1918,6 +1918,31 @@ namespace DS4Windows
         {
             return (value < min) ? min : (value > max) ? max : value;
         }
+
+
+        //AntiFlicker
+
+        public static void setLSAntiFlickerMode(int index, int value)
+        {
+            m_Config.setLSAntiFlickerMode(index, value);
+        }
+        public static int getLSAntiFlickerMode(int index)
+        {
+            return m_Config.getLSAntiFlickerMode(index);
+        }
+
+        public static void setRSAntiFlickerMode(int index, int value)
+        {
+            m_Config.setRSAntiFlickerMode(index, value);
+        }
+        public static int getRSAntiFlickerMode(int index)
+        {
+            return m_Config.getRSAntiFlickerMode(index);
+        }
+
+
+
+
     }
 
     public class BackingStore
@@ -2563,6 +2588,13 @@ namespace DS4Windows
 
                 XmlNode xmlRsOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOutputCurveMode", null); xmlRsOutputCurveMode.InnerText = stickOutputCurveString(getRsOutCurveMode(device)); Node.AppendChild(xmlRsOutputCurveMode);
                 XmlNode xmlRsOutputCurveCustom = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOutputCurveCustom", null); xmlRsOutputCurveCustom.InnerText = rsOutBezierCurveObj[device].ToString(); Node.AppendChild(xmlRsOutputCurveCustom);
+
+
+                // AntiFlicker
+                XmlNode xmlLsAntiFlickerMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LSAntiFlickerMode", null); xmlLsAntiFlickerMode.InnerText = stickAntiFlickerString(getLSAntiFlickerMode(device)); Node.AppendChild(xmlLsAntiFlickerMode);
+                XmlNode xmlRsAntiFlickerMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSAntiFlickerMode", null); xmlRsAntiFlickerMode.InnerText = stickAntiFlickerString(getRSAntiFlickerMode(device)); Node.AppendChild(xmlRsAntiFlickerMode);
+                //
+
 
                 XmlNode xmlLsSquareStickMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LSSquareStick", null); xmlLsSquareStickMode.InnerText = squStickInfo[device].lsMode.ToString(); Node.AppendChild(xmlLsSquareStickMode);
                 XmlNode xmlRsSquareStickMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSSquareStick", null); xmlRsSquareStickMode.InnerText = squStickInfo[device].rsMode.ToString(); Node.AppendChild(xmlRsSquareStickMode);
@@ -3603,6 +3635,13 @@ namespace DS4Windows
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSOutputCurveMode"); setRsOutCurveMode(device, stickOutputCurveId(Item.InnerText)); }
                 catch { setRsOutCurveMode(device, 0); missingSetting = true; }
+
+                // AntiFliker
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSAntiFlickerMode"); setLSAntiFlickerMode(device, stickAntiFlickerId(Item.InnerText)); }
+                catch { setLSAntiFlickerMode(device, 0); missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSAntiFlickerMode"); setRSAntiFlickerMode(device, stickAntiFlickerId(Item.InnerText)); }
+                catch { setRSAntiFlickerMode(device, 0); missingSetting = true; }
+                //
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSSquareStick"); bool.TryParse(Item.InnerText, out squStickInfo[device].lsMode); }
                 catch { squStickInfo[device].lsMode = false; missingSetting = true; }
@@ -4889,6 +4928,10 @@ namespace DS4Windows
             squStickInfo[device].rsMode = false;
             squStickInfo[device].lsRoundness = 5.0;
             squStickInfo[device].rsRoundness = 5.0;
+            // AntiFlicker
+            setLSAntiFlickerMode(device, 0);
+            setRSAntiFlickerMode(device, 0);
+            //
             setLsOutCurveMode(device, 0);
             setRsOutCurveMode(device, 0);
             setL2OutCurveMode(device, 0);
@@ -5007,6 +5050,60 @@ namespace DS4Windows
                 Program.rootHub.touchPad[device]?.ResetTrackAccel(trackballFriction[device]);
             }
         }
+
+
+        // Anti-Flicker
+
+        private int[] _lsAntiFlickerMode = new int[5] { 0, 0, 0, 0, 0 };
+        public int getLSAntiFlickerMode(int index) { return _lsAntiFlickerMode[index]; }
+        public void setLSAntiFlickerMode(int index, int value)
+        {
+            _lsAntiFlickerMode[index] = value;
+        }
+
+        private int[] _rsAntiFlickerMode = new int[5] { 0, 0, 0, 0, 0 };
+        public int getRSAntiFlickerMode(int index) { return _rsAntiFlickerMode[index]; }
+        public void setRSAntiFlickerMode(int index, int value)
+        {
+            _rsAntiFlickerMode[index] = value;
+        }
+
+        private string stickAntiFlickerString(int id)
+        {
+            string result = "Off";
+            switch (id)
+            {
+                case 0: break;
+                case 1: result = "SimpleL1"; break;
+                case 2: result = "SimpleL2"; break;
+                case 3: result = "FutureL1"; break;
+                case 4: result = "FutureL2"; break;
+                case 5: result = "DynamicL1"; break;
+                case 6: result = "DynamicL2"; break;
+                default: break;
+            }
+
+            return result;
+        }
+
+        private int stickAntiFlickerId(string name)
+        {
+            int id = 0;
+            switch (name)
+            {
+                case "Off": id = 0; break;
+                case "SimpleL1": id = 1; break;
+                case "SimpleL2": id = 2; break;
+                case "FutureL1": id = 3; break;
+                case "FutureL2": id = 4; break;
+                case "DynamicL1": id = 5; break;
+                case "DynamicL2": id = 6; break;
+                default: break;
+            }
+
+            return id;
+        }
+
     }
 
     public class SpecialAction

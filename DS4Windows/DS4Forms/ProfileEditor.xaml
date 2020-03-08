@@ -361,6 +361,7 @@
                                     <RowDefinition Style="{StaticResource gridRowHeight}"/>
                                     <RowDefinition Style="{StaticResource gridRowHeight}" />
                                     <RowDefinition Style="{StaticResource gridRowHeight}" />
+                                    <RowDefinition Style="{StaticResource gridRowHeight}" />
                                 </Grid.RowDefinitions>
 
                                 <TextBlock Text="LS" Grid.Column="1" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,8"/>
@@ -470,6 +471,25 @@
                                                     Minimum="-180" Maximum="180"
                                                     Margin="{StaticResource spaceMargin}" />
                                 </DockPanel>
+                                <ComboBox Grid.Row="11" Grid.Column="1" SelectedIndex="{Binding LSAntiFlickerIndex}" Margin="10,1,0,5">
+                                    <ComboBoxItem Content="Off" />
+                                    <ComboBoxItem Content="Simple Level 1" />
+                                    <ComboBoxItem Content="Simple Level 2" />
+                                    <ComboBoxItem Content="Future Level 1" />
+                                    <ComboBoxItem Content="Future Level 2" />
+                                    <ComboBoxItem Content="Dynamic Level 1" />
+                                    <ComboBoxItem Content="Dynamic Level 2" />
+                                </ComboBox>
+                                <ComboBox Grid.Row="11" Grid.Column="2" SelectedIndex="{Binding RSAntiFlickerIndex}" Margin="10,1,0,5">
+                                    <ComboBoxItem Content="Off" />
+                                    <ComboBoxItem Content="Simple Level 1" />
+                                    <ComboBoxItem Content="Simple Level 2" />
+                                    <ComboBoxItem Content="Future Level 1" />
+                                    <ComboBoxItem Content="Future Level 2" />
+                                    <ComboBoxItem Content="Dynamic Level 1" />
+                                    <ComboBoxItem Content="Dynamic Level 2" />
+                                </ComboBox>
+                                <Label Content="Anti-Flicker:" Grid.Row="11" Grid.Column="0" />
                             </Grid>
                         </GroupBox>
 

@@ -1929,6 +1929,27 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             tempBtPollRate = Global.BTPollRate[device];
             outputMouseSpeed = CalculateOutputMouseSpeed(ButtonMouseSensitivity);
         }
+
+
+        // AntiFlicker
+        public int LSAntiFlickerIndex
+        {
+            get => Global.getLSAntiFlickerMode(device);
+            set
+            {
+                Global.setLSAntiFlickerMode(device, value);
+            }
+        }
+
+        public int RSAntiFlickerIndex
+        {
+            get => Global.getRSAntiFlickerMode(device);
+            set
+            {
+                Global.setRSAntiFlickerMode(device, value);
+            }
+        }
+
     }
 
     public class PresetMenuHelper

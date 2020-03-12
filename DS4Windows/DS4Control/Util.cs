@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
@@ -140,6 +141,18 @@ namespace DS4Windows
                 Console.WriteLine("{0} {1}", ex.HelpLink, ex.Message);
                 throw;
             }
+        }
+
+        public static void StartProcessInExplorer(string path)
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = "explorer.exe";
+            startInfo.Arguments = path;
+            try
+            {
+                using (Process temp = Process.Start(startInfo)) { }
+            }
+            catch { }
         }
     }
 }

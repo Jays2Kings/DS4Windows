@@ -60,5 +60,45 @@ namespace DS4WinWPF.DS4Forms
         {
             Util.StartProcessInExplorer("https://code.google.com/r/brianfundakowskifeldman-ds4windows/");
         }
+
+        private void YoutubeSocialBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessInExplorer("https://www.youtube.com/channel/UCIoUA_XLlCSZbvZGeg3Byeg");
+        }
+
+        private void BitchuteSocialBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessInExplorer("https://www.bitchute.com/channel/uE2CbiV96u1k/");
+        }
+
+        private void BittubeSocialBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessInExplorer("https://bittube.tv/profile/ds4windows");
+        }
+
+        private void LbrySocialBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessInExplorer("https://lbry.tv/@ds4windows");
+        }
+
+        private void TwitterSocialBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessInExplorer("https://twitter.com/ds4windows");
+        }
+
+        private void MastodonSocialBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessInExplorer("https://fosstodon.org/@ds4windows");
+        }
+
+        private void MindsSocialBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessInExplorer("https://www.minds.com/ds4windows/");
+        }
+
+        private void DiscordSocialBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessInExplorer("https://discord.gg/zrpPgyN");
+        }
     }
 }

@@ -8,7 +8,45 @@
         Title="Hotkeys/About" Height="450" Width="800">
     <DockPanel>
         <Label x:Name="headerLb" Content="DS4Windows - Ryochan7 Build (Version " DockPanel.Dock="Top" HorizontalAlignment="Center" />
-        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0,4,0,0">
+            <Button x:Name="youtubeSocialBtn" Click="YoutubeSocialBtn_Click"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" ToolTip="YouTube">
+                <Image Source="/DS4Windows;component/Resources/social/youtube_social_icon_red.png" Height="32" />
+            </Button>
+            <Button x:Name="bitchuteSocialBtn" Click="BitchuteSocialBtn_Click" Margin="4,0,0,0"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" ToolTip="BitChute">
+                <Image Source="/DS4Windows;component/Resources/social/bitchute.png" Height="32" />
+            </Button>
+            <Button x:Name="bittubeSocialBtn" Click="BittubeSocialBtn_Click"
+                    BorderBrush="{x:Null}" Margin="4,0,0,0" Background="{x:Null}" Cursor="Hand" ToolTip="Bittube">
+                <Image Source="/DS4Windows;component/Resources/social/bittube.png" Height="32" />
+            </Button>
+            <Button x:Name="lbrySocialBtn" Click="LbrySocialBtn_Click"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="LBRY">
+                <Image Source="/DS4Windows;component/Resources/social/lbrylogo.png" Height="32" Margin="4,0,0,0" />
+            </Button>
+            <Button x:Name="discordSocialBtn" Click="DiscordSocialBtn_Click"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="Discord">
+                <Image Source="/DS4Windows;component/Resources/social/discord.png" Height="32" Margin="4,0,0,0" />
+            </Button>
+            <Button x:Name="twitterSocialBtn" Click="TwitterSocialBtn_Click"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="Twitter">
+                <Image Source="/DS4Windows;component/Resources/social/twitter_logo_initial.png" Height="32" Margin="4,0,0,0" />
+            </Button>
+            <Button x:Name="mastodonSocialBtn" Click="MastodonSocialBtn_Click"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="Mastodon">
+                <Image Source="/DS4Windows;component/Resources/social/mastodon.png" Height="32" Margin="4,0,0,0" />
+            </Button>
+            <Button x:Name="frogSiteSocialBtn" BorderBrush="{x:Null}" Background="{x:Null}"
+                    Foreground="{x:Null}" Margin="4,0,0,0" Style="{StaticResource NoBGHoverBtn}" ToolTip="@ds4windows">
+                <Image Source="/DS4Windows;component/Resources/social/frog_site_logo.png" Height="32" Margin="4,0,0,0" />
+            </Button>
+            <Button x:Name="mindsSocialBtn" Click="MindsSocialBtn_Click"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="Minds">
+                <Image Source="/DS4Windows;component/Resources/social/minds.png" Height="32" Margin="4,0,0,0" />
+            </Button>
+        </StackPanel>
+        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0,4,0,0">
             <Hyperlink x:Name="changeLogLink" Click="ChangeLogLink_Click">Changelog</Hyperlink>
         </TextBlock>
         <TabControl>

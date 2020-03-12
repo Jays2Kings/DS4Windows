@@ -303,6 +303,16 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             get => $"{device.DisplayName} ({device.MacAddress})";
         }
 
+        public string IsExclusiveText
+        {
+            get
+            {
+                string temp = device.isExclusive() ? "Exclusive Access" :
+                    "Shared Access";
+                return temp;
+            }
+        }
+
         public delegate void CustomColorHandler(CompositeDeviceModel sender);
         public event CustomColorHandler RequestColorPicker;
 

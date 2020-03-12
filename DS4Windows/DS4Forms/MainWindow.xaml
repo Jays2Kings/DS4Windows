@@ -63,7 +63,8 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Width="{Binding ElementName=exclusiveColumn, Path=Width}">
-                                                <Image Source="{Binding ExclusiveSource}" Stretch="Uniform" Width="20" Height="20" HorizontalAlignment="Center" />
+                                                <Image Source="{Binding ExclusiveSource}" Stretch="Uniform" Width="20" Height="20" HorizontalAlignment="Center"
+                                                       ToolTip="{Binding IsExclusiveText}" />
                                             </StackPanel>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>

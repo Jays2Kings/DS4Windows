@@ -46,7 +46,7 @@
                                 <GridViewColumn x:Name="idColumn" Header="ID" Width="120">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock x:Name="idColumnTxtB" Text="{Binding Device.MacAddress, Mode=OneWay}" ToolTip="{Binding TooltipIDText, Mode=OneWay}" ToolTipOpening="IdColumnTxtB_ToolTipOpening" Tag="{Binding DevIndex, Mode=OneTime}"/>
+                                            <TextBlock x:Name="idColumnTxtB" Text="{Binding IdText, Mode=OneWay}" ToolTip="{Binding TooltipIDText, Mode=OneWay}" ToolTipOpening="IdColumnTxtB_ToolTipOpening" Tag="{Binding DevIndex, Mode=OneTime}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

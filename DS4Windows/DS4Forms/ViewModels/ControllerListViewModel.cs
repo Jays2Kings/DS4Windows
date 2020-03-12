@@ -298,6 +298,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private ContextMenu lightContext;
         public ContextMenu LightContext { get => lightContext; set => lightContext = value; }
 
+        public string IdText
+        {
+            get => $"{device.DisplayName} ({device.MacAddress})";
+        }
+
         public delegate void CustomColorHandler(CompositeDeviceModel sender);
         public event CustomColorHandler RequestColorPicker;
 

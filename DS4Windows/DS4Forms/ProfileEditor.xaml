@@ -957,6 +957,7 @@
                             <Label Content="Vertical Scale" />
                             <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickVertScale}" MinWidth="60"
                                                 Minimum="0" Maximum="400" Increment="10" />
+                            <Label Content="%" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">

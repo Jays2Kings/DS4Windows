@@ -65,39 +65,9 @@ namespace DS4WinWPF.DS4Forms
             profileSettingsVM = new ProfileSettingsViewModel(device);
             picBoxHover.Visibility = Visibility.Hidden;
             picBoxHover2.Visibility = Visibility.Hidden;
-            bool touchMouse = profileSettingsVM.UseTouchMouse;
-            if (!touchMouse)
-            {
-                useMousePanel.Visibility = Visibility.Collapsed;
-                useControlsPanel.Visibility = Visibility.Visible;
-                useTouchControlsRadio.IsChecked = true;
-            }
-            else
-            {
-                useTouchMouseRadio.IsChecked = true;
-            }
-            
-            //useControlsPanel.Visibility = !touchMouse ? Visibility.Visible : Visibility.Collapsed;
-            activeTouchPanel = touchMouse ? useMousePanel : useControlsPanel;
-            //activeTouchPanel = useMousePanel;
 
-            switch (profileSettingsVM.GyroOutModeIndex)
-            {
-                case 0:
-                    activeGyroModePanel = gyroControlsPanel; break;
-                case 1:
-                    activeGyroModePanel = gyroMousePanel; break;
-                case 2:
-                    activeGyroModePanel = gyroMouseJoystickPanel; break;
-                default:
-                    activeGyroModePanel = gyroControlsPanel; break;
-            }
-
-            //activeGyroModePanel = gyroControlsPanel;
-            gyroControlsPanel.Visibility = Visibility.Collapsed;
-            gyroMousePanel.Visibility = Visibility.Collapsed;
-            gyroMouseJoystickPanel.Visibility = Visibility.Collapsed;
-            activeGyroModePanel.Visibility = Visibility.Visible;
+            //SetTouchpadPanel();
+            //SetupGyroPanel();
 
             mappingListVM = new MappingListViewModel(deviceNum, profileSettingsVM.ContType);
             specialActionsVM = new SpecialActionsListViewModel(device);
@@ -129,6 +99,48 @@ namespace DS4WinWPF.DS4Forms
             profileSettingsVM.R2DeadZoneChanged += UpdateReadingsR2DeadZone;
             profileSettingsVM.SXDeadZoneChanged += UpdateReadingsSXDeadZone;
             profileSettingsVM.SZDeadZoneChanged += UpdateReadingsSZDeadZone;
+        }
+
+        private void SetTouchpadPanel()
+        {
+            bool touchMouse = profileSettingsVM.UseTouchMouse;
+            if (!touchMouse)
+            {
+                useMousePanel.Visibility = Visibility.Collapsed;
+                useControlsPanel.Visibility = Visibility.Visible;
+                useTouchControlsRadio.IsChecked = true;
+            }
+            else
+            {
+                useMousePanel.Visibility = Visibility.Visible;
+                useControlsPanel.Visibility = Visibility.Collapsed;
+                useTouchMouseRadio.IsChecked = true;
+            }
+
+            //useControlsPanel.Visibility = !touchMouse ? Visibility.Visible : Visibility.Collapsed;
+            activeTouchPanel = touchMouse? useMousePanel : useControlsPanel;
+            //activeTouchPanel = useMousePanel;
+        }
+
+        private void SetupGyroPanel()
+        {
+            switch (profileSettingsVM.GyroOutModeIndex)
+            {
+                case 0:
+                    activeGyroModePanel = gyroControlsPanel; break;
+                case 1:
+                    activeGyroModePanel = gyroMousePanel; break;
+                case 2:
+                    activeGyroModePanel = gyroMouseJoystickPanel; break;
+                default:
+                    activeGyroModePanel = gyroControlsPanel; break;
+            }
+
+            //activeGyroModePanel = gyroControlsPanel;
+            gyroControlsPanel.Visibility = Visibility.Collapsed;
+            gyroMousePanel.Visibility = Visibility.Collapsed;
+            gyroMouseJoystickPanel.Visibility = Visibility.Collapsed;
+            activeGyroModePanel.Visibility = Visibility.Visible;
         }
 
         private void UpdateReadingsSZDeadZone(object sender, EventArgs e)
@@ -547,6 +559,8 @@ namespace DS4WinWPF.DS4Forms
             mappingListBox.DataContext = mappingListVM;
             specialActionsTab.DataContext = specialActionsVM;
             lightbarRect.DataContext = profileSettingsVM;
+            SetTouchpadPanel();
+            SetupGyroPanel();
 
             conReadingsUserCon.LsDead = profileSettingsVM.LSDeadZone;
             conReadingsUserCon.RsDead = profileSettingsVM.RSDeadZone;

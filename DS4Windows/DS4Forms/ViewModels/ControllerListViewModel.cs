@@ -302,6 +302,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             get => $"{device.DisplayName} ({device.MacAddress})";
         }
+        public event EventHandler IdTextChanged;
 
         public string IsExclusiveText
         {
@@ -322,6 +323,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             this.device = device;
             device.BatteryChanged += (sender, e) => BatteryStateChanged?.Invoke(this, e);
             device.ChargingChanged += (sender, e) => BatteryStateChanged?.Invoke(this, e);
+            device.MacAddressChanged += (sender, e) => IdTextChanged?.Invoke(this, e);
             this.devIndex = devIndex;
             this.selectedProfile = profile;
             profileListHolder = collection;

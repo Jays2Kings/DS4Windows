@@ -3889,9 +3889,9 @@ namespace DS4Windows
             containsCustomAction[device] = HasCustomActions(device);
             containsCustomExtras[device] = HasCustomExtras(device);
 
-            if (device < 4)
+            if (device < 4 && control.touchPad[device] != null)
             {
-                Program.rootHub.touchPad[device]?.ResetToggleGyroM();
+                control.touchPad[device]?.ResetToggleGyroM();
                 GyroOutMode currentGyro = gyroOutMode[device];
                 if (currentGyro == GyroOutMode.Mouse)
                 {

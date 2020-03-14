@@ -429,6 +429,9 @@ namespace DS4Windows
             return runCalib;
         }
 
+        private ManualResetEventSlim readWaitEv = new ManualResetEventSlim();
+        public ManualResetEventSlim ReadWaitEv { get => readWaitEv; }
+
         public DS4Device(HidDevice hidDevice, string disName)
         {
             hDevice = hidDevice;
@@ -809,6 +812,8 @@ namespace DS4Windows
                     //Latency = latencyQueue.Average();
                     Latency = latencySum / tempLatencyCount;
 
+                    readWaitEv.Set();
+
                     if (conType == ConnectionType.BT)
                     {
                         //HidDevice.ReadStatus res = hDevice.ReadFile(btInputReport);
@@ -892,6 +897,9 @@ namespace DS4Windows
                             return;
                         }
                     }
+
+                    readWaitEv.Wait();
+                    readWaitEv.Reset();
 
                     curtime = Stopwatch.GetTimestamp();
                     testelapsed = curtime - oldtime;

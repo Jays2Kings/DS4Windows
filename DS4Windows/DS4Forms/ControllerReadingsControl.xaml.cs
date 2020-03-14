@@ -183,6 +183,8 @@ namespace DS4WinWPF.DS4Forms
 
                 Dispatcher.Invoke(() =>
                 {
+                    ds.ReadWaitEv.Wait();
+                    ds.ReadWaitEv.Reset();
                     int x = baseState.LX;
                     int y = baseState.LY;
 
@@ -272,6 +274,7 @@ namespace DS4WinWPF.DS4Forms
                     }
 
                     prevWarnMode = warnMode;
+                    ds.ReadWaitEv.Set();
                 });
             }
 

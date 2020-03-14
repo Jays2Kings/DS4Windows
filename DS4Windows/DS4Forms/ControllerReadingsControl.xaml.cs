@@ -30,6 +30,7 @@ namespace DS4WinWPF.DS4Forms
         }
 
         private int deviceNum;
+        private event EventHandler DeviceNumChanged;
         private NonFormTimer readingTimer;
         private bool useTimer;
         private double lsDead;
@@ -113,6 +114,7 @@ namespace DS4WinWPF.DS4Forms
         public ControllerReadingsControl()
         {
             InitializeComponent();
+            inputContNum.Content = $"#{deviceNum+1}";
 
             readingTimer = new NonFormTimer();
             readingTimer.Interval = 1000 / 60.0;
@@ -121,6 +123,12 @@ namespace DS4WinWPF.DS4Forms
             RsDeadChanged += ChangeRsDeadControls;
             SixAxisDeadXChanged += ChangeSixAxisDeadControls;
             SixAxisDeadZChanged += ChangeSixAxisDeadControls;
+            DeviceNumChanged += ControllerReadingsControl_DeviceNumChanged;
+        }
+
+        private void ControllerReadingsControl_DeviceNumChanged(object sender, EventArgs e)
+        {
+            inputContNum.Content = $"#{deviceNum+1}";
         }
 
         private void ChangeSixAxisDeadControls(object sender, EventArgs e)
@@ -150,6 +158,7 @@ namespace DS4WinWPF.DS4Forms
         public void UseDevice(int index)
         {
             deviceNum = index;
+            DeviceNumChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public void EnableControl(bool state)

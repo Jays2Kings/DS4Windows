@@ -12,7 +12,8 @@
              d:DesignHeight="450" d:DesignWidth="430">
     <DockPanel LastChildFill="False">
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-            <Label x:Name="inputDelayLb" Content="Input Delay: N/A">
+            <Label x:Name="inputContNum" Content="#" FontWeight="Bold"/>
+            <Label x:Name="inputDelayLb" Content="Input Delay: N/A"  Margin="8,0,0,0">
                 <Label.Background>
                     <SolidColorBrush x:Name="inpuDelayBackBrush" Color="Transparent" />
                 </Label.Background>

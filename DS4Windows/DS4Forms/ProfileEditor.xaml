@@ -323,7 +323,7 @@
                     </DockPanel>
                 </DockPanel>
             </TabItem>
-            <TabItem x:Name="contReadingsTab" Header="Controller Readings">
+            <TabItem x:Name="contReadingsTab" Header="Controller Readings" IsEnabled="False">
                 <local:ControllerReadingsControl x:Name="conReadingsUserCon" />
             </TabItem>
         </TabControl>

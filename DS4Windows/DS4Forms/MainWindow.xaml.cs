@@ -1041,8 +1041,6 @@ Suspend support not enabled.", true);
         private async void UseUdpServerCk_Click(object sender, RoutedEventArgs e)
         {
             bool status = useUdpServerCk.IsChecked == true;
-            udpServerTxt.IsEnabled = status;
-            updPortNum.IsEnabled = status;
             if (!status)
             {
                 App.rootHub.ChangeMotionEventStatus(status);

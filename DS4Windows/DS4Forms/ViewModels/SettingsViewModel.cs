@@ -153,7 +153,18 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
         public event EventHandler CheckEveryUnitChanged;
-        public bool UseUDPServer { get => DS4Windows.Global.isUsingUDPServer(); set => DS4Windows.Global.setUsingUDPServer(value); }
+        public bool UseUDPServer
+        {
+            get => DS4Windows.Global.isUsingUDPServer();
+            set
+            {
+                if (DS4Windows.Global.isUsingUDPServer() == value) return;
+                DS4Windows.Global.setUsingUDPServer(value);
+                UseUDPServerChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler UseUDPServerChanged;
+
         public string UdpIpAddress { get => DS4Windows.Global.getUDPServerListenAddress();
             set => DS4Windows.Global.setUDPServerListenAddress(value); }
         public int UdpPort { get => DS4Windows.Global.getUDPServerPortNum(); set => DS4Windows.Global.setUDPServerPort(value); }

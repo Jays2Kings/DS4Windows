@@ -596,7 +596,7 @@ namespace DS4WinWPF.DS4Forms
             window.ShowDialog();
             mpControl.UpdateMappingName();
             UpdateHighlightLabel(mpControl);
-            Global.CacheExtraProfileInfo(profileSettingsVM.Device);
+            Global.cacheProfileCustomsFlags(profileSettingsVM.Device);
         }
 
         private void InputControlHighlight(Button control)
@@ -1241,7 +1241,7 @@ namespace DS4WinWPF.DS4Forms
             window.ShowDialog();
             mpControl.UpdateMappingName();
             UpdateHighlightLabel(mpControl);
-            Global.CacheExtraProfileInfo(profileSettingsVM.Device);
+            Global.cacheProfileCustomsFlags(profileSettingsVM.Device);
         }
 
         private void MappingListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -1276,7 +1276,7 @@ namespace DS4WinWPF.DS4Forms
             window.ShowDialog();
             mpControl.UpdateMappingName();
             UpdateHighlightLabel(mpControl);
-            Global.CacheExtraProfileInfo(profileSettingsVM.Device);
+            Global.cacheProfileCustomsFlags(profileSettingsVM.Device);
         }
 
         private void SwipeControlsButton_Click(object sender, RoutedEventArgs e)
@@ -1289,7 +1289,7 @@ namespace DS4WinWPF.DS4Forms
             window.ShowDialog();
             mpControl.UpdateMappingName();
             UpdateHighlightLabel(mpControl);
-            Global.CacheExtraProfileInfo(profileSettingsVM.Device);
+            Global.cacheProfileCustomsFlags(profileSettingsVM.Device);
         }
 
         private void ConBtn_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
@@ -1319,7 +1319,7 @@ namespace DS4WinWPF.DS4Forms
                     mpControl.UpdateMappingName();
                 }
 
-                Global.CacheExtraProfileInfo(profileSettingsVM.Device);
+                Global.cacheProfileCustomsFlags(profileSettingsVM.Device);
                 highlightControlDisplayLb.Content = "";
             }
         }

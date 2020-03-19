@@ -124,7 +124,7 @@ namespace DS4WinWPF.DS4Forms
 
         public void LateChecks(ArgumentParser parser)
         {
-            Task.Run(() =>
+            Task tempTask = Task.Run(() =>
             {
                 CheckDrivers();
                 if (!parser.Stop)
@@ -136,7 +136,9 @@ namespace DS4WinWPF.DS4Forms
                 UpdateTheUpdater();
             });
 
-            Task.Delay(100).ContinueWith((t) =>
+            Util.LogAssistBackgroundTask(tempTask);
+
+            tempTask = Task.Delay(100).ContinueWith((t) =>
             {
                 int checkwhen = Global.CheckWhen;
                 if (checkwhen > 0 && DateTime.Now >= Global.LastChecked + TimeSpan.FromHours(checkwhen))
@@ -147,6 +149,7 @@ namespace DS4WinWPF.DS4Forms
                     Global.LastChecked = DateTime.Now;
                 }
             });
+            Util.LogAssistBackgroundTask(tempTask);
         }
 
         private void DownloadUpstreamVersionInfo()

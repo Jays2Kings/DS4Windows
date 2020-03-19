@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security;
+using System.Threading.Tasks;
 using System.Text;
 
 namespace DS4Windows
@@ -153,6 +154,17 @@ namespace DS4Windows
                 using (Process temp = Process.Start(startInfo)) { }
             }
             catch { }
+        }
+
+        public static void LogAssistBackgroundTask(Task task)
+        {
+            task.ContinueWith((t) =>
+            {
+                if (t.IsFaulted)
+                {
+                    AppLogger.LogToGui(t.Exception.ToString(), true);
+                }
+            });
         }
     }
 }

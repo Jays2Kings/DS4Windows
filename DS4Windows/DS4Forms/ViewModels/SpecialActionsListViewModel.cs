@@ -121,9 +121,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
 
             Global.ProfileActions[deviceNum] = pactions;
-            Global.calculateProfileActionCount(deviceNum);
-            Global.calculateProfileActionDicts(deviceNum);
-            Global.cacheProfileCustomsFlags(deviceNum);
+            Global.CacheExtraProfileInfo(deviceNum);
         }
 
         public void RemoveAction(SpecialActionItem item)
@@ -131,9 +129,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             Global.RemoveAction(item.SpecialAction.name);
             actionCol.RemoveAt(specialActionIndex);
             Global.ProfileActions[deviceNum].Remove(item.SpecialAction.name);
-            Global.calculateProfileActionCount(deviceNum);
-            Global.calculateProfileActionDicts(deviceNum);
-            Global.cacheProfileCustomsFlags(deviceNum);
+            Global.CacheExtraProfileInfo(deviceNum);
         }
     }
 

@@ -2190,6 +2190,15 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         break;
                 }
             }
+            else if (baseTag == 8)
+            {
+                actionBtns.AddRange(new object[5]
+                {
+                    X360Controls.Unbound, X360Controls.Unbound,
+                    X360Controls.Unbound, X360Controls.Unbound,
+                    X360Controls.Unbound,
+                });
+            }
 
 
             switch (highlightControl)

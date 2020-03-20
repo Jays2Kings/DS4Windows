@@ -64,6 +64,7 @@
                                     <MenuItem Header="Inverted X" Tag="7" CommandParameter="2" Click="PresetMenuItem_Click" />
                                     <MenuItem Header="Inverted Y" Tag="7" CommandParameter="3" Click="PresetMenuItem_Click" />
                                 </MenuItem>
+                                <MenuItem Header="Unbound" Tag="8" Click="PresetMenuItem_Click" />
                             </ContextMenu>
                         </Canvas.Resources>
 

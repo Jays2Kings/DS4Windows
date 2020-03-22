@@ -26,13 +26,19 @@ namespace DS4Windows.DS4Library
             return vol;
         }
 
+        private DataFlow instAudioFlags = DataFlow.Render;
+
         public void RefreshVolume()
         {
             float pfLevel = 0;
 
             if (endpointVolume != null)
                 endpointVolume.GetMasterVolumeLevelScalar(out pfLevel);
-            vol = Convert.ToUInt32((75 - 20) * (--pfLevel * pfLevel * pfLevel + 1) + 20);
+
+            if (instAudioFlags == DataFlow.Render)
+                vol = Convert.ToUInt32((75 - 20) * (--pfLevel * pfLevel * pfLevel + 1) + 20);
+            else if (instAudioFlags == DataFlow.Capture)
+                vol = Convert.ToUInt32((60 - 0) * pfLevel + 0);
         }
 
         public void OnNotify(IntPtr pNotify)
@@ -60,6 +66,7 @@ namespace DS4Windows.DS4Library
                 {
                     object interfacePointer;
                     Marshal.ThrowExceptionForHR(audioDevice.Activate(ref IID_IAudioEndpointVolume, ClsCtx.ALL, IntPtr.Zero, out interfacePointer));
+                    instAudioFlags = audioFlags;
                     endpointVolume = interfacePointer as IAudioEndpointVolume;
                     endpointVolume.RegisterControlChangeNotify(this);
                 }

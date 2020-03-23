@@ -810,7 +810,7 @@ namespace DS4Windows
                     tempLatencyCount++;
 
                     //Latency = latencyQueue.Average();
-                    Latency = latencySum / tempLatencyCount;
+                    Latency = latencySum / (double)tempLatencyCount;
 
                     readWaitEv.Set();
 

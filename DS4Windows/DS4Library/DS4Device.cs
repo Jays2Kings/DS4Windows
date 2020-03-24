@@ -608,8 +608,10 @@ namespace DS4Windows
                 try
                 {
                     exitInputThread = true;
-                    //ds4Input.Abort();
-                    ds4Input.Join();
+                    if (ds4Input.ThreadState.HasFlag(System.Threading.ThreadState.WaitSleepJoin))
+                        ds4Input.Interrupt();
+                    else
+                        ds4Input.Join();
                 }
                 catch (Exception e)
                 {

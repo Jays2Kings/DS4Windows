@@ -688,6 +688,18 @@ namespace DS4Windows
             }
         }
 
+        public void PrepareAbort()
+        {
+            for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
+            {
+                DS4Device tempDevice = DS4Controllers[i];
+                if (tempDevice != null)
+                {
+                   tempDevice.PrepareAbort();
+                }
+            }
+        }
+
         public bool Stop(bool showlog = true)
         {
             if (running)

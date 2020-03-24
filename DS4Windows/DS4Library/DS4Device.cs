@@ -608,9 +608,8 @@ namespace DS4Windows
                 try
                 {
                     exitInputThread = true;
-                    if (ds4Input.ThreadState.HasFlag(System.Threading.ThreadState.WaitSleepJoin))
-                        ds4Input.Interrupt();
-                    else
+                    //ds4Input.Interrupt();
+                    if (!abortInputThread)
                         ds4Input.Join();
                 }
                 catch (Exception e)
@@ -1581,6 +1580,12 @@ namespace DS4Windows
         public static bool isValidSerial(string test)
         {
             return !test.Equals(blankSerial);
+        }
+
+        private bool abortInputThread = false;
+        public void PrepareAbort()
+        {
+            abortInputThread = true;
         }
     }
 }

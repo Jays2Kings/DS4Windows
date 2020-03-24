@@ -91,9 +91,9 @@
                                 <GridViewColumn x:Name="selectProfileColumn" Header="Selected Profile" Width="130">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <StackPanel Width="{Binding ElementName=selectProfileColumn, Path=Width}">
-                                                <ComboBox x:Name="selectProfCombo" Width="100" HorizontalAlignment="Center" DisplayMemberPath="Name"
-                                                          ItemsSource="{Binding ProfileListCol}" SelectedIndex="{Binding SelectedIndex}" Height="Auto" Tag="{Binding DevIndex, Mode=OneTime}" Margin="4,0"
+                                            <StackPanel Width="{Binding Path=Width, ElementName=selectProfileColumn, Mode=OneWay}" HorizontalAlignment="Center">
+                                                <ComboBox x:Name="selectProfCombo" Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=OneWay}"
+                                                          DisplayMemberPath="Name" ItemsSource="{Binding ProfileListCol}" SelectedIndex="{Binding SelectedIndex}" Height="Auto" Tag="{Binding DevIndex, Mode=OneTime}" Margin="0"
                                                           SelectionChanged="SelectProfCombo_SelectionChanged" KeyDown="SelectProfCombo_KeyDown" />
                                             </StackPanel>
                                         </DataTemplate>

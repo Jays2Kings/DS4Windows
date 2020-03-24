@@ -188,7 +188,7 @@ namespace DS4WinWPF
                 {
                     Dispatcher.Invoke(() =>
                     {
-                        rootHub.PrepareAbort();
+                        rootHub?.PrepareAbort();
                         CleanShutdown();
                     });
                 }

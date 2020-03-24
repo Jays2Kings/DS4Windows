@@ -188,7 +188,7 @@ namespace DS4WinWPF
                 {
                     Dispatcher.Invoke(() =>
                     {
-                        CleanShutdown(1);
+                        CleanShutdown();
                     });
                 }
             }
@@ -471,7 +471,7 @@ namespace DS4WinWPF
             CleanShutdown();
         }
 
-        private void CleanShutdown(int exitCode = 0)
+        private void CleanShutdown()
         {
             if (runShutdown)
             {
@@ -503,11 +503,6 @@ namespace DS4WinWPF
 
                 LogManager.Flush();
                 LogManager.Shutdown();
-
-                if (exitCode != 0)
-                {
-                    Current.Shutdown(exitCode);
-                }
             }
         }
     }

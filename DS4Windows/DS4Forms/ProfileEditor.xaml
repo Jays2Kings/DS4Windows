@@ -25,7 +25,7 @@
 
             </Button>
         </StackPanel>
-        <TabControl x:Name="sidebarTabControl" Width="440" DockPanel.Dock="Left" SelectionChanged="SidebarTabControl_SelectionChanged">
+        <TabControl x:Name="sidebarTabControl" Width="460" DockPanel.Dock="Left" SelectionChanged="SidebarTabControl_SelectionChanged">
             <TabItem Header="Controls">
                 <DockPanel Width="440" LastChildFill="False">
                     <DockPanel.Background>

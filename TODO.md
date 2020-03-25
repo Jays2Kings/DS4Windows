@@ -11,6 +11,6 @@
 * ~~Look into logging exceptions thrown in background threads~~
 * ~~Add mutex for controller input reader thread (better control
 Controller Readings display)~~
-* Add numeric data to Controller Readings tab
+* ~~Add numeric data to Controller Readings tab~~
 * ~~Look into making input delay display as a double. Check app performannce~~
 

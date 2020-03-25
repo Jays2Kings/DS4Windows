@@ -108,8 +108,9 @@ namespace DS4WinWPF.DS4Forms
 
         private LatencyWarnMode warnMode;
         private LatencyWarnMode prevWarnMode;
-        private const int canvasWidth = 130;
-        private const int canvasMidpoint = canvasWidth / 2;
+        private const int CANVAS_WIDTH = 130;
+        private const int CANVAS_MIDPOINT = CANVAS_WIDTH / 2;
+        private const double TRIG_LB_TRANSFORM_OFFSETY = 66.0;
 
         public ControllerReadingsControl()
         {
@@ -133,26 +134,26 @@ namespace DS4WinWPF.DS4Forms
 
         private void ChangeSixAxisDeadControls(object sender, EventArgs e)
         {
-            sixAxisDeadEllipse.Width = sixAxisXDead * canvasWidth;
-            sixAxisDeadEllipse.Height = sixAxisZDead * canvasWidth;
-            Canvas.SetLeft(sixAxisDeadEllipse, canvasMidpoint - (sixAxisXDead * canvasWidth / 2.0));
-            Canvas.SetTop(sixAxisDeadEllipse, canvasMidpoint - (sixAxisZDead * canvasWidth / 2.0));
+            sixAxisDeadEllipse.Width = sixAxisXDead * CANVAS_WIDTH;
+            sixAxisDeadEllipse.Height = sixAxisZDead * CANVAS_WIDTH;
+            Canvas.SetLeft(sixAxisDeadEllipse, CANVAS_MIDPOINT - (sixAxisXDead * CANVAS_WIDTH / 2.0));
+            Canvas.SetTop(sixAxisDeadEllipse, CANVAS_MIDPOINT - (sixAxisZDead * CANVAS_WIDTH / 2.0));
         }
 
         private void ChangeRsDeadControls(object sender, EventArgs e)
         {
-            rsDeadEllipse.Width = rsDead * canvasWidth;
-            rsDeadEllipse.Height = rsDead * canvasWidth;
-            Canvas.SetLeft(rsDeadEllipse, canvasMidpoint - (rsDead * canvasWidth / 2.0));
-            Canvas.SetTop(rsDeadEllipse, canvasMidpoint - (rsDead * canvasWidth / 2.0));
+            rsDeadEllipse.Width = rsDead * CANVAS_WIDTH;
+            rsDeadEllipse.Height = rsDead * CANVAS_WIDTH;
+            Canvas.SetLeft(rsDeadEllipse, CANVAS_MIDPOINT - (rsDead * CANVAS_WIDTH / 2.0));
+            Canvas.SetTop(rsDeadEllipse, CANVAS_MIDPOINT - (rsDead * CANVAS_WIDTH / 2.0));
         }
 
         private void ChangeLsDeadControls(object sender, EventArgs e)
         {
-            lsDeadEllipse.Width = lsDead * canvasWidth;
-            lsDeadEllipse.Height = lsDead * canvasWidth;
-            Canvas.SetLeft(lsDeadEllipse, canvasMidpoint - (lsDead * canvasWidth / 2.0));
-            Canvas.SetTop(lsDeadEllipse, canvasMidpoint - (lsDead * canvasWidth / 2.0));
+            lsDeadEllipse.Width = lsDead * CANVAS_WIDTH;
+            lsDeadEllipse.Height = lsDead * CANVAS_WIDTH;
+            Canvas.SetLeft(lsDeadEllipse, CANVAS_MIDPOINT - (lsDead * CANVAS_WIDTH / 2.0));
+            Canvas.SetTop(lsDeadEllipse, CANVAS_MIDPOINT - (lsDead * CANVAS_WIDTH / 2.0));
         }
 
         public void UseDevice(int index)
@@ -197,31 +198,31 @@ namespace DS4WinWPF.DS4Forms
                     int x = baseState.LX;
                     int y = baseState.LY;
 
-                    Canvas.SetLeft(lsValRec, x / 255.0 * canvasWidth - 3);
-                    Canvas.SetTop(lsValRec, y / 255.0 * canvasWidth - 3);
+                    Canvas.SetLeft(lsValRec, x / 255.0 * CANVAS_WIDTH - 3);
+                    Canvas.SetTop(lsValRec, y / 255.0 * CANVAS_WIDTH - 3);
                     //bool mappedLS = interState.LX != x || interState.LY != y;
                     //if (mappedLS)
                     //{
-                        Canvas.SetLeft(lsMapValRec, interState.LX / 255.0 * canvasWidth - 3);
-                        Canvas.SetTop(lsMapValRec, interState.LY / 255.0 * canvasWidth - 3);
+                        Canvas.SetLeft(lsMapValRec, interState.LX / 255.0 * CANVAS_WIDTH - 3);
+                        Canvas.SetTop(lsMapValRec, interState.LY / 255.0 * CANVAS_WIDTH - 3);
                     //}
 
                     x = baseState.RX;
                     y = baseState.RY;
-                    Canvas.SetLeft(rsValRec, x / 255.0 * canvasWidth - 3);
-                    Canvas.SetTop(rsValRec, y / 255.0 * canvasWidth - 3);
-                    Canvas.SetLeft(rsMapValRec, interState.RX / 255.0 * canvasWidth - 3);
-                    Canvas.SetTop(rsMapValRec, interState.RY / 255.0 * canvasWidth - 3);
+                    Canvas.SetLeft(rsValRec, x / 255.0 * CANVAS_WIDTH - 3);
+                    Canvas.SetTop(rsValRec, y / 255.0 * CANVAS_WIDTH - 3);
+                    Canvas.SetLeft(rsMapValRec, interState.RX / 255.0 * CANVAS_WIDTH - 3);
+                    Canvas.SetTop(rsMapValRec, interState.RY / 255.0 * CANVAS_WIDTH - 3);
 
                     x = exposeState.getAccelX() + 127;
                     y = exposeState.getAccelZ() + 127;
-                    Canvas.SetLeft(sixAxisValRec, x / 255.0 * canvasWidth - 3);
-                    Canvas.SetTop(sixAxisValRec, y / 255.0 * canvasWidth - 3);
-                    Canvas.SetLeft(sixAxisMapValRec, Math.Min(Math.Max(interState.Motion.outputAccelX + 127.0, 0), 255.0) / 255.0 * canvasWidth - 3);
-                    Canvas.SetTop(sixAxisMapValRec, Math.Min(Math.Max(interState.Motion.outputAccelZ + 127.0, 0), 255.0) / 255.0 * canvasWidth - 3);
+                    Canvas.SetLeft(sixAxisValRec, x / 255.0 * CANVAS_WIDTH - 3);
+                    Canvas.SetTop(sixAxisValRec, y / 255.0 * CANVAS_WIDTH - 3);
+                    Canvas.SetLeft(sixAxisMapValRec, Math.Min(Math.Max(interState.Motion.outputAccelX + 127.0, 0), 255.0) / 255.0 * CANVAS_WIDTH - 3);
+                    Canvas.SetTop(sixAxisMapValRec, Math.Min(Math.Max(interState.Motion.outputAccelZ + 127.0, 0), 255.0) / 255.0 * CANVAS_WIDTH - 3);
 
                     l2Slider.Value = baseState.L2;
-                    l2ValLbTrans.Y = Math.Min(interState.L2, Math.Max(0, 255)) / 255.0 * -70.0 + 77.0;
+                    l2ValLbTrans.Y = Math.Min(interState.L2, Math.Max(0, 255)) / 255.0 * -70.0 + TRIG_LB_TRANSFORM_OFFSETY;
                     if (interState.L2 >= 255)
                     {
                         l2ValLbBrush.Color = Colors.Green;
@@ -236,7 +237,7 @@ namespace DS4WinWPF.DS4Forms
                     }
 
                     r2Slider.Value = baseState.R2;
-                    r2ValLbTrans.Y = Math.Min(interState.R2, Math.Max(0, 255)) / 255.0 * -70.0 + 77.0;
+                    r2ValLbTrans.Y = Math.Min(interState.R2, Math.Max(0, 255)) / 255.0 * -70.0 + TRIG_LB_TRANSFORM_OFFSETY;
                     if (interState.R2 >= 255)
                     {
                         r2ValLbBrush.Color = Colors.Green;
@@ -283,6 +284,8 @@ namespace DS4WinWPF.DS4Forms
                     }
 
                     prevWarnMode = warnMode;
+
+                    UpdateCoordLabels(baseState, interState, exposeState);
                     ds.ReadWaitEv.Set();
                 });
             }
@@ -291,6 +294,30 @@ namespace DS4WinWPF.DS4Forms
             {
                 readingTimer.Start();
             }
+        }
+
+        private void UpdateCoordLabels(DS4State inState, DS4State mapState,
+            DS4StateExposed exposeState)
+        {
+            lxInValLb.Content = inState.LX;
+            lxOutValLb.Content = mapState.LX;
+            lyInValLb.Content = inState.LY;
+            lyOutValLb.Content = mapState.LY;
+
+            rxInValLb.Content = inState.RX;
+            rxOutValLb.Content = mapState.RX;
+            ryInValLb.Content = inState.RY;
+            ryOutValLb.Content = mapState.RY;
+
+            sixAxisXInValLb.Content = exposeState.AccelX;
+            sixAxisXOutValLb.Content = mapState.Motion.outputAccelX;
+            sixAxisZInValLb.Content = exposeState.AccelZ;
+            sixAxisZOutValLb.Content = mapState.Motion.outputAccelZ;
+
+            l2InValLb.Content = inState.L2;
+            l2OutValLb.Content = mapState.L2;
+            r2InValLb.Content = inState.R2;
+            r2OutValLb.Content = mapState.R2;
         }
     }
 }

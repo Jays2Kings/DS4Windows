@@ -9,7 +9,7 @@
              lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="430">
+             d:DesignHeight="450" d:DesignWidth="460">
     <DockPanel LastChildFill="False">
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
             <Label x:Name="inputContNum" Content="#" FontWeight="Bold"/>
@@ -22,7 +22,7 @@
                 </Label.Foreground>
             </Label>
         </StackPanel>
-        <Grid DockPanel.Dock="Top" Width="430" Margin="0,8,0,0">
+        <Grid DockPanel.Dock="Top" Width="450" Margin="0,8,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -42,6 +42,26 @@
                     <Rectangle x:Name="lsValRec" Width="6" Height="6" Canvas.Left="62" Canvas.Top="62" Fill="Black">
                     </Rectangle>
                 </Canvas>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="LX (I): " />
+                        <Label x:Name="lxInValLb" Content="" Width="30" Padding="2,5"  />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="LX (O): " />
+                        <Label x:Name="lxOutValLb" Content="" Width="30" Padding="2,5" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="LY (I): "/>
+                        <Label x:Name="lyInValLb" Content="" Width="30" Padding="2,5" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="LY (O): " />
+                        <Label x:Name="lyOutValLb" Content="" Width="30" />
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <Label Content="{lex:Loc RightStick}" HorizontalAlignment="Center" Padding="0"/>
@@ -58,6 +78,26 @@
                     <Rectangle x:Name="rsValRec" Width="6" Height="6" Canvas.Left="62" Canvas.Top="62" Fill="Black">
                     </Rectangle>
                 </Canvas>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="RX (I): "/>
+                        <Label x:Name="rxInValLb" Content="" Width="30" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="RX (O): "/>
+                        <Label x:Name="rxOutValLb" Content="" Width="30" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="RY (I): "/>
+                        <Label x:Name="ryInValLb" Content="" Width="30" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="RY (O): "/>
+                        <Label x:Name="ryOutValLb" Content="" Width="30" />
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
             <StackPanel Grid.Column="2">
                 <TextBlock Text="SixAxis: X Axis is flipped so it is easier to read" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"/>
@@ -73,6 +113,26 @@
                     <Rectangle x:Name="sixAxisValRec" Width="6" Height="6" Canvas.Left="62" Canvas.Top="62" Fill="Black">
                     </Rectangle>
                 </Canvas>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="X (I): "/>
+                        <Label x:Name="sixAxisXInValLb" Content="" Width="40" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="X (O): "/>
+                        <Label x:Name="sixAxisXOutValLb" Content="" Width="40" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Z (I): "/>
+                        <Label x:Name="sixAxisZInValLb" Content="" Width="40" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Z (O): "/>
+                        <Label x:Name="sixAxisZOutValLb" Content="" Width="40" />
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
         </Grid>
         <Grid DockPanel.Dock="Top" Margin="8,40,8,8">
@@ -80,32 +140,58 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1.75*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal" Height="100" Grid.Column="0" RenderTransformOrigin="0,0" HorizontalAlignment="Center">
-                <StackPanel Orientation="Horizontal" Margin="0,0,20,0">
-                    <Label x:Name="l2ValLb" Content="L2" Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1" Padding="0" Margin="0,0,4,0" >
-                        <Label.RenderTransform>
-                            <TransformGroup>
-                                <TranslateTransform x:Name="l2ValLbTrans" Y="77" />
-                            </TransformGroup>
-                        </Label.RenderTransform>
-                        <Label.Foreground>
-                            <SolidColorBrush x:Name="l2ValLbBrush" Color="Black" />
-                        </Label.Foreground>
-                    </Label>
-                    <Slider x:Name="l2Slider" Orientation="Vertical" Minimum="0" Maximum="255" Value="0" Height="80" Focusable="False" />
+            <StackPanel Orientation="Horizontal" MinHeight="100" Grid.Column="0" RenderTransformOrigin="0,0" HorizontalAlignment="Center">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,20,0">
+                        <Label x:Name="l2ValLb" Content="L2" Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1" Padding="0" Margin="0,0,4,0" >
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <TranslateTransform x:Name="l2ValLbTrans" Y="66" />
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                            <Label.Foreground>
+                                <SolidColorBrush x:Name="l2ValLbBrush" Color="Black" />
+                            </Label.Foreground>
+                        </Label>
+                        <Slider x:Name="l2Slider" Orientation="Vertical" Minimum="0" Maximum="255" Value="0" Height="80" Focusable="False" />
+                    </StackPanel>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="I: " Width="30" />
+                            <Label x:Name="l2InValLb" Content="" Width="30" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="O: " Width="30" />
+                            <Label x:Name="l2OutValLb" Content="" Width="30" />
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Slider x:Name="r2Slider" Orientation="Vertical" Minimum="0" Maximum="255" Value="0" Height="80" Focusable="False" />
-                    <Label x:Name="r2ValLb" Content="R2" Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1" Padding="0" Margin="0,0,4,0" >
-                        <Label.RenderTransform>
-                            <TransformGroup>
-                                <TranslateTransform x:Name="r2ValLbTrans" Y="77"/>
-                            </TransformGroup>
-                        </Label.RenderTransform>
-                        <Label.Foreground>
-                            <SolidColorBrush x:Name="r2ValLbBrush" Color="Black" />
-                        </Label.Foreground>
-                    </Label>
+
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Slider x:Name="r2Slider" Orientation="Vertical" Minimum="0" Maximum="255" Value="0" Height="80" Focusable="False" />
+                        <Label x:Name="r2ValLb" Content="R2" Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,1" Padding="0" Margin="0,0,4,0" >
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <TranslateTransform x:Name="r2ValLbTrans" Y="66"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                            <Label.Foreground>
+                                <SolidColorBrush x:Name="r2ValLbBrush" Color="Black" />
+                            </Label.Foreground>
+                        </Label>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="I: " Width="30" />
+                            <Label x:Name="r2InValLb" Content="" Width="30" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="O: " Width="30" />
+                            <Label x:Name="r2OutValLb" Content="" Width="30" />
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
             <Border BorderBrush="Black" Grid.Column="1" BorderThickness="1">

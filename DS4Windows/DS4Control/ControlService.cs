@@ -630,8 +630,8 @@ namespace DS4Windows
                 }
                 catch (Exception e)
                 {
-                    LogDebug(e.Message);
-                    AppLogger.LogToTray(e.Message);
+                    LogDebug(e.Message, true);
+                    AppLogger.LogToTray(e.Message, true);
                 }
 
                 running = true;

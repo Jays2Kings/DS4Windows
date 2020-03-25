@@ -30,13 +30,21 @@ namespace DS4Windows.DS4Library
 
         public void RefreshVolume()
         {
+            const float HALFPI = (float)Math.PI / 2.0f;
             float pfLevel = 0;
 
             if (endpointVolume != null)
                 endpointVolume.GetMasterVolumeLevelScalar(out pfLevel);
 
             if (instAudioFlags == DataFlow.Render)
-                vol = Convert.ToUInt32((75 - 20) * (--pfLevel * pfLevel * pfLevel + 1) + 20);
+                // Use QuadraticEaseOut curve for headphone volume level
+                //vol = pfLevel != 0.0 ? Convert.ToUInt32((80 - 30) * -(pfLevel * (pfLevel - 2.0)) + 30) : 0;
+                // Use SineEaseOut curve for headphone volume level
+                vol = pfLevel != 0.0 ? Convert.ToUInt32((80 - 30) * Math.Sin(pfLevel * HALFPI) + 30) : 0;
+                // Use CubicEaseOut curve for headphone volume level
+                //vol = pfLevel != 0.0 ?  Convert.ToUInt32((80 - 30) * (--pfLevel * pfLevel * pfLevel + 1) + 30) : 0;
+                // Use Linear curve for headphone volume level
+                //vol = pfLevel != 0.0 ? Convert.ToUInt32((80 - 30) * pfLevel + 30) : 0;
             else if (instAudioFlags == DataFlow.Capture)
                 vol = Convert.ToUInt32((60 - 0) * pfLevel + 0);
         }

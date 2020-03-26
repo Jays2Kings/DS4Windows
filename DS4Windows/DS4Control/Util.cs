@@ -160,6 +160,7 @@ namespace DS4Windows
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = "explorer.exe";
             startInfo.Arguments = tmpPath;
+            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
             try
             {
                 using (Process temp = Process.Start(startInfo)) { }

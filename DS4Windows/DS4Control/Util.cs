@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Threading.Tasks;
 using System.Text;
+using System.IO;
 
 namespace DS4Windows
 {
@@ -146,9 +147,19 @@ namespace DS4Windows
 
         public static void StartProcessInExplorer(string path)
         {
+            string tmpPath = Path.Combine(Path.GetTempPath(), "urlopener.bat");
+            // Create temporary bat script that Explorer will launch
+            using (StreamWriter w = new StreamWriter(new FileStream(tmpPath, FileMode.Create, FileAccess.Write)))
+            {
+                w.WriteLine("@echo off"); // Turn off echo
+                w.WriteLine($"@start \"\" /B /MIN \"{path}\""); // Launch URL
+                w.WriteLine("@DEL \"%~f0\""); // Attempt to delete myself without opening a time paradox.
+                w.Close();
+            }
+
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = "explorer.exe";
-            startInfo.Arguments = path;
+            startInfo.Arguments = tmpPath;
             try
             {
                 using (Process temp = Process.Start(startInfo)) { }

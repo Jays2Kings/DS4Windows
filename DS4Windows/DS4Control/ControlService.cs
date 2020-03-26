@@ -413,57 +413,58 @@ namespace DS4Windows
                     int devIndex = index;
                     tempDS4.cont.FeedbackReceived += (sender, args) =>
                     {
-                        bool useRumble = false; bool useLight = false;
+                        //bool useRumble = false; bool useLight = false;
                         byte largeMotor = args.LargeMotor;
                         byte smallMotor = args.SmallMotor;
-                        DS4Color color = new DS4Color(args.LightbarColor.Red,
-                                args.LightbarColor.Green,
-                                args.LightbarColor.Blue);
-                        /*Console.WriteLine("IN EVENT");
-                        Console.WriteLine("Rumble ({0}, {1}) | Light ({2}, {3}, {4}) {5}",
-                            largeMotor, smallMotor, color.red, color.green, color.blue, DateTime.Now.ToLongTimeString());
-                            */
-                        if (largeMotor != 0 || smallMotor != 0)
-                        {
-                            useRumble = true;
-                        }
+                        SetDevRumble(device, largeMotor, smallMotor, devIndex);
+                        //DS4Color color = new DS4Color(args.LightbarColor.Red,
+                        //        args.LightbarColor.Green,
+                        //        args.LightbarColor.Blue);
+                        ///*Console.WriteLine("IN EVENT");
+                        //Console.WriteLine("Rumble ({0}, {1}) | Light ({2}, {3}, {4}) {5}",
+                        //    largeMotor, smallMotor, color.red, color.green, color.blue, DateTime.Now.ToLongTimeString());
+                        //    */
+                        //if (largeMotor != 0 || smallMotor != 0)
+                        //{
+                        //    useRumble = true;
+                        //}
 
-                        if (color.red != 0 || color.green != 0 || color.blue != 0)
-                        {
-                            useLight = true;
-                        }
+                        //if (color.red != 0 || color.green != 0 || color.blue != 0)
+                        //{
+                        //    useLight = true;
+                        //}
 
-                        if (!useRumble && !useLight)
-                        {
-                            //Console.WriteLine("Fallback");
-                            if (device.LeftHeavySlowRumble != 0 || device.RightLightFastRumble != 0)
-                            {
-                                useRumble = true;
-                            }
-                            /*else if (device.LightBarColor.red != 0 ||
-                                device.LightBarColor.green != 0 ||
-                                device.LightBarColor.blue != 0)
-                            {
-                                useLight = true;
-                            }
-                            */
-                        }
+                        //if (!useRumble && !useLight)
+                        //{
+                        //    //Console.WriteLine("Fallback");
+                        //    if (device.LeftHeavySlowRumble != 0 || device.RightLightFastRumble != 0)
+                        //    {
+                        //        useRumble = true;
+                        //    }
+                        //    /*else if (device.LightBarColor.red != 0 ||
+                        //        device.LightBarColor.green != 0 ||
+                        //        device.LightBarColor.blue != 0)
+                        //    {
+                        //        useLight = true;
+                        //    }
+                        //    */
+                        //}
 
-                        if (useRumble)
-                        {
-                            //Console.WriteLine("Perform rumble");
-                            SetDevRumble(device, largeMotor, smallMotor, devIndex);
-                        }
+                        //if (useRumble)
+                        //{
+                        //    //Console.WriteLine("Perform rumble");
+                        //    SetDevRumble(device, largeMotor, smallMotor, devIndex);
+                        //}
 
-                        if (useLight)
-                        {
-                            //Console.WriteLine("Change lightbar color");
-                            DS4HapticState haptics = new DS4HapticState
-                            {
-                                LightBarColor = color,
-                            };
-                            device.SetHapticState(ref haptics);
-                        }
+                        //if (useLight)
+                        //{
+                        //    //Console.WriteLine("Change lightbar color");
+                        //    DS4HapticState haptics = new DS4HapticState
+                        //    {
+                        //        LightBarColor = color,
+                        //    };
+                        //    device.SetHapticState(ref haptics);
+                        //}
 
                         //Console.WriteLine();
                     };

@@ -1690,8 +1690,16 @@ namespace DS4Windows
 
         public static void cacheProfileCustomsFlags(int device)
         {
-            m_Config.containsCustomAction[device] = HasCustomActions(device);
+            bool customAct = false;
+            m_Config.containsCustomAction[device] = customAct = HasCustomActions(device);
             m_Config.containsCustomExtras[device] = HasCustomExtras(device);
+
+            if (!customAct)
+            {
+                customAct = m_Config.gyroOutMode[device] == GyroOutMode.MouseJoystick;
+                customAct = customAct || m_Config.sASteeringWheelEmulationAxis[device] >= SASteeringWheelEmulationAxisType.VJoy1X;
+                m_Config.containsCustomAction[device] = customAct;
+            }
         }
 
         public static void CacheExtraProfileInfo(int device)

@@ -651,9 +651,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     default: break;
                 }
 
+                GyroOutMode current = Global.GyroOutputMode[device];
+                if (temp == current) return;
                 Global.GyroOutputMode[device] = temp;
+                GyroOutModeIndexChanged?.Invoke(this, EventArgs.Empty);
             }
         }
+        public event EventHandler GyroOutModeIndexChanged;
 
         public OutContType ContType
         {
@@ -665,6 +669,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             get => (int)Global.SASteeringWheelEmulationAxis[device];
             set => Global.SASteeringWheelEmulationAxis[device] = (SASteeringWheelEmulationAxisType)value;
         }
+        public event EventHandler SASteeringWheelEmulationAxisIndexChanged;
 
         private int[] saSteeringRangeValues =
             new int[9] { 90, 180, 270, 360, 450, 720, 900, 1080, 1440 };
@@ -1561,6 +1566,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             {
                 DS4WinLightVisibleChanged?.Invoke(this, EventArgs.Empty);
             };
+
+            GyroOutModeIndexChanged += CalcProfileFlags;
+            SASteeringWheelEmulationAxisIndexChanged += CalcProfileFlags;
+        }
+
+        private void CalcProfileFlags(object sender, EventArgs e)
+        {
+            Global.cacheProfileCustomsFlags(device);
         }
 
         private void ProfileSettingsViewModel_MainColorChanged(object sender, EventArgs e)

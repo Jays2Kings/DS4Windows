@@ -1319,8 +1319,7 @@ namespace DS4Windows
 
                 if (!recordingMacro && (useTempProfile[ind] ||
                     containsCustomAction(ind) || containsCustomExtras(ind) ||
-                    getProfileActionCount(ind) > 0 ||
-                    GetSASteeringWheelEmulationAxis(ind) >= SASteeringWheelEmulationAxisType.VJoy1X))
+                    getProfileActionCount(ind) > 0))
                 {
                     Mapping.MapCustom(ind, cState, MappedState[ind], ExposedState[ind], touchPad[ind], this);
                     cState = MappedState[ind];

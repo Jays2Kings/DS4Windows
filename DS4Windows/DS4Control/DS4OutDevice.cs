@@ -15,6 +15,7 @@ namespace DS4Windows
 
         public DualShock4Controller cont;
         private DualShock4Report report;
+        public DualShock4FeedbackReceivedEventHandler forceFeedbackCall;
 
         public DS4OutDevice(ViGEmClient client)
         {
@@ -141,7 +142,18 @@ namespace DS4Windows
         }
 
         public override void Connect() => cont.Connect();
-        public override void Disconnect() => cont.Disconnect();
+        public override void Disconnect()
+        {
+            if (forceFeedbackCall != null)
+            {
+                cont.FeedbackReceived -= forceFeedbackCall;
+                forceFeedbackCall = null;
+            }
+
+            cont.Disconnect();
+            cont.Dispose();
+            cont = null;
+        }
         public override string GetDeviceType() => devtype;
     }
 }

@@ -393,10 +393,12 @@ namespace DS4Windows
                         as Xbox360OutDevice;
                     //outputDevices[index] = tempXbox;
                     int devIndex = index;
-                    tempXbox.cont.FeedbackReceived += (sender, args) =>
-                    {
-                        SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
-                    };
+                    Nefarius.ViGEm.Client.Targets.Xbox360FeedbackReceivedEventHandler p = (sender, args) =>
+                       {
+                           SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
+                       };
+                    tempXbox.cont.FeedbackReceived += p;
+                    tempXbox.forceFeedbackCall = p;
 
                     outputslotMan.DeferredPlugin(tempXbox, index, outputDevices);
                     //tempXbox.Connect();
@@ -411,12 +413,12 @@ namespace DS4Windows
                         as DS4OutDevice;
                     //outputDevices[index] = tempDS4;
                     int devIndex = index;
-                    tempDS4.cont.FeedbackReceived += (sender, args) =>
-                    {
+                    Nefarius.ViGEm.Client.Targets.DualShock4FeedbackReceivedEventHandler p = (sender, args) =>
+                       {
                         //bool useRumble = false; bool useLight = false;
                         byte largeMotor = args.LargeMotor;
-                        byte smallMotor = args.SmallMotor;
-                        SetDevRumble(device, largeMotor, smallMotor, devIndex);
+                           byte smallMotor = args.SmallMotor;
+                           SetDevRumble(device, largeMotor, smallMotor, devIndex);
                         //DS4Color color = new DS4Color(args.LightbarColor.Red,
                         //        args.LightbarColor.Green,
                         //        args.LightbarColor.Blue);
@@ -468,6 +470,8 @@ namespace DS4Windows
 
                         //Console.WriteLine();
                     };
+                    tempDS4.cont.FeedbackReceived += p;
+                    tempDS4.forceFeedbackCall = p;
 
                     outputslotMan.DeferredPlugin(tempDS4, index, outputDevices);
                     //tempDS4.Connect();

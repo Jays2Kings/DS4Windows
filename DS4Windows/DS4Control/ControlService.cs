@@ -718,6 +718,7 @@ namespace DS4Windows
 
                 LogDebug("Closing connection to ViGEmBus");
 
+                bool anyUnplugged = false;
                 for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
                 {
                     DS4Device tempDevice = DS4Controllers[i];
@@ -757,6 +758,7 @@ namespace DS4Windows
                         if (tempout != null)
                         {
                             UnplugOutDev(i, tempDevice, true);
+                            anyUnplugged = true;
                         }
 
                         //outputDevices[i] = null;
@@ -785,6 +787,11 @@ namespace DS4Windows
                 while (outputslotMan.RunningQueue)
                 {
                     Thread.SpinWait(500);
+                }
+
+                if (anyUnplugged)
+                {
+                    Thread.Sleep(OutputSlotManager.DELAY_TIME);
                 }
 
                 stopViGEm();

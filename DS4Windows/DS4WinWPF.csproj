@@ -253,6 +253,7 @@
     <Compile Include="DS4Library\DS4State.cs" />
     <Compile Include="DS4Library\DS4StateExposed.cs" />
     <Compile Include="DS4Library\DS4Touchpad.cs" />
+    <Compile Include="DS4Lightgun.cs" />
     <Compile Include="HidLibrary\Extensions.cs" />
     <Compile Include="HidLibrary\HidDevice.cs" />
     <Compile Include="HidLibrary\HidDeviceAttributes.cs" />

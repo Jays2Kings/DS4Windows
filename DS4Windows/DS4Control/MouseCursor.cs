@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace DS4Windows
 {
@@ -33,6 +34,7 @@ namespace DS4Windows
         private int gyroCursorDeadZone = GYRO_MOUSE_DEADZONE;
         public int GyroCursorDeadZone { get => gyroCursorDeadZone; set => gyroCursorDeadZone = value; }
 
+        Point lastMouseMovementXY = new Point(0, 0);
 
         double coefficient = 0.0;
         double verticalScale = 0.0;
@@ -175,11 +177,18 @@ namespace DS4Windows
             if ((gyroInvert & 0x01) == 1)
                 yAction *= -1;
 
-            if (yAction != 0 || xAction != 0)
-                InputMethods.MoveCursorBy(xAction, yAction);
-
+            if (!DS4Lightgun.SET_R2_AS_LIGHTGUN) {
+                if (yAction != 0 || xAction != 0)
+                    InputMethods.MoveCursorBy(xAction, yAction);
+            }
             hDirection = xMotion > 0.0 ? Direction.Positive : xMotion < 0.0 ? Direction.Negative : Direction.Neutral;
             vDirection = yMotion > 0.0 ? Direction.Positive : yMotion < 0.0 ? Direction.Negative : Direction.Neutral;
+
+            lastMouseMovementXY = new Point(xAction, yAction);
+        }
+
+        public Point GetLastMouseMovementXY() {
+            return lastMouseMovementXY;
         }
 
         public void mouseRemainderReset()

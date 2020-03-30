@@ -3036,6 +3036,13 @@ namespace DS4Windows
         public bool LoadProfile(int device, bool launchprogram, ControlService control,
             string propath = "", bool xinputChange = true, bool postLoad = true)
         {
+            if (profilePath[device] == "Light Gun") {
+                DS4Lightgun.SetLightgunProfileLoaded(true);
+            }
+            else {
+                DS4Lightgun.SetLightgunProfileLoaded(false);
+            }
+
             bool Loaded = true;
             Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
             Dictionary<DS4Controls, UInt16> customMapKeys = new Dictionary<DS4Controls, UInt16>();

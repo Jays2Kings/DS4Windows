@@ -559,6 +559,8 @@ namespace DS4Windows
 
                         touchPad[i] = new Mouse(i, device);
 
+                        device.SetMouseProxy(touchPad[i]);
+
                         if (!useTempProfile[i])
                         {
                             if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
@@ -853,6 +855,8 @@ namespace DS4Windows
                             device.ChargingChanged += CheckQuickCharge;
 
                             touchPad[Index] = new Mouse(Index, device);
+
+                            device.SetMouseProxy(touchPad[Index]);
 
                             if (!useTempProfile[Index])
                             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace DS4Windows
 {
@@ -56,6 +57,10 @@ namespace DS4Windows
         public void ResetTrackAccel(double friction)
         {
             trackballAccel = TRACKBALL_RADIUS * friction / TRACKBALL_INERTIA;
+        }
+
+        public Point GetLastMouseMovementXY() {
+            return cursor.GetLastMouseMovementXY();
         }
 
         public void ResetToggleGyroM()

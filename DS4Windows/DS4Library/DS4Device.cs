@@ -150,6 +150,12 @@ namespace DS4Windows
             return warnInterval;
         }
 
+        private Point lastMousePositionXY = new Point(128, 128);
+        private Mouse mouse = null;
+        public void SetMouseProxy(Mouse mouse) {
+            this.mouse = mouse;
+        }
+
         public Int32 wheelPrevPhysicalAngle = 0;
         public Int32 wheelPrevFullAngle = 0;
         public Int32 wheelFullTurnCount = 0;
@@ -918,10 +924,45 @@ namespace DS4Windows
 
                     cState.PacketCounter = pState.PacketCounter + 1;
                     cState.ReportTimeStamp = utcNow;
+
+                    if (DS4Lightgun.SET_R2_AS_LIGHTGUN && mouse != null) {
+
+                        if (DS4Lightgun.RECENTER_LIGHTGUN_WITH_CROSS_BTN && cState.Cross) {
+                            lastMousePositionXY.X = cState.RX = Convert.ToByte(128);
+                            lastMousePositionXY.Y = cState.RY = Convert.ToByte(128);
+                        }
+                        else {
+  
+                            int newX = DS4Lightgun.Clamp(
+                                lastMousePositionXY.X + mouse.GetLastMouseMovementXY().X
+                            );
+                            if (mouse.GetLastMouseMovementXY().X != 0) {
+                                cState.RX = Convert.ToByte(newX);
+                            }
+                            else {
+                                cState.RX = Convert.ToByte(lastMousePositionXY.X);
+                            }
+                            lastMousePositionXY.X = Convert.ToInt32(cState.RX);
+
+                            int newY = DS4Lightgun.Clamp(
+                               lastMousePositionXY.Y + mouse.GetLastMouseMovementXY().Y
+                            );
+                            if (mouse.GetLastMouseMovementXY().Y != 0) {
+                                cState.RY = Convert.ToByte(newY);
+                            }
+                            else {
+                                cState.RY = Convert.ToByte(lastMousePositionXY.Y);
+                            }
+                            lastMousePositionXY.Y = Convert.ToInt32(cState.RY);
+                        }
+                    }
+                    else {
+                        cState.RX = inputReport[3];
+                        cState.RY = inputReport[4];
+                    }
+                    // ss
                     cState.LX = inputReport[1];
                     cState.LY = inputReport[2];
-                    cState.RX = inputReport[3];
-                    cState.RY = inputReport[4];
                     cState.L2 = inputReport[8];
                     cState.R2 = inputReport[9];
 

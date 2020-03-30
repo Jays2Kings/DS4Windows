@@ -17,6 +17,7 @@ using Microsoft.Win32;
 using NonFormTimer = System.Timers.Timer;
 using DS4WinWPF.DS4Forms.ViewModels;
 using DS4Windows;
+using System.Diagnostics;
 
 namespace DS4WinWPF.DS4Forms
 {

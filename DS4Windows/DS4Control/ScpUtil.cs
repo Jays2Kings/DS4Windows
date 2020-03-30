@@ -5016,7 +5016,8 @@ namespace DS4Windows
                     }
 
                     tempDev.RumbleAutostopTime = rumbleAutostopTime[device];
-                    tempDev.setRumble(0, 0);                    
+                    tempDev.setRumble(0, 0);
+                    tempDev.LightBarColor = Global.getMainColor(device);
                 });
 
                 Program.rootHub.touchPad[device]?.ResetTrackAccel(trackballFriction[device]);

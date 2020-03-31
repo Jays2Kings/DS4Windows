@@ -429,6 +429,9 @@ namespace DS4Windows
             return runCalib;
         }
 
+        private ManualResetEventSlim readWaitEv = new ManualResetEventSlim();
+        public ManualResetEventSlim ReadWaitEv { get => readWaitEv; }
+
         public DS4Device(HidDevice hidDevice, string disName)
         {
             hDevice = hidDevice;
@@ -605,8 +608,9 @@ namespace DS4Windows
                 try
                 {
                     exitInputThread = true;
-                    //ds4Input.Abort();
-                    ds4Input.Join();
+                    //ds4Input.Interrupt();
+                    if (!abortInputThread)
+                        ds4Input.Join();
                 }
                 catch (Exception e)
                 {
@@ -807,7 +811,9 @@ namespace DS4Windows
                     tempLatencyCount++;
 
                     //Latency = latencyQueue.Average();
-                    Latency = latencySum / tempLatencyCount;
+                    Latency = latencySum / (double)tempLatencyCount;
+
+                    readWaitEv.Set();
 
                     if (conType == ConnectionType.BT)
                     {
@@ -892,6 +898,9 @@ namespace DS4Windows
                             return;
                         }
                     }
+
+                    readWaitEv.Wait();
+                    readWaitEv.Reset();
 
                     curtime = Stopwatch.GetTimestamp();
                     testelapsed = curtime - oldtime;
@@ -1571,6 +1580,12 @@ namespace DS4Windows
         public static bool isValidSerial(string test)
         {
             return !test.Equals(blankSerial);
+        }
+
+        private bool abortInputThread = false;
+        public void PrepareAbort()
+        {
+            abortInputThread = true;
         }
     }
 }

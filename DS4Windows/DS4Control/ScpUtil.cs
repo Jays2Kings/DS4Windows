@@ -1690,8 +1690,23 @@ namespace DS4Windows
 
         public static void cacheProfileCustomsFlags(int device)
         {
-            m_Config.containsCustomAction[device] = HasCustomActions(device);
+            bool customAct = false;
+            m_Config.containsCustomAction[device] = customAct = HasCustomActions(device);
             m_Config.containsCustomExtras[device] = HasCustomExtras(device);
+
+            if (!customAct)
+            {
+                customAct = m_Config.gyroOutMode[device] == GyroOutMode.MouseJoystick;
+                customAct = customAct || m_Config.sASteeringWheelEmulationAxis[device] >= SASteeringWheelEmulationAxisType.VJoy1X;
+                m_Config.containsCustomAction[device] = customAct;
+            }
+        }
+
+        public static void CacheExtraProfileInfo(int device)
+        {
+            calculateProfileActionCount(device);
+            calculateProfileActionDicts(device);
+            cacheProfileCustomsFlags(device);
         }
 
         public static X360Controls getX360ControlsByName(string key)
@@ -3928,9 +3943,9 @@ namespace DS4Windows
             containsCustomAction[device] = HasCustomActions(device);
             containsCustomExtras[device] = HasCustomExtras(device);
 
-            if (device < 4)
+            if (device < 4 && control.touchPad[device] != null)
             {
-                Program.rootHub.touchPad[device]?.ResetToggleGyroM();
+                control.touchPad[device]?.ResetToggleGyroM();
                 GyroOutMode currentGyro = gyroOutMode[device];
                 if (currentGyro == GyroOutMode.Mouse)
                 {
@@ -5044,7 +5059,8 @@ namespace DS4Windows
                     }
 
                     tempDev.RumbleAutostopTime = rumbleAutostopTime[device];
-                    tempDev.setRumble(0, 0);                    
+                    tempDev.setRumble(0, 0);
+                    tempDev.LightBarColor = Global.getMainColor(device);
                 });
 
                 Program.rootHub.touchPad[device]?.ResetTrackAccel(trackballFriction[device]);

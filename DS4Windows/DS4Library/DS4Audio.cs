@@ -26,13 +26,27 @@ namespace DS4Windows.DS4Library
             return vol;
         }
 
+        private DataFlow instAudioFlags = DataFlow.Render;
+
         public void RefreshVolume()
         {
+            const float HALFPI = (float)Math.PI / 2.0f;
             float pfLevel = 0;
 
             if (endpointVolume != null)
                 endpointVolume.GetMasterVolumeLevelScalar(out pfLevel);
-            vol = Convert.ToUInt32((75 - 20) * (--pfLevel * pfLevel * pfLevel + 1) + 20);
+
+            if (instAudioFlags == DataFlow.Render)
+                // Use QuadraticEaseOut curve for headphone volume level
+                //vol = pfLevel != 0.0 ? Convert.ToUInt32((80 - 30) * -(pfLevel * (pfLevel - 2.0)) + 30) : 0;
+                // Use SineEaseOut curve for headphone volume level
+                vol = pfLevel != 0.0 ? Convert.ToUInt32((80 - 30) * Math.Sin(pfLevel * HALFPI) + 30) : 0;
+                // Use CubicEaseOut curve for headphone volume level
+                //vol = pfLevel != 0.0 ?  Convert.ToUInt32((80 - 30) * (--pfLevel * pfLevel * pfLevel + 1) + 30) : 0;
+                // Use Linear curve for headphone volume level
+                //vol = pfLevel != 0.0 ? Convert.ToUInt32((80 - 30) * pfLevel + 30) : 0;
+            else if (instAudioFlags == DataFlow.Capture)
+                vol = Convert.ToUInt32((60 - 0) * pfLevel + 0);
         }
 
         public void OnNotify(IntPtr pNotify)
@@ -60,6 +74,7 @@ namespace DS4Windows.DS4Library
                 {
                     object interfacePointer;
                     Marshal.ThrowExceptionForHR(audioDevice.Activate(ref IID_IAudioEndpointVolume, ClsCtx.ALL, IntPtr.Zero, out interfacePointer));
+                    instAudioFlags = audioFlags;
                     endpointVolume = interfacePointer as IAudioEndpointVolume;
                     endpointVolume.RegisterControlChangeNotify(this);
                 }

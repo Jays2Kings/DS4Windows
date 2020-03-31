@@ -279,6 +279,8 @@ namespace DS4Windows
             {
                 double verticalScale = msinfo.vertScale * 0.01;
                 deltaY = (int)(deltaY * verticalScale);
+                deltaY = (deltaY < 0 && deltaY < maxValY) ? maxValY :
+                    (deltaY > 0 && deltaY > maxValY) ? maxValY : deltaY;
             }
 
             if (deltaX != 0) xratio = deltaX / (double)maxValX;

@@ -65,39 +65,9 @@ namespace DS4WinWPF.DS4Forms
             profileSettingsVM = new ProfileSettingsViewModel(device);
             picBoxHover.Visibility = Visibility.Hidden;
             picBoxHover2.Visibility = Visibility.Hidden;
-            bool touchMouse = profileSettingsVM.UseTouchMouse;
-            if (!touchMouse)
-            {
-                useMousePanel.Visibility = Visibility.Collapsed;
-                useControlsPanel.Visibility = Visibility.Visible;
-                useTouchControlsRadio.IsChecked = true;
-            }
-            else
-            {
-                useTouchMouseRadio.IsChecked = true;
-            }
-            
-            //useControlsPanel.Visibility = !touchMouse ? Visibility.Visible : Visibility.Collapsed;
-            activeTouchPanel = touchMouse ? useMousePanel : useControlsPanel;
-            //activeTouchPanel = useMousePanel;
 
-            switch (profileSettingsVM.GyroOutModeIndex)
-            {
-                case 0:
-                    activeGyroModePanel = gyroControlsPanel; break;
-                case 1:
-                    activeGyroModePanel = gyroMousePanel; break;
-                case 2:
-                    activeGyroModePanel = gyroMouseJoystickPanel; break;
-                default:
-                    activeGyroModePanel = gyroControlsPanel; break;
-            }
-
-            //activeGyroModePanel = gyroControlsPanel;
-            gyroControlsPanel.Visibility = Visibility.Collapsed;
-            gyroMousePanel.Visibility = Visibility.Collapsed;
-            gyroMouseJoystickPanel.Visibility = Visibility.Collapsed;
-            activeGyroModePanel.Visibility = Visibility.Visible;
+            //SetTouchpadPanel();
+            //SetupGyroPanel();
 
             mappingListVM = new MappingListViewModel(deviceNum, profileSettingsVM.ContType);
             specialActionsVM = new SpecialActionsListViewModel(device);
@@ -129,6 +99,48 @@ namespace DS4WinWPF.DS4Forms
             profileSettingsVM.R2DeadZoneChanged += UpdateReadingsR2DeadZone;
             profileSettingsVM.SXDeadZoneChanged += UpdateReadingsSXDeadZone;
             profileSettingsVM.SZDeadZoneChanged += UpdateReadingsSZDeadZone;
+        }
+
+        private void SetTouchpadPanel()
+        {
+            bool touchMouse = profileSettingsVM.UseTouchMouse;
+            if (!touchMouse)
+            {
+                useMousePanel.Visibility = Visibility.Collapsed;
+                useControlsPanel.Visibility = Visibility.Visible;
+                useTouchControlsRadio.IsChecked = true;
+            }
+            else
+            {
+                useMousePanel.Visibility = Visibility.Visible;
+                useControlsPanel.Visibility = Visibility.Collapsed;
+                useTouchMouseRadio.IsChecked = true;
+            }
+
+            //useControlsPanel.Visibility = !touchMouse ? Visibility.Visible : Visibility.Collapsed;
+            activeTouchPanel = touchMouse? useMousePanel : useControlsPanel;
+            //activeTouchPanel = useMousePanel;
+        }
+
+        private void SetupGyroPanel()
+        {
+            switch (profileSettingsVM.GyroOutModeIndex)
+            {
+                case 0:
+                    activeGyroModePanel = gyroControlsPanel; break;
+                case 1:
+                    activeGyroModePanel = gyroMousePanel; break;
+                case 2:
+                    activeGyroModePanel = gyroMouseJoystickPanel; break;
+                default:
+                    activeGyroModePanel = gyroControlsPanel; break;
+            }
+
+            //activeGyroModePanel = gyroControlsPanel;
+            gyroControlsPanel.Visibility = Visibility.Collapsed;
+            gyroMousePanel.Visibility = Visibility.Collapsed;
+            gyroMouseJoystickPanel.Visibility = Visibility.Collapsed;
+            activeGyroModePanel.Visibility = Visibility.Visible;
         }
 
         private void UpdateReadingsSZDeadZone(object sender, EventArgs e)
@@ -527,11 +539,13 @@ namespace DS4WinWPF.DS4Forms
             {
                 useControllerUD.Value = device + 1;
                 conReadingsUserCon.UseDevice(device);
+                contReadingsTab.IsEnabled = true;
             }
             else
             {
                 useControllerUD.Value = 1;
                 conReadingsUserCon.UseDevice(0);
+                contReadingsTab.IsEnabled = false;
             }
 
             conReadingsUserCon.EnableControl(false);
@@ -547,6 +561,8 @@ namespace DS4WinWPF.DS4Forms
             mappingListBox.DataContext = mappingListVM;
             specialActionsTab.DataContext = specialActionsVM;
             lightbarRect.DataContext = profileSettingsVM;
+            SetTouchpadPanel();
+            SetupGyroPanel();
 
             conReadingsUserCon.LsDead = profileSettingsVM.LSDeadZone;
             conReadingsUserCon.RsDead = profileSettingsVM.RSDeadZone;
@@ -567,8 +583,8 @@ namespace DS4WinWPF.DS4Forms
             {
                 App.rootHub.setRumble(0, 0, profileSettingsVM.FuncDevNum);
             }
-            DS4Windows.Global.outDevTypeTemp[deviceNum] = DS4Windows.OutContType.X360;
-            DS4Windows.Global.LoadProfile(deviceNum, false, App.rootHub);
+            Global.outDevTypeTemp[deviceNum] = OutContType.X360;
+            Global.LoadProfile(deviceNum, false, App.rootHub);
             Closed?.Invoke(this, EventArgs.Empty);
         }
 
@@ -580,6 +596,7 @@ namespace DS4WinWPF.DS4Forms
             window.ShowDialog();
             mpControl.UpdateMappingName();
             UpdateHighlightLabel(mpControl);
+            Global.cacheProfileCustomsFlags(profileSettingsVM.Device);
         }
 
         private void InputControlHighlight(Button control)
@@ -688,9 +705,9 @@ namespace DS4WinWPF.DS4Forms
 
         private void SetLateProperties()
         {
-            DS4Windows.Global.BTPollRate[deviceNum] = profileSettingsVM.TempBTPollRateIndex;
-            DS4Windows.Global.OutContType[deviceNum] = profileSettingsVM.TempConType;
-            DS4Windows.Global.outDevTypeTemp[deviceNum] = DS4Windows.OutContType.X360;
+            Global.BTPollRate[deviceNum] = profileSettingsVM.TempBTPollRateIndex;
+            Global.OutContType[deviceNum] = profileSettingsVM.TempConType;
+            Global.outDevTypeTemp[deviceNum] = OutContType.X360;
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
@@ -730,9 +747,6 @@ namespace DS4WinWPF.DS4Forms
                     if (!File.Exists(tempprof))
                     {
                         Global.SaveProfile(deviceNum, temp);
-                        Global.calculateProfileActionCount(deviceNum);
-                        Global.calculateProfileActionDicts(deviceNum);
-                        Global.cacheProfileCustomsFlags(deviceNum);
                         CreatedProfile?.Invoke(this, temp);
                         Closed?.Invoke(this, EventArgs.Empty);
                     }
@@ -1059,6 +1073,7 @@ namespace DS4WinWPF.DS4Forms
                 baseSpeActPanel.Visibility = Visibility.Visible;
 
                 specialActionsVM.ExportEnabledActions();
+                Global.CacheExtraProfileInfo(profileSettingsVM.Device);
             };
         }
 
@@ -1087,6 +1102,7 @@ namespace DS4WinWPF.DS4Forms
                     specialActionsVM.ActionCol.Insert(currentIndex, newitem);
                     specialActionDockPanel.Children.Remove(actEditor);
                     baseSpeActPanel.Visibility = Visibility.Visible;
+                    Global.CacheExtraProfileInfo(profileSettingsVM.Device);
                 };
             }
         }
@@ -1097,6 +1113,7 @@ namespace DS4WinWPF.DS4Forms
             {
                 SpecialActionItem item = specialActionsVM.ActionCol[specialActionsVM.SpecialActionIndex];
                 specialActionsVM.RemoveAction(item);
+                Global.CacheExtraProfileInfo(profileSettingsVM.Device);
             }
         }
 
@@ -1201,6 +1218,7 @@ namespace DS4WinWPF.DS4Forms
             profileSettingsVM.UseControllerReadout = false;
             inputTimer.Stop();
             conReadingsUserCon.EnableControl(false);
+            Global.CacheExtraProfileInfo(profileSettingsVM.Device);
         }
 
         private void UseControllerReadoutCk_Click(object sender, RoutedEventArgs e)
@@ -1223,6 +1241,7 @@ namespace DS4WinWPF.DS4Forms
             window.ShowDialog();
             mpControl.UpdateMappingName();
             UpdateHighlightLabel(mpControl);
+            Global.cacheProfileCustomsFlags(profileSettingsVM.Device);
         }
 
         private void MappingListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -1257,6 +1276,7 @@ namespace DS4WinWPF.DS4Forms
             window.ShowDialog();
             mpControl.UpdateMappingName();
             UpdateHighlightLabel(mpControl);
+            Global.cacheProfileCustomsFlags(profileSettingsVM.Device);
         }
 
         private void SwipeControlsButton_Click(object sender, RoutedEventArgs e)
@@ -1269,6 +1289,7 @@ namespace DS4WinWPF.DS4Forms
             window.ShowDialog();
             mpControl.UpdateMappingName();
             UpdateHighlightLabel(mpControl);
+            Global.cacheProfileCustomsFlags(profileSettingsVM.Device);
         }
 
         private void ConBtn_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
@@ -1298,6 +1319,7 @@ namespace DS4WinWPF.DS4Forms
                     mpControl.UpdateMappingName();
                 }
 
+                Global.cacheProfileCustomsFlags(profileSettingsVM.Device);
                 highlightControlDisplayLb.Content = "";
             }
         }

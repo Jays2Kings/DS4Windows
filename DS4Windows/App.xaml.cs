@@ -128,6 +128,7 @@ namespace DS4WinWPF
 
             logHolder = new LoggerHolder(rootHub);
             DispatcherUnhandledException += App_DispatcherUnhandledException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Logger logger = logHolder.Logger;
             string version = DS4Windows.Global.exeversion;
             logger.Info($"DS4Windows version {version}");
@@ -171,6 +172,27 @@ namespace DS4WinWPF
             window.CheckMinStatus();
             rootHub.LaunchHidGuardHelper();
             window.LateChecks(parser);
+        }
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            if (!Current.Dispatcher.CheckAccess())
+            {
+                Logger logger = logHolder.Logger;
+                Exception exp = e.ExceptionObject as Exception;
+                logger.Error($"Thread App Crashed with message {exp.Message}");
+                logger.Error(exp.ToString());
+                //LogManager.Flush();
+                //LogManager.Shutdown();
+                if (e.IsTerminating)
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        rootHub?.PrepareAbort();
+                        CleanShutdown();
+                    });
+                }
+            }
         }
 
         private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
@@ -458,7 +480,8 @@ namespace DS4WinWPF
                 {
                     Task.Run(() =>
                     {
-                        rootHub.Stop();
+                        if (rootHub.running)
+                            rootHub.Stop();
                     }).Wait();
                 }
 

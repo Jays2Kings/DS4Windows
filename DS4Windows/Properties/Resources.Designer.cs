@@ -667,7 +667,7 @@ namespace DS4WinWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Input Delay: {0} ms.
+        ///   Looks up a localized string similar to Input Delay: {0:0.##} ms.
         /// </summary>
         public static string InputDelay {
             get {

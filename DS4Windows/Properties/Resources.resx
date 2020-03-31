@@ -314,7 +314,7 @@
     <value>If removing DS4Windows, You can delete the settings following the profile folder link</value>
   </data>
   <data name="InputDelay" xml:space="preserve">
-    <value>Input Delay: {0} ms</value>
+    <value>Input Delay: {0:0.##} ms</value>
   </data>
   <data name="InstallComplete" xml:space="preserve">
     <value>Install Complete</value>

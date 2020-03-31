@@ -46,7 +46,7 @@
                                 <GridViewColumn x:Name="idColumn" Header="ID" Width="120">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock x:Name="idColumnTxtB" Text="{Binding Device.MacAddress, Mode=OneWay}" ToolTip="{Binding TooltipIDText, Mode=OneWay}" ToolTipOpening="IdColumnTxtB_ToolTipOpening" Tag="{Binding DevIndex, Mode=OneTime}"/>
+                                            <TextBlock x:Name="idColumnTxtB" Text="{Binding IdText, Mode=OneWay}" ToolTip="{Binding TooltipIDText, Mode=OneWay}" ToolTipOpening="IdColumnTxtB_ToolTipOpening" Tag="{Binding DevIndex, Mode=OneTime}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -63,7 +63,8 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Width="{Binding ElementName=exclusiveColumn, Path=Width}">
-                                                <Image Source="{Binding ExclusiveSource}" Stretch="Uniform" Width="20" Height="20" HorizontalAlignment="Center" />
+                                                <Image Source="{Binding ExclusiveSource}" Stretch="Uniform" Width="20" Height="20" HorizontalAlignment="Center"
+                                                       ToolTip="{Binding IsExclusiveText}" />
                                             </StackPanel>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -90,9 +91,9 @@
                                 <GridViewColumn x:Name="selectProfileColumn" Header="Selected Profile" Width="130">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <StackPanel Width="{Binding ElementName=selectProfileColumn, Path=Width}">
-                                                <ComboBox x:Name="selectProfCombo" Width="100" HorizontalAlignment="Center" DisplayMemberPath="Name"
-                                                          ItemsSource="{Binding ProfileListCol}" SelectedIndex="{Binding SelectedIndex}" Height="Auto" Tag="{Binding DevIndex, Mode=OneTime}" Margin="4,0"
+                                            <StackPanel Width="{Binding Path=Width, ElementName=selectProfileColumn, Mode=OneWay}" HorizontalAlignment="Center">
+                                                <ComboBox x:Name="selectProfCombo" Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=OneWay}"
+                                                          DisplayMemberPath="Name" ItemsSource="{Binding ProfileListCol}" SelectedIndex="{Binding SelectedIndex}" Height="Auto" Tag="{Binding DevIndex, Mode=OneTime}" Margin="0"
                                                           SelectionChanged="SelectProfCombo_SelectionChanged" KeyDown="SelectProfCombo_KeyDown" />
                                             </StackPanel>
                                         </DataTemplate>
@@ -280,11 +281,11 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Height="20" Margin="{StaticResource spaceMargin}">
                             <CheckBox x:Name="useUdpServerCk" Content="UDP Server" IsChecked="{Binding UseUDPServer}" Click="UseUdpServerCk_Click" />
-                            <TextBox x:Name="udpServerTxt" IsEnabled="False" Text="{Binding UdpIpAddress, UpdateSourceTrigger=LostFocus,FallbackValue='127.0.0.1'}"
+                            <TextBox x:Name="udpServerTxt" IsEnabled="{Binding UseUDPServer,Mode=OneWay}" Text="{Binding UdpIpAddress, UpdateSourceTrigger=LostFocus,FallbackValue='127.0.0.1'}"
                                  Margin="8,0,0,0" />
                             <Label Content="Port" Padding="0" Margin="20,0,0,0" />
-                            <!--<TextBox x:Name="updPortNum" IsEnabled="False" Text="{Binding UdpPort, UpdateSourceTrigger=LostFocus,FallbackValue='26760'}" />-->
-                            <xctk:IntegerUpDown d:IsHidden="True" x:Name="updPortNum" IsEnabled="False" MinWidth="20" Margin="8,0,0,0"
+                            <!--<TextBox x:Name="updPortNum" IsEnabled="{Binding UseUDPServer}" Text="{Binding UdpPort, UpdateSourceTrigger=LostFocus,FallbackValue='26760'}" />-->
+                            <xctk:IntegerUpDown d:IsHidden="True" x:Name="updPortNum" IsEnabled="{Binding UseUDPServer,Mode=OneWay}" MinWidth="20" Margin="8,0,0,0"
                                             Value="{Binding UdpPort, UpdateSourceTrigger=LostFocus,FallbackValue='26760'}" ButtonSpinnerLocation="Right" Increment="1" Maximum="65535" Minimum="0" />
                         </StackPanel>
                         <!--<StackPanel Orientation="Horizontal">

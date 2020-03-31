@@ -124,7 +124,7 @@ namespace DS4WinWPF.DS4Forms
 
         public void LateChecks(ArgumentParser parser)
         {
-            Task.Run(() =>
+            Task tempTask = Task.Run(() =>
             {
                 CheckDrivers();
                 if (!parser.Stop)
@@ -136,7 +136,9 @@ namespace DS4WinWPF.DS4Forms
                 UpdateTheUpdater();
             });
 
-            Task.Delay(100).ContinueWith((t) =>
+            Util.LogAssistBackgroundTask(tempTask);
+
+            tempTask = Task.Delay(100).ContinueWith((t) =>
             {
                 int checkwhen = Global.CheckWhen;
                 if (checkwhen > 0 && DateTime.Now >= Global.LastChecked + TimeSpan.FromHours(checkwhen))
@@ -147,6 +149,7 @@ namespace DS4WinWPF.DS4Forms
                     Global.LastChecked = DateTime.Now;
                 }
             });
+            Util.LogAssistBackgroundTask(tempTask);
         }
 
         private void DownloadUpstreamVersionInfo()
@@ -180,7 +183,14 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
                     using (Process p = new Process())
                     {
                         p.StartInfo.FileName = System.IO.Path.Combine(Global.exedirpath, "DS4Updater.exe");
-                        p.StartInfo.Arguments = "-autolaunch";
+                        bool isAdmin = Global.IsAdministrator();
+                        List<string> argList = new List<string>();
+                        argList.Add("-autolaunch");
+                        if (!isAdmin)
+                        {
+                            argList.Add("-user");
+                        }
+                        p.StartInfo.Arguments = string.Join(" ", argList);
                         if (Global.AdminNeeded())
                             p.StartInfo.Verb = "runas";
 
@@ -1034,8 +1044,6 @@ Suspend support not enabled.", true);
         private async void UseUdpServerCk_Click(object sender, RoutedEventArgs e)
         {
             bool status = useUdpServerCk.IsChecked == true;
-            udpServerTxt.IsEnabled = status;
-            updPortNum.IsEnabled = status;
             if (!status)
             {
                 App.rootHub.ChangeMotionEventStatus(status);
@@ -1348,7 +1356,7 @@ Suspend support not enabled.", true);
 
         private void Html5GameBtn_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://html5gamepad.com/");
+            Util.StartProcessInExplorer("https://html5gamepad.com/");
         }
     }
 }

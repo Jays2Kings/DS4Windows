@@ -298,6 +298,22 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private ContextMenu lightContext;
         public ContextMenu LightContext { get => lightContext; set => lightContext = value; }
 
+        public string IdText
+        {
+            get => $"{device.DisplayName} ({device.MacAddress})";
+        }
+        public event EventHandler IdTextChanged;
+
+        public string IsExclusiveText
+        {
+            get
+            {
+                string temp = device.isExclusive() ? "Exclusive Access" :
+                    "Shared Access";
+                return temp;
+            }
+        }
+
         public delegate void CustomColorHandler(CompositeDeviceModel sender);
         public event CustomColorHandler RequestColorPicker;
 
@@ -307,6 +323,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             this.device = device;
             device.BatteryChanged += (sender, e) => BatteryStateChanged?.Invoke(this, e);
             device.ChargingChanged += (sender, e) => BatteryStateChanged?.Invoke(this, e);
+            device.MacAddressChanged += (sender, e) => IdTextChanged?.Invoke(this, e);
             this.devIndex = devIndex;
             this.selectedProfile = profile;
             profileListHolder = collection;

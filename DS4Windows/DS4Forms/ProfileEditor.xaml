@@ -25,7 +25,7 @@
 
             </Button>
         </StackPanel>
-        <TabControl x:Name="sidebarTabControl" Width="440" DockPanel.Dock="Left" SelectionChanged="SidebarTabControl_SelectionChanged">
+        <TabControl x:Name="sidebarTabControl" Width="460" DockPanel.Dock="Left" SelectionChanged="SidebarTabControl_SelectionChanged">
             <TabItem Header="Controls">
                 <DockPanel Width="440" LastChildFill="False">
                     <DockPanel.Background>
@@ -64,6 +64,7 @@
                                     <MenuItem Header="Inverted X" Tag="7" CommandParameter="2" Click="PresetMenuItem_Click" />
                                     <MenuItem Header="Inverted Y" Tag="7" CommandParameter="3" Click="PresetMenuItem_Click" />
                                 </MenuItem>
+                                <MenuItem Header="Unbound" Tag="8" Click="PresetMenuItem_Click" />
                             </ContextMenu>
                         </Canvas.Resources>
 
@@ -323,7 +324,7 @@
                     </DockPanel>
                 </DockPanel>
             </TabItem>
-            <TabItem x:Name="contReadingsTab" Header="Controller Readings">
+            <TabItem x:Name="contReadingsTab" Header="Controller Readings" IsEnabled="False">
                 <local:ControllerReadingsControl x:Name="conReadingsUserCon" />
             </TabItem>
         </TabControl>
@@ -977,6 +978,7 @@
                             <Label Content="Vertical Scale" />
                             <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickVertScale}" MinWidth="60"
                                                 Minimum="0" Maximum="400" Increment="10" />
+                            <Label Content="%" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">

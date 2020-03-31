@@ -393,10 +393,12 @@ namespace DS4Windows
                         as Xbox360OutDevice;
                     //outputDevices[index] = tempXbox;
                     int devIndex = index;
-                    tempXbox.cont.FeedbackReceived += (sender, args) =>
-                    {
-                        SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
-                    };
+                    Nefarius.ViGEm.Client.Targets.Xbox360FeedbackReceivedEventHandler p = (sender, args) =>
+                       {
+                           SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
+                       };
+                    tempXbox.cont.FeedbackReceived += p;
+                    tempXbox.forceFeedbackCall = p;
 
                     outputslotMan.DeferredPlugin(tempXbox, index, outputDevices);
                     //tempXbox.Connect();
@@ -411,62 +413,65 @@ namespace DS4Windows
                         as DS4OutDevice;
                     //outputDevices[index] = tempDS4;
                     int devIndex = index;
-                    tempDS4.cont.FeedbackReceived += (sender, args) =>
-                    {
-                        bool useRumble = false; bool useLight = false;
+                    Nefarius.ViGEm.Client.Targets.DualShock4FeedbackReceivedEventHandler p = (sender, args) =>
+                       {
+                        //bool useRumble = false; bool useLight = false;
                         byte largeMotor = args.LargeMotor;
-                        byte smallMotor = args.SmallMotor;
-                        DS4Color color = new DS4Color(args.LightbarColor.Red,
-                                args.LightbarColor.Green,
-                                args.LightbarColor.Blue);
-                        /*Console.WriteLine("IN EVENT");
-                        Console.WriteLine("Rumble ({0}, {1}) | Light ({2}, {3}, {4}) {5}",
-                            largeMotor, smallMotor, color.red, color.green, color.blue, DateTime.Now.ToLongTimeString());
-                            */
-                        if (largeMotor != 0 || smallMotor != 0)
-                        {
-                            useRumble = true;
-                        }
+                           byte smallMotor = args.SmallMotor;
+                           SetDevRumble(device, largeMotor, smallMotor, devIndex);
+                        //DS4Color color = new DS4Color(args.LightbarColor.Red,
+                        //        args.LightbarColor.Green,
+                        //        args.LightbarColor.Blue);
+                        ///*Console.WriteLine("IN EVENT");
+                        //Console.WriteLine("Rumble ({0}, {1}) | Light ({2}, {3}, {4}) {5}",
+                        //    largeMotor, smallMotor, color.red, color.green, color.blue, DateTime.Now.ToLongTimeString());
+                        //    */
+                        //if (largeMotor != 0 || smallMotor != 0)
+                        //{
+                        //    useRumble = true;
+                        //}
 
-                        if (color.red != 0 || color.green != 0 || color.blue != 0)
-                        {
-                            useLight = true;
-                        }
+                        //if (color.red != 0 || color.green != 0 || color.blue != 0)
+                        //{
+                        //    useLight = true;
+                        //}
 
-                        if (!useRumble && !useLight)
-                        {
-                            //Console.WriteLine("Fallback");
-                            if (device.LeftHeavySlowRumble != 0 || device.RightLightFastRumble != 0)
-                            {
-                                useRumble = true;
-                            }
-                            /*else if (device.LightBarColor.red != 0 ||
-                                device.LightBarColor.green != 0 ||
-                                device.LightBarColor.blue != 0)
-                            {
-                                useLight = true;
-                            }
-                            */
-                        }
+                        //if (!useRumble && !useLight)
+                        //{
+                        //    //Console.WriteLine("Fallback");
+                        //    if (device.LeftHeavySlowRumble != 0 || device.RightLightFastRumble != 0)
+                        //    {
+                        //        useRumble = true;
+                        //    }
+                        //    /*else if (device.LightBarColor.red != 0 ||
+                        //        device.LightBarColor.green != 0 ||
+                        //        device.LightBarColor.blue != 0)
+                        //    {
+                        //        useLight = true;
+                        //    }
+                        //    */
+                        //}
 
-                        if (useRumble)
-                        {
-                            //Console.WriteLine("Perform rumble");
-                            SetDevRumble(device, largeMotor, smallMotor, devIndex);
-                        }
+                        //if (useRumble)
+                        //{
+                        //    //Console.WriteLine("Perform rumble");
+                        //    SetDevRumble(device, largeMotor, smallMotor, devIndex);
+                        //}
 
-                        if (useLight)
-                        {
-                            //Console.WriteLine("Change lightbar color");
-                            DS4HapticState haptics = new DS4HapticState
-                            {
-                                LightBarColor = color,
-                            };
-                            device.SetHapticState(ref haptics);
-                        }
+                        //if (useLight)
+                        //{
+                        //    //Console.WriteLine("Change lightbar color");
+                        //    DS4HapticState haptics = new DS4HapticState
+                        //    {
+                        //        LightBarColor = color,
+                        //    };
+                        //    device.SetHapticState(ref haptics);
+                        //}
 
                         //Console.WriteLine();
                     };
+                    tempDS4.cont.FeedbackReceived += p;
+                    tempDS4.forceFeedbackCall = p;
 
                     outputslotMan.DeferredPlugin(tempDS4, index, outputDevices);
                     //tempDS4.Connect();
@@ -630,8 +635,8 @@ namespace DS4Windows
                 }
                 catch (Exception e)
                 {
-                    LogDebug(e.Message);
-                    AppLogger.LogToTray(e.Message);
+                    LogDebug(e.Message, true);
+                    AppLogger.LogToTray(e.Message, true);
                 }
 
                 running = true;
@@ -688,6 +693,18 @@ namespace DS4Windows
             }
         }
 
+        public void PrepareAbort()
+        {
+            for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
+            {
+                DS4Device tempDevice = DS4Controllers[i];
+                if (tempDevice != null)
+                {
+                   tempDevice.PrepareAbort();
+                }
+            }
+        }
+
         public bool Stop(bool showlog = true)
         {
             if (running)
@@ -701,6 +718,7 @@ namespace DS4Windows
 
                 LogDebug("Closing connection to ViGEmBus");
 
+                bool anyUnplugged = false;
                 for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
                 {
                     DS4Device tempDevice = DS4Controllers[i];
@@ -740,6 +758,7 @@ namespace DS4Windows
                         if (tempout != null)
                         {
                             UnplugOutDev(i, tempDevice, true);
+                            anyUnplugged = true;
                         }
 
                         //outputDevices[i] = null;
@@ -768,6 +787,11 @@ namespace DS4Windows
                 while (outputslotMan.RunningQueue)
                 {
                     Thread.SpinWait(500);
+                }
+
+                if (anyUnplugged)
+                {
+                    Thread.Sleep(OutputSlotManager.DELAY_TIME);
                 }
 
                 stopViGEm();
@@ -1311,8 +1335,7 @@ namespace DS4Windows
 
                 if (!recordingMacro && (useTempProfile[ind] ||
                     containsCustomAction(ind) || containsCustomExtras(ind) ||
-                    getProfileActionCount(ind) > 0 ||
-                    GetSASteeringWheelEmulationAxis(ind) >= SASteeringWheelEmulationAxisType.VJoy1X))
+                    getProfileActionCount(ind) > 0))
                 {
                     Mapping.MapCustom(ind, cState, MappedState[ind], ExposedState[ind], touchPad[ind], this);
                     cState = MappedState[ind];

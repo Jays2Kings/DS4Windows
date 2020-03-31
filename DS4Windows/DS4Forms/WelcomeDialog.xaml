@@ -1,0 +1,49 @@
+﻿<Window x:Class="DS4WinWPF.DS4Forms.WelcomeDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
+        mc:Ignorable="d"
+        Title="Welcome to DS4Windows" Height="356.246" Width="418" MinWidth="418" MinHeight="440">
+    <Window.Resources>
+        <Style TargetType="{x:Type Control}" x:Key="CommonMargin">
+            <Setter Property="Margin" Value="0,10,0,0" />
+        </Style>
+        <Style TargetType="{x:Type TextBlock}" x:Key="CommonMarginTxt">
+            <Setter Property="Margin" Value="0,10,0,0" />
+        </Style>
+    </Window.Resources>
+    <DockPanel Margin="10,0">
+        <Button x:Name="vigemInstallBtn" Content="Step 1: Install ViGEmBus Driver" Style="{StaticResource CommonMargin}" DockPanel.Dock="Top" Click="VigemInstallBtn_Click" />
+        <TextBlock TextAlignment="Center" DockPanel.Dock="Top" TextWrapping="Wrap">
+            <TextBlock.Text>
+                If this window reappears after installing, you may need to reboot your PC.
+            </TextBlock.Text>
+        </TextBlock>
+        <Button x:Name="step2Btn" Content="Step 2: If on Windows 7, Install 360 Driver" Style="{StaticResource CommonMargin}" DockPanel.Dock="Top"
+                Click="Step2Btn_Click" />
+        <TextBlock TextAlignment="Center" DockPanel.Dock="Top">
+            <TextBlock.Text>
+                If you've used a 360 controller on this PC, you can skip this step.
+            </TextBlock.Text>
+        </TextBlock>
+        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource CommonMarginTxt}" DockPanel.Dock="Top">
+            Step 3: Connecting the DualShock 4 controller.<LineBreak />
+            To setup wired/USB:<LineBreak />
+            Simply plug a micro-USB into your PC and DualShock 4.<LineBreak />
+            <LineBreak />
+            To setup Bluetooth (optional):
+            Hold the PS Button and Share for 3 seconds. The lightbar will begin to double flash.
+        </TextBlock>
+        <DockPanel Margin="0,10" DockPanel.Dock="Top">
+            <Button x:Name="finishedBtn" Content="Finished" HorizontalAlignment="Center" Padding="10,1" Style="{StaticResource CommonMargin}" Click="FinishedBtn_Click" DockPanel.Dock="Bottom" />
+            <TextBlock TextAlignment="Center" TextWrapping="Wrap" Style="{StaticResource CommonMarginTxt}" DockPanel.Dock="Bottom">
+                Once flashing go to your <Hyperlink x:Name="bluetoothSetLink" Click="BluetoothSetLink_Click">Bluetooth Settings</Hyperlink> and
+                connect to "Wireless Controller". If asked, enter pair code 0000.
+                Once paired, you're ready. Have fun!
+            </TextBlock>
+            <Image Source="/DS4Windows;component/Resources/Pairmode.png" Height="80" DockPanel.Dock="Top" />
+        </DockPanel>
+    </DockPanel>
+</Window>

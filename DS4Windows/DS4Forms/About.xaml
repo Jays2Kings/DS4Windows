@@ -1,0 +1,112 @@
+﻿<Window x:Class="DS4WinWPF.DS4Forms.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DS4WinWPF"
+        mc:Ignorable="d"
+        Title="Hotkeys/About" Height="450" Width="800">
+    <DockPanel>
+        <Label x:Name="headerLb" Content="DS4Windows - Ryochan7 Build (Version " DockPanel.Dock="Top" HorizontalAlignment="Center" />
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0,4,0,0">
+            <Button x:Name="youtubeSocialBtn" Click="YoutubeSocialBtn_Click"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" ToolTip="YouTube">
+                <Image Source="/DS4Windows;component/Resources/social/youtube_social_icon_red.png" Height="32" />
+            </Button>
+            <Button x:Name="bitchuteSocialBtn" Click="BitchuteSocialBtn_Click" Margin="4,0,0,0"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" ToolTip="BitChute">
+                <Image Source="/DS4Windows;component/Resources/social/bitchute.png" Height="32" />
+            </Button>
+            <Button x:Name="bittubeSocialBtn" Click="BittubeSocialBtn_Click"
+                    BorderBrush="{x:Null}" Margin="4,0,0,0" Background="{x:Null}" Cursor="Hand" ToolTip="Bittube">
+                <Image Source="/DS4Windows;component/Resources/social/bittube.png" Height="32" />
+            </Button>
+            <Button x:Name="lbrySocialBtn" Click="LbrySocialBtn_Click"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="LBRY">
+                <Image Source="/DS4Windows;component/Resources/social/lbrylogo.png" Height="32" Margin="4,0,0,0" />
+            </Button>
+            <Button x:Name="discordSocialBtn" Click="DiscordSocialBtn_Click"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="Discord">
+                <Image Source="/DS4Windows;component/Resources/social/discord.png" Height="32" Margin="4,0,0,0" />
+            </Button>
+            <Button x:Name="twitterSocialBtn" Click="TwitterSocialBtn_Click"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="Twitter">
+                <Image Source="/DS4Windows;component/Resources/social/twitter_logo_initial.png" Height="32" Margin="4,0,0,0" />
+            </Button>
+            <Button x:Name="mastodonSocialBtn" Click="MastodonSocialBtn_Click"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="Mastodon">
+                <Image Source="/DS4Windows;component/Resources/social/mastodon.png" Height="32" Margin="4,0,0,0" />
+            </Button>
+            <Button x:Name="frogSiteSocialBtn" BorderBrush="{x:Null}" Background="{x:Null}"
+                    Foreground="{x:Null}" Margin="4,0,0,0" Style="{StaticResource NoBGHoverBtn}" ToolTip="@ds4windows">
+                <Image Source="/DS4Windows;component/Resources/social/frog_site_logo.png" Height="32" Margin="4,0,0,0" />
+            </Button>
+            <Button x:Name="mindsSocialBtn" Click="MindsSocialBtn_Click"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="Minds">
+                <Image Source="/DS4Windows;component/Resources/social/minds.png" Height="32" Margin="4,0,0,0" />
+            </Button>
+        </StackPanel>
+        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0,4,0,0">
+            <Hyperlink x:Name="changeLogLink" Click="ChangeLogLink_Click">Changelog</Hyperlink>
+        </TextBlock>
+        <TabControl>
+            <TabItem Header="Hotkeys">
+                <TextBlock TextWrapping="Wrap" xml:space="preserve">Hide DS4 Controller: Hides the DS4's regular input (Dinput) from other programs, check if you are getting double input in games or R2 pauses games
+Click left side of touchpad: Left Touch
+Click right side of touchpad: Right Touch
+Click touchpad with 2 fingers: Multitouch
+Click upper part of touchpad: Upper Touch
+PS + Options or hold PS for 10 secs: Disconnect Controller (Only on Bluetooth)
+Touch Touchpad + PS: Turn off touchpad movement (clicking still works)
+Pad click on lower right: Right click (Best used when right side is used as a mouse button)
+Two fingers up/down on touchpad*: Scroll Up/Down
+Tap then hold touchpad*: Left mouse drag
+2 finger touchpad swipe left or right: Cycle through profiles
+Shift Modifer: Hold an action to use another set of controls
+When mapping keyboard and mouse:
+Toggle: The key will remain in a "held down" state until pressed again
+Macro: Assign multiple keys to one input
+Scan Code: Keys are interpreted differently. May be needed for certain games
+*If enabled</TextBlock>
+            </TabItem>
+            <TabItem Header="Credits">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Top" Margin="10,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock><Hyperlink x:Name="siteLink" Click="SiteLink_Click">Site</Hyperlink></TextBlock>
+                            <TextBlock Margin="20,0,0,0"><Hyperlink x:Name="sourceLink" Click="SourceLink_Click">Source</Hyperlink></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock><Hyperlink x:Name="jays2KingsLink" Click="Jays2KingsLink_Click">Jays2Kings</Hyperlink></TextBlock>
+                            <TextBlock Margin="20,0,0,0"><Hyperlink x:Name="inhexSTERLink" Click="InhexSTERLink_Click">InhexSTER (Starter of DS4Tool)</Hyperlink></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock><Hyperlink x:Name="electrobrainsLink" Click="ElectrobrainsLink_Click">electrobrains (Branched off of)</Hyperlink></TextBlock>
+                        </StackPanel>
+                        <Label Content="Translators:" Margin="0,20,0,0" />
+                    </StackPanel>
+                    <TextBox TextWrapping="Wrap" xml:space="preserve" IsReadOnly="True"
+                             DockPanel.Dock="Bottom" VerticalScrollBarVisibility="Auto" Margin="10,0,10,10">Ryochan7 - Japanese</TextBox>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Tip">
+                <StackPanel>
+                    <TextBox Background="Transparent" BorderThickness="0" IsReadOnly="True" TextWrapping="Wrap"
+                         IsUndoEnabled="False" xml:space="preserve">Bitcoin: 1DnMJwjdd7JRfHJap2mmTmADYm38SzR2z9
+Litecoin: D9fhbXp9bCHEhuS8vX1BmVu6t7Y2nVNUCK
+Dogecoin: La5mniW7SFMH2RhqDgUty3RwkBSYbjbnJ6
+Monero: 49RvRMiMewaeez1Y2auxHmfMaAUYfhUpBem4ohzRJd9b5acPcxzh1icjnhZfjnYd1S7NQ57reQ7cP1swGre3rpfzUgJhEB7</TextBox>
+                    <TextBlock Margin="0,10,0,0">
+                        <Hyperlink x:Name="paypalLink" Click="PaypalLink_Click">Tip via Paypal</Hyperlink>
+                    </TextBlock>
+                    <TextBlock>
+                        <Hyperlink x:Name="patreonLink" Click="PatreonLink_Click">Patreon</Hyperlink>
+                    </TextBlock>
+                    <TextBlock>
+                        <Hyperlink x:Name="subscribeStartLink" Click="SubscribeStartLink_Click">SubscribeStar</Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

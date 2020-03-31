@@ -538,6 +538,96 @@ namespace DS4Windows
 
         public static DS4State SetCurveAndDeadzone(int device, DS4State cState, DS4State dState)
         {
+            //AntiFlicker
+
+            int AntiFlickerConfigL = getLSAntiFlickerMode(device);
+            int AntiFlickerConfigR = getRSAntiFlickerMode(device);
+
+            // L
+            if (AntiFlickerConfigL != 0)
+            {
+                switch (AntiFlickerConfigL)
+                {
+                    case 1:
+                        cState.LX = AntiFlicker.RemoveFlicN1(cState.LX, device, 0);
+                        cState.LY = AntiFlicker.RemoveFlicN1(cState.LY, device, 1);
+                        break;
+                    case 2:
+                        cState.LX = AntiFlicker.RemoveFlicN2(cState.LX, device, 0);
+                        cState.LY = AntiFlicker.RemoveFlicN2(cState.LY, device, 1);
+                        break;
+                    case 3:
+                        cState.LX = AntiFlicker.RemoveFlicN1Future(cState.LX, dState.LX, device, 0);
+                        cState.LY = AntiFlicker.RemoveFlicN1Future(cState.LY, dState.LY, device, 1);
+                        break;
+                    case 4:
+                        cState.LX = AntiFlicker.RemoveFlicN2Future(cState.LX, dState.LX, device, 0);
+                        cState.LY = AntiFlicker.RemoveFlicN2Future(cState.LY, dState.LY, device, 1);
+                        break;
+                    case 5:
+                        cState.LX = AntiFlicker.RemoveFlicN1Dynamic12Values(cState.LX, device, 0);
+                        cState.LY = AntiFlicker.RemoveFlicN1Dynamic12Values(cState.LY, device, 1);
+                        break;
+                    case 6:
+                        cState.LX = AntiFlicker.RemoveFlicN2Dynamic12Values(cState.LX, device, 0);
+                        cState.LY = AntiFlicker.RemoveFlicN2Dynamic12Values(cState.LY, device, 1);
+                        break;
+                    case 7:
+                        cState.LX = AntiFlicker.RemoveFlicN1Dynamic7Values(cState.LX, device, 0);
+                        cState.LY = AntiFlicker.RemoveFlicN1Dynamic7Values(cState.LY, device, 1);
+                        break;
+                    case 8:
+                        cState.LX = AntiFlicker.RemoveFlicN2Dynamic7Values(cState.LX, device, 0);
+                        cState.LY = AntiFlicker.RemoveFlicN2Dynamic7Values(cState.LY, device, 1);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            // R
+            if (AntiFlickerConfigR != 0)
+            {
+                switch (AntiFlickerConfigR)
+                {
+                    case 1:
+                        cState.RX = AntiFlicker.RemoveFlicN1(cState.RX, device, 2);
+                        cState.RY = AntiFlicker.RemoveFlicN1(cState.RY, device, 3);
+                        break;
+                    case 2:
+                        cState.RX = AntiFlicker.RemoveFlicN2(cState.RX, device, 2);
+                        cState.RY = AntiFlicker.RemoveFlicN2(cState.RY, device, 3);
+                        break;
+                    case 3:
+                        cState.RX = AntiFlicker.RemoveFlicN1Future(cState.RX, dState.RX, device, 2);
+                        cState.RY = AntiFlicker.RemoveFlicN1Future(cState.RY, dState.RY, device, 3);
+                        break;
+                    case 4:
+                        cState.RX = AntiFlicker.RemoveFlicN2Future(cState.RX, dState.RX, device, 2);
+                        cState.RY = AntiFlicker.RemoveFlicN2Future(cState.RY, dState.RY, device, 3);
+                        break;
+                    case 5:
+                        cState.RX = AntiFlicker.RemoveFlicN1Dynamic12Values(cState.RX, device, 2);
+                        cState.RY = AntiFlicker.RemoveFlicN1Dynamic12Values(cState.RY, device, 3);
+                        break;
+                    case 6:
+                        cState.RX = AntiFlicker.RemoveFlicN2Dynamic12Values(cState.RX, device, 2);
+                        cState.RY = AntiFlicker.RemoveFlicN2Dynamic12Values(cState.RY, device, 3);
+                        break;
+                    case 7:
+                        cState.RX = AntiFlicker.RemoveFlicN1Dynamic7Values(cState.RX, device, 2);
+                        cState.RY = AntiFlicker.RemoveFlicN1Dynamic7Values(cState.RY, device, 3);
+                        break;
+                    case 8:
+                        cState.RX = AntiFlicker.RemoveFlicN2Dynamic7Values(cState.RX, device, 2);
+                        cState.RY = AntiFlicker.RemoveFlicN2Dynamic7Values(cState.RY, device, 3);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+
             double rotation = /*tempDoubleArray[device] =*/  getLSRotation(device);
             if (rotation > 0.0 || rotation < 0.0)
                 cState.rotateLSCoordinates(rotation);

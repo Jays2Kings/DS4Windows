@@ -1300,11 +1300,6 @@ namespace DS4Windows
                 device.getCurrentState(CurrentState[ind]);
                 DS4State cState = CurrentState[ind];
                 DS4State pState = device.getPreviousStateRef();
-
-                // AntiFlicker
-                cState = AntiFlicker.RemoveFlickAll(cState, pState, ind);
-                //
-
                 //device.getPreviousState(PreviousState[ind]);
                 //DS4State pState = PreviousState[ind];
 
@@ -1331,6 +1326,8 @@ namespace DS4Windows
                 if (getEnableTouchToggle(ind))
                     CheckForTouchToggle(ind, cState, pState);
 
+
+                //cState = AntiFlicker.RemoveFlicAll(cState, pState, ind);
                 cState = Mapping.SetCurveAndDeadzone(ind, cState, TempState[ind]);
 
                 if (!recordingMacro && (useTempProfile[ind] ||

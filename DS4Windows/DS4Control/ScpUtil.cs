@@ -1500,6 +1500,31 @@ namespace DS4Windows
         {
             return m_Config.getLsOutCurveMode(index);
         }
+
+
+        // antiFlicker
+        public static void setLSAntiFlickerMode(int index, int value)
+        {
+            m_Config.setLSAntiFlickerMode(index, value);
+        }
+        public static int getLSAntiFlickerMode(int index)
+        {
+            return m_Config.getLSAntiFlickerMode(index);
+        }
+
+
+        public static void setRSAntiFlickerMode(int index, int value)
+        {
+            m_Config.setRSAntiFlickerMode(index, value);
+        }
+        public static int getRSAntiFlickerMode(int index)
+        {
+            return m_Config.getRSAntiFlickerMode(index);
+        }
+        // antiFlicker
+
+
+
         public static BezierCurve[] lsOutBezierCurveObj => m_Config.lsOutBezierCurveObj;
 
         public static void setRsOutCurveMode(int index, int value)
@@ -1933,31 +1958,6 @@ namespace DS4Windows
         {
             return (value < min) ? min : (value > max) ? max : value;
         }
-
-
-        //AntiFlicker
-
-        public static void setLSAntiFlickerMode(int index, int value)
-        {
-            m_Config.setLSAntiFlickerMode(index, value);
-        }
-        public static int getLSAntiFlickerMode(int index)
-        {
-            return m_Config.getLSAntiFlickerMode(index);
-        }
-
-        public static void setRSAntiFlickerMode(int index, int value)
-        {
-            m_Config.setRSAntiFlickerMode(index, value);
-        }
-        public static int getRSAntiFlickerMode(int index)
-        {
-            return m_Config.getRSAntiFlickerMode(index);
-        }
-
-
-
-
     }
 
     public class BackingStore
@@ -2604,12 +2604,10 @@ namespace DS4Windows
                 XmlNode xmlRsOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOutputCurveMode", null); xmlRsOutputCurveMode.InnerText = stickOutputCurveString(getRsOutCurveMode(device)); Node.AppendChild(xmlRsOutputCurveMode);
                 XmlNode xmlRsOutputCurveCustom = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOutputCurveCustom", null); xmlRsOutputCurveCustom.InnerText = rsOutBezierCurveObj[device].ToString(); Node.AppendChild(xmlRsOutputCurveCustom);
 
-
-                // AntiFlicker
+                //
                 XmlNode xmlLsAntiFlickerMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LSAntiFlickerMode", null); xmlLsAntiFlickerMode.InnerText = stickAntiFlickerString(getLSAntiFlickerMode(device)); Node.AppendChild(xmlLsAntiFlickerMode);
                 XmlNode xmlRsAntiFlickerMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSAntiFlickerMode", null); xmlRsAntiFlickerMode.InnerText = stickAntiFlickerString(getRSAntiFlickerMode(device)); Node.AppendChild(xmlRsAntiFlickerMode);
                 //
-
 
                 XmlNode xmlLsSquareStickMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LSSquareStick", null); xmlLsSquareStickMode.InnerText = squStickInfo[device].lsMode.ToString(); Node.AppendChild(xmlLsSquareStickMode);
                 XmlNode xmlRsSquareStickMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSSquareStick", null); xmlRsSquareStickMode.InnerText = squStickInfo[device].rsMode.ToString(); Node.AppendChild(xmlRsSquareStickMode);
@@ -3651,12 +3649,13 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSOutputCurveMode"); setRsOutCurveMode(device, stickOutputCurveId(Item.InnerText)); }
                 catch { setRsOutCurveMode(device, 0); missingSetting = true; }
 
-                // AntiFliker
+                // antiFlicker
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSAntiFlickerMode"); setLSAntiFlickerMode(device, stickAntiFlickerId(Item.InnerText)); }
                 catch { setLSAntiFlickerMode(device, 0); missingSetting = true; }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSAntiFlickerMode"); setRSAntiFlickerMode(device, stickAntiFlickerId(Item.InnerText)); }
                 catch { setRSAntiFlickerMode(device, 0); missingSetting = true; }
-                //
+                // antiFlicker
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSSquareStick"); bool.TryParse(Item.InnerText, out squStickInfo[device].lsMode); }
                 catch { squStickInfo[device].lsMode = false; missingSetting = true; }
@@ -4943,12 +4942,10 @@ namespace DS4Windows
             squStickInfo[device].rsMode = false;
             squStickInfo[device].lsRoundness = 5.0;
             squStickInfo[device].rsRoundness = 5.0;
-            // AntiFlicker
-            setLSAntiFlickerMode(device, 0);
-            setRSAntiFlickerMode(device, 0);
-            //
             setLsOutCurveMode(device, 0);
             setRsOutCurveMode(device, 0);
+            setLSAntiFlickerMode(device, 0);
+            setRSAntiFlickerMode(device, 0);
             setL2OutCurveMode(device, 0);
             setR2OutCurveMode(device, 0);
             setSXOutCurveMode(device, 0);
@@ -5068,8 +5065,8 @@ namespace DS4Windows
         }
 
 
-        // Anti-Flicker
 
+        //antiFlicker
         private int[] _lsAntiFlickerMode = new int[5] { 0, 0, 0, 0, 0 };
         public int getLSAntiFlickerMode(int index) { return _lsAntiFlickerMode[index]; }
         public void setLSAntiFlickerMode(int index, int value)
@@ -5084,6 +5081,7 @@ namespace DS4Windows
             _rsAntiFlickerMode[index] = value;
         }
 
+
         private string stickAntiFlickerString(int id)
         {
             string result = "Off";
@@ -5096,6 +5094,8 @@ namespace DS4Windows
                 case 4: result = "FutureL2"; break;
                 case 5: result = "DynamicL1"; break;
                 case 6: result = "DynamicL2"; break;
+                case 7: result = "DynamicL1Value7"; break;
+                case 8: result = "DynamicL2Value7"; break;
                 default: break;
             }
 
@@ -5114,11 +5114,16 @@ namespace DS4Windows
                 case "FutureL2": id = 4; break;
                 case "DynamicL1": id = 5; break;
                 case "DynamicL2": id = 6; break;
+                case "DynamicL1Value7": id = 7; break;
+                case "DynamicL2Value7": id = 8; break;
                 default: break;
             }
 
             return id;
         }
+        //antiFlicker
+
+
 
     }
 

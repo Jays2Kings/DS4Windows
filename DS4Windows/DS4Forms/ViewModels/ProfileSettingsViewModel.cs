@@ -1944,7 +1944,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
 
 
-        // AntiFlicker
+        // antiFilcker
         public int LSAntiFlickerIndex
         {
             get => Global.getLSAntiFlickerMode(device);
@@ -1962,6 +1962,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 Global.setRSAntiFlickerMode(device, value);
             }
         }
+        // antiFilcker
 
     }
 

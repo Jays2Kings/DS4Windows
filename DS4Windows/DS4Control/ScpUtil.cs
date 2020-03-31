@@ -3901,8 +3901,7 @@ namespace DS4Windows
             if (missingSetting && Loaded)// && buttons != null)
                 SaveProfile(device, profilepath);
 
-            containsCustomAction[device] = HasCustomActions(device);
-            containsCustomExtras[device] = HasCustomExtras(device);
+            Global.cacheProfileCustomsFlags(device);
 
             if (device < 4 && control.touchPad[device] != null)
             {

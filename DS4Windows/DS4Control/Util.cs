@@ -145,6 +145,18 @@ namespace DS4Windows
             }
         }
 
+        public static void StartProcessHelper(string path)
+        {
+            if (!Global.IsAdministrator())
+            {
+                Process.Start(path);
+            }
+            else
+            {
+                StartProcessInExplorer(path);
+            }
+        }
+
         public static void StartProcessInExplorer(string path)
         {
             string tmpPath = Path.Combine(Path.GetTempPath(), "urlopener.bat");

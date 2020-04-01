@@ -1356,7 +1356,7 @@ Suspend support not enabled.", true);
 
         private void Html5GameBtn_Click(object sender, RoutedEventArgs e)
         {
-            Util.StartProcessInExplorer("https://html5gamepad.com/");
+            Util.StartProcessHelper("https://html5gamepad.com/");
         }
     }
 }

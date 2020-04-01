@@ -1271,7 +1271,7 @@ namespace DS4Windows
                     if (!lag[ind] && device.Latency >= flashWhenLateAt)
                     {
                         lag[ind] = true;
-                        LagFlashWarning(ind, true);
+                        LagFlashWarning(device, ind, true);
                         /*uiContext?.Post(new SendOrPostCallback(delegate (object state)
                         {
                             LagFlashWarning(ind, true);
@@ -1281,7 +1281,7 @@ namespace DS4Windows
                     else if (lag[ind] && device.Latency < flashWhenLateAt)
                     {
                         lag[ind] = false;
-                        LagFlashWarning(ind, false);
+                        LagFlashWarning(device, ind, false);
                         /*uiContext?.Post(new SendOrPostCallback(delegate (object state)
                         {
                             LagFlashWarning(ind, false);
@@ -1391,7 +1391,7 @@ namespace DS4Windows
             }
         }
 
-        public void LagFlashWarning(int ind, bool on)
+        public void LagFlashWarning(DS4Device device, int ind, bool on)
         {
             if (on)
             {
@@ -1411,6 +1411,7 @@ namespace DS4Windows
                 LogDebug(DS4WinWPF.Properties.Resources.LatencyNotOverTen.Replace("*number*", (ind + 1).ToString()));
                 DS4LightBar.forcelight[ind] = false;
                 DS4LightBar.forcedFlash[ind] = 0;
+                device.LightBarColor = getMainColor(ind);
             }
         }
 

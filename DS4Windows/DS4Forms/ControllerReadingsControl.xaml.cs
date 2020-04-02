@@ -108,6 +108,9 @@ namespace DS4WinWPF.DS4Forms
 
         private LatencyWarnMode warnMode;
         private LatencyWarnMode prevWarnMode;
+        private DS4State baseState = new DS4State();
+        private DS4State interState = new DS4State();
+        private DS4StateExposed exposeState;
         private const int CANVAS_WIDTH = 130;
         private const int CANVAS_MIDPOINT = CANVAS_WIDTH / 2;
         private const double TRIG_LB_TRANSFORM_OFFSETY = 66.0;
@@ -116,6 +119,7 @@ namespace DS4WinWPF.DS4Forms
         {
             InitializeComponent();
             inputContNum.Content = $"#{deviceNum+1}";
+            exposeState = new DS4StateExposed(baseState);
 
             readingTimer = new NonFormTimer();
             readingTimer.Interval = 1000 / 60.0;
@@ -187,14 +191,24 @@ namespace DS4WinWPF.DS4Forms
             DS4Device ds = Program.rootHub.DS4Controllers[deviceNum];
             if (ds != null)
             {
-                DS4StateExposed exposeState = Program.rootHub.ExposedState[deviceNum];
-                DS4State baseState = Program.rootHub.getDS4State(deviceNum);
-                DS4State interState = Program.rootHub.getDS4StateTemp(deviceNum);
+                // Don't bother waiting for UI thread to grab references
+                //DS4StateExposed tmpexposeState = Program.rootHub.ExposedState[deviceNum];
+                DS4State tmpbaseState = Program.rootHub.getDS4State(deviceNum);
+                DS4State tmpinterState = Program.rootHub.getDS4StateTemp(deviceNum);
 
                 Dispatcher.Invoke(() =>
                 {
+                    // Wait for controller to be in a wait period
                     ds.ReadWaitEv.Wait();
                     ds.ReadWaitEv.Reset();
+
+                    // Make copy of current state values for UI thread
+                    tmpbaseState.CopyTo(baseState);
+                    tmpinterState.CopyTo(interState);
+
+                    // Done with copying. Allow input thread to resume
+                    ds.ReadWaitEv.Set();
+
                     int x = baseState.LX;
                     int y = baseState.LY;
 
@@ -286,7 +300,6 @@ namespace DS4WinWPF.DS4Forms
                     prevWarnMode = warnMode;
 
                     UpdateCoordLabels(baseState, interState, exposeState);
-                    ds.ReadWaitEv.Set();
                 });
             }
 

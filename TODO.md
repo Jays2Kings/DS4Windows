@@ -1,6 +1,6 @@
 # TODO
 
-* Look back into localization workflow
+* ~~Look back into localization workflow~~
 * Add cross dead zone (per axis) for sticks
 * Abstract output slots
 * Abstract KB+M codes to allow different event systems (Vmulti)

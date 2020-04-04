@@ -1,0 +1,515 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DS4WinWPF</RootNamespace>
+    <AssemblyName>DS4Windows</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>none</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>DS4WinWPF.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <PlatformTarget>x86</PlatformTarget>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>none</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>DS4W.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <!--<PropertyGroup>
+    <UICulture>en-US</UICulture>
+  </PropertyGroup>
+  -->
+  <ItemGroup>
+    <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net451\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="HttpProgress, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\bloomtom.HttpProgress.2.3.1\lib\netstandard2.0\HttpProgress.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.8.17.0, Culture=neutral, PublicKeyToken=c416bc1b32d97233, processorArchitecture=MSIL">
+      <HintPath>..\packages\TaskScheduler.2.8.17\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Nefarius.ViGEm.Client" Condition="'$(Platform)' == 'x64'&#xD;&#xA;">
+      <HintPath>.\libs\x64\Nefarius.ViGEm.Client\Nefarius.ViGEm.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Nefarius.ViGEm.Client" Condition="'$(Platform)' == 'x86'&#xD;&#xA;">
+      <HintPath>.\libs\x86\Nefarius.ViGEm.Client\Nefarius.ViGEm.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.6.8\lib\net45\NLog.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Ookii.Dialogs.Wpf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=66aa232afad40158, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ookii.Dialogs.Wpf.1.1.0\lib\net45\Ookii.Dialogs.Wpf.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFLocalizeExtension, Version=3.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFLocalizeExtension.3.3.1\lib\net452\WPFLocalizeExtension.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="XAMLMarkupExtensions, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XAMLMarkupExtensions.1.5.1\lib\net452\XAMLMarkupExtensions.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.7.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ArgumentParser.cs" />
+    <Compile Include="AutoProfileChecker.cs" />
+    <Compile Include="AutoProfileHolder.cs" />
+    <Compile Include="BezierCurveEditor\BezierCurve.cs" />
+    <Compile Include="DS4Control\ControllerSlotManager.cs" />
+    <Compile Include="DS4Control\ControlService.cs" />
+    <Compile Include="DS4Control\DS4LightBar.cs" />
+    <Compile Include="DS4Control\DS4OutDevice.cs" />
+    <Compile Include="DS4Control\DS4StateFieldMapping.cs" />
+    <Compile Include="DS4Control\InputMethods.cs" />
+    <Compile Include="DS4Control\ITouchpadBehaviour.cs" />
+    <Compile Include="DS4Control\Log.cs" />
+    <Compile Include="DS4Control\Mapping.cs" />
+    <Compile Include="DS4Control\Mouse.cs" />
+    <Compile Include="DS4Control\MouseCursor.cs" />
+    <Compile Include="DS4Control\MouseWheel.cs" />
+    <Compile Include="DS4Control\OutputDevice.cs" />
+    <Compile Include="DS4Control\OutputSlotManager.cs" />
+    <Compile Include="DS4Control\ProfilePropGroups.cs" />
+    <Compile Include="DS4Control\Program.cs" />
+    <Compile Include="DS4Control\ScpUtil.cs" />
+    <Compile Include="DS4Control\UdpServer.cs" />
+    <Compile Include="DS4Control\Util.cs" />
+    <Compile Include="DS4Control\Xbox360OutDevice.cs" />
+    <Compile Include="DS4Forms\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Forms\AutoProfiles.xaml.cs">
+      <DependentUpon>AutoProfiles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Forms\BindingWindow.xaml.cs">
+      <DependentUpon>BindingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Forms\ColorPickerWindow.xaml.cs">
+      <DependentUpon>ColorPickerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Forms\ControllerReadingsControl.xaml.cs">
+      <DependentUpon>ControllerReadingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Forms\DupBox.xaml.cs">
+      <DependentUpon>DupBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Forms\LanguagePackControl.xaml.cs">
+      <DependentUpon>LanguagePackControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Forms\ProfileEditor.xaml.cs">
+      <DependentUpon>ProfileEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Forms\RecordBox.xaml.cs">
+      <DependentUpon>RecordBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Forms\RecordBoxWindow.xaml.cs">
+      <DependentUpon>RecordBoxWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Forms\SaveWhere.xaml.cs">
+      <DependentUpon>SaveWhere.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Forms\SpecialActionEditor.xaml.cs">
+      <DependentUpon>SpecialActionEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Forms\ViewModels\AutoProfilesViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\BindingWindowViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\ControllerListViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\LanguagePackViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\MainWindowsViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\MappingListViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\ProfileSettingsViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\RecordBoxViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\SpecialActEditorViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\SpecialActionsListViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\SpecialActions\CheckBatteryViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\SpecialActions\DisconnectBTViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\SpecialActions\LaunchProgramViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\SpecialActions\LoadProfileViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\SpecialActions\MacroViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\SpecialActions\MultiActButtonViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\SpecialActions\PressKeyViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\SpecialActions\SASteeringWheelViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\TrayIconViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\Util\NotifyDataErrorBase.cs" />
+    <Compile Include="DS4Forms\UtilMethods.cs" />
+    <Compile Include="DS4Forms\WelcomeDialog.xaml.cs">
+      <DependentUpon>WelcomeDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Library\Crc32.cs" />
+    <Compile Include="DS4Library\DS4Audio.cs" />
+    <Compile Include="DS4Library\DS4Device.cs" />
+    <Compile Include="DS4Library\DS4Devices.cs" />
+    <Compile Include="DS4Library\DS4Sixaxis.cs" />
+    <Compile Include="DS4Library\DS4State.cs" />
+    <Compile Include="DS4Library\DS4StateExposed.cs" />
+    <Compile Include="DS4Library\DS4Touchpad.cs" />
+    <Compile Include="DS4Lightgun.cs" />
+    <Compile Include="HidLibrary\Extensions.cs" />
+    <Compile Include="HidLibrary\HidDevice.cs" />
+    <Compile Include="HidLibrary\HidDeviceAttributes.cs" />
+    <Compile Include="HidLibrary\HidDeviceCapabilities.cs" />
+    <Compile Include="HidLibrary\HidDevices.cs" />
+    <Compile Include="HidLibrary\NativeMethods.cs" />
+    <Compile Include="LoggerHolder.cs" />
+    <Compile Include="LogWriter.cs" />
+    <Compile Include="DS4Control\MacroParser.cs" />
+    <Compile Include="ProfileEntity.cs" />
+    <Compile Include="ProfileList.cs" />
+    <Compile Include="DS4Forms\ViewModels\SettingsViewModel.cs" />
+    <Compile Include="Translations\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StartupMethods.cs" />
+    <Compile Include="StatusLogMsg.cs" />
+    <Compile Include="VJoyFeeder\vJoyFeeder.cs" />
+    <Page Include="DS4Forms\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\AutoProfiles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\BindingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\ColorPickerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\ControllerReadingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\DupBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\LanguagePackControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LogItem.cs" />
+    <Compile Include="DS4Forms\ViewModels\LogViewModel.cs" />
+    <Compile Include="DS4Forms\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="DS4Forms\ProfileEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\RecordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\RecordBoxWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\SaveWhere.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\SpecialActionEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\WelcomeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ru.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Translations\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Translations\Strings.cs.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Translations\Strings.es.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Translations\Strings.it.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Translations\Strings.ja.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Translations\Strings.pt-BR.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Translations\Strings.ru.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.manifest" />
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\newprofile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BT.png" />
+    <Resource Include="Resources\cancel.png" />
+    <Resource Include="Resources\checked.png" />
+    <Resource Include="Resources\copy.png" />
+    <Resource Include="Resources\DS4W - White.ico" />
+    <Resource Include="Resources\DS4W.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\export.png" />
+    <Resource Include="Resources\import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DS4W.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BezierCurveEditor\build.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BezierCurveEditor\index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\social\bitchute.png" />
+    <Resource Include="Resources\social\youtube_social_icon_red.png" />
+    <Resource Include="Resources\social\twitter_logo_initial.png" />
+    <Resource Include="Resources\social\minds.png" />
+    <Resource Include="Resources\social\mastodon.png" />
+    <Resource Include="Resources\social\lbrylogo.png" />
+    <Resource Include="Resources\social\frog_site_logo.png" />
+    <Resource Include="Resources\social\discord.png" />
+    <Resource Include="Resources\social\bittube.png" />
+    <Resource Include="Resources\rainbowCCrop.png" />
+    <Resource Include="Resources\rainbowC.png" />
+    <Resource Include="Resources\DS4 lightbar.png" />
+    <Resource Include="Resources\keydown.png" />
+    <Resource Include="Resources\keyup.png" />
+    <Resource Include="Resources\clock.png" />
+    <Resource Include="Resources\right touch.png" />
+    <Resource Include="Resources\left touch.png" />
+    <Resource Include="Resources\mouse.png" />
+    <Resource Include="Resources\360 highlight.png" />
+    <Resource Include="Resources\360 map.png" />
+    <Resource Include="Resources\size.png" />
+    <Resource Include="Resources\DS4-Config_PS.png" />
+    <Resource Include="Resources\DS4-Config_Right.png" />
+    <Resource Include="Resources\DS4-Config_Left.png" />
+    <Resource Include="Resources\DS4-Config_Down.png" />
+    <Resource Include="Resources\DS4-Config_Up.png" />
+    <Resource Include="Resources\DS4-Config_LS.png" />
+    <Resource Include="Resources\DS4-Config_TouchUpper.png" />
+    <Resource Include="Resources\DS4-Config_TouchMulti.png" />
+    <Resource Include="Resources\DS4-Config_TouchRight.png" />
+    <Resource Include="Resources\DS4-Config_TouchLeft.png" />
+    <Resource Include="Resources\DS4-Config_options.png" />
+    <Resource Include="Resources\DS4-Config_Share.png" />
+    <Resource Include="Resources\DS4-Config_R2.png" />
+    <Resource Include="Resources\DS4-Config_L2.png" />
+    <Resource Include="Resources\DS4-Config_R1.png" />
+    <Resource Include="Resources\DS4-Config_L1.png" />
+    <Resource Include="Resources\DS4-Config_Triangle.png" />
+    <Resource Include="Resources\DS4-Config_Square.png" />
+    <Resource Include="Resources\DS4-Config_Circle.png" />
+    <Resource Include="Resources\DS4-Config_Cross.png" />
+    <Resource Include="Resources\rainbow.png" />
+    <Resource Include="Resources\DS4-Config_RS.png" />
+    <Resource Include="Resources\DS4 Config.png" />
+    <Resource Include="Resources\Pairmode.png" />
+    <Resource Include="Resources\USB.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="PostBuildMacros">
+    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+      <Output TaskParameter="Assemblies" ItemName="Targets" />
+    </GetAssemblyIdentity>
+    <ItemGroup>
+      <VersionNumber Include="$([System.Text.RegularExpressions.Regex]::Replace(&quot;%(Targets.Version)&quot;, &quot;^(.+?)(\.0+)$&quot;, &quot;$1&quot;))" />
+    </ItemGroup>
+  </Target>
+  <PropertyGroup>
+    <PostBuildEventDependsOn>
+      $(PostBuildEventDependsOn);
+      PostBuildMacros;
+    </PostBuildEventDependsOn>
+    <PostBuildEvent>rem Copy compiled l18n assemblies to alt folder
+GOTO END
+if not exist $(TargetDir)Lang mkdir $(TargetDir)Lang
+set langs=cs es it ja pt-BR ru
+
+for %25%25l in (%25langs%25) do (
+  xcopy $(TargetDir)%25%25l $(TargetDir)Lang\%25%25l\ /s /y
+)
+
+echo @(VersionNumber)&gt; $(ProjectDir)\newest.txt
+
+:END
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

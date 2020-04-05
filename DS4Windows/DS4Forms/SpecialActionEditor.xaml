@@ -323,7 +323,7 @@
                                 </StackPanel>
                                 <StackPanel Margin="{StaticResource spaceMargin}">
                                     <Label Content="Arguments"/>
-                                    <TextBox Text="" />
+                                    <TextBox Text="{Binding Arguments}" />
                                 </StackPanel>
                             </StackPanel>
                         </TabItem>

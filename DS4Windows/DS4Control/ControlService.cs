@@ -487,15 +487,19 @@ namespace DS4Windows
             if (!useDInputOnly[index])
             {
                 //OutContType contType = Global.OutContType[index];
-                string tempType = outputDevices[index].GetDeviceType();
-                LogDebug("Unplugging " + tempType + " Controller for input #" + (index + 1), false);
                 OutputDevice dev = outputDevices[index];
-                outputDevices[index] = null;
-                activeOutDevType[index] = OutContType.None;
-                outputslotMan.DeferredRemoval(dev, index, outputDevices, immediate);
-                //dev.Disconnect();
-                //LogDebug(tempType + " Controller # " + (index + 1) + " unplugged");
-                useDInputOnly[index] = true;
+                if (dev != null)
+                {
+                    string tempType = dev.GetDeviceType();
+                    LogDebug("Unplugging " + tempType + " Controller for input #" + (index + 1), false);
+
+                    outputDevices[index] = null;
+                    activeOutDevType[index] = OutContType.None;
+                    outputslotMan.DeferredRemoval(dev, index, outputDevices, immediate);
+                    //dev.Disconnect();
+                    //LogDebug(tempType + " Controller # " + (index + 1) + " unplugged");
+                    useDInputOnly[index] = true;
+                }
             }
         }
 

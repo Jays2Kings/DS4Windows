@@ -73,6 +73,7 @@ namespace DS4Windows
         private SocketAsyncEventArgs[] argsList;
         private int listInd = 0;
         private ReaderWriterLockSlim poolLock = new ReaderWriterLockSlim();
+        private const int ARG_BUFFER_LEN = 80;
 
         public delegate void GetPadDetail(int padIdx, ref DualShockPadMeta meta);
 
@@ -81,8 +82,8 @@ namespace DS4Windows
         public UdpServer(GetPadDetail getPadDetailDel)
         {
             portInfoGet = getPadDetailDel;
-            argsList = new SocketAsyncEventArgs[40];
-            for (int num = 0; num < 40; num++)
+            argsList = new SocketAsyncEventArgs[ARG_BUFFER_LEN];
+            for (int num = 0; num < ARG_BUFFER_LEN; num++)
             {
                 SocketAsyncEventArgs args = new SocketAsyncEventArgs();
                 args.SetBuffer(new byte[100], 0, 100);
@@ -188,7 +189,7 @@ namespace DS4Windows
             int temp = 0;
             poolLock.EnterWriteLock();
             temp = listInd;
-            listInd = ++listInd % 40;
+            listInd = ++listInd % ARG_BUFFER_LEN;
             SocketAsyncEventArgs args = argsList[temp];
             poolLock.ExitWriteLock();
 
@@ -682,7 +683,7 @@ namespace DS4Windows
                     int temp = 0;
                     poolLock.EnterWriteLock();
                     temp = listInd;
-                    listInd = ++listInd % 40;
+                    listInd = ++listInd % ARG_BUFFER_LEN;
                     SocketAsyncEventArgs args = argsList[temp];
                     poolLock.ExitWriteLock();
 

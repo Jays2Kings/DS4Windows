@@ -963,17 +963,23 @@ namespace DS4Windows
             int lsOutCurveMode = getLsOutCurveMode(device);
             if (lsOutCurveMode > 0 && (dState.LX != 128 || dState.LY != 128))
             {
-                double capX = dState.LX >= 128 ? 127.0 : 128.0;
-                double capY = dState.LY >= 128 ? 127.0 : 128.0;
-                double tempX = (dState.LX - 128.0) / capX;
-                double tempY = (dState.LY - 128.0) / capY;
-                double signX = tempX >= 0.0 ? 1.0 : -1.0;
-                double signY = tempY >= 0.0 ? 1.0 : -1.0;
+                double r = Math.Atan2(-(dState.LY - 128.0), (dState.LX - 128.0));
+                double maxOutXRatio = Math.Abs(Math.Cos(r));
+                double maxOutYRatio = Math.Abs(Math.Sin(r));
+                double sideX = dState.LX - 128; double sideY = dState.LY - 128.0;
+                double capX = dState.LX >= 128 ? maxOutXRatio * 127.0 : maxOutXRatio * 128.0;
+                double capY = dState.LY >= 128 ? maxOutYRatio * 127.0 : maxOutYRatio * 128.0;
+                if (Math.Abs(sideX) > capX) capX = sideX;
+                if (Math.Abs(sideY) > capY) capY = sideY;
+                double tempRatioX = (dState.LX - 128.0) / capX;
+                double tempRatioY = (dState.LY - 128.0) / capY;
+                double signX = tempRatioX >= 0.0 ? 1.0 : -1.0;
+                double signY = tempRatioY >= 0.0 ? 1.0 : -1.0;
 
                 if (lsOutCurveMode == 1)
                 {
-                    double absX = Math.Abs(tempX);
-                    double absY = Math.Abs(tempY);
+                    double absX = Math.Abs(tempRatioX);
+                    double absY = Math.Abs(tempRatioY);
                     double outputX = 0.0;
                     double outputY = 0.0;
 
@@ -1008,22 +1014,22 @@ namespace DS4Windows
                 }
                 else if (lsOutCurveMode == 2)
                 {
-                    double outputX = tempX * tempX;
-                    double outputY = tempY * tempY;
+                    double outputX = tempRatioX * tempRatioX;
+                    double outputY = tempRatioY * tempRatioY;
                     dState.LX = (byte)(outputX * signX * capX + 128.0);
                     dState.LY = (byte)(outputY * signY * capY + 128.0);
                 }
                 else if (lsOutCurveMode == 3)
                 {
-                    double outputX = tempX * tempX * tempX;
-                    double outputY = tempY * tempY * tempY;
+                    double outputX = tempRatioX * tempRatioX * tempRatioX;
+                    double outputY = tempRatioY * tempRatioY * tempRatioY;
                     dState.LX = (byte)(outputX * capX + 128.0);
                     dState.LY = (byte)(outputY * capY + 128.0);
                 }
                 else if (lsOutCurveMode == 4)
                 {
-                    double absX = Math.Abs(tempX);
-                    double absY = Math.Abs(tempY);
+                    double absX = Math.Abs(tempRatioX);
+                    double absY = Math.Abs(tempRatioY);
                     double outputX = absX * (absX - 2.0);
                     double outputY = absY * (absY - 2.0);
                     dState.LX = (byte)(-1.0 * outputX * signX * capX + 128.0);
@@ -1031,8 +1037,8 @@ namespace DS4Windows
                 }
                 else if (lsOutCurveMode == 5)
                 {
-                    double innerX = Math.Abs(tempX) - 1.0;
-                    double innerY = Math.Abs(tempY) - 1.0;
+                    double innerX = Math.Abs(tempRatioX) - 1.0;
+                    double innerY = Math.Abs(tempRatioY) - 1.0;
                     double outputX = innerX * innerX * innerX + 1.0;
                     double outputY = innerY * innerY * innerY + 1.0;
                     dState.LX = (byte)(1.0 * outputX * signX * capX + 128.0);
@@ -1066,17 +1072,23 @@ namespace DS4Windows
             int rsOutCurveMode = getRsOutCurveMode(device);
             if (rsOutCurveMode > 0 && (dState.RX != 128 || dState.RY != 128))
             {
-                double capX = dState.RX >= 128 ? 127.0 : 128.0;
-                double capY = dState.RY >= 128 ? 127.0 : 128.0;
-                double tempX = (dState.RX - 128.0) / capX;
-                double tempY = (dState.RY - 128.0) / capY;
-                double signX = tempX >= 0.0 ? 1.0 : -1.0;
-                double signY = tempY >= 0.0 ? 1.0 : -1.0;
+                double r = Math.Atan2(-(dState.RY - 128.0), (dState.RX - 128.0));
+                double maxOutXRatio = Math.Abs(Math.Cos(r));
+                double maxOutYRatio = Math.Abs(Math.Sin(r));
+                double sideX = dState.RX - 128; double sideY = dState.RY - 128.0;
+                double capX = dState.RX >= 128 ? maxOutXRatio * 127.0 : maxOutXRatio * 128.0;
+                double capY = dState.RY >= 128 ? maxOutYRatio * 127.0 : maxOutYRatio * 128.0;
+                if (Math.Abs(sideX) > capX) capX = sideX;
+                if (Math.Abs(sideY) > capY) capY = sideY;
+                double tempRatioX = (dState.RX - 128.0) / capX;
+                double tempRatioY = (dState.RY - 128.0) / capY;
+                double signX = tempRatioX >= 0.0 ? 1.0 : -1.0;
+                double signY = tempRatioY >= 0.0 ? 1.0 : -1.0;
 
                 if (rsOutCurveMode == 1)
                 {
-                    double absX = Math.Abs(tempX);
-                    double absY = Math.Abs(tempY);
+                    double absX = Math.Abs(tempRatioX);
+                    double absY = Math.Abs(tempRatioY);
                     double outputX = 0.0;
                     double outputY = 0.0;
 
@@ -1111,22 +1123,22 @@ namespace DS4Windows
                 }
                 else if (rsOutCurveMode == 2)
                 {
-                    double outputX = tempX * tempX;
-                    double outputY = tempY * tempY;
+                    double outputX = tempRatioX * tempRatioX;
+                    double outputY = tempRatioY * tempRatioY;
                     dState.RX = (byte)(outputX * signX * capX + 128.0);
                     dState.RY = (byte)(outputY * signY * capY + 128.0);
                 }
                 else if (rsOutCurveMode == 3)
                 {
-                    double outputX = tempX * tempX * tempX;
-                    double outputY = tempY * tempY * tempY;
+                    double outputX = tempRatioX * tempRatioX * tempRatioX;
+                    double outputY = tempRatioY * tempRatioY * tempRatioY;
                     dState.RX = (byte)(outputX * capX + 128.0);
                     dState.RY = (byte)(outputY * capY + 128.0);
                 }
                 else if (rsOutCurveMode == 4)
                 {
-                    double absX = Math.Abs(tempX);
-                    double absY = Math.Abs(tempY);
+                    double absX = Math.Abs(tempRatioX);
+                    double absY = Math.Abs(tempRatioY);
                     double outputX = absX * (absX - 2.0);
                     double outputY = absY * (absY - 2.0);
                     dState.RX = (byte)(-1.0 * outputX * signX * capX + 128.0);
@@ -1134,8 +1146,8 @@ namespace DS4Windows
                 }
                 else if (rsOutCurveMode == 5)
                 {
-                    double innerX = Math.Abs(tempX) - 1.0;
-                    double innerY = Math.Abs(tempY) - 1.0;
+                    double innerX = Math.Abs(tempRatioX) - 1.0;
+                    double innerY = Math.Abs(tempRatioY) - 1.0;
                     double outputX = innerX * innerX * innerX + 1.0;
                     double outputY = innerY * innerY * innerY + 1.0;
                     dState.RX = (byte)(1.0 * outputX * signX * capX + 128.0);

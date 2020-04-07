@@ -73,6 +73,7 @@ namespace DS4Windows
         private SocketAsyncEventArgs[] argsList;
         private int listInd = 0;
         private ReaderWriterLockSlim poolLock = new ReaderWriterLockSlim();
+        private SemaphoreSlim _pool;
         private const int ARG_BUFFER_LEN = 80;
 
         public delegate void GetPadDetail(int padIdx, ref DualShockPadMeta meta);
@@ -82,6 +83,7 @@ namespace DS4Windows
         public UdpServer(GetPadDetail getPadDetailDel)
         {
             portInfoGet = getPadDetailDel;
+            _pool = new SemaphoreSlim(ARG_BUFFER_LEN);
             argsList = new SocketAsyncEventArgs[ARG_BUFFER_LEN];
             for (int num = 0; num < ARG_BUFFER_LEN; num++)
             {
@@ -193,6 +195,7 @@ namespace DS4Windows
             SocketAsyncEventArgs args = argsList[temp];
             poolLock.ExitWriteLock();
 
+            _pool.Wait();
             args.RemoteEndPoint = clientEP;
             Array.Copy(packetData, args.Buffer, packetData.Length);
             //args.SetBuffer(packetData, 0, packetData.Length);
@@ -200,6 +203,7 @@ namespace DS4Windows
                 udpSock.SendToAsync(args);
             }
             catch (Exception e) { }
+            _pool.Release();
         }
 
         private void ProcessIncoming(byte[] localMsg, IPEndPoint clientEP)
@@ -687,12 +691,14 @@ namespace DS4Windows
                     SocketAsyncEventArgs args = argsList[temp];
                     poolLock.ExitWriteLock();
 
+                    _pool.Wait();
                     args.RemoteEndPoint = cl;
                     Array.Copy(outputData, args.Buffer, outputData.Length);
                     try {
                         udpSock.SendToAsync(args);
                     }
                     catch (SocketException ex) { }
+                    _pool.Release();
                 }
             }
 

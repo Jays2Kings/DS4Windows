@@ -34,7 +34,7 @@ namespace DS4Windows
 
             try
             {
-                var hidHandle = OpenHandle(_devicePath, false);
+                var hidHandle = OpenHandle(_devicePath, false, enumerate: true);
 
                 _deviceAttributes = GetDeviceAttributes(hidHandle);
                 _deviceCapabilities = GetDeviceCapabilities(hidHandle);
@@ -73,7 +73,7 @@ namespace DS4Windows
             try
             {
                 if (safeReadHandle == null || safeReadHandle.IsInvalid)
-                    safeReadHandle = OpenHandle(_devicePath, isExclusive);
+                    safeReadHandle = OpenHandle(_devicePath, isExclusive, enumerate: false);
             }
             catch (Exception exception)
             {
@@ -127,7 +127,7 @@ namespace DS4Windows
         public bool ReadInputReport(byte[] data)
         {
             if (safeReadHandle == null)
-                safeReadHandle = OpenHandle(_devicePath, true);
+                safeReadHandle = OpenHandle(_devicePath, true, enumerate: false);
             return NativeMethods.HidD_GetInputReport(safeReadHandle, data, data.Length);
         }
 
@@ -225,7 +225,7 @@ namespace DS4Windows
         public ReadStatus ReadFile(byte[] inputBuffer)
         {
             if (safeReadHandle == null)
-                safeReadHandle = OpenHandle(_devicePath, true);
+                safeReadHandle = OpenHandle(_devicePath, true, enumerate: false);
             try
             {
                 uint bytesRead;
@@ -268,7 +268,7 @@ namespace DS4Windows
             try
             {
                 if (safeReadHandle == null)
-                    safeReadHandle = OpenHandle(_devicePath, true);
+                    safeReadHandle = OpenHandle(_devicePath, true, enumerate: false);
                 if (fileStream == null && !safeReadHandle.IsInvalid)
                     fileStream = new FileStream(safeReadHandle, FileAccess.ReadWrite, inputBuffer.Length, true);
 
@@ -318,7 +318,7 @@ namespace DS4Windows
             try
             {
                 if (safeReadHandle == null)
-                    safeReadHandle = OpenHandle(_devicePath, true);
+                    safeReadHandle = OpenHandle(_devicePath, true, enumerate: false);
                 if (fileStream == null && !safeReadHandle.IsInvalid)
                     fileStream = new FileStream(safeReadHandle, FileAccess.ReadWrite, inputBuffer.Length, true);
 
@@ -364,7 +364,7 @@ namespace DS4Windows
         {
             if (safeReadHandle == null)
             {
-                safeReadHandle = OpenHandle(_devicePath, true);
+                safeReadHandle = OpenHandle(_devicePath, true, enumerate: false);
             }
 
             if (NativeMethods.HidD_SetOutputReport(safeReadHandle, outputBuffer, outputBuffer.Length))
@@ -393,7 +393,7 @@ namespace DS4Windows
             {
                 if (safeReadHandle == null)
                 {
-                    safeReadHandle = OpenHandle(_devicePath, true);
+                    safeReadHandle = OpenHandle(_devicePath, true, enumerate: false);
                 }
                 if (fileStream == null && !safeReadHandle.IsInvalid)
                 {
@@ -422,7 +422,7 @@ namespace DS4Windows
             {
                 if (safeReadHandle == null)
                 {
-                    safeReadHandle = OpenHandle(_devicePath, true);
+                    safeReadHandle = OpenHandle(_devicePath, true, enumerate: false);
                 }
                 if (fileStream == null && !safeReadHandle.IsInvalid)
                 {
@@ -446,17 +446,18 @@ namespace DS4Windows
 
         }
 
-        private SafeFileHandle OpenHandle(String devicePathName, Boolean isExclusive)
+        private SafeFileHandle OpenHandle(String devicePathName, Boolean isExclusive, bool enumerate)
         {
             SafeFileHandle hidHandle;
+            uint access = enumerate ? 0 : NativeMethods.GENERIC_READ | NativeMethods.GENERIC_WRITE;
 
             if (isExclusive)
             {
-                hidHandle = NativeMethods.CreateFile(devicePathName, NativeMethods.GENERIC_READ | NativeMethods.GENERIC_WRITE, 0, IntPtr.Zero, NativeMethods.OpenExisting, 0x20000000 | 0x80000000 | 0x100 | NativeMethods.FILE_FLAG_OVERLAPPED, 0);
+                hidHandle = NativeMethods.CreateFile(devicePathName, access, 0, IntPtr.Zero, NativeMethods.OpenExisting, 0x20000000 | 0x80000000 | 0x100 | NativeMethods.FILE_FLAG_OVERLAPPED, 0);
             }
             else
             {
-                hidHandle = NativeMethods.CreateFile(devicePathName, NativeMethods.GENERIC_READ | NativeMethods.GENERIC_WRITE, NativeMethods.FILE_SHARE_READ | NativeMethods.FILE_SHARE_WRITE, IntPtr.Zero, NativeMethods.OpenExisting, 0x20000000 | 0x80000000 | 0x100 | NativeMethods.FILE_FLAG_OVERLAPPED, 0);
+                hidHandle = NativeMethods.CreateFile(devicePathName, access, NativeMethods.FILE_SHARE_READ | NativeMethods.FILE_SHARE_WRITE, IntPtr.Zero, NativeMethods.OpenExisting, 0x20000000 | 0x80000000 | 0x100 | NativeMethods.FILE_FLAG_OVERLAPPED, 0);
             }
 
             return hidHandle;

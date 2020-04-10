@@ -470,6 +470,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.EnableTouchToggle[device] = value;
         }
 
+        public bool EnableOutputDataToDS4
+        {
+            get => Global.EnableOutputDataToDS4[device];
+            set => Global.EnableOutputDataToDS4[device] = value;
+        }
+
         public bool LaunchProgramExists
         {
             get => !string.IsNullOrEmpty(Global.LaunchProgram[device]);

@@ -55,6 +55,9 @@ namespace DS4WinWPF.DS4Forms
 
         public ProfileList ProfileListHolder { get => profileListHolder; }
 
+        private const string UPDATER_VERSION = "1.4.1";
+        private string updaterExe = Environment.Is64BitProcess ? "DS4Updater.exe" : "DS4Updater_x86.exe";
+
         public MainWindow(ArgumentParser parser)
         {
             InitializeComponent();
@@ -184,23 +187,47 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    bool launch = false;
-                    using (Process p = new Process())
+                    bool launch = true;
+                    if (!File.Exists(Global.exedirpath + "\\DS4Updater.exe") ||
+                        (File.Exists(Global.exedirpath + "\\DS4Updater.exe")
+                        && (FileVersionInfo.GetVersionInfo(Global.exedirpath + "\\DS4Updater.exe").FileVersion.CompareTo(UPDATER_VERSION) != 0)))
                     {
-                        p.StartInfo.FileName = System.IO.Path.Combine(Global.exedirpath, "DS4Updater.exe");
-                        bool isAdmin = Global.IsAdministrator();
-                        List<string> argList = new List<string>();
-                        argList.Add("-autolaunch");
-                        if (!isAdmin)
+                        Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{UPDATER_VERSION}/{updaterExe}");
+                        string filename = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "DS4Updater.exe");
+                        using (var downloadStream = new FileStream(filename, FileMode.Create))
                         {
-                            argList.Add("-user");
+                            Task<System.Net.Http.HttpResponseMessage> temp =
+                                App.requestClient.GetAsync(url2.ToString(), downloadStream);
+                            temp.Wait();
+                            if (!temp.Result.IsSuccessStatusCode) launch = false;
                         }
-                        p.StartInfo.Arguments = string.Join(" ", argList);
-                        if (Global.AdminNeeded())
-                            p.StartInfo.Verb = "runas";
 
-                        try { launch = p.Start(); }
-                        catch (InvalidOperationException) { }
+                        if (launch)
+                        {
+                            int copyStatus = Util.ElevatedCopyUpdater(filename);
+                            if (copyStatus != 0) launch = false;
+                        }
+                    }
+
+                    if (launch)
+                    {
+                        using (Process p = new Process())
+                        {
+                            p.StartInfo.FileName = System.IO.Path.Combine(Global.exedirpath, "DS4Updater.exe");
+                            bool isAdmin = Global.IsAdministrator();
+                            List<string> argList = new List<string>();
+                            argList.Add("-autolaunch");
+                            if (!isAdmin)
+                            {
+                                argList.Add("-user");
+                            }
+                            p.StartInfo.Arguments = string.Join(" ", argList);
+                            if (Global.AdminNeeded())
+                                p.StartInfo.Verb = "runas";
+
+                            try { launch = p.Start(); }
+                            catch (InvalidOperationException) { }
+                        }
                     }
 
                     if (launch)
@@ -210,6 +237,14 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
                             contextclose = true;
                             Close();
                         }));
+                    }
+                    else
+                    {
+                        Dispatcher.Invoke(() =>
+                        {
+                            MessageBox.Show(Properties.Resources.PleaseDownloadUpdater);
+                        });
+                        //Process.Start($"https://github.com/Ryochan7/DS4Updater/releases/download/v{UPDATER_VERSION}/{updaterExe}");
                     }
                 }
                 else
@@ -436,10 +471,17 @@ Suspend support not enabled.", true);
                     processes = Process.GetProcessesByName("DS4Updater");
                 }
 
-                File.Delete(Global.exedirpath + "\\DS4Updater.exe");
-                File.Move(Global.exedirpath + "\\Update Files\\DS4Windows\\DS4Updater.exe",
-                    Global.exedirpath + "\\DS4Updater.exe");
-                Directory.Delete(Global.exedirpath + "\\Update Files", true);
+                if (!Global.AdminNeeded())
+                {
+                    File.Delete(Global.exedirpath + "\\DS4Updater.exe");
+                    File.Move(Global.exedirpath + "\\Update Files\\DS4Windows\\DS4Updater.exe",
+                        Global.exedirpath + "\\DS4Updater.exe");
+                    Directory.Delete(Global.exedirpath + "\\Update Files", true);
+                }
+                else
+                {
+                    Util.ElevatedCopyUpdater(Global.exedirpath + "\\Update Files\\DS4Windows\\DS4Updater.exe", true);
+                }
             }
         }
 

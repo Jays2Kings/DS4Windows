@@ -370,7 +370,7 @@ namespace DS4Windows
 
             //System.Threading.Thread.Sleep(50);
             sw.Restart();
-            while (sw.ElapsedMilliseconds < 50)
+            while (sw.ElapsedMilliseconds < 100)
             {
                 // Use SpinWait to keep control of current thread. Using Sleep could potentially
                 // cause other events to get run out of order

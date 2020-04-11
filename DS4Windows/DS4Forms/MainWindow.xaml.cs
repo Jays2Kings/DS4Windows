@@ -138,7 +138,7 @@ namespace DS4WinWPF.DS4Forms
                     //root.rootHubtest.Start();
                 }
 
-                UpdateTheUpdater();
+                //UpdateTheUpdater();
             });
 
             Util.LogAssistBackgroundTask(tempTask);

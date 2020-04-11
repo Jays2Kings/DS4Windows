@@ -185,26 +185,7 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
                 if (result == MessageBoxResult.Yes)
                 {
                     bool launch = true;
-                    if (!File.Exists(Global.exedirpath + "\\DS4Updater.exe") ||
-                        (File.Exists(Global.exedirpath + "\\DS4Updater.exe")
-                        && (FileVersionInfo.GetVersionInfo(Global.exedirpath + "\\DS4Updater.exe").FileVersion.CompareTo(MainWindowsViewModel.UPDATER_VERSION) != 0)))
-                    {
-                        Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{MainWindowsViewModel.UPDATER_VERSION}/{mainWinVM.updaterExe}");
-                        string filename = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "DS4Updater.exe");
-                        using (var downloadStream = new FileStream(filename, FileMode.Create))
-                        {
-                            Task<System.Net.Http.HttpResponseMessage> temp =
-                                App.requestClient.GetAsync(url2.ToString(), downloadStream);
-                            temp.Wait();
-                            if (!temp.Result.IsSuccessStatusCode) launch = false;
-                        }
-
-                        if (launch)
-                        {
-                            int copyStatus = Util.ElevatedCopyUpdater(filename);
-                            if (copyStatus != 0) launch = false;
-                        }
-                    }
+                    launch = RunUpdaterCheck(launch);
 
                     if (launch)
                     {
@@ -257,6 +238,33 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
                     Dispatcher.Invoke(() => MessageBox.Show(Properties.Resources.UpToDate, "DS4Windows Updater"));
                 }
             }
+        }
+
+        private bool RunUpdaterCheck(bool launch)
+        {
+            if (!File.Exists(Global.exedirpath + "\\DS4Updater.exe") ||
+                (File.Exists(Global.exedirpath + "\\DS4Updater.exe")
+                && (FileVersionInfo.GetVersionInfo(Global.exedirpath + "\\DS4Updater.exe").FileVersion.CompareTo(MainWindowsViewModel.UPDATER_VERSION) != 0)))
+            {
+                launch = false;
+                Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{MainWindowsViewModel.UPDATER_VERSION}/{mainWinVM.updaterExe}");
+                string filename = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "DS4Updater.exe");
+                using (var downloadStream = new FileStream(filename, FileMode.Create))
+                {
+                    Task<System.Net.Http.HttpResponseMessage> temp =
+                        App.requestClient.GetAsync(url2.ToString(), downloadStream);
+                    temp.Wait();
+                    if (temp.Result.IsSuccessStatusCode) launch = true;
+                }
+
+                if (launch)
+                {
+                    int copyStatus = Util.ElevatedCopyUpdater(filename);
+                    if (copyStatus != 0) launch = false;
+                }
+            }
+
+            return launch;
         }
 
         private void TrayIconVM_RequestMinimize(object sender, EventArgs e)

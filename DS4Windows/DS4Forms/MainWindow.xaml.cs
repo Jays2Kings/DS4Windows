@@ -55,9 +55,6 @@ namespace DS4WinWPF.DS4Forms
 
         public ProfileList ProfileListHolder { get => profileListHolder; }
 
-        private const string UPDATER_VERSION = "1.4.1";
-        private string updaterExe = Environment.Is64BitProcess ? "DS4Updater.exe" : "DS4Updater_x86.exe";
-
         public MainWindow(ArgumentParser parser)
         {
             InitializeComponent();
@@ -190,9 +187,9 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
                     bool launch = true;
                     if (!File.Exists(Global.exedirpath + "\\DS4Updater.exe") ||
                         (File.Exists(Global.exedirpath + "\\DS4Updater.exe")
-                        && (FileVersionInfo.GetVersionInfo(Global.exedirpath + "\\DS4Updater.exe").FileVersion.CompareTo(UPDATER_VERSION) != 0)))
+                        && (FileVersionInfo.GetVersionInfo(Global.exedirpath + "\\DS4Updater.exe").FileVersion.CompareTo(MainWindowsViewModel.UPDATER_VERSION) != 0)))
                     {
-                        Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{UPDATER_VERSION}/{updaterExe}");
+                        Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{MainWindowsViewModel.UPDATER_VERSION}/{mainWinVM.updaterExe}");
                         string filename = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "DS4Updater.exe");
                         using (var downloadStream = new FileStream(filename, FileMode.Create))
                         {

@@ -368,9 +368,9 @@
                                 <TextBlock Text="RS" Grid.Column="2" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,0,8"/>
 
                                 <Label Content="Dead Zone:" Grid.Row="1" Grid.Column="0" />
-                                <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSDeadZone}" FormatString="F2" MinWidth="50" Grid.Row="1" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
+                                <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSDeadZone,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="1" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
-                                <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSDeadZone}" FormatString="F2" MinWidth="50" Grid.Row="1" Grid.Column="2" Maximum="1.0" Minimum="0.0" Increment="0.1"
+                                <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSDeadZone,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="1" Grid.Column="2" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
                                 <Label Content="Max Zone:" Grid.Row="2" Grid.Column="0" />

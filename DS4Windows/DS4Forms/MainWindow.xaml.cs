@@ -169,6 +169,30 @@ namespace DS4WinWPF.DS4Forms
             }
         }
 
+        private string DownloadUpstreamUpdaterVersion()
+        {
+            string result = string.Empty;
+            // Sorry other devs, gonna have to find your own server
+            Uri url = new Uri("https://raw.githubusercontent.com/Ryochan7/DS4Updater/master/Updater2/newest.txt");
+            string filename = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "DS4Updater_version.txt");
+            bool readFile = false;
+            using (var downloadStream = new FileStream(filename, FileMode.Create))
+            {
+                Task<System.Net.Http.HttpResponseMessage> temp = App.requestClient.GetAsync(url.ToString(), downloadStream);
+                temp.Wait();
+
+                if (temp.Result.IsSuccessStatusCode) readFile = true;
+            }
+
+            if (readFile)
+            {
+                result = File.ReadAllText(filename).Trim();
+                File.Delete(filename);
+            }
+
+            return result;
+        }
+
         private void Check_Version(bool showstatus = false)
         {
             string version = Global.exeversion;
@@ -244,11 +268,12 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
         {
             string destPath = Global.exedirpath + "\\DS4Updater.exe";
             bool updaterExists = File.Exists(destPath);
+            string version = DownloadUpstreamUpdaterVersion();
             if (!updaterExists ||
-                (FileVersionInfo.GetVersionInfo(destPath).FileVersion.CompareTo(MainWindowsViewModel.UPDATER_VERSION) != 0))
+                (!string.IsNullOrEmpty(version) && FileVersionInfo.GetVersionInfo(destPath).FileVersion.CompareTo(version) != 0))
             {
                 launch = false;
-                Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{MainWindowsViewModel.UPDATER_VERSION}/{mainWinVM.updaterExe}");
+                Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{version}/{mainWinVM.updaterExe}");
                 string filename = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "DS4Updater.exe");
                 using (var downloadStream = new FileStream(filename, FileMode.Create))
                 {

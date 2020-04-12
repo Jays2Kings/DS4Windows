@@ -267,7 +267,7 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
                     }
                     else
                     {
-                        File.Delete(destPath);
+                        if (updaterExists) File.Delete(destPath);
                         File.Move(filename, destPath);
                     }
                 }

@@ -1,5 +1,6 @@
 # TODO
 
+* Make experimental ScpVBus build
 * ~~Look back into localization workflow~~
 * Add cross dead zone (per axis) for sticks
 * Abstract output slots

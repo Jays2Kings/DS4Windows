@@ -256,7 +256,7 @@
                         </StackPanel>
                         <CheckBox Content="{lex:Loc StartMinimized}" Margin="{StaticResource spaceMargin}"
                               IsChecked="{Binding StartMinimize}" />
-                        <CheckBox Content="Minimize to Taskbar" Margin="{StaticResource spaceMargin}"
+                        <CheckBox Content="Minimize to Taskbar instead of System Tray" Margin="{StaticResource spaceMargin}"
                               IsChecked="{Binding MinimizeToTaskbar}" />
                         <CheckBox Content="{lex:Loc CloseMinimizes}" Margin="{StaticResource spaceMargin}"
                               IsChecked="{Binding CloseMinimizes}"

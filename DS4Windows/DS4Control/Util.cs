@@ -205,7 +205,7 @@ namespace DS4Windows
                 w.WriteLine($"@mov /Y \"{tmpUpdaterPath}\" {Global.exedirpath}\\DS4Updater.exe");
                 if (deleteUpdatesDir)
                 {
-                    w.WriteLine($"@del {Global.exedirpath}\\Update Files\\DS4Windows\\DS4Updater.exe");
+                    w.WriteLine($"@del /S {Global.exedirpath}\\Update Files\\DS4Windows");
                 }
                 w.WriteLine("@DEL \"%~f0\""); // Attempt to delete myself without opening a time paradox.
                 w.Close();

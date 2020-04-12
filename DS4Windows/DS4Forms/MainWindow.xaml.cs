@@ -242,9 +242,10 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
 
         private bool RunUpdaterCheck(bool launch)
         {
-            bool updaterExists = File.Exists(Global.exedirpath + "\\DS4Updater.exe");
+            string destPath = Global.exedirpath + "\\DS4Updater.exe";
+            bool updaterExists = File.Exists(destPath);
             if (!updaterExists ||
-                (FileVersionInfo.GetVersionInfo(Global.exedirpath + "\\DS4Updater.exe").FileVersion.CompareTo(MainWindowsViewModel.UPDATER_VERSION) != 0))
+                (FileVersionInfo.GetVersionInfo(destPath).FileVersion.CompareTo(MainWindowsViewModel.UPDATER_VERSION) != 0))
             {
                 launch = false;
                 Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{MainWindowsViewModel.UPDATER_VERSION}/{mainWinVM.updaterExe}");
@@ -266,7 +267,8 @@ Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question
                     }
                     else
                     {
-                        File.Move(filename, Global.exedirpath + "\\DS4Updater.exe");
+                        File.Delete(destPath);
+                        File.Move(filename, destPath);
                     }
                 }
             }

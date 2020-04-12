@@ -9,7 +9,7 @@ more games are accessible.
 This project is a fork of the work of Jays2Kings. You can find the old project
 website at [ds4windows.com](http://ds4windows.com).
 
-![DS4Windows Preview](https://raw.githubusercontent.com/Ryochan7/DS4Windows/jay/ds4winwpf_screen_20190926.png)
+![DS4Windows Preview](https://raw.githubusercontent.com/Ryochan7/DS4Windows/jay/ds4winwpf_screen_20200412.png)
 
 ## Downloads
 
@@ -21,7 +21,7 @@ website at [ds4windows.com](http://ds4windows.com).
 - [Microsoft .NET 4.6.2 or higher (needed to unzip the driver and for macros to
 work properly)](https://www.microsoft.com/en-us/download/details.aspx?id=53344)
 - Visual C++ 2015-2019 Redistributable. [x64](https://aka.ms/vs/16/release/vc_redist.x64.exe) or [x86](https://aka.ms/vs/16/release/vc_redist.x86.exe)
-- ViGEmBus driver (DS4Windows will install it for you)
+- [ViGEmBus](https://vigem.org/) driver (DS4Windows will install it for you)
 - Microsoft 360 Driver (link inside DS4Windows, already installed by Windows if
 you've used a 360 controller before)
 - Sony DualShock 4

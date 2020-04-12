@@ -190,5 +190,46 @@ namespace DS4Windows
                 }
             });
         }
+
+        public static int ElevatedCopyUpdater(string tmpUpdaterPath, bool deleteUpdatesDir=false)
+        {
+            int result = -1;
+            string tmpPath = Path.Combine(Path.GetTempPath(), "updatercopy.bat");
+            // Create temporary bat script that will later be executed
+            using (StreamWriter w = new StreamWriter(new FileStream(tmpPath,
+                FileMode.Create, FileAccess.Write)))
+            {
+                w.WriteLine("@echo off"); // Turn off echo
+                w.WriteLine("@echo Attempting to replace updater, please wait...");
+                // Move temp downloaded file to destination
+                w.WriteLine($"@mov /Y \"{tmpUpdaterPath}\" \"{Global.exedirpath}\\DS4Updater.exe\"");
+                if (deleteUpdatesDir)
+                {
+                    w.WriteLine($"@del /S \"{Global.exedirpath}\\Update Files\\DS4Windows\"");
+                }
+                w.WriteLine("@DEL \"%~f0\""); // Attempt to delete myself without opening a time paradox.
+                w.Close();
+            }
+
+            // Execute temp batch script with admin privileges
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = tmpPath;
+            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            startInfo.Verb = "runas";
+            startInfo.UseShellExecute = true;
+            startInfo.CreateNoWindow = true;
+            try
+            {
+                // Launch process, wait and then save exit code
+                using (Process temp = Process.Start(startInfo))
+                {
+                    temp.WaitForExit();
+                    result = temp.ExitCode;
+                }
+            }
+            catch { }
+
+            return result;
+        }
     }
 }

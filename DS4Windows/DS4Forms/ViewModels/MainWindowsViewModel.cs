@@ -20,5 +20,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
         public event EventHandler FullTabsEnabledChanged;
+
+        public string updaterExe = Environment.Is64BitProcess ? "DS4Updater.exe" : "DS4Updater_x86.exe";
     }
 }

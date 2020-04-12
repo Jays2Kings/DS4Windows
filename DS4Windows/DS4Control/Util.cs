@@ -201,7 +201,7 @@ namespace DS4Windows
             {
                 w.WriteLine("@echo off"); // Turn off echo
                 w.WriteLine("@echo Attempting to replace updater, please wait...");
-                // Copy temp downloaded file to destination
+                // Move temp downloaded file to destination
                 w.WriteLine($"@mov /Y \"{tmpUpdaterPath}\" {Global.exedirpath}\\DS4Updater.exe");
                 if (deleteUpdatesDir)
                 {

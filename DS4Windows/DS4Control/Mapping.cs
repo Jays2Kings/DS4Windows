@@ -969,8 +969,9 @@ namespace DS4Windows
                 double sideX = dState.LX - 128; double sideY = dState.LY - 128.0;
                 double capX = dState.LX >= 128 ? maxOutXRatio * 127.0 : maxOutXRatio * 128.0;
                 double capY = dState.LY >= 128 ? maxOutYRatio * 127.0 : maxOutYRatio * 128.0;
-                if (Math.Abs(sideX) > capX) capX = sideX;
-                if (Math.Abs(sideY) > capY) capY = sideY;
+                double absSideX = Math.Abs(sideX); double absSideY = Math.Abs(sideY);
+                if (absSideX > capX) capX = absSideX;
+                if (absSideY > capY) capY = absSideY;
                 double tempRatioX = (dState.LX - 128.0) / capX;
                 double tempRatioY = (dState.LY - 128.0) / capY;
                 double signX = tempRatioX >= 0.0 ? 1.0 : -1.0;
@@ -1078,8 +1079,9 @@ namespace DS4Windows
                 double sideX = dState.RX - 128; double sideY = dState.RY - 128.0;
                 double capX = dState.RX >= 128 ? maxOutXRatio * 127.0 : maxOutXRatio * 128.0;
                 double capY = dState.RY >= 128 ? maxOutYRatio * 127.0 : maxOutYRatio * 128.0;
-                if (Math.Abs(sideX) > capX) capX = sideX;
-                if (Math.Abs(sideY) > capY) capY = sideY;
+                double absSideX = Math.Abs(sideX); double absSideY = Math.Abs(sideY);
+                if (absSideX > capX) capX = absSideX;
+                if (absSideY > capY) capY = absSideY;
                 double tempRatioX = (dState.RX - 128.0) / capX;
                 double tempRatioY = (dState.RY - 128.0) / capY;
                 double signX = tempRatioX >= 0.0 ? 1.0 : -1.0;

@@ -1013,6 +1013,12 @@ namespace DS4Windows
             return m_Config.idleDisconnectTimeout[index];
         }
 
+        public static bool[] EnableOutputDataToDS4 => m_Config.enableOutputDataToDS4;
+        public static bool getEnableOutputDataToDS4(int index)
+        {
+            return m_Config.enableOutputDataToDS4[index];
+        }
+
         public static byte[] TouchSensitivity => m_Config.touchSensitivity;
         public static byte[] getTouchSensitivity()
         {
@@ -1950,6 +1956,7 @@ namespace DS4Windows
         public bool[] flushHIDQueue = new bool[5] { false, false, false, false, false };
         public bool[] enableTouchToggle = new bool[5] { true, true, true, true, true };
         public int[] idleDisconnectTimeout = new int[5] { 0, 0, 0, 0, 0 };
+        public bool[] enableOutputDataToDS4 = new bool[5] { true, true, true, true, true };
         public bool[] touchpadJitterCompensation = new bool[5] { true, true, true, true, true };
         public bool[] lowerRCOn = new bool[5] { false, false, false, false, false };
         public string[] profilePath = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
@@ -2463,6 +2470,7 @@ namespace DS4Windows
                 XmlNode xmlFlushHIDQueue = m_Xdoc.CreateNode(XmlNodeType.Element, "flushHIDQueue", null); xmlFlushHIDQueue.InnerText = flushHIDQueue[device].ToString(); Node.AppendChild(xmlFlushHIDQueue);
                 XmlNode xmlTouchToggle = m_Xdoc.CreateNode(XmlNodeType.Element, "touchToggle", null); xmlTouchToggle.InnerText = enableTouchToggle[device].ToString(); Node.AppendChild(xmlTouchToggle);
                 XmlNode xmlIdleDisconnectTimeout = m_Xdoc.CreateNode(XmlNodeType.Element, "idleDisconnectTimeout", null); xmlIdleDisconnectTimeout.InnerText = idleDisconnectTimeout[device].ToString(); Node.AppendChild(xmlIdleDisconnectTimeout);
+                XmlNode xmlOutputDataToDS4 = m_Xdoc.CreateNode(XmlNodeType.Element, "outputDataToDS4", null); xmlOutputDataToDS4.InnerText = enableOutputDataToDS4[device].ToString(); Node.AppendChild(xmlOutputDataToDS4);
                 XmlNode xmlColor = m_Xdoc.CreateNode(XmlNodeType.Element, "Color", null);
                 xmlColor.InnerText = lightInfo.m_Led.red.ToString() + "," + lightInfo.m_Led.green.ToString() + "," + lightInfo.m_Led.blue.ToString();
                 Node.AppendChild(xmlColor);
@@ -3091,7 +3099,11 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/idleDisconnectTimeout"); Int32.TryParse(Item.InnerText, out idleDisconnectTimeout[device]); }
                 catch { missingSetting = true; }
 
-                try {
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/outputDataToDS4"); Boolean.TryParse(Item.InnerText, out enableOutputDataToDS4[device]); }
+                catch { missingSetting = true; }
+
+                try
+                {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LightbarMode");
                     string tempMode = Item.InnerText;
                     lightbarSettings.mode = GetLightbarModeType(tempMode);
@@ -4802,6 +4814,7 @@ namespace DS4Windows
             flushHIDQueue[device] = false;
             enableTouchToggle[device] = true;
             idleDisconnectTimeout[device] = 300;
+            enableOutputDataToDS4[device] = true;
             touchpadJitterCompensation[device] = true;
             lowerRCOn[device] = false;
             

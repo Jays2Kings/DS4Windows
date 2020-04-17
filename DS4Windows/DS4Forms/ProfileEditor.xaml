@@ -1038,6 +1038,7 @@
                     <CheckBox Content="Mouse Acceleration" IsChecked="{Binding MouseAcceleration}" Margin="0,6,0,0" />
                     <CheckBox Content="Enable Touchpad Toggle" IsChecked="{Binding EnableTouchpadToggle}" Margin="0,6,0,0"
                               ToolTip="{lex:Loc Resources:EnableTouchToggle}" />
+                    <CheckBox Content="{lex:Loc EnableOutputDataToDS4}" IsChecked="{Binding EnableOutputDataToDS4}" Margin="0,6,0,0" ToolTip="{lex:Loc EnableOutputDataToDS4Tip}" />
                     <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
                         <CheckBox x:Name="launchProgCk" Content="Launch program with profile" IsChecked="{Binding LaunchProgramExists}" IsEnabled="{Binding LaunchProgramExists}" />
                         <Button x:Name="launchProgBrowseBtn" Content="{Binding LaunchProgramName,FallbackValue={lex:Loc Browse}}" Click="LaunchProgBrowseBtn_Click" Width="80" Height="30" Margin="20,0,0,0" />

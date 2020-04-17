@@ -135,6 +135,7 @@ namespace DS4Windows
         private byte[] inputReport;
         private byte[] btInputReport = null;
         private byte[] outReportBuffer, outputReport;
+        private int inputReportErrorCount = 0; // Num of consequtive input report errors (fex if BT device fails 5 times in crc32 and 0x11 data type check then switch over to handle incoming BT packets as those were usb PC-friendly packets. Some fake DS4 gamepads needs this)
         private readonly DS4Touchpad touchpad = null;
         private readonly DS4SixAxis sixAxis = null;
         private Thread ds4Input, ds4Output;
@@ -276,6 +277,20 @@ namespace DS4Windows
             {
                 idleTimeout = value;
             }
+        }
+
+        // Feature set of gamepad (some non-official DS4 gamepads require a bit different logic than a genuine Sony DS4). 0=Default DS4 gamepad feature set.
+        private VidPidFeatureSet featureSet;
+        public VidPidFeatureSet FeatureSet
+        {
+            get { return featureSet;  }
+            set { featureSet = value; }
+        }
+        public VidPidFeatureSet ModifyFeatureSetFlag(VidPidFeatureSet featureBitFlag, bool flagSet)
+        {
+            if (flagSet) featureSet |= featureBitFlag;
+            else featureSet &= ~featureBitFlag;
+            return featureSet;
         }
 
         public int Battery => battery;
@@ -432,13 +447,18 @@ namespace DS4Windows
         private ManualResetEventSlim readWaitEv = new ManualResetEventSlim();
         public ManualResetEventSlim ReadWaitEv { get => readWaitEv; }
 
-        public DS4Device(HidDevice hidDevice, string disName)
+        public DS4Device(HidDevice hidDevice, string disName, VidPidFeatureSet featureSet = VidPidFeatureSet.DefaultDS4)
         {
             hDevice = hidDevice;
             displayName = disName;
+            this.featureSet = featureSet;
+
+            if (this.FeatureSet != VidPidFeatureSet.DefaultDS4)
+                AppLogger.LogToGui($"The gamepad {displayName} ({conType}) uses custom feature set ({this.FeatureSet.ToString("F")})", false);
+
             conType = HidConnectionType(hDevice);
             Mac = hDevice.readSerial();
-            runCalib = true;
+            runCalib = (this.featureSet & VidPidFeatureSet.NoGyroCalib) == 0;
             if (conType == ConnectionType.USB || conType == ConnectionType.SONYWA)
             {
                 inputReport = new byte[64];
@@ -452,11 +472,6 @@ namespace DS4Windows
                     {
                         audio = new DS4Audio();
                         micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture);
-                    }
-                    else if (tempAttr.VendorId == 0x146B && (tempAttr.ProductId == 0x0D01 || tempAttr.ProductId == 0x0D02))
-                    {
-                        // The old logic didn't run gyro calibration for any of the Nacon gamepads. Nowadays there are Nacon gamepads with full PS4 compatible gyro, so skip the calibration only for old Nacon devices (is that skip even necessary?)
-                        runCalib = false;
                     }
                     else if (tempAttr.VendorId == DS4Devices.RAZER_VID &&
                         tempAttr.ProductId == 0x1007)
@@ -481,8 +496,19 @@ namespace DS4Windows
             {
                 btInputReport = new byte[BT_INPUT_REPORT_LENGTH];
                 inputReport = new byte[BT_INPUT_REPORT_LENGTH - 2];
-                outputReport = new byte[BT_OUTPUT_REPORT_LENGTH];
-                outReportBuffer = new byte[BT_OUTPUT_REPORT_LENGTH];
+                // If OnlyOutputData0x05 feature is not set then use the default DS4 output buffer size. However, some Razer gamepads use 32 bytes output buffer and output data type 0x05 in BT mode (writeData fails if the code tries to write too many unnecessary bytes)
+                if ((this.featureSet & VidPidFeatureSet.OnlyOutputData0x05) == 0)
+                {
+                    // Default DS4 logic while writing data to gamepad
+                    outputReport = new byte[BT_OUTPUT_REPORT_LENGTH];
+                    outReportBuffer = new byte[BT_OUTPUT_REPORT_LENGTH];
+                }
+                else
+                {
+                    // Use the gamepad specific output buffer size (but minimum of 15 bytes to avoid out-of-index errors in this app)
+                    outputReport = new byte[hDevice.Capabilities.OutputReportByteLength <= 15 ? 15 : hDevice.Capabilities.OutputReportByteLength];
+                    outReportBuffer = new byte[hDevice.Capabilities.OutputReportByteLength <= 15 ? 15 : hDevice.Capabilities.OutputReportByteLength];
+                }
                 warnInterval = WARN_INTERVAL_BT;
                 synced = isValidSerial();
             }
@@ -497,7 +523,7 @@ namespace DS4Windows
                 hDevice.OpenFileStream(inputReport.Length);
             }
 
-            sendOutputReport(true, true); // initialize the output report
+            sendOutputReport(true, true, false); // initialize the output report (don't force disconnect the gamepad on initialization even if writeData fails because some fake DS4 gamepads don't support writeData over BT)
         }
 
         private void TimeoutTestThread()
@@ -564,6 +590,8 @@ namespace DS4Windows
 
         public void StartUpdate()
         {
+            this.inputReportErrorCount = 0;
+
             if (ds4Input == null)
             {
                 if (conType == ConnectionType.BT)
@@ -647,7 +675,11 @@ namespace DS4Windows
         {
             if (conType == ConnectionType.BT)
             {
-                return hDevice.WriteOutputReportViaControl(outputReport);
+                if ((this.featureSet & VidPidFeatureSet.OnlyOutputData0x05) == 0)
+                    return hDevice.WriteOutputReportViaControl(outputReport);
+                else
+                    // Some gamepads behave like USB devices in BT (fex couple Razer gamepads)
+                    return hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
             }
             else
             {
@@ -815,7 +847,9 @@ namespace DS4Windows
 
                     readWaitEv.Set();
 
-                    if (conType == ConnectionType.BT)
+                    // Sony DS4 and compatible gamepads send data packets with 0x11 type code in BT mode. 
+                    // However, couple non-Sony gamepads behave like USB devices in BT mode also, so if OnlyInputData0x01 is set then BT specific crc32 checks are not calculated.
+                    if (conType == ConnectionType.BT && (this.featureSet & VidPidFeatureSet.OnlyInputData0x01) == 0)
                     {
                         //HidDevice.ReadStatus res = hDevice.ReadFile(btInputReport);
                         //HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(btInputReport, READ_STREAM_TIMEOUT);
@@ -846,8 +880,24 @@ namespace DS4Windows
                                 //                    "> invalid CRC32 in BT input report: 0x" + recvCrc32.ToString("X8") + " expected: 0x" + calcCrc32.ToString("X8"));
 
                                 cState.PacketCounter = pState.PacketCounter + 1; //still increase so we know there were lost packets
+
+                                // If the incoming data packet doesn't have the native DS4 type (0x11) in BT mode then the gamepad sends PC-friendly 0x01 data packets even in BT mode. Switch over to accept 0x01 data packets in BT mode.
+                                if (this.inputReportErrorCount >= 5)
+                                {
+                                    if (btInputReport[0] == 0x01)
+                                    {
+                                        this.inputReportErrorCount = 0;
+                                        this.ModifyFeatureSetFlag(VidPidFeatureSet.OnlyInputData0x01, true);
+                                        AppLogger.LogToGui(Mac.ToString() + " switching over to accept PC-friendly data packets in BT mode", false);
+                                    }
+                                }
+                                else
+                                    this.inputReportErrorCount++;
+
                                 continue;
                             }
+                            else
+                                this.inputReportErrorCount = 0;
                         }
                         else
                         {
@@ -908,7 +958,7 @@ namespace DS4Windows
                     lastTimeElapsed = (long)lastTimeElapsedDouble;
                     oldtime = curtime;
 
-                    if (conType == ConnectionType.BT && btInputReport[0] != 0x11)
+                    if (conType == ConnectionType.BT && btInputReport[0] != 0x11 && (this.featureSet & VidPidFeatureSet.OnlyInputData0x01) == 0)
                     {
                         //Received incorrect report, skip it
                         continue;
@@ -965,29 +1015,39 @@ namespace DS4Windows
                     cState.TouchButton = (tempByte & 0x02) != 0;
                     cState.FrameCounter = (byte)(tempByte >> 2);
 
-                    tempByte = inputReport[30];
-                    tempCharging = (tempByte & 0x10) != 0;
-                    if (tempCharging != charging)
+                    if ((this.featureSet & VidPidFeatureSet.NoBatteryReading) == 0)
                     {
-                        charging = tempCharging;
-                        ChargingChanged?.Invoke(this, EventArgs.Empty);
-                    }
+                        tempByte = inputReport[30];
+                        tempCharging = (tempByte & 0x10) != 0;
+                        if (tempCharging != charging)
+                        {
+                            charging = tempCharging;
+                            ChargingChanged?.Invoke(this, EventArgs.Empty);
+                        }
 
-                    maxBatteryValue = charging ? BATTERY_MAX_USB : BATTERY_MAX;
-                    tempBattery = (tempByte & 0x0f) * 100 / maxBatteryValue;
-                    tempBattery = Math.Min(tempBattery, 100);
-                    if (tempBattery != battery)
-                    {
-                        battery = tempBattery;
-                        BatteryChanged?.Invoke(this, EventArgs.Empty);
-                    }
+                        maxBatteryValue = charging ? BATTERY_MAX_USB : BATTERY_MAX;
+                        tempBattery = (tempByte & 0x0f) * 100 / maxBatteryValue;
+                        tempBattery = Math.Min(tempBattery, 100);
+                        if (tempBattery != battery)
+                        {
+                            battery = tempBattery;
+                            BatteryChanged?.Invoke(this, EventArgs.Empty);
+                        }
 
-                    cState.Battery = (byte)battery;
-                    //System.Diagnostics.Debug.WriteLine("CURRENT BATTERY: " + (inputReport[30] & 0x0f) + " | " + tempBattery + " | " + battery);
-                    if (tempByte != priorInputReport30)
+                        cState.Battery = (byte)battery;
+                        //System.Diagnostics.Debug.WriteLine("CURRENT BATTERY: " + (inputReport[30] & 0x0f) + " | " + tempBattery + " | " + battery);
+                        if (tempByte != priorInputReport30)
+                        {
+                            priorInputReport30 = tempByte;
+                            //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> power subsystem octet: 0x" + inputReport[30].ToString("x02"));
+                        }
+                    }
+                    else
                     {
-                        priorInputReport30 = tempByte;
-                        //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> power subsystem octet: 0x" + inputReport[30].ToString("x02"));
+                        // Some gamepads don't send battery values in DS4 compatible data fields, so use dummy 99% value to avoid constant low battery warnings
+                        priorInputReport30 = 0x0F;
+                        battery = 99;
+                        cState.Battery = 99;
                     }
 
                     tempStamp = (uint)((ushort)(inputReport[11] << 8) | inputReport[10]);
@@ -1193,7 +1253,7 @@ namespace DS4Windows
             hDevice.flush_Queue();
         }
 
-        private unsafe void sendOutputReport(bool synchronous, bool force = false)
+        private unsafe void sendOutputReport(bool synchronous, bool force = false, bool quitOutputThreadOnError = true)
         {
             MergeStates();
             //setTestRumble();
@@ -1202,12 +1262,26 @@ namespace DS4Windows
             bool quitOutputThread = false;
             bool usingBT = conType == ConnectionType.BT;
 
+            // Some gamepads don't support lightbar and rumble, so no need to write out anything (writeOut always fails, so DS4Windows would accidentally force quit the gamepad connection).
+            // If noOutputData featureSet flag is set then don't try to write out anything to the gamepad device.
+            if ((this.featureSet & VidPidFeatureSet.NoOutputData) != 0)
+            {
+                if (exitOutputThread == false && (IsRemoving || IsRemoved))
+                {
+                    // Gamepad disconnecting or disconnected. Signal closing of OutputUpdate thread
+                    StopOutputUpdate();
+                    exitOutputThread = true;
+                }
+
+                return;
+            }
+
             lock (outReportBuffer)
             {
                 bool output = outputPendCount > 0, change = force;
                 bool haptime = output || standbySw.ElapsedMilliseconds >= 4000L;
 
-                if (usingBT)
+                if (usingBT && (this.featureSet & VidPidFeatureSet.OnlyOutputData0x05) == 0)
                 {
                     outReportBuffer[0] = 0x11;
                     outReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
@@ -1295,8 +1369,16 @@ namespace DS4Windows
                         {
                             if (!writeOutput())
                             {
-                                int winError = Marshal.GetLastWin32Error();
-                                quitOutputThread = true;
+                                if (quitOutputThreadOnError)
+                                {
+                                    int winError = Marshal.GetLastWin32Error();
+
+                                    // Logfile notification that the gamepad is force disconnected because of writeOutput failed
+                                    if (quitOutputThread == false)
+                                        AppLogger.LogToGui($"Gamepad data write connection is lost. Disconnecting the gamepad. LastErrorCode={winError}", false);
+
+                                    quitOutputThread = true;
+                                }
                             }
                         }
                         catch { } // If it's dead already, don't worry about it.

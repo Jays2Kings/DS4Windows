@@ -375,7 +375,7 @@
       <SubType>Designer</SubType>
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
-        <EmbeddedResource Include="Translations\Strings.de.resx">
+      <EmbeddedResource Include="Translations\Strings.de.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>

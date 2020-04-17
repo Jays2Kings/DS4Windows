@@ -331,6 +331,25 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable Output data to DS4.
+        /// </summary>
+        public static string EnableOutputDataToDS4 {
+            get {
+                return ResourceManager.GetString("EnableOutputDataToDS4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output lightbar and rumble data periodically to DS4 gamepad. Untick if the gamepad doesn&apos;t support data receiving.
+        ///Changes to this option takes effect at the gamepad connection time..
+        /// </summary>
+        public static string EnableOutputDataToDS4Tip {
+            get {
+                return ResourceManager.GetString("EnableOutputDataToDS4Tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
         public static string Export {

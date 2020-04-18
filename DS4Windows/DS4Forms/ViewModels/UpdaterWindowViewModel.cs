@@ -46,6 +46,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 await temp.ConfigureAwait(true);
 
                 if (temp.Result.IsSuccessStatusCode) readFile = true;
+                else ChangelogText = "Failed to retrieve information";
             }
 
             //await Task.Run(() => { });

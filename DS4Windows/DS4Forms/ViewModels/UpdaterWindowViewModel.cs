@@ -181,6 +181,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private string code;
         private string header;
         private List<string> logText;
+        private string editor;
         private List<string> editorsNote;
         private DateTime editedAt;
 
@@ -199,6 +200,9 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 logText = value;
             }
         }
+
+        [JsonProperty("editor")]
+        public string Editor { get => editor; set => editor = value; }
 
         [JsonProperty("editors_note")]
         public List<string> EditorsNote { get => editorsNote; set => editorsNote = value; }

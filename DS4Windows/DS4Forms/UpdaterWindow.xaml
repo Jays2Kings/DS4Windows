@@ -1,0 +1,19 @@
+﻿<Window x:Class="DS4WinWPF.DS4Forms.UpdaterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
+        mc:Ignorable="d"
+        Title="UpdaterWindow" Height="450" Width="800">
+    <DockPanel>
+        <TextBlock x:Name="captionTextBlock" Text="{Binding IntroText}" DockPanel.Dock="Top" />
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+            <Button x:Name="yesBtn" Content="Yes" MinWidth="60" Click="YesBtn_Click" />
+            <Button x:Name="noBtn" Content="No" MinWidth="60" Click="NoBtn_Click" Margin="10,0,0,0" />
+        </StackPanel>
+
+        <TextBox x:Name="changelogText" Text="{Binding ChangelogText,Mode=OneWay}" AllowDrop="False" VerticalScrollBarVisibility="Auto" IsReadOnly="True" IsUndoEnabled="False" />
+    </DockPanel>
+</Window>

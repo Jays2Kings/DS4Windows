@@ -197,14 +197,20 @@ namespace DS4WinWPF.DS4Forms
         {
             string version = Global.exeversion;
             string newversion = File.ReadAllText(Global.appdatapath + "\\version.txt").Trim();
-            if (!string.IsNullOrWhiteSpace(newversion) && version.CompareTo(newversion) != 0)
+            if (true)//!string.IsNullOrWhiteSpace(newversion) && version.CompareTo(newversion) != 0)
             {
                 MessageBoxResult result = MessageBoxResult.No;
                 Dispatcher.Invoke(() =>
                 {
-                    result = MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion),
-Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    UpdaterWindow updaterWin = new UpdaterWindow(newversion);
+                    updaterWin.ShowDialog();
+                    result = updaterWin.Result;
                 });
+//                Dispatcher.Invoke(() =>
+//                {
+//                    result = MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion),
+//Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question);
+//                });
 
                 if (result == MessageBoxResult.Yes)
                 {

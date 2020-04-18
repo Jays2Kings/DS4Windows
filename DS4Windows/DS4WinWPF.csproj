@@ -225,6 +225,9 @@
     <Compile Include="DS4Forms\SpecialActionEditor.xaml.cs">
       <DependentUpon>SpecialActionEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DS4Forms\UpdaterWindow.xaml.cs">
+      <DependentUpon>UpdaterWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DS4Forms\ViewModels\AutoProfilesViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\BindingWindowViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\ControllerListViewModel.cs" />
@@ -244,6 +247,7 @@
     <Compile Include="DS4Forms\ViewModels\SpecialActions\PressKeyViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\SpecialActions\SASteeringWheelViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\TrayIconViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\UpdaterWindowViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\Util\NotifyDataErrorBase.cs" />
     <Compile Include="DS4Forms\UtilMethods.cs" />
     <Compile Include="DS4Forms\WelcomeDialog.xaml.cs">
@@ -336,6 +340,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DS4Forms\SpecialActionEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\UpdaterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

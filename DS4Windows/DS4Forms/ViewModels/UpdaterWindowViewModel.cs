@@ -37,21 +37,21 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private async void RetrieveChangelogInfo()
         {
             // Sorry other devs, gonna have to find your own server
-            //Uri url = new Uri("https://raw.githubusercontent.com/Ryochan7/DS4Windows/jay/DS4Windows/Changelog.min.json");
-            //string filename = Path.Combine(Path.GetTempPath(), "Changelog.min.json");
-            //bool readFile = false;
-            //using (var downloadStream = new FileStream(filename, FileMode.Create))
-            //{
-            //    Task<System.Net.Http.HttpResponseMessage> temp = App.requestClient.GetAsync(url.ToString(), downloadStream);
-            //    await temp.ConfigureAwait(true);
+            Uri url = new Uri("https://raw.githubusercontent.com/Ryochan7/DS4Windows/changelog_draft/DS4Windows/Changelog.min.json");
+            string filename = Path.Combine(Path.GetTempPath(), "Changelog.min.json");
+            bool readFile = false;
+            using (var downloadStream = new FileStream(filename, FileMode.Create))
+            {
+                Task<System.Net.Http.HttpResponseMessage> temp = App.requestClient.GetAsync(url.ToString(), downloadStream);
+                await temp.ConfigureAwait(true);
 
-            //    if (temp.Result.IsSuccessStatusCode) readFile = true;
-            //}
+                if (temp.Result.IsSuccessStatusCode) readFile = true;
+            }
 
-            await Task.Run(() => { });
-            string filename = @"C:\Users\ryoch\source\repos\DS4Windows\DS4Windows\test.json";
+            //await Task.Run(() => { });
+            //string filename = @"C:\Users\ryoch\source\repos\DS4Windows\DS4Windows\test.json";
+            //bool readFile = true;
             bool fileExists = File.Exists(filename);
-            bool readFile = true;
             if (fileExists && readFile)
             {
                 string temp = File.ReadAllText(filename).Trim();
@@ -65,7 +65,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
             if (fileExists)
             {
-                //File.Delete(filename);
+                File.Delete(filename);
             }
         }
 

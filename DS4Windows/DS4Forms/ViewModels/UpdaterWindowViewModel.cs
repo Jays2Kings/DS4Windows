@@ -7,6 +7,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Documents;
 
 namespace DS4WinWPF.DS4Forms.ViewModels
 {
@@ -27,14 +29,29 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private string newversion;
         public string Newversion { get => newversion; }
 
+
+        private FlowDocument changelogDocument;
+        public FlowDocument ChangelogDocument
+        {
+            get => changelogDocument;
+            private set
+            {
+                if (changelogDocument == value) return;
+                changelogDocument = value;
+                ChangelogDocumentChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler ChangelogDocumentChanged;
+
+
         public UpdaterWindowViewModel(string newversion)
         {
             changelogText = "Retrieving changelog info. Please wait...";
             this.newversion = newversion;
-            RetrieveChangelogInfo();
+            //RetrieveChangelogInfo();
         }
 
-        private async void RetrieveChangelogInfo()
+        public async void RetrieveChangelogInfo()
         {
             // Sorry other devs, gonna have to find your own server
             Uri url = new Uri("https://raw.githubusercontent.com/Ryochan7/DS4Windows/changelog_draft/DS4Windows/Changelog.min.json");
@@ -59,7 +76,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 try
                 {
                     ChangelogInfo tempInfo = JsonConvert.DeserializeObject<ChangelogInfo>(temp);
-                    BuildChangelogString(tempInfo);
+                    //BuildChangelogString(tempInfo);
+                    BuildChangelogDocument(tempInfo);
                 }
                 catch (JsonSerializationException) { }
             }
@@ -87,6 +105,31 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
 
             ChangelogText = temp;
+        }
+
+        private void BuildChangelogDocument(ChangelogInfo tempInfo)
+        {
+            FlowDocument flow = new FlowDocument();
+            foreach (ChangeVersionInfo versionInfo in tempInfo.Changelog.Versions)
+            {
+                VersionLogLocale tmpLog = versionInfo.ApplicableInfo(DS4Windows.Global.UseLang);
+                if (tmpLog != null)
+                {
+                    Paragraph tmpPar = new Paragraph() { FontSize = 16, FontWeight = FontWeights.Bold };
+                    tmpPar.Inlines.Add(new Run(tmpLog.Header));
+                    flow.Blocks.Add(tmpPar);
+
+                    tmpLog.BuildDisplayText();
+                    tmpPar = new Paragraph() { FontSize = 12 };
+                    tmpPar.Inlines.Add(new Run(tmpLog.DisplayLogText));
+                    flow.Blocks.Add(tmpPar);
+
+                    tmpPar = new Paragraph();
+                    flow.Blocks.Add(tmpPar);
+                }
+            }
+
+            ChangelogDocument = flow;
         }
     }
 

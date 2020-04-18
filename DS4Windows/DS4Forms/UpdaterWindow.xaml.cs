@@ -34,6 +34,20 @@ namespace DS4WinWPF.DS4Forms
             updaterWinVM = new UpdaterWindowViewModel(newversion);
 
             DataContext = updaterWinVM;
+
+            SetupEvents();
+
+            updaterWinVM.RetrieveChangelogInfo();
+        }
+
+        private void SetupEvents()
+        {
+            updaterWinVM.ChangelogDocumentChanged += UpdaterWinVM_ChangelogDocumentChanged;
+        }
+
+        private void UpdaterWinVM_ChangelogDocumentChanged(object sender, EventArgs e)
+        {
+            richChangelogTxtBox.Document = updaterWinVM.ChangelogDocument;
         }
 
         private void YesBtn_Click(object sender, RoutedEventArgs e)

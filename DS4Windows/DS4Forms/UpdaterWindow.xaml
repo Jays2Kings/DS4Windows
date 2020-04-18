@@ -14,6 +14,7 @@
             <Button x:Name="noBtn" Content="No" MinWidth="60" Click="NoBtn_Click" Margin="10,0,0,0" />
         </StackPanel>
 
-        <TextBox x:Name="changelogText" Text="{Binding ChangelogText,Mode=OneWay}" AllowDrop="False" VerticalScrollBarVisibility="Auto" IsReadOnly="True" IsUndoEnabled="False" />
+        <!--<TextBox x:Name="changelogText" Text="{Binding ChangelogText,Mode=OneWay}" AllowDrop="False" VerticalScrollBarVisibility="Auto" IsReadOnly="True" IsUndoEnabled="False" />-->
+        <RichTextBox x:Name="richChangelogTxtBox" AllowDrop="False" IsReadOnly="True" VerticalScrollBarVisibility="Auto" />
     </DockPanel>
 </Window>

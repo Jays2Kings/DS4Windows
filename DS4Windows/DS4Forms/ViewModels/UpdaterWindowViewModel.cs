@@ -130,10 +130,6 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         tmpPar = new Paragraph(new Run(tmp));
                         versList.ListItems.Add(new ListItem(tmpPar));
 
-                        tmp = commit.Trim('*');
-                        tmpPar = new Paragraph(new Run(tmp));
-                        versList.ListItems.Add(new ListItem(tmpPar));
-
                         flow.Blocks.Add(versList);
                     }
 

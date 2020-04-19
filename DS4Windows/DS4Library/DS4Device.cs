@@ -453,10 +453,11 @@ namespace DS4Windows
             displayName = disName;
             this.featureSet = featureSet;
 
+            conType = HidConnectionType(hDevice);
+
             if (this.FeatureSet != VidPidFeatureSet.DefaultDS4)
                 AppLogger.LogToGui($"The gamepad {displayName} ({conType}) uses custom feature set ({this.FeatureSet.ToString("F")})", false);
 
-            conType = HidConnectionType(hDevice);
             Mac = hDevice.readSerial();
             runCalib = (this.featureSet & VidPidFeatureSet.NoGyroCalib) == 0;
             if (conType == ConnectionType.USB || conType == ConnectionType.SONYWA)

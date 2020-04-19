@@ -115,14 +115,27 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 VersionLogLocale tmpLog = versionInfo.ApplicableInfo(DS4Windows.Global.UseLang);
                 if (tmpLog != null)
                 {
-                    Paragraph tmpPar = new Paragraph() { FontSize = 16, FontWeight = FontWeights.Bold };
-                    tmpPar.Inlines.Add(new Run(tmpLog.Header));
+                    Paragraph tmpPar = new Paragraph() { Tag = "Header" };
+                    string tmp = tmpLog.Header;
+                    tmpPar.Inlines.Add(new Run(tmp));
                     flow.Blocks.Add(tmpPar);
 
-                    tmpLog.BuildDisplayText();
-                    tmpPar = new Paragraph() { FontSize = 12 };
-                    tmpPar.Inlines.Add(new Run(tmpLog.DisplayLogText));
-                    flow.Blocks.Add(tmpPar);
+                    //tmpLog.BuildDisplayText();
+                    //tmpPar.Inlines.Add(new Run(tmpLog.DisplayLogText));
+
+                    List versList = new List();
+                    foreach (string commit in tmpLog.LogText)
+                    {
+                        tmp = commit.Trim('*');
+                        tmpPar = new Paragraph(new Run(tmp));
+                        versList.ListItems.Add(new ListItem(tmpPar));
+
+                        tmp = commit.Trim('*');
+                        tmpPar = new Paragraph(new Run(tmp));
+                        versList.ListItems.Add(new ListItem(tmpPar));
+
+                        flow.Blocks.Add(versList);
+                    }
 
                     tmpPar = new Paragraph();
                     flow.Blocks.Add(tmpPar);

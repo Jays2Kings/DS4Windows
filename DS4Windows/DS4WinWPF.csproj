@@ -102,6 +102,10 @@
       <HintPath>..\packages\bloomtom.HttpProgress.2.3.1\lib\netstandard2.0\HttpProgress.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="Markdown.Xaml, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Markdown.Xaml.1.0.0\lib\net45\Markdown.Xaml.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.8.17.0, Culture=neutral, PublicKeyToken=c416bc1b32d97233, processorArchitecture=MSIL">
       <HintPath>..\packages\TaskScheduler.2.8.17\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>

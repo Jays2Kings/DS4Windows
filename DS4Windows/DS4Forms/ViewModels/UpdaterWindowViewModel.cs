@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
+using MarkdownEngine = Markdown.Xaml.Markdown;
 
 namespace DS4WinWPF.DS4Forms.ViewModels
 {
@@ -109,6 +110,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         private void BuildChangelogDocument(ChangelogInfo tempInfo)
         {
+            MarkdownEngine engine = new MarkdownEngine();
             FlowDocument flow = new FlowDocument();
             foreach (ChangeVersionInfo versionInfo in tempInfo.Changelog.Versions)
             {
@@ -120,10 +122,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     tmpPar.Inlines.Add(new Run(tmp));
                     flow.Blocks.Add(tmpPar);
 
-                    //tmpLog.BuildDisplayText();
+                    tmpLog.BuildDisplayText();
                     //tmpPar.Inlines.Add(new Run(tmpLog.DisplayLogText));
 
-                    List versList = new List();
+                    FlowDocument tmpDoc = engine.Transform(tmpLog.DisplayLogText);
+                    flow.Blocks.AddRange(new List<Block>(tmpDoc.Blocks));
+                    /*List versList = new List();
                     foreach (string commit in tmpLog.LogText)
                     {
                         tmp = commit.Trim('*');
@@ -132,6 +136,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
                         flow.Blocks.Add(versList);
                     }
+                    */
 
                     tmpPar = new Paragraph();
                     flow.Blocks.Add(tmpPar);

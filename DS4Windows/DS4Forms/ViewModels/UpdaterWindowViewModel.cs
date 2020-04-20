@@ -123,7 +123,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     flow.Blocks.Add(tmpPar);
 
                     tmpPar.Inlines.Add(new LineBreak());
-                    tmpPar.Inlines.Add(new Run(versionInfo.ReleaseDate.ToString("r")) { Tag = "ReleaseDate" });
+                    tmpPar.Inlines.Add(new Run(versionInfo.ReleaseDate.ToUniversalTime().ToString("r")) { Tag = "ReleaseDate" });
 
                     tmpLog.BuildDisplayText();
                     //tmpPar.Inlines.Add(new Run(tmpLog.DisplayLogText));

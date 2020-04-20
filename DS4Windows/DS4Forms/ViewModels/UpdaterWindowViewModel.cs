@@ -117,10 +117,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 VersionLogLocale tmpLog = versionInfo.ApplicableInfo(DS4Windows.Global.UseLang);
                 if (tmpLog != null)
                 {
-                    Paragraph tmpPar = new Paragraph() { Tag = "Header" };
+                    Paragraph tmpPar = new Paragraph();
                     string tmp = tmpLog.Header;
-                    tmpPar.Inlines.Add(new Run(tmp));
+                    tmpPar.Inlines.Add(new Run(tmp) { Tag = "Header" });
                     flow.Blocks.Add(tmpPar);
+
+                    tmpPar.Inlines.Add(new LineBreak());
+                    tmpPar.Inlines.Add(new Run(versionInfo.ReleaseDate.ToString("r")) { Tag = "ReleaseDate" });
 
                     tmpLog.BuildDisplayText();
                     //tmpPar.Inlines.Add(new Run(tmpLog.DisplayLogText));

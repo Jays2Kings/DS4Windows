@@ -453,10 +453,11 @@ namespace DS4Windows
             displayName = disName;
             this.featureSet = featureSet;
 
+            conType = HidConnectionType(hDevice);
+
             if (this.FeatureSet != VidPidFeatureSet.DefaultDS4)
                 AppLogger.LogToGui($"The gamepad {displayName} ({conType}) uses custom feature set ({this.FeatureSet.ToString("F")})", false);
 
-            conType = HidConnectionType(hDevice);
             Mac = hDevice.readSerial();
             runCalib = (this.featureSet & VidPidFeatureSet.NoGyroCalib) == 0;
             if (conType == ConnectionType.USB || conType == ConnectionType.SONYWA)
@@ -882,7 +883,7 @@ namespace DS4Windows
                                 cState.PacketCounter = pState.PacketCounter + 1; //still increase so we know there were lost packets
 
                                 // If the incoming data packet doesn't have the native DS4 type (0x11) in BT mode then the gamepad sends PC-friendly 0x01 data packets even in BT mode. Switch over to accept 0x01 data packets in BT mode.
-                                if (this.inputReportErrorCount >= 5)
+                                if (this.inputReportErrorCount >= 10)
                                 {
                                     if (btInputReport[0] == 0x01)
                                     {

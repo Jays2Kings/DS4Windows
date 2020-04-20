@@ -193,6 +193,19 @@ namespace DS4WinWPF
                     });
                 }
             }
+            else
+            {
+                Logger logger = logHolder.Logger;
+                Exception exp = e.ExceptionObject as Exception;
+                if (e.IsTerminating)
+                {
+                    logger.Error($"Thread Crashed with message {exp.Message}");
+                    logger.Error(exp.ToString());
+
+                    rootHub?.PrepareAbort();
+                    CleanShutdown();
+                }
+            }
         }
 
         private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
@@ -200,10 +213,10 @@ namespace DS4WinWPF
             //Console.WriteLine("App Crashed");
             //Console.WriteLine(e.Exception.StackTrace);
             Logger logger = logHolder.Logger;
-            logger.Error($"App Crashed with message {e.Exception.Message}");
+            logger.Error($"Thread Crashed with message {e.Exception.Message}");
             logger.Error(e.Exception.ToString());
-            LogManager.Flush();
-            LogManager.Shutdown();
+            //LogManager.Flush();
+            //LogManager.Shutdown();
         }
 
         private bool CreateConfDirSkeleton()

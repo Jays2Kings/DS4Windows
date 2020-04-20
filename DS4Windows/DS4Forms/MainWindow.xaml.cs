@@ -165,7 +165,11 @@ namespace DS4WinWPF.DS4Forms
             using (var downloadStream = new FileStream(filename, FileMode.Create))
             {
                 Task<System.Net.Http.HttpResponseMessage> temp = App.requestClient.GetAsync(url.ToString(), downloadStream);
-                temp.Wait();
+                try
+                {
+                    temp.Wait();
+                }
+                catch (AggregateException) { }
             }
         }
 
@@ -197,7 +201,7 @@ namespace DS4WinWPF.DS4Forms
         {
             string version = Global.exeversion;
             string newversion = File.ReadAllText(Global.appdatapath + "\\version.txt").Trim();
-            if (true)//!string.IsNullOrWhiteSpace(newversion) && version.CompareTo(newversion) != 0)
+            if (!string.IsNullOrWhiteSpace(newversion) && version.CompareTo(newversion) != 0)
             {
                 MessageBoxResult result = MessageBoxResult.No;
                 Dispatcher.Invoke(() =>
@@ -206,11 +210,6 @@ namespace DS4WinWPF.DS4Forms
                     updaterWin.ShowDialog();
                     result = updaterWin.Result;
                 });
-//                Dispatcher.Invoke(() =>
-//                {
-//                    result = MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion),
-//Properties.Resources.DS4Update, MessageBoxButton.YesNo, MessageBoxImage.Question);
-//                });
 
                 if (result == MessageBoxResult.Yes)
                 {

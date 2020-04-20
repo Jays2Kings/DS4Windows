@@ -30,7 +30,8 @@ namespace DS4WinWPF.DS4Forms
             InitializeComponent();
 
             Title = Properties.Resources.DS4Update;
-            captionTextBlock.Text = Properties.Resources.DownloadVersion.Replace("*number*", newversion);
+            captionTextBlock.Text = Properties.Resources.DownloadVersion.Replace("*number*",
+                newversion);
             updaterWinVM = new UpdaterWindowViewModel(newversion);
 
             DataContext = updaterWinVM;

@@ -7,15 +7,15 @@
         xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
         mc:Ignorable="d"
         Title="UpdaterWindow" Height="450" Width="800">
-    <DockPanel>
-        <TextBlock x:Name="captionTextBlock" Text="{Binding IntroText}" DockPanel.Dock="Top" />
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+    <DockPanel Margin="8,0">
+        <TextBlock x:Name="captionTextBlock" Text="{Binding IntroText}" DockPanel.Dock="Top" Margin="0,4" />
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Right" Margin="0,0,0,8">
             <Button x:Name="yesBtn" Content="Yes" MinWidth="60" Click="YesBtn_Click" />
             <Button x:Name="noBtn" Content="No" MinWidth="60" Click="NoBtn_Click" Margin="10,0,0,0" />
         </StackPanel>
 
         <!--<TextBox x:Name="changelogText" Text="{Binding ChangelogText,Mode=OneWay}" AllowDrop="False" VerticalScrollBarVisibility="Auto" IsReadOnly="True" IsUndoEnabled="False" />-->
-        <RichTextBox x:Name="richChangelogTxtBox" AllowDrop="False" IsReadOnly="True" VerticalScrollBarVisibility="Auto">
+        <RichTextBox x:Name="richChangelogTxtBox" AllowDrop="False" IsReadOnly="True" VerticalScrollBarVisibility="Auto" Margin="0,8">
             <RichTextBox.Resources>
                 <Style TargetType="{x:Type Paragraph}">
                     <Style.Triggers>

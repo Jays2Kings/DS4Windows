@@ -89,8 +89,14 @@ namespace DS4Windows
             {
                 SocketAsyncEventArgs args = new SocketAsyncEventArgs();
                 args.SetBuffer(new byte[100], 0, 100);
+                args.Completed += SocketEvent_Completed;
                 argsList[num] = args;
             }
+        }
+
+        private void SocketEvent_Completed(object sender, SocketAsyncEventArgs e)
+        {
+            _pool.Release();
         }
 
         enum MessageType
@@ -203,7 +209,6 @@ namespace DS4Windows
                 udpSock.SendToAsync(args);
             }
             catch (Exception e) { }
-            _pool.Release();
         }
 
         private void ProcessIncoming(byte[] localMsg, IPEndPoint clientEP)
@@ -698,7 +703,6 @@ namespace DS4Windows
                         udpSock.SendToAsync(args);
                     }
                     catch (SocketException ex) { }
-                    _pool.Release();
                 }
             }
 

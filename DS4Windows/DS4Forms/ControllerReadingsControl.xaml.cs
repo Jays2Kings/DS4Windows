@@ -196,19 +196,19 @@ namespace DS4WinWPF.DS4Forms
                 DS4State tmpbaseState = Program.rootHub.getDS4State(deviceNum);
                 DS4State tmpinterState = Program.rootHub.getDS4StateTemp(deviceNum);
 
+                // Wait for controller to be in a wait period
+                ds.ReadWaitEv.Wait();
+                ds.ReadWaitEv.Reset();
+
+                // Make copy of current state values for UI thread
+                tmpbaseState.CopyTo(baseState);
+                tmpinterState.CopyTo(interState);
+
+                // Done with copying. Allow input thread to resume
+                ds.ReadWaitEv.Set();
+
                 Dispatcher.Invoke(() =>
                 {
-                    // Wait for controller to be in a wait period
-                    ds.ReadWaitEv.Wait();
-                    ds.ReadWaitEv.Reset();
-
-                    // Make copy of current state values for UI thread
-                    tmpbaseState.CopyTo(baseState);
-                    tmpinterState.CopyTo(interState);
-
-                    // Done with copying. Allow input thread to resume
-                    ds.ReadWaitEv.Set();
-
                     int x = baseState.LX;
                     int y = baseState.LY;
 

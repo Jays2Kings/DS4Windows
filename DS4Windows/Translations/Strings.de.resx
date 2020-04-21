@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Accel" xml:space="preserve">
+    <value>Achse</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Aktion</value>
+  </data>
+  <data name="AddDirectory" xml:space="preserve">
+    <value>Add Directory</value>
+  </data>
+  <data name="AddPrograms" xml:space="preserve">
+    <value>Programme hinzufügen</value>
+  </data>
+  <data name="AddStartMenuPrograms" xml:space="preserve">
+    <value>Start Menu Programm hinzufügen</value>
+  </data>
+  <data name="AddSteamGames" xml:space="preserve">
+    <value>Steam Spiel hinzufügen</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="AutoProfiles" xml:space="preserve">
+    <value>Automatische Profile</value>
+  </data>
+  <data name="Battery" xml:space="preserve">
+    <value>Batterie</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Durchsuchen</value>
+  </data>
+  <data name="BrowseOtherPrograms" xml:space="preserve">
+    <value>Nach anderen Programmen suchen</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="CheckUpdateNow" xml:space="preserve">
+    <value>Jetzt nach Updates suchen</value>
+  </data>
+  <data name="CheckUpdateStartup" xml:space="preserve">
+    <value>Nach Updates beim Starten von DS4Windows suchen</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="CloseMinimizes" xml:space="preserve">
+    <value>Schließen minimiert das Fenster</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Farbe</value>
+  </data>
+  <data name="Controller1Text" xml:space="preserve">
+    <value>Controller 1</value>
+  </data>
+  <data name="Controller2Text" xml:space="preserve">
+    <value>Controller 2</value>
+  </data>
+  <data name="Controller3Text" xml:space="preserve">
+    <value>Controller 3</value>
+  </data>
+  <data name="Controller4Text" xml:space="preserve">
+    <value>Controller 4</value>
+  </data>
+  <data name="Controllers" xml:space="preserve">
+    <value>Controller</value>
+  </data>
+  <data name="ControlPanel" xml:space="preserve">
+    <value>Einstellungs Panel</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="DriverSetup" xml:space="preserve">
+    <value>Controller/Treiber Setup</value>
+  </data>
+  <data name="Duplicate" xml:space="preserve">
+    <value>Kopiren</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="EditAction" xml:space="preserve">
+    <value>Bearbeitungsaktionen</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Exportiren</value>
+  </data>
+  <data name="Full" xml:space="preserve">
+    <value>Voll</value>
+  </data>
+  <data name="Gyro" xml:space="preserve">
+    <value>Gyro</value>
+  </data>
+  <data name="HideUnchecked" xml:space="preserve">
+    <value>Unmakierte ausblenden</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importiren</value>
+  </data>
+  <data name="LeftStick" xml:space="preserve">
+    <value>Linker Stick</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Protokoll</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Neu</value>
+  </data>
+  <data name="NewAction" xml:space="preserve">
+    <value>Neue Aktion</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Neues Profil</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Nichts</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Pfard</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="ProfileFolder" xml:space="preserve">
+    <value>Profil Ordner</value>
+  </data>
+  <data name="QuickCharge" xml:space="preserve">
+    <value>Schnelladen</value>
+  </data>
+  <data name="RecordText" xml:space="preserve">
+    <value>Aufnehmen</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="RemoveAction" xml:space="preserve">
+    <value>AktionEntfernen</value>
+  </data>
+  <data name="RightStick" xml:space="preserve">
+    <value>Rechter Stick</value>
+  </data>
+  <data name="Rumble" xml:space="preserve">
+    <value>Vibration</value>
+  </data>
+  <data name="RunAtStartup" xml:space="preserve">
+    <value>Beim Hochfahren ausführen</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveProfile" xml:space="preserve">
+    <value>Sprichern</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="ShowNotifications" xml:space="preserve">
+    <value>Benachrichtigungen anzeigen</value>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>Minimiert starten</value>
+  </data>
+  <data name="StartText" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="StopText" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="TouchScroll" xml:space="preserve">
+    <value>Skrollen</value>
+  </data>
+  <data name="TouchSlide" xml:space="preserve">
+    <value>Wischen</value>
+  </data>
+  <data name="TouchTap" xml:space="preserve">
+    <value>Tippen</value>
+  </data>
+  <data name="Trigger" xml:space="preserve">
+    <value>Trigger</value>
+  </data>
+  <data name="WarningsOnly" xml:space="preserve">
+    <value>Nur Warnungen</value>
+  </data>
+  <data name="RumbleMaxSecs" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="RumbleMaxSecsTip" xml:space="preserve">
+    <value>Automatisches stoppen der Vibration in Sekunden (0 = automatisches stoppen deaktiviert)</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Fenster Titel</value>
+  </data>
+  <data name="MoveUp" xml:space="preserve">
+    <value>Nach oben bewegen</value>
+  </data>
+  <data name="MoveDown" xml:space="preserve">
+    <value>Nach unten bewegen</value>
+  </data>
+  <data name="GamepadTest" xml:space="preserve">
+    <value>Gamepad Test</value>
+  </data>
+</root>

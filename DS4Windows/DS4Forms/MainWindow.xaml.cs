@@ -207,7 +207,13 @@ namespace DS4WinWPF.DS4Forms
         private void Check_Version(bool showstatus = false)
         {
             string version = Global.exeversion;
-            string newversion = File.ReadAllText(Global.appdatapath + "\\version.txt").Trim();
+            string newversion = string.Empty;
+            string versionFilePath = Global.appdatapath + "\\version.txt";
+            if (File.Exists(versionFilePath))
+            {
+                newversion = File.ReadAllText(versionFilePath).Trim();
+            }
+
             if (!string.IsNullOrWhiteSpace(newversion) && version.CompareTo(newversion) != 0)
             {
                 MessageBoxResult result = MessageBoxResult.No;

@@ -209,7 +209,8 @@ namespace DS4WinWPF.DS4Forms
             string version = Global.exeversion;
             string newversion = string.Empty;
             string versionFilePath = Global.appdatapath + "\\version.txt";
-            if (File.Exists(versionFilePath))
+            bool versionFileExists = File.Exists(versionFilePath);
+            if (versionFileExists)
             {
                 newversion = File.ReadAllText(versionFilePath).Trim();
             }
@@ -269,12 +270,15 @@ namespace DS4WinWPF.DS4Forms
                 }
                 else
                 {
-                    File.Delete(Global.appdatapath + "\\version.txt");
+                    if (versionFileExists)
+                        File.Delete(Global.appdatapath + "\\version.txt");
                 }
             }
             else
             {
-                File.Delete(Global.appdatapath + "\\version.txt");
+                if (versionFileExists)
+                    File.Delete(Global.appdatapath + "\\version.txt");
+
                 if (showstatus)
                 {
                     Dispatcher.Invoke(() => MessageBox.Show(Properties.Resources.UpToDate, "DS4Windows Updater"));

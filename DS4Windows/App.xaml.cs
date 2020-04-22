@@ -170,6 +170,7 @@ namespace DS4WinWPF
             CreateIPCClassNameMMF(source.Handle);
 
             window.CheckMinStatus();
+            rootHub.LogDebug($"Running as {(DS4Windows.Global.IsAdministrator() ? "Admin" : "User")}");
             rootHub.LaunchHidGuardHelper();
             window.LateChecks(parser);
         }

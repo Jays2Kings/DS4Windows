@@ -162,14 +162,21 @@ namespace DS4WinWPF.DS4Forms
             // Sorry other devs, gonna have to find your own server
             Uri url = new Uri("https://raw.githubusercontent.com/Ryochan7/DS4Windows/jay/DS4Windows/newest.txt");
             string filename = Global.appdatapath + "\\version.txt";
+            bool success = false;
             using (var downloadStream = new FileStream(filename, FileMode.Create))
             {
                 Task<System.Net.Http.HttpResponseMessage> temp = App.requestClient.GetAsync(url.ToString(), downloadStream);
                 try
                 {
                     temp.Wait();
+                    if (temp.Result.IsSuccessStatusCode) success = true;
                 }
                 catch (AggregateException) { }
+            }
+
+            if (!success && File.Exists(filename))
+            {
+                File.Delete(filename);
             }
         }
 

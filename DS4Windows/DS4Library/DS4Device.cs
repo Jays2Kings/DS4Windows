@@ -109,6 +109,7 @@ namespace DS4Windows
     public class DS4Device
     {
         internal const int BT_OUTPUT_REPORT_LENGTH = 78;
+        //internal const int BT_OUTPUT_REPORT_LENGTH = 334;
         internal const int BT_INPUT_REPORT_LENGTH = 547;
         internal const int BT_OUTPUT_CHANGE_LENGTH = 13;
         internal const int USB_OUTPUT_CHANGE_LENGTH = 11;
@@ -791,7 +792,7 @@ namespace DS4Windows
         uint deltaTimeCurrent = 0;
 
 
-        const int BT_INPUT_REPORT_CRC32_POS = BT_OUTPUT_REPORT_LENGTH - 4; //last 4 bytes of the 78-sized input report are crc32
+        const int BT_INPUT_REPORT_CRC32_POS = 74; //last 4 bytes of the 78-sized input report are crc32
         public const uint DefaultPolynomial = 0xedb88320u;
         uint HamSeed = 2351727372;
 
@@ -1284,8 +1285,10 @@ namespace DS4Windows
 
                 if (usingBT && (this.featureSet & VidPidFeatureSet.OnlyOutputData0x05) == 0)
                 {
+                    //outReportBuffer[0] = 0x15;
                     outReportBuffer[0] = 0x11;
-                    outReportBuffer[1] = (byte)(0xC0 | btPollRate); // input report rate
+                    outReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
+                    //outReportBuffer[1] = (byte)(0xC0 | btPollRate); // input report rate
                     // enable rumble (0x01), lightbar (0x02), flash (0x04)
                     outReportBuffer[3] = 0xf7;
                     outReportBuffer[6] = currentHap.RumbleMotorStrengthRightLightFast; // fast motor

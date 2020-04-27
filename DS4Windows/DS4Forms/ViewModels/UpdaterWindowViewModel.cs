@@ -83,8 +83,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             FlowDocument flow = new FlowDocument();
             foreach (ChangeVersionInfo versionInfo in tempInfo.Changelog.Versions)
             {
-                uint versionNumber = versionInfo.VersionInt;
-                if (versionNumber > DS4Windows.Global.exeversionInt)
+                ulong versionNumber = versionInfo.VersionNumberInfo.GetVersionNumber();
+                if (versionNumber > DS4Windows.Global.exeversionLong)
                 {
                     VersionLogLocale tmpLog = versionInfo.ApplicableInfo(DS4Windows.Global.UseLang);
                     if (tmpLog != null)
@@ -122,21 +122,53 @@ namespace DS4WinWPF.DS4Forms.ViewModels
     public class ChangelogInfo
     {
         private string latestVersion;
-        private uint latestVersionInt;
+        private ChangeVersionNumberInfo latestVersionInfo;
         private DateTime updatedAt;
         private ChangelogVersions changelog;
 
         [JsonProperty("latest_version")]
         public string LatestVersion { get => latestVersion; set => latestVersion = value; }
 
-        [JsonProperty("latest_version_int")]
-        public uint LatestVersionInt { get => latestVersionInt; set => latestVersionInt = value; }
 
         [JsonProperty("updated_at")]
         public DateTime UpdatedAt { get => updatedAt; set => updatedAt = value; }
 
         [JsonProperty("changelog")]
         public ChangelogVersions Changelog { get => changelog; set => changelog = value; }
+
+        [JsonProperty("latest_version_number_info")]
+        public ChangeVersionNumberInfo LatestVersionInfo
+        {
+            get => latestVersionInfo;
+            set => latestVersionInfo = value;
+        }
+    }
+
+    public class ChangeVersionNumberInfo
+    {
+        private ushort majorPart;
+        private ushort minorPart;
+        private ushort buildPart;
+        private ushort privatePart;
+
+        [JsonProperty("majorPart")]
+        public ushort MajorPart { get => majorPart; set => majorPart = value; }
+
+        [JsonProperty("minorPart")]
+        public ushort MinorPart { get => minorPart; set => minorPart = value; }
+
+        [JsonProperty("buildPart")]
+        public ushort BuildPart { get => buildPart; set => buildPart = value; }
+
+        [JsonProperty("privatePart")]
+        public ushort PrivatePart { get => privatePart; set => privatePart = value; }
+
+        public ulong GetVersionNumber()
+        {
+            ulong temp = (ulong)majorPart << 48 | (ulong)minorPart << 32 |
+                (ulong)buildPart << 16 | privatePart;
+            return temp;
+        }
     }
 
     public class ChangelogVersions
@@ -150,16 +182,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
     public class ChangeVersionInfo
     {
         private string version;
-        private uint versionInt;
+        private ChangeVersionNumberInfo versionNumberInfo;
         private string baseHeader;
         private DateTime releaseDate;
         private List<VersionLogLocale> versionLocales;
 
         [JsonProperty("version_str")]
         public string Version { get => version; set => version = value; }
-
-        [JsonProperty("version_int")]
-        public uint VersionInt { get => versionInt; set => versionInt = value; }
 
         [JsonProperty("base_header")]
         public string BaseHeader { get => baseHeader; set => baseHeader = value; }
@@ -170,6 +199,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         [JsonProperty("locales")]
         public List<VersionLogLocale> VersionLocales { get => versionLocales; set => versionLocales = value; }
 
+        [JsonProperty("version_number_info")]
+        public ChangeVersionNumberInfo VersionNumberInfo
+        {
+            get => versionNumberInfo; set => versionNumberInfo = value;
+        }
 
         public VersionLogLocale ApplicableInfo(string culture)
         {

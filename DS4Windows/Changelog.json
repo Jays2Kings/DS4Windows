@@ -1,11 +1,13 @@
 {
   "latest_version": "2.1",
+  "latest_version_number_info": {"major": 2, "minor": 1, "build": 0},
   "latest_version_long_str": "562954248388608",
   "updated_at": "2020-04-20T16:02:19+0000",
   "changelog": {
     "versions": [
       {
         "version_str": "2.1",
+        "version_number_info": {"major": 2, "minor": 1, "build": 0},
         "version_long_str": "562954248388608",
         "base_header": "Version 2.1",
         "release_date": "2020-04-20T16:02:19+0000",

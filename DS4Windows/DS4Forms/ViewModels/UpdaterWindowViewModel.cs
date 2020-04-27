@@ -118,11 +118,15 @@ namespace DS4WinWPF.DS4Forms.ViewModels
     public class ChangelogInfo
     {
         private string latestVersion;
+        private int latestVersionInt;
         private DateTime updatedAt;
         private ChangelogVersions changelog;
 
         [JsonProperty("latest_version")]
         public string LatestVersion { get => latestVersion; set => latestVersion = value; }
+
+        [JsonProperty("latest_version_int")]
+        public int LatestVersionInt { get => latestVersionInt; set => latestVersionInt = value; }
 
         [JsonProperty("updated_at")]
         public DateTime UpdatedAt { get => updatedAt; set => updatedAt = value; }
@@ -142,12 +146,16 @@ namespace DS4WinWPF.DS4Forms.ViewModels
     public class ChangeVersionInfo
     {
         private string version;
+        private int versionInt;
         private string baseHeader;
         private DateTime releaseDate;
         private List<VersionLogLocale> versionLocales;
 
         [JsonProperty("version_str")]
         public string Version { get => version; set => version = value; }
+
+        [JsonProperty("version_int")]
+        public int VersionInt { get => versionInt; set => versionInt = value; }
 
         [JsonProperty("base_header")]
         public string BaseHeader { get => baseHeader; set => baseHeader = value; }
@@ -157,6 +165,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         [JsonProperty("locales")]
         public List<VersionLogLocale> VersionLocales { get => versionLocales; set => versionLocales = value; }
+
 
         public VersionLogLocale ApplicableInfo(string culture)
         {

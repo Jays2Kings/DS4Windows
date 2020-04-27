@@ -151,16 +151,16 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private ushort buildPart;
         private ushort privatePart;
 
-        [JsonProperty("major")]
+        [JsonProperty("majorPart")]
         public ushort MajorPart { get => majorPart; set => majorPart = value; }
 
-        [JsonProperty("minor")]
+        [JsonProperty("minorPart")]
         public ushort MinorPart { get => minorPart; set => minorPart = value; }
 
-        [JsonProperty("build")]
+        [JsonProperty("buildPart")]
         public ushort BuildPart { get => buildPart; set => buildPart = value; }
 
-        [JsonProperty("private")]
+        [JsonProperty("privatePart")]
         public ushort PrivatePart { get => privatePart; set => privatePart = value; }
 
         public ulong GetVersionNumber()

@@ -1,10 +1,12 @@
 {
   "latest_version": "2.1",
+  "latest_version_int": 131328,
   "updated_at": "2020-04-20T16:02:19+0000",
   "changelog": {
     "versions": [
       {
         "version_str": "2.1",
+        "version_int": 131328,
         "base_header": "Version 2.1",
         "release_date": "2020-04-20T16:02:19+0000",
         "locales": [

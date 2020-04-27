@@ -83,24 +83,28 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             FlowDocument flow = new FlowDocument();
             foreach (ChangeVersionInfo versionInfo in tempInfo.Changelog.Versions)
             {
-                VersionLogLocale tmpLog = versionInfo.ApplicableInfo(DS4Windows.Global.UseLang);
-                if (tmpLog != null)
+                uint versionNumber = versionInfo.VersionInt;
+                if (versionNumber > DS4Windows.Global.exeversionInt)
                 {
-                    Paragraph tmpPar = new Paragraph();
-                    string tmp = tmpLog.Header;
-                    tmpPar.Inlines.Add(new Run(tmp) { Tag = "Header" });
-                    flow.Blocks.Add(tmpPar);
+                    VersionLogLocale tmpLog = versionInfo.ApplicableInfo(DS4Windows.Global.UseLang);
+                    if (tmpLog != null)
+                    {
+                        Paragraph tmpPar = new Paragraph();
+                        string tmp = tmpLog.Header;
+                        tmpPar.Inlines.Add(new Run(tmp) { Tag = "Header" });
+                        flow.Blocks.Add(tmpPar);
 
-                    tmpPar.Inlines.Add(new LineBreak());
-                    tmpPar.Inlines.Add(new Run(versionInfo.ReleaseDate.ToUniversalTime().ToString("r")) { Tag = "ReleaseDate" });
+                        tmpPar.Inlines.Add(new LineBreak());
+                        tmpPar.Inlines.Add(new Run(versionInfo.ReleaseDate.ToUniversalTime().ToString("r")) { Tag = "ReleaseDate" });
 
-                    tmpLog.BuildDisplayText();
+                        tmpLog.BuildDisplayText();
 
-                    FlowDocument tmpDoc = engine.Transform(tmpLog.DisplayLogText);
-                    flow.Blocks.AddRange(new List<Block>(tmpDoc.Blocks));
+                        FlowDocument tmpDoc = engine.Transform(tmpLog.DisplayLogText);
+                        flow.Blocks.AddRange(new List<Block>(tmpDoc.Blocks));
 
-                    tmpPar = new Paragraph();
-                    flow.Blocks.Add(tmpPar);
+                        tmpPar = new Paragraph();
+                        flow.Blocks.Add(tmpPar);
+                    }
                 }
             }
 
@@ -118,7 +122,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
     public class ChangelogInfo
     {
         private string latestVersion;
-        private int latestVersionInt;
+        private uint latestVersionInt;
         private DateTime updatedAt;
         private ChangelogVersions changelog;
 
@@ -126,7 +130,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public string LatestVersion { get => latestVersion; set => latestVersion = value; }
 
         [JsonProperty("latest_version_int")]
-        public int LatestVersionInt { get => latestVersionInt; set => latestVersionInt = value; }
+        public uint LatestVersionInt { get => latestVersionInt; set => latestVersionInt = value; }
 
         [JsonProperty("updated_at")]
         public DateTime UpdatedAt { get => updatedAt; set => updatedAt = value; }
@@ -146,7 +150,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
     public class ChangeVersionInfo
     {
         private string version;
-        private int versionInt;
+        private uint versionInt;
         private string baseHeader;
         private DateTime releaseDate;
         private List<VersionLogLocale> versionLocales;
@@ -155,7 +159,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public string Version { get => version; set => version = value; }
 
         [JsonProperty("version_int")]
-        public int VersionInt { get => versionInt; set => versionInt = value; }
+        public uint VersionInt { get => versionInt; set => versionInt = value; }
 
         [JsonProperty("base_header")]
         public string BaseHeader { get => baseHeader; set => baseHeader = value; }

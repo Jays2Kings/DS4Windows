@@ -136,7 +136,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         [JsonProperty("changelog")]
         public ChangelogVersions Changelog { get => changelog; set => changelog = value; }
 
-        [JsonProperty("latest_version_number_info")]
+        [JsonProperty("latest_version_number_info", Required = Required.Always)]
         public ChangeVersionNumberInfo LatestVersionInfo
         {
             get => latestVersionInfo;
@@ -199,7 +199,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         [JsonProperty("locales")]
         public List<VersionLogLocale> VersionLocales { get => versionLocales; set => versionLocales = value; }
 
-        [JsonProperty("version_number_info")]
+        [JsonProperty("version_number_info", Required = Required.Always)]
         public ChangeVersionNumberInfo VersionNumberInfo
         {
             get => versionNumberInfo; set => versionNumberInfo = value;

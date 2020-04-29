@@ -41,7 +41,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public async void RetrieveChangelogInfo()
         {
             // Sorry other devs, gonna have to find your own server
-            Uri url = new Uri("https://raw.githubusercontent.com/Ryochan7/DS4Windows/changelog_draft/DS4Windows/Changelog.min.json");
+            Uri url = new Uri("https://raw.githubusercontent.com/Ryochan7/DS4Windows/jay/DS4Windows/Changelog.min.json");
             string filename = Path.Combine(Path.GetTempPath(), "Changelog.min.json");
             bool readFile = false;
             using (var downloadStream = new FileStream(filename, FileMode.Create))
@@ -136,7 +136,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         [JsonProperty("changelog")]
         public ChangelogVersions Changelog { get => changelog; set => changelog = value; }
 
-        [JsonProperty("latest_version_number_info")]
+        [JsonProperty("latest_version_number_info", Required = Required.Always)]
         public ChangeVersionNumberInfo LatestVersionInfo
         {
             get => latestVersionInfo;
@@ -199,7 +199,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         [JsonProperty("locales")]
         public List<VersionLogLocale> VersionLocales { get => versionLocales; set => versionLocales = value; }
 
-        [JsonProperty("version_number_info")]
+        [JsonProperty("version_number_info", Required = Required.Always)]
         public ChangeVersionNumberInfo VersionNumberInfo
         {
             get => versionNumberInfo; set => versionNumberInfo = value;

@@ -1314,6 +1314,7 @@ namespace DS4Windows
                     outReportBuffer[0] = 0x05;
                     // enable rumble (0x01), lightbar (0x02), flash (0x04)
                     outReportBuffer[1] = 0xf7;
+                    outReportBuffer[2] = 0x04;
                     outReportBuffer[4] = currentHap.RumbleMotorStrengthRightLightFast; // fast motor
                     outReportBuffer[5] = currentHap.RumbleMotorStrengthLeftHeavySlow; // slow  motor
                     outReportBuffer[6] = currentHap.LightBarColor.red; // red

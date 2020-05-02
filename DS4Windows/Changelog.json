@@ -14,7 +14,7 @@
             "code": "en",
             "header": "Version 2.1",
             "log_text": ["* Fixed possible sign flip issue with radial output curves",
-              "* Fixed NaN problem when radial cap is 0",
+              "* Fixed NaN problem when radial cap is 0. Fixes output curve coordinate issues on the extreme low end",
               "* Support for various non-standard DS4 gamepads which behave in BT just like USB connected DS4. Contribution made by **mika-n**",
               "* Made a dedicated updater dialog window",
               "* Added Changelog text to updater window",

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using Nefarius.ViGEm.Client;
 
 namespace DS4Windows
@@ -17,8 +19,35 @@ namespace DS4Windows
         private Queue<Action> actions = new Queue<Action>();
         private object actionLock = new object();
         private bool runningQueue;
+        private Thread eventDispatchThread;
+        private Dispatcher eventDispatcher;
 
         public bool RunningQueue { get => runningQueue; }
+        public Dispatcher EventDispatcher { get => eventDispatcher; }
+
+        public OutputSlotManager()
+        {
+            eventDispatchThread = new Thread(() =>
+            {
+                Dispatcher currentDis = Dispatcher.CurrentDispatcher;
+                eventDispatcher = currentDis;
+                Dispatcher.Run();
+            });
+
+            eventDispatchThread.IsBackground = true;
+            eventDispatchThread.Name = "OutputSlotManager Events";
+            eventDispatchThread.Priority = ThreadPriority.Normal;
+            eventDispatchThread.Start();
+        }
+
+        public void ShutDown()
+        {
+            eventDispatcher.InvokeShutdown();
+            eventDispatcher = null;
+
+            eventDispatchThread.Join();
+            eventDispatchThread = null;
+        }
 
         public OutputDevice AllocateController(OutContType contType, ViGEmClient client)
         {
@@ -54,44 +83,6 @@ namespace DS4Windows
             return result;
         }
 
-        private void LaunchEvents()
-        {
-            bool hasItems = false;
-            Action act = null;
-            lock (actionLock)
-            {
-                hasItems = actions.Count > 0;
-            }
-
-            while (hasItems)
-            {
-                lock (actionLock)
-                {
-                    act = actions.Dequeue();
-                }
-
-                act.Invoke();
-
-                lock (actionLock)
-                {
-                    hasItems = actions.Count > 0;
-                }
-            }
-        }
-
-        private void PrepareEventTask()
-        {
-            if (!runningQueue)
-            {
-                runningQueue = true;
-                Task.Run(() =>
-                {
-                    LaunchEvents();
-                    runningQueue = false;
-                });
-            }
-        }
-
         public void DeferredPlugin(OutputDevice outputDevice, int inIdx, OutputDevice[] outdevs)
         {
             Action tempAction = new Action(() =>
@@ -108,12 +99,10 @@ namespace DS4Windows
                 }
             });
 
-            lock (actionLock)
+            eventDispatcher.BeginInvoke((Action)(() =>
             {
-                actions.Enqueue(tempAction);
-            }
-
-            PrepareEventTask();
+                tempAction.Invoke();
+            }));
         }
 
         public void DeferredRemoval(OutputDevice outputDevice, int inIdx, OutputDevice[] outdevs, bool immediate = false)
@@ -135,12 +124,10 @@ namespace DS4Windows
                 }
             });
 
-            lock (actionLock)
+            eventDispatcher.BeginInvoke((Action)(() =>
             {
-                actions.Enqueue(tempAction);
-            }
-
-            PrepareEventTask();
+                tempAction.Invoke();
+            }));
         }
     }
 }

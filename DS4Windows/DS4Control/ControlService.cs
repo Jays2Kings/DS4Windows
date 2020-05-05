@@ -194,6 +194,8 @@ namespace DS4Windows
 
         public void ShutDown()
         {
+            outputslotMan.ShutDown();
+
             eventDispatcher.InvokeShutdown();
             eventDispatcher = null;
 

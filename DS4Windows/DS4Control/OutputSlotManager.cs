@@ -16,17 +16,19 @@ namespace DS4Windows
         private Dictionary<int, OutputDevice> deviceDict = new Dictionary<int, OutputDevice>();
         private Dictionary<OutputDevice, int> revDeviceDict = new Dictionary<OutputDevice, int>();
         private OutputDevice[] outputDevices = new OutputDevice[4];
-        private Queue<Action> actions = new Queue<Action>();
-        private object actionLock = new object();
-        private bool runningQueue;
+        //private Queue<Action> actions = new Queue<Action>();
+        private int queuedTasks = 0;
+        private ReaderWriterLockSlim queueLocker;
         private Thread eventDispatchThread;
         private Dispatcher eventDispatcher;
 
-        public bool RunningQueue { get => runningQueue; }
+        public bool RunningQueue { get => queuedTasks > 0; }
         public Dispatcher EventDispatcher { get => eventDispatcher; }
 
         public OutputSlotManager()
         {
+            queueLocker = new ReaderWriterLockSlim();
+
             eventDispatchThread = new Thread(() =>
             {
                 Dispatcher currentDis = Dispatcher.CurrentDispatcher;
@@ -99,9 +101,16 @@ namespace DS4Windows
                 }
             });
 
+            queueLocker.EnterWriteLock();
+            queuedTasks++;
+            queueLocker.ExitWriteLock();
+
             eventDispatcher.BeginInvoke((Action)(() =>
             {
                 tempAction.Invoke();
+                queueLocker.EnterWriteLock();
+                queuedTasks--;
+                queueLocker.ExitWriteLock();
             }));
         }
 
@@ -124,9 +133,16 @@ namespace DS4Windows
                 }
             });
 
+            queueLocker.EnterWriteLock();
+            queuedTasks++;
+            queueLocker.ExitWriteLock();
+
             eventDispatcher.BeginInvoke((Action)(() =>
             {
                 tempAction.Invoke();
+                queueLocker.EnterWriteLock();
+                queuedTasks--;
+                queueLocker.ExitWriteLock();
             }));
         }
     }

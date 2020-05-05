@@ -495,7 +495,10 @@ namespace DS4WinWPF
                     Task.Run(() =>
                     {
                         if (rootHub.running)
+                        {
                             rootHub.Stop();
+                            rootHub.ShutDown();
+                        }
                     }).Wait();
                 }
 

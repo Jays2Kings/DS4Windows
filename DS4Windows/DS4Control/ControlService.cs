@@ -533,7 +533,8 @@ namespace DS4Windows
 
                 try
                 {
-                    DS4Devices.findControllers();
+                    DS4Devices.FindControllersWrapper();
+                    //DS4Devices.findControllers();
                     IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
                     //int ind = 0;
                     DS4LightBar.defaultLight = false;
@@ -811,7 +812,8 @@ namespace DS4Windows
         {
             if (running)
             {
-                DS4Devices.findControllers();
+                DS4Devices.FindControllersWrapper();
+                //DS4Devices.findControllers();
                 IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
                 //foreach (DS4Device device in devices)
                 //for (int i = 0, devlen = devices.Count(); i < devlen; i++)

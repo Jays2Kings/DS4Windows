@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
+using System.Threading;
 
 namespace DS4Windows
 {
@@ -120,6 +121,16 @@ namespace DS4Windows
             string temp = Global.GetDeviceProperty(deviceInstanceId,
                 NativeMethods.DEVPKEY_Device_UINumber);
             return string.IsNullOrEmpty(temp);
+        }
+
+        public static void FindControllersWrapper()
+        {
+            Thread tmpThread = new Thread(findControllers);
+            tmpThread.IsBackground = true;
+            tmpThread.Name = "Find Controllers";
+            tmpThread.Priority = ThreadPriority.AboveNormal;
+            tmpThread.Start();
+            tmpThread.Join();
         }
 
         // Enumerates ds4 controllers in the system

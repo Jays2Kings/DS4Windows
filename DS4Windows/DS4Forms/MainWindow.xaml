@@ -12,7 +12,7 @@
         xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
         xml:lang="en-US"
         mc:Ignorable="d"
-        Title="DS4Windows" Height="500" Width="800" Closing="MainDS4Window_Closing" Closed="MainDS4Window_Closed" StateChanged="MainDS4Window_StateChanged" SizeChanged="MainDS4Window_SizeChanged" LocationChanged="MainDS4Window_LocationChanged" MinWidth="800" MinHeight="500">
+        Title="DS4Windows" Height="500" Width="800" Closing="MainDS4Window_Closing" Closed="MainDS4Window_Closed" StateChanged="MainDS4Window_StateChanged" SizeChanged="MainDS4Window_SizeChanged" LocationChanged="MainDS4Window_LocationChanged" MinWidth="600" MinHeight="250">
     <DockPanel>
         <tb:TaskbarIcon x:Name="notifyIcon" IconSource="{Binding IconSource,Mode=OneWay}" ToolTipText="{Binding TooltipText,Mode=OneWay}" MenuActivation="RightClick" TrayRightMouseUp="NotifyIcon_TrayRightMouseUp" TrayMiddleMouseDown="NotifyIcon_TrayMiddleMouseDown" TrayMouseDoubleClick="NotifyIcon_TrayMouseDoubleClick">
             <!--<tb:TaskbarIcon.ContextMenu>

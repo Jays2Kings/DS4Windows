@@ -123,16 +123,6 @@ namespace DS4Windows
             return string.IsNullOrEmpty(temp);
         }
 
-        public static void FindControllersWrapper()
-        {
-            Thread tmpThread = new Thread(findControllers);
-            tmpThread.IsBackground = true;
-            tmpThread.Name = "Find Controllers";
-            tmpThread.Priority = ThreadPriority.AboveNormal;
-            tmpThread.Start();
-            tmpThread.Join();
-        }
-
         // Enumerates ds4 controllers in the system
         public static void findControllers()
         {

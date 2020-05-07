@@ -434,12 +434,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public int ButtonMouseSensitivity
         {
-            get => Global.ButtonMouseSensitivity[device];
+            get => Global.ButtonMouseInfos[device].buttonSensitivity;
             set
             {
-                int temp = Global.ButtonMouseSensitivity[device];
+                int temp = Global.ButtonMouseInfos[device].buttonSensitivity;
                 if (temp == value) return;
-                Global.ButtonMouseSensitivity[device] = value;
+                Global.ButtonMouseInfos[device].buttonSensitivity = value;
                 ButtonMouseSensitivityChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -460,8 +460,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public bool MouseAcceleration
         {
-            get => Global.MouseAccel[device];
-            set => Global.MouseAccel[device] = value;
+            get => Global.ButtonMouseInfos[device].mouseAccel;
+            set => Global.ButtonMouseInfos[device].mouseAccel = value;
         }
 
         public bool EnableTouchpadToggle

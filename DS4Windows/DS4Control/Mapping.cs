@@ -1509,7 +1509,6 @@ namespace DS4Windows
         /// Map DS4 Buttons/Axes to other DS4 Buttons/Axes (largely the same as Xinput ones) and to keyboard and mouse buttons.
         /// </summary>
         static bool[] held = new bool[4];
-        static int[] oldmouse = new int[4] { -1, -1, -1, -1 };
         public static void MapCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState,
             Mouse tp, ControlService ctrl)
         {
@@ -1599,9 +1598,12 @@ namespace DS4Windows
 
                             if (extras[7] == 1)
                             {
-                                if (oldmouse[device] == -1)
-                                    oldmouse[device] = ButtonMouseSensitivity[device];
-                                ButtonMouseSensitivity[device] = extras[8];
+                                ButtonMouseInfo tempMouseInfo = ButtonMouseInfos[device];
+                                if (tempMouseInfo.tempButtonSensitivity == -1)
+                                {
+                                    tempMouseInfo.tempButtonSensitivity = extras[8];
+                                    tempMouseInfo.SetActiveButtonSensitivity(extras[8]);
+                                }
                             }
                         }
                         catch { }
@@ -1610,10 +1612,11 @@ namespace DS4Windows
                     {
                         DS4LightBar.forcelight[device] = false;
                         DS4LightBar.forcedFlash[device] = 0;
-                        if (oldmouse[device] != -1)
+                        ButtonMouseInfo tempMouseInfo = ButtonMouseInfos[device];
+                        if (tempMouseInfo.tempButtonSensitivity != -1)
                         {
-                            ButtonMouseSensitivity[device] = oldmouse[device];
-                            oldmouse[device] = -1;
+                            tempMouseInfo.SetActiveButtonSensitivity(tempMouseInfo.buttonSensitivity);
+                            tempMouseInfo.tempButtonSensitivity = -1;
                         }
 
                         ctrl.setRumble(0, 0, device);
@@ -2938,8 +2941,6 @@ namespace DS4Windows
         private static double getMouseMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState,
             DS4StateFieldMapping fieldMapping, int mnum, ControlService ctrl)
         {
-            int controlnum = DS4ControltoInt(control);
-
             int deadzoneL = 0;
             int deadzoneR = 0;
             if (getLSDeadzone(device) == 0)
@@ -2948,10 +2949,10 @@ namespace DS4Windows
                 deadzoneR = 3;
 
             double value = 0.0;
-            int speed = ButtonMouseSensitivity[device];
-            double root = 1.002;
-            double divide = 10000d;
-            //DateTime now = mousenow[mnum];
+            ButtonMouseInfo buttonMouseInfo = ButtonMouseInfos[device];
+            int speed = buttonMouseInfo.activeButtonSensitivity;
+            const double root = 1.002;
+            const double divide = 10000d;
 
             int controlNum = (int)control;
             DS4StateFieldMapping.ControlType controlType = DS4StateFieldMapping.mappedType[controlNum];
@@ -2969,7 +2970,8 @@ namespace DS4Windows
             {
                 double timeDelta = timeElapsed * 0.001;
                 int mouseVelocity = speed * MOUSESPEEDFACTOR;
-                double mouseOffset = MOUSESTICKANTIOFFSET * mouseVelocity;
+                double mouseOffset = buttonMouseInfo.mouseVelocityOffset * mouseVelocity;
+                //double mouseOffset = MOUSESTICKANTIOFFSET * mouseVelocity;
                 // Cap mouse offset to final mouse velocity
                 //double mouseOffset = mouseVelocity >= MOUSESTICKMINVELOCITY ? MOUSESTICKMINVELOCITY : mouseVelocity;
 
@@ -3139,7 +3141,7 @@ namespace DS4Windows
                 }
             }
 
-            if (getMouseAccel(device))
+            if (buttonMouseInfo.mouseAccel)
             {
                 if (value > 0)
                 {

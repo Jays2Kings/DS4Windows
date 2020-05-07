@@ -976,7 +976,7 @@ namespace DS4Windows
         }
 
         // controller/profile specfic values
-        public static int[] ButtonMouseSensitivity => m_Config.buttonMouseSensitivity;
+        public static ButtonMouseInfo[] ButtonMouseInfos => m_Config.buttonMouseInfos;
 
         public static byte[] RumbleBoost => m_Config.rumble;
         public static byte getRumbleBoost(int index)
@@ -1483,12 +1483,6 @@ namespace DS4Windows
             return m_Config.RSSens[index];
         }
 
-        public static bool[] MouseAccel => m_Config.mouseAccel;
-        public static bool getMouseAccel(int device)
-        {
-            return m_Config.mouseAccel[device];
-        }
-
         public static int[] BTPollRate => m_Config.btPollRate;
         public static int getBTPollRate(int index)
         {
@@ -1954,7 +1948,11 @@ namespace DS4Windows
 
         protected XmlDocument m_Xdoc = new XmlDocument();
         // fifth value used for options, not fifth controller
-        public int[] buttonMouseSensitivity = new int[5] { 25, 25, 25, 25, 25 };
+        public ButtonMouseInfo[] buttonMouseInfos = new ButtonMouseInfo[5]
+        {
+            new ButtonMouseInfo(), new ButtonMouseInfo(), new ButtonMouseInfo(),
+            new ButtonMouseInfo(), new ButtonMouseInfo(),
+        };
 
         public bool[] flushHIDQueue = new bool[5] { false, false, false, false, false };
         public bool[] enableTouchToggle = new bool[5] { true, true, true, true, true };
@@ -2008,7 +2006,6 @@ namespace DS4Windows
         public bool[] doubleTap = new bool[5] { false, false, false, false, false };
         public int[] scrollSensitivity = new int[5] { 0, 0, 0, 0, 0 };
         public int[] touchpadInvert = new int[5] { 0, 0, 0, 0, 0 };
-        public bool[] mouseAccel = new bool[5] { false, false, false, false, false };
         public int[] btPollRate = new int[5] { 4, 4, 4, 4, 4 };
         public int[] gyroMouseDZ = new int[5] { MouseCursor.GYRO_MOUSE_DEADZONE, MouseCursor.GYRO_MOUSE_DEADZONE,
             MouseCursor.GYRO_MOUSE_DEADZONE, MouseCursor.GYRO_MOUSE_DEADZONE,
@@ -2507,7 +2504,7 @@ namespace DS4Windows
                 XmlNode xmlR2Maxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "R2MaxZone", null); xmlR2Maxzone.InnerText = r2ModInfo[device].maxZone.ToString(); Node.AppendChild(xmlR2Maxzone);
                 XmlNode xmlL2MaxOutput = m_Xdoc.CreateNode(XmlNodeType.Element, "L2MaxOutput", null); xmlL2MaxOutput.InnerText = l2ModInfo[device].maxOutput.ToString(); Node.AppendChild(xmlL2MaxOutput);
                 XmlNode xmlR2MaxOutput = m_Xdoc.CreateNode(XmlNodeType.Element, "R2MaxOutput", null); xmlR2MaxOutput.InnerText = r2ModInfo[device].maxOutput.ToString(); Node.AppendChild(xmlR2MaxOutput);
-                XmlNode xmlButtonMouseSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "ButtonMouseSensitivity", null); xmlButtonMouseSensitivity.InnerText = buttonMouseSensitivity[device].ToString(); Node.AppendChild(xmlButtonMouseSensitivity);
+                XmlNode xmlButtonMouseSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "ButtonMouseSensitivity", null); xmlButtonMouseSensitivity.InnerText = buttonMouseInfos[device].buttonSensitivity.ToString(); Node.AppendChild(xmlButtonMouseSensitivity);
                 XmlNode xmlRainbow = m_Xdoc.CreateNode(XmlNodeType.Element, "Rainbow", null); xmlRainbow.InnerText = lightInfo.rainbow.ToString(); Node.AppendChild(xmlRainbow);
                 XmlNode xmlMaxSatRainbow = m_Xdoc.CreateNode(XmlNodeType.Element, "MaxSatRainbow", null); xmlMaxSatRainbow.InnerText = Convert.ToInt32(lightInfo.maxRainbowSat * 100.0).ToString(); Node.AppendChild(xmlMaxSatRainbow);
                 XmlNode xmlLSD = m_Xdoc.CreateNode(XmlNodeType.Element, "LSDeadZone", null); xmlLSD.InnerText = lsModInfo[device].deadZone.ToString(); Node.AppendChild(xmlLSD);
@@ -2535,7 +2532,7 @@ namespace DS4Windows
                 Node.AppendChild(xmlSens);
 
                 XmlNode xmlChargingType = m_Xdoc.CreateNode(XmlNodeType.Element, "ChargingType", null); xmlChargingType.InnerText = lightInfo.chargingType.ToString(); Node.AppendChild(xmlChargingType);
-                XmlNode xmlMouseAccel = m_Xdoc.CreateNode(XmlNodeType.Element, "MouseAcceleration", null); xmlMouseAccel.InnerText = mouseAccel[device].ToString(); Node.AppendChild(xmlMouseAccel);
+                XmlNode xmlMouseAccel = m_Xdoc.CreateNode(XmlNodeType.Element, "MouseAcceleration", null); xmlMouseAccel.InnerText = buttonMouseInfos[device].mouseAccel.ToString(); Node.AppendChild(xmlMouseAccel);
                 //XmlNode xmlShiftMod = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftModifier", null); xmlShiftMod.InnerText = shiftModifier[device].ToString(); Node.AppendChild(xmlShiftMod);
                 XmlNode xmlLaunchProgram = m_Xdoc.CreateNode(XmlNodeType.Element, "LaunchProgram", null); xmlLaunchProgram.InnerText = launchProgram[device].ToString(); Node.AppendChild(xmlLaunchProgram);
                 XmlNode xmlDinput = m_Xdoc.CreateNode(XmlNodeType.Element, "DinputOnly", null); xmlDinput.InnerText = dinputOnly[device].ToString(); Node.AppendChild(xmlDinput);
@@ -3299,7 +3296,7 @@ namespace DS4Windows
                 }
                 catch { RSRotation[device] = 0.0; missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ButtonMouseSensitivity"); int.TryParse(Item.InnerText, out buttonMouseSensitivity[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ButtonMouseSensitivity"); int.TryParse(Item.InnerText, out buttonMouseInfos[device].buttonSensitivity); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Rainbow"); double.TryParse(Item.InnerText, out lightInfo.rainbow); }
                 catch { lightInfo.rainbow = 0; missingSetting = true; }
@@ -3403,7 +3400,7 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingType"); int.TryParse(Item.InnerText, out lightInfo.chargingType); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/MouseAcceleration"); bool.TryParse(Item.InnerText, out mouseAccel[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/MouseAcceleration"); bool.TryParse(Item.InnerText, out buttonMouseInfos[device].mouseAccel); }
                 catch { missingSetting = true; }
 
                 int shiftM = 0;
@@ -3917,6 +3914,8 @@ namespace DS4Windows
                 SaveProfile(device, profilepath);
 
             Global.cacheProfileCustomsFlags(device);
+            buttonMouseInfos[device].activeButtonSensitivity =
+                buttonMouseInfos[device].buttonSensitivity;
 
             if (device < 4 && control.touchPad[device] != null)
             {
@@ -4813,7 +4812,8 @@ namespace DS4Windows
 
         private void ResetProfile(int device)
         {
-            buttonMouseSensitivity[device] = 25;
+            buttonMouseInfos[device].buttonSensitivity = 25;
+            buttonMouseInfos[device].activeButtonSensitivity = 25;
             flushHIDQueue[device] = false;
             enableTouchToggle[device] = true;
             idleDisconnectTimeout[device] = 300;
@@ -4844,7 +4844,7 @@ namespace DS4Windows
             doubleTap[device] = false;
             scrollSensitivity[device] = 0;
             touchpadInvert[device] = 0;
-            mouseAccel[device] = false;
+            buttonMouseInfos[device].mouseAccel = false;
             btPollRate[device] = 4;
 
             LightbarSettingInfo lightbarSettings = lightbarSettingInfo[device];

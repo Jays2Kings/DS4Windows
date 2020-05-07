@@ -1032,7 +1032,7 @@
                         <xctk:IntegerUpDown d:IsHidden="True" MinWidth="50" Height="20"
                                             Value="{Binding ButtonMouseSensitivity,FallbackValue=25}"
                                             Minimum="0" Maximum="255" Increment="1" Margin="10,0,0,0" />
-                        <TextBlock Text="{Binding OutputMouseSpeed,StringFormat='\{0} pps'}"
+                        <TextBlock Text="{Binding OutputMouseSpeed,Mode=OneWay,StringFormat='\{0} pps'}"
                                    MinWidth="50" VerticalAlignment="Center"  Margin="10,0,0,0" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
@@ -1040,6 +1040,8 @@
                         <xctk:DoubleUpDown d:IsHidden="True" MinWidth="50" FormatString="F3" DefaultValue="0" Minimum="0" Maximum="100"
                                            Value="{Binding ButtonMouseOffset,FallbackValue=0,UpdateSourceTrigger=LostFocus}" />
                         <Label Content="%"/>
+                        <TextBlock Text="{Binding MouseOffsetSpeed,Mode=OneWay,StringFormat='\{0:0.00} pps'}"
+                                   MinWidth="50" VerticalAlignment="Center" Margin="10,0,0,0" />
                     </StackPanel>
                     <CheckBox Content="Mouse Acceleration" IsChecked="{Binding MouseAcceleration}" Margin="0,6,0,0" />
                     <CheckBox Content="Enable Touchpad Toggle" IsChecked="{Binding EnableTouchpadToggle}" Margin="0,6,0,0"

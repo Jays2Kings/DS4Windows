@@ -445,6 +445,17 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public event EventHandler ButtonMouseSensitivityChanged;
 
+        public double ButtonMouseOffset
+        {
+            get => Global.ButtonMouseInfos[device].mouseVelocityOffset * 100.0;
+            set
+            {
+                double temp = Global.ButtonMouseInfos[device].mouseVelocityOffset * 100.0;
+                if (temp == value) return;
+                Global.ButtonMouseInfos[device].mouseVelocityOffset = value * 0.01;
+            }
+        }
+
         private int outputMouseSpeed;
         public int OutputMouseSpeed
         {

@@ -46,7 +46,7 @@ namespace DS4Windows
 
     public class ButtonMouseInfo
     {
-        private const double MOUSESTICKANTIOFFSET = 0.0128;
+        public const double MOUSESTICKANTIOFFSET = 0.0128;
 
         public int buttonSensitivity = 25;
         public bool mouseAccel;

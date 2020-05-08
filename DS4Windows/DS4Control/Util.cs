@@ -5,6 +5,7 @@ using System.Security;
 using System.Threading.Tasks;
 using System.Text;
 using System.IO;
+using Microsoft.Win32;
 
 namespace DS4Windows
 {
@@ -230,6 +231,20 @@ namespace DS4Windows
             catch { }
 
             return result;
+        }
+
+        public static string GetOSProductName()
+        {
+            string productName =
+                Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
+            return productName;
+        }
+
+        public static string GetOSReleaseId()
+        {
+            string releaseId =
+                Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ReleaseId", "").ToString();
+            return releaseId;
         }
     }
 }

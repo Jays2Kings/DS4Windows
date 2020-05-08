@@ -132,6 +132,9 @@ namespace DS4WinWPF
             Logger logger = logHolder.Logger;
             string version = DS4Windows.Global.exeversion;
             logger.Info($"DS4Windows version {version}");
+            logger.Info($"OS Version: {Environment.OSVersion}");
+            logger.Info($"OS Product Name: {DS4Windows.Util.GetOSProductName()}");
+            logger.Info($"OS Release ID: {DS4Windows.Util.GetOSReleaseId()}");
             //logger.Info("DS4Windows version 2.0");
             logger.Info("Logger created");
 

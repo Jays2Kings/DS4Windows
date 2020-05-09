@@ -409,7 +409,7 @@ namespace DS4Windows
             {
                 if (contType == OutContType.X360)
                 {
-                    LogDebug("Plugging in X360 Controller for input #" + (index + 1));
+                    LogDebug("Plugging in X360 Controller for input DS4 #" + (index + 1));
                     activeOutDevType[index] = OutContType.X360;
 
                     //Xbox360OutDevice tempXbox = new Xbox360OutDevice(vigemTestClient);
@@ -430,7 +430,7 @@ namespace DS4Windows
                 }
                 else if (contType == OutContType.DS4)
                 {
-                    LogDebug("Plugging in DS4 Controller for input #" + (index + 1));
+                    LogDebug("Plugging in DS4 Controller for input DS4 #" + (index + 1));
                     activeOutDevType[index] = OutContType.DS4;
                     //DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
                     DS4OutDevice tempDS4 = outputslotMan.AllocateController(OutContType.DS4, vigemTestClient)
@@ -515,7 +515,7 @@ namespace DS4Windows
                 if (dev != null)
                 {
                     string tempType = dev.GetDeviceType();
-                    LogDebug("Unplugging " + tempType + " Controller for input #" + (index + 1), false);
+                    LogDebug("Unplugging " + tempType + " Controller for input DS4 #" + (index + 1), false);
 
                     outputDevices[index] = null;
                     activeOutDevType[index] = OutContType.None;

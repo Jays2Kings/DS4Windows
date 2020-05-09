@@ -1297,7 +1297,7 @@ namespace DS4WinWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stopping DS4 Controllers.
+        ///   Looks up a localized string similar to Stopping DS4 Input Controllers.
         /// </summary>
         public static string StoppingDS4 {
             get {
@@ -1306,7 +1306,7 @@ namespace DS4WinWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stopping X360 Controllers.
+        ///   Looks up a localized string similar to Stopping Virtual Output Controllers.
         /// </summary>
         public static string StoppingX360 {
             get {

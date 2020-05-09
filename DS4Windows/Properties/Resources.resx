@@ -500,10 +500,10 @@
     <value>Stopped DS4Windows</value>
   </data>
   <data name="StoppingDS4" xml:space="preserve">
-    <value>Stopping DS4 Controllers</value>
+    <value>Stopping DS4 Input Controllers</value>
   </data>
   <data name="StoppingX360" xml:space="preserve">
-    <value>Stopping X360 Controllers</value>
+    <value>Stopping Virtual Output Controllers</value>
   </data>
   <data name="StopText" xml:space="preserve">
     <value>Stop</value>

@@ -645,11 +645,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
                     if (macroType.HasFlag(DS4KeyType.HoldMacro))
                     {
-                        settings.keyType |= DS4KeyType.HoldMacro;
+                        settings.shiftKeyType |= DS4KeyType.HoldMacro;
                     }
                     else
                     {
-                        settings.keyType |= DS4KeyType.Macro;
+                        settings.shiftKeyType |= DS4KeyType.Macro;
                     }
 
                     if (hasScanCode)

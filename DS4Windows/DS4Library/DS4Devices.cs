@@ -238,7 +238,7 @@ namespace DS4Windows
         {
             lock (Devices)
             {
-                IEnumerable<DS4Device> devices = getDS4Controllers();
+                IEnumerable<DS4Device> devices = Devices.Values.ToArray();
                 //foreach (DS4Device device in devices)
                 //for (int i = 0, devCount = devices.Count(); i < devCount; i++)
                 for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext();)

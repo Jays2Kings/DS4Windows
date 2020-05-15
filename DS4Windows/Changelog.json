@@ -13,7 +13,7 @@
           {
             "code": "en",
             "header": "Version 2.1.1",
-            "log_text": ["* Changed type of output report transmitted to DS4. Now use report type 0x15 (previously 0x11)",
+            "log_text": ["* Changed type of output report transmitted to DS4 in BT. Now use report type 0x15 (previously 0x11)",
               "* Added extra data transmission flag to output report",
               "* Changed thread affinity of hidDevice object. Link with initial high priority thread",
               "* Use a Dispatcher instance for managing the OutputSlotManager rather than Tasks",

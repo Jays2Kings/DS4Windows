@@ -1,9 +1,38 @@
 {
-  "latest_version": "2.1",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 0},
-  "updated_at": "2020-05-02T17:26:38+0000",
+  "latest_version": "2.1.1",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 1},
+  "updated_at": "2020-05-15T19:39:08+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.1",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 1},
+        "base_header": "Version 2.1.1",
+        "release_date": "2020-05-15T19:39:08+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.1",
+            "log_text": ["* Changed type of output report transmitted to DS4. Now use report type 0x15 (previously 0x11)",
+              "* Added extra data transmission flag to output report",
+              "* Changed thread affinity of hidDevice object. Link with initial high priority thread",
+              "* Use a Dispatcher instance for managing the OutputSlotManager rather than Tasks",
+              "* Changed how a running output slot queue is specified",
+              "* Initial mouse offset refactors. Base mouse offset on percentage of full speed. Defaults to 0.500",
+              "* Make button mouse offset a profile setting",
+              "* Set MinWidth and MinHeight values for the main window. Contribution by **dondrakon**",
+              "* Group some button mouse fields into a class. Reduces getter calls",
+              "* Show minimum effective mouse speed in GUI",
+              "* Put OS Info in log. Will be useful for debugging",
+              "* Removed chance for a dead lock when stopping input controllers. Luckily I have never encountered it",
+              "* Fixed a bug where a shiftKey macro accidentally saved HoldMacro and Macro status values. Contribution by **mika-n**",
+              "* Fixed debug x86 project target by enabling the Allow Unsafe Code project setting. Contribution by **mika-n**"],
+            "editor": "ryochan7",
+            "editors_note": ["Might have missed some changes from commits in other branches"],
+            "updated_at": "2020-05-15T19:39:08+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 0},

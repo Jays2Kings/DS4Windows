@@ -31,13 +31,29 @@ namespace DS4Windows
         {
             lock (Devices)
             {
-                int[] pid = { 0xBA0, 0x5C4, 0x09CC };
-                IEnumerable<HidDevice> hDevices = HidDevices.Enumerate(0x054C, pid);
+                IEnumerable<HidDevice> hDevices = HidDevices.Enumerate();
+
                 // Sort Bluetooth first in case USB is also connected on the same controller.
                 hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) => { return DS4Device.HidConnectionType(d); });
 
                 foreach (HidDevice hDevice in hDevices)
                 {
+                    int[] knownProductIds;
+                    switch (hDevice.Attributes.VendorId) {
+                        case 0x054C: // Sony
+                            knownProductIds = new int[] { 0xBA0, 0x5C4, 0x09CC };
+                            break;
+                        case 0x0F0D: // Hori
+                            if (hDevice.Capabilities.Usage != 5)
+                                continue; // ignore "HID-compliant vendor-defined device"-like HID devices
+                            knownProductIds = new int[] { 0x0EE };
+                            break;
+                        default:
+                            continue;
+                    }
+                    if (!knownProductIds.Contains(hDevice.Attributes.ProductId)) 
+                        continue;
+
                     if (DevicePaths.Contains(hDevice.DevicePath))
                         continue; // BT/USB endpoint already open once
                     if (!hDevice.IsOpen)

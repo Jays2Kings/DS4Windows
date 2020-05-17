@@ -340,8 +340,14 @@ namespace DS4Windows
             {
                 byte[] buffer = new byte[16];
                 buffer[0] = 18;
-                readFeatureData(buffer);                
-                serial =  String.Format("{0:X02}:{1:X02}:{2:X02}:{3:X02}:{4:X02}:{5:X02}", buffer[6], buffer[5], buffer[4], buffer[3], buffer[2], buffer[1]);
+                if (readFeatureData(buffer))
+                {
+                    serial = String.Format("{0:X02}:{1:X02}:{2:X02}:{3:X02}:{4:X02}:{5:X02}", buffer[6], buffer[5], buffer[4], buffer[3], buffer[2], buffer[1]);
+                }
+                else
+                {
+                    serial = String.Format("{0:X04}:{1:X04}:{2:X02}", _deviceAttributes.VendorId, _deviceAttributes.ProductId, _deviceAttributes.Version);
+                }
                 return serial;
             }
             else

@@ -7,6 +7,7 @@ using System.Diagnostics;
 using static DS4Windows.Global;
 using Nefarius.ViGEm.Client;
 using System.Windows.Threading;
+using DS4WinWPF.DS4Control;
 
 namespace DS4Windows
 {
@@ -402,126 +403,244 @@ namespace DS4Windows
             }
         }
 
+        public void AssignInitialDevices()
+        {
+            OutSlotDevice slotDevice =
+                outputslotMan.FindExistUnboundSlotType(OutContType.X360);
+
+            if (slotDevice == null)
+            {
+                slotDevice = outputslotMan.FindOpenSlot();
+                slotDevice.CurrentReserveStatus = OutSlotDevice.ReserveStatus.Permanent;
+                OutputDevice outDevice = EstablishOutDevice(0, OutContType.X360);
+                Xbox360OutDevice tempXbox = outDevice as Xbox360OutDevice;
+                outputslotMan.DeferredPlugin(tempXbox, 0, outputDevices);
+            }
+
+            /*slotDevice = outputslotMan.FindExistUnboundSlotType(OutContType.X360);
+            if (slotDevice == null)
+            {
+                slotDevice = outputslotMan.FindOpenSlot();
+                slotDevice.CurrentReserveStatus = OutSlotDevice.ReserveStatus.Permanent;
+                OutputDevice outDevice = EstablishOutDevice(1, OutContType.X360);
+                Xbox360OutDevice tempXbox = outDevice as Xbox360OutDevice;
+                outputslotMan.DeferredPlugin(tempXbox, 1, outputDevices);
+            }*/
+        }
+
+        private OutputDevice EstablishOutDevice(int index, OutContType contType)
+        {
+            OutputDevice temp = null;
+            temp = outputslotMan.AllocateController(contType, vigemTestClient);
+            return temp;
+        }
+
+        private void EstablishOutFeedback(int index, OutContType contType,
+            OutputDevice outDevice, DS4Device device)
+        {
+            int devIndex = index;
+
+            if (contType == OutContType.X360)
+            {
+                Xbox360OutDevice tempXbox = outDevice as Xbox360OutDevice;
+                Nefarius.ViGEm.Client.Targets.Xbox360FeedbackReceivedEventHandler p = (sender, args) =>
+                {
+                    SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
+                };
+                tempXbox.cont.FeedbackReceived += p;
+                tempXbox.forceFeedbackCall = p;
+            }
+            else if (contType == OutContType.DS4)
+            {
+                DS4OutDevice tempDS4 = outDevice as DS4OutDevice;
+
+                Nefarius.ViGEm.Client.Targets.DualShock4FeedbackReceivedEventHandler p = (sender, args) =>
+                {
+                    //bool useRumble = false; bool useLight = false;
+                    byte largeMotor = args.LargeMotor;
+                    byte smallMotor = args.SmallMotor;
+                    SetDevRumble(device, largeMotor, smallMotor, devIndex);
+                    //DS4Color color = new DS4Color(args.LightbarColor.Red,
+                    //        args.LightbarColor.Green,
+                    //        args.LightbarColor.Blue);
+                    ///*Console.WriteLine("IN EVENT");
+                    //Console.WriteLine("Rumble ({0}, {1}) | Light ({2}, {3}, {4}) {5}",
+                    //    largeMotor, smallMotor, color.red, color.green, color.blue, DateTime.Now.ToLongTimeString());
+                    //    */
+                    //if (largeMotor != 0 || smallMotor != 0)
+                    //{
+                    //    useRumble = true;
+                    //}
+
+                    //if (color.red != 0 || color.green != 0 || color.blue != 0)
+                    //{
+                    //    useLight = true;
+                    //}
+
+                    //if (!useRumble && !useLight)
+                    //{
+                    //    //Console.WriteLine("Fallback");
+                    //    if (device.LeftHeavySlowRumble != 0 || device.RightLightFastRumble != 0)
+                    //    {
+                    //        useRumble = true;
+                    //    }
+                    //    /*else if (device.LightBarColor.red != 0 ||
+                    //        device.LightBarColor.green != 0 ||
+                    //        device.LightBarColor.blue != 0)
+                    //    {
+                    //        useLight = true;
+                    //    }
+                    //    */
+                    //}
+
+                    //if (useRumble)
+                    //{
+                    //    //Console.WriteLine("Perform rumble");
+                    //    SetDevRumble(device, largeMotor, smallMotor, devIndex);
+                    //}
+
+                    //if (useLight)
+                    //{
+                    //    //Console.WriteLine("Change lightbar color");
+                    //    DS4HapticState haptics = new DS4HapticState
+                    //    {
+                    //        LightBarColor = color,
+                    //    };
+                    //    device.SetHapticState(ref haptics);
+                    //}
+
+                    //Console.WriteLine();
+                };
+
+                tempDS4.cont.FeedbackReceived += p;
+                tempDS4.forceFeedbackCall = p;
+            }
+        }
+
+        public void RemoveOutFeedback(OutContType contType, OutputDevice outDevice)
+        {
+            if (contType == OutContType.X360)
+            {
+                Xbox360OutDevice tempXbox = outDevice as Xbox360OutDevice;
+                tempXbox.cont.FeedbackReceived -= tempXbox.forceFeedbackCall;
+                tempXbox.forceFeedbackCall = null;
+            }
+            else if (contType == OutContType.DS4)
+            {
+                DS4OutDevice tempDS4 = outDevice as DS4OutDevice;
+                tempDS4.cont.FeedbackReceived -= tempDS4.forceFeedbackCall;
+                tempDS4.forceFeedbackCall = null;
+            }
+        }
+
         public void PluginOutDev(int index, DS4Device device)
         {
             OutContType contType = Global.OutContType[index];
+            OutSlotDevice slotDevice = outputslotMan.FindExistUnboundSlotType(contType);
             if (useDInputOnly[index])
             {
                 if (contType == OutContType.X360)
                 {
-                    LogDebug("Plugging in X360 Controller for input DS4 #" + (index + 1));
                     activeOutDevType[index] = OutContType.X360;
 
-                    //Xbox360OutDevice tempXbox = new Xbox360OutDevice(vigemTestClient);
-                    Xbox360OutDevice tempXbox = outputslotMan.AllocateController(OutContType.X360, vigemTestClient)
-                        as Xbox360OutDevice;
-                    //outputDevices[index] = tempXbox;
-                    int devIndex = index;
-                    Nefarius.ViGEm.Client.Targets.Xbox360FeedbackReceivedEventHandler p = (sender, args) =>
-                       {
-                           SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
-                       };
-                    tempXbox.cont.FeedbackReceived += p;
-                    tempXbox.forceFeedbackCall = p;
+                    if (slotDevice == null)
+                    {
+                        slotDevice = outputslotMan.FindOpenSlot();
+                        Xbox360OutDevice tempXbox = EstablishOutDevice(index, OutContType.X360)
+                            as Xbox360OutDevice;
+                        //outputDevices[index] = tempXbox;
+                        EstablishOutFeedback(index, OutContType.X360, tempXbox, device);
+                        outputslotMan.DeferredPlugin(tempXbox, index, outputDevices);
+                        slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
-                    outputslotMan.DeferredPlugin(tempXbox, index, outputDevices);
+                        LogDebug("Plugging in virtual X360 Controller");
+                    }
+                    else
+                    {
+                        slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
+                        Xbox360OutDevice tempXbox = slotDevice.OutputDevice as Xbox360OutDevice;
+                        EstablishOutFeedback(index, OutContType.X360, tempXbox, device);
+                        outputslotMan.EventDispatcher.Invoke(() =>
+                        {
+                            outputDevices[index] = tempXbox;
+                        });
+                    }
+
+                    LogDebug("Associate X360 Controller for input DS4 #" + (index + 1));
+
                     //tempXbox.Connect();
                     //LogDebug("X360 Controller #" + (index + 1) + " connected");
                 }
                 else if (contType == OutContType.DS4)
                 {
-                    LogDebug("Plugging in DS4 Controller for input DS4 #" + (index + 1));
                     activeOutDevType[index] = OutContType.DS4;
+                    if (slotDevice == null)
+                    {
+                        slotDevice = outputslotMan.FindOpenSlot();
+                        DS4OutDevice tempDS4 = EstablishOutDevice(index, OutContType.DS4)
+                            as DS4OutDevice;
+                        EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
+                        outputslotMan.DeferredPlugin(tempDS4, index, outputDevices);
+                        slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
+
+                        LogDebug("Plugging in virtual DS4 Controller");
+                    }
+                    else
+                    {
+                        slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
+                        DS4OutDevice tempDS4 = slotDevice.OutputDevice as DS4OutDevice;
+                        EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
+                        outputslotMan.EventDispatcher.Invoke(() =>
+                        {
+                            outputDevices[index] = tempDS4;
+                        });
+                    }
+
+                    LogDebug("Associate DS4 Controller for input DS4 #" + (index + 1));
+
                     //DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
-                    DS4OutDevice tempDS4 = outputslotMan.AllocateController(OutContType.DS4, vigemTestClient)
-                        as DS4OutDevice;
+                    //DS4OutDevice tempDS4 = outputslotMan.AllocateController(OutContType.DS4, vigemTestClient)
+                    //    as DS4OutDevice;
                     //outputDevices[index] = tempDS4;
-                    int devIndex = index;
-                    Nefarius.ViGEm.Client.Targets.DualShock4FeedbackReceivedEventHandler p = (sender, args) =>
-                       {
-                        //bool useRumble = false; bool useLight = false;
-                        byte largeMotor = args.LargeMotor;
-                           byte smallMotor = args.SmallMotor;
-                           SetDevRumble(device, largeMotor, smallMotor, devIndex);
-                        //DS4Color color = new DS4Color(args.LightbarColor.Red,
-                        //        args.LightbarColor.Green,
-                        //        args.LightbarColor.Blue);
-                        ///*Console.WriteLine("IN EVENT");
-                        //Console.WriteLine("Rumble ({0}, {1}) | Light ({2}, {3}, {4}) {5}",
-                        //    largeMotor, smallMotor, color.red, color.green, color.blue, DateTime.Now.ToLongTimeString());
-                        //    */
-                        //if (largeMotor != 0 || smallMotor != 0)
-                        //{
-                        //    useRumble = true;
-                        //}
 
-                        //if (color.red != 0 || color.green != 0 || color.blue != 0)
-                        //{
-                        //    useLight = true;
-                        //}
-
-                        //if (!useRumble && !useLight)
-                        //{
-                        //    //Console.WriteLine("Fallback");
-                        //    if (device.LeftHeavySlowRumble != 0 || device.RightLightFastRumble != 0)
-                        //    {
-                        //        useRumble = true;
-                        //    }
-                        //    /*else if (device.LightBarColor.red != 0 ||
-                        //        device.LightBarColor.green != 0 ||
-                        //        device.LightBarColor.blue != 0)
-                        //    {
-                        //        useLight = true;
-                        //    }
-                        //    */
-                        //}
-
-                        //if (useRumble)
-                        //{
-                        //    //Console.WriteLine("Perform rumble");
-                        //    SetDevRumble(device, largeMotor, smallMotor, devIndex);
-                        //}
-
-                        //if (useLight)
-                        //{
-                        //    //Console.WriteLine("Change lightbar color");
-                        //    DS4HapticState haptics = new DS4HapticState
-                        //    {
-                        //        LightBarColor = color,
-                        //    };
-                        //    device.SetHapticState(ref haptics);
-                        //}
-
-                        //Console.WriteLine();
-                    };
-                    tempDS4.cont.FeedbackReceived += p;
-                    tempDS4.forceFeedbackCall = p;
-
-                    outputslotMan.DeferredPlugin(tempDS4, index, outputDevices);
                     //tempDS4.Connect();
                     //LogDebug("DS4 Controller #" + (index + 1) + " connected");
                 }
-            }
 
-            useDInputOnly[index] = false;
+                useDInputOnly[index] = false;
+            }
         }
 
         public void UnplugOutDev(int index, DS4Device device, bool immediate = false)
         {
             if (!useDInputOnly[index])
             {
-                //OutContType contType = Global.OutContType[index];
+                OutContType contType = Global.OutContType[index];
                 OutputDevice dev = outputDevices[index];
+                OutSlotDevice slotDevice = outputslotMan.GetOutSlotDevice(dev);
                 if (dev != null)
                 {
                     string tempType = dev.GetDeviceType();
-                    LogDebug("Unplugging " + tempType + " Controller for input DS4 #" + (index + 1), false);
+                    LogDebug("Disassociate " + tempType + " Controller for input DS4 #" + (index + 1), false);
 
+                    OutContType currentType = activeOutDevType[index];
                     outputDevices[index] = null;
                     activeOutDevType[index] = OutContType.None;
-                    outputslotMan.DeferredRemoval(dev, index, outputDevices, immediate);
+                    if (slotDevice.CurrentAttachedStatus == OutSlotDevice.AttachedStatus.Attached &&
+                        slotDevice.CurrentReserveStatus == OutSlotDevice.ReserveStatus.Dynamic)
+                    {
+                        slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Unbound;
+                        outputslotMan.DeferredRemoval(dev, index, outputDevices, immediate);
+                        LogDebug($"Unplugging virtual {tempType} Controller");
+                    }
+                    else if (slotDevice.CurrentAttachedStatus == OutSlotDevice.AttachedStatus.Attached)
+                    {
+                        slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Unbound;
+                        RemoveOutFeedback(currentType, dev);
+                    }
                     //dev.Disconnect();
                     //LogDebug(tempType + " Controller # " + (index + 1) + " unplugged");
+
                     useDInputOnly[index] = true;
                 }
             }
@@ -557,6 +676,8 @@ namespace DS4Windows
 
                 try
                 {
+                    AssignInitialDevices();
+
                     eventDispatcher.Invoke(() =>
                     {
                         DS4Devices.findControllers();

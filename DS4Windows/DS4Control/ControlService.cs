@@ -539,6 +539,7 @@ namespace DS4Windows
             OutSlotDevice slotDevice = outputslotMan.FindExistUnboundSlotType(contType);
             if (useDInputOnly[index])
             {
+                bool success = false;
                 if (contType == OutContType.X360)
                 {
                     activeOutDevType[index] = OutContType.X360;
@@ -546,14 +547,22 @@ namespace DS4Windows
                     if (slotDevice == null)
                     {
                         slotDevice = outputslotMan.FindOpenSlot();
-                        Xbox360OutDevice tempXbox = EstablishOutDevice(index, OutContType.X360)
+                        if (slotDevice != null)
+                        {
+                            Xbox360OutDevice tempXbox = EstablishOutDevice(index, OutContType.X360)
                             as Xbox360OutDevice;
-                        //outputDevices[index] = tempXbox;
-                        EstablishOutFeedback(index, OutContType.X360, tempXbox, device);
-                        outputslotMan.DeferredPlugin(tempXbox, index, outputDevices);
-                        slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
+                            //outputDevices[index] = tempXbox;
+                            EstablishOutFeedback(index, OutContType.X360, tempXbox, device);
+                            outputslotMan.DeferredPlugin(tempXbox, index, outputDevices);
+                            slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
-                        LogDebug("Plugging in virtual X360 Controller");
+                            LogDebug("Plugging in virtual X360 Controller");
+                            success = true;
+                        }
+                        else
+                        {
+                            LogDebug("Failed. No open output slot found");
+                        }
                     }
                     else
                     {
@@ -564,9 +573,10 @@ namespace DS4Windows
                         {
                             outputDevices[index] = tempXbox;
                         });
+                        success = true;
                     }
 
-                    LogDebug("Associate X360 Controller for input DS4 #" + (index + 1));
+                    if (success) LogDebug("Associate X360 Controller for input DS4 #" + (index + 1));
 
                     //tempXbox.Connect();
                     //LogDebug("X360 Controller #" + (index + 1) + " connected");
@@ -577,13 +587,21 @@ namespace DS4Windows
                     if (slotDevice == null)
                     {
                         slotDevice = outputslotMan.FindOpenSlot();
-                        DS4OutDevice tempDS4 = EstablishOutDevice(index, OutContType.DS4)
+                        if (slotDevice != null)
+                        {
+                            DS4OutDevice tempDS4 = EstablishOutDevice(index, OutContType.DS4)
                             as DS4OutDevice;
-                        EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
-                        outputslotMan.DeferredPlugin(tempDS4, index, outputDevices);
-                        slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
+                            EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
+                            outputslotMan.DeferredPlugin(tempDS4, index, outputDevices);
+                            slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
-                        LogDebug("Plugging in virtual DS4 Controller");
+                            LogDebug("Plugging in virtual DS4 Controller");
+                            success = true;
+                        }
+                        else
+                        {
+                            LogDebug("Failed. No open output slot found");
+                        }
                     }
                     else
                     {
@@ -594,9 +612,10 @@ namespace DS4Windows
                         {
                             outputDevices[index] = tempDS4;
                         });
+                        success = true;
                     }
 
-                    LogDebug("Associate DS4 Controller for input DS4 #" + (index + 1));
+                    if (success) LogDebug("Associate DS4 Controller for input DS4 #" + (index + 1));
 
                     //DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
                     //DS4OutDevice tempDS4 = outputslotMan.AllocateController(OutContType.DS4, vigemTestClient)
@@ -607,7 +626,7 @@ namespace DS4Windows
                     //LogDebug("DS4 Controller #" + (index + 1) + " connected");
                 }
 
-                useDInputOnly[index] = false;
+                if (success) useDInputOnly[index] = false;
             }
         }
 

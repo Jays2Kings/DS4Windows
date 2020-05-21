@@ -412,7 +412,7 @@ namespace DS4Windows
             {
                 slotDevice = outputslotMan.FindOpenSlot();
                 slotDevice.CurrentReserveStatus = OutSlotDevice.ReserveStatus.Permanent;
-                slotDevice.DesiredType = OutContType.X360;
+                slotDevice.PermanentType = OutContType.X360;
                 OutputDevice outDevice = EstablishOutDevice(0, OutContType.X360);
                 Xbox360OutDevice tempXbox = outDevice as Xbox360OutDevice;
                 outputslotMan.DeferredPlugin(tempXbox, -1, outputDevices, OutContType.X360);

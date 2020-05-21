@@ -1,9 +1,9 @@
-﻿using DS4Windows;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DS4Windows;
 
 namespace DS4WinWPF.DS4Control
 {
@@ -31,7 +31,7 @@ namespace DS4WinWPF.DS4Control
         private OutputDevice outputDevice;
         private ReserveStatus reserveStatus;
         private InputBound inputBound;
-        private OutContType desiredType;
+        private OutContType permanentType;
         private OutContType currentType;
 
         public AttachedStatus CurrentAttachedStatus { get => attachedStatus; }
@@ -45,7 +45,18 @@ namespace DS4WinWPF.DS4Control
         {
             get => inputBound; set => inputBound = value;
         }
-        public OutContType DesiredType { get => desiredType; set => desiredType = value; }
+        public OutContType PermanentType
+        {
+            get => permanentType;
+            set
+            {
+                if (permanentType == value) return;
+                permanentType = value;
+                PermanentTypeChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler PermanentTypeChanged;
+
         public OutContType CurrentType { get => currentType; set => currentType = value; }
 
         public void AttachedDevice(OutputDevice outputDevice, OutContType contType)
@@ -53,6 +64,7 @@ namespace DS4WinWPF.DS4Control
             this.outputDevice = outputDevice;
             attachedStatus = AttachedStatus.Attached;
             currentType = contType;
+            //desiredType = contType;
         }
 
         public void DetachDevice()
@@ -62,6 +74,10 @@ namespace DS4WinWPF.DS4Control
                 outputDevice = null;
                 attachedStatus = AttachedStatus.UnAttached;
                 currentType = OutContType.None;
+                if (reserveStatus == ReserveStatus.Dynamic)
+                {
+                    PermanentType = OutContType.None;
+                }
             }
         }
 

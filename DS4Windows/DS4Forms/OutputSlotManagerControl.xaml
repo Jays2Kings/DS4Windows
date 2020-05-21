@@ -12,26 +12,39 @@
             <Button x:Name="unplugBtn" MinWidth="60" Content="Unplug" Click="UnplugBtn_Click" Margin="30,0,0,0" />
         </StackPanel>
 
-        <ListView x:Name="currentOutDevLV" ItemsSource="{Binding SlotDeviceEntries}" SelectedIndex="{Binding SelectedIndex,Mode=OneWayToSource}" DockPanel.Dock="Top">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="200" Header="Current">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding CurrentType}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="200" Header="Requested">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding DesiredType}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DockPanel>
+            <StackPanel x:Name="sideStackPanel" Orientation="Vertical" Width="100" DockPanel.Dock="Right" Visibility="{Binding SidePanelVisibility}">
+                <StackPanel x:Name="outSlotStackPanel">
+                    <ComboBox x:Name="reserveCombo" SelectedIndex="{Binding ReserveChoice,FallbackValue=0}">
+                        <ComboBoxItem Tag="0" Content="Dynamic" />
+                        <ComboBoxItem Tag="1" Content="Permanent" />
+                    </ComboBox>
+
+                    <Button x:Name="slotChangeAcceptBtn" Content="Accept" IsEnabled="{Binding Dirty,FallbackValue=False}"
+                            Click="SlotChangeAcceptBtn_Click" />
+                </StackPanel>
+            </StackPanel>
+            <ListView x:Name="currentOutDevLV" ItemsSource="{Binding SlotDeviceEntries}" SelectedIndex="{Binding SelectedIndex,Mode=OneWayToSource}" DockPanel.Dock="Top">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="200" Header="Current">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding CurrentType}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="200" Header="Requested">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DesiredType}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
 
         <!--<ListView x:Name="permanentOutDevLV" IsEnabled="False" DockPanel.Dock="Top" Height="200">
             <ListView.ItemTemplate>

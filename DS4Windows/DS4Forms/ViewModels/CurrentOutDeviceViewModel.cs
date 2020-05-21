@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using DS4Windows;
 using DS4WinWPF.DS4Control;
 
@@ -11,12 +12,38 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 {
     public class CurrentOutDeviceViewModel
     {
-        private int selectedIndex = 0;
+        private int selectedIndex = -1;
         public int SelectedIndex
         {
             get => selectedIndex;
-            set => selectedIndex = value;
+            set
+            {
+                if (selectedIndex == value) return;
+                selectedIndex = value;
+                SelectedIndexChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
+        public event EventHandler SelectedIndexChanged;
+
+        public Visibility SidePanelVisibility
+        {
+            get
+            {
+                Visibility result = Visibility.Collapsed;
+                if (selectedIndex >= 0)
+                {
+                    SlotDeviceEntry temp = slotDeviceEntries[selectedIndex];
+                    if (temp.OutSlotDevice.PermanentType != OutContType.None ||
+                        temp.OutSlotDevice.CurrentReserveStatus == OutSlotDevice.ReserveStatus.Permanent)
+                    {
+                        result = Visibility.Visible;
+                    }
+                }
+
+                return result;
+            }
+        }
+        public event EventHandler SidePanelVisibilityChanged;
 
         private DS4Windows.OutputSlotManager outSlotManager;
         private List<SlotDeviceEntry> slotDeviceEntries;
@@ -43,6 +70,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
             outSlotManager.SlotAssigned += OutSlotManager_SlotAssigned;
             outSlotManager.SlotUnassigned += OutSlotManager_SlotUnassigned;
+            SelectedIndexChanged += CurrentOutDeviceViewModel_SelectedIndexChanged;
+        }
+
+        private void CurrentOutDeviceViewModel_SelectedIndexChanged(object sender,
+            EventArgs e)
+        {
+            SidePanelVisibilityChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void OutSlot_PluginRequest(object sender, EventArgs e)
@@ -54,6 +88,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 controlService.EventDispatcher.BeginInvoke((Action)(() =>
                 {
                     controlService.AttachUnboundOutDev(entry.OutSlotDevice, entry.OutSlotDevice.CurrentType);
+                    //SidePanelVisibilityChanged?.Invoke(this, EventArgs.Empty);
                 }));
             }
         }
@@ -67,6 +102,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 controlService.EventDispatcher.BeginInvoke((Action)(() =>
                 {
                     controlService.DetachUnboundOutDev(entry.OutSlotDevice);
+                    //SidePanelVisibilityChanged?.Invoke(this, EventArgs.Empty);
                 }));
             }
         }
@@ -75,12 +111,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             int slotNum, OutSlotDevice _)
         {
             slotDeviceEntries[slotNum].RemovedDevice();
+            SidePanelVisibilityChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void OutSlotManager_SlotAssigned(OutputSlotManager sender,
             int slotNum, OutSlotDevice _)
         {
             slotDeviceEntries[slotNum].AssignedDevice();
+            SidePanelVisibilityChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -112,7 +150,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 if (outSlotDevice.CurrentReserveStatus ==
                     OutSlotDevice.ReserveStatus.Permanent)
                 {
-                    temp = outSlotDevice.DesiredType.ToString();
+                    temp = outSlotDevice.PermanentType.ToString();
                 }
 
                 return temp;
@@ -120,12 +158,157 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public event EventHandler DesiredTypeChanged;
 
+        public bool BoundInput
+        {
+            get => outSlotDevice.CurrentInputBound == OutSlotDevice.InputBound.Bound;
+        }
+        public event EventHandler BoundInputChanged;
+
+        private int desiredTypeChoiceIndex = -1;
+        public int DesiredTypeChoice
+        {
+            get => desiredTypeChoiceIndex;
+            set
+            {
+                if (desiredTypeChoiceIndex == value) return;
+                desiredTypeChoiceIndex = value;
+                DesiredTypeChoiceChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler DesiredTypeChoiceChanged;
+
+        private int reserveChoiceIndex = -1;
+        public int ReserveChoice
+        {
+            get => reserveChoiceIndex;
+            set
+            {
+                if (reserveChoiceIndex == value) return;
+                reserveChoiceIndex = value;
+                ReserveChoiceChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler ReserveChoiceChanged;
+
+        private bool dirty = false;
+        public bool Dirty
+        {
+            get => dirty;
+            set
+            {
+                if (dirty == value) return;
+                dirty = value;
+                DirtyChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler DirtyChanged;
+
         public event EventHandler PluginRequest;
         public event EventHandler UnplugRequest;
 
         public SlotDeviceEntry(OutSlotDevice outSlotDevice)
         {
             this.outSlotDevice = outSlotDevice;
+
+            //desiredTypeChoiceIndex = DetermineDesiredChoiceIdx();
+            reserveChoiceIndex = DetermineReserveChoiceIdx();
+
+            SetupEvents();
+        }
+
+        private void SetupEvents()
+        {
+            //DesiredTypeChoiceChanged += SlotDeviceEntry_FormPropChanged;
+            ReserveChoiceChanged += SlotDeviceEntry_FormPropChanged;
+
+            outSlotDevice.PermanentTypeChanged += OutSlotDevice_PermanentTypeChanged;
+        }
+
+        private void OutSlotDevice_PermanentTypeChanged(object sender, EventArgs e)
+        {
+            DesiredTypeChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void SlotDeviceEntry_FormPropChanged(object sender, EventArgs e)
+        {
+            Dirty = true;
+        }
+
+        private int DetermineDesiredChoiceIdx()
+        {
+            int result = 0;
+            switch (outSlotDevice.PermanentType)
+            {
+                case OutContType.None:
+                    result = 0;
+                    break;
+                case OutContType.X360:
+                    result = 1;
+                    break;
+                case OutContType.DS4:
+                    result = 2;
+                    break;
+                default:
+                    break;
+            }
+            return result;
+        }
+
+        private int DetermineReserveChoiceIdx()
+        {
+            int result = 0;
+            switch (outSlotDevice.CurrentReserveStatus)
+            {
+                case OutSlotDevice.ReserveStatus.Dynamic:
+                    result = 0;
+                    break;
+                case OutSlotDevice.ReserveStatus.Permanent:
+                    result = 1;
+                    break;
+                default:
+                    break;
+            }
+
+            return result;
+        }
+
+        private OutContType DetermineDesiredTypeFromIdx()
+        {
+            OutContType result = OutContType.None;
+            switch (desiredTypeChoiceIndex)
+            {
+                case 0:
+                    result = OutContType.None;
+                    break;
+                case 1:
+                    result = OutContType.X360;
+                    break;
+                case 2:
+                    result = OutContType.DS4;
+                    break;
+                default:
+                    break;
+            }
+
+            return result;
+        }
+
+        private OutSlotDevice.ReserveStatus DetermineReserveChoiceFromIdx()
+        {
+            OutSlotDevice.ReserveStatus result = OutSlotDevice.ReserveStatus.Dynamic;
+            switch(reserveChoiceIndex)
+            {
+                case 0:
+                    result = OutSlotDevice.ReserveStatus.Dynamic;
+                    break;
+                case 1:
+                    result = OutSlotDevice.ReserveStatus.Permanent;
+                    break;
+                default:
+                    break;
+            }
+
+            return result;
         }
 
         public void AssignedDevice()
@@ -140,8 +323,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         private void Refresh()
         {
+            //DesiredTypeChoice = DetermineDesiredChoiceIdx();
+            ReserveChoice = DetermineReserveChoiceIdx();
+
             CurrentTypeChanged?.Invoke(this, EventArgs.Empty);
             DesiredTypeChanged?.Invoke(this, EventArgs.Empty);
+            BoundInputChanged?.Invoke(this, EventArgs.Empty);
+            Dirty = false;
         }
 
         public void RequestPlugin()
@@ -152,6 +340,21 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public void RequestUnplug()
         {
             UnplugRequest?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void ApplyChanges()
+        {
+            outSlotDevice.CurrentReserveStatus = DetermineReserveChoiceFromIdx();
+            /*if (outSlotDevice.CurrentReserveStatus ==
+                OutSlotDevice.ReserveStatus.Permanent)
+            {
+                outSlotDevice.DesiredType = DetermineDesiredTypeFromIdx();
+            }
+            else
+            {
+                outSlotDevice.DesiredType = OutContType.None;
+            }
+            */
         }
     }
 }

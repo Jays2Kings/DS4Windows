@@ -36,10 +36,26 @@ namespace DS4WinWPF.DS4Forms
             this.controlService = controlService;
 
             currentOutDevVM = new CurrentOutDeviceViewModel(controlService, outputMan);
+            currentOutDevVM.SelectedIndexChanged += CurrentOutDevVM_SelectedIndexChanged;
             currentOutDevLV.DataContext = currentOutDevVM;
+            sideStackPanel.DataContext = currentOutDevVM;
+            outSlotStackPanel.DataContext = null;
 
             //permanentDevVM = new PermanentOutDevViewModel(controlService, outputMan);
             //permanentOutDevLV.DataContext = permanentDevVM;
+        }
+
+        private void CurrentOutDevVM_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idx = currentOutDevVM.SelectedIndex;
+            if (idx >= 0)
+            {
+                outSlotStackPanel.DataContext = currentOutDevVM.SlotDeviceEntries[idx];
+            }
+            else
+            {
+                outSlotStackPanel.DataContext = null;
+            }
         }
 
         public void SetupLateEvents()
@@ -59,9 +75,9 @@ namespace DS4WinWPF.DS4Forms
             if (tempEntry != null &&
                 tempEntry.OutSlotDevice.CurrentReserveStatus ==
                 DS4Control.OutSlotDevice.ReserveStatus.Permanent &&
-                tempEntry.OutSlotDevice.DesiredType != DS4Windows.OutContType.None)
+                tempEntry.OutSlotDevice.PermanentType != DS4Windows.OutContType.None)
             {
-                tempEntry.OutSlotDevice.CurrentType = tempEntry.OutSlotDevice.DesiredType;
+                tempEntry.OutSlotDevice.CurrentType = tempEntry.OutSlotDevice.PermanentType;
                 tempEntry.RequestPlugin();
             }
             else
@@ -72,8 +88,13 @@ namespace DS4WinWPF.DS4Forms
                 if (result == MessageBoxResult.OK)
                 {
                     tempEntry.OutSlotDevice.CurrentType = devWindow.ContType;
-                    tempEntry.OutSlotDevice.DesiredType = devWindow.ContType;
                     tempEntry.OutSlotDevice.CurrentReserveStatus = devWindow.ReserveType;
+                    if (tempEntry.OutSlotDevice.CurrentReserveStatus ==
+                        DS4Control.OutSlotDevice.ReserveStatus.Permanent)
+                    {
+                        tempEntry.OutSlotDevice.PermanentType = devWindow.ContType;
+                    }
+
                     tempEntry.RequestPlugin();
                 }
             }
@@ -85,6 +106,15 @@ namespace DS4WinWPF.DS4Forms
             if (idx >= 0)
             {
                 currentOutDevVM.SlotDeviceEntries[idx].RequestUnplug();
+            }
+        }
+
+        private void SlotChangeAcceptBtn_Click(object sender, RoutedEventArgs e)
+        {
+            int idx = currentOutDevVM.SelectedIndex;
+            if (idx >= 0)
+            {
+                currentOutDevVM.SlotDeviceEntries[idx].ApplyChanges();
             }
         }
     }

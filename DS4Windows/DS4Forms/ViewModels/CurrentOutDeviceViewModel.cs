@@ -153,14 +153,21 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             int slotNum, OutSlotDevice _)
         {
             slotDeviceEntries[slotNum].RemovedDevice();
-            SidePanelVisibilityChanged?.Invoke(this, EventArgs.Empty);
+            RefreshPanels();
         }
 
         private void OutSlotManager_SlotAssigned(OutputSlotManager sender,
             int slotNum, OutSlotDevice _)
         {
             slotDeviceEntries[slotNum].AssignedDevice();
+            RefreshPanels();
+        }
+
+        private void RefreshPanels()
+        {
             SidePanelVisibilityChanged?.Invoke(this, EventArgs.Empty);
+            PluginEnabledChanged?.Invoke(this, EventArgs.Empty);
+            UnpluginEnabledChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 

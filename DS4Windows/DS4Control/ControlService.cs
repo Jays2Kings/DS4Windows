@@ -196,6 +196,7 @@ namespace DS4Windows
         public void ShutDown()
         {
             outputslotMan.ShutDown();
+            OutputSlotPersist.WriteConfig(outputslotMan);
 
             eventDispatcher.InvokeShutdown();
             eventDispatcher = null;
@@ -242,6 +243,11 @@ namespace DS4Windows
                 { Process tempProc = Process.Start(startInfo); tempProc.Dispose(); }
                 catch { }
             }
+        }
+
+        public void LoadPermanentSlotsConfig()
+        {
+            OutputSlotPersist.ReadConfig(outputslotMan);
         }
 
         private void TestQueueBus(Action temp)
@@ -405,7 +411,16 @@ namespace DS4Windows
 
         public void AssignInitialDevices()
         {
-            OutSlotDevice slotDevice =
+            foreach(OutSlotDevice slotDevice in outputslotMan.OutputSlots)
+            {
+                if (slotDevice.CurrentReserveStatus ==
+                    OutSlotDevice.ReserveStatus.Permanent)
+                {
+                    OutputDevice outDevice = EstablishOutDevice(0, slotDevice.PermanentType);
+                    outputslotMan.DeferredPlugin(outDevice, -1, outputDevices, slotDevice.PermanentType);
+                }
+            }
+            /*OutSlotDevice slotDevice =
                 outputslotMan.FindExistUnboundSlotType(OutContType.X360);
 
             if (slotDevice == null)
@@ -417,6 +432,7 @@ namespace DS4Windows
                 Xbox360OutDevice tempXbox = outDevice as Xbox360OutDevice;
                 outputslotMan.DeferredPlugin(tempXbox, -1, outputDevices, OutContType.X360);
             }
+            */
 
             /*slotDevice = outputslotMan.FindExistUnboundSlotType(OutContType.X360);
             if (slotDevice == null)

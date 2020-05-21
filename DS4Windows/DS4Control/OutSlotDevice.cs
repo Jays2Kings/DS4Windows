@@ -38,8 +38,15 @@ namespace DS4WinWPF.DS4Control
         public OutputDevice OutputDevice { get => outputDevice; }
         public ReserveStatus CurrentReserveStatus
         {
-            get => reserveStatus; set => reserveStatus = value;
+            get => reserveStatus;
+            set
+            {
+                if (reserveStatus == value) return;
+                reserveStatus = value;
+                CurrentReserveStatusChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
+        public event EventHandler CurrentReserveStatusChanged;
 
         public InputBound CurrentInputBound
         {
@@ -58,6 +65,23 @@ namespace DS4WinWPF.DS4Control
         public event EventHandler PermanentTypeChanged;
 
         public OutContType CurrentType { get => currentType; set => currentType = value; }
+
+        public OutSlotDevice()
+        {
+            CurrentReserveStatusChanged += OutSlotDevice_CurrentReserveStatusChanged;
+        }
+
+        private void OutSlotDevice_CurrentReserveStatusChanged(object sender, EventArgs e)
+        {
+            if (reserveStatus == ReserveStatus.Dynamic)
+            {
+                PermanentType = OutContType.None;
+            }
+            else if (currentType != OutContType.None)
+            {
+                PermanentType = currentType;
+            }
+        }
 
         public void AttachedDevice(OutputDevice outputDevice, OutContType contType)
         {

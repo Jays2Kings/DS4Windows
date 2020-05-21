@@ -33,8 +33,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 if (selectedIndex >= 0)
                 {
                     SlotDeviceEntry temp = slotDeviceEntries[selectedIndex];
-                    if (temp.OutSlotDevice.PermanentType != OutContType.None ||
-                        temp.OutSlotDevice.CurrentReserveStatus == OutSlotDevice.ReserveStatus.Permanent)
+                    if (temp.OutSlotDevice.CurrentType != OutContType.None)
                     {
                         result = Visibility.Visible;
                     }
@@ -397,11 +396,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             /*if (outSlotDevice.CurrentReserveStatus ==
                 OutSlotDevice.ReserveStatus.Permanent)
             {
-                outSlotDevice.DesiredType = DetermineDesiredTypeFromIdx();
+                outSlotDevice.PermanentType = outSlotDevice.CurrentType;
             }
             else
             {
-                outSlotDevice.DesiredType = OutContType.None;
+                outSlotDevice.PermanentType = OutContType.None;
             }
             */
         }

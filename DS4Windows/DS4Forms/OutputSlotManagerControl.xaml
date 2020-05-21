@@ -6,8 +6,13 @@
              xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="800">
-    <DockPanel>
-        <ListView x:Name="currentOutDevLV" ItemsSource="{Binding SlotDeviceEntries}" SelectedIndex="{Binding SelectedIndex,Mode=OneWayToSource}" DockPanel.Dock="Top" Height="200">
+    <DockPanel Margin="4,8">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Height="30" Margin="0,20,0,0">
+            <Button x:Name="pluginBtn" MinWidth="60" Content="Plug" Click="PluginBtn_Click" />
+            <Button x:Name="unplugBtn" MinWidth="60" Content="Unplug" Click="UnplugBtn_Click" Margin="30,0,0,0" />
+        </StackPanel>
+
+        <ListView x:Name="currentOutDevLV" ItemsSource="{Binding SlotDeviceEntries}" SelectedIndex="{Binding SelectedIndex,Mode=OneWayToSource}" DockPanel.Dock="Top">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="200" Header="Current">
@@ -27,11 +32,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="60">
-            <Button x:Name="pluginBtn" MinWidth="60" Content="Plug" Click="PluginBtn_Click" />
-            <Button x:Name="unplugBtn" MinWidth="60" Content="Unplug" Click="UnplugBtn_Click" Margin="30,0,0,0" />
-        </StackPanel>
 
         <!--<ListView x:Name="permanentOutDevLV" IsEnabled="False" DockPanel.Dock="Top" Height="200">
             <ListView.ItemTemplate>

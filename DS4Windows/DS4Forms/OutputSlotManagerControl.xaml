@@ -7,13 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="800">
     <DockPanel Margin="4,8">
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Height="30" Margin="0,20,0,0">
-            <Button x:Name="pluginBtn" MinWidth="60" Content="Plug" Click="PluginBtn_Click" />
-            <Button x:Name="unplugBtn" MinWidth="60" Content="Unplug" Click="UnplugBtn_Click" Margin="30,0,0,0" />
+        <StackPanel x:Name="plugDevStackPanel" Orientation="Horizontal" DockPanel.Dock="Bottom" Height="30" Margin="0,20,0,0">
+            <Button x:Name="pluginBtn" MinWidth="60" Content="Plug" IsEnabled="{Binding PluginEnabled}" Click="PluginBtn_Click" />
+            <Button x:Name="unplugBtn" MinWidth="60" Content="Unplug" IsEnabled="{Binding UnpluginEnabled}" Click="UnplugBtn_Click" Margin="30,0,0,0" />
         </StackPanel>
 
         <DockPanel>
-            <StackPanel x:Name="sideStackPanel" Orientation="Vertical" Width="100" DockPanel.Dock="Right" Visibility="{Binding SidePanelVisibility}">
+            <StackPanel x:Name="sideStackPanel" Orientation="Vertical" Width="100" DockPanel.Dock="Right" Visibility="{Binding SidePanelVisibility}" Margin="10,0,10,0">
                 <StackPanel x:Name="outSlotStackPanel">
                     <ComboBox x:Name="reserveCombo" SelectedIndex="{Binding ReserveChoice,FallbackValue=0}">
                         <ComboBoxItem Tag="0" Content="Dynamic" />
@@ -21,7 +21,7 @@
                     </ComboBox>
 
                     <Button x:Name="slotChangeAcceptBtn" Content="Accept" IsEnabled="{Binding Dirty,FallbackValue=False}"
-                            Click="SlotChangeAcceptBtn_Click" />
+                            Click="SlotChangeAcceptBtn_Click" Margin="0,8,0,0" />
                 </StackPanel>
             </StackPanel>
             <ListView x:Name="currentOutDevLV" ItemsSource="{Binding SlotDeviceEntries}" SelectedIndex="{Binding SelectedIndex,Mode=OneWayToSource}" DockPanel.Dock="Top">

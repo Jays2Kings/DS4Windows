@@ -543,6 +543,7 @@ namespace DS4Windows
             {
                 OutputDevice outDevice = EstablishOutDevice(-1, contType);
                 outputslotMan.DeferredPlugin(outDevice, -1, outputDevices, contType);
+                LogDebug($"Plugging virtual {contType} Controller");
             }
         }
 
@@ -553,6 +554,7 @@ namespace DS4Windows
             {
                 OutputDevice outDevice = EstablishOutDevice(-1, contType);
                 outputslotMan.DeferredPlugin(outDevice, -1, outputDevices, contType);
+                LogDebug($"Plugging virtual {contType} Controller");
             }
         }
 

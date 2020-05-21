@@ -45,6 +45,46 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public event EventHandler SidePanelVisibilityChanged;
 
+        public bool PluginEnabled
+        {
+            get
+            {
+                bool result = false;
+                if (selectedIndex >= 0)
+                {
+                    SlotDeviceEntry temp = slotDeviceEntries[selectedIndex];
+                    if (temp.OutSlotDevice.CurrentAttachedStatus ==
+                        OutSlotDevice.AttachedStatus.UnAttached)
+                    {
+                        result = true;
+                    }
+                }
+
+                return result;
+            }
+        }
+        public event EventHandler PluginEnabledChanged;
+
+        public bool UnpluginEnabled
+        {
+            get
+            {
+                bool result = false;
+                if (selectedIndex >= 0)
+                {
+                    SlotDeviceEntry temp = slotDeviceEntries[selectedIndex];
+                    if (temp.OutSlotDevice.CurrentAttachedStatus ==
+                        OutSlotDevice.AttachedStatus.Attached)
+                    {
+                        result = true;
+                    }
+                }
+
+                return result;
+            }
+        }
+        public event EventHandler UnpluginEnabledChanged;
+
         private DS4Windows.OutputSlotManager outSlotManager;
         private List<SlotDeviceEntry> slotDeviceEntries;
 
@@ -77,6 +117,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             EventArgs e)
         {
             SidePanelVisibilityChanged?.Invoke(this, EventArgs.Empty);
+            PluginEnabledChanged?.Invoke(this, EventArgs.Empty);
+            UnpluginEnabledChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void OutSlot_PluginRequest(object sender, EventArgs e)

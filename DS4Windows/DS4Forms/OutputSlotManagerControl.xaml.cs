@@ -39,6 +39,7 @@ namespace DS4WinWPF.DS4Forms
             currentOutDevVM.SelectedIndexChanged += CurrentOutDevVM_SelectedIndexChanged;
             currentOutDevLV.DataContext = currentOutDevVM;
             sideStackPanel.DataContext = currentOutDevVM;
+            plugDevStackPanel.DataContext = currentOutDevVM;
             outSlotStackPanel.DataContext = null;
 
             //permanentDevVM = new PermanentOutDevViewModel(controlService, outputMan);

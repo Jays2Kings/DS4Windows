@@ -23,7 +23,7 @@ namespace DS4WinWPF.DS4Forms
     {
         private DS4Windows.ControlService controlService;
         private CurrentOutDeviceViewModel currentOutDevVM;
-        private PermanentOutDevViewModel permanentDevVM;
+        //private PermanentOutDevViewModel permanentDevVM;
 
         public OutputSlotManagerControl()
         {

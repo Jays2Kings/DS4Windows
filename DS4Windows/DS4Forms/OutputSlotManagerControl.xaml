@@ -20,7 +20,7 @@
                     <GridViewColumn Width="200" Header="Requested">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding DesiredType,Mode=OneTime}" />
+                                <TextBlock Text="{Binding DesiredType}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

@@ -72,6 +72,8 @@ namespace DS4WinWPF.DS4Forms
                 if (result == MessageBoxResult.OK)
                 {
                     tempEntry.OutSlotDevice.CurrentType = devWindow.ContType;
+                    tempEntry.OutSlotDevice.DesiredType = devWindow.ContType;
+                    tempEntry.OutSlotDevice.CurrentReserveStatus = devWindow.ReserveType;
                     tempEntry.RequestPlugin();
                 }
             }

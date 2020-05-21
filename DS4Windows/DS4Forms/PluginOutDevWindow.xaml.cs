@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DS4Windows;
+using DS4WinWPF.DS4Control;
 
 namespace DS4WinWPF.DS4Forms
 {
@@ -27,6 +28,7 @@ namespace DS4WinWPF.DS4Forms
         public OutContType ContType { get => contType; }
 
         private DS4Control.OutSlotDevice.ReserveStatus reserveType;
+        public OutSlotDevice.ReserveStatus ReserveType { get => reserveType; }
 
         public PluginOutDevWindow()
         {
@@ -50,10 +52,10 @@ namespace DS4WinWPF.DS4Forms
             switch(reserveTypeCombo.SelectedIndex)
             {
                 case 0:
-                    reserveType = DS4Control.OutSlotDevice.ReserveStatus.Dynamic;
+                    reserveType = OutSlotDevice.ReserveStatus.Dynamic;
                     break;
                 case 1:
-                    reserveType = DS4Control.OutSlotDevice.ReserveStatus.Permanent;
+                    reserveType = OutSlotDevice.ReserveStatus.Permanent;
                     break;
                 default:
                     break;
@@ -63,12 +65,16 @@ namespace DS4WinWPF.DS4Forms
             {
                 result = MessageBoxResult.OK;
             }
+
+            Close();
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             contType = OutContType.None;
             result = MessageBoxResult.Cancel;
+
+            Close();
         }
     }
 }

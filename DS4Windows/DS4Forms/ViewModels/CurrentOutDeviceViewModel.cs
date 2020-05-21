@@ -45,21 +45,21 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             outSlotManager.SlotUnassigned += OutSlotManager_SlotUnassigned;
         }
 
-        private void OutSlot_UnplugRequest(object sender, EventArgs e)
-        {
-            SlotDeviceEntry entry = sender as SlotDeviceEntry;
-            controlService.EventDispatcher.BeginInvoke((Action)(() =>
-            {
-                controlService.DetachUnboundOutDev(entry.OutSlotDevice);
-            }));
-        }
-
         private void OutSlot_PluginRequest(object sender, EventArgs e)
         {
             SlotDeviceEntry entry = sender as SlotDeviceEntry;
             controlService.EventDispatcher.BeginInvoke((Action)(() =>
             {
                 controlService.AttachUnboundOutDev(entry.OutSlotDevice, entry.OutSlotDevice.CurrentType);
+            }));
+        }
+
+        private void OutSlot_UnplugRequest(object sender, EventArgs e)
+        {
+            SlotDeviceEntry entry = sender as SlotDeviceEntry;
+            controlService.EventDispatcher.BeginInvoke((Action)(() =>
+            {
+                controlService.DetachUnboundOutDev(entry.OutSlotDevice);
             }));
         }
 

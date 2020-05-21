@@ -51,14 +51,17 @@ namespace DS4WinWPF.DS4Forms
         {
             int idx = currentOutDevVM.SelectedIndex;
             SlotDeviceEntry tempEntry = null;
-            if (idx > 0)
+            if (idx >= 0)
             {
                 tempEntry = currentOutDevVM.SlotDeviceEntries[idx];
             }
 
             if (tempEntry != null &&
-                tempEntry.OutSlotDevice.CurrentReserveStatus == DS4Control.OutSlotDevice.ReserveStatus.Permanent)
+                tempEntry.OutSlotDevice.CurrentReserveStatus ==
+                DS4Control.OutSlotDevice.ReserveStatus.Permanent &&
+                tempEntry.OutSlotDevice.DesiredType != DS4Windows.OutContType.None)
             {
+                tempEntry.OutSlotDevice.CurrentType = tempEntry.OutSlotDevice.DesiredType;
                 tempEntry.RequestPlugin();
             }
             else
@@ -77,7 +80,7 @@ namespace DS4WinWPF.DS4Forms
         private void UnplugBtn_Click(object sender, RoutedEventArgs e)
         {
             int idx = currentOutDevVM.SelectedIndex;
-            if (idx > 0)
+            if (idx >= 0)
             {
                 currentOutDevVM.SlotDeviceEntries[idx].RequestUnplug();
             }

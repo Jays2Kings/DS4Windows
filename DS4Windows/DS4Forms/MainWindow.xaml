@@ -207,7 +207,7 @@
 
                 </local:AutoProfiles>
             </TabItem>
-            <TabItem Header="Slots">
+            <TabItem Header="Output Slots">
                 <local:OutputSlotManagerControl x:Name="slotManControl">
 
                 </local:OutputSlotManagerControl>

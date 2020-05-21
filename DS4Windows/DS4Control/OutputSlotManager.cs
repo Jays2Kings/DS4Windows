@@ -48,6 +48,15 @@ namespace DS4Windows
 
         public bool RunningQueue { get => queuedTasks > 0; }
         public Dispatcher EventDispatcher { get => eventDispatcher; }
+        public OutSlotDevice[] OutputSlots { get => outputSlots; }
+
+        public delegate void SlotAssignedDelegate(OutputSlotManager sender,
+            int slotNum, OutSlotDevice outSlotDev);
+        public event SlotAssignedDelegate SlotAssigned;
+
+        public delegate void SlotUnassignedDelegate(OutputSlotManager sender,
+            int slotNum, OutSlotDevice outSlotDev);
+        public event SlotUnassignedDelegate SlotUnassigned;
 
         public OutputSlotManager()
         {
@@ -109,7 +118,7 @@ namespace DS4Windows
             return result;
         }
 
-        public void DeferredPlugin(OutputDevice outputDevice, int inIdx, OutputDevice[] outdevs)
+        public void DeferredPlugin(OutputDevice outputDevice, int inIdx, OutputDevice[] outdevs, OutContType contType)
         {
             Action tempAction = new Action(() =>
             {
@@ -120,8 +129,9 @@ namespace DS4Windows
                     outputDevices[slot] = outputDevice;
                     deviceDict.Add(slot, outputDevice);
                     revDeviceDict.Add(outputDevice, slot);
-                    outputSlots[slot].AttachedDevice(outputDevice);
-                    outdevs[inIdx] = outputDevice;
+                    outputSlots[slot].AttachedDevice(outputDevice, contType);
+                    if (inIdx != -1) outdevs[inIdx] = outputDevice;
+                    SlotAssigned?.Invoke(this, slot, outputSlots[slot]);
 
                     Task.Delay(DELAY_TIME).Wait();
                 }
@@ -151,8 +161,9 @@ namespace DS4Windows
                     deviceDict.Remove(slot);
                     revDeviceDict.Remove(outputDevice);
                     outputDevice.Disconnect();
-                    outdevs[inIdx] = null;
+                    if (inIdx != -1) outdevs[inIdx] = null;
                     outputSlots[slot].DetachDevice();
+                    SlotUnassigned?.Invoke(this, slot, outputSlots[slot]);
 
                     if (!immediate)
                     {

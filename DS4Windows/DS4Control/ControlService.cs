@@ -412,9 +412,10 @@ namespace DS4Windows
             {
                 slotDevice = outputslotMan.FindOpenSlot();
                 slotDevice.CurrentReserveStatus = OutSlotDevice.ReserveStatus.Permanent;
+                slotDevice.DesiredType = OutContType.X360;
                 OutputDevice outDevice = EstablishOutDevice(0, OutContType.X360);
                 Xbox360OutDevice tempXbox = outDevice as Xbox360OutDevice;
-                outputslotMan.DeferredPlugin(tempXbox, 0, outputDevices);
+                outputslotMan.DeferredPlugin(tempXbox, -1, outputDevices, OutContType.X360);
             }
 
             /*slotDevice = outputslotMan.FindExistUnboundSlotType(OutContType.X360);
@@ -422,6 +423,7 @@ namespace DS4Windows
             {
                 slotDevice = outputslotMan.FindOpenSlot();
                 slotDevice.CurrentReserveStatus = OutSlotDevice.ReserveStatus.Permanent;
+                slotDevice.DesiredType = OutContType.X360;
                 OutputDevice outDevice = EstablishOutDevice(1, OutContType.X360);
                 Xbox360OutDevice tempXbox = outDevice as Xbox360OutDevice;
                 outputslotMan.DeferredPlugin(tempXbox, 1, outputDevices);
@@ -533,6 +535,39 @@ namespace DS4Windows
             }
         }
 
+        public void AttachNewUnboundOutDev(OutContType contType)
+        {
+            OutSlotDevice slotDevice = outputslotMan.FindOpenSlot();
+            if (slotDevice != null &&
+                slotDevice.CurrentAttachedStatus == OutSlotDevice.AttachedStatus.UnAttached)
+            {
+                OutputDevice outDevice = EstablishOutDevice(-1, contType);
+                outputslotMan.DeferredPlugin(outDevice, -1, outputDevices, contType);
+            }
+        }
+
+        public void AttachUnboundOutDev(OutSlotDevice slotDevice, OutContType contType)
+        {
+            if (slotDevice.CurrentAttachedStatus == OutSlotDevice.AttachedStatus.UnAttached &&
+                slotDevice.CurrentInputBound == OutSlotDevice.InputBound.Unbound)
+            {
+                OutputDevice outDevice = EstablishOutDevice(-1, contType);
+                outputslotMan.DeferredPlugin(outDevice, -1, outputDevices, contType);
+            }
+        }
+
+        public void DetachUnboundOutDev(OutSlotDevice slotDevice)
+        {
+            if (slotDevice.CurrentInputBound == OutSlotDevice.InputBound.Unbound)
+            {
+                OutputDevice dev = slotDevice.OutputDevice;
+                string tempType = dev.GetDeviceType();
+                slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Unbound;
+                outputslotMan.DeferredRemoval(dev, -1, outputDevices, false);
+                LogDebug($"Unplugging virtual {tempType} Controller");
+            }
+        }
+
         public void PluginOutDev(int index, DS4Device device)
         {
             OutContType contType = Global.OutContType[index];
@@ -553,7 +588,7 @@ namespace DS4Windows
                             as Xbox360OutDevice;
                             //outputDevices[index] = tempXbox;
                             EstablishOutFeedback(index, OutContType.X360, tempXbox, device);
-                            outputslotMan.DeferredPlugin(tempXbox, index, outputDevices);
+                            outputslotMan.DeferredPlugin(tempXbox, index, outputDevices, contType);
                             slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
                             LogDebug("Plugging in virtual X360 Controller");
@@ -569,9 +604,10 @@ namespace DS4Windows
                         slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
                         Xbox360OutDevice tempXbox = slotDevice.OutputDevice as Xbox360OutDevice;
                         EstablishOutFeedback(index, OutContType.X360, tempXbox, device);
+                        outputDevices[index] = tempXbox;
                         outputslotMan.EventDispatcher.Invoke(() =>
                         {
-                            outputDevices[index] = tempXbox;
+                            slotDevice.CurrentType = contType;
                         });
                         success = true;
                     }
@@ -592,7 +628,7 @@ namespace DS4Windows
                             DS4OutDevice tempDS4 = EstablishOutDevice(index, OutContType.DS4)
                             as DS4OutDevice;
                             EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
-                            outputslotMan.DeferredPlugin(tempDS4, index, outputDevices);
+                            outputslotMan.DeferredPlugin(tempDS4, index, outputDevices, contType);
                             slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
                             LogDebug("Plugging in virtual DS4 Controller");
@@ -608,9 +644,10 @@ namespace DS4Windows
                         slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
                         DS4OutDevice tempDS4 = slotDevice.OutputDevice as DS4OutDevice;
                         EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
+                        outputDevices[index] = tempDS4;
                         outputslotMan.EventDispatcher.Invoke(() =>
                         {
-                            outputDevices[index] = tempDS4;
+                            slotDevice.CurrentType = contType;
                         });
                         success = true;
                     }
@@ -626,7 +663,10 @@ namespace DS4Windows
                     //LogDebug("DS4 Controller #" + (index + 1) + " connected");
                 }
 
-                if (success) useDInputOnly[index] = false;
+                if (success)
+                {
+                    useDInputOnly[index] = false;
+                }
             }
         }
 
@@ -634,7 +674,7 @@ namespace DS4Windows
         {
             if (!useDInputOnly[index])
             {
-                OutContType contType = Global.OutContType[index];
+                //OutContType contType = Global.OutContType[index];
                 OutputDevice dev = outputDevices[index];
                 OutSlotDevice slotDevice = outputslotMan.GetOutSlotDevice(dev);
                 if (dev != null)
@@ -649,7 +689,7 @@ namespace DS4Windows
                         slotDevice.CurrentReserveStatus == OutSlotDevice.ReserveStatus.Dynamic)
                     {
                         slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Unbound;
-                        outputslotMan.DeferredRemoval(dev, index, outputDevices, immediate);
+                        outputslotMan.DeferredRemoval(dev, -1, outputDevices, immediate);
                         LogDebug($"Unplugging virtual {tempType} Controller");
                     }
                     else if (slotDevice.CurrentAttachedStatus == OutSlotDevice.AttachedStatus.Attached)
@@ -659,9 +699,9 @@ namespace DS4Windows
                     }
                     //dev.Disconnect();
                     //LogDebug(tempType + " Controller # " + (index + 1) + " unplugged");
-
-                    useDInputOnly[index] = true;
                 }
+
+                useDInputOnly[index] = true;
             }
         }
 
@@ -1673,6 +1713,7 @@ namespace DS4Windows
             touchslid = new bool[4] { false, false, false, false };
 
         public Dispatcher EventDispatcher { get => eventDispatcher; }
+        public OutputSlotManager OutputslotMan { get => outputslotMan; }
 
         protected virtual void CheckForTouchToggle(int deviceID, DS4State cState, DS4State pState)
         {

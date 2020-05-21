@@ -31,6 +31,8 @@ namespace DS4WinWPF.DS4Control
         private OutputDevice outputDevice;
         private ReserveStatus reserveStatus;
         private InputBound inputBound;
+        private OutContType desiredType;
+        private OutContType currentType;
 
         public AttachedStatus CurrentAttachedStatus { get => attachedStatus; }
         public OutputDevice OutputDevice { get => outputDevice; }
@@ -43,11 +45,14 @@ namespace DS4WinWPF.DS4Control
         {
             get => inputBound; set => inputBound = value;
         }
+        public OutContType DesiredType { get => desiredType; set => desiredType = value; }
+        public OutContType CurrentType { get => currentType; set => currentType = value; }
 
-        public void AttachedDevice(OutputDevice outputDevice)
+        public void AttachedDevice(OutputDevice outputDevice, OutContType contType)
         {
             this.outputDevice = outputDevice;
             attachedStatus = AttachedStatus.Attached;
+            currentType = contType;
         }
 
         public void DetachDevice()
@@ -56,6 +61,7 @@ namespace DS4WinWPF.DS4Control
             {
                 outputDevice = null;
                 attachedStatus = AttachedStatus.UnAttached;
+                currentType = OutContType.None;
             }
         }
 

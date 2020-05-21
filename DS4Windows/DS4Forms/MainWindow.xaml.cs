@@ -104,6 +104,9 @@ namespace DS4WinWPF.DS4Forms
 
             autoprofileChecker = new AutoProfileChecker(autoProfileHolder);
 
+            slotManControl.SetupDataContext(controlService: App.rootHub,
+                App.rootHub.OutputslotMan);
+
             SetupEvents();
 
             Thread timerThread = new Thread(() =>

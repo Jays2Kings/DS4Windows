@@ -207,6 +207,11 @@
 
                 </local:AutoProfiles>
             </TabItem>
+            <TabItem Header="Slots">
+                <local:OutputSlotManagerControl x:Name="slotManControl">
+
+                </local:OutputSlotManagerControl>
+            </TabItem>
             <TabItem x:Name="settingsTab" Header="{lex:Loc Settings}" IsEnabled="{Binding ViewEnabled,Mode=OneWay}">
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                     <WrapPanel Orientation="Vertical" Margin="8,16,8,8">

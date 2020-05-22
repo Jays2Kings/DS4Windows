@@ -25,6 +25,8 @@ namespace DS4Windows
 
         public override void ConvertandSendReport(DS4State state, int device)
         {
+            if (!connected) return;
+
             DualShock4Buttons tempButtons = 0;
             DualShock4DPadValues tempDPad = DualShock4DPadValues.None;
             DualShock4SpecialButtons tempSpecial = 0;
@@ -141,7 +143,11 @@ namespace DS4Windows
             cont.SendReport(report);
         }
 
-        public override void Connect() => cont.Connect();
+        public override void Connect()
+        {
+            cont.Connect();
+            connected = true;
+        }
         public override void Disconnect()
         {
             if (forceFeedbackCall != null)
@@ -150,6 +156,7 @@ namespace DS4Windows
                 forceFeedbackCall = null;
             }
 
+            connected = false;
             cont.Disconnect();
             cont.Dispose();
             cont = null;

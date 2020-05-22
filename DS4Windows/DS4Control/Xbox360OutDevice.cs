@@ -28,6 +28,8 @@ namespace DS4Windows
 
         public override void ConvertandSendReport(DS4State state, int device)
         {
+            if (!connected) return;
+
             Xbox360Buttons tempButtons = 0;
 
             unchecked
@@ -137,7 +139,11 @@ namespace DS4Windows
             }
         }
 
-        public override void Connect() => cont.Connect();
+        public override void Connect()
+        {
+            cont.Connect();
+            connected = true;
+        }
         public override void Disconnect()
         {
             if (forceFeedbackCall != null)
@@ -146,6 +152,7 @@ namespace DS4Windows
                 forceFeedbackCall = null;
             }
 
+            connected = false;
             cont.Disconnect();
             cont.Dispose();
             cont = null;

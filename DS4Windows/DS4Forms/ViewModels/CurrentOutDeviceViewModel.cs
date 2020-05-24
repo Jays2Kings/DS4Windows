@@ -270,6 +270,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             ReserveChoiceChanged += SlotDeviceEntry_FormPropChanged;
 
             outSlotDevice.PermanentTypeChanged += OutSlotDevice_PermanentTypeChanged;
+            outSlotDevice.CurrentInputBoundChanged += OutSlotDevice_CurrentInputBoundChanged;
+        }
+
+        private void OutSlotDevice_CurrentInputBoundChanged(object sender, EventArgs e)
+        {
+            BoundInputChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void OutSlotDevice_PermanentTypeChanged(object sender, EventArgs e)

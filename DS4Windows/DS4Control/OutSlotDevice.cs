@@ -50,8 +50,16 @@ namespace DS4WinWPF.DS4Control
 
         public InputBound CurrentInputBound
         {
-            get => inputBound; set => inputBound = value;
+            get => inputBound;
+            set
+            {
+                if (inputBound == value) return;
+                inputBound = value;
+                CurrentInputBoundChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
+        public event EventHandler CurrentInputBoundChanged;
+
         public OutContType PermanentType
         {
             get => permanentType;

@@ -207,7 +207,7 @@
 
                 </local:AutoProfiles>
             </TabItem>
-            <TabItem Header="Output Slots">
+            <TabItem Header="Output Slots" IsEnabled="{Binding FullTabsEnabled,Mode=OneWay}">
                 <local:OutputSlotManagerControl x:Name="slotManControl">
 
                 </local:OutputSlotManagerControl>

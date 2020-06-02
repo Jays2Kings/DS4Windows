@@ -1,9 +1,27 @@
 {
-  "latest_version": "2.1.1",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 1},
-  "updated_at": "2020-05-15T19:39:08+0000",
+  "latest_version": "2.1.2",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 2},
+  "updated_at": "2020-06-02T00:40:16+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.2",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 2},
+        "base_header": "Version 2.1.1",
+        "release_date": "2020-06-02T00:40:16+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.2",
+            "log_text": ["* Added architecture info to log",
+              "* Added option to specify permanently connected output devices",
+              "* Added extra check before sending output reports to virtual device"],
+            "editor": "ryochan7",
+            "editors_note": ["Should work"],
+            "updated_at": "2020-06-02T00:40:16+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.1",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 1},

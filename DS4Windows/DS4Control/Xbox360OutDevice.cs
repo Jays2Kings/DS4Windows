@@ -16,90 +16,90 @@ namespace DS4Windows
         private const int outputResolution = 32767 - (-32768);
         public const string devType = "X360";
 
-        public Xbox360Controller cont;
-        private Xbox360Report report;
+        public IXbox360Controller cont;
         public Xbox360FeedbackReceivedEventHandler forceFeedbackCall;
 
         public Xbox360OutDevice(ViGEmClient client)
         {
-            cont = new Xbox360Controller(client);
-            report = new Xbox360Report();
+            cont = client.CreateXbox360Controller();
+            cont.AutoSubmitReport = false;
         }
 
         public override void ConvertandSendReport(DS4State state, int device)
         {
             if (!connected) return;
 
-            Xbox360Buttons tempButtons = 0;
+            cont.ResetReport();
+            ushort tempButtons = 0;
 
             unchecked
             {
-                if (state.Share) tempButtons |= Xbox360Buttons.Back;
-                if (state.L3) tempButtons |= Xbox360Buttons.LeftThumb;
-                if (state.R3) tempButtons |= Xbox360Buttons.RightThumb;
-                if (state.Options) tempButtons |= Xbox360Buttons.Start;
+                if (state.Share) tempButtons |= Xbox360Button.Back.Value;
+                if (state.L3) tempButtons |= Xbox360Button.LeftThumb.Value;
+                if (state.R3) tempButtons |= Xbox360Button.RightThumb.Value;
+                if (state.Options) tempButtons |= Xbox360Button.Start.Value;
 
-                if (state.DpadUp) tempButtons |= Xbox360Buttons.Up;
-                if (state.DpadRight) tempButtons |= Xbox360Buttons.Right;
-                if (state.DpadDown) tempButtons |= Xbox360Buttons.Down;
-                if (state.DpadLeft) tempButtons |= Xbox360Buttons.Left;
+                if (state.DpadUp) tempButtons |= Xbox360Button.Up.Value;
+                if (state.DpadRight) tempButtons |= Xbox360Button.Right.Value;
+                if (state.DpadDown) tempButtons |= Xbox360Button.Down.Value;
+                if (state.DpadLeft) tempButtons |= Xbox360Button.Left.Value;
 
-                if (state.L1) tempButtons |= Xbox360Buttons.LeftShoulder;
-                if (state.R1) tempButtons |= Xbox360Buttons.RightShoulder;
+                if (state.L1) tempButtons |= Xbox360Button.LeftShoulder.Value;
+                if (state.R1) tempButtons |= Xbox360Button.RightShoulder.Value;
 
-                if (state.Triangle) tempButtons |= Xbox360Buttons.Y;
-                if (state.Circle) tempButtons |= Xbox360Buttons.B;
-                if (state.Cross) tempButtons |= Xbox360Buttons.A;
-                if (state.Square) tempButtons |= Xbox360Buttons.X;
-                if (state.PS) tempButtons |= Xbox360Buttons.Guide;
-                report.SetButtonsFull(tempButtons);
+                if (state.Triangle) tempButtons |= Xbox360Button.Y.Value;
+                if (state.Circle) tempButtons |= Xbox360Button.B.Value;
+                if (state.Cross) tempButtons |= Xbox360Button.A.Value;
+                if (state.Square) tempButtons |= Xbox360Button.X.Value;
+                if (state.PS) tempButtons |= Xbox360Button.Guide.Value;
+                cont.SetButtonsFull(tempButtons);
             }
 
-            report.LeftTrigger = state.L2;
-            report.RightTrigger = state.R2;
+            cont.LeftTrigger = state.L2;
+            cont.RightTrigger = state.R2;
 
             SASteeringWheelEmulationAxisType steeringWheelMappedAxis = Global.GetSASteeringWheelEmulationAxis(device);
             switch (steeringWheelMappedAxis)
             {
                 case SASteeringWheelEmulationAxisType.None:
-                    report.LeftThumbX = AxisScale(state.LX, false);
-                    report.LeftThumbY = AxisScale(state.LY, true);
-                    report.RightThumbX = AxisScale(state.RX, false);
-                    report.RightThumbY = AxisScale(state.RY, true);
+                    cont.LeftThumbX = AxisScale(state.LX, false);
+                    cont.LeftThumbY = AxisScale(state.LY, true);
+                    cont.RightThumbX = AxisScale(state.RX, false);
+                    cont.RightThumbY = AxisScale(state.RY, true);
                     break;
 
                 case SASteeringWheelEmulationAxisType.LX:
-                    report.LeftThumbX = (short)state.SASteeringWheelEmulationUnit;
-                    report.LeftThumbY = AxisScale(state.LY, true);
-                    report.RightThumbX = AxisScale(state.RX, false);
-                    report.RightThumbY = AxisScale(state.RY, true);
+                    cont.LeftThumbX = (short)state.SASteeringWheelEmulationUnit;
+                    cont.LeftThumbY = AxisScale(state.LY, true);
+                    cont.RightThumbX = AxisScale(state.RX, false);
+                    cont.RightThumbY = AxisScale(state.RY, true);
                     break;
 
                 case SASteeringWheelEmulationAxisType.LY:
-                    report.LeftThumbX = AxisScale(state.LX, false);
-                    report.LeftThumbY = (short)state.SASteeringWheelEmulationUnit;
-                    report.RightThumbX = AxisScale(state.RX, false);
-                    report.RightThumbY = AxisScale(state.RY, true);
+                    cont.LeftThumbX = AxisScale(state.LX, false);
+                    cont.LeftThumbY = (short)state.SASteeringWheelEmulationUnit;
+                    cont.RightThumbX = AxisScale(state.RX, false);
+                    cont.RightThumbY = AxisScale(state.RY, true);
                     break;
 
                 case SASteeringWheelEmulationAxisType.RX:
-                    report.LeftThumbX = AxisScale(state.LX, false);
-                    report.LeftThumbY = AxisScale(state.LY, true);
-                    report.RightThumbX = (short)state.SASteeringWheelEmulationUnit;
-                    report.RightThumbY = AxisScale(state.RY, true);
+                    cont.LeftThumbX = AxisScale(state.LX, false);
+                    cont.LeftThumbY = AxisScale(state.LY, true);
+                    cont.RightThumbX = (short)state.SASteeringWheelEmulationUnit;
+                    cont.RightThumbY = AxisScale(state.RY, true);
                     break;
 
                 case SASteeringWheelEmulationAxisType.RY:
-                    report.LeftThumbX = AxisScale(state.LX, false);
-                    report.LeftThumbY = AxisScale(state.LY, true);
-                    report.RightThumbX = AxisScale(state.RX, false);
-                    report.RightThumbY = (short)state.SASteeringWheelEmulationUnit;
+                    cont.LeftThumbX = AxisScale(state.LX, false);
+                    cont.LeftThumbY = AxisScale(state.LY, true);
+                    cont.RightThumbX = AxisScale(state.RX, false);
+                    cont.RightThumbY = (short)state.SASteeringWheelEmulationUnit;
                     break;
 
                 case SASteeringWheelEmulationAxisType.L2R2:
-                    report.LeftTrigger = report.RightTrigger = 0;
-                    if (state.SASteeringWheelEmulationUnit >= 0) report.LeftTrigger = (Byte)state.SASteeringWheelEmulationUnit;
-                    else report.RightTrigger = (Byte)state.SASteeringWheelEmulationUnit;
+                    cont.LeftTrigger = cont.RightTrigger = 0;
+                    if (state.SASteeringWheelEmulationUnit >= 0) cont.LeftTrigger = (Byte)state.SASteeringWheelEmulationUnit;
+                    else cont.RightTrigger = (Byte)state.SASteeringWheelEmulationUnit;
                     goto case SASteeringWheelEmulationAxisType.None;
 
                 case SASteeringWheelEmulationAxisType.VJoy1X:
@@ -122,7 +122,7 @@ namespace DS4Windows
                     goto case SASteeringWheelEmulationAxisType.None;
             }
 
-            cont.SendReport(report);
+            cont.SubmitReport();
         }
 
         private short AxisScale(Int32 Value, Boolean Flip)
@@ -154,7 +154,6 @@ namespace DS4Windows
 
             connected = false;
             cont.Disconnect();
-            cont.Dispose();
             cont = null;
         }
         public override string GetDeviceType() => devType;

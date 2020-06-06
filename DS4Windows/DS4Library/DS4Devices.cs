@@ -83,7 +83,7 @@ namespace DS4Windows
             new VidPidInfo(RAZER_VID, 0x1000, "Razer Raiju PS4"),
             new VidPidInfo(NACON_VID, 0x0D01, "Nacon Revol Pro v.1", VidPidFeatureSet.NoGyroCalib), // Nacon Revolution Pro v1 and v2 doesn't support DS4 gyro calibration routines
             new VidPidInfo(NACON_VID, 0x0D02, "Nacon Revol Pro v.2", VidPidFeatureSet.NoGyroCalib),
-            new VidPidInfo(HORI_VID, 0x00EE, "Hori PS4 Mini"),  // Hori PS4 Mini Wired Gamepad
+            new VidPidInfo(HORI_VID, 0x00EE, "Hori PS4 Mini", VidPidFeatureSet.NoOutputData | VidPidFeatureSet.NoBatteryReading | VidPidFeatureSet.NoGyroCalib),  // Hori PS4 Mini Wired Gamepad
             new VidPidInfo(0x7545, 0x0104, "Armor 3 LU Cobra"), // Armor 3 Level Up Cobra
             new VidPidInfo(0x2E95, 0x7725, "Scuf Vantage"), // Scuf Vantage gamepad
             new VidPidInfo(0x11C0, 0x4001, "PS4 Fun"), // PS4 Fun Controller

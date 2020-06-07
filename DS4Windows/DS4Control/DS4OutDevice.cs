@@ -29,8 +29,7 @@ namespace DS4Windows
             cont.ResetReport();
             ushort tempButtons = 0;
             DualShock4DPadDirection tempDPad = DualShock4DPadDirection.None;
-            //ushort tempSpecial = 0;
-
+            ushort tempSpecial = 0;
             unchecked
             {
                 if (state.Share) tempButtons |= DualShock4Button.Share.Value;
@@ -64,9 +63,10 @@ namespace DS4Windows
                 if (state.Circle) tempButtons |= DualShock4Button.Circle.Value;
                 if (state.Cross) tempButtons |= DualShock4Button.Cross.Value;
                 if (state.Square) tempButtons |= DualShock4Button.Square.Value;
-                if (state.PS) tempButtons |= DualShock4SpecialButton.Ps.Value;
-                if (state.TouchButton) tempButtons |= DualShock4SpecialButton.Touchpad.Value;
+                if (state.PS) tempSpecial |= DualShock4SpecialButton.Ps.Value;
+                if (state.TouchButton) tempSpecial |= DualShock4SpecialButton.Touchpad.Value;
                 cont.SetButtonsFull(tempButtons);
+                cont.SetSpecialButtonsFull((byte)tempSpecial);
                 cont.SetDPadDirection(tempDPad);
                 //report.Buttons = (ushort)tempButtons;
                 //report.SpecialButtons = (byte)tempSpecial;

@@ -19,12 +19,14 @@ namespace DS4Windows
         public DS4OutDevice(ViGEmClient client)
         {
             cont = client.CreateDualShock4Controller();
+            cont.AutoSubmitReport = false;
         }
 
         public override void ConvertandSendReport(DS4State state, int device)
         {
             if (!connected) return;
 
+            cont.ResetReport();
             ushort tempButtons = 0;
             DualShock4DPadDirection tempDPad = DualShock4DPadDirection.None;
             //ushort tempSpecial = 0;

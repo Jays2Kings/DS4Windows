@@ -7,22 +7,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS4WinWPF", "DS4Windows\DS4
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
-		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Debug|x64.ActiveCfg = Debug|x64
 		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Debug|x64.Build.0 = Debug|x64
 		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Debug|x86.ActiveCfg = Debug|x86
 		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Debug|x86.Build.0 = Debug|x86
-		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Release|x64.ActiveCfg = Release|x64
 		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Release|x64.Build.0 = Release|x64
 		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Release|x86.ActiveCfg = Release|x86

@@ -231,7 +231,8 @@ namespace DS4Windows
         public OutSlotDevice GetOutSlotDevice(OutputDevice outputDevice)
         {
             OutSlotDevice temp = null;
-            if (revDeviceDict.TryGetValue(outputDevice, out int slotNum))
+            if (outputDevice != null &&
+                revDeviceDict.TryGetValue(outputDevice, out int slotNum))
             {
                 temp = outputSlots[slotNum];
             }

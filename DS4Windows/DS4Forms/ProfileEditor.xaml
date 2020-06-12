@@ -1058,8 +1058,6 @@
                     </StackPanel>
                     <CheckBox Content="Use DInput only" IsChecked="{Binding DInputOnly}"
                               ToolTip="{lex:Loc Resources:DinputOnly}" Margin="0,6,0,0" />
-                    <CheckBox Content="Flush HID" IsChecked="{Binding FlushHid}"
-                              ToolTip="{lex:Loc Resources:FlushHIDTip}" Margin="0,6,0,0" />
                     <StackPanel Orientation="Horizontal" Height="30" Margin="0,6,0,0">
                         <CheckBox Content="Idle Disconnect" VerticalAlignment="Center" IsChecked="{Binding IdleDisconnectExists}" />
                         <xctk:IntegerUpDown x:Name="idleDisconnectUD" d:IsHidden="True" Value="{Binding IdleDisconnect,FallbackValue=5}"

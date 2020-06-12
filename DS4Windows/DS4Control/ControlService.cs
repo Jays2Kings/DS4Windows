@@ -1491,9 +1491,6 @@ namespace DS4Windows
 
             if (ind != -1)
             {
-                if (getFlushHIDQueue(ind))
-                    device.FlushHID();
-
                 string devError = tempStrings[ind] = device.error;
                 if (!string.IsNullOrEmpty(devError))
                 {

@@ -569,12 +569,6 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.DinputOnly[device] = value;
         }
 
-        public bool FlushHid
-        {
-            get => Global.FlushHIDQueue[device];
-            set => Global.FlushHIDQueue[device] = value;
-        }
-
         public bool IdleDisconnectExists
         {
             get => Global.IdleDisconnectTimeout[device] != 0;

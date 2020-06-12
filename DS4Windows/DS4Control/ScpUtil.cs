@@ -998,12 +998,6 @@ namespace DS4Windows
             return m_Config.rumbleAutostopTime[index];
         }
 
-        public static bool[] FlushHIDQueue => m_Config.flushHIDQueue;
-        public static bool getFlushHIDQueue(int index)
-        {
-            return m_Config.flushHIDQueue[index];
-        }
-
         public static bool[] EnableTouchToggle => m_Config.enableTouchToggle;
         public static bool getEnableTouchToggle(int index)
         {
@@ -1954,7 +1948,6 @@ namespace DS4Windows
             new ButtonMouseInfo(), new ButtonMouseInfo(),
         };
 
-        public bool[] flushHIDQueue = new bool[5] { false, false, false, false, false };
         public bool[] enableTouchToggle = new bool[5] { true, true, true, true, true };
         public int[] idleDisconnectTimeout = new int[5] { 0, 0, 0, 0, 0 };
         public bool[] enableOutputDataToDS4 = new bool[5] { true, true, true, true, true };
@@ -2467,7 +2460,6 @@ namespace DS4Windows
                 LightbarSettingInfo lightbarSettings = lightbarSettingInfo[device];
                 LightbarDS4WinInfo lightInfo = lightbarSettings.ds4winSettings;
 
-                XmlNode xmlFlushHIDQueue = m_Xdoc.CreateNode(XmlNodeType.Element, "flushHIDQueue", null); xmlFlushHIDQueue.InnerText = flushHIDQueue[device].ToString(); Node.AppendChild(xmlFlushHIDQueue);
                 XmlNode xmlTouchToggle = m_Xdoc.CreateNode(XmlNodeType.Element, "touchToggle", null); xmlTouchToggle.InnerText = enableTouchToggle[device].ToString(); Node.AppendChild(xmlTouchToggle);
                 XmlNode xmlIdleDisconnectTimeout = m_Xdoc.CreateNode(XmlNodeType.Element, "idleDisconnectTimeout", null); xmlIdleDisconnectTimeout.InnerText = idleDisconnectTimeout[device].ToString(); Node.AppendChild(xmlIdleDisconnectTimeout);
                 XmlNode xmlOutputDataToDS4 = m_Xdoc.CreateNode(XmlNodeType.Element, "outputDataToDS4", null); xmlOutputDataToDS4.InnerText = enableOutputDataToDS4[device].ToString(); Node.AppendChild(xmlOutputDataToDS4);
@@ -3090,9 +3082,6 @@ namespace DS4Windows
 
                 // Make sure to reset currently set profile values before parsing
                 ResetProfile(device);
-
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue[device]); }
-                catch { missingSetting = true; }//rootname = }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/touchToggle"); Boolean.TryParse(Item.InnerText, out enableTouchToggle[device]); }
                 catch { missingSetting = true; }
@@ -4820,7 +4809,6 @@ namespace DS4Windows
             buttonMouseInfos[device].buttonSensitivity = 25;
             buttonMouseInfos[device].activeButtonSensitivity = 25;
             buttonMouseInfos[device].mouseVelocityOffset = ButtonMouseInfo.MOUSESTICKANTIOFFSET;
-            flushHIDQueue[device] = false;
             enableTouchToggle[device] = true;
             idleDisconnectTimeout[device] = 300;
             enableOutputDataToDS4[device] = true;

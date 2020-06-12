@@ -123,11 +123,11 @@
   <data name="Action" xml:space="preserve">
     <value>アクション</value>
   </data>
-  <data name="Add Programs" xml:space="preserve">
-    <value>プログラムを追加</value>
-  </data>
   <data name="AddDirectory" xml:space="preserve">
     <value>ディレクトリを追加</value>
+  </data>
+  <data name="AddPrograms" xml:space="preserve">
+    <value>プログラムを追加</value>
   </data>
   <data name="AddStartMenuPrograms" xml:space="preserve">
     <value>スタートメニューのプログラムを追加</value>
@@ -305,5 +305,37 @@
   </data>
   <data name="WarningsOnly" xml:space="preserve">
     <value>警告のみ</value>
+  </data>
+  <data name="RumbleMaxSecs" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="RumbleMaxSecsTip" xml:space="preserve">
+    <value>振動を自動停止させる時間を秒単位で指定 (0で自動停止しません)</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>ウインドウ名</value>
+  </data>
+  <data name="MoveUp" xml:space="preserve">
+    <value>上に移動</value>
+  </data>
+  <data name="MoveDown" xml:space="preserve">
+    <value>下に移動</value>
+  </data>
+  <data name="AutoProfPathTip" xml:space="preserve">
+    <value>プロセスのパス. ^ABC = ABCで始まる文字列に一致 (^) | ABC$ = ABCで終わる文字列に一致 ($) | *ABC = ABCを含む文字列に一致 (*)</value>
+  </data>
+  <data name="AutoProfTitleTip" xml:space="preserve">
+    <value>ウィンドウ名. ^ABC = ABCで始まる文字列に一致 (^) | ABC$ = ABCで終わる文字列に一致 ($) | *ABC = ABCを含む文字列に一致 (*)</value>
+  </data>
+  <data name="GamepadTest" xml:space="preserve">
+    <value>ゲームパッド入力テスト</value>
+  </data>
+  <data name="EnableOutputDataToDS4" xml:space="preserve">
+    <value>DS4にデータを出力する</value>
+  </data>
+  <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
+    <value>ライトバーと振動のデータを定期的にDS4に送ります。データ受信をサポートしないゲームパッドではチェックを外してください。
+設定変更はゲームパッドの次回接続開始時に反映されます。</value>
+    <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
   </data>
 </root>

@@ -538,14 +538,14 @@ namespace DS4WinWPF.DS4Forms
             if (device < 4)
             {
                 useControllerUD.Value = device + 1;
-                conReadingsUserCon.UseDevice(device);
+                conReadingsUserCon.UseDevice(device, device);
                 contReadingsTab.IsEnabled = true;
             }
             else
             {
                 useControllerUD.Value = 1;
-                conReadingsUserCon.UseDevice(0);
-                contReadingsTab.IsEnabled = false;
+                conReadingsUserCon.UseDevice(0, 4);
+                contReadingsTab.IsEnabled = true;
             }
 
             conReadingsUserCon.EnableControl(false);

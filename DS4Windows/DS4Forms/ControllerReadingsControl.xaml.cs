@@ -30,6 +30,7 @@ namespace DS4WinWPF.DS4Forms
         }
 
         private int deviceNum;
+        private int profileDeviceNum;
         private event EventHandler DeviceNumChanged;
         private NonFormTimer readingTimer;
         private bool useTimer;
@@ -160,9 +161,10 @@ namespace DS4WinWPF.DS4Forms
             Canvas.SetTop(lsDeadEllipse, CANVAS_MIDPOINT - (lsDead * CANVAS_WIDTH / 2.0));
         }
 
-        public void UseDevice(int index)
+        public void UseDevice(int index, int profileDevIdx)
         {
             deviceNum = index;
+            profileDeviceNum = profileDevIdx;
             DeviceNumChanged?.Invoke(this, EventArgs.Empty);
         }
 
@@ -203,6 +205,9 @@ namespace DS4WinWPF.DS4Forms
                 // Make copy of current state values for UI thread
                 tmpbaseState.CopyTo(baseState);
                 tmpinterState.CopyTo(interState);
+
+                if (deviceNum != profileDeviceNum)
+                    Mapping.SetCurveAndDeadzone(profileDeviceNum, baseState, interState);
 
                 // Done with copying. Allow input thread to resume
                 ds.ReadWaitEv.Set();

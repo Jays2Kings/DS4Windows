@@ -2457,6 +2457,7 @@ namespace DS4Windows
                 m_Xdoc.AppendChild(tmpNode);
 
                 XmlElement rootElement = m_Xdoc.CreateElement("DS4Windows", null);
+                rootElement.SetAttribute("app_version", Global.exeversion);
                 rootElement.SetAttribute("config_version", Global.CONFIG_VERSION.ToString());
 
                 LightbarSettingInfo lightbarSettings = lightbarSettingInfo[device];

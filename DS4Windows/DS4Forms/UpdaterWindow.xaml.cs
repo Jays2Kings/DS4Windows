@@ -22,6 +22,7 @@ namespace DS4WinWPF.DS4Forms
             captionTextBlock.Text = Properties.Resources.DownloadVersion.Replace("*number*",
                 newversion);
             updaterWinVM = new UpdaterWindowViewModel(newversion);
+            updaterWinVM.BlankSkippedVersion();
 
             DataContext = updaterWinVM;
 

@@ -125,6 +125,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 DS4Windows.Global.LastVersionChecked = newversion;
             }
         }
+
+        public void BlankSkippedVersion()
+        {
+            DS4Windows.Global.LastVersionChecked = string.Empty;
+        }
     }
 
     public class ChangelogInfo

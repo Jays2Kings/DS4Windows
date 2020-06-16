@@ -95,7 +95,9 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public event EventHandler WhiteDS4IconChanged;
 
-        public bool CheckForUpdates { get => DS4Windows.Global.CheckWhen > 0;
+        public bool CheckForUpdates
+        {
+            get => DS4Windows.Global.CheckWhen > 0;
             set
             {
                 DS4Windows.Global.CheckWhen = value ? 24 : 0;
@@ -104,7 +106,9 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public event EventHandler CheckForUpdatesChanged;
 
-        public int CheckEvery { get
+        public int CheckEvery
+        {
+            get
             {
                 int temp = DS4Windows.Global.CheckWhen;
                 if (temp > 23)

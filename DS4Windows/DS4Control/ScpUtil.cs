@@ -2129,7 +2129,7 @@ namespace DS4Windows
         public Boolean startMinimized = false;
         public Boolean minToTaskbar = false;
         public DateTime lastChecked;
-        public int CheckWhen = 1;
+        public int CheckWhen = 24;
         public int notifications = 2;
         public bool disconnectBTAtStop = false;
         public bool swipeProfiles = true;

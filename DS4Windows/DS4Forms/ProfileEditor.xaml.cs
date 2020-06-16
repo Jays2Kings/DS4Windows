@@ -712,6 +712,12 @@ namespace DS4WinWPF.DS4Forms
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
+            ApplyBtn_Click(sender, e);
+            Closed?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void ApplyBtn_Click(object sender, RoutedEventArgs e)
+        {
             if (profileSettingsVM.FuncDevNum < 4)
             {
                 App.rootHub.setRumble(0, 0, profileSettingsVM.FuncDevNum);
@@ -739,7 +745,6 @@ namespace DS4WinWPF.DS4Forms
                 {
                     currentProfile.SaveProfile(deviceNum);
                     currentProfile.FireSaved();
-                    Closed?.Invoke(this, EventArgs.Empty);
                 }
                 else
                 {
@@ -748,7 +753,6 @@ namespace DS4WinWPF.DS4Forms
                     {
                         Global.SaveProfile(deviceNum, temp);
                         CreatedProfile?.Invoke(this, temp);
-                        Closed?.Invoke(this, EventArgs.Empty);
                     }
                     else
                     {

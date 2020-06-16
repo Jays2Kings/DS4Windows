@@ -526,7 +526,7 @@ namespace DS4WinWPF.DS4Forms
                     Global.ProfilePath[4] = profile.Name;
                 }
 
-                Global.LoadProfile(device, false, App.rootHub);
+                Global.LoadProfile(device, false, App.rootHub, false);
                 profileNameTxt.Text = profile.Name;
             }
             else

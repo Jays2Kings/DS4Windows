@@ -543,7 +543,7 @@
     <PostBuildEvent>rem Copy compiled l18n assemblies to alt folder
 GOTO END
 if not exist $(TargetDir)Lang mkdir $(TargetDir)Lang
-set langs=cs de es it ja pt-BR ru
+set langs=cs de es it ja pt-BR ru zh-CN
 
 for %25%25l in (%25langs%25) do (
   xcopy $(TargetDir)%25%25l $(TargetDir)Lang\%25%25l\ /s /y

@@ -22,6 +22,7 @@ namespace DS4WinWPF.DS4Control
                 XmlDocument m_Xdoc = new XmlDocument();
                 try { m_Xdoc.Load(output_path); }
                 catch (UnauthorizedAccessException) { }
+                catch (XmlException) { }
 
                 XmlElement rootElement = m_Xdoc.DocumentElement;
                 if (rootElement == null) return false;

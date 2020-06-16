@@ -212,13 +212,21 @@ namespace DS4WinWPF.DS4Forms
             string version = Global.exeversion;
             string newversion = string.Empty;
             string versionFilePath = Global.appdatapath + "\\version.txt";
+            ulong lastVersionNum = Global.LastVersionCheckedNum;
+            //ulong lastVersion = Global.CompileVersionNumberFromString("2.1.1");
+
             bool versionFileExists = File.Exists(versionFilePath);
             if (versionFileExists)
             {
                 newversion = File.ReadAllText(versionFilePath).Trim();
+                //newversion = "2.1.3";
             }
 
-            if (!string.IsNullOrWhiteSpace(newversion) && version.CompareTo(newversion) != 0)
+            ulong newversionNum = !string.IsNullOrEmpty(newversion) ?
+                Global.CompileVersionNumberFromString(newversion) : 0;
+
+            if (!string.IsNullOrWhiteSpace(newversion) && version.CompareTo(newversion) != 0 &&
+                lastVersionNum < newversionNum)
             {
                 MessageBoxResult result = MessageBoxResult.No;
                 Dispatcher.Invoke(() =>

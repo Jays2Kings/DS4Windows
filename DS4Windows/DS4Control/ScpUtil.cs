@@ -785,6 +785,28 @@ namespace DS4Windows
             }
         }
 
+        public static ulong CompileVersionNumberFromString(string versionStr)
+        {
+            ulong result = 0;
+            try
+            {
+                Version tmpVersion = new Version(versionStr);
+                result = CompileVersionNumber(tmpVersion.Major, tmpVersion.Minor,
+                    tmpVersion.Build, tmpVersion.Revision);
+            }
+            catch (Exception) { }
+
+            return result;
+        }
+
+        public static ulong CompileVersionNumber(int majorPart, int minorPart,
+            int buildPart, int privatePart)
+        {
+            ulong result = (ulong)majorPart << 48 | (ulong)minorPart << 32 |
+                (ulong)buildPart << 16 | (ushort)privatePart;
+            return result;
+        }
+
         // general values
         public static bool UseExclusiveMode
         {
@@ -807,6 +829,21 @@ namespace DS4Windows
         {
             set { m_Config.CheckWhen = value; }
             get { return m_Config.CheckWhen; }
+        }
+
+        public static string LastVersionChecked
+        {
+            get { return m_Config.lastVersionChecked; }
+            set
+            {
+                m_Config.lastVersionChecked = value;
+                m_Config.lastVersionCheckedNum = CompileVersionNumberFromString(value);
+            }
+        }
+
+        public static ulong LastVersionCheckedNum
+        {
+            get { return m_Config.lastVersionCheckedNum; }
         }
 
         public static int Notifications
@@ -2129,6 +2166,8 @@ namespace DS4Windows
         public Boolean startMinimized = false;
         public Boolean minToTaskbar = false;
         public DateTime lastChecked;
+        public string lastVersionChecked = string.Empty;
+        public ulong lastVersionCheckedNum;
         public int CheckWhen = 24;
         public int notifications = 2;
         public bool disconnectBTAtStop = false;
@@ -4023,6 +4062,17 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/CheckWhen"); Int32.TryParse(Item.InnerText, out CheckWhen); }
                     catch { missingSetting = true; }
+                    try
+                    {
+                        Item = m_Xdoc.SelectSingleNode("/Profile/LastVersionChecked");
+                        string tempVer = Item.InnerText;
+                        if (!string.IsNullOrEmpty(tempVer))
+                        {
+                            lastVersionCheckedNum = Global.CompileVersionNumberFromString(tempVer);
+                            if (lastVersionCheckedNum > 0) lastVersionChecked = tempVer;
+                        }
+                    }
+                    catch { missingSetting = true; }
 
                     try
                     {
@@ -4123,6 +4173,11 @@ namespace DS4Windows
 
             XmlNode xmlLastChecked = m_Xdoc.CreateNode(XmlNodeType.Element, "LastChecked", null); xmlLastChecked.InnerText = lastChecked.ToString(); Node.AppendChild(xmlLastChecked);
             XmlNode xmlCheckWhen = m_Xdoc.CreateNode(XmlNodeType.Element, "CheckWhen", null); xmlCheckWhen.InnerText = CheckWhen.ToString(); Node.AppendChild(xmlCheckWhen);
+            if (!string.IsNullOrEmpty(lastVersionChecked))
+            {
+                XmlNode xmlLastVersionChecked = m_Xdoc.CreateNode(XmlNodeType.Element, "LastVersionChecked", null); xmlLastVersionChecked.InnerText = lastVersionChecked.ToString(); Node.AppendChild(xmlLastVersionChecked);
+            }
+
             XmlNode xmlNotifications = m_Xdoc.CreateNode(XmlNodeType.Element, "Notifications", null); xmlNotifications.InnerText = notifications.ToString(); Node.AppendChild(xmlNotifications);
             XmlNode xmlDisconnectBT = m_Xdoc.CreateNode(XmlNodeType.Element, "DisconnectBTAtStop", null); xmlDisconnectBT.InnerText = disconnectBTAtStop.ToString(); Node.AppendChild(xmlDisconnectBT);
             XmlNode xmlSwipeProfiles = m_Xdoc.CreateNode(XmlNodeType.Element, "SwipeProfiles", null); xmlSwipeProfiles.InnerText = swipeProfiles.ToString(); Node.AppendChild(xmlSwipeProfiles);

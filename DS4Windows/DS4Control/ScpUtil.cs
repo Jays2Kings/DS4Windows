@@ -4156,54 +4156,55 @@ namespace DS4Windows
             Node = m_Xdoc.CreateWhitespace("\r\n");
             m_Xdoc.AppendChild(Node);
 
-            Node = m_Xdoc.CreateNode(XmlNodeType.Element, "Profile", null);
+            XmlElement rootElement = m_Xdoc.CreateElement("Profile", null);
+            rootElement.SetAttribute("app_version", Global.exeversion);
 
-            XmlNode xmlUseExclNode = m_Xdoc.CreateNode(XmlNodeType.Element, "useExclusiveMode", null); xmlUseExclNode.InnerText = useExclusiveMode.ToString(); Node.AppendChild(xmlUseExclNode);
-            XmlNode xmlStartMinimized = m_Xdoc.CreateNode(XmlNodeType.Element, "startMinimized", null); xmlStartMinimized.InnerText = startMinimized.ToString(); Node.AppendChild(xmlStartMinimized);
-            XmlNode xmlminToTaskbar = m_Xdoc.CreateNode(XmlNodeType.Element, "minimizeToTaskbar", null); xmlminToTaskbar.InnerText = minToTaskbar.ToString(); Node.AppendChild(xmlminToTaskbar);
-            XmlNode xmlFormWidth = m_Xdoc.CreateNode(XmlNodeType.Element, "formWidth", null); xmlFormWidth.InnerText = formWidth.ToString(); Node.AppendChild(xmlFormWidth);
-            XmlNode xmlFormHeight = m_Xdoc.CreateNode(XmlNodeType.Element, "formHeight", null); xmlFormHeight.InnerText = formHeight.ToString(); Node.AppendChild(xmlFormHeight);
-            XmlNode xmlFormLocationX = m_Xdoc.CreateNode(XmlNodeType.Element, "formLocationX", null); xmlFormLocationX.InnerText = formLocationX.ToString(); Node.AppendChild(xmlFormLocationX);
-            XmlNode xmlFormLocationY = m_Xdoc.CreateNode(XmlNodeType.Element, "formLocationY", null); xmlFormLocationY.InnerText = formLocationY.ToString(); Node.AppendChild(xmlFormLocationY);
+            XmlNode xmlUseExclNode = m_Xdoc.CreateNode(XmlNodeType.Element, "useExclusiveMode", null); xmlUseExclNode.InnerText = useExclusiveMode.ToString(); rootElement.AppendChild(xmlUseExclNode);
+            XmlNode xmlStartMinimized = m_Xdoc.CreateNode(XmlNodeType.Element, "startMinimized", null); xmlStartMinimized.InnerText = startMinimized.ToString(); rootElement.AppendChild(xmlStartMinimized);
+            XmlNode xmlminToTaskbar = m_Xdoc.CreateNode(XmlNodeType.Element, "minimizeToTaskbar", null); xmlminToTaskbar.InnerText = minToTaskbar.ToString(); rootElement.AppendChild(xmlminToTaskbar);
+            XmlNode xmlFormWidth = m_Xdoc.CreateNode(XmlNodeType.Element, "formWidth", null); xmlFormWidth.InnerText = formWidth.ToString(); rootElement.AppendChild(xmlFormWidth);
+            XmlNode xmlFormHeight = m_Xdoc.CreateNode(XmlNodeType.Element, "formHeight", null); xmlFormHeight.InnerText = formHeight.ToString(); rootElement.AppendChild(xmlFormHeight);
+            XmlNode xmlFormLocationX = m_Xdoc.CreateNode(XmlNodeType.Element, "formLocationX", null); xmlFormLocationX.InnerText = formLocationX.ToString(); rootElement.AppendChild(xmlFormLocationX);
+            XmlNode xmlFormLocationY = m_Xdoc.CreateNode(XmlNodeType.Element, "formLocationY", null); xmlFormLocationY.InnerText = formLocationY.ToString(); rootElement.AppendChild(xmlFormLocationY);
 
-            XmlNode xmlController1 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller1", null); xmlController1.InnerText = !Global.linkedProfileCheck[0] ? profilePath[0] : olderProfilePath[0]; Node.AppendChild(xmlController1);
-            XmlNode xmlController2 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller2", null); xmlController2.InnerText = !Global.linkedProfileCheck[1] ? profilePath[1] : olderProfilePath[1]; Node.AppendChild(xmlController2);
-            XmlNode xmlController3 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller3", null); xmlController3.InnerText = !Global.linkedProfileCheck[2] ? profilePath[2] : olderProfilePath[2]; Node.AppendChild(xmlController3);
-            XmlNode xmlController4 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller4", null); xmlController4.InnerText = !Global.linkedProfileCheck[3] ? profilePath[3] : olderProfilePath[3]; Node.AppendChild(xmlController4);
+            XmlNode xmlController1 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller1", null); xmlController1.InnerText = !Global.linkedProfileCheck[0] ? profilePath[0] : olderProfilePath[0]; rootElement.AppendChild(xmlController1);
+            XmlNode xmlController2 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller2", null); xmlController2.InnerText = !Global.linkedProfileCheck[1] ? profilePath[1] : olderProfilePath[1]; rootElement.AppendChild(xmlController2);
+            XmlNode xmlController3 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller3", null); xmlController3.InnerText = !Global.linkedProfileCheck[2] ? profilePath[2] : olderProfilePath[2]; rootElement.AppendChild(xmlController3);
+            XmlNode xmlController4 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller4", null); xmlController4.InnerText = !Global.linkedProfileCheck[3] ? profilePath[3] : olderProfilePath[3]; rootElement.AppendChild(xmlController4);
 
-            XmlNode xmlLastChecked = m_Xdoc.CreateNode(XmlNodeType.Element, "LastChecked", null); xmlLastChecked.InnerText = lastChecked.ToString(); Node.AppendChild(xmlLastChecked);
-            XmlNode xmlCheckWhen = m_Xdoc.CreateNode(XmlNodeType.Element, "CheckWhen", null); xmlCheckWhen.InnerText = CheckWhen.ToString(); Node.AppendChild(xmlCheckWhen);
+            XmlNode xmlLastChecked = m_Xdoc.CreateNode(XmlNodeType.Element, "LastChecked", null); xmlLastChecked.InnerText = lastChecked.ToString(); rootElement.AppendChild(xmlLastChecked);
+            XmlNode xmlCheckWhen = m_Xdoc.CreateNode(XmlNodeType.Element, "CheckWhen", null); xmlCheckWhen.InnerText = CheckWhen.ToString(); rootElement.AppendChild(xmlCheckWhen);
             if (!string.IsNullOrEmpty(lastVersionChecked))
             {
-                XmlNode xmlLastVersionChecked = m_Xdoc.CreateNode(XmlNodeType.Element, "LastVersionChecked", null); xmlLastVersionChecked.InnerText = lastVersionChecked.ToString(); Node.AppendChild(xmlLastVersionChecked);
+                XmlNode xmlLastVersionChecked = m_Xdoc.CreateNode(XmlNodeType.Element, "LastVersionChecked", null); xmlLastVersionChecked.InnerText = lastVersionChecked.ToString(); rootElement.AppendChild(xmlLastVersionChecked);
             }
 
-            XmlNode xmlNotifications = m_Xdoc.CreateNode(XmlNodeType.Element, "Notifications", null); xmlNotifications.InnerText = notifications.ToString(); Node.AppendChild(xmlNotifications);
-            XmlNode xmlDisconnectBT = m_Xdoc.CreateNode(XmlNodeType.Element, "DisconnectBTAtStop", null); xmlDisconnectBT.InnerText = disconnectBTAtStop.ToString(); Node.AppendChild(xmlDisconnectBT);
-            XmlNode xmlSwipeProfiles = m_Xdoc.CreateNode(XmlNodeType.Element, "SwipeProfiles", null); xmlSwipeProfiles.InnerText = swipeProfiles.ToString(); Node.AppendChild(xmlSwipeProfiles);
-            //XmlNode xmlDS4Mapping = m_Xdoc.CreateNode(XmlNodeType.Element, "UseDS4ForMapping", null); xmlDS4Mapping.InnerText = ds4Mapping.ToString(); Node.AppendChild(xmlDS4Mapping);
-            XmlNode xmlQuickCharge = m_Xdoc.CreateNode(XmlNodeType.Element, "QuickCharge", null); xmlQuickCharge.InnerText = quickCharge.ToString(); Node.AppendChild(xmlQuickCharge);
-            XmlNode xmlCloseMini = m_Xdoc.CreateNode(XmlNodeType.Element, "CloseMinimizes", null); xmlCloseMini.InnerText = closeMini.ToString(); Node.AppendChild(xmlCloseMini);
-            XmlNode xmlUseLang = m_Xdoc.CreateNode(XmlNodeType.Element, "UseLang", null); xmlUseLang.InnerText = useLang.ToString(); Node.AppendChild(xmlUseLang);
-            XmlNode xmlDownloadLang = m_Xdoc.CreateNode(XmlNodeType.Element, "DownloadLang", null); xmlDownloadLang.InnerText = downloadLang.ToString(); Node.AppendChild(xmlDownloadLang);
-            XmlNode xmlFlashWhenLate = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLate", null); xmlFlashWhenLate.InnerText = flashWhenLate.ToString(); Node.AppendChild(xmlFlashWhenLate);
-            XmlNode xmlFlashWhenLateAt = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLateAt", null); xmlFlashWhenLateAt.InnerText = flashWhenLateAt.ToString(); Node.AppendChild(xmlFlashWhenLateAt);
-            XmlNode xmlWhiteIcon = m_Xdoc.CreateNode(XmlNodeType.Element, "WhiteIcon", null); xmlWhiteIcon.InnerText = useWhiteIcon.ToString(); Node.AppendChild(xmlWhiteIcon);
-            XmlNode xmlUseUDPServ = m_Xdoc.CreateNode(XmlNodeType.Element, "UseUDPServer", null); xmlUseUDPServ.InnerText = useUDPServ.ToString(); Node.AppendChild(xmlUseUDPServ);
-            XmlNode xmlUDPServPort = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerPort", null); xmlUDPServPort.InnerText = udpServPort.ToString(); Node.AppendChild(xmlUDPServPort);
-            XmlNode xmlUDPServListenAddress = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerListenAddress", null); xmlUDPServListenAddress.InnerText = udpServListenAddress; Node.AppendChild(xmlUDPServListenAddress);
-            XmlNode xmlUseCustomSteamFolder = m_Xdoc.CreateNode(XmlNodeType.Element, "UseCustomSteamFolder", null); xmlUseCustomSteamFolder.InnerText = useCustomSteamFolder.ToString(); Node.AppendChild(xmlUseCustomSteamFolder);
-            XmlNode xmlCustomSteamFolder = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomSteamFolder", null); xmlCustomSteamFolder.InnerText = customSteamFolder; Node.AppendChild(xmlCustomSteamFolder);
-            XmlNode xmlAutoProfileRevertDefaultProfile = m_Xdoc.CreateNode(XmlNodeType.Element, "AutoProfileRevertDefaultProfile", null); xmlAutoProfileRevertDefaultProfile.InnerText = autoProfileRevertDefaultProfile.ToString(); Node.AppendChild(xmlAutoProfileRevertDefaultProfile);
+            XmlNode xmlNotifications = m_Xdoc.CreateNode(XmlNodeType.Element, "Notifications", null); xmlNotifications.InnerText = notifications.ToString(); rootElement.AppendChild(xmlNotifications);
+            XmlNode xmlDisconnectBT = m_Xdoc.CreateNode(XmlNodeType.Element, "DisconnectBTAtStop", null); xmlDisconnectBT.InnerText = disconnectBTAtStop.ToString(); rootElement.AppendChild(xmlDisconnectBT);
+            XmlNode xmlSwipeProfiles = m_Xdoc.CreateNode(XmlNodeType.Element, "SwipeProfiles", null); xmlSwipeProfiles.InnerText = swipeProfiles.ToString(); rootElement.AppendChild(xmlSwipeProfiles);
+            //XmlNode xmlDS4Mapping = m_Xdoc.CreateNode(XmlNodeType.Element, "UseDS4ForMapping", null); xmlDS4Mapping.InnerText = ds4Mapping.ToString(); rootElement.AppendChild(xmlDS4Mapping);
+            XmlNode xmlQuickCharge = m_Xdoc.CreateNode(XmlNodeType.Element, "QuickCharge", null); xmlQuickCharge.InnerText = quickCharge.ToString(); rootElement.AppendChild(xmlQuickCharge);
+            XmlNode xmlCloseMini = m_Xdoc.CreateNode(XmlNodeType.Element, "CloseMinimizes", null); xmlCloseMini.InnerText = closeMini.ToString(); rootElement.AppendChild(xmlCloseMini);
+            XmlNode xmlUseLang = m_Xdoc.CreateNode(XmlNodeType.Element, "UseLang", null); xmlUseLang.InnerText = useLang.ToString(); rootElement.AppendChild(xmlUseLang);
+            XmlNode xmlDownloadLang = m_Xdoc.CreateNode(XmlNodeType.Element, "DownloadLang", null); xmlDownloadLang.InnerText = downloadLang.ToString(); rootElement.AppendChild(xmlDownloadLang);
+            XmlNode xmlFlashWhenLate = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLate", null); xmlFlashWhenLate.InnerText = flashWhenLate.ToString(); rootElement.AppendChild(xmlFlashWhenLate);
+            XmlNode xmlFlashWhenLateAt = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLateAt", null); xmlFlashWhenLateAt.InnerText = flashWhenLateAt.ToString(); rootElement.AppendChild(xmlFlashWhenLateAt);
+            XmlNode xmlWhiteIcon = m_Xdoc.CreateNode(XmlNodeType.Element, "WhiteIcon", null); xmlWhiteIcon.InnerText = useWhiteIcon.ToString(); rootElement.AppendChild(xmlWhiteIcon);
+            XmlNode xmlUseUDPServ = m_Xdoc.CreateNode(XmlNodeType.Element, "UseUDPServer", null); xmlUseUDPServ.InnerText = useUDPServ.ToString(); rootElement.AppendChild(xmlUseUDPServ);
+            XmlNode xmlUDPServPort = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerPort", null); xmlUDPServPort.InnerText = udpServPort.ToString(); rootElement.AppendChild(xmlUDPServPort);
+            XmlNode xmlUDPServListenAddress = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerListenAddress", null); xmlUDPServListenAddress.InnerText = udpServListenAddress; rootElement.AppendChild(xmlUDPServListenAddress);
+            XmlNode xmlUseCustomSteamFolder = m_Xdoc.CreateNode(XmlNodeType.Element, "UseCustomSteamFolder", null); xmlUseCustomSteamFolder.InnerText = useCustomSteamFolder.ToString(); rootElement.AppendChild(xmlUseCustomSteamFolder);
+            XmlNode xmlCustomSteamFolder = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomSteamFolder", null); xmlCustomSteamFolder.InnerText = customSteamFolder; rootElement.AppendChild(xmlCustomSteamFolder);
+            XmlNode xmlAutoProfileRevertDefaultProfile = m_Xdoc.CreateNode(XmlNodeType.Element, "AutoProfileRevertDefaultProfile", null); xmlAutoProfileRevertDefaultProfile.InnerText = autoProfileRevertDefaultProfile.ToString(); rootElement.AppendChild(xmlAutoProfileRevertDefaultProfile);
 
             for (int i = 0; i < 4; i++)
             {
                 XmlNode xmlCustomLed = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomLed" + (1 + i), null);
                 xmlCustomLed.InnerText = lightbarSettingInfo[i].ds4winSettings.useCustomLed + ":" + lightbarSettingInfo[i].ds4winSettings.m_CustomLed.red + "," + lightbarSettingInfo[i].ds4winSettings.m_CustomLed.green + "," + lightbarSettingInfo[i].ds4winSettings.m_CustomLed.blue;
-                Node.AppendChild(xmlCustomLed);
+                rootElement.AppendChild(xmlCustomLed);
             }
 
-            m_Xdoc.AppendChild(Node);
+            m_Xdoc.AppendChild(rootElement);
 
             try { m_Xdoc.Save(m_Profile); }
             catch (UnauthorizedAccessException) { Saved = false; }

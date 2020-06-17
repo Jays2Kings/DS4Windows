@@ -1485,7 +1485,11 @@ Suspend support not enabled.", true);
 
             if (File.Exists(path))
             {
-                Process.Start(path);
+                try
+                {
+                    using (Process proc = Process.Start(path)) { }
+                }
+                catch { }
             }
         }
     }

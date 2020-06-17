@@ -1477,5 +1477,16 @@ Suspend support not enabled.", true);
         {
             Util.StartProcessHelper("https://html5gamepad.com/");
         }
+
+        private void HidNinjaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string path = System.IO.Path.Combine(Global.exedirpath, "Tools",
+                "HidNinja", "HidNinja.exe");
+
+            if (File.Exists(path))
+            {
+                Process.Start(path);
+            }
+        }
     }
 }

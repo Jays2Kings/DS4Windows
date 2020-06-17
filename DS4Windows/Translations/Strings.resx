@@ -341,4 +341,7 @@ Changes to this option takes effect at the gamepad connection time.</value>
   <data name="Apply" xml:space="preserve">
     <value>Apply</value>
   </data>
+  <data name="HidNinja" xml:space="preserve">
+    <value>HidNinja</value>
+  </data>
 </root>

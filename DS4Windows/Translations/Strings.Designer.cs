@@ -404,6 +404,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HidNinja.
+        /// </summary>
+        public static string HidNinja {
+            get {
+                return ResourceManager.GetString("HidNinja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import.
         /// </summary>
         public static string Import {

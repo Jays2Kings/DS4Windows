@@ -1569,7 +1569,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         private void CalcProfileFlags(object sender, EventArgs e)
         {
-            Global.cacheProfileCustomsFlags(device);
+            Global.CacheProfileCustomsFlags(device);
         }
 
         private void SetupEvents()

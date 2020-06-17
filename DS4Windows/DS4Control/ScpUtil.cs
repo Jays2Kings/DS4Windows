@@ -1611,9 +1611,9 @@ namespace DS4Windows
             return m_Config.profileActionCount[index];
         }
 
-        public static void calculateProfileActionCount(int index)
+        public static void CalculateProfileActionCount(int index)
         {
-            m_Config.profileActionCount[index] = m_Config.profileActions[index].Count;
+            m_Config.CalculateProfileActionCount(index);
         }
 
         public static List<string> getProfileActions(int index)
@@ -1675,13 +1675,7 @@ namespace DS4Windows
 
         public static int GetActionIndexOf(string name)
         {
-            for (int i = 0, actionCount = m_Config.actions.Count; i < actionCount; i++)
-            {
-                if (m_Config.actions[i].name == name)
-                    return i;
-            }
-
-            return -1;
+            return m_Config.GetActionIndexOf(name);
         }
 
         public static int GetProfileActionIndexOf(int device, string name)
@@ -1693,15 +1687,7 @@ namespace DS4Windows
 
         public static SpecialAction GetAction(string name)
         {
-            //foreach (SpecialAction sA in m_Config.actions)
-            for (int i=0, actionCount = m_Config.actions.Count; i < actionCount; i++)
-            {
-                SpecialAction sA = m_Config.actions[i];
-                if (sA.name == name)
-                    return sA;
-            }
-
-            return new SpecialAction("null", "null", "null", "null");
+            return m_Config.GetAction(name);
         }
 
         public static SpecialAction GetProfileAction(int device, string name)
@@ -1711,37 +1697,19 @@ namespace DS4Windows
             return sA;
         }
 
-        public static void calculateProfileActionDicts(int device)
+        public static void CalculateProfileActionDicts(int device)
         {
-            m_Config.profileActionDict[device].Clear();
-            m_Config.profileActionIndexDict[device].Clear();
-
-            foreach (string actionname in m_Config.profileActions[device])
-            {
-                m_Config.profileActionDict[device][actionname] = GetAction(actionname);
-                m_Config.profileActionIndexDict[device][actionname] = GetActionIndexOf(actionname);
-            }
+            m_Config.CalculateProfileActionDicts(device);
         }
 
-        public static void cacheProfileCustomsFlags(int device)
+        public static void CacheProfileCustomsFlags(int device)
         {
-            bool customAct = false;
-            m_Config.containsCustomAction[device] = customAct = HasCustomActions(device);
-            m_Config.containsCustomExtras[device] = HasCustomExtras(device);
-
-            if (!customAct)
-            {
-                customAct = m_Config.gyroOutMode[device] == GyroOutMode.MouseJoystick;
-                customAct = customAct || m_Config.sASteeringWheelEmulationAxis[device] >= SASteeringWheelEmulationAxisType.VJoy1X;
-                m_Config.containsCustomAction[device] = customAct;
-            }
+            m_Config.CacheProfileCustomsFlags(device);
         }
 
         public static void CacheExtraProfileInfo(int device)
         {
-            calculateProfileActionCount(device);
-            calculateProfileActionDicts(device);
-            cacheProfileCustomsFlags(device);
+            m_Config.CacheExtraProfileInfo(device);
         }
 
         public static X360Controls getX360ControlsByName(string key)
@@ -1821,6 +1789,9 @@ namespace DS4Windows
             bool xinputChange = true, bool postLoad = true)
         {
             m_Config.LoadBlankProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.EstablishDefaultSpecialActions(device);
+            m_Config.CacheExtraProfileInfo(device);
+
             tempprofilename[device] = string.Empty;
             useTempProfile[device] = false;
             tempprofileDistance[device] = false;
@@ -2238,12 +2209,32 @@ namespace DS4Windows
                         ds4settings[i].Add(new DS4ControlSettings(dc));
                 }
 
-                profileActions[i] = new List<string>();
-                profileActions[i].Add("Disconnect Controller");
-                profileActionCount[i] = profileActions[i].Count;
+                EstablishDefaultSpecialActions(i);
+                CacheExtraProfileInfo(i);
             }
 
             SetupDefaultColors();
+        }
+
+        public void EstablishDefaultSpecialActions(int idx)
+        {
+            profileActions[idx] = new List<string>();
+            profileActions[idx].Add("Disconnect Controller");
+            profileActionCount[idx] = profileActions[idx].Count;
+        }
+
+        public void CacheProfileCustomsFlags(int device)
+        {
+            bool customAct = false;
+            containsCustomAction[device] = customAct = HasCustomActions(device);
+            containsCustomExtras[device] = HasCustomExtras(device);
+
+            if (!customAct)
+            {
+                customAct = gyroOutMode[device] == GyroOutMode.MouseJoystick;
+                customAct = customAct || sASteeringWheelEmulationAxis[device] >= SASteeringWheelEmulationAxisType.VJoy1X;
+                containsCustomAction[device] = customAct;
+            }
         }
 
         private void SetupDefaultColors()
@@ -2253,6 +2244,54 @@ namespace DS4Windows
             lightbarSettingInfo[2].ds4winSettings.m_Led = new DS4Color(Color.Green);
             lightbarSettingInfo[3].ds4winSettings.m_Led = new DS4Color(Color.Pink);
             lightbarSettingInfo[4].ds4winSettings.m_Led = new DS4Color(Color.White);
+        }
+
+        public void CacheExtraProfileInfo(int device)
+        {
+            CalculateProfileActionCount(device);
+            CalculateProfileActionDicts(device);
+            CacheProfileCustomsFlags(device);
+        }
+
+        public void CalculateProfileActionCount(int index)
+        {
+            profileActionCount[index] = profileActions[index].Count;
+        }
+
+        public void CalculateProfileActionDicts(int device)
+        {
+            profileActionDict[device].Clear();
+            profileActionIndexDict[device].Clear();
+
+            foreach (string actionname in profileActions[device])
+            {
+                profileActionDict[device][actionname] = GetAction(actionname);
+                profileActionIndexDict[device][actionname] = GetActionIndexOf(actionname);
+            }
+        }
+
+        public SpecialAction GetAction(string name)
+        {
+            //foreach (SpecialAction sA in actions)
+            for (int i = 0, actionCount = actions.Count; i < actionCount; i++)
+            {
+                SpecialAction sA = actions[i];
+                if (sA.name == name)
+                    return sA;
+            }
+
+            return new SpecialAction("null", "null", "null", "null");
+        }
+
+        public int GetActionIndexOf(string name)
+        {
+            for (int i = 0, actionCount = actions.Count; i < actionCount; i++)
+            {
+                if (actions[i].name == name)
+                    return i;
+            }
+
+            return -1;
         }
 
         private string stickOutputCurveString(int id)
@@ -3950,7 +3989,7 @@ namespace DS4Windows
             if (missingSetting && Loaded)// && buttons != null)
                 SaveProfile(device, profilepath);
 
-            Global.cacheProfileCustomsFlags(device);
+            CacheProfileCustomsFlags(device);
             buttonMouseInfos[device].activeButtonSensitivity =
                 buttonMouseInfos[device].buttonSensitivity;
 
@@ -4849,7 +4888,6 @@ namespace DS4Windows
 
             return false;
         }
-
 
         public bool HasCustomExtras(int deviceNum)
         {

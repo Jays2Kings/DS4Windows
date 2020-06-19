@@ -688,7 +688,7 @@ namespace DS4Windows
             }
         }
 
-        public void UnplugOutDev(int index, DS4Device device, bool immediate = false)
+        public void UnplugOutDev(int index, DS4Device device, bool immediate = false, bool force = false)
         {
             if (!useDInputOnly[index])
             {
@@ -703,8 +703,8 @@ namespace DS4Windows
                     OutContType currentType = activeOutDevType[index];
                     outputDevices[index] = null;
                     activeOutDevType[index] = OutContType.None;
-                    if (slotDevice.CurrentAttachedStatus == OutSlotDevice.AttachedStatus.Attached &&
-                        slotDevice.CurrentReserveStatus == OutSlotDevice.ReserveStatus.Dynamic)
+                    if ((slotDevice.CurrentAttachedStatus == OutSlotDevice.AttachedStatus.Attached &&
+                        slotDevice.CurrentReserveStatus == OutSlotDevice.ReserveStatus.Dynamic) || force)
                     {
                         slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Unbound;
                         outputslotMan.DeferredRemoval(dev, -1, outputDevices, immediate);
@@ -988,7 +988,7 @@ namespace DS4Windows
                         OutputDevice tempout = outputDevices[i];
                         if (tempout != null)
                         {
-                            UnplugOutDev(i, tempDevice, true);
+                            UnplugOutDev(i, tempDevice, immediate: true, force: true);
                             anyUnplugged = true;
                         }
 

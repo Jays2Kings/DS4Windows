@@ -1312,8 +1312,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public bool GyroMouseTurns
         {
-            get => Global.GyroMouseStickTriggerTurns[device];
-            set => Global.GyroMouseStickTriggerTurns[device] = value;
+            get => Global.GyroTriggerTurns[device];
+            set => Global.GyroTriggerTurns[device] = value;
         }
 
         public int GyroSensitivity

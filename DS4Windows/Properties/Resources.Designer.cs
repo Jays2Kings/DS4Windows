@@ -748,7 +748,7 @@ namespace DS4WinWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Controller *number*&apos;s latency over 10ms.
+        ///   Looks up a localized string similar to Controller {0}&apos;s latency over 10ms ({1} ms).
         /// </summary>
         public static string LatencyOverTen {
             get {

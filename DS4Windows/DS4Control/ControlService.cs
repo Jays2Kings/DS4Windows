@@ -191,10 +191,25 @@ namespace DS4Windows
 
             outputslotMan = new OutputSlotManager();
             DS4Devices.RequestElevation += DS4Devices_RequestElevation;
+            DS4Devices.checkVirtualFunc = CheckForVirtualDevice;
+        }
+
+        public CheckVirtualInfo CheckForVirtualDevice(string deviceInstanceId)
+        {
+            string temp = Global.GetDeviceProperty(deviceInstanceId,
+                NativeMethods.DEVPKEY_Device_UINumber);
+
+            CheckVirtualInfo info = new CheckVirtualInfo()
+            {
+                PropertyValue = temp,
+                DeviceInstanceId = deviceInstanceId,
+            };
+            return info;
         }
 
         public void ShutDown()
         {
+            DS4Devices.checkVirtualFunc = null;
             outputslotMan.ShutDown();
             OutputSlotPersist.WriteConfig(outputslotMan);
 

@@ -56,6 +56,25 @@ namespace DS4Windows
 
     public delegate void RequestElevationDelegate(RequestElevationArgs args);
 
+    public class CheckVirtualInfo : EventArgs
+    {
+        private string deviceInstanceId;
+        public string DeviceInstanceId
+        {
+            get => deviceInstanceId;
+            set => deviceInstanceId = value;
+        }
+
+        private string propertyValue;
+        public string PropertyValue { get => propertyValue; set => propertyValue = value; }
+
+        public CheckVirtualInfo() : base()
+        {
+        }
+    }
+
+    public delegate CheckVirtualInfo CheckVirtualDelegate(string deviceInstanceId);
+
     public class DS4Devices
     {
         // (HID device path, DS4Device)
@@ -66,6 +85,7 @@ namespace DS4Windows
         private static List<HidDevice> DisabledDevices = new List<HidDevice>();
         private static Stopwatch sw = new Stopwatch();
         public static event RequestElevationDelegate RequestElevation;
+        public static CheckVirtualDelegate checkVirtualFunc = null;
         public static bool isExclusiveMode = false;
         internal const int SONY_VID = 0x054C;
         internal const int RAZER_VID = 0x1532;
@@ -119,9 +139,11 @@ namespace DS4Windows
         private static bool IsRealDS4(HidDevice hDevice)
         {
             string deviceInstanceId = devicePathToInstanceId(hDevice.DevicePath);
-            string temp = Global.GetDeviceProperty(deviceInstanceId,
-                NativeMethods.DEVPKEY_Device_UINumber);
-            return string.IsNullOrEmpty(temp);
+            CheckVirtualInfo info = checkVirtualFunc(deviceInstanceId);
+            return string.IsNullOrEmpty(info.PropertyValue);
+            //string temp = Global.GetDeviceProperty(deviceInstanceId,
+            //    NativeMethods.DEVPKEY_Device_UINumber);
+            //return string.IsNullOrEmpty(temp);
         }
 
         // Enumerates ds4 controllers in the system
@@ -130,7 +152,11 @@ namespace DS4Windows
             lock (Devices)
             {
                 IEnumerable<HidDevice> hDevices = HidDevices.EnumerateDS4(knownDevices);
-                hDevices = hDevices.Where(dev => IsRealDS4(dev)).Select(dev => dev);
+                if (checkVirtualFunc != null)
+                {
+                    hDevices = hDevices.Where(dev => IsRealDS4(dev)).Select(dev => dev);
+                }
+
                 //hDevices = from dev in hDevices where IsRealDS4(dev) select dev;
                 // Sort Bluetooth first in case USB is also connected on the same controller.
                 hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) => { return DS4Device.HidConnectionType(d); });

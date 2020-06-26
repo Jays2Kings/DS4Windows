@@ -272,7 +272,7 @@ namespace DS4Windows
             if (Global.hidguardInstalled)
             {
                 hidguardAffectedDevs.Clear();
-                using (RegistryKey affectedDevsKey = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters"))
+                using (RegistryKey affectedDevsKey = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters", false))
                 {
                     if (affectedDevs != null)
                     {

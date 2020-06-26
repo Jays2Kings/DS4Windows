@@ -106,6 +106,7 @@ namespace DS4WinWPF.DS4Control
                 outputDevice = null;
                 attachedStatus = AttachedStatus.UnAttached;
                 currentType = OutContType.None;
+                CurrentInputBound = InputBound.Unbound;
                 if (reserveStatus == ReserveStatus.Dynamic)
                 {
                     PermanentType = OutContType.None;

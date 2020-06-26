@@ -630,7 +630,7 @@ namespace DS4Windows
         public static bool CheckAffectedStatus(string deviceInstanceId, HashSet<string> affectedDevs)
         {
             bool result = false;
-            List<string> hardwareIdList = GrabHidGuardAffectedDevs(deviceInstanceId);
+            List<string> hardwareIdList = GrabDeviceHardwareIds(deviceInstanceId);
             foreach(string hardwareId in hardwareIdList)
             {
                 result = result || affectedDevs.Contains(hardwareId);
@@ -639,7 +639,7 @@ namespace DS4Windows
             return result;
         }
 
-        private static List<string> GrabHidGuardAffectedDevs(string deviceInstanceId)
+        private static List<string> GrabDeviceHardwareIds(string deviceInstanceId)
         {
             bool success;
             List<string> hardwareIds = new List<string>();

@@ -258,8 +258,19 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             get
             {
-                string source = device.IsExclusive ? "/DS4Windows;component/Resources/checked.png" :
-                    "/DS4Windows;component/Resources/cancel.png";
+                string source = "/DS4Windows;component/Resources/cancel.png";
+                switch(device.CurrentExclusiveStatus)
+                {
+                    case DS4Device.ExclusiveStatus.Exclusive:
+                        source = "/DS4Windows;component/Resources/checked.png";
+                        break;
+                    case DS4Device.ExclusiveStatus.HidGuardAffected:
+                        source = "/DS4Windows;component/Resources/key-solid.png";
+                        break;
+                    default:
+                        break;
+                }
+
                 return source;
             }
         }
@@ -308,8 +319,19 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             get
             {
-                string temp = device.isExclusive() ? "Exclusive Access" :
-                    "Shared Access";
+                string temp = "Shared Access";
+                switch(device.CurrentExclusiveStatus)
+                {
+                    case DS4Device.ExclusiveStatus.Exclusive:
+                        temp = "Exclusive Access";
+                        break;
+                    case DS4Device.ExclusiveStatus.HidGuardAffected:
+                        temp = "HidGuardian Access";
+                        break;
+                    default:
+                        break;
+                }
+
                 return temp;
             }
         }

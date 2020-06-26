@@ -122,10 +122,10 @@ namespace DS4Windows
             new VidPidInfo(0x9886, 0x0025, "Astro C40", VidPidFeatureSet.NoGyroCalib), // Astro C40 (wired and BT. Works if Astro specific xinput drivers haven't been installed. Uninstall those to use the pad as dinput device)
         };
 
-        private static string devicePathToInstanceId(string devicePath)
+        public static string devicePathToInstanceId(string devicePath)
         {
             string deviceInstanceId = devicePath;
-            deviceInstanceId = deviceInstanceId.Remove(0, deviceInstanceId.LastIndexOf('\\') + 1);
+            deviceInstanceId = deviceInstanceId.Remove(0, deviceInstanceId.LastIndexOf("?\\") + 2);
             deviceInstanceId = deviceInstanceId.Remove(deviceInstanceId.LastIndexOf('{'));
             deviceInstanceId = deviceInstanceId.Replace('#', '\\');
             if (deviceInstanceId.EndsWith("\\"))

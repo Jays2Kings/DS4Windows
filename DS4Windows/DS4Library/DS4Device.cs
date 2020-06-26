@@ -108,6 +108,13 @@ namespace DS4Windows
 
     public class DS4Device
     {
+        public enum ExclusiveStatus : byte
+        {
+            Shared = 0,
+            Exclusive = 1,
+            HidGuardAffected = 2,
+        }
+
         //internal const int BT_OUTPUT_REPORT_LENGTH = 78;
         internal const int BT_OUTPUT_REPORT_LENGTH = 334;
         internal const int BT_INPUT_REPORT_LENGTH = 547;
@@ -188,6 +195,7 @@ namespace DS4Windows
         public bool ExitOutputThread => exitOutputThread;
         private bool exitInputThread = false;
         private object exitLocker = new object();
+        private ExclusiveStatus exclusiveStatus = ExclusiveStatus.Shared;
 
         public delegate void ReportHandler<TEventArgs>(DS4Device sender, TEventArgs args);
 
@@ -200,10 +208,29 @@ namespace DS4Windows
         public ReportHandler<EventArgs> MotionEvent = null;
 
         public HidDevice HidDevice => hDevice;
-        public bool IsExclusive => HidDevice.IsExclusive;
-        public bool isExclusive()
+        public bool IsHidExclusive => HidDevice.IsExclusive;
+        public bool isHidExclusive()
         {
             return HidDevice.IsExclusive;
+        }
+
+        public bool IsExclusive
+        {
+            get { return exclusiveStatus > ExclusiveStatus.Shared; }
+        }
+
+        public bool isExclusive()
+        {
+            return exclusiveStatus > ExclusiveStatus.Shared;
+        }
+
+        public ExclusiveStatus CurrentExclusiveStatus
+        {
+            get => exclusiveStatus;
+            set
+            {
+                exclusiveStatus = value;
+            }
         }
 
         private bool isDisconnecting = false;
@@ -455,6 +482,11 @@ namespace DS4Windows
             this.featureSet = featureSet;
 
             conType = HidConnectionType(hDevice);
+            exclusiveStatus = ExclusiveStatus.Shared;
+            if (hidDevice.IsExclusive)
+            {
+                exclusiveStatus = ExclusiveStatus.Exclusive;
+            }
 
             if (this.FeatureSet != VidPidFeatureSet.DefaultDS4)
                 AppLogger.LogToGui($"The gamepad {displayName} ({conType}) uses custom feature set ({this.FeatureSet.ToString("F")})", false);

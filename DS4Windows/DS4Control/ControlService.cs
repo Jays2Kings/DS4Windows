@@ -8,6 +8,7 @@ using static DS4Windows.Global;
 using Nefarius.ViGEm.Client;
 using System.Windows.Threading;
 using DS4WinWPF.DS4Control;
+using Microsoft.Win32;
 
 namespace DS4Windows
 {
@@ -46,6 +47,7 @@ namespace DS4Windows
         //SoundPlayer sp = new SoundPlayer();
         private UdpServer _udpServer;
         private OutputSlotManager outputslotMan;
+        private HashSet<string> hidguardAffectedDevs = new HashSet<string>();
 
         public event EventHandler ServiceStarted;
         public event EventHandler PreServiceStop;
@@ -263,6 +265,37 @@ namespace DS4Windows
         public void LoadPermanentSlotsConfig()
         {
             OutputSlotPersist.ReadConfig(outputslotMan);
+        }
+
+        public void UpdateHidAffectedDevices()
+        {
+            if (Global.hidguardInstalled)
+            {
+                hidguardAffectedDevs.Clear();
+                using (RegistryKey affectedDevsKey = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters"))
+                {
+                    if (affectedDevs != null)
+                    {
+                        string[] devlist = (string[])affectedDevsKey.GetValue("AffectedDevices") ?? new string[0] { };
+                        foreach(string device in devlist)
+                        {
+                            hidguardAffectedDevs.Add(device);
+                        }
+                    }
+                }
+            }
+        }
+
+        private bool CheckAffected(DS4Device dev)
+        {
+            bool result = false;
+            if (dev != null)
+            {
+                string deviceInstanceId = DS4Devices.devicePathToInstanceId(dev.HidDevice.DevicePath);
+                result = Global.CheckAffectedStatus(deviceInstanceId, hidguardAffectedDevs);
+            }
+
+            return result;
         }
 
         private void TestQueueBus(Action temp)
@@ -750,6 +783,9 @@ namespace DS4Windows
                 LogDebug($"Connection to ViGEmBus {Global.vigembusVersion} established");
 
                 DS4Devices.isExclusiveMode = getUseExclusiveMode();
+
+                UpdateHidAffectedDevices();
+
                 //uiContext = tempui as SynchronizationContext;
                 if (showlog)
                 {
@@ -790,6 +826,11 @@ namespace DS4Windows
                         if (showlog)
                             LogDebug(DS4WinWPF.Properties.Resources.FoundController + " " + device.getMacAddress() + " (" + device.getConnectionType() + ") (" +
                                 device.DisplayName + ")");
+
+                        if (Global.hidguardInstalled && CheckAffected(device))
+                        {
+                            device.CurrentExclusiveStatus = DS4Device.ExclusiveStatus.HidGuardAffected;
+                        }
 
                         Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
                         task.Start();
@@ -1092,6 +1133,12 @@ namespace DS4Windows
                             //LogDebug(DS4WinWPF.Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
                             LogDebug(DS4WinWPF.Properties.Resources.FoundController + " " + device.getMacAddress() + " (" + device.getConnectionType() + ") (" +
                                 device.DisplayName + ")");
+
+                            if (Global.hidguardInstalled && CheckAffected(device))
+                            {
+                                device.CurrentExclusiveStatus = DS4Device.ExclusiveStatus.HidGuardAffected;
+                            }
+
                             Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
                             task.Start();
                             DS4Controllers[Index] = device;

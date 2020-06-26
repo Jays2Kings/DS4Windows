@@ -627,6 +627,59 @@ namespace DS4Windows
             return result;
         }
 
+        public static bool CheckAffectedStatus(string deviceInstanceId, HashSet<string> affectedDevs)
+        {
+            bool result = false;
+            List<string> hardwareIdList = GrabHidGuardAffectedDevs(deviceInstanceId);
+            foreach(string hardwareId in hardwareIdList)
+            {
+                result = result || affectedDevs.Contains(hardwareId);
+            }
+
+            return result;
+        }
+
+        private static List<string> GrabHidGuardAffectedDevs(string deviceInstanceId)
+        {
+            bool success;
+            List<string> hardwareIds = new List<string>();
+            Guid hidGuid = HidDevices.HidClassGuid;
+            IntPtr deviceInfoSet = NativeMethods.SetupDiGetClassDevs(ref hidGuid, deviceInstanceId, 0, NativeMethods.DIGCF_PRESENT | NativeMethods.DIGCF_DEVICEINTERFACE);
+
+            if (deviceInfoSet.ToInt64() != NativeMethods.INVALID_HANDLE_VALUE)
+            {
+                NativeMethods.SP_DEVINFO_DATA deviceInfoData = new NativeMethods.SP_DEVINFO_DATA();
+                deviceInfoData.cbSize = System.Runtime.InteropServices.Marshal.SizeOf(deviceInfoData);
+                success = NativeMethods.SetupDiEnumDeviceInfo(deviceInfoSet, 0, ref deviceInfoData);
+
+                var requiredSize = 0;
+                ulong propertyType = 0;
+
+                NativeMethods.SetupDiGetDeviceProperty(deviceInfoSet, ref deviceInfoData,
+                                                        ref NativeMethods.DEVPKEY_Device_HardwareIds, ref propertyType,
+                                                        null, 0,
+                                                        ref requiredSize, 0);
+
+                if (requiredSize > 0)
+                {
+                    var descriptionBuffer = new byte[requiredSize];
+                    NativeMethods.SetupDiGetDeviceProperty(deviceInfoSet, ref deviceInfoData,
+                                                            ref NativeMethods.DEVPKEY_Device_HardwareIds, ref propertyType,
+                                                            descriptionBuffer, descriptionBuffer.Length,
+                                                            ref requiredSize, 0);
+
+                    string tmpitnow = System.Text.Encoding.Unicode.GetString(descriptionBuffer);
+                    string tempStrip = tmpitnow.Remove(tmpitnow.IndexOf("\0\0"));
+                    string[] tmparray = tempStrip.Split((char)0);
+                    hardwareIds.AddRange(tmparray);
+                }
+
+                NativeMethods.SetupDiDestroyDeviceInfoList(deviceInfoSet);
+            }
+
+            return hardwareIds;
+        }
+
         public static bool IsHidGuardianInstalled()
         {
             return CheckForSysDevice(@"Root\HidGuardian");

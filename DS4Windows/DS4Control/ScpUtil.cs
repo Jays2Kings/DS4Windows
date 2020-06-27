@@ -627,13 +627,34 @@ namespace DS4Windows
             return result;
         }
 
-        public static bool CheckAffectedStatus(string deviceInstanceId, HashSet<string> affectedDevs)
+        public static bool CheckAffectedStatus(string deviceInstanceId,
+            HashSet<string> affectedDevs, HashSet<string> exemptedDevices, bool force=false)
         {
             bool result = false;
             List<string> hardwareIdList = GrabDeviceHardwareIds(deviceInstanceId);
+            bool foundExempt = false;
             foreach(string hardwareId in hardwareIdList)
             {
-                result = result || affectedDevs.Contains(hardwareId);
+                foundExempt = foundExempt || exemptedDevices.Contains(hardwareId);
+            }
+
+            if (!foundExempt)
+            {
+                if (force)
+                {
+                    result = true;
+                }
+                else
+                {
+                    foreach (string hardwareId in hardwareIdList)
+                    {
+                        result = result || affectedDevs.Contains(hardwareId);
+                    }
+                }
+            }
+            else
+            {
+                result = false;
             }
 
             return result;

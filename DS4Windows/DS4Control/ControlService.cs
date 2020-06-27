@@ -48,6 +48,8 @@ namespace DS4Windows
         private UdpServer _udpServer;
         private OutputSlotManager outputslotMan;
         private HashSet<string> hidguardAffectedDevs = new HashSet<string>();
+        private HashSet<string> hidguardExemptedDevs = new HashSet<string>();
+        private bool hidguardForced = false;
 
         public event EventHandler ServiceStarted;
         public event EventHandler PreServiceStop;
@@ -267,20 +269,29 @@ namespace DS4Windows
             OutputSlotPersist.ReadConfig(outputslotMan);
         }
 
-        public void UpdateHidAffectedDevices()
+        public void UpdateHidGuardAttributes()
         {
             if (Global.hidguardInstalled)
             {
                 hidguardAffectedDevs.Clear();
-                using (RegistryKey affectedDevsKey = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters", false))
+                hidguardExemptedDevs.Clear();
+                using (RegistryKey hidParamsKey = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters", false))
                 {
-                    if (affectedDevs != null)
+                    if (hidParamsKey != null)
                     {
-                        string[] devlist = (string[])affectedDevsKey.GetValue("AffectedDevices") ?? new string[0] { };
+                        string[] devlist = (string[])hidParamsKey.GetValue("AffectedDevices") ?? new string[0] { };
                         foreach(string device in devlist)
                         {
                             hidguardAffectedDevs.Add(device);
                         }
+
+                        devlist = (string[])hidParamsKey.GetValue("ExemptedDevices") ?? new string[0] { };
+                        foreach (string device in devlist)
+                        {
+                            hidguardExemptedDevs.Add(device);
+                        }
+
+                        hidguardForced = Convert.ToBoolean(hidParamsKey.GetValue("Force", false));
                     }
                 }
             }
@@ -292,7 +303,8 @@ namespace DS4Windows
             if (dev != null)
             {
                 string deviceInstanceId = DS4Devices.devicePathToInstanceId(dev.HidDevice.DevicePath);
-                result = Global.CheckAffectedStatus(deviceInstanceId, hidguardAffectedDevs);
+                result = Global.CheckAffectedStatus(deviceInstanceId,
+                    hidguardAffectedDevs, hidguardExemptedDevs, hidguardForced);
             }
 
             return result;
@@ -784,7 +796,7 @@ namespace DS4Windows
 
                 DS4Devices.isExclusiveMode = getUseExclusiveMode();
 
-                UpdateHidAffectedDevices();
+                UpdateHidGuardAttributes();
 
                 //uiContext = tempui as SynchronizationContext;
                 if (showlog)

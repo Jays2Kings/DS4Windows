@@ -1094,7 +1094,7 @@ Suspend support not enabled.", true);
                 loopHotplug = hotplugCounter > 0;
             }
 
-            Program.rootHub.UpdateHidAffectedDevices();
+            Program.rootHub.UpdateHidGuardAttributes();
             while (loopHotplug == true)
             {
                 Thread.Sleep(1500);

@@ -2005,6 +2005,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             LeftStick,
             RightStick,
             DPad,
+            FaceButtons,
         }
 
         private Dictionary<ControlSelection, string> presetInputLabelDict =
@@ -2014,6 +2015,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 [ControlSelection.DPad] = "DPad",
                 [ControlSelection.LeftStick] = "Left Stick",
                 [ControlSelection.RightStick] = "Right Stick",
+                [ControlSelection.FaceButtons] = "Face Buttons",
             };
 
         public Dictionary<ControlSelection, string> PresetInputLabelDict
@@ -2063,6 +2065,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 case DS4Controls.RYPos:
                 case DS4Controls.R3:
                     controlInput = ControlSelection.RightStick;
+                    break;
+                case DS4Controls.Cross:
+                case DS4Controls.Circle:
+                case DS4Controls.Triangle:
+                case DS4Controls.Square:
+                    controlInput = ControlSelection.FaceButtons;
                     break;
                 default:
                     break;
@@ -2288,6 +2296,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     {
                         DS4Controls.RYNeg, DS4Controls.RYPos,
                         DS4Controls.RXNeg, DS4Controls.RXPos, DS4Controls.R3,
+                    });
+                    break;
+                case ControlSelection.FaceButtons:
+                    inputControls.AddRange(new DS4Controls[4]
+                    {
+                        DS4Controls.Triangle, DS4Controls.Cross,
+                        DS4Controls.Square, DS4Controls.Circle,
                     });
                     break;
                 case ControlSelection.None:

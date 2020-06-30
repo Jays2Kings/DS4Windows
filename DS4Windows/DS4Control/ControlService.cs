@@ -667,7 +667,7 @@ namespace DS4Windows
                             //outputDevices[index] = tempXbox;
                             EstablishOutFeedback(index, OutContType.X360, tempXbox, device);
                             outputslotMan.DeferredPlugin(tempXbox, index, outputDevices, contType);
-                            slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
+                            //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
                             LogDebug("Plugging in virtual X360 Controller");
                             success = true;
@@ -707,7 +707,7 @@ namespace DS4Windows
                             as DS4OutDevice;
                             EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
                             outputslotMan.DeferredPlugin(tempDS4, index, outputDevices, contType);
-                            slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
+                            //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
                             LogDebug("Plugging in virtual DS4 Controller");
                             success = true;
@@ -766,8 +766,8 @@ namespace DS4Windows
                     if ((slotDevice.CurrentAttachedStatus == OutSlotDevice.AttachedStatus.Attached &&
                         slotDevice.CurrentReserveStatus == OutSlotDevice.ReserveStatus.Dynamic) || force)
                     {
-                        slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Unbound;
-                        outputslotMan.DeferredRemoval(dev, -1, outputDevices, immediate);
+                        //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Unbound;
+                        outputslotMan.DeferredRemoval(dev, index, outputDevices, immediate);
                         LogDebug($"Unplugging virtual {tempType} Controller");
                     }
                     else if (slotDevice.CurrentAttachedStatus == OutSlotDevice.AttachedStatus.Attached)

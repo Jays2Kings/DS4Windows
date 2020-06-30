@@ -15,8 +15,8 @@ namespace DS4Windows
         public const int DELAY_TIME = 500; // measured in ms
         private OutSlotDevice[] outputSlots = new OutSlotDevice[4]
         {
-            new OutSlotDevice(), new OutSlotDevice(),
-            new OutSlotDevice(), new OutSlotDevice()
+            new OutSlotDevice(0), new OutSlotDevice(1),
+            new OutSlotDevice(2), new OutSlotDevice(3)
         };
 
         public int NumAttachedDevices
@@ -130,7 +130,11 @@ namespace DS4Windows
                     deviceDict.Add(slot, outputDevice);
                     revDeviceDict.Add(outputDevice, slot);
                     outputSlots[slot].AttachedDevice(outputDevice, contType);
-                    if (inIdx != -1) outdevs[inIdx] = outputDevice;
+                    if (inIdx != -1)
+                    {
+                        outdevs[inIdx] = outputDevice;
+                        outputSlots[slot].CurrentInputBound = OutSlotDevice.InputBound.Bound;
+                    }
                     SlotAssigned?.Invoke(this, slot, outputSlots[slot]);
 
                     Task.Delay(DELAY_TIME).Wait();
@@ -161,7 +165,11 @@ namespace DS4Windows
                     deviceDict.Remove(slot);
                     revDeviceDict.Remove(outputDevice);
                     outputDevice.Disconnect();
-                    if (inIdx != -1) outdevs[inIdx] = null;
+                    if (inIdx != -1)
+                    {
+                        outdevs[inIdx] = null;
+                    }
+
                     outputSlots[slot].DetachDevice();
                     SlotUnassigned?.Invoke(this, slot, outputSlots[slot]);
 

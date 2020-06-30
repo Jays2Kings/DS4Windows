@@ -96,13 +96,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             outSlotManager = outputMan;
             slotDeviceEntries = new List<SlotDeviceEntry>(4);
+            int idx = 0;
             foreach(OutSlotDevice tempDev in outputMan.OutputSlots)
             {
-                SlotDeviceEntry tempEntry = new SlotDeviceEntry(tempDev);
+                SlotDeviceEntry tempEntry = new SlotDeviceEntry(tempDev, idx);
                 tempEntry.PluginRequest += OutSlot_PluginRequest;
                 tempEntry.UnplugRequest += OutSlot_UnplugRequest;
                 slotDeviceEntries.Add(tempEntry);
-
+                idx++;
             }
 
             this.controlService = controlService;
@@ -253,10 +254,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public event EventHandler PluginRequest;
         public event EventHandler UnplugRequest;
+        int idx;
 
-        public SlotDeviceEntry(OutSlotDevice outSlotDevice)
+        public SlotDeviceEntry(OutSlotDevice outSlotDevice, int idx)
         {
             this.outSlotDevice = outSlotDevice;
+            this.idx = idx;
 
             //desiredTypeChoiceIndex = DetermineDesiredChoiceIdx();
             reserveChoiceIndex = DetermineReserveChoiceIdx();

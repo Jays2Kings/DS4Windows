@@ -4178,7 +4178,7 @@ namespace DS4Windows
                     try
                     {
                         Item = m_Xdoc.SelectSingleNode("/Profile/LastVersionChecked");
-                        string tempVer = Item.InnerText;
+                        string tempVer = Item?.InnerText ?? string.Empty;
                         if (!string.IsNullOrEmpty(tempVer))
                         {
                             lastVersionCheckedNum = Global.CompileVersionNumberFromString(tempVer);

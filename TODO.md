@@ -1,17 +1,11 @@
 # TODO
 
-* Make experimental ScpVBus build
-* ~~Look back into localization workflow~~
-* Add cross dead zone (per axis) for sticks
-* Abstract output slots
+* Add quick default buttons for many settings
+* Add 1€ Filter
+* Test 1€ Filter use for Gyro 360 Steering Wheel Mode
+* Add more localize ready strings
+* Add max output option for Gyro Mouse Joystick. Round max output
+* More thoroughly test new DS4 feedback routine
+* Fix profile renaming issue. Maybe make name field in Profile Editor read-only for existing profiles
 * Abstract KB+M codes to allow different event systems (Vmulti)
-* ~~Add volume scale to mic volume. Mic volume too loud otherwise~~
-* ~~Check Toggle action label in old WinForms build~~
-* ~~Look into adding JSON package~~
-* ~~Check if unhandled exception logging for threads is needed~~
-* ~~Look into logging exceptions thrown in background threads~~
-* ~~Add mutex for controller input reader thread (better control
-Controller Readings display)~~
-* ~~Add numeric data to Controller Readings tab~~
-* ~~Look into making input delay display as a double. Check app performannce~~
-
+* Add cross dead zone (per axis) for sticks

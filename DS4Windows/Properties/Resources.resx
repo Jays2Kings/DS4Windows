@@ -341,7 +341,7 @@
     <value>Controller *number*'s latency now under 10ms</value>
   </data>
   <data name="LatencyOverTen" xml:space="preserve">
-    <value>Controller *number*'s latency over 10ms</value>
+    <value>Controller {0}'s latency over 10ms ({1} ms)</value>
   </data>
   <data name="LaunchProgram" xml:space="preserve">
     <value>Launch *program*</value>

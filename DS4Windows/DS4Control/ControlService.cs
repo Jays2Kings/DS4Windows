@@ -1707,7 +1707,7 @@ namespace DS4Windows
             if (on)
             {
                 lag[ind] = true;
-                LogDebug(DS4WinWPF.Properties.Resources.LatencyOverTen.Replace("*number*", (ind + 1).ToString()), true);
+                LogDebug(string.Format(DS4WinWPF.Properties.Resources.LatencyOverTen, (ind + 1), device.Latency), true);
                 if (getFlashWhenLate())
                 {
                     DS4Color color = new DS4Color { red = 50, green = 0, blue = 0 };

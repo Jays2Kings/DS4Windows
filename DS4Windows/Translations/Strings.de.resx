@@ -192,7 +192,7 @@
     <value>Controller/Treiber Setup</value>
   </data>
   <data name="Duplicate" xml:space="preserve">
-    <value>Kopiren</value>
+    <value>Kopieren</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Bearbeiten</value>
@@ -201,7 +201,7 @@
     <value>Bearbeitungsaktionen</value>
   </data>
   <data name="Export" xml:space="preserve">
-    <value>Exportiren</value>
+    <value>Exportieren</value>
   </data>
   <data name="Full" xml:space="preserve">
     <value>Voll</value>
@@ -213,7 +213,7 @@
     <value>Unmakierte ausblenden</value>
   </data>
   <data name="Import" xml:space="preserve">
-    <value>Importiren</value>
+    <value>Importieren</value>
   </data>
   <data name="LeftStick" xml:space="preserve">
     <value>Linker Stick</value>
@@ -234,7 +234,7 @@
     <value>Neues Profil</value>
   </data>
   <data name="None" xml:space="preserve">
-    <value>Nichts</value>
+    <value>Keine</value>
   </data>
   <data name="Path" xml:space="preserve">
     <value>Pfard</value>

@@ -682,11 +682,12 @@ namespace DS4Windows
                         slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
                         Xbox360OutDevice tempXbox = slotDevice.OutputDevice as Xbox360OutDevice;
                         EstablishOutFeedback(index, OutContType.X360, tempXbox, device);
-                        outputDevices[index] = tempXbox;
-                        outputslotMan.EventDispatcher.Invoke(() =>
+
+                        outputslotMan.EventDispatcher.BeginInvoke((Action)(() =>
                         {
+                            outputDevices[index] = tempXbox;
                             slotDevice.CurrentType = contType;
-                        });
+                        }));
                         success = true;
                     }
 
@@ -722,11 +723,12 @@ namespace DS4Windows
                         slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
                         DS4OutDevice tempDS4 = slotDevice.OutputDevice as DS4OutDevice;
                         EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
-                        outputDevices[index] = tempDS4;
-                        outputslotMan.EventDispatcher.Invoke(() =>
+
+                        outputslotMan.EventDispatcher.BeginInvoke((Action)(() =>
                         {
+                            outputDevices[index] = tempDS4;
                             slotDevice.CurrentType = contType;
-                        });
+                        }));
                         success = true;
                     }
 

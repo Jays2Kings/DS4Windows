@@ -21,7 +21,7 @@
               "* Fixed input bound flag updating for output slots",
               "* Changed Exclusive Mode check to take HidGuardian support into account. Lock icon will appear for devices affected by HG",
               "* Added preset menu for face buttons. Finally wanted that option back.",
-              "* Re-enabled lightbar color change for DS4 force feedback routine",
+              "* Re-enabled lightbar color change for output DS4 force feedback routine",
               "* Fixed output slot active flag when switching device types",
               "* Made changes to allow LastVersionChecked to be an optional element in config file",
               "* Raised default stick mouse offset",

@@ -19,7 +19,7 @@
               "* Added support for Astro C40 gamepad. Contribution by **mika-n**",
               "* Fixed Gyro Mouse Turn Behavior setting",
               "* Fixed input bound flag updating for output slots",
-              "* Changed Exclusive Mode check to take HidGuardian support into account. Lock icon will appear for devices affected by HG",
+              "* Changed Exclusive Mode check to take HidGuardian support into account. Key icon will appear for devices affected by HG",
               "* Added preset menu for face buttons. Finally wanted that option back.",
               "* Re-enabled lightbar color change for output DS4 force feedback routine",
               "* Fixed output slot active flag when switching device types",

@@ -775,6 +775,7 @@ namespace DS4Windows
                     else if (slotDevice.CurrentAttachedStatus == OutSlotDevice.AttachedStatus.Attached)
                     {
                         slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Unbound;
+                        dev.ResetState();
                         RemoveOutFeedback(currentType, dev);
                     }
                     //dev.Disconnect();

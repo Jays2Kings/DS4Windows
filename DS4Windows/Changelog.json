@@ -1,9 +1,43 @@
 {
-  "latest_version": "2.1.3",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 3},
-  "updated_at": "2020-06-17T02:14:15+0000",
+  "latest_version": "2.1.4",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 4},
+  "updated_at": "2020-07-04T18:07:41+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.4",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 4},
+        "base_header": "Version 2.1.4",
+        "release_date": "2020-07-04T18:07:41+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.4",
+            "log_text": ["* Fixed app crash when No is selected in UAC confirm window",
+              "* Make sure to cache profile flags after changing Steering Wheel axis in Profile Editor",
+              "* Force permanent output device removal on service stop",
+              "* Added support for Astro C40 gamepad. Contribution by **mika-n**",
+              "* Fixed Gyro Mouse Turn Behavior setting",
+              "* Fixed input bound flag updating for output slots",
+              "* Changed Exclusive Mode check to take HidGuardian support into account. Lock icon will appear for devices affected by HG",
+              "* Added preset menu for face buttons. Finally wanted that option back.",
+              "* Re-enabled lightbar color change for DS4 force feedback routine",
+              "* Fixed output slot active flag when switching device types",
+              "* Made changes to allow LastVersionChecked to be an optional element in config file",
+              "* Raised default stick mouse offset",
+              "* Fixed spelling mistake in DE translation file. Contribution by **Flo082002**",
+              "* Changed gamepad latency log message to show current latency measurement. Contribution by **dondrakon**",
+              "* Raised Square Stick Roundness max value to 1000.0",
+              "* Use BeginInvoke for changing properties for permanent device manipulation. Keeps EventDispatcher actions in order",
+              "* Reset state of permanent device when unbinding an input device",
+              "* Fixed NumPadEnter binding in Binding Window",
+              "* Bundled HidNinja v.0.2.1 HidGuardian management program"],
+            "editor": "ryochan7",
+            "editors_note": ["I got nothin"],
+            "updated_at": "2020-07-04T18:07:41+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.3",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 3},

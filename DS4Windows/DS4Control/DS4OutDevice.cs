@@ -161,5 +161,14 @@ namespace DS4Windows
             cont = null;
         }
         public override string GetDeviceType() => devtype;
+
+        public override void ResetState(bool submit = true)
+        {
+            cont.ResetReport();
+            if (submit)
+            {
+                cont.SubmitReport();
+            }
+        }
     }
 }

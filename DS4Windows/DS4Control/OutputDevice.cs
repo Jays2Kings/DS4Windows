@@ -9,6 +9,7 @@ namespace DS4Windows
         public abstract void ConvertandSendReport(DS4State state, int device);
         public abstract void Connect();
         public abstract void Disconnect();
+        public abstract void ResetState(bool submit=true);
         public abstract string GetDeviceType();
     }
 }

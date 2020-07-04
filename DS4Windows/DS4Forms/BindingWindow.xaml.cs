@@ -722,7 +722,7 @@ namespace DS4WinWPF.DS4Forms
                 new BindAssociation() { outputType = BindAssociation.OutType.Key, outkey = 0x6E });
             numPeriodBtn.Click += OutputKeyBtn_Click;
             associatedBindings.Add(numEnterBtn,
-                new BindAssociation() { outputType = BindAssociation.OutType.Key, outkey = 0x13 });
+                new BindAssociation() { outputType = BindAssociation.OutType.Key, outkey = 0x0D });
             numEnterBtn.Click += OutputKeyBtn_Click;
         }
 

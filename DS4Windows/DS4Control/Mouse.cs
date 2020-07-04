@@ -204,6 +204,7 @@ namespace DS4Windows
 
             GyroMouseStickInfo msinfo = Global.GetGyroMouseStickInfo(deviceNum);
 
+            double tempDouble = arg.sixAxis.elapsed * 250.0; // Base default speed on 4 ms
             double tempAngle = Math.Atan2(-deltaY, deltaX);
             double normX = Math.Abs(Math.Cos(tempAngle));
             double normY = Math.Abs(Math.Sin(tempAngle));
@@ -223,6 +224,7 @@ namespace DS4Windows
             if (Math.Abs(deltaX) > deadzoneX)
             {
                 deltaX -= signX * deadzoneX;
+                //deltaX = (int)(deltaX * tempDouble);
                 deltaX = (deltaX < 0 && deltaX < maxValX) ? maxValX :
                     (deltaX > 0 && deltaX > maxValX) ? maxValX : deltaX;
                 //if (deltaX != maxValX) deltaX -= deltaX % (signX * GyroMouseFuzz);
@@ -235,6 +237,7 @@ namespace DS4Windows
             if (Math.Abs(deltaY) > deadzoneY)
             {
                 deltaY -= signY * deadzoneY;
+                //deltaY = (int)(deltaY * tempDouble);
                 deltaY = (deltaY < 0 && deltaY < maxValY) ? maxValY :
                     (deltaY > 0 && deltaY > maxValY) ? maxValY : deltaY;
                 //if (deltaY != maxValY) deltaY -= deltaY % (signY * GyroMouseFuzz);

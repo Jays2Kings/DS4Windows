@@ -59,6 +59,9 @@ namespace DS4WinWPF
         private MemoryMappedFile ipcClassNameMMF = null; // MemoryMappedFile for inter-process communication used to hold className of DS4Form window
         private MemoryMappedViewAccessor ipcClassNameMMA = null;
 
+        private MemoryMappedFile ipcResultDataMMF = null; // MemoryMappedFile for inter-process communication used to exchange string result data between cmdline client process and the background running DS4Windows app
+        private MemoryMappedViewAccessor ipcResultDataMMA = null;
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             runShutdown = true;
@@ -318,18 +321,67 @@ namespace DS4WinWPF
                 hWndDS4WindowsForm = FindWindow(ReadIPCClassNameMMF(), "DS4Windows");
                 if (hWndDS4WindowsForm != IntPtr.Zero)
                 {
+                    bool bDoSendMsg = true;
+                    bool bWaitResultData = false;
+                    bool bOwnsMutex = false;
+                    Mutex ipcSingleTaskMutex = null;
+                    EventWaitHandle ipcNotifyEvent = null;
+
                     COPYDATASTRUCT cds;
                     cds.lpData = IntPtr.Zero;
 
                     try
                     {
-                        cds.dwData = IntPtr.Zero;
-                        cds.cbData = parser.CommandArgs.Length;
-                        cds.lpData = Marshal.StringToHGlobalAnsi(parser.CommandArgs);
-                        SendMessage(hWndDS4WindowsForm, DS4Forms.MainWindow.WM_COPYDATA, IntPtr.Zero, ref cds);
+                        if (parser.CommandArgs.ToLower().StartsWith("query."))
+                        {
+                            // Query.device# (1..4) command returns a string result via memory mapped file. The cmd is sent to the background DS4Windows 
+                            // process (via WM_COPYDATA wnd msg), then this client process waits for the availability of the result and prints it to console output pipe.
+                            // Use mutex obj to make sure that concurrent client calls won't try to write and read the same MMF result file at the same time.
+                            ipcSingleTaskMutex = new Mutex(false, "DS4Windows_IPCResultData_SingleTaskMtx");
+                            try
+                            {
+                                bOwnsMutex = ipcSingleTaskMutex.WaitOne(10000);
+                            }
+                            catch (AbandonedMutexException)
+                            {
+                                bOwnsMutex = true;
+                            }
+
+                            if (bOwnsMutex)
+                            {
+                                // This process owns the inter-process sync mutex obj. Let's proceed with creating the output MMF file and waiting for a result.
+                                bWaitResultData = true;
+                                CreateIPCResultDataMMF();
+                                ipcNotifyEvent = new EventWaitHandle(false, EventResetMode.AutoReset, "DS4Windows_IPCResultData_ReadyEvent");
+                            }
+                            else
+                                // If the mtx failed then something must be seriously wrong. Cannot do anything in that case because MMF file may be modified by concurrent processes.
+                                bDoSendMsg = false;
+                        }
+
+                        if (bDoSendMsg)
+                        {
+                            cds.dwData = IntPtr.Zero;
+                            cds.cbData = parser.CommandArgs.Length;
+                            cds.lpData = Marshal.StringToHGlobalAnsi(parser.CommandArgs);
+                            SendMessage(hWndDS4WindowsForm, DS4Forms.MainWindow.WM_COPYDATA, IntPtr.Zero, ref cds);
+
+                            if (bWaitResultData)
+                                Console.WriteLine(WaitAndReadIPCResultDataMMF(ipcNotifyEvent));
+                        }
                     }
                     finally
                     {
+                        // Release the result MMF file in the client process before releasing the mtx and letting other client process to proceed with the same MMF file
+                        if (ipcResultDataMMA != null) ipcResultDataMMA.Dispose();
+                        if (ipcResultDataMMF != null) ipcResultDataMMF.Dispose();
+                        ipcResultDataMMA = null;
+                        ipcResultDataMMF = null;
+
+                        // If this was "Query.xxx" cmdline client call then release the inter-process mutex and let other concurrent clients to proceed (if there are anyone waiting for the MMF result file)
+                        if (bOwnsMutex && ipcSingleTaskMutex != null)
+                            ipcSingleTaskMutex.ReleaseMutex();
+
                         if (cds.lpData != IntPtr.Zero)
                             Marshal.FreeHGlobal(cds.lpData);
                     }
@@ -454,6 +506,80 @@ namespace DS4WinWPF
             }
 
             return null;
+        }
+
+        private void CreateIPCResultDataMMF()
+        {
+            // Cmdline client process calls this to create the MMF file used in inter-process-communications. The background DS4Windows process 
+            // uses WriteIPCResultDataMMF method to write a command result and the client process reads the result from the same MMF file.
+            if (ipcResultDataMMA != null) return; // Already holding a handle to MMF file. No need to re-write the data
+
+            try
+            {
+                ipcResultDataMMF = MemoryMappedFile.CreateNew("DS4Windows_IPCResultData.dat", 256);
+                ipcResultDataMMA = ipcResultDataMMF.CreateViewAccessor(0, 256);
+                // The MMF file is alive as long this process holds the file handle open
+            }
+            catch (Exception)
+            {
+                /* Eat all exceptions because errors here are not fatal for DS4Win */
+            }
+        }
+
+        private string WaitAndReadIPCResultDataMMF(EventWaitHandle ipcNotifyEvent)
+        {
+            if (ipcResultDataMMA != null)
+            {
+                // Wait until the inter-process-communication (IPC) result data is available and read the result
+                try
+                {
+                    // Wait max 10 secs and if the result is still not available then timeout and return "empty" result
+                    if (ipcNotifyEvent == null || ipcNotifyEvent.WaitOne(10000))
+                    {
+                        int strNullCharIdx;
+                        byte[] buffer = new byte[256];
+                        ipcResultDataMMA.ReadArray(0, buffer, 0, buffer.Length);
+                        strNullCharIdx = Array.FindIndex(buffer, byteVal => byteVal == 0);
+                        return ASCIIEncoding.ASCII.GetString(buffer, 0, (strNullCharIdx <= 1 ? 1 : strNullCharIdx));
+                    }
+                }
+                catch (Exception)
+                {
+                    /* Eat all exceptions because errors here are not fatal for DS4Win */
+                }
+            }
+
+            return String.Empty;
+        }
+
+        public void WriteIPCResultDataMMF(string dataStr)
+        {
+            // The background DS4Windows process calls this method to write out the result of "-command QueryProfile.device#" command.
+            // The cmdline client process reads the result from the DS4Windows_IPCResultData.dat MMF file and sends the result to console output pipe.
+            MemoryMappedFile mmf = null;
+            MemoryMappedViewAccessor mma = null;
+            EventWaitHandle ipcNotifyEvent = null;
+          
+            try
+            {
+                ipcNotifyEvent = EventWaitHandle.OpenExisting("DS4Windows_IPCResultData_ReadyEvent");
+
+                byte[] buffer = ASCIIEncoding.ASCII.GetBytes(dataStr);
+                mmf = MemoryMappedFile.OpenExisting("DS4Windows_IPCResultData.dat");
+                mma = mmf.CreateViewAccessor(0, 256);
+                mma.WriteArray(0, buffer, 0, (buffer.Length >= 256 ? 256 : buffer.Length));
+            }
+            catch (Exception)
+            {
+                // Eat all exceptions
+            }
+            finally
+            {
+                if (mma != null) mma.Dispose();
+                if (mmf != null) mmf.Dispose();
+
+                if (ipcNotifyEvent != null) ipcNotifyEvent.Set();
+            }
         }
 
         private void SetUICulture(string culture)

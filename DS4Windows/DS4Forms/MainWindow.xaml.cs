@@ -1022,59 +1022,114 @@ Suspend support not enabled.", true);
                 case WM_COPYDATA:
                 {
                     // Received InterProcessCommunication (IPC) message. DS4Win command is embedded as a string value in lpData buffer
-                    App.COPYDATASTRUCT cds = (App.COPYDATASTRUCT)Marshal.PtrToStructure(lParam, typeof(App.COPYDATASTRUCT));
-                    if (cds.cbData >= 4 && cds.cbData <= 256)
+                    try
                     {
-                        int tdevice = -1;
-
-                        byte[] buffer = new byte[cds.cbData];
-                        Marshal.Copy(cds.lpData, buffer, 0, cds.cbData);
-                        string[] strData = Encoding.ASCII.GetString(buffer).Split('.');
-
-                        if (strData.Length >= 1)
+                        App.COPYDATASTRUCT cds = (App.COPYDATASTRUCT)Marshal.PtrToStructure(lParam, typeof(App.COPYDATASTRUCT));
+                        if (cds.cbData >= 4 && cds.cbData <= 256)
                         {
-                            strData[0] = strData[0].ToLower();
+                            int tdevice = -1;
 
-                            if (strData[0] == "start")
-                                ChangeService();
-                            else if (strData[0] == "stop")
-                                ChangeService();
-                            else if (strData[0] == "shutdown")
-                                MainDS4Window_Closing(this, new System.ComponentModel.CancelEventArgs());
-                            else if ((strData[0] == "loadprofile" || strData[0] == "loadtempprofile") && strData.Length >= 3)
+                            byte[] buffer = new byte[cds.cbData];
+                            Marshal.Copy(cds.lpData, buffer, 0, cds.cbData);
+                            string[] strData = Encoding.ASCII.GetString(buffer).Split('.');
+
+                            if (strData.Length >= 1)
                             {
-                                // Command syntax: LoadProfile.device#.profileName (fex LoadProfile.1.GameSnake or LoadTempProfile.1.WebBrowserSet)
-                                if (int.TryParse(strData[1], out tdevice)) tdevice--;
+                                strData[0] = strData[0].ToLower();
 
-                                if (tdevice >= 0 && tdevice < ControlService.DS4_CONTROLLER_COUNT &&
-                                        File.Exists(Global.appdatapath + "\\Profiles\\" + strData[2] + ".xml"))
+                                if (strData[0] == "start")
+                                    ChangeService();
+                                else if (strData[0] == "stop")
+                                    ChangeService();
+                                else if (strData[0] == "shutdown")
+                                    MainDS4Window_Closing(this, new System.ComponentModel.CancelEventArgs());
+                                else if ((strData[0] == "loadprofile" || strData[0] == "loadtempprofile") && strData.Length >= 3)
                                 {
-                                    if (strData[0] == "loadprofile")
-                                    {
-                                        int idx = profileListHolder.ProfileListCol.Select((item, index) => new { item, index }).
-                                                Where(x => x.item.Name == strData[2]).Select(x => x.index).DefaultIfEmpty(-1).First();
+                                    // Command syntax: LoadProfile.device#.profileName (fex LoadProfile.1.GameSnake or LoadTempProfile.1.WebBrowserSet)
+                                    if (int.TryParse(strData[1], out tdevice)) tdevice--;
 
-                                        if (idx >= 0 && tdevice < conLvViewModel.ControllerCol.Count)
+                                    if (tdevice >= 0 && tdevice < ControlService.DS4_CONTROLLER_COUNT &&
+                                            File.Exists(Global.appdatapath + "\\Profiles\\" + strData[2] + ".xml"))
+                                    {
+                                        if (strData[0] == "loadprofile")
                                         {
-                                            conLvViewModel.ControllerCol[tdevice].ChangeSelectedProfile(strData[2]);
+                                            int idx = profileListHolder.ProfileListCol.Select((item, index) => new { item, index }).
+                                                    Where(x => x.item.Name == strData[2]).Select(x => x.index).DefaultIfEmpty(-1).First();
+
+                                            if (idx >= 0 && tdevice < conLvViewModel.ControllerCol.Count)
+                                            {
+                                                conLvViewModel.ControllerCol[tdevice].ChangeSelectedProfile(strData[2]);
+                                            }
+                                            else
+                                            {
+                                                // Preset profile name for later loading
+                                                Global.ProfilePath[tdevice] = strData[2];
+                                                //Global.LoadProfile(tdevice, true, Program.rootHub);
+                                            }
                                         }
                                         else
                                         {
-                                            // Preset profile name for later loading
-                                            Global.ProfilePath[tdevice] = strData[2];
-                                            //Global.LoadProfile(tdevice, true, Program.rootHub);
+                                            Global.LoadTempProfile(tdevice, strData[2], true, Program.rootHub);
                                         }
+
+                                        Program.rootHub.LogDebug(Properties.Resources.UsingProfile.
+                                            Replace("*number*", (tdevice + 1).ToString()).Replace("*Profile name*", strData[2]));
                                     }
-                                    else
+                                }
+                                else if (strData[0] == "query" && strData.Length >= 3)
+                                {
+                                    string propName;
+                                    string propValue = String.Empty;
+
+                                    // Command syntax: QueryProfile.device#.Name (fex "Query.1.ProfileName" would print out the name of the active profile in controller 1)
+                                    if (int.TryParse(strData[1], out tdevice))
+                                        tdevice--;
+
+                                    if (tdevice >= 0 && tdevice < ControlService.DS4_CONTROLLER_COUNT)
                                     {
-                                        Global.LoadTempProfile(tdevice, strData[2], true, Program.rootHub);
+                                        // Name of the property to query from a profile or DS4Windows app engine
+                                        propName = strData[2].ToLower();
+
+                                        if (propName == "profilename")
+                                        {
+                                            if (Global.useTempProfile[tdevice])
+                                                propValue = Global.tempprofilename[tdevice];
+                                            else
+                                                propValue = Global.ProfilePath[tdevice];
+                                        }
+                                        else if (propName == "outconttype")
+                                            propValue = Global.OutContType[tdevice].ToString();
+                                        else if (propName == "activeoutdevtype")
+                                            propValue = Global.activeOutDevType[tdevice].ToString();
+                                        else if (propName == "usedinputonly")
+                                            propValue = Global.useDInputOnly[tdevice].ToString();
+
+                                        else if (propName == "devicevidpid" && App.rootHub.DS4Controllers[tdevice] != null)
+                                            propValue = $"VID={App.rootHub.DS4Controllers[tdevice].HidDevice.Attributes.VendorHexId}, PID={App.rootHub.DS4Controllers[tdevice].HidDevice.Attributes.ProductHexId}";
+                                        else if (propName == "devicepath" && App.rootHub.DS4Controllers[tdevice] != null)
+                                            propValue = App.rootHub.DS4Controllers[tdevice].HidDevice.DevicePath;
+                                        else if (propName == "macaddress" && App.rootHub.DS4Controllers[tdevice] != null)
+                                            propValue = App.rootHub.DS4Controllers[tdevice].MacAddress;
+                                        else if (propName == "displayname" && App.rootHub.DS4Controllers[tdevice] != null)
+                                            propValue = App.rootHub.DS4Controllers[tdevice].DisplayName;
+                                        else if (propName == "conntype" && App.rootHub.DS4Controllers[tdevice] != null)
+                                            propValue = App.rootHub.DS4Controllers[tdevice].ConnectionType.ToString();
+                                        else if (propName == "exclusivestatus" && App.rootHub.DS4Controllers[tdevice] != null)
+                                            propValue = App.rootHub.DS4Controllers[tdevice].CurrentExclusiveStatus.ToString();
+
+                                        else if (propName == "apprunning")
+                                            propValue = App.rootHub.running.ToString(); // Controller idx value is ignored, but it still needs to be in 1..4 range in a cmdline call
                                     }
 
-                                    Program.rootHub.LogDebug(Properties.Resources.UsingProfile.
-                                        Replace("*number*", (tdevice + 1).ToString()).Replace("*Profile name*", strData[2]));
+                                    // Write out the property value to MMF result data file and notify a client process that the data is available
+                                    ((Application.Current) as App).WriteIPCResultDataMMF(propValue);
                                 }
                             }
                         }
+                    }
+                    catch
+                    {
+                        // Eat all exceptions in WM_COPYDATA because exceptions here are not fatal for DS4Windows background app
                     }
                     break;
                 }

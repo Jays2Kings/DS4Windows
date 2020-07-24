@@ -1465,6 +1465,23 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public bool GyroMouseStickInvertX
         {
+            get => (Global.GyroMouseStickInf[device].inverted & 1) == 1;
+            set
+            {
+                if (value)
+                {
+                    Global.GyroMouseStickInf[device].inverted |= 1;
+                }
+                else
+                {
+                    uint temp = Global.GyroMouseStickInf[device].inverted;
+                    Global.GyroMouseStickInf[device].inverted = (uint)(temp & ~1);
+                }
+            }
+        }
+
+        public bool GyroMouseStickInvertY
+        {
             get => (Global.GyroMouseStickInf[device].inverted & 2) == 2;
             set
             {
@@ -1474,23 +1491,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 }
                 else
                 {
-                    Global.GyroMouseStickInf[device].inverted &= 1;
-                }
-            }
-        }
-
-        public bool GyroMouseStickInvertY
-        {
-            get => (Global.GyroInvert[device] & 1) == 1;
-            set
-            {
-                if (value)
-                {
-                    Global.GyroInvert[device] |= 1;
-                }
-                else
-                {
-                    Global.GyroInvert[device] &= 2;
+                    uint temp = Global.GyroMouseStickInf[device].inverted;
+                    Global.GyroMouseStickInf[device].inverted = (uint)(temp & ~2);
                 }
             }
         }

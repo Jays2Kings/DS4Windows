@@ -974,8 +974,8 @@ namespace DS4Windows
                 double absSideX = Math.Abs(sideX); double absSideY = Math.Abs(sideY);
                 if (absSideX > capX) capX = absSideX;
                 if (absSideY > capY) capY = absSideY;
-                double tempRatioX = (dState.LX - 128.0) / capX;
-                double tempRatioY = (dState.LY - 128.0) / capY;
+                double tempRatioX = capX > 0 ? (dState.LX - 128.0) / capX : 0;
+                double tempRatioY = capY > 0 ? (dState.LY - 128.0) / capY : 0;
                 double signX = tempRatioX >= 0.0 ? 1.0 : -1.0;
                 double signY = tempRatioY >= 0.0 ? 1.0 : -1.0;
 

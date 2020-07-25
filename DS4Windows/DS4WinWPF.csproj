@@ -285,6 +285,7 @@
     <Compile Include="LoggerHolder.cs" />
     <Compile Include="LogWriter.cs" />
     <Compile Include="DS4Control\MacroParser.cs" />
+    <Compile Include="OneEuroFilter.cs" />
     <Compile Include="ProfileEntity.cs" />
     <Compile Include="ProfileList.cs" />
     <Compile Include="DS4Forms\ViewModels\SettingsViewModel.cs" />

@@ -2324,6 +2324,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     if (!(outAct is X360Controls) || defaultControl != (X360Controls)outAct)
                     {
                         setting.UpdateSettings(false, outAct, null, DS4KeyType.None);
+                        Global.RefreshActionAlias(setting, false);
                     }
                 }
 

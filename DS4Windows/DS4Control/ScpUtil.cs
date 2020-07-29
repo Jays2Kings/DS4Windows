@@ -12,6 +12,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Diagnostics;
+using DS4Windows.DS4Control;
+using DS4WinWPF.DS4Control;
+using DS4WinWPF.Properties;
 
 namespace DS4Windows
 {
@@ -40,8 +43,13 @@ namespace DS4Windows
         public enum ActionType : byte { Default, Key, Button, Macro };
         public ActionType actionType = ActionType.Default;
         public object action = null;
+        public uint actionAlias = 0;
+        public int[] actionMacroAliases = null;
+
         public ActionType shiftActionType = ActionType.Default;
         public object shiftAction = null;
+        public uint shiftActionAlias = 0;
+        public int[] shiftActionMacroAliases = null;
         public int shiftTrigger = 0;
         public string shiftExtras = null;
         public DS4KeyType shiftKeyType = DS4KeyType.None;
@@ -57,8 +65,13 @@ namespace DS4Windows
             keyType = DS4KeyType.None;
             actionType = ActionType.Default;
             action = null;
+            actionAlias = 0;
+            actionMacroAliases = null;
+
             shiftActionType = ActionType.Default;
             shiftAction = null;
+            shiftActionAlias = 0;
+            shiftActionMacroAliases = null;
             shiftTrigger = 0;
             shiftExtras = null;
             shiftKeyType = DS4KeyType.None;
@@ -268,6 +281,8 @@ namespace DS4Windows
         public static bool vigemInstalled = IsViGEmBusInstalled();
         public static bool hidguardInstalled = IsHidGuardianInstalled();
         public static string vigembusVersion = ViGEmBusVersion();
+        public static VirtualKBMBase outputKBMHandler = null;
+        public static VirtualKBMMapping outputKBMMapping = null;
         public const int CONFIG_VERSION = 3;
 
         public static X360Controls[] defaultButtonMapping = { X360Controls.None, X360Controls.LXNeg, X360Controls.LXPos,
@@ -2012,6 +2027,76 @@ namespace DS4Windows
         private static int ClampInt(int min, int value, int max)
         {
             return (value < min) ? min : (value > max) ? max : value;
+        }
+
+        public static void InitOutputKBMHandler(string identifier)
+        {
+            outputKBMHandler = VirtualKBMFactory.DetermineHandler(identifier);
+        }
+
+        public static void InitOutputKBMMapping(string identifier)
+        {
+            outputKBMMapping = VirtualKBMFactory.GetMappingInstance(identifier);
+        }
+
+        public static void RefreshActionAlias(DS4ControlSettings setting, bool shift)
+        {
+            if (!shift)
+            {
+                setting.actionAlias = 0;
+                setting.actionMacroAliases = null;
+                if (setting.actionType == DS4ControlSettings.ActionType.Key)
+                {
+                    setting.actionAlias = outputKBMMapping.GetRealEventKey(Convert.ToUInt32(setting.action));
+                }
+                else if (setting.actionType == DS4ControlSettings.ActionType.Macro)
+                {
+                    int[] current = (int[])setting.action;
+                    int[] tempMacroAliases = new int[current.Length];
+                    for (int i = 0; i < current.Length; i++)
+                    {
+                        int currentValue = current[i];
+                        if (currentValue <= 255)
+                        {
+                            tempMacroAliases[i] = (int)outputKBMMapping.GetRealEventKey((uint)currentValue);
+                        }
+                        else
+                        {
+                            tempMacroAliases[i] = currentValue;
+                        }
+                    }
+
+                    setting.actionMacroAliases = tempMacroAliases;
+                }
+            }
+            else
+            {
+                setting.shiftActionAlias = 0;
+                setting.shiftActionMacroAliases = null;
+                if (setting.shiftActionType == DS4ControlSettings.ActionType.Key)
+                {
+                    setting.shiftActionAlias = outputKBMMapping.GetRealEventKey(Convert.ToUInt32(setting.shiftAction));
+                }
+                else if (setting.shiftActionType == DS4ControlSettings.ActionType.Macro)
+                {
+                    int[] current = (int[])setting.shiftAction;
+                    int[] tempMacroAliases = new int[current.Length];
+                    for (int i = 0; i < current.Length; i++)
+                    {
+                        int currentValue = current[i];
+                        if (currentValue <= 255)
+                        {
+                            tempMacroAliases[i] = (int)outputKBMMapping.GetRealEventKey((uint)currentValue);
+                        }
+                        else
+                        {
+                            tempMacroAliases[i] = currentValue;
+                        }
+                    }
+
+                    setting.shiftActionMacroAliases = tempMacroAliases;
+                }
+            }
         }
     }
 
@@ -4753,6 +4838,7 @@ namespace DS4Windows
                 int index = temp - 1;
                 DS4ControlSettings dcs = ds4settings[deviceNum][index];
                 dcs.UpdateSettings(shift, action, exts, kt, trigger);
+                Global.RefreshActionAlias(dcs, shift);
             }
         }
 

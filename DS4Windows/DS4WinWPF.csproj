@@ -149,6 +149,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="VMultiDllWrapper">
+      <HintPath>libs\x64\VMultiDll\VMultiDllWrapper.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -187,6 +190,12 @@
     <Compile Include="DS4Control\MouseCursor.cs" />
     <Compile Include="DS4Control\MouseWheel.cs" />
     <Compile Include="DS4Control\OutputDevice.cs" />
+    <Compile Include="DS4Control\OutputKBM\SendInputMapping.cs" />
+    <Compile Include="DS4Control\OutputKBM\SendInputHandler.cs" />
+    <Compile Include="DS4Control\OutputKBM\VirtualKBMMapping.cs" />
+    <Compile Include="DS4Control\OutputKBM\VirtualKBMFactory.cs" />
+    <Compile Include="DS4Control\OutputKBM\VMultiHandler.cs" />
+    <Compile Include="DS4Control\OutputKBM\VMultiMapping.cs" />
     <Compile Include="DS4Control\OutputSlotManager.cs" />
     <Compile Include="DS4Control\OutputSlotPersist.cs" />
     <Compile Include="DS4Control\OutSlotDevice.cs" />
@@ -195,6 +204,7 @@
     <Compile Include="DS4Control\ScpUtil.cs" />
     <Compile Include="DS4Control\UdpServer.cs" />
     <Compile Include="DS4Control\Util.cs" />
+    <Compile Include="DS4Control\OutputKBM\VirtualKBMBase.cs" />
     <Compile Include="DS4Control\Xbox360OutDevice.cs" />
     <Compile Include="DS4Forms\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>

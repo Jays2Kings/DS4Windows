@@ -51,7 +51,7 @@ namespace DS4Windows
             verticalRemainder = yMotion - yAction;
 
             if (yAction != 0 || xAction != 0)
-                InputMethods.MouseWheel(yAction, xAction);
+                Global.outputKBMHandler.PerformMouseWheelEvent(yAction, xAction);
         }
     }
 }

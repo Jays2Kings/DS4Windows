@@ -604,6 +604,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 {
                     settings.extras = string.Empty;
                 }
+
+                Global.RefreshActionAlias(settings, shiftBind);
             }
             else
             {
@@ -666,6 +668,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 {
                     settings.shiftExtras = string.Empty;
                 }
+
+                Global.RefreshActionAlias(settings, shiftBind);
             }
         }
 

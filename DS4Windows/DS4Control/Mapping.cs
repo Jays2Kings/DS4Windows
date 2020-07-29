@@ -8,6 +8,7 @@ using System.Diagnostics;
 using static DS4Windows.Global;
 using System.Drawing; // Point struct
 using Sensorit.Base;
+using DS4Windows.DS4Control;
 
 namespace DS4Windows
 {
@@ -318,60 +319,60 @@ namespace DS4Windows
             if (globalState.currentClicks.toggleCount != 0 && globalState.previousClicks.toggleCount == 0 && globalState.currentClicks.toggle)
             {
                 if (globalState.currentClicks.leftCount != 0 && globalState.previousClicks.leftCount == 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN);
+                    outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_LEFTDOWN);
                 if (globalState.currentClicks.rightCount != 0 && globalState.previousClicks.rightCount == 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
+                    outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_RIGHTDOWN);
                 if (globalState.currentClicks.middleCount != 0 && globalState.previousClicks.middleCount == 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
+                    outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_MIDDLEDOWN);
                 if (globalState.currentClicks.fourthCount != 0 && globalState.previousClicks.fourthCount == 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1);
+                    outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_XBUTTONDOWN, 1);
                 if (globalState.currentClicks.fifthCount != 0 && globalState.previousClicks.fifthCount == 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2);
+                    outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_XBUTTONDOWN, 2);
             }
             else if (globalState.currentClicks.toggleCount != 0 && globalState.previousClicks.toggleCount == 0 && !globalState.currentClicks.toggle)
             {
                 if (globalState.currentClicks.leftCount != 0 && globalState.previousClicks.leftCount == 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP);
+                    outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_LEFTUP);
                 if (globalState.currentClicks.rightCount != 0 && globalState.previousClicks.rightCount == 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
+                    outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_RIGHTUP);
                 if (globalState.currentClicks.middleCount != 0 && globalState.previousClicks.middleCount == 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
+                    outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_MIDDLEUP);
                 if (globalState.currentClicks.fourthCount != 0 && globalState.previousClicks.fourthCount == 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
+                    outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_XBUTTONUP, 1);
                 if (globalState.currentClicks.fifthCount != 0 && globalState.previousClicks.fifthCount == 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
+                    outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_XBUTTONUP, 2);
             }
 
             if (globalState.currentClicks.toggleCount == 0 && globalState.previousClicks.toggleCount == 0)
             {
                 if (globalState.currentClicks.leftCount != 0 && globalState.previousClicks.leftCount == 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN);
+                    outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_LEFTDOWN);
                 else if (globalState.currentClicks.leftCount == 0 && globalState.previousClicks.leftCount != 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP);
+                    outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_LEFTUP);
 
                 if (globalState.currentClicks.middleCount != 0 && globalState.previousClicks.middleCount == 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
+                    outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_MIDDLEDOWN);
                 else if (globalState.currentClicks.middleCount == 0 && globalState.previousClicks.middleCount != 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
+                    outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_MIDDLEUP);
 
                 if (globalState.currentClicks.rightCount != 0 && globalState.previousClicks.rightCount == 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
+                    outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_RIGHTDOWN);
                 else if (globalState.currentClicks.rightCount == 0 && globalState.previousClicks.rightCount != 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
+                    outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_RIGHTUP);
 
                 if (globalState.currentClicks.fourthCount != 0 && globalState.previousClicks.fourthCount == 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1);
+                    outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_XBUTTONDOWN, 1);
                 else if (globalState.currentClicks.fourthCount == 0 && globalState.previousClicks.fourthCount != 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
+                    outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_XBUTTONUP, 1);
 
                 if (globalState.currentClicks.fifthCount != 0 && globalState.previousClicks.fifthCount == 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2);
+                    outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_XBUTTONDOWN, 2);
                 else if (globalState.currentClicks.fifthCount == 0 && globalState.previousClicks.fifthCount != 0)
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
+                    outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_XBUTTONUP, 2);
 
                 if (globalState.currentClicks.wUpCount != 0 && globalState.previousClicks.wUpCount == 0)
                 {
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, 120);
+                    outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_WHEEL, 120);
                     oldnow = DateTime.UtcNow;
                     wheel = 120;
                 }
@@ -380,7 +381,7 @@ namespace DS4Windows
 
                 if (globalState.currentClicks.wDownCount != 0 && globalState.previousClicks.wDownCount == 0)
                 {
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, -120);
+                    outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_WHEEL, -120);
                     oldnow = DateTime.UtcNow;
                     wheel = -120;
                 }
@@ -395,7 +396,7 @@ namespace DS4Windows
                 if (now >= oldnow + TimeSpan.FromMilliseconds(100) && !pressagain)
                 {
                     oldnow = now;
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, wheel);
+                    outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_WHEEL, wheel);
                 }
             }
 
@@ -428,30 +429,30 @@ namespace DS4Windows
                 if (gkp.current.toggleCount != 0 && gkp.previous.toggleCount == 0 && gkp.current.toggle)
                 {
                     if (gkp.current.scanCodeCount != 0)
-                        InputMethods.performSCKeyPress(kvpKey);
+                        outputKBMHandler.PerformKeyPressAlt(kvpKey);
                     else
-                        InputMethods.performKeyPress(kvpKey);
+                        outputKBMHandler.PerformKeyPress(kvpKey);
                 }
                 else if (gkp.current.toggleCount != 0 && gkp.previous.toggleCount == 0 && !gkp.current.toggle)
                 {
                     if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC
-                        InputMethods.performSCKeyRelease(kvpKey);
+                        outputKBMHandler.PerformKeyReleaseAlt(kvpKey);
                     else
-                        InputMethods.performKeyRelease(kvpKey);
+                        outputKBMHandler.PerformKeyRelease(kvpKey);
                 }
                 else if (gkp.current.vkCount + gkp.current.scanCodeCount != 0 && gkp.previous.vkCount + gkp.previous.scanCodeCount == 0)
                 {
                     if (gkp.current.scanCodeCount != 0)
                     {
                         oldnow = DateTime.UtcNow;
-                        InputMethods.performSCKeyPress(kvpKey);
+                        outputKBMHandler.PerformKeyPressAlt(kvpKey);
                         pressagain = false;
                         keyshelddown = kvpKey;
                     }
                     else
                     {
                         oldnow = DateTime.UtcNow;
-                        InputMethods.performKeyPress(kvpKey);
+                        outputKBMHandler.PerformKeyPress(kvpKey);
                         pressagain = false;
                         keyshelddown = kvpKey;
                     }
@@ -473,7 +474,7 @@ namespace DS4Windows
                             if (now >= oldnow + TimeSpan.FromMilliseconds(25) && pressagain)
                             {
                                 oldnow = now;
-                                InputMethods.performSCKeyPress(kvpKey);
+                                outputKBMHandler.PerformKeyPressAlt(kvpKey);
                             }
                         }
                         else if (pressagain)
@@ -482,7 +483,7 @@ namespace DS4Windows
                             if (now >= oldnow + TimeSpan.FromMilliseconds(25) && pressagain)
                             {
                                 oldnow = now;
-                                InputMethods.performKeyPress(kvpKey);
+                                outputKBMHandler.PerformKeyPress(kvpKey);
                             }
                         }
                     }
@@ -491,12 +492,12 @@ namespace DS4Windows
                 {
                     if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC
                     {
-                        InputMethods.performSCKeyRelease(kvpKey);
+                        outputKBMHandler.PerformKeyReleaseAlt(kvpKey);
                         pressagain = false;
                     }
                     else
                     {
-                        InputMethods.performKeyRelease(kvpKey);
+                        outputKBMHandler.PerformKeyRelease(kvpKey);
                         pressagain = false;
                     }
                 }
@@ -1565,18 +1566,24 @@ namespace DS4Windows
                 //DS4ControlSettings dcs = tempSettingsList[settingIndex];
                 DS4ControlSettings dcs = settingEnum.Current;
                 object action = null;
+                uint actionAlias = 0;
+                int[] actionMacroAliases = null;
                 DS4ControlSettings.ActionType actionType = 0;
                 DS4KeyType keyType = DS4KeyType.None;
                 if (dcs.shiftAction != null && ShiftTrigger2(dcs.shiftTrigger, device, cState, eState, tp, fieldMapping))
                 {
                     action = dcs.shiftAction;
                     actionType = dcs.shiftActionType;
+                    actionAlias = dcs.shiftActionAlias;
+                    actionMacroAliases = dcs.shiftActionMacroAliases;
                     keyType = dcs.shiftKeyType;
                 }
                 else if (dcs.action != null)
                 {
                     action = dcs.action;
                     actionType = dcs.actionType;
+                    actionAlias = dcs.actionAlias;
+                    actionMacroAliases = dcs.actionMacroAliases;
                     keyType = dcs.keyType;
                 }
 
@@ -1653,11 +1660,11 @@ namespace DS4Windows
                         bool active = getBoolMapping2(device, dcs.control, cState, eState, tp, fieldMapping);
                         if (active)
                         {
-                            PlayMacro(device, macroControl, String.Empty, null, (int[])action, dcs.control, keyType);
+                            PlayMacro(device, macroControl, String.Empty, null, (int[])actionMacroAliases, dcs.control, keyType);
                         }
                         else
                         {
-                            EndMacro(device, macroControl, (int[])action, dcs.control);
+                            EndMacro(device, macroControl, (int[])actionMacroAliases, dcs.control);
                         }
 
                         // erase default mappings for things that are remapped
@@ -1665,7 +1672,7 @@ namespace DS4Windows
                     }
                     else if (actionType == DS4ControlSettings.ActionType.Key)
                     {
-                        ushort value = Convert.ToUInt16(action);
+                        ushort value = Convert.ToUInt16(actionAlias);
                         if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                         {
                             SyntheticState.KeyPresses kp;
@@ -1986,7 +1993,7 @@ namespace DS4Windows
                 out mouseDeltaX, out mouseDeltaY);
             if (mouseDeltaX != 0 || mouseDeltaY != 0)
             {
-                InputMethods.MoveCursorBy(mouseDeltaX, mouseDeltaY);
+                outputKBMHandler.MoveRelativeMouse(mouseDeltaX, mouseDeltaY);
             }
         }
 
@@ -2182,12 +2189,12 @@ namespace DS4Windows
                                         if (dcs.action != null)
                                         {
                                             if (dcs.actionType == DS4ControlSettings.ActionType.Key)
-                                                InputMethods.performKeyRelease(ushort.Parse(dcs.action.ToString()));
+                                                outputKBMHandler.PerformKeyRelease(ushort.Parse(dcs.action.ToString()));
                                             else if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
                                             {
                                                 int[] keys = (int[])dcs.action;
                                                 for (int j = 0, keysLen = keys.Length; j < keysLen; j++)
-                                                    InputMethods.performKeyRelease((ushort)keys[j]);
+                                                    outputKBMHandler.PerformKeyRelease((ushort)keys[j]);
                                             }
                                         }
                                     }
@@ -2283,9 +2290,9 @@ namespace DS4Windows
                                         kp.current.repeatCount++;
                                     }
                                     else if (action.keyType.HasFlag(DS4KeyType.ScanCode))
-                                        InputMethods.performSCKeyPress(key);
+                                        outputKBMHandler.PerformKeyPressAlt(key);
                                     else
-                                        InputMethods.performKeyPress(key);
+                                        outputKBMHandler.PerformKeyPress(key);
                                 }
                             }
                             else if (action.typeID == SpecialAction.ActionTypeId.DisconnectBT)
@@ -2416,9 +2423,9 @@ namespace DS4Windows
                                     ushort key;
                                     ushort.TryParse(action.details, out key);
                                     if (action.keyType.HasFlag(DS4KeyType.ScanCode))
-                                        InputMethods.performSCKeyRelease(key);
+                                        outputKBMHandler.PerformKeyReleaseAlt(key);
                                     else
-                                        InputMethods.performKeyRelease(key);
+                                        outputKBMHandler.PerformKeyRelease(key);
                                 }
                             }
                             else if (action.typeID == SpecialAction.ActionTypeId.XboxGameDVR || action.typeID == SpecialAction.ActionTypeId.MultiAction)
@@ -2634,12 +2641,12 @@ namespace DS4Windows
                                 if (dcs.action != null)
                                 {
                                     if (dcs.actionType == DS4ControlSettings.ActionType.Key)
-                                        InputMethods.performKeyRelease((ushort)dcs.action);
+                                        outputKBMHandler.PerformKeyRelease((ushort)dcs.action);
                                     else if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
                                     {
                                         int[] keys = (int[])dcs.action;
                                         for (int j = 0, keysLen = keys.Length; j < keysLen; j++)
-                                            InputMethods.performKeyRelease((ushort)keys[j]);
+                                            outputKBMHandler.PerformKeyRelease((ushort)keys[j]);
                                     }
                                 }
                             }
@@ -2674,12 +2681,12 @@ namespace DS4Windows
                 if (dcs.action != null)
                 {
                     if (dcs.actionType == DS4ControlSettings.ActionType.Key)
-                        InputMethods.performKeyRelease((ushort)dcs.action);
+                        outputKBMHandler.PerformKeyRelease((ushort)dcs.action);
                     else if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
                     {
                         int[] keys = (int[])dcs.action;
                         for (int j = 0, keysLen = keys.Length; j < keysLen; j++)
-                            InputMethods.performKeyRelease((ushort)keys[j]);
+                            outputKBMHandler.PerformKeyRelease((ushort)keys[j]);
                     }
                 }
             }
@@ -2821,15 +2828,15 @@ namespace DS4Windows
                     switch (macroCodeValue)
                     {
                         //anything above 255 is not a keyvalue
-                        case 256: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN); break;
-                        case 257: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN); break;
-                        case 258: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN); break;
-                        case 259: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1); break;
-                        case 260: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2); break;
+                        case 256: outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_LEFTDOWN); break;
+                        case 257: outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_RIGHTDOWN); break;
+                        case 258: outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_MIDDLEDOWN); break;
+                        case 259: outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_XBUTTONDOWN, 1); break;
+                        case 260: outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_XBUTTONDOWN, 2); break;
 
                         default:
-                            if (keyType.HasFlag(DS4KeyType.ScanCode)) InputMethods.performSCKeyPress((ushort)macroCodeValue);
-                            else InputMethods.performKeyPress((ushort)macroCodeValue);
+                            if (keyType.HasFlag(DS4KeyType.ScanCode)) outputKBMHandler.PerformKeyPressAlt((ushort)macroCodeValue);
+                            else outputKBMHandler.PerformKeyPress((ushort)macroCodeValue);
                             break;
                     }
                     keydown[macroCodeValue] = true;
@@ -2839,15 +2846,15 @@ namespace DS4Windows
                     switch (macroCodeValue)
                     {
                         //anything above 255 is not a keyvalue
-                        case 256: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); break;
-                        case 257: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP); break;
-                        case 258: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP); break;
-                        case 259: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1); break;
-                        case 260: InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2); break;
+                        case 256: outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_LEFTUP); break;
+                        case 257: outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_RIGHTUP); break;
+                        case 258: outputKBMHandler.PerformMouseButtonEvent(outputKBMMapping.MOUSEEVENTF_MIDDLEUP); break;
+                        case 259: outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_XBUTTONUP, 1); break;
+                        case 260: outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_XBUTTONUP, 2); break;
 
                         default:
-                            if (keyType.HasFlag(DS4KeyType.ScanCode)) InputMethods.performSCKeyRelease((ushort)macroCodeValue);
-                            else InputMethods.performKeyRelease((ushort)macroCodeValue);
+                            if (keyType.HasFlag(DS4KeyType.ScanCode)) outputKBMHandler.PerformKeyReleaseAlt((ushort)macroCodeValue);
+                            else outputKBMHandler.PerformKeyRelease((ushort)macroCodeValue);
                             break;
                     }
                     keydown[macroCodeValue] = false;
@@ -2922,7 +2929,7 @@ namespace DS4Windows
             if (altTabDone)
             {
                 altTabDone = false;
-                InputMethods.performKeyPress(18);
+                outputKBMHandler.PerformKeyPress(18);
             }
             else
             {
@@ -2930,8 +2937,8 @@ namespace DS4Windows
                 if (altTabNow >= oldAltTabNow + TimeSpan.FromMilliseconds(wait))
                 {
                     oldAltTabNow = altTabNow;
-                    InputMethods.performKeyPress(9);
-                    InputMethods.performKeyRelease(9);
+                    outputKBMHandler.PerformKeyPress(9);
+                    outputKBMHandler.PerformKeyRelease(9);
                 }
             }
         }
@@ -2941,8 +2948,8 @@ namespace DS4Windows
             if (altTabNow < DateTime.UtcNow - TimeSpan.FromMilliseconds(10)) //in case multiple controls are mapped to alt+tab
             {
                 altTabDone = true;
-                InputMethods.performKeyRelease(9);
-                InputMethods.performKeyRelease(18);
+                outputKBMHandler.PerformKeyRelease(9);
+                outputKBMHandler.PerformKeyRelease(18);
                 altTabNow = DateTime.UtcNow;
                 oldAltTabNow = DateTime.UtcNow - TimeSpan.FromDays(1);
             }
@@ -2955,7 +2962,7 @@ namespace DS4Windows
             if (now >= oldnow + TimeSpan.FromMilliseconds(10) && !pressagain)
             {
                 oldnow = now;
-                InputMethods.MouseWheel((int)(getByteMapping(device, control, cState, eState, tp) / 8.0f * (down ? -1 : 1)), 0);
+                outputKBMHandler.PerformMouseWheelEvent((int)(getByteMapping(device, control, cState, eState, tp) / 8.0f * (down ? -1 : 1)), 0);
             }
         }
 

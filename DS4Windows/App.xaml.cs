@@ -178,6 +178,7 @@ namespace DS4WinWPF
 
             window.CheckMinStatus();
             rootHub.LogDebug($"Running as {(DS4Windows.Global.IsAdministrator() ? "Admin" : "User")}");
+            rootHub.LogDebug($"Using output KB+M handler: {DS4Windows.Global.outputKBMHandler.GetDisplayName()}");
             rootHub.LaunchHidGuardHelper();
             rootHub.LoadPermanentSlotsConfig();
             window.LateChecks(parser);

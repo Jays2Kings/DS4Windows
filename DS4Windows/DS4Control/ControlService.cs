@@ -9,6 +9,7 @@ using Nefarius.ViGEm.Client;
 using System.Windows.Threading;
 using DS4WinWPF.DS4Control;
 using Microsoft.Win32;
+using DS4Windows.DS4Control;
 
 namespace DS4Windows
 {
@@ -141,6 +142,15 @@ namespace DS4Windows
         public ControlService()
         {
             Crc32Algorithm.InitializeTable(DS4Device.DefaultPolynomial);
+            Global.InitOutputKBMHandler(SendInputHandler.IDENTIFIER);
+            if (!Global.outputKBMHandler.Connect())
+            {
+                Global.outputKBMHandler = VirtualKBMFactory.GetFallbackHandler();
+            }
+
+            Global.InitOutputKBMMapping(Global.outputKBMHandler.GetIdentifier());
+            Global.outputKBMMapping.PopulateConstants();
+            Global.outputKBMMapping.PopulateMappings();
 
             //sp.Stream = DS4WinWPF.Properties.Resources.EE;
             // Cause thread affinity to not be tied to main GUI thread
@@ -216,6 +226,8 @@ namespace DS4Windows
             DS4Devices.checkVirtualFunc = null;
             outputslotMan.ShutDown();
             OutputSlotPersist.WriteConfig(outputslotMan);
+
+            outputKBMHandler.Disconnect();
 
             eventDispatcher.InvokeShutdown();
             eventDispatcher = null;

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DS4Windows.DS4Control;
 
-namespace DS4WinWPF.DS4Control
+namespace DS4Windows.DS4Control
 {
     public static class VirtualKBMFactory
     {

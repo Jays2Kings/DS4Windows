@@ -1,5 +1,5 @@
 ﻿
-namespace DS4WinWPF.DS4Control
+namespace DS4Windows.DS4Control
 {
     public class SendInputMapping : VirtualKBMMapping
     {

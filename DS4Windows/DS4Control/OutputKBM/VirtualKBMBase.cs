@@ -31,10 +31,10 @@ namespace DS4Windows.DS4Control
         public abstract void PerformMouseButtonPress(uint mouseButton);
         public abstract void PerformMouseButtonRelease(uint mouseButton);
 
-        public abstract void PerformKeyPress(ushort key);
-        public abstract void PerformKeyPressAlt(ushort key);
-        public abstract void PerformKeyRelease(ushort key);
-        public abstract void PerformKeyReleaseAlt(ushort key);
+        public abstract void PerformKeyPress(uint key);
+        public abstract void PerformKeyPressAlt(uint key);
+        public abstract void PerformKeyRelease(uint key);
+        public abstract void PerformKeyReleaseAlt(uint key);
 
         public abstract string GetDisplayName();
         public abstract string GetIdentifier();

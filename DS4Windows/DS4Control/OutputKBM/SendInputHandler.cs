@@ -126,7 +126,7 @@ namespace DS4Windows.DS4Control
             uint result = SendInput(1, tempInput, Marshal.SizeOf(tempInput[0]));
         }
 
-        public override void PerformKeyPress(ushort key)
+        public override void PerformKeyPress(uint key)
         {
             INPUT[] tempInput = new INPUT[1];
             ref INPUT temp = ref tempInput[0];
@@ -141,7 +141,7 @@ namespace DS4Windows.DS4Control
             //sendInputs[0].Data.Keyboard.Flags = 1;
             //sendInputs[0].Data.Keyboard.Scan = 0;
             temp.Data.Keyboard.Time = 0;
-            temp.Data.Keyboard.Vk = key;
+            temp.Data.Keyboard.Vk = (ushort)key;
             uint result = SendInput(1, tempInput, Marshal.SizeOf(tempInput[0]));
         }
 
@@ -149,7 +149,7 @@ namespace DS4Windows.DS4Control
         /// Used to send scancode key press events
         /// </summary>
         /// <param name="key">Windows VK value to convert</param>
-        public override void PerformKeyPressAlt(ushort key)
+        public override void PerformKeyPressAlt(uint key)
         {
             INPUT[] tempInput = new INPUT[1];
             ref INPUT temp = ref tempInput[0];
@@ -162,11 +162,11 @@ namespace DS4Windows.DS4Control
             temp.Data.Keyboard.Flags = KEYEVENTF_SCANCODE | curflags;
             temp.Data.Keyboard.Scan = scancode;
             temp.Data.Keyboard.Time = 0;
-            temp.Data.Keyboard.Vk = key;
+            //temp.Data.Keyboard.Vk = (ushort)key;
             uint result = SendInput(1, tempInput, Marshal.SizeOf(tempInput[0]));
         }
 
-        public override void PerformKeyRelease(ushort key)
+        public override void PerformKeyRelease(uint key)
         {
             INPUT[] tempInput = new INPUT[1];
             ref INPUT temp = ref tempInput[0];
@@ -181,7 +181,7 @@ namespace DS4Windows.DS4Control
             //sendInputs[0].Data.Keyboard.Flags = KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP;
             //sendInputs[0].Data.Keyboard.Scan = 0;
             temp.Data.Keyboard.Time = 0;
-            temp.Data.Keyboard.Vk = key;
+            temp.Data.Keyboard.Vk = (ushort)key;
             uint result = SendInput(1, tempInput, Marshal.SizeOf(tempInput[0]));
         }
 
@@ -189,7 +189,7 @@ namespace DS4Windows.DS4Control
         /// Used to send scancode key release events
         /// </summary>
         /// <param name="key">Windows VK value to convert</param>
-        public override void PerformKeyReleaseAlt(ushort key)
+        public override void PerformKeyReleaseAlt(uint key)
         {
             INPUT[] tempInput = new INPUT[1];
             ref INPUT temp = ref tempInput[0];

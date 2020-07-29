@@ -213,7 +213,7 @@ namespace DS4Windows
         private static int wheel = 0, keyshelddown = 0;
 
         //mapcustom
-        public static bool[] pressedonce = new bool[261], macrodone = new bool[38];
+        public static bool[] pressedonce = new bool[512], macrodone = new bool[38];
         static bool[] macroControl = new bool[25];
         static uint macroCount = 0;
         static Dictionary<string, Task>[] macroTaskQueue = new Dictionary<string, Task>[4] { new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>() };
@@ -372,18 +372,18 @@ namespace DS4Windows
 
                 if (globalState.currentClicks.wUpCount != 0 && globalState.previousClicks.wUpCount == 0)
                 {
-                    outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_WHEEL, 120);
+                    outputKBMHandler.PerformMouseWheelEvent(outputKBMMapping.WHEEL_TICK_UP, 0);
                     oldnow = DateTime.UtcNow;
-                    wheel = 120;
+                    wheel = outputKBMMapping.WHEEL_TICK_UP;
                 }
                 else if (globalState.currentClicks.wUpCount == 0 && globalState.previousClicks.wUpCount != 0)
                     wheel = 0;
 
                 if (globalState.currentClicks.wDownCount != 0 && globalState.previousClicks.wDownCount == 0)
                 {
-                    outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_WHEEL, -120);
+                    outputKBMHandler.PerformMouseWheelEvent(outputKBMMapping.WHEEL_TICK_DOWN, 0);
                     oldnow = DateTime.UtcNow;
-                    wheel = -120;
+                    wheel = outputKBMMapping.WHEEL_TICK_DOWN;
                 }
                 if (globalState.currentClicks.wDownCount == 0 && globalState.previousClicks.wDownCount != 0)
                     wheel = 0;
@@ -396,7 +396,7 @@ namespace DS4Windows
                 if (now >= oldnow + TimeSpan.FromMilliseconds(100) && !pressagain)
                 {
                     oldnow = now;
-                    outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_WHEEL, wheel);
+                    outputKBMHandler.PerformMouseWheelEvent(wheel, 0);
                 }
             }
 
@@ -1660,11 +1660,11 @@ namespace DS4Windows
                         bool active = getBoolMapping2(device, dcs.control, cState, eState, tp, fieldMapping);
                         if (active)
                         {
-                            PlayMacro(device, macroControl, String.Empty, null, (int[])actionMacroAliases, dcs.control, keyType);
+                            PlayMacro(device, macroControl, String.Empty, null, (int[])action, dcs.control, keyType);
                         }
                         else
                         {
-                            EndMacro(device, macroControl, (int[])actionMacroAliases, dcs.control);
+                            EndMacro(device, macroControl, (int[])action, dcs.control);
                         }
 
                         // erase default mappings for things that are remapped
@@ -2747,7 +2747,7 @@ namespace DS4Windows
             else if(control == DS4Controls.None || !macrodone[DS4ControltoInt(control)])
             {
                 int macroCodeValue;
-                bool[] keydown = new bool[286];
+                bool[] keydown = new bool[512];
 
                 if (control != DS4Controls.None)
                     macrodone[DS4ControltoInt(control)] = true;
@@ -2929,7 +2929,7 @@ namespace DS4Windows
             if (altTabDone)
             {
                 altTabDone = false;
-                outputKBMHandler.PerformKeyPress(18);
+                outputKBMHandler.PerformKeyPress(outputKBMMapping.KEY_TAB);
             }
             else
             {
@@ -2937,8 +2937,8 @@ namespace DS4Windows
                 if (altTabNow >= oldAltTabNow + TimeSpan.FromMilliseconds(wait))
                 {
                     oldAltTabNow = altTabNow;
-                    outputKBMHandler.PerformKeyPress(9);
-                    outputKBMHandler.PerformKeyRelease(9);
+                    outputKBMHandler.PerformKeyPress(outputKBMMapping.KEY_TAB);
+                    outputKBMHandler.PerformKeyRelease(outputKBMMapping.KEY_TAB);
                 }
             }
         }
@@ -2948,8 +2948,8 @@ namespace DS4Windows
             if (altTabNow < DateTime.UtcNow - TimeSpan.FromMilliseconds(10)) //in case multiple controls are mapped to alt+tab
             {
                 altTabDone = true;
-                outputKBMHandler.PerformKeyRelease(9);
-                outputKBMHandler.PerformKeyRelease(18);
+                outputKBMHandler.PerformKeyRelease(outputKBMMapping.KEY_TAB);
+                outputKBMHandler.PerformKeyRelease(outputKBMMapping.KEY_LALT);
                 altTabNow = DateTime.UtcNow;
                 oldAltTabNow = DateTime.UtcNow - TimeSpan.FromDays(1);
             }

@@ -458,7 +458,6 @@ namespace DS4Windows
                         keyshelddown = kvpKey;
                     }
                 }
-                /*
                 else if (outputKBMHandler.fakeKeyRepeat && (gkp.current.toggleCount != 0 || gkp.previous.toggleCount != 0 || gkp.current.repeatCount != 0 || // repeat or SC/VK transition
                      ((gkp.previous.scanCodeCount == 0) != (gkp.current.scanCodeCount == 0)))) //repeat keystroke after 500ms
                 {
@@ -490,7 +489,6 @@ namespace DS4Windows
                         }
                     }
                 }
-                */
 
                 if ((gkp.current.toggleCount == 0 && gkp.previous.toggleCount == 0) && gkp.current.vkCount + gkp.current.scanCodeCount == 0 && gkp.previous.vkCount + gkp.previous.scanCodeCount != 0)
                 {

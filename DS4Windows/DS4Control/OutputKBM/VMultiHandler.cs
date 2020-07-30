@@ -63,20 +63,34 @@ namespace DS4Windows.DS4Control
 
         public override void PerformKeyPress(uint key)
         {
+            //Console.WriteLine("PerformKeyPress {0}", key);
+            bool sync = false;
+
             if (key < MODIFIER_MASK)
             {
                 KeyboardKey temp = (KeyboardKey)key;
-                keyReport.keyDown(temp);
-                pressedKeys.Add(temp);
+                if (!pressedKeys.Contains(temp))
+                {
+                    keyReport.keyDown(temp);
+                    pressedKeys.Add(temp);
+                    sync = true;
+                }
             }
             else
             {
                 KeyboardModifier modifier = (KeyboardModifier)(key & ~MODIFIER_MASK);
-                keyReport.keyDown(modifier);
-                modifiers.Add(modifier);
+                if (!modifiers.Contains(modifier))
+                {
+                    keyReport.keyDown(modifier);
+                    modifiers.Add(modifier);
+                    sync = true;
+                }
             }
 
-            vMulti.updateKeyboard(keyReport);
+            if (sync)
+            {
+                vMulti.updateKeyboard(keyReport);
+            }
         }
 
         /// <summary>
@@ -85,38 +99,66 @@ namespace DS4Windows.DS4Control
         /// <param name="key"></param>
         public override void PerformKeyPressAlt(uint key)
         {
+            //Console.WriteLine("PerformKeyPressAlt {0}", key);
+            bool sync = false;
+
             if (key < MODIFIER_MASK)
             {
                 KeyboardKey temp = (KeyboardKey)key;
-                keyReport.keyDown(temp);
-                pressedKeys.Add(temp);
+                if (!pressedKeys.Contains(temp))
+                {
+                    keyReport.keyDown(temp);
+                    pressedKeys.Add(temp);
+                    sync = true;
+                }
             }
             else
             {
                 KeyboardModifier modifier = (KeyboardModifier)(key & ~MODIFIER_MASK);
-                keyReport.keyDown(modifier);
-                modifiers.Add(modifier);
+                if (!modifiers.Contains(modifier))
+                {
+                    keyReport.keyDown(modifier);
+                    modifiers.Add(modifier);
+                    sync = true;
+                }
             }
 
-            vMulti.updateKeyboard(keyReport);
+            if (sync)
+            {
+                vMulti.updateKeyboard(keyReport);
+            }
         }
 
         public override void PerformKeyRelease(uint key)
         {
+            //Console.WriteLine("PerformKeyRelease {0}", key);
+            bool sync = false;
+
             if (key < MODIFIER_MASK)
             {
                 KeyboardKey temp = (KeyboardKey)key;
-                keyReport.keyUp(temp);
-                pressedKeys.Remove(temp);
+                if (pressedKeys.Contains(temp))
+                {
+                    keyReport.keyUp(temp);
+                    pressedKeys.Remove(temp);
+                    sync = true;
+                }
             }
             else
             {
                 KeyboardModifier modifier = (KeyboardModifier)(key & ~MODIFIER_MASK);
-                keyReport.keyUp(modifier);
-                modifiers.Remove(modifier);
+                if (modifiers.Contains(modifier))
+                {
+                    keyReport.keyUp(modifier);
+                    modifiers.Remove(modifier);
+                    sync = true;
+                }
             }
 
-            vMulti.updateKeyboard(keyReport);
+            if (sync)
+            {
+                vMulti.updateKeyboard(keyReport);
+            }
         }
 
         /// <summary>
@@ -125,36 +167,58 @@ namespace DS4Windows.DS4Control
         /// <param name="key"></param>
         public override void PerformKeyReleaseAlt(uint key)
         {
+            //Console.WriteLine("PerformKeyReleaseAlt {0}", key);
+            bool sync = false;
+
             if (key < MODIFIER_MASK)
             {
                 KeyboardKey temp = (KeyboardKey)key;
-                keyReport.keyUp(temp);
-                pressedKeys.Remove(temp);
+                if (pressedKeys.Contains(temp))
+                {
+                    keyReport.keyUp(temp);
+                    pressedKeys.Remove(temp);
+                    sync = true;
+                }
             }
             else
             {
                 KeyboardModifier modifier = (KeyboardModifier)(key & ~MODIFIER_MASK);
-                keyReport.keyUp(modifier);
-                modifiers.Remove(modifier);
+                if (modifiers.Contains(modifier))
+                {
+                    keyReport.keyUp(modifier);
+                    modifiers.Remove(modifier);
+                    sync = true;
+                }
             }
 
-            vMulti.updateKeyboard(keyReport);
+            if (sync)
+            {
+                vMulti.updateKeyboard(keyReport);
+            }
         }
 
         public override void PerformMouseButtonEvent(uint mouseButton)
         {
-            mouseReport.ResetMousePos();
+            bool sync = false;
             MouseButton temp = (MouseButton)mouseButton;
+
+            mouseReport.ResetMousePos();
+
             if (!mouseReport.HeldButtons.Contains(temp))
             {
                 mouseReport.ButtonDown(temp);
+                sync = true;
             }
             else
             {
                 mouseReport.ButtonUp(temp);
+                sync = true;
             }
 
-            vMulti.updateMouse(mouseReport);
+            if (sync)
+            {
+                vMulti.updateMouse(mouseReport);
+            }
         }
 
         /// <summary>
@@ -164,18 +228,26 @@ namespace DS4Windows.DS4Control
         /// <param name="type"></param>
         public override void PerformMouseButtonEventAlt(uint mouseButton, int type)
         {
-            mouseReport.ResetMousePos();
+            bool sync = false;
             MouseButton temp = (MouseButton)mouseButton;
+
+            mouseReport.ResetMousePos();
+
             if (!mouseReport.HeldButtons.Contains(temp))
             {
                 mouseReport.ButtonDown(temp);
+                sync = true;
             }
             else
             {
                 mouseReport.ButtonUp(temp);
+                sync = true;
             }
 
-            vMulti.updateMouse(mouseReport);
+            if (sync)
+            {
+                vMulti.updateMouse(mouseReport);
+            }
         }
 
         /// <summary>
@@ -202,16 +274,38 @@ namespace DS4Windows.DS4Control
 
         public override void PerformMouseButtonPress(uint mouseButton)
         {
-            mouseReport.ResetMousePos();
-            mouseReport.ButtonDown((MouseButton)mouseButton);
-            vMulti.updateMouse(mouseReport);
+            bool sync = false;
+
+            MouseButton tempButton = (MouseButton)mouseButton;
+            if (!mouseReport.HeldButtons.Contains(tempButton))
+            {
+                mouseReport.ResetMousePos();
+                mouseReport.ButtonDown(tempButton);
+                sync = true;
+            }
+
+            if (sync)
+            {
+                vMulti.updateMouse(mouseReport);
+            }
         }
 
         public override void PerformMouseButtonRelease(uint mouseButton)
         {
-            mouseReport.ResetMousePos();
-            mouseReport.ButtonUp((MouseButton)mouseButton);
-            vMulti.updateMouse(mouseReport);
+            bool sync = false;
+
+            MouseButton tempButton = (MouseButton)mouseButton;
+            if (mouseReport.HeldButtons.Contains(tempButton))
+            {
+                mouseReport.ResetMousePos();
+                mouseReport.ButtonUp(tempButton);
+                sync = true;
+            }
+
+            if (sync)
+            {
+                vMulti.updateMouse(mouseReport);
+            }
         }
     }
 }

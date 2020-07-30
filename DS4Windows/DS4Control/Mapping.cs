@@ -2837,8 +2837,11 @@ namespace DS4Windows
                         case 260: outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_XBUTTONDOWN, 2); break;
 
                         default:
-                            if (keyType.HasFlag(DS4KeyType.ScanCode)) outputKBMHandler.PerformKeyPressAlt((ushort)macroCodeValue);
-                            else outputKBMHandler.PerformKeyPress((ushort)macroCodeValue);
+                            uint eventMacroCode = !outputKBMMapping.macroKeyTranslate ? (uint)macroCodeValue :
+                                outputKBMMapping.GetRealEventKey((uint)macroCodeValue);
+
+                            if (keyType.HasFlag(DS4KeyType.ScanCode)) outputKBMHandler.PerformKeyPressAlt(eventMacroCode);
+                            else outputKBMHandler.PerformKeyPress(eventMacroCode);
                             break;
                     }
                     keydown[macroCodeValue] = true;
@@ -2855,7 +2858,9 @@ namespace DS4Windows
                         case 260: outputKBMHandler.PerformMouseButtonEventAlt(outputKBMMapping.MOUSEEVENTF_XBUTTONUP, 2); break;
 
                         default:
-                            uint eventMacroCode = outputKBMMapping.GetRealEventKey((uint)macroCodeValue);
+                            uint eventMacroCode = !outputKBMMapping.macroKeyTranslate ? (uint)macroCodeValue :
+                                outputKBMMapping.GetRealEventKey((uint)macroCodeValue);
+
                             if (keyType.HasFlag(DS4KeyType.ScanCode)) outputKBMHandler.PerformKeyReleaseAlt(eventMacroCode);
                             else outputKBMHandler.PerformKeyRelease(eventMacroCode);
                             break;

@@ -11,6 +11,7 @@ namespace DS4Windows.DS4Control
 
         public uint KEY_TAB = 0x09, KEY_LALT = 0x12;
         public int WHEEL_TICK_DOWN = -120, WHEEL_TICK_UP = 120;
+        public bool macroKeyTranslate = false;
 
         public abstract void PopulateConstants();
         public abstract void PopulateMappings();

@@ -31,6 +31,7 @@ namespace DS4Windows.DS4Control
             KEY_TAB = (uint)KeyboardKey.Tab;
             KEY_LALT = (uint)KeyboardModifier.LAlt | VMultiHandler.MODIFIER_MASK;
             WHEEL_TICK_DOWN = -1; WHEEL_TICK_UP = 1;
+            macroKeyTranslate = true;
         }
 
         public override void PopulateMappings()

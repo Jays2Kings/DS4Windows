@@ -426,6 +426,7 @@ namespace DS4Windows
                     gkp.current = kvpValue.current;
                     globalState.keyPresses[kvpKey] = gkp;
                 }
+
                 if (gkp.current.toggleCount != 0 && gkp.previous.toggleCount == 0 && gkp.current.toggle)
                 {
                     if (gkp.current.scanCodeCount != 0)
@@ -457,8 +458,9 @@ namespace DS4Windows
                         keyshelddown = kvpKey;
                     }
                 }
-                else if (gkp.current.toggleCount != 0 || gkp.previous.toggleCount != 0 || gkp.current.repeatCount != 0 || // repeat or SC/VK transition
-                    ((gkp.previous.scanCodeCount == 0) != (gkp.current.scanCodeCount == 0))) //repeat keystroke after 500ms
+                /*
+                else if (outputKBMHandler.fakeKeyRepeat && (gkp.current.toggleCount != 0 || gkp.previous.toggleCount != 0 || gkp.current.repeatCount != 0 || // repeat or SC/VK transition
+                     ((gkp.previous.scanCodeCount == 0) != (gkp.current.scanCodeCount == 0)))) //repeat keystroke after 500ms
                 {
                     if (keyshelddown == kvpKey)
                     {
@@ -488,6 +490,8 @@ namespace DS4Windows
                         }
                     }
                 }
+                */
+
                 if ((gkp.current.toggleCount == 0 && gkp.previous.toggleCount == 0) && gkp.current.vkCount + gkp.current.scanCodeCount == 0 && gkp.previous.vkCount + gkp.previous.scanCodeCount != 0)
                 {
                     if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC

@@ -9,6 +9,7 @@ namespace DS4Windows.DS4Control
     {
         public const string DISPLAY_NAME = "SendInput";
         public const string IDENTIFIER = "sendinput";
+        public new bool fakeKeyRepeat = true;
 
         public override bool Connect()
         {

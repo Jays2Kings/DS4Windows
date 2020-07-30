@@ -11,6 +11,8 @@ namespace DS4Windows.DS4Control
         protected string errorMessage = string.Empty;
         public string ErrorMessage { get => errorMessage; }
 
+        public bool fakeKeyRepeat = false;
+
         public abstract bool Connect();
         public abstract bool Disconnect();
 

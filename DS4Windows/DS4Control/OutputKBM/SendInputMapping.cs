@@ -20,7 +20,7 @@ namespace DS4Windows.DS4Control
         }
 
         /// <summary>
-        /// Not really needed as Window keys are the standard being mapped against. Just return key
+        /// Not really needed here as Window keys are the standard being mapped against. Just return key
         /// </summary>
         /// <param name="winVkKey">Windows Virtual Key value</param>
         /// <returns>Windows Virtual Key value</returns>

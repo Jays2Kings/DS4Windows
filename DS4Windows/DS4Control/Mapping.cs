@@ -1577,7 +1577,6 @@ namespace DS4Windows
                     action = dcs.shiftAction;
                     actionType = dcs.shiftActionType;
                     actionAlias = dcs.shiftActionAlias;
-                    actionMacroAliases = dcs.shiftActionMacroAliases;
                     keyType = dcs.shiftKeyType;
                 }
                 else if (dcs.action != null)
@@ -1585,7 +1584,6 @@ namespace DS4Windows
                     action = dcs.action;
                     actionType = dcs.actionType;
                     actionAlias = dcs.actionAlias;
-                    actionMacroAliases = dcs.actionMacroAliases;
                     keyType = dcs.keyType;
                 }
 

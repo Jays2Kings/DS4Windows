@@ -43,13 +43,15 @@ namespace DS4Windows
         public enum ActionType : byte { Default, Key, Button, Macro };
         public ActionType actionType = ActionType.Default;
         public object action = null;
+        // Alias to real value for current output KB+M event system.
+        // Allows skipping a translation call every frame
         public uint actionAlias = 0;
-        public int[] actionMacroAliases = null;
 
         public ActionType shiftActionType = ActionType.Default;
         public object shiftAction = null;
+        // Alias to real value for current output KB+M event system.
+        // Allows skipping a translation call every frame
         public uint shiftActionAlias = 0;
-        public int[] shiftActionMacroAliases = null;
         public int shiftTrigger = 0;
         public string shiftExtras = null;
         public DS4KeyType shiftKeyType = DS4KeyType.None;
@@ -66,12 +68,10 @@ namespace DS4Windows
             actionType = ActionType.Default;
             action = null;
             actionAlias = 0;
-            actionMacroAliases = null;
 
             shiftActionType = ActionType.Default;
             shiftAction = null;
             shiftActionAlias = 0;
-            shiftActionMacroAliases = null;
             shiftTrigger = 0;
             shiftExtras = null;
             shiftKeyType = DS4KeyType.None;
@@ -2044,57 +2044,17 @@ namespace DS4Windows
             if (!shift)
             {
                 setting.actionAlias = 0;
-                setting.actionMacroAliases = null;
                 if (setting.actionType == DS4ControlSettings.ActionType.Key)
                 {
                     setting.actionAlias = outputKBMMapping.GetRealEventKey(Convert.ToUInt32(setting.action));
-                }
-                else if (setting.actionType == DS4ControlSettings.ActionType.Macro)
-                {
-                    int[] current = (int[])setting.action;
-                    int[] tempMacroAliases = new int[current.Length];
-                    for (int i = 0; i < current.Length; i++)
-                    {
-                        int currentValue = current[i];
-                        if (currentValue <= 255)
-                        {
-                            tempMacroAliases[i] = (int)outputKBMMapping.GetRealEventKey((uint)currentValue);
-                        }
-                        else
-                        {
-                            tempMacroAliases[i] = currentValue;
-                        }
-                    }
-
-                    setting.actionMacroAliases = tempMacroAliases;
                 }
             }
             else
             {
                 setting.shiftActionAlias = 0;
-                setting.shiftActionMacroAliases = null;
                 if (setting.shiftActionType == DS4ControlSettings.ActionType.Key)
                 {
                     setting.shiftActionAlias = outputKBMMapping.GetRealEventKey(Convert.ToUInt32(setting.shiftAction));
-                }
-                else if (setting.shiftActionType == DS4ControlSettings.ActionType.Macro)
-                {
-                    int[] current = (int[])setting.shiftAction;
-                    int[] tempMacroAliases = new int[current.Length];
-                    for (int i = 0; i < current.Length; i++)
-                    {
-                        int currentValue = current[i];
-                        if (currentValue <= 255)
-                        {
-                            tempMacroAliases[i] = (int)outputKBMMapping.GetRealEventKey((uint)currentValue);
-                        }
-                        else
-                        {
-                            tempMacroAliases[i] = currentValue;
-                        }
-                    }
-
-                    setting.shiftActionMacroAliases = tempMacroAliases;
                 }
             }
         }

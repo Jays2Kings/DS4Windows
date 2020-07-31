@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using VMultiDllWrapper;
 
 namespace DS4Windows.DS4Control
@@ -15,6 +16,9 @@ namespace DS4Windows.DS4Control
         private KeyboardReport keyReport = new KeyboardReport();
         private HashSet<KeyboardModifier> modifiers = new HashSet<KeyboardModifier>();
         private HashSet<KeyboardKey> pressedKeys = new HashSet<KeyboardKey>();
+
+        // Used to guard reports and attempt to keep methods thread safe
+        private ReaderWriterLockSlim eventLock = new ReaderWriterLockSlim();
 
         public VMultiHandler()
         {
@@ -35,6 +39,8 @@ namespace DS4Windows.DS4Control
 
         private void Release()
         {
+            eventLock.EnterWriteLock();
+
             mouseReport.ResetMousePos();
             vMulti.updateMouse(mouseReport);
 
@@ -51,22 +57,29 @@ namespace DS4Windows.DS4Control
             pressedKeys.Clear();
 
             vMulti.updateKeyboard(keyReport);
+
+            eventLock.ExitWriteLock();
         }
 
         public override void MoveRelativeMouse(int x, int y)
         {
             //Console.WriteLine("RAW MOUSE {0} {1}", x, y);
+            eventLock.EnterWriteLock();
+
             mouseReport.ResetMousePos();
             mouseReport.MouseX = (byte)(x < -127 ? 127 : (x > 127) ? 127 : x);
             mouseReport.MouseY = (byte)(y < -127 ? 127 : (y > 127) ? 127 : y);
 
             vMulti.updateMouse(mouseReport);
+
+            eventLock.ExitWriteLock();
         }
 
         public override void PerformKeyPress(uint key)
         {
             //Console.WriteLine("PerformKeyPress {0}", key);
             bool sync = false;
+            eventLock.EnterWriteLock();
 
             if (key < MODIFIER_MASK)
             {
@@ -93,6 +106,8 @@ namespace DS4Windows.DS4Control
             {
                 vMulti.updateKeyboard(keyReport);
             }
+
+            eventLock.ExitWriteLock();
         }
 
         /// <summary>
@@ -103,6 +118,7 @@ namespace DS4Windows.DS4Control
         {
             //Console.WriteLine("PerformKeyPressAlt {0}", key);
             bool sync = false;
+            eventLock.EnterWriteLock();
 
             if (key < MODIFIER_MASK)
             {
@@ -129,12 +145,15 @@ namespace DS4Windows.DS4Control
             {
                 vMulti.updateKeyboard(keyReport);
             }
+
+            eventLock.ExitWriteLock();
         }
 
         public override void PerformKeyRelease(uint key)
         {
             //Console.WriteLine("PerformKeyRelease {0}", key);
             bool sync = false;
+            eventLock.EnterWriteLock();
 
             if (key < MODIFIER_MASK)
             {
@@ -161,6 +180,8 @@ namespace DS4Windows.DS4Control
             {
                 vMulti.updateKeyboard(keyReport);
             }
+
+            eventLock.ExitWriteLock();
         }
 
         /// <summary>
@@ -171,6 +192,7 @@ namespace DS4Windows.DS4Control
         {
             //Console.WriteLine("PerformKeyReleaseAlt {0}", key);
             bool sync = false;
+            eventLock.EnterWriteLock();
 
             if (key < MODIFIER_MASK)
             {
@@ -197,12 +219,15 @@ namespace DS4Windows.DS4Control
             {
                 vMulti.updateKeyboard(keyReport);
             }
+
+            eventLock.ExitWriteLock();
         }
 
         public override void PerformMouseButtonEvent(uint mouseButton)
         {
             bool sync = false;
             MouseButton temp = (MouseButton)mouseButton;
+            eventLock.EnterWriteLock();
 
             mouseReport.ResetMousePos();
 
@@ -221,6 +246,8 @@ namespace DS4Windows.DS4Control
             {
                 vMulti.updateMouse(mouseReport);
             }
+
+            eventLock.ExitWriteLock();
         }
 
         /// <summary>
@@ -232,6 +259,7 @@ namespace DS4Windows.DS4Control
         {
             bool sync = false;
             MouseButton temp = (MouseButton)mouseButton;
+            eventLock.EnterWriteLock();
 
             mouseReport.ResetMousePos();
 
@@ -250,6 +278,8 @@ namespace DS4Windows.DS4Control
             {
                 vMulti.updateMouse(mouseReport);
             }
+
+            eventLock.ExitWriteLock();
         }
 
         /// <summary>
@@ -259,9 +289,11 @@ namespace DS4Windows.DS4Control
         /// <param name="horizontal"></param>
         public override void PerformMouseWheelEvent(int vertical, int horizontal)
         {
+            eventLock.EnterWriteLock();
             mouseReport.ResetMousePos();
             mouseReport.WheelPosition = (byte)vertical;
             vMulti.updateMouse(mouseReport);
+            eventLock.ExitWriteLock();
         }
 
         public override string GetDisplayName()
@@ -277,6 +309,7 @@ namespace DS4Windows.DS4Control
         public override void PerformMouseButtonPress(uint mouseButton)
         {
             bool sync = false;
+            eventLock.EnterWriteLock();
 
             MouseButton tempButton = (MouseButton)mouseButton;
             if (!mouseReport.HeldButtons.Contains(tempButton))
@@ -290,11 +323,14 @@ namespace DS4Windows.DS4Control
             {
                 vMulti.updateMouse(mouseReport);
             }
+
+            eventLock.ExitWriteLock();
         }
 
         public override void PerformMouseButtonRelease(uint mouseButton)
         {
             bool sync = false;
+            eventLock.EnterWriteLock();
 
             MouseButton tempButton = (MouseButton)mouseButton;
             if (mouseReport.HeldButtons.Contains(tempButton))
@@ -308,6 +344,8 @@ namespace DS4Windows.DS4Control
             {
                 vMulti.updateMouse(mouseReport);
             }
+
+            eventLock.ExitWriteLock();
         }
     }
 }

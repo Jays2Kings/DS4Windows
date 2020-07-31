@@ -55,6 +55,7 @@ namespace DS4Windows.DS4Control
 
         public override void MoveRelativeMouse(int x, int y)
         {
+            //Console.WriteLine("RAW MOUSE {0} {1}", x, y);
             mouseReport.ResetMousePos();
             mouseReport.MouseX = (byte)(x < -127 ? 127 : (x > 127) ? 127 : x);
             mouseReport.MouseY = (byte)(y < -127 ? 127 : (y > 127) ? 127 : y);

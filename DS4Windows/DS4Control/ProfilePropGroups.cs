@@ -1,4 +1,5 @@
 ﻿using System;
+using Sensorit.Base;
 
 namespace DS4Windows
 {
@@ -95,14 +96,14 @@ namespace DS4Windows
             {
                 if (mode == value) return;
                 mode = value;
-                ChangedMode?.Invoke(this, EventArgs.Empty);
+                ModeChanged?.Invoke(this, EventArgs.Empty);
             }
         }
-        public event EventHandler ChangedMode;
+        public event EventHandler ModeChanged;
 
         public LightbarSettingInfo()
         {
-            /*ChangedMode += (sender, e) =>
+            /*ModeChanged += (sender, e) =>
             {
                 if (mode != LightbarMode.DS4Win)
                 {
@@ -110,6 +111,71 @@ namespace DS4Windows
                 }
             };
             */
+        }
+    }
+
+    public class SteeringWheelSmoothingInfo
+    {
+        private double minCutoff = OneEuroFilterPair.DEFAULT_WHEEL_CUTOFF;
+        private double beta = OneEuroFilterPair.DEFAULT_WHEEL_BETA;
+        public bool enabled = false;
+
+        public delegate void SmoothingInfoEventHandler(SteeringWheelSmoothingInfo sender, EventArgs args);
+
+        public double MinCutoff
+        {
+            get => minCutoff;
+            set
+            {
+                if (minCutoff == value) return;
+                minCutoff = value;
+                MinCutoffChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event SmoothingInfoEventHandler MinCutoffChanged;
+
+        public double Beta
+        {
+            get => beta;
+            set
+            {
+                if (beta == value) return;
+                beta = value;
+                BetaChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event SmoothingInfoEventHandler BetaChanged;
+
+        public bool Enabled
+        {
+            get => enabled;
+            set => enabled = value;
+        }
+
+        public void Reset()
+        {
+            MinCutoff = OneEuroFilterPair.DEFAULT_WHEEL_CUTOFF;
+            Beta = OneEuroFilterPair.DEFAULT_WHEEL_BETA;
+            enabled = false;
+        }
+
+        public void SetFilterAttrs(OneEuroFilter euroFilter)
+        {
+            euroFilter.MinCutoff = minCutoff;
+            euroFilter.Beta = beta;
+        }
+
+        public void SetRefreshEvents(OneEuroFilter euroFilter)
+        {
+            BetaChanged += (sender, args) =>
+            {
+                euroFilter.Beta = beta;
+            };
+
+            MinCutoffChanged += (sender, args) =>
+            {
+                euroFilter.MinCutoff = minCutoff;
+            };
         }
     }
 }

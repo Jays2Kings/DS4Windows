@@ -1258,6 +1258,19 @@ namespace DS4Windows
             {
                 CheckLauchProfileOption(ind, device);
             }
+
+            // Set up filter for new input device
+            OneEuroFilterPair tempFilterPair = new OneEuroFilterPair();
+            Mapping.wheelFilterPairs[ind] = tempFilterPair;
+
+            // Carry over initial profile wheel smoothing values to filter instances.
+            // Set up event hooks to keep values in sync
+            SteeringWheelSmoothingInfo wheelSmoothInfo = WheelSmoothInfo[ind];
+            wheelSmoothInfo.SetFilterAttrs(tempFilterPair.axis1Filter);
+            wheelSmoothInfo.SetRefreshEvents(tempFilterPair.axis1Filter);
+
+            wheelSmoothInfo.SetFilterAttrs(tempFilterPair.axis2Filter);
+            wheelSmoothInfo.SetRefreshEvents(tempFilterPair.axis2Filter);
         }
 
         private void CheckLauchProfileOption(int ind, DS4Device device)

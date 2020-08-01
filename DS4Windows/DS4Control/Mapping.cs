@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using static DS4Windows.Global;
 using System.Drawing; // Point struct
-using Sensorit.Base;
 
 namespace DS4Windows
 {
@@ -158,19 +157,15 @@ namespace DS4Windows
             }
         }
 
-        //class OneEuroFilterPair
-        //{
-        //    public OneEuroFilter axis1Filter = new OneEuroFilter(minCutoff: 0.1, beta: 0.02);
-        //    public OneEuroFilter axis2Filter = new OneEuroFilter(minCutoff: 0.1, beta: 0.02);
-        //}
-
-        static DS4SquareStick[] outSqrStk = new DS4SquareStick[4] { new DS4SquareStick(),
-        new DS4SquareStick(), new DS4SquareStick(), new DS4SquareStick()};
+        private static DS4SquareStick[] outSqrStk = new DS4SquareStick[4]
+        {
+            new DS4SquareStick(), new DS4SquareStick(), new DS4SquareStick(), new DS4SquareStick()
+        };
 
         public static byte[] gyroStickX = new byte[4] { 128, 128, 128, 128 };
         public static byte[] gyroStickY = new byte[4] { 128, 128, 128, 128 };
-        static int lastGyroX = 0;
-        static int lastGyroZ = 0;
+        //static int lastGyroX = 0;
+        //static int lastGyroZ = 0;
 
         //private static OneEuroFilter filterX = new OneEuroFilter(minCutoff: 1, beta: 0);
         //private static OneEuroFilter filterZ = new OneEuroFilter(minCutoff: 1, beta: 0);
@@ -179,10 +174,7 @@ namespace DS4Windows
         //private static OneEuroFilter wheel360FilterX = new OneEuroFilter(minCutoff: 0.1, beta: 0.02);
         //private static OneEuroFilter wheel360FilterZ = new OneEuroFilter(minCutoff: 0.1, beta: 0.02);
 
-        //private static OneEuroFilterPair[] wheelFilterPairs = new OneEuroFilterPair[ControlService.DS4_CONTROLLER_COUNT]
-        //{
-        //    new OneEuroFilterPair(), new OneEuroFilterPair(), new OneEuroFilterPair(), new OneEuroFilterPair()
-        //};
+        public static OneEuroFilterPair[] wheelFilterPairs = new OneEuroFilterPair[ControlService.DS4_CONTROLLER_COUNT];
 
         static ReaderWriterLockSlim syncStateLock = new ReaderWriterLockSlim();
 
@@ -4348,10 +4340,15 @@ namespace DS4Windows
                 int maxRangeLeft = -maxRangeRight;
 
                 //Console.WriteLine("Values {0} {1}", gyroAccelX, gyroAccelZ);
-                //double currentRate = 1.0 / currentDeviceState.elapsedTime;
-                //OneEuroFilterPair wheelFilters = wheelFilterPairs[device];
-                //gyroAccelX = (int)(wheelFilters.axis1Filter.Filter(gyroAccelX, currentRate));
-                //gyroAccelZ = (int)(wheelFilters.axis2Filter.Filter(gyroAccelZ, currentRate));
+
+                if (WheelSmoothInfo[device].enabled)
+                {
+                    double currentRate = 1.0 / currentDeviceState.elapsedTime; // Need to express poll time in Hz
+                    OneEuroFilterPair wheelFilters = wheelFilterPairs[device];
+                    gyroAccelX = (int)(wheelFilters.axis1Filter.Filter(gyroAccelX, currentRate));
+                    gyroAccelZ = (int)(wheelFilters.axis2Filter.Filter(gyroAccelZ, currentRate));
+                }
+
                 //gyroAccelX = (int)(wheel360FilterX.Filter(gyroAccelX, currentRate));
                 //gyroAccelZ = (int)(wheel360FilterZ.Filter(gyroAccelZ, currentRate));
 

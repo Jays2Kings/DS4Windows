@@ -754,6 +754,31 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.SASteeringWheelEmulationRange[device] = value;
         }
 
+        public bool SASteeringWheelUseSmoothing
+        {
+            get => Global.WheelSmoothInfo[device].Enabled;
+            set
+            {
+                bool temp = Global.WheelSmoothInfo[device].Enabled;
+                if (temp == value) return;
+                Global.WheelSmoothInfo[device].Enabled = value;
+                SASteeringWheelUseSmoothingChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler SASteeringWheelUseSmoothingChanged;
+
+        public double SASteeringWheelSmoothMinCutoff
+        {
+            get => Global.WheelSmoothInfo[device].MinCutoff;
+            set => Global.WheelSmoothInfo[device].MinCutoff = value;
+        }
+
+        public double SASteeringWheelSmoothBeta
+        {
+            get => Global.WheelSmoothInfo[device].Beta;
+            set => Global.WheelSmoothInfo[device].Beta = value;
+        }
+
         public double LSDeadZone
         {
             get => Math.Round(Global.LSModInfo[device].deadZone / 127d, 2);

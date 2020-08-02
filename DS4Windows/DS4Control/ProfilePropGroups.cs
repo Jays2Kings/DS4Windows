@@ -39,6 +39,8 @@ namespace DS4Windows
         public double antiDeadX;
         public double antiDeadY;
         public int vertScale;
+        public bool maxOutputEnabled;
+        public double maxOutput = 100.0;
         // Flags representing invert axis choices
         public uint inverted;
         public bool useSmoothing;

@@ -1476,6 +1476,25 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.GyroMouseStickInf[device].vertScale = value;
         }
 
+        public bool GyroMouseStickMaxOutputEnabled
+        {
+            get => Global.GyroMouseStickInf[device].maxOutputEnabled;
+            set
+            {
+                bool temp = Global.GyroMouseStickInf[device].maxOutputEnabled;
+                if (temp == value) return;
+                Global.GyroMouseStickInf[device].maxOutputEnabled = value;
+                GyroMouseStickMaxOutputChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler GyroMouseStickMaxOutputChanged;
+
+        public double GyroMouseStickMaxOutput
+        {
+            get => Global.GyroMouseStickInf[device].maxOutput;
+            set => Global.GyroMouseStickInf[device].maxOutput = value;
+        }
+
         public int GyroMouseStickEvalCondIndex
         {
             get => Global.GetSAMouseStickTriggerCond(device) ? 0 : 1;

@@ -289,6 +289,15 @@ namespace DS4Windows
             if (deltaX != 0) xratio = deltaX / (double)maxValX;
             if (deltaY != 0) yratio = deltaY / (double)maxValY;
 
+            if (msinfo.maxOutputEnabled)
+            {
+                double maxOutRatio = msinfo.maxOutput / 100.0;
+                double maxOutXRatio = normX * maxOutRatio;
+                double maxOutYRatio = normY * maxOutRatio;
+                xratio = Math.Min(Math.Max(xratio, 0.0), maxOutXRatio);
+                yratio = Math.Min(Math.Max(yratio, 0.0), maxOutYRatio);
+            }
+
             double xNorm = 0.0, yNorm = 0.0;
             if (xratio != 0.0)
             {

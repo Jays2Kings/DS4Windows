@@ -1107,7 +1107,7 @@
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
-                        <Label Content="Controller" ToolTip="{lex:Loc Resources:OutContNotice}" />
+                        <Label Content="Emulated Controller" ToolTip="{lex:Loc Resources:OutContNotice}" />
                         <ComboBox x:Name="outConTypeCombo" SelectedIndex="{Binding TempControllerIndex,FallbackValue=0}" MinWidth="140"
                                   ToolTip="{lex:Loc Resources:OutContNotice}">
                             <ComboBoxItem Content="Xbox 360"/>

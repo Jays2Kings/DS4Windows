@@ -528,6 +528,7 @@ namespace DS4WinWPF.DS4Forms
 
                 Global.LoadProfile(device, false, App.rootHub, false);
                 profileNameTxt.Text = profile.Name;
+                profileNameTxt.IsEnabled = false;
             }
             else
             {

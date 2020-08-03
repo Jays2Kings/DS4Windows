@@ -289,7 +289,7 @@
     <Compile Include="ProfileEntity.cs" />
     <Compile Include="ProfileList.cs" />
     <Compile Include="DS4Forms\ViewModels\SettingsViewModel.cs" />
-    <Compile Include="ReaderWriteLockSlimWrapper.cs" />
+    <Compile Include="ReaderWriteLockSlimWrappers.cs" />
     <Compile Include="Translations\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

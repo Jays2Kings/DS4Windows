@@ -69,22 +69,17 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             if (writeAccess)
             {
-                _colListLocker.EnterWriteLock();
+                using (WriteLocker locker = new WriteLocker(_colListLocker))
+                {
+                    accessMethod?.Invoke();
+                }
             }
             else
             {
-                _colListLocker.EnterReadLock();
-            }
-
-            accessMethod?.Invoke();
-
-            if (writeAccess)
-            {
-                _colListLocker.ExitWriteLock();
-            }
-            else
-            {
-                _colListLocker.ExitReadLock();
+                using (ReadLocker locker = new ReadLocker(_colListLocker))
+                {
+                    accessMethod?.Invoke();
+                }
             }
         }
 

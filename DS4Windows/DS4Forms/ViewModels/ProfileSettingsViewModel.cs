@@ -1460,14 +1460,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public double GyroMouseStickAntiDeadX
         {
-            get => Global.GyroMouseStickInf[device].antiDeadX;
-            set => Global.GyroMouseStickInf[device].antiDeadX = value;
+            get => Global.GyroMouseStickInf[device].antiDeadX * 100.0;
+            set => Global.GyroMouseStickInf[device].antiDeadX = value * 0.01;
         }
 
         public double GyroMouseStickAntiDeadY
         {
-            get => Global.GyroMouseStickInf[device].antiDeadY;
-            set => Global.GyroMouseStickInf[device].antiDeadY = value;
+            get => Global.GyroMouseStickInf[device].antiDeadY * 100.0;
+            set => Global.GyroMouseStickInf[device].antiDeadY = value * 0.01;
         }
 
         public int GyroMouseStickVertScale

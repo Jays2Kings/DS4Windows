@@ -967,10 +967,13 @@
                         <StackPanel Orientation="Horizontal" Height="30" Margin="{StaticResource spaceMargin}">
                             <Label Content="Minimum X" />
                             <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickAntiDeadX}" MinWidth="60"
-                                               Minimum="0.0" Maximum="1.0" Increment="0.1" />
+                                               FormatString="F0" Minimum="0.0" Maximum="100.0" Increment="10.0" />
+                            <Label Content="%" />
+
                             <Label Content="Minimum Y" Margin="8,0,0,0" />
                             <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickAntiDeadY}" MinWidth="60"
-                                               Minimum="0.0" Maximum="1.0" Increment="0.1" />
+                                               FormatString="F0" Minimum="0.0" Maximum="100.0" Increment="10.0" />
+                            <Label Content="%" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">

@@ -7,11 +7,11 @@ namespace DS4Windows
         public static event EventHandler<DebugEventArgs> TrayIconLog;
         public static event EventHandler<DebugEventArgs> GuiLog;
 
-        public static void LogToGui(string data, bool warning)
+        public static void LogToGui(string data, bool warning, bool temporary = false)
         {
             if (GuiLog != null)
             {
-                GuiLog(null, new DebugEventArgs(data, warning));
+                GuiLog(null, new DebugEventArgs(data, warning, temporary));
             }
         }
 

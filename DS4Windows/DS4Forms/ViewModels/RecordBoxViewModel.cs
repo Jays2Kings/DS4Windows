@@ -248,9 +248,9 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             sw.Close();
         }
 
-        public void AddMacroStep(MacroStep step)
+        public void AddMacroStep(MacroStep step, bool ignoreDelay = false)
         {
-            if (recordDelays && macroSteps.Count > 0)
+            if (recordDelays && macroSteps.Count > 0 && !ignoreDelay)
             {
                 int elapsed = (int)sw.ElapsedMilliseconds + 300;
                 MacroStep waitstep = new MacroStep(elapsed, $"Wait {elapsed - 300}ms",

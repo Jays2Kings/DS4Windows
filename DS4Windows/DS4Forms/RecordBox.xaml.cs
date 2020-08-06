@@ -329,11 +329,11 @@ namespace DS4WinWPF.DS4Forms
                 {
                     DS4Windows.MacroStep step = new DS4Windows.MacroStep(value, tempKey.ToString(),
                             DS4Windows.MacroStep.StepType.ActDown, DS4Windows.MacroStep.StepOutput.Key);
-                    recordBoxVM.AddMacroStep(step);
+                    recordBoxVM.AddMacroStep(step, ignoreDelay: true);
 
                     step = new DS4Windows.MacroStep(value, tempKey.ToString(),
                             DS4Windows.MacroStep.StepType.ActUp, DS4Windows.MacroStep.StepOutput.Key);
-                    recordBoxVM.AddMacroStep(step);
+                    recordBoxVM.AddMacroStep(step, ignoreDelay: true);
                 }
 
                 e.Handled = true;

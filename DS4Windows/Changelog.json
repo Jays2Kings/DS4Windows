@@ -28,7 +28,8 @@
               "* Added Parler Social link in About window",
               "* Added GitHub Issue template to Git repository",
               "* Added minimum threshold for Gyro Mouse Joystick",
-              "* Set neutral resource language for assembly"],
+              "* Set neutral resource language for assembly",
+              "* Disabled force feedback support for virtual DS4 controllers"],
             "editor": "ryochan7",
             "editors_note": ["Still nothin"],
             "updated_at": "2020-08-07T15:43:44+0000"

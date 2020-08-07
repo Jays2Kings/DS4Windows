@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.Diagnostics;
 using Sensorit.Base;
+using DS4Windows.DS4Control;
 
 namespace DS4Windows
 {

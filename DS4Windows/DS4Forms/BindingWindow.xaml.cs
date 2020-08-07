@@ -607,6 +607,9 @@ namespace DS4WinWPF.DS4Forms
             associatedBindings.Add(raltBtn,
                 new BindAssociation() { outputType = BindAssociation.OutType.Key, outkey = 0xA5 });
             raltBtn.Click += OutputKeyBtn_Click;
+            associatedBindings.Add(rwinBtn,
+                new BindAssociation() { outputType = BindAssociation.OutType.Key, outkey = 0x5C });
+            rwinBtn.Click += OutputKeyBtn_Click;
             associatedBindings.Add(rctrlBtn,
                 new BindAssociation() { outputType = BindAssociation.OutType.Key, outkey = 0xA3 });
             rctrlBtn.Click += OutputKeyBtn_Click;
@@ -730,7 +733,7 @@ namespace DS4WinWPF.DS4Forms
         {
             ImageSourceConverter sourceConverter = new ImageSourceConverter();
             ImageSource temp = sourceConverter.
-                ConvertFromString("pack://application:,,,/DS4Windows;component/Resources/DS4 Config.png") as ImageSource;
+                ConvertFromString($"{DS4Windows.Global.ASSEMBLY_RESOURCE_PREFIX}component/Resources/DS4 Config.png") as ImageSource;
             conImageBrush.ImageSource = temp;
 
             Canvas.SetLeft(aBtn, 442); Canvas.SetTop(aBtn, 148);

@@ -31,6 +31,11 @@ namespace DS4WinWPF
 
         private void WriteToLog(object sender, DS4Windows.DebugEventArgs e)
         {
+            if (e.Temporary)
+            {
+                return;
+            }
+
             if (!e.Warning)
             {
                 logger.Info(e.Data);

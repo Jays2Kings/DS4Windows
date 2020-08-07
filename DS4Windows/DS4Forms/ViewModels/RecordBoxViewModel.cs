@@ -68,15 +68,22 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public int EditMacroIndex { get => editMacroIndex; set => editMacroIndex = value; }
         public Dictionary<int, bool> KeysdownMap { get => keysdownMap; }
         public bool UseScanCode { get => useScanCode; set => useScanCode = value; }
+        public static HashSet<int> KeydownOverrides { get => keydownOverrides; }
 
         private int editMacroIndex = -1;
         private Dictionary<int, bool> keysdownMap = new Dictionary<int, bool>();
+        private static HashSet<int> keydownOverrides;
 
         private bool useScanCode;
 
 
         public RecordBoxViewModel(int deviceNum, DS4ControlSettings controlSettings, bool shift)
         {
+            if (keydownOverrides == null)
+            {
+                CreateKeyDownOverrides();
+            }
+
             this.deviceNum = deviceNum;
             settings = controlSettings;
             this.shift = shift;
@@ -111,6 +118,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             
             // By default RECORD button appends new steps. User must select (click) an existing step to insert new steps in front of the selected step
             this.MacroStepIndex = -1;
+        }
+
+        private void CreateKeyDownOverrides()
+        {
+            keydownOverrides = new HashSet<int>()
+            {
+                44,
+            };
         }
 
         public void LoadMacro()
@@ -233,9 +248,9 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             sw.Close();
         }
 
-        public void AddMacroStep(MacroStep step)
+        public void AddMacroStep(MacroStep step, bool ignoreDelay = false)
         {
-            if (recordDelays && macroSteps.Count > 0)
+            if (recordDelays && macroSteps.Count > 0 && !ignoreDelay)
             {
                 int elapsed = (int)sw.ElapsedMilliseconds + 300;
                 MacroStep waitstep = new MacroStep(elapsed, $"Wait {elapsed - 300}ms",

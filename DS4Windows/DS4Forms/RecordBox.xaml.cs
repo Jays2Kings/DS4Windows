@@ -325,6 +325,16 @@ namespace DS4WinWPF.DS4Forms
                     recordBoxVM.AddMacroStep(step);
                     recordBoxVM.KeysdownMap.Remove(value);
                 }
+                else if (RecordBoxViewModel.KeydownOverrides.Contains(value))
+                {
+                    DS4Windows.MacroStep step = new DS4Windows.MacroStep(value, tempKey.ToString(),
+                            DS4Windows.MacroStep.StepType.ActDown, DS4Windows.MacroStep.StepOutput.Key);
+                    recordBoxVM.AddMacroStep(step, ignoreDelay: true);
+
+                    step = new DS4Windows.MacroStep(value, tempKey.ToString(),
+                            DS4Windows.MacroStep.StepType.ActUp, DS4Windows.MacroStep.StepOutput.Key);
+                    recordBoxVM.AddMacroStep(step, ignoreDelay: true);
+                }
 
                 e.Handled = true;
                 //Console.WriteLine(e.Key);

@@ -754,6 +754,31 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.SASteeringWheelEmulationRange[device] = value;
         }
 
+        public bool SASteeringWheelUseSmoothing
+        {
+            get => Global.WheelSmoothInfo[device].Enabled;
+            set
+            {
+                bool temp = Global.WheelSmoothInfo[device].Enabled;
+                if (temp == value) return;
+                Global.WheelSmoothInfo[device].Enabled = value;
+                SASteeringWheelUseSmoothingChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler SASteeringWheelUseSmoothingChanged;
+
+        public double SASteeringWheelSmoothMinCutoff
+        {
+            get => Global.WheelSmoothInfo[device].MinCutoff;
+            set => Global.WheelSmoothInfo[device].MinCutoff = value;
+        }
+
+        public double SASteeringWheelSmoothBeta
+        {
+            get => Global.WheelSmoothInfo[device].Beta;
+            set => Global.WheelSmoothInfo[device].Beta = value;
+        }
+
         public double LSDeadZone
         {
             get => Math.Round(Global.LSModInfo[device].deadZone / 127d, 2);
@@ -1435,20 +1460,39 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public double GyroMouseStickAntiDeadX
         {
-            get => Global.GyroMouseStickInf[device].antiDeadX;
-            set => Global.GyroMouseStickInf[device].antiDeadX = value;
+            get => Global.GyroMouseStickInf[device].antiDeadX * 100.0;
+            set => Global.GyroMouseStickInf[device].antiDeadX = value * 0.01;
         }
 
         public double GyroMouseStickAntiDeadY
         {
-            get => Global.GyroMouseStickInf[device].antiDeadY;
-            set => Global.GyroMouseStickInf[device].antiDeadY = value;
+            get => Global.GyroMouseStickInf[device].antiDeadY * 100.0;
+            set => Global.GyroMouseStickInf[device].antiDeadY = value * 0.01;
         }
 
         public int GyroMouseStickVertScale
         {
             get => Global.GyroMouseStickInf[device].vertScale;
             set => Global.GyroMouseStickInf[device].vertScale = value;
+        }
+
+        public bool GyroMouseStickMaxOutputEnabled
+        {
+            get => Global.GyroMouseStickInf[device].maxOutputEnabled;
+            set
+            {
+                bool temp = Global.GyroMouseStickInf[device].maxOutputEnabled;
+                if (temp == value) return;
+                Global.GyroMouseStickInf[device].maxOutputEnabled = value;
+                GyroMouseStickMaxOutputChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler GyroMouseStickMaxOutputChanged;
+
+        public double GyroMouseStickMaxOutput
+        {
+            get => Global.GyroMouseStickInf[device].maxOutput;
+            set => Global.GyroMouseStickInf[device].maxOutput = value;
         }
 
         public int GyroMouseStickEvalCondIndex
@@ -1568,7 +1612,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
             ImageSourceConverter sourceConverter = new ImageSourceConverter();
             ImageSource temp = sourceConverter.
-                ConvertFromString("pack://application:,,,/DS4Windows;component/Resources/rainbowCCrop.png") as ImageSource;
+                ConvertFromString($"{Global.ASSEMBLY_RESOURCE_PREFIX}component/Resources/rainbowCCrop.png") as ImageSource;
             lightbarImgBrush.ImageSource = temp.Clone();
 
             presetMenuUtil = new PresetMenuHelper(device);

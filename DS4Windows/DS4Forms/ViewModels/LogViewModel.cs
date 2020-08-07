@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Windows.Data;
+using DS4Windows;
 
 namespace DS4WinWPF.DS4Forms.ViewModels
 {
@@ -36,22 +37,17 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             if (writeAccess)
             {
-                _logListLocker.EnterWriteLock();
+                using (WriteLocker locker = new WriteLocker(_logListLocker))
+                {
+                    accessMethod?.Invoke();
+                }
             }
             else
             {
-                _logListLocker.EnterReadLock();
-            }
-
-            accessMethod?.Invoke();
-
-            if (writeAccess)
-            {
-                _logListLocker.ExitWriteLock();
-            }
-            else
-            {
-                _logListLocker.ExitReadLock();
+                using (ReadLocker locker = new ReadLocker(_logListLocker))
+                {
+                    accessMethod?.Invoke();
+                }
             }
         }
 

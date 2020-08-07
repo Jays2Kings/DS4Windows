@@ -30,6 +30,10 @@ namespace DS4Windows
         internal static extern bool CloseHandle(IntPtr hObject);
 
 	    internal const int FILE_FLAG_OVERLAPPED = 0x40000000;
+	    internal const uint FILE_FLAG_NO_BUFFERING = 0x20000000;
+	    internal const uint FILE_FLAG_WRITE_THROUGH = 0x80000000;
+	    internal const uint FILE_ATTRIBUTE_TEMPORARY = 0x100;
+
 	    internal const short FILE_SHARE_READ = 0x1;
 	    internal const short FILE_SHARE_WRITE = 0x2;
 	    internal const uint GENERIC_READ = 0x80000000;

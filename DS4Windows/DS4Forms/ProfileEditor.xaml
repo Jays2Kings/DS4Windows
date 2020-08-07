@@ -772,40 +772,62 @@
                             <Label x:Name="gyroXNLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <Label Content="Steering wheel axis" />
-                            <ComboBox Width="160" Margin="8,0,0,0" SelectedIndex="{Binding SASteeringWheelEmulationAxisIndex,FallbackValue=0}">
-                                <ComboBoxItem Content="None" />
-                                <ComboBoxItem Content="Left X-Axis" />
-                                <ComboBoxItem Content="Left Y-Axis" />
-                                <ComboBoxItem Content="Right X-Axis" />
-                                <ComboBoxItem Content="Right Y-Axis" />
-                                <ComboBoxItem Content="Trigger L+R Axis" />
-                                <ComboBoxItem Content="VJoy1 X-Axis" />
-                                <ComboBoxItem Content="VJoy1 Y-Axis" />
-                                <ComboBoxItem Content="VJoy1 Z-Axis" />
-                                <ComboBoxItem Content="VJoy2 X-Axis" />
-                                <ComboBoxItem Content="VJoy2 Y-Axis" />
-                                <ComboBoxItem Content="VJoy2 Z-Axis" />
-                            </ComboBox>
-                        </StackPanel>
+                        <GroupBox Header="360 Steering Wheel" Margin="0,10,0,0" Padding="2,4">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <Label Content="Steering wheel axis" />
+                                    <ComboBox Width="160" Margin="8,0,0,0" SelectedIndex="{Binding SASteeringWheelEmulationAxisIndex,FallbackValue=0}">
+                                        <ComboBoxItem Content="None" />
+                                        <ComboBoxItem Content="Left X-Axis" />
+                                        <ComboBoxItem Content="Left Y-Axis" />
+                                        <ComboBoxItem Content="Right X-Axis" />
+                                        <ComboBoxItem Content="Right Y-Axis" />
+                                        <ComboBoxItem Content="Trigger L+R Axis" />
+                                        <ComboBoxItem Content="VJoy1 X-Axis" />
+                                        <ComboBoxItem Content="VJoy1 Y-Axis" />
+                                        <ComboBoxItem Content="VJoy1 Z-Axis" />
+                                        <ComboBoxItem Content="VJoy2 X-Axis" />
+                                        <ComboBoxItem Content="VJoy2 Y-Axis" />
+                                        <ComboBoxItem Content="VJoy2 Z-Axis" />
+                                    </ComboBox>
+                                </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <Label Content="Steering wheel range" />
-                            <ComboBox Margin="8,0,0,0" SelectedIndex="{Binding SASteeringWheelEmulationRangeIndex,FallbackValue=0}">
-                                <ComboBoxItem Content="90" />
-                                <ComboBoxItem Content="180" />
-                                <ComboBoxItem Content="270" />
-                                <ComboBoxItem Content="360" />
-                                <ComboBoxItem Content="450" />
-                                <ComboBoxItem Content="720" />
-                                <ComboBoxItem Content="900" />
-                                <ComboBoxItem Content="1080" />
-                                <ComboBoxItem Content="1440" />
-                            </ComboBox>
-                            <Button x:Name="steeringWheelEmulationCalibrateBtn" Content="Calibrate" Margin="8,0,0,0"
-                                    Click="SteeringWheelEmulationCalibrateBtn_Click" />
-                        </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <Label Content="Steering wheel range" />
+                                    <ComboBox Margin="8,0,0,0" SelectedIndex="{Binding SASteeringWheelEmulationRangeIndex,FallbackValue=0}">
+                                        <ComboBoxItem Content="90" />
+                                        <ComboBoxItem Content="180" />
+                                        <ComboBoxItem Content="270" />
+                                        <ComboBoxItem Content="360" />
+                                        <ComboBoxItem Content="450" />
+                                        <ComboBoxItem Content="720" />
+                                        <ComboBoxItem Content="900" />
+                                        <ComboBoxItem Content="1080" />
+                                        <ComboBoxItem Content="1440" />
+                                    </ComboBox>
+                                    <Button x:Name="steeringWheelEmulationCalibrateBtn" Content="Calibrate" Margin="8,0,0,0"
+                                        Click="SteeringWheelEmulationCalibrateBtn_Click" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <CheckBox Content="Use Smoothing" IsChecked="{Binding SASteeringWheelUseSmoothing}" />
+                                </StackPanel>
+
+                                <StackPanel x:Name="euroFilterOptionsPanel" IsEnabled="{Binding SASteeringWheelUseSmoothing,FallbackValue=False}"
+                                            Orientation="Horizontal" Margin="0,0,0,8">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="1&#x20ac; MinCutoff" />
+                                        <xctk:DoubleUpDown x:Name="euroMinCutoff" d:IsHidden="True" FormatString="F5" Value="{Binding SASteeringWheelSmoothMinCutoff,FallbackValue=1.0,UpdateSourceTrigger=LostFocus}"
+                                                           Minimum="0.00001" Maximum="1000.0" Increment="0.1" MinWidth="60" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
+                                        <Label Content="1&#x20ac; Beta" />
+                                        <xctk:DoubleUpDown x:Name="euroBeta" d:IsHidden="True" FormatString="F5" Value="{Binding SASteeringWheelSmoothBeta,FallbackValue=0.0,UpdateSourceTrigger=LostFocus}"
+                                                           Minimum="0.0" Maximum="1.0" MinWidth="60" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
                     </StackPanel>
 
                     <StackPanel x:Name="gyroMousePanel" Visibility="Collapsed" Margin="{StaticResource spaceMargin}">
@@ -900,7 +922,7 @@
                     <StackPanel x:Name="gyroMouseJoystickPanel" Visibility="Collapsed">
                         <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
                             <Label Content="Triggers" />
-                            <Button x:Name="gyroMouseStickTrigBtn" Content="{Binding GyroMouseStickTrigDisplay,FallbackValue=Always On}" MinWidth="160"
+                            <Button x:Name="gyroMouseStickTrigBtn" Content="{Binding GyroMouseStickTrigDisplay,FallbackValue='Always On'}" MinWidth="160"
                                     Margin="8,0,0,0" Click="GyroMouseStickTrigBtn_Click" >
                                 <Button.ContextMenu>
                                     <ContextMenu>
@@ -939,22 +961,33 @@
                             <Label Content="Dead Zone" />
                             <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickDeadZone}" MinWidth="60" />
                             <Label Content="Max Zone" Margin="8,0,0,0" />
-                            <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickMaxZone}" MinWidth="60" />
+                            <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickMaxZone}" MinWidth="60"
+                                                Minimum="1" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Height="30" Margin="{StaticResource spaceMargin}">
                             <Label Content="Minimum X" />
                             <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickAntiDeadX}" MinWidth="60"
-                                               Minimum="0.0" Maximum="1.0" Increment="0.1" />
+                                               FormatString="F0" Minimum="0.0" Maximum="100.0" Increment="10.0" />
+                            <Label Content="%" />
+
                             <Label Content="Minimum Y" Margin="8,0,0,0" />
                             <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickAntiDeadY}" MinWidth="60"
-                                               Minimum="0.0" Maximum="1.0" Increment="0.1" />
+                                               FormatString="F0" Minimum="0.0" Maximum="100.0" Increment="10.0" />
+                            <Label Content="%" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
                             <Label Content="Vertical Scale" />
                             <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickVertScale}" MinWidth="60"
                                                 Minimum="0" Maximum="400" Increment="10" />
+                            <Label Content="%" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                            <CheckBox Content="Max Output" IsChecked="{Binding GyroMouseStickMaxOutputEnabled,FallbackValue=False}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickMaxOutput}" IsEnabled="{Binding GyroMouseStickMaxOutputEnabled,FallbackValue=False}"
+                                               FormatString="F0" MinWidth="60" Maximum="100.0" Minimum="0.0" Increment="10.0" />
                             <Label Content="%" />
                         </StackPanel>
 
@@ -1085,7 +1118,7 @@
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
-                        <Label Content="Controller" ToolTip="{lex:Loc Resources:OutContNotice}" />
+                        <Label Content="Emulated Controller" ToolTip="{lex:Loc Resources:OutContNotice}" />
                         <ComboBox x:Name="outConTypeCombo" SelectedIndex="{Binding TempControllerIndex,FallbackValue=0}" MinWidth="140"
                                   ToolTip="{lex:Loc Resources:OutContNotice}">
                             <ComboBoxItem Content="Xbox 360"/>

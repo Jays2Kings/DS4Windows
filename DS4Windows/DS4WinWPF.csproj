@@ -299,6 +299,7 @@
     <Compile Include="ProfileEntity.cs" />
     <Compile Include="ProfileList.cs" />
     <Compile Include="DS4Forms\ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ReaderWriteLockSlimWrappers.cs" />
     <Compile Include="Translations\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -489,6 +490,7 @@
     <Content Include="BezierCurveEditor\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\social\parler.png" />
     <Resource Include="Resources\key-solid.png" />
     <Resource Include="Resources\social\bitchute.png" />
     <Resource Include="Resources\social\youtube_social_icon_red.png" />

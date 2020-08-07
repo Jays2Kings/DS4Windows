@@ -598,7 +598,7 @@ namespace DS4Windows
             else if (contType == OutContType.DS4)
             {
                 DS4OutDevice tempDS4 = outDevice as DS4OutDevice;
-                tempDS4.cont.FeedbackReceived -= tempDS4.forceFeedbackCall;
+                //tempDS4.cont.FeedbackReceived -= tempDS4.forceFeedbackCall;
                 tempDS4.forceFeedbackCall = null;
             }
         }
@@ -698,7 +698,7 @@ namespace DS4Windows
                         {
                             DS4OutDevice tempDS4 = EstablishOutDevice(index, OutContType.DS4)
                             as DS4OutDevice;
-                            EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
+                            //EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
                             outputslotMan.DeferredPlugin(tempDS4, index, outputDevices, contType);
                             //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
@@ -714,7 +714,7 @@ namespace DS4Windows
                     {
                         slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
                         DS4OutDevice tempDS4 = slotDevice.OutputDevice as DS4OutDevice;
-                        EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
+                        //EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
 
                         outputslotMan.EventDispatcher.BeginInvoke((Action)(() =>
                         {

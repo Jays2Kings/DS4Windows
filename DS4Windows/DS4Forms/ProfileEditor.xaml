@@ -961,7 +961,8 @@
                             <Label Content="Dead Zone" />
                             <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickDeadZone}" MinWidth="60" />
                             <Label Content="Max Zone" Margin="8,0,0,0" />
-                            <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickMaxZone}" MinWidth="60" />
+                            <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickMaxZone}" MinWidth="60"
+                                                Minimum="1" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Height="30" Margin="{StaticResource spaceMargin}">

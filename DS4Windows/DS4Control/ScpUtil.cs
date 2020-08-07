@@ -3734,7 +3734,7 @@ namespace DS4Windows
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickMaxZone"); int.TryParse(Item.InnerText, out int temp);
-                    gyroMStickInfo[device].maxZone = temp;
+                    gyroMStickInfo[device].maxZone = Math.Max(temp, 1);
                 }
                 catch { gyroMStickInfo[device].maxZone = 830; missingSetting = true; }
 

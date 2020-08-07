@@ -100,5 +100,10 @@ namespace DS4WinWPF.DS4Forms
         {
             Util.StartProcessHelper("https://discord.gg/zrpPgyN");
         }
+
+        private void ParlerSocialBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessHelper("https://parler.com/profile/ds4windows/");
+        }
     }
 }

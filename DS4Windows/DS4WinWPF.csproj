@@ -480,6 +480,7 @@
     <Content Include="BezierCurveEditor\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\social\parler.png" />
     <Resource Include="Resources\key-solid.png" />
     <Resource Include="Resources\social\bitchute.png" />
     <Resource Include="Resources\social\youtube_social_icon_red.png" />

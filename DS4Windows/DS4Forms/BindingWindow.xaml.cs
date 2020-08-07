@@ -607,6 +607,9 @@ namespace DS4WinWPF.DS4Forms
             associatedBindings.Add(raltBtn,
                 new BindAssociation() { outputType = BindAssociation.OutType.Key, outkey = 0xA5 });
             raltBtn.Click += OutputKeyBtn_Click;
+            associatedBindings.Add(rwinBtn,
+                new BindAssociation() { outputType = BindAssociation.OutType.Key, outkey = 0x5C });
+            rwinBtn.Click += OutputKeyBtn_Click;
             associatedBindings.Add(rctrlBtn,
                 new BindAssociation() { outputType = BindAssociation.OutType.Key, outkey = 0xA3 });
             rctrlBtn.Click += OutputKeyBtn_Click;

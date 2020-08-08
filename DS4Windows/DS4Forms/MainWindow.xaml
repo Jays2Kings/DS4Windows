@@ -344,10 +344,6 @@
                                     <!--="CheckUpdatesBtn_Click">-->
                                     <TextBlock Text="{lex:Loc CheckUpdateNow}" TextDecorations="Underline" Foreground="#FF3881D8" Cursor="Hand" />
                                 </Button>
-                                <!--<Button x:Name="createFakeExeBtn" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}"
-                                    Style="{StaticResource NoBGHoverBtn}" Click="CreateFakeExeBtn_Click">
-                                    <TextBlock Text="Create Fake Exe" TextDecorations="Underline" Foreground="#FF3881D8" Cursor="Hand" />
-                                </Button>-->
                             </StackPanel>
                         </GroupBox>
                     </WrapPanel>

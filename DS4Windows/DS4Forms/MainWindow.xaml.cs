@@ -1554,21 +1554,6 @@ Suspend support not enabled.", true);
             }
         }
 
-        private async void CreateFakeExeBtn_Click(object sender, RoutedEventArgs e)
-        {
-            //if (MessageBox.Show("Create Fake Exe?", "Create Fake Exe", MessageBoxButton.YesNo, MessageBoxImage.Question)
-            //    == MessageBoxResult.Yes)
-            //{
-            //    await Task.Run(() =>
-            //    {
-            //        string temp_filename = Global.CreateFakeExeFileName();
-            //        settingsWrapVM.CreateFakeExe(temp_filename);
-            //    });
-
-            //    MessageBox.Show("Complete", "Complete", MessageBoxButton.OK);
-            //}
-        }
-
         private void FakeExeNameExplainBtn_Click(object sender, RoutedEventArgs e)
         {
             string message = Translations.Strings.CustomExeNameInfo;

@@ -254,6 +254,7 @@ namespace DS4Windows
         protected static Int32 m_IdleTimeout = 600000;
         public static string exelocation = Assembly.GetExecutingAssembly().Location;
         public static string exedirpath = Directory.GetParent(exelocation).FullName;
+        public static string exeFileName = Path.GetFileName(exelocation);
         public static FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(exelocation);
         public static string exeversion = fileVersion.ProductVersion;
         public static ulong exeversionLong = (ulong)fileVersion.ProductMajorPart << 48 |
@@ -283,6 +284,7 @@ namespace DS4Windows
         public static string vigembusVersion = ViGEmBusVersion();
         public const int CONFIG_VERSION = 3;
         public const string ASSEMBLY_RESOURCE_PREFIX = "pack://application:,,,/DS4Windows;";
+        public const string CUSTOM_EXE_CONFIG_FILENAME = "custom_exe_name.txt";
 
         public static X360Controls[] defaultButtonMapping = { X360Controls.None, X360Controls.LXNeg, X360Controls.LXPos,
             X360Controls.LYNeg, X360Controls.LYPos, X360Controls.RXNeg, X360Controls.RXPos, X360Controls.RYNeg, X360Controls.RYPos,
@@ -463,6 +465,212 @@ namespace DS4Windows
             [DS4Controls.RXNeg] = 283, [DS4Controls.RYPos] = 284,
             [DS4Controls.RYNeg] = 285,
         };
+
+        /*const int NUM_GOD_WORDS_LEN = 1000;
+        public static string[] godWords1000Array = new string[NUM_GOD_WORDS_LEN]
+        {
+            "the", "of", "to", "and", "a",
+            "in", "is", "it", "you", "that",
+            "he", "was", "for", "on", "are",
+            "with", "as", "I", "his", "they",
+            "be", "at", "one", "have", "this",
+            "from", "or", "had", "by", "hot",
+            "word", "but", "what", "some", "we",
+            "can", "out", "other", "were", "all",
+            "there", "when", "up", "use", "your",
+            "how", "said", "an", "each", "she",
+            "which", "do", "their", "time", "if",
+            "will", "way", "about", "many", "then",
+            "them", "write", "would", "like", "so",
+            "these", "her", "long", "make", "thing",
+            "see", "him", "two", "has", "look",
+            "more", "day", "could", "go", "come",
+            "did", "number", "sound", "no", "most",
+            "people", "my", "over", "know", "water",
+            "than", "call", "first", "who", "may",
+            "down", "side", "been", "now", "find",
+            "any", "new", "work", "part", "take",
+            "get", "place", "made", "live", "where",
+            "after", "back", "little", "only", "round",
+            "man", "year", "came", "show", "every",
+            "good", "me", "give", "our", "under",
+            "name", "very", "through", "just", "form",
+            "sentence", "great", "think", "say", "help",
+            "low", "line", "differ", "turn", "cause",
+            "much", "mean", "before", "move", "right",
+            "boy", "old", "too", "same", "tell",
+            "does", "set", "three", "want", "air",
+            "well", "also", "play", "small", "end",
+            "put", "home", "read", "hand", "port",
+            "large", "spell", "add", "even", "land",
+            "here", "must", "big", "high", "such",
+            "follow", "act", "why", "ask", "men",
+            "change", "went", "light", "kind", "off",
+            "need", "house", "picture", "try", "us",
+            "again", "animal", "point", "mother", "world",
+            "near", "build", "self", "earth", "father",
+            "head", "stand", "own", "page", "should",
+            "country", "found", "answer", "school", "grow",
+            "study", "still", "learn", "plant", "cover",
+            "food", "sun", "four", "between", "state",
+            "keep", "eye", "never", "last", "let",
+            "thought", "city", "tree", "cross", "farm",
+            "hard", "start", "might", "story", "saw",
+            "far", "sea", "draw", "left", "late",
+            "run", "don't", "while", "press", "close",
+            "night", "real", "life", "few", "north",
+            "open", "seem", "together", "next", "white",
+            "children", "begin", "got", "walk", "example",
+            "ease", "paper", "group", "always", "music",
+            "those", "both", "mark", "often", "letter",
+            "until", "mile", "river", "car", "feet",
+            "care", "second", "book", "carry", "took",
+            "science", "eat", "room", "friend", "began",
+            "idea", "fish", "mountain", "stop", "once",
+            "base", "hear", "horse", "cut", "sure",
+            "watch", "color", "face", "wood", "main",
+            "enough", "plain", "girl", "usual", "young",
+            "ready", "above", "ever", "red", "list",
+            "though", "feel", "talk", "bird", "soon",
+            "body", "dog", "family", "direct", "pose",
+            "leave", "song", "measure", "door", "product",
+            "black", "short", "numeral", "class", "wind",
+            "question", "happen", "complete", "ship", "area",
+            "half", "rock", "order", "fire", "south",
+            "problem", "piece", "told", "knew", "pass",
+            "since", "top", "whole", "king", "space",
+            "heard", "best", "hour", "better", "true",
+            "during", "hundred", "five", "remember", "step",
+            "early", "hold", "west", "ground", "interest",
+            "reach", "fast", "verb", "sing", "listen",
+            "six", "table", "travel", "less", "morning",
+            "ten", "simple", "several", "vowel", "toward",
+            "war", "lay", "against", "pattern", "slow",
+            "center", "love", "person", "money", "serve",
+            "appear", "road", "map", "rain", "rule",
+            "govern", "pull", "cold", "notice", "voice",
+            "unit", "power", "town", "fine", "certain",
+            "fly", "fall", "lead", "cry", "dark",
+            "machine", "note", "wait", "plan", "figure",
+            "star", "box", "noun", "field", "rest",
+            "correct", "able", "pound", "done", "beauty",
+            "drive", "stood", "contain", "front", "teach",
+            "week", "final", "gave", "green", "oh",
+            "quick", "develop", "ocean", "warm", "free",
+            "minute", "strong", "special", "mind", "behind",
+            "clear", "tail", "produce", "fact", "street",
+            "inch", "multiply", "nothing", "course", "stay",
+            "wheel", "full", "force", "blue", "object",
+            "decide", "surface", "deep", "moon", "island",
+            "foot", "system", "busy", "test", "record",
+            "boat", "common", "gold", "possible", "plane",
+            "stead", "dry", "wonder", "laugh", "thousand",
+            "ago", "ran", "check", "game", "shape",
+            "equate", "hot", "miss", "brought", "heat",
+            "snow", "tire", "bring", "yes", "distant",
+            "fill", "east", "paint", "language", "among",
+            "grand", "ball", "yet", "wave", "drop",
+            "heart", "am", "present", "heavy", "dance",
+            "engine", "position", "arm", "wide", "sail",
+            "material", "size", "vary", "settle", "speak",
+            "weight", "general", "ice", "matter", "circle",
+            "pair", "include", "divide", "syllable", "felt",
+            "perhaps", "pick", "sudden", "count", "square",
+            "reason", "length", "represent", "art", "subject",
+            "region", "energy", "hunt", "probable", "bed",
+            "brother", "egg", "ride", "cell", "believe",
+            "fraction", "forest", "sit", "race", "window",
+            "store", "summer", "train", "sleep", "prove",
+            "lone", "leg", "exercise", "wall", "catch",
+            "mount", "wish", "sky", "board", "joy",
+            "winter", "sat", "written", "wild", "instrument",
+            "kept", "glass", "grass", "cow", "job",
+            "edge", "sign", "visit", "past", "soft",
+            "fun", "bright", "gas", "weather", "month",
+            "million", "bear", "finish", "happy", "hope",
+            "flower", "clothe", "strange", "gone", "jump",
+            "baby", "eight", "village", "meet", "root",
+            "buy", "raise", "solve", "metal", "whether",
+            "push", "seven", "paragraph", "third", "shall",
+            "held", "hair", "describe", "cook", "floor",
+            "either", "result", "burn", "hill", "safe",
+            "cat", "century", "consider", "type", "law",
+            "bit", "coast", "copy", "phrase", "silent",
+            "tall", "sand", "soil", "roll", "temperature",
+            "finger", "industry", "value", "fight", "lie",
+            "beat", "excite", "natural", "view", "sense",
+            "ear", "else", "quite", "broke", "case",
+            "middle", "kill", "son", "lake", "moment",
+            "scale", "loud", "spring", "observe", "child",
+            "straight", "consonant", "nation", "dictionary", "milk",
+            "speed", "method", "organ", "pay", "age",
+            "section", "dress", "cloud", "surprise", "quiet",
+            "stone", "tiny", "climb", "cool", "design",
+            "poor", "lot", "experiment", "bottom", "key",
+            "iron", "single", "stick", "flat", "twenty",
+            "skin", "smile", "crease", "hole", "trade",
+            "melody", "trip", "office", "receive", "row",
+            "mouth", "exact", "symbol", "die", "least",
+            "trouble", "shout", "except", "wrote", "seed",
+            "tone", "join", "suggest", "clean", "break",
+            "lady", "yard", "rise", "bad", "blow",
+            "oil", "blood", "touch", "grew", "cent",
+            "mix", "team", "wire", "cost", "lost",
+            "brown", "wear", "garden", "equal", "sent",
+            "choose", "fell", "fit", "flow", "fair",
+            "bank", "collect", "save", "control", "decimal",
+            "gentle", "woman", "captain", "practice", "separate",
+            "difficult", "doctor", "please", "protect", "noon",
+            "whose", "locate", "ring", "character", "insect",
+            "caught", "period", "indicate", "radio", "spoke",
+            "atom", "human", "history", "effect", "electric",
+            "expect", "crop", "modern", "element", "hit",
+            "student", "corner", "party", "supply", "bone",
+            "rail", "imagine", "provide", "agree", "thus",
+            "capital", "won't", "chair", "danger", "fruit",
+            "rich", "thick", "soldier", "process", "operate",
+            "guess", "necessary", "sharp", "wing", "create",
+            "neighbor", "wash", "bat", "rather", "crowd",
+            "corn", "compare", "poem", "string", "bell",
+            "depend", "meat", "rub", "tube", "famous",
+            "dollar", "stream", "fear", "sight", "thin",
+            "triangle", "planet", "hurry", "chief", "colony",
+            "clock", "mine", "tie", "enter", "major",
+            "fresh", "search", "send", "yellow", "gun",
+            "allow", "print", "dead", "spot", "desert",
+            "suit", "current", "lift", "rose", "continue",
+            "block", "chart", "hat", "sell", "success",
+            "company", "subtract", "event", "particular", "deal",
+            "swim", "term", "opposite", "wife", "shoe",
+            "shoulder", "spread", "arrange", "camp", "invent",
+            "cotton", "born", "determine", "quart", "nine",
+            "truck", "noise", "level", "chance", "gather",
+            "shop", "stretch", "throw", "shine", "property",
+            "column", "molecule", "select", "wrong", "gray",
+            "repeat", "require", "broad", "prepare", "salt",
+            "nose", "plural", "anger", "claim", "continent",
+            "oxygen", "sugar", "death", "pretty", "skill",
+            "women", "season", "solution", "magnet", "silver",
+            "thank", "branch", "match", "suffix", "especially",
+            "fig", "afraid", "huge", "sister", "steel",
+            "discuss", "forward", "similar", "guide", "experience",
+            "score", "apple", "bought", "led", "pitch",
+            "coat", "mass", "card", "band", "rope",
+            "slip", "win", "dream", "evening", "condition",
+            "feed", "tool", "total", "basic", "smell",
+            "valley", "nor", "double", "seat", "arrive",
+            "master", "track", "parent", "shore", "division",
+            "sheet", "substance", "favor", "connect", "post",
+            "spend", "chord", "fat", "glad", "original",
+            "share", "station", "dad", "bread", "charge",
+            "proper", "bar", "offer", "segment", "slave",
+            "duck", "instant", "market", "degree", "populate",
+            "chick", "dear", "enemy", "reply", "drink",
+            "occur", "support", "speech", "nature", "range",
+            "steam", "motion", "path", "liquid", "log",
+            "meant", "quotient", "teeth", "shell", "neck",
+        };
+        */
 
         public static void SaveWhere(string path)
         {
@@ -730,6 +938,24 @@ namespace DS4Windows
         {
             return GetViGEmDriverProperty(NativeMethods.DEVPKEY_Device_DriverVersion);
         }
+
+        /*public static string CreateFakeExeFileName()
+        {
+            Random tempRandom = new Random();
+            int ind = tempRandom.Next(0, NUM_GOD_WORDS_LEN-1);
+            string temp;
+            string[] choiceArray = new string[3];
+            choiceArray[0] = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(godWords1000Array[ind]);
+
+            ind = tempRandom.Next(0, NUM_GOD_WORDS_LEN - 1);
+            choiceArray[1] = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(godWords1000Array[ind]);
+
+            ind = tempRandom.Next(0, NUM_GOD_WORDS_LEN - 1);
+            choiceArray[2] = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(godWords1000Array[ind]);
+
+            temp = string.Join("", choiceArray);
+            return temp;
+        }*/
 
         public static void FindConfigLocation()
         {
@@ -1099,6 +1325,19 @@ namespace DS4Windows
         {
             set { m_Config.autoProfileRevertDefaultProfile = value; }
             get { return m_Config.autoProfileRevertDefaultProfile; }
+        }
+
+        public static string FakeExeName
+        {
+            get { return m_Config.fakeExeFileName; }
+            set
+            {
+                bool valid = !(value.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0);
+                if (valid)
+                {
+                    m_Config.fakeExeFileName = value;
+                }
+            }
         }
 
         // controller/profile specfic values
@@ -2268,6 +2507,8 @@ namespace DS4Windows
         public string udpServListenAddress = "127.0.0.1"; // 127.0.0.1=IPAddress.Loopback (default), 0.0.0.0=IPAddress.Any as all interfaces, x.x.x.x = Specific ipv4 interface address or hostname
         public bool useCustomSteamFolder;
         public string customSteamFolder;
+        public string fakeExeFileName = string.Empty;
+
         // Cache whether profile has custom action
         public bool[] containsCustomAction = new bool[5] { false, false, false, false, false };
 
@@ -4329,6 +4570,21 @@ namespace DS4Windows
             if (missingSetting)
                 Save();
 
+            if (Loaded)
+            {
+                string custom_exe_name_path = Path.Combine(Global.exedirpath, Global.CUSTOM_EXE_CONFIG_FILENAME);
+                bool fakeExeFileExists = File.Exists(custom_exe_name_path);
+                if (fakeExeFileExists)
+                {
+                    string fake_exe_name = File.ReadAllText(custom_exe_name_path).Trim();
+                    bool valid = !(fake_exe_name.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0);
+                    if (valid)
+                    {
+                        fakeExeFileName = fake_exe_name;
+                    }
+                }
+            }
+
             return Loaded;
         }
 
@@ -4402,8 +4658,24 @@ namespace DS4Windows
 
             m_Xdoc.AppendChild(rootElement);
 
-            try { m_Xdoc.Save(m_Profile); }
+            try
+            {
+                m_Xdoc.Save(m_Profile);
+            }
             catch (UnauthorizedAccessException) { Saved = false; }
+
+            bool adminNeeded = Global.AdminNeeded();
+            if (Saved &&
+                (!adminNeeded || (adminNeeded && Global.IsAdministrator())))
+            {
+                string custom_exe_name_path = Path.Combine(Global.exedirpath, Global.CUSTOM_EXE_CONFIG_FILENAME);
+                bool fakeExeFileExists = File.Exists(custom_exe_name_path);
+                if (!string.IsNullOrEmpty(fakeExeFileName) || fakeExeFileExists)
+                {
+                    File.WriteAllText(custom_exe_name_path, fakeExeFileName);
+                }
+            }
+
             return Saved;
         }
 

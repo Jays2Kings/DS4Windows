@@ -253,6 +253,11 @@ namespace DS4WinWPF.DS4Forms
                             {
                                 argList.Add("-user");
                             }
+
+                            // Specify current exe to have DS4Updater launch
+                            argList.Add("--launchExe");
+                            argList.Add(Global.exeFileName);
+
                             p.StartInfo.Arguments = string.Join(" ", argList);
                             if (Global.AdminNeeded())
                                 p.StartInfo.Verb = "runas";
@@ -1547,6 +1552,28 @@ Suspend support not enabled.", true);
                 }
                 catch { }
             }
+        }
+
+        private async void CreateFakeExeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //if (MessageBox.Show("Create Fake Exe?", "Create Fake Exe", MessageBoxButton.YesNo, MessageBoxImage.Question)
+            //    == MessageBoxResult.Yes)
+            //{
+            //    await Task.Run(() =>
+            //    {
+            //        string temp_filename = Global.CreateFakeExeFileName();
+            //        settingsWrapVM.CreateFakeExe(temp_filename);
+            //    });
+
+            //    MessageBox.Show("Complete", "Complete", MessageBoxButton.OK);
+            //}
+        }
+
+        private void FakeExeNameExplainBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string message = Translations.Strings.CustomExeNameInfo;
+            MessageBox.Show(message, "Custom Exe Name Info", MessageBoxButton.OK,
+                MessageBoxImage.Information);
         }
     }
 }

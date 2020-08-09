@@ -63,12 +63,19 @@ namespace DS4Windows.DS4Control
 
         public override void MoveRelativeMouse(int x, int y)
         {
+            //const int MOUSE_MIN = -32767;
+            //const int MOUSE_MAX = 32767;
+            const int MOUSE_MIN = -127;
+            const int MOUSE_MAX = 127;
             //Console.WriteLine("RAW MOUSE {0} {1}", x, y);
             eventLock.EnterWriteLock();
 
             mouseReport.ResetMousePos();
-            mouseReport.MouseX = (byte)(x < -127 ? 127 : (x > 127) ? 127 : x);
-            mouseReport.MouseY = (byte)(y < -127 ? 127 : (y > 127) ? 127 : y);
+            mouseReport.MouseX = (byte)(x < MOUSE_MIN ? MOUSE_MIN : (x > MOUSE_MAX) ? MOUSE_MAX : x);
+            mouseReport.MouseY = (byte)(y < MOUSE_MIN ? MOUSE_MIN : (y > MOUSE_MAX) ? MOUSE_MAX : y);
+            //mouseReport.MouseX = (ushort)(x < MOUSE_MIN ? MOUSE_MIN : (x > MOUSE_MAX) ? MOUSE_MAX : x);
+            //mouseReport.MouseY = (ushort)(y < MOUSE_MIN ? MOUSE_MIN : (y > MOUSE_MAX) ? MOUSE_MAX : y);
+            //Console.WriteLine("LKJDFSLKJDFSLKJS {0} {1}", mouseReport.MouseX, mouseReport.MouseY);
 
             vMulti.updateMouse(mouseReport);
 

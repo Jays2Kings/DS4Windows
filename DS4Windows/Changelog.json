@@ -1,9 +1,41 @@
 {
-  "latest_version": "2.1.4",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 4},
-  "updated_at": "2020-07-04T18:07:41+0000",
+  "latest_version": "2.1.5",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 5},
+  "updated_at": "2020-08-07T15:43:44+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.5",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 5},
+        "base_header": "Version 2.1.5",
+        "release_date": "2020-08-07T15:43:44+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.5",
+            "log_text": ["* New 'Query' cmdline options to return profile and DS4Windows app properties to a 3rd party app or batch scripts. Contribution by **mika-n**",
+              "* Fixed Gyro Mouse Joystick invert options",
+              "* Added OneEuroFilter class to project",
+              "* Added 1 Euro Filter options to 360 Steering Wheel mode",
+              "* Disable profile name textbox when editing an existing profile",
+              "* Abstract portion of resource URI strings",
+              "* Added max output throttling option to Gyro Mouse Joystick",
+              "* Quick change to not persist auto profile messages to the log file",
+              "* Added small wrapper for ReaderWriteerLockSlim objects",
+              "* Display Gyro Mouse Joystick anti-dead zones as percentages",
+              "* Take special action for certain keys in RecordBox when WPF does not transmit a KeyDown event",
+              "* Added RWin button handling in mapping window",
+              "* Added Parler Social link in About window",
+              "* Added GitHub Issue template to Git repository",
+              "* Added minimum threshold for Gyro Mouse Joystick",
+              "* Set neutral resource language for assembly",
+              "* Disabled force feedback support for virtual DS4 controllers"],
+            "editor": "ryochan7",
+            "editors_note": ["Still nothin"],
+            "updated_at": "2020-08-07T15:43:44+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.4",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 4},

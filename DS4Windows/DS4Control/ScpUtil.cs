@@ -265,6 +265,7 @@ namespace DS4Windows
         protected static Int32 m_IdleTimeout = 600000;
         public static string exelocation = Assembly.GetExecutingAssembly().Location;
         public static string exedirpath = Directory.GetParent(exelocation).FullName;
+        public static string exeFileName = Path.GetFileName(exelocation);
         public static FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(exelocation);
         public static string exeversion = fileVersion.ProductVersion;
         public static ulong exeversionLong = (ulong)fileVersion.ProductMajorPart << 48 |
@@ -296,6 +297,7 @@ namespace DS4Windows
         public static VirtualKBMMapping outputKBMMapping = null;
         public const int CONFIG_VERSION = 3;
         public const string ASSEMBLY_RESOURCE_PREFIX = "pack://application:,,,/DS4Windows;";
+        public const string CUSTOM_EXE_CONFIG_FILENAME = "custom_exe_name.txt";
 
         public static X360Controls[] defaultButtonMapping = { X360Controls.None, X360Controls.LXNeg, X360Controls.LXPos,
             X360Controls.LYNeg, X360Controls.LYPos, X360Controls.RXNeg, X360Controls.RXPos, X360Controls.RYNeg, X360Controls.RYPos,
@@ -1112,6 +1114,19 @@ namespace DS4Windows
         {
             set { m_Config.autoProfileRevertDefaultProfile = value; }
             get { return m_Config.autoProfileRevertDefaultProfile; }
+        }
+
+        public static string FakeExeName
+        {
+            get { return m_Config.fakeExeFileName; }
+            set
+            {
+                bool valid = !(value.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0);
+                if (valid)
+                {
+                    m_Config.fakeExeFileName = value;
+                }
+            }
         }
 
         // controller/profile specfic values
@@ -2311,6 +2326,8 @@ namespace DS4Windows
         public string udpServListenAddress = "127.0.0.1"; // 127.0.0.1=IPAddress.Loopback (default), 0.0.0.0=IPAddress.Any as all interfaces, x.x.x.x = Specific ipv4 interface address or hostname
         public bool useCustomSteamFolder;
         public string customSteamFolder;
+        public string fakeExeFileName = string.Empty;
+
         // Cache whether profile has custom action
         public bool[] containsCustomAction = new bool[5] { false, false, false, false, false };
 
@@ -4372,6 +4389,21 @@ namespace DS4Windows
             if (missingSetting)
                 Save();
 
+            if (Loaded)
+            {
+                string custom_exe_name_path = Path.Combine(Global.exedirpath, Global.CUSTOM_EXE_CONFIG_FILENAME);
+                bool fakeExeFileExists = File.Exists(custom_exe_name_path);
+                if (fakeExeFileExists)
+                {
+                    string fake_exe_name = File.ReadAllText(custom_exe_name_path).Trim();
+                    bool valid = !(fake_exe_name.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0);
+                    if (valid)
+                    {
+                        fakeExeFileName = fake_exe_name;
+                    }
+                }
+            }
+
             return Loaded;
         }
 
@@ -4445,8 +4477,24 @@ namespace DS4Windows
 
             m_Xdoc.AppendChild(rootElement);
 
-            try { m_Xdoc.Save(m_Profile); }
+            try
+            {
+                m_Xdoc.Save(m_Profile);
+            }
             catch (UnauthorizedAccessException) { Saved = false; }
+
+            bool adminNeeded = Global.AdminNeeded();
+            if (Saved &&
+                (!adminNeeded || (adminNeeded && Global.IsAdministrator())))
+            {
+                string custom_exe_name_path = Path.Combine(Global.exedirpath, Global.CUSTOM_EXE_CONFIG_FILENAME);
+                bool fakeExeFileExists = File.Exists(custom_exe_name_path);
+                if (!string.IsNullOrEmpty(fakeExeFileName) || fakeExeFileExists)
+                {
+                    File.WriteAllText(custom_exe_name_path, fakeExeFileName);
+                }
+            }
+
             return Saved;
         }
 

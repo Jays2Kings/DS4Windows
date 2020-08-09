@@ -253,6 +253,11 @@ namespace DS4WinWPF.DS4Forms
                             {
                                 argList.Add("-user");
                             }
+
+                            // Specify current exe to have DS4Updater launch
+                            argList.Add("--launchExe");
+                            argList.Add(Global.exeFileName);
+
                             p.StartInfo.Arguments = string.Join(" ", argList);
                             if (Global.AdminNeeded())
                                 p.StartInfo.Verb = "runas";
@@ -1547,6 +1552,13 @@ Suspend support not enabled.", true);
                 }
                 catch { }
             }
+        }
+
+        private void FakeExeNameExplainBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string message = Translations.Strings.CustomExeNameInfo;
+            MessageBox.Show(message, "Custom Exe Name Info", MessageBoxButton.OK,
+                MessageBoxImage.Information);
         }
     }
 }

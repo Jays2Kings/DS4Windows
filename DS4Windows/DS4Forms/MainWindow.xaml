@@ -235,7 +235,7 @@
                                     <RadioButton Content="Task" GroupName="RunAsOpt" Margin="{StaticResource spaceMargin}"
                                                  IsChecked="{Binding RunStartTask}" IsEnabled="{Binding CanWriteTask}" />
                                 </StackPanel>
-                                <Image x:Name="uacImg" Source="{Binding UACSource}" Width="30" Height="30"
+                                <Image x:Name="uacImg" Source="{Binding UACSource, Mode=OneTime}" Width="30" Height="30"
                                    ToolTip="{lex:Loc Resources:UACTask}" Margin="20,0,0,0" />
                             </StackPanel>
                         </GroupBox>
@@ -307,6 +307,14 @@
                             <TextBox x:Name="customSteamTxt" Text="{Binding CustomSteamFolder, UpdateSourceTrigger=LostFocus}"
                                  IsEnabled="{Binding UseCustomSteamFolder}" />
                         </StackPanel>
+                        <DockPanel Margin="{StaticResource spaceMargin}">
+                            <Label Content="{lex:Loc CustomExeName}" />
+                            <Button x:Name="fakeExeNameExplainBtn" DockPanel.Dock="Right" Margin="8,0,0,0" Click="FakeExeNameExplainBtn_Click">
+                                <Image Source="{Binding QuestionMarkSource, Mode=OneTime}"
+                                   Width="20" Height="20" Stretch="UniformToFill" />
+                            </Button>
+                            <TextBox x:Name="fakeExeNameTxt" Text="{Binding FakeExeName, UpdateSourceTrigger=LostFocus}" MinWidth="200" />
+                        </DockPanel>
 
                         <GroupBox Width="200" Header="Utils" BorderThickness="2" Margin="{StaticResource spaceMargin}"
                               Padding="8" HorizontalAlignment="Left">

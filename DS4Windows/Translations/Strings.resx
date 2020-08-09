@@ -344,4 +344,12 @@ Changes to this option takes effect at the gamepad connection time.</value>
   <data name="HidNinja" xml:space="preserve">
     <value>HidNinja</value>
   </data>
+  <data name="CustomExeName" xml:space="preserve">
+    <value>Custom Exe Name</value>
+  </data>
+  <data name="CustomExeNameInfo" xml:space="preserve">
+    <value>Some games implement a block that causes DS4 input to be ignored if a game detects either DS4Windows.exe or InputMapper.exe running at the time. A workaround to the block is to rename DS4Windows.exe so the check in the game fails. Specifying a custom exe name here allows DS4Updater to automatically update a custom copy of DS4Windows to the desired file name. Make sure to omit the extension.
+
+Example: whyme_DS4Windows</value>
+  </data>
 </root>

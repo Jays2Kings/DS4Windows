@@ -21,10 +21,6 @@
                     BorderBrush="{x:Null}" Margin="4,0,0,0" Background="{x:Null}" Cursor="Hand" ToolTip="Bittube">
                 <Image Source="/DS4Windows;component/Resources/social/bittube.png" Height="32" />
             </Button>
-            <Button x:Name="lbrySocialBtn" Click="LbrySocialBtn_Click"
-                    BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="LBRY">
-                <Image Source="/DS4Windows;component/Resources/social/lbrylogo.png" Height="32" Margin="4,0,0,0" />
-            </Button>
             <Button x:Name="discordSocialBtn" Click="DiscordSocialBtn_Click"
                     BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="Discord">
                 <Image Source="/DS4Windows;component/Resources/social/discord.png" Height="32" Margin="4,0,0,0" />

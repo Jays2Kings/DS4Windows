@@ -36,14 +36,6 @@ namespace DS4Windows
         Thread tempBusThread;
         Thread eventDispatchThread;
         Dispatcher eventDispatcher;
-        public List<string> affectedDevs = new List<string>()
-        {
-            @"HID\VID_054C&PID_05C4",
-            @"HID\VID_054C&PID_09CC&MI_03",
-            @"HID\VID_054C&PID_0BA0&MI_03",
-            @"HID\{00001124-0000-1000-8000-00805f9b34fb}_VID&0002054c_PID&05c4",
-            @"HID\{00001124-0000-1000-8000-00805f9b34fb}_VID&0002054c_PID&09cc",
-        };
         public bool suspending;
         //SoundPlayer sp = new SoundPlayer();
         private UdpServer _udpServer;
@@ -618,7 +610,7 @@ namespace DS4Windows
             else if (contType == OutContType.DS4)
             {
                 DS4OutDevice tempDS4 = outDevice as DS4OutDevice;
-                tempDS4.cont.FeedbackReceived -= tempDS4.forceFeedbackCall;
+                //tempDS4.cont.FeedbackReceived -= tempDS4.forceFeedbackCall;
                 tempDS4.forceFeedbackCall = null;
             }
         }
@@ -718,7 +710,7 @@ namespace DS4Windows
                         {
                             DS4OutDevice tempDS4 = EstablishOutDevice(index, OutContType.DS4)
                             as DS4OutDevice;
-                            EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
+                            //EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
                             outputslotMan.DeferredPlugin(tempDS4, index, outputDevices, contType);
                             //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
@@ -734,7 +726,7 @@ namespace DS4Windows
                     {
                         slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
                         DS4OutDevice tempDS4 = slotDevice.OutputDevice as DS4OutDevice;
-                        EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
+                        //EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
 
                         outputslotMan.EventDispatcher.BeginInvoke((Action)(() =>
                         {

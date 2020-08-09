@@ -61,5 +61,33 @@ namespace DS4Windows.DS4Control
         {
             return new SendInputMapping();
         }
+
+        /// <summary>
+        /// Retrieves identifier string of fallback virtualkbm handler without
+        /// creating an instance of the handler
+        /// </summary>
+        /// <returns>Identifier string of the default virtualkbm handler</returns>
+        public static string GetFallbackHandlerIdentifier()
+        {
+            return SendInputHandler.IDENTIFIER;
+        }
+
+        public static bool IsValidHandler(string identifier)
+        {
+            bool result = false;
+            switch (identifier)
+            {
+                case SendInputHandler.IDENTIFIER:
+                    result = true;
+                    break;
+                case VMultiHandler.IDENTIFIER:
+                    result = true;
+                    break;
+                default:
+                    break;
+            }
+
+            return result;
+        }
     }
 }

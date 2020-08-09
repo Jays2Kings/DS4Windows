@@ -131,11 +131,13 @@ namespace DS4Windows
         private bool busThrRunning = false;
         private Queue<Action> busEvtQueue = new Queue<Action>();
         private object busEvtQueueLock = new object();
-        public ControlService()
+        public ControlService(DS4WinWPF.ArgumentParser cmdParser)
         {
             Crc32Algorithm.InitializeTable(DS4Device.DefaultPolynomial);
-            Global.InitOutputKBMHandler(SendInputHandler.IDENTIFIER);
-            if (!Global.outputKBMHandler.Connect())
+            string attemptVirtualkbmHandler = cmdParser.VirtualkbmHandler;
+            Global.InitOutputKBMHandler(attemptVirtualkbmHandler);
+            if (!Global.outputKBMHandler.Connect() &&
+                attemptVirtualkbmHandler != VirtualKBMFactory.GetFallbackHandlerIdentifier())
             {
                 Global.outputKBMHandler = VirtualKBMFactory.GetFallbackHandler();
             }

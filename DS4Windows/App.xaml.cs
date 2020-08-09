@@ -110,7 +110,7 @@ namespace DS4WinWPF
             threadComEvent = new EventWaitHandle(false, EventResetMode.ManualReset, SingleAppComEventName);
             CreateTempWorkerThread();
 
-            CreateControlService();
+            CreateControlService(parser);
             RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
 
             DS4Windows.Global.FindConfigLocation();
@@ -394,10 +394,10 @@ namespace DS4WinWPF
             }
         }
 
-        private void CreateControlService()
+        private void CreateControlService(ArgumentParser parser)
         {
             controlThread = new Thread(() => {
-                rootHub = new DS4Windows.ControlService();
+                rootHub = new DS4Windows.ControlService(parser);
                 DS4Windows.Program.rootHub = rootHub;
                 requestClient = new HttpClient();
                 collectTimer = new Timer(GarbageTask, null, 30000, 30000);

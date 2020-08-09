@@ -34,7 +34,7 @@ namespace DS4Windows.DS4Control
         {
             Release();
             vMulti.disconnect();
-            return vMulti.isConnected();
+            return !vMulti.isConnected();
         }
 
         private void Release()
@@ -292,6 +292,7 @@ namespace DS4Windows.DS4Control
             eventLock.EnterWriteLock();
             mouseReport.ResetMousePos();
             mouseReport.WheelPosition = (byte)vertical;
+            mouseReport.HWheelPosition = (byte)horizontal;
             vMulti.updateMouse(mouseReport);
             eventLock.ExitWriteLock();
         }

@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using DS4Windows.DS4Control;
 
 namespace DS4WinWPF
 {
@@ -13,6 +14,7 @@ namespace DS4WinWPF
         private bool runtask;
         private bool command;
         private string commandArgs;
+        private string virtualkbmHandler = SendInputHandler.IDENTIFIER;
 
         private Dictionary<string, string> errors =
             new Dictionary<string, string>();
@@ -25,6 +27,7 @@ namespace DS4WinWPF
         public bool Command { get => command; }
         public string DeviceInstanceId { get => deviceInstanceId; }
         public string CommandArgs { get => commandArgs; }
+        public string VirtualkbmHandler { get => virtualkbmHandler; }
         public Dictionary<string, string> Errors { get => errors; }
 
         public bool HasErrors => errors.Count > 0;
@@ -87,6 +90,19 @@ namespace DS4WinWPF
                         {
                             errors["Command"] = "Command string not given";
                         }
+                        break;
+                    case "-virtualkbm":
+                        if (i + 1 < args.Length)
+                        {
+                            i++;
+                            string temp = args[i];
+                            bool valid = VirtualKBMFactory.IsValidHandler(temp);
+                            if (valid)
+                            {
+                                virtualkbmHandler = temp;
+                            }
+                        }
+
                         break;
 
                     default: break;

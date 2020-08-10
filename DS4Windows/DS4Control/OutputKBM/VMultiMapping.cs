@@ -135,6 +135,38 @@ namespace DS4Windows.DS4Control
                     (ushort)KeyboardModifier.LWin | VMultiHandler.MODIFIER_MASK);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.RWin),
                     (ushort)KeyboardModifier.RWin | VMultiHandler.MODIFIER_MASK);
+
+                // Map Enhanced Keys. Need to add a mask to separate modifier key values
+                // from normal keyboard keys.
+                mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.BrowserFavorites),
+                    (ushort)EnhancedKey.WWWFav | VMultiHandler.MODIFIER_ENHANCED);
+                mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.BrowserSearch),
+                    (ushort)EnhancedKey.WWWSearch | VMultiHandler.MODIFIER_ENHANCED);
+                mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.BrowserStop),
+                    (ushort)EnhancedKey.WWWStop | VMultiHandler.MODIFIER_ENHANCED);
+                mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.BrowserBack),
+                    (ushort)EnhancedKey.WWWBack | VMultiHandler.MODIFIER_ENHANCED);
+                mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.SelectMedia),
+                    (ushort)EnhancedKey.MediaSelect | VMultiHandler.MODIFIER_ENHANCED);
+                mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.LaunchMail),
+                    (ushort)EnhancedKey.Mail | VMultiHandler.MODIFIER_ENHANCED);
+
+                // Map Multimedia Keys. Need to add a mask to separate modifier key values
+                // from normal keyboard keys.
+                mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.MediaNextTrack),
+                    (ushort)MultimediaKey.ScanNextTrack | VMultiHandler.MODIFIER_MULTIMEDIA);
+                mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.MediaPreviousTrack),
+                    (ushort)MultimediaKey.ScanPreviousTrack | VMultiHandler.MODIFIER_MULTIMEDIA);
+                mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.MediaStop),
+                    (ushort)MultimediaKey.Stop | VMultiHandler.MODIFIER_MULTIMEDIA);
+                mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.MediaPlayPause),
+                    (ushort)MultimediaKey.PlayPause | VMultiHandler.MODIFIER_MULTIMEDIA);
+                mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.VolumeMute),
+                    (ushort)MultimediaKey.Mute | VMultiHandler.MODIFIER_MULTIMEDIA);
+                mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.VolumeUp),
+                    (ushort)MultimediaKey.VolumeUp | VMultiHandler.MODIFIER_MULTIMEDIA);
+                mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.VolumeDown),
+                    (ushort)MultimediaKey.VolumeDown | VMultiHandler.MODIFIER_MULTIMEDIA);
             }
         }
 

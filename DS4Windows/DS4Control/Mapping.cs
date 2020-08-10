@@ -204,7 +204,7 @@ namespace DS4Windows
         private static int wheel = 0, keyshelddown = 0;
 
         //mapcustom
-        public static bool[] pressedonce = new bool[512], macrodone = new bool[38];
+        public static bool[] pressedonce = new bool[2400], macrodone = new bool[38];
         static bool[] macroControl = new bool[25];
         static uint macroCount = 0;
         static Dictionary<string, Task>[] macroTaskQueue = new Dictionary<string, Task>[4] { new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>() };

@@ -9,11 +9,14 @@ namespace DS4Windows.DS4Control
     {
         public const string DISPLAY_NAME = "VMulti";
         public const string IDENTIFIER = "vmulti";
-        public const int MODIFIER_MASK = 1 << 8;
+        public const int MODIFIER_MASK = 1 << 9;
+        public const int MODIFIER_MULTIMEDIA = 1 << 10;
+        public const int MODIFIER_ENHANCED = 1 << 11;
 
         private VMulti vMulti = null;
         private RelativeMouseReport mouseReport = new RelativeMouseReport();
         private KeyboardReport keyReport = new KeyboardReport();
+        private KeyboardEnhancedReport mediaKeyReport = new KeyboardEnhancedReport();
         private HashSet<KeyboardModifier> modifiers = new HashSet<KeyboardModifier>();
         private HashSet<KeyboardKey> pressedKeys = new HashSet<KeyboardKey>();
 
@@ -58,23 +61,27 @@ namespace DS4Windows.DS4Control
 
             vMulti.updateKeyboard(keyReport);
 
+            mediaKeyReport.EnhancedKeys = 0;
+            mediaKeyReport.MediaKeys = 0;
+            vMulti.updateKeyboardEnhanced(mediaKeyReport);
+
             eventLock.ExitWriteLock();
         }
 
         public override void MoveRelativeMouse(int x, int y)
         {
-            //const int MOUSE_MIN = -32767;
-            //const int MOUSE_MAX = 32767;
-            const int MOUSE_MIN = -127;
-            const int MOUSE_MAX = 127;
+            const int MOUSE_MIN = -32767;
+            const int MOUSE_MAX = 32767;
+            //const int MOUSE_MIN = -127;
+            //const int MOUSE_MAX = 127;
             //Console.WriteLine("RAW MOUSE {0} {1}", x, y);
             eventLock.EnterWriteLock();
 
             mouseReport.ResetMousePos();
-            mouseReport.MouseX = (byte)(x < MOUSE_MIN ? MOUSE_MIN : (x > MOUSE_MAX) ? MOUSE_MAX : x);
-            mouseReport.MouseY = (byte)(y < MOUSE_MIN ? MOUSE_MIN : (y > MOUSE_MAX) ? MOUSE_MAX : y);
-            //mouseReport.MouseX = (ushort)(x < MOUSE_MIN ? MOUSE_MIN : (x > MOUSE_MAX) ? MOUSE_MAX : x);
-            //mouseReport.MouseY = (ushort)(y < MOUSE_MIN ? MOUSE_MIN : (y > MOUSE_MAX) ? MOUSE_MAX : y);
+            //mouseReport.MouseX = (byte)(x < MOUSE_MIN ? MOUSE_MIN : (x > MOUSE_MAX) ? MOUSE_MAX : x);
+            //mouseReport.MouseY = (byte)(y < MOUSE_MIN ? MOUSE_MIN : (y > MOUSE_MAX) ? MOUSE_MAX : y);
+            mouseReport.MouseX = (ushort)(x < MOUSE_MIN ? MOUSE_MIN : (x > MOUSE_MAX) ? MOUSE_MAX : x);
+            mouseReport.MouseY = (ushort)(y < MOUSE_MIN ? MOUSE_MIN : (y > MOUSE_MAX) ? MOUSE_MAX : y);
             //Console.WriteLine("LKJDFSLKJDFSLKJS {0} {1}", mouseReport.MouseX, mouseReport.MouseY);
 
             vMulti.updateMouse(mouseReport);
@@ -86,6 +93,7 @@ namespace DS4Windows.DS4Control
         {
             //Console.WriteLine("PerformKeyPress {0}", key);
             bool sync = false;
+            bool syncEnhanced = false;
             eventLock.EnterWriteLock();
 
             if (key < MODIFIER_MASK)
@@ -98,7 +106,7 @@ namespace DS4Windows.DS4Control
                     sync = true;
                 }
             }
-            else
+            else if (key < MODIFIER_MULTIMEDIA)
             {
                 KeyboardModifier modifier = (KeyboardModifier)(key & ~MODIFIER_MASK);
                 if (!modifiers.Contains(modifier))
@@ -108,10 +116,27 @@ namespace DS4Windows.DS4Control
                     sync = true;
                 }
             }
+            else if (key < MODIFIER_ENHANCED)
+            {
+                MultimediaKey temp = (MultimediaKey)(key & ~MODIFIER_MULTIMEDIA);
+                mediaKeyReport.KeyDown(temp);
+                syncEnhanced = true;
+            }
+            else
+            {
+                EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_ENHANCED);
+                mediaKeyReport.KeyDown(temp);
+                syncEnhanced = true;
+            }
 
             if (sync)
             {
                 vMulti.updateKeyboard(keyReport);
+            }
+
+            if (syncEnhanced)
+            {
+                vMulti.updateKeyboardEnhanced(mediaKeyReport);
             }
 
             eventLock.ExitWriteLock();
@@ -125,6 +150,7 @@ namespace DS4Windows.DS4Control
         {
             //Console.WriteLine("PerformKeyPressAlt {0}", key);
             bool sync = false;
+            bool syncEnhanced = false;
             eventLock.EnterWriteLock();
 
             if (key < MODIFIER_MASK)
@@ -137,7 +163,7 @@ namespace DS4Windows.DS4Control
                     sync = true;
                 }
             }
-            else
+            else if (key < MODIFIER_MULTIMEDIA)
             {
                 KeyboardModifier modifier = (KeyboardModifier)(key & ~MODIFIER_MASK);
                 if (!modifiers.Contains(modifier))
@@ -147,10 +173,27 @@ namespace DS4Windows.DS4Control
                     sync = true;
                 }
             }
+            else if (key < MODIFIER_ENHANCED)
+            {
+                MultimediaKey temp = (MultimediaKey)(key & ~MODIFIER_MULTIMEDIA);
+                mediaKeyReport.KeyDown(temp);
+                syncEnhanced = true;
+            }
+            else
+            {
+                EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_ENHANCED);
+                mediaKeyReport.KeyDown(temp);
+                syncEnhanced = true;
+            }
 
             if (sync)
             {
                 vMulti.updateKeyboard(keyReport);
+            }
+
+            if (syncEnhanced)
+            {
+                vMulti.updateKeyboardEnhanced(mediaKeyReport);
             }
 
             eventLock.ExitWriteLock();
@@ -160,6 +203,7 @@ namespace DS4Windows.DS4Control
         {
             //Console.WriteLine("PerformKeyRelease {0}", key);
             bool sync = false;
+            bool syncEnhanced = false;
             eventLock.EnterWriteLock();
 
             if (key < MODIFIER_MASK)
@@ -172,7 +216,7 @@ namespace DS4Windows.DS4Control
                     sync = true;
                 }
             }
-            else
+            else if (key < MODIFIER_MULTIMEDIA)
             {
                 KeyboardModifier modifier = (KeyboardModifier)(key & ~MODIFIER_MASK);
                 if (modifiers.Contains(modifier))
@@ -182,10 +226,27 @@ namespace DS4Windows.DS4Control
                     sync = true;
                 }
             }
+            else if (key < MODIFIER_ENHANCED)
+            {
+                MultimediaKey temp = (MultimediaKey)(key & ~MODIFIER_MULTIMEDIA);
+                mediaKeyReport.KeyUp(temp);
+                syncEnhanced = true;
+            }
+            else
+            {
+                EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_ENHANCED);
+                mediaKeyReport.KeyUp(temp);
+                syncEnhanced = true;
+            }
 
             if (sync)
             {
                 vMulti.updateKeyboard(keyReport);
+            }
+
+            if (syncEnhanced)
+            {
+                vMulti.updateKeyboardEnhanced(mediaKeyReport);
             }
 
             eventLock.ExitWriteLock();
@@ -199,6 +260,7 @@ namespace DS4Windows.DS4Control
         {
             //Console.WriteLine("PerformKeyReleaseAlt {0}", key);
             bool sync = false;
+            bool syncEnhanced = false;
             eventLock.EnterWriteLock();
 
             if (key < MODIFIER_MASK)
@@ -211,7 +273,7 @@ namespace DS4Windows.DS4Control
                     sync = true;
                 }
             }
-            else
+            else if (key < MODIFIER_MULTIMEDIA)
             {
                 KeyboardModifier modifier = (KeyboardModifier)(key & ~MODIFIER_MASK);
                 if (modifiers.Contains(modifier))
@@ -221,10 +283,27 @@ namespace DS4Windows.DS4Control
                     sync = true;
                 }
             }
+            else if (key < MODIFIER_ENHANCED)
+            {
+                MultimediaKey temp = (MultimediaKey)(key & ~MODIFIER_MULTIMEDIA);
+                mediaKeyReport.KeyUp(temp);
+                syncEnhanced = true;
+            }
+            else
+            {
+                EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_ENHANCED);
+                mediaKeyReport.KeyUp(temp);
+                syncEnhanced = true;
+            }
 
             if (sync)
             {
                 vMulti.updateKeyboard(keyReport);
+            }
+
+            if (syncEnhanced)
+            {
+                vMulti.updateKeyboardEnhanced(mediaKeyReport);
             }
 
             eventLock.ExitWriteLock();

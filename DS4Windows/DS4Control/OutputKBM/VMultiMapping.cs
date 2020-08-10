@@ -83,7 +83,7 @@ namespace DS4Windows.DS4Control
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.Tab), (ushort)KeyboardKey.Tab);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.OemMinus), (ushort)KeyboardKey.Subtract);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.OemPlus), (ushort)KeyboardKey.Equals);
-                Console.WriteLine("FINISH: {0}", KeyInterop.VirtualKeyFromKey(Key.LeftShift));
+                //Console.WriteLine("FINISH: {0}", KeyInterop.VirtualKeyFromKey(Key.LeftShift));
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.Back), (ushort)KeyboardKey.Backspace);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.CapsLock), (ushort)KeyboardKey.CapsLock);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.Enter), (ushort)KeyboardKey.Enter);
@@ -111,6 +111,7 @@ namespace DS4Windows.DS4Control
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.Pause), (ushort)KeyboardKey.Pause);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.NumLock), (ushort)KeyboardKey.NumLock);
 
+#if VMULTI_CUSTOM
                 // Map modifier keys. Need to add a mask to separate modifier key values
                 // from normal keyboard keys.
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.LeftCtrl),
@@ -167,6 +168,7 @@ namespace DS4Windows.DS4Control
                     (ushort)MultimediaKey.VolumeUp | VMultiHandler.MODIFIER_MULTIMEDIA);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.VolumeDown),
                     (ushort)MultimediaKey.VolumeDown | VMultiHandler.MODIFIER_MULTIMEDIA);
+#endif
             }
         }
 

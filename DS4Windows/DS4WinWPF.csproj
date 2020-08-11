@@ -190,6 +190,7 @@
     <Compile Include="DS4Control\OutputSlotManager.cs" />
     <Compile Include="DS4Control\OutputSlotPersist.cs" />
     <Compile Include="DS4Control\OutSlotDevice.cs" />
+    <Compile Include="DS4Control\ProfileMigration.cs" />
     <Compile Include="DS4Control\ProfilePropGroups.cs" />
     <Compile Include="DS4Control\Program.cs" />
     <Compile Include="DS4Control\ScpUtil.cs" />

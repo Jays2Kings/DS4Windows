@@ -3312,6 +3312,10 @@ namespace DS4Windows
             {
                 XmlNode Item;
 
+                //ProfileMigration tmpMigration = new ProfileMigration(profilepath);
+                //tmpMigration.Migrate();
+                //m_Xdoc.Load(tmpMigration.ProfileReader);
+
                 m_Xdoc.Load(profilepath);
                 if (m_Xdoc.SelectSingleNode(rootname) == null)
                 {

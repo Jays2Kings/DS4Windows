@@ -900,23 +900,42 @@
                             <CheckBox Content="Y" Margin="8,0,0,0" IsChecked="{Binding GyroMouseInvertY}" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Height="30" Margin="{StaticResource spaceMargin}">
-                            <CheckBox Content="Smoothing" IsChecked="{Binding GyroMouseSmooth}" />
-                            <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                                <Label Content="Smooth Weight" Padding="0" />
-                                <xctk:DoubleUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
-                                                   Value="{Binding GyroMouseSmoothWeight}" Minimum="0.0" Maximum="1.0" Increment="0.1"
-                                                   IsEnabled="{Binding GyroMouseSmooth}" />
-                            </StackPanel>
-                        </StackPanel>
-
                         <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
                             <Label Content="Deadzone" />
                             <xctk:IntegerUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
                                                 Value="{Binding GyroMouseDeadZone}" Minimum="0" Maximum="1000" />
                         </StackPanel>
 
-                        <CheckBox Content="Toggle" IsChecked="{Binding GyroMouseToggle}" />
+                        <CheckBox Content="Toggle" IsChecked="{Binding GyroMouseToggle}" Margin="{StaticResource spaceMargin}" />
+
+                        <CheckBox Content="Smoothing" IsChecked="{Binding GyroMouseSmooth,FallbackValue='False'}"  Margin="{StaticResource spaceMargin}" />
+                        <GroupBox Header="Smoothing Options" IsEnabled="{Binding GyroMouseSmooth,FallbackValue='False'}" Margin="{StaticResource spaceMargin}">
+                            <StackPanel>
+                                <ComboBox x:Name="gyroMouseSmoothMethodCombo" Margin="{StaticResource spaceMargin}" SelectedIndex="{Binding GyroMouseSmoothMethodIndex,FallbackValue='0'}">
+                                    <ComboBoxItem Content="1&#x20ac; Filter" />
+                                    <ComboBoxItem Content="Weighted Average" />
+                                </ComboBox>
+
+                                <StackPanel x:Name="gyroMouseWeightedAvgPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseWeightAvgPanelVisibility,FallbackValue='Collapsed'}">
+                                    <Label Content="Smooth Weight" Padding="0" />
+                                    <xctk:DoubleUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
+                                                   Value="{Binding GyroMouseSmoothWeight}" Minimum="0.0" Maximum="1.0" Increment="0.1" />
+                                </StackPanel>
+
+                                <StackPanel x:Name="gyroMouseOneEuroPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseOneEuroPanelVisibility,FallbackValue='Collapsed'}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="1&#x20ac; MinCutoff" />
+                                        <xctk:DoubleUpDown d:IsHidden="True" FormatString="F5" Value="{Binding GyroMouseOneEuroMinCutoff,FallbackValue=1.0,UpdateSourceTrigger=LostFocus}"
+                                                           Minimum="0.00001" Maximum="100.0" Increment="0.1" MinWidth="60" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
+                                        <Label Content="1&#x20ac; Beta" />
+                                        <xctk:DoubleUpDown  d:IsHidden="True" FormatString="F5" Value="{Binding GyroMouseOneEuroBeta,FallbackValue=0.0,UpdateSourceTrigger=LostFocus}"
+                                                           Minimum="0.0" Maximum="1.0" MinWidth="60" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
                     </StackPanel>
 
                     <StackPanel x:Name="gyroMouseJoystickPanel" Visibility="Collapsed">

@@ -30,12 +30,20 @@ namespace DS4Windows
             {
                 int.TryParse(temp, out configFileVersion);
             }
+
+            // config_version not available in file. Assume either version 1 or 2.
+            // Try to determine which version
+            if (configFileVersion == 0)
+            {
+                DetermineProfileVersion();
+            }
         }
 
         public bool RequiresMigration()
         {
             bool result = false;
-            if (configFileVersion == 3)
+            // Skip configFileVersion == 1 and pass profile XML as is
+            if (configFileVersion > 1 && configFileVersion < Global.CONFIG_VERSION)
             {
                 result = true;
             }
@@ -51,11 +59,15 @@ namespace DS4Windows
                 int tempVersion = configFileVersion;
                 switch(configFileVersion)
                 {
+                    case 1:
+                        goto default;
+                    case 2:
                     case 3:
                         migratedText = Version0004Migration();
                         PrepareReaderMigration(migratedText);
                         tempVersion = 4;
                         goto default;
+
                     default:
                         break;
                 }
@@ -76,8 +88,53 @@ namespace DS4Windows
             profileReader = XmlReader.Create(stringReader);
         }
 
+        private void DetermineProfileVersion()
+        {
+            bool hasAntiDeadLSTag = false;
+            //int deadZoneLS = -1;
+
+            // Move stream to root element
+            profileReader.MoveToContent();
+            // Skip past root element
+            profileReader.Read();
+            while (profileReader.Read())
+            {
+                /*if (profileReader.Name == "LSDeadZone" && profileReader.IsStartElement())
+                {
+                    string weight = profileReader.ReadElementContentAsString();
+                    int.TryParse(weight, out deadZoneLS);
+                }
+                */
+                if (profileReader.Name == "LSAntiDeadZone" && profileReader.IsStartElement())
+                {
+                    hasAntiDeadLSTag = true;
+                    profileReader.ReadElementContentAsString();
+                }
+            }
+
+            // Close and dispose current XmlReader
+            profileReader.Close();
+            profileReader.Dispose();
+
+            if (hasAntiDeadLSTag)
+            {
+                configFileVersion = 2;
+            }
+            else
+            {
+                configFileVersion = 1;
+            }
+
+            // Start reader at zero position
+            profileReader = XmlReader.Create(new StringReader(currentMigrationText));
+            // Move stream to root element
+            profileReader.MoveToContent();
+        }
+
         struct GyroSmoothSettings0004
         {
+            public const double DEFAULT_SMOOTH_WEIGHT = 0.5;
+
             public bool hasSmoothing;
             public bool hasSmoothingWeight;
 
@@ -87,7 +144,10 @@ namespace DS4Windows
 
         private string Version0004Migration()
         {
-            GyroSmoothSettings0004 gyroSmoothSettings = new GyroSmoothSettings0004();
+            GyroSmoothSettings0004 gyroSmoothSettings = new GyroSmoothSettings0004()
+            {
+                smoothingWeight = GyroSmoothSettings0004.DEFAULT_SMOOTH_WEIGHT,
+            };
 
             void MigrateGyroSmoothingSettings(XmlWriter xmlWriter)
             {

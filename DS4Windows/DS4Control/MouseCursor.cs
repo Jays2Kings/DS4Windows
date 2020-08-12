@@ -208,13 +208,21 @@ namespace DS4Windows
             vDirection = yMotion > 0.0 ? Direction.Positive : yMotion < 0.0 ? Direction.Negative : Direction.Neutral;
         }
 
-        public void mouseRemainderReset()
+        public void mouseRemainderReset(SixAxisEventArgs arg)
         {
             hRemainder = vRemainder = 0.0;
             int iIndex = smoothBufferTail % SMOOTH_BUFFER_LEN;
             xSmoothBuffer[iIndex] = 0.0;
             ySmoothBuffer[iIndex] = 0.0;
             smoothBufferTail = iIndex + 1;
+
+            GyroMouseInfo tempInfo = Global.GyroMouseInfo[deviceNumber];
+            if (tempInfo.useOneEuroSmooth)
+            {
+                double currentRate = 1.0 / arg.sixAxis.elapsed;
+                filterPair.axis1Filter.Filter(0.0, currentRate);
+                filterPair.axis2Filter.Filter(0.0, currentRate);
+            }
         }
 
         public void touchesBegan(TouchpadEventArgs arg)

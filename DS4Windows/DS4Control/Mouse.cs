@@ -128,7 +128,7 @@ namespace DS4Windows
                 else if (!useReverseRatchet && !triggeractivated)
                     cursor.sixaxisMoved(arg);
                 else
-                    cursor.mouseRemainderReset();
+                    cursor.mouseRemainderReset(arg);
 
             }
             else if (outMode == GyroOutMode.MouseJoystick)

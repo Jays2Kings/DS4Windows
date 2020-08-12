@@ -54,6 +54,7 @@ namespace DS4Windows
                     case 3:
                         migratedText = Version0004Migration();
                         PrepareReaderMigration(migratedText);
+                        tempVersion = 4;
                         goto default;
                     default:
                         break;
@@ -97,7 +98,14 @@ namespace DS4Windows
                 xmlWriter.WriteValue(gyroSmoothSettings.useSmoothing.ToString());
                 xmlWriter.WriteEndElement();
 
-                xmlWriter.WriteStartElement("GyroSmoothingWeight");
+                if (gyroSmoothSettings.useSmoothing)
+                {
+                    xmlWriter.WriteStartElement("SmoothingMethod");
+                    xmlWriter.WriteValue("weighted-average");
+                    xmlWriter.WriteEndElement();
+                }
+
+                xmlWriter.WriteStartElement("SmoothingWeight");
                 xmlWriter.WriteValue(gyroSmoothSettings.smoothingWeight.ToString());
                 xmlWriter.WriteEndElement();
 
@@ -128,13 +136,14 @@ namespace DS4Windows
                 if (profileReader.Name == "GyroSmoothing" && profileReader.IsStartElement())
                 {
                     gyroSmoothSettings.hasSmoothing = true;
-                    bool.TryParse(profileReader.ReadElementContentAsString(), out gyroSmoothSettings.useSmoothing);
-                    //Console.WriteLine("Are you suggesting that coconuts migrate?!!");
+                    string useSmooth = profileReader.ReadElementContentAsString();
+                    bool.TryParse(useSmooth, out gyroSmoothSettings.useSmoothing);
                 }
                 else if (profileReader.Name == "GyroSmoothingWeight" && profileReader.IsStartElement())
                 {
                     gyroSmoothSettings.hasSmoothingWeight = true;
-                    double.TryParse(profileReader.ReadElementContentAsString(), out gyroSmoothSettings.smoothingWeight);
+                    string weight = profileReader.ReadElementContentAsString();
+                    double.TryParse(weight, out gyroSmoothSettings.smoothingWeight);
                 }
             }
 

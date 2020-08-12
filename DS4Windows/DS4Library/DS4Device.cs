@@ -1117,6 +1117,24 @@ namespace DS4Windows
                     cState.TrackPadTouch1.X = (short)(((ushort)(inputReport[41] & 0x0f) << 8) | (ushort)(inputReport[40]));
                     cState.TrackPadTouch1.Y = (short)(((ushort)(inputReport[42]) << 4) | ((ushort)(inputReport[41] & 0xf0) >> 4));
 
+                    if (conType == ConnectionType.SONYWA)
+                    {
+                        bool controllerSynced = inputReport[31] == 0;
+                        if (controllerSynced != synced)
+                        {
+                            runCalib = synced = controllerSynced;
+                            SyncChange?.Invoke(this, EventArgs.Empty);
+                            if (synced)
+                            {
+                                forceWrite = true;
+                            }
+                            else
+                            {
+                                standbySw.Reset();
+                            }
+                        }
+                    }
+
                     // XXX DS4State mapping needs fixup, turn touches into an array[4] of structs.  And include the touchpad details there instead.
                     try
                     {
@@ -1136,7 +1154,10 @@ namespace DS4Windows
                             cState.TouchLeft = touchX >= 1920 * 2 / 5 ? false : true;
                             cState.TouchRight = touchX < 1920 * 2 / 5 ? false : true;
                             // Even when idling there is still a touch packet indicating no touch 1 or 2
-                            touchpad.handleTouchpad(inputReport, cState, touchOffset);
+                            if (synced)
+                            {
+                                touchpad.handleTouchpad(inputReport, cState, touchOffset);
+                            }
                         }
                     }
                     catch (Exception ex) { currerror = $"Touchpad: {ex.Message}"; }
@@ -1156,7 +1177,10 @@ namespace DS4Windows
                             pbAccel[i - 6] = pbInput[i];
                         }
 
-                        sixAxis.handleSixaxis(pbGyro, pbAccel, cState, elapsedDeltaTime);
+                        if (synced)
+                        {
+                            sixAxis.handleSixaxis(pbGyro, pbAccel, cState, elapsedDeltaTime);
+                        }
                     }
 
                     /* Debug output of incoming HID data:
@@ -1168,24 +1192,6 @@ namespace DS4Windows
                         Console.WriteLine();
                     }
                     */
-
-                    if (conType == ConnectionType.SONYWA)
-                    {
-                        bool controllerSynced = inputReport[31] == 0;
-                        if (controllerSynced != synced)
-                        {
-                            runCalib = synced = controllerSynced;
-                            SyncChange?.Invoke(this, EventArgs.Empty);
-                            if (synced)
-                            {
-                                forceWrite = true;
-                            }
-                            else
-                            {
-                                standbySw.Reset();
-                            }
-                        }
-                    }
 
                     ds4InactiveFrame = cState.FrameCounter == pState.FrameCounter;
                     if (!ds4InactiveFrame)

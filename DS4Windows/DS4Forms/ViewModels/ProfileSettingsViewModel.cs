@@ -1,6 +1,4 @@
-﻿using DS4Windows;
-using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -10,6 +8,8 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Microsoft.Win32;
+using DS4Windows;
 
 namespace DS4WinWPF.DS4Forms.ViewModels
 {
@@ -1399,14 +1399,77 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public bool GyroMouseSmooth
         {
-            get => Global.GyroSmoothing[device];
-            set => Global.GyroSmoothing[device] = value;
+            get => Global.GyroMouseInfo[device].enableSmoothing;
+            set
+            {
+                GyroMouseInfo tempInfo = Global.GyroMouseInfo[device];
+                if (tempInfo.enableSmoothing == value) return;
+
+                Global.GyroMouseInfo[device].enableSmoothing = value;
+                GyroMouseSmoothChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
+        public event EventHandler GyroMouseSmoothChanged;
+
+        private int gyroMouseSmoothMethodIndex;
+        public int GyroMouseSmoothMethodIndex
+        {
+            get
+            {
+                return gyroMouseSmoothMethodIndex;
+            }
+            set
+            {
+                if (gyroMouseSmoothMethodIndex == value) return;
+
+                GyroMouseInfo tempInfo = Global.GyroMouseInfo[device];
+                switch (value)
+                {
+                    case 0:
+                        tempInfo.ResetSmoothingMethods();
+                        tempInfo.useOneEuroSmooth = true;
+                        break;
+                    case 1:
+                        tempInfo.ResetSmoothingMethods();
+                        tempInfo.useWeightedAverageSmooth = true;
+                        break;
+                    default:
+                        break;
+                }
+
+                GyroMouseSmoothMethodIndexChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler GyroMouseSmoothMethodIndexChanged;
+
+        public Visibility GyroMouseWeightAvgPanelVisibility
+        {
+            get => Global.GyroMouseInfo[device].useWeightedAverageSmooth ? Visibility.Visible : Visibility.Collapsed;
+        }
+        public event EventHandler GyroMouseWeightAvgPanelVisibilityChanged;
+
+        public Visibility GyroMouseOneEuroPanelVisibility
+        {
+            get => Global.GyroMouseInfo[device].useOneEuroSmooth ? Visibility.Visible : Visibility.Collapsed;
+        }
+        public event EventHandler GyroMouseOneEuroPanelVisibilityChanged;
 
         public double GyroMouseSmoothWeight
         {
-            get => Global.GyroSmoothingWeight[device];
-            set => Global.GyroSmoothingWeight[device] = value;
+            get => Global.GyroMouseInfo[device].smoothingWeight;
+            set => Global.GyroMouseInfo[device].smoothingWeight = value;
+        }
+
+        public double GyroMouseOneEuroMinCutoff
+        {
+            get => Global.GyroMouseInfo[device].MinCutoff;
+            set => Global.GyroMouseInfo[device].MinCutoff = value;
+        }
+
+        public double GyroMouseOneEuroBeta
+        {
+            get => Global.GyroMouseInfo[device].Beta;
+            set => Global.GyroMouseInfo[device].Beta = value;
         }
 
         public int GyroMouseDeadZone
@@ -1616,8 +1679,25 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             lightbarImgBrush.ImageSource = temp.Clone();
 
             presetMenuUtil = new PresetMenuHelper(device);
+            gyroMouseSmoothMethodIndex = FindGyroMouseSmoothMethodIndex();
 
             SetupEvents();
+        }
+
+        private int FindGyroMouseSmoothMethodIndex()
+        {
+            int result = 0;
+            GyroMouseInfo tempInfo = Global.GyroMouseInfo[device];
+            if (tempInfo.useOneEuroSmooth)
+            {
+                result = 0;
+            }
+            else if (tempInfo.useWeightedAverageSmooth)
+            {
+                result = 1;
+            }
+
+            return result;
         }
 
         private void CalcProfileFlags(object sender, EventArgs e)
@@ -1666,6 +1746,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             GyroOutModeIndexChanged += CalcProfileFlags;
             SASteeringWheelEmulationAxisIndexChanged += CalcProfileFlags;
             ButtonMouseOffsetChanged += ProfileSettingsViewModel_ButtonMouseOffsetChanged;
+            GyroMouseSmoothMethodIndexChanged += ProfileSettingsViewModel_GyroMouseSmoothMethodIndexChanged;
+        }
+
+        private void ProfileSettingsViewModel_GyroMouseSmoothMethodIndexChanged(object sender, EventArgs e)
+        {
+            GyroMouseWeightAvgPanelVisibilityChanged?.Invoke(this, EventArgs.Empty);
+            GyroMouseOneEuroPanelVisibilityChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void ProfileSettingsViewModel_ButtonMouseOffsetChanged(object sender,

@@ -29,7 +29,116 @@ namespace DS4Windows
 
     public class GyroMouseInfo
     {
+        public const double DEFAULT_MINCUTOFF = 0.4;
+        public const double DEFAULT_BETA = 0.7;
+        public const string DEFAULT_SMOOTH_TECHNIQUE = "one-euro";
 
+        public double minCutoff = DEFAULT_MINCUTOFF;
+        public double beta = DEFAULT_BETA;
+        public bool useWeightedAverageSmooth = false;
+        public bool useOneEuroSmooth = false;
+        public bool enableSmoothing = false;
+        public double smoothingWeight = 0.5;
+
+        public delegate void GyroMouseInfoEventHandler(GyroMouseInfo sender, EventArgs args);
+
+        public double MinCutoff
+        {
+            get => minCutoff;
+            set
+            {
+                if (minCutoff == value) return;
+                minCutoff = value;
+                MinCutoffChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event GyroMouseInfoEventHandler MinCutoffChanged;
+
+        public double Beta
+        {
+            get => beta;
+            set
+            {
+                if (beta == value) return;
+                beta = value;
+                BetaChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event GyroMouseInfoEventHandler BetaChanged;
+
+        public void Reset()
+        {
+            minCutoff = DEFAULT_MINCUTOFF;
+            beta = DEFAULT_BETA;
+            useWeightedAverageSmooth = false;
+            useOneEuroSmooth = false;
+            enableSmoothing = false;
+            smoothingWeight = 0.5;
+        }
+
+        public void ResetSmoothing()
+        {
+            enableSmoothing = false;
+            ResetSmoothingMethods();
+        }
+
+        public void ResetSmoothingMethods()
+        {
+            useOneEuroSmooth = false;
+            useWeightedAverageSmooth = false;
+        }
+
+        public void DetermineSmoothMethod(string identier)
+        {
+            ResetSmoothingMethods();
+
+            switch (identier)
+            {
+                case "weighted-average":
+                    useWeightedAverageSmooth = true;
+                    break;
+                case "one-euro":
+                    useOneEuroSmooth = true;
+                    break;
+                default:
+                    useWeightedAverageSmooth = false;
+                    break;
+            }
+        }
+
+        public string SmoothMethodIdentifier()
+        {
+            string result = "weighted-average";
+            if (useOneEuroSmooth)
+            {
+                result = "one-euro";
+            }
+            else if (useWeightedAverageSmooth)
+            {
+                result = "weighted-average";
+            }
+
+            return result;
+        }
+
+        public void SetRefreshEvents(OneEuroFilter euroFilter)
+        {
+            BetaChanged += (sender, args) =>
+            {
+                euroFilter.Beta = beta;
+            };
+
+            MinCutoffChanged += (sender, args) =>
+            {
+                euroFilter.MinCutoff = minCutoff;
+            };
+        }
+
+        public void RemoveRefreshEvents()
+        {
+            BetaChanged = null;
+            MinCutoffChanged = null;
+        }
     }
 
     public class GyroMouseStickInfo

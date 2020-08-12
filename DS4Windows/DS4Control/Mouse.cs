@@ -25,6 +25,7 @@ namespace DS4Windows
         protected Mapping.Click clicked = Mapping.Click.None;
         public int CursorGyroDead { get => cursor.GyroCursorDeadZone; set => cursor.GyroCursorDeadZone = value; }
 
+
         internal const int TRACKBALL_INIT_FICTION = 10;
         internal const int TRACKBALL_MASS = 45;
         internal const double TRACKBALL_RADIUS = 0.0245;
@@ -71,6 +72,9 @@ namespace DS4Windows
         bool toggleGyroMouse = true;
         public bool ToggleGyroMouse { get => toggleGyroMouse;
             set { toggleGyroMouse = value; ResetToggleGyroM(); } }
+
+        public MouseCursor Cursor => cursor;
+
         bool currentToggleGyroM = false;
 
         public virtual void sixaxisMoved(DS4SixAxis sender, SixAxisEventArgs arg)

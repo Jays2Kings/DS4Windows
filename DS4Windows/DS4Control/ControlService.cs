@@ -1477,6 +1477,9 @@ namespace DS4Windows
                 {
                     if (!getDInputOnly(ind))
                     {
+                        touchPad[ind].ReplaceOneEuroFilterPair();
+                        touchPad[ind].ReplaceOneEuroFilterPair();
+
                         touchPad[ind].Cursor.ReplaceOneEuroFilterPair();
                         touchPad[ind].Cursor.SetupLateOneEuroFilters();
                         PluginOutDev(ind, device);

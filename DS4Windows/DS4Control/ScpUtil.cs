@@ -3816,7 +3816,18 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickVerticalScale"); int.TryParse(Item.InnerText, out gyroMStickInfo[device].vertScale); }
                 catch { gyroMStickInfo[device].vertScale = 100; missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickSmoothing"); bool.TryParse(Item.InnerText, out gyroMStickInfo[device].useSmoothing); }
+
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickSmoothing");
+                    bool.TryParse(Item.InnerText, out bool tempSmoothing);
+                    gyroMStickInfo[device].useSmoothing = tempSmoothing;
+                    if (tempSmoothing)
+                    {
+                        gyroMStickInfo[device].smoothingMethod = GyroMouseStickInfo.SmoothingMethod.WeightedAverage;
+                    }
+                }
                 catch { gyroMStickInfo[device].useSmoothing = false; missingSetting = true; }
 
                 try {
@@ -3825,6 +3836,8 @@ namespace DS4Windows
                     gyroMStickInfo[device].smoothWeight = Math.Min(Math.Max(0.0, Convert.ToDouble(temp * 0.01)), 1.0);
                 }
                 catch { gyroMStickInfo[device].smoothWeight = 0.5; missingSetting = true; }
+
+
 
                 try
                 {
@@ -5265,12 +5278,16 @@ namespace DS4Windows
             gyroOutMode[device] = GyroOutMode.Controls;
             sAMouseStickTriggers[device] = "-1";
             sAMouseStickTriggerCond[device] = true;
-            gyroMStickInfo[device].deadZone = 30; gyroMStickInfo[device].maxZone = 830;
+            /*gyroMStickInfo[device].deadZone = 30; gyroMStickInfo[device].maxZone = 830;
             gyroMStickInfo[device].antiDeadX = 0.4; gyroMStickInfo[device].antiDeadY = 0.4;
             gyroMStickInfo[device].inverted = 0; gyroMStickInfo[device].vertScale = 100;
             gyroMStickInfo[device].maxOutputEnabled = false; gyroMStickInfo[device].maxOutput = 100.0;
-            gyroMouseStickToggle[device] = false;
             gyroMStickInfo[device].useSmoothing = false; gyroMStickInfo[device].smoothWeight = 0.5;
+            */
+
+            gyroMStickInfo[device].Reset();
+
+            gyroMouseStickToggle[device] = false;
             gyroMouseStickTriggerTurns[device] = true;
             sASteeringWheelEmulationAxis[device] = SASteeringWheelEmulationAxisType.None;
             sASteeringWheelEmulationRange[device] = 360;

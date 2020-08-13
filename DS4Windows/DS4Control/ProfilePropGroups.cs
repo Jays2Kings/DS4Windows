@@ -29,7 +29,14 @@ namespace DS4Windows
 
     public class GyroMouseInfo
     {
-        public const double DEFAULT_MINCUTOFF = 0.4;
+        public enum SmoothingMethod : byte
+        {
+            None,
+            OneEuro,
+            WeightedAverage,
+        }
+
+        public const double DEFAULT_MINCUTOFF = 1.0;
         public const double DEFAULT_BETA = 0.7;
         public const string DEFAULT_SMOOTH_TECHNIQUE = "one-euro";
 
@@ -143,6 +150,17 @@ namespace DS4Windows
 
     public class GyroMouseStickInfo
     {
+        public enum SmoothingMethod : byte
+        {
+            None,
+            OneEuro,
+            WeightedAverage,
+        }
+
+        public const double DEFAULT_MINCUTOFF = 0.4;
+        public const double DEFAULT_BETA = 0.7;
+        public const string DEFAULT_SMOOTH_TECHNIQUE = "one-euro";
+
         public int deadZone;
         public int maxZone;
         public double antiDeadX;
@@ -154,6 +172,117 @@ namespace DS4Windows
         public uint inverted;
         public bool useSmoothing;
         public double smoothWeight;
+        public SmoothingMethod smoothingMethod;
+        public double minCutoff = DEFAULT_MINCUTOFF;
+        public double beta = DEFAULT_BETA;
+
+        public delegate void GyroMouseStickInfoEventHandler(GyroMouseStickInfo sender,
+            EventArgs args);
+
+
+        public double MinCutoff
+        {
+            get => minCutoff;
+            set
+            {
+                if (minCutoff == value) return;
+                minCutoff = value;
+                MinCutoffChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event GyroMouseStickInfoEventHandler MinCutoffChanged;
+
+        public double Beta
+        {
+            get => beta;
+            set
+            {
+                if (beta == value) return;
+                beta = value;
+                BetaChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event GyroMouseStickInfoEventHandler BetaChanged;
+
+        public void Reset()
+        {
+            deadZone = 30; maxZone = 830;
+            antiDeadX = 0.4; antiDeadY = 0.4;
+            inverted = 0; vertScale = 100;
+            maxOutputEnabled = false; maxOutput = 100.0;
+
+            minCutoff = DEFAULT_MINCUTOFF;
+            beta = DEFAULT_BETA;
+            smoothingMethod = SmoothingMethod.None;
+            useSmoothing = false;
+            smoothWeight = 0.5;
+        }
+
+        public void ResetSmoothing()
+        {
+            useSmoothing = false;
+            ResetSmoothingMethods();
+        }
+
+        public void ResetSmoothingMethods()
+        {
+            smoothingMethod = SmoothingMethod.None;
+        }
+
+        public void DetermineSmoothMethod(string identier)
+        {
+            ResetSmoothingMethods();
+
+            switch (identier)
+            {
+                case "weighted-average":
+                    smoothingMethod = SmoothingMethod.WeightedAverage;
+                    break;
+                case "one-euro":
+                    smoothingMethod = SmoothingMethod.OneEuro;
+                    break;
+                default:
+                    smoothingMethod = SmoothingMethod.None;
+                    break;
+            }
+        }
+
+        public string SmoothMethodIdentifier()
+        {
+            string result = "none";
+            switch (smoothingMethod)
+            {
+                case SmoothingMethod.WeightedAverage:
+                    result = "weighted-average";
+                    break;
+                case SmoothingMethod.OneEuro:
+                    result = "one-euro";
+                    break;
+                default:
+                    break;
+            }
+
+            return result;
+        }
+
+        public void SetRefreshEvents(OneEuroFilter euroFilter)
+        {
+            BetaChanged += (sender, args) =>
+            {
+                euroFilter.Beta = beta;
+            };
+
+            MinCutoffChanged += (sender, args) =>
+            {
+                euroFilter.MinCutoff = minCutoff;
+            };
+        }
+
+        public void RemoveRefreshEvents()
+        {
+            BetaChanged = null;
+            MinCutoffChanged = null;
+        }
     }
 
     public class ButtonMouseInfo

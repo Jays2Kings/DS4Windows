@@ -40,8 +40,8 @@ namespace DS4Windows
 
         private const double GYRO_MOUSE_COEFFICIENT = 0.0095;
         public const int GYRO_MOUSE_DEADZONE = 10;
-        private const double GYRO_MOUSE_OFFSET = 0.1463;
-        private const double GYRO_SMOOTH_MOUSE_OFFSET = 0.14698;
+        private const double GYRO_MOUSE_OFFSET = 0.2;
+        private const double GYRO_SMOOTH_MOUSE_OFFSET = 0.2;
         private const double TOUCHPAD_MOUSE_OFFSET = 0.015;
 
         private const int SMOOTH_BUFFER_LEN = 3;

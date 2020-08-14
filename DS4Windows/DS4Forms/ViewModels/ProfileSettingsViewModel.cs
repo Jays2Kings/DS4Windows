@@ -1472,6 +1472,72 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.GyroMouseInfo[device].Beta = value;
         }
 
+
+
+        private int gyroMouseStickSmoothMethodIndex;
+        public int GyroMouseStickSmoothMethodIndex
+        {
+            get
+            {
+                return gyroMouseStickSmoothMethodIndex;
+            }
+            set
+            {
+                if (gyroMouseStickSmoothMethodIndex == value) return;
+
+                GyroMouseStickInfo tempInfo = Global.GyroMouseStickInf[device];
+                switch (value)
+                {
+                    case 0:
+                        tempInfo.ResetSmoothingMethods();
+                        tempInfo.smoothingMethod = GyroMouseStickInfo.SmoothingMethod.OneEuro;
+                        break;
+                    case 1:
+                        tempInfo.ResetSmoothingMethods();
+                        tempInfo.smoothingMethod = GyroMouseStickInfo.SmoothingMethod.WeightedAverage;
+                        break;
+                    default:
+                        break;
+                }
+
+                GyroMouseStickSmoothMethodIndexChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler GyroMouseStickSmoothMethodIndexChanged;
+
+        public Visibility GyroMouseStickWeightAvgPanelVisibility
+        {
+            get => Global.GyroMouseStickInf[device].smoothingMethod == GyroMouseStickInfo.SmoothingMethod.WeightedAverage
+                ? Visibility.Visible : Visibility.Collapsed;
+        }
+        public event EventHandler GyroMouseStickWeightAvgPanelVisibilityChanged;
+
+        public Visibility GyroMouseStickOneEuroPanelVisibility
+        {
+            get => Global.GyroMouseStickInf[device].smoothingMethod == GyroMouseStickInfo.SmoothingMethod.OneEuro
+                ? Visibility.Visible : Visibility.Collapsed;
+        }
+        public event EventHandler GyroMouseStickOneEuroPanelVisibilityChanged;
+
+        public double GyroMouseStickSmoothWeight
+        {
+            get => Global.GyroMouseStickInf[device].smoothWeight;
+            set => Global.GyroMouseStickInf[device].smoothWeight = value;
+        }
+
+        public double GyroMouseStickOneEuroMinCutoff
+        {
+            get => Global.GyroMouseStickInf[device].MinCutoff;
+            set => Global.GyroMouseStickInf[device].MinCutoff = value;
+        }
+
+        public double GyroMouseStickOneEuroBeta
+        {
+            get => Global.GyroMouseStickInf[device].Beta;
+            set => Global.GyroMouseStickInf[device].Beta = value;
+        }
+
+
         public int GyroMouseDeadZone
         {
             get => Global.GyroMouseDeadZone[device];
@@ -1680,6 +1746,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
             presetMenuUtil = new PresetMenuHelper(device);
             gyroMouseSmoothMethodIndex = FindGyroMouseSmoothMethodIndex();
+            gyroMouseStickSmoothMethodIndex = FindGyroMouseStickSmoothMethodIndex();
 
             SetupEvents();
         }
@@ -1695,6 +1762,25 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             else if (tempInfo.useWeightedAverageSmooth)
             {
                 result = 1;
+            }
+
+            return result;
+        }
+
+        private int FindGyroMouseStickSmoothMethodIndex()
+        {
+            int result = 0;
+            GyroMouseStickInfo tempInfo = Global.GyroMouseStickInf[device];
+            switch (tempInfo.smoothingMethod)
+            {
+                case GyroMouseStickInfo.SmoothingMethod.OneEuro:
+                    result = 0;
+                    break;
+                case GyroMouseStickInfo.SmoothingMethod.WeightedAverage:
+                    result = 1;
+                    break;
+                default:
+                    break;
             }
 
             return result;
@@ -1747,6 +1833,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             SASteeringWheelEmulationAxisIndexChanged += CalcProfileFlags;
             ButtonMouseOffsetChanged += ProfileSettingsViewModel_ButtonMouseOffsetChanged;
             GyroMouseSmoothMethodIndexChanged += ProfileSettingsViewModel_GyroMouseSmoothMethodIndexChanged;
+            GyroMouseStickSmoothMethodIndexChanged += ProfileSettingsViewModel_GyroMouseStickSmoothMethodIndexChanged;
+        }
+
+        private void ProfileSettingsViewModel_GyroMouseStickSmoothMethodIndexChanged(object sender, EventArgs e)
+        {
+            GyroMouseStickWeightAvgPanelVisibilityChanged?.Invoke(this, EventArgs.Empty);
+            GyroMouseStickOneEuroPanelVisibilityChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void ProfileSettingsViewModel_GyroMouseSmoothMethodIndexChanged(object sender, EventArgs e)

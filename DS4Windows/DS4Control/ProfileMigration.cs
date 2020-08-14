@@ -214,7 +214,7 @@ namespace DS4Windows
             // Move stream to root element
             profileReader.MoveToContent();
             // Skip past root element
-            profileReader.Read();
+            profileReader.MoveToContent();
 
             // Write replacement root element in XmlWriter
             tempWriter.WriteStartElement("DS4Windows");
@@ -222,7 +222,7 @@ namespace DS4Windows
             tempWriter.WriteAttributeString("config_version", "4");
 
             // First pass
-            while (profileReader.Read())
+            do
             {
                 if (profileReader.Name == "GyroSmoothing" && profileReader.IsStartElement())
                 {
@@ -249,6 +249,7 @@ namespace DS4Windows
                     double.TryParse(weight, out gyroSmoothSettings.gyroMouseStickSmoothingWeight);
                 }
             }
+            while (profileReader.Read());
 
             // Close and dispose current XmlReader
             profileReader.Close();
@@ -260,10 +261,10 @@ namespace DS4Windows
             // Move stream to root element
             profileReader.MoveToContent();
             // Skip past root element
-            profileReader.Read();
+            profileReader.MoveToContent();
 
             // Second pass
-            while (profileReader.Read())
+            do
             {
                 if (profileReader.Name == "GyroSmoothing" && profileReader.IsStartElement())
                 {
@@ -294,6 +295,7 @@ namespace DS4Windows
                     tempWriter.WriteNode(profileReader, true);
                 }
             }
+            while (profileReader.Read());
 
             // End XML document and flush IO stream
             tempWriter.WriteEndDocument();

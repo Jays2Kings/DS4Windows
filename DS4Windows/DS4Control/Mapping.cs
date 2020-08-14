@@ -4341,14 +4341,6 @@ namespace DS4Windows
 
                 //Console.WriteLine("Values {0} {1}", gyroAccelX, gyroAccelZ);
 
-                if (WheelSmoothInfo[device].enabled)
-                {
-                    double currentRate = 1.0 / currentDeviceState.elapsedTime; // Need to express poll time in Hz
-                    OneEuroFilterPair wheelFilters = wheelFilterPairs[device];
-                    gyroAccelX = (int)(wheelFilters.axis1Filter.Filter(gyroAccelX, currentRate));
-                    gyroAccelZ = (int)(wheelFilters.axis2Filter.Filter(gyroAccelZ, currentRate));
-                }
-
                 //gyroAccelX = (int)(wheel360FilterX.Filter(gyroAccelX, currentRate));
                 //gyroAccelZ = (int)(wheel360FilterZ.Filter(gyroAccelZ, currentRate));
 
@@ -4417,6 +4409,12 @@ namespace DS4Windows
                 }
 
                 result = Mapping.ClampInt(maxRangeLeft, result, maxRangeRight);
+                if (WheelSmoothInfo[device].enabled)
+                {
+                    double currentRate = 1.0 / currentDeviceState.elapsedTime; // Need to express poll time in Hz
+                    OneEuroFilterPair wheelFilters = wheelFilterPairs[device];
+                    result = (int)(wheelFilters.axis1Filter.Filter(result, currentRate));
+                }
 
                 // Debug log output of SA sensor values
                 //LogToGuiSACalibrationDebugMsg($"DBG gyro=({gyroAccelX}, {gyroAccelZ})  output=({exposedState.OutputAccelX}, {exposedState.OutputAccelZ})  PitRolYaw=({currentDeviceState.Motion.gyroPitch}, {currentDeviceState.Motion.gyroRoll}, {currentDeviceState.Motion.gyroYaw})  VelPitRolYaw=({currentDeviceState.Motion.angVelPitch}, {currentDeviceState.Motion.angVelRoll}, {currentDeviceState.Motion.angVelYaw})  angle={result / (1.0 * C_WHEEL_ANGLE_PRECISION)}  fullTurns={controller.wheelFullTurnCount}", false);

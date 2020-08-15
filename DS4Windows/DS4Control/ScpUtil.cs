@@ -2819,8 +2819,18 @@ namespace DS4Windows
                 XmlNode xmlGyroMStickMaxOutput = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickMaxOutput", null); xmlGyroMStickMaxOutput.InnerText = gyroMStickInfo[device].maxOutput.ToString(); rootElement.AppendChild(xmlGyroMStickMaxOutput);
                 XmlNode xmlGyroMStickMaxOutputEnabled = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickMaxOutputEnabled", null); xmlGyroMStickMaxOutputEnabled.InnerText = gyroMStickInfo[device].maxOutputEnabled.ToString(); rootElement.AppendChild(xmlGyroMStickMaxOutputEnabled);
                 XmlNode xmlGyroMStickVerticalScale = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickVerticalScale", null); xmlGyroMStickVerticalScale.InnerText = gyroMStickInfo[device].vertScale.ToString(); rootElement.AppendChild(xmlGyroMStickVerticalScale);
-                XmlNode xmlGyroMStickSmoothing = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickSmoothing", null); xmlGyroMStickSmoothing.InnerText = gyroMStickInfo[device].useSmoothing.ToString(); rootElement.AppendChild(xmlGyroMStickSmoothing);
+
+
+                /*XmlNode xmlGyroMStickSmoothing = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickSmoothing", null); xmlGyroMStickSmoothing.InnerText = gyroMStickInfo[device].useSmoothing.ToString(); rootElement.AppendChild(xmlGyroMStickSmoothing);
                 XmlNode xmlGyroMStickSmoothWeight = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickSmoothingWeight", null); xmlGyroMStickSmoothWeight.InnerText = Convert.ToInt32(gyroMStickInfo[device].smoothWeight * 100).ToString(); rootElement.AppendChild(xmlGyroMStickSmoothWeight);
+                */
+                XmlElement xmlGyroMStickSmoothingElement = m_Xdoc.CreateElement("GyroMouseStickSmoothingSettings");
+                XmlNode xmlGyroMStickSmoothing = m_Xdoc.CreateNode(XmlNodeType.Element, "UseSmoothing", null); xmlGyroMStickSmoothing.InnerText = gyroMStickInfo[device].useSmoothing.ToString(); xmlGyroMStickSmoothingElement.AppendChild(xmlGyroMStickSmoothing);
+                XmlNode xmlGyroMStickSmoothingMethod = m_Xdoc.CreateNode(XmlNodeType.Element, "SmoothingMethod", null); xmlGyroMStickSmoothingMethod.InnerText = gyroMStickInfo[device].SmoothMethodIdentifier(); xmlGyroMStickSmoothingElement.AppendChild(xmlGyroMStickSmoothingMethod);
+                XmlNode xmlGyroMStickSmoothWeight = m_Xdoc.CreateNode(XmlNodeType.Element, "SmoothingWeight", null); xmlGyroMStickSmoothWeight.InnerText = Convert.ToInt32(gyroMStickInfo[device].smoothWeight * 100).ToString(); xmlGyroMStickSmoothingElement.AppendChild(xmlGyroMStickSmoothWeight);
+                XmlNode xmlGyroMStickSmoothMincutoff = m_Xdoc.CreateNode(XmlNodeType.Element, "SmoothingMinCutoff", null); xmlGyroMStickSmoothMincutoff.InnerText = gyroMStickInfo[device].minCutoff.ToString(); xmlGyroMStickSmoothingElement.AppendChild(xmlGyroMStickSmoothMincutoff);
+                XmlNode xmlGyroMStickSmoothBeta = m_Xdoc.CreateNode(XmlNodeType.Element, "SmoothingBeta", null); xmlGyroMStickSmoothBeta.InnerText = gyroMStickInfo[device].beta.ToString(); xmlGyroMStickSmoothingElement.AppendChild(xmlGyroMStickSmoothBeta);
+                rootElement.AppendChild(xmlGyroMStickSmoothingElement);
 
                 XmlNode xmlLSC = m_Xdoc.CreateNode(XmlNodeType.Element, "LSCurve", null); xmlLSC.InnerText = lsCurve[device].ToString(); rootElement.AppendChild(xmlLSC);
                 XmlNode xmlRSC = m_Xdoc.CreateNode(XmlNodeType.Element, "RSCurve", null); xmlRSC.InnerText = rsCurve[device].ToString(); rootElement.AppendChild(xmlRSC);
@@ -3859,15 +3869,57 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickVerticalScale"); int.TryParse(Item.InnerText, out gyroMStickInfo[device].vertScale); }
                 catch { gyroMStickInfo[device].vertScale = 100; missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickSmoothing"); bool.TryParse(Item.InnerText, out gyroMStickInfo[device].useSmoothing); }
-                catch { gyroMStickInfo[device].useSmoothing = false; missingSetting = true; }
+                bool gyroMStickSmoothingGroup = false;
+                XmlNode xmlGyroMStickSmoothingElement =
+                    m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickSmoothingSettings");
+                gyroMStickSmoothingGroup = xmlGyroMStickSmoothingElement != null;
 
-                try {
-                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickSmoothingWeight");
-                    int temp = 0; int.TryParse(Item.InnerText, out temp);
-                    gyroMStickInfo[device].smoothWeight = Math.Min(Math.Max(0.0, Convert.ToDouble(temp * 0.01)), 1.0);
+                if (gyroMStickSmoothingGroup)
+                {
+                    try
+                    {
+                        Item = xmlGyroMStickSmoothingElement.SelectSingleNode("UseSmoothing");
+                        bool.TryParse(Item.InnerText, out bool tempSmoothing);
+                        gyroMStickInfo[device].useSmoothing = tempSmoothing;
+                    }
+                    catch { gyroMStickInfo[device].useSmoothing = false; missingSetting = true; }
+
+                    try
+                    {
+                        Item = xmlGyroMStickSmoothingElement.SelectSingleNode("SmoothingMethod");
+                        string temp = Item?.InnerText ?? GyroMouseStickInfo.DEFAULT_SMOOTH_TECHNIQUE;
+                        gyroMStickInfo[device].DetermineSmoothMethod(temp);
+                    }
+                    catch { gyroMStickInfo[device].ResetSmoothing(); missingSetting = true; }
+
+                    try
+                    {
+                        Item = xmlGyroMStickSmoothingElement.SelectSingleNode("SmoothingWeight");
+                        int temp = 0; int.TryParse(Item.InnerText, out temp);
+                        gyroMStickInfo[device].smoothWeight = Math.Min(Math.Max(0.0, Convert.ToDouble(temp * 0.01)), 1.0);
+                    }
+                    catch { gyroMStickInfo[device].smoothWeight = 0.5; missingSetting = true; }
+
+                    try
+                    {
+                        Item = xmlGyroMStickSmoothingElement.SelectSingleNode("SmoothingMinCutoff");
+                        double.TryParse(Item.InnerText, out double temp);
+                        gyroMStickInfo[device].minCutoff = Math.Min(Math.Max(0.0, temp), 100.0);
+                    }
+                    catch { gyroMStickInfo[device].minCutoff = GyroMouseStickInfo.DEFAULT_MINCUTOFF; missingSetting = true; }
+
+                    try
+                    {
+                        Item = xmlGyroMStickSmoothingElement.SelectSingleNode("SmoothingBeta");
+                        double.TryParse(Item.InnerText, out double temp);
+                        gyroMStickInfo[device].beta = Math.Min(Math.Max(0.0, temp), 1.0);
+                    }
+                    catch { gyroMStickInfo[device].beta = GyroMouseStickInfo.DEFAULT_BETA; missingSetting = true; }
                 }
-                catch { gyroMStickInfo[device].smoothWeight = 0.5; missingSetting = true; }
+                else
+                {
+                    missingSetting = true;
+                }
 
                 try
                 {
@@ -5309,12 +5361,16 @@ namespace DS4Windows
             gyroOutMode[device] = GyroOutMode.Controls;
             sAMouseStickTriggers[device] = "-1";
             sAMouseStickTriggerCond[device] = true;
-            gyroMStickInfo[device].deadZone = 30; gyroMStickInfo[device].maxZone = 830;
+            /*gyroMStickInfo[device].deadZone = 30; gyroMStickInfo[device].maxZone = 830;
             gyroMStickInfo[device].antiDeadX = 0.4; gyroMStickInfo[device].antiDeadY = 0.4;
             gyroMStickInfo[device].inverted = 0; gyroMStickInfo[device].vertScale = 100;
             gyroMStickInfo[device].maxOutputEnabled = false; gyroMStickInfo[device].maxOutput = 100.0;
-            gyroMouseStickToggle[device] = false;
             gyroMStickInfo[device].useSmoothing = false; gyroMStickInfo[device].smoothWeight = 0.5;
+            */
+
+            gyroMStickInfo[device].Reset();
+
+            gyroMouseStickToggle[device] = false;
             gyroMouseStickTriggerTurns[device] = true;
             sASteeringWheelEmulationAxis[device] = SASteeringWheelEmulationAxisType.None;
             sASteeringWheelEmulationRange[device] = 360;

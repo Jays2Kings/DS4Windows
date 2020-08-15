@@ -214,6 +214,7 @@ namespace DS4Windows
             // Move stream to root element
             profileReader.MoveToContent();
             // Skip past root element
+            profileReader.Read();
             profileReader.MoveToContent();
 
             // Write replacement root element in XmlWriter
@@ -262,6 +263,7 @@ namespace DS4Windows
             // Move stream to root element
             profileReader.MoveToContent();
             // Skip past root element
+            profileReader.Read();
             profileReader.MoveToContent();
 
             // Second pass

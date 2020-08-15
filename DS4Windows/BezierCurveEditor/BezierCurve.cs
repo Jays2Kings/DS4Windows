@@ -55,7 +55,11 @@ namespace DS4Windows
         // Set or Get string representation of the bezier curve definition value (Note! Set doesn't initialize the lookup table. InitBezierCurve needs to be called to actually initalize the calculation)
         public string AsString
         {
-            get { return ($"{mX1}, {mY1}, {mX2}, {mY2}"); }
+            get
+            {
+                CultureInfo usDataFormatCulture = CultureInfo.CreateSpecificCulture("en-US");
+                return ($"{mX1.ToString("G", usDataFormatCulture)}, {mY1.ToString("G", usDataFormatCulture)}, {mX2.ToString("G", usDataFormatCulture)}, {mY2.ToString("G", usDataFormatCulture)}");
+            }
             set
             {
                 // Set bezier curve defintion from a string value (4 comma separated decimals). If any of the string values are invalid then set curve as linear "zero" curve.

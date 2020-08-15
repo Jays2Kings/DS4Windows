@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using static DS4Windows.Global;
 using System.Drawing; // Point struct
+using Sensorit.Base;
 
 namespace DS4Windows
 {
@@ -174,7 +175,7 @@ namespace DS4Windows
         //private static OneEuroFilter wheel360FilterX = new OneEuroFilter(minCutoff: 0.1, beta: 0.02);
         //private static OneEuroFilter wheel360FilterZ = new OneEuroFilter(minCutoff: 0.1, beta: 0.02);
 
-        public static OneEuroFilterPair[] wheelFilterPairs = new OneEuroFilterPair[ControlService.DS4_CONTROLLER_COUNT];
+        public static OneEuroFilter[] wheelFilters = new OneEuroFilter[ControlService.DS4_CONTROLLER_COUNT];
 
         static ReaderWriterLockSlim syncStateLock = new ReaderWriterLockSlim();
 
@@ -4412,8 +4413,8 @@ namespace DS4Windows
                 if (WheelSmoothInfo[device].enabled)
                 {
                     double currentRate = 1.0 / currentDeviceState.elapsedTime; // Need to express poll time in Hz
-                    OneEuroFilterPair wheelFilters = wheelFilterPairs[device];
-                    result = (int)(wheelFilters.axis1Filter.Filter(result, currentRate));
+                    OneEuroFilter wheelFilter = wheelFilters[device];
+                    result = (int)(wheelFilter.Filter(result, currentRate));
                 }
 
                 // Debug log output of SA sensor values

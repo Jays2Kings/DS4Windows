@@ -9,6 +9,7 @@ using Nefarius.ViGEm.Client;
 using System.Windows.Threading;
 using DS4WinWPF.DS4Control;
 using Microsoft.Win32;
+using Sensorit.Base;
 
 namespace DS4Windows
 {
@@ -1252,17 +1253,15 @@ namespace DS4Windows
             }
 
             // Set up filter for new input device
-            OneEuroFilterPair tempFilterPair = new OneEuroFilterPair();
-            Mapping.wheelFilterPairs[ind] = tempFilterPair;
+            OneEuroFilter tempFilter = new OneEuroFilter(OneEuroFilterPair.DEFAULT_WHEEL_CUTOFF,
+                OneEuroFilterPair.DEFAULT_WHEEL_BETA);
+            Mapping.wheelFilters[ind] = tempFilter;
 
             // Carry over initial profile wheel smoothing values to filter instances.
             // Set up event hooks to keep values in sync
             SteeringWheelSmoothingInfo wheelSmoothInfo = WheelSmoothInfo[ind];
-            wheelSmoothInfo.SetFilterAttrs(tempFilterPair.axis1Filter);
-            wheelSmoothInfo.SetRefreshEvents(tempFilterPair.axis1Filter);
-
-            wheelSmoothInfo.SetFilterAttrs(tempFilterPair.axis2Filter);
-            wheelSmoothInfo.SetRefreshEvents(tempFilterPair.axis2Filter);
+            wheelSmoothInfo.SetFilterAttrs(tempFilter);
+            wheelSmoothInfo.SetRefreshEvents(tempFilter);
         }
 
         private void CheckLauchProfileOption(int ind, DS4Device device)

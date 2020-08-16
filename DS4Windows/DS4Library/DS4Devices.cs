@@ -120,6 +120,9 @@ namespace DS4Windows
             new VidPidInfo(NACON_VID, 0x0D13, "Nacon Revol Pro v.3"),
             new VidPidInfo(HORI_VID, 0x0066, "Horipad FPS Plus", VidPidFeatureSet.NoGyroCalib), // Horipad FPS Plus (wired only. No light bar, rumble and Gyro/Accel sensor. Cannot Hide "HID-compliant vendor-defined device" in USB Composite Device. Other feature works fine.)
             new VidPidInfo(0x9886, 0x0025, "Astro C40", VidPidFeatureSet.NoGyroCalib), // Astro C40 (wired and BT. Works if Astro specific xinput drivers haven't been installed. Uninstall those to use the pad as dinput device)
+            new VidPidInfo(0x0E8F, 0x1114, "Gamo2 Divaller", VidPidFeatureSet.NoGyroCalib), // Gamo2 Divaller (wired only. Light bar not controllable. No touchpad, gyro or rumble)
+            new VidPidInfo(HORI_VID, 0x0101, "Hori Mini Hatsune Miku FT", VidPidFeatureSet.NoGyroCalib), // Hori Mini Hatsune Miku FT (wired only. No light bar, gyro or rumble)
+            new VidPidInfo(HORI_VID, 0x00C9, "Hori Taiko Controller", VidPidFeatureSet.NoGyroCalib), // Hori Taiko Controller (wired only. No light bar, touchpad, gyro, rumble, sticks or triggers)
         };
 
         public static string devicePathToInstanceId(string devicePath)

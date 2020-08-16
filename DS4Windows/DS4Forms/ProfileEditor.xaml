@@ -751,7 +751,7 @@
                         </ComboBox>
                     </StackPanel>
 
-                    <StackPanel x:Name="gyroControlsPanel" Visibility="Collapsed">
+                    <StackPanel x:Name="gyroControlsPanel" Visibility="Visible">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                             <Button x:Name="gyroZNBtn" Content="Tilt Up" Width="100" Tag="33" Click="TiltControlsButton_Click" />
                             <Label x:Name="gyroZNLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
@@ -931,14 +931,14 @@
                                     <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
                                         <Label Content="1&#x20ac; Beta" />
                                         <xctk:DoubleUpDown  d:IsHidden="True" FormatString="F5" Value="{Binding GyroMouseOneEuroBeta,FallbackValue=0.0,UpdateSourceTrigger=LostFocus}"
-                                                           Minimum="0.0" Maximum="1.0" MinWidth="60" />
+                                                           Minimum="0.0" Maximum="1.0" Increment="0.1" MinWidth="60" />
                                     </StackPanel>
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
                     </StackPanel>
 
-                    <StackPanel x:Name="gyroMouseJoystickPanel" Visibility="Visible">
+                    <StackPanel x:Name="gyroMouseJoystickPanel" Visibility="Collapsed">
                         <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
                             <Label Content="Triggers" />
                             <Button x:Name="gyroMouseStickTrigBtn" Content="{Binding GyroMouseStickTrigDisplay,FallbackValue='Always On'}" MinWidth="160"

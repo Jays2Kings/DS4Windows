@@ -32,6 +32,7 @@
 * 
 */
 using System;
+using System.Globalization;
 
 namespace DS4Windows
 {
@@ -54,12 +55,18 @@ namespace DS4Windows
         // Set or Get string representation of the bezier curve definition value (Note! Set doesn't initialize the lookup table. InitBezierCurve needs to be called to actually initalize the calculation)
         public string AsString
         {
-            get { return ($"{mX1}, {mY1}, {mX2}, {mY2}"); }
+            get
+            {
+                CultureInfo usDataFormatCulture = CultureInfo.CreateSpecificCulture("en-US");
+                return ($"{mX1.ToString("G", usDataFormatCulture)}, {mY1.ToString("G", usDataFormatCulture)}, {mX2.ToString("G", usDataFormatCulture)}, {mY2.ToString("G", usDataFormatCulture)}");
+            }
             set
             {
-                // Set bezier curve defintion from a string value (4 comma separated decimals). If any of the string values are invalid then set curve as linear "zero" curve
+                // Set bezier curve defintion from a string value (4 comma separated decimals). If any of the string values are invalid then set curve as linear "zero" curve.
+                // The input string is expected to be always in "en-US" data format (ie. period as decimal separator and comma as list separator) and the string value should not have thousand separator chars
                 string[] bezierDef = value.Split(new Char[] { ',' }, 4);
-                if (bezierDef.Length < 4 || !Double.TryParse(bezierDef[0], out mX1) || !Double.TryParse(bezierDef[1], out mY1) || !Double.TryParse(bezierDef[2], out mX2) || !Double.TryParse(bezierDef[3], out mY2) )
+                CultureInfo usDataFormatCulture = CultureInfo.CreateSpecificCulture("en-US");
+                if (bezierDef.Length < 4 || !Double.TryParse(bezierDef[0], NumberStyles.Float, usDataFormatCulture, out mX1) || !Double.TryParse(bezierDef[1], NumberStyles.Float, usDataFormatCulture, out mY1) || !Double.TryParse(bezierDef[2], NumberStyles.Float, usDataFormatCulture, out mX2) || !Double.TryParse(bezierDef[3], NumberStyles.Float, usDataFormatCulture, out mY2) )
                     mX1 = mY1 = mX2 = mY2 = 0;
             }
         }

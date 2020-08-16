@@ -34,6 +34,7 @@ namespace DS4Windows
                 public KeyPress previous, current;
             }
             public Dictionary<UInt16, KeyPresses> keyPresses = new Dictionary<UInt16, KeyPresses>();
+            public Dictionary<ushort, ushort> nativeKeyAlias = new Dictionary<ushort, ushort>();
 
             public void SaveToPrevious(bool performClear)
             {
@@ -419,33 +420,34 @@ namespace DS4Windows
                     globalState.keyPresses[kvpKey] = gkp;
                 }
 
+                ushort nativeKey = state.nativeKeyAlias[kvpKey];
                 if (gkp.current.toggleCount != 0 && gkp.previous.toggleCount == 0 && gkp.current.toggle)
                 {
                     if (gkp.current.scanCodeCount != 0)
-                        outputKBMHandler.PerformKeyPressAlt(kvpKey);
+                        outputKBMHandler.PerformKeyPressAlt(nativeKey);
                     else
-                        outputKBMHandler.PerformKeyPress(kvpKey);
+                        outputKBMHandler.PerformKeyPress(nativeKey);
                 }
                 else if (gkp.current.toggleCount != 0 && gkp.previous.toggleCount == 0 && !gkp.current.toggle)
                 {
                     if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC
-                        outputKBMHandler.PerformKeyReleaseAlt(kvpKey);
+                        outputKBMHandler.PerformKeyReleaseAlt(nativeKey);
                     else
-                        outputKBMHandler.PerformKeyRelease(kvpKey);
+                        outputKBMHandler.PerformKeyRelease(nativeKey);
                 }
                 else if (gkp.current.vkCount + gkp.current.scanCodeCount != 0 && gkp.previous.vkCount + gkp.previous.scanCodeCount == 0)
                 {
                     if (gkp.current.scanCodeCount != 0)
                     {
                         oldnow = DateTime.UtcNow;
-                        outputKBMHandler.PerformKeyPressAlt(kvpKey);
+                        outputKBMHandler.PerformKeyPressAlt(nativeKey);
                         pressagain = false;
                         keyshelddown = kvpKey;
                     }
                     else
                     {
                         oldnow = DateTime.UtcNow;
-                        outputKBMHandler.PerformKeyPress(kvpKey);
+                        outputKBMHandler.PerformKeyPress(nativeKey);
                         pressagain = false;
                         keyshelddown = kvpKey;
                     }
@@ -467,7 +469,7 @@ namespace DS4Windows
                             if (now >= oldnow + TimeSpan.FromMilliseconds(25) && pressagain)
                             {
                                 oldnow = now;
-                                outputKBMHandler.PerformKeyPressAlt(kvpKey);
+                                outputKBMHandler.PerformKeyPressAlt(nativeKey);
                             }
                         }
                         else if (pressagain)
@@ -476,7 +478,7 @@ namespace DS4Windows
                             if (now >= oldnow + TimeSpan.FromMilliseconds(25) && pressagain)
                             {
                                 oldnow = now;
-                                outputKBMHandler.PerformKeyPress(kvpKey);
+                                outputKBMHandler.PerformKeyPress(nativeKey);
                             }
                         }
                     }
@@ -486,12 +488,12 @@ namespace DS4Windows
                 {
                     if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC
                     {
-                        outputKBMHandler.PerformKeyReleaseAlt(kvpKey);
+                        outputKBMHandler.PerformKeyReleaseAlt(nativeKey);
                         pressagain = false;
                     }
                     else
                     {
-                        outputKBMHandler.PerformKeyRelease(kvpKey);
+                        outputKBMHandler.PerformKeyRelease(nativeKey);
                         pressagain = false;
                     }
                 }
@@ -1561,7 +1563,6 @@ namespace DS4Windows
                 DS4ControlSettings dcs = settingEnum.Current;
                 object action = null;
                 uint actionAlias = 0;
-                int[] actionMacroAliases = null;
                 DS4ControlSettings.ActionType actionType = 0;
                 DS4KeyType keyType = DS4KeyType.None;
                 if (dcs.shiftAction != null && ShiftTrigger2(dcs.shiftTrigger, device, cState, eState, tp, fieldMapping))
@@ -1664,12 +1665,15 @@ namespace DS4Windows
                     }
                     else if (actionType == DS4ControlSettings.ActionType.Key)
                     {
-                        ushort value = Convert.ToUInt16(actionAlias);
+                        ushort value = Convert.ToUInt16(action);
                         if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                         {
                             SyntheticState.KeyPresses kp;
                             if (!deviceState.keyPresses.TryGetValue(value, out kp))
+                            {
                                 deviceState.keyPresses[value] = kp = new SyntheticState.KeyPresses();
+                                deviceState.nativeKeyAlias[value] = (ushort)actionAlias;
+                            }
 
                             if (keyType.HasFlag(DS4KeyType.ScanCode))
                                 kp.current.scanCodeCount++;
@@ -2274,11 +2278,16 @@ namespace DS4Windows
                                     {
                                         SyntheticState.KeyPresses kp;
                                         if (!deviceState[device].keyPresses.TryGetValue(key, out kp))
+                                        {
                                             deviceState[device].keyPresses[key] = kp = new SyntheticState.KeyPresses();
+                                            deviceState[device].nativeKeyAlias[key] = (ushort)Global.outputKBMMapping.GetRealEventKey(key);
+                                        }
+
                                         if (action.keyType.HasFlag(DS4KeyType.ScanCode))
                                             kp.current.scanCodeCount++;
                                         else
                                             kp.current.vkCount++;
+
                                         kp.current.repeatCount++;
                                     }
                                     else if (action.keyType.HasFlag(DS4KeyType.ScanCode))

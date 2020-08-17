@@ -77,9 +77,9 @@ namespace DS4Windows.DS4Library
                     instAudioFlags = audioFlags;
                     endpointVolume = interfacePointer as IAudioEndpointVolume;
                     endpointVolume.RegisterControlChangeNotify(this);
+                    RefreshVolume();
                 }
 
-                RefreshVolume();
                 Marshal.ReleaseComObject(audioDevice);
             }
 

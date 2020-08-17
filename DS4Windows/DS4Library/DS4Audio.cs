@@ -39,6 +39,10 @@ namespace DS4Windows.DS4Library
         public void RefreshVolume()
         {
             const float HALFPI = (float)Math.PI / 2.0f;
+            const int MAX_RENDER_VOLUME_LVL = 80;
+            const int MIN_RENDER_VOLUME_LVL = 40;
+            const int MAX_CAPTURE_VOLUME_LVL = 60;
+            const int MIN_CAPTURE_VOLUME_LVL = 0;
             float pfLevel = 0;
 
             if (endpointVolume != null)
@@ -46,15 +50,15 @@ namespace DS4Windows.DS4Library
 
             if (instAudioFlags == DataFlow.Render)
                 // Use QuadraticEaseOut curve for headphone volume level
-                //vol = pfLevel != 0.0 ? Convert.ToUInt32((80 - 30) * -(pfLevel * (pfLevel - 2.0)) + 30) : 0;
+                //vol = pfLevel != 0.0 ? Convert.ToUInt32((MAX_RENDER_VOLUME_LVL - MIN_RENDER_VOLUME_LVL) * -(pfLevel * (pfLevel - 2.0)) + MIN_RENDER_VOLUME_LVL) : 0;
                 // Use SineEaseOut curve for headphone volume level
-                vol = pfLevel != 0.0 ? Convert.ToUInt32((80 - 30) * Math.Sin(pfLevel * HALFPI) + 30) : 0;
+                vol = pfLevel != 0.0 ? Convert.ToUInt32((MAX_RENDER_VOLUME_LVL - MIN_RENDER_VOLUME_LVL) * Math.Sin(pfLevel * HALFPI) + MIN_RENDER_VOLUME_LVL) : 0;
                 // Use CubicEaseOut curve for headphone volume level
-                //vol = pfLevel != 0.0 ?  Convert.ToUInt32((80 - 30) * (--pfLevel * pfLevel * pfLevel + 1) + 30) : 0;
+                //vol = pfLevel != 0.0 ?  Convert.ToUInt32((MAX_RENDER_VOLUME_LVL - MIN_RENDER_VOLUME_LVL) * (--pfLevel * pfLevel * pfLevel + 1) + MIN_RENDER_VOLUME_LVL) : 0;
                 // Use Linear curve for headphone volume level
-                //vol = pfLevel != 0.0 ? Convert.ToUInt32((80 - 30) * pfLevel + 30) : 0;
+                //vol = pfLevel != 0.0 ? Convert.ToUInt32((MAX_RENDER_VOLUME_LVL - MIN_RENDER_VOLUME_LVL) * pfLevel + MIN_RENDER_VOLUME_LVL) : 0;
             else if (instAudioFlags == DataFlow.Capture)
-                vol = Convert.ToUInt32((60 - 0) * pfLevel + 0);
+                vol = Convert.ToUInt32((MAX_CAPTURE_VOLUME_LVL - MIN_CAPTURE_VOLUME_LVL) * pfLevel + 0);
         }
 
         public void OnNotify(IntPtr pNotify)

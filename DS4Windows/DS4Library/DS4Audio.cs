@@ -129,7 +129,7 @@ namespace DS4Windows.DS4Library
                 {
                     PropVariant propertyValue;
                     Marshal.ThrowExceptionForHR(propertyStore.GetValue(ref propertyKey, out propertyValue));
-                    tempDeviceInstance = Marshal.PtrToStringUni(propertyValue.pointerValue);
+                    tempDeviceInstance = Marshal.PtrToStringUni(propertyValue.innerData.pointerValue) ?? "";
 
                     if (regex.IsMatch(tempDeviceInstance))
                     {
@@ -282,14 +282,22 @@ namespace DS4Windows.DS4Library.CoreAudio
         }
     }
 
-    [StructLayout(LayoutKind.Explicit)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct PropVariant
     {
-        [FieldOffset(0)] private short vt;
-        [FieldOffset(2)] private short wReserved1;
-        [FieldOffset(4)] private short wReserved2;
-        [FieldOffset(6)] private short wReserved3;
-        [FieldOffset(8)] public IntPtr pointerValue;
+        public short vt;
+        public short wReserved1;
+        public short wReserved2;
+        public short wReserved3;
+        public PropVariantData innerData;
+    }
+
+    // Size 16 is the minimum required size to work in 64 bit mode. Size has to be
+    // be explicitly specified for 64 bit. Still works in 32 bit mode
+    [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Unicode, Size = 16)]
+    public struct PropVariantData
+    {
+        [FieldOffset(0)] internal IntPtr pointerValue;
     }
 
     [Guid("886d8eeb-8cf2-4446-8d02-cdba1dbdcf99"),

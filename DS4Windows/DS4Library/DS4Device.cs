@@ -504,15 +504,15 @@ namespace DS4Windows
                     HidDeviceAttributes tempAttr = hDevice.Attributes;
                     if (tempAttr.VendorId == 0x054C && tempAttr.ProductId == 0x09CC)
                     {
-                        audio = new DS4Audio();
-                        micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture);
+                        audio = new DS4Audio(searchDeviceInstance: hidDevice.ParentPath);
+                        micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture, searchDeviceInstance: hidDevice.ParentPath);
                     }
                     else if (tempAttr.VendorId == DS4Devices.RAZER_VID &&
                         tempAttr.ProductId == 0x1007)
                     {
-                        audio = new DS4Audio(searchName: RAIJU_TE_AUDIO_SEARCHNAME);
+                        audio = new DS4Audio(searchDeviceInstance: hidDevice.ParentPath);
                         micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture,
-                        RAIJU_TE_AUDIO_SEARCHNAME);
+                            searchDeviceInstance: hidDevice.ParentPath);
                     }
 
                     synced = true;
@@ -520,9 +520,9 @@ namespace DS4Windows
                 else
                 {
                     warnInterval = WARN_INTERVAL_BT;
-                    audio = new DS4Audio(searchName: SONYWA_AUDIO_SEARCHNAME);
+                    audio = new DS4Audio(searchDeviceInstance: hidDevice.ParentPath);
                     micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture,
-                        SONYWA_AUDIO_SEARCHNAME);
+                        searchDeviceInstance: hidDevice.ParentPath);
                     runCalib = synced = isValidSerial();
                 }
             }

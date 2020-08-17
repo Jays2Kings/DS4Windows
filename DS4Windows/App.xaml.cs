@@ -102,6 +102,7 @@ namespace DS4WinWPF
                 threadComEvent.Set();  // signal the other instance.
                 threadComEvent.Close();
                 Current.Shutdown();    // Quit temp instance
+                runShutdown = false;
                 return;
             }
             catch { /* don't care about errors */ }

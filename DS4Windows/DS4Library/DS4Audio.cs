@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using DS4Windows.DS4Library.CoreAudio;
+using System.Text.RegularExpressions;
 
 namespace DS4Windows.DS4Library
 {
@@ -11,6 +12,11 @@ namespace DS4Windows.DS4Library
         private static Guid IID_IAudioEndpointVolume = new Guid("5CDF2C82-841E-4546-9722-0CF74078229A");
         private static readonly PropertyKey PKEY_Device_FriendlyName =
             new PropertyKey(new Guid(unchecked((int)0xa45c254e), unchecked((short)0xdf1c), 0x4efd, 0x80, 0x20, 0x67, 0xd1, 0x46, 0xa8, 0x50, 0xe0), 14);
+
+        private static readonly Guid MediaGuid = new Guid("{4d36e96c-e325-11ce-bfc1-08002be10318}");
+
+        private static readonly PropertyKey PKEY_Device_Siblings =
+            new PropertyKey(new Guid("{b3f8fa53-0004-438e-9003-51a46e139bfc}"), 2);
 
         public uint vol;
         public uint Volume
@@ -27,10 +33,16 @@ namespace DS4Windows.DS4Library
         }
 
         private DataFlow instAudioFlags = DataFlow.Render;
+        private Regex regex = new Regex(@"^\{\d+\}\.{1}(?<parent>(?:\S+)*\\VID_(?:[0-9]|[A-F])+&PID_(?:[0-9A-F]+)(?:\S+)){1}$",
+            RegexOptions.Compiled);
 
         public void RefreshVolume()
         {
             const float HALFPI = (float)Math.PI / 2.0f;
+            const int MAX_RENDER_VOLUME_LVL = 80;
+            const int MIN_RENDER_VOLUME_LVL = 40;
+            const int MAX_CAPTURE_VOLUME_LVL = 60;
+            const int MIN_CAPTURE_VOLUME_LVL = 0;
             float pfLevel = 0;
 
             if (endpointVolume != null)
@@ -38,15 +50,15 @@ namespace DS4Windows.DS4Library
 
             if (instAudioFlags == DataFlow.Render)
                 // Use QuadraticEaseOut curve for headphone volume level
-                //vol = pfLevel != 0.0 ? Convert.ToUInt32((80 - 30) * -(pfLevel * (pfLevel - 2.0)) + 30) : 0;
+                //vol = pfLevel != 0.0 ? Convert.ToUInt32((MAX_RENDER_VOLUME_LVL - MIN_RENDER_VOLUME_LVL) * -(pfLevel * (pfLevel - 2.0)) + MIN_RENDER_VOLUME_LVL) : 0;
                 // Use SineEaseOut curve for headphone volume level
-                vol = pfLevel != 0.0 ? Convert.ToUInt32((80 - 30) * Math.Sin(pfLevel * HALFPI) + 30) : 0;
+                vol = pfLevel != 0.0 ? Convert.ToUInt32((MAX_RENDER_VOLUME_LVL - MIN_RENDER_VOLUME_LVL) * Math.Sin(pfLevel * HALFPI) + MIN_RENDER_VOLUME_LVL) : 0;
                 // Use CubicEaseOut curve for headphone volume level
-                //vol = pfLevel != 0.0 ?  Convert.ToUInt32((80 - 30) * (--pfLevel * pfLevel * pfLevel + 1) + 30) : 0;
+                //vol = pfLevel != 0.0 ?  Convert.ToUInt32((MAX_RENDER_VOLUME_LVL - MIN_RENDER_VOLUME_LVL) * (--pfLevel * pfLevel * pfLevel + 1) + MIN_RENDER_VOLUME_LVL) : 0;
                 // Use Linear curve for headphone volume level
-                //vol = pfLevel != 0.0 ? Convert.ToUInt32((80 - 30) * pfLevel + 30) : 0;
+                //vol = pfLevel != 0.0 ? Convert.ToUInt32((MAX_RENDER_VOLUME_LVL - MIN_RENDER_VOLUME_LVL) * pfLevel + MIN_RENDER_VOLUME_LVL) : 0;
             else if (instAudioFlags == DataFlow.Capture)
-                vol = Convert.ToUInt32((60 - 0) * pfLevel + 0);
+                vol = Convert.ToUInt32((MAX_CAPTURE_VOLUME_LVL - MIN_CAPTURE_VOLUME_LVL) * pfLevel + 0);
         }
 
         public void OnNotify(IntPtr pNotify)
@@ -55,7 +67,7 @@ namespace DS4Windows.DS4Library
         }
 
         public DS4Audio(DataFlow audioFlags = DataFlow.Render,
-            string searchName = "Wireless Controller")
+            string searchDeviceInstance = "")
         {
             var audioEnumerator = new MMDeviceEnumeratorComObject() as IMMDeviceEnumerator;
             IMMDeviceCollection audioDevices;
@@ -70,16 +82,16 @@ namespace DS4Windows.DS4Library
                 Marshal.ThrowExceptionForHR(audioDevices.Item(deviceNumber, out audioDevice));
                 string deviceName = GetAudioDeviceName(ref audioDevice);
 
-                if (deviceName.Contains(searchName))
+                if (deviceName == searchDeviceInstance)
                 {
                     object interfacePointer;
                     Marshal.ThrowExceptionForHR(audioDevice.Activate(ref IID_IAudioEndpointVolume, ClsCtx.ALL, IntPtr.Zero, out interfacePointer));
                     instAudioFlags = audioFlags;
                     endpointVolume = interfacePointer as IAudioEndpointVolume;
                     endpointVolume.RegisterControlChangeNotify(this);
+                    RefreshVolume();
                 }
 
-                RefreshVolume();
                 Marshal.ReleaseComObject(audioDevice);
             }
 
@@ -105,25 +117,106 @@ namespace DS4Windows.DS4Library
             int numProperties;
             Marshal.ThrowExceptionForHR(propertyStore.GetCount(out numProperties));
 
-            string deviceName = String.Empty;
+            string tempDeviceInstance = string.Empty;
+            string devicePath = string.Empty;
 
             for (int propertyNum = 0; propertyNum < numProperties; ++propertyNum)
             {
                 PropertyKey propertyKey;
                 Marshal.ThrowExceptionForHR(propertyStore.GetAt(propertyNum, out propertyKey));
 
-                if ((propertyKey.formatId == PKEY_Device_FriendlyName.formatId) && (propertyKey.propertyId == PKEY_Device_FriendlyName.propertyId))
+                if ((propertyKey.formatId == PKEY_Device_Siblings.formatId) && (propertyKey.propertyId == PKEY_Device_Siblings.propertyId))
                 {
                     PropVariant propertyValue;
                     Marshal.ThrowExceptionForHR(propertyStore.GetValue(ref propertyKey, out propertyValue));
-                    deviceName = Marshal.PtrToStringUni(propertyValue.pointerValue);
+                    tempDeviceInstance = Marshal.PtrToStringUni(propertyValue.innerData.pointerValue) ?? "";
+
+                    if (regex.IsMatch(tempDeviceInstance))
+                    {
+                        MatchCollection collection = regex.Matches(tempDeviceInstance);
+                        GroupCollection groupCollection = collection[0].Groups;
+                        devicePath = groupCollection["parent"].Value;
+                        devicePath = GetSibling(devicePath);
+                    }
+                    else
+                    {
+                        devicePath = "";
+                    }
+
                     break;
                 }
             }
 
             Marshal.ReleaseComObject(propertyStore);
-            return deviceName;
+            return devicePath;
         }
+
+        private string GetSibling(string devicePath)
+        {
+            string result = string.Empty;
+
+            var requiredSize = 0;
+            ulong propertyType = 0;
+
+            Guid tempGuid = MediaGuid;
+            IntPtr deviceInfoSet = NativeMethods.SetupDiGetClassDevs(ref tempGuid, null, 0, NativeMethods.DIGCF_PRESENT);
+
+            NativeMethods.SP_DEVINFO_DATA devinfoData = new NativeMethods.SP_DEVINFO_DATA();
+            devinfoData.cbSize = Marshal.SizeOf(devinfoData);
+
+            var deviceIndex = 0;
+            while (NativeMethods.SetupDiEnumDeviceInfo(deviceInfoSet, deviceIndex, ref devinfoData))
+            {
+                deviceIndex += 1;
+                string tmpDeviceInst = string.Empty;
+
+                NativeMethods.SetupDiGetDeviceProperty(deviceInfoSet, ref devinfoData,
+                                                    ref NativeMethods.DEVPKEY_Device_InstanceId, ref propertyType,
+                                                    null, 0,
+                                                    ref requiredSize, 0);
+
+                if (requiredSize > 0)
+                {
+                    var descriptionBuffer = new byte[requiredSize];
+                    NativeMethods.SetupDiGetDeviceProperty(deviceInfoSet, ref devinfoData,
+                                                            ref NativeMethods.DEVPKEY_Device_InstanceId, ref propertyType,
+                                                            descriptionBuffer, descriptionBuffer.Length,
+                                                            ref requiredSize, 0);
+
+                    tmpDeviceInst = System.Text.Encoding.Unicode.GetString(descriptionBuffer);
+                    if (tmpDeviceInst.EndsWith("\0"))
+                    {
+                        tmpDeviceInst = tmpDeviceInst.Remove(tmpDeviceInst.Length - 1);
+                    }
+                }
+
+                if (tmpDeviceInst == devicePath)
+                {
+                    string tmp = string.Empty;
+                    NativeMethods.SetupDiGetDeviceProperty(deviceInfoSet, ref devinfoData,
+                        ref NativeMethods.DEVPKEY_Device_Siblings, ref propertyType,
+                        null, 0,
+                        ref requiredSize, 0);
+
+                    if (requiredSize > 0)
+                    {
+                        var descriptionBuffer = new byte[requiredSize];
+                        NativeMethods.SetupDiGetDeviceProperty(deviceInfoSet, ref devinfoData,
+                            ref NativeMethods.DEVPKEY_Device_Siblings, ref propertyType,
+                            descriptionBuffer, descriptionBuffer.Length,
+                            ref requiredSize, 0);
+
+                        tmp = System.Text.Encoding.Unicode.GetString(descriptionBuffer);
+                        tmp = tmp.Remove(tmp.IndexOf("\0\0"));
+                        result = tmp;
+                        break;
+                     }
+                }
+            }
+
+            NativeMethods.SetupDiDestroyDeviceInfoList(deviceInfoSet);
+            return result;
+         }
     }
 }
 
@@ -189,14 +282,22 @@ namespace DS4Windows.DS4Library.CoreAudio
         }
     }
 
-    [StructLayout(LayoutKind.Explicit)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct PropVariant
     {
-        [FieldOffset(0)] private short vt;
-        [FieldOffset(2)] private short wReserved1;
-        [FieldOffset(4)] private short wReserved2;
-        [FieldOffset(6)] private short wReserved3;
-        [FieldOffset(8)] public IntPtr pointerValue;
+        public short vt;
+        public short wReserved1;
+        public short wReserved2;
+        public short wReserved3;
+        public PropVariantData innerData;
+    }
+
+    // Size 16 is the minimum required size to work in 64 bit mode. Size has to be
+    // be explicitly specified for 64 bit. Still works in 32 bit mode
+    [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Unicode, Size = 16)]
+    public struct PropVariantData
+    {
+        [FieldOffset(0)] internal IntPtr pointerValue;
     }
 
     [Guid("886d8eeb-8cf2-4446-8d02-cdba1dbdcf99"),

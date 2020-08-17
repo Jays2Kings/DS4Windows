@@ -117,55 +117,55 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Accel" xml:space="preserve">
-    <value>Achse</value>
+    <value>Amélioration</value>
   </data>
   <data name="Action" xml:space="preserve">
-    <value>Aktion</value>
+    <value>Une action</value>
   </data>
   <data name="AddDirectory" xml:space="preserve">
-    <value>Add Directory</value>
+    <value>Ajouter de répertoire</value>
   </data>
   <data name="AddPrograms" xml:space="preserve">
-    <value>Programme hinzufügen</value>
+    <value>Ajouter des programmes</value>
   </data>
   <data name="AddStartMenuPrograms" xml:space="preserve">
-    <value>Start Menu Programm hinzufügen</value>
+    <value>Ajouter des programmes de menu démarrer</value>
   </data>
   <data name="AddSteamGames" xml:space="preserve">
-    <value>Steam Spiel hinzufügen</value>
+    <value>Ajouter des jeux Steam</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>Alle</value>
+    <value>Tout</value>
   </data>
   <data name="AutoProfiles" xml:space="preserve">
-    <value>Automatische Profile</value>
+    <value>Profils automatiques</value>
   </data>
   <data name="Battery" xml:space="preserve">
     <value>Batterie</value>
   </data>
   <data name="Browse" xml:space="preserve">
-    <value>Durchsuchen</value>
+    <value>Parcourir</value>
   </data>
   <data name="BrowseOtherPrograms" xml:space="preserve">
-    <value>Nach anderen Programmen suchen</value>
+    <value>Parcourir des autres programmes</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Abbrechen</value>
+    <value>Annuler</value>
   </data>
   <data name="CheckUpdateNow" xml:space="preserve">
-    <value>Jetzt nach Updates suchen</value>
+    <value>Rechercher des mises à jour</value>
   </data>
   <data name="CheckUpdateStartup" xml:space="preserve">
-    <value>Nach Updates beim Starten von DS4Windows suchen</value>
+    <value>Rechercher des mises à jour au démarrage</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Löschen</value>
+    <value>Effacer</value>
   </data>
   <data name="CloseMinimizes" xml:space="preserve">
-    <value>Schließen minimiert das Fenster</value>
+    <value>La fermeture du programme entraîne minimisé à la place</value>
   </data>
   <data name="Color" xml:space="preserve">
-    <value>Farbe</value>
+    <value>Couleur</value>
   </data>
   <data name="Controller1Text" xml:space="preserve">
     <value>Controller 1</value>
@@ -180,106 +180,106 @@
     <value>Controller 4</value>
   </data>
   <data name="Controllers" xml:space="preserve">
-    <value>Controller</value>
+    <value>Controllers</value>
   </data>
   <data name="ControlPanel" xml:space="preserve">
-    <value>Einstellungs Panel</value>
+    <value>Panneau de configuration</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Löschen</value>
+    <value>Effacer</value>
   </data>
   <data name="DriverSetup" xml:space="preserve">
-    <value>Controller/Treiber Setup</value>
+    <value>Installer le Controller/Driver</value>
   </data>
   <data name="Duplicate" xml:space="preserve">
-    <value>Kopieren</value>
+    <value>Dupliquer</value>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Bearbeiten</value>
+    <value>Éditer</value>
   </data>
   <data name="EditAction" xml:space="preserve">
-    <value>Bearbeitungsaktionen</value>
+    <value>Modifier l'action</value>
   </data>
   <data name="Export" xml:space="preserve">
-    <value>Exportieren</value>
+    <value>Exporter</value>
   </data>
   <data name="Full" xml:space="preserve">
-    <value>Voll</value>
+    <value>Plein</value>
   </data>
   <data name="Gyro" xml:space="preserve">
     <value>Gyro</value>
   </data>
   <data name="HideUnchecked" xml:space="preserve">
-    <value>Unmakierte ausblenden</value>
+    <value>Masquer les non coché</value>
   </data>
   <data name="Import" xml:space="preserve">
-    <value>Importieren</value>
+    <value>Importer</value>
   </data>
   <data name="LeftStick" xml:space="preserve">
-    <value>Linker Stick</value>
+    <value>Stick gauche</value>
   </data>
   <data name="Log" xml:space="preserve">
-    <value>Protokoll</value>
+    <value>Des journaux</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Le nom</value>
   </data>
   <data name="New" xml:space="preserve">
-    <value>Neu</value>
+    <value>Nouveau</value>
   </data>
   <data name="NewAction" xml:space="preserve">
-    <value>Neue Aktion</value>
+    <value>Une nouvelle action</value>
   </data>
   <data name="NewProfile" xml:space="preserve">
-    <value>Neues Profil</value>
+    <value>Un nouveau profil</value>
   </data>
   <data name="None" xml:space="preserve">
-    <value>Keine</value>
+    <value>Aucun</value>
   </data>
   <data name="Path" xml:space="preserve">
-    <value>Pfard</value>
+    <value>Chemin de l'ordinateur</value>
   </data>
   <data name="Profile" xml:space="preserve">
-    <value>Profil</value>
+    <value>Le profil</value>
   </data>
   <data name="ProfileFolder" xml:space="preserve">
-    <value>Profil Ordner</value>
+    <value>Le dossier de profil</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
-    <value>Schnelladen</value>
+    <value>Charge rapide</value>
   </data>
   <data name="RecordText" xml:space="preserve">
-    <value>Aufnehmen</value>
+    <value>Record</value>
   </data>
   <data name="Remove" xml:space="preserve">
-    <value>Entfernen</value>
+    <value>Effacer</value>
   </data>
   <data name="RemoveAction" xml:space="preserve">
-    <value>AktionEntfernen</value>
+    <value>Effacer de l'action</value>
   </data>
   <data name="RightStick" xml:space="preserve">
-    <value>Rechter Stick</value>
+    <value>Stick droit</value>
   </data>
   <data name="Rumble" xml:space="preserve">
-    <value>Vibration</value>
+    <value>Grondement</value>
   </data>
   <data name="RunAtStartup" xml:space="preserve">
-    <value>Beim Hochfahren ausführen</value>
+    <value>Commencer au démarrage</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Sauvegarder</value>
   </data>
   <data name="SaveProfile" xml:space="preserve">
-    <value>Speichern</value>
+    <value>Sauvegarder le profil</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Einstellungen</value>
+    <value>Paramètres</value>
   </data>
   <data name="ShowNotifications" xml:space="preserve">
-    <value>Benachrichtigungen anzeigen</value>
+    <value>Afficher les notifications</value>
   </data>
   <data name="StartMinimized" xml:space="preserve">
-    <value>Minimiert starten</value>
+    <value>Début minimisé</value>
   </data>
   <data name="StartText" xml:space="preserve">
     <value>Start</value>
@@ -291,36 +291,36 @@
     <value>Stop</value>
   </data>
   <data name="TouchScroll" xml:space="preserve">
-    <value>Skrollen</value>
+    <value>Défilement de la souris</value>
   </data>
   <data name="TouchSlide" xml:space="preserve">
-    <value>Wischen</value>
+    <value>Faire glisser</value>
   </data>
   <data name="TouchTap" xml:space="preserve">
-    <value>Tippen</value>
+    <value>Frapper</value>
   </data>
   <data name="Trigger" xml:space="preserve">
-    <value>Trigger</value>
+    <value>Déclencheur</value>
   </data>
   <data name="WarningsOnly" xml:space="preserve">
-    <value>Nur Warnungen</value>
+    <value>Avertissements seulementrum</value>
   </data>
   <data name="RumbleMaxSecs" xml:space="preserve">
-    <value>s</value>
+    <value>Grondement secondes maximum</value>
   </data>
   <data name="RumbleMaxSecsTip" xml:space="preserve">
-    <value>Automatisches stoppen der Vibration in Sekunden (0 = automatisches stoppen deaktiviert)</value>
+    <value>Arrêt automatique des vibrations en quelques secondes (0 = vibration infinie)</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Fenster Titel</value>
+    <value>Le titre de fenêtre</value>
   </data>
   <data name="MoveUp" xml:space="preserve">
-    <value>Nach oben bewegen</value>
+    <value>Vers le haut</value>
   </data>
   <data name="MoveDown" xml:space="preserve">
-    <value>Nach unten bewegen</value>
+    <value>Vers le bas</value>
   </data>
   <data name="GamepadTest" xml:space="preserve">
-    <value>Gamepad Test</value>
+    <value>Tester le contrôleur de jeu</value>
   </data>
 </root>

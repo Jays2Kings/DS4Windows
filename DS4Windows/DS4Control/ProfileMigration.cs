@@ -60,7 +60,10 @@ namespace DS4Windows
                 switch(configFileVersion)
                 {
                     case 1:
-                        goto default;
+                        migratedText = Version0002Migration();
+                        PrepareReaderMigration(migratedText);
+                        tempVersion = 2;
+                        goto case 2;
                     case 2:
                     case 3:
                         migratedText = Version0004Migration();
@@ -225,6 +228,7 @@ namespace DS4Windows
             // First pass
             while (!profileReader.EOF)
             {
+                bool readNext = true;
                 if (profileReader.IsStartElement() && profileReader.Depth == 1)
                 {
                     switch(profileReader.Name)
@@ -234,6 +238,7 @@ namespace DS4Windows
                             gyroSmoothSettings.hasGyroMouseSmoothing = true;
                             string useSmooth = profileReader.ReadElementContentAsString();
                             bool.TryParse(useSmooth, out gyroSmoothSettings.useGyroMouseSmoothing);
+                            readNext = false;
                             break;
                         }
                         case "GyroSmoothingWeight":
@@ -241,6 +246,7 @@ namespace DS4Windows
                             gyroSmoothSettings.hasGyroMouseSmoothingWeight = true;
                             string weight = profileReader.ReadElementContentAsString();
                             double.TryParse(weight, out gyroSmoothSettings.gyroMouseSmoothingWeight);
+                            readNext = false;
                             break;
                         }
                         case "GyroMouseStickSmoothing":
@@ -248,6 +254,7 @@ namespace DS4Windows
                             gyroSmoothSettings.hasGyroMouseStickSmoothing = true;
                             string useSmooth = profileReader.ReadElementContentAsString();
                             bool.TryParse(useSmooth, out gyroSmoothSettings.useGyroMouseStickSmoothing);
+                            readNext = false;
                             break;
                         }
                         case "GyroMouseStickSmoothingWeight":
@@ -255,6 +262,7 @@ namespace DS4Windows
                             gyroSmoothSettings.hasGyroMouseStickSmoothingWeight = true;
                             string weight = profileReader.ReadElementContentAsString();
                             double.TryParse(weight, out gyroSmoothSettings.gyroMouseStickSmoothingWeight);
+                            readNext = false;
                             break;
                         }
                         default:
@@ -262,7 +270,10 @@ namespace DS4Windows
                     }
                 }
 
-                profileReader.Read();
+                if (readNext)
+                {
+                    profileReader.Read();
+                }
             }
 
             // Close and dispose current XmlReader
@@ -318,11 +329,80 @@ namespace DS4Windows
                             break;
                     }
                 }
-
-                profileReader.Read();
+                else
+                {
+                    profileReader.Read();
+                }
             }
 
             // End XML document and flush IO stream
+            tempWriter.WriteEndElement();
+            tempWriter.WriteEndDocument();
+            tempWriter.Close();
+            return stringWrite.ToString();
+        }
+
+        private string Version0002Migration()
+        {
+            StringWriter stringWrite = new StringWriter();
+            XmlWriter tempWriter = XmlWriter.Create(stringWrite, new XmlWriterSettings()
+            {
+                Encoding = Encoding.UTF8,
+                Indent = true,
+            });
+            tempWriter.WriteStartDocument();
+            // Move stream to root element
+            profileReader.MoveToContent();
+            // Skip past root element
+            profileReader.Read();
+            profileReader.MoveToContent();
+
+            // Write replacement root element in XmlWriter
+            tempWriter.WriteStartElement("DS4Windows");
+            tempWriter.WriteAttributeString("app_version", Global.exeversion);
+            tempWriter.WriteAttributeString("config_version", "2");
+
+            while (!profileReader.EOF)
+            {
+                if (profileReader.IsStartElement() && profileReader.Depth == 1)
+                {
+                    switch (profileReader.Name)
+                    {
+                        case "LSDeadZone":
+                        {
+                            string lsdead = profileReader.ReadElementContentAsString();
+                            bool valid = int.TryParse(lsdead, out int temp);
+                            if (valid && temp == 0)
+                            {
+                                tempWriter.WriteElementString("LSDeadZone", "10");
+                            }
+
+                            break;
+                        }
+                        case "RSDeadZone":
+                        {
+                            string rsdead = profileReader.ReadElementContentAsString();
+                            bool valid = int.TryParse(rsdead, out int temp);
+                            if (valid && temp == 0)
+                            {
+                                tempWriter.WriteElementString("RSDeadZone", "10");
+                            }
+
+                            break;
+                        }
+                        default:
+                            tempWriter.WriteNode(profileReader, true);
+                            break;
+                    }
+                }
+                else
+                {
+                    profileReader.Read();
+                }
+             }
+
+            // End XML document and flush IO stream
+            tempWriter.WriteEndElement();
             tempWriter.WriteEndDocument();
             tempWriter.Close();
             return stringWrite.ToString();

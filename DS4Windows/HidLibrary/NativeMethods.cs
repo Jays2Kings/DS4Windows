@@ -244,7 +244,16 @@ namespace DS4Windows
         internal static DEVPROPKEY DEVPKEY_Device_DriverVersion =
             new DEVPROPKEY { fmtid = new Guid(0xa8b865dd, 0x2e3d, 0x4094, 0xad, 0x97, 0xe5, 0x93, 0xa7, 0xc, 0x75, 0xd6), pid = 3 };
 
-        [DllImport("setupapi.dll", EntryPoint = "SetupDiGetDeviceRegistryProperty")]
+		internal static DEVPROPKEY DEVPKEY_Device_Parent =
+			new DEVPROPKEY { fmtid = new Guid(0x4340a6c5, 0x93fa, 0x4706, 0x97, 0x2c, 0x7b, 0x64, 0x80, 0x08, 0xa5, 0xa7), pid = 8 };
+
+		internal static DEVPROPKEY DEVPKEY_Device_Siblings =
+			new DEVPROPKEY { fmtid = new Guid(0x4340a6c5, 0x93fa, 0x4706, 0x97, 0x2c, 0x7b, 0x64, 0x80, 0x08, 0xa5, 0xa7), pid = 10 };
+
+		internal static DEVPROPKEY DEVPKEY_Device_InstanceId =
+			new DEVPROPKEY { fmtid = new Guid(0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57), pid = 256 };
+
+		[DllImport("setupapi.dll", EntryPoint = "SetupDiGetDeviceRegistryProperty")]
         public static extern bool SetupDiGetDeviceRegistryProperty(IntPtr deviceInfoSet, ref SP_DEVINFO_DATA deviceInfoData, int propertyVal, ref int propertyRegDataType, byte[] propertyBuffer, int propertyBufferSize, ref int requiredSize);
 	
         [DllImport("setupapi.dll", EntryPoint = "SetupDiGetDevicePropertyW", SetLastError = true)]

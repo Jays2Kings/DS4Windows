@@ -297,7 +297,7 @@ namespace DS4Windows.DS4Library.CoreAudio
     [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Unicode, Size = 16)]
     public struct PropVariantData
     {
-        [FieldOffset(0)] internal IntPtr pointerValue;
+        [FieldOffset(0)] public IntPtr pointerValue;
     }
 
     [Guid("886d8eeb-8cf2-4446-8d02-cdba1dbdcf99"),

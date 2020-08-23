@@ -385,9 +385,6 @@
   <data name="NoProfileLoaded" xml:space="preserve">
     <value>Профиль не загружен</value>
   </data>
-  <data name="NotUsingProfile" xml:space="preserve">
-    <value>*number*-й контроллер не использует профиль</value>
-  </data>
   <data name="NotValid" xml:space="preserve">
     <value>Недопустимая операция</value>
   </data>
@@ -586,9 +583,6 @@
   </data>
   <data name="UsingExclusive" xml:space="preserve">
     <value>Включен приоритетный режим</value>
-  </data>
-  <data name="UsingProfile" xml:space="preserve">
-    <value>Для *number*-го контроллера задействован профиль "*Profile name*"</value>
   </data>
   <data name="UsingShared" xml:space="preserve">
     <value>Включен совместный режим</value>

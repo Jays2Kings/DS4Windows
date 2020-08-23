@@ -908,21 +908,6 @@ namespace DS4Windows
                         device.StartUpdate();
                         //string filename = ProfilePath[ind];
                         //ind++;
-                        if (showlog)
-                        {
-                            if (File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[i] + ".xml"))
-                            {
-                                string prolog = DS4WinWPF.Properties.Resources.UsingProfile.Replace("*number*", (i + 1).ToString()).Replace("*Profile name*", ProfilePath[i]);
-                                LogDebug(prolog);
-                                AppLogger.LogToTray(prolog);
-                            }
-                            else
-                            {
-                                string prolog = DS4WinWPF.Properties.Resources.NotUsingProfile.Replace("*number*", (i + 1).ToString());
-                                LogDebug(prolog);
-                                AppLogger.LogToTray(prolog);
-                            }
-                        }
 
                         if (i >= 4) // out of Xinput devices!
                             break;
@@ -1211,20 +1196,6 @@ namespace DS4Windows
                             TouchPadOn(Index, device);
                             CheckProfileOptions(Index, device);
                             device.StartUpdate();
-
-                            //string filename = Path.GetFileName(ProfilePath[Index]);
-                            if (File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[Index] + ".xml"))
-                            {
-                                string prolog = DS4WinWPF.Properties.Resources.UsingProfile.Replace("*number*", (Index + 1).ToString()).Replace("*Profile name*", ProfilePath[Index]);
-                                LogDebug(prolog);
-                                AppLogger.LogToTray(prolog);
-                            }
-                            else
-                            {
-                                string prolog = DS4WinWPF.Properties.Resources.NotUsingProfile.Replace("*number*", (Index + 1).ToString());
-                                LogDebug(prolog);
-                                AppLogger.LogToTray(prolog);
-                            }
 
                             HotplugController?.Invoke(this, device, Index);
 
@@ -1626,8 +1597,21 @@ namespace DS4Windows
                 //device.getPreviousState(PreviousState[ind]);
                 //DS4State pState = PreviousState[ind];
 
-                if (device.firstReport && device.IsAlive())
+                if (device.firstReport && device.isSynced())
                 {
+                    if (File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[ind] + ".xml"))
+                    {
+                        string prolog = string.Format(DS4WinWPF.Properties.Resources.UsingProfile, (ind + 1).ToString(), ProfilePath[ind], $"{device.Battery}");
+                        LogDebug(prolog);
+                        AppLogger.LogToTray(prolog);
+                    }
+                    else
+                    {
+                        string prolog = string.Format(DS4WinWPF.Properties.Resources.NotUsingProfile, (ind + 1).ToString(), $"{device.Battery}");
+                        LogDebug(prolog);
+                        AppLogger.LogToTray(prolog);
+                    }
+
                     device.firstReport = false;
                     /*uiContext?.Post(new SendOrPostCallback(delegate (object state)
                     {

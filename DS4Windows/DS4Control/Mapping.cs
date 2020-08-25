@@ -2185,7 +2185,10 @@ namespace DS4Windows
                                         }
                                     }
 
-                                    string prolog = DS4WinWPF.Properties.Resources.UsingProfile.Replace("*number*", (device + 1).ToString()).Replace("*Profile name*", action.details);
+                                    DS4Device d = ctrl.DS4Controllers[device];
+                                    string prolog = string.Format(DS4WinWPF.Properties.Resources.UsingProfile,
+                                        (device + 1).ToString(), action.details, $"{d.Battery}");
+
                                     AppLogger.LogToGui(prolog, false);
                                     LoadTempProfile(device, action.details, true, ctrl);
 
@@ -2638,7 +2641,10 @@ namespace DS4Windows
                             }
 
                             string profileName = untriggeraction[device].prevProfileName;
-                            string prolog = DS4WinWPF.Properties.Resources.UsingProfile.Replace("*number*", (device + 1).ToString()).Replace("*Profile name*", (profileName == string.Empty ? ProfilePath[device] : profileName));
+                            DS4Device d = ctrl.DS4Controllers[device];
+                            string prolog = string.Format(DS4WinWPF.Properties.Resources.UsingProfile,
+                                (device + 1).ToString(), (profileName == string.Empty ? ProfilePath[device] : profileName), $"{d.Battery}");
+
                             AppLogger.LogToGui(prolog, false);
 
                             untriggeraction[device] = null;

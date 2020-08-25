@@ -622,8 +622,7 @@ Suspend support not enabled.", true);
                         //int ind = i;
                         Dispatcher.BeginInvoke((Action)(() =>
                         {
-                            string temp = Properties.Resources.UsingProfile.Replace("*number*",
-                                (item.DevIndex + 1).ToString()).Replace("*Profile name*", item.SelectedProfile);
+                            string temp = string.Format(Properties.Resources.UsingProfile, (item.DevIndex + 1).ToString(), item.SelectedProfile, $"{item.Device.Battery}");
                             ShowHotkeyNotification(temp);
                         }));
                     }
@@ -1077,8 +1076,12 @@ Suspend support not enabled.", true);
                                             Global.LoadTempProfile(tdevice, strData[2], true, Program.rootHub);
                                         }
 
-                                        Program.rootHub.LogDebug(Properties.Resources.UsingProfile.
-                                            Replace("*number*", (tdevice + 1).ToString()).Replace("*Profile name*", strData[2]));
+                                        DS4Device device = conLvViewModel.ControllerCol[tdevice].Device;
+                                        if (device != null)
+                                        {
+                                            string prolog = string.Format(Properties.Resources.UsingProfile, (tdevice + 1).ToString(), strData[2], $"{device.Battery}");
+                                            Program.rootHub.LogDebug(prolog);
+                                        }
                                     }
                                 }
                                 else if (strData[0] == "query" && strData.Length >= 3)

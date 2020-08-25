@@ -285,6 +285,7 @@ namespace DS4Windows
         public const int CONFIG_VERSION = 4;
         public const string ASSEMBLY_RESOURCE_PREFIX = "pack://application:,,,/DS4Windows;";
         public const string CUSTOM_EXE_CONFIG_FILENAME = "custom_exe_name.txt";
+        public const string XML_EXTENSION = ".xml";
 
         public static X360Controls[] defaultButtonMapping = { X360Controls.None, X360Controls.LXNeg, X360Controls.LXPos,
             X360Controls.LYNeg, X360Controls.LYPos, X360Controls.RXNeg, X360Controls.RXPos, X360Controls.RYNeg, X360Controls.RYPos,
@@ -1897,9 +1898,9 @@ namespace DS4Windows
             return m_Config.Save();
         }
 
-        public static void SaveProfile(int device, string propath)
+        public static void SaveProfile(int device, string proName)
         {
-            m_Config.SaveProfile(device, propath);
+            m_Config.SaveProfile(device, proName);
         }
 
         public static void SaveAsNewProfile(int device, string propath)
@@ -2613,18 +2614,24 @@ namespace DS4Windows
             return result;
         }
 
-        public bool SaveAsNewProfile(int device, string propath)
+        public bool SaveAsNewProfile(int device, string proName)
         {
             bool Saved = true;
             ResetProfile(device);
-            Saved = SaveProfile(device, propath);
+            Saved = SaveProfile(device, proName);
             return Saved;
         }
 
-        public bool SaveProfile(int device, string propath)
+        public bool SaveProfile(int device, string proName)
         {
             bool Saved = true;
-            string path = Global.appdatapath + @"\Profiles\" + Path.GetFileNameWithoutExtension(propath) + ".xml";
+            //string path = Global.appdatapath + @"\Profiles\" + Path.GetFileNameWithoutExtension(proName) + ".xml";
+            if (proName.EndsWith(Global.XML_EXTENSION))
+            {
+                proName = proName.Remove(proName.LastIndexOf(Global.XML_EXTENSION));
+            }
+
+            string path = $@"{Global.appdatapath}\Profiles\{proName}{Global.XML_EXTENSION}";
             try
             {
                 XmlNode tmpNode;

@@ -242,6 +242,7 @@
     <Compile Include="DS4Forms\UpdaterWindow.xaml.cs">
       <DependentUpon>UpdaterWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DS4Forms\Converters\EscapeAccessKeysConverter.cs" />
     <Compile Include="DS4Forms\ViewModels\AutoProfilesViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\BindingWindowViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\ControllerListViewModel.cs" />

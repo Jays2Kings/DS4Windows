@@ -172,6 +172,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     string currentProfile = Global.ProfilePath[idx];
                     foreach (ProfileEntity entry in profileListHolder.ProfileListCol)
                     {
+                        // Need to escape profile name to disable Access Keys for control
                         string name = entry.Name;
                         name = Regex.Replace(name, "_{1}", "__");
                         MenuItem temp = new MenuItem() { Header = name };

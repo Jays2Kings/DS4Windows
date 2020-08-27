@@ -1104,6 +1104,9 @@ namespace DS4Windows
             get { return m_Config.autoProfileRevertDefaultProfile; }
         }
 
+        /// <summary>
+        /// Fake name used for user copy of DS4Windows.exe
+        /// </summary>
         public static string FakeExeName
         {
             get { return m_Config.fakeExeFileName; }

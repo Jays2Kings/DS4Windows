@@ -2148,6 +2148,12 @@ namespace DS4Windows
                         bool actionFound = false;
                         if (triggeractivated)
                         {
+                            for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
+                            {
+                                DS4Controls dc = action.trigger[i];
+                                resetToDefaultValue2(dc, MappedState, outputfieldMapping);
+                            }
+
                             if (action.typeID == SpecialAction.ActionTypeId.Program)
                             {
                                 actionFound = true;
@@ -2230,11 +2236,12 @@ namespace DS4Windows
                                     {
                                         DS4KeyType keyType = action.keyType;
                                         actionDone[index].dev[device] = true;
-                                        for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
+                                        /*for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                                         {
                                             DS4Controls dc = action.trigger[i];
                                             resetToDefaultValue2(dc, MappedState, outputfieldMapping);
                                         }
+                                        */
 
                                         PlayMacro(device, macroControl, String.Empty, action.macro, null, DS4Controls.None, keyType, action, actionDone[index]);
                                     }
@@ -2254,11 +2261,12 @@ namespace DS4Windows
                                         {
                                             DS4KeyType keyType = action.keyType;
                                             actionDone[index].dev[device] = true;
-                                            for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
+                                            /*for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                                             {
                                                 DS4Controls dc = action.trigger[i];
                                                 resetToDefaultValue2(dc, MappedState, outputfieldMapping);
                                             }
+                                            */
 
                                             PlayMacro(device, macroControl, String.Empty, action.macro, null, DS4Controls.None, keyType, action, null);
                                         }

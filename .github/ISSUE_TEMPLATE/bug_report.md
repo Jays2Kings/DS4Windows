@@ -24,8 +24,9 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - DS4Windows Version [e.g. 2.1.4]
+ - Controller Make and Model: Sony DS4 v.2 (CUH-ZCT2U)
+ - OS: [e.g. Windows 10 Pro Build 2004]
+ - DS4Windows Version [e.g. 2.1.5]
 
 **Additional context**
 Add any other context about the problem here.

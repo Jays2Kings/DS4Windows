@@ -12,15 +12,20 @@
              d:DesignHeight="450" d:DesignWidth="460">
     <DockPanel LastChildFill="False">
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-            <Label x:Name="inputContNum" Content="#" FontWeight="Bold"/>
-            <Label x:Name="inputDelayLb" Content="Input Delay: N/A"  Margin="8,0,0,0">
-                <Label.Background>
-                    <SolidColorBrush x:Name="inpuDelayBackBrush" Color="Transparent" />
-                </Label.Background>
-                <Label.Foreground>
-                    <SolidColorBrush x:Name="inpuDelayForeBrush" Color="Black"/>
-                </Label.Foreground>
-            </Label>
+            <StackPanel Orientation="Horizontal" Width="200">
+                <Label x:Name="inputContNum" Content="#" FontWeight="Bold"/>
+                <Label x:Name="inputDelayLb" Content="Input Delay: N/A"  Margin="8,0,0,0">
+                    <Label.Background>
+                        <SolidColorBrush x:Name="inpuDelayBackBrush" Color="Transparent" />
+                    </Label.Background>
+                    <Label.Foreground>
+                        <SolidColorBrush x:Name="inpuDelayForeBrush" Color="Black"/>
+                    </Label.Foreground>
+                </Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                <Label x:Name="batteryLvlLb" Content="Battery: 0%" Margin="8,0,0,0" />
+            </StackPanel>
         </StackPanel>
         <Grid DockPanel.Dock="Top" Width="450" Margin="0,8,0,0">
             <Grid.ColumnDefinitions>

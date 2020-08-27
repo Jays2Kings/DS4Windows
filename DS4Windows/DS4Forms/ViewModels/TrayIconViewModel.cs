@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -171,7 +172,10 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     string currentProfile = Global.ProfilePath[idx];
                     foreach (ProfileEntity entry in profileListHolder.ProfileListCol)
                     {
-                        MenuItem temp = new MenuItem() { Header = entry.Name };
+                        // Need to escape profile name to disable Access Keys for control
+                        string name = entry.Name;
+                        name = Regex.Replace(name, "_{1}", "__");
+                        MenuItem temp = new MenuItem() { Header = name };
                         temp.Tag = idx;
                         temp.Click += ProfileItem_Click;
                         if (entry.Name == currentProfile)

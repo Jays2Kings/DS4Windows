@@ -850,14 +850,14 @@ namespace DS4WinWPF.DS4Forms
                     if (!rumbleActive)
                     {
                         profileSettingsVM.HeavyRumbleActive = true;
-                        d.setRumble(d.LeftHeavySlowRumble,
+                        d.setRumble(d.RightLightFastRumble,
                             (byte)Math.Min(255, 255 * profileSettingsVM.RumbleBoost / 100));
                         heavyRumbleTestBtn.Content = Properties.Resources.StopHText;
                     }
                     else
                     {
                         profileSettingsVM.HeavyRumbleActive = false;
-                        d.setRumble(0, 0);
+                        d.setRumble(d.RightLightFastRumble, 0);
                         heavyRumbleTestBtn.Content = Properties.Resources.TestHText;
                     }
                 }
@@ -877,13 +877,13 @@ namespace DS4WinWPF.DS4Forms
                     {
                         profileSettingsVM.LightRumbleActive = true;
                         d.setRumble((byte)Math.Min(255, 255 * profileSettingsVM.RumbleBoost / 100),
-                            d.RightLightFastRumble);
+                            d.LeftHeavySlowRumble);
                         lightRumbleTestBtn.Content = Properties.Resources.StopLText;
                     }
                     else
                     {
                         profileSettingsVM.LightRumbleActive = false;
-                        d.setRumble(0, 0);
+                        d.setRumble(0, d.LeftHeavySlowRumble);
                         lightRumbleTestBtn.Content = Properties.Resources.TestLText;
                     }
                 }

@@ -304,6 +304,8 @@ namespace DS4WinWPF.DS4Forms
 
                     prevWarnMode = warnMode;
 
+                    batteryLvlLb.Content = $"{Translations.Strings.Battery}: {baseState.Battery}%";
+
                     UpdateCoordLabels(baseState, interState, exposeState);
                 });
             }

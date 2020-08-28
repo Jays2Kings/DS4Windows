@@ -123,16 +123,16 @@
     <value>Acción</value>
   </data>
   <data name="AddDirectory" xml:space="preserve">
-    <value>Añadir Directorio</value>
+    <value>Añadir directorio</value>
   </data>
   <data name="AddPrograms" xml:space="preserve">
-    <value>Añadir Programas</value>
+    <value>Añadir programas</value>
   </data>
   <data name="AddStartMenuPrograms" xml:space="preserve">
-    <value>Añadir al Menú de Inicio de Programas</value>
+    <value>Añadir al Menú de Inicio de programas</value>
   </data>
   <data name="AddSteamGames" xml:space="preserve">
-    <value>Añadir Juegos de Steam</value>
+    <value>Añadir juegos de Steam</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>Todo</value>
@@ -147,22 +147,22 @@
     <value>Navegar</value>
   </data>
   <data name="BrowseOtherPrograms" xml:space="preserve">
-    <value>Navegar en Otros Programas</value>
+    <value>Navegar en otros programas</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>
   <data name="CheckUpdateNow" xml:space="preserve">
-    <value>Buscar Actualizaciones</value>
+    <value>Buscar actualizaciones</value>
   </data>
   <data name="CheckUpdateStartup" xml:space="preserve">
-    <value>Buscar Actualizaciones de DS4Windows al Inicio</value>
+    <value>Buscar actualizaciones de DS4Windows al iniciar</value>
   </data>
   <data name="Clear" xml:space="preserve">
     <value>Vaciar</value>
   </data>
   <data name="CloseMinimizes" xml:space="preserve">
-    <value>Cerrar Minimizado</value>
+    <value>Cerrar minimizado</value>
   </data>
   <data name="Color" xml:space="preserve">
     <value>Color</value>
@@ -189,7 +189,7 @@
     <value>Eliminar</value>
   </data>
   <data name="DriverSetup" xml:space="preserve">
-    <value>Configuración del Mando/Driver</value>
+    <value>Configuración del mando/driver</value>
   </data>
   <data name="Duplicate" xml:space="preserve">
     <value>Duplicar</value>
@@ -198,7 +198,7 @@
     <value>Editar</value>
   </data>
   <data name="EditAction" xml:space="preserve">
-    <value>Editar Acción</value>
+    <value>Editar acción</value>
   </data>
   <data name="Export" xml:space="preserve">
     <value>Exportar</value>
@@ -207,16 +207,16 @@
     <value>Todo</value>
   </data>
   <data name="Gyro" xml:space="preserve">
-    <value>Gyro</value>
+    <value>Giroscopio</value>
   </data>
   <data name="HideUnchecked" xml:space="preserve">
-    <value>Ocultar Desmarcado</value>
+    <value>Ocultar desmarcado</value>
   </data>
   <data name="Import" xml:space="preserve">
     <value>Importar</value>
   </data>
   <data name="LeftStick" xml:space="preserve">
-    <value>Stick Izquierdo</value>
+    <value>Stick izquierdo</value>
   </data>
   <data name="Log" xml:space="preserve">
     <value>Registro</value>
@@ -228,10 +228,10 @@
     <value>Nuevo</value>
   </data>
   <data name="NewAction" xml:space="preserve">
-    <value>Nueva Acción</value>
+    <value>Nueva acción</value>
   </data>
   <data name="NewProfile" xml:space="preserve">
-    <value>Nuevo Perfil</value>
+    <value>Nuevo perfil</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Ninguno</value>
@@ -243,10 +243,10 @@
     <value>Perfil</value>
   </data>
   <data name="ProfileFolder" xml:space="preserve">
-    <value>Directorio del Perfil</value>
+    <value>Carpeta de perfil</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
-    <value>Cambio Rápido</value>
+    <value>Carga rápida</value>
   </data>
   <data name="RecordText" xml:space="preserve">
     <value>Guardar</value>
@@ -255,16 +255,16 @@
     <value>Quitar</value>
   </data>
   <data name="RemoveAction" xml:space="preserve">
-    <value>Quitar Acción</value>
+    <value>Quitar acción</value>
   </data>
   <data name="RightStick" xml:space="preserve">
-    <value>Stick Derecho</value>
+    <value>Stick derecho</value>
   </data>
   <data name="Rumble" xml:space="preserve">
     <value>Vibración</value>
   </data>
   <data name="RunAtStartup" xml:space="preserve">
-    <value>Ejecutar al Iniciar el Equipo</value>
+    <value>Ejecutar en el arranque</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Guardar</value>
@@ -276,10 +276,10 @@
     <value>Opciones</value>
   </data>
   <data name="ShowNotifications" xml:space="preserve">
-    <value>Mostrar Notificaciones</value>
+    <value>Mostrar notificaciones</value>
   </data>
   <data name="StartMinimized" xml:space="preserve">
-    <value>Iniciar Minimizado</value>
+    <value>Iniciar minimizado</value>
   </data>
   <data name="StartText" xml:space="preserve">
     <value>Iniciar</value>
@@ -303,6 +303,52 @@
     <value>Disparador</value>
   </data>
   <data name="WarningsOnly" xml:space="preserve">
-    <value>Solo Advertencias</value>
+    <value>Solo advertencias</value>
+  </data>
+  <data name="RumbleMaxSecs" xml:space="preserve">
+    <value>segundos</value>
+  </data>
+  <data name="RumbleMaxSecsTip" xml:space="preserve">
+    <value>Parada automática de la vibración en segundos (0 = parada automática desactivada)</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Título de la ventana</value>
+  </data>
+  <data name="MoveUp" xml:space="preserve">
+    <value>Subir</value>
+  </data>
+  <data name="MoveDown" xml:space="preserve">
+    <value>Bajar</value>
+  </data>
+  <data name="AutoProfPathTip" xml:space="preserve">
+    <value>Ruta de proceso. ^ABC = Coincidencia al principio de la cadena (^) | ABC$ = Coincidencia al final de la cadena ($) | *ABC = Contiene una cadena (*)</value>
+  </data>
+  <data name="AutoProfTitleTip" xml:space="preserve">
+    <value>Título de la ventana. ^ABC = Coincidencia al principio de la cadena (^) | ABC$ = Coincidencia al final de la cadena ($) | *ABC = Contiene una cadena (*)</value>
+  </data>
+  <data name="GamepadTest" xml:space="preserve">
+    <value>Prueba de gamepad</value>
+  </data>
+  <data name="EnableOutputDataToDS4" xml:space="preserve">
+    <value>Habilitar la salida de datos a DS4</value>
+  </data>
+  <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
+    <value>Envía periódicamente datos de la barra de luces y de las vibraciones al gamepad de DS4. Desmarca si el gamepad no soporta la recepción de datos.
+    Los cambios en esta opción tienen efecto a partir de la conexión del gamepad.</value>
+    <comment>Para introducir un salto de línea en un valor de recurso de cadena en el editor de recursos de VisualStudio, pulse Shift+Enter.</comment>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="HidNinja" xml:space="preserve">
+    <value>HidNinja</value>
+  </data>
+  <data name="CustomExeName" xml:space="preserve">
+    <value>Nombre del exe personalizado</value>
+  </data>
+  <data name="CustomExeNameInfo" xml:space="preserve">
+    <value>Algunos juegos implementan un bloqueo que hace que la entrada de DS4 sea ignorada si un juego detecta que DS4Windows.exe o InputMapper.exe se está ejecutando en ese momento. Una solución alternativa al bloqueo es cambiar el nombre de DS4Windows.exe para que la comprobación del juego falle. Si especifica un nombre de exe personalizado aquí, DS4Updater podrá actualizar automáticamente una copia personalizada de DS4Windows con el nombre de archivo deseado. Asegúrese de omitir la extensión.
+    
+    Ejemplo: oculto_DS4Windows</value>
   </data>
 </root>

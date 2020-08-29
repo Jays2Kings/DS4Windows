@@ -5,6 +5,7 @@ DandelionSprout
 dondrakon
 Flo082002
 Geroyuni
+Haamar
 jdfeng
 justalemon
 Kamilczak020
@@ -13,9 +14,11 @@ mayawei
 mika-n
 Rajko Stojadinovic (rajkosto)
 Sander0542
+SyaoranChang
 sergejkiller
 SteelShot
 stryblt
+tpneill
 xrossb
 Yuki-nyan
 RedDevilus

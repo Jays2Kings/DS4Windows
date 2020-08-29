@@ -33,7 +33,7 @@
               "* Now show battery level for controller plugin tray message",
               "* Added current battery level from DS4State object to Controller Readings. Used to diagnose if BatteryChanged events are not firing in main window",
               "* Change profile save routine to allow dots in profile name",
-              "* Escape underscores in profile names for some controls. Needed to disable access key usage in some controls",
+              "* Escape underscores in profile names for some GUI controls. Needed to disable access key usage in some GUI controls",
               "* Fixed sides for Test Rumble in Profile Editor",
               "* Allow both rumble motors to be usable simultaneously for Test Rumble",
               "* Dynamically create task.bat file as requested. Allows a custom exe filename to be written to the file",
@@ -42,7 +42,7 @@
               "* Now log current exe filename to Log file. Just the base filename not the whole path"],
             "editor": "ryochan7",
             "editors_note": ["Long Changelog this time around"],
-            "updated_at": "2020-08-29T05:53:41+0000"
+            "updated_at": "2020-08-29T06:25:02+0000"
           }
         ]
       },

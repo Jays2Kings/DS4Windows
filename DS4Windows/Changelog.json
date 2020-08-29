@@ -39,10 +39,11 @@
               "* Dynamically create task.bat file as requested. Allows a custom exe filename to be written to the file",
               "* Reset button mappings when a special action is triggered",
               "* Updated app manifest file to specify confirmed compatible versions of Windows",
-              "* Now log current exe filename to Log file. Just the base filename not the whole path"],
+              "* Now log current exe filename to Log file. Just the base filename not the whole path",
+              "* Updated DS4Updater.exe to version 1.4.3"],
             "editor": "ryochan7",
             "editors_note": ["Long Changelog this time around"],
-            "updated_at": "2020-08-29T06:25:02+0000"
+            "updated_at": "2020-08-29T06:27:14+0000"
           }
         ]
       },

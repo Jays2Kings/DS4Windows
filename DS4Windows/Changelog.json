@@ -26,7 +26,7 @@
               "* Dutch translation added. Contribution by **RedDevilus**",
               "* French translation added. Contribution by **RedDevilus**",
               "* Only call RefreshVolume when the DS4Audio device is detected",
-              "* App now can find a unified USB device tied to the DS4 HID and audio devices. DS4Windows no longer relies on string name to match audio devices",
+              "* App can now find a unified USB device tied to the DS4 HID and audio devices. DS4Windows no longer relies on string name to match audio devices",
               "* Increased minimum headphone volume",
               "* Added new Chinese (Traditional, Taiwan) translation. Contribution by **SyaoranChang**",
               "* Fixed issue with wrong window position data being saved while window is minimized",
@@ -43,7 +43,7 @@
               "* Updated DS4Updater.exe to version 1.4.3"],
             "editor": "ryochan7",
             "editors_note": ["Long Changelog this time around"],
-            "updated_at": "2020-08-29T06:27:14+0000"
+            "updated_at": "2020-08-29T06:36:00+0000"
           }
         ]
       },

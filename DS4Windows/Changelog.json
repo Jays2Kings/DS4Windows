@@ -1,9 +1,27 @@
 {
-  "latest_version": "2.1.6",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 6},
-  "updated_at": "2020-08-29T05:53:41+0000",
+  "latest_version": "2.1.7",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 7},
+  "updated_at": "2020-08-30T03:59:05+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.7",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 7},
+        "base_header": "Version 2.1.7",
+        "release_date": "2020-08-30T03:59:05+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.7",
+            "log_text": ["* Fixed 'index out of bounds' error for localization string when default profile is not found. Contribution by **mika-n**",
+              "* Updated build script to bundle newer translation packs",
+              "* Updated Spanish translation. Contribution by **peter9811**"],
+            "editor": "ryochan7",
+            "editors_note": ["Minor fixes"],
+            "updated_at": "2020-08-30T03:59:05+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.6",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 6},

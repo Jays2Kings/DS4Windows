@@ -162,6 +162,7 @@
                         <Button x:Name="dpadRBtn" Width="16" Height="30" Tag="Dpad Right" Style="{StaticResource NoBGHoverBtn}" Canvas.Left="268" Canvas.Top="150" MouseEnter="OutConBtn_MouseEnter" MouseLeave="OutConBtn_MouseLeave" />
                         <Button x:Name="dpadDBtn" Width="16" Height="12" Tag="Dpad Down" Style="{StaticResource NoBGHoverBtn}" Canvas.Left="244" Canvas.Top="187" MouseEnter="OutConBtn_MouseEnter" MouseLeave="OutConBtn_MouseLeave" />
                         <Button x:Name="dpadLBtn" Width="16" Height="30" Tag="Dpad Left" Style="{StaticResource NoBGHoverBtn}" Canvas.Left="214" Canvas.Top="148" MouseEnter="OutConBtn_MouseEnter" MouseLeave="OutConBtn_MouseLeave" />
+                        <Button x:Name="touchpadClickBtn" Visibility="Collapsed" Width="126" Height="72" Tag="Touchpad Click" Style="{StaticResource NoBGHoverBtn}" Canvas.Left="256" Canvas.Top="57" MouseEnter="OutConBtn_MouseEnter" MouseLeave="OutConBtn_MouseLeave" />
                     </Canvas>
                 </StackPanel>
             </DockPanel>

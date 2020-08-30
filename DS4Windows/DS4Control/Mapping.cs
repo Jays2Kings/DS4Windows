@@ -1512,6 +1512,7 @@ namespace DS4Windows
                 case "Mouse Down": return X360Controls.MouseDown;
                 case "Mouse Left": return X360Controls.MouseLeft;
                 case "Mouse Right": return X360Controls.MouseRight;
+                case "Touchpad Click": return X360Controls.TouchpadClick;
                 case "Unbound": return X360Controls.Unbound;
                 default: break;
             }
@@ -1720,6 +1721,12 @@ namespace DS4Windows
                             DS4Controls tempDS4Control = reverseX360ButtonMapping[(int)xboxControl];
                             customMapQueue[device].Enqueue(new ControlToXInput(dcs.control, tempDS4Control));
                             //tempControlDict.Add(dcs.control, tempDS4Control);
+                        }
+                        else if (xboxControl == X360Controls.TouchpadClick)
+                        {
+                            bool value = getBoolMapping2(device, dcs.control, cState, eState, tp, fieldMapping);
+                            if (value)
+                                outputfieldMapping.touchButton = value;
                         }
                         else if (xboxControl >= X360Controls.LeftMouse && xboxControl <= X360Controls.WDOWN)
                         {

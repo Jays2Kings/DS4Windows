@@ -20,7 +20,7 @@ namespace DS4Windows
     public enum DS4KeyType : byte { None = 0, ScanCode = 1, Toggle = 2, Unbound = 4, Macro = 8, HoldMacro = 16, RepeatMacro = 32 }; // Increment by exponents of 2*, starting at 2^0
     public enum Ds3PadId : byte { None = 0xFF, One = 0x00, Two = 0x01, Three = 0x02, Four = 0x03, All = 0x04 };
     public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown };
-    public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, Unbound };
+    public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, TouchpadClick, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, Unbound };
 
     public enum SASteeringWheelEmulationAxisType: byte { None = 0, LX, LY, RX, RY, L2R2, VJoy1X, VJoy1Y, VJoy1Z, VJoy2X, VJoy2Y, VJoy2Z };
     public enum OutContType : uint { None = 0, X360, DS4 }
@@ -339,6 +339,7 @@ namespace DS4Windows
             [X360Controls.Guide] = "Guide",
             [X360Controls.Back] = "Back",
             [X360Controls.Start] = "Start",
+            [X360Controls.TouchpadClick] = "Touchpad Click",
             [X360Controls.LeftMouse] = "Left Mouse Button",
             [X360Controls.RightMouse] = "Right Mouse Button",
             [X360Controls.MiddleMouse] = "Middle Mouse Button",
@@ -380,6 +381,7 @@ namespace DS4Windows
             [X360Controls.Guide] = "PS",
             [X360Controls.Back] = "Share",
             [X360Controls.Start] = "Options",
+            [X360Controls.TouchpadClick] = "Touchpad Click",
             [X360Controls.LeftMouse] = "Left Mouse Button",
             [X360Controls.RightMouse] = "Right Mouse Button",
             [X360Controls.MiddleMouse] = "Middle Mouse Button",
@@ -3197,6 +3199,7 @@ namespace DS4Windows
                 case "Right Y-Axis+": return X360Controls.RYPos;
                 case "Left Trigger": return X360Controls.LT;
                 case "Right Trigger": return X360Controls.RT;
+                case "Touchpad Click": return X360Controls.TouchpadClick;
 
                 case "Left Mouse Button": return X360Controls.LeftMouse;
                 case "Right Mouse Button": return X360Controls.RightMouse;
@@ -3247,6 +3250,7 @@ namespace DS4Windows
                 case X360Controls.RYPos: return "Right Y-Axis+";
                 case X360Controls.LT: return "Left Trigger";
                 case X360Controls.RT: return "Right Trigger";
+                case X360Controls.TouchpadClick: return "Touchpad Click";
 
                 case X360Controls.LeftMouse: return "Left Mouse Button";
                 case X360Controls.RightMouse: return "Right Mouse Button";

@@ -928,7 +928,7 @@ namespace DS4WinWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Controller {0} is not using a profile. Battery level is {2}%.
+        ///   Looks up a localized string similar to Controller {0} is not using a profile. Battery level is {1}%.
         /// </summary>
         public static string NotUsingProfile {
             get {

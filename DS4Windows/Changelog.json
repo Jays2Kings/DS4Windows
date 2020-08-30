@@ -1,9 +1,70 @@
 {
-  "latest_version": "2.1.5",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 5},
-  "updated_at": "2020-08-07T15:43:44+0000",
+  "latest_version": "2.1.7",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 7},
+  "updated_at": "2020-08-30T03:59:05+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.7",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 7},
+        "base_header": "Version 2.1.7",
+        "release_date": "2020-08-30T03:59:05+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.7",
+            "log_text": ["* Fixed 'index out of bounds' error for localization string when default profile is not found. Contribution by **mika-n**",
+              "* Updated build script to bundle newer translation packs",
+              "* Updated Spanish translation. Contribution by **peter9811**"],
+            "editor": "ryochan7",
+            "editors_note": ["Minor fixes"],
+            "updated_at": "2020-08-30T03:59:05+0000"
+          }
+        ]
+      },
+      {
+        "version_str": "2.1.6",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 6},
+        "base_header": "Version 2.1.6",
+        "release_date": "2020-08-29T05:53:41+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.6",
+            "log_text": ["* Removed LBRY social link and resources",
+              "* Allow setting a custom executable file for DS4Windows.exe",
+              "* Changed CONFIG_VERSION to 4. Start of profile migration support",
+              "* Added 1 Euro Filter smoothing for Gyro Mouse and Gyro Mouse Joystick output modes",
+              "* Bump up Gyro Mouse offsets",
+              "* Apply 1 Euro filter to calculated rotation angle from 360 Steering Wheel mode rather than each accel axis value",
+              "* Fixed locatiztion bug in the input custom bezier curve string value. Contribution by **mika-n**",
+              "* Added support for three specialist PS4 controllers. Contribution by **tpneill**",
+              "* Increased scale multiplier used for Gyro Mouse",
+              "* Changed translation string for 'save' in German translation. Contribution by **Haamar**",
+              "* Dutch translation added. Contribution by **RedDevilus**",
+              "* French translation added. Contribution by **RedDevilus**",
+              "* Only call RefreshVolume when the DS4Audio device is detected",
+              "* App can now find a unified USB device tied to the DS4 HID and audio devices. DS4Windows no longer relies on string name to match audio devices",
+              "* Increased minimum headphone volume",
+              "* Added new Chinese (Traditional, Taiwan) translation. Contribution by **SyaoranChang**",
+              "* Fixed issue with wrong window position data being saved while window is minimized",
+              "* Now show battery level for controller plugin tray message",
+              "* Added current battery level from DS4State object to Controller Readings. Used to diagnose if BatteryChanged events are not firing in main window",
+              "* Change profile save routine to allow dots in profile name",
+              "* Escape underscores in profile names for some GUI controls. Needed to disable access key usage in some GUI controls",
+              "* Fixed sides for Test Rumble in Profile Editor",
+              "* Allow both rumble motors to be usable simultaneously for Test Rumble",
+              "* Dynamically create task.bat file as requested. Allows a custom exe filename to be written to the file",
+              "* Reset button mappings when a special action is triggered",
+              "* Updated app manifest file to specify confirmed compatible versions of Windows",
+              "* Now log current exe filename to Log file. Just the base filename not the whole path",
+              "* Updated DS4Updater.exe to version 1.4.3"],
+            "editor": "ryochan7",
+            "editors_note": ["Long Changelog this time around"],
+            "updated_at": "2020-08-29T06:36:00+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.5",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 5},

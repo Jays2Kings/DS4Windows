@@ -386,7 +386,7 @@
     <value>No Profile Loaded</value>
   </data>
   <data name="NotUsingProfile" xml:space="preserve">
-    <value>Controller {0} is not using a profile. Battery level is {2}%</value>
+    <value>Controller {0} is not using a profile. Battery level is {1}%</value>
   </data>
   <data name="NotValid" xml:space="preserve">
     <value>Not valid</value>

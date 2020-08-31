@@ -136,7 +136,7 @@ namespace DS4WinWPF.DS4Forms
                     {
                         StartStopBtn.IsEnabled = false;
                     }));
-                    Thread.Sleep(500);
+                    Thread.Sleep(1000);
                     App.rootHub.Start();
                     //root.rootHubtest.Start();
                 }

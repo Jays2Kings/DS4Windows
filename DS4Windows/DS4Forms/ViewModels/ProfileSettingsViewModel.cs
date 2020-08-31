@@ -945,6 +945,18 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.rsOutBezierCurveObj[device].InitBezierCurve(value, BezierCurve.AxisType.LSRS, true);
         }
 
+        public int LSFuzz
+        {
+            get => Global.LSModInfo[device].fuzz;
+            set => Global.LSModInfo[device].fuzz = value;
+        }
+
+        public int RSFuzz
+        {
+            get => Global.RSModInfo[device].fuzz;
+            set => Global.RSModInfo[device].fuzz = value;
+        }
+
         public double L2DeadZone
         {
             get => Global.L2ModInfo[device].deadZone / 255.0;

@@ -1,9 +1,33 @@
 {
-  "latest_version": "2.1.7",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 7},
-  "updated_at": "2020-08-30T03:59:05+0000",
+  "latest_version": "2.1.8",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 8},
+  "updated_at": "2020-09-02T06:37:47+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.8",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 8},
+        "base_header": "Version 2.1.8",
+        "release_date": "2020-09-02T06:37:47+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.8",
+            "log_text": ["* Added WIN64 compilation symbol back in",
+              "* Added Touchpad Click as an output binding",
+              "* Added support for SnakeByte Game:Pad 4S gamepad. Contribution by **mika-n**",
+              "* Implemented fuzz routine for LS and RS. Delta value before stick coordinates are updated",
+              "* Changed assembly references. Found a way to safely use AggressiveInlining",
+              "* Increased initial service start delay",
+              "* Do not change window size if it is currently larger than default Profile Editor size",
+              "* Added note about Edge to Exclusive mode error message",
+              "* Fixed app crash when TaskService COM objects don't work. Contribution by **mika-n**"],
+            "editor": "ryochan7",
+            "editors_note": ["Nothin"],
+            "updated_at": "2020-09-02T06:37:47+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.7",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 7},

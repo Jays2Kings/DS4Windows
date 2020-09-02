@@ -17,7 +17,7 @@
               "* Added Touchpad Click as an output binding",
               "* Added support for SnakeByte Game:Pad 4S gamepad. Contribution by **mika-n**",
               "* Implemented fuzz routine for LS and RS. Delta value before stick coordinates are updated",
-              "* Changed assembly references. Found a way to safetly use AggressiveInlining",
+              "* Changed assembly references. Found a way to safely use AggressiveInlining",
               "* Increased initial service start delay",
               "* Do not change window size if it is currently larger than default Profile Editor size",
               "* Added note about Edge to Exclusive mode error message",

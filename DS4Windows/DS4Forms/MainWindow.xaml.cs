@@ -1572,5 +1572,20 @@ Suspend support not enabled.", true);
             MessageBox.Show(message, "Custom Exe Name Info", MessageBoxButton.OK,
                 MessageBoxImage.Information);
         }
+
+        private void XinputCheckerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string path = System.IO.Path.Combine(Global.exedirpath, "Tools",
+                "XInputChecker", "XInputChecker.exe");
+
+            if (File.Exists(path))
+            {
+                try
+                {
+                    using (Process proc = Process.Start(path)) { }
+                }
+                catch { }
+            }
+        }
     }
 }

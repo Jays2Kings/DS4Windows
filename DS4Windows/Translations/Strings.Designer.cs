@@ -755,5 +755,14 @@ namespace DS4WinWPF.Translations {
                 return ResourceManager.GetString("WindowTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XInputChecker.
+        /// </summary>
+        public static string XInputChecker {
+            get {
+                return ResourceManager.GetString("XInputChecker", resourceCulture);
+            }
+        }
     }
 }

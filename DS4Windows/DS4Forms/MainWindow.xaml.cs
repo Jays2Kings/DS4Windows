@@ -136,7 +136,7 @@ namespace DS4WinWPF.DS4Forms
                     {
                         StartStopBtn.IsEnabled = false;
                     }));
-                    Thread.Sleep(500);
+                    Thread.Sleep(1000);
                     App.rootHub.Start();
                     //root.rootHubtest.Start();
                 }
@@ -1498,8 +1498,16 @@ Suspend support not enabled.", true);
                 preserveSize = false;
                 oldSize.Width = Width;
                 oldSize.Height = Height;
-                this.Width = 1000;
-                this.Height = 650;
+                if (this.Width < 1000)
+                {
+                    this.Width = 1000;
+                }
+
+                if (this.Height < 650)
+                {
+                    this.Height = 650;
+                }
+
                 editor = new ProfileEditor(device);
                 editor.CreatedProfile += Editor_CreatedProfile;
                 editor.Closed += ProfileEditor_Closed;

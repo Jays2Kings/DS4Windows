@@ -17,6 +17,7 @@ namespace DS4WinWPF
 
         public static bool HasStartProgEntry()
         {
+            // Exception handling should not be needed here. Method handles most cases
             bool exists = File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
             return exists;
         }
@@ -26,11 +27,6 @@ namespace DS4WinWPF
             TaskService ts = new TaskService();
             Task tasker = ts.FindTask("RunDS4Windows");
             return tasker != null;
-        }
-
-        public static bool RunAtStartup()
-        {
-            return HasStartProgEntry() || HasTaskEntry();
         }
 
         public static void WriteStartProgEntry()

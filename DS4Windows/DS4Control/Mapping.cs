@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 using System.Threading;
 using System.Threading.Tasks;
@@ -166,6 +167,13 @@ namespace DS4Windows
 
         public static byte[] gyroStickX = new byte[4] { 128, 128, 128, 128 };
         public static byte[] gyroStickY = new byte[4] { 128, 128, 128, 128 };
+
+        // [<Device>][<AxisId>]. LX = 0, LY = 1, RX = 2, RY = 3
+        public static byte[][] lastStickAxisValues = new byte[4][]
+        {
+            new byte[4] {128, 128, 128, 128}, new byte[4] {128, 128, 128, 128},
+            new byte[4] {128, 128, 128, 128}, new byte[4] {128, 128, 128, 128},
+        };
         //static int lastGyroX = 0;
         //static int lastGyroZ = 0;
 
@@ -566,6 +574,19 @@ namespace DS4Windows
             if (rotationRS > 0.0 || rotationRS < 0.0)
                 cState.rotateRSCoordinates(rotationRS);
 
+            StickDeadZoneInfo lsMod = GetLSDeadInfo(device);
+            StickDeadZoneInfo rsMod = GetRSDeadInfo(device);
+
+            if (lsMod.fuzz > 0)
+            {
+                CalcStickAxisFuzz(device, 0, lsMod.fuzz, cState.LX, cState.LY, out cState.LX, out cState.LY);
+            }
+
+            if (rsMod.fuzz > 0)
+            {
+                CalcStickAxisFuzz(device, 1, rsMod.fuzz, cState.RX, cState.RY, out cState.RX, out cState.RY);
+            }
+
             cState.CopyTo(dState);
             //DS4State dState = new DS4State(cState);
             int x;
@@ -646,7 +667,6 @@ namespace DS4Windows
             int lsAntiDead = getLSAntiDeadzone(device);
             int lsMaxZone = getLSMaxzone(device);
             */
-            StickDeadZoneInfo lsMod = GetLSDeadInfo(device);
             int lsDeadzone = lsMod.deadZone;
             int lsAntiDead = lsMod.antiDeadZone;
             int lsMaxZone = lsMod.maxZone;
@@ -738,7 +758,6 @@ namespace DS4Windows
             int rsAntiDead = getRSAntiDeadzone(device);
             int rsMaxZone = getRSMaxzone(device);
             */
-            StickDeadZoneInfo rsMod = GetRSDeadInfo(device);
             int rsDeadzone = rsMod.deadZone;
             int rsAntiDead = rsMod.antiDeadZone;
             int rsMaxZone = rsMod.maxZone;
@@ -1516,6 +1535,7 @@ namespace DS4Windows
                 case "Mouse Down": return X360Controls.MouseDown;
                 case "Mouse Left": return X360Controls.MouseLeft;
                 case "Mouse Right": return X360Controls.MouseRight;
+                case "Touchpad Click": return X360Controls.TouchpadClick;
                 case "Unbound": return X360Controls.Unbound;
                 default: break;
             }
@@ -1730,6 +1750,12 @@ namespace DS4Windows
                             DS4Controls tempDS4Control = reverseX360ButtonMapping[(int)xboxControl];
                             customMapQueue[device].Enqueue(new ControlToXInput(dcs.control, tempDS4Control));
                             //tempControlDict.Add(dcs.control, tempDS4Control);
+                        }
+                        else if (xboxControl == X360Controls.TouchpadClick)
+                        {
+                            bool value = getBoolMapping2(device, dcs.control, cState, eState, tp, fieldMapping);
+                            if (value)
+                                outputfieldMapping.touchButton = value;
                         }
                         else if (xboxControl >= X360Controls.LeftMouse && xboxControl <= X360Controls.WDOWN)
                         {
@@ -4293,6 +4319,43 @@ namespace DS4Windows
                 DS4LightBar.forcedColor[device] = Global.getMainColor(device);
                 DS4LightBar.forcelight[device] = false;
                 DS4LightBar.updateLightBar(controller, device);
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void CalcStickAxisFuzz(int device,
+            int stickId, int delta, byte axisXValue, byte axisYValue,
+            out byte useAxisX, out byte useAxisY)
+        {
+            if (stickId < 0 || stickId > 2)
+            {
+                throw new ArgumentOutOfRangeException("Stick ID has to be either 0 or 1");
+            }
+
+            int xIdX = stickId == 0 ? 0 : 2;
+            int yIdX = stickId == 1 ? 1 : 3;
+            ref byte lastXVal = ref lastStickAxisValues[device][xIdX];
+            ref byte lastYVal = ref lastStickAxisValues[device][yIdX];
+            useAxisX = lastXVal;
+            useAxisY = lastYVal;
+
+            int deltaX = axisXValue - lastXVal;
+            int deltaY = axisYValue - lastYVal;
+            int magSqu = (deltaX * deltaX) + (deltaY * deltaY);
+            int deltaSqu = delta * delta;
+            //if (stickId == 0)
+            //    Console.WriteLine("DELTA MAG SQU: {0} {1}", magSqu, deltaSqu);
+
+            if (axisXValue == 0 || axisXValue == 255 || magSqu > deltaSqu)
+            {
+                useAxisX = axisXValue;
+                lastXVal = axisXValue;
+            }
+
+            if (axisYValue == 0 || axisYValue == 255 || magSqu > deltaSqu)
+            {
+                useAxisY = axisYValue;
+                lastYVal = axisYValue;
             }
         }
 

@@ -13,10 +13,15 @@ namespace DS4Windows
 
     public class StickDeadZoneInfo
     {
+        public const int DEFAULT_MAXZONE = 100;
+        public const double DEFAULT_MAXOUTPUT = 100.0;
+        public const int DEFAULT_FUZZ = 0;
+
         public int deadZone;
         public int antiDeadZone;
         public int maxZone = 100;
         public double maxOutput = 100.0;
+        public int fuzz = DEFAULT_FUZZ;
     }
 
     public class TriggerDeadZoneZInfo

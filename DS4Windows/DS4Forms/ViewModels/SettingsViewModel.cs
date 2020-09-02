@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Interop;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Runtime.InteropServices;
 
 namespace DS4WinWPF.DS4Forms.ViewModels
 {
@@ -258,9 +259,17 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                       BitmapSizeOptions.FromEmptyOptions());
             questionMarkSource = wpfBitmap;
 
-            runAtStartup = StartupMethods.RunAtStartup();
             runStartProg = StartupMethods.HasStartProgEntry();
-            runStartTask = StartupMethods.HasTaskEntry();
+            try
+            {
+                runStartTask = StartupMethods.HasTaskEntry();
+            }
+            catch (COMException ex)
+            {
+                DS4Windows.AppLogger.LogToGui(string.Format("Error in TaskService. Check WinOS TaskScheduler service functionality. {0}", ex.Message), true);
+            }
+
+            runAtStartup = runStartProg || runStartTask;
             canWriteTask = DS4Windows.Global.IsAdministrator();
 
             if (!runAtStartup)

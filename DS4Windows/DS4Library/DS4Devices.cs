@@ -123,6 +123,7 @@ namespace DS4Windows
             new VidPidInfo(0x0E8F, 0x1114, "Gamo2 Divaller", VidPidFeatureSet.NoGyroCalib), // Gamo2 Divaller (wired only. Light bar not controllable. No touchpad, gyro or rumble)
             new VidPidInfo(HORI_VID, 0x0101, "Hori Mini Hatsune Miku FT", VidPidFeatureSet.NoGyroCalib), // Hori Mini Hatsune Miku FT (wired only. No light bar, gyro or rumble)
             new VidPidInfo(HORI_VID, 0x00C9, "Hori Taiko Controller", VidPidFeatureSet.NoGyroCalib), // Hori Taiko Controller (wired only. No light bar, touchpad, gyro, rumble, sticks or triggers)
+            new VidPidInfo(0x0C12, 0x1E1C, "SnakeByte Game:Pad 4S", VidPidFeatureSet.NoGyroCalib | VidPidFeatureSet.NoBatteryReading), // SnakeByte Gamepad for PS4 (wired only. No gyro. No light bar). If it doesn't work then try the latest gamepad firmware from https://mysnakebyte.com/
         };
 
         public static string devicePathToInstanceId(string devicePath)

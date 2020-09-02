@@ -358,6 +358,7 @@
                                     <RowDefinition Style="{StaticResource gridRowHeight}"/>
                                     <RowDefinition Style="{StaticResource gridRowHeight}" />
                                     <RowDefinition Style="{StaticResource gridRowHeight}" />
+                                    <RowDefinition Style="{StaticResource gridRowHeight}" />
                                 </Grid.RowDefinitions>
 
                                 <TextBlock Text="LS" Grid.Column="1" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,8"/>
@@ -466,6 +467,21 @@
                                     <TextBlock Text="&#xb0;" DockPanel.Dock="Right" FontSize="18" Margin="{StaticResource spaceMargin}" />
                                     <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding RSRotation}"
                                                     Minimum="-180" Maximum="180"
+                                                    Margin="{StaticResource spaceMargin}" />
+                                </DockPanel>
+
+                                <Label Content="Fuzz:" Grid.Row="11" Grid.Column="0" />
+                                <DockPanel Grid.Row="11" Grid.Column="1">
+                                    <TextBlock Text="units" DockPanel.Dock="Right" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
+                                    <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding LSFuzz}"
+                                                    Minimum="0" Maximum="100"
+                                                    Margin="{StaticResource spaceMargin}" />
+                                </DockPanel>
+
+                                <DockPanel Grid.Row="11" Grid.Column="2">
+                                    <TextBlock Text="units" DockPanel.Dock="Right" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
+                                    <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding RSFuzz}"
+                                                    Minimum="0" Maximum="100"
                                                     Margin="{StaticResource spaceMargin}" />
                                 </DockPanel>
                             </Grid>

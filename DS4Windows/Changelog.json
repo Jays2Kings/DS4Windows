@@ -1,9 +1,26 @@
 {
-  "latest_version": "2.1.8",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 8},
-  "updated_at": "2020-09-02T06:37:47+0000",
+  "latest_version": "2.1.9",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 9},
+  "updated_at": "2020-09-03T01:15:05+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.9",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 9},
+        "base_header": "Version 2.1.9",
+        "release_date": "2020-09-03T01:15:05+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.9",
+            "log_text": ["* Added XInputChecker link",
+              "* Fixed null pointer issues in Macro Editor when using Preset options"],
+            "editor": "ryochan7",
+            "editors_note": ["Reinstall Windows time"],
+            "updated_at": "2020-09-03T01:15:05+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.8",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 8},

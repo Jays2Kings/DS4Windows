@@ -352,4 +352,7 @@ Changes to this option takes effect at the gamepad connection time.</value>
 
 Example: whyme_DS4Windows</value>
   </data>
+  <data name="XInputChecker" xml:space="preserve">
+    <value>XInputChecker</value>
+  </data>
 </root>

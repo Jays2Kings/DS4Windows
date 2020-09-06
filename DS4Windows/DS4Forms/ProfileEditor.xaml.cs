@@ -536,7 +536,7 @@ namespace DS4WinWPF.DS4Forms
                 Global.LoadBlankDevProfile(device, false, App.rootHub, false);
             }
 
-            if (device < 4)
+            if (device < Global.TEST_PROFILE_INDEX)
             {
                 useControllerUD.Value = device + 1;
                 conReadingsUserCon.UseDevice(device, device);
@@ -545,7 +545,7 @@ namespace DS4WinWPF.DS4Forms
             else
             {
                 useControllerUD.Value = 1;
-                conReadingsUserCon.UseDevice(0, 4);
+                conReadingsUserCon.UseDevice(0, Global.TEST_PROFILE_INDEX);
                 contReadingsTab.IsEnabled = true;
             }
 
@@ -580,7 +580,7 @@ namespace DS4WinWPF.DS4Forms
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (profileSettingsVM.FuncDevNum < 4)
+            if (profileSettingsVM.FuncDevNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 App.rootHub.setRumble(0, 0, profileSettingsVM.FuncDevNum);
             }
@@ -778,7 +778,7 @@ namespace DS4WinWPF.DS4Forms
 
         public void Close()
         {
-            if (profileSettingsVM.FuncDevNum < 4)
+            if (profileSettingsVM.FuncDevNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 App.rootHub.setRumble(0, 0, profileSettingsVM.FuncDevNum);
             }
@@ -841,7 +841,7 @@ namespace DS4WinWPF.DS4Forms
         private void HeavyRumbleTestBtn_Click(object sender, RoutedEventArgs e)
         {
             int deviceNum = profileSettingsVM.FuncDevNum;
-            if (deviceNum < 4)
+            if (deviceNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 DS4Device d = App.rootHub.DS4Controllers[deviceNum];
                 if (d != null)
@@ -867,7 +867,7 @@ namespace DS4WinWPF.DS4Forms
         private void LightRumbleTestBtn_Click(object sender, RoutedEventArgs e)
         {
             int deviceNum = profileSettingsVM.FuncDevNum;
-            if (deviceNum < 4)
+            if (deviceNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 DS4Device d = App.rootHub.DS4Controllers[deviceNum];
                 if (d != null)
@@ -925,7 +925,7 @@ namespace DS4WinWPF.DS4Forms
 
         private void FrictionUD_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (deviceNum < 4)
+            if (deviceNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 App.rootHub.touchPad[deviceNum]?.ResetTrackAccel(frictionUD.Value.GetValueOrDefault());
             }

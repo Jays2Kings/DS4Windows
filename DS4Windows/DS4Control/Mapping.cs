@@ -61,7 +61,7 @@ namespace DS4Windows
 
         public class ActionState
         {
-            public bool[] dev = new bool[4];
+            public bool[] dev = new bool[Global.MAX_DS4_CONTROLLER_COUNT];
         }
 
         struct ControlToXInput
@@ -75,10 +75,12 @@ namespace DS4Windows
             }
         }
 
-        static Queue<ControlToXInput>[] customMapQueue = new Queue<ControlToXInput>[4]
+        static Queue<ControlToXInput>[] customMapQueue = new Queue<ControlToXInput>[Global.MAX_DS4_CONTROLLER_COUNT]
         {
             new Queue<ControlToXInput>(), new Queue<ControlToXInput>(),
-            new Queue<ControlToXInput>(), new Queue<ControlToXInput>()
+            new Queue<ControlToXInput>(), new Queue<ControlToXInput>(),
+            new Queue<ControlToXInput>(), new Queue<ControlToXInput>(),
+            new Queue<ControlToXInput>(), new Queue<ControlToXInput>(),
         };
 
         struct DS4Vector2
@@ -159,17 +161,20 @@ namespace DS4Windows
             }
         }
 
-        private static DS4SquareStick[] outSqrStk = new DS4SquareStick[4]
+        private static DS4SquareStick[] outSqrStk = new DS4SquareStick[Global.MAX_DS4_CONTROLLER_COUNT]
         {
-            new DS4SquareStick(), new DS4SquareStick(), new DS4SquareStick(), new DS4SquareStick()
+            new DS4SquareStick(), new DS4SquareStick(), new DS4SquareStick(), new DS4SquareStick(),
+            new DS4SquareStick(), new DS4SquareStick(), new DS4SquareStick(), new DS4SquareStick(),
         };
 
-        public static byte[] gyroStickX = new byte[4] { 128, 128, 128, 128 };
-        public static byte[] gyroStickY = new byte[4] { 128, 128, 128, 128 };
+        public static byte[] gyroStickX = new byte[Global.MAX_DS4_CONTROLLER_COUNT] { 128, 128, 128, 128, 128, 128, 128, 128 };
+        public static byte[] gyroStickY = new byte[Global.MAX_DS4_CONTROLLER_COUNT] { 128, 128, 128, 128, 128, 128, 128, 128 };
 
         // [<Device>][<AxisId>]. LX = 0, LY = 1, RX = 2, RY = 3
-        public static byte[][] lastStickAxisValues = new byte[4][]
+        public static byte[][] lastStickAxisValues = new byte[Global.MAX_DS4_CONTROLLER_COUNT][]
         {
+            new byte[4] {128, 128, 128, 128}, new byte[4] {128, 128, 128, 128},
+            new byte[4] {128, 128, 128, 128}, new byte[4] {128, 128, 128, 128},
             new byte[4] {128, 128, 128, 128}, new byte[4] {128, 128, 128, 128},
             new byte[4] {128, 128, 128, 128}, new byte[4] {128, 128, 128, 128},
         };
@@ -183,28 +188,31 @@ namespace DS4Windows
         //private static OneEuroFilter wheel360FilterX = new OneEuroFilter(minCutoff: 0.1, beta: 0.02);
         //private static OneEuroFilter wheel360FilterZ = new OneEuroFilter(minCutoff: 0.1, beta: 0.02);
 
-        public static OneEuroFilter[] wheelFilters = new OneEuroFilter[ControlService.DS4_CONTROLLER_COUNT];
+        public static OneEuroFilter[] wheelFilters = new OneEuroFilter[ControlService.MAX_DS4_CONTROLLER_COUNT];
 
         static ReaderWriterLockSlim syncStateLock = new ReaderWriterLockSlim();
 
         public static SyntheticState globalState = new SyntheticState();
-        public static SyntheticState[] deviceState = new SyntheticState[4]
+        public static SyntheticState[] deviceState = new SyntheticState[Global.MAX_DS4_CONTROLLER_COUNT]
             { new SyntheticState(), new SyntheticState(), new SyntheticState(),
-              new SyntheticState() };
+              new SyntheticState(), new SyntheticState(), new SyntheticState(), new SyntheticState(), new SyntheticState() };
 
-        public static DS4StateFieldMapping[] fieldMappings = new DS4StateFieldMapping[4] {
+        public static DS4StateFieldMapping[] fieldMappings = new DS4StateFieldMapping[Global.MAX_DS4_CONTROLLER_COUNT] {
             new DS4StateFieldMapping(), new DS4StateFieldMapping(), new DS4StateFieldMapping(),
-            new DS4StateFieldMapping()
+            new DS4StateFieldMapping(), new DS4StateFieldMapping(), new DS4StateFieldMapping(),
+            new DS4StateFieldMapping(), new DS4StateFieldMapping(),
         };
-        public static DS4StateFieldMapping[] outputFieldMappings = new DS4StateFieldMapping[4]
+        public static DS4StateFieldMapping[] outputFieldMappings = new DS4StateFieldMapping[Global.MAX_DS4_CONTROLLER_COUNT]
         {
             new DS4StateFieldMapping(), new DS4StateFieldMapping(), new DS4StateFieldMapping(),
-            new DS4StateFieldMapping()
+            new DS4StateFieldMapping(), new DS4StateFieldMapping(), new DS4StateFieldMapping(),
+            new DS4StateFieldMapping(), new DS4StateFieldMapping(),
         };
-        public static DS4StateFieldMapping[] previousFieldMappings = new DS4StateFieldMapping[4]
+        public static DS4StateFieldMapping[] previousFieldMappings = new DS4StateFieldMapping[Global.MAX_DS4_CONTROLLER_COUNT]
         {
             new DS4StateFieldMapping(), new DS4StateFieldMapping(), new DS4StateFieldMapping(),
-            new DS4StateFieldMapping()
+            new DS4StateFieldMapping(), new DS4StateFieldMapping(), new DS4StateFieldMapping(),
+            new DS4StateFieldMapping(), new DS4StateFieldMapping(),
         };
 
         // TODO When we disconnect, process a null/dead state to release any keys or buttons.
@@ -216,19 +224,19 @@ namespace DS4Windows
         public static bool[] pressedonce = new bool[261], macrodone = new bool[38];
         static bool[] macroControl = new bool[25];
         static uint macroCount = 0;
-        static Dictionary<string, Task>[] macroTaskQueue = new Dictionary<string, Task>[4] { new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>() };
+        static Dictionary<string, Task>[] macroTaskQueue = new Dictionary<string, Task>[Global.MAX_DS4_CONTROLLER_COUNT] { new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>() };
 
         //actions
-        public static int[] fadetimer = new int[4] { 0, 0, 0, 0 };
-        public static int[] prevFadetimer = new int[4] { 0, 0, 0, 0 };
-        public static DS4Color[] lastColor = new DS4Color[4];
+        public static int[] fadetimer = new int[Global.MAX_DS4_CONTROLLER_COUNT] { 0, 0, 0, 0, 0, 0, 0, 0 };
+        public static int[] prevFadetimer = new int[Global.MAX_DS4_CONTROLLER_COUNT] { 0, 0, 0, 0, 0, 0, 0, 0 };
+        public static DS4Color[] lastColor = new DS4Color[Global.MAX_DS4_CONTROLLER_COUNT];
         public static List<ActionState> actionDone = new List<ActionState>();
-        public static SpecialAction[] untriggeraction = new SpecialAction[4];
+        public static SpecialAction[] untriggeraction = new SpecialAction[Global.MAX_DS4_CONTROLLER_COUNT];
         public static DateTime[] nowAction = { DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
         public static DateTime[] oldnowAction = { DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
-        public static int[] untriggerindex = new int[4] { -1, -1, -1, -1 };
-        public static DateTime[] oldnowKeyAct = new DateTime[4] { DateTime.MinValue,
-            DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
+        public static int[] untriggerindex = new int[Global.MAX_DS4_CONTROLLER_COUNT] { -1, -1, -1, -1, -1, -1, -1, -1 };
+        public static DateTime[] oldnowKeyAct = new DateTime[Global.MAX_DS4_CONTROLLER_COUNT] { DateTime.MinValue,
+            DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
 
         private static DS4Controls[] shiftTriggerMapping = new DS4Controls[26] { DS4Controls.None, DS4Controls.Cross, DS4Controls.Circle, DS4Controls.Square,
             DS4Controls.Triangle, DS4Controls.Options, DS4Controls.Share, DS4Controls.DpadUp, DS4Controls.DpadDown,
@@ -1542,7 +1550,7 @@ namespace DS4Windows
         /// <summary>
         /// Map DS4 Buttons/Axes to other DS4 Buttons/Axes (largely the same as Xinput ones) and to keyboard and mouse buttons.
         /// </summary>
-        static bool[] held = new bool[4];
+        static bool[] held = new bool[Global.MAX_DS4_CONTROLLER_COUNT];
         public static void MapCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState,
             Mouse tp, ControlService ctrl)
         {

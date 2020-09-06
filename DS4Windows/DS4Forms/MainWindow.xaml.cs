@@ -1059,7 +1059,7 @@ Suspend support not enabled.", true);
                                     // Command syntax: LoadProfile.device#.profileName (fex LoadProfile.1.GameSnake or LoadTempProfile.1.WebBrowserSet)
                                     if (int.TryParse(strData[1], out tdevice)) tdevice--;
 
-                                    if (tdevice >= 0 && tdevice < ControlService.DS4_CONTROLLER_COUNT &&
+                                    if (tdevice >= 0 && tdevice < ControlService.MAX_DS4_CONTROLLER_COUNT &&
                                             File.Exists(Global.appdatapath + "\\Profiles\\" + strData[2] + ".xml"))
                                     {
                                         if (strData[0] == "loadprofile")
@@ -1100,7 +1100,7 @@ Suspend support not enabled.", true);
                                     if (int.TryParse(strData[1], out tdevice))
                                         tdevice--;
 
-                                    if (tdevice >= 0 && tdevice < ControlService.DS4_CONTROLLER_COUNT)
+                                    if (tdevice >= 0 && tdevice < ControlService.MAX_DS4_CONTROLLER_COUNT)
                                     {
                                         // Name of the property to query from a profile or DS4Windows app engine
                                         propName = strData[2].ToLower();
@@ -1485,7 +1485,7 @@ Suspend support not enabled.", true);
 
         private void NewProfListBtn_Click(object sender, RoutedEventArgs e)
         {
-            ShowProfileEditor(4, null);
+            ShowProfileEditor(Global.TEST_PROFILE_INDEX, null);
         }
 
         private void ShowProfileEditor(int device, ProfileEntity entity = null)

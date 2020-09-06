@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DS4Windows;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -99,6 +100,13 @@ namespace DS4WinWPF
                     el.AppendChild(doc.CreateElement("Controller2")).InnerText = entity.ProfileNames[1];
                     el.AppendChild(doc.CreateElement("Controller3")).InnerText = entity.ProfileNames[2];
                     el.AppendChild(doc.CreateElement("Controller4")).InnerText = entity.ProfileNames[3];
+                    if (ControlService.USING_MAX_CONTROLLERS)
+                    {
+                        el.AppendChild(doc.CreateElement("Controller5")).InnerText = entity.ProfileNames[4];
+                        el.AppendChild(doc.CreateElement("Controller6")).InnerText = entity.ProfileNames[5];
+                        el.AppendChild(doc.CreateElement("Controller7")).InnerText = entity.ProfileNames[6];
+                        el.AppendChild(doc.CreateElement("Controller8")).InnerText = entity.ProfileNames[7];
+                    }
                     el.AppendChild(doc.CreateElement("TurnOff")).InnerText = entity.Turnoff.ToString();
 
                     Node.AppendChild(el);
@@ -124,8 +132,8 @@ namespace DS4WinWPF
         private string path_lowercase;
         private string title_lowercase;
         private bool turnoff;
-        private string[] profileNames = new string[4] { string.Empty, string.Empty,
-            string.Empty, string.Empty };
+        private string[] profileNames = new string[DS4Windows.Global.MAX_DS4_CONTROLLER_COUNT] { string.Empty, string.Empty,
+            string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         public const string NONE_STRING = "(none)";
 
         public string Path { get => path; set => SetSearchPath(value); }

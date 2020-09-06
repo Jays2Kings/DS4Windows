@@ -66,6 +66,7 @@ namespace DS4Windows
 
     class UdpServer
     {
+        public const int NUMBER_SLOTS = 4;
         private Socket udpSock;
         private uint serverId;
         private bool running;

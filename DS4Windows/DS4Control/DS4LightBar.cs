@@ -23,17 +23,23 @@ namespace DS4Windows
             { 0, 0 }     // use on 100%. 0 is for "charging" OR anything sufficiently-"charged"
         };
 
-        static double[] counters = new double[4] { 0, 0, 0, 0 };
-        public static Stopwatch[] fadewatches = new Stopwatch[4]
-            { new Stopwatch(), new Stopwatch(), new Stopwatch(), new Stopwatch() };
+        static double[] counters = new double[Global.MAX_DS4_CONTROLLER_COUNT] { 0, 0, 0, 0, 0, 0, 0, 0 };
+        public static Stopwatch[] fadewatches = new Stopwatch[Global.MAX_DS4_CONTROLLER_COUNT]
+        {
+            new Stopwatch(), new Stopwatch(), new Stopwatch(), new Stopwatch(),
+            new Stopwatch(), new Stopwatch(), new Stopwatch(), new Stopwatch(),
+        };
 
-        static bool[] fadedirection = new bool[4] { false, false, false, false };
-        static DateTime[] oldnow = new DateTime[4]
-            { DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow };
+        static bool[] fadedirection = new bool[Global.MAX_DS4_CONTROLLER_COUNT] { false, false, false, false, false, false, false, false };
+        static DateTime[] oldnow = new DateTime[Global.MAX_DS4_CONTROLLER_COUNT]
+        {
+            DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow,
+            DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow,
+        };
 
-        public static bool[] forcelight = new bool[4] { false, false, false, false };
-        public static DS4Color[] forcedColor = new DS4Color[4];
-        public static byte[] forcedFlash = new byte[4];
+        public static bool[] forcelight = new bool[Global.MAX_DS4_CONTROLLER_COUNT] { false, false, false, false, false, false, false, false };
+        public static DS4Color[] forcedColor = new DS4Color[Global.MAX_DS4_CONTROLLER_COUNT];
+        public static byte[] forcedFlash = new byte[Global.MAX_DS4_CONTROLLER_COUNT];
         internal const int PULSE_FLASH_DURATION = 2000;
         internal const double PULSE_FLASH_SEGMENTS = PULSE_FLASH_DURATION / 40;
         internal const int PULSE_CHARGING_DURATION = 4000;

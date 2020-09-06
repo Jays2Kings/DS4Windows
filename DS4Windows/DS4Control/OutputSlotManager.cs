@@ -13,11 +13,13 @@ namespace DS4Windows
     public class OutputSlotManager
     {
         public const int DELAY_TIME = 500; // measured in ms
-        private OutSlotDevice[] outputSlots = new OutSlotDevice[4]
+        private OutSlotDevice[] outputSlots;/* = new OutSlotDevice[Global.MAX_DS4_CONTROLLER_COUNT]
         {
             new OutSlotDevice(0), new OutSlotDevice(1),
             new OutSlotDevice(2), new OutSlotDevice(3)
         };
+        */
+        private int lastSlotIndex;
 
         public int NumAttachedDevices
         {
@@ -39,7 +41,7 @@ namespace DS4Windows
 
         private Dictionary<int, OutputDevice> deviceDict = new Dictionary<int, OutputDevice>();
         private Dictionary<OutputDevice, int> revDeviceDict = new Dictionary<OutputDevice, int>();
-        private OutputDevice[] outputDevices = new OutputDevice[4];
+        private OutputDevice[] outputDevices = new OutputDevice[ControlService.CURRENT_DS4_CONTROLLER_LIMIT];
 
         private int queuedTasks = 0;
         private ReaderWriterLockSlim queueLocker;
@@ -60,6 +62,14 @@ namespace DS4Windows
 
         public OutputSlotManager()
         {
+            outputSlots = new OutSlotDevice[ControlService.CURRENT_DS4_CONTROLLER_LIMIT];
+            for (int i = 0; i < ControlService.CURRENT_DS4_CONTROLLER_LIMIT; i++)
+            {
+                outputSlots[i] = new OutSlotDevice(i);
+            }
+
+            lastSlotIndex = outputSlots.Length > 0 ? outputSlots.Length - 1 : 0;
+
             queueLocker = new ReaderWriterLockSlim();
 
             eventDispatchThread = new Thread(() =>
@@ -213,7 +223,7 @@ namespace DS4Windows
         public bool SlotAvailable(int slotNum)
         {
             bool result;
-            if (slotNum < 0 && slotNum > 3)
+            if (slotNum < 0 && slotNum > lastSlotIndex)
             {
                 throw new ArgumentOutOfRangeException("Invalid slot number");
             }
@@ -226,7 +236,7 @@ namespace DS4Windows
         public OutSlotDevice GetOutSlotDevice(int slotNum)
         {
             OutSlotDevice temp;
-            if (slotNum < 0 && slotNum > 3)
+            if (slotNum < 0 && slotNum > lastSlotIndex)
             {
                 throw new ArgumentOutOfRangeException("Invalid slot number");
             }

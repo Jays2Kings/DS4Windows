@@ -387,6 +387,8 @@ namespace DS4WinWPF.DS4Forms
             trayIconVM.RequestMinimize += TrayIconVM_RequestMinimize;
             trayIconVM.RequestOpen += TrayIconVM_RequestOpen;
             trayIconVM.RequestServiceChange += TrayIconVM_RequestServiceChange;
+            settingsWrapVM.IconChoiceIndexChanged += SettingsWrapVM_IconChoiceIndexChanged;
+
             autoProfControl.AutoDebugChanged += AutoProfControl_AutoDebugChanged;
             autoprofileChecker.RequestServiceChange += AutoprofileChecker_RequestServiceChange;
             autoProfileHolder.AutoProfileColl.CollectionChanged += AutoProfileColl_CollectionChanged;
@@ -421,6 +423,11 @@ namespace DS4WinWPF.DS4Forms
                 AppLogger.LogToGui(@"Could not connect to Windows Management Instrumentation service.
 Suspend support not enabled.", true);
             }
+        }
+
+        private void SettingsWrapVM_IconChoiceIndexChanged(object sender, EventArgs e)
+        {
+            trayIconVM.IconSource = Global.iconChoiceResources[Global.UseIconChoice];
         }
 
         private void MainWinVM_FullTabsEnabledChanged(object sender, EventArgs e)
@@ -1280,12 +1287,6 @@ Suspend support not enabled.", true);
                 DownloadUpstreamVersionInfo();
                 Check_Version(true);
             });
-        }
-
-        private void UseWhiteDS4IconCk_Click(object sender, RoutedEventArgs e)
-        {
-            bool status = useWhiteDS4IconCk.IsChecked == true;
-            trayIconVM.IconSource = status ? TrayIconViewModel.ICON_WHITE : TrayIconViewModel.ICON_COLOR;
         }
 
         private void CheckDrivers()

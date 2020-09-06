@@ -12,9 +12,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
     public class TrayIconViewModel
     {
         private string tooltipText = "DS4Windows";
-        public const string ICON_COLOR = "/DS4Windows;component/Resources/DS4W.ico";
-        public const string ICON_WHITE = "/DS4Windows;component/Resources/DS4W - White.ico";
-        private string iconSource = ICON_COLOR;
+        private string iconSource;
         public const string ballonTitle = "DS4Windows";
         public static string trayTitle = $"DS4Windows v{Global.exeversion}";
         private ContextMenu contextMenu;
@@ -69,7 +67,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             this.profileListHolder = profileListHolder;
             this.controlService = service;
             contextMenu = new ContextMenu();
-            iconSource = Global.UseWhiteIcon ? ICON_WHITE : ICON_COLOR;
+            iconSource = Global.iconChoiceResources[Global.UseIconChoice];
             changeServiceItem = new MenuItem() { Header = "Start" };
             changeServiceItem.Click += ChangeControlServiceItem_Click;
             changeServiceItem.IsEnabled = false;

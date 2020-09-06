@@ -274,8 +274,16 @@
                         <CheckBox Content="{lex:Loc QuickCharge}" Margin="{StaticResource spaceMargin}"
                               IsChecked="{Binding QuickCharge}"
                               ToolTip="{lex:Loc Resources:QuickCharge}" />
-                        <CheckBox x:Name="useWhiteDS4IconCk" Content="White DS4Windows Icon" Margin="{StaticResource spaceMargin}"
-                              IsChecked="{Binding WhiteDS4Icon}" Click="UseWhiteDS4IconCk_Click" />
+                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                            <Label Content="Icon Choice:" />
+                            <ComboBox x:Name="useIconChoiceCom" SelectedIndex="{Binding IconChoiceIndex,FallbackValue='0'}" Margin="10,0,0,0">
+                                <ComboBoxItem>Default</ComboBoxItem>
+                                <ComboBoxItem>Colored</ComboBoxItem>
+                                <ComboBoxItem>White</ComboBoxItem>
+                                <ComboBoxItem>Black</ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+
                         <CheckBox Content="{lex:Loc CheckUpdateStartup}" Margin="{StaticResource spaceMargin}"
                               IsChecked="{Binding CheckForUpdates}" />
                         <StackPanel x:Name="checkEveryOptionsStack" Orientation="Horizontal" Margin="{StaticResource spaceMargin}"

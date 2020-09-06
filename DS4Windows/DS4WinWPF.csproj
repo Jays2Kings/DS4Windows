@@ -496,6 +496,7 @@
     <Content Include="BezierCurveEditor\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\DS4W - Black.ico" />
     <Resource Include="Resources\social\parler.png" />
     <Resource Include="Resources\key-solid.png" />
     <Resource Include="Resources\social\bitchute.png" />

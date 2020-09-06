@@ -33,6 +33,14 @@ namespace DS4Windows
         MouseJoystick,
     }
 
+    public enum TrayIconChoice : uint
+    {
+        Default,
+        Colored,
+        White,
+        Black,
+    }
+
     public class DS4ControlSettings
     {
         public DS4Controls control;
@@ -283,6 +291,7 @@ namespace DS4Windows
         public static bool hidguardInstalled = IsHidGuardianInstalled();
         public static string vigembusVersion = ViGEmBusVersion();
         public const int CONFIG_VERSION = 4;
+        public const int APP_CONFIG_VERSION = 2;
         public const string ASSEMBLY_RESOURCE_PREFIX = "pack://application:,,,/DS4Windows;";
         public const string CUSTOM_EXE_CONFIG_FILENAME = "custom_exe_name.txt";
         public const string XML_EXTENSION = ".xml";
@@ -467,6 +476,14 @@ namespace DS4Windows
             [DS4Controls.LYNeg] = 281, [DS4Controls.RXPos] = 282,
             [DS4Controls.RXNeg] = 283, [DS4Controls.RYPos] = 284,
             [DS4Controls.RYNeg] = 285,
+        };
+
+        public static Dictionary<TrayIconChoice, string> iconChoiceResources = new Dictionary<TrayIconChoice, string>
+        {
+            [TrayIconChoice.Default] = "/DS4Windows;component/Resources/DS4W.ico",
+            [TrayIconChoice.Colored] = "/DS4Windows;component/Resources/DS4W.ico",
+            [TrayIconChoice.White] = "/DS4Windows;component/Resources/DS4W - White.ico",
+            [TrayIconChoice.Black] = "/DS4Windows;component/Resources/DS4W - Black.ico",
         };
 
         public static void SaveWhere(string path)
@@ -1082,10 +1099,10 @@ namespace DS4Windows
             m_Config.udpServListenAddress = value.Trim();
         }
 
-        public static bool UseWhiteIcon
+        public static TrayIconChoice UseIconChoice
         {
-            set { m_Config.useWhiteIcon = value; }
-            get { return m_Config.useWhiteIcon; }
+            get => m_Config.useIconChoice;
+            set => m_Config.useIconChoice = value;
         }
 
         public static bool UseCustomSteamFolder
@@ -2271,7 +2288,7 @@ namespace DS4Windows
 
         public string useLang = "";
         public bool downloadLang = true;
-        public bool useWhiteIcon;
+        public TrayIconChoice useIconChoice;
         public bool flashWhenLate = true;
         public int flashWhenLateAt = 20;
         public bool useUDPServ = false;
@@ -4470,8 +4487,29 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/FlashWhenLateAt"); int.TryParse(Item.InnerText, out flashWhenLateAt); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/Profile/WhiteIcon"); Boolean.TryParse(Item.InnerText, out useWhiteIcon); }
-                    catch { missingSetting = true; }
+
+                    Item = m_Xdoc.SelectSingleNode("/Profile/AppIcon");
+                    bool hasIconChoice = Item != null;
+                    if (hasIconChoice)
+                    {
+                        hasIconChoice = Enum.TryParse(Item.InnerText ?? "", out useIconChoice);
+                    }
+
+                    if (!hasIconChoice)
+                    {
+                        missingSetting = true;
+
+                        try
+                        {
+                            Item = m_Xdoc.SelectSingleNode("/Profile/WhiteIcon");
+                            if (bool.TryParse(Item?.InnerText ?? "", out bool temp))
+                            {
+                                useIconChoice = temp ? TrayIconChoice.White : TrayIconChoice.Default;
+                            }
+                        }
+                        catch { missingSetting = true; }
+                    }
+
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/UseUDPServer"); Boolean.TryParse(Item.InnerText, out useUDPServ); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/UDPServerPort"); int temp; int.TryParse(Item.InnerText, out temp); udpServPort = Math.Min(Math.Max(temp, 1024), 65535); }
@@ -4543,6 +4581,7 @@ namespace DS4Windows
 
             XmlElement rootElement = m_Xdoc.CreateElement("Profile", null);
             rootElement.SetAttribute("app_version", Global.exeversion);
+            rootElement.SetAttribute("config_version", Global.APP_CONFIG_VERSION.ToString());
 
             XmlNode xmlUseExclNode = m_Xdoc.CreateNode(XmlNodeType.Element, "useExclusiveMode", null); xmlUseExclNode.InnerText = useExclusiveMode.ToString(); rootElement.AppendChild(xmlUseExclNode);
             XmlNode xmlStartMinimized = m_Xdoc.CreateNode(XmlNodeType.Element, "startMinimized", null); xmlStartMinimized.InnerText = startMinimized.ToString(); rootElement.AppendChild(xmlStartMinimized);
@@ -4574,7 +4613,7 @@ namespace DS4Windows
             XmlNode xmlDownloadLang = m_Xdoc.CreateNode(XmlNodeType.Element, "DownloadLang", null); xmlDownloadLang.InnerText = downloadLang.ToString(); rootElement.AppendChild(xmlDownloadLang);
             XmlNode xmlFlashWhenLate = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLate", null); xmlFlashWhenLate.InnerText = flashWhenLate.ToString(); rootElement.AppendChild(xmlFlashWhenLate);
             XmlNode xmlFlashWhenLateAt = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLateAt", null); xmlFlashWhenLateAt.InnerText = flashWhenLateAt.ToString(); rootElement.AppendChild(xmlFlashWhenLateAt);
-            XmlNode xmlWhiteIcon = m_Xdoc.CreateNode(XmlNodeType.Element, "WhiteIcon", null); xmlWhiteIcon.InnerText = useWhiteIcon.ToString(); rootElement.AppendChild(xmlWhiteIcon);
+            XmlNode xmlAppIconChoice = m_Xdoc.CreateNode(XmlNodeType.Element, "AppIcon", null); xmlAppIconChoice.InnerText = useIconChoice.ToString(); rootElement.AppendChild(xmlAppIconChoice);
             XmlNode xmlUseUDPServ = m_Xdoc.CreateNode(XmlNodeType.Element, "UseUDPServer", null); xmlUseUDPServ.InnerText = useUDPServ.ToString(); rootElement.AppendChild(xmlUseUDPServ);
             XmlNode xmlUDPServPort = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerPort", null); xmlUDPServPort.InnerText = udpServPort.ToString(); rootElement.AppendChild(xmlUDPServPort);
             XmlNode xmlUDPServListenAddress = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerListenAddress", null); xmlUDPServListenAddress.InnerText = udpServListenAddress; rootElement.AppendChild(xmlUDPServListenAddress);

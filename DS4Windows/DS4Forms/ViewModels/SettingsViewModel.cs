@@ -87,17 +87,19 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public bool MinimizeToTaskbar { get => DS4Windows.Global.MinToTaskbar; set => DS4Windows.Global.MinToTaskbar = value; }
         public bool CloseMinimizes { get => DS4Windows.Global.CloseMini; set => DS4Windows.Global.CloseMini = value; }
         public bool QuickCharge { get => DS4Windows.Global.QuickCharge; set => DS4Windows.Global.QuickCharge = value; }
-        public bool WhiteDS4Icon
+
+        public int IconChoiceIndex
         {
-            get => DS4Windows.Global.UseWhiteIcon;
+            get => (int)DS4Windows.Global.UseIconChoice;
             set
             {
-                if (DS4Windows.Global.UseWhiteIcon == value) return;
-                DS4Windows.Global.UseWhiteIcon = value;
-                WhiteDS4IconChanged?.Invoke(this, EventArgs.Empty);
+                int temp = (int)DS4Windows.Global.UseIconChoice;
+                if (temp == value) return;
+                DS4Windows.Global.UseIconChoice = (DS4Windows.TrayIconChoice)value;
+                IconChoiceIndexChanged?.Invoke(this, EventArgs.Empty);
             }
         }
-        public event EventHandler WhiteDS4IconChanged;
+        public event EventHandler IconChoiceIndexChanged;
 
         public bool CheckForUpdates
         {

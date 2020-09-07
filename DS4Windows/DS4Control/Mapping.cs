@@ -2807,10 +2807,11 @@ namespace DS4Windows
                         if (keydown[i])
                             PlayMacroCodeValue(device, macrocontrol, keyType, i, keydown);
                     }
-                }
 
-                DS4LightBar.forcedFlash[device] = 0;
-                DS4LightBar.forcelight[device] = false;
+                    // Reset lightbar back to a default value (if the macro modified the color) because keepKeyState macro option was not set
+                    DS4LightBar.forcedFlash[device] = 0;
+                    DS4LightBar.forcelight[device] = false;
+                }
 
                 // Commented out rumble reset. No need to zero out rumble after a macro because it may conflict with a game generated rumble events (ie. macro would stop a game generated rumble effect).
                 // If macro generates rumble effects then the macro can stop the rumble as a last step or wait for rumble watchdog timer to do it after few seconds.

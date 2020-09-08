@@ -32,6 +32,16 @@ namespace DS4Windows
         bool[] held = new bool[DS4_CONTROLLER_COUNT];
         int[] oldmouse = new int[DS4_CONTROLLER_COUNT] { -1, -1, -1, -1 };
         public OutputDevice[] outputDevices = new OutputDevice[4] { null, null, null, null };
+        private OneEuroFilter3D[] udpEuroPairAccel = new OneEuroFilter3D[4]
+        {
+            new OneEuroFilter3D(), new OneEuroFilter3D(),
+            new OneEuroFilter3D(), new OneEuroFilter3D(),
+        };
+        private OneEuroFilter3D[] udpEuroPairGyro = new OneEuroFilter3D[4]
+        {
+            new OneEuroFilter3D(), new OneEuroFilter3D(),
+            new OneEuroFilter3D(), new OneEuroFilter3D(),
+        };
         Thread tempThread;
         Thread tempBusThread;
         Thread eventDispatchThread;
@@ -189,6 +199,9 @@ namespace DS4Windows
             outputslotMan = new OutputSlotManager();
             DS4Devices.RequestElevation += DS4Devices_RequestElevation;
             DS4Devices.checkVirtualFunc = CheckForVirtualDevice;
+
+            Global.UDPServerSmoothingMincutoffChanged += ChangeUdpSmoothingAttrs;
+            Global.UDPServerSmoothingBetaChanged += ChangeUdpSmoothingAttrs;
         }
 
         public CheckVirtualInfo CheckForVirtualDevice(string deviceInstanceId)
@@ -357,6 +370,11 @@ namespace DS4Windows
                     _udpServer = null;
                     AppLogger.LogToGui("Closed UDP server", false);
                     udpChangeStatus = false;
+
+                    for (int i = 0; i < 4; i++)
+                    {
+                        ResetUdpSmoothingFilters(i);
+                    }
                 });
             }
         }
@@ -894,7 +912,24 @@ namespace DS4Windows
                         {
                             DualShockPadMeta padDetail = new DualShockPadMeta();
                             GetPadDetailForIdx(tempIdx, ref padDetail);
-                            _udpServer.NewReportIncoming(ref padDetail, CurrentState[tempIdx], udpOutBuffers[tempIdx]);
+                            DS4State stateForUdp = TempState[tempIdx];
+
+                            CurrentState[tempIdx].CopyTo(stateForUdp);
+                            if (Global.IsUsingUDPServerSmoothing())
+                            {
+                                double rate = 1.0 / stateForUdp.elapsedTime;
+                                OneEuroFilter3D accelFilter = udpEuroPairAccel[tempIdx];
+                                stateForUdp.Motion.accelXG = accelFilter.axis1Filter.Filter(stateForUdp.Motion.accelXG, rate);
+                                stateForUdp.Motion.accelYG = accelFilter.axis2Filter.Filter(stateForUdp.Motion.accelYG, rate);
+                                stateForUdp.Motion.accelZG = accelFilter.axis3Filter.Filter(stateForUdp.Motion.accelZG, rate);
+
+                                OneEuroFilter3D gyroFilter = udpEuroPairGyro[tempIdx];
+                                stateForUdp.Motion.angVelYaw = gyroFilter.axis1Filter.Filter(stateForUdp.Motion.angVelYaw, rate);
+                                stateForUdp.Motion.angVelPitch = gyroFilter.axis2Filter.Filter(stateForUdp.Motion.angVelPitch, rate);
+                                stateForUdp.Motion.angVelRoll = gyroFilter.axis3Filter.Filter(stateForUdp.Motion.angVelRoll, rate);
+                            }
+
+                            _udpServer.NewReportIncoming(ref padDetail, stateForUdp, udpOutBuffers[tempIdx]);
                         };
                         device.MotionEvent = tempEvnt;
 
@@ -1173,7 +1208,25 @@ namespace DS4Windows
                             {
                                 DualShockPadMeta padDetail = new DualShockPadMeta();
                                 GetPadDetailForIdx(tempIdx, ref padDetail);
-                                _udpServer.NewReportIncoming(ref padDetail, CurrentState[tempIdx], udpOutBuffers[tempIdx]);
+                                DS4State stateForUdp = TempState[tempIdx];
+
+                                CurrentState[tempIdx].CopyTo(stateForUdp);
+
+                                if (Global.IsUsingUDPServerSmoothing())
+                                {
+                                    double rate = 1.0 / stateForUdp.elapsedTime;
+                                    OneEuroFilter3D accelFilter = udpEuroPairAccel[tempIdx];
+                                    stateForUdp.Motion.accelXG = accelFilter.axis1Filter.Filter(stateForUdp.Motion.accelXG, rate);
+                                    stateForUdp.Motion.accelYG = accelFilter.axis2Filter.Filter(stateForUdp.Motion.accelYG, rate);
+                                    stateForUdp.Motion.accelZG = accelFilter.axis3Filter.Filter(stateForUdp.Motion.accelZG, rate);
+
+                                    OneEuroFilter3D gyroFilter = udpEuroPairGyro[tempIdx];
+                                    stateForUdp.Motion.angVelYaw = gyroFilter.axis1Filter.Filter(stateForUdp.Motion.angVelYaw, rate);
+                                    stateForUdp.Motion.angVelPitch = gyroFilter.axis2Filter.Filter(stateForUdp.Motion.angVelPitch, rate);
+                                    stateForUdp.Motion.angVelRoll = gyroFilter.axis3Filter.Filter(stateForUdp.Motion.angVelRoll, rate);
+                                }
+
+                                _udpServer.NewReportIncoming(ref padDetail, stateForUdp, udpOutBuffers[tempIdx]);
                             };
                             device.MotionEvent = tempEvnt;
 
@@ -1208,6 +1261,30 @@ namespace DS4Windows
             return true;
         }
 
+        public void ResetUdpSmoothingFilters(int idx)
+        {
+            OneEuroFilter3D temp = udpEuroPairAccel[idx] = new OneEuroFilter3D();
+            temp.SetFilterAttrs(Global.UDPServerSmoothingMincutoff, Global.UDPServerSmoothingBeta);
+
+            temp = udpEuroPairGyro[idx] = new OneEuroFilter3D();
+            temp.SetFilterAttrs(Global.UDPServerSmoothingMincutoff, Global.UDPServerSmoothingBeta);
+        }
+
+        private void ChangeUdpSmoothingAttrs(object sender, EventArgs e)
+        {
+            for (int i = 0; i < udpEuroPairAccel.Length; i++)
+            {
+                OneEuroFilter3D temp = udpEuroPairAccel[i];
+                temp.SetFilterAttrs(Global.UDPServerSmoothingMincutoff, Global.UDPServerSmoothingBeta);
+            }
+
+            for (int i = 0; i < udpEuroPairGyro.Length; i++)
+            {
+                OneEuroFilter3D temp = udpEuroPairGyro[i];
+                temp.SetFilterAttrs(Global.UDPServerSmoothingMincutoff, Global.UDPServerSmoothingBeta);
+            }
+        }
+
         private void CheckProfileOptions(int ind, DS4Device device, bool startUp=false)
         {
 
@@ -1233,6 +1310,8 @@ namespace DS4Windows
             SteeringWheelSmoothingInfo wheelSmoothInfo = WheelSmoothInfo[ind];
             wheelSmoothInfo.SetFilterAttrs(tempFilter);
             wheelSmoothInfo.SetRefreshEvents(tempFilter);
+
+            ResetUdpSmoothingFilters(ind);
         }
 
         private void CheckLauchProfileOption(int ind, DS4Device device)

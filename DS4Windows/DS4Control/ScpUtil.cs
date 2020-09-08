@@ -256,6 +256,22 @@ namespace DS4Windows
         public OneEuroFilter axis2Filter = new OneEuroFilter(minCutoff: DEFAULT_WHEEL_CUTOFF, beta: DEFAULT_WHEEL_BETA);
     }
 
+    public class OneEuroFilter3D
+    {
+        public const double DEFAULT_WHEEL_CUTOFF = 0.4;
+        public const double DEFAULT_WHEEL_BETA = 0.2;
+
+        public OneEuroFilter axis1Filter = new OneEuroFilter(minCutoff: DEFAULT_WHEEL_CUTOFF, beta: DEFAULT_WHEEL_BETA);
+        public OneEuroFilter axis2Filter = new OneEuroFilter(minCutoff: DEFAULT_WHEEL_CUTOFF, beta: DEFAULT_WHEEL_BETA);
+        public OneEuroFilter axis3Filter = new OneEuroFilter(minCutoff: DEFAULT_WHEEL_CUTOFF, beta: DEFAULT_WHEEL_BETA);
+
+        public void SetFilterAttrs(double minCutoff, double beta)
+        {
+            axis1Filter.MinCutoff = axis2Filter.MinCutoff = axis3Filter.MinCutoff = minCutoff;
+            axis1Filter.Beta = axis2Filter.Beta = axis3Filter.Beta = beta;
+        }
+    }
+
     public class Global
     {
         protected static BackingStore m_Config = new BackingStore();
@@ -1098,6 +1114,43 @@ namespace DS4Windows
         {
             m_Config.udpServListenAddress = value.Trim();
         }
+
+        public static bool UseUDPSeverSmoothing
+        {
+            get => m_Config.useUdpSmoothing;
+            set => m_Config.useUdpSmoothing = value;
+        }
+
+        public static bool IsUsingUDPServerSmoothing()
+        {
+            return m_Config.useUdpSmoothing;
+        }
+
+        public static double UDPServerSmoothingMincutoff
+        {
+            get => m_Config.udpSmoothingMincutoff;
+            set
+            {
+                double temp = m_Config.udpSmoothingMincutoff;
+                if (temp == value) return;
+                m_Config.udpSmoothingMincutoff = value;
+                UDPServerSmoothingMincutoffChanged?.Invoke(null, EventArgs.Empty);
+            }
+        }
+        public static event EventHandler UDPServerSmoothingMincutoffChanged;
+
+        public static double UDPServerSmoothingBeta
+        {
+            get => m_Config.udpSmoothingBeta;
+            set
+            {
+                double temp = m_Config.udpSmoothingBeta;
+                if (temp == value) return;
+                m_Config.udpSmoothingBeta = value;
+                UDPServerSmoothingBetaChanged?.Invoke(null, EventArgs.Empty);
+            }
+        }
+        public static event EventHandler UDPServerSmoothingBetaChanged;
 
         public static TrayIconChoice UseIconChoice
         {
@@ -2061,6 +2114,9 @@ namespace DS4Windows
 
     public class BackingStore
     {
+        public const double DEFAULT_UDP_SMOOTH_MINCUTOFF = 0.4;
+        public const double DEFAULT_UDP_SMOOTH_BETA = 0.2;
+
         //public String m_Profile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool" + "\\Profiles.xml";
         public String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + "\\Profiles.xml";
         public String m_Actions = Global.appdatapath + "\\Actions.xml";
@@ -2294,6 +2350,9 @@ namespace DS4Windows
         public bool useUDPServ = false;
         public int udpServPort = 26760;
         public string udpServListenAddress = "127.0.0.1"; // 127.0.0.1=IPAddress.Loopback (default), 0.0.0.0=IPAddress.Any as all interfaces, x.x.x.x = Specific ipv4 interface address or hostname
+        public bool useUdpSmoothing;
+        public double udpSmoothingMincutoff = DEFAULT_UDP_SMOOTH_MINCUTOFF;
+        public double udpSmoothingBeta = DEFAULT_UDP_SMOOTH_BETA;
         public bool useCustomSteamFolder;
         public string customSteamFolder;
         public string fakeExeFileName = string.Empty;
@@ -4516,6 +4575,40 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/UDPServerListenAddress"); udpServListenAddress = Item.InnerText; }
                     catch { missingSetting = true; }
+
+                    bool udpServerSmoothingGroup = false;
+                    XmlNode xmlUdpServerSmoothElement =
+                        m_Xdoc.SelectSingleNode("/Profile/UDPServerSmoothingOptions");
+                    udpServerSmoothingGroup = xmlUdpServerSmoothElement != null;
+                    if (udpServerSmoothingGroup)
+                    {
+                        try
+                        {
+                            Item = xmlUdpServerSmoothElement.SelectSingleNode("UseSmoothing");
+                            bool.TryParse(Item.InnerText, out bool temp);
+                            useUdpSmoothing = temp;
+                        }
+                        catch { missingSetting = true; }
+
+                        try
+                        {
+                            Item = xmlUdpServerSmoothElement.SelectSingleNode("UdpSmoothMinCutoff");
+                            double.TryParse(Item.InnerText, out double temp);
+                            temp = Math.Min(Math.Max(temp, 0.00001), 100.0);
+                            udpSmoothingMincutoff = temp;
+                        }
+                        catch { missingSetting = true; }
+
+                        try
+                        {
+                            Item = xmlUdpServerSmoothElement.SelectSingleNode("UdpSmoothBeta");
+                            double.TryParse(Item.InnerText, out double temp);
+                            temp = Math.Min(Math.Max(temp, 0.0), 1.0);
+                            udpSmoothingBeta = temp;
+                        }
+                        catch { missingSetting = true; }
+                    }
+
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/UseCustomSteamFolder"); Boolean.TryParse(Item.InnerText, out useCustomSteamFolder); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/CustomSteamFolder"); customSteamFolder = Item.InnerText; }
@@ -4617,6 +4710,13 @@ namespace DS4Windows
             XmlNode xmlUseUDPServ = m_Xdoc.CreateNode(XmlNodeType.Element, "UseUDPServer", null); xmlUseUDPServ.InnerText = useUDPServ.ToString(); rootElement.AppendChild(xmlUseUDPServ);
             XmlNode xmlUDPServPort = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerPort", null); xmlUDPServPort.InnerText = udpServPort.ToString(); rootElement.AppendChild(xmlUDPServPort);
             XmlNode xmlUDPServListenAddress = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerListenAddress", null); xmlUDPServListenAddress.InnerText = udpServListenAddress; rootElement.AppendChild(xmlUDPServListenAddress);
+
+            XmlElement xmlUdpServerSmoothElement = m_Xdoc.CreateElement("UDPServerSmoothingOptions");
+            XmlElement xmlUDPUseSmoothing = m_Xdoc.CreateElement("UseSmoothing"); xmlUDPUseSmoothing.InnerText = useUdpSmoothing.ToString(); xmlUdpServerSmoothElement.AppendChild(xmlUDPUseSmoothing);
+            XmlElement xmlUDPSmoothMinCutoff = m_Xdoc.CreateElement("UdpSmoothMinCutoff"); xmlUDPSmoothMinCutoff.InnerText = udpSmoothingMincutoff.ToString(); xmlUdpServerSmoothElement.AppendChild(xmlUDPSmoothMinCutoff);
+            XmlElement xmlUDPSmoothBeta = m_Xdoc.CreateElement("UdpSmoothBeta"); xmlUDPSmoothBeta.InnerText = udpSmoothingBeta.ToString(); xmlUdpServerSmoothElement.AppendChild(xmlUDPSmoothBeta);
+            rootElement.AppendChild(xmlUdpServerSmoothElement);
+
             XmlNode xmlUseCustomSteamFolder = m_Xdoc.CreateNode(XmlNodeType.Element, "UseCustomSteamFolder", null); xmlUseCustomSteamFolder.InnerText = useCustomSteamFolder.ToString(); rootElement.AppendChild(xmlUseCustomSteamFolder);
             XmlNode xmlCustomSteamFolder = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomSteamFolder", null); xmlCustomSteamFolder.InnerText = customSteamFolder; rootElement.AppendChild(xmlCustomSteamFolder);
             XmlNode xmlAutoProfileRevertDefaultProfile = m_Xdoc.CreateNode(XmlNodeType.Element, "AutoProfileRevertDefaultProfile", null); xmlAutoProfileRevertDefaultProfile.InnerText = autoProfileRevertDefaultProfile.ToString(); rootElement.AppendChild(xmlAutoProfileRevertDefaultProfile);

@@ -360,6 +360,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Controller/Driver Setup.
         /// </summary>
         public static string DriverSetup {
@@ -433,6 +442,42 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maps the controller output to a standard XInput gamepad or DS4 pad. Gyro is mapped to a Mouse-like Joystick..
+        /// </summary>
+        public static string GamepadGyroCameraDescription {
+            get {
+                return ResourceManager.GetString("GamepadGyroCameraDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gamepad with Mouse-like Joystick.
+        /// </summary>
+        public static string GamepadGyroCameraName {
+            get {
+                return ResourceManager.GetString("GamepadGyroCameraName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maps the controller output to a standard gamepad.
+        /// </summary>
+        public static string GamepadPresetDescription {
+            get {
+                return ResourceManager.GetString("GamepadPresetDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gamepad.
+        /// </summary>
+        public static string GamepadPresetName {
+            get {
+                return ResourceManager.GetString("GamepadPresetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gamepad Test.
         /// </summary>
         public static string GamepadTest {
@@ -478,6 +523,42 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support. Gyro is mapped to a virtual Mouse..
+        /// </summary>
+        public static string KBMGyroMouseDescription {
+            get {
+                return ResourceManager.GetString("KBMGyroMouseDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KB+M Controls with Gyro Mouse.
+        /// </summary>
+        public static string KBMGyroMouseName {
+            get {
+                return ResourceManager.GetString("KBMGyroMouseName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support..
+        /// </summary>
+        public static string KBMPresetDescription {
+            get {
+                return ResourceManager.GetString("KBMPresetDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KB+M Controls.
+        /// </summary>
+        public static string KBMPresetName {
+            get {
+                return ResourceManager.GetString("KBMPresetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Left Stick.
         /// </summary>
         public static string LeftStick {
@@ -492,6 +573,42 @@ namespace DS4WinWPF.Translations {
         public static string Log {
             get {
                 return ResourceManager.GetString("Log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maps the buttons and axes to a standard gamepad. Maps the Gyro to a virtual mouse.
+        /// </summary>
+        public static string MixedGyroMousePresetDescription {
+            get {
+                return ResourceManager.GetString("MixedGyroMousePresetDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gamepad with Gyro Mouse.
+        /// </summary>
+        public static string MixedGyroMousePresetName {
+            get {
+                return ResourceManager.GetString("MixedGyroMousePresetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maps the controller output to mixed XInput gamepad + RS mouse..
+        /// </summary>
+        public static string MixedPresetDescription {
+            get {
+                return ResourceManager.GetString("MixedPresetDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gamepad with High Precision Camera.
+        /// </summary>
+        public static string MixedPresetName {
+            get {
+                return ResourceManager.GetString("MixedPresetName", resourceCulture);
             }
         }
         
@@ -564,6 +681,24 @@ namespace DS4WinWPF.Translations {
         public static string Path {
             get {
                 return ResourceManager.GetString("Path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to use a preset option? Choosing No will cause the Profile Editor to use an empty Gamepad profile..
+        /// </summary>
+        public static string PresetIntroText {
+            get {
+                return ResourceManager.GetString("PresetIntroText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Presets.
+        /// </summary>
+        public static string Presets {
+            get {
+                return ResourceManager.GetString("Presets", resourceCulture);
             }
         }
         

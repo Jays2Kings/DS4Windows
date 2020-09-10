@@ -297,15 +297,35 @@
                                 <ComboBoxItem Content="Days" />
                             </ComboBox>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Height="20" Margin="{StaticResource spaceMargin}">
-                            <CheckBox x:Name="useUdpServerCk" Content="UDP Server" IsChecked="{Binding UseUDPServer}" Click="UseUdpServerCk_Click" />
-                            <TextBox x:Name="udpServerTxt" IsEnabled="{Binding UseUDPServer,Mode=OneWay}" Text="{Binding UdpIpAddress, UpdateSourceTrigger=LostFocus,FallbackValue='127.0.0.1'}"
+                        <GroupBox Header="UDP Server" Padding="0,10,0,0" Margin="{StaticResource spaceMargin}">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" MinHeight="20">
+                                    <CheckBox x:Name="useUdpServerCk" Content="Enable Server" IsChecked="{Binding UseUDPServer}" Click="UseUdpServerCk_Click" />
+                                    <TextBox x:Name="udpServerTxt" IsEnabled="{Binding UseUDPServer,Mode=OneWay}" Text="{Binding UdpIpAddress, UpdateSourceTrigger=LostFocus,FallbackValue='127.0.0.1'}"
                                  Margin="8,0,0,0" />
-                            <Label Content="Port" Padding="0" Margin="20,0,0,0" />
-                            <!--<TextBox x:Name="updPortNum" IsEnabled="{Binding UseUDPServer}" Text="{Binding UdpPort, UpdateSourceTrigger=LostFocus,FallbackValue='26760'}" />-->
-                            <xctk:IntegerUpDown d:IsHidden="True" x:Name="updPortNum" IsEnabled="{Binding UseUDPServer,Mode=OneWay}" MinWidth="20" Margin="8,0,0,0"
+                                    <Label Content="Port" Padding="0" Margin="20,0,0,0" />
+                                    <!--<TextBox x:Name="updPortNum" IsEnabled="{Binding UseUDPServer}" Text="{Binding UdpPort, UpdateSourceTrigger=LostFocus,FallbackValue='26760'}" />-->
+                                    <xctk:IntegerUpDown d:IsHidden="True" x:Name="updPortNum" IsEnabled="{Binding UseUDPServer}" MinWidth="20" Margin="8,0,0,0"
                                             Value="{Binding UdpPort, UpdateSourceTrigger=LostFocus,FallbackValue='26760'}" ButtonSpinnerLocation="Right" Increment="1" Maximum="65535" Minimum="0" />
-                        </StackPanel>
+                                </StackPanel>
+
+                                <CheckBox Content="Use Smoothing" IsChecked="{Binding UseUdpSmoothing,FallbackValue='False'}" IsEnabled="{Binding UseUDPServer,Mode=OneWay}" Margin="0,4,0,10" />
+                                <StackPanel x:Name="udpEuroPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding UdpServerOneEuroPanelVisibility,FallbackValue='Collapsed'}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="1&#x20ac; MinCutoff" />
+                                        <xctk:DoubleUpDown d:IsHidden="True" FormatString="F5" Value="{Binding UdpSmoothMinCutoff,FallbackValue=1.0,UpdateSourceTrigger=LostFocus}"
+                                                           Minimum="0.00001" Maximum="100.0" Increment="0.1" MinWidth="60" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
+                                        <Label Content="1&#x20ac; Beta" />
+                                        <xctk:DoubleUpDown  d:IsHidden="True" FormatString="F5" Value="{Binding UdpSmoothBeta,FallbackValue=0.0,UpdateSourceTrigger=LostFocus}"
+                                                           Minimum="0.0" Maximum="1.0" Increment="0.1" MinWidth="60" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+
+                        </GroupBox>
+
                         <!--<StackPanel Orientation="Horizontal">
                         <Label Content="Use language pack" />
                         <ComboBox x:Name="langPackCombo" MinWidth="100" IsEnabled="False">

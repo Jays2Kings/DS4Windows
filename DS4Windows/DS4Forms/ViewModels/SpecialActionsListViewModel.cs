@@ -45,6 +45,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public void LoadActions(bool newProfile = false)
         {
+            actionCol.Clear();
+
             List<string> pactions = Global.ProfileActions[deviceNum];
             foreach (SpecialAction action in Global.GetActions())
             {

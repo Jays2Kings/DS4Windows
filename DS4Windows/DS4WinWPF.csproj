@@ -201,6 +201,7 @@
     <Compile Include="DS4Control\OutputSlotManager.cs" />
     <Compile Include="DS4Control\OutputSlotPersist.cs" />
     <Compile Include="DS4Control\OutSlotDevice.cs" />
+    <Compile Include="DS4Control\PresetOption.cs" />
     <Compile Include="DS4Control\ProfileMigration.cs" />
     <Compile Include="DS4Control\ProfilePropGroups.cs" />
     <Compile Include="DS4Control\Program.cs" />
@@ -236,6 +237,9 @@
     <Compile Include="DS4Forms\PluginOutDevWindow.xaml.cs">
       <DependentUpon>PluginOutDevWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DS4Forms\PresetOptionWindow.xaml.cs">
+      <DependentUpon>PresetOptionWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DS4Forms\ProfileEditor.xaml.cs">
       <DependentUpon>ProfileEditor.xaml</DependentUpon>
     </Compile>
@@ -263,6 +267,7 @@
     <Compile Include="DS4Forms\ViewModels\MainWindowsViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\MappingListViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\PermanentOutDevViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\PresetOptionViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\ProfileSettingsViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\RecordBoxViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\SpecialActEditorViewModel.cs" />
@@ -359,6 +364,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DS4Forms\PluginOutDevWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\PresetOptionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

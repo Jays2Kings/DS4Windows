@@ -36,16 +36,14 @@ namespace DS4Windows
         bool[] held = new bool[MAX_DS4_CONTROLLER_COUNT];
         int[] oldmouse = new int[MAX_DS4_CONTROLLER_COUNT] { -1, -1, -1, -1, -1, -1, -1, -1 };
         public OutputDevice[] outputDevices = new OutputDevice[MAX_DS4_CONTROLLER_COUNT] { null, null, null, null, null, null, null, null };
-        private OneEuroFilter3D[] udpEuroPairAccel = new OneEuroFilter3D[MAX_DS4_CONTROLLER_COUNT]
+        private OneEuroFilter3D[] udpEuroPairAccel = new OneEuroFilter3D[UdpServer.NUMBER_SLOTS]
         {
-            new OneEuroFilter3D(), new OneEuroFilter3D(), new OneEuroFilter3D(),
-            new OneEuroFilter3D(), new OneEuroFilter3D(), new OneEuroFilter3D(),
+            new OneEuroFilter3D(), new OneEuroFilter3D(),
             new OneEuroFilter3D(), new OneEuroFilter3D(),
         };
-        private OneEuroFilter3D[] udpEuroPairGyro = new OneEuroFilter3D[MAX_DS4_CONTROLLER_COUNT]
+        private OneEuroFilter3D[] udpEuroPairGyro = new OneEuroFilter3D[UdpServer.NUMBER_SLOTS]
         {
-            new OneEuroFilter3D(), new OneEuroFilter3D(), new OneEuroFilter3D(),
-            new OneEuroFilter3D(), new OneEuroFilter3D(), new OneEuroFilter3D(),
+            new OneEuroFilter3D(), new OneEuroFilter3D(),
             new OneEuroFilter3D(), new OneEuroFilter3D(),
         };
         Thread tempThread;
@@ -377,7 +375,7 @@ namespace DS4Windows
                     AppLogger.LogToGui("Closed UDP server", false);
                     udpChangeStatus = false;
 
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < UdpServer.NUMBER_SLOTS; i++)
                     {
                         ResetUdpSmoothingFilters(i);
                     }

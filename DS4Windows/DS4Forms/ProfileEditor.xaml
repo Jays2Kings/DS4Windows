@@ -18,6 +18,7 @@
             <Button x:Name="saveBtn" Content="{lex:Loc SaveProfile}" Margin="10,0,0,0" Click="SaveBtn_Click" />
             <Button x:Name="cancelBtn" Content="{lex:Loc Cancel}" Margin="10,0,0,0" Click="CancelBtn_Click" />
             <Button x:Name="applyBtn" Content="{lex:Loc Apply}" Margin="10,0,0,0" Click="ApplyBtn_Click" />
+            <Button x:Name="presetBtn" Content="Select Preset" Margin="10,0,0,0" Click="PresetBtn_Click" />
             <Button x:Name="keepSizeBtn" Margin="10,0,0,0" Click="KeepSizeBtn_Click">
                 <StackPanel Orientation="Horizontal" Margin="0">
                     <Image x:Name="sizeImage" Source="/DS4Windows;component/Resources/size.png" Width="20" Height="20"/>

@@ -68,6 +68,8 @@ namespace DS4WinWPF.DS4Forms
 
             //SetTouchpadPanel();
             //SetupGyroPanel();
+            activeGyroModePanel = gyroControlsPanel;
+            activeTouchPanel = useMousePanel;
 
             mappingListVM = new MappingListViewModel(deviceNum, profileSettingsVM.ContType);
             specialActionsVM = new SpecialActionsListViewModel(device);
@@ -533,7 +535,13 @@ namespace DS4WinWPF.DS4Forms
             else
             {
                 currentProfile = null;
-                Global.LoadBlankDevProfile(device, false, App.rootHub, false);
+                PresetOptionWindow presetWin = new PresetOptionWindow();
+                presetWin.SetupData(deviceNum);
+                presetWin.ShowDialog();
+                if (presetWin.Result == MessageBoxResult.Cancel)
+                {
+                    Global.LoadBlankDevProfile(device, false, App.rootHub, false);
+                }
             }
 
             if (device < 4)
@@ -576,6 +584,39 @@ namespace DS4WinWPF.DS4Forms
             {
                 inputTimer.Start();
             }
+        }
+
+        private void StopEditorBindings()
+        {
+            profileSettingsTabCon.DataContext = null;
+            touchpadSettingsPanel.DataContext = null;
+            mappingListBox.DataContext = null;
+            specialActionsTab.DataContext = null;
+            lightbarRect.DataContext = null;
+        }
+
+        private void RefreshEditorBindings()
+        {
+            specialActionsVM.LoadActions(currentProfile == null);
+            mappingListVM.UpdateMappings();
+            profileSettingsVM.UpdateLateProperties();
+            profileSettingsVM.PopulateTouchDisInver(touchDisInvertBtn.ContextMenu);
+            profileSettingsVM.PopulateGyroMouseTrig(gyroMouseTrigBtn.ContextMenu);
+            profileSettingsVM.PopulateGyroMouseStickTrig(gyroMouseStickTrigBtn.ContextMenu);
+            profileSettingsTabCon.DataContext = profileSettingsVM;
+            touchpadSettingsPanel.DataContext = profileSettingsVM;
+            mappingListBox.DataContext = mappingListVM;
+            specialActionsTab.DataContext = specialActionsVM;
+            lightbarRect.DataContext = profileSettingsVM;
+            SetTouchpadPanel();
+            SetupGyroPanel();
+
+            conReadingsUserCon.LsDead = profileSettingsVM.LSDeadZone;
+            conReadingsUserCon.RsDead = profileSettingsVM.RSDeadZone;
+            conReadingsUserCon.L2Dead = profileSettingsVM.L2DeadZone;
+            conReadingsUserCon.R2Dead = profileSettingsVM.R2DeadZone;
+            conReadingsUserCon.SixAxisXDead = profileSettingsVM.SXDeadZone;
+            conReadingsUserCon.SixAxisZDead = profileSettingsVM.SZDeadZone;
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
@@ -1326,6 +1367,24 @@ namespace DS4WinWPF.DS4Forms
 
                 Global.CacheProfileCustomsFlags(profileSettingsVM.Device);
                 highlightControlDisplayLb.Content = "";
+            }
+        }
+
+        private void PresetBtn_Click(object sender, RoutedEventArgs e)
+        {
+            sidebarTabControl.SelectedIndex = 0;
+
+            PresetOptionWindow presetWin = new PresetOptionWindow();
+            presetWin.SetupData(deviceNum);
+            presetWin.ToPresetsScreen();
+            presetWin.DelayPresetApply = true;
+            presetWin.ShowDialog();
+
+            if (presetWin.Result == MessageBoxResult.OK)
+            {
+                StopEditorBindings();
+                presetWin.ApplyPreset();
+                RefreshEditorBindings();
             }
         }
     }

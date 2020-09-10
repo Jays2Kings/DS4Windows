@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.Diagnostics;
 using Sensorit.Base;
+using System.Windows.Input;
 
 namespace DS4Windows
 {
@@ -1960,6 +1961,66 @@ namespace DS4Windows
             bool xinputChange = true, bool postLoad = true)
         {
             m_Config.LoadBlankProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.EstablishDefaultSpecialActions(device);
+            m_Config.CacheExtraProfileInfo(device);
+
+            tempprofilename[device] = string.Empty;
+            useTempProfile[device] = false;
+            tempprofileDistance[device] = false;
+        }
+
+        public static void LoadDefaultGamepadGyroProfile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
+        {
+            m_Config.LoadDefaultGamepadGyroProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.EstablishDefaultSpecialActions(device);
+            m_Config.CacheExtraProfileInfo(device);
+
+            tempprofilename[device] = string.Empty;
+            useTempProfile[device] = false;
+            tempprofileDistance[device] = false;
+        }
+
+        public static void LoadDefaultMixedControlsProfile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
+        {
+            m_Config.LoadDefaultMixedControlsProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.EstablishDefaultSpecialActions(device);
+            m_Config.CacheExtraProfileInfo(device);
+
+            tempprofilename[device] = string.Empty;
+            useTempProfile[device] = false;
+            tempprofileDistance[device] = false;
+        }
+
+        public static void LoadDefaultMixedGyroMouseProfile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
+        {
+            m_Config.LoadDefaultMixedGyroMouseProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.EstablishDefaultSpecialActions(device);
+            m_Config.CacheExtraProfileInfo(device);
+
+            tempprofilename[device] = string.Empty;
+            useTempProfile[device] = false;
+            tempprofileDistance[device] = false;
+        }
+
+        public static void LoadDefaultKBMProfile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
+        {
+            m_Config.LoadDefaultKBMProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.EstablishDefaultSpecialActions(device);
+            m_Config.CacheExtraProfileInfo(device);
+
+            tempprofilename[device] = string.Empty;
+            useTempProfile[device] = false;
+            tempprofileDistance[device] = false;
+        }
+
+        public static void LoadDefaultKBMGyroMouseProfile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
+        {
+            m_Config.LoadDefaultKBMGyroMouseProfile(device, launchprogram, control, "", xinputChange, postLoad);
             m_Config.EstablishDefaultSpecialActions(device);
             m_Config.CacheExtraProfileInfo(device);
 
@@ -5557,6 +5618,346 @@ namespace DS4Windows
             profileActions[device].Clear();
             containsCustomAction[device] = false;
             containsCustomExtras[device] = false;
+
+            // If a device exists, make sure to transfer relevant profile device
+            // options to device instance
+            if (postLoad && device < 4)
+            {
+                PostLoadSnippet(device, control, xinputStatus, xinputPlug);
+            }
+        }
+
+        public void LoadDefaultGamepadGyroProfile(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true, bool postLoad = true)
+        {
+            bool xinputPlug = false;
+            bool xinputStatus = false;
+
+            OutContType oldContType = Global.activeOutDevType[device];
+
+            // Make sure to reset currently set profile values before parsing
+            ResetProfile(device);
+
+            // Only change xinput devices under certain conditions. Avoid
+            // performing this upon program startup before loading devices.
+            if (xinputChange)
+            {
+                CheckOldDevicestatus(device, control, oldContType,
+                    out xinputPlug, out xinputStatus);
+            }
+
+            foreach (DS4ControlSettings dcs in ds4settings[device])
+                dcs.Reset();
+
+            profileActions[device].Clear();
+            containsCustomAction[device] = false;
+            containsCustomExtras[device] = false;
+
+            gyroOutMode[device] = GyroOutMode.MouseJoystick;
+            sAMouseStickTriggers[device] = "4";
+            sAMouseStickTriggerCond[device] = true;
+            gyroMouseStickTriggerTurns[device] = false;
+            gyroMStickInfo[device].useSmoothing = true;
+            gyroMStickInfo[device].smoothingMethod = GyroMouseStickInfo.SmoothingMethod.OneEuro;
+
+            // If a device exists, make sure to transfer relevant profile device
+            // options to device instance
+            if (postLoad && device < 4)
+            {
+                PostLoadSnippet(device, control, xinputStatus, xinputPlug);
+            }
+        }
+
+        public void LoadDefaultMixedGyroMouseProfile(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true, bool postLoad = true)
+        {
+            bool xinputPlug = false;
+            bool xinputStatus = false;
+
+            OutContType oldContType = Global.activeOutDevType[device];
+
+            // Make sure to reset currently set profile values before parsing
+            ResetProfile(device);
+
+            // Only change xinput devices under certain conditions. Avoid
+            // performing this upon program startup before loading devices.
+            if (xinputChange)
+            {
+                CheckOldDevicestatus(device, control, oldContType,
+                    out xinputPlug, out xinputStatus);
+            }
+
+            foreach (DS4ControlSettings dcs in ds4settings[device])
+                dcs.Reset();
+
+            profileActions[device].Clear();
+            containsCustomAction[device] = false;
+            containsCustomExtras[device] = false;
+
+            gyroOutMode[device] = GyroOutMode.Mouse;
+            sATriggers[device] = "4";
+            sATriggerCond[device] = true;
+            gyroTriggerTurns[device] = false;
+            gyroMouseInfo[device].enableSmoothing = true;
+            gyroMouseInfo[device].useOneEuroSmooth = true;
+
+            StickDeadZoneInfo rsInfo = rsModInfo[device];
+            rsInfo.deadZone = (int)(0.10 * 127);
+            rsInfo.antiDeadZone = 0;
+            rsInfo.maxZone = 90;
+
+            // If a device exists, make sure to transfer relevant profile device
+            // options to device instance
+            if (postLoad && device < 4)
+            {
+                PostLoadSnippet(device, control, xinputStatus, xinputPlug);
+            }
+        }
+
+        public void LoadDefaultMixedControlsProfile(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true, bool postLoad = true)
+        {
+            bool xinputPlug = false;
+            bool xinputStatus = false;
+
+            OutContType oldContType = Global.activeOutDevType[device];
+
+            // Make sure to reset currently set profile values before parsing
+            ResetProfile(device);
+
+            // Only change xinput devices under certain conditions. Avoid
+            // performing this upon program startup before loading devices.
+            if (xinputChange)
+            {
+                CheckOldDevicestatus(device, control, oldContType,
+                    out xinputPlug, out xinputStatus);
+            }
+
+            foreach (DS4ControlSettings dcs in ds4settings[device])
+                dcs.Reset();
+
+            profileActions[device].Clear();
+            containsCustomAction[device] = false;
+            containsCustomExtras[device] = false;
+
+            DS4ControlSettings setting = getDS4CSetting(device, DS4Controls.RYNeg);
+            setting.UpdateSettings(false, X360Controls.MouseUp, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.RYPos);
+            setting.UpdateSettings(false, X360Controls.MouseDown, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.RXNeg);
+            setting.UpdateSettings(false, X360Controls.MouseLeft, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.RXPos);
+            setting.UpdateSettings(false, X360Controls.MouseRight, "", DS4KeyType.None);
+
+            StickDeadZoneInfo rsInfo = rsModInfo[device];
+            rsInfo.deadZone = (int)(0.035 * 127);
+            rsInfo.antiDeadZone = 0;
+            rsInfo.maxZone = 90;
+
+            // If a device exists, make sure to transfer relevant profile device
+            // options to device instance
+            if (postLoad && device < 4)
+            {
+                PostLoadSnippet(device, control, xinputStatus, xinputPlug);
+            }
+        }
+
+        public void LoadDefaultKBMProfile(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true, bool postLoad = true)
+        {
+            bool xinputPlug = false;
+            bool xinputStatus = false;
+
+            OutContType oldContType = Global.activeOutDevType[device];
+
+            // Make sure to reset currently set profile values before parsing
+            ResetProfile(device);
+
+            // Only change xinput devices under certain conditions. Avoid
+            // performing this upon program startup before loading devices.
+            if (xinputChange)
+            {
+                CheckOldDevicestatus(device, control, oldContType,
+                    out xinputPlug, out xinputStatus);
+            }
+
+            foreach (DS4ControlSettings dcs in ds4settings[device])
+                dcs.Reset();
+
+            profileActions[device].Clear();
+            containsCustomAction[device] = false;
+            containsCustomExtras[device] = false;
+
+            StickDeadZoneInfo lsInfo = lsModInfo[device];
+            lsInfo.antiDeadZone = 0;
+
+            StickDeadZoneInfo rsInfo = rsModInfo[device];
+            rsInfo.deadZone = (int)(0.035 * 127);
+            rsInfo.antiDeadZone = 0;
+            rsInfo.maxZone = 90;
+
+            // Flag to unplug virtual controller
+            dinputOnly[device] = true;
+
+            DS4ControlSettings setting = getDS4CSetting(device, DS4Controls.LYNeg);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.W), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.LXNeg);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.A), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.LYPos);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.S), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.LXPos);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.D), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.L3);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.LeftShift), "", DS4KeyType.None);
+
+            setting = getDS4CSetting(device, DS4Controls.RYNeg);
+            setting.UpdateSettings(false, X360Controls.MouseUp, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.RYPos);
+            setting.UpdateSettings(false, X360Controls.MouseDown, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.RXNeg);
+            setting.UpdateSettings(false, X360Controls.MouseLeft, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.RXPos);
+            setting.UpdateSettings(false, X360Controls.MouseRight, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.R3);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.LeftCtrl), "", DS4KeyType.None);
+
+            setting = getDS4CSetting(device, DS4Controls.DpadUp);
+            setting.UpdateSettings(false, X360Controls.Unbound, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.DpadRight);
+            setting.UpdateSettings(false, X360Controls.WDOWN, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.DpadDown);
+            setting.UpdateSettings(false, X360Controls.Unbound, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.DpadLeft);
+            setting.UpdateSettings(false, X360Controls.WUP, "", DS4KeyType.None);
+
+            setting = getDS4CSetting(device, DS4Controls.Cross);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.Space), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.Square);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.F), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.Triangle);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.E), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.Circle);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.C), "", DS4KeyType.None);
+
+            setting = getDS4CSetting(device, DS4Controls.L1);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.Q), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.L2);
+            setting.UpdateSettings(false, X360Controls.MouseRight, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.R1);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.R), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.R2);
+            setting.UpdateSettings(false, X360Controls.MouseLeft, "", DS4KeyType.None);
+
+            setting = getDS4CSetting(device, DS4Controls.Share);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.Tab), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.Options);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.Escape), "", DS4KeyType.None);
+
+            // If a device exists, make sure to transfer relevant profile device
+            // options to device instance
+            if (postLoad && device < 4)
+            {
+                PostLoadSnippet(device, control, xinputStatus, xinputPlug);
+            }
+        }
+
+        public void LoadDefaultKBMGyroMouseProfile(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true, bool postLoad = true)
+        {
+            bool xinputPlug = false;
+            bool xinputStatus = false;
+
+            OutContType oldContType = Global.activeOutDevType[device];
+
+            // Make sure to reset currently set profile values before parsing
+            ResetProfile(device);
+
+            // Only change xinput devices under certain conditions. Avoid
+            // performing this upon program startup before loading devices.
+            if (xinputChange)
+            {
+                CheckOldDevicestatus(device, control, oldContType,
+                    out xinputPlug, out xinputStatus);
+            }
+
+            foreach (DS4ControlSettings dcs in ds4settings[device])
+                dcs.Reset();
+
+            profileActions[device].Clear();
+            containsCustomAction[device] = false;
+            containsCustomExtras[device] = false;
+
+            StickDeadZoneInfo lsInfo = lsModInfo[device];
+            lsInfo.antiDeadZone = 0;
+
+            StickDeadZoneInfo rsInfo = rsModInfo[device];
+            rsInfo.deadZone = (int)(0.105 * 127);
+            rsInfo.antiDeadZone = 0;
+            rsInfo.maxZone = 90;
+
+            gyroOutMode[device] = GyroOutMode.Mouse;
+            sATriggers[device] = "4";
+            sATriggerCond[device] = true;
+            gyroTriggerTurns[device] = false;
+            gyroMouseInfo[device].enableSmoothing = true;
+            gyroMouseInfo[device].useOneEuroSmooth = true;
+
+            // Flag to unplug virtual controller
+            dinputOnly[device] = true;
+
+            DS4ControlSettings setting = getDS4CSetting(device, DS4Controls.LYNeg);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.W), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.LXNeg);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.A), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.LYPos);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.S), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.LXPos);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.D), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.L3);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.LeftShift), "", DS4KeyType.None);
+
+            setting = getDS4CSetting(device, DS4Controls.RYNeg);
+            setting.UpdateSettings(false, X360Controls.MouseUp, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.RYPos);
+            setting.UpdateSettings(false, X360Controls.MouseDown, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.RXNeg);
+            setting.UpdateSettings(false, X360Controls.MouseLeft, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.RXPos);
+            setting.UpdateSettings(false, X360Controls.MouseRight, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.R3);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.LeftCtrl), "", DS4KeyType.None);
+
+            setting = getDS4CSetting(device, DS4Controls.DpadUp);
+            setting.UpdateSettings(false, X360Controls.Unbound, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.DpadRight);
+            setting.UpdateSettings(false, X360Controls.WDOWN, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.DpadDown);
+            setting.UpdateSettings(false, X360Controls.Unbound, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.DpadLeft);
+            setting.UpdateSettings(false, X360Controls.WUP, "", DS4KeyType.None);
+
+            setting = getDS4CSetting(device, DS4Controls.Cross);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.Space), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.Square);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.F), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.Triangle);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.E), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.Circle);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.C), "", DS4KeyType.None);
+
+            setting = getDS4CSetting(device, DS4Controls.L1);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.Q), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.L2);
+            setting.UpdateSettings(false, X360Controls.MouseRight, "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.R1);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.R), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.R2);
+            setting.UpdateSettings(false, X360Controls.MouseLeft, "", DS4KeyType.None);
+
+            setting = getDS4CSetting(device, DS4Controls.Share);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.Tab), "", DS4KeyType.None);
+            setting = getDS4CSetting(device, DS4Controls.Options);
+            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.Escape), "", DS4KeyType.None);
 
             // If a device exists, make sure to transfer relevant profile device
             // options to device instance

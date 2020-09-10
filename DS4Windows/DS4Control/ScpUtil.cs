@@ -5716,7 +5716,7 @@ namespace DS4Windows
 
             // If a device exists, make sure to transfer relevant profile device
             // options to device instance
-            if (postLoad && device < 4)
+            if (postLoad && device < Global.MAX_DS4_CONTROLLER_COUNT)
             {
                 PostLoadSnippet(device, control, xinputStatus, xinputPlug);
             }
@@ -5762,7 +5762,7 @@ namespace DS4Windows
 
             // If a device exists, make sure to transfer relevant profile device
             // options to device instance
-            if (postLoad && device < 4)
+            if (postLoad && device < Global.MAX_DS4_CONTROLLER_COUNT)
             {
                 PostLoadSnippet(device, control, xinputStatus, xinputPlug);
             }
@@ -5810,7 +5810,7 @@ namespace DS4Windows
 
             // If a device exists, make sure to transfer relevant profile device
             // options to device instance
-            if (postLoad && device < 4)
+            if (postLoad && device < Global.MAX_DS4_CONTROLLER_COUNT)
             {
                 PostLoadSnippet(device, control, xinputStatus, xinputPlug);
             }
@@ -5909,7 +5909,7 @@ namespace DS4Windows
 
             // If a device exists, make sure to transfer relevant profile device
             // options to device instance
-            if (postLoad && device < 4)
+            if (postLoad && device < Global.MAX_DS4_CONTROLLER_COUNT)
             {
                 PostLoadSnippet(device, control, xinputStatus, xinputPlug);
             }
@@ -6015,7 +6015,7 @@ namespace DS4Windows
 
             // If a device exists, make sure to transfer relevant profile device
             // options to device instance
-            if (postLoad && device < 4)
+            if (postLoad && device < Global.MAX_DS4_CONTROLLER_COUNT)
             {
                 PostLoadSnippet(device, control, xinputStatus, xinputPlug);
             }

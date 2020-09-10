@@ -36,14 +36,16 @@ namespace DS4Windows
         bool[] held = new bool[MAX_DS4_CONTROLLER_COUNT];
         int[] oldmouse = new int[MAX_DS4_CONTROLLER_COUNT] { -1, -1, -1, -1, -1, -1, -1, -1 };
         public OutputDevice[] outputDevices = new OutputDevice[MAX_DS4_CONTROLLER_COUNT] { null, null, null, null, null, null, null, null };
-        private OneEuroFilter3D[] udpEuroPairAccel = new OneEuroFilter3D[4]
+        private OneEuroFilter3D[] udpEuroPairAccel = new OneEuroFilter3D[MAX_DS4_CONTROLLER_COUNT]
         {
-            new OneEuroFilter3D(), new OneEuroFilter3D(),
+            new OneEuroFilter3D(), new OneEuroFilter3D(), new OneEuroFilter3D(),
+            new OneEuroFilter3D(), new OneEuroFilter3D(), new OneEuroFilter3D(),
             new OneEuroFilter3D(), new OneEuroFilter3D(),
         };
-        private OneEuroFilter3D[] udpEuroPairGyro = new OneEuroFilter3D[4]
+        private OneEuroFilter3D[] udpEuroPairGyro = new OneEuroFilter3D[MAX_DS4_CONTROLLER_COUNT]
         {
-            new OneEuroFilter3D(), new OneEuroFilter3D(),
+            new OneEuroFilter3D(), new OneEuroFilter3D(), new OneEuroFilter3D(),
+            new OneEuroFilter3D(), new OneEuroFilter3D(), new OneEuroFilter3D(),
             new OneEuroFilter3D(), new OneEuroFilter3D(),
         };
         Thread tempThread;

@@ -383,7 +383,7 @@
                                 <Button x:Name="checklogViewBtn" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}"
                                     Style="{StaticResource NoBGHoverBtn}" Click="ChecklogViewBtn_Click">
                                     <!--="CheckUpdatesBtn_Click">-->
-                                    <TextBlock Text="Changelog" TextDecorations="Underline" Foreground="#FF3881D8" Cursor="Hand" />
+                                    <TextBlock Text="{lex:Loc Changelog}" TextDecorations="Underline" Foreground="#FF3881D8" Cursor="Hand" />
                                 </Button>
                             </StackPanel>
                         </GroupBox>

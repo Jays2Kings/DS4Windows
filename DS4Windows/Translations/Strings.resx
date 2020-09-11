@@ -412,4 +412,10 @@ Example: whyme_DS4Windows</value>
   <data name="Presets" xml:space="preserve">
     <value>Presets</value>
   </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>Changelog</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
 </root>

@@ -1292,8 +1292,8 @@ namespace DS4Windows
             }
                 
 
-            bool sOff = /*tempBool =*/ isUsingSAforMouse(device);
-            if (sOff == false)
+            bool saControls = IsUsingSAForControls(device);
+            if (saControls)
             {
                 int SXD = (int)(128d * getSXDeadzone(device));
                 int SZD = (int)(128d * getSZDeadzone(device));
@@ -3321,32 +3321,32 @@ namespace DS4Windows
             }
             else if (controlType == DS4StateFieldMapping.ControlType.GyroDir)
             {
-                bool sOff = isUsingSAforMouse(device);
+                bool saControls = IsUsingSAForControls(device);
 
                 switch (control)
                 {
                     case DS4Controls.GyroXPos:
                     {
                         int gyroX = fieldMap.gryodirs[controlNum];
-                        result = (byte)(sOff == false ? Math.Min(255, gyroX * 2) : 0);
+                        result = (byte)(saControls ? Math.Min(255, gyroX * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroXNeg:
                     {
                         int gyroX = fieldMap.gryodirs[controlNum];
-                        result = (byte)(sOff == false ? Math.Min(255, -gyroX * 2) : 0);
+                        result = (byte)(saControls ? Math.Min(255, -gyroX * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroZPos:
                     {
                         int gyroZ = fieldMap.gryodirs[controlNum];
-                        result = (byte)(sOff == false ? Math.Min(255, gyroZ * 2) : 0);
+                        result = (byte)(saControls ? Math.Min(255, gyroZ * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroZNeg:
                     {
                         int gyroZ = fieldMap.gryodirs[controlNum];
-                        result = (byte)(sOff == false ? Math.Min(255, -gyroZ * 2) : 0);
+                        result = (byte)(saControls ? Math.Min(255, -gyroZ * 2) : 0);
                         break;
                     }
                     default: break;
@@ -3436,7 +3436,7 @@ namespace DS4Windows
             {
                 double SXD = getSXDeadzone(device);
                 double SZD = getSZDeadzone(device);
-                bool sOff = isUsingSAforMouse(device);
+                bool saControls = IsUsingSAForControls(device);
                 double sxsens = getSXSens(device);
                 double szsens = getSZSens(device);
 
@@ -3445,25 +3445,25 @@ namespace DS4Windows
                     case DS4Controls.GyroXPos:
                     {
                         int gyroX = -eState.AccelX;
-                        result = (byte)(!sOff && sxsens * gyroX > SXD * 10 ? Math.Min(255, sxsens * gyroX * 2) : 0);
+                        result = (byte)(saControls && sxsens * gyroX > SXD * 10 ? Math.Min(255, sxsens * gyroX * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroXNeg:
                     {
                         int gyroX = -eState.AccelX;
-                        result = (byte)(!sOff && sxsens * gyroX < -SXD * 10 ? Math.Min(255, sxsens * -gyroX * 2) : 0);
+                        result = (byte)(saControls && sxsens * gyroX < -SXD * 10 ? Math.Min(255, sxsens * -gyroX * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroZPos:
                     {
                         int gyroZ = eState.AccelZ;
-                        result = (byte)(!sOff && szsens * gyroZ > SZD * 10 ? Math.Min(255, szsens * gyroZ * 2) : 0);
+                        result = (byte)(saControls && szsens * gyroZ > SZD * 10 ? Math.Min(255, szsens * gyroZ * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroZNeg:
                     {
                         int gyroZ = eState.AccelZ;
-                        result = (byte)(!sOff && szsens * gyroZ < -SZD * 10 ? Math.Min(255, szsens * -gyroZ * 2) : 0);
+                        result = (byte)(saControls && szsens * gyroZ < -SZD * 10 ? Math.Min(255, szsens * -gyroZ * 2) : 0);
                         break;
                     }
                     default: break;
@@ -3562,14 +3562,14 @@ namespace DS4Windows
             }
             else if (control >= DS4Controls.GyroXPos && control <= DS4Controls.GyroZNeg)
             {
-                bool sOff = isUsingSAforMouse(device);
+                bool saControls = IsUsingSAForControls(device);
 
                 switch (control)
                 {
-                    case DS4Controls.GyroXPos: result = !sOff ? SXSens[device] * -eState.AccelX > 67 : false; break;
-                    case DS4Controls.GyroXNeg: result = !sOff ? SXSens[device] * -eState.AccelX < -67 : false; break;
-                    case DS4Controls.GyroZPos: result = !sOff ? SZSens[device] * eState.AccelZ > 67 : false; break;
-                    case DS4Controls.GyroZNeg: result = !sOff ? SZSens[device] * eState.AccelZ < -67 : false; break;
+                    case DS4Controls.GyroXPos: result = saControls ? SXSens[device] * -eState.AccelX > 67 : false; break;
+                    case DS4Controls.GyroXNeg: result = saControls ? SXSens[device] * -eState.AccelX < -67 : false; break;
+                    case DS4Controls.GyroZPos: result = saControls ? SZSens[device] * eState.AccelZ > 67 : false; break;
+                    case DS4Controls.GyroZNeg: result = saControls ? SZSens[device] * eState.AccelZ < -67 : false; break;
                     default: break;
                 }
             }
@@ -3625,7 +3625,7 @@ namespace DS4Windows
             }
             else if (controlType == DS4StateFieldMapping.ControlType.GyroDir)
             {
-                bool sOff = isUsingSAforMouse(device);
+                bool saControls = IsUsingSAForControls(device);
                 bool safeTest = false;
 
                 switch (control)
@@ -3637,7 +3637,7 @@ namespace DS4Windows
                     default: break;
                 }
 
-                result = sOff == false ? safeTest : false;
+                result = saControls ? safeTest : false;
             }
 
             return result;
@@ -3681,7 +3681,7 @@ namespace DS4Windows
             }
             else if (controlType == DS4StateFieldMapping.ControlType.GyroDir)
             {
-                bool sOff = isUsingSAforMouse(device);
+                bool saControls = IsUsingSAForControls(device);
                 bool safeTest = false;
 
                 switch (control)
@@ -3693,7 +3693,7 @@ namespace DS4Windows
                     default: break;
                 }
 
-                result = sOff == false ? safeTest : false;
+                result = saControls ? safeTest : false;
             }
 
             return result;
@@ -3779,7 +3779,7 @@ namespace DS4Windows
             }
             else if (controlType == DS4StateFieldMapping.ControlType.GyroDir)
             {
-                bool sOff = isUsingSAforMouse(device);
+                bool saControls = IsUsingSAForControls(device);
                 bool safeTest = false;
 
                 switch (control)
@@ -3791,7 +3791,7 @@ namespace DS4Windows
                     default: break;
                 }
 
-                result = sOff == false ? safeTest : false;
+                result = saControls ? safeTest : false;
             }
 
             return result;
@@ -3875,13 +3875,13 @@ namespace DS4Windows
             }
             else if (controlType == DS4StateFieldMapping.ControlType.GyroDir)
             {
-                bool sOff = isUsingSAforMouse(device);
+                bool saControls = IsUsingSAForControls(device);
 
                 switch (control)
                 {
                     case DS4Controls.GyroXPos:
                     {
-                        if (sOff == false && fieldMap.gryodirs[controlNum] > 0)
+                        if (saControls && fieldMap.gryodirs[controlNum] > 0)
                         {
                             if (alt) result = (byte)Math.Min(255, 128 + fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 128 - fieldMap.gryodirs[controlNum]);
                         }
@@ -3890,7 +3890,7 @@ namespace DS4Windows
                     }
                     case DS4Controls.GyroXNeg:
                     {
-                        if (sOff == false && fieldMap.gryodirs[controlNum] < 0)
+                        if (saControls && fieldMap.gryodirs[controlNum] < 0)
                         {
                             if (alt) result = (byte)Math.Min(255, 128 + -fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 128 - -fieldMap.gryodirs[controlNum]);
                         }
@@ -3899,7 +3899,7 @@ namespace DS4Windows
                     }
                     case DS4Controls.GyroZPos:
                     {
-                        if (sOff == false && fieldMap.gryodirs[controlNum] > 0)
+                        if (saControls && fieldMap.gryodirs[controlNum] > 0)
                         {
                             if (alt) result = (byte)Math.Min(255, 128 + fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 128 - fieldMap.gryodirs[controlNum]);
                         }
@@ -3908,7 +3908,7 @@ namespace DS4Windows
                     }
                     case DS4Controls.GyroZNeg:
                     {
-                        if (sOff == false && fieldMap.gryodirs[controlNum] < 0)
+                        if (saControls && fieldMap.gryodirs[controlNum] < 0)
                         {
                             if (alt) result = (byte)Math.Min(255, 128 + -fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 128 - -fieldMap.gryodirs[controlNum]);
                         }
@@ -4008,13 +4008,13 @@ namespace DS4Windows
             {
                 double SXD = getSXDeadzone(device);
                 double SZD = getSZDeadzone(device);
-                bool sOff = isUsingSAforMouse(device);
+                bool saControls = IsUsingSAForControls(device);
 
                 switch (control)
                 {
                     case DS4Controls.GyroXPos:
                     {
-                        if (!sOff && -eState.AccelX > SXD * 10)
+                        if (saControls && -eState.AccelX > SXD * 10)
                         {
                             if (alt) result = (byte)Math.Min(255, 127 + SXSens[device] * -eState.AccelX); else result = (byte)Math.Max(0, 127 - SXSens[device] * -eState.AccelX);
                         }
@@ -4023,7 +4023,7 @@ namespace DS4Windows
                     }
                     case DS4Controls.GyroXNeg:
                     {
-                        if (!sOff && -eState.AccelX < -SXD * 10)
+                        if (saControls && -eState.AccelX < -SXD * 10)
                         {
                             if (alt) result = (byte)Math.Min(255, 127 + SXSens[device] * eState.AccelX); else result = (byte)Math.Max(0, 127 - SXSens[device] * eState.AccelX);
                         }
@@ -4032,7 +4032,7 @@ namespace DS4Windows
                     }
                     case DS4Controls.GyroZPos:
                     {
-                        if (!sOff && eState.AccelZ > SZD * 10)
+                        if (saControls && eState.AccelZ > SZD * 10)
                         {
                             if (alt) result = (byte)Math.Min(255, 127 + SZSens[device] * eState.AccelZ); else result = (byte)Math.Max(0, 127 - SZSens[device] * eState.AccelZ);
                         }
@@ -4041,7 +4041,7 @@ namespace DS4Windows
                     }
                     case DS4Controls.GyroZNeg:
                     {
-                        if (!sOff && eState.AccelZ < -SZD * 10)
+                        if (saControls && eState.AccelZ < -SZD * 10)
                         {
                             if (alt) result = (byte)Math.Min(255, 127 + SZSens[device] * -eState.AccelZ); else result = (byte)Math.Max(0, 127 - SZSens[device] * -eState.AccelZ);
                         }

@@ -1295,10 +1295,9 @@ namespace DS4Windows
             return m_Config.useTPforControls[index];
         }
 
-        public static bool[] UseSAforMouse => m_Config.useSAforMouse;
-        public static bool isUsingSAforMouse(int index)
+        public static bool IsUsingSAForControls(int index)
         {
-            return m_Config.gyroOutMode[index] == DS4Windows.GyroOutMode.Mouse;
+            return m_Config.gyroOutMode[index] == GyroOutMode.Controls;
         }
 
         public static string[] SATriggers => m_Config.sATriggers;

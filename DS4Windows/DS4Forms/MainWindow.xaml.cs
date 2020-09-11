@@ -1588,5 +1588,11 @@ Suspend support not enabled.", true);
                 catch { }
             }
         }
+
+        private void ChecklogViewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ChangelogWindow changelogWin = new ChangelogWindow();
+            changelogWin.ShowDialog();
+        }
     }
 }

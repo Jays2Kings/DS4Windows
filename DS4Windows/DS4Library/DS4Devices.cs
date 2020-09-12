@@ -79,6 +79,8 @@ namespace DS4Windows
     {
         // (HID device path, DS4Device)
         private static Dictionary<string, DS4Device> Devices = new Dictionary<string, DS4Device>();
+        // (MacAddress, DS4Device)
+        private static Dictionary<string, DS4Device> serialDevices = new Dictionary<string, DS4Device>();
         private static HashSet<string> deviceSerials = new HashSet<string>();
         private static HashSet<string> DevicePaths = new HashSet<string>();
         // Keep instance of opened exclusive mode devices not in use (Charging while using BT connection)
@@ -224,21 +226,32 @@ namespace DS4Windows
                     {
                         string serial = hDevice.readSerial();
                         bool validSerial = !serial.Equals(DS4Device.blankSerial);
+                        bool newdev = true;
                         if (validSerial && deviceSerials.Contains(serial))
                         {
+                            // Check if Quick Charge flag is engaged
+                            if (serialDevices.TryGetValue(serial, out DS4Device tempDev) && tempDev.ReadyQuickChargeDisconnect)
+                            {
+                                // Need to disconnect callback here to avoid deadlock
+                                tempDev.Removal -= On_Removal;
+                                // Call inner removal process here instead
+                                InnerRemoveDevice(tempDev);
+                                // Disconnect wireless device
+                                tempDev.DisconnectWireless();
+                            }
                             // happens when the BT endpoint already is open and the USB is plugged into the same host
-                            if (isExclusiveMode && hDevice.IsExclusive &&
+                            else if (isExclusiveMode && hDevice.IsExclusive &&
                                 !DisabledDevices.Contains(hDevice))
                             {
                                 // Grab reference to exclusively opened HidDevice so device
                                 // stays hidden to other processes
                                 DisabledDevices.Add(hDevice);
                                 //DevicePaths.Add(hDevice.DevicePath);
+                                newdev = false;
                             }
-
-                            continue;
                         }
-                        else
+
+                        if (newdev)
                         {
                             DS4Device ds4Device = new DS4Device(hDevice, metainfo.name, metainfo.featureSet);
                             //ds4Device.Removal += On_Removal;
@@ -247,6 +260,7 @@ namespace DS4Windows
                                 Devices.Add(hDevice.DevicePath, ds4Device);
                                 DevicePaths.Add(hDevice.DevicePath);
                                 deviceSerials.Add(serial);
+                                serialDevices.Add(serial, ds4Device);
                             }
                         }
                     }
@@ -285,10 +299,11 @@ namespace DS4Windows
                 DevicePaths.Clear();
                 deviceSerials.Clear();
                 DisabledDevices.Clear();
+                serialDevices.Clear();
             }
         }
 
-        // Called when devices is diconnected, timed out or has input reading failure
+        // Called when devices is disconnected, timed out or has input reading failure
         public static void On_Removal(object sender, EventArgs e)
         {
             DS4Device device = (DS4Device)sender;
@@ -299,14 +314,20 @@ namespace DS4Windows
         {
             lock (Devices)
             {
-                if (device != null)
-                {
-                    device.HidDevice.CloseDevice();
-                    Devices.Remove(device.HidDevice.DevicePath);
-                    DevicePaths.Remove(device.HidDevice.DevicePath);
-                    deviceSerials.Remove(device.MacAddress);
-                    //purgeHiddenExclusiveDevices();
-                }
+                InnerRemoveDevice(device);
+            }
+        }
+
+        private static void InnerRemoveDevice(DS4Device device)
+        {
+            if (device != null)
+            {
+                device.HidDevice.CloseDevice();
+                Devices.Remove(device.HidDevice.DevicePath);
+                DevicePaths.Remove(device.HidDevice.DevicePath);
+                deviceSerials.Remove(device.MacAddress);
+                serialDevices.Remove(device.MacAddress);
+                //purgeHiddenExclusiveDevices();
             }
         }
 
@@ -322,11 +343,13 @@ namespace DS4Windows
                     if (Devices.ContainsKey(devPath))
                     {
                         deviceSerials.Remove(serial);
+                        serialDevices.Remove(serial);
                         device.updateSerial();
                         serial = device.getMacAddress();
                         if (DS4Device.isValidSerial(serial))
                         {
                             deviceSerials.Add(serial);
+                            serialDevices.Add(serial, device);
                         }
 
                         if (device.ShouldRunCalib())

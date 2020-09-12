@@ -1022,7 +1022,9 @@ namespace DS4Windows
             if (device.ConnectionType == ConnectionType.BT && getQuickCharge() &&
                 device.Charging)
             {
-                device.DisconnectBT();
+                // Set disconnect flag here. Later Hotplug event will check
+                // for presence of flag and remove the device then
+                device.ReadyQuickChargeDisconnect = true;
             }
         }
 

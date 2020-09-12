@@ -764,7 +764,7 @@ namespace DS4WinWPF.DS4Forms
         private bool ApplyProfileStep()
         {
             bool result = false;
-            if (profileSettingsVM.FuncDevNum < 4)
+            if (profileSettingsVM.FuncDevNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 App.rootHub.setRumble(0, 0, profileSettingsVM.FuncDevNum);
             }

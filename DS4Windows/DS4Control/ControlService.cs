@@ -1621,11 +1621,9 @@ namespace DS4Windows
                     inWarnMonitor[ind] = false;
                     useDInputOnly[ind] = true;
                     Global.activeOutDevType[ind] = OutContType.None;
-                    /*uiContext?.Post(new SendOrPostCallback((state) =>
-                    {
-                        OnControllerRemoved(this, ind);
-                    }), null);
-                    */
+                    Global.useTempProfile[ind] = false;
+                    Global.tempprofilename[ind] = string.Empty;
+                    Global.tempprofileDistance[ind] = false;
                     //Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                 }
             }

@@ -4504,7 +4504,10 @@ namespace DS4Windows
 
             // Only add missing settings if the actual load was graceful
             if ((missingSetting || migratePerformed) && Loaded)// && buttons != null)
-                SaveProfile(device, profilepath);
+            {
+                string proName = Path.GetFileName(profilepath);
+                SaveProfile(device, proName);
+            }
 
             CacheProfileCustomsFlags(device);
             buttonMouseInfos[device].activeButtonSensitivity =

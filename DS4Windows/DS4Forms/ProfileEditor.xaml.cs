@@ -754,12 +754,16 @@ namespace DS4WinWPF.DS4Forms
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            ApplyBtn_Click(sender, e);
-            Closed?.Invoke(this, EventArgs.Empty);
+            bool saved = ApplyProfileStep();
+            if (saved)
+            {
+                Closed?.Invoke(this, EventArgs.Empty);
+            }
         }
 
-        private void ApplyBtn_Click(object sender, RoutedEventArgs e)
+        private bool ApplyProfileStep()
         {
+            bool result = false;
             if (profileSettingsVM.FuncDevNum < 4)
             {
                 App.rootHub.setRumble(0, 0, profileSettingsVM.FuncDevNum);
@@ -787,6 +791,7 @@ namespace DS4WinWPF.DS4Forms
                 {
                     currentProfile.SaveProfile(deviceNum);
                     currentProfile.FireSaved();
+                    result = true;
                 }
                 else
                 {
@@ -795,6 +800,7 @@ namespace DS4WinWPF.DS4Forms
                     {
                         Global.SaveProfile(deviceNum, temp);
                         CreatedProfile?.Invoke(this, temp);
+                        result = true;
                     }
                     else
                     {
@@ -808,6 +814,8 @@ namespace DS4WinWPF.DS4Forms
                 MessageBox.Show(Properties.Resources.ValidName, Properties.Resources.NotValid,
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+
+            return result;
         }
 
         private void KeepSizeBtn_Click(object sender, RoutedEventArgs e)
@@ -1386,6 +1394,11 @@ namespace DS4WinWPF.DS4Forms
                 presetWin.ApplyPreset();
                 RefreshEditorBindings();
             }
+        }
+
+        private void ApplyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyProfileStep();
         }
     }
 }

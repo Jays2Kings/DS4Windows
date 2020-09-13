@@ -15,7 +15,7 @@
             "header": "Version 2.1.10",
             "log_text": ["* Allow Black icon image for tray icon",
               "* Changes to allow a maximum of 8 input controllers. The old limit was 4.",
-              "* Leave custom ligthbar color active after macro if 'Keep key state' is set. Contribution by **mika-n**",
+              "* Leave custom lightbar color active after macro if 'Keep key state' is set. Contribution by **mika-n**",
               "* Added One Euro Filter to UDP Server mapping",
               "* Added simple Presets window for Profile Editor",
               "* Changed some Gyro Controls checks in mapping routine. Old routine could have activated any set Gyro Controls buttons even while Gyro Mouse Joystick is used",

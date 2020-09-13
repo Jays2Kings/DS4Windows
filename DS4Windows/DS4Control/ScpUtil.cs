@@ -3753,10 +3753,31 @@ namespace DS4Windows
                     lightInfo.maxRainbowSat = Math.Max(0, Math.Min(100, temp)) / 100.0;
                 }
                 catch { lightInfo.maxRainbowSat = 1.0; missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSDeadZone"); int.TryParse(Item.InnerText, out lsModInfo[device].deadZone); }
-                catch { lsModInfo[device].deadZone = 10; missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSDeadZone"); int.TryParse(Item.InnerText, out rsModInfo[device].deadZone); }
-                catch { rsModInfo[device].deadZone = 10; missingSetting = true; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSDeadZone");
+                    int.TryParse(Item.InnerText, out int temp);
+                    temp = Math.Min(Math.Max(temp, 0), 127);
+                    lsModInfo[device].deadZone = temp;
+                }
+                catch
+                {
+                    lsModInfo[device].deadZone = 10; missingSetting = true;
+                }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSDeadZone");
+                    int.TryParse(Item.InnerText, out int temp);
+                    temp = Math.Min(Math.Max(temp, 0), 127);
+                    rsModInfo[device].deadZone = temp;
+                }
+                catch
+                {
+                    rsModInfo[device].deadZone = 10; missingSetting = true;
+                }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSAntiDeadZone"); int.TryParse(Item.InnerText, out lsModInfo[device].antiDeadZone); }
                 catch { lsModInfo[device].antiDeadZone = 25; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSAntiDeadZone"); int.TryParse(Item.InnerText, out rsModInfo[device].antiDeadZone); }

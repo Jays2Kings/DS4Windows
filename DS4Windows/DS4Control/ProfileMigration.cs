@@ -372,9 +372,10 @@ namespace DS4Windows
                         {
                             string lsdead = profileReader.ReadElementContentAsString();
                             bool valid = int.TryParse(lsdead, out int temp);
-                            if (valid && temp == 0)
+                            if (valid && temp <= 0)
                             {
-                                tempWriter.WriteElementString("LSDeadZone", "10");
+                                temp = 10;
+                                tempWriter.WriteElementString("LSDeadZone", temp.ToString());
                             }
 
                             break;
@@ -383,9 +384,10 @@ namespace DS4Windows
                         {
                             string rsdead = profileReader.ReadElementContentAsString();
                             bool valid = int.TryParse(rsdead, out int temp);
-                            if (valid && temp == 0)
+                            if (valid && temp <= 0)
                             {
-                                tempWriter.WriteElementString("RSDeadZone", "10");
+                                temp = 10;
+                                tempWriter.WriteElementString("RSDeadZone", temp.ToString());
                             }
 
                             break;

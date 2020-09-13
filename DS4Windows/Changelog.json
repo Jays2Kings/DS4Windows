@@ -1,9 +1,35 @@
 {
-  "latest_version": "2.1.9",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 9},
-  "updated_at": "2020-09-03T01:15:05+0000",
+  "latest_version": "2.1.10",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 10},
+  "updated_at": "2020-09-13T05:26:35+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.10",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 10},
+        "base_header": "Version 2.1.10",
+        "release_date": "2020-09-13T05:26:35+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.10",
+            "log_text": ["* Allow Black icon image for tray icon",
+              "* Changes to allow a maximum of 8 input controllers. The old limit was 4.",
+              "* Leave custom ligthbar color active after macro if 'Keep key state' is set. Contribution by **mika-n**",
+              "* Added One Euro Filter to UDP Server mapping",
+              "* Added simple Presets window for Profile Editor",
+              "* Changed some Gyro Controls checks in mapping routine. Old routine could have activated any set Gyro Controls buttons even while Gyro Mouse Joystick is used",
+              "* Added a Changelog viewer window to project",
+              "* Remove temp profile association on device removal",
+              "* Fixed profile save name check for Save method in Profile Editor",
+              "* Changed Quick Charge check to delay disconnecting BT controller until USB controller is detected. Allows USB wall chargers to be used to charge a DS4 and not interfere.",
+              "* Fixed profile save on profile migration"],
+            "editor": "ryochan7",
+            "editors_note": ["Unnecessary aggravation"],
+            "updated_at": "2020-09-13T05:26:35+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.9",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 9},

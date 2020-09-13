@@ -1457,7 +1457,7 @@ Suspend support not enabled.", true);
             if (profilesListBox.SelectedIndex >= 0)
             {
                 ProfileEntity entity = profileListHolder.ProfileListCol[profilesListBox.SelectedIndex];
-                ShowProfileEditor(4, entity);
+                ShowProfileEditor(Global.TEST_PROFILE_INDEX, entity);
             }
         }
 

@@ -523,9 +523,9 @@ namespace DS4WinWPF.DS4Forms
             if (profile != null)
             {
                 currentProfile = profile;
-                if (device == ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+                if (device == Global.TEST_PROFILE_INDEX)
                 {
-                    Global.ProfilePath[ControlService.CURRENT_DS4_CONTROLLER_LIMIT] = profile.Name;
+                    Global.ProfilePath[Global.TEST_PROFILE_INDEX] = profile.Name;
                 }
 
                 Global.LoadProfile(device, false, App.rootHub, false);

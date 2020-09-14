@@ -278,14 +278,14 @@ namespace DS4Windows
                 {
                     int numPadRequests = BitConverter.ToInt32(localMsg, currIdx);
                     currIdx += 4;
-                    if (numPadRequests < 0 || numPadRequests > 4)
+                    if (numPadRequests < 0 || numPadRequests > NUMBER_SLOTS)
                         return;
 
                     int requestsIdx = currIdx;
                     for (int i = 0; i < numPadRequests; i++)
                     {
                         byte currRequest = localMsg[requestsIdx + i];
-                        if (currRequest >= 4)
+                        if (currRequest >= NUMBER_SLOTS)
                             return;
                     }
 

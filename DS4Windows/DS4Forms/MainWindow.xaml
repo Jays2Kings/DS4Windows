@@ -138,7 +138,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem x:Name="profilesTab" Header="{lex:Loc Profile}">
+            <TabItem x:Name="profilesTab" Header="{lex:Loc Profiles}">
                 <DockPanel x:Name="profDockPanel">
                     <ToolBar x:Name="profOptsToolbar" Height="30" DockPanel.Dock="Top" Background="{x:Null}">
                         <Button x:Name="newProfListBtn" Click="NewProfListBtn_Click">

@@ -418,4 +418,7 @@ Example: whyme_DS4Windows</value>
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="Profiles" xml:space="preserve">
+    <value>Profiles</value>
+  </data>
 </root>

@@ -1905,7 +1905,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public void UpdateForcedColor(System.Windows.Media.Color color)
         {
-            if (device < 4)
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 DS4Color dcolor = new DS4Color() { red = color.R, green = color.G, blue = color.B };
                 DS4LightBar.forcedColor[device] = dcolor;
@@ -1916,7 +1916,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public void StartForcedColor(System.Windows.Media.Color color)
         {
-            if (device < 4)
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 DS4Color dcolor = new DS4Color() { red = color.R, green = color.G, blue = color.B };
                 DS4LightBar.forcedColor[device] = dcolor;
@@ -1927,7 +1927,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public void EndForcedColor()
         {
-            if (device < 4)
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 DS4LightBar.forcedColor[device] = new DS4Color(0, 0, 0);
                 DS4LightBar.forcedFlash[device] = 0;

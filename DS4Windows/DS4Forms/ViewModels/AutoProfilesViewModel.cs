@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DS4Windows;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
@@ -54,6 +55,25 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             get => DS4Windows.Global.AutoProfileRevertDefaultProfile;
             set => DS4Windows.Global.AutoProfileRevertDefaultProfile = value;
+        }
+
+        public bool UsingExpandedControllers
+        {
+            get => ControlService.USING_MAX_CONTROLLERS;
+        }
+
+        public Visibility ExpandedControllersVisible
+        {
+            get
+            {
+                Visibility temp = Visibility.Visible;
+                if (!ControlService.USING_MAX_CONTROLLERS)
+                {
+                    temp = Visibility.Collapsed;
+                }
+
+                return temp;
+            }
         }
 
         public AutoProfilesViewModel(AutoProfileHolder autoProfileHolder, ProfileList profileList)
@@ -210,6 +230,25 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 tempEntry.ProfileNames[3] = tempindex > 0 ? profileList.ProfileListCol[tempindex - 1].Name :
                     AutoProfileEntity.NONE_STRING;
 
+                if (UsingExpandedControllers)
+                {
+                    tempindex = item.SelectedIndexCon5;
+                    tempEntry.ProfileNames[4] = tempindex > 0 ? profileList.ProfileListCol[tempindex - 1].Name :
+                        AutoProfileEntity.NONE_STRING;
+
+                    tempindex = item.SelectedIndexCon6;
+                    tempEntry.ProfileNames[5] = tempindex > 0 ? profileList.ProfileListCol[tempindex - 1].Name :
+                        AutoProfileEntity.NONE_STRING;
+
+                    tempindex = item.SelectedIndexCon7;
+                    tempEntry.ProfileNames[6] = tempindex > 0 ? profileList.ProfileListCol[tempindex - 1].Name :
+                        AutoProfileEntity.NONE_STRING;
+
+                    tempindex = item.SelectedIndexCon8;
+                    tempEntry.ProfileNames[7] = tempindex > 0 ? profileList.ProfileListCol[tempindex - 1].Name :
+                        AutoProfileEntity.NONE_STRING;
+                }
+
                 item.MatchedAutoProfile = tempEntry;
                 autoProfileHolder.AutoProfileColl.Add(item.MatchedAutoProfile);
             }
@@ -235,6 +274,25 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 tempindex = item.SelectedIndexCon4;
                 tempEntry.ProfileNames[3] = tempindex > 0 ? profileList.ProfileListCol[tempindex - 1].Name :
                     AutoProfileEntity.NONE_STRING;
+
+                if (UsingExpandedControllers)
+                {
+                    tempindex = item.SelectedIndexCon5;
+                    tempEntry.ProfileNames[4] = tempindex > 0 ? profileList.ProfileListCol[tempindex - 1].Name :
+                        AutoProfileEntity.NONE_STRING;
+
+                    tempindex = item.SelectedIndexCon6;
+                    tempEntry.ProfileNames[5] = tempindex > 0 ? profileList.ProfileListCol[tempindex - 1].Name :
+                        AutoProfileEntity.NONE_STRING;
+
+                    tempindex = item.SelectedIndexCon7;
+                    tempEntry.ProfileNames[6] = tempindex > 0 ? profileList.ProfileListCol[tempindex - 1].Name :
+                        AutoProfileEntity.NONE_STRING;
+
+                    tempindex = item.SelectedIndexCon8;
+                    tempEntry.ProfileNames[7] = tempindex > 0 ? profileList.ProfileListCol[tempindex - 1].Name :
+                        AutoProfileEntity.NONE_STRING;
+                }
             }
         }
 
@@ -432,6 +490,10 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private int selectedIndexCon2 = 0;
         private int selectedIndexCon3 = 0;
         private int selectedIndexCon4 = 0;
+        private int selectedIndexCon5 = 0;
+        private int selectedIndexCon6 = 0;
+        private int selectedIndexCon7 = 0;
+        private int selectedIndexCon8 = 0;
 
         public int SelectedIndexCon1
         {
@@ -471,6 +533,46 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
 
+        public int SelectedIndexCon5
+        {
+            get => selectedIndexCon5;
+            set
+            {
+                if (selectedIndexCon5 == value) return;
+                selectedIndexCon5 = value;
+            }
+        }
+
+        public int SelectedIndexCon6
+        {
+            get => selectedIndexCon6;
+            set
+            {
+                if (selectedIndexCon6 == value) return;
+                selectedIndexCon6 = value;
+            }
+        }
+
+        public int SelectedIndexCon7
+        {
+            get => selectedIndexCon7;
+            set
+            {
+                if (selectedIndexCon7 == value) return;
+                selectedIndexCon7 = value;
+            }
+        }
+
+        public int SelectedIndexCon8
+        {
+            get => selectedIndexCon8;
+            set
+            {
+                if (selectedIndexCon8 == value) return;
+                selectedIndexCon8 = value;
+            }
+        }
+
         public ProgramItem(string path, AutoProfileEntity autoProfileEntity = null)
         {
             this.path = path;
@@ -505,6 +607,10 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 selectedIndexCon2 = 0;
                 selectedIndexCon3 = 0;
                 selectedIndexCon4 = 0;
+                selectedIndexCon5 = 0;
+                selectedIndexCon6 = 0;
+                selectedIndexCon7 = 0;
+                selectedIndexCon8 = 0;
             }
 
             ExistsChanged?.Invoke(this, EventArgs.Empty);

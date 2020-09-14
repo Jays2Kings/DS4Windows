@@ -523,9 +523,9 @@ namespace DS4WinWPF.DS4Forms
             if (profile != null)
             {
                 currentProfile = profile;
-                if (device == 4)
+                if (device == Global.TEST_PROFILE_INDEX)
                 {
-                    Global.ProfilePath[4] = profile.Name;
+                    Global.ProfilePath[Global.TEST_PROFILE_INDEX] = profile.Name;
                 }
 
                 Global.LoadProfile(device, false, App.rootHub, false);
@@ -544,7 +544,7 @@ namespace DS4WinWPF.DS4Forms
                 }
             }
 
-            if (device < 4)
+            if (device < Global.TEST_PROFILE_INDEX)
             {
                 useControllerUD.Value = device + 1;
                 conReadingsUserCon.UseDevice(device, device);
@@ -553,7 +553,7 @@ namespace DS4WinWPF.DS4Forms
             else
             {
                 useControllerUD.Value = 1;
-                conReadingsUserCon.UseDevice(0, 4);
+                conReadingsUserCon.UseDevice(0, Global.TEST_PROFILE_INDEX);
                 contReadingsTab.IsEnabled = true;
             }
 
@@ -621,7 +621,7 @@ namespace DS4WinWPF.DS4Forms
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (profileSettingsVM.FuncDevNum < 4)
+            if (profileSettingsVM.FuncDevNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 App.rootHub.setRumble(0, 0, profileSettingsVM.FuncDevNum);
             }
@@ -738,7 +738,7 @@ namespace DS4WinWPF.DS4Forms
 
                 activeGyroModePanel.Visibility = Visibility.Visible;
 
-                if (deviceNum < 4)
+                if (deviceNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
                 {
                     App.rootHub.touchPad[deviceNum]?.ResetToggleGyroM();
                 }
@@ -754,13 +754,17 @@ namespace DS4WinWPF.DS4Forms
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            ApplyBtn_Click(sender, e);
-            Closed?.Invoke(this, EventArgs.Empty);
+            bool saved = ApplyProfileStep();
+            if (saved)
+            {
+                Closed?.Invoke(this, EventArgs.Empty);
+            }
         }
 
-        private void ApplyBtn_Click(object sender, RoutedEventArgs e)
+        private bool ApplyProfileStep()
         {
-            if (profileSettingsVM.FuncDevNum < 4)
+            bool result = false;
+            if (profileSettingsVM.FuncDevNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 App.rootHub.setRumble(0, 0, profileSettingsVM.FuncDevNum);
             }
@@ -787,6 +791,7 @@ namespace DS4WinWPF.DS4Forms
                 {
                     currentProfile.SaveProfile(deviceNum);
                     currentProfile.FireSaved();
+                    result = true;
                 }
                 else
                 {
@@ -795,6 +800,7 @@ namespace DS4WinWPF.DS4Forms
                     {
                         Global.SaveProfile(deviceNum, temp);
                         CreatedProfile?.Invoke(this, temp);
+                        result = true;
                     }
                     else
                     {
@@ -808,6 +814,8 @@ namespace DS4WinWPF.DS4Forms
                 MessageBox.Show(Properties.Resources.ValidName, Properties.Resources.NotValid,
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+
+            return result;
         }
 
         private void KeepSizeBtn_Click(object sender, RoutedEventArgs e)
@@ -819,7 +827,7 @@ namespace DS4WinWPF.DS4Forms
 
         public void Close()
         {
-            if (profileSettingsVM.FuncDevNum < 4)
+            if (profileSettingsVM.FuncDevNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 App.rootHub.setRumble(0, 0, profileSettingsVM.FuncDevNum);
             }
@@ -882,7 +890,7 @@ namespace DS4WinWPF.DS4Forms
         private void HeavyRumbleTestBtn_Click(object sender, RoutedEventArgs e)
         {
             int deviceNum = profileSettingsVM.FuncDevNum;
-            if (deviceNum < 4)
+            if (deviceNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 DS4Device d = App.rootHub.DS4Controllers[deviceNum];
                 if (d != null)
@@ -908,7 +916,7 @@ namespace DS4WinWPF.DS4Forms
         private void LightRumbleTestBtn_Click(object sender, RoutedEventArgs e)
         {
             int deviceNum = profileSettingsVM.FuncDevNum;
-            if (deviceNum < 4)
+            if (deviceNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 DS4Device d = App.rootHub.DS4Controllers[deviceNum];
                 if (d != null)
@@ -966,7 +974,7 @@ namespace DS4WinWPF.DS4Forms
 
         private void FrictionUD_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (deviceNum < 4)
+            if (deviceNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 App.rootHub.touchPad[deviceNum]?.ResetTrackAccel(frictionUD.Value.GetValueOrDefault());
             }
@@ -1269,7 +1277,7 @@ namespace DS4WinWPF.DS4Forms
 
         private void UseControllerReadoutCk_Click(object sender, RoutedEventArgs e)
         {
-            if (profileSettingsVM.UseControllerReadout && profileSettingsVM.Device < 4)
+            if (profileSettingsVM.UseControllerReadout && profileSettingsVM.Device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 inputTimer.Start();
             }
@@ -1386,6 +1394,11 @@ namespace DS4WinWPF.DS4Forms
                 presetWin.ApplyPreset();
                 RefreshEditorBindings();
             }
+        }
+
+        private void ApplyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyProfileStep();
         }
     }
 }

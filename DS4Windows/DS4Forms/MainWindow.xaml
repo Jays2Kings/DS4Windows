@@ -138,7 +138,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem x:Name="profilesTab" Header="{lex:Loc Profile}">
+            <TabItem x:Name="profilesTab" Header="{lex:Loc Profiles}">
                 <DockPanel x:Name="profDockPanel">
                     <ToolBar x:Name="profOptsToolbar" Height="30" DockPanel.Dock="Top" Background="{x:Null}">
                         <Button x:Name="newProfListBtn" Click="NewProfListBtn_Click">
@@ -375,10 +375,15 @@
                                    Style="{StaticResource NoBGHoverBtn}"  Click="DriverSetupBtn_Click">
                                     <TextBlock Text="{lex:Loc DriverSetup}" TextDecorations="Underline" Foreground="#FF3881D8" Cursor="Hand" />
                                 </Button>
-                                <Button x:Name="checkUpdatesBtn" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}"
+                                <Button x:Name="checkUpdatesBtn" BorderThickness="0" Margin="0,0,0,4" Background="{x:Null}" BorderBrush="{x:Null}"
                                     Style="{StaticResource NoBGHoverBtn}" Click="CheckUpdatesBtn_Click">
                                     <!--="CheckUpdatesBtn_Click">-->
                                     <TextBlock Text="{lex:Loc CheckUpdateNow}" TextDecorations="Underline" Foreground="#FF3881D8" Cursor="Hand" />
+                                </Button>
+                                <Button x:Name="checklogViewBtn" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}"
+                                    Style="{StaticResource NoBGHoverBtn}" Click="ChecklogViewBtn_Click">
+                                    <!--="CheckUpdatesBtn_Click">-->
+                                    <TextBlock Text="{lex:Loc Changelog}" TextDecorations="Underline" Foreground="#FF3881D8" Cursor="Hand" />
                                 </Button>
                             </StackPanel>
                         </GroupBox>

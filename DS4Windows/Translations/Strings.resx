@@ -355,6 +355,18 @@ Example: whyme_DS4Windows</value>
   <data name="XInputChecker" xml:space="preserve">
     <value>XInputChecker</value>
   </data>
+  <data name="Controller5Text" xml:space="preserve">
+    <value>Controller 5</value>
+  </data>
+  <data name="Controller6Text" xml:space="preserve">
+    <value>Controller 6</value>
+  </data>
+  <data name="Controller7Text" xml:space="preserve">
+    <value>Controller 7</value>
+  </data>
+  <data name="Controller8Text" xml:space="preserve">
+    <value>Controller 8</value>
+  </data>
   <data name="GamepadGyroCameraDescription" xml:space="preserve">
     <value>Maps the controller output to a standard XInput gamepad or DS4 pad. Gyro is mapped to a Mouse-like Joystick.</value>
   </data>
@@ -399,5 +411,14 @@ Example: whyme_DS4Windows</value>
   </data>
   <data name="Presets" xml:space="preserve">
     <value>Presets</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>Changelog</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Profiles" xml:space="preserve">
+    <value>Profiles</value>
   </data>
 </root>

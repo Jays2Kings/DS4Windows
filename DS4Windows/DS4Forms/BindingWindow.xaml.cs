@@ -815,7 +815,7 @@ namespace DS4WinWPF.DS4Forms
         private void TestRumbleBtn_Click(object sender, RoutedEventArgs e)
         {
             int deviceNum = bindingVM.DeviceNum;
-            if (deviceNum < 4)
+            if (deviceNum < DS4Windows.ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 DS4Windows.DS4Device d = App.rootHub.DS4Controllers[deviceNum];
                 if (d != null)

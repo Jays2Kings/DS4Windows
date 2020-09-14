@@ -153,10 +153,17 @@ namespace DS4Windows
         public DateTime lastActive = DateTime.UtcNow;
         public DateTime firstActive = DateTime.UtcNow;
         private bool charging;
+        private bool readyQuickChargeDisconnect;
         private int warnInterval = WARN_INTERVAL_USB;
         public int getWarnInterval()
         {
             return warnInterval;
+        }
+
+        public bool ReadyQuickChargeDisconnect
+        {
+            get => readyQuickChargeDisconnect;
+            set => readyQuickChargeDisconnect = value;
         }
 
         public Int32 wheelPrevPhysicalAngle = 0;
@@ -1477,6 +1484,21 @@ namespace DS4Windows
                 }
             }
             catch (ThreadInterruptedException) { }
+        }
+
+        public bool DisconnectWireless(bool callRemoval = false)
+        {
+            bool result = false;
+            if (conType == ConnectionType.BT)
+            {
+                result = DisconnectBT(callRemoval);
+            }
+            else if (conType == ConnectionType.SONYWA)
+            {
+                result = DisconnectDongle(callRemoval);
+            }
+
+            return result;
         }
 
         public bool DisconnectBT(bool callRemoval = false)

@@ -219,6 +219,9 @@
     <Compile Include="DS4Forms\BindingWindow.xaml.cs">
       <DependentUpon>BindingWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DS4Forms\ChangelogWindow.xaml.cs">
+      <DependentUpon>ChangelogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DS4Forms\ColorPickerWindow.xaml.cs">
       <DependentUpon>ColorPickerWindow.xaml</DependentUpon>
     </Compile>
@@ -261,6 +264,7 @@
     <Compile Include="DS4Forms\Converters\EscapeAccessKeysConverter.cs" />
     <Compile Include="DS4Forms\ViewModels\AutoProfilesViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\BindingWindowViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\ChangelogViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\ControllerListViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\CurrentOutDeviceViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\LanguagePackViewModel.cs" />
@@ -326,6 +330,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DS4Forms\BindingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\ChangelogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

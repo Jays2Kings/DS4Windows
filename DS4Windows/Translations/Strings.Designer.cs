@@ -196,6 +196,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Changelog.
+        /// </summary>
+        public static string Changelog {
+            get {
+                return ResourceManager.GetString("Changelog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check For Update Now.
         /// </summary>
         public static string CheckUpdateNow {
@@ -219,6 +228,15 @@ namespace DS4WinWPF.Translations {
         public static string Clear {
             get {
                 return ResourceManager.GetString("Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
             }
         }
         
@@ -273,6 +291,42 @@ namespace DS4WinWPF.Translations {
         public static string Controller4Text {
             get {
                 return ResourceManager.GetString("Controller4Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Controller 5.
+        /// </summary>
+        public static string Controller5Text {
+            get {
+                return ResourceManager.GetString("Controller5Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Controller 6.
+        /// </summary>
+        public static string Controller6Text {
+            get {
+                return ResourceManager.GetString("Controller6Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Controller 7.
+        /// </summary>
+        public static string Controller7Text {
+            get {
+                return ResourceManager.GetString("Controller7Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Controller 8.
+        /// </summary>
+        public static string Controller8Text {
+            get {
+                return ResourceManager.GetString("Controller8Text", resourceCulture);
             }
         }
         
@@ -681,6 +735,15 @@ namespace DS4WinWPF.Translations {
         public static string ProfileFolder {
             get {
                 return ResourceManager.GetString("ProfileFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profiles.
+        /// </summary>
+        public static string Profiles {
+            get {
+                return ResourceManager.GetString("Profiles", resourceCulture);
             }
         }
         

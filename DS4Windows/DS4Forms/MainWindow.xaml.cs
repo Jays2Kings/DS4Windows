@@ -33,6 +33,9 @@ namespace DS4WinWPF.DS4Forms
     [System.Security.SuppressUnmanagedCodeSecurity]
     public partial class MainWindow : Window
     {
+        private const int DEFAULT_PROFILE_EDITOR_WIDTH = 1000;
+        private const int DEFAULT_PROFILE_EDITOR_HEIGHT = 650;
+
         private MainWindowsViewModel mainWinVM;
         private StatusLogMsg lastLogMsg = new StatusLogMsg();
         private ProfileList profileListHolder = new ProfileList();
@@ -1059,7 +1062,7 @@ Suspend support not enabled.", true);
                                     // Command syntax: LoadProfile.device#.profileName (fex LoadProfile.1.GameSnake or LoadTempProfile.1.WebBrowserSet)
                                     if (int.TryParse(strData[1], out tdevice)) tdevice--;
 
-                                    if (tdevice >= 0 && tdevice < ControlService.DS4_CONTROLLER_COUNT &&
+                                    if (tdevice >= 0 && tdevice < ControlService.MAX_DS4_CONTROLLER_COUNT &&
                                             File.Exists(Global.appdatapath + "\\Profiles\\" + strData[2] + ".xml"))
                                     {
                                         if (strData[0] == "loadprofile")
@@ -1100,7 +1103,7 @@ Suspend support not enabled.", true);
                                     if (int.TryParse(strData[1], out tdevice))
                                         tdevice--;
 
-                                    if (tdevice >= 0 && tdevice < ControlService.DS4_CONTROLLER_COUNT)
+                                    if (tdevice >= 0 && tdevice < ControlService.MAX_DS4_CONTROLLER_COUNT)
                                     {
                                         // Name of the property to query from a profile or DS4Windows app engine
                                         propName = strData[2].ToLower();
@@ -1457,7 +1460,7 @@ Suspend support not enabled.", true);
             if (profilesListBox.SelectedIndex >= 0)
             {
                 ProfileEntity entity = profileListHolder.ProfileListCol[profilesListBox.SelectedIndex];
-                ShowProfileEditor(4, entity);
+                ShowProfileEditor(Global.TEST_PROFILE_INDEX, entity);
             }
         }
 
@@ -1485,7 +1488,7 @@ Suspend support not enabled.", true);
 
         private void NewProfListBtn_Click(object sender, RoutedEventArgs e)
         {
-            ShowProfileEditor(4, null);
+            ShowProfileEditor(Global.TEST_PROFILE_INDEX, null);
         }
 
         private void ShowProfileEditor(int device, ProfileEntity entity = null)
@@ -1499,14 +1502,14 @@ Suspend support not enabled.", true);
                 preserveSize = false;
                 oldSize.Width = Width;
                 oldSize.Height = Height;
-                if (this.Width < 1000)
+                if (this.Width < DEFAULT_PROFILE_EDITOR_WIDTH)
                 {
-                    this.Width = 1000;
+                    this.Width = DEFAULT_PROFILE_EDITOR_WIDTH;
                 }
 
-                if (this.Height < 650)
+                if (this.Height < DEFAULT_PROFILE_EDITOR_HEIGHT)
                 {
-                    this.Height = 650;
+                    this.Height = DEFAULT_PROFILE_EDITOR_HEIGHT;
                 }
 
                 editor = new ProfileEditor(device);
@@ -1587,6 +1590,12 @@ Suspend support not enabled.", true);
                 }
                 catch { }
             }
+        }
+
+        private void ChecklogViewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ChangelogWindow changelogWin = new ChangelogWindow();
+            changelogWin.ShowDialog();
         }
     }
 }

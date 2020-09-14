@@ -17,28 +17,36 @@ namespace DS4Windows
     public class ControlService
     {
         public ViGEmClient vigemTestClient = null;
-        public const int DS4_CONTROLLER_COUNT = 4;
-        public DS4Device[] DS4Controllers = new DS4Device[DS4_CONTROLLER_COUNT];
-        public Mouse[] touchPad = new Mouse[DS4_CONTROLLER_COUNT];
+        // Might be useful for ScpVBus build
+        public const int EXPANDED_CONTROLLER_COUNT = 8;
+        public const int MAX_DS4_CONTROLLER_COUNT = Global.MAX_DS4_CONTROLLER_COUNT;
+#if FORCE_4_INPUT
+        public static int CURRENT_DS4_CONTROLLER_LIMIT = Global.OLD_XINPUT_CONTROLLER_COUNT;
+#else
+        public static int CURRENT_DS4_CONTROLLER_LIMIT = Global.IsWin8OrGreater() ? MAX_DS4_CONTROLLER_COUNT : Global.OLD_XINPUT_CONTROLLER_COUNT;
+#endif
+        public static bool USING_MAX_CONTROLLERS = CURRENT_DS4_CONTROLLER_LIMIT == EXPANDED_CONTROLLER_COUNT;
+        public DS4Device[] DS4Controllers = new DS4Device[MAX_DS4_CONTROLLER_COUNT];
+        public Mouse[] touchPad = new Mouse[MAX_DS4_CONTROLLER_COUNT];
         public bool running = false;
-        private DS4State[] MappedState = new DS4State[DS4_CONTROLLER_COUNT];
-        private DS4State[] CurrentState = new DS4State[DS4_CONTROLLER_COUNT];
-        private DS4State[] PreviousState = new DS4State[DS4_CONTROLLER_COUNT];
-        private DS4State[] TempState = new DS4State[DS4_CONTROLLER_COUNT];
-        public DS4StateExposed[] ExposedState = new DS4StateExposed[DS4_CONTROLLER_COUNT];
+        private DS4State[] MappedState = new DS4State[MAX_DS4_CONTROLLER_COUNT];
+        private DS4State[] CurrentState = new DS4State[MAX_DS4_CONTROLLER_COUNT];
+        private DS4State[] PreviousState = new DS4State[MAX_DS4_CONTROLLER_COUNT];
+        private DS4State[] TempState = new DS4State[MAX_DS4_CONTROLLER_COUNT];
+        public DS4StateExposed[] ExposedState = new DS4StateExposed[MAX_DS4_CONTROLLER_COUNT];
         public ControllerSlotManager slotManager = new ControllerSlotManager();
         public bool recordingMacro = false;
         public event EventHandler<DebugEventArgs> Debug = null;
-        bool[] buttonsdown = new bool[4] { false, false, false, false };
-        bool[] held = new bool[DS4_CONTROLLER_COUNT];
-        int[] oldmouse = new int[DS4_CONTROLLER_COUNT] { -1, -1, -1, -1 };
-        public OutputDevice[] outputDevices = new OutputDevice[4] { null, null, null, null };
-        private OneEuroFilter3D[] udpEuroPairAccel = new OneEuroFilter3D[4]
+        bool[] buttonsdown = new bool[MAX_DS4_CONTROLLER_COUNT] { false, false, false, false, false, false, false, false };
+        bool[] held = new bool[MAX_DS4_CONTROLLER_COUNT];
+        int[] oldmouse = new int[MAX_DS4_CONTROLLER_COUNT] { -1, -1, -1, -1, -1, -1, -1, -1 };
+        public OutputDevice[] outputDevices = new OutputDevice[MAX_DS4_CONTROLLER_COUNT] { null, null, null, null, null, null, null, null };
+        private OneEuroFilter3D[] udpEuroPairAccel = new OneEuroFilter3D[UdpServer.NUMBER_SLOTS]
         {
             new OneEuroFilter3D(), new OneEuroFilter3D(),
             new OneEuroFilter3D(), new OneEuroFilter3D(),
         };
-        private OneEuroFilter3D[] udpEuroPairGyro = new OneEuroFilter3D[4]
+        private OneEuroFilter3D[] udpEuroPairGyro = new OneEuroFilter3D[UdpServer.NUMBER_SLOTS]
         {
             new OneEuroFilter3D(), new OneEuroFilter3D(),
             new OneEuroFilter3D(), new OneEuroFilter3D(),
@@ -63,10 +71,10 @@ namespace DS4Windows
         public delegate void HotplugControllerHandler(ControlService sender, DS4Device device, int index);
         public event HotplugControllerHandler HotplugController;
 
-        private byte[][] udpOutBuffers = new byte[4][]
+        private byte[][] udpOutBuffers = new byte[UdpServer.NUMBER_SLOTS][]
         {
             new byte[100], new byte[100],
-            new byte[100], new byte[100]
+            new byte[100], new byte[100],
         };
 
         void GetPadDetailForIdx(int padIdx, ref DualShockPadMeta meta)
@@ -385,7 +393,7 @@ namespace DS4Windows
                     AppLogger.LogToGui("Closed UDP server", false);
                     udpChangeStatus = false;
 
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < UdpServer.NUMBER_SLOTS; i++)
                     {
                         ResetUdpSmoothingFilters(i);
                     }
@@ -402,7 +410,10 @@ namespace DS4Windows
                 {
                     dev.queueEvent(() =>
                     {
-                        dev.Report += dev.MotionEvent;
+                        if (dev.MotionEvent != null)
+                        {
+                            dev.Report += dev.MotionEvent;
+                        }
                     });
                 }
             }
@@ -412,7 +423,10 @@ namespace DS4Windows
                 {
                     dev.queueEvent(() =>
                     {
-                        dev.Report -= dev.MotionEvent;
+                        if (dev.MotionEvent != null)
+                        {
+                            dev.Report -= dev.MotionEvent;
+                        }
                     });
                 }
             }
@@ -428,7 +442,10 @@ namespace DS4Windows
             {
                 dev.queueEvent(() =>
                 {
-                    dev.Report -= dev.MotionEvent;
+                    if (dev.MotionEvent != null)
+                    {
+                        dev.Report -= dev.MotionEvent;
+                    }
                 });
             }
 
@@ -444,7 +461,10 @@ namespace DS4Windows
                 {
                     dev.queueEvent(() =>
                     {
-                        dev.Report += dev.MotionEvent;
+                        if (dev.MotionEvent != null)
+                        {
+                            dev.Report += dev.MotionEvent;
+                        }
                     });
                 }
                 LogDebug($"UDP server listening on address {UDP_SERVER_LISTEN_ADDRESS} port {UDP_SERVER_PORT}");
@@ -922,33 +942,35 @@ namespace DS4Windows
                             this.On_Report(sender, e, tempIdx);
                         };
 
-                        DS4Device.ReportHandler<EventArgs> tempEvnt = (sender, args) =>
+                        if (_udpServer != null && i < UdpServer.NUMBER_SLOTS)
                         {
-                            DualShockPadMeta padDetail = new DualShockPadMeta();
-                            GetPadDetailForIdx(tempIdx, ref padDetail);
-                            DS4State stateForUdp = TempState[tempIdx];
 
-                            CurrentState[tempIdx].CopyTo(stateForUdp);
-                            if (Global.IsUsingUDPServerSmoothing())
+                            DS4Device.ReportHandler<EventArgs> tempEvnt = (sender, args) =>
                             {
-                                double rate = 1.0 / stateForUdp.elapsedTime;
-                                OneEuroFilter3D accelFilter = udpEuroPairAccel[tempIdx];
-                                stateForUdp.Motion.accelXG = accelFilter.axis1Filter.Filter(stateForUdp.Motion.accelXG, rate);
-                                stateForUdp.Motion.accelYG = accelFilter.axis2Filter.Filter(stateForUdp.Motion.accelYG, rate);
-                                stateForUdp.Motion.accelZG = accelFilter.axis3Filter.Filter(stateForUdp.Motion.accelZG, rate);
+                                DualShockPadMeta padDetail = new DualShockPadMeta();
+                                GetPadDetailForIdx(tempIdx, ref padDetail);
+                                DS4State stateForUdp = TempState[tempIdx];
 
-                                OneEuroFilter3D gyroFilter = udpEuroPairGyro[tempIdx];
-                                stateForUdp.Motion.angVelYaw = gyroFilter.axis1Filter.Filter(stateForUdp.Motion.angVelYaw, rate);
-                                stateForUdp.Motion.angVelPitch = gyroFilter.axis2Filter.Filter(stateForUdp.Motion.angVelPitch, rate);
-                                stateForUdp.Motion.angVelRoll = gyroFilter.axis3Filter.Filter(stateForUdp.Motion.angVelRoll, rate);
-                            }
+                                CurrentState[tempIdx].CopyTo(stateForUdp);
+                                if (Global.IsUsingUDPServerSmoothing())
+                                {
+                                    double rate = 1.0 / stateForUdp.elapsedTime;
+                                    OneEuroFilter3D accelFilter = udpEuroPairAccel[tempIdx];
+                                    stateForUdp.Motion.accelXG = accelFilter.axis1Filter.Filter(stateForUdp.Motion.accelXG, rate);
+                                    stateForUdp.Motion.accelYG = accelFilter.axis2Filter.Filter(stateForUdp.Motion.accelYG, rate);
+                                    stateForUdp.Motion.accelZG = accelFilter.axis3Filter.Filter(stateForUdp.Motion.accelZG, rate);
 
-                            _udpServer.NewReportIncoming(ref padDetail, stateForUdp, udpOutBuffers[tempIdx]);
-                        };
-                        device.MotionEvent = tempEvnt;
+                                    OneEuroFilter3D gyroFilter = udpEuroPairGyro[tempIdx];
+                                    stateForUdp.Motion.angVelYaw = gyroFilter.axis1Filter.Filter(stateForUdp.Motion.angVelYaw, rate);
+                                    stateForUdp.Motion.angVelPitch = gyroFilter.axis2Filter.Filter(stateForUdp.Motion.angVelPitch, rate);
+                                    stateForUdp.Motion.angVelRoll = gyroFilter.axis3Filter.Filter(stateForUdp.Motion.angVelRoll, rate);
+                                }
 
-                        if (_udpServer != null)
-                        {
+                                _udpServer.NewReportIncoming(ref padDetail, stateForUdp, udpOutBuffers[tempIdx]);
+                            };
+							
+                            device.MotionEvent = tempEvnt;
+
                             device.Report += tempEvnt;
                         }
 
@@ -958,7 +980,7 @@ namespace DS4Windows
                         //string filename = ProfilePath[ind];
                         //ind++;
 
-                        if (i >= 4) // out of Xinput devices!
+                        if (i >= CURRENT_DS4_CONTROLLER_LIMIT) // out of Xinput devices!
                             break;
                     }
                 }
@@ -1018,7 +1040,9 @@ namespace DS4Windows
             if (device.ConnectionType == ConnectionType.BT && getQuickCharge() &&
                 device.Charging)
             {
-                device.DisconnectBT();
+                // Set disconnect flag here. Later Hotplug event will check
+                // for presence of flag and remove the device then
+                device.ReadyQuickChargeDisconnect = true;
             }
         }
 
@@ -1168,7 +1192,7 @@ namespace DS4Windows
                         continue;
                     }
 
-                    for (Int32 Index = 0, arlength = DS4Controllers.Length; Index < arlength; Index++)
+                    for (Int32 Index = 0, arlength = DS4Controllers.Length; Index < arlength && Index < CURRENT_DS4_CONTROLLER_LIMIT; Index++)
                     {
                         if (DS4Controllers[Index] == null)
                         {
@@ -1218,34 +1242,34 @@ namespace DS4Windows
                                 this.On_Report(sender, e, tempIdx);
                             };
 
-                            DS4Device.ReportHandler<EventArgs> tempEvnt = (sender, args) =>
+                            if (_udpServer != null && Index < UdpServer.NUMBER_SLOTS)
                             {
-                                DualShockPadMeta padDetail = new DualShockPadMeta();
-                                GetPadDetailForIdx(tempIdx, ref padDetail);
-                                DS4State stateForUdp = TempState[tempIdx];
-
-                                CurrentState[tempIdx].CopyTo(stateForUdp);
-
-                                if (Global.IsUsingUDPServerSmoothing())
+                                DS4Device.ReportHandler<EventArgs> tempEvnt = (sender, args) =>
                                 {
-                                    double rate = 1.0 / stateForUdp.elapsedTime;
-                                    OneEuroFilter3D accelFilter = udpEuroPairAccel[tempIdx];
-                                    stateForUdp.Motion.accelXG = accelFilter.axis1Filter.Filter(stateForUdp.Motion.accelXG, rate);
-                                    stateForUdp.Motion.accelYG = accelFilter.axis2Filter.Filter(stateForUdp.Motion.accelYG, rate);
-                                    stateForUdp.Motion.accelZG = accelFilter.axis3Filter.Filter(stateForUdp.Motion.accelZG, rate);
+                                    DualShockPadMeta padDetail = new DualShockPadMeta();
+                                    GetPadDetailForIdx(tempIdx, ref padDetail);
+                                    DS4State stateForUdp = TempState[tempIdx];
 
-                                    OneEuroFilter3D gyroFilter = udpEuroPairGyro[tempIdx];
-                                    stateForUdp.Motion.angVelYaw = gyroFilter.axis1Filter.Filter(stateForUdp.Motion.angVelYaw, rate);
-                                    stateForUdp.Motion.angVelPitch = gyroFilter.axis2Filter.Filter(stateForUdp.Motion.angVelPitch, rate);
-                                    stateForUdp.Motion.angVelRoll = gyroFilter.axis3Filter.Filter(stateForUdp.Motion.angVelRoll, rate);
-                                }
+                                    CurrentState[tempIdx].CopyTo(stateForUdp);
 
-                                _udpServer.NewReportIncoming(ref padDetail, stateForUdp, udpOutBuffers[tempIdx]);
-                            };
-                            device.MotionEvent = tempEvnt;
+                                    if (Global.IsUsingUDPServerSmoothing())
+                                    {
+                                        double rate = 1.0 / stateForUdp.elapsedTime;
+                                        OneEuroFilter3D accelFilter = udpEuroPairAccel[tempIdx];
+                                        stateForUdp.Motion.accelXG = accelFilter.axis1Filter.Filter(stateForUdp.Motion.accelXG, rate);
+                                        stateForUdp.Motion.accelYG = accelFilter.axis2Filter.Filter(stateForUdp.Motion.accelYG, rate);
+                                        stateForUdp.Motion.accelZG = accelFilter.axis3Filter.Filter(stateForUdp.Motion.accelZG, rate);
 
-                            if (_udpServer != null)
-                            {
+                                        OneEuroFilter3D gyroFilter = udpEuroPairGyro[tempIdx];
+                                        stateForUdp.Motion.angVelYaw = gyroFilter.axis1Filter.Filter(stateForUdp.Motion.angVelYaw, rate);
+                                        stateForUdp.Motion.angVelPitch = gyroFilter.axis2Filter.Filter(stateForUdp.Motion.angVelPitch, rate);
+                                        stateForUdp.Motion.angVelRoll = gyroFilter.axis3Filter.Filter(stateForUdp.Motion.angVelRoll, rate);
+                                    }
+
+                                    _udpServer.NewReportIncoming(ref padDetail, stateForUdp, udpOutBuffers[tempIdx]);
+                                };
+                                device.MotionEvent = tempEvnt;
+
                                 device.Report += tempEvnt;
                             }
                             
@@ -1500,7 +1524,7 @@ namespace DS4Windows
         {
             DS4Device device = (DS4Device)sender;
             int ind = -1;
-            for (int i = 0, arlength = DS4_CONTROLLER_COUNT; ind == -1 && i < arlength; i++)
+            for (int i = 0, arlength = MAX_DS4_CONTROLLER_COUNT; ind == -1 && i < arlength; i++)
             {
                 DS4Device tempDev = DS4Controllers[i];
                 if (tempDev != null && device == tempDev)
@@ -1517,7 +1541,7 @@ namespace DS4Windows
         {
             DS4Device device = (DS4Device)sender;
             int ind = -1;
-            for (int i = 0, arlength = DS4_CONTROLLER_COUNT; ind == -1 && i < arlength; i++)
+            for (int i = 0, arlength = CURRENT_DS4_CONTROLLER_LIMIT; ind == -1 && i < arlength; i++)
             {
                 DS4Device tempDev = DS4Controllers[i];
                 if (tempDev != null && device == tempDev)
@@ -1617,21 +1641,19 @@ namespace DS4Windows
                     inWarnMonitor[ind] = false;
                     useDInputOnly[ind] = true;
                     Global.activeOutDevType[ind] = OutContType.None;
-                    /*uiContext?.Post(new SendOrPostCallback((state) =>
-                    {
-                        OnControllerRemoved(this, ind);
-                    }), null);
-                    */
+                    Global.useTempProfile[ind] = false;
+                    Global.tempprofilename[ind] = string.Empty;
+                    Global.tempprofileDistance[ind] = false;
                     //Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                 }
             }
         }
 
-        public bool[] lag = new bool[4] { false, false, false, false };
-        public bool[] inWarnMonitor = new bool[4] { false, false, false, false };
-        private byte[] currentBattery = new byte[4] { 0, 0, 0, 0 };
-        private bool[] charging = new bool[4] { false, false, false, false };
-        private string[] tempStrings = new string[4] { string.Empty, string.Empty, string.Empty, string.Empty };
+        public bool[] lag = new bool[MAX_DS4_CONTROLLER_COUNT] { false, false, false, false, false, false, false, false };
+        public bool[] inWarnMonitor = new bool[MAX_DS4_CONTROLLER_COUNT] { false, false, false, false, false, false, false, false };
+        private byte[] currentBattery = new byte[MAX_DS4_CONTROLLER_COUNT] { 0, 0, 0, 0, 0, 0, 0, 0 };
+        private bool[] charging = new bool[MAX_DS4_CONTROLLER_COUNT] { false, false, false, false, false, false, false, false };
+        private string[] tempStrings = new string[MAX_DS4_CONTROLLER_COUNT] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
 
         // Called every time a new input report has arrived
         //protected virtual void On_Report(object sender, EventArgs e, int ind)
@@ -1887,8 +1909,8 @@ namespace DS4Windows
             return result;
         }
 
-        public bool[] touchreleased = new bool[4] { true, true, true, true },
-            touchslid = new bool[4] { false, false, false, false };
+        public bool[] touchreleased = new bool[MAX_DS4_CONTROLLER_COUNT] { true, true, true, true, true, true, true, true },
+            touchslid = new bool[MAX_DS4_CONTROLLER_COUNT] { false, false, false, false, false, false, false, false };
 
         public Dispatcher EventDispatcher { get => eventDispatcher; }
         public OutputSlotManager OutputslotMan { get => outputslotMan; }
@@ -1918,7 +1940,7 @@ namespace DS4Windows
 
         public virtual void StartTPOff(int deviceID)
         {
-            if (deviceID < 4)
+            if (deviceID < CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 TouchActive[deviceID] = false;
             }
@@ -1970,7 +1992,7 @@ namespace DS4Windows
         // sets the rumble adjusted with rumble boost. General use method
         public virtual void setRumble(byte heavyMotor, byte lightMotor, int deviceNum)
         {
-            if (deviceNum < 4)
+            if (deviceNum < CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 DS4Device device = DS4Controllers[deviceNum];
                 if (device != null)

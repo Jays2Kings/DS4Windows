@@ -59,6 +59,15 @@ namespace DS4WinWPF.DS4Forms
                 addProgramsBtn.ContextMenu.Items.Remove(steamMenuItem);
 
             autoProfileHolder = new AutoProfileHolder();
+
+            int currentRowCount = autoProfilesGrid.RowDefinitions.Count;
+            if (currentRowCount > DS4Windows.ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                for (int i = currentRowCount-1; i >= DS4Windows.ControlService.CURRENT_DS4_CONTROLLER_LIMIT; i--)
+                {
+                    autoProfilesGrid.RowDefinitions.RemoveAt(i);
+                }
+            }
         }
 
         public void SetupDataContext(ProfileList profileList)
@@ -72,11 +81,10 @@ namespace DS4WinWPF.DS4Forms
             autoProfVM.SearchFinished += AutoProfVM_SearchFinished;
             autoProfVM.CurrentItemChange += AutoProfVM_CurrentItemChange;
 
+            autoProfilesGrid.DataContext = autoProfVM;
             this.profileList = profileList;
-            cont1AutoProfCol.Collection = profileList.ProfileListCol;
-            cont2AutoProfCol.Collection = profileList.ProfileListCol;
-            cont3AutoProfCol.Collection = profileList.ProfileListCol;
-            cont4AutoProfCol.Collection = profileList.ProfileListCol;
+
+            sidebarScrollViewer.ScrollToTop();
         }
 
         private void AutoProfVM_CurrentItemChange(AutoProfilesViewModel sender, ProgramItem item)
@@ -141,6 +149,65 @@ namespace DS4WinWPF.DS4Forms
                     {
                         item.SelectedIndexCon4 = 0;
                     }
+
+                    if (autoProfVM.UsingExpandedControllers)
+                    {
+                        profileName = item.MatchedAutoProfile.ProfileNames[4];
+                        if (!string.IsNullOrEmpty(profileName) && profileName != "(none)")
+                        {
+                            tempProf = profileList.ProfileListCol.SingleOrDefault(x => x.Name == profileName);
+                            if (tempProf != null)
+                            {
+                                item.SelectedIndexCon5 = profileList.ProfileListCol.IndexOf(tempProf) + 1;
+                            }
+                        }
+                        else
+                        {
+                            item.SelectedIndexCon5 = 0;
+                        }
+
+                        profileName = item.MatchedAutoProfile.ProfileNames[5];
+                        if (!string.IsNullOrEmpty(profileName) && profileName != "(none)")
+                        {
+                            tempProf = profileList.ProfileListCol.SingleOrDefault(x => x.Name == profileName);
+                            if (tempProf != null)
+                            {
+                                item.SelectedIndexCon6 = profileList.ProfileListCol.IndexOf(tempProf) + 1;
+                            }
+                        }
+                        else
+                        {
+                            item.SelectedIndexCon6 = 0;
+                        }
+
+                        profileName = item.MatchedAutoProfile.ProfileNames[6];
+                        if (!string.IsNullOrEmpty(profileName) && profileName != "(none)")
+                        {
+                            tempProf = profileList.ProfileListCol.SingleOrDefault(x => x.Name == profileName);
+                            if (tempProf != null)
+                            {
+                                item.SelectedIndexCon7 = profileList.ProfileListCol.IndexOf(tempProf) + 1;
+                            }
+                        }
+                        else
+                        {
+                            item.SelectedIndexCon7 = 0;
+                        }
+
+                        profileName = item.MatchedAutoProfile.ProfileNames[7];
+                        if (!string.IsNullOrEmpty(profileName) && profileName != "(none)")
+                        {
+                            tempProf = profileList.ProfileListCol.SingleOrDefault(x => x.Name == profileName);
+                            if (tempProf != null)
+                            {
+                                item.SelectedIndexCon8 = profileList.ProfileListCol.IndexOf(tempProf) + 1;
+                            }
+                        }
+                        else
+                        {
+                            item.SelectedIndexCon8 = 0;
+                        }
+                    }
                 }
 
                 editControlsPanel.DataContext = item;
@@ -155,6 +222,10 @@ namespace DS4WinWPF.DS4Forms
                 cont2AutoProf.SelectedIndex = 0;
                 cont3AutoProf.SelectedIndex = 0;
                 cont4AutoProf.SelectedIndex = 0;
+                cont5AutoProf.SelectedIndex = 0;
+                cont6AutoProf.SelectedIndex = 0;
+                cont7AutoProf.SelectedIndex = 0;
+                cont8AutoProf.SelectedIndex = 0;
             }
         }
 

@@ -19,7 +19,11 @@ namespace DS4Windows
         // Might be useful for ScpVBus build
         public const int EXPANDED_CONTROLLER_COUNT = 8;
         public const int MAX_DS4_CONTROLLER_COUNT = Global.MAX_DS4_CONTROLLER_COUNT;
+#if FORCE_4_INPUT
+        public static int CURRENT_DS4_CONTROLLER_LIMIT = Global.OLD_XINPUT_CONTROLLER_COUNT;
+#else
         public static int CURRENT_DS4_CONTROLLER_LIMIT = Global.IsWin8OrGreater() ? MAX_DS4_CONTROLLER_COUNT : Global.OLD_XINPUT_CONTROLLER_COUNT;
+#endif
         public static bool USING_MAX_CONTROLLERS = CURRENT_DS4_CONTROLLER_LIMIT == EXPANDED_CONTROLLER_COUNT;
         public DS4Device[] DS4Controllers = new DS4Device[MAX_DS4_CONTROLLER_COUNT];
         public Mouse[] touchPad = new Mouse[MAX_DS4_CONTROLLER_COUNT];

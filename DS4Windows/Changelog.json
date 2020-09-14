@@ -1,9 +1,26 @@
 {
-  "latest_version": "2.1.10",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 10},
-  "updated_at": "2020-09-13T05:26:35+0000",
+  "latest_version": "2.1.11",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 11},
+  "updated_at": "2020-09-14T01:48:21+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.11",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 11},
+        "base_header": "Version 2.1.11",
+        "release_date": "2020-09-14T01:48:21+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.11",
+            "log_text": ["* Add clamping on LS and RS dead zones in profile reader",
+              "* Corrected test profile index when launching Profile Editor from Profiles tab"],
+            "editor": "ryochan7",
+            "editors_note": ["Missed an index bump"],
+            "updated_at": "2020-09-14T01:48:21+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.10",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 10},

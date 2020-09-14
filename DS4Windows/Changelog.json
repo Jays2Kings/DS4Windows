@@ -13,7 +13,7 @@
           {
             "code": "en",
             "header": "Version 2.1.11",
-            "log_text": ["* Add clamping on LS and RS dead zones in profile reader",
+            "log_text": ["* Added clamping on LS and RS dead zones in profile reader",
               "* Corrected test profile index when launching Profile Editor from Profiles tab"],
             "editor": "ryochan7",
             "editors_note": ["Missed an index bump"],

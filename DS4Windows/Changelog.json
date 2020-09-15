@@ -1,9 +1,26 @@
 {
-  "latest_version": "2.1.12",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 12},
-  "updated_at": "2020-09-14T06:44:30+0000",
+  "latest_version": "2.1.13",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 13},
+  "updated_at": "2020-09-15T01:44:48+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.13",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 13},
+        "base_header": "Version 2.1.13",
+        "release_date": "2020-09-15T01:44:48+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.13",
+            "log_text": ["* Added FORCE_4_INPUT compilation symbol",
+              "* Another place for bumping up test profile index"],
+            "editor": "ryochan7",
+            "editors_note": ["Blast"],
+            "updated_at": "2020-09-15T01:44:48+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.12",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 12},

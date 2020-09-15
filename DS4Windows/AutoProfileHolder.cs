@@ -47,7 +47,7 @@ namespace DS4WinWPF
                     AutoProfileEntity autoprof = new AutoProfileEntity(path, title);
 
                     XmlNode item;
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < Global.MAX_DS4_CONTROLLER_COUNT; i++)
                     {
                         item = x.SelectSingleNode($"Controller{i+1}");
                         if (item != null)

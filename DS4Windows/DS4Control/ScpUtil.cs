@@ -2674,21 +2674,21 @@ namespace DS4Windows
         public void SetGyroMouseDZ(int index, int value, ControlService control)
         {
             gyroMouseDZ[index] = value;
-            if (index < Global.MAX_DS4_CONTROLLER_COUNT && control.touchPad[index] != null)
+            if (index < ControlService.CURRENT_DS4_CONTROLLER_LIMIT && control.touchPad[index] != null)
                 control.touchPad[index].CursorGyroDead = value;
         }
 
         public void SetGyroMouseToggle(int index, bool value, ControlService control)
         {
             gyroMouseToggle[index] = value;
-            if (index < Global.MAX_DS4_CONTROLLER_COUNT && control.touchPad[index] != null)
+            if (index < ControlService.CURRENT_DS4_CONTROLLER_LIMIT && control.touchPad[index] != null)
                 control.touchPad[index].ToggleGyroMouse = value;
         }
 
         public void SetGyroMouseStickToggle(int index, bool value, ControlService control)
         {
             gyroMouseStickToggle[index] = value;
-            if (index < Global.MAX_DS4_CONTROLLER_COUNT && control.touchPad[index] != null)
+            if (index < ControlService.CURRENT_DS4_CONTROLLER_LIMIT && control.touchPad[index] != null)
                 control.touchPad[index].ToggleGyroMouse = value;
         }
 

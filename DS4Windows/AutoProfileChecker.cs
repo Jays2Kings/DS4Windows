@@ -127,7 +127,7 @@ namespace DS4WinWPF
                     }
 
                     tempAutoProfile = null;
-                    for (int j = 0; j < Global.MAX_DS4_CONTROLLER_COUNT; j++)
+                    for (int j = 0; j < ControlService.CURRENT_DS4_CONTROLLER_LIMIT; j++)
                     {
                         if (Global.useTempProfile[j])
                         {

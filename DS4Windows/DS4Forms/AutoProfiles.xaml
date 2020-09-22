@@ -16,7 +16,11 @@
                 <ScrollViewer.Resources>
                     <Thickness x:Key="spaceMargin" Bottom="8" />
                 </ScrollViewer.Resources>
-                <StackPanel>
+                <StackPanel x:Name="outerEditControlsPanel">
+                    <StackPanel.Resources>
+                        <CollectionViewSource x:Key="profileCollection" Source="{Binding ProfileList.ProfileListCol,Mode=OneWay}" />
+                    </StackPanel.Resources>
+
                     <StackPanel x:Name="editControlsPanel" IsEnabled="False">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Height="30">
                             <Button x:Name="removeAutoBtn" Content="{lex:Loc Remove}" Height="20" Padding="1" Width="80"
@@ -38,10 +42,6 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-
-                            <Grid.Resources>
-                                <CollectionViewSource x:Key="profileCollection" Source="{Binding ProfileList.ProfileListCol,Mode=OneWay}" />
-                            </Grid.Resources>
 
                             <Label Content="{lex:Loc Controller1Text}" Margin="{StaticResource spaceMargin}" />
                             <ComboBox x:Name="cont1AutoProf" Grid.Column="1" Margin="{StaticResource spaceMargin}"

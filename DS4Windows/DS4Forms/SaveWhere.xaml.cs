@@ -35,7 +35,7 @@ namespace DS4WinWPF.DS4Forms
 
             if (DS4Windows.Global.AdminNeeded())
             {
-                progFolderBtn.IsEnabled = false;
+                progFolderPanel.IsEnabled = false;
             }
         }
 

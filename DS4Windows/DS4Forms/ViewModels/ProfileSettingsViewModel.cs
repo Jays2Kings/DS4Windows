@@ -1181,18 +1181,22 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.szOutBezierCurveObj[device].InitBezierCurve(value, BezierCurve.AxisType.SA, true);
         }
 
-        public bool UseTouchMouse
+        public int TouchpadOutputIndex
         {
-            get => !Global.UseTPforControls[device];
+            get
+            {
+                int result = !Global.UseTPforControls[device] ? 0 : 1;
+                return result;
+            }
             set
             {
-                bool temp = !Global.UseTPforControls[device];
+                int temp = Global.UseTPforControls[device] ? 1 : 0;
                 if (temp == value) return;
-                Global.UseTPforControls[device] = !value;
-                UseTouchMouseChanged?.Invoke(this, EventArgs.Empty);
+                Global.UseTPforControls[device] = value == 0 ? false : true;
+                TouchpadOutputIndexChanged?.Invoke(this, EventArgs.Empty);
             }
         }
-        public event EventHandler UseTouchMouseChanged;
+        public event EventHandler TouchpadOutputIndexChanged;
 
         public bool UseTouchControls
         {

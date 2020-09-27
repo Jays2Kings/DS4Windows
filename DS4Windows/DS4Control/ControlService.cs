@@ -1903,7 +1903,7 @@ namespace DS4Windows
 
         protected virtual void CheckForTouchToggle(int deviceID, DS4State cState, DS4State pState)
         {
-            if (!getUseTPforControls(deviceID) && cState.Touch1 && pState.PS)
+            if (!IsUsingTouchpadForControls(deviceID) && cState.Touch1 && pState.PS)
             {
                 if (GetTouchActive(deviceID) && touchreleased[deviceID])
                 {

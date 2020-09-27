@@ -1185,14 +1185,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             get
             {
-                int result = !Global.UseTPforControls[device] ? 0 : 1;
+                int result = !Global.IsUsingTouchpadForControls(device) ? 0 : 1;
                 return result;
             }
             set
             {
-                int temp = Global.UseTPforControls[device] ? 1 : 0;
+                int temp = Global.IsUsingTouchpadForControls(device) ? 1 : 0;
                 if (temp == value) return;
-                Global.UseTPforControls[device] = value == 0 ? false : true;
+                Global.TouchOutMode[device] = value == 0 ? TouchpadOutMode.Mouse : TouchpadOutMode.Controls;
                 TouchpadOutputIndexChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -1200,12 +1200,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public bool UseTouchControls
         {
-            get => Global.UseTPforControls[device];
+            get => Global.IsUsingTouchpadForControls(device);
             set
             {
-                bool temp = Global.UseTPforControls[device];
+                bool temp = Global.IsUsingTouchpadForControls(device);
                 if (temp == value) return;
-                Global.UseTPforControls[device] = value;
+                Global.TouchOutMode[device] = TouchpadOutMode.Controls;
                 UseTouchControlsChanged?.Invoke(this, EventArgs.Empty);
             }
         }

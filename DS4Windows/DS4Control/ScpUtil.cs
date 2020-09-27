@@ -34,6 +34,13 @@ namespace DS4Windows
         MouseJoystick,
     }
 
+    public enum TouchpadOutMode : uint
+    {
+        None,
+        Mouse,
+        Controls,
+    }
+
     public enum TrayIconChoice : uint
     {
         Default,
@@ -331,7 +338,7 @@ namespace DS4Windows
         public static bool vigemInstalled = IsViGEmBusInstalled();
         public static bool hidguardInstalled = IsHidGuardianInstalled();
         public static string vigembusVersion = ViGEmBusVersion();
-        public const int CONFIG_VERSION = 4;
+        public const int CONFIG_VERSION = 5;
         public const int APP_CONFIG_VERSION = 2;
         public const string ASSEMBLY_RESOURCE_PREFIX = "pack://application:,,,/DS4Windows;";
         public const string CUSTOM_EXE_CONFIG_FILENAME = "custom_exe_name.txt";
@@ -1289,11 +1296,19 @@ namespace DS4Windows
 
         public static bool[] StartTouchpadOff => m_Config.startTouchpadOff;
 
-        public static bool[] UseTPforControls => m_Config.useTPforControls;
+        /*public static bool[] UseTPforControls => m_Config.useTPforControls;
         public static bool getUseTPforControls(int index)
         {
             return m_Config.useTPforControls[index];
         }
+        */
+
+        public static bool IsUsingTouchpadForControls(int index)
+        {
+            return m_Config.touchOutMode[index] == TouchpadOutMode.Controls;
+        }
+
+        public static TouchpadOutMode[] TouchOutMode = m_Config.touchOutMode;
 
         public static bool IsUsingSAForControls(int index)
         {
@@ -2386,6 +2401,8 @@ namespace DS4Windows
         public bool[] dinputOnly = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
         public bool[] startTouchpadOff = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
         public bool[] useTPforControls = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
+        public TouchpadOutMode[] touchOutMode = new TouchpadOutMode[Global.TEST_PROFILE_ITEM_COUNT] { TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse,
+            TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse };
         public GyroOutMode[] gyroOutMode = new GyroOutMode[Global.TEST_PROFILE_ITEM_COUNT] { GyroOutMode.Controls, GyroOutMode.Controls,
             GyroOutMode.Controls, GyroOutMode.Controls, GyroOutMode.Controls, GyroOutMode.Controls, GyroOutMode.Controls, GyroOutMode.Controls, GyroOutMode.Controls };
         public string[] sATriggers = new string[Global.TEST_PROFILE_ITEM_COUNT] { "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1" };
@@ -2920,7 +2937,8 @@ namespace DS4Windows
                 XmlNode xmlLaunchProgram = m_Xdoc.CreateNode(XmlNodeType.Element, "LaunchProgram", null); xmlLaunchProgram.InnerText = launchProgram[device].ToString(); rootElement.AppendChild(xmlLaunchProgram);
                 XmlNode xmlDinput = m_Xdoc.CreateNode(XmlNodeType.Element, "DinputOnly", null); xmlDinput.InnerText = dinputOnly[device].ToString(); rootElement.AppendChild(xmlDinput);
                 XmlNode xmlStartTouchpadOff = m_Xdoc.CreateNode(XmlNodeType.Element, "StartTouchpadOff", null); xmlStartTouchpadOff.InnerText = startTouchpadOff[device].ToString(); rootElement.AppendChild(xmlStartTouchpadOff);
-                XmlNode xmlUseTPforControls = m_Xdoc.CreateNode(XmlNodeType.Element, "UseTPforControls", null); xmlUseTPforControls.InnerText = useTPforControls[device].ToString(); rootElement.AppendChild(xmlUseTPforControls);
+                //XmlNode xmlUseTPforControls = m_Xdoc.CreateNode(XmlNodeType.Element, "UseTPforControls", null); xmlUseTPforControls.InnerText = useTPforControls[device].ToString(); rootElement.AppendChild(xmlUseTPforControls);
+                XmlNode xmlTouchOutMode = m_Xdoc.CreateNode(XmlNodeType.Element, "TouchpadOutputMode", null); xmlTouchOutMode.InnerText = touchOutMode[device].ToString(); rootElement.AppendChild(xmlTouchOutMode);
                 XmlNode xmlSATriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "SATriggers", null); xmlSATriggers.InnerText = sATriggers[device].ToString(); rootElement.AppendChild(xmlSATriggers);
                 XmlNode xmlSATriggerCond = m_Xdoc.CreateNode(XmlNodeType.Element, "SATriggerCond", null); xmlSATriggerCond.InnerText = SaTriggerCondString(sATriggerCond[device]); rootElement.AppendChild(xmlSATriggerCond);
                 XmlNode xmlSASteeringWheelEmulationAxis = m_Xdoc.CreateNode(XmlNodeType.Element, "SASteeringWheelEmulationAxis", null); xmlSASteeringWheelEmulationAxis.InnerText = sASteeringWheelEmulationAxis[device].ToString("G"); rootElement.AppendChild(xmlSASteeringWheelEmulationAxis);
@@ -3935,8 +3953,18 @@ namespace DS4Windows
                 }
                 catch { startTouchpadOff[device] = false; missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls"); bool.TryParse(Item.InnerText, out useTPforControls[device]); }
-                catch { useTPforControls[device] = false; missingSetting = true; }
+                // Fallback lookup if TouchpadOutMode is not set
+                bool tpForControlsPresent = false;
+                XmlNode xmlUseTPForControlsElement =
+                    m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls");
+                tpForControlsPresent = xmlUseTPForControlsElement != null;
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls");
+                    bool.TryParse(Item.InnerText, out bool temp);
+                    if (temp) touchOutMode[device] = TouchpadOutMode.Controls;
+                }
+                catch { touchOutMode[device] = TouchpadOutMode.Mouse; missingSetting = true; }
 
                 // Fallback lookup if GyroOutMode is not set
                 try
@@ -4116,6 +4144,18 @@ namespace DS4Windows
                 else
                 {
                     missingSetting = true;
+                }
+
+                // Check for TouchpadOutputMode if UseTPforControls is not present in profile
+                if (!tpForControlsPresent)
+                {
+                    try
+                    {
+                        Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TouchpadOutputMode");
+                        string tempMode = Item.InnerText;
+                        Enum.TryParse(tempMode, out touchOutMode[device]);
+                    }
+                    catch { touchOutMode[device] = TouchpadOutMode.Mouse; missingSetting = true; }
                 }
 
                 try
@@ -5608,7 +5648,8 @@ namespace DS4Windows
             launchProgram[device] = string.Empty;
             dinputOnly[device] = false;
             startTouchpadOff[device] = false;
-            useTPforControls[device] = false;
+            //useTPforControls[device] = false;
+            touchOutMode[device] = TouchpadOutMode.Mouse;
             sATriggers[device] = "-1";
             sATriggerCond[device] = true;
             gyroOutMode[device] = GyroOutMode.Controls;

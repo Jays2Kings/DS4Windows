@@ -407,7 +407,7 @@ namespace DS4Windows
         {
             s = dev.getCurrentStateRef();
 
-            if (Global.getUseTPforControls(deviceNum) == false)
+            if (Global.IsUsingTouchpadForControls(deviceNum) == false)
             {
                 if (Global.GetTouchActive(deviceNum))
                 {
@@ -474,7 +474,7 @@ namespace DS4Windows
 
         public virtual void touchesBegan(DS4Touchpad sender, TouchpadEventArgs arg)
         {
-            if (!Global.UseTPforControls[deviceNum])
+            if (!Global.IsUsingTouchpadForControls(deviceNum))
             {
                 Array.Clear(trackballXBuffer, 0, TRACKBALL_BUFFER_LEN);
                 Array.Clear(trackballYBuffer, 0, TRACKBALL_BUFFER_LEN);
@@ -512,7 +512,7 @@ namespace DS4Windows
             swipeUp = swipeDown = swipeLeft = swipeRight = false;
             swipeUpB = swipeDownB = swipeLeftB = swipeRightB = 0;
             byte tapSensitivity = Global.getTapSensitivity(deviceNum);
-            if (tapSensitivity != 0 && !Global.getUseTPforControls(deviceNum))
+            if (tapSensitivity != 0 && !Global.IsUsingTouchpadForControls(deviceNum))
             {
                 if (secondtouchbegin)
                 {
@@ -538,7 +538,7 @@ namespace DS4Windows
             }
             else
             {
-                if (Global.getUseTPforControls(deviceNum) == false)
+                if (Global.IsUsingTouchpadForControls(deviceNum) == false)
                 {
                     int[] disArray = Global.getTouchDisInvertTriggers(deviceNum);
                     tempBool = true;
@@ -643,7 +643,7 @@ namespace DS4Windows
 
             if (trackballActive)
             {
-                if (Global.getUseTPforControls(deviceNum) == false)
+                if (Global.IsUsingTouchpadForControls(deviceNum) == false)
                 {
                     int[] disArray = Global.getTouchDisInvertTriggers(deviceNum);
                     tempBool = true;
@@ -729,7 +729,7 @@ namespace DS4Windows
             if (Global.GetDS4Action(deviceNum, DS4Controls.TouchMulti, false) == null && multiDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Right);
 
-            if (!Global.UseTPforControls[deviceNum])
+            if (!Global.IsUsingTouchpadForControls(deviceNum))
             {
                 if (tappedOnce)
                 {

@@ -1185,14 +1185,31 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             get
             {
-                int result = !Global.IsUsingTouchpadForControls(device) ? 0 : 1;
-                return result;
+                int index = 0;
+                switch (Global.TouchOutMode[device])
+                {
+                    case TouchpadOutMode.Mouse:
+                        index = 0; break;
+                    case TouchpadOutMode.Controls:
+                        index = 1; break;
+                    default: break;
+                }
+                return index;
             }
             set
             {
-                int temp = Global.IsUsingTouchpadForControls(device) ? 1 : 0;
-                if (temp == value) return;
-                Global.TouchOutMode[device] = value == 0 ? TouchpadOutMode.Mouse : TouchpadOutMode.Controls;
+                TouchpadOutMode temp = TouchpadOutMode.Mouse;
+                switch (value)
+                {
+                    case 0: break;
+                    case 1:
+                        temp = TouchpadOutMode.Controls; break;
+                    default: break;
+                }
+
+                TouchpadOutMode current = Global.TouchOutMode[device];
+                if (temp == current) return;
+                Global.TouchOutMode[device] = temp;
                 TouchpadOutputIndexChanged?.Invoke(this, EventArgs.Empty);
             }
         }

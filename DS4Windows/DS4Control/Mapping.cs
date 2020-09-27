@@ -227,6 +227,7 @@ namespace DS4Windows
         static Dictionary<string, Task>[] macroTaskQueue = new Dictionary<string, Task>[Global.MAX_DS4_CONTROLLER_COUNT] { new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>() };
 
         //actions
+        public static bool[] extrasRumbleActive = new bool[Global.MAX_DS4_CONTROLLER_COUNT];
         public static int[] fadetimer = new int[Global.MAX_DS4_CONTROLLER_COUNT] { 0, 0, 0, 0, 0, 0, 0, 0 };
         public static int[] prevFadetimer = new int[Global.MAX_DS4_CONTROLLER_COUNT] { 0, 0, 0, 0, 0, 0, 0, 0 };
         public static DS4Color[] lastColor = new DS4Color[Global.MAX_DS4_CONTROLLER_COUNT];
@@ -1628,7 +1629,10 @@ namespace DS4Windows
                         try
                         {
                             if (!(extras[0] == extras[1] && extras[1] == 0))
+                            {
                                 ctrl.setRumble((byte)extras[0], (byte)extras[1], device);
+                                extrasRumbleActive[device] = true;
+                            }
 
                             if (extras[2] == 1)
                             {
@@ -1661,7 +1665,12 @@ namespace DS4Windows
                             tempMouseInfo.tempButtonSensitivity = -1;
                         }
 
-                        ctrl.setRumble(0, 0, device);
+                        if (extrasRumbleActive[device])
+                        {
+                            ctrl.setRumble(0, 0, device);
+                            extrasRumbleActive[device] = false;
+                        }
+
                         held[device] = false;
                         usingExtra = DS4Controls.None;
                     }

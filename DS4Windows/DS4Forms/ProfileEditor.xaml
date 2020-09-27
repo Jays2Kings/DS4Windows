@@ -72,6 +72,34 @@
 
                         <Image Source="/DS4Windows;component/Resources/DS4 Config.png" Width="440" Height="220" Stretch="Uniform"/>
 
+                        <Button x:Name="ds4LightbarColorBtn" Width="138" Height="12" Canvas.Left="150" Canvas.Top="28"
+                                Background="{x:Null}" BorderBrush="{x:Null}" MouseEnter="Ds4LightbarColorBtn_MouseEnter" MouseLeave="Ds4LightbarColorBtn_MouseLeave" Click="Ds4LightbarColorBtn_Click">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="{x:Null}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Rectangle x:Name="lightbarRect" Fill="{Binding LightbarBrush,FallbackValue=Green}" Width="{Binding Path=Width, ElementName=ds4LightbarColorBtn}"
+                                       Height="{Binding Path=Height, ElementName=ds4LightbarColorBtn}">
+                                <Rectangle.OpacityMask>
+                                    <ImageBrush ImageSource="/DS4Windows;component/Resources/DS4 lightbar.png" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </Button>
+
                         <Image x:Name="picBoxHover" IsEnabled="False" Source="/DS4Windows;component/Resources/DS4-Config_RS.png" Height="48" Width="48" Canvas.Left="447" Canvas.Top="5" />
                         <Image x:Name="picBoxHover2" IsEnabled="False" Source="/DS4Windows;component/Resources/DS4-Config_RS.png" Height="48" Width="48" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" />
 
@@ -131,34 +159,6 @@
                                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                             </Label.Foreground>
                         </Label>
-
-                        <Button x:Name="ds4LightbarColorBtn" Width="138" Height="12" Canvas.Left="150" Canvas.Top="28"
-                                Background="{x:Null}" BorderBrush="{x:Null}" MouseEnter="Ds4LightbarColorBtn_MouseEnter" MouseLeave="Ds4LightbarColorBtn_MouseLeave" Click="Ds4LightbarColorBtn_Click">
-                            <Button.Style>
-                                <Style TargetType="{x:Type Button}">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type Button}">
-                                                <Border Background="{TemplateBinding Background}">
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="{x:Null}"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                            <Rectangle x:Name="lightbarRect" Fill="{Binding LightbarBrush,FallbackValue=Green}" Width="{Binding Path=Width, ElementName=ds4LightbarColorBtn}"
-                                       Height="{Binding Path=Height, ElementName=ds4LightbarColorBtn}">
-                                <Rectangle.OpacityMask>
-                                    <ImageBrush ImageSource="/DS4Windows;component/Resources/DS4 lightbar.png" />
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                        </Button>
                     </Canvas>
 
                     <ListBox x:Name="mappingListBox" DockPanel.Dock="Bottom" Height="200" ItemsSource="{Binding Mappings}"

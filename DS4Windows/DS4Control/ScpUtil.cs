@@ -5605,19 +5605,6 @@ namespace DS4Windows
             lightInfo.maxRainbowSat = 1.0;
             lightInfo.ledAsBattery = false;
 
-            /*m_Leds[device] = new DS4Color(tempColor);
-            m_ChargingLeds[device] = new DS4Color(Color.Black);
-            m_FlashLeds[device] = new DS4Color(Color.Black);
-            //useCustomLeds[device] = false;
-            //m_CustomLeds[device] = new DS4Color(Color.Blue);
-
-            chargingType[device] = 0;
-            rainbow[device] = 0;
-            maxRainbowSat[device] = 1.0;
-            flashAt[device] = 0;
-            ledAsBattery[device] = false;
-            flashType[device] = 0;
-            */
             launchProgram[device] = string.Empty;
             dinputOnly[device] = false;
             startTouchpadOff[device] = false;
@@ -5627,12 +5614,6 @@ namespace DS4Windows
             gyroOutMode[device] = GyroOutMode.Controls;
             sAMouseStickTriggers[device] = "-1";
             sAMouseStickTriggerCond[device] = true;
-            /*gyroMStickInfo[device].deadZone = 30; gyroMStickInfo[device].maxZone = 830;
-            gyroMStickInfo[device].antiDeadX = 0.4; gyroMStickInfo[device].antiDeadY = 0.4;
-            gyroMStickInfo[device].inverted = 0; gyroMStickInfo[device].vertScale = 100;
-            gyroMStickInfo[device].maxOutputEnabled = false; gyroMStickInfo[device].maxOutput = 100.0;
-            gyroMStickInfo[device].useSmoothing = false; gyroMStickInfo[device].smoothWeight = 0.5;
-            */
 
             gyroMStickInfo[device].Reset();
 
@@ -5648,8 +5629,7 @@ namespace DS4Windows
             gyroInvert[device] = 0;
             gyroTriggerTurns[device] = true;
             gyroMouseInfo[device].Reset();
-            //gyroSmoothing[device] = false;
-            //gyroSmoothWeight[device] = 0.5;
+
             gyroMouseHorizontalAxis[device] = 0;
             gyroMouseToggle[device] = false;
             squStickInfo[device].lsMode = false;

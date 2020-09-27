@@ -2717,21 +2717,21 @@ namespace DS4Windows
         public void SetGyroMouseDZ(int index, int value, ControlService control)
         {
             gyroMouseDZ[index] = value;
-            if (index < 4 && control.touchPad[index] != null)
+            if (index < ControlService.CURRENT_DS4_CONTROLLER_LIMIT && control.touchPad[index] != null)
                 control.touchPad[index].CursorGyroDead = value;
         }
 
         public void SetGyroMouseToggle(int index, bool value, ControlService control)
         {
             gyroMouseToggle[index] = value;
-            if (index < 4 && control.touchPad[index] != null)
+            if (index < ControlService.CURRENT_DS4_CONTROLLER_LIMIT && control.touchPad[index] != null)
                 control.touchPad[index].ToggleGyroMouse = value;
         }
 
         public void SetGyroMouseStickToggle(int index, bool value, ControlService control)
         {
             gyroMouseStickToggle[index] = value;
-            if (index < 4 && control.touchPad[index] != null)
+            if (index < ControlService.CURRENT_DS4_CONTROLLER_LIMIT && control.touchPad[index] != null)
                 control.touchPad[index].ToggleGyroMouse = value;
         }
 
@@ -5963,11 +5963,11 @@ namespace DS4Windows
             setting = getDS4CSetting(device, DS4Controls.L1);
             setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.Q), "", DS4KeyType.None);
             setting = getDS4CSetting(device, DS4Controls.L2);
-            setting.UpdateSettings(false, X360Controls.MouseRight, "", DS4KeyType.None);
+            setting.UpdateSettings(false, X360Controls.RightMouse, "", DS4KeyType.None);
             setting = getDS4CSetting(device, DS4Controls.R1);
             setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.R), "", DS4KeyType.None);
             setting = getDS4CSetting(device, DS4Controls.R2);
-            setting.UpdateSettings(false, X360Controls.MouseLeft, "", DS4KeyType.None);
+            setting.UpdateSettings(false, X360Controls.LeftMouse, "", DS4KeyType.None);
 
             setting = getDS4CSetting(device, DS4Controls.Share);
             setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.Tab), "", DS4KeyType.None);
@@ -6069,11 +6069,11 @@ namespace DS4Windows
             setting = getDS4CSetting(device, DS4Controls.L1);
             setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.Q), "", DS4KeyType.None);
             setting = getDS4CSetting(device, DS4Controls.L2);
-            setting.UpdateSettings(false, X360Controls.MouseRight, "", DS4KeyType.None);
+            setting.UpdateSettings(false, X360Controls.RightMouse, "", DS4KeyType.None);
             setting = getDS4CSetting(device, DS4Controls.R1);
             setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.R), "", DS4KeyType.None);
             setting = getDS4CSetting(device, DS4Controls.R2);
-            setting.UpdateSettings(false, X360Controls.MouseLeft, "", DS4KeyType.None);
+            setting.UpdateSettings(false, X360Controls.LeftMouse, "", DS4KeyType.None);
 
             setting = getDS4CSetting(device, DS4Controls.Share);
             setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.Tab), "", DS4KeyType.None);

@@ -81,7 +81,8 @@ namespace DS4WinWPF.DS4Forms
             autoProfVM.SearchFinished += AutoProfVM_SearchFinished;
             autoProfVM.CurrentItemChange += AutoProfVM_CurrentItemChange;
 
-            autoProfilesGrid.DataContext = autoProfVM;
+            //autoProfilesGrid.DataContext = autoProfVM;
+            outerEditControlsPanel.DataContext = autoProfVM;
             this.profileList = profileList;
 
             sidebarScrollViewer.ScrollToTop();

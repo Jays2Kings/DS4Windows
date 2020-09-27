@@ -42,8 +42,7 @@ namespace DS4Windows
         public bool RequiresMigration()
         {
             bool result = false;
-            // Skip configFileVersion == 1 and pass profile XML as is
-            if (configFileVersion > 1 && configFileVersion < Global.CONFIG_VERSION)
+            if (configFileVersion >= 1 && configFileVersion < Global.CONFIG_VERSION)
             {
                 result = true;
             }

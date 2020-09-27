@@ -1743,7 +1743,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public ProfileSettingsViewModel(int device)
         {
             this.device = device;
-            funcDevNum = device < 4 ? device : 0;
+            funcDevNum = device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT ? device : 0;
             tempControllerIndex = ControllerTypeIndex;
             Global.outDevTypeTemp[device] = OutContType.X360;
             tempBtPollRate = Global.BTPollRate[device];

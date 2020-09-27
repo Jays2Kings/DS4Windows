@@ -1,9 +1,28 @@
 {
-  "latest_version": "2.1.13",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 13},
-  "updated_at": "2020-09-15T01:44:48+0000",
+  "latest_version": "2.1.14",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 14},
+  "updated_at": "2020-09-27T02:29:04+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.14",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 14},
+        "base_header": "Version 2.1.14",
+        "release_date": "2020-09-27T02:29:04+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.14",
+            "log_text": ["* More max controller 4 value changes to use Global.MAX_DS4_CONTROLLER_COUNT parameter. Contribution by **mika-n**",
+              "* Corrected bindings for AutoProfiles controls",
+              "* Fixed trigger bindings in KB+M presets",
+              "* No longer skip profile migration for version 1 profiles (Jays2Kings)"],
+            "editor": "ryochan7",
+            "editors_note": ["Hopefully 8 Controller issues are done"],
+            "updated_at": "2020-09-27T02:29:04+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.13",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 13},

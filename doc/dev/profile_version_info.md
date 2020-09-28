@@ -7,6 +7,13 @@ used to write out a profile. Some older profiles did not contain the
 **config_version** attribute so tags used in the profile might have to be examined
 to determine an approximate version number corresponding to the schema version.
 
+### 5 (DS4Windows 2.1.15)
+
+Replace old **UseTPforControls** option with a new **TouchpadOutputMode**
+option. Will likely be used in the future to allow for more than two
+modes for the Touchpad. Adding absolute mouse pointer support is one
+idea
+
 ### 4 (DS4Windows 2.1.6)
 
 Replace **GyroSmoothing** and **GyroSmoothingWeight** and bundle new tags

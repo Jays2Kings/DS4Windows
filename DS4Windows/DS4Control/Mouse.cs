@@ -741,7 +741,7 @@ namespace DS4Windows
             if (Global.GetDS4Action(deviceNum, DS4Controls.TouchMulti, false) == null && multiDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Right);
 
-            if (!Global.IsUsingTouchpadForControls(deviceNum))
+            if (Global.TouchOutMode[deviceNum] == TouchpadOutMode.Mouse)
             {
                 if (tappedOnce)
                 {

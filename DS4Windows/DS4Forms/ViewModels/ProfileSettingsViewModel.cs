@@ -1192,6 +1192,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         index = 0; break;
                     case TouchpadOutMode.Controls:
                         index = 1; break;
+                    case TouchpadOutMode.AbsoluteMouse:
+                        index = 2; break;
                     default: break;
                 }
                 return index;
@@ -1204,6 +1206,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     case 0: break;
                     case 1:
                         temp = TouchpadOutMode.Controls; break;
+                    case 2:
+                        temp = TouchpadOutMode.AbsoluteMouse; break;
                     default: break;
                 }
 
@@ -1214,19 +1218,6 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
         public event EventHandler TouchpadOutputIndexChanged;
-
-        public bool UseTouchControls
-        {
-            get => Global.IsUsingTouchpadForControls(device);
-            set
-            {
-                bool temp = Global.IsUsingTouchpadForControls(device);
-                if (temp == value) return;
-                Global.TouchOutMode[device] = TouchpadOutMode.Controls;
-                UseTouchControlsChanged?.Invoke(this, EventArgs.Empty);
-            }
-        }
-        public event EventHandler UseTouchControlsChanged;
 
         public bool TouchSenExists
         {

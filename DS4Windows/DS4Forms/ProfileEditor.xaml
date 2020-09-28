@@ -652,6 +652,7 @@
                         <ComboBox x:Name="touchpadOutModeCombo" Width="160" SelectedIndex="{Binding TouchpadOutputIndex, FallbackValue='0'}" VerticalContentAlignment="Center" Margin="10,0,0,0">
                             <ComboBoxItem Content="Mouse" />
                             <ComboBoxItem Content="Controls" />
+                            <ComboBoxItem Content="Absolute Mouse" />
                         </ComboBox>
                     </StackPanel>
 
@@ -766,6 +767,9 @@
                                     <Label x:Name="swipeRightLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
                                 </StackPanel>
                             </StackPanel>
+                        </TabItem>
+                        <TabItem Header="Absolute Mouse" Visibility="Collapsed">
+                            
                         </TabItem>
                     </TabControl>
                 </StackPanel>

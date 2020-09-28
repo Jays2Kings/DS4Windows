@@ -1158,8 +1158,8 @@ namespace DS4Windows
                             cState.Touch1Finger = cState.Touch1 || cState.Touch2; // >= 1 touch detected
                             cState.Touch2Fingers = cState.Touch1 && cState.Touch2; // 2 touches detected
                             int touchX = (((inputReport[2 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0xF) << 8) | inputReport[1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset]);
-                            cState.TouchLeft = touchX >= 1920 * 2 / 5 ? false : true;
-                            cState.TouchRight = touchX < 1920 * 2 / 5 ? false : true;
+                            cState.TouchLeft = touchX >= DS4Touchpad.RESOLUTION_X_MAX * 2 / 5 ? false : true;
+                            cState.TouchRight = touchX < DS4Touchpad.RESOLUTION_X_MAX * 2 / 5 ? false : true;
                             // Even when idling there is still a touch packet indicating no touch 1 or 2
                             if (synced)
                             {

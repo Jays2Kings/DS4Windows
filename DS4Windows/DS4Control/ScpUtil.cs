@@ -39,6 +39,7 @@ namespace DS4Windows
         None,
         Mouse,
         Controls,
+        AbsoluteMouse,
     }
 
     public enum TrayIconChoice : uint

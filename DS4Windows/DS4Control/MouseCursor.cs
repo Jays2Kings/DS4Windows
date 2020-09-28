@@ -267,6 +267,29 @@ namespace DS4Windows
             TouchMoveCursor(deltaX, deltaY, disableInvert);
         }
 
+        public void TouchesMovedAbsolute(TouchpadEventArgs arg)
+        {
+            int touchesLen = arg.touches.Length;
+            if (touchesLen != 1)
+                return;
+
+            int currentX = 0, currentY = 0;
+            if (touchesLen > 1)
+            {
+                currentX = arg.touches[1].hwX;
+                currentY = arg.touches[1].hwY;
+            }
+            else
+            {
+                currentX = arg.touches[0].hwX;
+                currentY = arg.touches[0].hwY;
+            }
+
+            double absX = currentX / (double)DS4Touchpad.RESOLUTION_X_MAX;
+            double absY = currentY / (double)DS4Touchpad.RESOLUTION_Y_MAX;
+            InputMethods.MoveAbsoluteMouse(absX, absY);
+        }
+
         public void TouchMoveCursor(int dx, int dy, bool disableInvert = false)
         {
             double tempAngle = Math.Atan2(-dy, dx);

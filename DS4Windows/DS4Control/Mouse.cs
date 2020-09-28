@@ -408,7 +408,8 @@ namespace DS4Windows
         {
             s = dev.getCurrentStateRef();
 
-            if (Global.IsUsingTouchpadForControls(deviceNum) == false)
+            TouchpadOutMode tempMode = Global.TouchOutMode[deviceNum];
+            if (tempMode == TouchpadOutMode.Mouse)
             {
                 if (Global.GetTouchActive(deviceNum))
                 {
@@ -446,7 +447,7 @@ namespace DS4Windows
                     }
                 }
             }
-            else
+            else if (tempMode == TouchpadOutMode.Controls)
             {
                 if (!(swipeUp || swipeDown || swipeLeft || swipeRight) && arg.touches.Length == 1)
                 {
@@ -460,6 +461,13 @@ namespace DS4Windows
                 swipeDownB = (byte)Math.Min(255, Math.Max(0, (arg.touches[0].hwY - firstTouch.hwY) * 1.5f));
                 swipeLeftB = (byte)Math.Min(255, Math.Max(0, firstTouch.hwX - arg.touches[0].hwX));
                 swipeRightB = (byte)Math.Min(255, Math.Max(0, arg.touches[0].hwX - firstTouch.hwX));
+            }
+            else if (tempMode == TouchpadOutMode.AbsoluteMouse)
+            {
+                if (Global.GetTouchActive(deviceNum))
+                {
+                    cursor.TouchesMovedAbsolute(arg);
+                }
             }
 
             if (Math.Abs(firstTouch.hwY - arg.touches[0].hwY) < 50 && arg.touches.Length == 2)
@@ -475,7 +483,7 @@ namespace DS4Windows
 
         public virtual void touchesBegan(DS4Touchpad sender, TouchpadEventArgs arg)
         {
-            if (!Global.IsUsingTouchpadForControls(deviceNum))
+            if (Global.TouchOutMode[deviceNum] == TouchpadOutMode.Mouse)
             {
                 Array.Clear(trackballXBuffer, 0, TRACKBALL_BUFFER_LEN);
                 Array.Clear(trackballYBuffer, 0, TRACKBALL_BUFFER_LEN);
@@ -513,7 +521,7 @@ namespace DS4Windows
             swipeUp = swipeDown = swipeLeft = swipeRight = false;
             swipeUpB = swipeDownB = swipeLeftB = swipeRightB = 0;
             byte tapSensitivity = Global.getTapSensitivity(deviceNum);
-            if (tapSensitivity != 0 && !Global.IsUsingTouchpadForControls(deviceNum))
+            if (tapSensitivity != 0 && Global.TouchOutMode[deviceNum] == TouchpadOutMode.Mouse)
             {
                 if (secondtouchbegin)
                 {
@@ -539,7 +547,7 @@ namespace DS4Windows
             }
             else
             {
-                if (Global.IsUsingTouchpadForControls(deviceNum) == false)
+                if (Global.TouchOutMode[deviceNum] == TouchpadOutMode.Mouse)
                 {
                     int[] disArray = Global.getTouchDisInvertTriggers(deviceNum);
                     tempBool = true;
@@ -644,7 +652,7 @@ namespace DS4Windows
 
             if (trackballActive)
             {
-                if (Global.IsUsingTouchpadForControls(deviceNum) == false)
+                if (Global.TouchOutMode[deviceNum] == TouchpadOutMode.Mouse)
                 {
                     int[] disArray = Global.getTouchDisInvertTriggers(deviceNum);
                     tempBool = true;

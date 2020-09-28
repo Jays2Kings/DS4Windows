@@ -769,7 +769,16 @@
                             </StackPanel>
                         </TabItem>
                         <TabItem Header="Absolute Mouse" Visibility="Collapsed">
-                            
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Max Zone X:" />
+                                    <xctk:IntegerUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="0" Maximum="100" Value="{Binding TouchAbsMouseMaxZoneX}" Margin="8,0,0,0" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Max Zone Y:" />
+                                    <xctk:IntegerUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="0" Maximum="100" Value="{Binding TouchAbsMouseMaxZoneY}" Margin="8,0,0,0" />
+                                </StackPanel>
+                            </StackPanel>
                         </TabItem>
                     </TabControl>
                 </StackPanel>

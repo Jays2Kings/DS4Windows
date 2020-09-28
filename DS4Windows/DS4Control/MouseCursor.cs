@@ -285,8 +285,23 @@ namespace DS4Windows
                 currentY = arg.touches[0].hwY;
             }
 
-            double absX = currentX / (double)DS4Touchpad.RESOLUTION_X_MAX;
-            double absY = currentY / (double)DS4Touchpad.RESOLUTION_Y_MAX;
+            TouchpadAbsMouseSettings absSettings = Global.TouchAbsMouse[deviceNumber];
+
+            int minX = (int)(DS4Touchpad.RES_HALFED_X - (absSettings.maxZoneX * 0.01 * DS4Touchpad.RES_HALFED_X));
+            int minY = (int)(DS4Touchpad.RES_HALFED_Y - (absSettings.maxZoneY * 0.01 * DS4Touchpad.RES_HALFED_Y));
+            int maxX = (int)(DS4Touchpad.RES_HALFED_X + (absSettings.maxZoneX * 0.01 * DS4Touchpad.RES_HALFED_X));
+            int maxY = (int)(DS4Touchpad.RES_HALFED_Y + (absSettings.maxZoneY * 0.01 * DS4Touchpad.RES_HALFED_Y));
+
+            double mX = (DS4Touchpad.RESOLUTION_X_MAX - 0) / (double)(maxX - minX);
+            double bX = minX * mX;
+            double mY = (DS4Touchpad.RESOLUTION_Y_MAX - 0) / (double)(maxY - minY);
+            double bY = minY * mY;
+
+            currentX = currentX > maxX ? maxX : (currentX < minX ? minX : currentX);
+            currentY = currentY > maxY ? maxY : (currentX < minY ? minY : currentY);
+
+            double absX = (currentX * mX - bX) / (double)DS4Touchpad.RESOLUTION_X_MAX;
+            double absY = (currentY * mY - bY) / (double)DS4Touchpad.RESOLUTION_Y_MAX;
             InputMethods.MoveAbsoluteMouse(absX, absY);
         }
 

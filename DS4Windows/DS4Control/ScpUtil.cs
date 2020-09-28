@@ -1803,6 +1803,8 @@ namespace DS4Windows
             return m_Config.trackballFriction[index];
         }
 
+        public static TouchpadAbsMouseSettings[] TouchAbsMouse => m_Config.touchpadAbsMouse;
+
         public static OutContType[] OutContType => m_Config.outputDevType;
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
@@ -2495,6 +2497,11 @@ namespace DS4Windows
 
         public bool[] trackballMode = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
         public double[] trackballFriction = new double[Global.TEST_PROFILE_ITEM_COUNT] { 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0 };
+
+
+        public TouchpadAbsMouseSettings[] touchpadAbsMouse = new TouchpadAbsMouseSettings[Global.TEST_PROFILE_ITEM_COUNT] { new TouchpadAbsMouseSettings(), new TouchpadAbsMouseSettings(), new TouchpadAbsMouseSettings(),
+            new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings() };
+
         // Used to hold the controller type desired in a profile
         public OutContType[] outputDevType = new OutContType[Global.TEST_PROFILE_ITEM_COUNT] { OutContType.X360,
             OutContType.X360, OutContType.X360,
@@ -3028,6 +3035,11 @@ namespace DS4Windows
 
                 XmlNode xmlTrackBallMode = m_Xdoc.CreateNode(XmlNodeType.Element, "TrackballMode", null); xmlTrackBallMode.InnerText = trackballMode[device].ToString(); rootElement.AppendChild(xmlTrackBallMode);
                 XmlNode xmlTrackBallFriction = m_Xdoc.CreateNode(XmlNodeType.Element, "TrackballFriction", null); xmlTrackBallFriction.InnerText = trackballFriction[device].ToString(); rootElement.AppendChild(xmlTrackBallFriction);
+
+                XmlElement xmlTouchAbsMouseGroupEl = m_Xdoc.CreateElement("TouchpadAbsMouseSettings");
+                XmlElement xmlTouchAbsMouseMaxZoneX = m_Xdoc.CreateElement("MaxZoneX"); xmlTouchAbsMouseMaxZoneX.InnerText = touchpadAbsMouse[device].maxZoneX.ToString(); xmlTouchAbsMouseGroupEl.AppendChild(xmlTouchAbsMouseMaxZoneX);
+                XmlElement xmlTouchAbsMouseMaxZoneY = m_Xdoc.CreateElement("MaxZoneY"); xmlTouchAbsMouseMaxZoneY.InnerText = touchpadAbsMouse[device].maxZoneY.ToString(); xmlTouchAbsMouseGroupEl.AppendChild(xmlTouchAbsMouseMaxZoneY);
+                rootElement.AppendChild(xmlTouchAbsMouseGroupEl);
 
                 XmlNode xmlOutContDevice = m_Xdoc.CreateNode(XmlNodeType.Element, "OutputContDevice", null); xmlOutContDevice.InnerText = OutContDeviceString(outputDevType[device]); rootElement.AppendChild(xmlOutContDevice);
 
@@ -4312,6 +4324,35 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TrackballFriction"); double.TryParse(Item.InnerText, out trackballFriction[device]); }
                 catch { trackballFriction[device] = 10.0; missingSetting = true; }
+
+
+                bool touchpadAbsMouseGroup = false;
+                XmlNode touchpadAbsMouseElement =
+                    m_Xdoc.SelectSingleNode("/" + rootname + "/TouchpadAbsMouseSettings");
+                touchpadAbsMouseGroup = touchpadAbsMouseElement != null;
+
+                if (touchpadAbsMouseGroup)
+                {
+                    try
+                    {
+                        Item = touchpadAbsMouseElement.SelectSingleNode("MaxZoneX");
+                        int.TryParse(Item.InnerText, out int temp);
+                        touchpadAbsMouse[device].maxZoneX = temp;
+                    }
+                    catch { touchpadAbsMouse[device].maxZoneX = TouchpadAbsMouseSettings.DEFAULT_MAXZONE_X; missingSetting = true; }
+
+                    try
+                    {
+                        Item = touchpadAbsMouseElement.SelectSingleNode("MaxZoneY");
+                        int.TryParse(Item.InnerText, out int temp);
+                        touchpadAbsMouse[device].maxZoneY = temp;
+                    }
+                    catch { touchpadAbsMouse[device].maxZoneY = TouchpadAbsMouseSettings.DEFAULT_MAXZONE_Y; missingSetting = true; }
+                }
+                else
+                {
+                    missingSetting = true;
+                }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/OutputContDevice"); outputDevType[device] = OutContDeviceId(Item.InnerText); }
                 catch { outputDevType[device] = OutContType.X360; missingSetting = true; }
@@ -5676,6 +5717,7 @@ namespace DS4Windows
             setSZOutCurveMode(device, 0);
             trackballMode[device] = false;
             trackballFriction[device] = 10.0;
+            touchpadAbsMouse[device].Reset();
             outputDevType[device] = OutContType.X360;
             ds4Mapping = false;
         }

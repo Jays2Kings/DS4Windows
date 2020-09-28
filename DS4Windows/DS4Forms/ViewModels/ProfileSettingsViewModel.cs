@@ -1358,6 +1358,27 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.TrackballFriction[device] = value;
         }
 
+        public int TouchAbsMouseMaxZoneX
+        {
+            get => Global.TouchAbsMouse[device].maxZoneX;
+            set
+            {
+                int temp = Global.TouchAbsMouse[device].maxZoneX;
+                if (temp == value) return;
+                Global.TouchAbsMouse[device].maxZoneX = value;
+            }
+        }
+
+        public int TouchAbsMouseMaxZoneY
+        {
+            get => Global.TouchAbsMouse[device].maxZoneY;
+            set
+            {
+                int temp = Global.TouchAbsMouse[device].maxZoneY;
+                if (temp == value) return;
+                Global.TouchAbsMouse[device].maxZoneY = value;
+            }
+        }
 
         public bool GyroMouseTurns
         {

@@ -148,7 +148,7 @@ namespace DS4Windows
 
             if (gyroSmooth)
             {
-                if (tempInfo.useOneEuroSmooth)
+                if (tempInfo.smoothingMethod == GyroMouseInfo.SmoothingMethod.OneEuro)
                 {
                     double currentRate = 1.0 / arg.sixAxis.elapsed;
                     xMotion = filterPair.axis1Filter.Filter(xMotion, currentRate);
@@ -217,7 +217,7 @@ namespace DS4Windows
             smoothBufferTail = iIndex + 1;
 
             GyroMouseInfo tempInfo = Global.GyroMouseInfo[deviceNumber];
-            if (tempInfo.useOneEuroSmooth)
+            if (tempInfo.smoothingMethod == GyroMouseInfo.SmoothingMethod.OneEuro)
             {
                 double currentRate = 1.0 / arg.sixAxis.elapsed;
                 filterPair.axis1Filter.Filter(0.0, currentRate);

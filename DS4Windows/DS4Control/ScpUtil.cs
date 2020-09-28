@@ -5785,7 +5785,7 @@ namespace DS4Windows
             sATriggerCond[device] = true;
             gyroTriggerTurns[device] = false;
             gyroMouseInfo[device].enableSmoothing = true;
-            gyroMouseInfo[device].useOneEuroSmooth = true;
+            gyroMouseInfo[device].smoothingMethod = GyroMouseInfo.SmoothingMethod.OneEuro;
 
             StickDeadZoneInfo rsInfo = rsModInfo[device];
             rsInfo.deadZone = (int)(0.10 * 127);
@@ -5986,7 +5986,7 @@ namespace DS4Windows
             sATriggerCond[device] = true;
             gyroTriggerTurns[device] = false;
             gyroMouseInfo[device].enableSmoothing = true;
-            gyroMouseInfo[device].useOneEuroSmooth = true;
+            gyroMouseInfo[device].smoothingMethod = GyroMouseInfo.SmoothingMethod.OneEuro;
 
             // Flag to unplug virtual controller
             dinputOnly[device] = true;

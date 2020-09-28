@@ -1460,11 +1460,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 {
                     case 0:
                         tempInfo.ResetSmoothingMethods();
-                        tempInfo.useOneEuroSmooth = true;
+                        tempInfo.smoothingMethod = GyroMouseInfo.SmoothingMethod.OneEuro;
                         break;
                     case 1:
                         tempInfo.ResetSmoothingMethods();
-                        tempInfo.useWeightedAverageSmooth = true;
+                        tempInfo.smoothingMethod = GyroMouseInfo.SmoothingMethod.WeightedAverage;
                         break;
                     default:
                         break;
@@ -1477,13 +1477,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public Visibility GyroMouseWeightAvgPanelVisibility
         {
-            get => Global.GyroMouseInfo[device].useWeightedAverageSmooth ? Visibility.Visible : Visibility.Collapsed;
+            get => Global.GyroMouseInfo[device].smoothingMethod == GyroMouseInfo.SmoothingMethod.WeightedAverage ? Visibility.Visible : Visibility.Collapsed;
         }
         public event EventHandler GyroMouseWeightAvgPanelVisibilityChanged;
 
         public Visibility GyroMouseOneEuroPanelVisibility
         {
-            get => Global.GyroMouseInfo[device].useOneEuroSmooth ? Visibility.Visible : Visibility.Collapsed;
+            get => Global.GyroMouseInfo[device].smoothingMethod == GyroMouseInfo.SmoothingMethod.OneEuro ? Visibility.Visible : Visibility.Collapsed;
         }
         public event EventHandler GyroMouseOneEuroPanelVisibilityChanged;
 
@@ -1788,11 +1788,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             int result = 0;
             GyroMouseInfo tempInfo = Global.GyroMouseInfo[device];
-            if (tempInfo.useOneEuroSmooth)
+            if (tempInfo.smoothingMethod == GyroMouseInfo.SmoothingMethod.OneEuro)
             {
                 result = 0;
             }
-            else if (tempInfo.useWeightedAverageSmooth)
+            else if (tempInfo.smoothingMethod == GyroMouseInfo.SmoothingMethod.WeightedAverage)
             {
                 result = 1;
             }

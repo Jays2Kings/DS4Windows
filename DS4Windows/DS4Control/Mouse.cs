@@ -470,6 +470,7 @@ namespace DS4Windows
                 }
             }
 
+            // Slide flags needed for possible profile switching from Touchpad swipes
             if (Math.Abs(firstTouch.hwY - arg.touches[0].hwY) < 50 && arg.touches.Length == 2)
             {
                 if (arg.touches[0].hwX - firstTouch.hwX > 200 && !slideleft)
@@ -483,7 +484,9 @@ namespace DS4Windows
 
         public virtual void touchesBegan(DS4Touchpad sender, TouchpadEventArgs arg)
         {
-            if (Global.TouchOutMode[deviceNum] == TouchpadOutMode.Mouse)
+            TouchpadOutMode tempMode = Global.TouchOutMode[deviceNum];
+            bool mouseMode = tempMode == TouchpadOutMode.Mouse;
+            if (mouseMode)
             {
                 Array.Clear(trackballXBuffer, 0, TRACKBALL_BUFFER_LEN);
                 Array.Clear(trackballYBuffer, 0, TRACKBALL_BUFFER_LEN);
@@ -503,7 +506,7 @@ namespace DS4Windows
             firstTouch.populate(arg.touches[0].hwX, arg.touches[0].hwY, arg.touches[0].touchID,
                 arg.touches[0].previousTouch);
 
-            if (Global.getDoubleTap(deviceNum))
+            if (mouseMode && Global.getDoubleTap(deviceNum))
             {
                 DateTime test = arg.timeStamp;
                 if (test <= (firstTap + TimeSpan.FromMilliseconds((double)Global.TapSensitivity[deviceNum] * 1.5)) && !arg.touchButtonPressed)

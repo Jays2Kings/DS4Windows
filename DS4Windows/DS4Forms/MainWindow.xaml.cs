@@ -24,6 +24,7 @@ using System.Runtime.InteropServices;
 using DS4WinWPF.DS4Forms.ViewModels;
 using DS4Windows;
 using HttpProgress;
+using DS4WinWPF.Translations;
 
 namespace DS4WinWPF.DS4Forms
 {
@@ -101,6 +102,8 @@ namespace DS4WinWPF.DS4Forms
             WindowStartupLocation = WindowStartupLocation.Manual;
             Left = Global.FormLocationX;
             Top = Global.FormLocationY;
+            noContLb.Content = string.Format(Strings.NoControllersConnected,
+                ControlService.CURRENT_DS4_CONTROLLER_LIMIT);
 
             autoProfileHolder = autoProfControl.AutoProfileHolder;
             autoProfControl.SetupDataContext(profileListHolder);

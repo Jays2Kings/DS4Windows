@@ -421,4 +421,7 @@ Example: whyme_DS4Windows</value>
   <data name="Profiles" xml:space="preserve">
     <value>Profiles</value>
   </data>
+  <data name="NoControllersConnected" xml:space="preserve">
+    <value>No Controllers Connected (Max {0})</value>
+  </data>
 </root>

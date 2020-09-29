@@ -40,7 +40,7 @@
         <TabControl x:Name="mainTabCon" DockPanel.Dock="Top" SelectionChanged="MainTabCon_SelectionChanged">
             <TabItem Header="{lex:Loc Controllers}" IsEnabled="{Binding FullTabsEnabled,Mode=OneWay}">
                 <Grid>
-                    <Label x:Name="noContLb" Visibility="Hidden" Content="No Controllers Connected (Max 4)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                    <Label x:Name="noContLb" Visibility="Hidden" Content="{lex:Loc NoControllersConnected}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
                     <ListView x:Name="controllerLV" ItemsSource="{Binding ControllerCol}" SelectionMode="Single" SelectedIndex="{Binding CurrentIndex, Mode=OneWayToSource}" Margin="0">
                         <ListView.View>
                             <GridView>

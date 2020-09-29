@@ -1346,6 +1346,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
 
+        public double TouchRelMouseRotation
+        {
+            get => Global.TouchRelMouse[device].rotation * 180.0 / Math.PI;
+            set => Global.TouchRelMouse[device].rotation = value * Math.PI / 180.0;
+        }
+
         public bool TouchTrackball
         {
             get => Global.TrackballMode[device];

@@ -312,6 +312,17 @@ namespace DS4Windows
 
         public void TouchMoveCursor(int dx, int dy, bool disableInvert = false)
         {
+            TouchpadRelMouseSettings relMouseSettings = Global.TouchRelMouse[deviceNumber];
+            if (relMouseSettings.rotation != 0.0)
+            {
+                //double rotation = 5.0 * Math.PI / 180.0;
+                double rotation = relMouseSettings.rotation;
+                double sinAngle = Math.Sin(rotation), cosAngle = Math.Cos(rotation);
+                int tempX = dx, tempY = dy;
+                dx = (int)Global.Clamp(-DS4Touchpad.RESOLUTION_X_MAX, tempX * cosAngle - tempY * sinAngle, DS4Touchpad.RESOLUTION_X_MAX);
+                dy = (int)Global.Clamp(-DS4Touchpad.RESOLUTION_Y_MAX, tempX * sinAngle + tempY * cosAngle, DS4Touchpad.RESOLUTION_Y_MAX);
+            }
+
             double tempAngle = Math.Atan2(-dy, dx);
             double normX = Math.Abs(Math.Cos(tempAngle));
             double normY = Math.Abs(Math.Sin(tempAngle));

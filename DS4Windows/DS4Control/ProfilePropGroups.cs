@@ -422,6 +422,20 @@ namespace DS4Windows
         }
     }
 
+
+    public class TouchpadRelMouseSettings
+    {
+        public const double DEFAULT_ANG_DEGREE = 0.0;
+        public const double DEFAULT_ANG_RAD = DEFAULT_ANG_DEGREE * Math.PI / 180.0;
+
+        public double rotation = DEFAULT_ANG_RAD;
+
+        public void Reset()
+        {
+            rotation = DEFAULT_ANG_RAD;
+        }
+    }
+
     public class TouchpadAbsMouseSettings
     {
         public const int DEFAULT_MAXZONE_X = 90;

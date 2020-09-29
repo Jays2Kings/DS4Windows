@@ -1804,6 +1804,7 @@ namespace DS4Windows
         }
 
         public static TouchpadAbsMouseSettings[] TouchAbsMouse => m_Config.touchpadAbsMouse;
+        public static TouchpadRelMouseSettings[] TouchRelMouse => m_Config.touchpadRelMouse;
 
         public static OutContType[] OutContType => m_Config.outputDevType;
         public static string[] LaunchProgram => m_Config.launchProgram;
@@ -2501,6 +2502,8 @@ namespace DS4Windows
 
         public TouchpadAbsMouseSettings[] touchpadAbsMouse = new TouchpadAbsMouseSettings[Global.TEST_PROFILE_ITEM_COUNT] { new TouchpadAbsMouseSettings(), new TouchpadAbsMouseSettings(), new TouchpadAbsMouseSettings(),
             new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings() };
+        public TouchpadRelMouseSettings[] touchpadRelMouse = new TouchpadRelMouseSettings[Global.TEST_PROFILE_ITEM_COUNT] { new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(),
+            new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings() };
 
         // Used to hold the controller type desired in a profile
         public OutContType[] outputDevType = new OutContType[Global.TEST_PROFILE_ITEM_COUNT] { OutContType.X360,
@@ -3035,6 +3038,8 @@ namespace DS4Windows
 
                 XmlNode xmlTrackBallMode = m_Xdoc.CreateNode(XmlNodeType.Element, "TrackballMode", null); xmlTrackBallMode.InnerText = trackballMode[device].ToString(); rootElement.AppendChild(xmlTrackBallMode);
                 XmlNode xmlTrackBallFriction = m_Xdoc.CreateNode(XmlNodeType.Element, "TrackballFriction", null); xmlTrackBallFriction.InnerText = trackballFriction[device].ToString(); rootElement.AppendChild(xmlTrackBallFriction);
+
+                XmlNode xmlTouchRelMouseRotation = m_Xdoc.CreateNode(XmlNodeType.Element, "TouchRelMouseRotation", null); xmlTouchRelMouseRotation.InnerText = Convert.ToInt32(touchpadRelMouse[device].rotation * 180.0 / Math.PI).ToString(); rootElement.AppendChild(xmlTouchRelMouseRotation);
 
                 XmlElement xmlTouchAbsMouseGroupEl = m_Xdoc.CreateElement("TouchpadAbsMouseSettings");
                 XmlElement xmlTouchAbsMouseMaxZoneX = m_Xdoc.CreateElement("MaxZoneX"); xmlTouchAbsMouseMaxZoneX.InnerText = touchpadAbsMouse[device].maxZoneX.ToString(); xmlTouchAbsMouseGroupEl.AppendChild(xmlTouchAbsMouseMaxZoneX);
@@ -4325,6 +4330,15 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TrackballFriction"); double.TryParse(Item.InnerText, out trackballFriction[device]); }
                 catch { trackballFriction[device] = 10.0; missingSetting = true; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TouchRelMouseRotation");
+                    int.TryParse(Item.InnerText, out int temp);
+                    temp = Math.Min(Math.Max(temp, -180), 180);
+                    touchpadRelMouse[device].rotation = temp * Math.PI / 180.0;
+                }
+                catch { touchpadRelMouse[device].rotation = 0.0; missingSetting = true; }
 
 
                 bool touchpadAbsMouseGroup = false;
@@ -5727,6 +5741,7 @@ namespace DS4Windows
             trackballMode[device] = false;
             trackballFriction[device] = 10.0;
             touchpadAbsMouse[device].Reset();
+            touchpadRelMouse[device].Reset();
             outputDevType[device] = OutContType.X360;
             ds4Mapping = false;
         }

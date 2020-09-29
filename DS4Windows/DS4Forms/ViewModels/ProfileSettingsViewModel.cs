@@ -1380,6 +1380,17 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
 
+        public bool TouchAbsMouseSnapCenter
+        {
+            get => Global.TouchAbsMouse[device].snapToCenter;
+            set
+            {
+                bool temp = Global.TouchAbsMouse[device].snapToCenter;
+                if (temp == value) return;
+                Global.TouchAbsMouse[device].snapToCenter = value;
+            }
+        }
+
         public bool GyroMouseTurns
         {
             get => Global.GyroTriggerTurns[device];

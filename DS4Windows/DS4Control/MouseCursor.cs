@@ -305,6 +305,11 @@ namespace DS4Windows
             InputMethods.MoveAbsoluteMouse(absX, absY);
         }
 
+        public void TouchCenterAbsolute()
+        {
+            InputMethods.MoveAbsoluteMouse(0.5, 0.5);
+        }
+
         public void TouchMoveCursor(int dx, int dy, bool disableInvert = false)
         {
             double tempAngle = Math.Atan2(-dy, dx);

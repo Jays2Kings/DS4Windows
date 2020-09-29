@@ -426,14 +426,17 @@ namespace DS4Windows
     {
         public const int DEFAULT_MAXZONE_X = 90;
         public const int DEFAULT_MAXZONE_Y = 90;
+        public const bool DEFAULT_SNAP_CENTER = false;
 
         public int maxZoneX = DEFAULT_MAXZONE_X;
         public int maxZoneY = DEFAULT_MAXZONE_Y;
+        public bool snapToCenter = DEFAULT_SNAP_CENTER;
 
         public void Reset()
         {
             maxZoneX = DEFAULT_MAXZONE_X;
             maxZoneY = DEFAULT_MAXZONE_Y;
+            snapToCenter = DEFAULT_SNAP_CENTER;
         }
     }
 }

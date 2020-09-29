@@ -550,7 +550,8 @@ namespace DS4Windows
             }
             else
             {
-                if (Global.TouchOutMode[deviceNum] == TouchpadOutMode.Mouse)
+                TouchpadOutMode tempMode = Global.TouchOutMode[deviceNum];
+                if (tempMode == TouchpadOutMode.Mouse)
                 {
                     int[] disArray = Global.getTouchDisInvertTriggers(deviceNum);
                     tempBool = true;
@@ -632,6 +633,14 @@ namespace DS4Windows
                         {
                             cursor.TouchMoveCursor(dx, dy, tempBool);
                         }
+                    }
+                }
+                else if (tempMode == TouchpadOutMode.AbsoluteMouse)
+                {
+                    TouchpadAbsMouseSettings absMouseSettings = Global.TouchAbsMouse[deviceNum];
+                    if (Global.GetTouchActive(deviceNum) && absMouseSettings.snapToCenter)
+                    {
+                        cursor.TouchCenterAbsolute();
                     }
                 }
             }

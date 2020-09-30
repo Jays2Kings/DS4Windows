@@ -2461,7 +2461,7 @@ namespace DS4Windows
         public bool downloadLang = true;
         public TrayIconChoice useIconChoice;
         public bool flashWhenLate = true;
-        public int flashWhenLateAt = 20;
+        public int flashWhenLateAt = 30;
         public bool useUDPServ = false;
         public int udpServPort = 26760;
         public string udpServListenAddress = "127.0.0.1"; // 127.0.0.1=IPAddress.Loopback (default), 0.0.0.0=IPAddress.Any as all interfaces, x.x.x.x = Specific ipv4 interface address or hostname

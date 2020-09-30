@@ -427,12 +427,15 @@ namespace DS4Windows
     {
         public const double DEFAULT_ANG_DEGREE = 0.0;
         public const double DEFAULT_ANG_RAD = DEFAULT_ANG_DEGREE * Math.PI / 180.0;
+        public const double DEFAULT_MIN_THRESHOLD = 1.0;
 
         public double rotation = DEFAULT_ANG_RAD;
+        public double minThreshold = DEFAULT_MIN_THRESHOLD;
 
         public void Reset()
         {
             rotation = DEFAULT_ANG_RAD;
+            minThreshold = DEFAULT_MIN_THRESHOLD;
         }
     }
 

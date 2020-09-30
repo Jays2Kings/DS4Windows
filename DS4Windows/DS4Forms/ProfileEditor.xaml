@@ -704,6 +704,11 @@
                                     <TextBlock Text="&#xb0;" FontSize="18" Margin="{StaticResource spaceMargin}" />
                                 </StackPanel>
 
+                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                    <Label Content="Min Threshold" ContentStringFormat="{}{0}:" />
+                                    <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="1.0" Maximum="40.0" Increment="1.0" FormatString="F1" Value="{Binding TouchRelMouseMinThreshold,FallbackValue='1.0'}" Margin="8,0,0,0" />
+                                </StackPanel>
+
                                 <StackPanel Orientation="Horizontal" Height="20" Margin="{StaticResource spaceMargin}">
                                     <CheckBox Content="Trackball" IsChecked="{Binding TouchTrackball}" VerticalAlignment="Center" />
                                     <Label Content="Friction:" Padding="0" Margin="20,0,5,0" VerticalAlignment="Center"/>

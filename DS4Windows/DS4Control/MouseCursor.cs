@@ -361,8 +361,6 @@ namespace DS4Windows
             {
                 xMotion += horizontalRemainder;
             }
-            int xAction = (int)xMotion;
-            horizontalRemainder = xMotion - xAction;
 
             if (yMotion > 0.0 && verticalRemainder > 0.0)
             {
@@ -372,8 +370,34 @@ namespace DS4Windows
             {
                 yMotion += verticalRemainder;
             }
+
+            double distSqu = (xMotion * xMotion) + (yMotion * yMotion);
+            int xAction = (int)xMotion;
             int yAction = (int)yMotion;
-            verticalRemainder = yMotion - yAction;
+
+            if (relMouseSettings.minThreshold == 1.0)
+            {
+                horizontalRemainder = xMotion - xAction;
+                verticalRemainder = yMotion - yAction;
+            }
+            else
+            {
+                //Console.WriteLine("{0} {1}", horizontalRemainder, xAction, distSqu);
+
+                if (distSqu >= (relMouseSettings.minThreshold * relMouseSettings.minThreshold))
+                {
+                    horizontalRemainder = xMotion - xAction;
+                    verticalRemainder = yMotion - yAction;
+                }
+                else
+                {
+                    horizontalRemainder = xMotion;
+                    xAction = 0;
+
+                    verticalRemainder = yMotion;
+                    yAction = 0;
+                }
+            }
 
             if (disableInvert == false)
             {

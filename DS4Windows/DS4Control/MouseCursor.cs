@@ -122,6 +122,10 @@ namespace DS4Windows
             double xMotion = deltaX != 0 ? coefficient * (deltaX * tempDouble)
                 + (normX * (offset * signX)) : 0;
 
+            verticalScale = Global.getGyroSensVerticalScale(deviceNumber) * 0.01;
+            double yMotion = deltaY != 0 ? (coefficient * verticalScale) * (deltaY * tempDouble)
+                + (normY * (offset * signY)) : 0;
+
             int xAction = 0;
             if (xMotion != 0.0)
             {
@@ -131,10 +135,6 @@ namespace DS4Windows
             {
                 hRemainder = 0.0;
             }
-
-            verticalScale = Global.getGyroSensVerticalScale(deviceNumber) * 0.01;
-            double yMotion = deltaY != 0 ? (coefficient * verticalScale) * (deltaY * tempDouble)
-                + (normY * (offset * signY)) : 0;
 
             int yAction = 0;
             if (yMotion != 0.0)
@@ -182,16 +182,31 @@ namespace DS4Windows
             }
 
             hRemainder = vRemainder = 0.0;
-            if (xMotion != 0.0)
-            {
-                xAction = (int)xMotion;
-                hRemainder = xMotion - xAction;
-            }
+            double distSqu = (xMotion * xMotion) + (yMotion * yMotion);
 
-            if (yMotion != 0.0)
+            xAction = (int)xMotion;
+            yAction = (int)yMotion;
+
+            if (tempInfo.minThreshold == 1.0)
             {
-                yAction = (int)yMotion;
+                hRemainder = xMotion - xAction;
                 vRemainder = yMotion - yAction;
+            }
+            else
+            {
+                if (distSqu >= (tempInfo.minThreshold * tempInfo.minThreshold))
+                {
+                    hRemainder = xMotion - xAction;
+                    vRemainder = yMotion - yAction;
+                }
+                else
+                {
+                    hRemainder = xMotion;
+                    xAction = 0;
+
+                    vRemainder = yMotion;
+                    yAction = 0;
+                }
             }
 
             int gyroInvert = Global.getGyroInvert(deviceNumber);

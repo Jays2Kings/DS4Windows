@@ -2978,6 +2978,7 @@ namespace DS4Windows
 
                 XmlNode xmlGyroMouseHAxis = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseHAxis", null); xmlGyroMouseHAxis.InnerText = gyroMouseHorizontalAxis[device].ToString(); rootElement.AppendChild(xmlGyroMouseHAxis);
                 XmlNode xmlGyroMouseDZ = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseDeadZone", null); xmlGyroMouseDZ.InnerText = gyroMouseDZ[device].ToString(); rootElement.AppendChild(xmlGyroMouseDZ);
+                XmlNode xmlGyroMinThreshold = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseMinThreshold", null); xmlGyroMinThreshold.InnerText = gyroMouseInfo[device].minThreshold.ToString(); rootElement.AppendChild(xmlGyroMinThreshold);
                 XmlNode xmlGyroMouseToggle = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseToggle", null); xmlGyroMouseToggle.InnerText = gyroMouseToggle[device].ToString(); rootElement.AppendChild(xmlGyroMouseToggle);
 
                 XmlNode xmlGyroOutMode = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroOutputMode", null); xmlGyroOutMode.InnerText = GetGyroOutModeString(gyroOutMode[device]); rootElement.AppendChild(xmlGyroOutMode);
@@ -4262,6 +4263,15 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseDeadZone"); int.TryParse(Item.InnerText, out int temp);
                     SetGyroMouseDZ(device, temp, control); }
                 catch { SetGyroMouseDZ(device, MouseCursor.GYRO_MOUSE_DEADZONE, control);  missingSetting = true; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseMinThreshold");
+                    double.TryParse(Item.InnerText, out double temp);
+                    temp = Math.Min(Math.Max(temp, 1.0), 40.0);
+                    gyroMouseInfo[device].minThreshold = temp;
+                }
+                catch { gyroMouseInfo[device].minThreshold = GyroMouseInfo.DEFAULT_MIN_THRESHOLD; missingSetting = true; }
 
                 try
                 {

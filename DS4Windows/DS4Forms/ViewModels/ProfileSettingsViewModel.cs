@@ -1438,6 +1438,17 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.GyroMouseHorizontalAxis[device] = value;
         }
 
+        public double GyroMouseMinThreshold
+        {
+            get => Global.GyroMouseInfo[device].minThreshold;
+            set
+            {
+                double temp = Global.GyroMouseInfo[device].minThreshold;
+                if (temp == value) return;
+                Global.GyroMouseInfo[device].minThreshold = value;
+            }
+        }
+
         public bool GyroMouseInvertX
         {
             get => (Global.GyroInvert[device] & 2) == 2;

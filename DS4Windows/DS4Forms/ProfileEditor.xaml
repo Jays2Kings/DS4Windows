@@ -966,6 +966,11 @@
                                                 Value="{Binding GyroMouseDeadZone}" Minimum="0" Maximum="1000" />
                         </StackPanel>
 
+                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                            <Label Content="Min Threshold" ContentStringFormat="{}{0}:" />
+                            <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="1.0" Maximum="40.0" Increment="1.0" FormatString="F1" Value="{Binding GyroMouseMinThreshold,FallbackValue='1.0'}" Margin="8,0,0,0" />
+                        </StackPanel>
+
                         <CheckBox Content="Toggle" IsChecked="{Binding GyroMouseToggle}" Margin="{StaticResource spaceMargin}" />
 
                         <CheckBox Content="Smoothing" IsChecked="{Binding GyroMouseSmooth,FallbackValue='False'}"  Margin="{StaticResource spaceMargin}" />

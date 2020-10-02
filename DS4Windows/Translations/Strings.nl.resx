@@ -320,7 +320,107 @@
   <data name="MoveDown" xml:space="preserve">
     <value>Naar beneden</value>
   </data>
+  <data name="AutoProfPathTip" xml:space="preserve">
+    <value>Process pad. ^ABC = Overeenkomen van de beginstekst (^) | ABC$ = Overeenkomen van de eindtekst ($) | *ABC = Bevat tekstlijn (*)</value>
+  </data>
+  <data name="AutoProfTitleTip" xml:space="preserve">
+    <value>Titelscherm. ^ABC = Overeenkomen van de beginstekst (^) | ABC$ = Overeenkomen van de eindtekst ($) | *ABC = Bevat tekstlijn (*)</value>
+  </data>
   <data name="GamepadTest" xml:space="preserve">
     <value>Gamepad testen</value>
+  </data>
+  <data name="EnableOutputDataToDS4" xml:space="preserve">
+    <value>Enable Output data to DS4</value>
+  </data>
+  <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
+    <value>Geef regelmatig licht- en trildata naar de DS4 gamepad.Doe het vinkje uit als je geen data ontvangt.
+Wijzigen op deze instellingen hebben een effect op de verbindingsnelheid van de controller.</value>
+    <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Toepassen</value>
+  </data>
+  <data name="HidNinja" xml:space="preserve">
+    <value>HidNinja</value>
+  </data>
+  <data name="CustomExeName" xml:space="preserve">
+    <value>Aangepaste Exe Naam</value>
+  </data>
+  <data name="CustomExeNameInfo" xml:space="preserve">
+    <value>Sommige spellen voegen een codeblok toe dat zorgt dat de invoer van de DS4 wordt genegeerd als ze DS4Windows.exe of InputMapper.exe zien op hetzelfde moment. Een omweg voor dit codeblok is om DS4Windows.exe te hernoemen zodat de contoleerder faalt en het normaal werkt. Je kan een aangepaste exe name verkrijgen door de toegang te geven aan DS4Updater om dit automatisch aan te passen naar een andere bestandsnaam met een aangepaste versie. Zorg ervoor dat je geen bestandextensie toevoegt.
+
+Example: whyme_DS4Windows</value>
+  </data>
+  <data name="XInputChecker" xml:space="preserve">
+    <value>XInputChecker</value>
+  </data>
+  <data name="Controller5Text" xml:space="preserve">
+    <value>Controller 5</value>
+  </data>
+  <data name="Controller6Text" xml:space="preserve">
+    <value>Controller 6</value>
+  </data>
+  <data name="Controller7Text" xml:space="preserve">
+    <value>Controller 7</value>
+  </data>
+  <data name="Controller8Text" xml:space="preserve">
+    <value>Controller 8</value>
+  </data>
+  <data name="GamepadGyroCameraDescription" xml:space="preserve">
+    <value>Toewijzen uitgangen van controller en binden aan een standaard Xinput-gamepad of DS4-pad. Gyro is toegewezen als een Muisachtige Joystick.</value>
+  </data>
+  <data name="GamepadGyroCameraName" xml:space="preserve">
+    <value>Gamepad met Muisachtige Joystick</value>
+  </data>
+  <data name="GamepadPresetDescription" xml:space="preserve">
+    <value>Toewijzen uitgangen van controller en binden aan een standaard gamepad.</value>
+  </data>
+  <data name="GamepadPresetName" xml:space="preserve">
+    <value>Gamepad</value>
+  </data>
+  <data name="KBMGyroMouseDescription" xml:space="preserve">
+    <value>Toewijzen uitgangen van controller en binden aan virtuele- Muis en toetsenbord. Handig voor schietspellen dat geen controller ondersteuning hebben. Gyro is toegewezen als een virtuele Muis.</value>
+  </data>
+  <data name="KBMGyroMouseName" xml:space="preserve">
+    <value>Toetsenbord en Muis-bewegingen met gyro Muis.</value>
+  </data>
+  <data name="KBMPresetDescription" xml:space="preserve">
+    <value>Toewijzen uitgang van controller en binden aan virtuele- Muis en toetsenbord.ontrols. Handig voor schietspellen dat geen controller ondersteuning hebben.</value>
+  </data>
+  <data name="KBMPresetName" xml:space="preserve">
+    <value>Toetsenbord en Muis</value>
+  </data>
+  <data name="MixedGyroMousePresetDescription" xml:space="preserve">
+    <value>Toewijzen van knoppen en assen als standaard gamepad. Gyro is toegewezen als een virtuele Muis.</value>
+  </data>
+  <data name="MixedGyroMousePresetName" xml:space="preserve">
+    <value>Gamepad met Gyro Muis</value>
+  </data>
+  <data name="MixedPresetDescription" xml:space="preserve">
+    <value>Toewijzen uitgangen van controller en binding als een gemixte Xinput gamepad + Muis.</value>
+  </data>
+  <data name="MixedPresetName" xml:space="preserve">
+    <value>Gamepad met Hoogaccurate camera</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beschrijving</value>
+  </data>
+  <data name="PresetIntroText" xml:space="preserve">
+    <value>Wilt u één van de vooraf ingestelde opties gebruiken? Kies Nee als je een leeg Gamepad profiel wenst.</value>
+  </data>
+  <data name="Presets" xml:space="preserve">
+    <value>Voorinstellingen</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>Wijzigenlogboek</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Sluiten</value>
+  </data>
+  <data name="Profiles" xml:space="preserve">
+    <value>Profielen</value>
+  </data>
+  <data name="NoControllersConnected" xml:space="preserve">
+    <value>Geen controllers verbonden (Max {0})</value>
   </data>
 </root>

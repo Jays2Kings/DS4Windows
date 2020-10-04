@@ -52,6 +52,7 @@ namespace DS4WinWPF.DS4Forms
                 File.Delete(tempInstFileName);
             }
 
+            vigemInstallBtn.IsEnabled = false;
             ViGEmDownloadLaunch();
 
             /*WebClient wb = new WebClient();
@@ -99,6 +100,8 @@ namespace DS4WinWPF.DS4Forms
 
             if (success)
             {
+                vigemInstallBtn.IsEnabled = false;
+
                 monitorTimer = new NonFormTimer();
                 monitorTimer.Elapsed += ViGEmInstallTimer_Tick;
                 monitorTimer.Start();
@@ -106,6 +109,7 @@ namespace DS4WinWPF.DS4Forms
             else
             {
                 vigemInstallBtn.Content = Properties.Resources.InstallFailed;
+                vigemInstallBtn.IsEnabled = true;
             }
         }
 
@@ -117,11 +121,19 @@ namespace DS4WinWPF.DS4Forms
             {
                 if (DS4Windows.Global.IsViGEmBusInstalled())
                 {
-                    Dispatcher.BeginInvoke((Action)(() => { vigemInstallBtn.Content = Properties.Resources.InstallComplete; }));
+                    Dispatcher.BeginInvoke((Action)(() =>
+                    {
+                        vigemInstallBtn.Content = Properties.Resources.InstallComplete;
+                        vigemInstallBtn.IsEnabled = true;
+                    }));
                 }
                 else
                 {
-                    Dispatcher.BeginInvoke((Action)(() => { vigemInstallBtn.Content = Properties.Resources.InstallFailed; }), null);
+                    Dispatcher.BeginInvoke((Action)(() =>
+                    {
+                        vigemInstallBtn.Content = Properties.Resources.InstallFailed;
+                        vigemInstallBtn.IsEnabled = true;
+                    }), null);
                 }
 
                 File.Delete(DS4Windows.Global.exedirpath + $"\\{InstFileName}");

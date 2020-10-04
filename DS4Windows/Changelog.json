@@ -1,9 +1,41 @@
 {
-  "latest_version": "2.1.14",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 14},
-  "updated_at": "2020-09-27T02:29:04+0000",
+  "latest_version": "2.1.15",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 15},
+  "updated_at": "2020-10-04T18:29:47+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.15",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 15},
+        "base_header": "Version 2.1.15",
+        "release_date": "2020-10-04T18:29:47+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.15",
+            "log_text": ["* Found a way to pass URL to Explorer and have the shell not interpret it. Removes cmd window appearing",
+              "* Disable Program Folder panel on initial config window when location cannot be written to",
+              "* Moved main touchpad options to a tab in the Profile Editor",
+              "* Moved items in DS4 Canvas around. Top Touch hover image now appears above Lightbar button",
+              "* Only reset rumble on extras deactivatoin if extras has rumble enabled",
+              "* Allow Touchpad Click to be used as a Gyro trigger",
+              "* Added an initial Touchpad Absolute Mouse implementation",
+              "* Make sure to isolate Touchpad double tap check to Mouse mode",
+              "* Added rotation setting to Touchpad Mouse",
+              "* Make No Controller Connected message dynamic. Show updated controller limit depending on build",
+              "* Increased interval for flashing latency warning",
+              "* Added minimum threshold to Touchpad Relative Mouse",
+              "* Added Min Threshold setting for Gyro Mouse",
+              "* Updated Dutch Translation. Contribution by **RedDevilus**",
+              "* Updated French Translation. Contribution by **RedDevilus**",
+              "* Added translation contributors to About window finally",
+              "* Disable ViGEm install button while installation process is active"],
+            "editor": "ryochan7",
+            "editors_note": ["Got nothing"],
+            "updated_at": "2020-10-04T18:29:47+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.14",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 14},

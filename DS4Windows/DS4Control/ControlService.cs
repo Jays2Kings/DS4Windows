@@ -828,8 +828,6 @@ namespace DS4Windows
 
                 LogDebug($"Connection to ViGEmBus {Global.vigembusVersion} established");
 
-                DS4Devices.isExclusiveMode = getUseExclusiveMode();
-
                 UpdateHidGuardAttributes();
 
                 //uiContext = tempui as SynchronizationContext;

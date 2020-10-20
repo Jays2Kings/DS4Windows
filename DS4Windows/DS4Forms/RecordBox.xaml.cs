@@ -212,6 +212,7 @@ namespace DS4WinWPF.DS4Forms
             savePresetBtn.IsEnabled = on;
             macroModeCombo.IsEnabled = on;
             clearStepsBtn.IsEnabled = on;
+            addWaitTimeBtn.IsEnabled = on;
         }
 
         private void ChangeLightbarAction()
@@ -572,6 +573,16 @@ namespace DS4WinWPF.DS4Forms
                 recordBoxVM.AddMacroStep(step);
                 recordBoxVM.KeysdownMap.Remove(value);
                 e.Handled = true;
+            }
+        }
+
+        private void AddWaitTimeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (recordBoxVM.MacroStepIndex >= 0)
+            {
+                DS4Windows.MacroStep step = new DS4Windows.MacroStep(400, "Wait 100ms",
+                            DS4Windows.MacroStep.StepType.Wait, DS4Windows.MacroStep.StepOutput.None);
+                recordBoxVM.InsertMacroStep(recordBoxVM.MacroStepIndex, step);
             }
         }
     }

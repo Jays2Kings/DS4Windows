@@ -14,7 +14,7 @@
         <TextBlock x:Name="pickWhereTxt" Text="Pick where you want profiles and settings to be saved"
                    TextWrapping="Wrap" HorizontalAlignment="Center" Margin="4,10,4,0" TextAlignment="Center" />
         <DockPanel Margin="4,10,4,0">
-            <StackPanel Width="200">
+            <StackPanel x:Name="progFolderPanel" Width="200">
                 <Button x:Name="progFolderBtn" Content="Program Folder" Click="ProgFolderBtn_Click" />
                 <TextBlock TextWrapping="Wrap" TextAlignment="Center">
                     For those who prefer a portable program.

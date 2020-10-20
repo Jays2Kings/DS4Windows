@@ -72,6 +72,34 @@
 
                         <Image Source="/DS4Windows;component/Resources/DS4 Config.png" Width="440" Height="220" Stretch="Uniform"/>
 
+                        <Button x:Name="ds4LightbarColorBtn" Width="138" Height="12" Canvas.Left="150" Canvas.Top="28"
+                                Background="{x:Null}" BorderBrush="{x:Null}" MouseEnter="Ds4LightbarColorBtn_MouseEnter" MouseLeave="Ds4LightbarColorBtn_MouseLeave" Click="Ds4LightbarColorBtn_Click">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="{x:Null}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Rectangle x:Name="lightbarRect" Fill="{Binding LightbarBrush,FallbackValue=Green}" Width="{Binding Path=Width, ElementName=ds4LightbarColorBtn}"
+                                       Height="{Binding Path=Height, ElementName=ds4LightbarColorBtn}">
+                                <Rectangle.OpacityMask>
+                                    <ImageBrush ImageSource="/DS4Windows;component/Resources/DS4 lightbar.png" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </Button>
+
                         <Image x:Name="picBoxHover" IsEnabled="False" Source="/DS4Windows;component/Resources/DS4-Config_RS.png" Height="48" Width="48" Canvas.Left="447" Canvas.Top="5" />
                         <Image x:Name="picBoxHover2" IsEnabled="False" Source="/DS4Windows;component/Resources/DS4-Config_RS.png" Height="48" Width="48" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" />
 
@@ -131,164 +159,20 @@
                                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                             </Label.Foreground>
                         </Label>
-
-                        <Button x:Name="ds4LightbarColorBtn" Width="138" Height="12" Canvas.Left="150" Canvas.Top="28"
-                                Background="{x:Null}" BorderBrush="{x:Null}" MouseEnter="Ds4LightbarColorBtn_MouseEnter" MouseLeave="Ds4LightbarColorBtn_MouseLeave" Click="Ds4LightbarColorBtn_Click">
-                            <Button.Style>
-                                <Style TargetType="{x:Type Button}">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type Button}">
-                                                <Border Background="{TemplateBinding Background}">
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="{x:Null}"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                            <Rectangle x:Name="lightbarRect" Fill="{Binding LightbarBrush,FallbackValue=Green}" Width="{Binding Path=Width, ElementName=ds4LightbarColorBtn}"
-                                       Height="{Binding Path=Height, ElementName=ds4LightbarColorBtn}">
-                                <Rectangle.OpacityMask>
-                                    <ImageBrush ImageSource="/DS4Windows;component/Resources/DS4 lightbar.png" />
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                        </Button>
                     </Canvas>
 
-                    <StackPanel Orientation="Horizontal" Height="210" DockPanel.Dock="Bottom" Margin="10">
-                        <StackPanel x:Name="touchpadSettingsPanel" Width="240" Background="White">
-                            <GroupBox Header="Touchpad">
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal" Margin="0,7,0,7">
-                                        <RadioButton x:Name="useTouchMouseRadio" Content="Use As Mouse" GroupName="tpMode" Click="UseTouchMouseRadio_Click" />
-                                        <RadioButton x:Name="useTouchControlsRadio" Content="Use As Controls" GroupName="tpMode" Click="UseTouchControlsRadio_Click" Margin="10,0,0,0"
-                                                     ToolTip="{lex:Loc Resources:UsingTPSwipes}" />
-                                    </StackPanel>
-
-                                    <StackPanel x:Name="useMousePanel" Visibility="Visible">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="53"/>
-                                                <ColumnDefinition Width="42"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="24" />
-                                                <RowDefinition Height="24" />
-                                                <RowDefinition Height="24" />
-                                            </Grid.RowDefinitions>
-                                            
-                                            <CheckBox Content="{lex:Loc TouchSlide}" Grid.Row="0" Grid.Column="0" IsChecked="{Binding TouchSenExists}" VerticalAlignment="Center" />
-                                            <xctk:IntegerUpDown d:IsHidden="True" Grid.Row="0" Grid.Column="1" MinWidth="40" Height="20" Maximum="500" Value="{Binding TouchSens}" IsEnabled="{Binding TouchSenExists}" />
-                                            <CheckBox Content="Jitter Compensation" Grid.Row="0" Grid.Column="2" IsChecked="{Binding TouchJitter}" VerticalAlignment="Center" Margin="7,0,0,0"
-                                                          ToolTip="{lex:Loc Resources:Jitter}" />
-
-                                            <CheckBox Content="{lex:Loc TouchTap}" Grid.Row="1" Grid.Column="0" IsChecked="{Binding TouchTapExists}" VerticalAlignment="Center" />
-                                            <xctk:IntegerUpDown Value="{Binding TouchTap}" Grid.Row="1" Grid.Column="1" d:IsHidden="True" MinWidth="40" Height="20" IsEnabled="{Binding TouchTapExists}" />
-                                            <CheckBox Content="Double Tap" Grid.Row="1" Grid.Column="2" IsChecked="{Binding TouchDoubleTap}" VerticalAlignment="Center" Margin="7,0,0,0"
-                                                          ToolTip="{lex:Loc Resources:TapAndHold}" />
-
-                                            <CheckBox Content="{lex:Loc TouchScroll}" Grid.Row="2" Grid.Column="0" IsChecked="{Binding TouchScrollExists}" VerticalAlignment="Center" />
-                                            <xctk:IntegerUpDown Value="{Binding TouchScroll}" Grid.Row="2" Grid.Column="1" d:IsHidden="True" MinWidth="40" Height="20" IsEnabled="{Binding TouchScrollExists}" />
-                                            <CheckBox Content="Lower Right as RMB" Grid.Row="2" Grid.Column="2" IsChecked="{Binding LowerRightTouchRMB}" VerticalAlignment="Center"
-                                                          ToolTip="{lex:Loc Resources:BestUsedRightSide}" Margin="7,0,0,0" />
-                                        </Grid>
-
-                                        <StackPanel Orientation="Horizontal" Height="20">
-                                            <CheckBox Content="Start with Slide/Scroll Off" IsChecked="{Binding StartTouchpadOff}" VerticalAlignment="Center"
-                                                    ToolTip="{lex:Loc Resources:TouchpadOffTip}" />
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Height="20">
-                                            <CheckBox Content="Trackball" IsChecked="{Binding TouchTrackball}" VerticalAlignment="Center" />
-                                            <Label Content="Friction:" Padding="0" Margin="20,0,5,0" VerticalAlignment="Center"/>
-                                            <xctk:DoubleUpDown x:Name="frictionUD" d:IsHidden="True" IsEnabled="{Binding TouchTrackball}" Minimum="0.1" Maximum="10.0"
-                                                               Value="{Binding TouchTrackballFriction,FallbackValue=10}" ValueChanged="FrictionUD_ValueChanged" />
-                                        </StackPanel>
-                                        
-                                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                                            <StackPanel Orientation="Vertical" MinWidth="80" Margin="20,0,0,0">
-                                                <Label Content="Invert" Padding="0" HorizontalAlignment="Center" />
-                                                <ComboBox MinWidth="50" SelectedIndex="{Binding TouchInvertIndex}">
-                                                    <ComboBoxItem Content="None" />
-                                                    <ComboBoxItem Content="X" />
-                                                    <ComboBoxItem Content="Y" />
-                                                    <ComboBoxItem Content="X+Y" />
-                                                </ComboBox>
-                                            </StackPanel>
-
-                                            <StackPanel Orientation="Vertical" MinWidth="80" Margin="30,0,0,0">
-                                                <Label Content="Disable Invert" Padding="0" HorizontalAlignment="Center" />
-                                                <Button x:Name="touchDisInvertBtn" Height="22" Content="{Binding TouchDisInvertString,FallbackValue=None}" Click="TouchDisInvertBtn_Click">
-                                                    <Button.ContextMenu>
-                                                        <ContextMenu>
-                                                            <MenuItem Header="Cross" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="Circle" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="Square" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="Triangle" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="L1" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="L2" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="R1" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="R2" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="Up" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="Down" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="Left" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="Right" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="L3" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="R3" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="Options" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="Share" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                            <MenuItem Header="PS" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                        </ContextMenu>
-                                                    </Button.ContextMenu>
-                                                </Button>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </StackPanel>
-
-                                    <StackPanel x:Name="useControlsPanel" Margin="0,10,0,0" Visibility="Collapsed">
-                                        <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
-                                            <Button x:Name="swipeUpBtn" Content="Swipe Up" Width="70" Tag="36" Click="SwipeControlsButton_Click" />
-                                            <Label x:Name="swipeUpLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="5,8,0,0">
-                                            <Button x:Name="swipeDownBtn" Content="Swipe Down" Width="70" Tag="37" Click="SwipeControlsButton_Click" />
-                                            <Label x:Name="swipeDownLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="5,8,0,0">
-                                            <Button x:Name="swipeLeftBtn" Content="Swipe Left" Width="70" Tag="34" Click="SwipeControlsButton_Click" />
-                                            <Label x:Name="swipeLeftLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="5,8,0,10">
-                                            <Button x:Name="swipeRightBtn" Content="Swipe Right" Width="70" Tag="35" Click="SwipeControlsButton_Click" />
-                                            <Label x:Name="swipeRightLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
-                                        </StackPanel>
-                                    </StackPanel>
+                    <ListBox x:Name="mappingListBox" DockPanel.Dock="Bottom" Height="200" ItemsSource="{Binding Mappings}"
+                                SelectedIndex="{Binding SelectedIndex}" Margin="6" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                MouseDoubleClick="MappingListBox_MouseDoubleClick">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding ControlName,StringFormat='\{0\}: '}" />
+                                    <TextBlock Text="{Binding MappingName}"/>
                                 </StackPanel>
-
-                            </GroupBox>
-                        </StackPanel>
-
-                        <ListBox x:Name="mappingListBox" ItemsSource="{Binding Mappings}"
-                                 SelectedIndex="{Binding SelectedIndex}" Width="170" Margin="10,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                 MouseDoubleClick="MappingListBox_MouseDoubleClick">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding ControlName,StringFormat='\{0\}: '}" />
-                                        <TextBlock Text="{Binding MappingName}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </DockPanel>
             </TabItem>
             <TabItem x:Name="specialActionsTab" Header="Special Actions">
@@ -757,6 +641,164 @@
                 </StackPanel>
             </TabItem>
 
+            <TabItem Header="Touchpad">
+                <TabItem.Resources>
+                    <Thickness x:Key="spaceMargin" Bottom="8" />
+                </TabItem.Resources>
+
+                <StackPanel Margin="4">
+                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                        <Label Content="Output Mode" />
+                        <ComboBox x:Name="touchpadOutModeCombo" Width="160" SelectedIndex="{Binding TouchpadOutputIndex, FallbackValue='0'}" VerticalContentAlignment="Center" Margin="10,0,0,0">
+                            <ComboBoxItem Content="Mouse" />
+                            <ComboBoxItem Content="Controls" />
+                            <ComboBoxItem Content="Absolute Mouse" />
+                        </ComboBox>
+                    </StackPanel>
+
+                    <TabControl x:Name="touchOutputTabControl" SelectedIndex="{Binding TouchpadOutputIndex, FallbackValue='0'}" BorderBrush="{x:Null}" Margin="{StaticResource spaceMargin}">
+                        <TabItem Header="Mouse" Visibility="Collapsed">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="{StaticResource spaceMargin}">
+                                        <CheckBox Content="{lex:Loc TouchSlide}" IsChecked="{Binding TouchSenExists}" VerticalAlignment="Center" />
+                                        <xctk:IntegerUpDown d:IsHidden="True" MinWidth="80" Height="20" Maximum="500" Value="{Binding TouchSens}" IsEnabled="{Binding TouchSenExists}" Margin="8,0,0,0" />
+                                    </StackPanel>
+
+                                    <CheckBox Content="Jitter Compensation" Grid.Row="0" Grid.Column="1" IsChecked="{Binding TouchJitter}" VerticalAlignment="Center"
+                                                          ToolTip="{lex:Loc Resources:Jitter}" />
+
+                                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="{StaticResource spaceMargin}">
+                                        <CheckBox Content="{lex:Loc TouchTap}" IsChecked="{Binding TouchTapExists}" VerticalAlignment="Center" />
+                                        <xctk:IntegerUpDown Value="{Binding TouchTap}" d:IsHidden="True" MinWidth="80" Height="20" IsEnabled="{Binding TouchTapExists}" Margin="8,0,0,0" />
+                                    </StackPanel>
+
+                                    <CheckBox Content="Double Tap" Grid.Row="1" Grid.Column="1" IsChecked="{Binding TouchDoubleTap}" VerticalAlignment="Center"
+                                                          ToolTip="{lex:Loc Resources:TapAndHold}" />
+
+                                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Margin="{StaticResource spaceMargin}">
+                                        <CheckBox Content="{lex:Loc TouchScroll}" IsChecked="{Binding TouchScrollExists}" VerticalAlignment="Center" />
+                                        <xctk:IntegerUpDown Value="{Binding TouchScroll}" d:IsHidden="True" MinWidth="80" Height="20" IsEnabled="{Binding TouchScrollExists}" Margin="8,0,0,0" />
+                                    </StackPanel>
+
+                                    <CheckBox Content="Lower Right as RMB" Grid.Row="2" Grid.Column="1" IsChecked="{Binding LowerRightTouchRMB}" VerticalAlignment="Center"
+                                                          ToolTip="{lex:Loc Resources:BestUsedRightSide}" />
+                                </Grid>
+
+                                <CheckBox Content="Start with Slide/Scroll Off" IsChecked="{Binding StartTouchpadOff}" VerticalAlignment="Center"
+                                                    ToolTip="{lex:Loc Resources:TouchpadOffTip}" Margin="{StaticResource spaceMargin}" />
+
+                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                    <Label Content="Rotation" ContentStringFormat="{}{0}:" />
+                                    <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="-180" Maximum="180" Increment="1" FormatString="F0" Value="{Binding TouchRelMouseRotation,FallbackValue='0'}" Margin="8,0,0,0" />
+                                    <TextBlock Text="&#xb0;" FontSize="18" Margin="{StaticResource spaceMargin}" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                    <Label Content="Min Threshold" ContentStringFormat="{}{0}:" />
+                                    <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="1.0" Maximum="40.0" Increment="1.0" FormatString="F1" Value="{Binding TouchRelMouseMinThreshold,FallbackValue='1.0'}" Margin="8,0,0,0" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Height="20" Margin="{StaticResource spaceMargin}">
+                                    <CheckBox Content="Trackball" IsChecked="{Binding TouchTrackball}" VerticalAlignment="Center" />
+                                    <Label Content="Friction:" Padding="0" Margin="20,0,5,0" VerticalAlignment="Center"/>
+                                    <xctk:DoubleUpDown x:Name="frictionUD" d:IsHidden="True" MinWidth="80" IsEnabled="{Binding TouchTrackball}" Minimum="0.1" Maximum="10.0"
+                                                               Value="{Binding TouchTrackballFriction,FallbackValue='10'}" ValueChanged="FrictionUD_ValueChanged" Margin="8,0,0,0" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                    <Label Content="Invert" Padding="0" HorizontalAlignment="Center" />
+                                    <ComboBox MinWidth="160" SelectedIndex="{Binding TouchInvertIndex}" Margin="20,0,0,0">
+                                        <ComboBoxItem Content="None" />
+                                        <ComboBoxItem Content="X" />
+                                        <ComboBoxItem Content="Y" />
+                                        <ComboBoxItem Content="X+Y" />
+                                    </ComboBox>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                    <Label Content="Disable Invert" Padding="0" HorizontalAlignment="Center" />
+                                    <Button x:Name="touchDisInvertBtn" MinWidth="160"  Height="22" Content="{Binding TouchDisInvertString,FallbackValue=None}" Click="TouchDisInvertBtn_Click" Margin="20,0,0,0">
+                                        <Button.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Cross" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="Circle" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="Square" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="Triangle" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="L1" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="L2" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="R1" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="R2" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="Up" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="Down" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="Left" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="Right" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="L3" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="R3" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="Options" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="Share" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="PS" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                <MenuItem Header="Touchpad Click" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                            </ContextMenu>
+                                        </Button.ContextMenu>
+                                    </Button>
+                                </StackPanel>
+
+                            </StackPanel>
+                        </TabItem>
+
+                        <TabItem Header="Controls" Visibility="Collapsed">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                                    <Button x:Name="swipeUpBtn" Content="Swipe Up" MinWidth="100" Tag="36" Click="SwipeControlsButton_Click" />
+                                    <Label x:Name="swipeUpLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="5,8,0,0">
+                                    <Button x:Name="swipeDownBtn" Content="Swipe Down" MinWidth="100" Tag="37" Click="SwipeControlsButton_Click" />
+                                    <Label x:Name="swipeDownLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="5,8,0,0">
+                                    <Button x:Name="swipeLeftBtn" Content="Swipe Left" MinWidth="100" Tag="34" Click="SwipeControlsButton_Click" />
+                                    <Label x:Name="swipeLeftLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="5,8,0,10">
+                                    <Button x:Name="swipeRightBtn" Content="Swipe Right" MinWidth="100" Tag="35" Click="SwipeControlsButton_Click" />
+                                    <Label x:Name="swipeRightLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem Header="Absolute Mouse" Visibility="Collapsed">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                    <Label Content="Max Zone X:" />
+                                    <xctk:IntegerUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="0" Maximum="100" Value="{Binding TouchAbsMouseMaxZoneX}" Margin="8,0,0,0" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                    <Label Content="Max Zone Y:" />
+                                    <xctk:IntegerUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="0" Maximum="100" Value="{Binding TouchAbsMouseMaxZoneY}" Margin="8,0,0,0" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                    <Label Content="Snap To Center on Release:" />
+                                    <CheckBox IsChecked="{Binding TouchAbsMouseSnapCenter}" VerticalAlignment="Center" Margin="8,0,0,0" />
+                                </StackPanel>
+                            </StackPanel>
+                        </TabItem>
+                    </TabControl>
+                </StackPanel>
+            </TabItem>
+
             <TabItem Header="Gyro">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
@@ -872,6 +914,7 @@
                                         <MenuItem Header="Options" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                         <MenuItem Header="Share" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                         <MenuItem Header="PS" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                        <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                         <MenuItem Header="Always On" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                     </ContextMenu>
                                 </Button.ContextMenu>
@@ -921,6 +964,11 @@
                             <Label Content="Deadzone" />
                             <xctk:IntegerUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
                                                 Value="{Binding GyroMouseDeadZone}" Minimum="0" Maximum="1000" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                            <Label Content="Min Threshold" ContentStringFormat="{}{0}:" />
+                            <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="1.0" Maximum="40.0" Increment="1.0" FormatString="F1" Value="{Binding GyroMouseMinThreshold,FallbackValue='1.0'}" Margin="8,0,0,0" />
                         </StackPanel>
 
                         <CheckBox Content="Toggle" IsChecked="{Binding GyroMouseToggle}" Margin="{StaticResource spaceMargin}" />
@@ -981,6 +1029,7 @@
                                         <MenuItem Header="Options" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                         <MenuItem Header="Share" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                         <MenuItem Header="PS" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                        <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                         <MenuItem Header="Always On" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                     </ContextMenu>
                                 </Button.ContextMenu>

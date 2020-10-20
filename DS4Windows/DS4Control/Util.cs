@@ -158,21 +158,18 @@ namespace DS4Windows
             }
         }
 
+        /// <summary>
+        /// Launch process in Explorer to de-elevate the process if DS4Windows is running
+        /// as under the Admin account
+        /// </summary>
+        /// <param name="path">Program path or URL</param>
         public static void StartProcessInExplorer(string path)
         {
-            string tmpPath = Path.Combine(Path.GetTempPath(), "urlopener.bat");
-            // Create temporary bat script that Explorer will launch
-            using (StreamWriter w = new StreamWriter(new FileStream(tmpPath, FileMode.Create, FileAccess.Write)))
-            {
-                w.WriteLine("@echo off"); // Turn off echo
-                w.WriteLine($"@start \"\" /B /MIN \"{path}\""); // Launch URL
-                w.WriteLine("@DEL \"%~f0\""); // Attempt to delete myself without opening a time paradox.
-                w.Close();
-            }
-
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = "explorer.exe";
-            startInfo.Arguments = tmpPath;
+            // Need to place Path/URL in double quotes to allow equals sign to not be
+            // interpreted as a delimiter
+            startInfo.Arguments = $"\"{path}\"";
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
             try
             {

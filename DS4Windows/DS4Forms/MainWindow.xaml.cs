@@ -24,6 +24,7 @@ using System.Runtime.InteropServices;
 using DS4WinWPF.DS4Forms.ViewModels;
 using DS4Windows;
 using HttpProgress;
+using DS4WinWPF.Translations;
 
 namespace DS4WinWPF.DS4Forms
 {
@@ -101,6 +102,8 @@ namespace DS4WinWPF.DS4Forms
             WindowStartupLocation = WindowStartupLocation.Manual;
             Left = Global.FormLocationX;
             Top = Global.FormLocationY;
+            noContLb.Content = string.Format(Strings.NoControllersConnected,
+                ControlService.CURRENT_DS4_CONTROLLER_LIMIT);
 
             autoProfileHolder = autoProfControl.AutoProfileHolder;
             autoProfControl.SetupDataContext(profileListHolder);
@@ -1217,21 +1220,6 @@ Suspend support not enabled.", true);
             ShowProfileEditor(idx, null);
             mainTabCon.SelectedIndex = 1;
             //controllerLV.Focus();
-        }
-
-        private async void HideDS4ContCk_Click(object sender, RoutedEventArgs e)
-        {
-            StartStopBtn.IsEnabled = false;
-            //bool checkStatus = hideDS4ContCk.IsChecked == true;
-            hideDS4ContCk.IsEnabled = false;
-            await Task.Run(() =>
-            {
-                App.rootHub.Stop();
-                App.rootHub.Start();
-            });
-
-            hideDS4ContCk.IsEnabled = true;
-            StartStopBtn.IsEnabled = true;
         }
 
         private async void UseUdpServerCk_Click(object sender, RoutedEventArgs e)

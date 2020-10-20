@@ -1181,31 +1181,43 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.szOutBezierCurveObj[device].InitBezierCurve(value, BezierCurve.AxisType.SA, true);
         }
 
-        public bool UseTouchMouse
+        public int TouchpadOutputIndex
         {
-            get => !Global.UseTPforControls[device];
+            get
+            {
+                int index = 0;
+                switch (Global.TouchOutMode[device])
+                {
+                    case TouchpadOutMode.Mouse:
+                        index = 0; break;
+                    case TouchpadOutMode.Controls:
+                        index = 1; break;
+                    case TouchpadOutMode.AbsoluteMouse:
+                        index = 2; break;
+                    default: break;
+                }
+                return index;
+            }
             set
             {
-                bool temp = !Global.UseTPforControls[device];
-                if (temp == value) return;
-                Global.UseTPforControls[device] = !value;
-                UseTouchMouseChanged?.Invoke(this, EventArgs.Empty);
-            }
-        }
-        public event EventHandler UseTouchMouseChanged;
+                TouchpadOutMode temp = TouchpadOutMode.Mouse;
+                switch (value)
+                {
+                    case 0: break;
+                    case 1:
+                        temp = TouchpadOutMode.Controls; break;
+                    case 2:
+                        temp = TouchpadOutMode.AbsoluteMouse; break;
+                    default: break;
+                }
 
-        public bool UseTouchControls
-        {
-            get => Global.UseTPforControls[device];
-            set
-            {
-                bool temp = Global.UseTPforControls[device];
-                if (temp == value) return;
-                Global.UseTPforControls[device] = value;
-                UseTouchControlsChanged?.Invoke(this, EventArgs.Empty);
+                TouchpadOutMode current = Global.TouchOutMode[device];
+                if (temp == current) return;
+                Global.TouchOutMode[device] = temp;
+                TouchpadOutputIndexChanged?.Invoke(this, EventArgs.Empty);
             }
         }
-        public event EventHandler UseTouchControlsChanged;
+        public event EventHandler TouchpadOutputIndexChanged;
 
         public bool TouchSenExists
         {
@@ -1334,6 +1346,23 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
 
+        public double TouchRelMouseRotation
+        {
+            get => Global.TouchRelMouse[device].rotation * 180.0 / Math.PI;
+            set => Global.TouchRelMouse[device].rotation = value * Math.PI / 180.0;
+        }
+
+        public double TouchRelMouseMinThreshold
+        {
+            get => Global.TouchRelMouse[device].minThreshold;
+            set
+            {
+                double temp = Global.TouchRelMouse[device].minThreshold;
+                if (temp == value) return;
+                Global.TouchRelMouse[device].minThreshold = value;
+            }
+        }
+
         public bool TouchTrackball
         {
             get => Global.TrackballMode[device];
@@ -1346,6 +1375,38 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.TrackballFriction[device] = value;
         }
 
+        public int TouchAbsMouseMaxZoneX
+        {
+            get => Global.TouchAbsMouse[device].maxZoneX;
+            set
+            {
+                int temp = Global.TouchAbsMouse[device].maxZoneX;
+                if (temp == value) return;
+                Global.TouchAbsMouse[device].maxZoneX = value;
+            }
+        }
+
+        public int TouchAbsMouseMaxZoneY
+        {
+            get => Global.TouchAbsMouse[device].maxZoneY;
+            set
+            {
+                int temp = Global.TouchAbsMouse[device].maxZoneY;
+                if (temp == value) return;
+                Global.TouchAbsMouse[device].maxZoneY = value;
+            }
+        }
+
+        public bool TouchAbsMouseSnapCenter
+        {
+            get => Global.TouchAbsMouse[device].snapToCenter;
+            set
+            {
+                bool temp = Global.TouchAbsMouse[device].snapToCenter;
+                if (temp == value) return;
+                Global.TouchAbsMouse[device].snapToCenter = value;
+            }
+        }
 
         public bool GyroMouseTurns
         {
@@ -1375,6 +1436,17 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             get => Global.GyroMouseHorizontalAxis[device];
             set => Global.GyroMouseHorizontalAxis[device] = value;
+        }
+
+        public double GyroMouseMinThreshold
+        {
+            get => Global.GyroMouseInfo[device].minThreshold;
+            set
+            {
+                double temp = Global.GyroMouseInfo[device].minThreshold;
+                if (temp == value) return;
+                Global.GyroMouseInfo[device].minThreshold = value;
+            }
         }
 
         public bool GyroMouseInvertX
@@ -1439,11 +1511,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 {
                     case 0:
                         tempInfo.ResetSmoothingMethods();
-                        tempInfo.useOneEuroSmooth = true;
+                        tempInfo.smoothingMethod = GyroMouseInfo.SmoothingMethod.OneEuro;
                         break;
                     case 1:
                         tempInfo.ResetSmoothingMethods();
-                        tempInfo.useWeightedAverageSmooth = true;
+                        tempInfo.smoothingMethod = GyroMouseInfo.SmoothingMethod.WeightedAverage;
                         break;
                     default:
                         break;
@@ -1456,13 +1528,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public Visibility GyroMouseWeightAvgPanelVisibility
         {
-            get => Global.GyroMouseInfo[device].useWeightedAverageSmooth ? Visibility.Visible : Visibility.Collapsed;
+            get => Global.GyroMouseInfo[device].smoothingMethod == GyroMouseInfo.SmoothingMethod.WeightedAverage ? Visibility.Visible : Visibility.Collapsed;
         }
         public event EventHandler GyroMouseWeightAvgPanelVisibilityChanged;
 
         public Visibility GyroMouseOneEuroPanelVisibility
         {
-            get => Global.GyroMouseInfo[device].useOneEuroSmooth ? Visibility.Visible : Visibility.Collapsed;
+            get => Global.GyroMouseInfo[device].smoothingMethod == GyroMouseInfo.SmoothingMethod.OneEuro ? Visibility.Visible : Visibility.Collapsed;
         }
         public event EventHandler GyroMouseOneEuroPanelVisibilityChanged;
 
@@ -1767,11 +1839,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             int result = 0;
             GyroMouseInfo tempInfo = Global.GyroMouseInfo[device];
-            if (tempInfo.useOneEuroSmooth)
+            if (tempInfo.smoothingMethod == GyroMouseInfo.SmoothingMethod.OneEuro)
             {
                 result = 0;
             }
-            else if (tempInfo.useWeightedAverageSmooth)
+            else if (tempInfo.smoothingMethod == GyroMouseInfo.SmoothingMethod.WeightedAverage)
             {
                 result = 1;
             }

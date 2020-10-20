@@ -44,13 +44,15 @@ namespace DS4Windows
         public const double DEFAULT_MINCUTOFF = 1.0;
         public const double DEFAULT_BETA = 0.7;
         public const string DEFAULT_SMOOTH_TECHNIQUE = "one-euro";
+        public const double DEFAULT_MIN_THRESHOLD = 1.0;
+
+        public bool enableSmoothing = false;
+        public double smoothingWeight = 0.5;
+        public SmoothingMethod smoothingMethod;
 
         public double minCutoff = DEFAULT_MINCUTOFF;
         public double beta = DEFAULT_BETA;
-        public bool useWeightedAverageSmooth = false;
-        public bool useOneEuroSmooth = false;
-        public bool enableSmoothing = false;
-        public double smoothingWeight = 0.5;
+        public double minThreshold = DEFAULT_MIN_THRESHOLD;
 
         public delegate void GyroMouseInfoEventHandler(GyroMouseInfo sender, EventArgs args);
 
@@ -82,10 +84,10 @@ namespace DS4Windows
         {
             minCutoff = DEFAULT_MINCUTOFF;
             beta = DEFAULT_BETA;
-            useWeightedAverageSmooth = false;
-            useOneEuroSmooth = false;
             enableSmoothing = false;
+            smoothingMethod = SmoothingMethod.None;
             smoothingWeight = 0.5;
+            minThreshold = DEFAULT_MIN_THRESHOLD;
         }
 
         public void ResetSmoothing()
@@ -96,8 +98,7 @@ namespace DS4Windows
 
         public void ResetSmoothingMethods()
         {
-            useOneEuroSmooth = false;
-            useWeightedAverageSmooth = false;
+            smoothingMethod = SmoothingMethod.None;
         }
 
         public void DetermineSmoothMethod(string identier)
@@ -107,25 +108,25 @@ namespace DS4Windows
             switch (identier)
             {
                 case "weighted-average":
-                    useWeightedAverageSmooth = true;
+                    smoothingMethod = SmoothingMethod.WeightedAverage;
                     break;
                 case "one-euro":
-                    useOneEuroSmooth = true;
+                    smoothingMethod = SmoothingMethod.OneEuro;
                     break;
                 default:
-                    useWeightedAverageSmooth = false;
+                    smoothingMethod = SmoothingMethod.None;
                     break;
             }
         }
 
         public string SmoothMethodIdentifier()
         {
-            string result = "weighted-average";
-            if (useOneEuroSmooth)
+            string result = "none";
+            if (smoothingMethod == SmoothingMethod.OneEuro)
             {
                 result = "one-euro";
             }
-            else if (useWeightedAverageSmooth)
+            else if (smoothingMethod == SmoothingMethod.WeightedAverage)
             {
                 result = "weighted-average";
             }
@@ -421,6 +422,41 @@ namespace DS4Windows
             {
                 euroFilter.MinCutoff = minCutoff;
             };
+        }
+    }
+
+
+    public class TouchpadRelMouseSettings
+    {
+        public const double DEFAULT_ANG_DEGREE = 0.0;
+        public const double DEFAULT_ANG_RAD = DEFAULT_ANG_DEGREE * Math.PI / 180.0;
+        public const double DEFAULT_MIN_THRESHOLD = 1.0;
+
+        public double rotation = DEFAULT_ANG_RAD;
+        public double minThreshold = DEFAULT_MIN_THRESHOLD;
+
+        public void Reset()
+        {
+            rotation = DEFAULT_ANG_RAD;
+            minThreshold = DEFAULT_MIN_THRESHOLD;
+        }
+    }
+
+    public class TouchpadAbsMouseSettings
+    {
+        public const int DEFAULT_MAXZONE_X = 90;
+        public const int DEFAULT_MAXZONE_Y = 90;
+        public const bool DEFAULT_SNAP_CENTER = false;
+
+        public int maxZoneX = DEFAULT_MAXZONE_X;
+        public int maxZoneY = DEFAULT_MAXZONE_Y;
+        public bool snapToCenter = DEFAULT_SNAP_CENTER;
+
+        public void Reset()
+        {
+            maxZoneX = DEFAULT_MAXZONE_X;
+            maxZoneY = DEFAULT_MAXZONE_Y;
+            snapToCenter = DEFAULT_SNAP_CENTER;
         }
     }
 }

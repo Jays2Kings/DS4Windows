@@ -64,6 +64,11 @@ namespace DS4Windows
         //public event EventHandler<EventArgs> PreTouchProcess = null; // used to publish that a touch packet is about to be processed
 
         public readonly static int TOUCHPAD_DATA_OFFSET = 35;
+        public const int RESOLUTION_X_MAX = 1920;
+        public const int RESOLUTION_Y_MAX = 900;
+        public const int RES_HALFED_X = (int)(RESOLUTION_X_MAX * 0.5);
+        public const int RES_HALFED_Y = (int)(RESOLUTION_Y_MAX * 0.5);
+
         internal int lastTouchPadX1, lastTouchPadY1,
             lastTouchPadX2, lastTouchPadY2; // tracks 0, 1 or 2 touches; we maintain touch 1 and 2 separately
         internal bool lastTouchPadIsDown;

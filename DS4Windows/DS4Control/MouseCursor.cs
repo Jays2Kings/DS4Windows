@@ -122,6 +122,10 @@ namespace DS4Windows
             double xMotion = deltaX != 0 ? coefficient * (deltaX * tempDouble)
                 + (normX * (offset * signX)) : 0;
 
+            verticalScale = Global.getGyroSensVerticalScale(deviceNumber) * 0.01;
+            double yMotion = deltaY != 0 ? (coefficient * verticalScale) * (deltaY * tempDouble)
+                + (normY * (offset * signY)) : 0;
+
             int xAction = 0;
             if (xMotion != 0.0)
             {
@@ -131,10 +135,6 @@ namespace DS4Windows
             {
                 hRemainder = 0.0;
             }
-
-            verticalScale = Global.getGyroSensVerticalScale(deviceNumber) * 0.01;
-            double yMotion = deltaY != 0 ? (coefficient * verticalScale) * (deltaY * tempDouble)
-                + (normY * (offset * signY)) : 0;
 
             int yAction = 0;
             if (yMotion != 0.0)
@@ -148,7 +148,7 @@ namespace DS4Windows
 
             if (gyroSmooth)
             {
-                if (tempInfo.useOneEuroSmooth)
+                if (tempInfo.smoothingMethod == GyroMouseInfo.SmoothingMethod.OneEuro)
                 {
                     double currentRate = 1.0 / arg.sixAxis.elapsed;
                     xMotion = filterPair.axis1Filter.Filter(xMotion, currentRate);
@@ -182,16 +182,31 @@ namespace DS4Windows
             }
 
             hRemainder = vRemainder = 0.0;
-            if (xMotion != 0.0)
-            {
-                xAction = (int)xMotion;
-                hRemainder = xMotion - xAction;
-            }
+            double distSqu = (xMotion * xMotion) + (yMotion * yMotion);
 
-            if (yMotion != 0.0)
+            xAction = (int)xMotion;
+            yAction = (int)yMotion;
+
+            if (tempInfo.minThreshold == 1.0)
             {
-                yAction = (int)yMotion;
+                hRemainder = xMotion - xAction;
                 vRemainder = yMotion - yAction;
+            }
+            else
+            {
+                if (distSqu >= (tempInfo.minThreshold * tempInfo.minThreshold))
+                {
+                    hRemainder = xMotion - xAction;
+                    vRemainder = yMotion - yAction;
+                }
+                else
+                {
+                    hRemainder = xMotion;
+                    xAction = 0;
+
+                    vRemainder = yMotion;
+                    yAction = 0;
+                }
             }
 
             int gyroInvert = Global.getGyroInvert(deviceNumber);
@@ -217,7 +232,7 @@ namespace DS4Windows
             smoothBufferTail = iIndex + 1;
 
             GyroMouseInfo tempInfo = Global.GyroMouseInfo[deviceNumber];
-            if (tempInfo.useOneEuroSmooth)
+            if (tempInfo.smoothingMethod == GyroMouseInfo.SmoothingMethod.OneEuro)
             {
                 double currentRate = 1.0 / arg.sixAxis.elapsed;
                 filterPair.axis1Filter.Filter(0.0, currentRate);
@@ -267,8 +282,62 @@ namespace DS4Windows
             TouchMoveCursor(deltaX, deltaY, disableInvert);
         }
 
+        public void TouchesMovedAbsolute(TouchpadEventArgs arg)
+        {
+            int touchesLen = arg.touches.Length;
+            if (touchesLen != 1)
+                return;
+
+            int currentX = 0, currentY = 0;
+            if (touchesLen > 1)
+            {
+                currentX = arg.touches[1].hwX;
+                currentY = arg.touches[1].hwY;
+            }
+            else
+            {
+                currentX = arg.touches[0].hwX;
+                currentY = arg.touches[0].hwY;
+            }
+
+            TouchpadAbsMouseSettings absSettings = Global.TouchAbsMouse[deviceNumber];
+
+            int minX = (int)(DS4Touchpad.RES_HALFED_X - (absSettings.maxZoneX * 0.01 * DS4Touchpad.RES_HALFED_X));
+            int minY = (int)(DS4Touchpad.RES_HALFED_Y - (absSettings.maxZoneY * 0.01 * DS4Touchpad.RES_HALFED_Y));
+            int maxX = (int)(DS4Touchpad.RES_HALFED_X + (absSettings.maxZoneX * 0.01 * DS4Touchpad.RES_HALFED_X));
+            int maxY = (int)(DS4Touchpad.RES_HALFED_Y + (absSettings.maxZoneY * 0.01 * DS4Touchpad.RES_HALFED_Y));
+
+            double mX = (DS4Touchpad.RESOLUTION_X_MAX - 0) / (double)(maxX - minX);
+            double bX = minX * mX;
+            double mY = (DS4Touchpad.RESOLUTION_Y_MAX - 0) / (double)(maxY - minY);
+            double bY = minY * mY;
+
+            currentX = currentX > maxX ? maxX : (currentX < minX ? minX : currentX);
+            currentY = currentY > maxY ? maxY : (currentX < minY ? minY : currentY);
+
+            double absX = (currentX * mX - bX) / (double)DS4Touchpad.RESOLUTION_X_MAX;
+            double absY = (currentY * mY - bY) / (double)DS4Touchpad.RESOLUTION_Y_MAX;
+            InputMethods.MoveAbsoluteMouse(absX, absY);
+        }
+
+        public void TouchCenterAbsolute()
+        {
+            InputMethods.MoveAbsoluteMouse(0.5, 0.5);
+        }
+
         public void TouchMoveCursor(int dx, int dy, bool disableInvert = false)
         {
+            TouchpadRelMouseSettings relMouseSettings = Global.TouchRelMouse[deviceNumber];
+            if (relMouseSettings.rotation != 0.0)
+            {
+                //double rotation = 5.0 * Math.PI / 180.0;
+                double rotation = relMouseSettings.rotation;
+                double sinAngle = Math.Sin(rotation), cosAngle = Math.Cos(rotation);
+                int tempX = dx, tempY = dy;
+                dx = (int)Global.Clamp(-DS4Touchpad.RESOLUTION_X_MAX, tempX * cosAngle - tempY * sinAngle, DS4Touchpad.RESOLUTION_X_MAX);
+                dy = (int)Global.Clamp(-DS4Touchpad.RESOLUTION_Y_MAX, tempX * sinAngle + tempY * cosAngle, DS4Touchpad.RESOLUTION_Y_MAX);
+            }
+
             double tempAngle = Math.Atan2(-dy, dx);
             double normX = Math.Abs(Math.Cos(tempAngle));
             double normY = Math.Abs(Math.Sin(tempAngle));
@@ -307,8 +376,6 @@ namespace DS4Windows
             {
                 xMotion += horizontalRemainder;
             }
-            int xAction = (int)xMotion;
-            horizontalRemainder = xMotion - xAction;
 
             if (yMotion > 0.0 && verticalRemainder > 0.0)
             {
@@ -318,8 +385,34 @@ namespace DS4Windows
             {
                 yMotion += verticalRemainder;
             }
+
+            double distSqu = (xMotion * xMotion) + (yMotion * yMotion);
+            int xAction = (int)xMotion;
             int yAction = (int)yMotion;
-            verticalRemainder = yMotion - yAction;
+
+            if (relMouseSettings.minThreshold == 1.0)
+            {
+                horizontalRemainder = xMotion - xAction;
+                verticalRemainder = yMotion - yAction;
+            }
+            else
+            {
+                //Console.WriteLine("{0} {1}", horizontalRemainder, xAction, distSqu);
+
+                if (distSqu >= (relMouseSettings.minThreshold * relMouseSettings.minThreshold))
+                {
+                    horizontalRemainder = xMotion - xAction;
+                    verticalRemainder = yMotion - yAction;
+                }
+                else
+                {
+                    horizontalRemainder = xMotion;
+                    xAction = 0;
+
+                    verticalRemainder = yMotion;
+                    yAction = 0;
+                }
+            }
 
             if (disableInvert == false)
             {

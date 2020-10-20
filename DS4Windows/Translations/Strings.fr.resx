@@ -320,7 +320,107 @@
   <data name="MoveDown" xml:space="preserve">
     <value>Vers le bas</value>
   </data>
+  <data name="AutoProfPathTip" xml:space="preserve">
+    <value>Chemin du processus. ^ABC = Correspondance au début de la chaîne  (^) | ABC$ = Correspondance à la fin de la chaîne ($) | *ABC = Contient une chaîne (*)</value>
+  </data>
+  <data name="AutoProfTitleTip" xml:space="preserve">
+    <value>Le titre de fenêtre. ^ABC = Correspondance au début de la chaîne (^) | ABC$ =  Correspondance à la fin de la chaîne ($) | *ABC = Contient une chaîne (*)</value>
+  </data>
   <data name="GamepadTest" xml:space="preserve">
     <value>Tester le contrôleur de jeu</value>
+  </data>
+  <data name="EnableOutputDataToDS4" xml:space="preserve">
+    <value>Activer les données de sortie vers DS4</value>
+  </data>
+  <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
+    <value>Sortie de la barre lumineuse et des données de grondement périodiquement sur la manette DS4. Décochez si la manette de jeu ne prend pas en charge la réception de données.
+Les modifications apportées à cette option prennent effet au moment de la connexion de la controller.</value>
+    <comment>Pour entrer un saut de ligne dans une valeur de ressource de chaîne dans l'éditeur de ressources VisualStudio, appuyez sur Maj + Entrée.</comment>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Appliquer</value>
+  </data>
+  <data name="HidNinja" xml:space="preserve">
+    <value>HidNinja</value>
+  </data>
+  <data name="CustomExeName" xml:space="preserve">
+    <value>Nom de l'exe personnalisé</value>
+  </data>
+  <data name="CustomExeNameInfo" xml:space="preserve">
+    <value>Certains jeux implémentent un bloc qui fait que l'entrée DS4 est ignorée si un jeu détecte DS4Windows.exe ou InputMapper.exe en cours d'exécution à ce moment-là. Une solution de contournement au blocage consiste à renommer DS4Windows.exe afin que la vérification dans le jeu échoue. La spécification d'un nom d'exe personnalisé ici permet à DS4Updater de mettre à jour automatiquement une copie personnalisée de DS4Windows avec le nom de fichier souhaité. Assurez-vous d'omettre l'extension.
+
+Exemple: pourquoi_DS4Windows</value>
+  </data>
+  <data name="XInputChecker" xml:space="preserve">
+    <value>XInputChecker</value>
+  </data>
+  <data name="Controller5Text" xml:space="preserve">
+    <value>Controller 5</value>
+  </data>
+  <data name="Controller6Text" xml:space="preserve">
+    <value>Controller 6</value>
+  </data>
+  <data name="Controller7Text" xml:space="preserve">
+    <value>Controller 7</value>
+  </data>
+  <data name="Controller8Text" xml:space="preserve">
+    <value>Controller 8</value>
+  </data>
+  <data name="GamepadGyroCameraDescription" xml:space="preserve">
+    <value>Mappe la sortie du contrôleur sur une manette de jeu XInput standard ou une manette DS4. Gyro est mappé sur un joystick semblable à une souris.</value>
+  </data>
+  <data name="GamepadGyroCameraName" xml:space="preserve">
+    <value>Manette de jeu avec joystick en forme de souris</value>
+  </data>
+  <data name="GamepadPresetDescription" xml:space="preserve">
+    <value>Mappe la sortie du contrôleur sur une manette de jeu standard</value>
+  </data>
+  <data name="GamepadPresetName" xml:space="preserve">
+    <value>Une manette de jeu</value>
+  </data>
+  <data name="KBMGyroMouseDescription" xml:space="preserve">
+    <value>Mappe la sortie du contrôleur aux contrôles KB + M virtuels. Utile pour jouer à des jeux de tir sans prise en charge de la manette de jeu. Gyro est mappé à une souris virtuelle.</value>
+  </data>
+  <data name="KBMGyroMouseName" xml:space="preserve">
+    <value>Commandes KB+M avec Gyro Mouse</value>
+  </data>
+  <data name="KBMPresetDescription" xml:space="preserve">
+    <value>Mappe la sortie du contrôleur aux contrôles KB + M virtuels. Utile pour jouer à des jeux de tir sans prise en charge de la manette de jeu.</value>
+  </data>
+  <data name="KBMPresetName" xml:space="preserve">
+    <value>Commandes KB+M</value>
+  </data>
+  <data name="MixedGyroMousePresetDescription" xml:space="preserve">
+    <value>Mappe les boutons et les axes sur une manette de jeu standard. Associe le Gyro à une souris virtuelle.</value>
+  </data>
+  <data name="MixedGyroMousePresetName" xml:space="preserve">
+    <value>Une manette de jeu avec souris gyro</value>
+  </data>
+  <data name="MixedPresetDescription" xml:space="preserve">
+    <value>Mappe la sortie du contrôleur sur une manette de jeu XInput mixte + une souris.</value>
+  </data>
+  <data name="MixedPresetName" xml:space="preserve">
+    <value>Manette de jeu avec caméra haute précision</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>La description</value>
+  </data>
+  <data name="PresetIntroText" xml:space="preserve">
+    <value>Voulez-vous utiliser une option prédéfinie? Si vous choisissez Non, l'éditeur de profil utilisera un profil de manette de jeu vide.</value>
+  </data>
+  <data name="Presets" xml:space="preserve">
+    <value>Préconfigurations</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>Changelog</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Quitter</value>
+  </data>
+  <data name="Profiles" xml:space="preserve">
+    <value>Profils</value>
+  </data>
+  <data name="NoControllersConnected" xml:space="preserve">
+    <value>Aucun contrôleur connecté (Max {0})</value>
   </data>
 </root>

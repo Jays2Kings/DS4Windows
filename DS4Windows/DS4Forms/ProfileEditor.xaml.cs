@@ -47,7 +47,6 @@ namespace DS4WinWPF.DS4Forms
         private Dictionary<Button, int> hoverIndexes = new Dictionary<Button, int>();
         private Dictionary<int, Button> reverseHoverIndexes = new Dictionary<int, Button>();
 
-        private StackPanel activeTouchPanel;
         private StackPanel activeGyroModePanel;
         private bool keepsize;
         private bool controllerReadingsTabActive = false;
@@ -66,10 +65,7 @@ namespace DS4WinWPF.DS4Forms
             picBoxHover.Visibility = Visibility.Hidden;
             picBoxHover2.Visibility = Visibility.Hidden;
 
-            //SetTouchpadPanel();
-            //SetupGyroPanel();
             activeGyroModePanel = gyroControlsPanel;
-            activeTouchPanel = useMousePanel;
 
             mappingListVM = new MappingListViewModel(deviceNum, profileSettingsVM.ContType);
             specialActionsVM = new SpecialActionsListViewModel(device);
@@ -101,27 +97,6 @@ namespace DS4WinWPF.DS4Forms
             profileSettingsVM.R2DeadZoneChanged += UpdateReadingsR2DeadZone;
             profileSettingsVM.SXDeadZoneChanged += UpdateReadingsSXDeadZone;
             profileSettingsVM.SZDeadZoneChanged += UpdateReadingsSZDeadZone;
-        }
-
-        private void SetTouchpadPanel()
-        {
-            bool touchMouse = profileSettingsVM.UseTouchMouse;
-            if (!touchMouse)
-            {
-                useMousePanel.Visibility = Visibility.Collapsed;
-                useControlsPanel.Visibility = Visibility.Visible;
-                useTouchControlsRadio.IsChecked = true;
-            }
-            else
-            {
-                useMousePanel.Visibility = Visibility.Visible;
-                useControlsPanel.Visibility = Visibility.Collapsed;
-                useTouchMouseRadio.IsChecked = true;
-            }
-
-            //useControlsPanel.Visibility = !touchMouse ? Visibility.Visible : Visibility.Collapsed;
-            activeTouchPanel = touchMouse? useMousePanel : useControlsPanel;
-            //activeTouchPanel = useMousePanel;
         }
 
         private void SetupGyroPanel()
@@ -199,7 +174,6 @@ namespace DS4WinWPF.DS4Forms
                 {
                     InputControlHighlight(tempBtn);
                 }
-            //;
             }
 
         }
@@ -514,7 +488,6 @@ namespace DS4WinWPF.DS4Forms
         public void Reload(int device, ProfileEntity profile = null)
         {
             profileSettingsTabCon.DataContext = null;
-            touchpadSettingsPanel.DataContext = null;
             mappingListBox.DataContext = null;
             specialActionsTab.DataContext = null;
             lightbarRect.DataContext = null;
@@ -566,11 +539,9 @@ namespace DS4WinWPF.DS4Forms
             profileSettingsVM.PopulateGyroMouseTrig(gyroMouseTrigBtn.ContextMenu);
             profileSettingsVM.PopulateGyroMouseStickTrig(gyroMouseStickTrigBtn.ContextMenu);
             profileSettingsTabCon.DataContext = profileSettingsVM;
-            touchpadSettingsPanel.DataContext = profileSettingsVM;
             mappingListBox.DataContext = mappingListVM;
             specialActionsTab.DataContext = specialActionsVM;
             lightbarRect.DataContext = profileSettingsVM;
-            SetTouchpadPanel();
             SetupGyroPanel();
 
             conReadingsUserCon.LsDead = profileSettingsVM.LSDeadZone;
@@ -589,7 +560,6 @@ namespace DS4WinWPF.DS4Forms
         private void StopEditorBindings()
         {
             profileSettingsTabCon.DataContext = null;
-            touchpadSettingsPanel.DataContext = null;
             mappingListBox.DataContext = null;
             specialActionsTab.DataContext = null;
             lightbarRect.DataContext = null;
@@ -604,11 +574,9 @@ namespace DS4WinWPF.DS4Forms
             profileSettingsVM.PopulateGyroMouseTrig(gyroMouseTrigBtn.ContextMenu);
             profileSettingsVM.PopulateGyroMouseStickTrig(gyroMouseStickTrigBtn.ContextMenu);
             profileSettingsTabCon.DataContext = profileSettingsVM;
-            touchpadSettingsPanel.DataContext = profileSettingsVM;
             mappingListBox.DataContext = mappingListVM;
             specialActionsTab.DataContext = specialActionsVM;
             lightbarRect.DataContext = profileSettingsVM;
-            SetTouchpadPanel();
             SetupGyroPanel();
 
             conReadingsUserCon.LsDead = profileSettingsVM.LSDeadZone;
@@ -698,22 +666,6 @@ namespace DS4WinWPF.DS4Forms
             Canvas.SetLeft(picBoxHover, 0);
             Canvas.SetTop(picBoxHover, 0);
             picBoxHover.Visibility = Visibility.Hidden;
-        }
-
-        private void UseTouchMouseRadio_Click(object sender, RoutedEventArgs e)
-        {
-            activeTouchPanel.Visibility = Visibility.Collapsed;
-            useMousePanel.Visibility = Visibility.Visible;
-            activeTouchPanel = useMousePanel;
-            profileSettingsVM.UseTouchMouse = true;
-        }
-
-        private void UseTouchControlsRadio_Click(object sender, RoutedEventArgs e)
-        {
-            activeTouchPanel.Visibility = Visibility.Collapsed;
-            useControlsPanel.Visibility = Visibility.Visible;
-            activeTouchPanel = useControlsPanel;
-            profileSettingsVM.UseTouchMouse = false;
         }
 
         private void GyroOutModeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)

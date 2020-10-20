@@ -1,6 +1,6 @@
 # TODO
 
-* Add quick default buttons for many settings
+* ~~Add quick default buttons for many settings~~
 * ~~Add 1€ Filter~~
 * ~~Test 1€ Filter use for Gyro 360 Steering Wheel Mode~~
 * Add more localization ready strings

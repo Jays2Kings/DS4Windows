@@ -685,6 +685,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Controllers Connected (Max {0}).
+        /// </summary>
+        public static string NoControllersConnected {
+            get {
+                return ResourceManager.GetString("NoControllersConnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to None.
         /// </summary>
         public static string None {

@@ -35,6 +35,14 @@ namespace DS4Windows
         MouseJoystick,
     }
 
+    public enum TouchpadOutMode : uint
+    {
+        None,
+        Mouse,
+        Controls,
+        AbsoluteMouse,
+    }
+
     public enum TrayIconChoice : uint
     {
         Default,
@@ -344,7 +352,7 @@ namespace DS4Windows
         public static string vigembusVersion = ViGEmBusVersion();
         public static VirtualKBMBase outputKBMHandler = null;
         public static VirtualKBMMapping outputKBMMapping = null;
-        public const int CONFIG_VERSION = 4;
+        public const int CONFIG_VERSION = 5;
         public const int APP_CONFIG_VERSION = 2;
         public const string ASSEMBLY_RESOURCE_PREFIX = "pack://application:,,,/DS4Windows;";
         public const string CUSTOM_EXE_CONFIG_FILENAME = "custom_exe_name.txt";
@@ -972,17 +980,6 @@ namespace DS4Windows
         }
 
         // general values
-        public static bool UseExclusiveMode
-        {
-            set { m_Config.useExclusiveMode = value; }
-            get { return m_Config.useExclusiveMode; }
-        }
-
-        public static bool getUseExclusiveMode()
-        {
-            return m_Config.useExclusiveMode;
-        }
-
         public static DateTime LastChecked
         {
             set { m_Config.lastChecked = value; }
@@ -1302,11 +1299,12 @@ namespace DS4Windows
 
         public static bool[] StartTouchpadOff => m_Config.startTouchpadOff;
 
-        public static bool[] UseTPforControls => m_Config.useTPforControls;
-        public static bool getUseTPforControls(int index)
+        public static bool IsUsingTouchpadForControls(int index)
         {
-            return m_Config.useTPforControls[index];
+            return m_Config.touchOutMode[index] == TouchpadOutMode.Controls;
         }
+
+        public static TouchpadOutMode[] TouchOutMode = m_Config.touchOutMode;
 
         public static bool IsUsingSAForControls(int index)
         {
@@ -1806,6 +1804,9 @@ namespace DS4Windows
         {
             return m_Config.trackballFriction[index];
         }
+
+        public static TouchpadAbsMouseSettings[] TouchAbsMouse => m_Config.touchpadAbsMouse;
+        public static TouchpadRelMouseSettings[] TouchRelMouse => m_Config.touchpadRelMouse;
 
         public static OutContType[] OutContType => m_Config.outputDevType;
         public static string[] LaunchProgram => m_Config.launchProgram;
@@ -2428,8 +2429,8 @@ namespace DS4Windows
         public string[] launchProgram = new string[Global.TEST_PROFILE_ITEM_COUNT] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         public bool[] dinputOnly = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
         public bool[] startTouchpadOff = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
-        public bool[] useTPforControls = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
-        public bool[] useSAforMouse = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
+        public TouchpadOutMode[] touchOutMode = new TouchpadOutMode[Global.TEST_PROFILE_ITEM_COUNT] { TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse,
+            TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse };
         public GyroOutMode[] gyroOutMode = new GyroOutMode[Global.TEST_PROFILE_ITEM_COUNT] { GyroOutMode.Controls, GyroOutMode.Controls,
             GyroOutMode.Controls, GyroOutMode.Controls, GyroOutMode.Controls, GyroOutMode.Controls, GyroOutMode.Controls, GyroOutMode.Controls, GyroOutMode.Controls };
         public string[] sATriggers = new string[Global.TEST_PROFILE_ITEM_COUNT] { "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1" };
@@ -2456,7 +2457,6 @@ namespace DS4Windows
             new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 } };
         public int[] lsCurve = new int[Global.TEST_PROFILE_ITEM_COUNT] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         public int[] rsCurve = new int[Global.TEST_PROFILE_ITEM_COUNT] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        public Boolean useExclusiveMode = false;
         public Int32 formWidth = 782;
         public Int32 formHeight = 550;
         public int formLocationX = 0;
@@ -2492,7 +2492,7 @@ namespace DS4Windows
         public bool downloadLang = true;
         public TrayIconChoice useIconChoice;
         public bool flashWhenLate = true;
-        public int flashWhenLateAt = 20;
+        public int flashWhenLateAt = 30;
         public bool useUDPServ = false;
         public int udpServPort = 26760;
         public string udpServListenAddress = "127.0.0.1"; // 127.0.0.1=IPAddress.Loopback (default), 0.0.0.0=IPAddress.Any as all interfaces, x.x.x.x = Specific ipv4 interface address or hostname
@@ -2529,6 +2529,13 @@ namespace DS4Windows
 
         public bool[] trackballMode = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
         public double[] trackballFriction = new double[Global.TEST_PROFILE_ITEM_COUNT] { 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0 };
+
+
+        public TouchpadAbsMouseSettings[] touchpadAbsMouse = new TouchpadAbsMouseSettings[Global.TEST_PROFILE_ITEM_COUNT] { new TouchpadAbsMouseSettings(), new TouchpadAbsMouseSettings(), new TouchpadAbsMouseSettings(),
+            new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings() };
+        public TouchpadRelMouseSettings[] touchpadRelMouse = new TouchpadRelMouseSettings[Global.TEST_PROFILE_ITEM_COUNT] { new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(),
+            new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings() };
+
         // Used to hold the controller type desired in a profile
         public OutContType[] outputDevType = new OutContType[Global.TEST_PROFILE_ITEM_COUNT] { OutContType.X360,
             OutContType.X360, OutContType.X360,
@@ -2964,8 +2971,7 @@ namespace DS4Windows
                 XmlNode xmlLaunchProgram = m_Xdoc.CreateNode(XmlNodeType.Element, "LaunchProgram", null); xmlLaunchProgram.InnerText = launchProgram[device].ToString(); rootElement.AppendChild(xmlLaunchProgram);
                 XmlNode xmlDinput = m_Xdoc.CreateNode(XmlNodeType.Element, "DinputOnly", null); xmlDinput.InnerText = dinputOnly[device].ToString(); rootElement.AppendChild(xmlDinput);
                 XmlNode xmlStartTouchpadOff = m_Xdoc.CreateNode(XmlNodeType.Element, "StartTouchpadOff", null); xmlStartTouchpadOff.InnerText = startTouchpadOff[device].ToString(); rootElement.AppendChild(xmlStartTouchpadOff);
-                XmlNode xmlUseTPforControls = m_Xdoc.CreateNode(XmlNodeType.Element, "UseTPforControls", null); xmlUseTPforControls.InnerText = useTPforControls[device].ToString(); rootElement.AppendChild(xmlUseTPforControls);
-                XmlNode xmlUseSAforMouse = m_Xdoc.CreateNode(XmlNodeType.Element, "UseSAforMouse", null); xmlUseSAforMouse.InnerText = useSAforMouse[device].ToString(); rootElement.AppendChild(xmlUseSAforMouse);
+                XmlNode xmlTouchOutMode = m_Xdoc.CreateNode(XmlNodeType.Element, "TouchpadOutputMode", null); xmlTouchOutMode.InnerText = touchOutMode[device].ToString(); rootElement.AppendChild(xmlTouchOutMode);
                 XmlNode xmlSATriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "SATriggers", null); xmlSATriggers.InnerText = sATriggers[device].ToString(); rootElement.AppendChild(xmlSATriggers);
                 XmlNode xmlSATriggerCond = m_Xdoc.CreateNode(XmlNodeType.Element, "SATriggerCond", null); xmlSATriggerCond.InnerText = SaTriggerCondString(sATriggerCond[device]); rootElement.AppendChild(xmlSATriggerCond);
                 XmlNode xmlSASteeringWheelEmulationAxis = m_Xdoc.CreateNode(XmlNodeType.Element, "SASteeringWheelEmulationAxis", null); xmlSASteeringWheelEmulationAxis.InnerText = sASteeringWheelEmulationAxis[device].ToString("G"); rootElement.AppendChild(xmlSASteeringWheelEmulationAxis);
@@ -3003,6 +3009,7 @@ namespace DS4Windows
 
                 XmlNode xmlGyroMouseHAxis = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseHAxis", null); xmlGyroMouseHAxis.InnerText = gyroMouseHorizontalAxis[device].ToString(); rootElement.AppendChild(xmlGyroMouseHAxis);
                 XmlNode xmlGyroMouseDZ = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseDeadZone", null); xmlGyroMouseDZ.InnerText = gyroMouseDZ[device].ToString(); rootElement.AppendChild(xmlGyroMouseDZ);
+                XmlNode xmlGyroMinThreshold = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseMinThreshold", null); xmlGyroMinThreshold.InnerText = gyroMouseInfo[device].minThreshold.ToString(); rootElement.AppendChild(xmlGyroMinThreshold);
                 XmlNode xmlGyroMouseToggle = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseToggle", null); xmlGyroMouseToggle.InnerText = gyroMouseToggle[device].ToString(); rootElement.AppendChild(xmlGyroMouseToggle);
 
                 XmlNode xmlGyroOutMode = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroOutputMode", null); xmlGyroOutMode.InnerText = GetGyroOutModeString(gyroOutMode[device]); rootElement.AppendChild(xmlGyroOutMode);
@@ -3063,6 +3070,15 @@ namespace DS4Windows
 
                 XmlNode xmlTrackBallMode = m_Xdoc.CreateNode(XmlNodeType.Element, "TrackballMode", null); xmlTrackBallMode.InnerText = trackballMode[device].ToString(); rootElement.AppendChild(xmlTrackBallMode);
                 XmlNode xmlTrackBallFriction = m_Xdoc.CreateNode(XmlNodeType.Element, "TrackballFriction", null); xmlTrackBallFriction.InnerText = trackballFriction[device].ToString(); rootElement.AppendChild(xmlTrackBallFriction);
+
+                XmlNode xmlTouchRelMouseRotation = m_Xdoc.CreateNode(XmlNodeType.Element, "TouchRelMouseRotation", null); xmlTouchRelMouseRotation.InnerText = Convert.ToInt32(touchpadRelMouse[device].rotation * 180.0 / Math.PI).ToString(); rootElement.AppendChild(xmlTouchRelMouseRotation);
+                XmlNode xmlTouchRelMouseMinThreshold = m_Xdoc.CreateNode(XmlNodeType.Element, "TouchRelMouseMinThreshold", null); xmlTouchRelMouseMinThreshold.InnerText = touchpadRelMouse[device].minThreshold.ToString(); rootElement.AppendChild(xmlTouchRelMouseMinThreshold);
+
+                XmlElement xmlTouchAbsMouseGroupEl = m_Xdoc.CreateElement("TouchpadAbsMouseSettings");
+                XmlElement xmlTouchAbsMouseMaxZoneX = m_Xdoc.CreateElement("MaxZoneX"); xmlTouchAbsMouseMaxZoneX.InnerText = touchpadAbsMouse[device].maxZoneX.ToString(); xmlTouchAbsMouseGroupEl.AppendChild(xmlTouchAbsMouseMaxZoneX);
+                XmlElement xmlTouchAbsMouseMaxZoneY = m_Xdoc.CreateElement("MaxZoneY"); xmlTouchAbsMouseMaxZoneY.InnerText = touchpadAbsMouse[device].maxZoneY.ToString(); xmlTouchAbsMouseGroupEl.AppendChild(xmlTouchAbsMouseMaxZoneY);
+                XmlElement xmlTouchAbsMouseSnapCenter = m_Xdoc.CreateElement("SnapToCenter"); xmlTouchAbsMouseSnapCenter.InnerText = touchpadAbsMouse[device].snapToCenter.ToString(); xmlTouchAbsMouseGroupEl.AppendChild(xmlTouchAbsMouseSnapCenter);
+                rootElement.AppendChild(xmlTouchAbsMouseGroupEl);
 
                 XmlNode xmlOutContDevice = m_Xdoc.CreateNode(XmlNodeType.Element, "OutputContDevice", null); xmlOutContDevice.InnerText = OutContDeviceString(outputDevType[device]); rootElement.AppendChild(xmlOutContDevice);
 
@@ -3980,9 +3996,20 @@ namespace DS4Windows
                 }
                 catch { startTouchpadOff[device] = false; missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls"); bool.TryParse(Item.InnerText, out useTPforControls[device]); }
-                catch { useTPforControls[device] = false; missingSetting = true; }
+                // Fallback lookup if TouchpadOutMode is not set
+                bool tpForControlsPresent = false;
+                XmlNode xmlUseTPForControlsElement =
+                    m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls");
+                tpForControlsPresent = xmlUseTPForControlsElement != null;
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls");
+                    bool.TryParse(Item.InnerText, out bool temp);
+                    if (temp) touchOutMode[device] = TouchpadOutMode.Controls;
+                }
+                catch { touchOutMode[device] = TouchpadOutMode.Mouse; missingSetting = true; }
 
+                // Fallback lookup if GyroOutMode is not set
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseSAforMouse");
@@ -4162,6 +4189,18 @@ namespace DS4Windows
                     missingSetting = true;
                 }
 
+                // Check for TouchpadOutputMode if UseTPforControls is not present in profile
+                if (!tpForControlsPresent)
+                {
+                    try
+                    {
+                        Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TouchpadOutputMode");
+                        string tempMode = Item.InnerText;
+                        Enum.TryParse(tempMode, out touchOutMode[device]);
+                    }
+                    catch { touchOutMode[device] = TouchpadOutMode.Mouse; missingSetting = true; }
+                }
+
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TouchDisInvTriggers");
@@ -4258,6 +4297,15 @@ namespace DS4Windows
 
                 try
                 {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseMinThreshold");
+                    double.TryParse(Item.InnerText, out double temp);
+                    temp = Math.Min(Math.Max(temp, 1.0), 40.0);
+                    gyroMouseInfo[device].minThreshold = temp;
+                }
+                catch { gyroMouseInfo[device].minThreshold = GyroMouseInfo.DEFAULT_MIN_THRESHOLD; missingSetting = true; }
+
+                try
+                {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseToggle"); bool.TryParse(Item.InnerText, out bool temp);
                     gyroMouseToggle[device] = temp;
                 }
@@ -4324,6 +4372,61 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TrackballFriction"); double.TryParse(Item.InnerText, out trackballFriction[device]); }
                 catch { trackballFriction[device] = 10.0; missingSetting = true; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TouchRelMouseRotation");
+                    int.TryParse(Item.InnerText, out int temp);
+                    temp = Math.Min(Math.Max(temp, -180), 180);
+                    touchpadRelMouse[device].rotation = temp * Math.PI / 180.0;
+                }
+                catch { touchpadRelMouse[device].rotation = 0.0; missingSetting = true; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TouchRelMouseMinThreshold");
+                    double.TryParse(Item.InnerText, out double temp);
+                    temp = Math.Min(Math.Max(temp, 1.0), 40.0);
+                    touchpadRelMouse[device].minThreshold = temp;
+                }
+                catch { touchpadRelMouse[device].minThreshold = TouchpadRelMouseSettings.DEFAULT_MIN_THRESHOLD; missingSetting = true; }
+
+
+                bool touchpadAbsMouseGroup = false;
+                XmlNode touchpadAbsMouseElement =
+                    m_Xdoc.SelectSingleNode("/" + rootname + "/TouchpadAbsMouseSettings");
+                touchpadAbsMouseGroup = touchpadAbsMouseElement != null;
+
+                if (touchpadAbsMouseGroup)
+                {
+                    try
+                    {
+                        Item = touchpadAbsMouseElement.SelectSingleNode("MaxZoneX");
+                        int.TryParse(Item.InnerText, out int temp);
+                        touchpadAbsMouse[device].maxZoneX = temp;
+                    }
+                    catch { touchpadAbsMouse[device].maxZoneX = TouchpadAbsMouseSettings.DEFAULT_MAXZONE_X; missingSetting = true; }
+
+                    try
+                    {
+                        Item = touchpadAbsMouseElement.SelectSingleNode("MaxZoneY");
+                        int.TryParse(Item.InnerText, out int temp);
+                        touchpadAbsMouse[device].maxZoneY = temp;
+                    }
+                    catch { touchpadAbsMouse[device].maxZoneY = TouchpadAbsMouseSettings.DEFAULT_MAXZONE_Y; missingSetting = true; }
+
+                    try
+                    {
+                        Item = touchpadAbsMouseElement.SelectSingleNode("SnapToCenter");
+                        bool.TryParse(Item.InnerText, out bool temp);
+                        touchpadAbsMouse[device].snapToCenter = temp;
+                    }
+                    catch { touchpadAbsMouse[device].snapToCenter = TouchpadAbsMouseSettings.DEFAULT_SNAP_CENTER; missingSetting = true; }
+                }
+                else
+                {
+                    missingSetting = true;
+                }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/OutputContDevice"); outputDevType[device] = OutContDeviceId(Item.InnerText); }
                 catch { outputDevType[device] = OutContType.X360; missingSetting = true; }
@@ -4616,8 +4719,6 @@ namespace DS4Windows
 
                     m_Xdoc.Load(m_Profile);
 
-                    try { Item = m_Xdoc.SelectSingleNode("/Profile/useExclusiveMode"); Boolean.TryParse(Item.InnerText, out useExclusiveMode); }
-                    catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/startMinimized"); Boolean.TryParse(Item.InnerText, out startMinimized); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/minimizeToTaskbar"); Boolean.TryParse(Item.InnerText, out minToTaskbar); }
@@ -4853,7 +4954,6 @@ namespace DS4Windows
             rootElement.SetAttribute("app_version", Global.exeversion);
             rootElement.SetAttribute("config_version", Global.APP_CONFIG_VERSION.ToString());
 
-            XmlNode xmlUseExclNode = m_Xdoc.CreateNode(XmlNodeType.Element, "useExclusiveMode", null); xmlUseExclNode.InnerText = useExclusiveMode.ToString(); rootElement.AppendChild(xmlUseExclNode);
             XmlNode xmlStartMinimized = m_Xdoc.CreateNode(XmlNodeType.Element, "startMinimized", null); xmlStartMinimized.InnerText = startMinimized.ToString(); rootElement.AppendChild(xmlStartMinimized);
             XmlNode xmlminToTaskbar = m_Xdoc.CreateNode(XmlNodeType.Element, "minimizeToTaskbar", null); xmlminToTaskbar.InnerText = minToTaskbar.ToString(); rootElement.AppendChild(xmlminToTaskbar);
             XmlNode xmlFormWidth = m_Xdoc.CreateNode(XmlNodeType.Element, "formWidth", null); xmlFormWidth.InnerText = formWidth.ToString(); rootElement.AppendChild(xmlFormWidth);
@@ -5650,35 +5750,15 @@ namespace DS4Windows
             lightInfo.maxRainbowSat = 1.0;
             lightInfo.ledAsBattery = false;
 
-            /*m_Leds[device] = new DS4Color(tempColor);
-            m_ChargingLeds[device] = new DS4Color(Color.Black);
-            m_FlashLeds[device] = new DS4Color(Color.Black);
-            //useCustomLeds[device] = false;
-            //m_CustomLeds[device] = new DS4Color(Color.Blue);
-
-            chargingType[device] = 0;
-            rainbow[device] = 0;
-            maxRainbowSat[device] = 1.0;
-            flashAt[device] = 0;
-            ledAsBattery[device] = false;
-            flashType[device] = 0;
-            */
             launchProgram[device] = string.Empty;
             dinputOnly[device] = false;
             startTouchpadOff[device] = false;
-            useTPforControls[device] = false;
-            useSAforMouse[device] = false;
+            touchOutMode[device] = TouchpadOutMode.Mouse;
             sATriggers[device] = "-1";
             sATriggerCond[device] = true;
             gyroOutMode[device] = GyroOutMode.Controls;
             sAMouseStickTriggers[device] = "-1";
             sAMouseStickTriggerCond[device] = true;
-            /*gyroMStickInfo[device].deadZone = 30; gyroMStickInfo[device].maxZone = 830;
-            gyroMStickInfo[device].antiDeadX = 0.4; gyroMStickInfo[device].antiDeadY = 0.4;
-            gyroMStickInfo[device].inverted = 0; gyroMStickInfo[device].vertScale = 100;
-            gyroMStickInfo[device].maxOutputEnabled = false; gyroMStickInfo[device].maxOutput = 100.0;
-            gyroMStickInfo[device].useSmoothing = false; gyroMStickInfo[device].smoothWeight = 0.5;
-            */
 
             gyroMStickInfo[device].Reset();
 
@@ -5694,8 +5774,7 @@ namespace DS4Windows
             gyroInvert[device] = 0;
             gyroTriggerTurns[device] = true;
             gyroMouseInfo[device].Reset();
-            //gyroSmoothing[device] = false;
-            //gyroSmoothWeight[device] = 0.5;
+
             gyroMouseHorizontalAxis[device] = 0;
             gyroMouseToggle[device] = false;
             squStickInfo[device].lsMode = false;
@@ -5710,6 +5789,8 @@ namespace DS4Windows
             setSZOutCurveMode(device, 0);
             trackballMode[device] = false;
             trackballFriction[device] = 10.0;
+            touchpadAbsMouse[device].Reset();
+            touchpadRelMouse[device].Reset();
             outputDevType[device] = OutContType.X360;
             ds4Mapping = false;
         }
@@ -5820,7 +5901,7 @@ namespace DS4Windows
             sATriggerCond[device] = true;
             gyroTriggerTurns[device] = false;
             gyroMouseInfo[device].enableSmoothing = true;
-            gyroMouseInfo[device].useOneEuroSmooth = true;
+            gyroMouseInfo[device].smoothingMethod = GyroMouseInfo.SmoothingMethod.OneEuro;
 
             StickDeadZoneInfo rsInfo = rsModInfo[device];
             rsInfo.deadZone = (int)(0.10 * 127);
@@ -6021,7 +6102,7 @@ namespace DS4Windows
             sATriggerCond[device] = true;
             gyroTriggerTurns[device] = false;
             gyroMouseInfo[device].enableSmoothing = true;
-            gyroMouseInfo[device].useOneEuroSmooth = true;
+            gyroMouseInfo[device].smoothingMethod = GyroMouseInfo.SmoothingMethod.OneEuro;
 
             // Flag to unplug virtual controller
             dinputOnly[device] = true;

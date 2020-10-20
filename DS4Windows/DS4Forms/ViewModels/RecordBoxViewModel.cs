@@ -280,6 +280,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
 
+        public void InsertMacroStep(int index, MacroStep step)
+        {
+            MacroStepItem item = new MacroStepItem(step);
+            macroSteps.Insert(index, item);
+        }
+
         public void StartForcedColor(Color color)
         {
             if (deviceNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)

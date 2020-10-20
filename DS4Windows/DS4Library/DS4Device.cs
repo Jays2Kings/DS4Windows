@@ -124,8 +124,8 @@ namespace DS4Windows
         internal const int READ_STREAM_TIMEOUT = 3000;
         // Isolated BT report can have latency as high as 15 ms
         // due to hardware.
-        internal const int WARN_INTERVAL_BT = 20;
-        internal const int WARN_INTERVAL_USB = 10;
+        internal const int WARN_INTERVAL_BT = 30;
+        internal const int WARN_INTERVAL_USB = 20;
         // Maximum values for battery level when no USB cable is connected
         // and when a USB cable is connected
         internal const int BATTERY_MAX = 8;
@@ -1158,8 +1158,8 @@ namespace DS4Windows
                             cState.Touch1Finger = cState.Touch1 || cState.Touch2; // >= 1 touch detected
                             cState.Touch2Fingers = cState.Touch1 && cState.Touch2; // 2 touches detected
                             int touchX = (((inputReport[2 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0xF) << 8) | inputReport[1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset]);
-                            cState.TouchLeft = touchX >= 1920 * 2 / 5 ? false : true;
-                            cState.TouchRight = touchX < 1920 * 2 / 5 ? false : true;
+                            cState.TouchLeft = touchX >= DS4Touchpad.RESOLUTION_X_MAX * 2 / 5 ? false : true;
+                            cState.TouchRight = touchX < DS4Touchpad.RESOLUTION_X_MAX * 2 / 5 ? false : true;
                             // Even when idling there is still a touch packet indicating no touch 1 or 2
                             if (synced)
                             {

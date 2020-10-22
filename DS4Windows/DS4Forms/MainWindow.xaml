@@ -104,10 +104,10 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Width="{Binding ElementName=editColumn, Path=Width}">
-                                                <xctk:SplitButton x:Name="ProfEditSBtn" Content="{lex:Loc Edit}" Height="20" Width="60"
-                                                                  Tag="{Binding DevIndex, Mode=OneTime}" Click="ProfEditSBtn_Click">
+                                                <xctk:SplitButton x:Name="ProfEditSBtn" Content="{lex:Loc Edit}" Height="20" MinWidth="60"
+                                                                  Tag="{Binding DevIndex, Mode=OneTime}" Click="ProfEditSBtn_Click" HorizontalAlignment="Center">
                                                     <xctk:SplitButton.DropDownContent>
-                                                        <Button x:Name="newProfBtn" Content="{lex:Loc NewProfile}" Width="120" Tag="{Binding DevIndex, Mode=OneTime}" Click="NewProfBtn_Click"  />
+                                                        <Button x:Name="newProfBtn" Content="{lex:Loc NewProfile}" MinWidth="120" Tag="{Binding DevIndex, Mode=OneTime}" Click="NewProfBtn_Click"  />
                                                     </xctk:SplitButton.DropDownContent>
                                                 </xctk:SplitButton>
                                             </StackPanel>

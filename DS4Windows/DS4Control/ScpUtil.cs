@@ -5686,7 +5686,7 @@ namespace DS4Windows
             buttonMouseInfos[device].activeButtonSensitivity = 25;
             buttonMouseInfos[device].mouseVelocityOffset = ButtonMouseInfo.MOUSESTICKANTIOFFSET;
             enableTouchToggle[device] = true;
-            idleDisconnectTimeout[device] = 300;
+            idleDisconnectTimeout[device] = 0;
             enableOutputDataToDS4[device] = true;
             touchpadJitterCompensation[device] = true;
             lowerRCOn[device] = false;

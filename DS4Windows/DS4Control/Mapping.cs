@@ -1578,345 +1578,46 @@ namespace DS4Windows
 
             //Dictionary<DS4Controls, DS4Controls> tempControlDict = new Dictionary<DS4Controls, DS4Controls>();
             //MultiValueDict<DS4Controls, DS4Controls> tempControlDict = new MultiValueDict<DS4Controls, DS4Controls>();
-            DS4Controls usingExtra = DS4Controls.None;
+            
             List<DS4ControlSettings> tempSettingsList = getDS4CSettings(device);
             //foreach (DS4ControlSettings dcs in getDS4CSettings(device))
             //for (int settingIndex = 0, arlen = tempSettingsList.Count; settingIndex < arlen; settingIndex++)
-            for (var settingEnum = tempSettingsList.GetEnumerator(); settingEnum.MoveNext();)
+
+            ControlSettingsGroup controlSetGroup = GetControlSettingsGroup(device);
+
+            for (var settingEnum = controlSetGroup.LS.GetEnumerator(); settingEnum.MoveNext();)
             {
-                //DS4ControlSettings dcs = tempSettingsList[settingIndex];
                 DS4ControlSettings dcs = settingEnum.Current;
-                object action = null;
-                DS4ControlSettings.ActionType actionType = 0;
-                DS4KeyType keyType = DS4KeyType.None;
-                if (dcs.shiftAction != null && ShiftTrigger2(dcs.shiftTrigger, device, cState, eState, tp, fieldMapping))
-                {
-                    action = dcs.shiftAction;
-                    actionType = dcs.shiftActionType;
-                    keyType = dcs.shiftKeyType;
-                }
-                else if (dcs.action != null)
-                {
-                    action = dcs.action;
-                    actionType = dcs.actionType;
-                    keyType = dcs.keyType;
-                }
+                ProcessControlSettingAction(dcs, device, cState, MappedState, eState,
+                    tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                    ref tempMouseDeltaY, ctrl);
+            }
 
-                if (usingExtra == DS4Controls.None || usingExtra == dcs.control)
-                {
-                    bool shiftE = !string.IsNullOrEmpty(dcs.shiftExtras) && ShiftTrigger2(dcs.shiftTrigger, device, cState, eState, tp, fieldMapping);
-                    bool regE = !string.IsNullOrEmpty(dcs.extras);
-                    if ((regE || shiftE) && getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
-                    {
-                        usingExtra = dcs.control;
-                        string p;
-                        if (shiftE)
-                            p = dcs.shiftExtras;
-                        else
-                            p = dcs.extras;
+            for (var settingEnum = controlSetGroup.RS.GetEnumerator(); settingEnum.MoveNext();)
+            {
+                DS4ControlSettings dcs = settingEnum.Current;
+                ProcessControlSettingAction(dcs, device, cState, MappedState, eState,
+                    tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                    ref tempMouseDeltaY, ctrl);
+            }
 
-                        string[] extraS = p.Split(',');
-                        int extrasSLen = extraS.Length;
-                        int[] extras = new int[extrasSLen];
-                        for (int i = 0; i < extrasSLen; i++)
-                        {
-                            int b;
-                            if (int.TryParse(extraS[i], out b))
-                                extras[i] = b;
-                        }
+            DS4ControlSettings dcsTemp = controlSetGroup.L2;
+            ProcessControlSettingAction(dcsTemp, device, cState, MappedState, eState,
+                tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                ref tempMouseDeltaY, ctrl);
 
-                        held[device] = true;
-                        try
-                        {
-                            if (!(extras[0] == extras[1] && extras[1] == 0))
-                            {
-                                ctrl.setRumble((byte)extras[0], (byte)extras[1], device);
-                                extrasRumbleActive[device] = true;
-                            }
+            dcsTemp = controlSetGroup.R2;
+            ProcessControlSettingAction(dcsTemp, device, cState, MappedState, eState,
+                tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                ref tempMouseDeltaY, ctrl);
 
-                            if (extras[2] == 1)
-                            {
-                                DS4Color color = new DS4Color { red = (byte)extras[3], green = (byte)extras[4], blue = (byte)extras[5] };
-                                DS4LightBar.forcedColor[device] = color;
-                                DS4LightBar.forcedFlash[device] = (byte)extras[6];
-                                DS4LightBar.forcelight[device] = true;
-                            }
 
-                            if (extras[7] == 1)
-                            {
-                                ButtonMouseInfo tempMouseInfo = ButtonMouseInfos[device];
-                                if (tempMouseInfo.tempButtonSensitivity == -1)
-                                {
-                                    tempMouseInfo.tempButtonSensitivity = extras[8];
-                                    tempMouseInfo.SetActiveButtonSensitivity(extras[8]);
-                                }
-                            }
-                        }
-                        catch { }
-                    }
-                    else if ((regE || shiftE) && held[device])
-                    {
-                        DS4LightBar.forcelight[device] = false;
-                        DS4LightBar.forcedFlash[device] = 0;
-                        ButtonMouseInfo tempMouseInfo = ButtonMouseInfos[device];
-                        if (tempMouseInfo.tempButtonSensitivity != -1)
-                        {
-                            tempMouseInfo.SetActiveButtonSensitivity(tempMouseInfo.buttonSensitivity);
-                            tempMouseInfo.tempButtonSensitivity = -1;
-                        }
-
-                        if (extrasRumbleActive[device])
-                        {
-                            ctrl.setRumble(0, 0, device);
-                            extrasRumbleActive[device] = false;
-                        }
-
-                        held[device] = false;
-                        usingExtra = DS4Controls.None;
-                    }
-                }
-
-                if (action != null)
-                {
-                    if (actionType == DS4ControlSettings.ActionType.Macro)
-                    {
-                        bool active = getBoolMapping2(device, dcs.control, cState, eState, tp, fieldMapping);
-                        if (active)
-                        {
-                            PlayMacro(device, macroControl, String.Empty, null, (int[])action, dcs.control, keyType);
-                        }
-                        else
-                        {
-                            EndMacro(device, macroControl, (int[])action, dcs.control);
-                        }
-
-                        // erase default mappings for things that are remapped
-                        resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
-                    }
-                    else if (actionType == DS4ControlSettings.ActionType.Key)
-                    {
-                        ushort value = Convert.ToUInt16(action);
-                        if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
-                        {
-                            SyntheticState.KeyPresses kp;
-                            if (!deviceState.keyPresses.TryGetValue(value, out kp))
-                                deviceState.keyPresses[value] = kp = new SyntheticState.KeyPresses();
-
-                            if (keyType.HasFlag(DS4KeyType.ScanCode))
-                                kp.current.scanCodeCount++;
-                            else
-                                kp.current.vkCount++;
-
-                            if (keyType.HasFlag(DS4KeyType.Toggle))
-                            {
-                                if (!pressedonce[value])
-                                {
-                                    kp.current.toggle = !kp.current.toggle;
-                                    pressedonce[value] = true;
-                                }
-                                kp.current.toggleCount++;
-                            }
-                            kp.current.repeatCount++;
-                        }
-                        else
-                            pressedonce[value] = false;
-
-                        // erase default mappings for things that are remapped
-                        resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
-                    }
-                    else if (actionType == DS4ControlSettings.ActionType.Button)
-                    {
-                        int keyvalue = 0;
-                        bool isAnalog = false;
-
-                        if (dcs.control >= DS4Controls.LXNeg && dcs.control <= DS4Controls.RYPos)
-                        {
-                            isAnalog = true;
-                        }
-                        else if (dcs.control == DS4Controls.L2 || dcs.control == DS4Controls.R2)
-                        {
-                            isAnalog = true;
-                        }
-                        else if (dcs.control >= DS4Controls.GyroXPos && dcs.control <= DS4Controls.GyroZNeg)
-                        {
-                            isAnalog = true;
-                        }
-
-                        X360Controls xboxControl = X360Controls.None;
-                        if (action is X360Controls)
-                        {
-                            xboxControl = (X360Controls)action;
-                        }
-                        else if (action is string)
-                        {
-                            xboxControl = getX360ControlsByName(action.ToString());
-                        }
-
-                        if (xboxControl >= X360Controls.LXNeg && xboxControl <= X360Controls.Start)
-                        {
-                            DS4Controls tempDS4Control = reverseX360ButtonMapping[(int)xboxControl];
-                            customMapQueue[device].Enqueue(new ControlToXInput(dcs.control, tempDS4Control));
-                            //tempControlDict.Add(dcs.control, tempDS4Control);
-                        }
-                        else if (xboxControl == X360Controls.TouchpadClick)
-                        {
-                            bool value = getBoolMapping2(device, dcs.control, cState, eState, tp, fieldMapping);
-                            if (value)
-                                outputfieldMapping.touchButton = value;
-                        }
-                        else if (xboxControl >= X360Controls.LeftMouse && xboxControl <= X360Controls.WDOWN)
-                        {
-                            switch (xboxControl)
-                            {
-                                case X360Controls.LeftMouse:
-                                {
-                                    keyvalue = 256;
-                                    if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
-                                        deviceState.currentClicks.leftCount++;
-
-                                    break;
-                                }
-                                case X360Controls.RightMouse:
-                                {
-                                    keyvalue = 257;
-                                    if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
-                                        deviceState.currentClicks.rightCount++;
-
-                                    break;
-                                }
-                                case X360Controls.MiddleMouse:
-                                {
-                                    keyvalue = 258;
-                                    if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
-                                        deviceState.currentClicks.middleCount++;
-
-                                    break;
-                                }
-                                case X360Controls.FourthMouse:
-                                {
-                                    keyvalue = 259;
-                                    if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
-                                        deviceState.currentClicks.fourthCount++;
-
-                                    break;
-                                }
-                                case X360Controls.FifthMouse:
-                                {
-                                    keyvalue = 260;
-                                    if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
-                                        deviceState.currentClicks.fifthCount++;
-
-                                    break;
-                                }
-                                case X360Controls.WUP:
-                                {
-                                    if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
-                                    {
-                                        if (isAnalog)
-                                            getMouseWheelMapping(device, dcs.control, cState, eState, tp, false);
-                                        else
-                                            deviceState.currentClicks.wUpCount++;
-                                    }
-
-                                    break;
-                                }
-                                case X360Controls.WDOWN:
-                                {
-                                    if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
-                                    {
-                                        if (isAnalog)
-                                            getMouseWheelMapping(device, dcs.control, cState, eState, tp, true);
-                                        else
-                                            deviceState.currentClicks.wDownCount++;
-                                    }
-
-                                    break;
-                                }
-
-                                default: break;
-                            }
-                        }
-                        else if (xboxControl >= X360Controls.MouseUp && xboxControl <= X360Controls.MouseRight)
-                        {
-                            switch (xboxControl)
-                            {
-                                case X360Controls.MouseUp:
-                                {
-                                    if (tempMouseDeltaY == 0)
-                                    {
-                                        tempMouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 0, ctrl);
-                                        tempMouseDeltaY = -Math.Abs((tempMouseDeltaY == -2147483648 ? 0 : tempMouseDeltaY));
-                                    }
-
-                                    break;
-                                }
-                                case X360Controls.MouseDown:
-                                {
-                                    if (tempMouseDeltaY == 0)
-                                    {
-                                        tempMouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 1, ctrl);
-                                        tempMouseDeltaY = Math.Abs((tempMouseDeltaY == -2147483648 ? 0 : tempMouseDeltaY));
-                                    }
-
-                                    break;
-                                }
-                                case X360Controls.MouseLeft:
-                                {
-                                    if (tempMouseDeltaX == 0)
-                                    {
-                                        tempMouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 2, ctrl);
-                                        tempMouseDeltaX = -Math.Abs((tempMouseDeltaX == -2147483648 ? 0 : tempMouseDeltaX));
-                                    }
-
-                                    break;
-                                }
-                                case X360Controls.MouseRight:
-                                {
-                                    if (tempMouseDeltaX == 0)
-                                    {
-                                        tempMouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 3, ctrl);
-                                        tempMouseDeltaX = Math.Abs((tempMouseDeltaX == -2147483648 ? 0 : tempMouseDeltaX));
-                                    }
-
-                                    break;
-                                }
-
-                                default: break;
-                            }
-                        }
-
-                        if (keyType.HasFlag(DS4KeyType.Toggle))
-                        {
-                            if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
-                            {
-                                if (!pressedonce[keyvalue])
-                                {
-                                    deviceState.currentClicks.toggle = !deviceState.currentClicks.toggle;
-                                    pressedonce[keyvalue] = true;
-                                }
-                                deviceState.currentClicks.toggleCount++;
-                            }
-                            else
-                            {
-                                pressedonce[keyvalue] = false;
-                            }
-                        }
-
-                        // erase default mappings for things that are remapped
-                        resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
-                    }
-                }
-                else
-                {
-                    DS4StateFieldMapping.ControlType controlType = DS4StateFieldMapping.mappedType[(int)dcs.control];
-                    if (controlType == DS4StateFieldMapping.ControlType.AxisDir)
-                    //if (dcs.control > DS4Controls.None && dcs.control < DS4Controls.L1)
-                    {
-                        //int current = (int)dcs.control;
-                        //outputfieldMapping.axisdirs[current] = fieldMapping.axisdirs[current];
-                        customMapQueue[device].Enqueue(new ControlToXInput(dcs.control, dcs.control));
-                    }
-                }
+            for (var settingEnum = controlSetGroup.ControlButtons.GetEnumerator(); settingEnum.MoveNext();)
+            {
+                DS4ControlSettings dcs = settingEnum.Current;
+                ProcessControlSettingAction(dcs, device, cState, MappedState, eState,
+                    tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                    ref tempMouseDeltaY, ctrl);
             }
 
             Queue<ControlToXInput> tempControl = customMapQueue[device];
@@ -2023,6 +1724,347 @@ namespace DS4Windows
             if (mouseDeltaX != 0 || mouseDeltaY != 0)
             {
                 InputMethods.MoveCursorBy(mouseDeltaX, mouseDeltaY);
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void ProcessControlSettingAction(DS4ControlSettings dcs, int device, DS4State cState, DS4State MappedState, DS4StateExposed eState,
+            Mouse tp, DS4StateFieldMapping fieldMapping, DS4StateFieldMapping outputfieldMapping, SyntheticState deviceState, ref double tempMouseDeltaX, ref double tempMouseDeltaY,
+            ControlService ctrl)
+        {
+            //DS4ControlSettings dcs = tempSettingsList[settingIndex];
+            
+            object action = null;
+            DS4ControlSettings.ActionType actionType = 0;
+            DS4KeyType keyType = DS4KeyType.None;
+            DS4Controls usingExtra = DS4Controls.None;
+            if (dcs.shiftAction != null && ShiftTrigger2(dcs.shiftTrigger, device, cState, eState, tp, fieldMapping))
+            {
+                action = dcs.shiftAction;
+                actionType = dcs.shiftActionType;
+                keyType = dcs.shiftKeyType;
+            }
+            else if (dcs.action != null)
+            {
+                action = dcs.action;
+                actionType = dcs.actionType;
+                keyType = dcs.keyType;
+            }
+
+            if (usingExtra == DS4Controls.None || usingExtra == dcs.control)
+            {
+                bool shiftE = !string.IsNullOrEmpty(dcs.shiftExtras) && ShiftTrigger2(dcs.shiftTrigger, device, cState, eState, tp, fieldMapping);
+                bool regE = !string.IsNullOrEmpty(dcs.extras);
+                if ((regE || shiftE) && getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
+                {
+                    usingExtra = dcs.control;
+                    string p;
+                    if (shiftE)
+                        p = dcs.shiftExtras;
+                    else
+                        p = dcs.extras;
+
+                    string[] extraS = p.Split(',');
+                    int extrasSLen = extraS.Length;
+                    int[] extras = new int[extrasSLen];
+                    for (int i = 0; i < extrasSLen; i++)
+                    {
+                        int b;
+                        if (int.TryParse(extraS[i], out b))
+                            extras[i] = b;
+                    }
+
+                    held[device] = true;
+                    try
+                    {
+                        if (!(extras[0] == extras[1] && extras[1] == 0))
+                        {
+                            ctrl.setRumble((byte)extras[0], (byte)extras[1], device);
+                            extrasRumbleActive[device] = true;
+                        }
+
+                        if (extras[2] == 1)
+                        {
+                            DS4Color color = new DS4Color { red = (byte)extras[3], green = (byte)extras[4], blue = (byte)extras[5] };
+                            DS4LightBar.forcedColor[device] = color;
+                            DS4LightBar.forcedFlash[device] = (byte)extras[6];
+                            DS4LightBar.forcelight[device] = true;
+                        }
+
+                        if (extras[7] == 1)
+                        {
+                            ButtonMouseInfo tempMouseInfo = ButtonMouseInfos[device];
+                            if (tempMouseInfo.tempButtonSensitivity == -1)
+                            {
+                                tempMouseInfo.tempButtonSensitivity = extras[8];
+                                tempMouseInfo.SetActiveButtonSensitivity(extras[8]);
+                            }
+                        }
+                    }
+                    catch { }
+                }
+                else if ((regE || shiftE) && held[device])
+                {
+                    DS4LightBar.forcelight[device] = false;
+                    DS4LightBar.forcedFlash[device] = 0;
+                    ButtonMouseInfo tempMouseInfo = ButtonMouseInfos[device];
+                    if (tempMouseInfo.tempButtonSensitivity != -1)
+                    {
+                        tempMouseInfo.SetActiveButtonSensitivity(tempMouseInfo.buttonSensitivity);
+                        tempMouseInfo.tempButtonSensitivity = -1;
+                    }
+
+                    if (extrasRumbleActive[device])
+                    {
+                        ctrl.setRumble(0, 0, device);
+                        extrasRumbleActive[device] = false;
+                    }
+
+                    held[device] = false;
+                    usingExtra = DS4Controls.None;
+                }
+            }
+
+            if (action != null)
+            {
+                if (actionType == DS4ControlSettings.ActionType.Macro)
+                {
+                    bool active = getBoolMapping2(device, dcs.control, cState, eState, tp, fieldMapping);
+                    if (active)
+                    {
+                        PlayMacro(device, macroControl, String.Empty, null, (int[])action, dcs.control, keyType);
+                    }
+                    else
+                    {
+                        EndMacro(device, macroControl, (int[])action, dcs.control);
+                    }
+
+                    // erase default mappings for things that are remapped
+                    resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
+                }
+                else if (actionType == DS4ControlSettings.ActionType.Key)
+                {
+                    ushort value = Convert.ToUInt16(action);
+                    if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
+                    {
+                        SyntheticState.KeyPresses kp;
+                        if (!deviceState.keyPresses.TryGetValue(value, out kp))
+                            deviceState.keyPresses[value] = kp = new SyntheticState.KeyPresses();
+
+                        if (keyType.HasFlag(DS4KeyType.ScanCode))
+                            kp.current.scanCodeCount++;
+                        else
+                            kp.current.vkCount++;
+
+                        if (keyType.HasFlag(DS4KeyType.Toggle))
+                        {
+                            if (!pressedonce[value])
+                            {
+                                kp.current.toggle = !kp.current.toggle;
+                                pressedonce[value] = true;
+                            }
+                            kp.current.toggleCount++;
+                        }
+                        kp.current.repeatCount++;
+                    }
+                    else
+                        pressedonce[value] = false;
+
+                    // erase default mappings for things that are remapped
+                    resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
+                }
+                else if (actionType == DS4ControlSettings.ActionType.Button)
+                {
+                    int keyvalue = 0;
+                    bool isAnalog = false;
+
+                    if (dcs.control >= DS4Controls.LXNeg && dcs.control <= DS4Controls.RYPos)
+                    {
+                        isAnalog = true;
+                    }
+                    else if (dcs.control == DS4Controls.L2 || dcs.control == DS4Controls.R2)
+                    {
+                        isAnalog = true;
+                    }
+                    else if (dcs.control >= DS4Controls.GyroXPos && dcs.control <= DS4Controls.GyroZNeg)
+                    {
+                        isAnalog = true;
+                    }
+
+                    X360Controls xboxControl = X360Controls.None;
+                    if (action is X360Controls)
+                    {
+                        xboxControl = (X360Controls)action;
+                    }
+                    else if (action is string)
+                    {
+                        xboxControl = getX360ControlsByName(action.ToString());
+                    }
+
+                    if (xboxControl >= X360Controls.LXNeg && xboxControl <= X360Controls.Start)
+                    {
+                        DS4Controls tempDS4Control = reverseX360ButtonMapping[(int)xboxControl];
+                        customMapQueue[device].Enqueue(new ControlToXInput(dcs.control, tempDS4Control));
+                        //tempControlDict.Add(dcs.control, tempDS4Control);
+                    }
+                    else if (xboxControl == X360Controls.TouchpadClick)
+                    {
+                        bool value = getBoolMapping2(device, dcs.control, cState, eState, tp, fieldMapping);
+                        if (value)
+                            outputfieldMapping.touchButton = value;
+                    }
+                    else if (xboxControl >= X360Controls.LeftMouse && xboxControl <= X360Controls.WDOWN)
+                    {
+                        switch (xboxControl)
+                        {
+                            case X360Controls.LeftMouse:
+                                {
+                                    keyvalue = 256;
+                                    if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
+                                        deviceState.currentClicks.leftCount++;
+
+                                    break;
+                                }
+                            case X360Controls.RightMouse:
+                                {
+                                    keyvalue = 257;
+                                    if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
+                                        deviceState.currentClicks.rightCount++;
+
+                                    break;
+                                }
+                            case X360Controls.MiddleMouse:
+                                {
+                                    keyvalue = 258;
+                                    if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
+                                        deviceState.currentClicks.middleCount++;
+
+                                    break;
+                                }
+                            case X360Controls.FourthMouse:
+                                {
+                                    keyvalue = 259;
+                                    if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
+                                        deviceState.currentClicks.fourthCount++;
+
+                                    break;
+                                }
+                            case X360Controls.FifthMouse:
+                                {
+                                    keyvalue = 260;
+                                    if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
+                                        deviceState.currentClicks.fifthCount++;
+
+                                    break;
+                                }
+                            case X360Controls.WUP:
+                                {
+                                    if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
+                                    {
+                                        if (isAnalog)
+                                            getMouseWheelMapping(device, dcs.control, cState, eState, tp, false);
+                                        else
+                                            deviceState.currentClicks.wUpCount++;
+                                    }
+
+                                    break;
+                                }
+                            case X360Controls.WDOWN:
+                                {
+                                    if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
+                                    {
+                                        if (isAnalog)
+                                            getMouseWheelMapping(device, dcs.control, cState, eState, tp, true);
+                                        else
+                                            deviceState.currentClicks.wDownCount++;
+                                    }
+
+                                    break;
+                                }
+
+                            default: break;
+                        }
+                    }
+                    else if (xboxControl >= X360Controls.MouseUp && xboxControl <= X360Controls.MouseRight)
+                    {
+                        switch (xboxControl)
+                        {
+                            case X360Controls.MouseUp:
+                                {
+                                    if (tempMouseDeltaY == 0)
+                                    {
+                                        tempMouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 0, ctrl);
+                                        tempMouseDeltaY = -Math.Abs((tempMouseDeltaY == -2147483648 ? 0 : tempMouseDeltaY));
+                                    }
+
+                                    break;
+                                }
+                            case X360Controls.MouseDown:
+                                {
+                                    if (tempMouseDeltaY == 0)
+                                    {
+                                        tempMouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 1, ctrl);
+                                        tempMouseDeltaY = Math.Abs((tempMouseDeltaY == -2147483648 ? 0 : tempMouseDeltaY));
+                                    }
+
+                                    break;
+                                }
+                            case X360Controls.MouseLeft:
+                                {
+                                    if (tempMouseDeltaX == 0)
+                                    {
+                                        tempMouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 2, ctrl);
+                                        tempMouseDeltaX = -Math.Abs((tempMouseDeltaX == -2147483648 ? 0 : tempMouseDeltaX));
+                                    }
+
+                                    break;
+                                }
+                            case X360Controls.MouseRight:
+                                {
+                                    if (tempMouseDeltaX == 0)
+                                    {
+                                        tempMouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 3, ctrl);
+                                        tempMouseDeltaX = Math.Abs((tempMouseDeltaX == -2147483648 ? 0 : tempMouseDeltaX));
+                                    }
+
+                                    break;
+                                }
+
+                            default: break;
+                        }
+                    }
+
+                    if (keyType.HasFlag(DS4KeyType.Toggle))
+                    {
+                        if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
+                        {
+                            if (!pressedonce[keyvalue])
+                            {
+                                deviceState.currentClicks.toggle = !deviceState.currentClicks.toggle;
+                                pressedonce[keyvalue] = true;
+                            }
+                            deviceState.currentClicks.toggleCount++;
+                        }
+                        else
+                        {
+                            pressedonce[keyvalue] = false;
+                        }
+                    }
+
+                    // erase default mappings for things that are remapped
+                    resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
+                }
+            }
+            else
+            {
+                DS4StateFieldMapping.ControlType controlType = DS4StateFieldMapping.mappedType[(int)dcs.control];
+                if (controlType == DS4StateFieldMapping.ControlType.AxisDir)
+                //if (dcs.control > DS4Controls.None && dcs.control < DS4Controls.L1)
+                {
+                    //int current = (int)dcs.control;
+                    //outputfieldMapping.axisdirs[current] = fieldMapping.axisdirs[current];
+                    customMapQueue[device].Enqueue(new ControlToXInput(dcs.control, dcs.control));
+                }
             }
         }
 

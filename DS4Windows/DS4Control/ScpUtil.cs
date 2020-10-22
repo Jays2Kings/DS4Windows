@@ -118,6 +118,43 @@ namespace DS4Windows
         }
     }
 
+    public class ControlSettingsGroup
+    {
+        public List<DS4ControlSettings> LS = new List<DS4ControlSettings>();
+        public List<DS4ControlSettings> RS = new List<DS4ControlSettings>();
+        public DS4ControlSettings L2;
+        public DS4ControlSettings R2;
+
+        public List<DS4ControlSettings> ControlButtons =
+            new List<DS4ControlSettings>();
+
+        public ControlSettingsGroup(List<DS4ControlSettings> settingsList)
+        {
+            for (int i = (int)DS4Controls.LXNeg; i <= (int)DS4Controls.LYPos; i++)
+            {
+                LS.Add(settingsList[i-1]);
+            }
+
+            for (int i = (int)DS4Controls.RXNeg; i <= (int)DS4Controls.RYPos; i++)
+            {
+                RS.Add(settingsList[i-1]);
+            }
+
+            L2 = settingsList[(int)DS4Controls.L2-1];
+            R2 = settingsList[(int)DS4Controls.R2-1];
+
+            ControlButtons.Add(settingsList[(int)DS4Controls.L1-1]);
+            ControlButtons.Add(settingsList[(int)DS4Controls.L3-1]);
+            ControlButtons.Add(settingsList[(int)DS4Controls.R1-1]);
+            ControlButtons.Add(settingsList[(int)DS4Controls.R3-1]);
+
+            for (int i = (int)DS4Controls.Square; i <= (int)DS4Controls.SwipeDown; i++)
+            {
+                ControlButtons.Add(settingsList[i-1]);
+            }
+        }
+    }
+
     public class DebugEventArgs : EventArgs
     {
         protected DateTime m_Time = DateTime.Now;
@@ -1840,6 +1877,7 @@ namespace DS4Windows
         public static List<DS4ControlSettings> getDS4CSettings(int device) => m_Config.ds4settings[device];
         public static DS4ControlSettings getDS4CSetting(int deviceNum, string control) => m_Config.getDS4CSetting(deviceNum, control);
         public static DS4ControlSettings getDS4CSetting(int deviceNum, DS4Controls control) => m_Config.getDS4CSetting(deviceNum, control);
+        public static ControlSettingsGroup GetControlSettingsGroup(int deviceNum) => m_Config.ds4controlSettings[deviceNum];
         public static bool HasCustomActions(int deviceNum) => m_Config.HasCustomActions(deviceNum);
         public static bool HasCustomExtras(int deviceNum) => m_Config.HasCustomExtras(deviceNum);
 
@@ -2434,6 +2472,7 @@ namespace DS4Windows
         public List<DS4ControlSettings>[] ds4settings = new List<DS4ControlSettings>[Global.TEST_PROFILE_ITEM_COUNT]
             { new List<DS4ControlSettings>(), new List<DS4ControlSettings>(), new List<DS4ControlSettings>(),
               new List<DS4ControlSettings>(), new List<DS4ControlSettings>(), new List<DS4ControlSettings>(), new List<DS4ControlSettings>(), new List<DS4ControlSettings>(), new List<DS4ControlSettings>() };
+        public ControlSettingsGroup[] ds4controlSettings;
 
         public List<string>[] profileActions = new List<string>[Global.TEST_PROFILE_ITEM_COUNT] { null, null, null, null, null, null, null, null, null };
         public int[] profileActionCount = new int[Global.TEST_PROFILE_ITEM_COUNT] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -2506,6 +2545,8 @@ namespace DS4Windows
 
         public BackingStore()
         {
+            ds4controlSettings = new ControlSettingsGroup[Global.TEST_PROFILE_ITEM_COUNT];
+
             for (int i = 0; i < Global.TEST_PROFILE_ITEM_COUNT; i++)
             {
                 foreach (DS4Controls dc in Enum.GetValues(typeof(DS4Controls)))
@@ -2513,6 +2554,8 @@ namespace DS4Windows
                     if (dc != DS4Controls.None)
                         ds4settings[i].Add(new DS4ControlSettings(dc));
                 }
+
+                ds4controlSettings[i] = new ControlSettingsGroup(ds4settings[i]);
 
                 EstablishDefaultSpecialActions(i);
                 CacheExtraProfileInfo(i);

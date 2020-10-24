@@ -352,8 +352,12 @@
                                                    Margin="{StaticResource spaceMargin}" />
 
                                             <Label Content="Min Angle Threshold" ContentStringFormat="{}{0}:" Grid.Row="3" Grid.Column="0" />
-                                            <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSMinAngleThreshold,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="3" Grid.Column="1" Maximum="180.0" Minimum="0.0" Increment="0.5"
+                                            <DockPanel Grid.Row="3" Grid.Column="1">
+                                                <TextBlock Text="&#xb0;" DockPanel.Dock="Right" FontSize="18" Margin="{StaticResource spaceMargin}" />
+                                                <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSMinAngleThreshold,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Maximum="180.0" Minimum="0.0" Increment="0.5"
                                                    Margin="{StaticResource spaceMargin}" />
+                                            </DockPanel>
+                                            
                                         </Grid>
                                     </TabItem>
                                 </TabControl>
@@ -491,8 +495,11 @@
                                                    Margin="{StaticResource spaceMargin}" />
 
                                             <Label Content="Min Angle Threshold" ContentStringFormat="{}{0}:" Grid.Row="3" Grid.Column="0" />
-                                            <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSMinAngleThreshold,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="3" Grid.Column="1" Maximum="180.0" Minimum="0.0" Increment="0.5"
+                                            <DockPanel Grid.Row="3" Grid.Column="1">
+                                                <TextBlock Text="&#xb0;" DockPanel.Dock="Right" FontSize="18" Margin="{StaticResource spaceMargin}" />
+                                                <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSMinAngleThreshold,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Maximum="180.0" Minimum="0.0" Increment="0.5"
                                                    Margin="{StaticResource spaceMargin}" />
+                                            </DockPanel>
                                         </Grid>
                                     </TabItem>
                                 </TabControl>

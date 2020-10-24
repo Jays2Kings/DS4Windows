@@ -339,19 +339,19 @@
                                                 <RowDefinition Style="{StaticResource gridRowHeight}" />
                                             </Grid.RowDefinitions>
 
-                                            <Label Content="Real World Calibration:" Grid.Row="0" Grid.Column="0" />
+                                            <Label Content="Real World Calibration" ContentStringFormat="{}{0}:" Grid.Row="0" Grid.Column="0" />
                                             <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSFlickRWC,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="0" Grid.Column="1" Maximum="100.0" Minimum="1.0" Increment="1.0"
                                                    Margin="{StaticResource spaceMargin}" />
 
-                                            <Label Content="Flick Threshold:" Grid.Row="1" Grid.Column="0" />
+                                            <Label Content="Flick Threshold" ContentStringFormat="{}{0}:" Grid.Row="1" Grid.Column="0" />
                                             <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSFlickThreshold,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="1" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
-                                            <Label Content="Flick Time:" Grid.Row="2" Grid.Column="0" />
+                                            <Label Content="Flick Time" ContentStringFormat="{}{0}:" Grid.Row="2" Grid.Column="0" />
                                             <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSFlickTime,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="2" Grid.Column="1" Maximum="10.0" Minimum="0.01" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
-                                            <Label Content="Min Angle Threshold:" Grid.Row="3" Grid.Column="0" />
+                                            <Label Content="Min Angle Threshold" ContentStringFormat="{}{0}:" Grid.Row="3" Grid.Column="0" />
                                             <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSMinAngleThreshold,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="3" Grid.Column="1" Maximum="180.0" Minimum="0.0" Increment="0.5"
                                                    Margin="{StaticResource spaceMargin}" />
                                         </Grid>
@@ -478,19 +478,19 @@
                                                 <RowDefinition Style="{StaticResource gridRowHeight}" />
                                             </Grid.RowDefinitions>
 
-                                            <Label Content="Real World Calibration:" Grid.Row="0" Grid.Column="0" />
+                                            <Label Content="Real World Calibration" ContentStringFormat="{}{0}:" Grid.Row="0" Grid.Column="0" />
                                             <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSFlickRWC,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="0" Grid.Column="1" Maximum="100.0" Minimum="1.0" Increment="1.0"
                                                    Margin="{StaticResource spaceMargin}" />
 
-                                            <Label Content="Flick Threshold:" Grid.Row="1" Grid.Column="0" />
+                                            <Label Content="Flick Threshold" ContentStringFormat="{}{0}:" Grid.Row="1" Grid.Column="0" />
                                             <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSFlickThreshold,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="1" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
-                                            <Label Content="Flick Time:" Grid.Row="2" Grid.Column="0" />
+                                            <Label Content="Flick Time" ContentStringFormat="{}{0}:" Grid.Row="2" Grid.Column="0" />
                                             <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSFlickTime,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="2" Grid.Column="1" Maximum="10.0" Minimum="0.01" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
-                                            <Label Content="Min Angle Threshold:" Grid.Row="3" Grid.Column="0" />
+                                            <Label Content="Min Angle Threshold" ContentStringFormat="{}{0}:" Grid.Row="3" Grid.Column="0" />
                                             <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSMinAngleThreshold,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="3" Grid.Column="1" Maximum="180.0" Minimum="0.0" Increment="0.5"
                                                    Margin="{StaticResource spaceMargin}" />
                                         </Grid>

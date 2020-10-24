@@ -1335,6 +1335,13 @@ namespace DS4Windows
 
             ResetUdpSmoothingFilters(ind);
             Mapping.flickMappingData[ind].Reset();
+            FlickStickSettings flickStickSettings = Global.LSOutputSettings[ind].outputSettings.flickSettings;
+            flickStickSettings.RemoveRefreshEvents();
+            flickStickSettings.SetRefreshEvents(Mapping.flickMappingData[ind].flickFilter);
+
+            flickStickSettings = Global.RSOutputSettings[ind].outputSettings.flickSettings;
+            flickStickSettings.RemoveRefreshEvents();
+            flickStickSettings.SetRefreshEvents(Mapping.flickMappingData[ind].flickFilter);
         }
 
         private void CheckLauchProfileOption(int ind, DS4Device device)

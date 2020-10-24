@@ -1022,6 +1022,15 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
 
+        public double LSMinAngleThreshold
+        {
+            get => Global.LSOutputSettings[device].outputSettings.flickSettings.minAngleThreshold;
+            set
+            {
+                Global.LSOutputSettings[device].outputSettings.flickSettings.minAngleThreshold = value;
+            }
+        }
+
         public int RSOutputIndex
         {
             get
@@ -1084,6 +1093,15 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set
             {
                 Global.RSOutputSettings[device].outputSettings.flickSettings.flickTime = value;
+            }
+        }
+
+        public double RSMinAngleThreshold
+        {
+            get => Global.RSOutputSettings[device].outputSettings.flickSettings.minAngleThreshold;
+            set
+            {
+                Global.RSOutputSettings[device].outputSettings.flickSettings.minAngleThreshold = value;
             }
         }
 

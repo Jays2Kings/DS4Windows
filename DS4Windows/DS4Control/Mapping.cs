@@ -1816,8 +1816,15 @@ namespace DS4Windows
             tempFlickData.flickAngleRemainder = 0.0;
             //Console.WriteLine(lsangle);
             //if (angleChange != 0.0)
-            if (lsangle != 0.0)
+            if (flickSettings.minAngleThreshold == 0.0 && lsangle != 0.0)
             //if (Math.Abs(lsangle) >= 0.5)
+            {
+                tempFlickData.flickAngleRemainder = 0.0;
+                //flickAngleRemainder = lsangle - (int)lsangle;
+                //lsangle = (int)lsangle;
+                tempMouseDeltaX += lsangle * flickSettings.realWorldCalibration;
+            }
+            else if (Math.Abs(lsangle) >= flickSettings.minAngleThreshold)
             {
                 tempFlickData.flickAngleRemainder = 0.0;
                 //flickAngleRemainder = lsangle - (int)lsangle;
@@ -1828,12 +1835,6 @@ namespace DS4Windows
             {
                 tempFlickData.flickAngleRemainder = lsangle;
             }
-            /*else
-            {
-                horizontalRemainder = 0.0;
-                verticalRemainder = 0.0;
-            }
-            */
         }
 
         private static double HandleFlickStickAngle(DS4State cState, byte stickX, byte stickY, byte prevStickX, byte prevStickY,

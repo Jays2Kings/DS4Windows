@@ -2598,6 +2598,8 @@ namespace DS4Windows
             {
                 customAct = gyroOutMode[device] == GyroOutMode.MouseJoystick;
                 customAct = customAct || sASteeringWheelEmulationAxis[device] >= SASteeringWheelEmulationAxisType.VJoy1X;
+                customAct = customAct || lsOutputSettings[device].mode != StickMode.Controls;
+                customAct = customAct || rsOutputSettings[device].mode != StickMode.Controls;
                 containsCustomAction[device] = customAct;
             }
         }

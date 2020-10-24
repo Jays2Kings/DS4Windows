@@ -1334,6 +1334,7 @@ namespace DS4Windows
             wheelSmoothInfo.SetRefreshEvents(tempFilter);
 
             ResetUdpSmoothingFilters(ind);
+            Mapping.flickMappingData[ind].Reset();
         }
 
         private void CheckLauchProfileOption(int ind, DS4Device device)

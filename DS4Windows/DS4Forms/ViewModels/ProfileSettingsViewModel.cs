@@ -957,6 +957,136 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.RSModInfo[device].fuzz = value;
         }
 
+        public int LSOutputIndex
+        {
+            get
+            {
+                int index = 0;
+                switch (Global.LSOutputSettings[device].mode)
+                {
+                    case StickMode.Controls:
+                        index = 0; break;
+                    case StickMode.FlickStick:
+                        index = 1; break;
+                    default: break;
+                }
+                return index;
+            }
+            set
+            {
+                StickMode temp = StickMode.Controls;
+                switch(value)
+                {
+                    case 0:
+                        temp = StickMode.Controls;
+                        break;
+                    case 1:
+                        temp = StickMode.FlickStick;
+                        break;
+                    default:
+                        break;
+                }
+
+                StickMode current = Global.LSOutputSettings[device].mode;
+                if (temp == current) return;
+                Global.LSOutputSettings[device].mode = temp;
+                LSOutputIndexChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler LSOutputIndexChanged;
+
+        public double LSFlickRWC
+        {
+            get => Global.LSOutputSettings[device].outputSettings.flickSettings.realWorldCalibration;
+            set
+            {
+                Global.LSOutputSettings[device].outputSettings.flickSettings.realWorldCalibration = value;
+            }
+        }
+
+        public double LSFlickThreshold
+        {
+            get => Global.LSOutputSettings[device].outputSettings.flickSettings.flickThreshold;
+            set
+            {
+                Global.LSOutputSettings[device].outputSettings.flickSettings.flickThreshold = value;
+            }
+        }
+
+        public double LSFlickTime
+        {
+            get => Global.LSOutputSettings[device].outputSettings.flickSettings.flickTime;
+            set
+            {
+                Global.LSOutputSettings[device].outputSettings.flickSettings.flickTime = value;
+            }
+        }
+
+        public int RSOutputIndex
+        {
+            get
+            {
+                int index = 0;
+                switch (Global.RSOutputSettings[device].mode)
+                {
+                    case StickMode.Controls:
+                        index = 0; break;
+                    case StickMode.FlickStick:
+                        index = 1; break;
+                    default: break;
+                }
+                return index;
+            }
+            set
+            {
+                StickMode temp = StickMode.Controls;
+                switch (value)
+                {
+                    case 0:
+                        temp = StickMode.Controls;
+                        break;
+                    case 1:
+                        temp = StickMode.FlickStick;
+                        break;
+                    default:
+                        break;
+                }
+
+                StickMode current = Global.RSOutputSettings[device].mode;
+                if (temp == current) return;
+                Global.RSOutputSettings[device].mode = temp;
+                RSOutputIndexChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler RSOutputIndexChanged;
+
+        public double RSFlickRWC
+        {
+            get => Global.RSOutputSettings[device].outputSettings.flickSettings.realWorldCalibration;
+            set
+            {
+                Global.RSOutputSettings[device].outputSettings.flickSettings.realWorldCalibration = value;
+            }
+        }
+
+        public double RSFlickThreshold
+        {
+            get => Global.RSOutputSettings[device].outputSettings.flickSettings.flickThreshold;
+            set
+            {
+                Global.RSOutputSettings[device].outputSettings.flickSettings.flickThreshold = value;
+            }
+        }
+
+        public double RSFlickTime
+        {
+            get => Global.RSOutputSettings[device].outputSettings.flickSettings.flickTime;
+            set
+            {
+                Global.RSOutputSettings[device].outputSettings.flickSettings.flickTime = value;
+            }
+        }
+
         public double L2DeadZone
         {
             get => Global.L2ModInfo[device].deadZone / 255.0;
@@ -1915,6 +2045,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
             GyroOutModeIndexChanged += CalcProfileFlags;
             SASteeringWheelEmulationAxisIndexChanged += CalcProfileFlags;
+            LSOutputIndexChanged += CalcProfileFlags;
+            RSOutputIndexChanged += CalcProfileFlags;
             ButtonMouseOffsetChanged += ProfileSettingsViewModel_ButtonMouseOffsetChanged;
             GyroMouseSmoothMethodIndexChanged += ProfileSettingsViewModel_GyroMouseSmoothMethodIndexChanged;
             GyroMouseStickSmoothMethodIndexChanged += ProfileSettingsViewModel_GyroMouseStickSmoothMethodIndexChanged;

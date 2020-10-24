@@ -1751,11 +1751,14 @@ namespace DS4Windows
             return m_Config.btPollRate[index];
         }
 
-        public static SquareStickInfo[] SquStickInfo = m_Config.squStickInfo;
+        public static SquareStickInfo[] SquStickInfo => m_Config.squStickInfo;
         public static SquareStickInfo GetSquareStickInfo(int device)
         {
             return m_Config.squStickInfo[device];
         }
+
+        public static StickOutputSetting[] LSOutputSettings => m_Config.lsOutputSettings;
+        public static StickOutputSetting[] RSOutputSettings => m_Config.rsOutputSettings;
 
         public static void setLsOutCurveMode(int index, int value)
         {
@@ -2330,6 +2333,20 @@ namespace DS4Windows
             new SquareStickInfo(), new SquareStickInfo(),
             new SquareStickInfo(), new SquareStickInfo(),
             new SquareStickInfo(),
+        };
+
+        public StickOutputSetting[] lsOutputSettings = new StickOutputSetting[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            new StickOutputSetting(), new StickOutputSetting(), new StickOutputSetting(),
+            new StickOutputSetting(), new StickOutputSetting(), new StickOutputSetting(),
+            new StickOutputSetting(), new StickOutputSetting(), new StickOutputSetting(),
+        };
+
+        public StickOutputSetting[] rsOutputSettings = new StickOutputSetting[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            new StickOutputSetting(), new StickOutputSetting(), new StickOutputSetting(),
+            new StickOutputSetting(), new StickOutputSetting(), new StickOutputSetting(),
+            new StickOutputSetting(), new StickOutputSetting(), new StickOutputSetting(),
         };
 
         public SteeringWheelSmoothingInfo[] wheelSmoothInfo = new SteeringWheelSmoothingInfo[Global.TEST_PROFILE_ITEM_COUNT]
@@ -3055,6 +3072,21 @@ namespace DS4Windows
 
                 XmlNode xmlSquareStickRoundness = m_Xdoc.CreateNode(XmlNodeType.Element, "SquareStickRoundness", null); xmlSquareStickRoundness.InnerText = squStickInfo[device].lsRoundness.ToString(); rootElement.AppendChild(xmlSquareStickRoundness);
                 XmlNode xmlSquareRStickRoundness = m_Xdoc.CreateNode(XmlNodeType.Element, "SquareRStickRoundness", null); xmlSquareRStickRoundness.InnerText = squStickInfo[device].rsRoundness.ToString(); rootElement.AppendChild(xmlSquareRStickRoundness);
+
+                XmlNode xmlLsOutputMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOutputMode", null); xmlLsOutputMode.InnerText = lsOutputSettings[device].mode.ToString(); rootElement.AppendChild(xmlLsOutputMode);
+                XmlNode xmlRsOutputMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOutputMode", null); xmlRsOutputMode.InnerText = rsOutputSettings[device].mode.ToString(); rootElement.AppendChild(xmlRsOutputMode);
+
+                XmlElement xmlLsFlickStickGroupElement = m_Xdoc.CreateElement("LSFlickStickSettings");
+                XmlNode xmlLsFlickStickRWC = m_Xdoc.CreateNode(XmlNodeType.Element, "RealWorldCalibration", null); xmlLsFlickStickRWC.InnerText = lsOutputSettings[device].outputSettings.flickSettings.realWorldCalibration.ToString(); xmlLsFlickStickGroupElement.AppendChild(xmlLsFlickStickRWC);
+                XmlNode xmlLsFlickStickThreshold = m_Xdoc.CreateNode(XmlNodeType.Element, "FlickThreshold", null); xmlLsFlickStickThreshold.InnerText = lsOutputSettings[device].outputSettings.flickSettings.flickThreshold.ToString(); xmlLsFlickStickGroupElement.AppendChild(xmlLsFlickStickThreshold);
+                XmlNode xmlLsFlickStickTime = m_Xdoc.CreateNode(XmlNodeType.Element, "FlickTime", null); xmlLsFlickStickTime.InnerText = lsOutputSettings[device].outputSettings.flickSettings.flickTime.ToString(); xmlLsFlickStickGroupElement.AppendChild(xmlLsFlickStickTime);
+                rootElement.AppendChild(xmlLsFlickStickGroupElement);
+
+                XmlElement xmlRsFlickStickGroupElement = m_Xdoc.CreateElement("RSFlickStickSettings");
+                XmlNode xmlRsFlickStickRWC = m_Xdoc.CreateNode(XmlNodeType.Element, "RealWorldCalibration", null); xmlRsFlickStickRWC.InnerText = rsOutputSettings[device].outputSettings.flickSettings.realWorldCalibration.ToString(); xmlRsFlickStickGroupElement.AppendChild(xmlRsFlickStickRWC);
+                XmlNode xmlRsFlickStickThreshold = m_Xdoc.CreateNode(XmlNodeType.Element, "FlickThreshold", null); xmlRsFlickStickThreshold.InnerText = rsOutputSettings[device].outputSettings.flickSettings.flickThreshold.ToString(); xmlRsFlickStickGroupElement.AppendChild(xmlRsFlickStickThreshold);
+                XmlNode xmlRsFlickStickTime = m_Xdoc.CreateNode(XmlNodeType.Element, "FlickTime", null); xmlRsFlickStickTime.InnerText = rsOutputSettings[device].outputSettings.flickSettings.flickTime.ToString(); xmlRsFlickStickGroupElement.AppendChild(xmlRsFlickStickTime);
+                rootElement.AppendChild(xmlRsFlickStickGroupElement);
 
                 XmlNode xmlL2OutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "L2OutputCurveMode", null); xmlL2OutputCurveMode.InnerText = axisOutputCurveString(getL2OutCurveMode(device)); rootElement.AppendChild(xmlL2OutputCurveMode);
                 XmlNode xmlL2OutputCurveCustom = m_Xdoc.CreateNode(XmlNodeType.Element, "L2OutputCurveCustom", null); xmlL2OutputCurveCustom.InnerText = l2OutBezierCurveObj[device].ToString(); rootElement.AppendChild(xmlL2OutputCurveCustom);
@@ -4346,6 +4378,84 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSSquareStick"); bool.TryParse(Item.InnerText, out squStickInfo[device].rsMode); }
                 catch { squStickInfo[device].rsMode = false; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSOutputMode"); Enum.TryParse(Item.InnerText, out lsOutputSettings[device].mode); }
+                catch { missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSOutputMode"); Enum.TryParse(Item.InnerText, out rsOutputSettings[device].mode); }
+                catch { missingSetting = true; }
+
+                bool flickStickLSGroup = false;
+                XmlNode xmlFlickStickLSElement =
+                    m_Xdoc.SelectSingleNode("/" + rootname + "/LSFlickStickSettings");
+                flickStickLSGroup = xmlFlickStickLSElement != null;
+
+                if (flickStickLSGroup)
+                {
+                    try
+                    {
+                        Item = xmlFlickStickLSElement.SelectSingleNode("RealWorldCalibration");
+                        double.TryParse(Item.InnerText, out double temp);
+                        lsOutputSettings[device].outputSettings.flickSettings.realWorldCalibration = temp;
+                    }
+                    catch { missingSetting = true; }
+
+                    try
+                    {
+                        Item = xmlFlickStickLSElement.SelectSingleNode("FlickThreshold");
+                        double.TryParse(Item.InnerText, out double temp);
+                        lsOutputSettings[device].outputSettings.flickSettings.flickThreshold = temp;
+                    }
+                    catch { missingSetting = true; }
+
+                    try
+                    {
+                        Item = xmlFlickStickLSElement.SelectSingleNode("FlickTime");
+                        double.TryParse(Item.InnerText, out double temp);
+                        lsOutputSettings[device].outputSettings.flickSettings.flickTime = temp;
+                    }
+                    catch { missingSetting = true; }
+                }
+                else
+                {
+                    missingSetting = true;
+                }
+
+                bool flickStickRSGroup = false;
+                XmlNode xmlFlickStickRSElement =
+                    m_Xdoc.SelectSingleNode("/" + rootname + "/RSFlickStickSettings");
+                flickStickRSGroup = xmlFlickStickRSElement != null;
+
+                if (flickStickRSGroup)
+                {
+                    try
+                    {
+                        Item = xmlFlickStickRSElement.SelectSingleNode("RealWorldCalibration");
+                        double.TryParse(Item.InnerText, out double temp);
+                        rsOutputSettings[device].outputSettings.flickSettings.realWorldCalibration = temp;
+                    }
+                    catch { missingSetting = true; }
+
+                    try
+                    {
+                        Item = xmlFlickStickRSElement.SelectSingleNode("FlickThreshold");
+                        double.TryParse(Item.InnerText, out double temp);
+                        rsOutputSettings[device].outputSettings.flickSettings.flickThreshold = temp;
+                    }
+                    catch { missingSetting = true; }
+
+                    try
+                    {
+                        Item = xmlFlickStickRSElement.SelectSingleNode("FlickTime");
+                        double.TryParse(Item.InnerText, out double temp);
+                        rsOutputSettings[device].outputSettings.flickSettings.flickTime = temp;
+                    }
+                    catch { missingSetting = true; }
+                }
+                else
+                {
+                    missingSetting = true;
+                }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2OutputCurveCustom"); l2OutBezierCurveObj[device].CustomDefinition = Item.InnerText; }
                 catch { missingSetting = true; }
@@ -5717,6 +5827,9 @@ namespace DS4Windows
             touchpadInvert[device] = 0;
             buttonMouseInfos[device].mouseAccel = false;
             btPollRate[device] = 4;
+
+            lsOutputSettings[device].ResetSettings();
+            rsOutputSettings[device].ResetSettings();
 
             LightbarSettingInfo lightbarSettings = lightbarSettingInfo[device];
             LightbarDS4WinInfo lightInfo = lightbarSettings.ds4winSettings;

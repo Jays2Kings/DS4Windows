@@ -190,6 +190,35 @@ namespace DS4Windows
 
         public static OneEuroFilter[] wheelFilters = new OneEuroFilter[ControlService.MAX_DS4_CONTROLLER_COUNT];
 
+        public class FlickStickMappingData
+        {
+            public const double DEFAULT_MINCUTOFF = 0.4;
+            public const double DEFAULT_BETA = 0.4;
+
+            public const double DEFAULT_FLICK_PROGRESS = 0.0;
+            public const double DEFAULT_FLICK_SIZE = 0.0;
+            public const double DEFAULT_FLICK_ANGLE_REMAINDER = 0.0;
+            
+            public OneEuroFilter flickFilter = new OneEuroFilter(DEFAULT_MINCUTOFF, DEFAULT_BETA);
+            public double flickProgress = DEFAULT_FLICK_PROGRESS;
+            public double flickSize = DEFAULT_FLICK_SIZE;
+            public double flickAngleRemainder = DEFAULT_FLICK_ANGLE_REMAINDER;
+
+            public void Reset()
+            {
+                flickFilter = new OneEuroFilter(DEFAULT_MINCUTOFF, DEFAULT_BETA);
+                flickProgress = DEFAULT_FLICK_PROGRESS;
+                flickSize = DEFAULT_FLICK_SIZE;
+                flickAngleRemainder = DEFAULT_FLICK_ANGLE_REMAINDER;
+            }
+        }
+        public static FlickStickMappingData[] flickMappingData = new FlickStickMappingData[Global.MAX_DS4_CONTROLLER_COUNT]
+        {
+            new FlickStickMappingData(), new FlickStickMappingData(), new FlickStickMappingData(),
+            new FlickStickMappingData(), new FlickStickMappingData(), new FlickStickMappingData(),
+            new FlickStickMappingData(), new FlickStickMappingData(),
+        };
+
         static ReaderWriterLockSlim syncStateLock = new ReaderWriterLockSlim();
 
         public static SyntheticState globalState = new SyntheticState();
@@ -1579,26 +1608,65 @@ namespace DS4Windows
             //Dictionary<DS4Controls, DS4Controls> tempControlDict = new Dictionary<DS4Controls, DS4Controls>();
             //MultiValueDict<DS4Controls, DS4Controls> tempControlDict = new MultiValueDict<DS4Controls, DS4Controls>();
             
-            List<DS4ControlSettings> tempSettingsList = getDS4CSettings(device);
+            //List<DS4ControlSettings> tempSettingsList = getDS4CSettings(device);
             //foreach (DS4ControlSettings dcs in getDS4CSettings(device))
             //for (int settingIndex = 0, arlen = tempSettingsList.Count; settingIndex < arlen; settingIndex++)
 
             ControlSettingsGroup controlSetGroup = GetControlSettingsGroup(device);
-
-            for (var settingEnum = controlSetGroup.LS.GetEnumerator(); settingEnum.MoveNext();)
+            StickOutputSetting stickSettings = Global.LSOutputSettings[device];
+            if (stickSettings.mode == StickMode.Controls)
             {
-                DS4ControlSettings dcs = settingEnum.Current;
-                ProcessControlSettingAction(dcs, device, cState, MappedState, eState,
-                    tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
-                    ref tempMouseDeltaY, ctrl);
+                for (var settingEnum = controlSetGroup.LS.GetEnumerator(); settingEnum.MoveNext();)
+                {
+                    DS4ControlSettings dcs = settingEnum.Current;
+                    ProcessControlSettingAction(dcs, device, cState, MappedState, eState,
+                        tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                        ref tempMouseDeltaY, ctrl);
+                }
+            }
+            else
+            {
+                switch (stickSettings.mode)
+                {
+                    case StickMode.FlickStick:
+                        DS4Device d = ctrl.DS4Controllers[device];
+                        DS4State cRawState = d.getCurrentStateRef();
+                        DS4State pState = d.getPreviousStateRef();
+
+                        ProcessFlickStick(device, cRawState, cRawState.LX, cRawState.LY, pState.LX, pState.LY, ctrl,
+                            stickSettings.outputSettings.flickSettings, ref tempMouseDeltaX);
+                        break;
+                    default:
+                        break;
+                }
             }
 
-            for (var settingEnum = controlSetGroup.RS.GetEnumerator(); settingEnum.MoveNext();)
+            stickSettings = Global.RSOutputSettings[device];
+            if (stickSettings.mode == StickMode.Controls)
             {
-                DS4ControlSettings dcs = settingEnum.Current;
-                ProcessControlSettingAction(dcs, device, cState, MappedState, eState,
-                    tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
-                    ref tempMouseDeltaY, ctrl);
+                for (var settingEnum = controlSetGroup.RS.GetEnumerator(); settingEnum.MoveNext();)
+                {
+                    DS4ControlSettings dcs = settingEnum.Current;
+                    ProcessControlSettingAction(dcs, device, cState, MappedState, eState,
+                        tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                        ref tempMouseDeltaY, ctrl);
+                }
+            }
+            else
+            {
+                switch(stickSettings.mode)
+                {
+                    case StickMode.FlickStick:
+                        DS4Device d = ctrl.DS4Controllers[device];
+                        DS4State cRawState = d.getCurrentStateRef();
+                        DS4State pState = d.getPreviousStateRef();
+
+                        ProcessFlickStick(device, cRawState, cRawState.RX, cRawState.RY, pState.RX, pState.RY, ctrl,
+                            stickSettings.outputSettings.flickSettings, ref tempMouseDeltaX);
+                        break;
+                    default:
+                        break;
+                }
             }
 
             DS4ControlSettings dcsTemp = controlSetGroup.L2;
@@ -1726,6 +1794,137 @@ namespace DS4Windows
                 InputMethods.MoveCursorBy(mouseDeltaX, mouseDeltaY);
             }
         }
+
+        private static void ProcessFlickStick(int device, DS4State cRawState, byte stickX, byte stickY, byte prevStickX, byte prevStickY, ControlService ctrl, FlickStickSettings flickSettings, ref double tempMouseDeltaX)
+        {
+            FlickStickMappingData tempFlickData = flickMappingData[device];
+            double angleChange = HandleFlickStickAngle(cRawState, stickX, stickY, prevStickX, prevStickY,
+                tempFlickData, flickSettings);
+            //angleChange = flickFilter.Filter(angleChange, cState.elapsedTime);
+            //Console.WriteLine(angleChange);
+            //if (angleChange != 0.0)
+            double lsangle = angleChange * 180.0 / Math.PI;
+            if (lsangle == 0.0)
+            {
+                tempFlickData.flickAngleRemainder = 0.0;
+            }
+            else if (lsangle >= 0.0 && tempFlickData.flickAngleRemainder >= 0.0)
+            {
+                lsangle += tempFlickData.flickAngleRemainder;
+            }
+
+            tempFlickData.flickAngleRemainder = 0.0;
+            //Console.WriteLine(lsangle);
+            //if (angleChange != 0.0)
+            if (lsangle != 0.0)
+            //if (Math.Abs(lsangle) >= 0.5)
+            {
+                tempFlickData.flickAngleRemainder = 0.0;
+                //flickAngleRemainder = lsangle - (int)lsangle;
+                //lsangle = (int)lsangle;
+                tempMouseDeltaX += lsangle * flickSettings.realWorldCalibration;
+            }
+            else
+            {
+                tempFlickData.flickAngleRemainder = lsangle;
+            }
+            /*else
+            {
+                horizontalRemainder = 0.0;
+                verticalRemainder = 0.0;
+            }
+            */
+        }
+
+        private static double HandleFlickStickAngle(DS4State cState, byte stickX, byte stickY, byte prevStickX, byte prevStickY,
+            FlickStickMappingData flickData, FlickStickSettings flickSettings)
+        {
+            double result = 0.0;
+
+            double lastXMax = prevStickX >= 128 ? 127.0 : -128.0;
+            double lastTestX = (prevStickX - 128) / lastXMax;
+            double lastYMax = prevStickY >= 128 ? 127.0 : -128.0;
+            double lastTestY = (prevStickY - 128) / lastYMax;
+
+            double currentXMax = stickX >= 128 ? 127.0 : -128.0;
+            double currentTestX = (stickX - 128) / currentXMax;
+            double currentYMax = stickY >= 128 ? 127.0 : -128.0;
+            double currentTestY = (stickY - 128) / currentYMax;
+
+            double lastLength = (lastTestX * lastTestX) + (lastTestY * lastTestY);
+            double length = (currentTestX * currentTestX) + (currentTestY * currentTestY);
+            double testLength = flickSettings.flickThreshold * flickSettings.flickThreshold;
+
+            if (length >= testLength)
+            {
+                if (lastLength < testLength)
+                {
+                    // Start new Flick
+                    flickData.flickProgress = 0.0; // Reset Flick progress
+                    flickData.flickSize = Math.Atan2((stickX - 128), -(stickY - 128));
+                    flickData.flickFilter.Filter(0.0, cState.elapsedTime);
+                }
+                else
+                {
+                    // Turn camera
+                    double stickAngle = Math.Atan2((stickX - 128), -(stickY - 128));
+                    double lastStickAngle = Math.Atan2((prevStickX - 128), -(prevStickY - 128));
+                    double angleChange = (stickAngle - lastStickAngle);
+                    double rawAngleChange = angleChange;
+                    angleChange = (angleChange+Math.PI) % (2* Math.PI);
+                    if (angleChange < 0)
+                    {
+                        angleChange += 2 * Math.PI;
+                    }
+                    angleChange -= Math.PI;
+                    //Console.WriteLine("ANGLE CHANGE: {0} {1} {2}", stickAngle, lastStickAngle, rawAngleChange);
+                    //Console.WriteLine("{0} {1} | {2} {3}", cState.RX, pState.RX, cState.RY, pState.RY);
+                    angleChange = flickData.flickFilter.Filter(angleChange, cState.elapsedTime);
+                    result += angleChange;
+                }
+            }
+            else
+            {
+                // Cleanup
+                flickData.flickFilter.Filter(0.0, cState.elapsedTime);
+                result = 0.0;
+            }
+
+            // Continue Flick motion
+            double lastFlickProgress = flickData.flickProgress;
+            double flickTime = flickSettings.flickTime;
+            if (lastFlickProgress < flickTime)
+            {
+                flickData.flickProgress = Math.Min(flickData.flickProgress + cState.elapsedTime, flickTime);
+    
+                double lastPerOne = lastFlickProgress / flickTime;
+                double thisPerOne = flickData.flickProgress / flickTime;
+    
+                double warpedLastPerOne = WarpEaseOut(lastPerOne);
+                double warpedThisPerone = WarpEaseOut(thisPerOne);
+                //Console.WriteLine("{0} {1}", warpedThisPerone, warpedLastPerOne);
+
+                result += (warpedThisPerone - warpedLastPerOne) * flickData.flickSize;
+            }
+
+            return result;
+        }
+
+        private static double WarpEaseOut(double input)
+        {
+            double flipped = 1.0 - input;
+            return 1.0 - flipped * flipped;
+        }
+
+        //private static OneEuroFilter flickFilter = new OneEuroFilter(0.4, 0.4);
+        //private static double flickProgress = 0.0;
+        //private static double flickSize = 0.0;
+        //private static double flickAngleRemainder = 0.0;
+
+        //private const double REAL_WORLD_CALIBRATION = 10;
+
+        //private static double FlickThreshold = 0.9;
+        //private static double FlickTime = 0.1;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void ProcessControlSettingAction(DS4ControlSettings dcs, int device, DS4State cState, DS4State MappedState, DS4StateExposed eState,

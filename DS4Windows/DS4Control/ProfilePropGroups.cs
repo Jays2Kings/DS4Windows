@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using Sensorit.Base;
 
 namespace DS4Windows
@@ -457,6 +458,55 @@ namespace DS4Windows
             maxZoneX = DEFAULT_MAXZONE_X;
             maxZoneY = DEFAULT_MAXZONE_Y;
             snapToCenter = DEFAULT_SNAP_CENTER;
+        }
+    }
+
+    public enum StickMode : uint
+    {
+        Controls,
+        FlickStick,
+    }
+
+    public class FlickStickSettings
+    {
+        public const double DEFAULT_FLICK_THRESHOLD = 0.9;
+        public const double DEFAULT_FLICK_TIME = 0.1;  // In seconds
+        public const double DEFAULT_REAL_WORLD_CALIBRATION = 5.3;
+
+        public double flickThreshold = DEFAULT_FLICK_THRESHOLD;
+        public double flickTime = DEFAULT_FLICK_TIME; // In seconds
+        public double realWorldCalibration = DEFAULT_REAL_WORLD_CALIBRATION;
+
+        public void Reset()
+        {
+            flickThreshold = DEFAULT_FLICK_THRESHOLD;
+            flickTime = DEFAULT_FLICK_TIME;
+            realWorldCalibration = DEFAULT_REAL_WORLD_CALIBRATION;
+        }
+    }
+
+    public class StickControlSettings
+    {
+        public void Reset()
+        {
+        }
+    }
+
+    public class StickModeSettings
+    {
+        public FlickStickSettings flickSettings = new FlickStickSettings();
+        public StickControlSettings controlSettings = new StickControlSettings();
+    }
+
+    public class StickOutputSetting
+    {
+        public StickMode mode = StickMode.Controls;
+        public StickModeSettings outputSettings = new StickModeSettings();
+
+        public void ResetSettings()
+        {
+            outputSettings.controlSettings.Reset();
+            outputSettings.flickSettings.Reset();
         }
     }
 }

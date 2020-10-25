@@ -348,8 +348,11 @@
                                                    Margin="{StaticResource spaceMargin}" />
 
                                             <Label Content="Flick Time" ContentStringFormat="{}{0}:" Grid.Row="2" Grid.Column="0" />
-                                            <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSFlickTime,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="2" Grid.Column="1" Maximum="10.0" Minimum="0.01" Increment="0.1"
+                                            <DockPanel Grid.Row="2" Grid.Column="1">
+                                                <TextBlock Text="sec." DockPanel.Dock="Right" Margin="{StaticResource spaceMargin}" />
+                                                <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSFlickTime,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Maximum="10.0" Minimum="0.01" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
+                                            </DockPanel>
 
                                             <Label Content="Min Angle Threshold" ContentStringFormat="{}{0}:" Grid.Row="3" Grid.Column="0" />
                                             <DockPanel Grid.Row="3" Grid.Column="1">
@@ -491,8 +494,11 @@
                                                    Margin="{StaticResource spaceMargin}" />
 
                                             <Label Content="Flick Time" ContentStringFormat="{}{0}:" Grid.Row="2" Grid.Column="0" />
-                                            <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSFlickTime,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="2" Grid.Column="1" Maximum="10.0" Minimum="0.01" Increment="0.1"
+                                            <DockPanel Grid.Row="2" Grid.Column="1">
+                                                <TextBlock Text="sec." DockPanel.Dock="Right" Margin="{StaticResource spaceMargin}" />
+                                                <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSFlickTime,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Maximum="10.0" Minimum="0.01" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
+                                            </DockPanel>
 
                                             <Label Content="Min Angle Threshold" ContentStringFormat="{}{0}:" Grid.Row="3" Grid.Column="0" />
                                             <DockPanel Grid.Row="3" Grid.Column="1">

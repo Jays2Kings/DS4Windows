@@ -3078,17 +3078,19 @@ namespace DS4Windows
                 XmlNode xmlLsOutputMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOutputMode", null); xmlLsOutputMode.InnerText = lsOutputSettings[device].mode.ToString(); rootElement.AppendChild(xmlLsOutputMode);
                 XmlNode xmlRsOutputMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOutputMode", null); xmlRsOutputMode.InnerText = rsOutputSettings[device].mode.ToString(); rootElement.AppendChild(xmlRsOutputMode);
 
-                XmlElement xmlLsFlickStickGroupElement = m_Xdoc.CreateElement("LSFlickStickSettings");
+                XmlElement xmlLsOutputSettingsElement = m_Xdoc.CreateElement("LSOutputSettings");
+                XmlElement xmlLsFlickStickGroupElement = m_Xdoc.CreateElement("FlickStickSettings"); xmlLsOutputSettingsElement.AppendChild(xmlLsFlickStickGroupElement);
                 XmlNode xmlLsFlickStickRWC = m_Xdoc.CreateNode(XmlNodeType.Element, "RealWorldCalibration", null); xmlLsFlickStickRWC.InnerText = lsOutputSettings[device].outputSettings.flickSettings.realWorldCalibration.ToString(); xmlLsFlickStickGroupElement.AppendChild(xmlLsFlickStickRWC);
                 XmlNode xmlLsFlickStickThreshold = m_Xdoc.CreateNode(XmlNodeType.Element, "FlickThreshold", null); xmlLsFlickStickThreshold.InnerText = lsOutputSettings[device].outputSettings.flickSettings.flickThreshold.ToString(); xmlLsFlickStickGroupElement.AppendChild(xmlLsFlickStickThreshold);
                 XmlNode xmlLsFlickStickTime = m_Xdoc.CreateNode(XmlNodeType.Element, "FlickTime", null); xmlLsFlickStickTime.InnerText = lsOutputSettings[device].outputSettings.flickSettings.flickTime.ToString(); xmlLsFlickStickGroupElement.AppendChild(xmlLsFlickStickTime);
-                rootElement.AppendChild(xmlLsFlickStickGroupElement);
+                rootElement.AppendChild(xmlLsOutputSettingsElement);
 
-                XmlElement xmlRsFlickStickGroupElement = m_Xdoc.CreateElement("RSFlickStickSettings");
+                XmlElement xmlRsOutputSettingsElement = m_Xdoc.CreateElement("RSOutputSettings");
+                XmlElement xmlRsFlickStickGroupElement = m_Xdoc.CreateElement("FlickStickSettings"); xmlRsOutputSettingsElement.AppendChild(xmlRsFlickStickGroupElement);
                 XmlNode xmlRsFlickStickRWC = m_Xdoc.CreateNode(XmlNodeType.Element, "RealWorldCalibration", null); xmlRsFlickStickRWC.InnerText = rsOutputSettings[device].outputSettings.flickSettings.realWorldCalibration.ToString(); xmlRsFlickStickGroupElement.AppendChild(xmlRsFlickStickRWC);
                 XmlNode xmlRsFlickStickThreshold = m_Xdoc.CreateNode(XmlNodeType.Element, "FlickThreshold", null); xmlRsFlickStickThreshold.InnerText = rsOutputSettings[device].outputSettings.flickSettings.flickThreshold.ToString(); xmlRsFlickStickGroupElement.AppendChild(xmlRsFlickStickThreshold);
                 XmlNode xmlRsFlickStickTime = m_Xdoc.CreateNode(XmlNodeType.Element, "FlickTime", null); xmlRsFlickStickTime.InnerText = rsOutputSettings[device].outputSettings.flickSettings.flickTime.ToString(); xmlRsFlickStickGroupElement.AppendChild(xmlRsFlickStickTime);
-                rootElement.AppendChild(xmlRsFlickStickGroupElement);
+                rootElement.AppendChild(xmlRsOutputSettingsElement);
 
                 XmlNode xmlL2OutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "L2OutputCurveMode", null); xmlL2OutputCurveMode.InnerText = axisOutputCurveString(getL2OutCurveMode(device)); rootElement.AppendChild(xmlL2OutputCurveMode);
                 XmlNode xmlL2OutputCurveCustom = m_Xdoc.CreateNode(XmlNodeType.Element, "L2OutputCurveCustom", null); xmlL2OutputCurveCustom.InnerText = l2OutBezierCurveObj[device].ToString(); rootElement.AppendChild(xmlL2OutputCurveCustom);
@@ -4387,72 +4389,92 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSOutputMode"); Enum.TryParse(Item.InnerText, out rsOutputSettings[device].mode); }
                 catch { missingSetting = true; }
 
-                bool flickStickLSGroup = false;
-                XmlNode xmlFlickStickLSElement =
-                    m_Xdoc.SelectSingleNode("/" + rootname + "/LSFlickStickSettings");
-                flickStickLSGroup = xmlFlickStickLSElement != null;
-
-                if (flickStickLSGroup)
+                XmlNode xmlLSOutputSettingsElement =
+                    m_Xdoc.SelectSingleNode("/" + rootname + "/LSOutputSettings");
+                bool lsOutputGroup = xmlLSOutputSettingsElement != null;
+                if (lsOutputGroup)
                 {
-                    try
-                    {
-                        Item = xmlFlickStickLSElement.SelectSingleNode("RealWorldCalibration");
-                        double.TryParse(Item.InnerText, out double temp);
-                        lsOutputSettings[device].outputSettings.flickSettings.realWorldCalibration = temp;
-                    }
-                    catch { missingSetting = true; }
+                    bool flickStickLSGroup = false;
+                    XmlNode xmlFlickStickLSElement =
+                        xmlLSOutputSettingsElement.SelectSingleNode("FlickStickSettings");
+                    flickStickLSGroup = xmlFlickStickLSElement != null;
 
-                    try
+                    if (flickStickLSGroup)
                     {
-                        Item = xmlFlickStickLSElement.SelectSingleNode("FlickThreshold");
-                        double.TryParse(Item.InnerText, out double temp);
-                        lsOutputSettings[device].outputSettings.flickSettings.flickThreshold = temp;
-                    }
-                    catch { missingSetting = true; }
+                        try
+                        {
+                            Item = xmlFlickStickLSElement.SelectSingleNode("RealWorldCalibration");
+                            double.TryParse(Item.InnerText, out double temp);
+                            lsOutputSettings[device].outputSettings.flickSettings.realWorldCalibration = temp;
+                        }
+                        catch { missingSetting = true; }
 
-                    try
-                    {
-                        Item = xmlFlickStickLSElement.SelectSingleNode("FlickTime");
-                        double.TryParse(Item.InnerText, out double temp);
-                        lsOutputSettings[device].outputSettings.flickSettings.flickTime = temp;
+                        try
+                        {
+                            Item = xmlFlickStickLSElement.SelectSingleNode("FlickThreshold");
+                            double.TryParse(Item.InnerText, out double temp);
+                            lsOutputSettings[device].outputSettings.flickSettings.flickThreshold = temp;
+                        }
+                        catch { missingSetting = true; }
+
+                        try
+                        {
+                            Item = xmlFlickStickLSElement.SelectSingleNode("FlickTime");
+                            double.TryParse(Item.InnerText, out double temp);
+                            lsOutputSettings[device].outputSettings.flickSettings.flickTime = temp;
+                        }
+                        catch { missingSetting = true; }
                     }
-                    catch { missingSetting = true; }
+                    else
+                    {
+                        missingSetting = true;
+                    }
                 }
                 else
                 {
                     missingSetting = true;
                 }
 
-                bool flickStickRSGroup = false;
-                XmlNode xmlFlickStickRSElement =
-                    m_Xdoc.SelectSingleNode("/" + rootname + "/RSFlickStickSettings");
-                flickStickRSGroup = xmlFlickStickRSElement != null;
-
-                if (flickStickRSGroup)
+                XmlNode xmlRSOutputSettingsElement =
+                    m_Xdoc.SelectSingleNode("/" + rootname + "/RSOutputSettings");
+                bool rsOutputGroup = xmlRSOutputSettingsElement != null;
+                if (rsOutputGroup)
                 {
-                    try
-                    {
-                        Item = xmlFlickStickRSElement.SelectSingleNode("RealWorldCalibration");
-                        double.TryParse(Item.InnerText, out double temp);
-                        rsOutputSettings[device].outputSettings.flickSettings.realWorldCalibration = temp;
-                    }
-                    catch { missingSetting = true; }
+                    bool flickStickRSGroup = false;
+                    XmlNode xmlFlickStickRSElement =
+                        xmlRSOutputSettingsElement.SelectSingleNode("FlickStickSettings");
+                    flickStickRSGroup = xmlFlickStickRSElement != null;
 
-                    try
+                    if (flickStickRSGroup)
                     {
-                        Item = xmlFlickStickRSElement.SelectSingleNode("FlickThreshold");
-                        double.TryParse(Item.InnerText, out double temp);
-                        rsOutputSettings[device].outputSettings.flickSettings.flickThreshold = temp;
-                    }
-                    catch { missingSetting = true; }
+                        try
+                        {
+                            Item = xmlFlickStickRSElement.SelectSingleNode("RealWorldCalibration");
+                            double.TryParse(Item.InnerText, out double temp);
+                            rsOutputSettings[device].outputSettings.flickSettings.realWorldCalibration = temp;
+                        }
+                        catch { missingSetting = true; }
 
-                    try
-                    {
-                        Item = xmlFlickStickRSElement.SelectSingleNode("FlickTime");
-                        double.TryParse(Item.InnerText, out double temp);
-                        rsOutputSettings[device].outputSettings.flickSettings.flickTime = temp;
+                        try
+                        {
+                            Item = xmlFlickStickRSElement.SelectSingleNode("FlickThreshold");
+                            double.TryParse(Item.InnerText, out double temp);
+                            rsOutputSettings[device].outputSettings.flickSettings.flickThreshold = temp;
+                        }
+                        catch { missingSetting = true; }
+
+                        try
+                        {
+                            Item = xmlFlickStickRSElement.SelectSingleNode("FlickTime");
+                            double.TryParse(Item.InnerText, out double temp);
+                            rsOutputSettings[device].outputSettings.flickSettings.flickTime = temp;
+                        }
+                        catch { missingSetting = true; }
                     }
-                    catch { missingSetting = true; }
+                    else
+                    {
+                        missingSetting = true;
+                    }
                 }
                 else
                 {

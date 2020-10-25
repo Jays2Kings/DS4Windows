@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using Sensorit.Base;
 
 namespace DS4Windows

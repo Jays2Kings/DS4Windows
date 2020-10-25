@@ -1863,7 +1863,7 @@ namespace DS4Windows
                     // Start new Flick
                     flickData.flickProgress = 0.0; // Reset Flick progress
                     flickData.flickSize = Math.Atan2((stickX - 128), -(stickY - 128));
-                    flickData.flickFilter.Filter(0.0, cState.elapsedTime);
+                    //flickData.flickFilter.Filter(0.0, cState.elapsedTime);
                 }
                 else
                 {
@@ -1880,14 +1880,14 @@ namespace DS4Windows
                     angleChange -= Math.PI;
                     //Console.WriteLine("ANGLE CHANGE: {0} {1} {2}", stickAngle, lastStickAngle, rawAngleChange);
                     //Console.WriteLine("{0} {1} | {2} {3}", cState.RX, pState.RX, cState.RY, pState.RY);
-                    angleChange = flickData.flickFilter.Filter(angleChange, cState.elapsedTime);
+                    //angleChange = flickData.flickFilter.Filter(angleChange, cState.elapsedTime);
                     result += angleChange;
                 }
             }
             else
             {
                 // Cleanup
-                flickData.flickFilter.Filter(0.0, cState.elapsedTime);
+                //flickData.flickFilter.Filter(0.0, cState.elapsedTime);
                 result = 0.0;
             }
 

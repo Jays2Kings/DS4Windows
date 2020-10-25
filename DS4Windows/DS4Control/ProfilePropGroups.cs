@@ -563,6 +563,7 @@ namespace DS4Windows
 
         public void ResetSettings()
         {
+            mode = StickMode.Controls;
             outputSettings.controlSettings.Reset();
             outputSettings.flickSettings.Reset();
         }

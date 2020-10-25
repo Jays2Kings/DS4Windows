@@ -463,6 +463,7 @@ namespace DS4Windows
 
     public enum StickMode : uint
     {
+        None,
         Controls,
         FlickStick,
     }

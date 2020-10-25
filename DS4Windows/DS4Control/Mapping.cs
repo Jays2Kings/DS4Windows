@@ -1626,8 +1626,15 @@ namespace DS4Windows
             }
             else
             {
+                outputfieldMapping.axisdirs[(int)DS4Controls.LXNeg] = 128;
+                outputfieldMapping.axisdirs[(int)DS4Controls.LXPos] = 128;
+                outputfieldMapping.axisdirs[(int)DS4Controls.LYNeg] = 128;
+                outputfieldMapping.axisdirs[(int)DS4Controls.LYPos] = 128;
+
                 switch (stickSettings.mode)
                 {
+                    case StickMode.None:
+                        break;
                     case StickMode.FlickStick:
                         DS4Device d = ctrl.DS4Controllers[device];
                         DS4State cRawState = d.getCurrentStateRef();
@@ -1654,8 +1661,15 @@ namespace DS4Windows
             }
             else
             {
-                switch(stickSettings.mode)
+                outputfieldMapping.axisdirs[(int)DS4Controls.RXNeg] = 128;
+                outputfieldMapping.axisdirs[(int)DS4Controls.RXPos] = 128;
+                outputfieldMapping.axisdirs[(int)DS4Controls.RYNeg] = 128;
+                outputfieldMapping.axisdirs[(int)DS4Controls.RYPos] = 128;
+
+                switch (stickSettings.mode)
                 {
+                    case StickMode.None:
+                        break;
                     case StickMode.FlickStick:
                         DS4Device d = ctrl.DS4Controllers[device];
                         DS4State cRawState = d.getCurrentStateRef();

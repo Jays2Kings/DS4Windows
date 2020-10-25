@@ -229,12 +229,14 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Output Mode" />
                                     <ComboBox MinWidth="160" SelectedIndex="{Binding LSOutputIndex,FallbackValue='0'}" VerticalContentAlignment="Center" Margin="10,0,0,0">
+                                        <ComboBoxItem Content="None" />
                                         <ComboBoxItem Content="Controls" />
                                         <ComboBoxItem Content="Flick Stick" />
                                     </ComboBox>
                                 </StackPanel>
 
                                 <TabControl SelectedIndex="{Binding LSOutputIndex,Mode=OneWay,FallbackValue='0'}" BorderBrush="{x:Null}">
+                                    <TabItem Header="None"  Visibility="Collapsed" />
                                     <TabItem Header="Controls" Visibility="Collapsed">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
@@ -374,6 +376,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Output Mode" />
                                     <ComboBox MinWidth="160" SelectedIndex="{Binding RSOutputIndex,FallbackValue='0'}" VerticalContentAlignment="Center" Margin="10,0,0,0">
+                                        <ComboBoxItem Content="None" />
                                         <ComboBoxItem Content="Controls" />
                                         <ComboBoxItem Content="Flick Stick" />
                                     </ComboBox>
@@ -381,6 +384,7 @@
 
 
                                 <TabControl SelectedIndex="{Binding RSOutputIndex,Mode=OneWay,FallbackValue='0'}" BorderBrush="{x:Null}">
+                                    <TabItem Header="None"  Visibility="Collapsed" />
                                     <TabItem Header="Controls" Visibility="Collapsed">
                                         <Grid>
                                             <Grid.ColumnDefinitions>

@@ -964,23 +964,28 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 int index = 0;
                 switch (Global.LSOutputSettings[device].mode)
                 {
-                    case StickMode.Controls:
+                    case StickMode.None:
                         index = 0; break;
-                    case StickMode.FlickStick:
+                    case StickMode.Controls:
                         index = 1; break;
+                    case StickMode.FlickStick:
+                        index = 2; break;
                     default: break;
                 }
                 return index;
             }
             set
             {
-                StickMode temp = StickMode.Controls;
+                StickMode temp = StickMode.None;
                 switch(value)
                 {
                     case 0:
-                        temp = StickMode.Controls;
+                        temp = StickMode.None;
                         break;
                     case 1:
+                        temp = StickMode.Controls;
+                        break;
+                    case 2:
                         temp = StickMode.FlickStick;
                         break;
                     default:
@@ -1038,23 +1043,28 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 int index = 0;
                 switch (Global.RSOutputSettings[device].mode)
                 {
+                    case StickMode.None:
+                        break;
                     case StickMode.Controls:
-                        index = 0; break;
-                    case StickMode.FlickStick:
                         index = 1; break;
+                    case StickMode.FlickStick:
+                        index = 2; break;
                     default: break;
                 }
                 return index;
             }
             set
             {
-                StickMode temp = StickMode.Controls;
+                StickMode temp = StickMode.None;
                 switch (value)
                 {
                     case 0:
-                        temp = StickMode.Controls;
+                        temp = StickMode.None;
                         break;
                     case 1:
+                        temp = StickMode.Controls;
+                        break;
+                    case 2:
                         temp = StickMode.FlickStick;
                         break;
                     default:

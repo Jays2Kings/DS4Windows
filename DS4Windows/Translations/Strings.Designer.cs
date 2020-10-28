@@ -451,6 +451,24 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Flick Threshold.
+        /// </summary>
+        public static string FlickThreshold {
+            get {
+                return ResourceManager.GetString("FlickThreshold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flick Time.
+        /// </summary>
+        public static string FlickTime {
+            get {
+                return ResourceManager.GetString("FlickTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full.
         /// </summary>
         public static string Full {
@@ -591,6 +609,15 @@ namespace DS4WinWPF.Translations {
         public static string Log {
             get {
                 return ResourceManager.GetString("Log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min Angle Threshold.
+        /// </summary>
+        public static string MinAngleThreshold {
+            get {
+                return ResourceManager.GetString("MinAngleThreshold", resourceCulture);
             }
         }
         
@@ -762,6 +789,15 @@ namespace DS4WinWPF.Translations {
         public static string QuickCharge {
             get {
                 return ResourceManager.GetString("QuickCharge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Real World Calibration.
+        /// </summary>
+        public static string RealWorldCalibration {
+            get {
+                return ResourceManager.GetString("RealWorldCalibration", resourceCulture);
             }
         }
         

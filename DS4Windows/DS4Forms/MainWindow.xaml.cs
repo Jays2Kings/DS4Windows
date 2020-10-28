@@ -1540,7 +1540,7 @@ Suspend support not enabled.", true);
 
         private void Html5GameBtn_Click(object sender, RoutedEventArgs e)
         {
-            Util.StartProcessHelper("https://html5gamepad.com/");
+            Util.StartProcessHelper("https://gamepad-tester.com/");
         }
 
         private void HidNinjaBtn_Click(object sender, RoutedEventArgs e)

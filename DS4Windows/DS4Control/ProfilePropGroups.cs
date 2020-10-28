@@ -459,4 +459,113 @@ namespace DS4Windows
             snapToCenter = DEFAULT_SNAP_CENTER;
         }
     }
+
+    public enum StickMode : uint
+    {
+        None,
+        Controls,
+        FlickStick,
+    }
+
+    public class FlickStickSettings
+    {
+        public const double DEFAULT_FLICK_THRESHOLD = 0.9;
+        public const double DEFAULT_FLICK_TIME = 0.1;  // In seconds
+        public const double DEFAULT_REAL_WORLD_CALIBRATION = 5.3;
+        public const double DEFAULT_MIN_ANGLE_THRESHOLD = 0.0;
+
+        public const double DEFAULT_MINCUTOFF = 0.4;
+        public const double DEFAULT_BETA = 0.4;
+
+        public double flickThreshold = DEFAULT_FLICK_THRESHOLD;
+        public double flickTime = DEFAULT_FLICK_TIME; // In seconds
+        public double realWorldCalibration = DEFAULT_REAL_WORLD_CALIBRATION;
+        public double minAngleThreshold = DEFAULT_MIN_ANGLE_THRESHOLD;
+
+        public double minCutoff = DEFAULT_MINCUTOFF;
+        public double beta = DEFAULT_BETA;
+
+        public delegate void FlickStickSettingsEventHandler(FlickStickSettings sender,
+           EventArgs args);
+
+        public double MinCutoff
+        {
+            get => minCutoff;
+            set
+            {
+                if (minCutoff == value) return;
+                minCutoff = value;
+                MinCutoffChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event FlickStickSettingsEventHandler MinCutoffChanged;
+
+        public double Beta
+        {
+            get => beta;
+            set
+            {
+                if (beta == value) return;
+                beta = value;
+                BetaChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event FlickStickSettingsEventHandler BetaChanged;
+
+        public void Reset()
+        {
+            flickThreshold = DEFAULT_FLICK_THRESHOLD;
+            flickTime = DEFAULT_FLICK_TIME;
+            realWorldCalibration = DEFAULT_REAL_WORLD_CALIBRATION;
+            minAngleThreshold = DEFAULT_MIN_ANGLE_THRESHOLD;
+
+            minCutoff = DEFAULT_MINCUTOFF;
+            beta = DEFAULT_BETA;
+        }
+
+        public void SetRefreshEvents(OneEuroFilter euroFilter)
+        {
+            BetaChanged += (sender, args) =>
+            {
+                euroFilter.Beta = beta;
+            };
+
+            MinCutoffChanged += (sender, args) =>
+            {
+                euroFilter.MinCutoff = minCutoff;
+            };
+        }
+
+        public void RemoveRefreshEvents()
+        {
+            BetaChanged = null;
+            MinCutoffChanged = null;
+        }
+    }
+
+    public class StickControlSettings
+    {
+        public void Reset()
+        {
+        }
+    }
+
+    public class StickModeSettings
+    {
+        public FlickStickSettings flickSettings = new FlickStickSettings();
+        public StickControlSettings controlSettings = new StickControlSettings();
+    }
+
+    public class StickOutputSetting
+    {
+        public StickMode mode = StickMode.Controls;
+        public StickModeSettings outputSettings = new StickModeSettings();
+
+        public void ResetSettings()
+        {
+            mode = StickMode.Controls;
+            outputSettings.controlSettings.Reset();
+            outputSettings.flickSettings.Reset();
+        }
+    }
 }

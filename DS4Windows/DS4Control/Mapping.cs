@@ -1953,6 +1953,7 @@ namespace DS4Windows
             //DS4ControlSettings dcs = tempSettingsList[settingIndex];
             
             object action = null;
+            uint actionAlias = 0;
             DS4ControlSettings.ActionType actionType = 0;
             DS4KeyType keyType = DS4KeyType.None;
             DS4Controls usingExtra = DS4Controls.None;
@@ -1960,12 +1961,14 @@ namespace DS4Windows
             {
                 action = dcs.shiftAction;
                 actionType = dcs.shiftActionType;
+                actionAlias = dcs.shiftActionAlias;
                 keyType = dcs.shiftKeyType;
             }
             else if (dcs.action != null)
             {
                 action = dcs.action;
                 actionType = dcs.actionType;
+                actionAlias = dcs.actionAlias;
                 keyType = dcs.keyType;
             }
 

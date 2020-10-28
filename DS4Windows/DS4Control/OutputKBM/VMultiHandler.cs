@@ -61,36 +61,24 @@ namespace DS4Windows.DS4Control
 
             vMulti.updateKeyboard(keyReport);
 
-#if VMULTI_CUSTOM
             mediaKeyReport.EnhancedKeys = 0;
             mediaKeyReport.MediaKeys = 0;
             vMulti.updateKeyboardEnhanced(mediaKeyReport);
-#endif
 
             eventLock.ExitWriteLock();
         }
 
         public override void MoveRelativeMouse(int x, int y)
         {
-#if VMULTI_CUSTOM
             const int MOUSE_MIN = -32767;
             const int MOUSE_MAX = 32767;
-#else
-            const int MOUSE_MIN = -127;
-            const int MOUSE_MAX = 127;
-#endif
             //Console.WriteLine("RAW MOUSE {0} {1}", x, y);
             eventLock.EnterWriteLock();
 
             mouseReport.ResetMousePos();
 
-#if VMULTI_CUSTOM
             mouseReport.MouseX = (ushort)(x < MOUSE_MIN ? MOUSE_MIN : (x > MOUSE_MAX) ? MOUSE_MAX : x);
             mouseReport.MouseY = (ushort)(y < MOUSE_MIN ? MOUSE_MIN : (y > MOUSE_MAX) ? MOUSE_MAX : y);
-#else
-            mouseReport.MouseX = (byte)(x < MOUSE_MIN ? MOUSE_MIN : (x > MOUSE_MAX) ? MOUSE_MAX : x);
-            mouseReport.MouseY = (byte)(y < MOUSE_MIN ? MOUSE_MIN : (y > MOUSE_MAX) ? MOUSE_MAX : y);
-#endif
             //Console.WriteLine("LKJDFSLKJDFSLKJS {0} {1}", mouseReport.MouseX, mouseReport.MouseY);
 
             vMulti.updateMouse(mouseReport);
@@ -125,7 +113,6 @@ namespace DS4Windows.DS4Control
                     sync = true;
                 }
             }
-#if VMULTI_CUSTOM
             else if (key < MODIFIER_ENHANCED)
             {
                 MultimediaKey temp = (MultimediaKey)(key & ~MODIFIER_MULTIMEDIA);
@@ -138,7 +125,6 @@ namespace DS4Windows.DS4Control
                 mediaKeyReport.KeyDown(temp);
                 syncEnhanced = true;
             }
-#endif
 
             if (sync)
             {
@@ -184,7 +170,6 @@ namespace DS4Windows.DS4Control
                     sync = true;
                 }
             }
-#if VMULTI_CUSTOM
             else if (key < MODIFIER_ENHANCED)
             {
                 MultimediaKey temp = (MultimediaKey)(key & ~MODIFIER_MULTIMEDIA);
@@ -197,7 +182,6 @@ namespace DS4Windows.DS4Control
                 mediaKeyReport.KeyDown(temp);
                 syncEnhanced = true;
             }
-#endif
 
             if (sync)
             {
@@ -239,7 +223,6 @@ namespace DS4Windows.DS4Control
                     sync = true;
                 }
             }
-#if VMULTI_CUSTOM
             else if (key < MODIFIER_ENHANCED)
             {
                 MultimediaKey temp = (MultimediaKey)(key & ~MODIFIER_MULTIMEDIA);
@@ -252,7 +235,6 @@ namespace DS4Windows.DS4Control
                 mediaKeyReport.KeyUp(temp);
                 syncEnhanced = true;
             }
-#endif
 
             if (sync)
             {
@@ -298,7 +280,6 @@ namespace DS4Windows.DS4Control
                     sync = true;
                 }
             }
-#if VMULTI_CUSTOM
             else if (key < MODIFIER_ENHANCED)
             {
                 MultimediaKey temp = (MultimediaKey)(key & ~MODIFIER_MULTIMEDIA);
@@ -311,7 +292,6 @@ namespace DS4Windows.DS4Control
                 mediaKeyReport.KeyUp(temp);
                 syncEnhanced = true;
             }
-#endif
 
             if (sync)
             {

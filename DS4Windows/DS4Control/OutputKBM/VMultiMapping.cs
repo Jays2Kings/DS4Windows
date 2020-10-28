@@ -111,7 +111,6 @@ namespace DS4Windows.DS4Control
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.Pause), (ushort)KeyboardKey.Pause);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.NumLock), (ushort)KeyboardKey.NumLock);
 
-#if VMULTI_CUSTOM
                 // Map modifier keys. Need to add a mask to separate modifier key values
                 // from normal keyboard keys.
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.LeftCtrl),
@@ -168,7 +167,6 @@ namespace DS4Windows.DS4Control
                     (ushort)MultimediaKey.VolumeUp | VMultiHandler.MODIFIER_MULTIMEDIA);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.VolumeDown),
                     (ushort)MultimediaKey.VolumeDown | VMultiHandler.MODIFIER_MULTIMEDIA);
-#endif
             }
         }
 

@@ -289,6 +289,8 @@
     <Compile Include="DS4Library\DS4State.cs" />
     <Compile Include="DS4Library\DS4StateExposed.cs" />
     <Compile Include="DS4Library\DS4Touchpad.cs" />
+    <Compile Include="DS4Library\InputDevices\InputDeviceFactory.cs" />
+    <Compile Include="DS4Library\InputDevices\SwitchProDevice.cs" />
     <Compile Include="HidLibrary\Extensions.cs" />
     <Compile Include="HidLibrary\HidDevice.cs" />
     <Compile Include="HidLibrary\HidDeviceAttributes.cs" />

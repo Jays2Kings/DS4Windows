@@ -133,28 +133,28 @@ namespace DS4Windows
         public const string blankSerial = "00:00:00:00:00:00";
         private const string SONYWA_AUDIO_SEARCHNAME = "DUALSHOCK®4 USB Wireless Adaptor";
         private const string RAIJU_TE_AUDIO_SEARCHNAME = "Razer Raiju Tournament Edition Wired";
-        private HidDevice hDevice;
-        private string Mac;
-        private DS4State cState = new DS4State();
-        private DS4State pState = new DS4State();
-        private ConnectionType conType;
-        private byte[] accel = new byte[6];
-        private byte[] gyro = new byte[6];
-        private byte[] inputReport;
-        private byte[] btInputReport = null;
-        private byte[] outReportBuffer, outputReport;
-        private int inputReportErrorCount = 0; // Num of consequtive input report errors (fex if BT device fails 5 times in crc32 and 0x11 data type check then switch over to handle incoming BT packets as those were usb PC-friendly packets. Some fake DS4 gamepads needs this)
-        private readonly DS4Touchpad touchpad = null;
-        private readonly DS4SixAxis sixAxis = null;
-        private Thread ds4Input, ds4Output;
-        private int battery;
-        private DS4Audio audio = null;
-        private DS4Audio micAudio = null;
+        protected HidDevice hDevice;
+        protected string Mac;
+        protected DS4State cState = new DS4State();
+        protected DS4State pState = new DS4State();
+        protected ConnectionType conType;
+        protected byte[] accel = new byte[6];
+        protected byte[] gyro = new byte[6];
+        protected byte[] inputReport;
+        protected byte[] btInputReport = null;
+        protected byte[] outReportBuffer, outputReport;
+        protected int inputReportErrorCount = 0; // Num of consequtive input report errors (fex if BT device fails 5 times in crc32 and 0x11 data type check then switch over to handle incoming BT packets as those were usb PC-friendly packets. Some fake DS4 gamepads needs this)
+        protected readonly DS4Touchpad touchpad = null;
+        protected readonly DS4SixAxis sixAxis = null;
+        protected Thread ds4Input, ds4Output;
+        protected int battery;
+        protected DS4Audio audio = null;
+        protected DS4Audio micAudio = null;
         public DateTime lastActive = DateTime.UtcNow;
         public DateTime firstActive = DateTime.UtcNow;
-        private bool charging;
-        private bool readyQuickChargeDisconnect;
-        private int warnInterval = WARN_INTERVAL_USB;
+        protected bool charging;
+        protected bool readyQuickChargeDisconnect;
+        protected int warnInterval = WARN_INTERVAL_USB;
         public int getWarnInterval()
         {
             return warnInterval;
@@ -178,7 +178,7 @@ namespace DS4Windows
 
         public DateTime wheelPrevRecalibrateTime;
 
-        private int wheelRecalibrateActiveState = 0;
+        protected int wheelRecalibrateActiveState = 0;
         public int WheelRecalibrateActiveState
         {
             get { return wheelRecalibrateActiveState; }
@@ -198,17 +198,17 @@ namespace DS4Windows
         }
         public WheelCalibrationPoint wheelCalibratedAxisBitmask;
 
-        private bool exitOutputThread = false;
+        protected bool exitOutputThread = false;
         public bool ExitOutputThread => exitOutputThread;
-        private bool exitInputThread = false;
-        private object exitLocker = new object();
-        private ExclusiveStatus exclusiveStatus = ExclusiveStatus.Shared;
+        protected bool exitInputThread = false;
+        protected object exitLocker = new object();
+        protected ExclusiveStatus exclusiveStatus = ExclusiveStatus.Shared;
 
         public delegate void ReportHandler<TEventArgs>(DS4Device sender, TEventArgs args);
 
         //public event EventHandler<EventArgs> Report = null;
-        public event ReportHandler<EventArgs> Report = null;
-        public event EventHandler<EventArgs> Removal = null;
+        public virtual event ReportHandler<EventArgs> Report = null;
+        public virtual event EventHandler<EventArgs> Removal = null;
         public event EventHandler<EventArgs> SyncChange = null;
         public event EventHandler<EventArgs> SerialChange = null;
         //public EventHandler<EventArgs> MotionEvent = null;
@@ -240,11 +240,11 @@ namespace DS4Windows
             }
         }
 
-        private bool isDisconnecting = false;
+        protected bool isDisconnecting = false;
         public bool IsDisconnecting
         {
             get { return isDisconnecting; }
-            private set
+            protected set
             {
                 this.isDisconnecting = value;
             }
@@ -255,7 +255,7 @@ namespace DS4Windows
             return this.isDisconnecting;
         }
 
-        private bool isRemoving = false;
+        protected bool isRemoving = false;
         public bool IsRemoving
         {
             get { return isRemoving; }
@@ -265,7 +265,7 @@ namespace DS4Windows
             }
         }
 
-        private bool isRemoved = false;
+        protected bool isRemoved = false;
         public bool IsRemoved
         {
             get { return isRemoved; }
@@ -291,7 +291,7 @@ namespace DS4Windows
         }
 
         // behavior only active when > 0
-        private int idleTimeout = 0;
+        protected int idleTimeout = 0;
         public int IdleTimeout
         {
             get { return idleTimeout; }
@@ -315,7 +315,7 @@ namespace DS4Windows
         }
 
         // Feature set of gamepad (some non-official DS4 gamepads require a bit different logic than a genuine Sony DS4). 0=Default DS4 gamepad feature set.
-        private VidPidFeatureSet featureSet;
+        protected VidPidFeatureSet featureSet;
         public VidPidFeatureSet FeatureSet
         {
             get { return featureSet;  }
@@ -330,20 +330,20 @@ namespace DS4Windows
 
         public int Battery => battery;
         public delegate void BatteryUpdateHandler(object sender, EventArgs e);
-        public event EventHandler BatteryChanged;
+        public virtual event EventHandler BatteryChanged;
         public int getBattery()
         {
             return battery;
         }
 
         public bool Charging => charging;
-        public event EventHandler ChargingChanged;
+        public virtual event EventHandler ChargingChanged;
         public bool isCharging()
         {
             return charging;
         }
 
-        private long lastTimeElapsed = 0;
+        protected long lastTimeElapsed = 0;
         public long getLastTimeElapsed()
         {
             return lastTimeElapsed;
@@ -417,7 +417,7 @@ namespace DS4Windows
 
         // Specify the poll rate interval used for the DS4 hardware when
         // connected via Bluetooth
-        private int btPollRate = 0;
+        protected int btPollRate = 0;
         public int BTPollRate
         {
             get { return btPollRate; }
@@ -464,22 +464,22 @@ namespace DS4Windows
             return result;
         }
 
-        private Queue<Action> eventQueue = new Queue<Action>();
-        private object eventQueueLock = new object();
+        protected Queue<Action> eventQueue = new Queue<Action>();
+        protected object eventQueueLock = new object();
 
-        private Thread timeoutCheckThread = null;
-        private bool timeoutExecuted = false;
-        private bool timeoutEvent = false;
-        private bool runCalib;
-        private bool hasInputEvts = false;
-        private string displayName;
+        protected Thread timeoutCheckThread = null;
+        protected bool timeoutExecuted = false;
+        protected bool timeoutEvent = false;
+        protected bool runCalib;
+        protected bool hasInputEvts = false;
+        protected string displayName;
         public string DisplayName => displayName;
         public bool ShouldRunCalib()
         {
             return runCalib;
         }
 
-        private ManualResetEventSlim readWaitEv = new ManualResetEventSlim();
+        protected ManualResetEventSlim readWaitEv = new ManualResetEventSlim();
         public ManualResetEventSlim ReadWaitEv { get => readWaitEv; }
 
         public DS4Device(HidDevice hidDevice, string disName, VidPidFeatureSet featureSet = VidPidFeatureSet.DefaultDS4)
@@ -500,6 +500,15 @@ namespace DS4Windows
 
             Mac = hDevice.readSerial();
             runCalib = (this.featureSet & VidPidFeatureSet.NoGyroCalib) == 0;
+
+            touchpad = new DS4Touchpad();
+            sixAxis = new DS4SixAxis();
+        }
+
+        public virtual void PostInit()
+        {
+            HidDevice hidDevice = hDevice;
+
             if (conType == ConnectionType.USB || conType == ConnectionType.SONYWA)
             {
                 inputReport = new byte[64];
@@ -554,8 +563,6 @@ namespace DS4Windows
                 synced = isValidSerial();
             }
 
-            touchpad = new DS4Touchpad();
-            sixAxis = new DS4SixAxis();
             if (runCalib)
                 RefreshCalibration();
 
@@ -586,7 +593,7 @@ namespace DS4Windows
 
         const int DS4_FEATURE_REPORT_5_LEN = 41;
         const int DS4_FEATURE_REPORT_5_CRC32_POS = DS4_FEATURE_REPORT_5_LEN - 4;
-        public void RefreshCalibration()
+        public virtual void RefreshCalibration()
         {
             byte[] calibration = new byte[41];
             calibration[0] = conType == ConnectionType.BT ? (byte)0x05 : (byte)0x02;
@@ -629,7 +636,7 @@ namespace DS4Windows
             }
         }
 
-        public void StartUpdate()
+        public virtual void StartUpdate()
         {
             this.inputReportErrorCount = 0;
 
@@ -668,7 +675,7 @@ namespace DS4Windows
                 Console.WriteLine("Thread already running for DS4: " + Mac);
         }
 
-        public void StopUpdate()
+        public virtual void StopUpdate()
         {
             if (ds4Input != null &&
                 ds4Input.IsAlive && !ds4Input.ThreadState.HasFlag(System.Threading.ThreadState.Stopped) &&
@@ -690,7 +697,7 @@ namespace DS4Windows
             StopOutputUpdate();
         }
 
-        private void StopOutputUpdate()
+        protected void StopOutputUpdate()
         {
             lock (exitLocker)
             {
@@ -712,7 +719,7 @@ namespace DS4Windows
             }
         }
 
-        private bool writeOutput()
+        protected virtual bool writeOutput()
         {
             if (conType == ConnectionType.BT)
             {
@@ -731,7 +738,7 @@ namespace DS4Windows
         private readonly Stopwatch rumbleAutostopTimer = new Stopwatch(); // Autostop timer to stop rumble motors if those are stuck in a rumble state
 
         private byte outputPendCount = 0;
-        private readonly Stopwatch standbySw = new Stopwatch();
+        protected readonly Stopwatch standbySw = new Stopwatch();
         private unsafe void performDs4Output()
         {
             try
@@ -800,7 +807,7 @@ namespace DS4Windows
 
         private byte priorInputReport30 = 0xff;
 
-        private bool synced = false;
+        protected bool synced = false;
         public bool Synced
         {
             get { return synced; }
@@ -822,9 +829,9 @@ namespace DS4Windows
         public string error;
         public bool firstReport = true;
         public bool oldCharging = false;
-        DateTime utcNow = DateTime.UtcNow;
-        bool ds4InactiveFrame = true;
-        bool idleInput = true;
+        protected DateTime utcNow = DateTime.UtcNow;
+        protected bool ds4InactiveFrame = true;
+        protected bool idleInput = true;
 
         bool timeStampInit = false;
         uint timeStampPrevious = 0;
@@ -835,7 +842,7 @@ namespace DS4Windows
         public const uint DefaultPolynomial = 0xedb88320u;
         uint HamSeed = 2351727372;
 
-        private unsafe void performDs4Input()
+        protected unsafe void performDs4Input()
         {
             unchecked
             {
@@ -953,6 +960,7 @@ namespace DS4Windows
                                 //Log.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
                             }
 
+                            readWaitEv.Reset();
                             sendOutputReport(true, true); // Kick Windows into noticing the disconnection.
                             StopOutputUpdate();
                             isDisconnecting = true;
@@ -981,6 +989,7 @@ namespace DS4Windows
                                 //Log.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
                             }
 
+                            readWaitEv.Reset();
                             StopOutputUpdate();
                             isDisconnecting = true;
                             Removal?.Invoke(this, EventArgs.Empty);
@@ -1295,11 +1304,6 @@ namespace DS4Windows
             timeoutExecuted = true;
         }
 
-        public void FlushHID()
-        {
-            hDevice.flush_Queue();
-        }
-
         private unsafe void sendOutputReport(bool synchronous, bool force = false, bool quitOutputThreadOnError = true)
         {
             MergeStates();
@@ -1470,7 +1474,7 @@ namespace DS4Windows
             }
         }
 
-        public void OutReportCopy()
+        private void OutReportCopy()
         {
             try
             {
@@ -1486,7 +1490,7 @@ namespace DS4Windows
             catch (ThreadInterruptedException) { }
         }
 
-        public bool DisconnectWireless(bool callRemoval = false)
+        public virtual bool DisconnectWireless(bool callRemoval = false)
         {
             bool result = false;
             if (conType == ConnectionType.BT)
@@ -1501,7 +1505,7 @@ namespace DS4Windows
             return result;
         }
 
-        public bool DisconnectBT(bool callRemoval = false)
+        public virtual bool DisconnectBT(bool callRemoval = false)
         {
             if (Mac != null)
             {
@@ -1564,7 +1568,7 @@ namespace DS4Windows
             return false;
         }
 
-        public bool DisconnectDongle(bool remove = false)
+        public virtual bool DisconnectDongle(bool remove = false)
         {
             bool result = false;
             byte[] disconnectReport = new byte[65];
@@ -1597,7 +1601,7 @@ namespace DS4Windows
             return result;
         }
 
-        private DS4HapticState testRumble = new DS4HapticState();
+        protected DS4HapticState testRumble = new DS4HapticState();
 
         public void setRumble(byte rightLightFastMotor, byte leftHeavySlowMotor)
         {
@@ -1615,7 +1619,7 @@ namespace DS4Windows
             }
         }
 
-        private void MergeStates()
+        protected void MergeStates()
         {
             if (testRumble.IsRumbleSet())
             {
@@ -1678,7 +1682,7 @@ namespace DS4Windows
             return true;
         }
 
-        private DS4HapticState currentHap = new DS4HapticState();
+        protected DS4HapticState currentHap = new DS4HapticState();
         public void SetHapticState(ref DS4HapticState hs)
         {
             currentHap = hs;

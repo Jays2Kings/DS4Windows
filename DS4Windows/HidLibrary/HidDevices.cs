@@ -7,6 +7,8 @@ namespace DS4Windows
 {
     public class HidDevices
     {
+        private const int HID_USAGE_JOYSTICK = 0x04;
+        private const int HID_USAGE_GAMEPAD = 0x05;
         private static Guid _hidClassGuid = Guid.Empty;
 
         public static bool IsConnected(string devicePath)
@@ -59,7 +61,8 @@ namespace DS4Windows
                 for (int j = 0; !found && j < devInfoLen; j++)
                 {
                     VidPidInfo tempInfo = devInfo[j];
-                    if (tempDev.Capabilities.Usage == 0x05 &&
+                    if ((tempDev.Capabilities.Usage == HID_USAGE_GAMEPAD ||
+                        tempDev.Capabilities.Usage == HID_USAGE_JOYSTICK)  &&
                         tempDev.Attributes.VendorId == tempInfo.vid &&
                         tempDev.Attributes.ProductId == tempInfo.pid)
                     {

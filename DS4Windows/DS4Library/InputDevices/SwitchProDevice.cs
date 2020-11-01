@@ -348,7 +348,8 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     cState.ReportTimeStamp = utcNow;
 
                     combLatency += elapsedDeltaTime;
-                    cState.elapsedTime = elapsedDeltaTime;
+                    cState.elapsedTime = combLatency;
+                    combLatency = 0.0;
 
                     if ((this.featureSet & VidPidFeatureSet.NoBatteryReading) == 0)
                     {
@@ -547,7 +548,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
             // Set device to normal power state
             byte[] powerChoiceArray = new byte[] { 0x00 };
             Subcommand(SwitchProSubCmd.SET_LOW_POWER_STATE, powerChoiceArray, 1, checkResponse: true);
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
             CalibrationData();
 
             // Turn on Home light (Solid)
@@ -587,7 +588,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 Thread.Sleep(1000);
             }
 
-            //SetInitRumble();
+            SetInitRumble();
 
             Console.WriteLine("FINISHED");
 

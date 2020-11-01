@@ -324,6 +324,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     lastTimeElapsed = (long)lastTimeElapsedDouble;
                     oldtime = curtime;
                     elapsedDeltaTime = lastTimeElapsedDouble * .001;
+                    combLatency += elapsedDeltaTime;
 
                     if (elapsedDeltaTime <= 0.005)
                     {
@@ -347,7 +348,6 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     cState.PacketCounter = pState.PacketCounter + 1;
                     cState.ReportTimeStamp = utcNow;
 
-                    combLatency += elapsedDeltaTime;
                     cState.elapsedTime = combLatency;
                     combLatency = 0.0;
 

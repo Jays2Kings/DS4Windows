@@ -135,9 +135,12 @@ namespace DS4WinWPF.DS4Library.InputDevices
         public const short ACCEL_ORIG_HOR_OFFSET_Y = 0;
         public const short ACCEL_ORIG_HOR_OFFSET_Z = 4038;
 
-        private const ushort SAMPLE_STICK_MAX = 3200;
+        //private const ushort SAMPLE_STICK_MAX = 3200;
+        private const ushort SAMPLE_STICK_MAX = 3300;
         private const ushort SAMPLE_STICK_MIN = 500;
         private const ushort SAMPLE_STICK_MID = SAMPLE_STICK_MAX - SAMPLE_STICK_MIN;
+        private const double STICK_AXIS_MAX_CUTOFF = 0.96;
+        private const double STICK_AXIS_MIN_CUTOFF = 1.04;
 
         private StickAxisData leftStickXData;
         private StickAxisData leftStickYData;
@@ -152,7 +155,6 @@ namespace DS4WinWPF.DS4Library.InputDevices
         private const int INPUT_REPORT_LEN = 362;
         private const int OUTPUT_REPORT_LEN = 49;
         private const int RUMBLE_REPORT_LEN = 64;
-
         private byte[] inputReportBuffer;
         private byte[] outputReportBuffer;
         private byte[] rumbleReportBuffer;
@@ -836,7 +838,14 @@ namespace DS4WinWPF.DS4Library.InputDevices
             }
             else
             {
-                leftStickOffsetX = leftStickOffsetY = 140;
+                leftStickXData.max = (ushort)((leftStickCalib[0] + leftStickCalib[2]) * STICK_AXIS_MAX_CUTOFF);
+                leftStickXData.mid = leftStickCalib[2];
+                leftStickXData.min = (ushort)((leftStickCalib[2] - leftStickCalib[4]) * STICK_AXIS_MIN_CUTOFF);
+
+                leftStickYData.max = (ushort)((leftStickCalib[1] + leftStickCalib[3]) * STICK_AXIS_MAX_CUTOFF);
+                leftStickYData.mid = leftStickCalib[3];
+                leftStickYData.min = (ushort)((leftStickCalib[3] - leftStickCalib[5]) * STICK_AXIS_MIN_CUTOFF);
+                //leftStickOffsetX = leftStickOffsetY = 140;
             }
 
             //leftStickOffsetX = leftStickCalib[2];
@@ -867,26 +876,33 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 //Console.WriteLine("CHECK RIGHT FACTORY CALIB");
             }
 
-            rightStickCalib[2] = (ushort)(((tmpBuffer[1 + SPI_RESP_OFFSET] << 8) & 0xF00) | tmpBuffer[0 + SPI_RESP_OFFSET]); // X Axis Max above center
-            rightStickCalib[3] = (ushort)((tmpBuffer[2 + SPI_RESP_OFFSET] << 4) | (tmpBuffer[1 + SPI_RESP_OFFSET] >> 4)); // Y Axis Max above center
-            rightStickCalib[4] = (ushort)(((tmpBuffer[4 + SPI_RESP_OFFSET] << 8) & 0xF00) | tmpBuffer[3 + SPI_RESP_OFFSET]); // X Axis Center
-            rightStickCalib[5] = (ushort)((tmpBuffer[5 + SPI_RESP_OFFSET] << 4) | (tmpBuffer[4 + SPI_RESP_OFFSET] >> 4)); // Y Axis Center
-            rightStickCalib[0] = (ushort)(((tmpBuffer[7 + SPI_RESP_OFFSET] << 8) & 0xF00) | tmpBuffer[6 + SPI_RESP_OFFSET]); // X Axis Min below center
-            rightStickCalib[1] = (ushort)((tmpBuffer[8 + SPI_RESP_OFFSET] << 4) | (tmpBuffer[7 + SPI_RESP_OFFSET] >> 4)); // Y Axis Min below center
+            rightStickCalib[2] = (ushort)(((tmpBuffer[1 + SPI_RESP_OFFSET] << 8) & 0xF00) | tmpBuffer[0 + SPI_RESP_OFFSET]); // X Axis Center
+            rightStickCalib[3] = (ushort)((tmpBuffer[2 + SPI_RESP_OFFSET] << 4) | (tmpBuffer[1 + SPI_RESP_OFFSET] >> 4)); // Y Axis Center
+            rightStickCalib[4] = (ushort)(((tmpBuffer[4 + SPI_RESP_OFFSET] << 8) & 0xF00) | tmpBuffer[3 + SPI_RESP_OFFSET]); // X Axis Min below center
+            rightStickCalib[5] = (ushort)((tmpBuffer[5 + SPI_RESP_OFFSET] << 4) | (tmpBuffer[4 + SPI_RESP_OFFSET] >> 4)); // Y Axis Min below center
+            rightStickCalib[0] = (ushort)(((tmpBuffer[7 + SPI_RESP_OFFSET] << 8) & 0xF00) | tmpBuffer[6 + SPI_RESP_OFFSET]); // X Axis Max above center
+            rightStickCalib[1] = (ushort)((tmpBuffer[8 + SPI_RESP_OFFSET] << 4) | (tmpBuffer[7 + SPI_RESP_OFFSET] >> 4)); // Y Axis Max above center
 
             if (foundUserCalib)
             {
-                rightStickXData.max = (ushort)(rightStickCalib[4] + rightStickCalib[2]);
-                rightStickXData.mid = rightStickCalib[4];
-                rightStickXData.min = (ushort)(rightStickCalib[4] - rightStickCalib[0]);
+                rightStickXData.max = (ushort)(rightStickCalib[2] + rightStickCalib[4]);
+                rightStickXData.mid = rightStickCalib[2];
+                rightStickXData.min = (ushort)(rightStickCalib[2] - rightStickCalib[0]);
 
-                rightStickYData.max = (ushort)(rightStickCalib[5] + rightStickCalib[3]);
-                rightStickYData.mid = rightStickCalib[5];
-                rightStickYData.min = (ushort)(rightStickCalib[5] - rightStickCalib[1]);
+                rightStickYData.max = (ushort)(rightStickCalib[3] + rightStickCalib[5]);
+                rightStickYData.mid = rightStickCalib[3];
+                rightStickYData.min = (ushort)(rightStickCalib[3] - rightStickCalib[1]);
             }
             else
             {
-                rightStickOffsetX = rightStickOffsetY = 140;
+                rightStickXData.max = (ushort)((rightStickCalib[2] + rightStickCalib[0]) * STICK_AXIS_MAX_CUTOFF);
+                rightStickXData.mid = rightStickCalib[2];
+                rightStickXData.min = (ushort)((rightStickCalib[2] - rightStickCalib[4]) * STICK_AXIS_MIN_CUTOFF);
+
+                rightStickYData.max = (ushort)((rightStickCalib[3] + rightStickCalib[1]) * STICK_AXIS_MAX_CUTOFF);
+                rightStickYData.mid = rightStickCalib[3];
+                rightStickYData.min = (ushort)((rightStickCalib[3] - rightStickCalib[5]) * STICK_AXIS_MIN_CUTOFF);
+                //rightStickOffsetX = rightStickOffsetY = 140;
             }
 
             //rightStickOffsetX = rightStickCalib[2];

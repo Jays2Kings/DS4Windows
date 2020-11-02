@@ -572,8 +572,6 @@ namespace DS4WinWPF.DS4Library.InputDevices
             // Set device to normal power state
             byte[] powerChoiceArray = new byte[] { 0x00 };
             Subcommand(SwitchProSubCmd.SET_LOW_POWER_STATE, powerChoiceArray, 1, checkResponse: true);
-            //Thread.Sleep(1000);
-            CalibrationData();
 
             // Turn on Home light (Solid)
             byte[] light = Enumerable.Repeat((byte)0xFF, 25).ToArray();
@@ -613,6 +611,8 @@ namespace DS4WinWPF.DS4Library.InputDevices
             }
 
             SetInitRumble();
+            //Thread.Sleep(1000);
+            CalibrationData();
 
             Console.WriteLine("FINISHED");
 

@@ -802,7 +802,11 @@ namespace DS4WinWPF.DS4Library.InputDevices
             leftStickCalib[4] = (ushort)(((tmpBuffer[7 + SPI_RESP_OFFSET] << 8) & 0xF00) | tmpBuffer[6 + SPI_RESP_OFFSET]); // X Axis Min below center
             leftStickCalib[5] = (ushort)((tmpBuffer[8 + SPI_RESP_OFFSET] << 4) | (tmpBuffer[7 + SPI_RESP_OFFSET] >> 4)); // Y Axis Min below center
 
-            leftStickOffsetX = leftStickOffsetY = 140;
+            if (!foundUserCalib)
+            {
+                leftStickOffsetX = leftStickOffsetY = 140;
+            }
+
             //leftStickOffsetX = leftStickCalib[2];
             //leftStickOffsetY = leftStickCalib[3];
 
@@ -838,7 +842,11 @@ namespace DS4WinWPF.DS4Library.InputDevices
             rightStickCalib[0] = (ushort)(((tmpBuffer[7 + SPI_RESP_OFFSET] << 8) & 0xF00) | tmpBuffer[6 + SPI_RESP_OFFSET]); // X Axis Min below center
             rightStickCalib[1] = (ushort)((tmpBuffer[8 + SPI_RESP_OFFSET] << 4) | (tmpBuffer[7 + SPI_RESP_OFFSET] >> 4)); // Y Axis Min below center
 
-            rightStickOffsetX = rightStickOffsetY = 140;
+            if (!foundUserCalib)
+            {
+                rightStickOffsetX = rightStickOffsetY = 140;
+            }
+
             //rightStickOffsetX = rightStickCalib[2];
             //rightStickOffsetY = rightStickCalib[5];
 

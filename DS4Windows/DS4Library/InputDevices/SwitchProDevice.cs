@@ -114,6 +114,13 @@ namespace DS4WinWPF.DS4Library.InputDevices
             return tmpBuffer;
         })();
 
+        public struct StickAxisData
+        {
+            public ushort max;
+            public ushort mid;
+            public ushort min;
+        };
+
         private static byte[] commandBuffHeader =
             { 0x0, 0x1, 0x40, 0x40, 0x0, 0x1, 0x40, 0x40 };
 
@@ -128,9 +135,14 @@ namespace DS4WinWPF.DS4Library.InputDevices
         public const short ACCEL_ORIG_HOR_OFFSET_Y = 0;
         public const short ACCEL_ORIG_HOR_OFFSET_Z = 4038;
 
-        private const ushort STICK_MAX = 3200;
-        private const ushort STICK_MIN = 500;
-        private const ushort STICK_MID = STICK_MAX - STICK_MIN;
+        private const ushort SAMPLE_STICK_MAX = 3200;
+        private const ushort SAMPLE_STICK_MIN = 500;
+        private const ushort SAMPLE_STICK_MID = SAMPLE_STICK_MAX - SAMPLE_STICK_MIN;
+
+        private StickAxisData leftStickXData;
+        private StickAxisData leftStickYData;
+        private StickAxisData rightStickXData;
+        private StickAxisData rightStickYData;
 
         private const string BLUETOOTH_HID_GUID = "{00001124-0000-1000-8000-00805F9B34FB}";
 
@@ -186,6 +198,18 @@ namespace DS4WinWPF.DS4Library.InputDevices
         {
             runCalib = false;
             synced = true;
+
+            leftStickXData.max = SAMPLE_STICK_MAX; leftStickXData.min = SAMPLE_STICK_MIN;
+            leftStickXData.mid = SAMPLE_STICK_MID;
+
+            leftStickYData.max = SAMPLE_STICK_MAX; leftStickYData.min = SAMPLE_STICK_MIN;
+            leftStickYData.mid = SAMPLE_STICK_MID;
+
+            rightStickXData.max = SAMPLE_STICK_MAX; rightStickXData.min = SAMPLE_STICK_MIN;
+            rightStickXData.mid = SAMPLE_STICK_MID;
+
+            rightStickYData.max = SAMPLE_STICK_MAX; rightStickYData.min = SAMPLE_STICK_MIN;
+            rightStickYData.mid = SAMPLE_STICK_MID;
         }
 
         public override void PostInit()
@@ -407,28 +431,26 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     stick_raw[1] = inputReportBuffer[7];
                     stick_raw[2] = inputReportBuffer[8];
 
-
                     tempAxis = (stick_raw[0] | ((stick_raw[1] & 0x0F) << 8)) - leftStickOffsetX;
-                    tempAxis = tempAxis > STICK_MAX ? STICK_MAX : (tempAxis < STICK_MIN ? STICK_MIN : tempAxis);
-                    cState.LX = (byte)((tempAxis - STICK_MIN) / (double)(STICK_MAX - STICK_MIN) * 255);
+                    tempAxis = tempAxis > leftStickXData.max ? leftStickXData.max : (tempAxis < leftStickXData.min ? leftStickXData.min : tempAxis);
+                    cState.LX = (byte)((tempAxis - leftStickXData.min) / (double)(leftStickXData.max - leftStickXData.min) * 255);
 
                     tempAxis = ((stick_raw[1] >> 4) | (stick_raw[2] << 4)) - leftStickOffsetY;
-                    tempAxis = tempAxis > STICK_MAX ? STICK_MAX : (tempAxis < STICK_MIN ? STICK_MIN : tempAxis);
-                    cState.LY = (byte)((((tempAxis - STICK_MIN) / (double)(STICK_MAX - STICK_MIN) - 0.5) * -1.0 + 0.5) * 255);
+                    tempAxis = tempAxis > leftStickYData.max ? leftStickYData.max : (tempAxis < leftStickYData.min ? leftStickYData.min : tempAxis);
+                    cState.LY = (byte)((((tempAxis - leftStickYData.min) / (double)(leftStickYData.max - leftStickYData.min) - 0.5) * -1.0 + 0.5) * 255);
 
                     stick_raw2[0] = inputReportBuffer[9];
                     stick_raw2[1] = inputReportBuffer[10];
                     stick_raw2[2] = inputReportBuffer[11];
 
                     tempAxis = (stick_raw2[0] | ((stick_raw2[1] & 0x0F) << 8)) - rightStickOffsetX;
-                    tempAxis = tempAxis > STICK_MAX ? STICK_MAX : (tempAxis < STICK_MIN ? STICK_MIN : tempAxis);
-                    cState.RX = (byte)((tempAxis - STICK_MIN) / (double)(STICK_MAX - STICK_MIN) * 255);
-
+                    tempAxis = tempAxis > rightStickXData.max ? rightStickXData.max : (tempAxis < rightStickXData.min ? rightStickXData.min : tempAxis);
+                    cState.RX = (byte)((tempAxis - rightStickXData.min) / (double)(rightStickXData.max - rightStickXData.min) * 255);
 
                     tempAxis = ((stick_raw2[1] >> 4) | (stick_raw2[2] << 4)) - rightStickOffsetY;
-                    tempAxis = tempAxis > STICK_MAX ? STICK_MAX : (tempAxis < STICK_MIN ? STICK_MIN : tempAxis);
+                    tempAxis = tempAxis > rightStickYData.max ? rightStickYData.max : (tempAxis < rightStickYData.min ? rightStickYData.min : tempAxis);
                     //cState.RY = (byte)((tempAxis - STICK_MIN) / (STICK_MAX - STICK_MIN) * 255);
-                    cState.RY = (byte)((((tempAxis - STICK_MIN) / (double)(STICK_MAX - STICK_MIN) - 0.5) * -1.0 + 0.5) * 255);
+                    cState.RY = (byte)((((tempAxis - rightStickYData.min) / (double)(rightStickYData.max - rightStickYData.min) - 0.5) * -1.0 + 0.5) * 255);
 
                     for (int i = 0; i < 3; i++)
                     {
@@ -802,7 +824,17 @@ namespace DS4WinWPF.DS4Library.InputDevices
             leftStickCalib[4] = (ushort)(((tmpBuffer[7 + SPI_RESP_OFFSET] << 8) & 0xF00) | tmpBuffer[6 + SPI_RESP_OFFSET]); // X Axis Min below center
             leftStickCalib[5] = (ushort)((tmpBuffer[8 + SPI_RESP_OFFSET] << 4) | (tmpBuffer[7 + SPI_RESP_OFFSET] >> 4)); // Y Axis Min below center
 
-            if (!foundUserCalib)
+            if (foundUserCalib)
+            {
+                leftStickXData.max = (ushort)(leftStickCalib[0] + leftStickCalib[2]);
+                leftStickXData.mid = leftStickCalib[2];
+                leftStickXData.min = (ushort)(leftStickCalib[2] - leftStickCalib[4]);
+
+                leftStickYData.max = (ushort)(leftStickCalib[1] + leftStickCalib[3]);
+                leftStickYData.mid = leftStickCalib[3];
+                leftStickYData.min = (ushort)(leftStickCalib[3] - leftStickCalib[5]);
+            }
+            else
             {
                 leftStickOffsetX = leftStickOffsetY = 140;
             }
@@ -842,7 +874,17 @@ namespace DS4WinWPF.DS4Library.InputDevices
             rightStickCalib[0] = (ushort)(((tmpBuffer[7 + SPI_RESP_OFFSET] << 8) & 0xF00) | tmpBuffer[6 + SPI_RESP_OFFSET]); // X Axis Min below center
             rightStickCalib[1] = (ushort)((tmpBuffer[8 + SPI_RESP_OFFSET] << 4) | (tmpBuffer[7 + SPI_RESP_OFFSET] >> 4)); // Y Axis Min below center
 
-            if (!foundUserCalib)
+            if (foundUserCalib)
+            {
+                rightStickXData.max = (ushort)(rightStickCalib[4] + rightStickCalib[2]);
+                rightStickXData.mid = rightStickCalib[4];
+                rightStickXData.min = (ushort)(rightStickCalib[4] - rightStickCalib[0]);
+
+                rightStickYData.max = (ushort)(rightStickCalib[5] + rightStickCalib[3]);
+                rightStickYData.mid = rightStickCalib[5];
+                rightStickYData.min = (ushort)(rightStickCalib[5] - rightStickCalib[1]);
+            }
+            else
             {
                 rightStickOffsetX = rightStickOffsetY = 140;
             }

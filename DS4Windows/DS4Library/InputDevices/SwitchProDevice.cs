@@ -556,7 +556,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
             if (conType == ConnectionType.USB)
             {
                 RunUSBSetup();
-                //Thread.Sleep(300);
+                Thread.Sleep(300);
             }
 
             //Thread.Sleep(1000);
@@ -629,7 +629,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
             //byte[] tmpReport = new byte[INPUT_REPORT_LEN];
 
             byte[] modeSwitchCommand = new byte[] { 0x3F };
-            Subcommand(0x03, modeSwitchCommand, 1, checkResponse: true);
+            Subcommand(0x03, modeSwitchCommand, 1, checkResponse: false);
 
             byte[] data = new byte[64];
             data[0] = 0x80; data[1] = 0x01;

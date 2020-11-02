@@ -976,9 +976,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
             Console.WriteLine("Disconnect successful: " + success);
             success = true;
 
-            isDisconnecting = true;
-            //if (callRemoval)
+            if (callRemoval)
             {
+                isDisconnecting = true;
                 Removal?.Invoke(this, EventArgs.Empty);
             }
 

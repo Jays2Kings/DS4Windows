@@ -702,14 +702,14 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 HidDevice.ReadStatus res;
                 res = hDevice.ReadWithFileStream(tmpReport, SUBCOMMAND_RESPONSE_TIMEOUT);
                 int tries = 1;
-                while (tmpReport[0] != 0x21 && tmpReport[14] != subcommand && tries < 10)
+                while (tmpReport[0] != 0x21 && tmpReport[14] != subcommand && tries < 100)
                 {
                     //Console.WriteLine("TRY AGAIN: {0}", tmpReport[0]);
                     res = hDevice.ReadWithFileStream(tmpReport, SUBCOMMAND_RESPONSE_TIMEOUT);
                     tries++;
                 }
 
-                //Console.WriteLine("END GAME: {0} {1}", tmpReport[0], tries);
+                //Console.WriteLine("END GAME: {0} {1} {2}", subcommand, tmpReport[0], tries);
             }
 
             return tmpReport;
@@ -774,9 +774,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
             //Console.WriteLine(tmpBuffer[SPI_RESP_OFFSET]);
             //Console.WriteLine();
 
+            bool foundUserCalib = false;
             command = new byte[] { 0x10, 0x80, 0x00, 0x00, 0x02 };
             tmpBuffer = Subcommand(0x10, command, 5, checkResponse: true);
-            bool foundUserCalib = false;
             if (tmpBuffer[SPI_RESP_OFFSET] == 0xB2 && tmpBuffer[SPI_RESP_OFFSET + 1] == 0xA1)
             {
                 foundUserCalib = true;

@@ -800,7 +800,7 @@ namespace DS4Windows
         }
 
         /** Is the device alive and receiving valid sensor input reports? */
-        public bool IsAlive()
+        public virtual bool IsAlive()
         {
             return priorInputReport30 != 0xff;
         }

@@ -1049,5 +1049,10 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 bool result = hDevice.WriteOutputReportViaInterrupt(rumbleReportBuffer, 100);
             }
         }
+
+        public override bool IsAlive()
+        {
+            return !isDisconnecting;
+        }
     }
 }

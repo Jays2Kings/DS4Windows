@@ -155,6 +155,8 @@ namespace DS4WinWPF.DS4Library.InputDevices
         private const int INPUT_REPORT_LEN = 362;
         private const int OUTPUT_REPORT_LEN = 49;
         private const int RUMBLE_REPORT_LEN = 64;
+        // Converts raw gyro input value to dps. Equal to (4588/65535)
+        private const float GYRO_IN_DEG_SEC_FACTOR = 0.070f;
         private byte[] inputReportBuffer;
         private byte[] outputReportBuffer;
         private byte[] rumbleReportBuffer;
@@ -506,9 +508,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     tempMotion.accelYG = (accelZ * 2) / DS4Windows.SixAxis.ACC_RES_PER_G;
                     tempMotion.accelZG = (-accelY * 2) / DS4Windows.SixAxis.ACC_RES_PER_G;
 
-                    tempMotion.angVelYaw = gyroYaw / DS4Windows.SixAxis.F_GYRO_RES_IN_DEG_SEC;
-                    tempMotion.angVelPitch = -gyroPitch / DS4Windows.SixAxis.F_GYRO_RES_IN_DEG_SEC;
-                    tempMotion.angVelRoll = gyroRoll / DS4Windows.SixAxis.F_GYRO_RES_IN_DEG_SEC;
+                    tempMotion.angVelYaw = gyroYaw * GYRO_IN_DEG_SEC_FACTOR;
+                    tempMotion.angVelPitch = -gyroPitch * GYRO_IN_DEG_SEC_FACTOR;
+                    tempMotion.angVelRoll = gyroRoll * GYRO_IN_DEG_SEC_FACTOR;
 
                     SixAxisEventArgs args = new SixAxisEventArgs(cState.ReportTimeStamp, cState.Motion);
                     sixAxis.FireSixAxisEvent(args);

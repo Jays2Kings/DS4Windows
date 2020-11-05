@@ -324,7 +324,6 @@ namespace DS4WinWPF.DS4Library.InputDevices
                             inputReportErrorCount++;
                             if (inputReportErrorCount > 10)
                             {
-                                readWaitEv.Reset();
                                 exitInputThread = true;
                                 isDisconnecting = true;
                                 Removal?.Invoke(this, EventArgs.Empty);

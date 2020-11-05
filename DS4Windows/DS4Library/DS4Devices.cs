@@ -28,13 +28,24 @@ namespace DS4Windows
         public readonly string name;
         public readonly InputDeviceType inputDevType;
         public readonly VidPidFeatureSet featureSet;
-        internal VidPidInfo(int vid, int pid, string name = "Generic DS4", InputDeviceType inputDevType = InputDeviceType.DS4, VidPidFeatureSet featureSet = VidPidFeatureSet.DefaultDS4)
+        public CheckConnectionDelegate checkConnection;
+        internal VidPidInfo(int vid, int pid, string name = "Generic DS4", InputDeviceType inputDevType = InputDeviceType.DS4,
+            VidPidFeatureSet featureSet = VidPidFeatureSet.DefaultDS4, CheckConnectionDelegate checkConnection = null)
         {
             this.vid = vid;
             this.pid = pid;
             this.name = name;
             this.inputDevType = inputDevType;
             this.featureSet = featureSet;
+
+            if (checkConnection == null)
+            {
+                this.checkConnection = DS4Device.HidConnectionType;
+            }
+            else
+            {
+                this.checkConnection = checkConnection;
+            }
         }
     }
 
@@ -77,6 +88,7 @@ namespace DS4Windows
     }
 
     public delegate CheckVirtualInfo CheckVirtualDelegate(string deviceInstanceId);
+    public delegate ConnectionType CheckConnectionDelegate(HidDevice hidDevice);
 
     public class DS4Devices
     {
@@ -131,7 +143,7 @@ namespace DS4Windows
             new VidPidInfo(HORI_VID, 0x0101, "Hori Mini Hatsune Miku FT", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib), // Hori Mini Hatsune Miku FT (wired only. No light bar, gyro or rumble)
             new VidPidInfo(HORI_VID, 0x00C9, "Hori Taiko Controller",  InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib), // Hori Taiko Controller (wired only. No light bar, touchpad, gyro, rumble, sticks or triggers)
             new VidPidInfo(0x0C12, 0x1E1C, "SnakeByte Game:Pad 4S", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib | VidPidFeatureSet.NoBatteryReading), // SnakeByte Gamepad for PS4 (wired only. No gyro. No light bar). If it doesn't work then try the latest gamepad firmware from https://mysnakebyte.com/
-            new VidPidInfo(NINTENDO_VENDOR_ID, SWITCH_PRO_PRODUCT_ID, "Switch Pro", InputDeviceType.SwitchPro, VidPidFeatureSet.DefaultDS4),
+            new VidPidInfo(NINTENDO_VENDOR_ID, SWITCH_PRO_PRODUCT_ID, "Switch Pro", InputDeviceType.SwitchPro, VidPidFeatureSet.DefaultDS4, checkConnection: SwitchProDevice.DetermineConnectionType),
         };
 
         public static string devicePathToInstanceId(string devicePath)
@@ -171,7 +183,16 @@ namespace DS4Windows
 
                 //hDevices = from dev in hDevices where IsRealDS4(dev) select dev;
                 // Sort Bluetooth first in case USB is also connected on the same controller.
-                hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) => { return DS4Device.HidConnectionType(d); });
+                hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) =>
+                {
+                    // Need VidPidInfo instance to get CheckConnectionDelegate and
+                    // check the connection type
+                    VidPidInfo metainfo = knownDevices.Single(x => x.vid == d.Attributes.VendorId &&
+                        x.pid == d.Attributes.ProductId);
+
+                    //return DS4Device.HidConnectionType(d);
+                    return metainfo.checkConnection(d);
+                });
 
                 List<HidDevice> tempList = hDevices.ToList();
                 purgeHiddenExclusiveDevices();

@@ -222,7 +222,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
         public override void PostInit()
         {
-            DetermineConnectionType();
+            conType = DetermineConnectionType(hDevice);
 
             if (conType == ConnectionType.BT)
             {
@@ -243,16 +243,19 @@ namespace DS4WinWPF.DS4Library.InputDevices
             }
         }
 
-        private void DetermineConnectionType()
+        public static ConnectionType DetermineConnectionType(HidDevice hDevice)
         {
+            ConnectionType result;
             if (hDevice.DevicePath.ToUpper().Contains(BLUETOOTH_HID_GUID))
             {
-                conType = ConnectionType.BT;
+                result = ConnectionType.BT;
             }
             else
             {
-                conType = ConnectionType.USB;
+                result = ConnectionType.USB;
             }
+
+            return result;
         }
 
         public override void StartUpdate()

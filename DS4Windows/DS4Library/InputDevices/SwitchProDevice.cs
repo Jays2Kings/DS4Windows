@@ -157,6 +157,8 @@ namespace DS4WinWPF.DS4Library.InputDevices
         private const int RUMBLE_REPORT_LEN = 64;
         // Converts raw gyro input value to dps. Equal to (4588/65535)
         private const float GYRO_IN_DEG_SEC_FACTOR = 0.070f;
+        private new const int WARN_INTERVAL_BT = 40;
+        private new const int WARN_INTERVAL_USB = 30;
         private byte[] inputReportBuffer;
         private byte[] outputReportBuffer;
         private byte[] rumbleReportBuffer;
@@ -214,11 +216,22 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
             rightStickYData.max = SAMPLE_STICK_MAX; rightStickYData.min = SAMPLE_STICK_MIN;
             rightStickYData.mid = SAMPLE_STICK_MID;
+
+            warnInterval = WARN_INTERVAL_BT;
         }
 
         public override void PostInit()
         {
             DetermineConnectionType();
+
+            if (conType == ConnectionType.BT)
+            {
+                warnInterval = WARN_INTERVAL_BT;
+            }
+            else
+            {
+                warnInterval = WARN_INTERVAL_USB;
+            }
 
             inputReportBuffer = new byte[INPUT_REPORT_LEN];
             outputReportBuffer = new byte[OUTPUT_REPORT_LEN];

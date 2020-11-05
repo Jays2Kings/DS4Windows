@@ -942,6 +942,7 @@ namespace DS4Windows
                                 else
                                     this.inputReportErrorCount++;
 
+                                readWaitEv.Reset();
                                 continue;
                             }
                             else

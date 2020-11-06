@@ -503,7 +503,10 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 if (device.ConnectionType == ConnectionType.BT)
                 {
                     //device.StopUpdate();
-                    device.DisconnectBT();
+                    device.queueEvent(() =>
+                    {
+                        device.DisconnectBT();
+                    });
                 }
                 else if (device.ConnectionType == ConnectionType.SONYWA)
                 {

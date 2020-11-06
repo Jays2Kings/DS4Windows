@@ -115,6 +115,8 @@ namespace DS4WinWPF
                 dir));
 
             td.Principal.RunLevel = TaskRunLevel.Highest;
+            td.Settings.StopIfGoingOnBatteries = false;
+            td.Settings.DisallowStartIfOnBatteries = false;
             ts.RootFolder.RegisterTaskDefinition("RunDS4Windows", td);
         }
 

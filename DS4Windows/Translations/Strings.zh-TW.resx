@@ -345,11 +345,89 @@
     <value>HidNinja</value>
   </data>
   <data name="CustomExeName" xml:space="preserve">
-    <value>Custom Exe Name</value>
+    <value>自定義 Exe 名稱</value>
   </data>
   <data name="CustomExeNameInfo" xml:space="preserve">
-    <value>Some games implement a block that causes DS4 input to be ignored if a game detects either DS4Windows.exe or InputMapper.exe running at the time. A workaround to the block is to rename DS4Windows.exe so the check in the game fails. Specifying a custom exe name here allows DS4Updater to automatically update a custom copy of DS4Windows to the desired file name. Make sure to omit the extension.
+    <value>如果遊戲檢測到當時正在運行的 DS4Windows.exe 或 InputMapper.exe ，則某些遊戲執行的攔阻會導致忽略DS4的輸入。 解決該問題的方法是重命名 DS4Windows.exe ，以便讓遊戲中的檢查失效。 在此處指定自定義的 exe 執行檔名稱可以使 DS4Updater 自動將 DS4Windows 的自定義副本更新為想要的檔名。 確保省略副檔名。
 
-Example: whyme_DS4Windows</value>
+例如: whyme_DS4Windows</value>
+  </data>
+  <data name="XInputChecker" xml:space="preserve">
+    <value>XInputChecker</value>
+  </data>
+  <data name="Controller5Text" xml:space="preserve">
+    <value>控制器5</value>
+  </data>
+  <data name="Controller6Text" xml:space="preserve">
+    <value>控制器6</value>
+  </data>
+  <data name="Controller7Text" xml:space="preserve">
+    <value>控制器7</value>
+  </data>
+  <data name="Controller8Text" xml:space="preserve">
+    <value>控制器8</value>
+  </data>
+  <data name="GamepadGyroCameraDescription" xml:space="preserve">
+    <value>將控制器的輸出映射到標準 XInput 遊戲控制器或DS4控制器。 陀螺映射到類滑鼠的操縱桿。
+Maps the controller output to a standard XInput gamepad or DS4 pad. Gyro is mapped to a Mouse-like Joystick.</value>
+  </data>
+  <data name="GamepadGyroCameraName" xml:space="preserve">
+    <value>帶有類滑鼠的操縱桿的遊戲控制器(Gamepad with Mouse-like Joystick)</value>
+  </data>
+  <data name="GamepadPresetDescription" xml:space="preserve">
+    <value>將控制器的輸出映射到標準遊戲控制器
+Maps the controller output to a standard gamepad</value>
+  </data>
+  <data name="GamepadPresetName" xml:space="preserve">
+    <value>遊戲控制器</value>
+  </data>
+  <data name="KBMGyroMouseDescription" xml:space="preserve">
+    <value>將控制器的輸出映射到虛擬鍵盤+滑鼠的控制。 對於不支持遊戲控制器的FPS第一人稱射擊遊戲很有用。 陀螺儀已映射到虛擬滑鼠。
+Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support. Gyro is mapped to a virtual Mouse.</value>
+  </data>
+  <data name="KBMGyroMouseName" xml:space="preserve">
+    <value>帶有利用陀螺儀來控制滑鼠的鍵盤+滑鼠的控制器(KB+M Controls with Gyro Mouse)</value>
+  </data>
+  <data name="KBMPresetDescription" xml:space="preserve">
+    <value>將控制器的輸出映射到虛擬鍵盤+滑鼠的控制。 對於不支持遊戲控制器的FPS第一人稱射擊遊戲很有用。
+Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support.</value>
+  </data>
+  <data name="KBMPresetName" xml:space="preserve">
+    <value>鍵盤+滑鼠的控制器(KB+M Controls)</value>
+  </data>
+  <data name="MixedGyroMousePresetDescription" xml:space="preserve">
+    <value>將按鈕和六軸映射到標準遊戲控制器。 將陀螺儀映射到虛擬滑鼠
+Maps the buttons and axes to a standard gamepad. Maps the Gyro to a virtual mouse</value>
+  </data>
+  <data name="MixedGyroMousePresetName" xml:space="preserve">
+    <value>帶有利用陀螺儀來控制滑鼠的遊戲控制器(Gamepad with Gyro Mouse)</value>
+  </data>
+  <data name="MixedPresetDescription" xml:space="preserve">
+    <value>將控制器的輸出映射到混合的 XInput 遊戲控制器+右類比滑鼠。
+Maps the controller output to mixed XInput gamepad + RS mouse.</value>
+  </data>
+  <data name="MixedPresetName" xml:space="preserve">
+    <value>帶有高精度設相機控制的遊戲控制器(Gamepad with High Precision Camera)</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>說明</value>
+  </data>
+  <data name="PresetIntroText" xml:space="preserve">
+    <value>您要使用預設選項嗎？ 選擇“否”將會使得設定檔編輯器使用空的控制器設定檔。</value>
+  </data>
+  <data name="Presets" xml:space="preserve">
+    <value>預設集</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>更新日誌</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="Profiles" xml:space="preserve">
+    <value>設定檔</value>
+  </data>
+  <data name="NoControllersConnected" xml:space="preserve">
+    <value>未連接控制器 (最大 {0})</value>
   </data>
 </root>

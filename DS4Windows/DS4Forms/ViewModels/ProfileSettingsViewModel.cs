@@ -754,6 +754,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.SASteeringWheelEmulationRange[device] = value;
         }
 
+        public int SASteeringWheelFuzz
+        {
+            get => Global.SAWheelFuzzValues[device];
+            set => Global.SAWheelFuzzValues[device] = value;
+        }
+
         public bool SASteeringWheelUseSmoothing
         {
             get => Global.WheelSmoothInfo[device].Enabled;

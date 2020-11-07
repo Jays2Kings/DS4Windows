@@ -1015,6 +1015,14 @@
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <Label Content="Fuzz:" />
+                                    <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding SASteeringWheelFuzz}"
+                                                    Minimum="0" Maximum="100"
+                                                    Margin="{StaticResource spaceMargin}" />
+                                    <TextBlock Text="units" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                                     <CheckBox Content="Use Smoothing" IsChecked="{Binding SASteeringWheelUseSmoothing}" />
                                 </StackPanel>
 

@@ -178,6 +178,18 @@ namespace DS4Windows
             new byte[4] {128, 128, 128, 128}, new byte[4] {128, 128, 128, 128},
             new byte[4] {128, 128, 128, 128}, new byte[4] {128, 128, 128, 128},
         };
+
+        private class LastWheelGyroCoord
+        {
+            public int gyroX;
+            public int gyroZ;
+        }
+
+        private static LastWheelGyroCoord[] lastWheelGyroValues = new LastWheelGyroCoord[Global.MAX_DS4_CONTROLLER_COUNT]
+        {
+            new LastWheelGyroCoord(), new LastWheelGyroCoord(), new LastWheelGyroCoord(), new LastWheelGyroCoord(),
+            new LastWheelGyroCoord(), new LastWheelGyroCoord(), new LastWheelGyroCoord(), new LastWheelGyroCoord()
+        };
         //static int lastGyroX = 0;
         //static int lastGyroZ = 0;
 
@@ -4612,22 +4624,21 @@ namespace DS4Windows
             }
         }
 
-        //private static void CalcWheelFuzz(int gyroX, int gyroZ,
-        //    out int useGyroX, out int useGyroZ)
-        //{
-        //    const int delta = 1;
-        //    useGyroX = lastGyroX;
-        //    if (gyroX == 0 || gyroX == 128 || gyroX == -128 || Math.Abs(gyroX - lastGyroX) > delta)
-        //    {
-        //        useGyroX = gyroX;
-        //    }
+        private static void CalcWheelFuzz(int gyroX, int gyroZ, int lastGyroX, int lastGyroZ,
+            int delta, out int useGyroX, out int useGyroZ)
+        {
+            useGyroX = lastGyroX;
+            if (gyroX == 0 || gyroX == 128 || gyroX == -128 || Math.Abs(gyroX - lastGyroX) > delta)
+            {
+                useGyroX = gyroX;
+            }
 
-        //    useGyroZ = lastGyroZ;
-        //    if (gyroZ == 0 || gyroZ == 128 || gyroZ == -128 || Math.Abs(gyroZ - lastGyroZ) > delta)
-        //    {
-        //        useGyroZ = gyroZ;
-        //    }
-        //}
+            useGyroZ = lastGyroZ;
+            if (gyroZ == 0 || gyroZ == 128 || gyroZ == -128 || Math.Abs(gyroZ - lastGyroZ) > delta)
+            {
+                useGyroZ = gyroZ;
+            }
+        }
 
         protected static Int32 Scale360degreeGyroAxis(int device, DS4StateExposed exposedState, ControlService ctrl)
         {
@@ -4696,8 +4707,17 @@ namespace DS4Windows
                 //gyroAccelX = (int)(wheel360FilterX.Filter(gyroAccelX, currentRate));
                 //gyroAccelZ = (int)(wheel360FilterZ.Filter(gyroAccelZ, currentRate));
 
-                //CalcWheelFuzz(gyroAccelX, gyroAccelZ, out gyroAccelX, out gyroAccelZ);
-                //lastGyroX = gyroAccelX; lastGyroZ = gyroAccelZ;
+                int wheelFuzz = SAWheelFuzzValues[device];
+                if (wheelFuzz != 0)
+                {
+                    //int currentValueX = gyroAccelX;
+                    LastWheelGyroCoord lastWheelGyro = lastWheelGyroValues[device];
+                    CalcWheelFuzz(gyroAccelX, gyroAccelZ, lastWheelGyro.gyroX, lastWheelGyro.gyroZ,
+                        wheelFuzz, out gyroAccelX, out gyroAccelZ);
+                    lastWheelGyro.gyroX = gyroAccelX; lastWheelGyro.gyroZ = gyroAccelZ;
+                    //lastGyroX = gyroAccelX; lastGyroZ = gyroAccelZ;
+                }
+
                 result = CalculateControllerAngle(gyroAccelX, gyroAccelZ, controller);
 
                 // Apply deadzone (SA X-deadzone value). This code assumes that 20deg is the max deadzone anyone ever might wanna use (in practice effective deadzone 

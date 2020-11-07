@@ -1221,7 +1221,22 @@ Suspend support not enabled.", true);
             mainTabCon.SelectedIndex = 1;
             //controllerLV.Focus();
         }
+        // Ex Mode Re-Enable
+        private async void HideDS4ContCk_Click(object sender, RoutedEventArgs e)
+        {
+            if (DS4Windows.Global.UseExclusiveMode == true) { MessageBox.Show("This feature is depreciated and no longer supported. Exclusive mode usage is provided mearly as a legacy feature. Do NOT ask for help for this feature, you will not recieve any.", "Feature no longer supported"); }
+            StartStopBtn.IsEnabled = false;
+            //bool checkStatus = hideDS4ContCk.IsChecked == true;
+            hideDS4ContCk.IsEnabled = false;
+            await Task.Run(() =>
+            {
+                App.rootHub.Stop();
+                App.rootHub.Start();
+            });
 
+            hideDS4ContCk.IsEnabled = true;
+            StartStopBtn.IsEnabled = true;
+        }
         private async void UseUdpServerCk_Click(object sender, RoutedEventArgs e)
         {
             bool status = useUdpServerCk.IsChecked == true;

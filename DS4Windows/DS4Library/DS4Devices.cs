@@ -282,6 +282,12 @@ namespace DS4Windows
                         {
                             DS4Device ds4Device = InputDeviceFactory.CreateDevice(metainfo.inputDevType, hDevice, metainfo.name, metainfo.featureSet);
                             //DS4Device ds4Device = new DS4Device(hDevice, metainfo.name, metainfo.featureSet);
+                            if (ds4Device == null)
+                            {
+                                // No compatible device type was found. Skip
+                                continue;
+                            }
+
                             ds4Device.PostInit();
                             //ds4Device.Removal += On_Removal;
                             if (!ds4Device.ExitOutputThread)

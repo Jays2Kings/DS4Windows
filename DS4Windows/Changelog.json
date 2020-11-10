@@ -1,9 +1,40 @@
 {
-  "latest_version": "2.1.15",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 15},
-  "updated_at": "2020-10-04T18:29:47+0000",
+  "latest_version": "2.1.16",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 16},
+  "updated_at": "2020-11-10T04:52:21+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.16",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 16},
+        "base_header": "Version 2.1.16",
+        "release_date": "2020-11-10T04:52:21+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.16",
+            "log_text": ["* Allow inserting wait periods in macro sequence",
+              "* Disable IdleDisconnect by default",
+              "* Updated URL for Gamepad Tester",
+              "* Added initial Flick Stick support",
+              "* Various refactors to somewhat abstract controller type from mapper code",
+              "* Added initial mapping support for the Switch Pro controller",
+              "* Increased default flash warning interval in Settings. Now defaults to 40 ms",
+              "* Changed connection type check depending on the input device",
+              "* Added an extra Reset call for ManualResetEventSlim for DS4Device",
+              "* Allow task startup if running on battery power",
+              "* Added fuzz setting for 360 Steering Wheel mode",
+              "* Hide DS4 Controller option re-enabled. Contribution by **Yohoki**",
+              "* Chinese (Traditional, Taiwan) Translations Updated. Contribution by **SyaoranChang**",
+              "* Ukrainian translation added. Contribution by **atimonder1**",
+              "* Put null check when checking for new input devices. Necessary for new input device check refactor.",
+              "* Bundled HidNinja 0.2.2"],
+            "editor": "ryochan7",
+            "editors_note": ["Might finally use my Switch Pro controller"],
+            "updated_at": "2020-11-10T04:52:21+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.15",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 15},

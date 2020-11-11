@@ -110,6 +110,8 @@ namespace DS4Windows
         internal const int HORI_VID = 0x0F0D;
         internal const int NINTENDO_VENDOR_ID = 0x57e;
         internal const int SWITCH_PRO_PRODUCT_ID = 0x2009;
+        internal const int JOYCON_L_PRODUCT_ID = 0x2006;
+        internal const int JOYCON_R_PRODUCT_ID = 0x2007;
 
         // https://support.steampowered.com/kb_article.php?ref=5199-TOKV-4426&l=english web site has a list of other PS4 compatible device VID/PID values and brand names. 
         // However, not all those are guaranteed to work with DS4Windows app so support is added case by case when users of DS4Windows app tests non-official DS4 gamepads.
@@ -144,6 +146,8 @@ namespace DS4Windows
             new VidPidInfo(HORI_VID, 0x00C9, "Hori Taiko Controller",  InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib), // Hori Taiko Controller (wired only. No light bar, touchpad, gyro, rumble, sticks or triggers)
             new VidPidInfo(0x0C12, 0x1E1C, "SnakeByte Game:Pad 4S", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib | VidPidFeatureSet.NoBatteryReading), // SnakeByte Gamepad for PS4 (wired only. No gyro. No light bar). If it doesn't work then try the latest gamepad firmware from https://mysnakebyte.com/
             new VidPidInfo(NINTENDO_VENDOR_ID, SWITCH_PRO_PRODUCT_ID, "Switch Pro", InputDeviceType.SwitchPro, VidPidFeatureSet.DefaultDS4, checkConnection: SwitchProDevice.DetermineConnectionType),
+            new VidPidInfo(NINTENDO_VENDOR_ID, JOYCON_L_PRODUCT_ID, "JoyCon (L)", InputDeviceType.JoyConL, VidPidFeatureSet.DefaultDS4, checkConnection: JoyConDevice.DetermineConnectionType),
+            new VidPidInfo(NINTENDO_VENDOR_ID, JOYCON_R_PRODUCT_ID, "JoyCon (R)", InputDeviceType.JoyConR, VidPidFeatureSet.DefaultDS4, checkConnection: JoyConDevice.DetermineConnectionType),
         };
 
         public static string devicePathToInstanceId(string devicePath)

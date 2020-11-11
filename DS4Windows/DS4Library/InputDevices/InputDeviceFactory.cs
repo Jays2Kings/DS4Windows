@@ -30,6 +30,10 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 case InputDeviceType.SwitchPro:
                     temp = new SwitchProDevice(hidDevice, disName, featureSet);
                     break;
+                case InputDeviceType.JoyConL:
+                case InputDeviceType.JoyConR:
+                    temp = new JoyConDevice(hidDevice, disName, featureSet);
+                    break;
             }
 
             return temp;

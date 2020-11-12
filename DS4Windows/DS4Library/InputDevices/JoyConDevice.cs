@@ -425,6 +425,8 @@ namespace DS4WinWPF.DS4Library.InputDevices
                         tempByte = inputReportBuffer[4];
                         cState.Share = (tempByte & 0x01) != 0;
                         cState.L3 = (tempByte & 0x08) != 0;
+                        // Capture Button
+                        cState.PS = (tempByte & 0x20) != 0;
                         //current.Capture = (tempByte & 0x20) != 0;
 
                         tempByte = inputReportBuffer[5];

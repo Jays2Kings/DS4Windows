@@ -146,6 +146,10 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
         private const double STICK_AXIS_MAX_CUTOFF = 0.96;
         private const double STICK_AXIS_MIN_CUTOFF = 1.04;
+        private const double STICK_AXIS_X_MAX_CUTOFF = STICK_AXIS_MAX_CUTOFF;
+        private const double STICK_AXIS_X_MIN_CUTOFF = STICK_AXIS_MIN_CUTOFF;
+        private const double STICK_AXIS_Y_MAX_CUTOFF = 0.96;
+        private const double STICK_AXIS_Y_MIN_CUTOFF = 1.14;
 
         private const string BLUETOOTH_HID_GUID = "{00001124-0000-1000-8000-00805F9B34FB}";
 
@@ -279,6 +283,8 @@ namespace DS4WinWPF.DS4Library.InputDevices
             //short gyroRoll = 0, gyroRoll2 = 0, gyroRoll3 = 0;
             short tempShort = 0;
             int tempAxis = 0;
+            int tempAxisX = 0;
+            int tempAxisY = 0;
 
             /*long currentTime = 0;
             long previousTime = 0;
@@ -436,18 +442,17 @@ namespace DS4WinWPF.DS4Library.InputDevices
                         stick_raw[1] = inputReportBuffer[7];
                         stick_raw[2] = inputReportBuffer[8];
 
-                        tempAxis = (stick_raw[0] | ((stick_raw[1] & 0x0F) << 8)) - leftStickOffsetX;
-                        tempAxis = tempAxis > leftStickXData.max ? leftStickXData.max : (tempAxis < leftStickXData.min ? leftStickXData.min : tempAxis);
+                        tempAxisX = (stick_raw[0] | ((stick_raw[1] & 0x0F) << 8)) - leftStickOffsetX;
+                        tempAxisX = tempAxisX > leftStickXData.max ? leftStickXData.max : (tempAxisX < leftStickXData.min ? leftStickXData.min : tempAxisX);
                         cState.LX = (byte)((tempAxis - leftStickXData.min) / (double)(leftStickXData.max - leftStickXData.min) * 255);
 
-                        tempAxis = ((stick_raw[1] >> 4) | (stick_raw[2] << 4)) - leftStickOffsetY;
-                        tempAxis = tempAxis > leftStickYData.max ? leftStickYData.max : (tempAxis < leftStickYData.min ? leftStickYData.min : tempAxis);
+                        tempAxisY = ((stick_raw[1] >> 4) | (stick_raw[2] << 4)) - leftStickOffsetY;
+                        tempAxisY = tempAxisY > leftStickYData.max ? leftStickYData.max : (tempAxisY < leftStickYData.min ? leftStickYData.min : tempAxisY);
                         cState.LY = (byte)((((tempAxis - leftStickYData.min) / (double)(leftStickYData.max - leftStickYData.min) - 0.5) * -1.0 + 0.5) * 255);
 
-                        //current.LX = (ushort)(stick_raw[0] | ((stick_raw[1] & 0x0F) << 8));
-                        //current.LX = current.LX > STICK_LX_MAX ? (ushort)STICK_LX_MAX : (current.LX < STICK_LX_MIN ? (ushort)STICK_LX_MIN : current.LX);
-                        //current.LY = (ushort)((stick_raw[1] >> 4) | (stick_raw[2] << 4));
-                        //current.LY = current.LY > STICK_LY_MAX ? (ushort)STICK_LY_MAX : (current.LY < STICK_LY_MIN ? (ushort)STICK_LY_MIN : current.LY);
+                        // JoyCon on its side flips axes and directions
+                        //cState.LY = JoyConStickAdjust(tempAxisX, leftStickXData.mid, leftStickXData.max - leftStickXData.min, -1);
+                        //cState.LX = JoyConStickAdjust(tempAxisY, leftStickYData.mid, leftStickYData.max - leftStickYData.min, -1);
                     }
                     else if (sideType == JoyConSide.Right)
                     {
@@ -471,14 +476,17 @@ namespace DS4WinWPF.DS4Library.InputDevices
                         stick_raw2[1] = inputReportBuffer[10];
                         stick_raw2[2] = inputReportBuffer[11];
 
-                        tempAxis = (stick_raw2[0] | ((stick_raw2[1] & 0x0F) << 8)) - rightStickOffsetX;
-                        tempAxis = tempAxis > rightStickXData.max ? rightStickXData.max : (tempAxis < rightStickXData.min ? rightStickXData.min : tempAxis);
-                        cState.RX = (byte)((tempAxis - rightStickXData.min) / (double)(rightStickXData.max - rightStickXData.min) * 255);
+                        tempAxisX = (stick_raw2[0] | ((stick_raw2[1] & 0x0F) << 8)) - rightStickOffsetX;
+                        tempAxisX = tempAxisX > rightStickXData.max ? rightStickXData.max : (tempAxisX < rightStickXData.min ? rightStickXData.min : tempAxisX);
+                        cState.RX = (byte)((tempAxisX - rightStickXData.min) / (double)(rightStickXData.max - rightStickXData.min) * 255);
 
-                        tempAxis = ((stick_raw2[1] >> 4) | (stick_raw2[2] << 4)) - rightStickOffsetY;
-                        tempAxis = tempAxis > rightStickYData.max ? rightStickYData.max : (tempAxis < rightStickYData.min ? rightStickYData.min : tempAxis);
-                        //cState.RY = (byte)((tempAxis - STICK_MIN) / (STICK_MAX - STICK_MIN) * 255);
-                        cState.RY = (byte)((((tempAxis - rightStickYData.min) / (double)(rightStickYData.max - rightStickYData.min) - 0.5) * -1.0 + 0.5) * 255);
+                        tempAxisY = ((stick_raw2[1] >> 4) | (stick_raw2[2] << 4)) - rightStickOffsetY;
+                        tempAxisY = tempAxisY > rightStickYData.max ? rightStickYData.max : (tempAxisY < rightStickYData.min ? rightStickYData.min : tempAxisY);
+                        cState.RY = (byte)((((tempAxisY - rightStickYData.min) / (double)(rightStickYData.max - rightStickYData.min) - 0.5) * -1.0 + 0.5) * 255);
+
+                        // JoyCon on its side flips axes
+                        //cState.LY = JoyConStickAdjust(tempAxisX, rightStickXData.mid, rightStickXData.max - rightStickXData.min, -1);
+                        //cState.LX = JoyConStickAdjust(tempAxisY, rightStickYData.mid, rightStickYData.max - rightStickYData.min, -1);
                     }
 
                     for (int i = 0; i < 3; i++)
@@ -865,9 +873,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     leftStickXData.mid = leftStickCalib[2];
                     leftStickXData.min = (ushort)((leftStickCalib[2] - leftStickCalib[4]) * STICK_AXIS_MIN_CUTOFF);
 
-                    leftStickYData.max = (ushort)((leftStickCalib[1] + leftStickCalib[3]) * STICK_AXIS_MAX_CUTOFF);
+                    leftStickYData.max = (ushort)((leftStickCalib[1] + leftStickCalib[3]) * STICK_AXIS_Y_MAX_CUTOFF);
                     leftStickYData.mid = leftStickCalib[3];
-                    leftStickYData.min = (ushort)((leftStickCalib[3] - leftStickCalib[5]) * STICK_AXIS_MIN_CUTOFF);
+                    leftStickYData.min = (ushort)((leftStickCalib[3] - leftStickCalib[5]) * STICK_AXIS_Y_MIN_CUTOFF);
                     //leftStickOffsetX = leftStickOffsetY = 140;
                 }
 
@@ -933,9 +941,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     rightStickXData.mid = rightStickCalib[2];
                     rightStickXData.min = (ushort)((rightStickCalib[2] - rightStickCalib[4]) * STICK_AXIS_MIN_CUTOFF);
 
-                    rightStickYData.max = (ushort)((rightStickCalib[3] + rightStickCalib[1]) * STICK_AXIS_MAX_CUTOFF);
+                    rightStickYData.max = (ushort)((rightStickCalib[3] + rightStickCalib[1]) * STICK_AXIS_Y_MAX_CUTOFF);
                     rightStickYData.mid = rightStickCalib[3];
-                    rightStickYData.min = (ushort)((rightStickCalib[3] - rightStickCalib[5]) * STICK_AXIS_MIN_CUTOFF);
+                    rightStickYData.min = (ushort)((rightStickCalib[3] - rightStickCalib[5]) * STICK_AXIS_Y_MIN_CUTOFF);
                     //rightStickOffsetX = rightStickOffsetY = 140;
                 }
 
@@ -1020,6 +1028,15 @@ namespace DS4WinWPF.DS4Library.InputDevices
             //gyroCoeff[IMU_PITCH_IDX] = (gyroSens[IMU_PITCH_IDX] - gyroBias[IMU_PITCH_IDX]) / 65535.0;
             //gyroCoeff[IMU_ROLL_IDX] = (gyroSens[IMU_ROLL_IDX] - gyroBias[IMU_ROLL_IDX]) / 65535.0;
             //Console.WriteLine("GYRO COEFF: {0}", string.Join(",", gyroCoeff));
+        }
+
+        public byte JoyConStickAdjust(int raw, int offset, int range, int sense)
+        {
+            int scaled = sense * ((raw - offset) * 256) / range + 128;
+            //if (scaled > 119 && scaled < 138) scaled = 128; // dead zone
+            if (scaled > 255) scaled = 255;
+            else if (scaled < 0) scaled = 0;
+            return (byte)(scaled);
         }
 
         public override bool DisconnectWireless(bool callRemoval = false)

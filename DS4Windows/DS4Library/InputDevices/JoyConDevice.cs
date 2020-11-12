@@ -146,10 +146,16 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
         private const double STICK_AXIS_MAX_CUTOFF = 0.96;
         private const double STICK_AXIS_MIN_CUTOFF = 1.04;
-        private const double STICK_AXIS_X_MAX_CUTOFF = 0.94;
-        private const double STICK_AXIS_X_MIN_CUTOFF = 1.48;
-        private const double STICK_AXIS_Y_MAX_CUTOFF = 0.96;
-        private const double STICK_AXIS_Y_MIN_CUTOFF = 1.14;
+
+        private const double STICK_AXIS_LS_X_MAX_CUTOFF = 0.94;
+        private const double STICK_AXIS_LS_X_MIN_CUTOFF = 1.48;
+        private const double STICK_AXIS_RS_X_MAX_CUTOFF = 0.94;
+        private const double STICK_AXIS_RS_X_MIN_CUTOFF = 1.04;
+
+        private const double STICK_AXIS_LS_Y_MAX_CUTOFF = 0.96;
+        private const double STICK_AXIS_LS_Y_MIN_CUTOFF = 1.14;
+        private const double STICK_AXIS_RS_Y_MAX_CUTOFF = 0.96;
+        private const double STICK_AXIS_RS_Y_MIN_CUTOFF = 1.14;
 
         private const string BLUETOOTH_HID_GUID = "{00001124-0000-1000-8000-00805F9B34FB}";
 
@@ -875,13 +881,13 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 }
                 else
                 {
-                    leftStickXData.max = (ushort)((leftStickCalib[0] + leftStickCalib[2]) * STICK_AXIS_X_MAX_CUTOFF);
+                    leftStickXData.max = (ushort)((leftStickCalib[0] + leftStickCalib[2]) * STICK_AXIS_LS_X_MAX_CUTOFF);
                     leftStickXData.mid = leftStickCalib[2];
-                    leftStickXData.min = (ushort)((leftStickCalib[2] - leftStickCalib[4]) * STICK_AXIS_X_MIN_CUTOFF);
+                    leftStickXData.min = (ushort)((leftStickCalib[2] - leftStickCalib[4]) * STICK_AXIS_LS_X_MIN_CUTOFF);
 
-                    leftStickYData.max = (ushort)((leftStickCalib[1] + leftStickCalib[3]) * STICK_AXIS_Y_MAX_CUTOFF);
+                    leftStickYData.max = (ushort)((leftStickCalib[1] + leftStickCalib[3]) * STICK_AXIS_LS_Y_MAX_CUTOFF);
                     leftStickYData.mid = leftStickCalib[3];
-                    leftStickYData.min = (ushort)((leftStickCalib[3] - leftStickCalib[5]) * STICK_AXIS_Y_MIN_CUTOFF);
+                    leftStickYData.min = (ushort)((leftStickCalib[3] - leftStickCalib[5]) * STICK_AXIS_LS_Y_MIN_CUTOFF);
                     //leftStickOffsetX = leftStickOffsetY = 140;
                 }
 
@@ -943,13 +949,13 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 }
                 else
                 {
-                    rightStickXData.max = (ushort)((rightStickCalib[2] + rightStickCalib[0]) * STICK_AXIS_X_MAX_CUTOFF);
+                    rightStickXData.max = (ushort)((rightStickCalib[2] + rightStickCalib[0]) * STICK_AXIS_RS_X_MAX_CUTOFF);
                     rightStickXData.mid = rightStickCalib[2];
-                    rightStickXData.min = (ushort)((rightStickCalib[2] - rightStickCalib[4]) * STICK_AXIS_X_MIN_CUTOFF);
+                    rightStickXData.min = (ushort)((rightStickCalib[2] - rightStickCalib[4]) * STICK_AXIS_RS_X_MIN_CUTOFF);
 
-                    rightStickYData.max = (ushort)((rightStickCalib[3] + rightStickCalib[1]) * STICK_AXIS_Y_MAX_CUTOFF);
+                    rightStickYData.max = (ushort)((rightStickCalib[3] + rightStickCalib[1]) * STICK_AXIS_RS_Y_MAX_CUTOFF);
                     rightStickYData.mid = rightStickCalib[3];
-                    rightStickYData.min = (ushort)((rightStickCalib[3] - rightStickCalib[5]) * STICK_AXIS_Y_MIN_CUTOFF);
+                    rightStickYData.min = (ushort)((rightStickCalib[3] - rightStickCalib[5]) * STICK_AXIS_RS_Y_MIN_CUTOFF);
                     //rightStickOffsetX = rightStickOffsetY = 140;
                 }
 

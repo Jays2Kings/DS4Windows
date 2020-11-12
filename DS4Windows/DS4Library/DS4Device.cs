@@ -697,7 +697,7 @@ namespace DS4Windows
             StopOutputUpdate();
         }
 
-        protected void StopOutputUpdate()
+        protected virtual void StopOutputUpdate()
         {
             lock (exitLocker)
             {

@@ -444,11 +444,11 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
                         tempAxisX = (stick_raw[0] | ((stick_raw[1] & 0x0F) << 8)) - leftStickOffsetX;
                         tempAxisX = tempAxisX > leftStickXData.max ? leftStickXData.max : (tempAxisX < leftStickXData.min ? leftStickXData.min : tempAxisX);
-                        cState.LX = (byte)((tempAxis - leftStickXData.min) / (double)(leftStickXData.max - leftStickXData.min) * 255);
+                        cState.LX = (byte)((tempAxisX - leftStickXData.min) / (double)(leftStickXData.max - leftStickXData.min) * 255);
 
                         tempAxisY = ((stick_raw[1] >> 4) | (stick_raw[2] << 4)) - leftStickOffsetY;
                         tempAxisY = tempAxisY > leftStickYData.max ? leftStickYData.max : (tempAxisY < leftStickYData.min ? leftStickYData.min : tempAxisY);
-                        cState.LY = (byte)((((tempAxis - leftStickYData.min) / (double)(leftStickYData.max - leftStickYData.min) - 0.5) * -1.0 + 0.5) * 255);
+                        cState.LY = (byte)((((tempAxisY - leftStickYData.min) / (double)(leftStickYData.max - leftStickYData.min) - 0.5) * -1.0 + 0.5) * 255);
 
                         // JoyCon on its side flips axes and directions
                         //cState.LY = JoyConStickAdjust(tempAxisX, leftStickXData.mid, leftStickXData.max - leftStickXData.min, -1);

@@ -146,8 +146,8 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
         private const double STICK_AXIS_MAX_CUTOFF = 0.96;
         private const double STICK_AXIS_MIN_CUTOFF = 1.04;
-        private const double STICK_AXIS_X_MAX_CUTOFF = STICK_AXIS_MAX_CUTOFF;
-        private const double STICK_AXIS_X_MIN_CUTOFF = STICK_AXIS_MIN_CUTOFF;
+        private const double STICK_AXIS_X_MAX_CUTOFF = 0.94;
+        private const double STICK_AXIS_X_MIN_CUTOFF = 1.48;
         private const double STICK_AXIS_Y_MAX_CUTOFF = 0.96;
         private const double STICK_AXIS_Y_MIN_CUTOFF = 1.14;
 
@@ -643,7 +643,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
             //Thread.Sleep(1000);
             EnableFastPollRate();
             SetInitRumble();
-            //Thread.Sleep(1000);
+            Thread.Sleep(500);
             CalibrationData();
 
             Console.WriteLine("FINISHED");
@@ -869,9 +869,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 }
                 else
                 {
-                    leftStickXData.max = (ushort)((leftStickCalib[0] + leftStickCalib[2]) * STICK_AXIS_MAX_CUTOFF);
+                    leftStickXData.max = (ushort)((leftStickCalib[0] + leftStickCalib[2]) * STICK_AXIS_X_MAX_CUTOFF);
                     leftStickXData.mid = leftStickCalib[2];
-                    leftStickXData.min = (ushort)((leftStickCalib[2] - leftStickCalib[4]) * STICK_AXIS_MIN_CUTOFF);
+                    leftStickXData.min = (ushort)((leftStickCalib[2] - leftStickCalib[4]) * STICK_AXIS_X_MIN_CUTOFF);
 
                     leftStickYData.max = (ushort)((leftStickCalib[1] + leftStickCalib[3]) * STICK_AXIS_Y_MAX_CUTOFF);
                     leftStickYData.mid = leftStickCalib[3];
@@ -889,7 +889,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 /*
                 // Grab Factory LS Dead Zone
                 command = new byte[] { 0x86, 0x60, 0x00, 0x00, 0x10 };
-                byte[] deadZoneBuffer = Subcommand(0x10, command, 5, checkResponse: true);
+                byte[] deadZoneBuffer = Subcommand(SwitchProSubCmd.SPI_FLASH_READ, command, 5, checkResponse: true);
                 deadzoneLS = (ushort)((deadZoneBuffer[4 + SPI_RESP_OFFSET] << 8) & 0xF00 | deadZoneBuffer[3 + SPI_RESP_OFFSET]);
                 //Console.WriteLine("DZ Left: {0}", deadzoneLS);
                 //Console.WriteLine(string.Join(",", deadZoneBuffer));
@@ -914,7 +914,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 else
                 {
                     command = new byte[] { 0x46, 0x60, 0x00, 0x00, 0x09 };
-                    tmpBuffer = Subcommand(0x10, command, 5, checkResponse: true);
+                    tmpBuffer = Subcommand(SwitchProSubCmd.SPI_FLASH_READ, command, 5, checkResponse: true);
                     //Console.WriteLine("CHECK RIGHT FACTORY CALIB");
                 }
 
@@ -937,9 +937,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 }
                 else
                 {
-                    rightStickXData.max = (ushort)((rightStickCalib[2] + rightStickCalib[0]) * STICK_AXIS_MAX_CUTOFF);
+                    rightStickXData.max = (ushort)((rightStickCalib[2] + rightStickCalib[0]) * STICK_AXIS_X_MAX_CUTOFF);
                     rightStickXData.mid = rightStickCalib[2];
-                    rightStickXData.min = (ushort)((rightStickCalib[2] - rightStickCalib[4]) * STICK_AXIS_MIN_CUTOFF);
+                    rightStickXData.min = (ushort)((rightStickCalib[2] - rightStickCalib[4]) * STICK_AXIS_X_MIN_CUTOFF);
 
                     rightStickYData.max = (ushort)((rightStickCalib[3] + rightStickCalib[1]) * STICK_AXIS_Y_MAX_CUTOFF);
                     rightStickYData.mid = rightStickCalib[3];
@@ -957,7 +957,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 /*
                 // Grab Factory RS Dead Zone
                 command = new byte[] { 0x98, 0x60, 0x00, 0x00, 0x10 };
-                deadZoneBuffer = Subcommand(0x10, command, 5, checkResponse: true);
+                deadZoneBuffer = Subcommand(SwitchProSubCmd.SPI_FLASH_READ, command, 5, checkResponse: true);
                 deadzoneRS = (ushort)((deadZoneBuffer[4 + SPI_RESP_OFFSET] << 8) & 0xF00 | deadZoneBuffer[3 + SPI_RESP_OFFSET]);
                 //Console.WriteLine("DZ Right: {0}", deadzoneRS);
                 //Console.WriteLine(string.Join(",", deadZoneBuffer));*/

@@ -719,7 +719,7 @@ namespace DS4Windows
             }
         }
 
-        protected virtual bool writeOutput()
+        protected bool writeOutput()
         {
             if (conType == ConnectionType.BT)
             {

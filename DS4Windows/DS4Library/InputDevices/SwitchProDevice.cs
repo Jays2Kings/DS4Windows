@@ -273,6 +273,10 @@ namespace DS4WinWPF.DS4Library.InputDevices
             }
         }
 
+        protected override void StopOutputUpdate()
+        {
+        }
+
         protected unsafe void ReadInput()
         {
             byte[] stick_raw = { 0, 0, 0 };

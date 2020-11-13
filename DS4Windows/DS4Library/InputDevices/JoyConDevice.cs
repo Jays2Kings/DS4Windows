@@ -147,9 +147,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
         private const double STICK_AXIS_MAX_CUTOFF = 0.96;
         private const double STICK_AXIS_MIN_CUTOFF = 1.04;
 
-        private const double STICK_AXIS_LS_X_MAX_CUTOFF = 0.94;
+        private const double STICK_AXIS_LS_X_MAX_CUTOFF = 0.96;
         private const double STICK_AXIS_LS_X_MIN_CUTOFF = 1.48;
-        private const double STICK_AXIS_RS_X_MAX_CUTOFF = 0.94;
+        private const double STICK_AXIS_RS_X_MAX_CUTOFF = 0.96;
         private const double STICK_AXIS_RS_X_MIN_CUTOFF = 1.04;
 
         private const double STICK_AXIS_LS_Y_MAX_CUTOFF = 0.96;

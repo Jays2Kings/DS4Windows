@@ -256,8 +256,18 @@ namespace DS4Windows
 
                     if (hDevice.IsOpen)
                     {
-                        string serial = hDevice.readSerial();
-                        bool validSerial = !serial.Equals(DS4Device.blankSerial);
+                        //string serial = hDevice.ReadSerial();
+                        string serial = DS4Device.BLANK_SERIAL;
+                        if (metainfo.inputDevType == InputDeviceType.DualSense)
+                        {
+                            serial = hDevice.ReadSerial(DualSenseDevice.SERIAL_FEATURE_ID);
+                        }
+                        else
+                        {
+                            serial = hDevice.ReadSerial(DS4Device.SERIAL_FEATURE_ID);
+                        }
+
+                        bool validSerial = !serial.Equals(DS4Device.BLANK_SERIAL);
                         bool newdev = true;
                         if (validSerial && deviceSerials.Contains(serial))
                         {

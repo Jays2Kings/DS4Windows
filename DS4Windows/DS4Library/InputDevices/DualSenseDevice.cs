@@ -39,6 +39,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
         protected new const int BT_OUTPUT_REPORT_LENGTH = 64;
         protected const int TOUCHPAD_DATA_OFFSET = 33;
         private new const int BATTERY_MAX = 9;
+        public new const byte SERIAL_FEATURE_ID = 9;
+
+        public override byte SerialReportID { get => SERIAL_FEATURE_ID; }
 
         public DualSenseDevice(HidDevice hidDevice, string disName, VidPidFeatureSet featureSet = VidPidFeatureSet.DefaultDS4) :
             base(hidDevice, disName, featureSet)

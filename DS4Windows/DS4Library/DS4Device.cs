@@ -130,7 +130,8 @@ namespace DS4Windows
         // and when a USB cable is connected
         internal const int BATTERY_MAX = 8;
         internal const int BATTERY_MAX_USB = 11;
-        public const string blankSerial = "00:00:00:00:00:00";
+        public const string BLANK_SERIAL = "00:00:00:00:00:00";
+        public const byte SERIAL_FEATURE_ID = 18;
         private const string SONYWA_AUDIO_SEARCHNAME = "DUALSHOCK®4 USB Wireless Adaptor";
         private const string RAIJU_TE_AUDIO_SEARCHNAME = "Razer Raiju Tournament Edition Wired";
         protected HidDevice hDevice;
@@ -482,6 +483,8 @@ namespace DS4Windows
         protected ManualResetEventSlim readWaitEv = new ManualResetEventSlim();
         public ManualResetEventSlim ReadWaitEv { get => readWaitEv; }
 
+        public virtual byte SerialReportID { get => SERIAL_FEATURE_ID; }
+
         public DS4Device(HidDevice hidDevice, string disName, VidPidFeatureSet featureSet = VidPidFeatureSet.DefaultDS4)
         {
             hDevice = hidDevice;
@@ -498,7 +501,7 @@ namespace DS4Windows
             if (this.FeatureSet != VidPidFeatureSet.DefaultDS4)
                 AppLogger.LogToGui($"The gamepad {displayName} ({conType}) uses custom feature set ({this.FeatureSet.ToString("F")})", false);
 
-            Mac = hDevice.readSerial();
+            Mac = hDevice.ReadSerial(SerialReportID);
             runCalib = (this.featureSet & VidPidFeatureSet.NoGyroCalib) == 0;
 
             touchpad = new DS4Touchpad();
@@ -1717,7 +1720,7 @@ namespace DS4Windows
         public void updateSerial()
         {
             hDevice.resetSerial();
-            string tempMac = hDevice.readSerial();
+            string tempMac = hDevice.ReadSerial(SerialReportID);
             if (tempMac != Mac)
             {
                 Mac = tempMac;
@@ -1728,12 +1731,12 @@ namespace DS4Windows
 
         public bool isValidSerial()
         {
-            return !Mac.Equals(blankSerial);
+            return !Mac.Equals(BLANK_SERIAL);
         }
 
         public static bool isValidSerial(string test)
         {
-            return !test.Equals(blankSerial);
+            return !test.Equals(BLANK_SERIAL);
         }
 
         private bool abortInputThread = false;

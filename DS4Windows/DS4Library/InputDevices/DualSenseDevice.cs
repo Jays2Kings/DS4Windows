@@ -435,14 +435,15 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     // Fallback to else clause due to lack of battery info
                     if ((this.featureSet & VidPidFeatureSet.NoBatteryReading) == 0)
                     {
-                        tempByte = inputReport[53 + reportOffset];
-                        tempCharging = (tempByte & 0x20) != 0;
+                        tempByte = inputReport[54 + reportOffset];
+                        tempCharging = (tempByte & 0x08) != 0;
                         if (tempCharging != charging)
                         {
                             charging = tempCharging;
                             ChargingChanged?.Invoke(this, EventArgs.Empty);
                         }
 
+                        tempByte = inputReport[53 + reportOffset];
                         maxBatteryValue = BATTERY_MAX;
                         tempBattery = (tempByte & 0x0F) * 100 / maxBatteryValue;
                         tempBattery = Math.Min(tempBattery, 100);

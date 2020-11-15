@@ -38,6 +38,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
         private InputReportDataBytes dataBytes;
         protected new const int BT_OUTPUT_REPORT_LENGTH = 64;
         protected const int TOUCHPAD_DATA_OFFSET = 33;
+        private new const int BATTERY_MAX = 9;
 
         public DualSenseDevice(HidDevice hidDevice, string disName, VidPidFeatureSet featureSet = VidPidFeatureSet.DefaultDS4) :
             base(hidDevice, disName, featureSet)
@@ -429,9 +430,27 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     //cState.FrameCounter = (byte)(tempByte >> 2);
 
                     // Fallback to else clause due to lack of battery info
-                    if (false && (this.featureSet & VidPidFeatureSet.NoBatteryReading) == 0)
+                    if ((this.featureSet & VidPidFeatureSet.NoBatteryReading) == 0)
                     {
-                        // Need to further decipher battery info. Will not reach this
+                        tempByte = inputReport[53 + reportOffset];
+                        tempCharging = (tempByte & 0x20) != 0;
+                        if (tempCharging != charging)
+                        {
+                            charging = tempCharging;
+                            ChargingChanged?.Invoke(this, EventArgs.Empty);
+                        }
+
+                        maxBatteryValue = BATTERY_MAX;
+                        tempBattery = (tempByte & 0x0F) * 100 / maxBatteryValue;
+                        tempBattery = Math.Min(tempBattery, 100);
+                        if (tempBattery != battery)
+                        {
+                            battery = tempBattery;
+                            BatteryChanged?.Invoke(this, EventArgs.Empty);
+                        }
+
+                        cState.Battery = (byte)battery;
+                        //System.Diagnostics.Debug.WriteLine("CURRENT BATTERY: " + (inputReport[30] & 0x0f) + " | " + tempBattery + " | " + battery);
                     }
                     else
                     {

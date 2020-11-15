@@ -13,6 +13,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
         SwitchPro,
         JoyConL,
         JoyConR,
+        DualSense,
     }
 
     public abstract class InputDeviceFactory
@@ -33,6 +34,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 case InputDeviceType.JoyConL:
                 case InputDeviceType.JoyConR:
                     temp = new JoyConDevice(hidDevice, disName, featureSet);
+                    break;
+                case InputDeviceType.DualSense:
+                    temp = new DualSenseDevice(hidDevice, disName, featureSet);
                     break;
             }
 

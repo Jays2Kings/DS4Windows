@@ -116,7 +116,7 @@ namespace DS4Windows
         }
 
         //internal const int BT_OUTPUT_REPORT_LENGTH = 78;
-        internal const int BT_OUTPUT_REPORT_LENGTH = 334;
+        protected const int BT_OUTPUT_REPORT_LENGTH = 334;
         internal const int BT_INPUT_REPORT_LENGTH = 547;
         internal const int BT_OUTPUT_CHANGE_LENGTH = 13;
         internal const int USB_OUTPUT_CHANGE_LENGTH = 11;
@@ -591,8 +591,8 @@ namespace DS4Windows
             }
         }
 
-        const int DS4_FEATURE_REPORT_5_LEN = 41;
-        const int DS4_FEATURE_REPORT_5_CRC32_POS = DS4_FEATURE_REPORT_5_LEN - 4;
+        protected const int DS4_FEATURE_REPORT_5_LEN = 41;
+        protected const int DS4_FEATURE_REPORT_5_CRC32_POS = DS4_FEATURE_REPORT_5_LEN - 4;
         public virtual void RefreshCalibration()
         {
             byte[] calibration = new byte[41];
@@ -838,9 +838,9 @@ namespace DS4Windows
         uint deltaTimeCurrent = 0;
 
 
-        const int BT_INPUT_REPORT_CRC32_POS = 74; //last 4 bytes of the 78-sized input report are crc32
+        protected const int BT_INPUT_REPORT_CRC32_POS = 74; //last 4 bytes of the 78-sized input report are crc32
         public const uint DefaultPolynomial = 0xedb88320u;
-        uint HamSeed = 2351727372;
+        protected uint HamSeed = 2351727372;
 
         protected unsafe void performDs4Input()
         {

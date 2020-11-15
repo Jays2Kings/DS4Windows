@@ -289,6 +289,7 @@
     <Compile Include="DS4Library\DS4State.cs" />
     <Compile Include="DS4Library\DS4StateExposed.cs" />
     <Compile Include="DS4Library\DS4Touchpad.cs" />
+    <Compile Include="DS4Library\InputDevices\DualSenseDevice.cs" />
     <Compile Include="DS4Library\InputDevices\InputDeviceFactory.cs" />
     <Compile Include="DS4Library\InputDevices\JoyConDevice.cs" />
     <Compile Include="DS4Library\InputDevices\SwitchProDevice.cs" />

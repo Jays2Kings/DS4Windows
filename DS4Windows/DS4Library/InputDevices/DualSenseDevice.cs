@@ -457,7 +457,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     cState.TrackPadTouch1.Y = (short)(((ushort)(inputReport[40+reportOffset]) << 4) | ((ushort)(inputReport[39+reportOffset] & 0xf0) >> 4));
 
                     // XXX DS4State mapping needs fixup, turn touches into an array[4] of structs.  And include the touchpad details there instead.
-                    /*try
+                    try
                     {
                         // Only care if one touch packet is detected. Other touch packets
                         // don't seem to contain relevant data. ds4drv does not use them either.
@@ -480,7 +480,6 @@ namespace DS4WinWPF.DS4Library.InputDevices
                         }
                     }
                     catch (Exception ex) { currerror = $"Touchpad: {ex.Message}"; }
-                    */
 
                     /*fixed (byte* pbInput = &inputReport[16+reportOffset], pbGyro = gyro, pbAccel = accel)
                     {

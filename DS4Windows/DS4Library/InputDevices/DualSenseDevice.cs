@@ -155,12 +155,12 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     }
                 }
 
-                sixAxis.setCalibrationData(ref calibration, conType == ConnectionType.USB);
+                sixAxis.setCalibrationData(ref calibration, true);
             }
             else
             {
                 hDevice.readFeatureData(calibration);
-                sixAxis.setCalibrationData(ref calibration, conType == ConnectionType.USB);
+                sixAxis.setCalibrationData(ref calibration, true);
             }
         }
 
@@ -481,7 +481,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     }
                     catch (Exception ex) { currerror = $"Touchpad: {ex.Message}"; }
 
-                    /*fixed (byte* pbInput = &inputReport[16+reportOffset], pbGyro = gyro, pbAccel = accel)
+                    fixed (byte* pbInput = &inputReport[16+reportOffset], pbGyro = gyro, pbAccel = accel)
                     {
                         for (int i = 0; i < 6; i++)
                         {
@@ -498,7 +498,6 @@ namespace DS4WinWPF.DS4Library.InputDevices
                             sixAxis.handleSixaxis(pbGyro, pbAccel, cState, elapsedDeltaTime);
                         }
                     }
-                    */
 
                     /* Debug output of incoming HID data:
                     if (cState.L2 == 0xff && cState.R2 == 0xff)

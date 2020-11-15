@@ -127,7 +127,7 @@ namespace DS4Windows
         }
 
         int temInt = 0;
-        public void setCalibrationData(ref byte[] calibData, bool fromUSB)
+        public void setCalibrationData(ref byte[] calibData, bool useAltGyroCalib)
         {
             int pitchPlus, pitchMinus, yawPlus, yawMinus, rollPlus, rollMinus,
                 accelXPlus, accelXMinus, accelYPlus, accelYMinus, accelZPlus, accelZMinus,
@@ -137,7 +137,7 @@ namespace DS4Windows
             calibrationData[1].bias = (short)((ushort)(calibData[4] << 8) | calibData[3]);
             calibrationData[2].bias = (short)((ushort)(calibData[6] << 8) | calibData[5]);
 
-            if (!fromUSB)
+            if (!useAltGyroCalib)
             {
                 pitchPlus = temInt = (short)((ushort)(calibData[8] << 8) | calibData[7]);
                 yawPlus = temInt = (short)((ushort)(calibData[10] << 8) | calibData[9]);

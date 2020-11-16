@@ -182,11 +182,11 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     //ds4Output.IsBackground = true;
                     //ds4Output.Start();
 
-                    //timeoutCheckThread = new Thread(TimeoutTestThread);
-                    //timeoutCheckThread.Priority = ThreadPriority.BelowNormal;
-                    //timeoutCheckThread.Name = "DS4 Timeout thread: " + Mac;
-                    //timeoutCheckThread.IsBackground = true;
-                    //timeoutCheckThread.Start();
+                    timeoutCheckThread = new Thread(TimeoutTestThread);
+                    timeoutCheckThread.Priority = ThreadPriority.BelowNormal;
+                    timeoutCheckThread.Name = "DualSense Timeout thread: " + Mac;
+                    timeoutCheckThread.IsBackground = true;
+                    timeoutCheckThread.Start();
                 }
                 //else
                 //{
@@ -214,8 +214,12 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 if (timeoutEvent)
                 {
                     timeoutExecuted = true;
-                    outputReport[0] = 0x01;
-                    hDevice.WriteOutputReportViaControl(outputReport); // Kick Windows into noticing the disconnection.
+
+                    // Request gyro calib feature report data. Causes Windows to notice the dead
+                    // device.
+                    byte[] tmpCalib = new byte[64];
+                    tmpCalib[0] = 0x05;
+                    hDevice.readFeatureData(tmpCalib); // Kick Windows into noticing the disconnection.
                 }
                 else
                 {

@@ -940,6 +940,12 @@ namespace DS4Windows
                                 CurrentState[tempIdx].CopyTo(stateForUdp);
                                 if (Global.IsUsingUDPServerSmoothing())
                                 {
+                                    if (stateForUdp.elapsedTime == 0)
+                                    {
+                                        // No timestamp was found. Exit out of routine
+                                        return;
+                                    }
+
                                     double rate = 1.0 / stateForUdp.elapsedTime;
                                     OneEuroFilter3D accelFilter = udpEuroPairAccel[tempIdx];
                                     stateForUdp.Motion.accelXG = accelFilter.axis1Filter.Filter(stateForUdp.Motion.accelXG, rate);
@@ -1240,11 +1246,18 @@ namespace DS4Windows
 
                                     if (Global.IsUsingUDPServerSmoothing())
                                     {
+                                        if (stateForUdp.elapsedTime == 0)
+                                        {
+                                            // No timestamp was found. Exit out of routine
+                                            return;
+                                        }
+
                                         double rate = 1.0 / stateForUdp.elapsedTime;
                                         OneEuroFilter3D accelFilter = udpEuroPairAccel[tempIdx];
                                         stateForUdp.Motion.accelXG = accelFilter.axis1Filter.Filter(stateForUdp.Motion.accelXG, rate);
                                         stateForUdp.Motion.accelYG = accelFilter.axis2Filter.Filter(stateForUdp.Motion.accelYG, rate);
                                         stateForUdp.Motion.accelZG = accelFilter.axis3Filter.Filter(stateForUdp.Motion.accelZG, rate);
+
 
                                         OneEuroFilter3D gyroFilter = udpEuroPairGyro[tempIdx];
                                         stateForUdp.Motion.angVelYaw = gyroFilter.axis1Filter.Filter(stateForUdp.Motion.angVelYaw, rate);

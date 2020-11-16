@@ -38,7 +38,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
         private InputReportDataBytes dataBytes;
         protected new const int BT_OUTPUT_REPORT_LENGTH = 64;
         protected const int TOUCHPAD_DATA_OFFSET = 33;
-        private new const int BATTERY_MAX = 9;
+        private new const int BATTERY_MAX = 10;
         public new const byte SERIAL_FEATURE_ID = 9;
 
         public override byte SerialReportID { get => SERIAL_FEATURE_ID; }
@@ -422,8 +422,8 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     cState.L3 = (tempByte & (1 << 6)) != 0;
                     cState.Options = (tempByte & (1 << 5)) != 0;
                     cState.Share = (tempByte & (1 << 4)) != 0;
-                    cState.R2Btn = (inputReport[6] & (1 << 3)) != 0;
-                    cState.L2Btn = (inputReport[6] & (1 << 2)) != 0;
+                    cState.R2Btn = (tempByte & (1 << 3)) != 0;
+                    cState.L2Btn = (tempByte & (1 << 2)) != 0;
                     cState.R1 = (tempByte & (1 << 1)) != 0;
                     cState.L1 = (tempByte & (1 << 0)) != 0;
 

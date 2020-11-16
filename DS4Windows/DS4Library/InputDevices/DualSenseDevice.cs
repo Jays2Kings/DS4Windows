@@ -36,7 +36,8 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
         private const int BT_REPORT_OFFSET = 2;
         private InputReportDataBytes dataBytes;
-        protected new const int BT_OUTPUT_REPORT_LENGTH = 64;
+        protected new const int BT_OUTPUT_REPORT_LENGTH = 547;
+        private new const int BT_INPUT_REPORT_LENGTH = 78;
         protected const int TOUCHPAD_DATA_OFFSET = 33;
         private new const int BATTERY_MAX = 10;
         public new const byte SERIAL_FEATURE_ID = 9;

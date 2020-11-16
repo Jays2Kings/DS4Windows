@@ -1121,10 +1121,21 @@ namespace DS4Windows
                         deltaTimeCurrent = tempDelta * 16u / 3u;
                     }
 
-                    timeStampPrevious = tempStamp;
-                    elapsedDeltaTime = 0.000001 * deltaTimeCurrent; // Convert from microseconds to seconds
+                    // Make sure timestamps don't match
+                    if (deltaTimeCurrent != 0)
+                    {
+                        elapsedDeltaTime = 0.000001 * deltaTimeCurrent; // Convert from microseconds to seconds
+                        cState.totalMicroSec = pState.totalMicroSec + deltaTimeCurrent;
+                    }
+                    else
+                    {
+                        // Duplicate timestamp. Use system clock for elapsed time instead
+                        elapsedDeltaTime = lastTimeElapsedDouble * .001;
+                        cState.totalMicroSec = pState.totalMicroSec + (uint)(elapsedDeltaTime * 1000000);
+                    }
+
                     cState.elapsedTime = elapsedDeltaTime;
-                    cState.totalMicroSec = pState.totalMicroSec + deltaTimeCurrent;
+                    timeStampPrevious = tempStamp;
 
                     //Simpler touch storing
                     cState.TrackPadTouch0.Id = (byte)(inputReport[35] & 0x7f);

@@ -215,11 +215,11 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 {
                     timeoutExecuted = true;
 
-                    // Request gyro calib feature report data. Causes Windows to notice the dead
+                    // Request serial feature report data. Causes Windows to notice the dead
                     // device.
-                    byte[] tmpCalib = new byte[64];
-                    tmpCalib[0] = 0x05;
-                    hDevice.readFeatureData(tmpCalib); // Kick Windows into noticing the disconnection.
+                    byte[] tmpFeatureData = new byte[64];
+                    tmpFeatureData[0] = SERIAL_FEATURE_ID;
+                    hDevice.readFeatureData(tmpFeatureData); // Kick Windows into noticing the disconnection.
                 }
                 else
                 {

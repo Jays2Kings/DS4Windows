@@ -44,6 +44,10 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
         public override byte SerialReportID { get => SERIAL_FEATURE_ID; }
 
+        private bool timeStampInit = false;
+        private uint timeStampPrevious = 0;
+        private uint deltaTimeCurrent = 0;
+
         public DualSenseDevice(HidDevice hidDevice, string disName, VidPidFeatureSet featureSet = VidPidFeatureSet.DefaultDS4) :
             base(hidDevice, disName, featureSet)
         {
@@ -469,9 +473,53 @@ namespace DS4WinWPF.DS4Library.InputDevices
                         cState.Battery = 99;
                     }
 
-                    elapsedDeltaTime = lastTimeElapsedDouble * .001;
+                    tempStamp = inputReport[28+reportOffset] |
+                                (uint)(inputReport[29+reportOffset] << 8) |
+                                (uint)(inputReport[30+reportOffset] << 16) |
+                                (uint)(inputReport[31+reportOffset] << 24);
+
+                    if (timeStampInit == false)
+                    {
+                        timeStampInit = true;
+                        deltaTimeCurrent = tempStamp * 1u / 3u;
+                    }
+                    else if (timeStampPrevious > tempStamp)
+                    {
+                        tempDelta = uint.MaxValue - timeStampPrevious + tempStamp + 1u;
+                        deltaTimeCurrent = tempDelta * 1u / 3u;
+                    }
+                    else
+                    {
+                        tempDelta = tempStamp - timeStampPrevious;
+                        deltaTimeCurrent = tempDelta * 1u / 3u;
+                    }
+
+                    //if (tempStamp == timeStampPrevious)
+                    //{
+                    //    Console.WriteLine("PINEAPPLES");
+                    //}
+
+                    // Make sure timestamps don't match
+                    if (deltaTimeCurrent != 0)
+                    {
+                        elapsedDeltaTime = 0.000001 * deltaTimeCurrent; // Convert from microseconds to seconds
+                        cState.totalMicroSec = pState.totalMicroSec + deltaTimeCurrent;
+                    }
+                    else
+                    {
+                        // Duplicate timestamp. Use system clock for elapsed time instead
+                        elapsedDeltaTime = lastTimeElapsedDouble * .001;
+                        cState.totalMicroSec = pState.totalMicroSec + (uint)(elapsedDeltaTime * 1000000);
+                    }
+
+                    //Console.WriteLine("{0} {1} {2} {3} {4} Diff({5}) TSms({6}) Sys({7})", tempStamp, inputReport[31 + reportOffset], inputReport[30 + reportOffset], inputReport[29 + reportOffset], inputReport[28 + reportOffset], tempStamp - timeStampPrevious, elapsedDeltaTime, lastTimeElapsedDouble * 0.001);
+
                     cState.elapsedTime = elapsedDeltaTime;
-                    cState.totalMicroSec = pState.totalMicroSec + (uint)(elapsedDeltaTime * 1000000);
+                    timeStampPrevious = tempStamp;
+
+                    //elapsedDeltaTime = lastTimeElapsedDouble * .001;
+                    //cState.elapsedTime = elapsedDeltaTime;
+                    //cState.totalMicroSec = pState.totalMicroSec + (uint)(elapsedDeltaTime * 1000000);
 
                     // Simpler touch storing
                     cState.TrackPadTouch0.Id = (byte)(inputReport[33+reportOffset] & 0x7f);

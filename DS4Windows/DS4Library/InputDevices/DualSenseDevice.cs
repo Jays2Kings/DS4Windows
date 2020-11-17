@@ -590,6 +590,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     }
 
                     Report?.Invoke(this, EventArgs.Empty);
+                    //WriteReport();
 
                     forceWrite = false;
 
@@ -622,6 +623,13 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
         protected override void StopOutputUpdate()
         {
+        }
+
+        private void WriteReport()
+        {
+            outputReport[0] = 0x31;
+            //bool res = hDevice.WriteOutputReportViaInterrupt(outputReport, 0);
+            //Console.WriteLine("STAUTS: {0}", res);
         }
     }
 }

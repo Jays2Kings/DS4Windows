@@ -46,10 +46,12 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
         private const byte OUTPUT_REPORT_ID_USB = 0x02;
         private const byte OUTPUT_REPORT_ID_BT = 0x31;
+        private const byte USB_OUTPUT_CHANGE_LENGTH = 48;
 
         private bool timeStampInit = false;
         private uint timeStampPrevious = 0;
         private uint deltaTimeCurrent = 0;
+        private bool outputDirty = false;
 
         public DualSenseDevice(HidDevice hidDevice, string disName, VidPidFeatureSet featureSet = VidPidFeatureSet.DefaultDS4) :
             base(hidDevice, disName, featureSet)
@@ -642,11 +644,12 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
                     Report?.Invoke(this, EventArgs.Empty);
                     /*PrepareOutReport();
-                    if (conType == ConnectionType.USB)
+                    if (conType == ConnectionType.USB && outputDirty)
                     {
                         WriteReport();
                     }*/
 
+                    outputDirty = false;
                     forceWrite = false;
 
                     if (!string.IsNullOrEmpty(currerror))
@@ -693,13 +696,13 @@ namespace DS4WinWPF.DS4Library.InputDevices
             }
         }
 
-        private void PrepareOutReport()
+        private unsafe void PrepareOutReport()
         {
             MergeStates();
 
             if (conType == ConnectionType.USB)
             {
-                outputReport[0] = OUTPUT_REPORT_ID_USB; // Report ID
+                outReportBuffer[0] = OUTPUT_REPORT_ID_USB; // Report ID
                 // 0x01 Set the main motors (also requires flag 0x02)
                 // 0x02 Set the main motors (also requires flag 0x01)
                 // 0x04 Set the right trigger motor
@@ -708,57 +711,70 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 // 0x20 Enable internal speaker (even while headset is connected)
                 // 0x40 Enable modification of microphone volume
                 // 0x80 Enable internal mic (even while headset is connected)
-                outputReport[1] = 0x00;
+                outReportBuffer[1] = 0x03; // 0x02 | 0x01
 
                 // 0x01 Toggling microphone LED, 0x02 Toggling Audio/Mic Mute
                 // 0x04 Toggling LED strips on the sides of the Touchpad, 0x08 Turn off all LED lights
                 // 0x10 Toggle player LED lights below Touchpad, 0x20 ???
                 // 0x40 Adjust overall motor/effect power, 0x80 ???
-                outputReport[2] = 0x15; // 0x04 | 0x01 | 0x10
+                outReportBuffer[2] = 0x15; // 0x04 | 0x01 | 0x10
 
-                // Left Low Freq Motor
-                //outputReport[3] = currentHap.RumbleMotorStrengthLeftHeavySlow;
-                // Right High Freq Motor
-                //outputReport[4] = currentHap.RumbleMotorStrengthRightLightFast;
+                // Right? Low Freq Motor
+                outReportBuffer[3] = currentHap.RumbleMotorStrengthRightLightFast;
+                // Left? High Freq Motor
+                outReportBuffer[4] = currentHap.RumbleMotorStrengthLeftHeavySlow;
 
                 /*
                 // Headphone volume
-                outputReport[5] = 0x00;
-                outputReport[5] = Convert.ToByte(audio.getVolume()); // Left and Right
+                outReportBuffer[5] = 0x00;
+                outReportBuffer[5] = Convert.ToByte(audio.getVolume()); // Left and Right
                 // Internal speaker volume
-                outputReport[6] = 0x00;
+                outReportBuffer[6] = 0x00;
                 // Internal microphone volume
-                outputReport[7] = 0x00;
-                outputReport[7] = Convert.ToByte(micAudio.getVolume());
+                outReportBuffer[7] = 0x00;
+                outReportBuffer[7] = Convert.ToByte(micAudio.getVolume());
                 // 0x01 Enable internal microphone, 0x10 Disable attached headphones (must set 0x20 as well)
                 // 0x20 Enable internal speaker
-                outputReport[8] = 0x00;
+                outReportBuffer[8] = 0x00;
                 //*/
 
                 // Mute button LED. 0x01 = Solid. 0x02 = Pulsating
-                outputReport[9] = 0x01;
+                outReportBuffer[9] = 0x01;
 
                 // Volume of internal speaker (0-7; ties in with index 6. The PS5 default appears to be set a 4)
-                //outputReport[38] = 0x00;
+                //outReportBuffer[38] = 0x00;
 
                 /* Player LED section */
                 // 0x01 Enabled LED brightness (value in index 43)
                 // 0x02 Uninterruptable blue LED pulse (action in index 42)
-                outputReport[39] = 0x02;
+                outReportBuffer[39] = 0x02;
                 // 0x01 Slowly (2s?) fade to blue (scheduled to when the regular LED settings are active)
                 // 0x02 Slowly (2s?) fade out (scheduled after fade-in completion) with eventual switch back to configured LED color; only a fade-out can cancel the pulse (neither index 2, 0x08, nor turning this off will cancel it!)
-                outputReport[42] = 0x02;
+                outReportBuffer[42] = 0x02;
                 // 0x00 High Brightness, 0x01 Medium Brightness, 0x02 Low Brightness
-                outputReport[43] = 0x02;
+                outReportBuffer[43] = 0x02;
                 // 5 player LED lights below Touchpad.
                 // Bitmask 0x00-0x1F from left to right with 0x04 being the center LED. Bit 0x20 sets the brightness immediately with no fade in
-                outputReport[44] = 0x04;
+                outReportBuffer[44] = 0x04;
 
                 /* Lightbar colors */
-                outputReport[45] = currentHap.LightBarColor.red;
-                outputReport[46] = currentHap.LightBarColor.green;
-                outputReport[47] = currentHap.LightBarColor.blue;
+                outReportBuffer[45] = currentHap.LightBarColor.red;
+                outReportBuffer[46] = currentHap.LightBarColor.green;
+                outReportBuffer[47] = currentHap.LightBarColor.blue;
 
+                bool change = false;
+                fixed (byte* bytePrevBuff = outputReport, byteTmpBuff = outReportBuffer)
+                {
+                    for (int i = 0, arlen = USB_OUTPUT_CHANGE_LENGTH; !change && i < arlen; i++)
+                        change = bytePrevBuff[i] != byteTmpBuff[i];
+                }
+
+                if (change)
+                {
+                    //Console.WriteLine("DIRTY");
+                    outputDirty = true;
+                    outReportBuffer.CopyTo(outputReport, 0);
+                }
                 //bool res = hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
                 //Console.WriteLine("STAUTS: {0}", res);
             }

@@ -535,6 +535,58 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     SixAxisEventArgs args = new SixAxisEventArgs(cState.ReportTimeStamp, cState.Motion);
                     sixAxis.FireSixAxisEvent(args);
 
+                    if (conType == ConnectionType.USB)
+                    {
+                        if (idleTimeout == 0)
+                        {
+                            lastActive = utcNow;
+                        }
+                        else
+                        {
+                            idleInput = isDS4Idle();
+                            if (!idleInput)
+                            {
+                                lastActive = utcNow;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        bool shouldDisconnect = false;
+                        if (!isRemoved && idleTimeout > 0)
+                        {
+                            idleInput = isDS4Idle();
+                            if (idleInput)
+                            {
+                                DateTime timeout = lastActive + TimeSpan.FromSeconds(idleTimeout);
+                                if (!charging)
+                                    shouldDisconnect = utcNow >= timeout;
+                            }
+                            else
+                            {
+                                lastActive = utcNow;
+                            }
+                        }
+                        else
+                        {
+                            lastActive = utcNow;
+                        }
+
+                        if (shouldDisconnect)
+                        {
+                            AppLogger.LogToGui(Mac.ToString() + " disconnecting due to idle disconnect", false);
+
+                            if (conType == ConnectionType.BT)
+                            {
+                                if (DisconnectBT(true))
+                                {
+                                    timeoutExecuted = true;
+                                    return; // all done
+                                }
+                            }
+                        }
+                    }
+
                     Report?.Invoke(this, EventArgs.Empty);
                     WriteReport();
 

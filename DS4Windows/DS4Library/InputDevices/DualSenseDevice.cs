@@ -46,23 +46,22 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
         private const byte OUTPUT_REPORT_ID_USB = 0x02;
         private const byte OUTPUT_REPORT_ID_BT = 0x31;
-        private const byte USB_OUTPUT_CHANGE_LENGTH = 48;
+        private new const byte USB_OUTPUT_CHANGE_LENGTH = 48;
 
         private bool timeStampInit = false;
         private uint timeStampPrevious = 0;
         private uint deltaTimeCurrent = 0;
         private bool outputDirty = false;
 
+        public override event ReportHandler<EventArgs> Report = null;
+        public override event EventHandler BatteryChanged;
+        public override event EventHandler ChargingChanged;
+
         public DualSenseDevice(HidDevice hidDevice, string disName, VidPidFeatureSet featureSet = VidPidFeatureSet.DefaultDS4) :
             base(hidDevice, disName, featureSet)
         {
             synced = true;
         }
-
-        public override event ReportHandler<EventArgs> Report = null;
-        public override event EventHandler<EventArgs> Removal = null;
-        public override event EventHandler BatteryChanged;
-        public override event EventHandler ChargingChanged;
 
         public override void PostInit()
         {
@@ -316,7 +315,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                                     //sendOutputReport(true, true); // Kick Windows into noticing the disconnection.
                                     StopOutputUpdate();
                                     isDisconnecting = true;
-                                    Removal?.Invoke(this, EventArgs.Empty);
+                                    RunRemoval();
 
                                     timeoutExecuted = true;
                                     continue;
@@ -349,7 +348,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                             //sendOutputReport(true, true); // Kick Windows into noticing the disconnection.
                             StopOutputUpdate();
                             isDisconnecting = true;
-                            Removal?.Invoke(this, EventArgs.Empty);
+                            RunRemoval();
 
                             timeoutExecuted = true;
                             continue;
@@ -375,7 +374,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                             readWaitEv.Reset();
                             StopOutputUpdate();
                             isDisconnecting = true;
-                            Removal?.Invoke(this, EventArgs.Empty);
+                            RunRemoval();
 
                             timeoutExecuted = true;
                             continue;
@@ -635,6 +634,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                             {
                                 if (DisconnectBT(true))
                                 {
+                                    exitInputThread = true;
                                     timeoutExecuted = true;
                                     return; // all done
                                 }

@@ -1709,7 +1709,7 @@ namespace DS4Windows
             return Mac;
         }
 
-        public void runRemoval()
+        protected void RunRemoval()
         {
             Removal?.Invoke(this, EventArgs.Empty);
         }

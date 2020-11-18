@@ -700,6 +700,14 @@ namespace DS4WinWPF.DS4Library.InputDevices
             if (conType == ConnectionType.USB)
             {
                 outputReport[0] = OUTPUT_REPORT_ID_USB; // Report ID
+                // 0x01 Set the main motors (also requires flag 0x02)
+                // 0x02 Set the main motors (also requires flag 0x01)
+                // 0x04 Set the right trigger motor
+                // 0x08 Set the left trigger motor
+                // 0x10 Enable modification of audio volume
+                // 0x20 Enable internal speaker (even while headset is connected)
+                // 0x40 Enable modification of microphone volume
+                // 0x80 Enable internal mic (even while headset is connected)
                 outputReport[1] = 0x00;
 
                 // 0x01 Toggling microphone LED, 0x02 Toggling Audio/Mic Mute
@@ -730,6 +738,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 // Mute button LED. 0x01 = Solid. 0x02 = Pulsating
                 outputReport[9] = 0x01;
 
+                // Volume of internal speaker (0-7; ties in with index 6. The PS5 default appears to be set a 4)
+                //outputReport[38] = 0x00;
+
                 /* Player LED section */
                 // 0x01 Enabled LED brightness (value in index 43)
                 // 0x02 Uninterruptable blue LED pulse (action in index 42)
@@ -748,14 +759,13 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 outputReport[46] = currentHap.LightBarColor.green;
                 outputReport[47] = currentHap.LightBarColor.blue;
 
-
-                //bool res = hDevice.WriteOutputReportViaInterrupt(outputReport, 0);
+                //bool res = hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
                 //Console.WriteLine("STAUTS: {0}", res);
             }
             else
             {
                 outReportBuffer[0] = OUTPUT_REPORT_ID_BT; // Report ID
-                //bool res = hDevice.WriteOutputReportViaInterrupt(outputReport, 0);
+                //bool res = hDevice.WriteOutputReportViaControl(outputReport);
                 //Console.WriteLine("STAUTS: {0}", res);
             }
         }

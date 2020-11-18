@@ -700,6 +700,8 @@ namespace DS4WinWPF.DS4Library.InputDevices
         {
             MergeStates();
 
+            bool change = false;
+
             if (conType == ConnectionType.USB)
             {
                 outReportBuffer[0] = OUTPUT_REPORT_ID_USB; // Report ID
@@ -762,7 +764,6 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 outReportBuffer[46] = currentHap.LightBarColor.green;
                 outReportBuffer[47] = currentHap.LightBarColor.blue;
 
-                bool change = false;
                 fixed (byte* bytePrevBuff = outputReport, byteTmpBuff = outReportBuffer)
                 {
                     for (int i = 0, arlen = USB_OUTPUT_CHANGE_LENGTH; !change && i < arlen; i++)
@@ -781,6 +782,20 @@ namespace DS4WinWPF.DS4Library.InputDevices
             else
             {
                 outReportBuffer[0] = OUTPUT_REPORT_ID_BT; // Report ID
+
+                fixed (byte* bytePrevBuff = outputReport, byteTmpBuff = outReportBuffer)
+                {
+                    for (int i = 0, arlen = BT_OUTPUT_CHANGE_LENGTH; !change && i < arlen; i++)
+                        change = bytePrevBuff[i] != byteTmpBuff[i];
+                }
+
+                if (change)
+                {
+                    //Console.WriteLine("DIRTY");
+                    outputDirty = true;
+                    outReportBuffer.CopyTo(outputReport, 0);
+                }
+
                 //bool res = hDevice.WriteOutputReportViaControl(outputReport);
                 //Console.WriteLine("STAUTS: {0}", res);
             }
@@ -798,7 +813,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 result = hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
             }
 
-            //Console.WriteLine("STAUTS: {0}", res);
+            //Console.WriteLine("STAUTS: {0}", result);
             return result;
         }
     }

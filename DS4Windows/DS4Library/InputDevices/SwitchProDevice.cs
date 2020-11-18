@@ -396,6 +396,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     cState.ReportTimeStamp = utcNow;
 
                     cState.elapsedTime = combLatency;
+                    cState.totalMicroSec = pState.totalMicroSec + (uint)(combLatency * 1000000);
                     combLatency = 0.0;
 
                     if ((this.featureSet & VidPidFeatureSet.NoBatteryReading) == 0)

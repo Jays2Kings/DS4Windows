@@ -441,7 +441,6 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     cState.TouchButton = (tempByte & 0x02) != 0;
                     //cState.FrameCounter = (byte)(tempByte >> 2);
 
-                    // Fallback to else clause due to lack of battery info
                     if ((this.featureSet & VidPidFeatureSet.NoBatteryReading) == 0)
                     {
                         tempByte = inputReport[54 + reportOffset];

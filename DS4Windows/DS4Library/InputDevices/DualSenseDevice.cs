@@ -719,9 +719,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 // 0x40 Adjust overall motor/effect power, 0x80 ???
                 outReportBuffer[2] = 0x15; // 0x04 | 0x01 | 0x10
 
-                // Right? Low Freq Motor
+                // Right? High Freq Motor
                 outReportBuffer[3] = currentHap.RumbleMotorStrengthRightLightFast;
-                // Left? High Freq Motor
+                // Left? Low Freq Motor
                 outReportBuffer[4] = currentHap.RumbleMotorStrengthLeftHeavySlow;
 
                 /*

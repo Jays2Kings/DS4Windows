@@ -1,9 +1,29 @@
 {
-  "latest_version": "2.1.16",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 16},
-  "updated_at": "2020-11-10T04:52:21+0000",
+  "latest_version": "2.1.17",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 17},
+  "updated_at": "2020-11-19T19:07:49+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.17",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 17},
+        "base_header": "Version 2.1.17",
+        "release_date": "2020-11-19T19:07:49+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.17",
+            "log_text": ["* Implemented JoyCon support",
+              "* Implemented DualSense support. Lightbar and rumble support only work with USB for now",
+              "* Added workaround for DS4 reader when a duplicate timestamp is in a report. Fixes smoothing for UDP server output",
+              "* Populate totalMicroSec in JoyConDevice and SwitchProDevice. Used in the UDP server output",
+              "* Enabled Idle Disconnect for SwitchPro and JoyCon"],
+            "editor": "ryochan7",
+            "editors_note": ["Many more changes than the Changelog implies"],
+            "updated_at": "2020-11-19T19:07:49+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.16",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 16},

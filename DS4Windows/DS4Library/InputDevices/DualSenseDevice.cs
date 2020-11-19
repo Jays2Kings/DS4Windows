@@ -656,11 +656,15 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     }
 
                     Report?.Invoke(this, EventArgs.Empty);
-                    PrepareOutReport();
-                    if (conType == ConnectionType.USB && outputDirty)
+
+                    if (conType == ConnectionType.USB)
                     {
-                        WriteReport();
-                        previousHapticState = currentHap;
+                        PrepareOutReport();
+                        if (outputDirty)
+                        {
+                            WriteReport();
+                            previousHapticState = currentHap;
+                        }
                     }
 
                     outputDirty = false;

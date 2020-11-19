@@ -260,6 +260,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 int maxBatteryValue = 0;
                 int tempBattery = 0;
                 bool tempCharging = charging;
+                bool tempFull = false;
                 uint tempStamp = 0;
                 double elapsedDeltaTime = 0.0;
                 uint tempDelta = 0;
@@ -458,9 +459,20 @@ namespace DS4WinWPF.DS4Library.InputDevices
                         }
 
                         tempByte = inputReport[53 + reportOffset];
+                        tempFull = (tempByte & 0x20) != 0; // Check for Full status
                         maxBatteryValue = BATTERY_MAX;
-                        tempBattery = (tempByte & 0x0F) * 100 / maxBatteryValue;
-                        tempBattery = Math.Min(tempBattery, 100);
+                        if (tempFull)
+                        {
+                            // Full Charge flag found
+                            tempBattery = 100;
+                        }
+                        else
+                        {
+                            // Partial charge
+                            tempBattery = (tempByte & 0x0F) * 100 / maxBatteryValue;
+                            tempBattery = Math.Min(tempBattery, 100);
+                        }
+
                         if (tempBattery != battery)
                         {
                             battery = tempBattery;
@@ -648,7 +660,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     if (conType == ConnectionType.USB && outputDirty)
                     {
                         WriteReport();
-                        previousHapticState = testRumble;
+                        previousHapticState = currentHap;
                     }
 
                     outputDirty = false;

@@ -643,11 +643,11 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     }
 
                     Report?.Invoke(this, EventArgs.Empty);
-                    /*PrepareOutReport();
+                    PrepareOutReport();
                     if (conType == ConnectionType.USB && outputDirty)
                     {
                         WriteReport();
-                    }*/
+                    }
 
                     outputDirty = false;
                     forceWrite = false;

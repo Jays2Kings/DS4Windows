@@ -718,7 +718,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
             if (conType == ConnectionType.USB)
             {
-                outReportBuffer[0] = OUTPUT_REPORT_ID_USB; // Report ID
+                outputReport[0] = OUTPUT_REPORT_ID_USB; // Report ID
                 // 0x01 Set the main motors (also requires flag 0x02)
                 // 0x02 Set the main motors (also requires flag 0x01)
                 // 0x04 Set the right trigger motor
@@ -727,56 +727,58 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 // 0x20 Enable internal speaker (even while headset is connected)
                 // 0x40 Enable modification of microphone volume
                 // 0x80 Enable internal mic (even while headset is connected)
-                outReportBuffer[1] = 0x03; // 0x02 | 0x01
+                outputReport[1] = 0x03; // 0x02 | 0x01
 
                 // 0x01 Toggling microphone LED, 0x02 Toggling Audio/Mic Mute
                 // 0x04 Toggling LED strips on the sides of the Touchpad, 0x08 Turn off all LED lights
                 // 0x10 Toggle player LED lights below Touchpad, 0x20 ???
                 // 0x40 Adjust overall motor/effect power, 0x80 ???
-                outReportBuffer[2] = 0x15; // 0x04 | 0x01 | 0x10
+                outputReport[2] = 0x15; // 0x04 | 0x01 | 0x10
 
                 // Right? High Freq Motor
-                outReportBuffer[3] = currentHap.RumbleMotorStrengthRightLightFast;
+                outputReport[3] = currentHap.RumbleMotorStrengthRightLightFast;
                 // Left? Low Freq Motor
-                outReportBuffer[4] = currentHap.RumbleMotorStrengthLeftHeavySlow;
+                outputReport[4] = currentHap.RumbleMotorStrengthLeftHeavySlow;
 
                 /*
                 // Headphone volume
-                outReportBuffer[5] = 0x00;
-                outReportBuffer[5] = Convert.ToByte(audio.getVolume()); // Left and Right
+                outputReport[5] = 0x00;
+                outputReport[5] = Convert.ToByte(audio.getVolume()); // Left and Right
                 // Internal speaker volume
-                outReportBuffer[6] = 0x00;
+                outputReport[6] = 0x00;
                 // Internal microphone volume
-                outReportBuffer[7] = 0x00;
-                outReportBuffer[7] = Convert.ToByte(micAudio.getVolume());
+                outputReport[7] = 0x00;
+                outputReport[7] = Convert.ToByte(micAudio.getVolume());
                 // 0x01 Enable internal microphone, 0x10 Disable attached headphones (must set 0x20 as well)
                 // 0x20 Enable internal speaker
-                outReportBuffer[8] = 0x00;
+                outputReport[8] = 0x00;
                 //*/
 
                 // Mute button LED. 0x01 = Solid. 0x02 = Pulsating
-                outReportBuffer[9] = 0x01;
+                outputReport[9] = 0x01;
 
                 // Volume of internal speaker (0-7; ties in with index 6. The PS5 default appears to be set a 4)
-                //outReportBuffer[38] = 0x00;
+                //outputReport[38] = 0x00;
 
                 /* Player LED section */
                 // 0x01 Enabled LED brightness (value in index 43)
                 // 0x02 Uninterruptable blue LED pulse (action in index 42)
-                outReportBuffer[39] = 0x02;
+                /*
+                outputReport[39] = 0x02;
                 // 0x01 Slowly (2s?) fade to blue (scheduled to when the regular LED settings are active)
                 // 0x02 Slowly (2s?) fade out (scheduled after fade-in completion) with eventual switch back to configured LED color; only a fade-out can cancel the pulse (neither index 2, 0x08, nor turning this off will cancel it!)
-                outReportBuffer[42] = 0x02;
+                outputReport[42] = 0x02;
                 // 0x00 High Brightness, 0x01 Medium Brightness, 0x02 Low Brightness
-                outReportBuffer[43] = 0x02;
+                outputReport[43] = 0x02;
                 // 5 player LED lights below Touchpad.
                 // Bitmask 0x00-0x1F from left to right with 0x04 being the center LED. Bit 0x20 sets the brightness immediately with no fade in
-                outReportBuffer[44] = 0x04;
+                outputReport[44] = 0x04;
+                //*/
 
                 /* Lightbar colors */
-                outReportBuffer[45] = currentHap.LightBarColor.red;
-                outReportBuffer[46] = currentHap.LightBarColor.green;
-                outReportBuffer[47] = currentHap.LightBarColor.blue;
+                outputReport[45] = currentHap.LightBarColor.red;
+                outputReport[46] = currentHap.LightBarColor.green;
+                outputReport[47] = currentHap.LightBarColor.blue;
 
                 if (!previousHapticState.Equals(currentHap))
                 {
@@ -793,7 +795,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 {
                     //Console.WriteLine("DIRTY");
                     outputDirty = true;
-                    outReportBuffer.CopyTo(outputReport, 0);
+                    //outReportBuffer.CopyTo(outputReport, 0);
                 }
                 //bool res = hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
                 //Console.WriteLine("STAUTS: {0}", res);

@@ -52,6 +52,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
         private uint timeStampPrevious = 0;
         private uint deltaTimeCurrent = 0;
         private bool outputDirty = false;
+        private DS4HapticState previousHapticState = new DS4HapticState();
 
         public override event ReportHandler<EventArgs> Report = null;
         public override event EventHandler BatteryChanged;
@@ -647,6 +648,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     if (conType == ConnectionType.USB && outputDirty)
                     {
                         WriteReport();
+                        previousHapticState = testRumble;
                     }
 
                     outputDirty = false;
@@ -764,11 +766,16 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 outReportBuffer[46] = currentHap.LightBarColor.green;
                 outReportBuffer[47] = currentHap.LightBarColor.blue;
 
-                fixed (byte* bytePrevBuff = outputReport, byteTmpBuff = outReportBuffer)
+                if (!previousHapticState.Equals(currentHap))
+                {
+                    change = true;
+                }
+                /*fixed (byte* bytePrevBuff = outputReport, byteTmpBuff = outReportBuffer)
                 {
                     for (int i = 0, arlen = USB_OUTPUT_CHANGE_LENGTH; !change && i < arlen; i++)
                         change = bytePrevBuff[i] != byteTmpBuff[i];
                 }
+                */
 
                 if (change)
                 {
@@ -783,11 +790,17 @@ namespace DS4WinWPF.DS4Library.InputDevices
             {
                 outReportBuffer[0] = OUTPUT_REPORT_ID_BT; // Report ID
 
-                fixed (byte* bytePrevBuff = outputReport, byteTmpBuff = outReportBuffer)
+                if (!previousHapticState.Equals(currentHap))
+                {
+                    change = true;
+                }
+
+                /*fixed (byte* bytePrevBuff = outputReport, byteTmpBuff = outReportBuffer)
                 {
                     for (int i = 0, arlen = BT_OUTPUT_CHANGE_LENGTH; !change && i < arlen; i++)
                         change = bytePrevBuff[i] != byteTmpBuff[i];
                 }
+                */
 
                 if (change)
                 {

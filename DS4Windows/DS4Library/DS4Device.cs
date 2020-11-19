@@ -86,13 +86,24 @@ namespace DS4Windows
      * The haptics engine uses a stack of these states representing the light bar and rumble motor settings.
      * It (will) handle composing them and the details of output report management.
      */
-    public struct DS4HapticState
+    public struct DS4HapticState : IEquatable<DS4HapticState>
     {
         public DS4Color LightBarColor;
         public bool LightBarExplicitlyOff;
         public byte LightBarFlashDurationOn, LightBarFlashDurationOff;
         public byte RumbleMotorStrengthLeftHeavySlow, RumbleMotorStrengthRightLightFast;
         public bool RumbleMotorsExplicitlyOff;
+
+        public bool Equals(DS4HapticState other)
+        {
+            return LightBarColor.Equals(other.LightBarColor) &&
+                LightBarExplicitlyOff == other.LightBarExplicitlyOff &&
+                LightBarFlashDurationOn == other.LightBarFlashDurationOn &&
+                LightBarFlashDurationOff == other.LightBarFlashDurationOff &&
+                RumbleMotorStrengthLeftHeavySlow == other.RumbleMotorStrengthLeftHeavySlow &&
+                RumbleMotorStrengthRightLightFast == other.RumbleMotorStrengthRightLightFast &&
+                RumbleMotorsExplicitlyOff == other.RumbleMotorsExplicitlyOff;
+        }
 
         public bool IsLightBarSet()
         {

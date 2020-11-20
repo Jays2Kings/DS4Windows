@@ -36,7 +36,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
         private const int BT_REPORT_OFFSET = 2;
         private InputReportDataBytes dataBytes;
-        protected new const int BT_OUTPUT_REPORT_LENGTH = 547;
+        protected new const int BT_OUTPUT_REPORT_LENGTH = 78;
         private new const int BT_INPUT_REPORT_LENGTH = 78;
         protected const int TOUCHPAD_DATA_OFFSET = 33;
         private new const int BATTERY_MAX = 10;
@@ -47,12 +47,14 @@ namespace DS4WinWPF.DS4Library.InputDevices
         private const byte OUTPUT_REPORT_ID_USB = 0x02;
         private const byte OUTPUT_REPORT_ID_BT = 0x31;
         private new const byte USB_OUTPUT_CHANGE_LENGTH = 48;
-
+        private const int OUTPUT_MIN_COUNT_BT = 20;
         private bool timeStampInit = false;
         private uint timeStampPrevious = 0;
         private uint deltaTimeCurrent = 0;
         private bool outputDirty = false;
         private DS4HapticState previousHapticState = new DS4HapticState();
+        private byte[] outputBTCrc32Head = new byte[] { 0xA2 };
+        private byte outputPendCount = 0;
 
         public override event ReportHandler<EventArgs> Report = null;
         public override event EventHandler BatteryChanged;
@@ -657,14 +659,11 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
                     Report?.Invoke(this, EventArgs.Empty);
 
-                    if (conType == ConnectionType.USB)
+                    PrepareOutReport();
+                    if (outputDirty)
                     {
-                        PrepareOutReport();
-                        if (outputDirty)
-                        {
-                            WriteReport();
-                            previousHapticState = currentHap;
-                        }
+                        WriteReport();
+                        previousHapticState = currentHap;
                     }
 
                     outputDirty = false;
@@ -808,12 +807,90 @@ namespace DS4WinWPF.DS4Library.InputDevices
             }
             else
             {
-                outReportBuffer[0] = OUTPUT_REPORT_ID_BT; // Report ID
+                //outReportBuffer[0] = OUTPUT_REPORT_ID_BT; // Report ID
+                outputReport[0] = OUTPUT_REPORT_ID_BT; // Report ID
+                outputReport[1] = 0x02;
 
-                if (!previousHapticState.Equals(currentHap))
+                // 0x01 Set the main motors (also requires flag 0x02)
+                // 0x02 Set the main motors (also requires flag 0x01)
+                // 0x04 Set the right trigger motor
+                // 0x08 Set the left trigger motor
+                // 0x10 Enable modification of audio volume
+                // 0x20 Enable internal speaker (even while headset is connected)
+                // 0x40 Enable modification of microphone volume
+                // 0x80 Enable internal mic (even while headset is connected)
+                outputReport[2] = 0x03; // 0x02 | 0x01;
+
+                // 0x01 Toggling microphone LED, 0x02 Toggling Audio/Mic Mute
+                // 0x04 Toggling LED strips on the sides of the Touchpad, 0x08 Turn off all LED lights
+                // 0x10 Toggle player LED lights below Touchpad, 0x20 ???
+                // 0x40 Adjust overall motor/effect power, 0x80 ???
+                outputReport[3] = 0x05; // 0x04 | 0x01 | 0x10
+
+                // Right? High Freq Motor
+                outputReport[4] = currentHap.RumbleMotorStrengthRightLightFast;
+                // Left? Low Freq Motor
+                outputReport[5] = currentHap.RumbleMotorStrengthLeftHeavySlow;
+
+                /*
+                // Headphone volume
+                outputReport[6] = 0x00;
+                outputReport[6] = Convert.ToByte(audio.getVolume()); // Left and Right
+                // Internal speaker volume
+                outputReport[7] = 0x00;
+                // Internal microphone volume
+                outputReport[8] = 0x00;
+                outputReport[8] = Convert.ToByte(micAudio.getVolume());
+                // 0x01 Enable internal microphone, 0x10 Disable attached headphones (must set 0x20 as well)
+                // 0x20 Enable internal speaker
+                outputReport[9] = 0x00;
+                //*/
+
+                // Mute button LED. 0x01 = Solid. 0x02 = Pulsating
+                outputReport[10] = 0x02;
+
+                // (lower nibble: main motor; upper nibble trigger effects) 0x00 to 0x07 - reduce overall power of the respective motors/effects by 12.5% per increment (this does not affect the regular trigger motor settings, just the automatically repeating trigger effects)
+                outputReport[38] = 0x04;
+                // Volume of internal speaker (0-7; ties in with index 6. The PS5 default appears to be set a 4)
+                //outputReport[39] = 0x00;
+
+                /* Player LED section */
+                // 0x01 Enabled LED brightness (value in index 43)
+                // 0x02 Uninterruptable blue LED pulse (action in index 42)
+                /*
+                outputReport[40] = 0x02;
+                // 0x01 Slowly (2s?) fade to blue (scheduled to when the regular LED settings are active)
+                // 0x02 Slowly (2s?) fade out (scheduled after fade-in completion) with eventual switch back to configured LED color; only a fade-out can cancel the pulse (neither index 2, 0x08, nor turning this off will cancel it!)
+                outputReport[43] = 0x02;
+                // 0x00 High Brightness, 0x01 Medium Brightness, 0x02 Low Brightness
+                outputReport[44] = 0x02;
+                // 5 player LED lights below Touchpad.
+                // Bitmask 0x00-0x1F from left to right with 0x04 being the center LED. Bit 0x20 sets the brightness immediately with no fade in
+                outputReport[45] = 0x04;
+                //*/
+
+                outputReport[45] = 0x00;
+                /* Lightbar colors */
+                outputReport[46] = currentHap.LightBarColor.red;
+                outputReport[47] = currentHap.LightBarColor.green;
+                outputReport[48] = currentHap.LightBarColor.blue;
+
+                uint calcCrc32 = 0;
+                change = !previousHapticState.Equals(currentHap);
+                if (change)
+                //if (outputPendCount >= 1 || change)
+                //if (!previousHapticState.Equals(currentHap))
                 {
-                    change = true;
+                    //change = true;
+                    outputDirty = true;
+                    calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);
+                    calcCrc32 = ~Crc32Algorithm.CalculateBasicHash(ref calcCrc32, ref outputReport, 0, BT_OUTPUT_REPORT_LENGTH-4);
                 }
+
+                outputReport[74] = (byte)calcCrc32;
+                outputReport[75] = (byte)(calcCrc32 >> 8);
+                outputReport[76] = (byte)(calcCrc32 >> 16);
+                outputReport[77] = (byte)(calcCrc32 >> 24);
 
                 /*fixed (byte* bytePrevBuff = outputReport, byteTmpBuff = outReportBuffer)
                 {
@@ -822,12 +899,23 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 }
                 */
 
-                if (change)
+                /*if (change)
                 {
+                    outputPendCount = OUTPUT_MIN_COUNT_BT;
                     //Console.WriteLine("DIRTY");
                     outputDirty = true;
-                    outReportBuffer.CopyTo(outputReport, 0);
+                    
+                    //outReportBuffer.CopyTo(outputReport, 0);
                 }
+                else if (outputPendCount >= 1)
+                {
+                    Console.WriteLine("CURRENT: {0}", outputPendCount);
+                    outputPendCount--;
+                    outputDirty = outputPendCount >= 1;
+                }
+                */
+
+                //outputDirty = true;
 
                 //bool res = hDevice.WriteOutputReportViaControl(outputReport);
                 //Console.WriteLine("STAUTS: {0}", res);
@@ -839,14 +927,16 @@ namespace DS4WinWPF.DS4Library.InputDevices
             bool result;
             if (conType == ConnectionType.BT)
             {
-                result = hDevice.WriteOutputReportViaControl(outputReport);
+                // DualSense seems to only accept output data via the Interrupt endpoint
+                result = hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
+                //result = hDevice.WriteOutputReportViaControl(outputReport);
             }
             else
             {
                 result = hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
             }
 
-            //Console.WriteLine("STAUTS: {0}", result);
+            Console.WriteLine("STAUTS: {0}", result);
             return result;
         }
     }

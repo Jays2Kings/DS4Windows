@@ -103,6 +103,13 @@ namespace DS4WinWPF.DS4Library.InputDevices
             {
                 hDevice.OpenFileStream(inputReport.Length);
             }
+
+            // Need to blank LED lights so lightbar will change colors
+            // as requested
+            if (conType == ConnectionType.BT)
+            {
+                SendInitialBTOutputReport();
+            }
         }
 
         public static ConnectionType DetermineConnectionType(HidDevice hidDevice)
@@ -707,10 +714,26 @@ namespace DS4WinWPF.DS4Library.InputDevices
             outputReport[0] = conType == ConnectionType.USB ? OUTPUT_REPORT_ID_USB :
                 OUTPUT_REPORT_ID_BT;
 
-            if (conType == ConnectionType.USB)
-            {
-                WriteReport();
-            }
+            WriteReport();
+        }
+
+        private void SendInitialBTOutputReport()
+        {
+            Array.Clear(outputReport, 0, outputReport.Length);
+
+            outputReport[0] = OUTPUT_REPORT_ID_BT; // Report ID
+            outputReport[1] = 0x02;
+            outputReport[3] = 0x08; // Turn off all LED lights
+
+            // Need to calculate and populate CRC32 data so controller will accept the report
+            uint calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);
+            calcCrc32 = ~Crc32Algorithm.CalculateBasicHash(ref calcCrc32, ref outputReport, 0, BT_OUTPUT_REPORT_LENGTH - 4);
+            outputReport[74] = (byte)calcCrc32;
+            outputReport[75] = (byte)(calcCrc32 >> 8);
+            outputReport[76] = (byte)(calcCrc32 >> 16);
+            outputReport[77] = (byte)(calcCrc32 >> 24);
+
+            WriteReport();
         }
 
         private unsafe void PrepareOutReport()
@@ -825,7 +848,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 // 0x04 Toggling LED strips on the sides of the Touchpad, 0x08 Turn off all LED lights
                 // 0x10 Toggle player LED lights below Touchpad, 0x20 ???
                 // 0x40 Adjust overall motor/effect power, 0x80 ???
-                outputReport[3] = 0x05; // 0x04 | 0x01 | 0x10
+                outputReport[3] = 0x15; // 0x04 | 0x01 | 0x10
 
                 // Right? High Freq Motor
                 outputReport[4] = currentHap.RumbleMotorStrengthRightLightFast;
@@ -847,7 +870,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 //*/
 
                 // Mute button LED. 0x01 = Solid. 0x02 = Pulsating
-                outputReport[10] = 0x02;
+                outputReport[10] = 0x01;
 
                 // (lower nibble: main motor; upper nibble trigger effects) 0x00 to 0x07 - reduce overall power of the respective motors/effects by 12.5% per increment (this does not affect the regular trigger motor settings, just the automatically repeating trigger effects)
                 outputReport[38] = 0x04;
@@ -869,14 +892,15 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 outputReport[45] = 0x04;
                 //*/
 
-                outputReport[45] = 0x00;
                 /* Lightbar colors */
                 outputReport[46] = currentHap.LightBarColor.red;
                 outputReport[47] = currentHap.LightBarColor.green;
                 outputReport[48] = currentHap.LightBarColor.blue;
 
-                uint calcCrc32 = 0;
                 change = !previousHapticState.Equals(currentHap);
+
+                // Need to calculate and populate CRC32 data so controller will accept the report
+                uint calcCrc32 = 0;
                 if (change)
                 //if (outputPendCount >= 1 || change)
                 //if (!previousHapticState.Equals(currentHap))

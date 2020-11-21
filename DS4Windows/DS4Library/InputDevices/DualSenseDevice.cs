@@ -960,7 +960,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 result = hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
             }
 
-            Console.WriteLine("STAUTS: {0}", result);
+            //Console.WriteLine("STAUTS: {0}", result);
             return result;
         }
     }

@@ -2608,15 +2608,15 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     case 4:
                         actionBtns.AddRange(new object[5]
                         {
-                            X360Controls.DpadLeft, X360Controls.DpadRight,
-                            X360Controls.DpadDown, X360Controls.DpadUp, X360Controls.Unbound,
+                            X360Controls.DpadRight, X360Controls.DpadLeft,
+                            X360Controls.DpadUp, X360Controls.DpadDown, X360Controls.Unbound,
                         });
                         break;
                     case 5:
                         actionBtns.AddRange(new object[5]
                         {
-                            X360Controls.DpadRight, X360Controls.DpadLeft,
-                            X360Controls.DpadUp, X360Controls.DpadDown, X360Controls.Unbound,
+                            X360Controls.DpadLeft, X360Controls.DpadRight,
+                            X360Controls.DpadDown, X360Controls.DpadUp, X360Controls.Unbound,
                         });
                         break;
                     default:
@@ -2658,14 +2658,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     case 4:
                         actionBtns.AddRange(new object[5]
                         {
-                            X360Controls.LXNeg, X360Controls.LXPos,
-                            X360Controls.LYPos, X360Controls.LYNeg, X360Controls.LS,
+                            X360Controls.LXPos, X360Controls.LXNeg,
+                            X360Controls.LYNeg, X360Controls.LYPos, X360Controls.LS,
                         });
                         break;
                     case 5:
                         actionBtns.AddRange(new object[5]
                         {
-                            X360Controls.LXPos, X360Controls.LXNeg,
+                            X360Controls.LXNeg, X360Controls.LXPos,
                             X360Controls.LYPos, X360Controls.LYNeg, X360Controls.LS,
                         });
                         break;
@@ -2708,14 +2708,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     case 4:
                         actionBtns.AddRange(new object[5]
                         {
-                            X360Controls.RXNeg, X360Controls.RXPos,
+                            X360Controls.RXPos, X360Controls.RXNeg,
                             X360Controls.RYNeg, X360Controls.RYPos, X360Controls.RS,
                         });
                         break;
                     case 5:
                         actionBtns.AddRange(new object[5]
                         {
-                            X360Controls.RXPos, X360Controls.RXNeg,
+                            X360Controls.RXNeg, X360Controls.RXPos,
                             X360Controls.RYPos, X360Controls.RYNeg, X360Controls.RS,
                         });
                         break;
@@ -2728,7 +2728,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 switch(subTag)
                 {
                     case 0:
-                        // North, South, East, West
+                        // North, South, West, East
                         actionBtns.AddRange(new object[5]
                         {
                             X360Controls.Y, X360Controls.A, X360Controls.X, X360Controls.B, X360Controls.Unbound,
@@ -2737,13 +2737,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     case 1:
                         actionBtns.AddRange(new object[5]
                         {
-                            X360Controls.X, X360Controls.B,  X360Controls.A, X360Controls.Y, X360Controls.Unbound,
+                            X360Controls.B, X360Controls.X, X360Controls.Y, X360Controls.A, X360Controls.Unbound,
                         });
                         break;
                     case 2:
                         actionBtns.AddRange(new object[5]
                         {
-                            X360Controls.B, X360Controls.X, X360Controls.Y, X360Controls.A, X360Controls.Unbound,
+                            X360Controls.X, X360Controls.B, X360Controls.A, X360Controls.Y, X360Controls.Unbound,
                         });
                         break;
                     default:
@@ -2755,7 +2755,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 switch(subTag)
                 {
                     case 0:
-                        // North, South, East, West
+                        // North, South, West, East
                         actionBtns.AddRange(new object[5]
                         {
                             KeyInterop.VirtualKeyFromKey(Key.W), KeyInterop.VirtualKeyFromKey(Key.S),
@@ -2766,16 +2766,16 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     case 1:
                         actionBtns.AddRange(new object[5]
                         {
-                            KeyInterop.VirtualKeyFromKey(Key.A), KeyInterop.VirtualKeyFromKey(Key.D),
-                            KeyInterop.VirtualKeyFromKey(Key.S), KeyInterop.VirtualKeyFromKey(Key.W),
+                            KeyInterop.VirtualKeyFromKey(Key.D), KeyInterop.VirtualKeyFromKey(Key.A),
+                            KeyInterop.VirtualKeyFromKey(Key.W), KeyInterop.VirtualKeyFromKey(Key.S),
                             X360Controls.Unbound,
                         });
                         break;
                     case 2:
                         actionBtns.AddRange(new object[5]
                         {
-                            KeyInterop.VirtualKeyFromKey(Key.D), KeyInterop.VirtualKeyFromKey(Key.A),
-                            KeyInterop.VirtualKeyFromKey(Key.W), KeyInterop.VirtualKeyFromKey(Key.S),
+                            KeyInterop.VirtualKeyFromKey(Key.A), KeyInterop.VirtualKeyFromKey(Key.D),
+                            KeyInterop.VirtualKeyFromKey(Key.S), KeyInterop.VirtualKeyFromKey(Key.W),
                             X360Controls.Unbound,
                         });
                         break;
@@ -2788,7 +2788,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 switch(subTag)
                 {
                     case 0:
-                        // North, South, East, West
+                        // North, South, West, East
                         actionBtns.AddRange(new object[5]
                         {
                             KeyInterop.VirtualKeyFromKey(Key.Up), KeyInterop.VirtualKeyFromKey(Key.Down),
@@ -2799,16 +2799,16 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     case 1:
                         actionBtns.AddRange(new object[5]
                         {
-                            KeyInterop.VirtualKeyFromKey(Key.Left), KeyInterop.VirtualKeyFromKey(Key.Right),
-                            KeyInterop.VirtualKeyFromKey(Key.Down), KeyInterop.VirtualKeyFromKey(Key.Up),
+                            KeyInterop.VirtualKeyFromKey(Key.Right), KeyInterop.VirtualKeyFromKey(Key.Left),
+                            KeyInterop.VirtualKeyFromKey(Key.Up), KeyInterop.VirtualKeyFromKey(Key.Down),
                             X360Controls.Unbound,
                         });
                         break;
                     case 2:
                         actionBtns.AddRange(new object[5]
                         {
-                            KeyInterop.VirtualKeyFromKey(Key.Right), KeyInterop.VirtualKeyFromKey(Key.Left),
-                            KeyInterop.VirtualKeyFromKey(Key.Up), KeyInterop.VirtualKeyFromKey(Key.Down),
+                            KeyInterop.VirtualKeyFromKey(Key.Left), KeyInterop.VirtualKeyFromKey(Key.Right),
+                            KeyInterop.VirtualKeyFromKey(Key.Down), KeyInterop.VirtualKeyFromKey(Key.Up),
                             X360Controls.Unbound,
                         });
                         break;
@@ -2855,16 +2855,16 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     case 4:
                         actionBtns.AddRange(new object[5]
                         {
-                            X360Controls.MouseLeft, X360Controls.MouseRight,
-                            X360Controls.MouseDown, X360Controls.MouseUp,
+                            X360Controls.MouseRight, X360Controls.MouseLeft,
+                            X360Controls.MouseUp, X360Controls.MouseDown,
                             X360Controls.Unbound,
                         });
                         break;
                     case 5:
                         actionBtns.AddRange(new object[5]
                         {
-                            X360Controls.MouseRight, X360Controls.MouseLeft,
-                            X360Controls.MouseUp, X360Controls.MouseDown,
+                            X360Controls.MouseLeft, X360Controls.MouseRight,
+                            X360Controls.MouseDown, X360Controls.MouseUp,
                             X360Controls.Unbound,
                         });
                         break;

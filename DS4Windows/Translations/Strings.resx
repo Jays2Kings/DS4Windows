@@ -157,7 +157,7 @@
     <value>Check For Update Now</value>
   </data>
   <data name="CheckUpdateStartup" xml:space="preserve">
-    <value>Check for DS4Windows Updates at Startup</value>
+    <value>Check for updates at DS4Windows startup</value>
   </data>
   <data name="Clear" xml:space="preserve">
     <value>Clear</value>

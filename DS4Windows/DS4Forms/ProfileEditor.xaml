@@ -44,27 +44,47 @@
                                     <MenuItem Header="Inverted" Tag="1" CommandParameter="1" Click="PresetMenuItem_Click" />
                                     <MenuItem Header="Inverted X" Tag="1" CommandParameter="2" Click="PresetMenuItem_Click" />
                                     <MenuItem Header="Inverted Y" Tag="1" CommandParameter="3" Click="PresetMenuItem_Click" />
+                                    <MenuItem Header="Rotate 90&#xb0;" Tag="1" CommandParameter="4" Click="PresetMenuItem_Click" />
+                                    <MenuItem Header="Rotate -90&#xb0;" Tag="1" CommandParameter="5" Click="PresetMenuItem_Click" />
                                 </MenuItem>
                                 <MenuItem Header="Left Stick">
                                     <MenuItem Header="Normal" Tag="2" CommandParameter="0" Click="PresetMenuItem_Click" />
                                     <MenuItem Header="Inverted" Tag="2" CommandParameter="1" Click="PresetMenuItem_Click" />
                                     <MenuItem Header="Inverted X" Tag="2" CommandParameter="2" Click="PresetMenuItem_Click" />
                                     <MenuItem Header="Inverted Y" Tag="2" CommandParameter="3" Click="PresetMenuItem_Click" />
+                                    <MenuItem Header="Rotate 90&#xb0;" Tag="2" CommandParameter="4" Click="PresetMenuItem_Click" />
+                                    <MenuItem Header="Rotate -90&#xb0;" Tag="2" CommandParameter="5" Click="PresetMenuItem_Click" />
                                 </MenuItem>
                                 <MenuItem Header="Right Stick">
                                     <MenuItem Header="Normal" Tag="3" CommandParameter="0" Click="PresetMenuItem_Click" />
                                     <MenuItem Header="Inverted" Tag="3" CommandParameter="1" Click="PresetMenuItem_Click" />
                                     <MenuItem Header="Inverted X" Tag="3" CommandParameter="2" Click="PresetMenuItem_Click" />
                                     <MenuItem Header="Inverted Y" Tag="3" CommandParameter="3" Click="PresetMenuItem_Click" />
+                                    <MenuItem Header="Rotate 90&#xb0;" Tag="3" CommandParameter="4" Click="PresetMenuItem_Click" />
+                                    <MenuItem Header="Rotate -90&#xb0;" Tag="3" CommandParameter="5" Click="PresetMenuItem_Click" />
                                 </MenuItem>
-                                <MenuItem Header="Face Buttons" Tag="4" Click="PresetMenuItem_Click" />
-                                <MenuItem Header="WASD" Tag="5" Click="PresetMenuItem_Click" />
-                                <MenuItem Header="Arrow Keys" Tag="6" Click="PresetMenuItem_Click" />
+                                <MenuItem Header="Face Buttons">
+                                    <MenuItem Header="Normal" Tag="4" CommandParameter="0" Click="PresetMenuItem_Click" />
+                                    <MenuItem Header="Rotate 90&#xb0;" Tag="4" CommandParameter="1" Click="PresetMenuItem_Click" />
+                                    <MenuItem Header="Rotate -90&#xb0;" Tag="4" CommandParameter="2" Click="PresetMenuItem_Click" />
+                                </MenuItem>
+                                <MenuItem Header="WASD">
+                                    <MenuItem Header="Normal" Tag="5" CommandParameter="0" Click="PresetMenuItem_Click" />
+                                    <MenuItem Header="Rotate 90&#xb0;" Tag="5" CommandParameter="1" Click="PresetMenuItem_Click" />
+                                    <MenuItem Header="Rotate -90&#xb0;" Tag="5" CommandParameter="2" Click="PresetMenuItem_Click" />
+                                </MenuItem>
+                                <MenuItem Header="Arrow Keys">
+                                    <MenuItem Header="Normal" Tag="6" CommandParameter="0" Click="PresetMenuItem_Click" />
+                                    <MenuItem Header="Rotate 90&#xb0;" Tag="6" CommandParameter="1" Click="PresetMenuItem_Click" />
+                                    <MenuItem Header="Rotate -90&#xb0;" Tag="6" CommandParameter="2" Click="PresetMenuItem_Click" />
+                                </MenuItem>
                                 <MenuItem Header="Mouse">
                                     <MenuItem Header="Normal" Tag="7" CommandParameter="0" Click="PresetMenuItem_Click" />
                                     <MenuItem Header="Inverted" Tag="7" CommandParameter="1" Click="PresetMenuItem_Click" />
                                     <MenuItem Header="Inverted X" Tag="7" CommandParameter="2" Click="PresetMenuItem_Click" />
                                     <MenuItem Header="Inverted Y" Tag="7" CommandParameter="3" Click="PresetMenuItem_Click" />
+                                    <MenuItem Header="Rotate 90&#xb0;" Tag="7" CommandParameter="4" Click="PresetMenuItem_Click" />
+                                    <MenuItem Header="Rotate -90&#xb0;" Tag="7" CommandParameter="5" Click="PresetMenuItem_Click" />
                                 </MenuItem>
                                 <MenuItem Header="Unbound" Tag="8" Click="PresetMenuItem_Click" />
                             </ContextMenu>

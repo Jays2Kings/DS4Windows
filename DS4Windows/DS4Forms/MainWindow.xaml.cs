@@ -1111,35 +1111,39 @@ Suspend support not enabled.", true);
                                         // Name of the property to query from a profile or DS4Windows app engine
                                         propName = strData[2].ToLower();
 
-                                        if (propName == "profilename")
-                                        {
-                                            if (Global.useTempProfile[tdevice])
-                                                propValue = Global.tempprofilename[tdevice];
-                                            else
-                                                propValue = Global.ProfilePath[tdevice];
-                                        }
-                                        else if (propName == "outconttype")
-                                            propValue = Global.OutContType[tdevice].ToString();
-                                        else if (propName == "activeoutdevtype")
-                                            propValue = Global.activeOutDevType[tdevice].ToString();
-                                        else if (propName == "usedinputonly")
-                                            propValue = Global.useDInputOnly[tdevice].ToString();
+                                            if (propName == "profilename")
+                                            {
+                                                if (Global.useTempProfile[tdevice])
+                                                    propValue = Global.tempprofilename[tdevice];
+                                                else
+                                                    propValue = Global.ProfilePath[tdevice];
+                                            }
+                                            else if (propName == "outconttype")
+                                                propValue = Global.OutContType[tdevice].ToString();
+                                            else if (propName == "activeoutdevtype")
+                                                propValue = Global.activeOutDevType[tdevice].ToString();
+                                            else if (propName == "usedinputonly")
+                                                propValue = Global.useDInputOnly[tdevice].ToString();
 
-                                        else if (propName == "devicevidpid" && App.rootHub.DS4Controllers[tdevice] != null)
-                                            propValue = $"VID={App.rootHub.DS4Controllers[tdevice].HidDevice.Attributes.VendorHexId}, PID={App.rootHub.DS4Controllers[tdevice].HidDevice.Attributes.ProductHexId}";
-                                        else if (propName == "devicepath" && App.rootHub.DS4Controllers[tdevice] != null)
-                                            propValue = App.rootHub.DS4Controllers[tdevice].HidDevice.DevicePath;
-                                        else if (propName == "macaddress" && App.rootHub.DS4Controllers[tdevice] != null)
-                                            propValue = App.rootHub.DS4Controllers[tdevice].MacAddress;
-                                        else if (propName == "displayname" && App.rootHub.DS4Controllers[tdevice] != null)
-                                            propValue = App.rootHub.DS4Controllers[tdevice].DisplayName;
-                                        else if (propName == "conntype" && App.rootHub.DS4Controllers[tdevice] != null)
-                                            propValue = App.rootHub.DS4Controllers[tdevice].ConnectionType.ToString();
-                                        else if (propName == "exclusivestatus" && App.rootHub.DS4Controllers[tdevice] != null)
-                                            propValue = App.rootHub.DS4Controllers[tdevice].CurrentExclusiveStatus.ToString();
+                                            else if (propName == "devicevidpid" && App.rootHub.DS4Controllers[tdevice] != null)
+                                                propValue = $"VID={App.rootHub.DS4Controllers[tdevice].HidDevice.Attributes.VendorHexId}, PID={App.rootHub.DS4Controllers[tdevice].HidDevice.Attributes.ProductHexId}";
+                                            else if (propName == "devicepath" && App.rootHub.DS4Controllers[tdevice] != null)
+                                                propValue = App.rootHub.DS4Controllers[tdevice].HidDevice.DevicePath;
+                                            else if (propName == "macaddress" && App.rootHub.DS4Controllers[tdevice] != null)
+                                                propValue = App.rootHub.DS4Controllers[tdevice].MacAddress;
+                                            else if (propName == "displayname" && App.rootHub.DS4Controllers[tdevice] != null)
+                                                propValue = App.rootHub.DS4Controllers[tdevice].DisplayName;
+                                            else if (propName == "conntype" && App.rootHub.DS4Controllers[tdevice] != null)
+                                                propValue = App.rootHub.DS4Controllers[tdevice].ConnectionType.ToString();
+                                            else if (propName == "exclusivestatus" && App.rootHub.DS4Controllers[tdevice] != null)
+                                                propValue = App.rootHub.DS4Controllers[tdevice].CurrentExclusiveStatus.ToString();
+                                            else if (propName == "battery" && App.rootHub.DS4Controllers[tdevice] != null)
+                                                propValue = App.rootHub.DS4Controllers[tdevice].Battery.ToString();
+                                            else if (propName == "charging" && App.rootHub.DS4Controllers[tdevice] != null)
+                                                propValue = App.rootHub.DS4Controllers[tdevice].Charging.ToString();
 
-                                        else if (propName == "apprunning")
-                                            propValue = App.rootHub.running.ToString(); // Controller idx value is ignored, but it still needs to be in 1..4 range in a cmdline call
+                                            else if (propName == "apprunning")
+                                                propValue = App.rootHub.running.ToString(); // Controller idx value is ignored, but it still needs to be in 1..4 range in a cmdline call
                                     }
 
                                     // Write out the property value to MMF result data file and notify a client process that the data is available

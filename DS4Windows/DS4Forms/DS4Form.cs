@@ -92,7 +92,8 @@ namespace DS4Windows
             SystemEvents.PowerModeChanged += OnPowerChange;
             tSOptions.Visible = false;
             bool firstrun = false;
-            if (File.Exists(exepath + "\\Auto Profiles.xml")
+            if (exepath != appDataPpath
+                && File.Exists(exepath + "\\Auto Profiles.xml")
                 && File.Exists(appDataPpath + "\\Auto Profiles.xml"))
             {
                 firstrun = true;

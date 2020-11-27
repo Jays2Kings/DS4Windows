@@ -1639,7 +1639,7 @@ namespace DS4Windows
             {
                 if (testRumble.RumbleMotorsExplicitlyOff)
                     rumbleAutostopTimer.Reset();   // Stop an autostop timer because ViGem driver sent properly a zero rumble notification
-                else
+                else if (currentHap.RumbleMotorStrengthLeftHeavySlow != leftHeavySlowMotor || currentHap.RumbleMotorStrengthRightLightFast != rightLightFastMotor)
                     rumbleAutostopTimer.Restart(); // Start an autostop timer to stop potentially stuck rumble motor because of lost rumble notification events from ViGem driver
             }
         }

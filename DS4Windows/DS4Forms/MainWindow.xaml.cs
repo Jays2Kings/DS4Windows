@@ -803,6 +803,7 @@ Suspend support not enabled.", true);
                 }
 
                 StartStopBtn.IsEnabled = true;
+                slotManControl.IsEnabled = service.running;
             }));
         }
 

@@ -934,7 +934,7 @@ namespace DS4Windows
                                 (uint)(btInputReport[CRC32_POS_2] << 16) |
                                 (uint)(btInputReport[CRC32_POS_3] << 24);
 
-                            uint calcCrc32 = ~Crc32Algorithm.CalculateFasterBTHash(ref HamSeed, ref btInputReport, ref crcoffset, ref crcpos);
+                            uint calcCrc32 = ~Crc32Algorithm.CalculateFasterBT78Hash(ref HamSeed, ref btInputReport, ref crcoffset, ref crcpos);
                             if (recvCrc32 != calcCrc32)
                             {
                                 //Log.LogToGui("Crc check failed", true);

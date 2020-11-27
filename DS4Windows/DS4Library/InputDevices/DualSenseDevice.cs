@@ -314,7 +314,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                                 (uint)(inputReport[CRC32_POS_2] << 16) |
                                 (uint)(inputReport[CRC32_POS_3] << 24);
 
-                            uint calcCrc32 = ~Crc32Algorithm.CalculateFasterBTHash(ref HamSeed, ref inputReport, ref crcoffset, ref crcpos);
+                            uint calcCrc32 = ~Crc32Algorithm.CalculateFasterBT78Hash(ref HamSeed, ref inputReport, ref crcoffset, ref crcpos);
                             if (recvCrc32 != calcCrc32)
                             {
                                 cState.PacketCounter = pState.PacketCounter + 1; //still increase so we know there were lost packets
@@ -911,7 +911,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     int crcpos = BT_OUTPUT_REPORT_LENGTH - 4;
                     calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);
                     //calcCrc32 = ~Crc32Algorithm.CalculateBasicHash(ref calcCrc32, ref outputReport, 0, BT_OUTPUT_REPORT_LENGTH-4);
-                    calcCrc32 = ~Crc32Algorithm.CalculateFasterBTHash(ref calcCrc32, ref outputReport, ref crcOffset, ref crcpos);
+                    calcCrc32 = ~Crc32Algorithm.CalculateFasterBT78Hash(ref calcCrc32, ref outputReport, ref crcOffset, ref crcpos);
                 }
 
                 outputReport[74] = (byte)calcCrc32;

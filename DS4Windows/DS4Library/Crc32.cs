@@ -282,7 +282,15 @@ namespace DS4Windows
             return crc;
         }
 
-        public static unsafe uint CalculateFasterBTHash(ref uint seed, ref byte[] buffer, ref int start, ref int size)
+        /// <summary>
+        /// More optimized CRC-32 algorithm that only works with 78 byte arrays
+        /// </summary>
+        /// <param name="seed"></param>
+        /// <param name="buffer"></param>
+        /// <param name="start"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public static unsafe uint CalculateFasterBT78Hash(ref uint seed, ref byte[] buffer, ref int start, ref int size)
         {
             /*uint crc = seed;
             for (int i = start; i < size + start; i++)

@@ -1098,6 +1098,27 @@ Suspend support not enabled.", true);
                                         }
                                     }
                                 }
+                                else if (strData[0] == "outputslot" && strData.Length >= 3)
+                                {
+                                    // Command syntax: 
+                                    //    OutputSlot.slot#.Unplug
+                                    //    OutputSlot.slot#.PlugDS4
+                                    //    OutputSlot.slot#.PlugX360
+                                    if (int.TryParse(strData[1], out tdevice))
+                                        tdevice--;
+
+                                    if (tdevice >= 0 && tdevice < ControlService.MAX_DS4_CONTROLLER_COUNT)
+                                    {
+                                        strData[2] = strData[2].ToLower();
+                                        DS4Control.OutSlotDevice slotDevice = Program.rootHub.OutputslotMan.OutputSlots[tdevice];
+                                        if (strData[2] == "unplug")
+                                            Program.rootHub.DetachUnboundOutDev(slotDevice);
+                                        else if (strData[2] == "plugds4")
+                                            Program.rootHub.AttachUnboundOutDev(slotDevice, OutContType.DS4);
+                                        else if (strData[2] == "plugx360")
+                                            Program.rootHub.AttachUnboundOutDev(slotDevice, OutContType.X360);
+                                    }
+                                }
                                 else if (strData[0] == "query" && strData.Length >= 3)
                                 {
                                     string propName;
@@ -1142,6 +1163,14 @@ Suspend support not enabled.", true);
                                                 propValue = App.rootHub.DS4Controllers[tdevice].Battery.ToString();
                                             else if (propName == "charging" && App.rootHub.DS4Controllers[tdevice] != null)
                                                 propValue = App.rootHub.DS4Controllers[tdevice].Charging.ToString();
+                                            else if (propName == "outputslottype")
+                                                propValue = App.rootHub.OutputslotMan.OutputSlots[tdevice].CurrentType.ToString();
+                                            else if (propName == "outputslotpermanenttype")
+                                                propValue = App.rootHub.OutputslotMan.OutputSlots[tdevice].PermanentType.ToString();
+                                            else if (propName == "outputslotattachedstatus")
+                                                propValue = App.rootHub.OutputslotMan.OutputSlots[tdevice].CurrentAttachedStatus.ToString();
+                                            else if (propName == "outputslotinputbound")
+                                                propValue = App.rootHub.OutputslotMan.OutputSlots[tdevice].CurrentInputBound.ToString();
 
                                             else if (propName == "apprunning")
                                                 propValue = App.rootHub.running.ToString(); // Controller idx value is ignored, but it still needs to be in 1..4 range in a cmdline call

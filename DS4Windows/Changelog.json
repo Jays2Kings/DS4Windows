@@ -23,7 +23,8 @@
               "* Experimental rumble for DS4 emulation. Make support a profile option. Contribution by **mika-n**",
               "* Added New Battery and Charging command line query options to return the battery value and the charging status. Contribution by **mika-n**",
               "* Updated target .NET Framework to version 4.8. Contribution by **dante38**",
-              "* Disable Output Slots section when service is not running"],
+              "* Disable Output Slots section when service is not running",
+              "* New outputSlot related command line interfaces. Contribution by **mika-n**"],
             "editor": "ryochan7",
             "editors_note": ["Backup before compy dies"],
             "updated_at": "2020-11-28T16:51:16+0000"

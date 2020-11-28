@@ -1,9 +1,35 @@
 {
-  "latest_version": "2.1.17",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 17},
-  "updated_at": "2020-11-19T19:07:49+0000",
+  "latest_version": "2.1.18",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 18},
+  "updated_at": "2020-11-28T16:51:16+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.18",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 18},
+        "base_header": "Version 2.1.18",
+        "release_date": "2020-11-28T16:51:16+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.18",
+            "log_text": ["* Lowered intensity of rumble effort for DualSense",
+              "* Rumble and lightbar support for DualSesnse now work over BT",
+              "* Added Rotate options to the Preset Menu in the Profile Editor. Useful for mapping a single JoyCon",
+              "* Disable DualSense Mic LED for now",
+              "* Edit language used for Run At Startup options to make intent more clear. Contribution by **olokos**",
+              "* Updated Ukrainian localization. Contribution by **dondrakon1**",
+              "* Added Hungarian translation. Contribution by **rocketbucket10**",
+              "* Experimental rumble for DS4 emulation. Make support a profile option. Contribution by **mika-n**",
+              "* Added New Battery and Charging command line query options to return the battery value and the charging status. Contribution by **mika-n**",
+              "* Updated target .NET Framework to version 4.8. Contribution by **dante38**",
+              "* Disable Output Slots section when service is not running"],
+            "editor": "ryochan7",
+            "editors_note": ["Backup before compy dies"],
+            "updated_at": "2020-11-28T16:51:16+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.17",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 17},

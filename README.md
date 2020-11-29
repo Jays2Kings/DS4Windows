@@ -18,8 +18,8 @@ website at [ds4windows.com](http://ds4windows.com).
 ## Requirements
 
 - Windows 8.1 or newer
-- [Microsoft .NET 4.6.2 or higher (needed to unzip the driver and for macros to
-work properly)](https://www.microsoft.com/en-us/download/details.aspx?id=53344)
+- [Microsoft .NET 4.8 or higher (needed to unzip the driver and for macros to
+work properly)](https://support.microsoft.com/en-us/office/microsoft-net-framework-4-8-offline-installer-for-windows-9d23f658-3b97-68ab-d013-aa3c3e7495e0)
 - Visual C++ 2015-2019 Redistributable. [x64](https://aka.ms/vs/16/release/vc_redist.x64.exe) or [x86](https://aka.ms/vs/16/release/vc_redist.x86.exe)
 - [ViGEmBus](https://vigem.org/) driver (DS4Windows will install it for you)
 - Microsoft 360 Driver (link inside DS4Windows, already installed by Windows if
@@ -32,7 +32,8 @@ you've used a 360 controller before)
 [adapter like this](https://www.newegg.com/Product/Product.aspx?Item=N82E16833166126)
 or built in pc). Only use of Microsoft BT stack is supported. CSR BT stack is
 confirmed to not work with the DS4 even though some CSR adapters work fine
-using Microsoft BT stack. Toshiba's adapters currently do not work.
+using Microsoft BT stack. Toshiba's adapters currently do not work. 
+*Disabling 'Enable output data' in the controller profile settings might help with latency issues, but will disable lightbar and rumble support.*
 - Disable **PlayStation Configuration Support** and
 **Xbox Configuration Support** options in Steam
 

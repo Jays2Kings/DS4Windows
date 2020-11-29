@@ -576,6 +576,7 @@ namespace DS4Windows
             else if (contType == OutContType.DS4)
             {
                 DS4OutDevice tempDS4 = outDevice as DS4OutDevice;
+                LightbarSettingInfo deviceLightbarSettingsInfo = Global.LightbarSettingsInfo[devIndex];
 
                 Nefarius.ViGEm.Client.Targets.DualShock4FeedbackReceivedEventHandler p = (sender, args) =>
                 {
@@ -596,7 +597,8 @@ namespace DS4Windows
                         useRumble = true;
                     }
 
-                    if (color.red != 0 || color.green != 0 || color.blue != 0)
+                    // Let games to control lightbar only when the mode is Passthru (otherwise DS4Windows controls the light)
+                    if (deviceLightbarSettingsInfo.Mode == LightbarMode.Passthru && (color.red != 0 || color.green != 0 || color.blue != 0))
                     {
                         useLight = true;
                     }
@@ -608,9 +610,10 @@ namespace DS4Windows
                         {
                             useRumble = true;
                         }
-                        else if (device.LightBarColor.red != 0 ||
+                        else if (deviceLightbarSettingsInfo.Mode == LightbarMode.Passthru && 
+                            (device.LightBarColor.red != 0 ||
                             device.LightBarColor.green != 0 ||
-                            device.LightBarColor.blue != 0)
+                            device.LightBarColor.blue != 0))
                         {
                             useLight = true;
                         }
@@ -651,7 +654,7 @@ namespace DS4Windows
             else if (contType == OutContType.DS4)
             {
                 DS4OutDevice tempDS4 = outDevice as DS4OutDevice;
-                //tempDS4.cont.FeedbackReceived -= tempDS4.forceFeedbackCall;
+                tempDS4.cont.FeedbackReceived -= tempDS4.forceFeedbackCall;
                 tempDS4.forceFeedbackCall = null;
             }
         }
@@ -710,7 +713,11 @@ namespace DS4Windows
                             Xbox360OutDevice tempXbox = EstablishOutDevice(index, OutContType.X360)
                             as Xbox360OutDevice;
                             //outputDevices[index] = tempXbox;
-                            EstablishOutFeedback(index, OutContType.X360, tempXbox, device);
+                            
+                            // Enable ViGem feedback callback handler only if lightbar/rumble data output is enabled (if those are disabled then no point enabling ViGem callback handler call)
+                            if (Global.EnableOutputDataToDS4[index])
+                                EstablishOutFeedback(index, OutContType.X360, tempXbox, device);
+                            
                             outputslotMan.DeferredPlugin(tempXbox, index, outputDevices, contType);
                             //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
@@ -726,7 +733,10 @@ namespace DS4Windows
                     {
                         slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
                         Xbox360OutDevice tempXbox = slotDevice.OutputDevice as Xbox360OutDevice;
-                        EstablishOutFeedback(index, OutContType.X360, tempXbox, device);
+
+                        // Enable ViGem feedback callback handler only if lightbar/rumble data output is enabled (if those are disabled then no point enabling ViGem callback handler call)
+                        if (Global.EnableOutputDataToDS4[index])
+                            EstablishOutFeedback(index, OutContType.X360, tempXbox, device);
 
                         outputslotMan.EventDispatcher.BeginInvoke((Action)(() =>
                         {
@@ -751,7 +761,11 @@ namespace DS4Windows
                         {
                             DS4OutDevice tempDS4 = EstablishOutDevice(index, OutContType.DS4)
                             as DS4OutDevice;
-                            //EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
+
+                            // Enable ViGem feedback callback handler only if DS4 lightbar/rumble data output is enabled (if those are disabled then no point enabling ViGem callback handler call)
+                            if (Global.EnableOutputDataToDS4[index])
+                                EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
+                                
                             outputslotMan.DeferredPlugin(tempDS4, index, outputDevices, contType);
                             //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
@@ -767,7 +781,10 @@ namespace DS4Windows
                     {
                         slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
                         DS4OutDevice tempDS4 = slotDevice.OutputDevice as DS4OutDevice;
-                        //EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
+
+                        // Enable ViGem feedback callback handler only if lightbar/rumble data output is enabled (if those are disabled then no point enabling ViGem callback handler call)
+                        if (Global.EnableOutputDataToDS4[index])
+                            EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
 
                         outputslotMan.EventDispatcher.BeginInvoke((Action)(() =>
                         {
@@ -841,6 +858,8 @@ namespace DS4Windows
                     LogDebug(DS4WinWPF.Properties.Resources.Starting);
 
                 LogDebug($"Connection to ViGEmBus {Global.vigembusVersion} established");
+
+                DS4Devices.isExclusiveMode = getUseExclusiveMode(); //Re-enable Exclusive Mode
 
                 UpdateHidGuardAttributes();
 
@@ -952,6 +971,12 @@ namespace DS4Windows
                                 CurrentState[tempIdx].CopyTo(stateForUdp);
                                 if (Global.IsUsingUDPServerSmoothing())
                                 {
+                                    if (stateForUdp.elapsedTime == 0)
+                                    {
+                                        // No timestamp was found. Exit out of routine
+                                        return;
+                                    }
+
                                     double rate = 1.0 / stateForUdp.elapsedTime;
                                     OneEuroFilter3D accelFilter = udpEuroPairAccel[tempIdx];
                                     stateForUdp.Motion.accelXG = accelFilter.axis1Filter.Filter(stateForUdp.Motion.accelXG, rate);
@@ -1252,11 +1277,18 @@ namespace DS4Windows
 
                                     if (Global.IsUsingUDPServerSmoothing())
                                     {
+                                        if (stateForUdp.elapsedTime == 0)
+                                        {
+                                            // No timestamp was found. Exit out of routine
+                                            return;
+                                        }
+
                                         double rate = 1.0 / stateForUdp.elapsedTime;
                                         OneEuroFilter3D accelFilter = udpEuroPairAccel[tempIdx];
                                         stateForUdp.Motion.accelXG = accelFilter.axis1Filter.Filter(stateForUdp.Motion.accelXG, rate);
                                         stateForUdp.Motion.accelYG = accelFilter.axis2Filter.Filter(stateForUdp.Motion.accelYG, rate);
                                         stateForUdp.Motion.accelZG = accelFilter.axis3Filter.Filter(stateForUdp.Motion.accelZG, rate);
+
 
                                         OneEuroFilter3D gyroFilter = udpEuroPairGyro[tempIdx];
                                         stateForUdp.Motion.angVelYaw = gyroFilter.axis1Filter.Filter(stateForUdp.Motion.angVelYaw, rate);

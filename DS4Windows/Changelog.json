@@ -1,9 +1,103 @@
 {
-  "latest_version": "2.1.15",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 15},
-  "updated_at": "2020-10-04T18:29:47+0000",
+  "latest_version": "2.1.19",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 19},
+  "updated_at": "2020-11-29T15:47:50+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.19",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 19},
+        "base_header": "Version 2.1.19",
+        "release_date": "2020-11-29T15:47:50+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.19",
+            "log_text": ["* Fixed translation loading"],
+            "editor": "ryochan7",
+            "editors_note": ["Fixed App.config"],
+            "updated_at": "2020-11-29T15:47:50+0000"
+          }
+        ]
+      },
+      {
+        "version_str": "2.1.18",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 18},
+        "base_header": "Version 2.1.18",
+        "release_date": "2020-11-28T16:51:16+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.18",
+            "log_text": ["* Lowered intensity of rumble effect for DualSense",
+              "* Rumble and lightbar support for DualSense now work over BT",
+              "* Added Rotate options to the Preset Menu in the Profile Editor. Useful for mapping a single JoyCon",
+              "* Disable DualSense Mic LED for now",
+              "* Edit language used for Run At Startup options to make intent more clear. Contribution by **olokos**",
+              "* Updated Ukrainian localization. Contribution by **dondrakon1**",
+              "* Added Hungarian translation. Contribution by **rocketbucket10**",
+              "* Experimental rumble for DS4 emulation. Make support a profile option. Contribution by **mika-n**",
+              "* Added New Battery and Charging command line query options to return the battery value and the charging status. Contribution by **mika-n**",
+              "* Updated target .NET Framework to version 4.8. Contribution by **dante38**",
+              "* Disable Output Slots section when service is not running",
+              "* New outputSlot related command line interfaces. Contribution by **mika-n**"],
+            "editor": "ryochan7",
+            "editors_note": ["Backup before compy dies"],
+            "updated_at": "2020-11-28T16:51:16+0000"
+          }
+        ]
+      },
+      {
+        "version_str": "2.1.17",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 17},
+        "base_header": "Version 2.1.17",
+        "release_date": "2020-11-19T19:07:49+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.17",
+            "log_text": ["* Implemented JoyCon support",
+              "* Implemented DualSense support. Lightbar and rumble support only work with USB for now",
+              "* Added workaround for DS4 reader when a duplicate timestamp is in a report. Fixes smoothing for UDP server output",
+              "* Populate totalMicroSec in JoyConDevice and SwitchProDevice. Used in the UDP server output",
+              "* Enabled Idle Disconnect for SwitchPro and JoyCon"],
+            "editor": "ryochan7",
+            "editors_note": ["Many more changes than the Changelog implies"],
+            "updated_at": "2020-11-19T19:07:49+0000"
+          }
+        ]
+      },
+      {
+        "version_str": "2.1.16",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 16},
+        "base_header": "Version 2.1.16",
+        "release_date": "2020-11-10T04:52:21+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.16",
+            "log_text": ["* Allow inserting wait periods in macro sequence",
+              "* Disable IdleDisconnect by default",
+              "* Updated URL for Gamepad Tester",
+              "* Added initial Flick Stick support",
+              "* Various refactors to somewhat abstract controller type from mapper code",
+              "* Added initial mapping support for the Switch Pro controller",
+              "* Increased default flash warning interval in Settings. Now defaults to 40 ms",
+              "* Changed connection type check depending on the input device",
+              "* Added an extra Reset call for ManualResetEventSlim for DS4Device",
+              "* Allow task startup if running on battery power",
+              "* Added fuzz setting for 360 Steering Wheel mode",
+              "* Hide DS4 Controller option re-enabled. Contribution by **Yohoki**",
+              "* Chinese (Traditional, Taiwan) Translations Updated. Contribution by **SyaoranChang**",
+              "* Ukrainian translation added. Contribution by **atimonder1**",
+              "* Put null check when checking for new input devices. Necessary for new input device check refactor.",
+              "* Bundled HidNinja 0.2.2"],
+            "editor": "ryochan7",
+            "editors_note": ["Might finally use my Switch Pro controller"],
+            "updated_at": "2020-11-10T04:52:21+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.15",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 15},

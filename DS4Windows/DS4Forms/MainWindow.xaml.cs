@@ -803,6 +803,7 @@ Suspend support not enabled.", true);
                 }
 
                 StartStopBtn.IsEnabled = true;
+                slotManControl.IsEnabled = service.running;
             }));
         }
 
@@ -1097,6 +1098,27 @@ Suspend support not enabled.", true);
                                         }
                                     }
                                 }
+                                else if (strData[0] == "outputslot" && strData.Length >= 3)
+                                {
+                                    // Command syntax: 
+                                    //    OutputSlot.slot#.Unplug
+                                    //    OutputSlot.slot#.PlugDS4
+                                    //    OutputSlot.slot#.PlugX360
+                                    if (int.TryParse(strData[1], out tdevice))
+                                        tdevice--;
+
+                                    if (tdevice >= 0 && tdevice < ControlService.MAX_DS4_CONTROLLER_COUNT)
+                                    {
+                                        strData[2] = strData[2].ToLower();
+                                        DS4Control.OutSlotDevice slotDevice = Program.rootHub.OutputslotMan.OutputSlots[tdevice];
+                                        if (strData[2] == "unplug")
+                                            Program.rootHub.DetachUnboundOutDev(slotDevice);
+                                        else if (strData[2] == "plugds4")
+                                            Program.rootHub.AttachUnboundOutDev(slotDevice, OutContType.DS4);
+                                        else if (strData[2] == "plugx360")
+                                            Program.rootHub.AttachUnboundOutDev(slotDevice, OutContType.X360);
+                                    }
+                                }
                                 else if (strData[0] == "query" && strData.Length >= 3)
                                 {
                                     string propName;
@@ -1111,35 +1133,47 @@ Suspend support not enabled.", true);
                                         // Name of the property to query from a profile or DS4Windows app engine
                                         propName = strData[2].ToLower();
 
-                                        if (propName == "profilename")
-                                        {
-                                            if (Global.useTempProfile[tdevice])
-                                                propValue = Global.tempprofilename[tdevice];
-                                            else
-                                                propValue = Global.ProfilePath[tdevice];
-                                        }
-                                        else if (propName == "outconttype")
-                                            propValue = Global.OutContType[tdevice].ToString();
-                                        else if (propName == "activeoutdevtype")
-                                            propValue = Global.activeOutDevType[tdevice].ToString();
-                                        else if (propName == "usedinputonly")
-                                            propValue = Global.useDInputOnly[tdevice].ToString();
+                                            if (propName == "profilename")
+                                            {
+                                                if (Global.useTempProfile[tdevice])
+                                                    propValue = Global.tempprofilename[tdevice];
+                                                else
+                                                    propValue = Global.ProfilePath[tdevice];
+                                            }
+                                            else if (propName == "outconttype")
+                                                propValue = Global.OutContType[tdevice].ToString();
+                                            else if (propName == "activeoutdevtype")
+                                                propValue = Global.activeOutDevType[tdevice].ToString();
+                                            else if (propName == "usedinputonly")
+                                                propValue = Global.useDInputOnly[tdevice].ToString();
 
-                                        else if (propName == "devicevidpid" && App.rootHub.DS4Controllers[tdevice] != null)
-                                            propValue = $"VID={App.rootHub.DS4Controllers[tdevice].HidDevice.Attributes.VendorHexId}, PID={App.rootHub.DS4Controllers[tdevice].HidDevice.Attributes.ProductHexId}";
-                                        else if (propName == "devicepath" && App.rootHub.DS4Controllers[tdevice] != null)
-                                            propValue = App.rootHub.DS4Controllers[tdevice].HidDevice.DevicePath;
-                                        else if (propName == "macaddress" && App.rootHub.DS4Controllers[tdevice] != null)
-                                            propValue = App.rootHub.DS4Controllers[tdevice].MacAddress;
-                                        else if (propName == "displayname" && App.rootHub.DS4Controllers[tdevice] != null)
-                                            propValue = App.rootHub.DS4Controllers[tdevice].DisplayName;
-                                        else if (propName == "conntype" && App.rootHub.DS4Controllers[tdevice] != null)
-                                            propValue = App.rootHub.DS4Controllers[tdevice].ConnectionType.ToString();
-                                        else if (propName == "exclusivestatus" && App.rootHub.DS4Controllers[tdevice] != null)
-                                            propValue = App.rootHub.DS4Controllers[tdevice].CurrentExclusiveStatus.ToString();
+                                            else if (propName == "devicevidpid" && App.rootHub.DS4Controllers[tdevice] != null)
+                                                propValue = $"VID={App.rootHub.DS4Controllers[tdevice].HidDevice.Attributes.VendorHexId}, PID={App.rootHub.DS4Controllers[tdevice].HidDevice.Attributes.ProductHexId}";
+                                            else if (propName == "devicepath" && App.rootHub.DS4Controllers[tdevice] != null)
+                                                propValue = App.rootHub.DS4Controllers[tdevice].HidDevice.DevicePath;
+                                            else if (propName == "macaddress" && App.rootHub.DS4Controllers[tdevice] != null)
+                                                propValue = App.rootHub.DS4Controllers[tdevice].MacAddress;
+                                            else if (propName == "displayname" && App.rootHub.DS4Controllers[tdevice] != null)
+                                                propValue = App.rootHub.DS4Controllers[tdevice].DisplayName;
+                                            else if (propName == "conntype" && App.rootHub.DS4Controllers[tdevice] != null)
+                                                propValue = App.rootHub.DS4Controllers[tdevice].ConnectionType.ToString();
+                                            else if (propName == "exclusivestatus" && App.rootHub.DS4Controllers[tdevice] != null)
+                                                propValue = App.rootHub.DS4Controllers[tdevice].CurrentExclusiveStatus.ToString();
+                                            else if (propName == "battery" && App.rootHub.DS4Controllers[tdevice] != null)
+                                                propValue = App.rootHub.DS4Controllers[tdevice].Battery.ToString();
+                                            else if (propName == "charging" && App.rootHub.DS4Controllers[tdevice] != null)
+                                                propValue = App.rootHub.DS4Controllers[tdevice].Charging.ToString();
+                                            else if (propName == "outputslottype")
+                                                propValue = App.rootHub.OutputslotMan.OutputSlots[tdevice].CurrentType.ToString();
+                                            else if (propName == "outputslotpermanenttype")
+                                                propValue = App.rootHub.OutputslotMan.OutputSlots[tdevice].PermanentType.ToString();
+                                            else if (propName == "outputslotattachedstatus")
+                                                propValue = App.rootHub.OutputslotMan.OutputSlots[tdevice].CurrentAttachedStatus.ToString();
+                                            else if (propName == "outputslotinputbound")
+                                                propValue = App.rootHub.OutputslotMan.OutputSlots[tdevice].CurrentInputBound.ToString();
 
-                                        else if (propName == "apprunning")
-                                            propValue = App.rootHub.running.ToString(); // Controller idx value is ignored, but it still needs to be in 1..4 range in a cmdline call
+                                            else if (propName == "apprunning")
+                                                propValue = App.rootHub.running.ToString(); // Controller idx value is ignored, but it still needs to be in 1..4 range in a cmdline call
                                     }
 
                                     // Write out the property value to MMF result data file and notify a client process that the data is available
@@ -1221,7 +1255,22 @@ Suspend support not enabled.", true);
             mainTabCon.SelectedIndex = 1;
             //controllerLV.Focus();
         }
+        // Ex Mode Re-Enable
+        private async void HideDS4ContCk_Click(object sender, RoutedEventArgs e)
+        {
+            if (DS4Windows.Global.UseExclusiveMode == true) { MessageBox.Show("This feature is depreciated and no longer supported. Exclusive mode usage is provided mearly as a legacy feature. Do NOT ask for help for this feature, you will not recieve any.", "Feature no longer supported"); }
+            StartStopBtn.IsEnabled = false;
+            //bool checkStatus = hideDS4ContCk.IsChecked == true;
+            hideDS4ContCk.IsEnabled = false;
+            await Task.Run(() =>
+            {
+                App.rootHub.Stop();
+                App.rootHub.Start();
+            });
 
+            hideDS4ContCk.IsEnabled = true;
+            StartStopBtn.IsEnabled = true;
+        }
         private async void UseUdpServerCk_Click(object sender, RoutedEventArgs e)
         {
             bool status = useUdpServerCk.IsChecked == true;

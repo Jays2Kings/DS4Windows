@@ -1,10 +1,12 @@
 Travis Nickles (Ryochan7)
 carloshbcabral
 DandelionSprout
+dante38
 dondrakon
 Flo082002
 Geroyuni
 Haamar
+jdanders
 jdfeng
 justalemon
 Kamilczak020
@@ -12,6 +14,7 @@ Korney Czukowski (czukowski)
 Leonardo Melati (Leomelati)
 mayawei
 mika-n
+olokos
 peter9811
 Rajko Stojadinovic (rajkosto)
 RedDevilus

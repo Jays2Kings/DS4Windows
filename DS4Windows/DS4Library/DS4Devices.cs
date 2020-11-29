@@ -110,6 +110,8 @@ namespace DS4Windows
         internal const int HORI_VID = 0x0F0D;
         internal const int NINTENDO_VENDOR_ID = 0x57e;
         internal const int SWITCH_PRO_PRODUCT_ID = 0x2009;
+        internal const int JOYCON_L_PRODUCT_ID = 0x2006;
+        internal const int JOYCON_R_PRODUCT_ID = 0x2007;
 
         // https://support.steampowered.com/kb_article.php?ref=5199-TOKV-4426&l=english web site has a list of other PS4 compatible device VID/PID values and brand names. 
         // However, not all those are guaranteed to work with DS4Windows app so support is added case by case when users of DS4Windows app tests non-official DS4 gamepads.
@@ -119,6 +121,7 @@ namespace DS4Windows
             new VidPidInfo(SONY_VID, 0xBA0, "Sony WA"),
             new VidPidInfo(SONY_VID, 0x5C4, "DS4 v.1"),
             new VidPidInfo(SONY_VID, 0x09CC, "DS4 v.2"),
+            new VidPidInfo(SONY_VID, 0x0CE6, "DualSense", InputDeviceType.DualSense, VidPidFeatureSet.DefaultDS4, DualSenseDevice.DetermineConnectionType),
             new VidPidInfo(RAZER_VID, 0x1000, "Razer Raiju PS4"),
             new VidPidInfo(NACON_VID, 0x0D01, "Nacon Revol Pro v.1", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib), // Nacon Revolution Pro v1 and v2 doesn't support DS4 gyro calibration routines
             new VidPidInfo(NACON_VID, 0x0D02, "Nacon Revol Pro v.2", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib),
@@ -144,6 +147,8 @@ namespace DS4Windows
             new VidPidInfo(HORI_VID, 0x00C9, "Hori Taiko Controller",  InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib), // Hori Taiko Controller (wired only. No light bar, touchpad, gyro, rumble, sticks or triggers)
             new VidPidInfo(0x0C12, 0x1E1C, "SnakeByte Game:Pad 4S", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib | VidPidFeatureSet.NoBatteryReading), // SnakeByte Gamepad for PS4 (wired only. No gyro. No light bar). If it doesn't work then try the latest gamepad firmware from https://mysnakebyte.com/
             new VidPidInfo(NINTENDO_VENDOR_ID, SWITCH_PRO_PRODUCT_ID, "Switch Pro", InputDeviceType.SwitchPro, VidPidFeatureSet.DefaultDS4, checkConnection: SwitchProDevice.DetermineConnectionType),
+            new VidPidInfo(NINTENDO_VENDOR_ID, JOYCON_L_PRODUCT_ID, "JoyCon (L)", InputDeviceType.JoyConL, VidPidFeatureSet.DefaultDS4, checkConnection: JoyConDevice.DetermineConnectionType),
+            new VidPidInfo(NINTENDO_VENDOR_ID, JOYCON_R_PRODUCT_ID, "JoyCon (R)", InputDeviceType.JoyConR, VidPidFeatureSet.DefaultDS4, checkConnection: JoyConDevice.DetermineConnectionType),
         };
 
         public static string devicePathToInstanceId(string devicePath)
@@ -251,8 +256,18 @@ namespace DS4Windows
 
                     if (hDevice.IsOpen)
                     {
-                        string serial = hDevice.readSerial();
-                        bool validSerial = !serial.Equals(DS4Device.blankSerial);
+                        //string serial = hDevice.ReadSerial();
+                        string serial = DS4Device.BLANK_SERIAL;
+                        if (metainfo.inputDevType == InputDeviceType.DualSense)
+                        {
+                            serial = hDevice.ReadSerial(DualSenseDevice.SERIAL_FEATURE_ID);
+                        }
+                        else
+                        {
+                            serial = hDevice.ReadSerial(DS4Device.SERIAL_FEATURE_ID);
+                        }
+
+                        bool validSerial = !serial.Equals(DS4Device.BLANK_SERIAL);
                         bool newdev = true;
                         if (validSerial && deviceSerials.Contains(serial))
                         {
@@ -282,6 +297,12 @@ namespace DS4Windows
                         {
                             DS4Device ds4Device = InputDeviceFactory.CreateDevice(metainfo.inputDevType, hDevice, metainfo.name, metainfo.featureSet);
                             //DS4Device ds4Device = new DS4Device(hDevice, metainfo.name, metainfo.featureSet);
+                            if (ds4Device == null)
+                            {
+                                // No compatible device type was found. Skip
+                                continue;
+                            }
+
                             ds4Device.PostInit();
                             //ds4Device.Removal += On_Removal;
                             if (!ds4Device.ExitOutputThread)

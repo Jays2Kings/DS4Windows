@@ -1017,6 +1017,17 @@ namespace DS4Windows
         }
 
         // general values
+        // -- Re-Enable Exclusive Mode Starts Here --
+        public static bool UseExclusiveMode
+        {
+            set { m_Config.useExclusiveMode = value; }
+            get { return m_Config.useExclusiveMode; }
+        } // -- Re-Enable Ex Mode Ends here
+
+        public static bool getUseExclusiveMode()
+        {
+            return m_Config.useExclusiveMode;
+        }
         public static DateTime LastChecked
         {
             set { m_Config.lastChecked = value; }
@@ -1476,6 +1487,7 @@ namespace DS4Windows
         public static GyroMouseInfo[] GyroMouseInfo => m_Config.gyroMouseInfo;
 
         public static SteeringWheelSmoothingInfo[] WheelSmoothInfo => m_Config.wheelSmoothInfo;
+        public static int[] SAWheelFuzzValues => m_Config.saWheelFuzzValues;
 
         //public static DS4Color[] MainColor => m_Config.m_Leds;
         public static ref DS4Color getMainColor(int index)
@@ -2401,6 +2413,8 @@ namespace DS4Windows
             new SteeringWheelSmoothingInfo(),
         };
 
+        public int[] saWheelFuzzValues = new int[Global.TEST_PROFILE_ITEM_COUNT];
+
         private void setOutBezierCurveObjArrayItem(BezierCurve[] bezierCurveArray, int device, int curveOptionValue, BezierCurve.AxisType axisType)
         {
             // Set bezier curve obj of axis. 0=Linear (no curve mapping), 1-5=Pre-defined curves, 6=User supplied custom curve string value of a profile (comma separated list of 4 decimal numbers)
@@ -2512,6 +2526,7 @@ namespace DS4Windows
             new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 } };
         public int[] lsCurve = new int[Global.TEST_PROFILE_ITEM_COUNT] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         public int[] rsCurve = new int[Global.TEST_PROFILE_ITEM_COUNT] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        public Boolean useExclusiveMode = false; // Re-enable Ex Mode
         public Int32 formWidth = 782;
         public Int32 formHeight = 550;
         public int formLocationX = 0;
@@ -2548,7 +2563,7 @@ namespace DS4Windows
         public bool downloadLang = true;
         public TrayIconChoice useIconChoice;
         public bool flashWhenLate = true;
-        public int flashWhenLateAt = 30;
+        public int flashWhenLateAt = 40;
         public bool useUDPServ = false;
         public int udpServPort = 26760;
         public string udpServListenAddress = "127.0.0.1"; // 127.0.0.1=IPAddress.Loopback (default), 0.0.0.0=IPAddress.Any as all interfaces, x.x.x.x = Specific ipv4 interface address or hostname
@@ -3038,6 +3053,7 @@ namespace DS4Windows
                 XmlNode xmlSATriggerCond = m_Xdoc.CreateNode(XmlNodeType.Element, "SATriggerCond", null); xmlSATriggerCond.InnerText = SaTriggerCondString(sATriggerCond[device]); rootElement.AppendChild(xmlSATriggerCond);
                 XmlNode xmlSASteeringWheelEmulationAxis = m_Xdoc.CreateNode(XmlNodeType.Element, "SASteeringWheelEmulationAxis", null); xmlSASteeringWheelEmulationAxis.InnerText = sASteeringWheelEmulationAxis[device].ToString("G"); rootElement.AppendChild(xmlSASteeringWheelEmulationAxis);
                 XmlNode xmlSASteeringWheelEmulationRange = m_Xdoc.CreateNode(XmlNodeType.Element, "SASteeringWheelEmulationRange", null); xmlSASteeringWheelEmulationRange.InnerText = sASteeringWheelEmulationRange[device].ToString(); rootElement.AppendChild(xmlSASteeringWheelEmulationRange);
+                XmlNode xmlSASteeringWheelFuzz = m_Xdoc.CreateNode(XmlNodeType.Element, "SASteeringWheelFuzz", null); xmlSASteeringWheelFuzz.InnerText = saWheelFuzzValues[device].ToString(); rootElement.AppendChild(xmlSASteeringWheelFuzz);
 
                 XmlElement xmlSASteeringWheelSmoothingGroupEl = m_Xdoc.CreateElement("SASteeringWheelSmoothingOptions");
                 XmlElement xmlSASteeringWheelUseSmoothing = m_Xdoc.CreateElement("SASteeringWheelUseSmoothing"); xmlSASteeringWheelUseSmoothing.InnerText = wheelSmoothInfo[device].Enabled.ToString(); xmlSASteeringWheelSmoothingGroupEl.AppendChild(xmlSASteeringWheelUseSmoothing);
@@ -4144,6 +4160,14 @@ namespace DS4Windows
                     catch { wheelSmoothInfo[device].Beta = OneEuroFilterPair.DEFAULT_WHEEL_BETA; missingSetting = true; }
                 }
 
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SASteeringWheelFuzz");
+                    int.TryParse(Item.InnerText, out int temp);
+                    saWheelFuzzValues[device] = temp >= 0 && temp <= 100 ? temp : 0;
+                }
+                catch { saWheelFuzzValues[device] = 0; missingSetting = true; }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroOutputMode");
                     string tempMode = Item.InnerText;
                     gyroOutMode[device] = GetGyroOutModeType(tempMode);
@@ -4896,6 +4920,8 @@ namespace DS4Windows
 
                     m_Xdoc.Load(m_Profile);
 
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/useExclusiveMode"); Boolean.TryParse(Item.InnerText, out useExclusiveMode); } // Ex Mode
+                    catch { missingSetting = true; } // Ex Mode
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/startMinimized"); Boolean.TryParse(Item.InnerText, out startMinimized); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/minimizeToTaskbar"); Boolean.TryParse(Item.InnerText, out minToTaskbar); }
@@ -5131,6 +5157,8 @@ namespace DS4Windows
             rootElement.SetAttribute("app_version", Global.exeversion);
             rootElement.SetAttribute("config_version", Global.APP_CONFIG_VERSION.ToString());
 
+            // Ex Mode (+1 line)
+            XmlNode xmlUseExclNode = m_Xdoc.CreateNode(XmlNodeType.Element, "useExclusiveMode", null); xmlUseExclNode.InnerText = useExclusiveMode.ToString(); rootElement.AppendChild(xmlUseExclNode);
             XmlNode xmlStartMinimized = m_Xdoc.CreateNode(XmlNodeType.Element, "startMinimized", null); xmlStartMinimized.InnerText = startMinimized.ToString(); rootElement.AppendChild(xmlStartMinimized);
             XmlNode xmlminToTaskbar = m_Xdoc.CreateNode(XmlNodeType.Element, "minimizeToTaskbar", null); xmlminToTaskbar.InnerText = minToTaskbar.ToString(); rootElement.AppendChild(xmlminToTaskbar);
             XmlNode xmlFormWidth = m_Xdoc.CreateNode(XmlNodeType.Element, "formWidth", null); xmlFormWidth.InnerText = formWidth.ToString(); rootElement.AppendChild(xmlFormWidth);
@@ -5946,6 +5974,7 @@ namespace DS4Windows
             gyroMouseStickTriggerTurns[device] = true;
             sASteeringWheelEmulationAxis[device] = SASteeringWheelEmulationAxisType.None;
             sASteeringWheelEmulationRange[device] = 360;
+            saWheelFuzzValues[device] = 0;
             wheelSmoothInfo[device].Reset();
             touchDisInvertTriggers[device] = new int[1] { -1 };
             lsCurve[device] = rsCurve[device] = 0;

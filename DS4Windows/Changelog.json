@@ -1,9 +1,25 @@
 {
-  "latest_version": "2.1.18",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 18},
-  "updated_at": "2020-11-28T16:51:16+0000",
+  "latest_version": "2.1.19",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 19},
+  "updated_at": "2020-11-29T15:47:50+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.19",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 19},
+        "base_header": "Version 2.1.19",
+        "release_date": "2020-11-29T15:47:50+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.19",
+            "log_text": ["* Fixed translation loading"],
+            "editor": "ryochan7",
+            "editors_note": ["Fixed App.config"],
+            "updated_at": "2020-11-29T15:47:50+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.18",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 18},

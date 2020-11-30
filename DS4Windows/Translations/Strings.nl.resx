@@ -423,4 +423,16 @@ Example: whyme_DS4Windows</value>
   <data name="NoControllersConnected" xml:space="preserve">
     <value>Geen controllers verbonden (Max {0})</value>
   </data>
+  <data name="FlickThreshold" xml:space="preserve">
+    <value>Flick Threshold</value>
+  </data>
+  <data name="FlickTime" xml:space="preserve">
+    <value>Flick Time</value>
+  </data>
+  <data name="MinAngleThreshold" xml:space="preserve">
+    <value>Min Angle Threshold</value>
+  </data>
+  <data name="RealWorldCalibration" xml:space="preserve">
+    <value>Real World Calibration</value>
+  </data>
 </root>

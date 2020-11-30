@@ -205,6 +205,9 @@
     <Compile Include="DS4Forms\LanguagePackControl.xaml.cs">
       <DependentUpon>LanguagePackControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DS4Forms\LogMessageDisplay.xaml.cs">
+      <DependentUpon>LogMessageDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DS4Forms\OutputSlotManagerControl.xaml.cs">
       <DependentUpon>OutputSlotManagerControl.xaml</DependentUpon>
     </Compile>
@@ -325,6 +328,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DS4Forms\LanguagePackControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\LogMessageDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

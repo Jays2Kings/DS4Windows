@@ -974,7 +974,8 @@ Suspend support not enabled.", true);
                 return;
             }
 
-            if (conLvViewModel.ControllerCol.Count > 0)
+            // If this method was called directly without sender object then skip the confirmation dialogbox
+            if (sender != null && conLvViewModel.ControllerCol.Count > 0)
             {
                 MessageBoxResult result = MessageBox.Show(Properties.Resources.CloseConfirm, Properties.Resources.Confirm,
                         MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -1059,11 +1060,25 @@ Suspend support not enabled.", true);
                                 strData[0] = strData[0].ToLower();
 
                                 if (strData[0] == "start")
-                                    ChangeService();
+                                { 
+                                    if(!Program.rootHub.running) 
+                                        ChangeService();
+                                }
                                 else if (strData[0] == "stop")
-                                    ChangeService();
+                                {    
+                                    if (Program.rootHub.running)
+                                        ChangeService();
+                                }
                                 else if (strData[0] == "shutdown")
-                                    MainDS4Window_Closing(this, new System.ComponentModel.CancelEventArgs());
+                                {
+                                    // Force disconnect all gamepads before closing the app to avoid "Are you sure you want to close the app" messagebox
+                                    if (Program.rootHub.running)
+                                        ChangeService();
+
+                                    // Call closing method and let it to close editor wnd (if it is open) before proceeding to the actual "app closed" handler
+                                    MainDS4Window_Closing(null, new System.ComponentModel.CancelEventArgs());
+                                    MainDS4Window_Closed(this, new System.EventArgs());
+                                }
                                 else if ((strData[0] == "loadprofile" || strData[0] == "loadtempprofile") && strData.Length >= 3)
                                 {
                                     // Command syntax: LoadProfile.device#.profileName (fex LoadProfile.1.GameSnake or LoadTempProfile.1.WebBrowserSet)

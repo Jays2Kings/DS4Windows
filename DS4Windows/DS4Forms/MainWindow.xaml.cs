@@ -840,7 +840,10 @@ Suspend support not enabled.", true);
             if (idx > -1)
             {
                 LogItem temp = logvm.LogItems[idx];
-                MessageBox.Show(temp.Message, "Log");
+                LogMessageDisplay msgBox = new LogMessageDisplay(temp.Message);
+                msgBox.Owner = this;
+                msgBox.ShowDialog();
+                //MessageBox.Show(temp.Message, "Log");
             }
         }
 

@@ -1012,6 +1012,7 @@ Suspend support not enabled.", true);
         private const int DBT_DEVICEARRIVAL = 0x8000;
         private const int DBT_DEVICEREMOVECOMPLETE = 0x8004;
         public const int WM_COPYDATA = 0x004A;
+        private const int HOTPLUG_CHECK_DELAY = 2000;
 
         private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam,
             IntPtr lParam, ref bool handled)
@@ -1225,9 +1226,8 @@ Suspend support not enabled.", true);
             Program.rootHub.UpdateHidGuardAttributes();
             while (loopHotplug == true)
             {
-                Thread.Sleep(1500);
+                Thread.Sleep(HOTPLUG_CHECK_DELAY);
                 Program.rootHub.HotPlug();
-                //TaskRunner.Run(() => { Program.rootHub.HotPlug(uiContext); });
                 lock (hotplugCounterLock)
                 {
                     hotplugCounter--;

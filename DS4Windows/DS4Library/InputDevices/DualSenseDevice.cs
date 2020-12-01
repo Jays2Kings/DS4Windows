@@ -39,7 +39,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
         protected new const int BT_OUTPUT_REPORT_LENGTH = 78;
         private new const int BT_INPUT_REPORT_LENGTH = 78;
         protected const int TOUCHPAD_DATA_OFFSET = 33;
-        private new const int BATTERY_MAX = 10;
+        private new const int BATTERY_MAX = 8;
 
         public new const byte SERIAL_FEATURE_ID = 9;
         public override byte SerialReportID { get => SERIAL_FEATURE_ID; }

@@ -2262,7 +2262,7 @@ namespace DS4Windows
         public string m_controllerConfigs = Global.appdatapath + "\\ControllerConfigs.xml";
 
         protected XmlDocument m_Xdoc = new XmlDocument();
-        // fifth value used for options, not fifth controller
+        // ninth (fifth in old builds) value used for options, not last controller
         public ButtonMouseInfo[] buttonMouseInfos = new ButtonMouseInfo[Global.TEST_PROFILE_ITEM_COUNT]
         {
             new ButtonMouseInfo(), new ButtonMouseInfo(), new ButtonMouseInfo(),
@@ -3001,6 +3001,7 @@ namespace DS4Windows
 
                 XmlNode xmlChargingType = m_Xdoc.CreateNode(XmlNodeType.Element, "ChargingType", null); xmlChargingType.InnerText = lightInfo.chargingType.ToString(); rootElement.AppendChild(xmlChargingType);
                 XmlNode xmlMouseAccel = m_Xdoc.CreateNode(XmlNodeType.Element, "MouseAcceleration", null); xmlMouseAccel.InnerText = buttonMouseInfos[device].mouseAccel.ToString(); rootElement.AppendChild(xmlMouseAccel);
+                XmlNode xmlMouseVerticalScale = m_Xdoc.CreateNode(XmlNodeType.Element, "ButtonMouseVerticalScale", null); xmlMouseVerticalScale.InnerText = Convert.ToInt32(buttonMouseInfos[device].buttonVerticalScale * 100).ToString(); rootElement.AppendChild(xmlMouseVerticalScale);
                 //XmlNode xmlShiftMod = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftModifier", null); xmlShiftMod.InnerText = shiftModifier[device].ToString(); rootElement.AppendChild(xmlShiftMod);
                 XmlNode xmlLaunchProgram = m_Xdoc.CreateNode(XmlNodeType.Element, "LaunchProgram", null); xmlLaunchProgram.InnerText = launchProgram[device].ToString(); rootElement.AppendChild(xmlLaunchProgram);
                 XmlNode xmlDinput = m_Xdoc.CreateNode(XmlNodeType.Element, "DinputOnly", null); xmlDinput.InnerText = dinputOnly[device].ToString(); rootElement.AppendChild(xmlDinput);
@@ -3855,6 +3856,14 @@ namespace DS4Windows
                 catch { missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ButtonMouseOffset"); double.TryParse(Item.InnerText, out buttonMouseInfos[device].mouseVelocityOffset); }
+                catch { missingSetting = true; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ButtonMouseVerticalScale");
+                    int.TryParse(Item.InnerText, out int temp);
+                    buttonMouseInfos[device].buttonVerticalScale = Math.Min(Math.Max(temp, 0), 500) * 0.01;
+                }
                 catch { missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Rainbow"); double.TryParse(Item.InnerText, out lightInfo.rainbow); }
@@ -5844,9 +5853,11 @@ namespace DS4Windows
 
         private void ResetProfile(int device)
         {
-            buttonMouseInfos[device].buttonSensitivity = 25;
-            buttonMouseInfos[device].activeButtonSensitivity = 25;
+            buttonMouseInfos[device].buttonSensitivity = ButtonMouseInfo.DEFAULT_BUTTON_SENS;
+            buttonMouseInfos[device].activeButtonSensitivity = ButtonMouseInfo.DEFAULT_BUTTON_SENS;
             buttonMouseInfos[device].mouseVelocityOffset = ButtonMouseInfo.MOUSESTICKANTIOFFSET;
+            buttonMouseInfos[device].buttonVerticalScale = ButtonMouseInfo.DEFAULT_BUTTON_VERTICAL_SCALE;
+            buttonMouseInfos[device].mouseAccel = false;
             enableTouchToggle[device] = true;
             idleDisconnectTimeout[device] = 0;
             enableOutputDataToDS4[device] = true;
@@ -5877,7 +5888,6 @@ namespace DS4Windows
             doubleTap[device] = false;
             scrollSensitivity[device] = 0;
             touchpadInvert[device] = 0;
-            buttonMouseInfos[device].mouseAccel = false;
             btPollRate[device] = 4;
 
             lsOutputSettings[device].ResetSettings();

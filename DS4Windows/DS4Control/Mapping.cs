@@ -3300,17 +3300,28 @@ namespace DS4Windows
             double timeElapsed = ctrl.DS4Controllers[device].lastTimeElapsedDouble;
             //double mouseOffset = 0.025;
             double tempMouseOffsetX = 0.0, tempMouseOffsetY = 0.0;
+            double mouseVerticalScale = 1.0;
+            bool verticalDir = false;
+            // 0 = MouseUp, 1 = MouseDown
+            if (mnum == 0 || mnum == 1)
+            {
+                verticalDir = true;
+                mouseVerticalScale = buttonMouseInfo.buttonVerticalScale;
+            }
 
             if (controlType == DS4StateFieldMapping.ControlType.Button)
             {
                 bool active = fieldMapping.buttons[controlNum];
                 value = (active ? Math.Pow(root + speed / divide, 100) - 1 : 0);
+                if (verticalDir) value *= mouseVerticalScale;
             }
             else if (controlType == DS4StateFieldMapping.ControlType.AxisDir)
             {
                 double timeDelta = timeElapsed * 0.001;
                 int mouseVelocity = speed * MOUSESPEEDFACTOR;
                 double mouseOffset = buttonMouseInfo.mouseVelocityOffset * mouseVelocity;
+                if (verticalDir) mouseVelocity = (int)(mouseVelocity * mouseVerticalScale);
+
                 //double mouseOffset = MOUSESTICKANTIOFFSET * mouseVelocity;
                 // Cap mouse offset to final mouse velocity
                 //double mouseOffset = mouseVelocity >= MOUSESTICKMINVELOCITY ? MOUSESTICKMINVELOCITY : mouseVelocity;
@@ -3445,6 +3456,7 @@ namespace DS4Windows
             {
                 byte trigger = fieldMapping.triggers[controlNum];
                 value = Math.Pow(root + speed / divide, trigger / 2d) - 1;
+                if (verticalDir) value *= mouseVerticalScale;
             }
             else if (controlType == DS4StateFieldMapping.ControlType.GyroDir)
             {
@@ -3457,24 +3469,28 @@ namespace DS4Windows
                     {
                         int gyroX = fieldMapping.gryodirs[controlNum];
                         value = (byte)(gyroX > 0 ? Math.Pow(root + speed / divide, gyroX) : 0);
+                        if (verticalDir) value *= mouseVerticalScale;
                         break;
                     }
                     case DS4Controls.GyroXNeg:
                     {
                         int gyroX = fieldMapping.gryodirs[controlNum];
                         value = (byte)(gyroX < 0 ? Math.Pow(root + speed / divide, -gyroX) : 0);
+                        if (verticalDir) value *= mouseVerticalScale;
                         break;
                     }
                     case DS4Controls.GyroZPos:
                     {
                         int gyroZ = fieldMapping.gryodirs[controlNum];
                         value = (byte)(gyroZ > 0 ? Math.Pow(root + speed / divide, gyroZ) : 0);
+                        if (verticalDir) value *= mouseVerticalScale;
                         break;
                     }
                     case DS4Controls.GyroZNeg:
                     {
                         int gyroZ = fieldMapping.gryodirs[controlNum];
                         value = (byte)(gyroZ < 0 ? Math.Pow(root + speed / divide, -gyroZ) : 0);
+                        if (verticalDir) value *= mouseVerticalScale;
                         break;
                     }
                     default: break;

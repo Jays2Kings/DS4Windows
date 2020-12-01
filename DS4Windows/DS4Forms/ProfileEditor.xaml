@@ -1346,6 +1346,13 @@
                         <TextBlock Text="{Binding OutputMouseSpeed,Mode=OneWay,StringFormat='\{0} pps'}"
                                    MinWidth="50" VerticalAlignment="Center"  Margin="10,0,0,0" />
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="40">
+                        <Label Content="Mouse Vertical Scale" ContentStringFormat="{}{0}:" VerticalAlignment="Center" />
+                        <xctk:IntegerUpDown d:IsHidden="True" MinWidth="50" Height="20"
+                            Value="{Binding ButtonMouseVerticalScale,FallbackValue='100'}"
+                            Minimum="0" Maximum="500" Increment="10" Margin="10,0,0,0" />
+                        <Label Content="%" VerticalContentAlignment="Center" Margin="4,0,0,0" />
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Mouse Offset" VerticalAlignment="Center" />
                         <xctk:DoubleUpDown d:IsHidden="True" MinWidth="50" FormatString="F3" DefaultValue="0" Minimum="0" Maximum="100"

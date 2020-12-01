@@ -756,6 +756,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
             MergeStates();
 
             bool change = false;
+            bool rumbleSet = currentHap.IsRumbleSet();
 
             if (conType == ConnectionType.USB)
             {
@@ -838,7 +839,21 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 {
                     //Console.WriteLine("DIRTY");
                     outputDirty = true;
+                    if (rumbleSet)
+                    {
+                        standbySw.Restart();
+                    }
+                    else
+                    {
+                        standbySw.Reset();
+                    }
+
                     //outReportBuffer.CopyTo(outputReport, 0);
+                }
+                else if (rumbleSet && standbySw.ElapsedMilliseconds >= 4000L)
+                {
+                    outputDirty = true;
+                    standbySw.Restart();
                 }
                 //bool res = hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
                 //Console.WriteLine("STAUTS: {0}", res);
@@ -922,6 +937,24 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 {
                     //change = true;
                     outputDirty = true;
+
+                    if (rumbleSet)
+                    {
+                        standbySw.Restart();
+                    }
+                    else
+                    {
+                        standbySw.Reset();
+                    }
+                }
+                else if (rumbleSet && standbySw.ElapsedMilliseconds >= 4000L)
+                {
+                    outputDirty = true;
+                    standbySw.Restart();
+                }
+
+                if (outputDirty)
+                {
                     int crcOffset = 0;
                     int crcpos = BT_OUTPUT_REPORT_LENGTH - 4;
                     calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);

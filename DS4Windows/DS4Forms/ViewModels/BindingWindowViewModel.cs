@@ -363,15 +363,16 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             get
             {
-                string color;
+                string color = string.Empty;
                 if (outputType == OutType.Default)
                 {
                     color =  Colors.LimeGreen.ToString();
                 }
-                else
+                /*else
                 {
                     color = SystemColors.ControlBrush.Color.ToString();
                 }
+                */
 
                 return color;
             }
@@ -381,15 +382,16 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             get
             {
-                string color;
+                string color = string.Empty;
                 if (outputType == OutType.Button && control == X360Controls.Unbound)
                 {
                     color = Colors.LimeGreen.ToString();
                 }
-                else
+                /*else
                 {
                     color = SystemColors.ControlBrush.Color.ToString();
                 }
+                */
 
                 return color;
             }

@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DS4WinWPF.DS4Forms.Themes">
+    <!-- Brushes -->
+    <SolidColorBrush x:Key="SecondaryColor" Color="{DynamicResource {x:Static SystemColors.ControlBrush}}"  />
+    <SolidColorBrush x:Key="AccentColor" Color="#FF0066CC" />
+</ResourceDictionary>

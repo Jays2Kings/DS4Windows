@@ -50,6 +50,12 @@ namespace DS4Windows
         Black,
     }
 
+    public enum AppThemeChoice : uint
+    {
+        Default,
+        Dark,
+    }
+
     public class DS4ControlSettings
     {
         public DS4Controls control;
@@ -1226,6 +1232,12 @@ namespace DS4Windows
         {
             get => m_Config.useIconChoice;
             set => m_Config.useIconChoice = value;
+        }
+
+        public static AppThemeChoice UseCurrentTheme
+        {
+            get => m_Config.useCurrentTheme;
+            set => m_Config.useCurrentTheme = value;
         }
 
         public static bool UseCustomSteamFolder
@@ -2529,6 +2541,7 @@ namespace DS4Windows
         public double udpSmoothingBeta = DEFAULT_UDP_SMOOTH_BETA;
         public bool useCustomSteamFolder;
         public string customSteamFolder;
+        public AppThemeChoice useCurrentTheme;
         public string fakeExeFileName = string.Empty;
 
         // Cache whether profile has custom action
@@ -5016,6 +5029,15 @@ namespace DS4Windows
                         catch { missingSetting = true; }
                     }
 
+                    try
+                    {
+                        Item = m_Xdoc.SelectSingleNode("/Profile/AppTheme");
+                        string temp = Item.InnerText;
+                        Enum.TryParse(temp, out AppThemeChoice choice);
+                        useCurrentTheme = choice;
+                    }
+                    catch { missingSetting = true; useCurrentTheme = AppThemeChoice.Default; }
+
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/UseUDPServer"); Boolean.TryParse(Item.InnerText, out useUDPServ); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/UDPServerPort"); int temp; int.TryParse(Item.InnerText, out temp); udpServPort = Math.Min(Math.Max(temp, 1024), 65535); }
@@ -5155,6 +5177,7 @@ namespace DS4Windows
             XmlNode xmlFlashWhenLate = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLate", null); xmlFlashWhenLate.InnerText = flashWhenLate.ToString(); rootElement.AppendChild(xmlFlashWhenLate);
             XmlNode xmlFlashWhenLateAt = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLateAt", null); xmlFlashWhenLateAt.InnerText = flashWhenLateAt.ToString(); rootElement.AppendChild(xmlFlashWhenLateAt);
             XmlNode xmlAppIconChoice = m_Xdoc.CreateNode(XmlNodeType.Element, "AppIcon", null); xmlAppIconChoice.InnerText = useIconChoice.ToString(); rootElement.AppendChild(xmlAppIconChoice);
+            XmlNode xmlAppThemeChoice = m_Xdoc.CreateNode(XmlNodeType.Element, "AppTheme", null); xmlAppThemeChoice.InnerText = useCurrentTheme.ToString(); rootElement.AppendChild(xmlAppThemeChoice);
             XmlNode xmlUseUDPServ = m_Xdoc.CreateNode(XmlNodeType.Element, "UseUDPServer", null); xmlUseUDPServ.InnerText = useUDPServ.ToString(); rootElement.AppendChild(xmlUseUDPServ);
             XmlNode xmlUDPServPort = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerPort", null); xmlUDPServPort.InnerText = udpServPort.ToString(); rootElement.AppendChild(xmlUDPServPort);
             XmlNode xmlUDPServListenAddress = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerListenAddress", null); xmlUDPServListenAddress.InnerText = udpServListenAddress; rootElement.AppendChild(xmlUDPServListenAddress);

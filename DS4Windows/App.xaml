@@ -6,9 +6,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!--<ResourceDictionary Source="DS4Forms/Themes/LightTheme.xaml" />-->
-                <ResourceDictionary Source="DS4Forms/Themes/DarkTheme.xaml" />
+                <ResourceDictionary Source="DS4Forms/Themes/DefaultTheme.xaml" />
+                <!--<ResourceDictionary Source="DS4Forms/Themes/DarkTheme.xaml" />-->
             </ResourceDictionary.MergedDictionaries>
+
+            <!--<SolidColorBrush x:Key="ForegroundColor" Color="{x:Static SystemColors.ActiveCaptionTextColor}" />-->
 
             <Style TargetType="{x:Type Button}" x:Key="NoBGHoverBtn">
                 <Setter Property="Background" Value="Transparent" />

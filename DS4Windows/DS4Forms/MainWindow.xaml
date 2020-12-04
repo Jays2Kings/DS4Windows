@@ -219,7 +219,7 @@
                 </local:AutoProfiles>
             </TabItem>
             <TabItem Header="Output Slots" IsEnabled="{Binding FullTabsEnabled,Mode=OneWay}">
-                <local:OutputSlotManagerControl x:Name="slotManControl" Background="{DynamicResource BackgroundColor}">
+                <local:OutputSlotManagerControl x:Name="slotManControl">
 
                 </local:OutputSlotManagerControl>
             </TabItem>
@@ -288,6 +288,13 @@
                                 <ComboBoxItem>Colored</ComboBoxItem>
                                 <ComboBoxItem>White</ComboBoxItem>
                                 <ComboBoxItem>Black</ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                            <Label Content="App Theme:" />
+                            <ComboBox x:Name="appThemeCom" SelectedIndex="{Binding AppChoiceIndex,FallbackValue='0'}" Margin="10,0,0,0">
+                                <ComboBoxItem>Default</ComboBoxItem>
+                                <ComboBoxItem>Dark</ComboBoxItem>
                             </ComboBox>
                         </StackPanel>
 

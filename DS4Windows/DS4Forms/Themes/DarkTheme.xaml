@@ -73,9 +73,71 @@
         <Setter Property="Foreground" Value="{StaticResource ForegroundColor}" />
     </Style>
 
+    <ControlTemplate x:Key="CheckBoxControlTemplate1" TargetType="{x:Type CheckBox}">
+        <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border x:Name="checkBoxBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                <Grid x:Name="markGrid">
+                    <Path x:Name="optionMark" Data="F1M9.97498,1.22334L4.6983,9.09834 4.52164,9.09834 0,5.19331 1.27664,3.52165 4.255,6.08833 8.33331,1.52588E-05 9.97498,1.22334z" Fill="{StaticResource ForegroundColor}" Margin="1" Opacity="0" Stretch="None"/>
+                    <Rectangle x:Name="indeterminateMark" Fill="{StaticResource ForegroundColor}" Margin="2" Opacity="0"/>
+                </Grid>
+            </Border>
+            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="1" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="HasContent" Value="True">
+                <Setter Property="FocusVisualStyle">
+                    <Setter.Value>
+                        <Style>
+                            <Setter Property="Control.Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Rectangle Margin="14,0,0,0" SnapsToDevicePixels="True" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Padding" Value="4,-1,0,0"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource BackgroundColor}" />
+                <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="{StaticResource SecondaryColor}" />
+                <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource ForegroundColor}" />
+                <Setter Property="Fill" TargetName="indeterminateMark" Value="{StaticResource ForegroundColor}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource BackgroundColor}" />
+                <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="#FF807D7D"/>
+                <Setter Property="Fill" TargetName="optionMark" Value="#FFE6E6E6"/>
+                <Setter Property="Fill" TargetName="indeterminateMark" Value="#FFE6E6E6"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource AccentColor}"/>
+                <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="{StaticResource SecondaryColor}"/>
+                <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource ForegroundColor}"/>
+                <Setter Property="Fill" TargetName="indeterminateMark" Value="{StaticResource ForegroundColor}"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Opacity" TargetName="optionMark" Value="1"/>
+                <Setter Property="Opacity" TargetName="indeterminateMark" Value="0"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="{x:Null}">
+                <Setter Property="Opacity" TargetName="optionMark" Value="0"/>
+                <Setter Property="Opacity" TargetName="indeterminateMark" Value="1"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
     <!-- CheckBox style -->
     <Style x:Key="CheckBoxStyle" TargetType="{x:Type CheckBox}">
+        <Setter Property="Background" Value="{StaticResource BackgroundColor}" />
         <Setter Property="Foreground" Value="{StaticResource ForegroundColor}" />
+        <Setter Property="Template" Value="{StaticResource CheckBoxControlTemplate1}" />
     </Style>
 
     <!-- RadioButton style -->
@@ -566,15 +628,17 @@
 
     <!-- ComboBox Style -->
     <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}">
-        <!--<Setter Property="Background" Value="{StaticResource BackgroundColor}" />
-        <Setter Property="Foreground" Value="{StaticResource BackgroundColor}" />-->
+        <!--<Setter Property="Background" Value="{StaticResource BackgroundColor}" />-->
+        <Setter Property="BorderBrush" Value="{StaticResource ForegroundColor}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{StaticResource ForegroundColor}" />
         <Setter Property="Template" Value="{StaticResource ComboBoxControlTemplate1}" />
     </Style>
 
     <!-- ComboBoxItem Style -->
     <Style x:Key="ComboBoxItemStyle" TargetType="{x:Type ComboBoxItem}">
         <Setter Property="Background" Value="{StaticResource BackgroundColor}" />
-        <Setter Property="BorderBrush" Value="{StaticResource BackgroundColor}" />
+        <!--<Setter Property="BorderBrush" Value="{StaticResource ForegroundColor}" />-->
         <Setter Property="Foreground" Value="{StaticResource ForegroundColor}" />
     </Style>
 
@@ -601,9 +665,9 @@
     <Style BasedOn="{StaticResource ButtonStyle}" TargetType="{x:Type Button}" />
     <Style BasedOn="{StaticResource TextBoxStyle}" TargetType="{x:Type TextBox}" />
     <Style BasedOn="{StaticResource RichTextBoxStyle}" TargetType="{x:Type RichTextBox}" />
+    <Style BasedOn="{StaticResource CheckBoxStyle}" TargetType="{x:Type CheckBox}" />
     <Style BasedOn="{StaticResource TabControlStyle}" TargetType="{x:Type TabControl}" />
     <Style BasedOn="{StaticResource TabItemStyle}" TargetType="{x:Type TabItem}" />
-    <Style BasedOn="{StaticResource CheckBoxStyle}" TargetType="{x:Type CheckBox}" />
     <Style BasedOn="{StaticResource RadioButtonStyle}" TargetType="{x:Type RadioButton}" />
     <Style BasedOn="{StaticResource TextBlockStyle}" TargetType="{x:Type TextBlock}" />
     <Style BasedOn="{StaticResource ListBoxStyle}" TargetType="{x:Type ListBox}" />

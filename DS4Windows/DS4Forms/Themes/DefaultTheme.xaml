@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:DS4WinWPF.DS4Forms.Themes">
     <!-- Brushes -->
-    <SolidColorBrush x:Key="SecondaryColor" Color="{DynamicResource {x:Static SystemColors.ControlBrush}}"  />
+    <SolidColorBrush x:Key="ForegroundColor" Color="{x:Static SystemColors.ActiveCaptionTextColor}" />
+    <SolidColorBrush x:Key="SecondaryColor" Color="{x:Static SystemColors.ControlColor}"  />
     <SolidColorBrush x:Key="AccentColor" Color="#FF0066CC" />
 </ResourceDictionary>

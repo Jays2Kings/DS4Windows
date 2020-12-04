@@ -62,6 +62,13 @@ namespace DS4WinWPF
         private MemoryMappedFile ipcResultDataMMF = null; // MemoryMappedFile for inter-process communication used to exchange string result data between cmdline client process and the background running DS4Windows app
         private MemoryMappedViewAccessor ipcResultDataMMA = null;
 
+        private static Dictionary<DS4Windows.AppThemeChoice, string> themeLocs = new
+            Dictionary<DS4Windows.AppThemeChoice, string>()
+        {
+            [DS4Windows.AppThemeChoice.Default] = "DS4Forms/Themes/DefaultTheme.xaml",
+            [DS4Windows.AppThemeChoice.Dark] = "DS4Forms/Themes/DarkTheme.xaml",
+        };
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             runShutdown = true;
@@ -171,6 +178,12 @@ namespace DS4WinWPF
             }
 
             SetUICulture(DS4Windows.Global.UseLang);
+            DS4Windows.AppThemeChoice themeChoice = DS4Windows.Global.UseCurrentTheme;
+            if (themeChoice != DS4Windows.AppThemeChoice.Default)
+            {
+                ChangeTheme(DS4Windows.Global.UseCurrentTheme);
+            }
+
             DS4Windows.Global.LoadLinkedProfiles();
             DS4Forms.MainWindow window = new DS4Forms.MainWindow(parser);
             MainWindow = window;
@@ -600,6 +613,15 @@ namespace DS4WinWPF
                 Thread.CurrentThread.CurrentUICulture = ci;
             }
             catch (CultureNotFoundException) { /* Skip setting culture that we cannot set */ }
+        }
+
+        public static void ChangeTheme(DS4Windows.AppThemeChoice themeChoice)
+        {
+            if (themeLocs.TryGetValue(themeChoice, out string loc))
+            {
+                Application.Current.Resources.MergedDictionaries.Clear();
+                Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri(loc, uriKind: UriKind.Relative) });
+            }
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)

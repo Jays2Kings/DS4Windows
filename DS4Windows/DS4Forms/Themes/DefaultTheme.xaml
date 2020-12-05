@@ -5,4 +5,6 @@
     <SolidColorBrush x:Key="ForegroundColor" Color="{x:Static SystemColors.ActiveCaptionTextColor}" />
     <SolidColorBrush x:Key="SecondaryColor" Color="{x:Static SystemColors.ControlColor}"  />
     <SolidColorBrush x:Key="AccentColor" Color="#FF0066CC" />
+
+    <Style x:Key="WindowStyle" TargetType="{x:Type Window}" />
 </ResourceDictionary>

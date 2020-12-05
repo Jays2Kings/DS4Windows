@@ -800,6 +800,7 @@
                     </Setter.Value>
                 </Setter>
             </Trigger>
+
             <Trigger Property="Role" Value="TopLevelItem">
                 <Setter Property="Margin" Value="0,1"/>
                 <Setter Property="Padding" Value="7,1,8,2"/>
@@ -833,8 +834,45 @@
                     </Setter.Value>
                 </Setter>
             </Trigger>
+
+
+            <Trigger Property="Role" Value="SubmenuItem">
+                <Setter Property="Margin" Value="0,0"/>
+                <Setter Property="Padding" Value="7,2,8,3"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type MenuItem}">
+                            <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                <DockPanel>
+                                    <ContentPresenter x:Name="Icon" Content="{TemplateBinding Icon}" ContentSource="Icon" Margin="4,0,6,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+                                    <Path x:Name="GlyphPanel" Data="M0,2.5L2.5,5 7,0.5" FlowDirection="LeftToRight" Margin="4,0,6,0" Stroke="{TemplateBinding Foreground}" StrokeThickness="1.2" Visibility="Collapsed" VerticalAlignment="Center"/>
+                                    <ContentPresenter ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" ContentStringFormat="{TemplateBinding HeaderStringFormat}" ContentSource="Header" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                </DockPanel>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="Icon" Value="{x:Null}">
+                                    <Setter Property="Visibility" TargetName="Icon" Value="Collapsed"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Visibility" TargetName="GlyphPanel" Value="Visible"/>
+                                    <Setter Property="Visibility" TargetName="Icon" Value="Collapsed"/>
+                                </Trigger>
+                                <Trigger Property="IsHighlighted" Value="True">
+                                    <Setter Property="BorderBrush" TargetName="Border" Value="#80DADADA"/>
+                                    <Setter Property="Background" TargetName="Border" Value="{StaticResource AccentColor}"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+
             <Trigger Property="Role" Value="SubmenuHeader">
-                <Setter Property="DockPanel.Dock" Value="Top"/>
+                <Setter Property="BorderThickness" Value="0"/>
                 <Setter Property="Padding" Value="8,3"/>
                 <Setter Property="Grid.IsSharedSizeScope" Value="True"/>
                 <Setter Property="Template">
@@ -842,12 +880,12 @@
                         <ControlTemplate TargetType="{x:Type MenuItem}">
                             <Grid Background="Transparent" SnapsToDevicePixels="True">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition MinWidth="24" SharedSizeGroup="MenuItemIconColumnGroup" Width="Auto"/>
+                                    <ColumnDefinition MinWidth="0" SharedSizeGroup="MenuItemIconColumnGroup" Width="0"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition SharedSizeGroup="MenuItemIGTColumnGroup" Width="Auto"/>
                                     <ColumnDefinition Width="14"/>
                                 </Grid.ColumnDefinitions>
-                                <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="4" Margin="1,0"/>
+                                <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="4" Margin="0,0"/>
                                 <ContentPresenter x:Name="Icon" Content="{TemplateBinding Icon}" ContentSource="Icon" Margin="3" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
                                 <Border x:Name="GlyphPanel" BorderBrush="#80DADADA" BorderThickness="1" Background="#FF212121" Height="20" Margin="0,1" Visibility="Hidden" Width="20">
                                     <Path Data="M0,2.5L2.5,5 7,0.5" FlowDirection="LeftToRight" HorizontalAlignment="Center" Stroke="{TemplateBinding Foreground}" StrokeThickness="1.2" VerticalAlignment="Center"/>
@@ -887,7 +925,7 @@
                                 </Trigger>
                                 <Trigger Property="IsHighlighted" Value="True">
                                     <Setter Property="BorderBrush" TargetName="Border" Value="#80DADADA"/>
-                                    <Setter Property="Background" TargetName="Border" Value="#210080FF"/>
+                                    <Setter Property="Background" TargetName="Border" Value="{StaticResource AccentColor}"/>
                                     <Setter Property="BorderBrush" TargetName="GlyphPanel" Value="#90006CD9"/>
                                     <Setter Property="Background" TargetName="GlyphPanel" Value="#FFEEF5FD"/>
                                 </Trigger>

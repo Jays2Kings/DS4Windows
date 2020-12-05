@@ -436,6 +436,7 @@ Suspend support not enabled.", true);
         {
             AppThemeChoice choice = Global.UseCurrentTheme;
             App.ChangeTheme(choice);
+            trayIconVM.PopulateContextMenu();
         }
 
         private void SettingsWrapVM_IconChoiceIndexChanged(object sender, EventArgs e)

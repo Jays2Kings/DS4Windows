@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Accel" xml:space="preserve">
-    <value>تسريع</value>
+    <value>التسارع</value>
   </data>
   <data name="Action" xml:space="preserve">
     <value>فعل</value>
@@ -127,7 +127,7 @@
     <value>إضافة مجلد</value>
   </data>
   <data name="AddPrograms" xml:space="preserve">
-    <value>إضافة برنامج</value>
+    <value>إضافة برامج</value>
   </data>
   <data name="AddStartMenuPrograms" xml:space="preserve">
     <value>إضافة لقائمة برامج ابدأ</value>
@@ -139,7 +139,7 @@
     <value>الكل</value>
   </data>
   <data name="AutoProfiles" xml:space="preserve">
-    <value>ملفات التعريف تلقائية</value>
+    <value>ملفات التعريف التلقائية</value>
   </data>
   <data name="Battery" xml:space="preserve">
     <value>البطارية</value>
@@ -163,7 +163,7 @@
     <value>مسح</value>
   </data>
   <data name="CloseMinimizes" xml:space="preserve">
-    <value>الإغلاق مصغراً</value>
+    <value>تصغير البرنامج عند إغلاقه</value>
   </data>
   <data name="Color" xml:space="preserve">
     <value>اللون</value>
@@ -211,7 +211,7 @@
     <value>Gyro</value>
   </data>
   <data name="HideUnchecked" xml:space="preserve">
-    <value>إخفاء الغير محددة</value>
+    <value>إخفاء العناصر غير المحددة</value>
   </data>
   <data name="Import" xml:space="preserve">
     <value>إستيراد</value>

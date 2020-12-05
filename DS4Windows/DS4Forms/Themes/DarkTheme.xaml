@@ -1,13 +1,22 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                    xmlns:local="clr-namespace:DS4WinWPF.DS4Forms.Themes" xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+                    xmlns:local="clr-namespace:DS4WinWPF.DS4Forms.Themes" xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <!-- Brushes -->
     <SolidColorBrush x:Key="BackgroundColor" Color="#FF080808" />
     <SolidColorBrush x:Key="ForegroundColor" Color="#FFF3F3F3" />
     <SolidColorBrush x:Key="SecondaryColor" Color="#FF1D5393" />
     <SolidColorBrush x:Key="AccentColor" Color="#FF9ECAFF" />
+
+    <system:String x:Key="KeyImageImg">key-solid_white.png</system:String>
+    <system:String x:Key="CancelImg">cancel_white.png</system:String>
+    <system:String x:Key="CheckedImg">checked_white.png</system:String>
+    <system:String x:Key="BtImg">BT_white.png</system:String>
+    <system:String x:Key="UsbImg">USB_white.png</system:String>
+    <system:String x:Key="KeyUpImg">keyup_white.png</system:String>
+    <system:String x:Key="KeyDownImg">keydown_white.png</system:String>
+    <system:String x:Key="ClockImg">clock_white.png</system:String>
 
     <!-- Window Style -->
     <Style x:Key="WindowStyle" TargetType="{x:Type Window}">

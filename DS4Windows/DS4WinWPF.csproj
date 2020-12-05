@@ -522,6 +522,14 @@
     <Content Include="BezierCurveEditor\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\clock_white.png" />
+    <Resource Include="Resources\BT_white.png" />
+    <Resource Include="Resources\cancel_white.png" />
+    <Resource Include="Resources\checked_white.png" />
+    <Resource Include="Resources\key-solid_white.png" />
+    <Resource Include="Resources\keydown_white.png" />
+    <Resource Include="Resources\keyup_white.png" />
+    <Resource Include="Resources\USB_white.png" />
     <Resource Include="Resources\DS4W - Black.ico" />
     <Resource Include="Resources\social\parler.png" />
     <Resource Include="Resources\key-solid.png" />

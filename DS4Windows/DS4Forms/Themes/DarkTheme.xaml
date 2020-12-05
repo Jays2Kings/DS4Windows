@@ -958,6 +958,11 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="ToolTipStyle" TargetType="{x:Type ToolTip}">
+        <Setter Property="Background" Value="{StaticResource BackgroundColor}" />
+        <Setter Property="Foreground" Value="{StaticResource ForegroundColor}" />
+    </Style>
+
 
     <Style x:Key="RectangleStyle" TargetType="{x:Type Rectangle}">
         <!--<Setter Property="Background" Value="{StaticResource BackgroundColor}" />-->
@@ -989,5 +994,6 @@
     <!--<Style BasedOn="{StaticResource ContextMenuStyle}" TargetType="{x:Type ContextMenu}" />-->
     <Style BasedOn="{StaticResource MenuStyle}" TargetType="{x:Type Menu}" />
     <Style BasedOn="{StaticResource MenuItemStyle}" TargetType="{x:Type MenuItem}" />
+    <Style BasedOn="{StaticResource ToolTipStyle}" TargetType="{x:Type ToolTip}" />
 
 </ResourceDictionary>

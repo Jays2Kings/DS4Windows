@@ -34,11 +34,13 @@
     <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{StaticResource SecondaryColor}" />
         <Setter Property="Foreground" Value="{StaticResource ForegroundColor}" />
+        <!--<Setter Property="BorderBrush" Value="#FFB0B0B0" />
+        <Setter Property="BorderThickness" Value="1" />-->
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="Border" Padding="2" Background="{TemplateBinding Background}">
+                    <Border x:Name="Border" Padding="2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
@@ -47,6 +49,9 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

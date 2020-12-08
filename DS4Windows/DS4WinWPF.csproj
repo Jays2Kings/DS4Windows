@@ -109,6 +109,7 @@
       <HintPath>..\packages\Ookii.Dialogs.Wpf.1.1.0\lib\net45\Ookii.Dialogs.Wpf.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -381,6 +382,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DS4Forms\Themes\DarkTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\Themes\DefaultTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DS4Forms\UpdaterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -517,6 +526,14 @@
     <Content Include="BezierCurveEditor\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\clock_white.png" />
+    <Resource Include="Resources\BT_white.png" />
+    <Resource Include="Resources\cancel_white.png" />
+    <Resource Include="Resources\checked_white.png" />
+    <Resource Include="Resources\key-solid_white.png" />
+    <Resource Include="Resources\keydown_white.png" />
+    <Resource Include="Resources\keyup_white.png" />
+    <Resource Include="Resources\USB_white.png" />
     <Resource Include="Resources\DS4W - Black.ico" />
     <Resource Include="Resources\social\parler.png" />
     <Resource Include="Resources\key-solid.png" />

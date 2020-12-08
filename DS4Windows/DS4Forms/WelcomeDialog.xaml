@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
         mc:Ignorable="d"
-        Title="Welcome to DS4Windows" Height="356.246" Width="418" MinWidth="418" MinHeight="440">
+        Title="Welcome to DS4Windows" Height="356.246" Width="418" MinWidth="418" MinHeight="440"
+        Style="{DynamicResource WindowStyle}">
     <Window.Resources>
-        <Style TargetType="{x:Type Control}" x:Key="CommonMargin">
+        <Style TargetType="{x:Type Button}" x:Key="CommonMargin" BasedOn="{StaticResource {x:Type Button}}">
             <Setter Property="Margin" Value="0,10,0,0" />
         </Style>
-        <Style TargetType="{x:Type TextBlock}" x:Key="CommonMarginTxt">
+        <Style TargetType="{x:Type TextBlock}" x:Key="CommonMarginTxt" BasedOn="{StaticResource {x:Type TextBlock}}">
             <Setter Property="Margin" Value="0,10,0,0" />
         </Style>
     </Window.Resources>
@@ -39,7 +40,7 @@
         <DockPanel Margin="0,10" DockPanel.Dock="Top">
             <Button x:Name="finishedBtn" Content="Finished" HorizontalAlignment="Center" Padding="10,1" Style="{StaticResource CommonMargin}" Click="FinishedBtn_Click" DockPanel.Dock="Bottom" />
             <TextBlock TextAlignment="Center" TextWrapping="Wrap" Style="{StaticResource CommonMarginTxt}" DockPanel.Dock="Bottom">
-                Once flashing go to your <Hyperlink x:Name="bluetoothSetLink" Click="BluetoothSetLink_Click">Bluetooth Settings</Hyperlink> and
+                Once flashing go to your <Hyperlink x:Name="bluetoothSetLink" Click="BluetoothSetLink_Click" Foreground="{DynamicResource AccentColor}">Bluetooth Settings</Hyperlink> and
                 connect to "Wireless Controller". If asked, enter pair code 0000.
                 Once paired, you're ready. Have fun!
             </TextBlock>

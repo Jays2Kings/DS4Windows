@@ -106,6 +106,19 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public event EventHandler IconChoiceIndexChanged;
 
+        public int AppChoiceIndex
+        {
+            get => (int)DS4Windows.Global.UseCurrentTheme;
+            set
+            {
+                int temp = (int)DS4Windows.Global.UseCurrentTheme;
+                if (temp == value) return;
+                DS4Windows.Global.UseCurrentTheme = (DS4Windows.AppThemeChoice)value;
+                AppChoiceIndexChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler AppChoiceIndexChanged;
+
         public bool CheckForUpdates
         {
             get => DS4Windows.Global.CheckWhen > 0;

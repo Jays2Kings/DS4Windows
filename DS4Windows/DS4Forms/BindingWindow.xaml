@@ -10,7 +10,8 @@
         lex:ResxLocalizationProvider.DefaultDictionary="Strings"
         xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
         mc:Ignorable="d"
-        Title="Select action" Height="500" Width="1020" Closing="Window_Closing">
+        Title="Select action" Height="500" Width="1020" Closing="Window_Closing"
+        Style="{DynamicResource WindowStyle}">
     <DockPanel x:Name="fullPanel" Margin="4">
         <StackPanel x:Name="extrasSidePanel" Width="160" Orientation="Vertical" DockPanel.Dock="Right">
             <StackPanel.Resources>
@@ -106,8 +107,8 @@
                         <ComboBoxItem Content="Finger on Touchpad"/>
                     </ComboBox>
 
-                    <Button x:Name="defaultBtn" Content="{Binding DefaultBtnString,FallbackValue=Default}" Background="{Binding DefaultColor,FallbackValue=#FFDDDDDD}" Margin="0,50,0,0" Click="DefaultBtn_Click" />
-                    <Button x:Name="unboundBtn" Content="Unbound" Background="{Binding UnboundColor,FallbackValue=#FFDDDDDD}" Margin="0,10,0,0" Click="UnboundBtn_Click" />
+                    <Button x:Name="defaultBtn" Content="{Binding DefaultBtnString,FallbackValue=Default}" Background="{Binding DefaultColor,FallbackValue={StaticResource SecondaryColor}}" Margin="0,50,0,0" Click="DefaultBtn_Click" />
+                    <Button x:Name="unboundBtn" Content="Unbound" Background="{Binding UnboundColor,FallbackValue={StaticResource SecondaryColor}}" Margin="0,10,0,0" Click="UnboundBtn_Click" />
                 </StackPanel>
 
                 <StackPanel x:Name="outConPanel" Width="630" Orientation="Vertical" DockPanel.Dock="Right" HorizontalAlignment="Center" Margin="0">
@@ -222,7 +223,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Grid.Resources>
-                            <Style x:Key="midMar" TargetType="{x:Type Button}">
+                            <Style x:Key="midMar" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
                                 <Setter Property="Margin" Value="6,0,0,0" />
                             </Style>
                         </Grid.Resources>
@@ -264,7 +265,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Grid.Resources>
-                            <Style x:Key="midMargin" TargetType="{x:Type Button}">
+                            <Style x:Key="midMargin" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
                                 <Setter Property="Margin" Value="6,0,0,0" />
                             </Style>
                         </Grid.Resources>
@@ -306,7 +307,7 @@
                             <ColumnDefinition Width="1.5*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.Resources>
-                            <Style x:Key="midMargin" TargetType="{x:Type Button}">
+                            <Style x:Key="midMargin" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
                                 <Setter Property="Margin" Value="6,0,0,0" />
                             </Style>
                         </Grid.Resources>
@@ -348,7 +349,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Grid.Resources>
-                            <Style x:Key="midMargin" TargetType="{x:Type Button}">
+                            <Style x:Key="midMargin" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
                                 <Setter Property="Margin" Value="6,0,0,0" />
                             </Style>
                         </Grid.Resources>
@@ -388,7 +389,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Grid.Resources>
-                            <Style x:Key="midMargin" TargetType="{x:Type Button}">
+                            <Style x:Key="midMargin" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
                                 <Setter Property="Margin" Value="6,0,0,0" />
                             </Style>
                         </Grid.Resources>
@@ -422,7 +423,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Grid.Resources>
-                            <Style x:Key="midMargin" TargetType="{x:Type Button}">
+                            <Style x:Key="midMargin" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
                                 <Setter Property="Margin" Value="6,0,0,0" />
                             </Style>
                         </Grid.Resources>
@@ -445,7 +446,7 @@
                     <DockPanel LastChildFill="False" Grid.Column="0" Margin="6,0">
                         <UniformGrid Rows="3" Columns="3" Margin="2,0" MinHeight="104" DockPanel.Dock="Top">
                             <UniformGrid.Resources>
-                                <Style x:Key="btnMargin" TargetType="{x:Type Button}">
+                                <Style x:Key="btnMargin" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
                                     <Setter Property="Margin" Value="3,0,3,6"/>
                                 </Style>
                             </UniformGrid.Resources>
@@ -497,7 +498,7 @@
                             <ColumnDefinition Width="1.25*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.Resources>
-                            <Style TargetType="{x:Type Button}">
+                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
                                 <Setter Property="Margin" Value="2" />
                             </Style>
                         </Grid.Resources>

@@ -394,6 +394,7 @@ namespace DS4WinWPF.DS4Forms
             trayIconVM.RequestOpen += TrayIconVM_RequestOpen;
             trayIconVM.RequestServiceChange += TrayIconVM_RequestServiceChange;
             settingsWrapVM.IconChoiceIndexChanged += SettingsWrapVM_IconChoiceIndexChanged;
+            settingsWrapVM.AppChoiceIndexChanged += SettingsWrapVM_AppChoiceIndexChanged;
 
             autoProfControl.AutoDebugChanged += AutoProfControl_AutoDebugChanged;
             autoprofileChecker.RequestServiceChange += AutoprofileChecker_RequestServiceChange;
@@ -429,6 +430,13 @@ namespace DS4WinWPF.DS4Forms
                 AppLogger.LogToGui(@"Could not connect to Windows Management Instrumentation service.
 Suspend support not enabled.", true);
             }
+        }
+
+        private void SettingsWrapVM_AppChoiceIndexChanged(object sender, EventArgs e)
+        {
+            AppThemeChoice choice = Global.UseCurrentTheme;
+            App.ChangeTheme(choice);
+            trayIconVM.PopulateContextMenu();
         }
 
         private void SettingsWrapVM_IconChoiceIndexChanged(object sender, EventArgs e)

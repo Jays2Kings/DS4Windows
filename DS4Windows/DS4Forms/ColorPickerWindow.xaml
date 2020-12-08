@@ -6,8 +6,9 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
         mc:Ignorable="d"
-        Title="ColorPickerWindow" Height="400" Width="300">
+        Title="ColorPickerWindow" Height="400" Width="300"
+        Style="{DynamicResource WindowStyle}">
     <DockPanel>
-        <xctk:ColorCanvas x:Name="colorPicker" SelectedColorChanged="ColorPicker_SelectedColorChanged" />
+        <xctk:ColorCanvas x:Name="colorPicker" SelectedColorChanged="ColorPicker_SelectedColorChanged" Background="{DynamicResource BackgroundColor}" />
     </DockPanel>
 </Window>

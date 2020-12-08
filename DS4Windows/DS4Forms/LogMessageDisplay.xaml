@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
         mc:Ignorable="d"
-        Title="Log" MinHeight="200" Height="200" Width="600" MinWidth="400" SizeToContent="Height" WindowStartupLocation="CenterScreen">
+        Title="Log" MinHeight="200" Height="200" Width="600" MinWidth="400" SizeToContent="Height" WindowStartupLocation="CenterScreen"
+        Style="{DynamicResource WindowStyle}">
     <DockPanel Margin="4">
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Right">
             <Button x:Name="okayButton" Content="OK" MinWidth="60" Click="OkayButton_Click" />

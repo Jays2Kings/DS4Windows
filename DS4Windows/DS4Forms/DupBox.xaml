@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
-             mc:Ignorable="d" Height="30" Width="436">
+             mc:Ignorable="d" Height="30" Width="436" Background="{DynamicResource BackgroundColor}">
     <DockPanel Margin="4">
         <TextBox x:Name="profileTxt" TextWrapping="Wrap" Text="TextBox" Width="160" HorizontalAlignment="Left" Margin="20,0,0,0"
                  VerticalAlignment="Center" MouseEnter="ProfileTxt_MouseEnter" MouseLeave="ProfileTxt_MouseLeave" MaxLines="1"/>

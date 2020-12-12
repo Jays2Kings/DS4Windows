@@ -258,7 +258,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 switch(device.CurrentExclusiveStatus)
                 {
                     case DS4Device.ExclusiveStatus.Exclusive:
-                        imgName = (string)App.Current.FindResource("CancelImg");
+                        imgName = (string)App.Current.FindResource("CheckedImg");
                         source = $"/DS4Windows;component/Resources/{imgName}";
                         break;
                     case DS4Device.ExclusiveStatus.HidGuardAffected:

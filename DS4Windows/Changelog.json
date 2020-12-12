@@ -26,7 +26,7 @@
               "* Updated Polish translation. Contribution by **gregory678**",
               "* Added Brook Mars controller support. Contribution by **Кладовая**",
               "* Implemented a Dark theme for the GUI",
-              "* Fixed Change Light extras setting loading in Binding window. Keep setting in tack",
+              "* Fixed Change Light extras setting loading in Binding window. Keep setting in tact",
               "* Changed buffer size for DS4 FileStream instance",
               "* Now use Interrupt endpoint for DS4 BT output reports",
               "* Fixed out-of-bounds access when enabling square stick. Contribution by **hpesoj**",

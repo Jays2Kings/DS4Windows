@@ -44,7 +44,7 @@
                     </Ellipse>
                     <Rectangle x:Name="lsMapValRec" Width="6" Height="6" Canvas.Left="62" Canvas.Top="62" Fill="#FFABABAB">
                     </Rectangle>
-                    <Rectangle x:Name="lsValRec" Width="6" Height="6" Canvas.Left="62" Canvas.Top="62" Fill="Black">
+                    <Rectangle x:Name="lsValRec" Width="6" Height="6" Canvas.Left="62" Canvas.Top="62" Fill="{DynamicResource ForegroundColor}">
                     </Rectangle>
                 </Canvas>
                 <StackPanel Orientation="Horizontal">
@@ -80,7 +80,7 @@
                     </Ellipse>
                     <Rectangle x:Name="rsMapValRec" Width="6" Height="6" Canvas.Left="62" Canvas.Top="62" Fill="#FFABABAB">
                     </Rectangle>
-                    <Rectangle x:Name="rsValRec" Width="6" Height="6" Canvas.Left="62" Canvas.Top="62" Fill="Black">
+                    <Rectangle x:Name="rsValRec" Width="6" Height="6" Canvas.Left="62" Canvas.Top="62" Fill="{DynamicResource ForegroundColor}">
                     </Rectangle>
                 </Canvas>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -115,7 +115,7 @@
                     </Ellipse>
                     <Rectangle x:Name="sixAxisMapValRec" Width="6" Height="6" Canvas.Left="62" Canvas.Top="62" Fill="#FFABABAB">
                     </Rectangle>
-                    <Rectangle x:Name="sixAxisValRec" Width="6" Height="6" Canvas.Left="62" Canvas.Top="62" Fill="Black">
+                    <Rectangle x:Name="sixAxisValRec" Width="6" Height="6" Canvas.Left="62" Canvas.Top="62" Fill="{DynamicResource ForegroundColor}">
                     </Rectangle>
                 </Canvas>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

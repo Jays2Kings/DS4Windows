@@ -1,9 +1,42 @@
 {
-  "latest_version": "2.1.19",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 19},
-  "updated_at": "2020-11-29T15:47:50+0000",
+  "latest_version": "2.1.20",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 20},
+  "updated_at": "2020-12-12T21:26:53+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.20",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 20},
+        "base_header": "Version 2.1.20",
+        "release_date": "2020-12-12T21:26:53+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.20",
+            "log_text": ["* Changed project file to allow building app with msbuild",
+              "* Use custom window for displaying Log messages. Can highlight text and click URLs",
+              "* Send empty output report before closing a DualSense device. Resets rumble emulation flag to allow haptics to work again.",
+              "* Fixed -command Shutdown cmdline option. Contribution by **mika-n**",
+              "* Updated Russian translation. Contribution by **shikulja**",
+              "* Allow longer periods of rumble with DualSense",
+              "* Changed battery max value for DualSense",
+              "* Increased delay before hotplug device check",
+              "* Added button mouse vertical scale",
+              "* Changed Subcommand routine for Switch Pro and JoyCon classes",
+              "* Updated Polish translation. Contribution by **gregory678**",
+              "* Added Brook Mars controller support. Contribution by **Кладовая**",
+              "* Implemented a Dark theme for the GUI",
+              "* Fixed Change Light extras setting loading in Binding window. Keep setting in tack",
+              "* Changed buffer size for DS4 FileStream instance",
+              "* Now use Interrupt endpoint for DS4 BT output reports",
+              "* Fixed out-of-bounds access when enabling square stick. Contribution by **hpesoj**",
+              "* Added Arabic translation. Contribution by **xLive**"],
+            "editor": "ryochan7",
+            "editors_note": ["Nothing"],
+            "updated_at": "2020-12-12T21:26:53+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.19",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 19},

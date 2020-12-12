@@ -582,7 +582,7 @@ namespace DS4Windows
 
             if (!hDevice.IsFileStreamOpen())
             {
-                hDevice.OpenFileStream(inputReport.Length);
+                hDevice.OpenFileStream(outputReport.Length);
             }
 
             sendOutputReport(true, true, false); // initialize the output report (don't force disconnect the gamepad on initialization even if writeData fails because some fake DS4 gamepads don't support writeData over BT)
@@ -752,6 +752,7 @@ namespace DS4Windows
         private readonly Stopwatch rumbleAutostopTimer = new Stopwatch(); // Autostop timer to stop rumble motors if those are stuck in a rumble state
 
         private byte outputPendCount = 0;
+        private const int OUTPUT_MIN_COUNT_BT = 3;
         protected readonly Stopwatch standbySw = new Stopwatch();
         private unsafe void performDs4Output()
         {
@@ -1427,7 +1428,7 @@ namespace DS4Windows
                     {
                         if (change)
                         {
-                            outputPendCount = 3;
+                            outputPendCount = OUTPUT_MIN_COUNT_BT;
                             standbySw.Reset();
                         }
                         else if (outputPendCount > 1)
@@ -1483,7 +1484,7 @@ namespace DS4Windows
                     {
                         if (change)
                         {
-                            outputPendCount = 3;
+                            outputPendCount = OUTPUT_MIN_COUNT_BT;
                             standbySw.Reset();
                         }
 

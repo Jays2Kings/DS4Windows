@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Accel" xml:space="preserve">
+    <value>التسارع</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>فعل</value>
+  </data>
+  <data name="AddDirectory" xml:space="preserve">
+    <value>إضافة مجلد</value>
+  </data>
+  <data name="AddPrograms" xml:space="preserve">
+    <value>إضافة برامج</value>
+  </data>
+  <data name="AddStartMenuPrograms" xml:space="preserve">
+    <value>إضافة لقائمة برامج ابدأ</value>
+  </data>
+  <data name="AddSteamGames" xml:space="preserve">
+    <value>إضافة العاب ستيم</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>الكل</value>
+  </data>
+  <data name="AutoProfiles" xml:space="preserve">
+    <value>ملفات التعريف التلقائية</value>
+  </data>
+  <data name="Battery" xml:space="preserve">
+    <value>البطارية</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>تصفح</value>
+  </data>
+  <data name="BrowseOtherPrograms" xml:space="preserve">
+    <value>تصفح برامج أخرى</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+  <data name="CheckUpdateNow" xml:space="preserve">
+    <value>التحقق من وجود تحديث الأن</value>
+  </data>
+  <data name="CheckUpdateStartup" xml:space="preserve">
+    <value>DS4Windows التحقق من وجود تحديث عند تشغيل</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>مسح</value>
+  </data>
+  <data name="CloseMinimizes" xml:space="preserve">
+    <value>تصغير البرنامج عند إغلاقه</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>اللون</value>
+  </data>
+  <data name="Controller1Text" xml:space="preserve">
+    <value>يد تحكم 1</value>
+  </data>
+  <data name="Controller2Text" xml:space="preserve">
+    <value>يد تحكم 2</value>
+  </data>
+  <data name="Controller3Text" xml:space="preserve">
+    <value>يد تحكم 3</value>
+  </data>
+  <data name="Controller4Text" xml:space="preserve">
+    <value>يد تحكم 4</value>
+  </data>
+  <data name="Controllers" xml:space="preserve">
+    <value>أيادي التحكم</value>
+  </data>
+  <data name="ControlPanel" xml:space="preserve">
+    <value>لوحة التحكم</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="DriverSetup" xml:space="preserve">
+    <value>يد التحكم\إعداد برنامج التشغيل</value>
+  </data>
+  <data name="Duplicate" xml:space="preserve">
+    <value>تكرار</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="EditAction" xml:space="preserve">
+    <value>تعديل الفعل</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>تصدير</value>
+  </data>
+  <data name="Full" xml:space="preserve">
+    <value>كامل</value>
+  </data>
+  <data name="Gyro" xml:space="preserve">
+    <value>Gyro</value>
+  </data>
+  <data name="HideUnchecked" xml:space="preserve">
+    <value>إخفاء العناصر غير المحددة</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>إستيراد</value>
+  </data>
+  <data name="LeftStick" xml:space="preserve">
+    <value>العصا اليسرى</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>السجل</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>جديد</value>
+  </data>
+  <data name="NewAction" xml:space="preserve">
+    <value>فعل جديد</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>ملف تعريف جديد</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>لا شيء</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>مسار</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>ملف تعريف</value>
+  </data>
+  <data name="ProfileFolder" xml:space="preserve">
+    <value>مجلد ملفات التعريف</value>
+  </data>
+  <data name="QuickCharge" xml:space="preserve">
+    <value>شحن سريع</value>
+  </data>
+  <data name="RecordText" xml:space="preserve">
+    <value>تسجيل</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>إزالة</value>
+  </data>
+  <data name="RemoveAction" xml:space="preserve">
+    <value>إزالة فعل</value>
+  </data>
+  <data name="RightStick" xml:space="preserve">
+    <value>العصا اليمنى</value>
+  </data>
+  <data name="Rumble" xml:space="preserve">
+    <value>الإهتزاز</value>
+  </data>
+  <data name="RunAtStartup" xml:space="preserve">
+    <value>تشغيل عند البدأ</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="SaveProfile" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>الإعدادات</value>
+  </data>
+  <data name="ShowNotifications" xml:space="preserve">
+    <value>إظهار الإشعارات</value>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>البدأ مصغراً</value>
+  </data>
+  <data name="StartText" xml:space="preserve">
+    <value>تشغيل</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="StopText" xml:space="preserve">
+    <value>إيقاف</value>
+  </data>
+  <data name="TouchScroll" xml:space="preserve">
+    <value>التمرير</value>
+  </data>
+  <data name="TouchSlide" xml:space="preserve">
+    <value>إنزلاق</value>
+  </data>
+  <data name="TouchTap" xml:space="preserve">
+    <value>النقر</value>
+  </data>
+  <data name="Trigger" xml:space="preserve">
+    <value>الضغط</value>
+  </data>
+  <data name="WarningsOnly" xml:space="preserve">
+    <value>التحذيرات فقط</value>
+  </data>
+  <data name="RumbleMaxSecs" xml:space="preserve">
+    <value>ث</value>
+  </data>
+  <data name="RumbleMaxSecsTip" xml:space="preserve">
+    <value>إيقاف الإهتزاز بشكل تلقائي خلال ث (0= الإيقاف التلقائي معطل)</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>عنوان النافذة</value>
+  </data>
+  <data name="MoveUp" xml:space="preserve">
+    <value>تحرك للأعلى</value>
+  </data>
+  <data name="MoveDown" xml:space="preserve">
+    <value>تحرك للأسفل</value>
+  </data>
+  <data name="AutoProfPathTip" xml:space="preserve">
+    <value>Process path. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*)</value>
+  </data>
+  <data name="AutoProfTitleTip" xml:space="preserve">
+    <value>Window title. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*)</value>
+  </data>
+  <data name="GamepadTest" xml:space="preserve">
+    <value>تجربة يد التحكم</value>
+  </data>
+  <data name="EnableOutputDataToDS4" xml:space="preserve">
+    <value>DS4 تمكين بيانات الإخراج لـ</value>
+  </data>
+  <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
+    <value>.DS4 إخراج بيانات الشريط الضوئي والإهتزاز بشكل دوري إلى يد تحكم
+.إلغي التحديد في حال يد التحكم لا تدعم تلقي بيانات المساعدة
+.تسري هذه التغييرات في وقت إتصال يد التحكم</value>
+    <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>تطبيق</value>
+  </data>
+  <data name="HidNinja" xml:space="preserve">
+    <value>HidNinja</value>
+  </data>
+  <data name="CustomExeName" xml:space="preserve">
+    <value>مخصص Exe اسم</value>
+  </data>
+  <data name="CustomExeNameInfo" xml:space="preserve">
+    <value>.قيد التشغيل DS4Windows.exe / InputMapper.exe بعض الألعاب تقوم بمنع التحكم إذا اكتشفت
+.الحل البديل إعادة تسميته لشيء أخر ليفشل منع اللعبة
+.تحديد اسم جديد هنا يسمح لبرنامج التحديث لمعرفة اسم الملف</value>
+  </data>
+  <data name="XInputChecker" xml:space="preserve">
+    <value>XInputChecker</value>
+  </data>
+  <data name="Controller5Text" xml:space="preserve">
+    <value>يد تحكم 5</value>
+  </data>
+  <data name="Controller6Text" xml:space="preserve">
+    <value>يد تحكم 6</value>
+  </data>
+  <data name="Controller7Text" xml:space="preserve">
+    <value>يد تحكم 7</value>
+  </data>
+  <data name="Controller8Text" xml:space="preserve">
+    <value>يد تحكم 8</value>
+  </data>
+  <data name="GamepadGyroCameraDescription" xml:space="preserve">
+    <value>.القياسي Gryo أو  DS4 تعيين إخراج يد التحكم إلى تحكم
+Gryo معين كفأرة</value>
+  </data>
+  <data name="GamepadGyroCameraName" xml:space="preserve">
+    <value>يد تحكم مع فأرة</value>
+  </data>
+  <data name="GamepadPresetDescription" xml:space="preserve">
+    <value>تعيين وحدة التحكم ليد تحكم قياسية</value>
+  </data>
+  <data name="GamepadPresetName" xml:space="preserve">
+    <value>يد التحكم</value>
+  </data>
+  <data name="KBMGyroMouseDescription" xml:space="preserve">
+    <value>.إفتراضي KB+M قم بتعيين إخراج وحدة التحكم إلى تحكم
+.مفيدة للعب العاب المنظور الأول لا تدعم يد التحكم
+معين كفأرة إفتراضية Gryo</value>
+  </data>
+  <data name="KBMGyroMouseName" xml:space="preserve">
+    <value>Gryo مع فأرة KB+M تحكم</value>
+  </data>
+  <data name="KBMPresetDescription" xml:space="preserve">
+    <value>.إفتراضي KB+M قم بتعيين إخراج وحدة التحكم إلى تحكم
+مفيدة للعب العاب المنظور الأول لا تدعم يد التحكم</value>
+  </data>
+  <data name="KBMPresetName" xml:space="preserve">
+    <value>KB+M تحكم</value>
+  </data>
+  <data name="MixedGyroMousePresetDescription" xml:space="preserve">
+    <value>.قم بتعيين الأزرار ومحاور التحكم لقياسية
+إلى ماوس افتراضي Gryo قم بتعيين</value>
+  </data>
+  <data name="MixedGyroMousePresetName" xml:space="preserve">
+    <value>Gryo يد تحكم مع فأرة</value>
+  </data>
+  <data name="MixedPresetDescription" xml:space="preserve">
+    <value>XInput + RS تعيين إخراج يد التحكم لخليط فأرة</value>
+  </data>
+  <data name="MixedPresetName" xml:space="preserve">
+    <value>يد تحكم مع كاميرا عالية الدقة</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>الوصف</value>
+  </data>
+  <data name="PresetIntroText" xml:space="preserve">
+    <value>هل تريد إختيار إعداد مسبق؟ سيؤدي إختيار "لا" إلى قيام "محرر الملف الشخصي" بملف .تعريف يد تحكم فارغ</value>
+  </data>
+  <data name="Presets" xml:space="preserve">
+    <value>إعدادات مسبقة</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>سجل التغييرات</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>إغلاق</value>
+  </data>
+  <data name="Profiles" xml:space="preserve">
+    <value>ملفات التعريف</value>
+  </data>
+  <data name="NoControllersConnected" xml:space="preserve">
+    <value>(لا توجد أيادي تحكم متصلة (الأقصى {0}</value>
+  </data>
+  <data name="FlickThreshold" xml:space="preserve">
+    <value>بداية النقرة</value>
+  </data>
+  <data name="FlickTime" xml:space="preserve">
+    <value>وقت النقرة</value>
+  </data>
+  <data name="MinAngleThreshold" xml:space="preserve">
+    <value>الحد الأدنى للزاوية</value>
+  </data>
+  <data name="RealWorldCalibration" xml:space="preserve">
+    <value>المعايرة في العالم الحقيقي</value>
+  </data>
+</root>

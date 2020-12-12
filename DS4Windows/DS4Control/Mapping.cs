@@ -161,10 +161,11 @@ namespace DS4Windows
             }
         }
 
-        private static DS4SquareStick[] outSqrStk = new DS4SquareStick[Global.MAX_DS4_CONTROLLER_COUNT]
+        private static DS4SquareStick[] outSqrStk = new DS4SquareStick[Global.TEST_PROFILE_ITEM_COUNT]
         {
             new DS4SquareStick(), new DS4SquareStick(), new DS4SquareStick(), new DS4SquareStick(),
             new DS4SquareStick(), new DS4SquareStick(), new DS4SquareStick(), new DS4SquareStick(),
+            new DS4SquareStick(),
         };
 
         public static byte[] gyroStickX = new byte[Global.MAX_DS4_CONTROLLER_COUNT] { 128, 128, 128, 128, 128, 128, 128, 128 };

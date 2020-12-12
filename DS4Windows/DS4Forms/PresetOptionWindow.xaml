@@ -9,7 +9,8 @@
         lex:ResxLocalizationProvider.DefaultDictionary="Strings"
         xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
         mc:Ignorable="d"
-        Title="Select Preset" Height="250" Width="600" Padding="0">
+        Title="Select Preset" Height="250" Width="600" Padding="0"
+        Style="{DynamicResource WindowStyle}">
     <DockPanel>
         <TabControl x:Name="screensTabControl" BorderBrush="{x:Null}">
             <TabItem x:Name="IntroTab" Header="Intro">

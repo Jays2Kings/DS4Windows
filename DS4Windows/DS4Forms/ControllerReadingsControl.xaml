@@ -37,7 +37,7 @@
                 <Label Content="{lex:Loc LeftStick}" HorizontalAlignment="Center" Padding="0"/>
                 <Label Content="" HorizontalAlignment="Center" Padding="0"/>
                 <Canvas x:Name="lsCanvas" Width="130" Height="130" ClipToBounds="True">
-                    <Rectangle Stroke="Black" Width="130" Height="130">
+                    <Rectangle Width="130" Height="130" Stroke="{DynamicResource ForegroundColor}">
                     </Rectangle>
                     <Ellipse x:Name="lsDeadEllipse" Width="{Binding Path=Width, ElementName=lsCanvas}"
                              Height="{Binding Path=Height, ElementName=lsCanvas}" Fill="#FFCF1F1F">
@@ -72,8 +72,8 @@
                 <Label Content="{lex:Loc RightStick}" HorizontalAlignment="Center" Padding="0"/>
                 <Label Content="" HorizontalAlignment="Center" Padding="0"/>
                 <Canvas x:Name="rsCanvas" Width="130" Height="130" ClipToBounds="True">
-                    <Rectangle Stroke="Black" Width="{Binding Path=Width, ElementName=rsCanvas}"
-                               Height="{Binding Path=Height, ElementName=rsCanvas}">
+                    <Rectangle Width="{Binding Path=Width, ElementName=rsCanvas}"
+                               Height="{Binding Path=Height, ElementName=rsCanvas}" Stroke="{DynamicResource ForegroundColor}">
                     </Rectangle>
                     <Ellipse x:Name="rsDeadEllipse" Width="{Binding Path=Width, ElementName=rsCanvas}"
                              Height="{Binding Path=Height, ElementName=rsCanvas}" Fill="#FFCF1F1F">
@@ -107,8 +107,8 @@
             <StackPanel Grid.Column="2">
                 <TextBlock Text="SixAxis: X Axis is flipped so it is easier to read" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"/>
                 <Canvas x:Name="sixaxisCanvas" Width="130" Height="130" ClipToBounds="True">
-                    <Rectangle Stroke="Black" Width="{Binding Path=Width, ElementName=sixaxisCanvas}"
-                               Height="{Binding Path=Height, ElementName=sixaxisCanvas}">
+                    <Rectangle Width="{Binding Path=Width, ElementName=sixaxisCanvas}"
+                               Height="{Binding Path=Height, ElementName=sixaxisCanvas}" Stroke="{DynamicResource ForegroundColor}">
                     </Rectangle>
                     <Ellipse x:Name="sixAxisDeadEllipse" Width="{Binding Path=Width, ElementName=sixaxisCanvas}"
                              Height="{Binding Path=Height, ElementName=sixaxisCanvas}" Fill="#FFCF1F1F">
@@ -199,7 +199,7 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-            <Border BorderBrush="Black" Grid.Column="1" BorderThickness="1">
+            <Border Grid.Column="1" BorderThickness="1" BorderBrush="{DynamicResource ForegroundColor}">
                 <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
                     <StackPanel Margin="0,0,10,0">
                         <Label Content="{lex:Loc Gyro}" HorizontalAlignment="Center" Padding="0"/>

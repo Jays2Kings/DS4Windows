@@ -14,7 +14,7 @@
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,4,0,10">
             <TextBlock Text="{lex:LocText Profile, Suffix=:}" VerticalAlignment="Center" Margin="0,0,8,0"/>
-            <TextBox x:Name="profileNameTxt" Text="" Width="160" VerticalContentAlignment="Center" />
+            <TextBox x:Name="profileNameTxt" Text="" Width="160" VerticalContentAlignment="Center" IsEnabled="False" />
             <Button x:Name="saveBtn" Content="{lex:Loc SaveProfile}" Margin="10,0,0,0" Click="SaveBtn_Click" />
             <Button x:Name="cancelBtn" Content="{lex:Loc Cancel}" Margin="10,0,0,0" Click="CancelBtn_Click" />
             <Button x:Name="applyBtn" Content="{lex:Loc Apply}" Margin="10,0,0,0" Click="ApplyBtn_Click" />
@@ -1345,6 +1345,13 @@
                                             Minimum="0" Maximum="255" Increment="1" Margin="10,0,0,0" />
                         <TextBlock Text="{Binding OutputMouseSpeed,Mode=OneWay,StringFormat='\{0} pps'}"
                                    MinWidth="50" VerticalAlignment="Center"  Margin="10,0,0,0" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="40">
+                        <Label Content="Mouse Vertical Scale" ContentStringFormat="{}{0}:" VerticalAlignment="Center" />
+                        <xctk:IntegerUpDown d:IsHidden="True" MinWidth="50" Height="20"
+                            Value="{Binding ButtonMouseVerticalScale,FallbackValue='100'}"
+                            Minimum="0" Maximum="500" Increment="10" Margin="10,0,0,0" />
+                        <Label Content="%" VerticalContentAlignment="Center" Margin="4,0,0,0" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Mouse Offset" VerticalAlignment="Center" />

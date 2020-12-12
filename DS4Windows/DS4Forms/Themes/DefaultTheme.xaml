@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DS4WinWPF.DS4Forms.Themes" xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <!-- Brushes -->
+    <SolidColorBrush x:Key="ForegroundColor" Color="{x:Static SystemColors.ActiveCaptionTextColor}" />
+    <SolidColorBrush x:Key="SecondaryColor" Color="{x:Static SystemColors.ControlColor}"  />
+    <SolidColorBrush x:Key="AccentColor" Color="#FF0066CC" />
+
+    <system:String x:Key="KeyImageImg">key-solid.png</system:String>
+    <system:String x:Key="CancelImg">cancel.png</system:String>
+    <system:String x:Key="CheckedImg">checked.png</system:String>
+    <system:String x:Key="BtImg">BT.png</system:String>
+    <system:String x:Key="UsbImg">USB.png</system:String>
+    <system:String x:Key="KeyUpImg">keyup.png</system:String>
+    <system:String x:Key="KeyDownImg">keydown.png</system:String>
+    <system:String x:Key="ClockImg">clock.png</system:String>
+
+    <Style x:Key="WindowStyle" TargetType="{x:Type Window}" />
+</ResourceDictionary>

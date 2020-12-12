@@ -779,7 +779,8 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 HidDevice.ReadStatus res;
                 res = hDevice.ReadWithFileStream(tmpReport, SUBCOMMAND_RESPONSE_TIMEOUT);
                 int tries = 1;
-                while (tmpReport[0] != 0x21 && tmpReport[14] != subcommand && tries < 100)
+                while (res == HidDevice.ReadStatus.Success &&
+                    tmpReport[0] != 0x21 && tmpReport[14] != subcommand && tries < 100)
                 {
                     //Console.WriteLine("TRY AGAIN: {0}", tmpReport[0]);
                     res = hDevice.ReadWithFileStream(tmpReport, SUBCOMMAND_RESPONSE_TIMEOUT);

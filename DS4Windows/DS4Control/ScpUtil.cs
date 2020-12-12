@@ -51,6 +51,12 @@ namespace DS4Windows
         Black,
     }
 
+    public enum AppThemeChoice : uint
+    {
+        Default,
+        Dark,
+    }
+
     public class DS4ControlSettings
     {
         public DS4Controls control;
@@ -1241,6 +1247,12 @@ namespace DS4Windows
             set => m_Config.useIconChoice = value;
         }
 
+        public static AppThemeChoice UseCurrentTheme
+        {
+            get => m_Config.useCurrentTheme;
+            set => m_Config.useCurrentTheme = value;
+        }
+
         public static bool UseCustomSteamFolder
         {
             set { m_Config.useCustomSteamFolder = value; }
@@ -2305,7 +2317,7 @@ namespace DS4Windows
         public string m_controllerConfigs = Global.appdatapath + "\\ControllerConfigs.xml";
 
         protected XmlDocument m_Xdoc = new XmlDocument();
-        // fifth value used for options, not fifth controller
+        // ninth (fifth in old builds) value used for options, not last controller
         public ButtonMouseInfo[] buttonMouseInfos = new ButtonMouseInfo[Global.TEST_PROFILE_ITEM_COUNT]
         {
             new ButtonMouseInfo(), new ButtonMouseInfo(), new ButtonMouseInfo(),
@@ -2572,6 +2584,7 @@ namespace DS4Windows
         public double udpSmoothingBeta = DEFAULT_UDP_SMOOTH_BETA;
         public bool useCustomSteamFolder;
         public string customSteamFolder;
+        public AppThemeChoice useCurrentTheme;
         public string fakeExeFileName = string.Empty;
 
         // Cache whether profile has custom action
@@ -3044,6 +3057,7 @@ namespace DS4Windows
 
                 XmlNode xmlChargingType = m_Xdoc.CreateNode(XmlNodeType.Element, "ChargingType", null); xmlChargingType.InnerText = lightInfo.chargingType.ToString(); rootElement.AppendChild(xmlChargingType);
                 XmlNode xmlMouseAccel = m_Xdoc.CreateNode(XmlNodeType.Element, "MouseAcceleration", null); xmlMouseAccel.InnerText = buttonMouseInfos[device].mouseAccel.ToString(); rootElement.AppendChild(xmlMouseAccel);
+                XmlNode xmlMouseVerticalScale = m_Xdoc.CreateNode(XmlNodeType.Element, "ButtonMouseVerticalScale", null); xmlMouseVerticalScale.InnerText = Convert.ToInt32(buttonMouseInfos[device].buttonVerticalScale * 100).ToString(); rootElement.AppendChild(xmlMouseVerticalScale);
                 //XmlNode xmlShiftMod = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftModifier", null); xmlShiftMod.InnerText = shiftModifier[device].ToString(); rootElement.AppendChild(xmlShiftMod);
                 XmlNode xmlLaunchProgram = m_Xdoc.CreateNode(XmlNodeType.Element, "LaunchProgram", null); xmlLaunchProgram.InnerText = launchProgram[device].ToString(); rootElement.AppendChild(xmlLaunchProgram);
                 XmlNode xmlDinput = m_Xdoc.CreateNode(XmlNodeType.Element, "DinputOnly", null); xmlDinput.InnerText = dinputOnly[device].ToString(); rootElement.AppendChild(xmlDinput);
@@ -3898,6 +3912,14 @@ namespace DS4Windows
                 catch { missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ButtonMouseOffset"); double.TryParse(Item.InnerText, out buttonMouseInfos[device].mouseVelocityOffset); }
+                catch { missingSetting = true; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ButtonMouseVerticalScale");
+                    int.TryParse(Item.InnerText, out int temp);
+                    buttonMouseInfos[device].buttonVerticalScale = Math.Min(Math.Max(temp, 0), 500) * 0.01;
+                }
                 catch { missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Rainbow"); double.TryParse(Item.InnerText, out lightInfo.rainbow); }
@@ -5050,6 +5072,15 @@ namespace DS4Windows
                         catch { missingSetting = true; }
                     }
 
+                    try
+                    {
+                        Item = m_Xdoc.SelectSingleNode("/Profile/AppTheme");
+                        string temp = Item.InnerText;
+                        Enum.TryParse(temp, out AppThemeChoice choice);
+                        useCurrentTheme = choice;
+                    }
+                    catch { missingSetting = true; useCurrentTheme = AppThemeChoice.Default; }
+
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/UseUDPServer"); Boolean.TryParse(Item.InnerText, out useUDPServ); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/UDPServerPort"); int temp; int.TryParse(Item.InnerText, out temp); udpServPort = Math.Min(Math.Max(temp, 1024), 65535); }
@@ -5189,6 +5220,7 @@ namespace DS4Windows
             XmlNode xmlFlashWhenLate = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLate", null); xmlFlashWhenLate.InnerText = flashWhenLate.ToString(); rootElement.AppendChild(xmlFlashWhenLate);
             XmlNode xmlFlashWhenLateAt = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLateAt", null); xmlFlashWhenLateAt.InnerText = flashWhenLateAt.ToString(); rootElement.AppendChild(xmlFlashWhenLateAt);
             XmlNode xmlAppIconChoice = m_Xdoc.CreateNode(XmlNodeType.Element, "AppIcon", null); xmlAppIconChoice.InnerText = useIconChoice.ToString(); rootElement.AppendChild(xmlAppIconChoice);
+            XmlNode xmlAppThemeChoice = m_Xdoc.CreateNode(XmlNodeType.Element, "AppTheme", null); xmlAppThemeChoice.InnerText = useCurrentTheme.ToString(); rootElement.AppendChild(xmlAppThemeChoice);
             XmlNode xmlUseUDPServ = m_Xdoc.CreateNode(XmlNodeType.Element, "UseUDPServer", null); xmlUseUDPServ.InnerText = useUDPServ.ToString(); rootElement.AppendChild(xmlUseUDPServ);
             XmlNode xmlUDPServPort = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerPort", null); xmlUDPServPort.InnerText = udpServPort.ToString(); rootElement.AppendChild(xmlUDPServPort);
             XmlNode xmlUDPServListenAddress = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerListenAddress", null); xmlUDPServListenAddress.InnerText = udpServListenAddress; rootElement.AppendChild(xmlUDPServListenAddress);
@@ -5888,9 +5920,11 @@ namespace DS4Windows
 
         private void ResetProfile(int device)
         {
-            buttonMouseInfos[device].buttonSensitivity = 25;
-            buttonMouseInfos[device].activeButtonSensitivity = 25;
+            buttonMouseInfos[device].buttonSensitivity = ButtonMouseInfo.DEFAULT_BUTTON_SENS;
+            buttonMouseInfos[device].activeButtonSensitivity = ButtonMouseInfo.DEFAULT_BUTTON_SENS;
             buttonMouseInfos[device].mouseVelocityOffset = ButtonMouseInfo.MOUSESTICKANTIOFFSET;
+            buttonMouseInfos[device].buttonVerticalScale = ButtonMouseInfo.DEFAULT_BUTTON_VERTICAL_SCALE;
+            buttonMouseInfos[device].mouseAccel = false;
             enableTouchToggle[device] = true;
             idleDisconnectTimeout[device] = 0;
             enableOutputDataToDS4[device] = true;
@@ -5921,7 +5955,6 @@ namespace DS4Windows
             doubleTap[device] = false;
             scrollSensitivity[device] = 0;
             touchpadInvert[device] = 0;
-            buttonMouseInfos[device].mouseAccel = false;
             btPollRate[device] = 4;
 
             lsOutputSettings[device].ResetSettings();

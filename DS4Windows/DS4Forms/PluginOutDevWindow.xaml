@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
         mc:Ignorable="d"
-        Title="PluginOutDevWindow" Height="200" Width="400">
+        Title="PluginOutDevWindow" Height="200" Width="400"
+        Style="{DynamicResource WindowStyle}">
     <DockPanel LastChildFill="False">
         <TextBlock Text="Device type" DockPanel.Dock="Top" />
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Height="40" HorizontalAlignment="Right">

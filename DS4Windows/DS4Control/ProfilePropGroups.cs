@@ -295,16 +295,29 @@ namespace DS4Windows
     {
         //public const double MOUSESTICKANTIOFFSET = 0.0128;
         public const double MOUSESTICKANTIOFFSET = 0.008;
+        public const int DEFAULT_BUTTON_SENS = 25;
+        public const double DEFAULT_BUTTON_VERTICAL_SCALE = 1.0;
 
-        public int buttonSensitivity = 25;
+        public int buttonSensitivity = DEFAULT_BUTTON_SENS;
         public bool mouseAccel;
-        public int activeButtonSensitivity = 25;
+        public int activeButtonSensitivity = DEFAULT_BUTTON_SENS;
         public int tempButtonSensitivity = -1;
         public double mouseVelocityOffset = MOUSESTICKANTIOFFSET;
+        public double buttonVerticalScale = DEFAULT_BUTTON_VERTICAL_SCALE;
 
         public void SetActiveButtonSensitivity(int sens)
         {
             activeButtonSensitivity = sens;
+        }
+
+        public void Reset()
+        {
+            buttonSensitivity = DEFAULT_BUTTON_SENS;
+            mouseAccel = false;
+            activeButtonSensitivity = DEFAULT_BUTTON_SENS;
+            tempButtonSensitivity = -1;
+            mouseVelocityOffset = MOUSESTICKANTIOFFSET;
+            buttonVerticalScale = DEFAULT_BUTTON_VERTICAL_SCALE;
         }
     }
 

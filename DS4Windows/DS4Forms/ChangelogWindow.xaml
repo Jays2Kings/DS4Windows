@@ -6,7 +6,8 @@
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
         mc:Ignorable="d"
-        Title="{lex:Loc Changelog}" Height="450" Width="800">
+        Title="{lex:Loc Changelog}" Height="450" Width="800"
+        Style="{DynamicResource WindowStyle}">
     <DockPanel Margin="8,0">
         <TextBlock x:Name="captionTextBlock" Text="{Binding IntroText}" DockPanel.Dock="Top" Margin="0,4" />
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Right" Margin="0,0,0,8">

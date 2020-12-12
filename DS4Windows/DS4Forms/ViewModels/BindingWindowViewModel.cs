@@ -363,15 +363,16 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             get
             {
-                string color;
+                string color = string.Empty;
                 if (outputType == OutType.Default)
                 {
                     color =  Colors.LimeGreen.ToString();
                 }
-                else
+                /*else
                 {
                     color = SystemColors.ControlBrush.Color.ToString();
                 }
+                */
 
                 return color;
             }
@@ -381,15 +382,16 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             get
             {
-                string color;
+                string color = string.Empty;
                 if (outputType == OutType.Button && control == X360Controls.Unbound)
                 {
                     color = Colors.LimeGreen.ToString();
                 }
-                else
+                /*else
                 {
                     color = SystemColors.ControlBrush.Color.ToString();
                 }
+                */
 
                 return color;
             }
@@ -478,6 +480,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 int.TryParse(temp[2], out int useColor);
                 if (useColor == 1)
                 {
+                    useExtrasColor = true;
                     byte.TryParse(temp[3], out extrasColor.red);
                     byte.TryParse(temp[4], out extrasColor.green);
                     byte.TryParse(temp[5], out extrasColor.blue);
@@ -485,6 +488,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 }
                 else
                 {
+                    useExtrasColor = false;
                     extrasColor.red = extrasColor.green = extrasColor.blue = 255;
                     flashRate = 0;
                 }

@@ -445,6 +445,20 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public event EventHandler ButtonMouseSensitivityChanged;
 
+        public int ButtonMouseVerticalScale
+        {
+            get => Convert.ToInt32(Global.ButtonMouseInfos[device].buttonVerticalScale * 100.0);
+            set
+            {
+                double temp = Global.ButtonMouseInfos[device].buttonVerticalScale;
+                double attemptValue = value * 0.01;
+                if (temp == attemptValue) return;
+                Global.ButtonMouseInfos[device].buttonVerticalScale = attemptValue;
+                ButtonMouseVerticalScaleChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler ButtonMouseVerticalScaleChanged;
+
         private double RawButtonMouseOffset
         {
             get => Global.ButtonMouseInfos[device].mouseVelocityOffset;

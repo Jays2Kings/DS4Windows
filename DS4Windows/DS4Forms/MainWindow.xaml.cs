@@ -394,6 +394,7 @@ namespace DS4WinWPF.DS4Forms
             trayIconVM.RequestOpen += TrayIconVM_RequestOpen;
             trayIconVM.RequestServiceChange += TrayIconVM_RequestServiceChange;
             settingsWrapVM.IconChoiceIndexChanged += SettingsWrapVM_IconChoiceIndexChanged;
+            settingsWrapVM.AppChoiceIndexChanged += SettingsWrapVM_AppChoiceIndexChanged;
 
             autoProfControl.AutoDebugChanged += AutoProfControl_AutoDebugChanged;
             autoprofileChecker.RequestServiceChange += AutoprofileChecker_RequestServiceChange;
@@ -429,6 +430,13 @@ namespace DS4WinWPF.DS4Forms
                 AppLogger.LogToGui(@"Could not connect to Windows Management Instrumentation service.
 Suspend support not enabled.", true);
             }
+        }
+
+        private void SettingsWrapVM_AppChoiceIndexChanged(object sender, EventArgs e)
+        {
+            AppThemeChoice choice = Global.UseCurrentTheme;
+            App.ChangeTheme(choice);
+            trayIconVM.PopulateContextMenu();
         }
 
         private void SettingsWrapVM_IconChoiceIndexChanged(object sender, EventArgs e)
@@ -840,7 +848,10 @@ Suspend support not enabled.", true);
             if (idx > -1)
             {
                 LogItem temp = logvm.LogItems[idx];
-                MessageBox.Show(temp.Message, "Log");
+                LogMessageDisplay msgBox = new LogMessageDisplay(temp.Message);
+                msgBox.Owner = this;
+                msgBox.ShowDialog();
+                //MessageBox.Show(temp.Message, "Log");
             }
         }
 
@@ -971,7 +982,8 @@ Suspend support not enabled.", true);
                 return;
             }
 
-            if (conLvViewModel.ControllerCol.Count > 0)
+            // If this method was called directly without sender object then skip the confirmation dialogbox
+            if (sender != null && conLvViewModel.ControllerCol.Count > 0)
             {
                 MessageBoxResult result = MessageBox.Show(Properties.Resources.CloseConfirm, Properties.Resources.Confirm,
                         MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -1008,6 +1020,7 @@ Suspend support not enabled.", true);
         private const int DBT_DEVICEARRIVAL = 0x8000;
         private const int DBT_DEVICEREMOVECOMPLETE = 0x8004;
         public const int WM_COPYDATA = 0x004A;
+        private const int HOTPLUG_CHECK_DELAY = 2000;
 
         private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam,
             IntPtr lParam, ref bool handled)
@@ -1056,11 +1069,25 @@ Suspend support not enabled.", true);
                                 strData[0] = strData[0].ToLower();
 
                                 if (strData[0] == "start")
-                                    ChangeService();
+                                { 
+                                    if(!Program.rootHub.running) 
+                                        ChangeService();
+                                }
                                 else if (strData[0] == "stop")
-                                    ChangeService();
+                                {    
+                                    if (Program.rootHub.running)
+                                        ChangeService();
+                                }
                                 else if (strData[0] == "shutdown")
-                                    MainDS4Window_Closing(this, new System.ComponentModel.CancelEventArgs());
+                                {
+                                    // Force disconnect all gamepads before closing the app to avoid "Are you sure you want to close the app" messagebox
+                                    if (Program.rootHub.running)
+                                        ChangeService();
+
+                                    // Call closing method and let it to close editor wnd (if it is open) before proceeding to the actual "app closed" handler
+                                    MainDS4Window_Closing(null, new System.ComponentModel.CancelEventArgs());
+                                    MainDS4Window_Closed(this, new System.EventArgs());
+                                }
                                 else if ((strData[0] == "loadprofile" || strData[0] == "loadtempprofile") && strData.Length >= 3)
                                 {
                                     // Command syntax: LoadProfile.device#.profileName (fex LoadProfile.1.GameSnake or LoadTempProfile.1.WebBrowserSet)
@@ -1207,9 +1234,8 @@ Suspend support not enabled.", true);
             Program.rootHub.UpdateHidGuardAttributes();
             while (loopHotplug == true)
             {
-                Thread.Sleep(1500);
+                Thread.Sleep(HOTPLUG_CHECK_DELAY);
                 Program.rootHub.HotPlug();
-                //TaskRunner.Run(() => { Program.rootHub.HotPlug(uiContext); });
                 lock (hotplugCounterLock)
                 {
                     hotplugCounter--;

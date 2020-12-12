@@ -582,7 +582,7 @@ namespace DS4Windows
 
             if (!hDevice.IsFileStreamOpen())
             {
-                hDevice.OpenFileStream(inputReport.Length);
+                hDevice.OpenFileStream(outputReport.Length);
             }
 
             sendOutputReport(true, true, false); // initialize the output report (don't force disconnect the gamepad on initialization even if writeData fails because some fake DS4 gamepads don't support writeData over BT)
@@ -658,11 +658,12 @@ namespace DS4Windows
             {
                 if (conType == ConnectionType.BT)
                 {
-                    ds4Output = new Thread(performDs4Output);
+                    /*ds4Output = new Thread(performDs4Output);
                     ds4Output.Priority = ThreadPriority.Normal;
                     ds4Output.Name = "DS4 Output thread: " + Mac;
                     ds4Output.IsBackground = true;
                     ds4Output.Start();
+                    */
 
                     timeoutCheckThread = new Thread(TimeoutTestThread);
                     timeoutCheckThread.Priority = ThreadPriority.BelowNormal;
@@ -737,11 +738,11 @@ namespace DS4Windows
         {
             if (conType == ConnectionType.BT)
             {
-                if ((this.featureSet & VidPidFeatureSet.OnlyOutputData0x05) == 0)
-                    return hDevice.WriteOutputReportViaControl(outputReport);
-                else
-                    // Some gamepads behave like USB devices in BT (fex couple Razer gamepads)
-                    return hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
+                //if ((this.featureSet & VidPidFeatureSet.OnlyOutputData0x05) == 0)
+                //    return hDevice.WriteOutputReportViaControl(outputReport);
+                //else
+                // Use Interrupt endpoint for all BT DS4 connected devices now
+                return hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
             }
             else
             {
@@ -751,9 +752,11 @@ namespace DS4Windows
 
         private readonly Stopwatch rumbleAutostopTimer = new Stopwatch(); // Autostop timer to stop rumble motors if those are stuck in a rumble state
 
-        private byte outputPendCount = 0;
+        //private byte outputPendCount = 0;
+        //private const int OUTPUT_MIN_COUNT_BT = 3;
+        private byte[] outputBTCrc32Head = new byte[] { 0xA2 };
         protected readonly Stopwatch standbySw = new Stopwatch();
-        private unsafe void performDs4Output()
+        /*private unsafe void performDs4Output()
         {
             try
             {
@@ -811,7 +814,7 @@ namespace DS4Windows
                 }
             }
             catch (ThreadInterruptedException) { }
-        }
+        }*/
 
         /** Is the device alive and receiving valid sensor input reports? */
         public virtual bool IsAlive()
@@ -871,7 +874,8 @@ namespace DS4Windows
                 timeoutEvent = false;
                 ds4InactiveFrame = true;
                 idleInput = true;
-                bool syncWriteReport = conType != ConnectionType.BT;
+                //bool syncWriteReport = conType != ConnectionType.BT;
+                bool syncWriteReport = true;
                 bool forceWrite = false;
 
                 int maxBatteryValue = 0;
@@ -1352,9 +1356,10 @@ namespace DS4Windows
                 return;
             }
 
-            lock (outReportBuffer)
+            //lock (outReportBuffer)
             {
-                bool output = outputPendCount > 0, change = force;
+                //bool output = outputPendCount > 0, change = force;
+                bool output = false, change = force;
                 bool haptime = output || standbySw.ElapsedMilliseconds >= 4000L;
 
                 if (usingBT && (this.featureSet & VidPidFeatureSet.OnlyOutputData0x05) == 0)
@@ -1425,25 +1430,21 @@ namespace DS4Windows
                 {
                     if (output || haptime)
                     {
-                        if (change)
-                        {
-                            outputPendCount = 3;
-                            standbySw.Reset();
-                        }
-                        else if (outputPendCount > 1)
-                            outputPendCount--;
-                        else if (outputPendCount == 1)
-                        {
-                            outputPendCount--;
-                            standbySw.Restart();
-                        }
-                        else
-                            standbySw.Restart();
+                        standbySw.Restart();
 
                         if (usingBT)
                         {
-                            Monitor.Enter(outputReport);
                             outReportBuffer.CopyTo(outputReport, 0);
+
+                            // Need to calculate and populate CRC-32 data so controller will accept the report
+                            uint calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);
+                            calcCrc32 = ~Crc32Algorithm.CalculateBasicHash(ref calcCrc32, ref outputReport, 0, BT_OUTPUT_REPORT_LENGTH - 4);
+                            outputReport[BT_OUTPUT_REPORT_LENGTH-4] = (byte)calcCrc32;
+                            outputReport[BT_OUTPUT_REPORT_LENGTH-3] = (byte)(calcCrc32 >> 8);
+                            outputReport[BT_OUTPUT_REPORT_LENGTH-2] = (byte)(calcCrc32 >> 16);
+                            outputReport[BT_OUTPUT_REPORT_LENGTH-1] = (byte)(calcCrc32 >> 24);
+
+                            //Console.WriteLine("Write CRC-32 to output report");
                         }
 
                         try
@@ -1463,31 +1464,6 @@ namespace DS4Windows
                             }
                         }
                         catch { } // If it's dead already, don't worry about it.
-
-                        if (usingBT)
-                        {
-                            Monitor.Exit(outputReport);
-                        }
-                        else
-                        {
-                            Monitor.Pulse(outReportBuffer);
-                        }
-                    }
-                }
-                else
-                {
-                    //for (int i = 0, arlen = outputReport.Length; !change && i < arlen; i++)
-                    //    change = outputReport[i] != outReportBuffer[i];
-
-                    if (output || haptime)
-                    {
-                        if (change)
-                        {
-                            outputPendCount = 3;
-                            standbySw.Reset();
-                        }
-
-                        Monitor.Pulse(outReportBuffer);
                     }
                 }
             }

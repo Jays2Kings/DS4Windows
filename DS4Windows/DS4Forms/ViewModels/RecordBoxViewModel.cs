@@ -118,6 +118,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             
             // By default RECORD button appends new steps. User must select (click) an existing step to insert new steps in front of the selected step
             this.MacroStepIndex = -1;
+
+            MacroStepItem.CacheImgLocations();
         }
 
         private void CreateKeyDownOverrides()
@@ -357,10 +359,20 @@ namespace DS4WinWPF.DS4Forms.ViewModels
     {
         private static string[] imageSources = new string[]
         {
-            "/DS4Windows;component/Resources/keydown.png",
-            "/DS4Windows;component/Resources/keyup.png",
-            "/DS4Windows;component/Resources/clock.png",
+            $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("KeyUpImg")}",
+            $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("KeyDownImg")}",
+            $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("ClockImg")}",
         };
+
+        public static void CacheImgLocations()
+        {
+            imageSources = new string[]
+            {
+                $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("KeyUpImg")}",
+                $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("KeyDownImg")}",
+                $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("ClockImg")}",
+            };
+        }
 
         private MacroStep step;
         private string image;

@@ -123,7 +123,6 @@ which to do so.
 ### Crypto
 
 **Bitcoin:** 1DnMJwjdd7JRfHJap2mmTmADYm38SzR2z9  
-**Dogecoin:** D9fhbXp9bCHEhuS8vX1BmVu6t7Y2nVNUCK  
 **Litecoin:** La5mniW7SFMH2RhqDgUty3RwkBSYbjbnJ6  
 **Monero:** 49RvRMiMewaeez1Y2auxHmfMaAUYfhUpBem4ohzRJd9b5acPcxzh1icjnhZfjnYd1S7NQ57reQ7cP1swGre3rpfzUgJhEB7
 

@@ -39,7 +39,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
         protected new const int BT_OUTPUT_REPORT_LENGTH = 78;
         private new const int BT_INPUT_REPORT_LENGTH = 78;
         protected const int TOUCHPAD_DATA_OFFSET = 33;
-        private new const int BATTERY_MAX = 10;
+        private new const int BATTERY_MAX = 8;
 
         public new const byte SERIAL_FEATURE_ID = 9;
         public override byte SerialReportID { get => SERIAL_FEATURE_ID; }
@@ -101,7 +101,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
             if (!hDevice.IsFileStreamOpen())
             {
-                hDevice.OpenFileStream(inputReport.Length);
+                hDevice.OpenFileStream(outputReport.Length);
             }
 
             // Need to blank LED lights so lightbar will change colors
@@ -705,6 +705,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
         protected override void StopOutputUpdate()
         {
+            SendEmptyOutputReport();
         }
 
         private void SendEmptyOutputReport()
@@ -714,7 +715,21 @@ namespace DS4WinWPF.DS4Library.InputDevices
             outputReport[0] = conType == ConnectionType.USB ? OUTPUT_REPORT_ID_USB :
                 OUTPUT_REPORT_ID_BT;
 
+            if (conType == ConnectionType.BT)
+            {
+                outputReport[1] = 0x02;
+
+                // Need to calculate and populate CRC32 data so controller will accept the report
+                uint calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);
+                calcCrc32 = ~Crc32Algorithm.CalculateBasicHash(ref calcCrc32, ref outputReport, 0, BT_OUTPUT_REPORT_LENGTH - 4);
+                outputReport[74] = (byte)calcCrc32;
+                outputReport[75] = (byte)(calcCrc32 >> 8);
+                outputReport[76] = (byte)(calcCrc32 >> 16);
+                outputReport[77] = (byte)(calcCrc32 >> 24);
+            }
+
             WriteReport();
+            //hDevice.fileStream.Flush();
         }
 
         private void SendInitialBTOutputReport()
@@ -741,6 +756,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
             MergeStates();
 
             bool change = false;
+            bool rumbleSet = currentHap.IsRumbleSet();
 
             if (conType == ConnectionType.USB)
             {
@@ -823,7 +839,21 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 {
                     //Console.WriteLine("DIRTY");
                     outputDirty = true;
+                    if (rumbleSet)
+                    {
+                        standbySw.Restart();
+                    }
+                    else
+                    {
+                        standbySw.Reset();
+                    }
+
                     //outReportBuffer.CopyTo(outputReport, 0);
+                }
+                else if (rumbleSet && standbySw.ElapsedMilliseconds >= 4000L)
+                {
+                    outputDirty = true;
+                    standbySw.Restart();
                 }
                 //bool res = hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
                 //Console.WriteLine("STAUTS: {0}", res);
@@ -907,6 +937,24 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 {
                     //change = true;
                     outputDirty = true;
+
+                    if (rumbleSet)
+                    {
+                        standbySw.Restart();
+                    }
+                    else
+                    {
+                        standbySw.Reset();
+                    }
+                }
+                else if (rumbleSet && standbySw.ElapsedMilliseconds >= 4000L)
+                {
+                    outputDirty = true;
+                    standbySw.Restart();
+                }
+
+                if (outputDirty)
+                {
                     int crcOffset = 0;
                     int crcpos = BT_OUTPUT_REPORT_LENGTH - 4;
                     calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);
@@ -965,6 +1013,11 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
             //Console.WriteLine("STAUTS: {0}", result);
             return result;
+        }
+
+        private void Detach()
+        {
+            SendEmptyOutputReport();
         }
     }
 }

@@ -109,6 +109,7 @@
       <HintPath>..\packages\Ookii.Dialogs.Wpf.1.1.0\lib\net45\Ookii.Dialogs.Wpf.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -214,6 +215,9 @@
     </Compile>
     <Compile Include="DS4Forms\LanguagePackControl.xaml.cs">
       <DependentUpon>LanguagePackControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Forms\LogMessageDisplay.xaml.cs">
+      <DependentUpon>LogMessageDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="DS4Forms\OutputSlotManagerControl.xaml.cs">
       <DependentUpon>OutputSlotManagerControl.xaml</DependentUpon>
@@ -338,6 +342,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DS4Forms\LogMessageDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DS4Forms\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -381,6 +389,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DS4Forms\SpecialActionEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\Themes\DarkTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\Themes\DefaultTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -472,6 +488,14 @@
       <SubType>Designer</SubType>
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
+   <EmbeddedResource Include="Translations\Strings.pl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Translations\Strings.ar.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -516,6 +540,14 @@
     <Content Include="BezierCurveEditor\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\clock_white.png" />
+    <Resource Include="Resources\BT_white.png" />
+    <Resource Include="Resources\cancel_white.png" />
+    <Resource Include="Resources\checked_white.png" />
+    <Resource Include="Resources\key-solid_white.png" />
+    <Resource Include="Resources\keydown_white.png" />
+    <Resource Include="Resources\keyup_white.png" />
+    <Resource Include="Resources\USB_white.png" />
     <Resource Include="Resources\DS4W - Black.ico" />
     <Resource Include="Resources\social\parler.png" />
     <Resource Include="Resources\key-solid.png" />
@@ -583,7 +615,7 @@
     <PostBuildEvent>rem Copy compiled l18n assemblies to alt folder
 GOTO END
 if not exist $(TargetDir)Lang mkdir $(TargetDir)Lang
-set langs=cs de es fr it ja nl pt-BR ru zh-CN zh-TW uk-UA hu-HU
+set langs=cs de es fr it ja nl pt-BR ru zh-CN zh-TW uk-UA hu-HU pl ar
 
 for %25%25l in (%25langs%25) do (
   xcopy $(TargetDir)%25%25l $(TargetDir)Lang\%25%25l\ /s /y

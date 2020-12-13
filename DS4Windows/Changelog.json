@@ -1,9 +1,25 @@
 {
-  "latest_version": "2.1.21",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 21},
-  "updated_at": "2020-12-13T01:11:04+0000",
+  "latest_version": "2.1.22",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 22},
+  "updated_at": "2020-12-13T15:42:18+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.22",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 22},
+        "base_header": "Version 2.1.22",
+        "release_date": "2020-12-13T15:42:18+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.22",
+            "log_text": ["* Make sure profile name textbox is enabled by default again"],
+            "editor": "ryochan7",
+            "editors_note": ["Fail"],
+            "updated_at": "2020-12-13T15:42:18+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.21",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 21},

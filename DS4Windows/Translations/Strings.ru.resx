@@ -310,7 +310,7 @@
     <value>сек</value>
   </data>
   <data name="RumbleMaxSecsTip" xml:space="preserve">
-    <value>Автоо-становка в секундах (0=отключена)</value>
+    <value>Авто-остановка в секундах (0=отключена)</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Window Title</value>
@@ -390,8 +390,9 @@
     <comment>Main tab</comment>
   </data>
   <data name="NoControllersConnected" xml:space="preserve">
-    <value>No Controllers Connected (Max {0})</value>
-    <comment>Контроллеры не подключены (Максимум {0})</comment>
+    <value>Контроллеры не подключены (Максимум {0})</value>
+    <comment>Controllers tab
+(if controllers are disabled)</comment>
   </data>
   <data name="EnableOutputDataToDS4" xml:space="preserve">
     <value>Включить вывод данных в DS4</value>

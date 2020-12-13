@@ -399,7 +399,7 @@
     <comment>Profiles tab&gt;edit&gt;Other</comment>
   </data>
   <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
-    <value>Периодически выводить данные световой панели и вибрации на геймпад DS4. Снимите флажок, если геймпад не поддерживает прием данных. 
+    <value>Периодически выводить данные световой панели и вибрации на геймпад DS4. Снимите флажок, если геймпад не поддерживает прием данных.
 Изменения этого параметра вступают в силу во время подключения геймпада.</value>
     <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
   </data>

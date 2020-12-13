@@ -1,9 +1,25 @@
 {
-  "latest_version": "2.1.20",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 20},
-  "updated_at": "2020-12-12T21:26:53+0000",
+  "latest_version": "2.1.21",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 21},
+  "updated_at": "2020-12-13T01:11:04+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.21",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 21},
+        "base_header": "Version 2.1.21",
+        "release_date": "2020-12-13T01:11:04+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.21",
+            "log_text": ["* Grab proper image for Exclusive access display"],
+            "editor": "ryochan7",
+            "editors_note": ["Oops"],
+            "updated_at": "2020-12-13T01:11:04+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.20",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 20},
@@ -26,7 +42,7 @@
               "* Updated Polish translation. Contribution by **gregory678**",
               "* Added Brook Mars controller support. Contribution by **Кладовая**",
               "* Implemented a Dark theme for the GUI",
-              "* Fixed Change Light extras setting loading in Binding window. Keep setting in tack",
+              "* Fixed Change Light extras setting loading in Binding window. Keep setting in tact",
               "* Changed buffer size for DS4 FileStream instance",
               "* Now use Interrupt endpoint for DS4 BT output reports",
               "* Fixed out-of-bounds access when enabling square stick. Contribution by **hpesoj**",

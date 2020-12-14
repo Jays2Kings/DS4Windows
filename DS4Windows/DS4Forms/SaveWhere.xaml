@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
         mc:Ignorable="d"
-        Title="SaveWhere" Height="184" Width="453" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Background="{DynamicResource BackgroundColor}">
+        Title="SaveWhere" Height="184" Width="453" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="Window_Closing"
+        Style="{DynamicResource WindowStyle}">
     <StackPanel>
         <DockPanel x:Name="multipleSavesDockP" Margin="4,0">
             <Label Content="Multiple save locations detected" />

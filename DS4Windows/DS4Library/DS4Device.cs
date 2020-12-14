@@ -1436,15 +1436,18 @@ namespace DS4Windows
                         {
                             outReportBuffer.CopyTo(outputReport, 0);
 
-                            // Need to calculate and populate CRC-32 data so controller will accept the report
-                            uint calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);
-                            calcCrc32 = ~Crc32Algorithm.CalculateBasicHash(ref calcCrc32, ref outputReport, 0, BT_OUTPUT_REPORT_LENGTH - 4);
-                            outputReport[BT_OUTPUT_REPORT_LENGTH-4] = (byte)calcCrc32;
-                            outputReport[BT_OUTPUT_REPORT_LENGTH-3] = (byte)(calcCrc32 >> 8);
-                            outputReport[BT_OUTPUT_REPORT_LENGTH-2] = (byte)(calcCrc32 >> 16);
-                            outputReport[BT_OUTPUT_REPORT_LENGTH-1] = (byte)(calcCrc32 >> 24);
+                            if ((this.featureSet & VidPidFeatureSet.OnlyOutputData0x05) == 0)
+                            {
+                                // Need to calculate and populate CRC-32 data so controller will accept the report
+                                uint calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);
+                                calcCrc32 = ~Crc32Algorithm.CalculateBasicHash(ref calcCrc32, ref outputReport, 0, BT_OUTPUT_REPORT_LENGTH - 4);
+                                outputReport[BT_OUTPUT_REPORT_LENGTH - 4] = (byte)calcCrc32;
+                                outputReport[BT_OUTPUT_REPORT_LENGTH - 3] = (byte)(calcCrc32 >> 8);
+                                outputReport[BT_OUTPUT_REPORT_LENGTH - 2] = (byte)(calcCrc32 >> 16);
+                                outputReport[BT_OUTPUT_REPORT_LENGTH - 1] = (byte)(calcCrc32 >> 24);
 
-                            //Console.WriteLine("Write CRC-32 to output report");
+                                //Console.WriteLine("Write CRC-32 to output report");
+                            }
                         }
 
                         try

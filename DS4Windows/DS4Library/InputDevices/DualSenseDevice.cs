@@ -455,6 +455,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     tempByte = inputReport[10 + reportOffset];
                     cState.PS = (tempByte & (1 << 0)) != 0;
                     cState.TouchButton = (tempByte & 0x02) != 0;
+                    cState.Mute = (tempByte & (1 << 2)) != 0;
                     //cState.FrameCounter = (byte)(tempByte >> 2);
 
                     if ((this.featureSet & VidPidFeatureSet.NoBatteryReading) == 0)

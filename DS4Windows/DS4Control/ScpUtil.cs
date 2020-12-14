@@ -20,7 +20,7 @@ namespace DS4Windows
     [Flags]
     public enum DS4KeyType : byte { None = 0, ScanCode = 1, Toggle = 2, Unbound = 4, Macro = 8, HoldMacro = 16, RepeatMacro = 32 }; // Increment by exponents of 2*, starting at 2^0
     public enum Ds3PadId : byte { None = 0xFF, One = 0x00, Two = 0x01, Three = 0x02, Four = 0x03, All = 0x04 };
-    public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown };
+    public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options, Mute, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown };
     public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, TouchpadClick, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, Unbound };
 
     public enum SASteeringWheelEmulationAxisType: byte { None = 0, LX, LY, RX, RY, L2R2, VJoy1X, VJoy1Y, VJoy1Z, VJoy2X, VJoy2Y, VJoy2Z };
@@ -388,13 +388,46 @@ namespace DS4Windows
         public const string CUSTOM_EXE_CONFIG_FILENAME = "custom_exe_name.txt";
         public const string XML_EXTENSION = ".xml";
 
-        public static X360Controls[] defaultButtonMapping = { X360Controls.None, X360Controls.LXNeg, X360Controls.LXPos,
-            X360Controls.LYNeg, X360Controls.LYPos, X360Controls.RXNeg, X360Controls.RXPos, X360Controls.RYNeg, X360Controls.RYPos,
-            X360Controls.LB, X360Controls.LT, X360Controls.LS, X360Controls.RB, X360Controls.RT, X360Controls.RS, X360Controls.X,
-            X360Controls.Y, X360Controls.B, X360Controls.A, X360Controls.DpadUp, X360Controls.DpadRight, X360Controls.DpadDown,
-            X360Controls.DpadLeft, X360Controls.Guide, X360Controls.LeftMouse, X360Controls.MiddleMouse, X360Controls.RightMouse, X360Controls.LeftMouse,
-            X360Controls.Back, X360Controls.Start, X360Controls.None, X360Controls.None, X360Controls.None, X360Controls.None,
-            X360Controls.None, X360Controls.None, X360Controls.None, X360Controls.None
+        public static X360Controls[] defaultButtonMapping = {
+            X360Controls.None, // DS4Controls.None
+            X360Controls.LXNeg, // DS4Controls.LXNeg
+            X360Controls.LXPos, // DS4Controls.LXPos
+            X360Controls.LYNeg, // DS4Controls.LYNeg
+            X360Controls.LYPos, // DS4Controls.LYPos
+            X360Controls.RXNeg, // DS4Controls.RXNeg
+            X360Controls.RXPos, // DS4Controls.RXPos
+            X360Controls.RYNeg, // DS4Controls.RYNeg
+            X360Controls.RYPos, // DS4Controls.RYPos
+            X360Controls.LB, // DS4Controls.L1
+            X360Controls.LT, // DS4Controls.L2
+            X360Controls.LS, // DS4Controls.L3
+            X360Controls.RB, // DS4Controls.R1
+            X360Controls.RT, // DS4Controls.R2
+            X360Controls.RS, // DS4Controls.R3
+            X360Controls.X, // DS4Controls.Square
+            X360Controls.Y, // DS4Controls.Triangle
+            X360Controls.B, // DS4Controls.Circle
+            X360Controls.A, // DS4Controls.Cross
+            X360Controls.DpadUp, // DS4Controls.DpadUp
+            X360Controls.DpadRight, // DS4Controls.DpadRight
+            X360Controls.DpadDown, // DS4Controls.DpadDown
+            X360Controls.DpadLeft, // DS4Controls.DpadLeft
+            X360Controls.Guide, // DS4Controls.PS
+            X360Controls.LeftMouse, // DS4Controls.TouchLeft
+            X360Controls.MiddleMouse, // DS4Controls.TouchUpper
+            X360Controls.RightMouse, // DS4Controls.TouchMulti
+            X360Controls.LeftMouse, // DS4Controls.TouchRight
+            X360Controls.Back, // DS4Controls.Share
+            X360Controls.Start, // DS4Controls.Options
+            X360Controls.None, // DS4Controls.Mute
+            X360Controls.None, // DS4Controls.GyroXPos
+            X360Controls.None, // DS4Controls.GyroXNeg
+            X360Controls.None, // DS4Controls.GyroZPos
+            X360Controls.None, // DS4Controls.GyroZNeg
+            X360Controls.None, // DS4Controls.SwipeLeft
+            X360Controls.None, // DS4Controls.SwipeRight
+            X360Controls.None, // DS4Controls.SwipeUp
+            X360Controls.None, // DS4Controls.SwipeDown
         };
 
         // Create mapping array at runtime
@@ -453,6 +486,7 @@ namespace DS4Windows
             [X360Controls.MouseLeft] = "Mouse Left",
             [X360Controls.MouseRight] = "Mouse Right",
             [X360Controls.Unbound] = "Unbound",
+            [X360Controls.None] = "Unassigned",
         };
 
         public static Dictionary<X360Controls, string> ds4DefaultNames = new Dictionary<X360Controls, string>()
@@ -539,6 +573,7 @@ namespace DS4Windows
             [DS4Controls.PS] = "PS",
             [DS4Controls.Share] = "Share",
             [DS4Controls.Options] = "Options",
+            [DS4Controls.Mute] = "Mute",
             [DS4Controls.TouchLeft] = "Left Touch",
             [DS4Controls.TouchUpper] = "Upper Touch",
             [DS4Controls.TouchMulti] = "Multitouch",
@@ -6614,6 +6649,7 @@ namespace DS4Windows
                 case "Square": return DS4Controls.Square;
 
                 case "PS": return DS4Controls.PS;
+                case "Mute": return DS4Controls.Mute;
                 case "Left Stick Left": return DS4Controls.LXNeg;
                 case "Left Stick Up": return DS4Controls.LYNeg;
                 case "Right Stick Left": return DS4Controls.RXNeg;

@@ -9,7 +9,7 @@ namespace DS4Windows
         public bool Square, Triangle, Circle, Cross;
         public bool DpadUp, DpadDown, DpadLeft, DpadRight;
         public bool L1, L2Btn, L3, R1, R2Btn, R3;
-        public bool Share, Options, PS, Touch1, Touch2, TouchButton, TouchRight,
+        public bool Share, Options, PS, Mute, Touch1, Touch2, TouchButton, TouchRight,
             TouchLeft, Touch1Finger, Touch2Fingers;
         public byte Touch1Identifier, Touch2Identifier;
         public byte LX, RX, LY, RY, L2, R2;
@@ -47,7 +47,7 @@ namespace DS4Windows
             Square = Triangle = Circle = Cross = false;
             DpadUp = DpadDown = DpadLeft = DpadRight = false;
             L1 = L2Btn = L3 = R1 = R2Btn = R3 = false;
-            Share = Options = PS = Touch1 = Touch2 = TouchButton = TouchRight = TouchLeft = false;
+            Share = Options = PS = Mute = Touch1 = Touch2 = TouchButton = TouchRight = TouchLeft = false;
             Touch1Finger = Touch2Fingers = false;
             LX = RX = LY = RY = 128;
             L2 = R2 = 0;
@@ -93,6 +93,7 @@ namespace DS4Windows
             Share = state.Share;
             Options = state.Options;
             PS = state.PS;
+            Mute = state.Mute;
             Touch1 = state.Touch1;
             TouchRight = state.TouchRight;
             TouchLeft = state.TouchLeft;
@@ -153,6 +154,7 @@ namespace DS4Windows
             state.Share = Share;
             state.Options = Options;
             state.PS = PS;
+            state.Mute = Mute;
             state.Touch1 = Touch1;
             state.Touch1Identifier = Touch1Identifier;
             state.Touch2 = Touch2;

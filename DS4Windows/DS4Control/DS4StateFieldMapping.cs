@@ -13,7 +13,7 @@ namespace DS4Windows
         public bool[] swipedirbools = new bool[(int)DS4Controls.SwipeDown + 1];
         public bool touchButton = false;
 
-        public static ControlType[] mappedType = new ControlType[38] { ControlType.Unknown, // DS4Controls.None
+        public static ControlType[] mappedType = new ControlType[39] { ControlType.Unknown, // DS4Controls.None
             ControlType.AxisDir, // DS4Controls.LXNeg
             ControlType.AxisDir, // DS4Controls.LXPos
             ControlType.AxisDir, // DS4Controls.LYNeg
@@ -43,6 +43,7 @@ namespace DS4Windows
             ControlType.Touch, // DS4Controls.TouchRight
             ControlType.Button, // DS4Controls.Share
             ControlType.Button, // DS4Controls.Options
+            ControlType.Button, // DS4Controls.Mute
             ControlType.GyroDir, // DS4Controls.GyroXPos
             ControlType.GyroDir, // DS4Controls.GyroXNeg
             ControlType.GyroDir, // DS4Controls.GyroZPos
@@ -91,6 +92,7 @@ namespace DS4Windows
                 buttons[(int)DS4Controls.PS] = cState.PS;
                 buttons[(int)DS4Controls.Options] = cState.Options;
                 buttons[(int)DS4Controls.Share] = cState.Share;
+                buttons[(int)DS4Controls.Mute] = cState.Mute;
 
                 buttons[(int)DS4Controls.DpadUp] = cState.DpadUp;
                 buttons[(int)DS4Controls.DpadRight] = cState.DpadRight;
@@ -152,6 +154,7 @@ namespace DS4Windows
                 state.PS = buttons[(int)DS4Controls.PS];
                 state.Options = buttons[(int)DS4Controls.Options];
                 state.Share = buttons[(int)DS4Controls.Share];
+                state.Mute = buttons[(int)DS4Controls.Mute];
 
                 state.DpadUp = buttons[(int)DS4Controls.DpadUp];
                 state.DpadRight = buttons[(int)DS4Controls.DpadRight];

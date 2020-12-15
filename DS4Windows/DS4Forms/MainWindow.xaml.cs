@@ -1077,6 +1077,8 @@ Suspend support not enabled.", true);
                                 {    
                                     if (Program.rootHub.running)
                                         ChangeService();
+                                else if (strData[0] == "cycle") 
+                                    ChangeService();
                                 }
                                 else if (strData[0] == "shutdown")
                                 {

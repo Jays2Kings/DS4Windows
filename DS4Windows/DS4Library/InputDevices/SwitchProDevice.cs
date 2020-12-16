@@ -1176,11 +1176,11 @@ namespace DS4WinWPF.DS4Library.InputDevices
             MergeStates();
 
             bool dirty;
-            double tempRatio = currentHap.RumbleMotorStrengthLeftHeavySlow / 255.0;
+            double tempRatio = currentHap.rumbleState.RumbleMotorStrengthLeftHeavySlow / 255.0;
             dirty = tempRatio != 0 || tempRatio != currentLeftAmpRatio;
             currentLeftAmpRatio = tempRatio;
 
-            tempRatio = currentHap.RumbleMotorStrengthRightLightFast / 255.0;
+            tempRatio = currentHap.rumbleState.RumbleMotorStrengthRightLightFast / 255.0;
             dirty = dirty || tempRatio != 0 || tempRatio != currentRightAmpRatio;
             currentRightAmpRatio = tempRatio;
 

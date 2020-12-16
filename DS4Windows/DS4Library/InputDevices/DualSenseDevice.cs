@@ -779,9 +779,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 outputReport[2] = 0x15; // 0x04 | 0x01 | 0x10
 
                 // Right? High Freq Motor
-                outputReport[3] = currentHap.RumbleMotorStrengthRightLightFast;
+                outputReport[3] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast;
                 // Left? Low Freq Motor
-                outputReport[4] = currentHap.RumbleMotorStrengthLeftHeavySlow;
+                outputReport[4] = currentHap.rumbleState.RumbleMotorStrengthLeftHeavySlow;
 
                 /*
                 // Headphone volume
@@ -821,9 +821,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 //*/
 
                 /* Lightbar colors */
-                outputReport[45] = currentHap.LightBarColor.red;
-                outputReport[46] = currentHap.LightBarColor.green;
-                outputReport[47] = currentHap.LightBarColor.blue;
+                outputReport[45] = currentHap.lightbarState.LightBarColor.red;
+                outputReport[46] = currentHap.lightbarState.LightBarColor.green;
+                outputReport[47] = currentHap.lightbarState.LightBarColor.blue;
 
                 if (!previousHapticState.Equals(currentHap))
                 {
@@ -882,9 +882,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 outputReport[3] = 0x15; // 0x04 | 0x01 | 0x10
 
                 // Right? High Freq Motor
-                outputReport[4] = currentHap.RumbleMotorStrengthRightLightFast;
+                outputReport[4] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast;
                 // Left? Low Freq Motor
-                outputReport[5] = currentHap.RumbleMotorStrengthLeftHeavySlow;
+                outputReport[5] = currentHap.rumbleState.RumbleMotorStrengthLeftHeavySlow;
 
                 /*
                 // Headphone volume
@@ -924,9 +924,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 //*/
 
                 /* Lightbar colors */
-                outputReport[46] = currentHap.LightBarColor.red;
-                outputReport[47] = currentHap.LightBarColor.green;
-                outputReport[48] = currentHap.LightBarColor.blue;
+                outputReport[46] = currentHap.lightbarState.LightBarColor.red;
+                outputReport[47] = currentHap.lightbarState.LightBarColor.green;
+                outputReport[48] = currentHap.lightbarState.LightBarColor.blue;
 
                 change = !previousHapticState.Equals(currentHap);
 

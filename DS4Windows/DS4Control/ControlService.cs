@@ -554,6 +554,8 @@ namespace DS4Windows
                 Xbox360OutDevice tempXbox = outDevice as Xbox360OutDevice;
                 Nefarius.ViGEm.Client.Targets.Xbox360FeedbackReceivedEventHandler p = (sender, args) =>
                 {
+                    //Console.WriteLine("Rumble ({0}, {1}) {2}",
+                    //    args.LargeMotor, args.SmallMotor, DateTime.Now.ToLongTimeString());
                     SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
                 };
                 tempXbox.cont.FeedbackReceived += p;
@@ -614,11 +616,18 @@ namespace DS4Windows
                     if (useLight)
                     {
                         //Console.WriteLine("Change lightbar color");
-                        DS4HapticState haptics = new DS4HapticState
+                        /*DS4HapticState haptics = new DS4HapticState
                         {
                             LightBarColor = color,
                         };
                         device.SetHapticState(ref haptics);
+                        */
+
+                        DS4LightbarState lightState = new DS4LightbarState
+                        {
+                            LightBarColor = color,
+                        };
+                        device.SetLightbarState(ref lightState);
                     }
 
                     //Console.WriteLine();

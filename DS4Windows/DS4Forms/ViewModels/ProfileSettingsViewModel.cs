@@ -562,7 +562,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             {
                 ImageSource exeicon = null;
                 string path = Global.LaunchProgram[device];
-                if (File.Exists(path) && Path.GetExtension(path) == ".exe")
+                if (File.Exists(path) && Path.GetExtension(path).ToLower() == ".exe")
                 {
                     using (Icon ico = Icon.ExtractAssociatedIcon(path))
                     {
@@ -2444,14 +2444,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     {
                         using (RegistryKey browserPathCmdKey = Registry.ClassesRoot.OpenSubKey($"{progId}\\shell\\open\\command"))
                         {
-                            defaultBrowserCmd = browserPathCmdKey?.GetValue(null).ToString();
+                            defaultBrowserCmd = browserPathCmdKey?.GetValue(null).ToString().ToLower();
                         }
 
                         if (!String.IsNullOrEmpty(defaultBrowserCmd))
                         {
                             int iStartPos = (defaultBrowserCmd[0] == '"' ? 1 : 0);
                             defaultBrowserCmd = defaultBrowserCmd.Substring(iStartPos, defaultBrowserCmd.LastIndexOf(".exe") + 4 - iStartPos);
-                            if (Path.GetFileName(defaultBrowserCmd).ToLower() == "launchwinapp.exe")
+                            if (Path.GetFileName(defaultBrowserCmd) == "launchwinapp.exe")
                                 defaultBrowserCmd = String.Empty;
                         }
 

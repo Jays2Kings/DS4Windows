@@ -40,7 +40,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels.SpecialActions
             {
                 ImageSource exeicon = null;
                 string path = filepath;
-                if (File.Exists(path) && Path.GetExtension(path) == ".exe")
+                if (File.Exists(path) && Path.GetExtension(path).ToLower() == ".exe")
                 {
                     using (Icon ico = Icon.ExtractAssociatedIcon(path))
                     {

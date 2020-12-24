@@ -146,7 +146,7 @@ namespace DS4Windows
             outDS4Report.sCurrentTouch.bTouchData2[1] = (byte)((state.TrackPadTouch1.X >> 8) & 0x0F | (state.TrackPadTouch1.Y << 4) & 0xF0);
             outDS4Report.sCurrentTouch.bTouchData2[2] = (byte)(state.TrackPadTouch1.Y >> 4);
 
-            // Flip some coordinates back to native coordinate system
+            // Flip some coordinates back to DS4 device coordinate system
             outDS4Report.wGyroX = (short)-state.Motion.gyroYawFull;
             outDS4Report.wGyroY = (short)state.Motion.gyroPitchFull;
             outDS4Report.wGyroZ = (short)-state.Motion.gyroRollFull;

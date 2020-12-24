@@ -382,6 +382,9 @@ namespace DS4Windows
         public static bool vigemInstalled = IsViGEmBusInstalled();
         public static bool hidguardInstalled = IsHidGuardianInstalled();
         public static string vigembusVersion = ViGEmBusVersion();
+        public static Version vigemBusVersionInfo =
+            new Version(!string.IsNullOrEmpty(vigembusVersion) ? vigembusVersion :
+                "0.0.0.0");
         public const int CONFIG_VERSION = 5;
         public const int APP_CONFIG_VERSION = 2;
         public const string ASSEMBLY_RESOURCE_PREFIX = "pack://application:,,,/DS4Windows;";

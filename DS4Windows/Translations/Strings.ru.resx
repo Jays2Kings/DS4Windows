@@ -310,7 +310,7 @@
     <value>сек</value>
   </data>
   <data name="RumbleMaxSecsTip" xml:space="preserve">
-    <value>Автоостановка в секундах (0=отключена)</value>
+    <value>Авто-остановка в секундах (0=отключена)</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Window Title</value>
@@ -399,7 +399,7 @@
     <comment>Profiles tab&gt;edit&gt;Other</comment>
   </data>
   <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
-    <value>Периодически выводить данные световой панели и вибрации на геймпад DS4. Снимите флажок, если геймпад не поддерживает прием данных. 
+    <value>Периодически выводить данные световой панели и вибрации на геймпад DS4. Снимите флажок, если геймпад не поддерживает прием данных.
 Изменения этого параметра вступают в силу во время подключения геймпада.</value>
     <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
   </data>
@@ -407,110 +407,67 @@
     <value>Проверка XInput</value>
     <comment>settings tab&gt;utils</comment>
   </data>
-  <data name="EnableOutputDataToDS4" xml:space="preserve">
-    <value>Enable Output data to DS4</value>
-  </data>
-  <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
-    <value>Output lightbar and rumble data periodically to DS4 gamepad. Untick if the gamepad doesn't support data receiving.
-Changes to this option takes effect at the gamepad connection time.</value>
-    <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
-  </data>
-  <data name="Apply" xml:space="preserve">
-    <value>Apply</value>
-  </data>
   <data name="HidNinja" xml:space="preserve">
     <value>HidNinja</value>
   </data>
-  <data name="CustomExeName" xml:space="preserve">
-    <value>Custom Exe Name</value>
-  </data>
-  <data name="CustomExeNameInfo" xml:space="preserve">
-    <value>Some games implement a block that causes DS4 input to be ignored if a game detects either DS4Windows.exe or InputMapper.exe running at the time. A workaround to the block is to rename DS4Windows.exe so the check in the game fails. Specifying a custom exe name here allows DS4Updater to automatically update a custom copy of DS4Windows to the desired file name. Make sure to omit the extension.
-
-Example: whyme_DS4Windows</value>
-  </data>
-  <data name="XInputChecker" xml:space="preserve">
-    <value>XInputChecker</value>
-  </data>
-  <data name="Controller5Text" xml:space="preserve">
-    <value>Controller 5</value>
-  </data>
-  <data name="Controller6Text" xml:space="preserve">
-    <value>Controller 6</value>
-  </data>
-  <data name="Controller7Text" xml:space="preserve">
-    <value>Controller 7</value>
-  </data>
-  <data name="Controller8Text" xml:space="preserve">
-    <value>Controller 8</value>
-  </data>
   <data name="GamepadGyroCameraDescription" xml:space="preserve">
     <value>Maps the controller output to a standard XInput gamepad or DS4 pad. Gyro is mapped to a Mouse-like Joystick.</value>
+    <comment>Description</comment>
   </data>
   <data name="GamepadGyroCameraName" xml:space="preserve">
     <value>Gamepad with Mouse-like Joystick</value>
+    <comment>preset name</comment>
   </data>
   <data name="GamepadPresetDescription" xml:space="preserve">
     <value>Maps the controller output to a standard gamepad</value>
-  </data>
-  <data name="GamepadPresetName" xml:space="preserve">
-    <value>Gamepad</value>
+    <comment>Description</comment>
   </data>
   <data name="KBMGyroMouseDescription" xml:space="preserve">
     <value>Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support. Gyro is mapped to a virtual Mouse.</value>
+    <comment>Description</comment>
   </data>
   <data name="KBMGyroMouseName" xml:space="preserve">
     <value>KB+M Controls with Gyro Mouse</value>
+    <comment>preset name</comment>
   </data>
   <data name="KBMPresetDescription" xml:space="preserve">
     <value>Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support.</value>
+    <comment>Description</comment>
   </data>
   <data name="KBMPresetName" xml:space="preserve">
     <value>KB+M Controls</value>
+    <comment>preset name</comment>
   </data>
   <data name="MixedGyroMousePresetDescription" xml:space="preserve">
     <value>Maps the buttons and axes to a standard gamepad. Maps the Gyro to a virtual mouse</value>
+    <comment>Description</comment>
   </data>
   <data name="MixedGyroMousePresetName" xml:space="preserve">
     <value>Gamepad with Gyro Mouse</value>
+    <comment>preset name</comment>
   </data>
   <data name="MixedPresetDescription" xml:space="preserve">
     <value>Maps the controller output to mixed XInput gamepad + RS mouse.</value>
+    <comment>Description</comment>
   </data>
   <data name="MixedPresetName" xml:space="preserve">
     <value>Gamepad with High Precision Camera</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="PresetIntroText" xml:space="preserve">
-    <value>Do you want to use a preset option? Choosing No will cause the Profile Editor to use an empty Gamepad profile.</value>
-  </data>
-  <data name="Presets" xml:space="preserve">
-    <value>Presets</value>
-  </data>
-  <data name="Changelog" xml:space="preserve">
-    <value>Changelog</value>
-  </data>
-  <data name="Close" xml:space="preserve">
-    <value>Close</value>
-  </data>
-  <data name="Profiles" xml:space="preserve">
-    <value>Profiles</value>
-  </data>
-  <data name="NoControllersConnected" xml:space="preserve">
-    <value>No Controllers Connected (Max {0})</value>
+    <comment>preset name</comment>
   </data>
   <data name="FlickThreshold" xml:space="preserve">
     <value>Flick Threshold</value>
+    <comment>Profiles tab&gt;Edit&gt;Axis Config&gt;Flick Stick</comment>
   </data>
   <data name="FlickTime" xml:space="preserve">
     <value>Flick Time</value>
+    <comment>Profiles tab&gt;Edit&gt;Axis Config&gt;Flick Stick</comment>
   </data>
   <data name="MinAngleThreshold" xml:space="preserve">
     <value>Min Angle Threshold</value>
+    <comment>Profiles tab&gt;Edit&gt;Axis Config&gt;Flick Stick</comment>
   </data>
   <data name="RealWorldCalibration" xml:space="preserve">
     <value>Real World Calibration</value>
+    <comment>Profiles tab&gt;Edit&gt;Axis Config&gt;Flick Stick</comment>
   </data>
 </root>

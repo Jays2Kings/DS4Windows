@@ -1183,11 +1183,13 @@ namespace DS4Windows
                     timeStampPrevious = tempStamp;
 
                     //Simpler touch storing
+                    cState.TrackPadTouch0.RawTrackingNum = inputReport[35];
                     cState.TrackPadTouch0.Id = (byte)(inputReport[35] & 0x7f);
                     cState.TrackPadTouch0.IsActive = (inputReport[35] & 0x80) == 0;
                     cState.TrackPadTouch0.X = (short)(((ushort)(inputReport[37] & 0x0f) << 8) | (ushort)(inputReport[36]));
                     cState.TrackPadTouch0.Y = (short)(((ushort)(inputReport[38]) << 4) | ((ushort)(inputReport[37] & 0xf0) >> 4));
 
+                    cState.TrackPadTouch1.RawTrackingNum = inputReport[39];
                     cState.TrackPadTouch1.Id = (byte)(inputReport[39] & 0x7f);
                     cState.TrackPadTouch1.IsActive = (inputReport[39] & 0x80) == 0;
                     cState.TrackPadTouch1.X = (short)(((ushort)(inputReport[41] & 0x0f) << 8) | (ushort)(inputReport[40]));

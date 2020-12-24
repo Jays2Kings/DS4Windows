@@ -36,6 +36,7 @@ namespace DS4Windows
             public byte Id;
             public short X;
             public short Y;
+            public byte RawTrackingNum;
         }
 
         public TrackPadTouch TrackPadTouch0;

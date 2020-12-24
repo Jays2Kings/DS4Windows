@@ -133,6 +133,19 @@ namespace DS4Windows
                     goto case SASteeringWheelEmulationAxisType.None;
             }
 
+            // Only worry about mapping 1 touch packet
+            outDS4Report.bTouchPacketsN = 1;
+            outDS4Report.sCurrentTouch.bPacketCounter = state.TouchPacketCounter;
+            outDS4Report.sCurrentTouch.bIsUpTrackingNum1 = 0;
+            outDS4Report.sCurrentTouch.bTouchData1[0] = (byte)(state.TrackPadTouch0.X & 0xFF);
+            outDS4Report.sCurrentTouch.bTouchData1[1] = (byte)((state.TrackPadTouch0.X >> 8) & 0x0F | (state.TrackPadTouch0.Y << 4) & 0xF0);
+            outDS4Report.sCurrentTouch.bTouchData1[2] = (byte)(state.TrackPadTouch0.Y >> 4);
+
+            outDS4Report.sCurrentTouch.bIsUpTrackingNum2 = 0;
+            outDS4Report.sCurrentTouch.bTouchData2[0] = (byte)(state.TrackPadTouch1.X & 0xFF);
+            outDS4Report.sCurrentTouch.bTouchData2[1] = (byte)((state.TrackPadTouch1.X >> 8) & 0x0F | (state.TrackPadTouch1.Y << 4) & 0xF0);
+            outDS4Report.sCurrentTouch.bTouchData2[2] = (byte)(state.TrackPadTouch1.Y >> 4);
+
             DS4OutDeviceExtras.CopyBytes(ref outDS4Report, rawOutReportEx);
             cont.SubmitRawReport(rawOutReportEx);
         }

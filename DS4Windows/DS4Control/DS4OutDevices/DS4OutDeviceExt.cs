@@ -154,6 +154,9 @@ namespace DS4Windows
             outDS4Report.wAccelY = (short)-state.Motion.accelYFull;
             outDS4Report.wAccelZ = (short)state.Motion.accelZFull;
 
+            // USB DS4 v.1 battery level range is [0-11]
+            outDS4Report.bBatteryLvlSpecial = (byte)(state.Battery / 11);
+
             DS4OutDeviceExtras.CopyBytes(ref outDS4Report, rawOutReportEx);
             cont.SubmitRawReport(rawOutReportEx);
         }

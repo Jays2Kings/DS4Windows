@@ -17,7 +17,7 @@
               "* Added support for mapping DualSense Mute button",
               "* Fixed Dark theme crashing app in Windows 7. Removed Aero2 elements from Dark theme.",
               "* Disable apply button when creating a new profile. Further enforce current flow",
-              "* Added feature set check befored generating CRC-32 output data",
+              "* Added feature set check before generating CRC-32 output data",
               "* Fixed theme style for SaveWhere window",
               "* Corrected KeyDown and KeyUp images in Macro editor",
               "* Split DS4HapticState to two structs. Separate force feedback data from lightbar color",

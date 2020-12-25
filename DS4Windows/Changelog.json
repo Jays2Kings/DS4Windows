@@ -1,9 +1,38 @@
 {
-  "latest_version": "2.1.22",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 22},
-  "updated_at": "2020-12-13T15:42:18+0000",
+  "latest_version": "2.1.23",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 23},
+  "updated_at": "2020-12-25T15:51:12+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.1.23",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 23},
+        "base_header": "Version 2.1.23",
+        "release_date": "2020-12-25T15:51:12+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.23",
+            "log_text": ["* Updated App.config file with proper .NET Framework version",
+              "* Added support for mapping DualSense Mute button",
+              "* Fixed Dark theme crashing app in Windows 7. Removed Aero2 elements from Dark theme.",
+              "* Disable apply button when creating a new profile. Further enforce current flow",
+              "* Added feature set check before generating CRC-32 output data",
+              "* Fixed theme style for SaveWhere window",
+              "* Corrected KeyDown and KeyUp images in Macro editor",
+              "* Split DS4HapticState to two structs. Separate force feedback data from lightbar color",
+              "* Added -command cycle cmd flag. Allows for an easy on/off shortcut without having to set any conditions. Contribution by **wingfixer**",
+              "* Changed AutoProfile EXE file extension check to be case-sensitive. Contribution by **mika-n**",
+              "* Added MinWidth back in Dark theme for combobox. Was removed with Aero2 tags.",
+              "* Updated Russian translation file. Contribution by **shikulja**",
+              "* Don't display data write failure if device is known to be disconnecting. Hopefully eliminates excessive gamepad write failure log messages when Idle Disconnect is executed.",
+              "* Tweaked axis scaling to output Xbox 360 axis. Low end now can scale to 0 properly."],
+            "editor": "ryochan7",
+            "editors_note": ["Not much"],
+            "updated_at": "2020-12-25T15:51:12+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.22",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 22},

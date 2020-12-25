@@ -144,10 +144,11 @@ namespace DS4WinWPF
             string version = DS4Windows.Global.exeversion;
             logger.Info($"DS4Windows version {version}");
             logger.Info($"DS4Windows exe file: {DS4Windows.Global.exeFileName}");
+            logger.Info($"DS4Windows Assembly Architecture: {(Environment.Is64BitProcess ? "x64" : "x86")}");
             logger.Info($"OS Version: {Environment.OSVersion}");
             logger.Info($"OS Product Name: {DS4Windows.Util.GetOSProductName()}");
             logger.Info($"OS Release ID: {DS4Windows.Util.GetOSReleaseId()}");
-            logger.Info($"System Architecture: {(Environment.Is64BitOperatingSystem ? "x64" : "x32")}");
+            logger.Info($"System Architecture: {(Environment.Is64BitOperatingSystem ? "x64" : "x86")}");
             //logger.Info("DS4Windows version 2.0");
             logger.Info("Logger created");
 

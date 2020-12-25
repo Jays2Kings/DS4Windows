@@ -21,6 +21,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             string version = DS4Windows.Global.exeversion;
             logItems.Add(new LogItem { Datetime = DateTime.Now, Message = $"DS4Windows version {version}" });
+            logItems.Add(new LogItem { Datetime = DateTime.Now, Message = $"DS4Windows Assembly Architecture: {(Environment.Is64BitProcess ? "x64" : "x86")}" });
             logItems.Add(new LogItem { Datetime = DateTime.Now, Message = $"OS Version: {Environment.OSVersion}" });
             logItems.Add(new LogItem { Datetime = DateTime.Now, Message = $"OS Product Name: {DS4Windows.Util.GetOSProductName()}" });
             logItems.Add(new LogItem { Datetime = DateTime.Now, Message = $"OS Release ID: {DS4Windows.Util.GetOSReleaseId()}" });

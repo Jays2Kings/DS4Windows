@@ -106,6 +106,8 @@ namespace DS4Windows
                 squared = new DS4Vector2(0.0, 0.0);
             }
 
+            // Modification of squared stick routine documented
+            // at http://theinstructionlimit.com/squaring-the-thumbsticks
             public void CircleToSquare(double roundness)
             {
                 const double PiOverFour = Math.PI / 4.0;

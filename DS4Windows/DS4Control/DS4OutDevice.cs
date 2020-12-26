@@ -22,8 +22,6 @@ namespace DS4Windows
             cont.AutoSubmitReport = false;
         }
 
-        
-
         public override void Connect()
         {
             cont.Connect();

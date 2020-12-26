@@ -1787,8 +1787,14 @@ namespace DS4Windows
                     containsCustomAction(ind) || containsCustomExtras(ind) ||
                     getProfileActionCount(ind) > 0))
                 {
-                    Mapping.MapCustom(ind, cState, MappedState[ind], ExposedState[ind], touchPad[ind], this);
-                    cState = MappedState[ind];
+                    DS4State tempMapState = MappedState[ind];
+                    Mapping.MapCustom(ind, cState, tempMapState, ExposedState[ind], touchPad[ind], this);
+
+                    // Copy current Touchpad and Gyro data
+                    tempMapState.Motion = cState.Motion;
+                    tempMapState.TrackPadTouch0 = cState.TrackPadTouch0;
+                    tempMapState.TrackPadTouch1 = cState.TrackPadTouch1;
+                    cState = tempMapState;
                 }
 
                 if (!useDInputOnly[ind])

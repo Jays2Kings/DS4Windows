@@ -31,7 +31,7 @@ namespace DS4Windows
         {
             if (!connected) return;
 
-            cont.ResetReport();
+            //cont.ResetReport();
             ushort tempButtons = 0;
 
             unchecked

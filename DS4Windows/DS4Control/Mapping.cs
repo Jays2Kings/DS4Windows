@@ -265,7 +265,7 @@ namespace DS4Windows
         private static int wheel = 0, keyshelddown = 0;
 
         //mapcustom
-        public static bool[] pressedonce = new bool[261], macrodone = new bool[38];
+        public static bool[] pressedonce = new bool[261], macrodone = new bool[39];
         static bool[] macroControl = new bool[25];
         static uint macroCount = 0;
         static Dictionary<string, Task>[] macroTaskQueue = new Dictionary<string, Task>[Global.MAX_DS4_CONTROLLER_COUNT] { new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>() };
@@ -290,7 +290,9 @@ namespace DS4Windows
             DS4Controls.TouchRight, DS4Controls.GyroZNeg, DS4Controls.GyroZPos, DS4Controls.GyroXPos, DS4Controls.GyroXNeg,
         };
 
-        private static int[] ds4ControlMapping = new int[38] { 0, // DS4Control.None
+        // Button to index mapping used for macrodone array. Not even sure this
+        // is needed. This was originally made to replace a switch test used in the DS4ControlToInt method.
+        private static int[] ds4ControlMapping = new int[39] { 0, // DS4Control.None
             16, // DS4Controls.LXNeg
             20, // DS4Controls.LXPos
             17, // DS4Controls.LYNeg
@@ -320,14 +322,15 @@ namespace DS4Windows
             28, // DS4Controls.TouchRight
             1,  // DS4Controls.Share
             2,  // DS4Controls.Options
-            31, // DS4Controls.GyroXPos
-            30, // DS4Controls.GyroXNeg
-            33, // DS4Controls.GyroZPos
-            32, // DS4Controls.GyroZNeg
-            34, // DS4Controls.SwipeLeft
-            35, // DS4Controls.SwipeRight
-            36, // DS4Controls.SwipeUp
-            37  // DS4Controls.SwipeDown
+            30, // DS4Controls.Mute
+            32, // DS4Controls.GyroXPos
+            31, // DS4Controls.GyroXNeg
+            34, // DS4Controls.GyroZPos
+            33, // DS4Controls.GyroZNeg
+            35, // DS4Controls.SwipeLeft
+            36, // DS4Controls.SwipeRight
+            37, // DS4Controls.SwipeUp
+            38  // DS4Controls.SwipeDown
         };
 
         // Define here to save some time processing.

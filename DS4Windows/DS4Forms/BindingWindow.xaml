@@ -105,6 +105,7 @@
                         <ComboBoxItem Content="Sixaxis Left"/>
                         <ComboBoxItem Content="Sixaxis Right"/>
                         <ComboBoxItem Content="Finger on Touchpad"/>
+                        <ComboBoxItem Content="Mute"/>
                     </ComboBox>
 
                     <Button x:Name="defaultBtn" Content="{Binding DefaultBtnString,FallbackValue=Default}" Background="{Binding DefaultColor,FallbackValue={StaticResource SecondaryColor}}" Margin="0,50,0,0" Click="DefaultBtn_Click" />

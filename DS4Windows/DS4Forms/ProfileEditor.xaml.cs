@@ -1362,4 +1362,12 @@ namespace DS4WinWPF.DS4Forms
             ApplyProfileStep();
         }
     }
+
+    public class ControlIndexCheck
+    {
+        public string SwipeUp { get => $"{(int)DS4Controls.SwipeUp}"; }
+        public string SwipeDown { get => $"{(int)DS4Controls.SwipeDown}"; }
+        public string SwipeLeft { get => $"{(int)DS4Controls.SwipeLeft}"; }
+        public string SwipeRight { get => $"{(int)DS4Controls.SwipeRight}"; }
+    }
 }

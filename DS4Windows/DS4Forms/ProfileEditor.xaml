@@ -11,6 +11,9 @@
              lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <local:ControlIndexCheck x:Key="controlIndexCheck" />
+    </UserControl.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,4,0,10">
             <TextBlock Text="{lex:LocText Profile, Suffix=:}" VerticalAlignment="Center" Margin="0,0,8,0"/>
@@ -929,19 +932,19 @@
                         <TabItem Header="Controls" Visibility="Collapsed">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
-                                    <Button x:Name="swipeUpBtn" Content="Swipe Up" MinWidth="100" Tag="37" Click="SwipeControlsButton_Click" />
+                                    <Button x:Name="swipeUpBtn" Content="Swipe Up" MinWidth="100" Tag="{Binding SwipeUp, Source={StaticResource controlIndexCheck}}" Click="SwipeControlsButton_Click" />
                                     <Label x:Name="swipeUpLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="5,8,0,0">
-                                    <Button x:Name="swipeDownBtn" Content="Swipe Down" MinWidth="100" Tag="38" Click="SwipeControlsButton_Click" />
+                                    <Button x:Name="swipeDownBtn" Content="Swipe Down" MinWidth="100" Tag="{Binding SwipeDown, Source={StaticResource controlIndexCheck}}" Click="SwipeControlsButton_Click" />
                                     <Label x:Name="swipeDownLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="5,8,0,0">
-                                    <Button x:Name="swipeLeftBtn" Content="Swipe Left" MinWidth="100" Tag="35" Click="SwipeControlsButton_Click" />
+                                    <Button x:Name="swipeLeftBtn" Content="Swipe Left" MinWidth="100" Tag="{Binding SwipeLeft, Source={StaticResource controlIndexCheck}}" Click="SwipeControlsButton_Click" />
                                     <Label x:Name="swipeLeftLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="5,8,0,10">
-                                    <Button x:Name="swipeRightBtn" Content="Swipe Right" MinWidth="100" Tag="36" Click="SwipeControlsButton_Click" />
+                                    <Button x:Name="swipeRightBtn" Content="Swipe Right" MinWidth="100" Tag="{Binding SwipeRight, Source={StaticResource controlIndexCheck}}" Click="SwipeControlsButton_Click" />
                                     <Label x:Name="swipeRightLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
                                 </StackPanel>
                             </StackPanel>

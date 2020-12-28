@@ -1365,9 +1365,14 @@ namespace DS4WinWPF.DS4Forms
 
     public class ControlIndexCheck
     {
-        public string SwipeUp { get => $"{(int)DS4Controls.SwipeUp}"; }
-        public string SwipeDown { get => $"{(int)DS4Controls.SwipeDown}"; }
-        public string SwipeLeft { get => $"{(int)DS4Controls.SwipeLeft}"; }
-        public string SwipeRight { get => $"{(int)DS4Controls.SwipeRight}"; }
+        public int TiltUp { get => (int)DS4Controls.GyroZNeg; }
+        public int TiltDown { get => (int)DS4Controls.GyroZPos; }
+        public int TiltLeft { get => (int)DS4Controls.GyroXPos; }
+        public int TiltRight { get => (int)DS4Controls.GyroXNeg; }
+
+        public int SwipeUp { get => (int)DS4Controls.SwipeUp; }
+        public int SwipeDown { get => (int)DS4Controls.SwipeDown; }
+        public int SwipeLeft { get => (int)DS4Controls.SwipeLeft; }
+        public int SwipeRight { get => (int)DS4Controls.SwipeRight; }
     }
 }

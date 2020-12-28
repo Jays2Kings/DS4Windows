@@ -1326,11 +1326,14 @@ namespace DS4Windows
 
         public void ResetUdpSmoothingFilters(int idx)
         {
-            OneEuroFilter3D temp = udpEuroPairAccel[idx] = new OneEuroFilter3D();
-            temp.SetFilterAttrs(Global.UDPServerSmoothingMincutoff, Global.UDPServerSmoothingBeta);
+            if (idx < UdpServer.NUMBER_SLOTS)
+            {
+                OneEuroFilter3D temp = udpEuroPairAccel[idx] = new OneEuroFilter3D();
+                temp.SetFilterAttrs(Global.UDPServerSmoothingMincutoff, Global.UDPServerSmoothingBeta);
 
-            temp = udpEuroPairGyro[idx] = new OneEuroFilter3D();
-            temp.SetFilterAttrs(Global.UDPServerSmoothingMincutoff, Global.UDPServerSmoothingBeta);
+                temp = udpEuroPairGyro[idx] = new OneEuroFilter3D();
+                temp.SetFilterAttrs(Global.UDPServerSmoothingMincutoff, Global.UDPServerSmoothingBeta);
+            }
         }
 
         private void ChangeUdpSmoothingAttrs(object sender, EventArgs e)
@@ -1674,9 +1677,11 @@ namespace DS4Windows
                     inWarnMonitor[ind] = false;
                     useDInputOnly[ind] = true;
                     Global.activeOutDevType[ind] = OutContType.None;
-                    Global.useTempProfile[ind] = false;
-                    Global.tempprofilename[ind] = string.Empty;
-                    Global.tempprofileDistance[ind] = false;
+                    /* Leave up to Auto Profile system to change the following flags? */
+                    //Global.useTempProfile[ind] = false;
+                    //Global.tempprofilename[ind] = string.Empty;
+                    //Global.tempprofileDistance[ind] = false;
+
                     //Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                 }
             }

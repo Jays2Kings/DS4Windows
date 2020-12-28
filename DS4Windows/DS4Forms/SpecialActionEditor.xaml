@@ -70,6 +70,9 @@
                         <CheckBox x:Name="psTrigCk" Content="PS" Tag="PS" Click="ControlTriggerCheckBox_Click" />
                     </ListViewItem>
                     <ListViewItem>
+                        <CheckBox x:Name="muteTrigCk" Content="Mute" Tag="Mute" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
                         <CheckBox x:Name="l1TrigCk" Content="L1" Tag="L1" Click="ControlTriggerCheckBox_Click" />
                     </ListViewItem>
                     <ListViewItem>
@@ -195,6 +198,9 @@
                     </ListViewItem>
                     <ListViewItem>
                         <CheckBox x:Name="unloadPsTrigCk" Content="PS" Tag="PS" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadMuteTrigCk" Content="Mute" Tag="Mute" Click="ControlUnloadTriggerCheckBox_Click" />
                     </ListViewItem>
                     <ListViewItem>
                         <CheckBox x:Name="unloadL1TrigCk" Content="L1" Tag="L1" Click="ControlUnloadTriggerCheckBox_Click" />

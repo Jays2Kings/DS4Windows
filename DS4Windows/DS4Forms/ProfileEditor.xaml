@@ -929,19 +929,19 @@
                         <TabItem Header="Controls" Visibility="Collapsed">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
-                                    <Button x:Name="swipeUpBtn" Content="Swipe Up" MinWidth="100" Tag="36" Click="SwipeControlsButton_Click" />
+                                    <Button x:Name="swipeUpBtn" Content="Swipe Up" MinWidth="100" Tag="37" Click="SwipeControlsButton_Click" />
                                     <Label x:Name="swipeUpLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="5,8,0,0">
-                                    <Button x:Name="swipeDownBtn" Content="Swipe Down" MinWidth="100" Tag="37" Click="SwipeControlsButton_Click" />
+                                    <Button x:Name="swipeDownBtn" Content="Swipe Down" MinWidth="100" Tag="38" Click="SwipeControlsButton_Click" />
                                     <Label x:Name="swipeDownLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="5,8,0,0">
-                                    <Button x:Name="swipeLeftBtn" Content="Swipe Left" MinWidth="100" Tag="34" Click="SwipeControlsButton_Click" />
+                                    <Button x:Name="swipeLeftBtn" Content="Swipe Left" MinWidth="100" Tag="35" Click="SwipeControlsButton_Click" />
                                     <Label x:Name="swipeLeftLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="5,8,0,10">
-                                    <Button x:Name="swipeRightBtn" Content="Swipe Right" MinWidth="100" Tag="35" Click="SwipeControlsButton_Click" />
+                                    <Button x:Name="swipeRightBtn" Content="Swipe Right" MinWidth="100" Tag="36" Click="SwipeControlsButton_Click" />
                                     <Label x:Name="swipeRightLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
                                 </StackPanel>
                             </StackPanel>

@@ -823,6 +823,7 @@
                             <ComboBoxItem Content="Mouse" />
                             <ComboBoxItem Content="Controls" />
                             <ComboBoxItem Content="Absolute Mouse" />
+                            <ComboBoxItem Content="Passthru" />
                         </ComboBox>
                     </StackPanel>
 
@@ -978,6 +979,7 @@
                             <ComboBoxItem Content="Controls" />
                             <ComboBoxItem Content="Mouse" />
                             <ComboBoxItem Content="Mouse Joystick" />
+                            <ComboBoxItem Content="Passthru" />
                         </ComboBox>
                     </StackPanel>
 

@@ -678,6 +678,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         index = 1; break;
                     case GyroOutMode.MouseJoystick:
                         index = 2; break;
+                    case GyroOutMode.Passthru:
+                        index = 3; break;
                     default: break;
                 }
 
@@ -693,6 +695,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         temp = GyroOutMode.Mouse; break;
                     case 2:
                         temp = GyroOutMode.MouseJoystick; break;
+                    case 3:
+                        temp = GyroOutMode.Passthru; break;
                     default: break;
                 }
 
@@ -1372,6 +1376,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         index = 1; break;
                     case TouchpadOutMode.AbsoluteMouse:
                         index = 2; break;
+                    case TouchpadOutMode.Passthru:
+                        index = 3; break;
                     default: break;
                 }
                 return index;
@@ -1386,6 +1392,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         temp = TouchpadOutMode.Controls; break;
                     case 2:
                         temp = TouchpadOutMode.AbsoluteMouse; break;
+                    case 3:
+                        temp = TouchpadOutMode.Passthru; break;
                     default: break;
                 }
 

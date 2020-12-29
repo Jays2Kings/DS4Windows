@@ -32,6 +32,7 @@ namespace DS4Windows
         Controls,
         Mouse,
         MouseJoystick,
+        Passthru,
     }
 
     public enum TouchpadOutMode : uint
@@ -40,6 +41,7 @@ namespace DS4Windows
         Mouse,
         Controls,
         AbsoluteMouse,
+        Passthru,
     }
 
     public enum TrayIconChoice : uint
@@ -2888,6 +2890,9 @@ namespace DS4Windows
                 case GyroOutMode.MouseJoystick:
                     result = "MouseJoystick";
                     break;
+                case GyroOutMode.Passthru:
+                    result = "Passthru";
+                    break;
                 default:
                     break;
             }
@@ -2908,6 +2913,9 @@ namespace DS4Windows
                     break;
                 case "MouseJoystick":
                     result = GyroOutMode.MouseJoystick;
+                    break;
+                case "Passthru":
+                    result = GyroOutMode.Passthru;
                     break;
                 default:
                     break;
@@ -3110,7 +3118,7 @@ namespace DS4Windows
                 XmlNode xmlGyroMinThreshold = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseMinThreshold", null); xmlGyroMinThreshold.InnerText = gyroMouseInfo[device].minThreshold.ToString(); rootElement.AppendChild(xmlGyroMinThreshold);
                 XmlNode xmlGyroMouseToggle = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseToggle", null); xmlGyroMouseToggle.InnerText = gyroMouseToggle[device].ToString(); rootElement.AppendChild(xmlGyroMouseToggle);
 
-                XmlNode xmlGyroOutMode = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroOutputMode", null); xmlGyroOutMode.InnerText = GetGyroOutModeString(gyroOutMode[device]); rootElement.AppendChild(xmlGyroOutMode);
+                XmlNode xmlGyroOutMode = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroOutputMode", null); xmlGyroOutMode.InnerText = gyroOutMode[device].ToString(); rootElement.AppendChild(xmlGyroOutMode);
                 XmlNode xmlGyroMStickTriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickTriggers", null); xmlGyroMStickTriggers.InnerText = sAMouseStickTriggers[device].ToString(); rootElement.AppendChild(xmlGyroMStickTriggers);
                 XmlNode xmlGyroMStickTriggerCond = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickTriggerCond", null); xmlGyroMStickTriggerCond.InnerText = SaTriggerCondString(sAMouseStickTriggerCond[device]); rootElement.AppendChild(xmlGyroMStickTriggerCond);
                 XmlNode xmlGyroMStickTriggerTurns = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseStickTriggerTurns", null); xmlGyroMStickTriggerTurns.InnerText = gyroMouseStickTriggerTurns[device].ToString(); rootElement.AppendChild(xmlGyroMStickTriggerTurns);
@@ -4198,7 +4206,8 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroOutputMode");
                     string tempMode = Item.InnerText;
-                    gyroOutMode[device] = GetGyroOutModeType(tempMode);
+                    //gyroOutMode[device] = GetGyroOutModeType(tempMode);
+                    Enum.TryParse(tempMode, out gyroOutMode[device]);
                 }
                 catch { PortOldGyroSettings(device); missingSetting = true; }
 

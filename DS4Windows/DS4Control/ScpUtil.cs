@@ -356,6 +356,17 @@ namespace DS4Windows
             return result;
         }
 
+        public static bool IsWin10OrGreater()
+        {
+            bool result = false;
+            if (Environment.OSVersion.Version.Major >= 10)
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
         public static string appdatapath;
         public static bool firstRun = false;
         public static bool multisavespots = false;

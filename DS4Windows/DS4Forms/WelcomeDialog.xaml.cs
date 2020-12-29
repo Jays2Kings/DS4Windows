@@ -38,7 +38,7 @@ namespace DS4WinWPF.DS4Forms
 
             InitializeComponent();
 
-            if (!DS4Windows.Global.IsWin8OrGreater())
+            if (!DS4Windows.Global.IsWin10OrGreater())
             {
                 installDL = InstallerDL1_16;
                 installFileName = InstFileName1_16;

@@ -207,9 +207,18 @@ namespace DS4Windows
             outputslotMan = new OutputSlotManager();
             DS4Devices.RequestElevation += DS4Devices_RequestElevation;
             DS4Devices.checkVirtualFunc = CheckForVirtualDevice;
+            DS4Devices.PrepareDS4Init = PrepareDS4DeviceInit;
 
             Global.UDPServerSmoothingMincutoffChanged += ChangeUdpSmoothingAttrs;
             Global.UDPServerSmoothingBetaChanged += ChangeUdpSmoothingAttrs;
+        }
+
+        public void PrepareDS4DeviceInit(DS4Device device)
+        {
+            if (!Global.IsWin8OrGreater())
+            {
+                device.BTOutputMethod = DS4Device.BTOutputReportMethod.HidD_SetOutputReport;
+            }
         }
 
         public CheckVirtualInfo CheckForVirtualDevice(string deviceInstanceId)

@@ -549,11 +549,13 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     //cState.totalMicroSec = pState.totalMicroSec + (uint)(elapsedDeltaTime * 1000000);
 
                     // Simpler touch storing
+                    cState.TrackPadTouch0.RawTrackingNum = inputReport[33+reportOffset];
                     cState.TrackPadTouch0.Id = (byte)(inputReport[33+reportOffset] & 0x7f);
                     cState.TrackPadTouch0.IsActive = (inputReport[33+reportOffset] & 0x80) == 0;
                     cState.TrackPadTouch0.X = (short)(((ushort)(inputReport[35+reportOffset] & 0x0f) << 8) | (ushort)(inputReport[34+reportOffset]));
                     cState.TrackPadTouch0.Y = (short)(((ushort)(inputReport[36+reportOffset]) << 4) | ((ushort)(inputReport[35+reportOffset] & 0xf0) >> 4));
 
+                    cState.TrackPadTouch0.RawTrackingNum = inputReport[37+reportOffset];
                     cState.TrackPadTouch1.Id = (byte)(inputReport[37+reportOffset] & 0x7f);
                     cState.TrackPadTouch1.IsActive = (inputReport[37+reportOffset] & 0x80) == 0;
                     cState.TrackPadTouch1.X = (short)(((ushort)(inputReport[39+reportOffset] & 0x0f) << 8) | (ushort)(inputReport[38+reportOffset]));

@@ -147,8 +147,10 @@ namespace DS4Windows
             outDS4Report.sCurrentTouch.bTouchData2[2] = (byte)(state.TrackPadTouch1.Y >> 4);
 
             // Flip some coordinates back to DS4 device coordinate system
-            outDS4Report.wGyroX = (short)-state.Motion.gyroYawFull;
-            outDS4Report.wGyroY = (short)state.Motion.gyroPitchFull;
+            //outDS4Report.wGyroX = (short)-state.Motion.gyroYawFull;
+            //outDS4Report.wGyroY = (short)state.Motion.gyroPitchFull;
+            outDS4Report.wGyroX = (short)state.Motion.gyroPitchFull;
+            outDS4Report.wGyroY = (short)-state.Motion.gyroYawFull;
             outDS4Report.wGyroZ = (short)-state.Motion.gyroRollFull;
             outDS4Report.wAccelX = (short)-state.Motion.accelXFull;
             outDS4Report.wAccelY = (short)-state.Motion.accelYFull;
@@ -158,6 +160,8 @@ namespace DS4Windows
             outDS4Report.bBatteryLvlSpecial = (byte)(state.Battery / 11);
 
             DS4OutDeviceExtras.CopyBytes(ref outDS4Report, rawOutReportEx);
+            //Console.WriteLine("TEST: {0}, {1} {2}", outDS4Report.wGyroX, rawOutReportEx[12], rawOutReportEx[13]);
+            //Console.WriteLine("OUTPUT: {0}", string.Join(", ", rawOutReportEx));
             cont.SubmitRawReport(rawOutReportEx);
         }
 

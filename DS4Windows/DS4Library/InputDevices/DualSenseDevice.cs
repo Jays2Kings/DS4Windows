@@ -542,6 +542,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     //Console.WriteLine("{0} {1} {2} {3} {4} Diff({5}) TSms({6}) Sys({7})", tempStamp, inputReport[31 + reportOffset], inputReport[30 + reportOffset], inputReport[29 + reportOffset], inputReport[28 + reportOffset], tempStamp - timeStampPrevious, elapsedDeltaTime, lastTimeElapsedDouble * 0.001);
 
                     cState.elapsedTime = elapsedDeltaTime;
+                    cState.ds4Timestamp = (ushort)(tempStamp % ushort.MaxValue);
                     timeStampPrevious = tempStamp;
 
                     //elapsedDeltaTime = lastTimeElapsedDouble * .001;

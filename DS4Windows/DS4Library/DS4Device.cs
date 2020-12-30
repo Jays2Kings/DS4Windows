@@ -1200,6 +1200,7 @@ namespace DS4Windows
                     }
 
                     cState.elapsedTime = elapsedDeltaTime;
+                    cState.ds4Timestamp = (ushort)tempStamp;
                     timeStampPrevious = tempStamp;
 
                     //Simpler touch storing

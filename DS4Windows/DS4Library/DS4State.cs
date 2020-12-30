@@ -26,6 +26,7 @@ namespace DS4Windows
         public double RYUnit;
         public double elapsedTime = 0.0;
         public ulong totalMicroSec = 0;
+        public ushort ds4Timestamp = 0;
         public SixAxis Motion = null;
         public static readonly int DEFAULT_AXISDIR_VALUE = 127;
         public Int32 SASteeringWheelEmulationUnit;
@@ -65,6 +66,7 @@ namespace DS4Windows
             RYUnit = 0.0;
             elapsedTime = 0.0;
             totalMicroSec = 0;
+            ds4Timestamp = 0;
             Motion = new SixAxis(0, 0, 0, 0, 0, 0, 0.0);
             TrackPadTouch0.IsActive = false;
             TrackPadTouch1.IsActive = false;
@@ -121,6 +123,7 @@ namespace DS4Windows
             RYUnit = state.RYUnit;
             elapsedTime = state.elapsedTime;
             totalMicroSec = state.totalMicroSec;
+            ds4Timestamp = state.ds4Timestamp;
             Motion = state.Motion;
             TrackPadTouch0 = state.TrackPadTouch0;
             TrackPadTouch1 = state.TrackPadTouch1;
@@ -182,6 +185,7 @@ namespace DS4Windows
             state.RYUnit = RYUnit;
             state.elapsedTime = elapsedTime;
             state.totalMicroSec = totalMicroSec;
+            state.ds4Timestamp = ds4Timestamp;
             state.Motion = Motion;
             state.TrackPadTouch0 = TrackPadTouch0;
             state.TrackPadTouch1 = TrackPadTouch1;

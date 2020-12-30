@@ -159,6 +159,8 @@ namespace DS4Windows
             // USB DS4 v.1 battery level range is [0-11]
             outDS4Report.bBatteryLvlSpecial = (byte)(state.Battery / 11);
 
+            outDS4Report.wTimestamp = state.ds4Timestamp;
+
             DS4OutDeviceExtras.CopyBytes(ref outDS4Report, rawOutReportEx);
             //Console.WriteLine("TEST: {0}, {1} {2}", outDS4Report.wGyroX, rawOutReportEx[12], rawOutReportEx[13]);
             //Console.WriteLine("OUTPUT: {0}", string.Join(", ", rawOutReportEx));

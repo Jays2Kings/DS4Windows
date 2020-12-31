@@ -1,9 +1,25 @@
 {
-  "latest_version": "2.2.0",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 0},
-  "updated_at": "2020-12-31T03:22:07+0000",
+  "latest_version": "2.2.1",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 1},
+  "updated_at": "2020-12-31T05:22:47+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.2.1",
+        "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 1},
+        "base_header": "Version 2.2.1",
+        "release_date": "2020-12-31T05:22:47+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.2.1",
+            "log_text": ["* Put lock block in for DS4 USB output routine"],
+            "editor": "ryochan7",
+            "editors_note": ["Too many cases to test and my dying PC"],
+            "updated_at": "2020-12-31T05:22:47+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.2.0",
         "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 0},

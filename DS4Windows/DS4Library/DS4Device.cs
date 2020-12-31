@@ -1568,7 +1568,10 @@ namespace DS4Windows
                     }
                     else
                     {
-                        Monitor.Pulse(outReportBuffer);
+                        lock(outReportBuffer)
+                        {
+                            Monitor.Pulse(outReportBuffer);
+                        }
                     }
                 }
             }

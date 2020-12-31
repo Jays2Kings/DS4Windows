@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Accel" xml:space="preserve">
+    <value>תאוצה</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>פעולה</value>
+  </data>
+  <data name="AddDirectory" xml:space="preserve">
+    <value>הוסף תיקיה</value>
+  </data>
+  <data name="AddPrograms" xml:space="preserve">
+    <value>הוסף תוכניות</value>
+  </data>
+  <data name="AddStartMenuPrograms" xml:space="preserve">
+    <value>הוסף תוכניות מתפריט ההתחלה</value>
+  </data>
+  <data name="AddSteamGames" xml:space="preserve">
+    <value>הוסף משחקי Steam</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>הכל</value>
+  </data>
+  <data name="AutoProfiles" xml:space="preserve">
+    <value>פרופילים אוטומטיים</value>
+  </data>
+  <data name="Battery" xml:space="preserve">
+    <value>סוללה</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>עיון</value>
+  </data>
+  <data name="BrowseOtherPrograms" xml:space="preserve">
+    <value>פתח תוכניות אחרות</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>ביטול</value>
+  </data>
+  <data name="CheckUpdateNow" xml:space="preserve">
+    <value>בדוק עדכונים כעת</value>
+  </data>
+  <data name="CheckUpdateStartup" xml:space="preserve">
+    <value>בדוק עדכונים עם פתיחת DS4WINDOWS</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>נקה</value>
+  </data>
+  <data name="CloseMinimizes" xml:space="preserve">
+    <value>מזער בסגירה</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>צבע</value>
+  </data>
+  <data name="Controller1Text" xml:space="preserve">
+    <value>בקר 1</value>
+  </data>
+  <data name="Controller2Text" xml:space="preserve">
+    <value>בקר 2</value>
+  </data>
+  <data name="Controller3Text" xml:space="preserve">
+    <value>בקר 3</value>
+  </data>
+  <data name="Controller4Text" xml:space="preserve">
+    <value>בקר 4</value>
+  </data>
+  <data name="Controllers" xml:space="preserve">
+    <value>בקרים</value>
+  </data>
+  <data name="ControlPanel" xml:space="preserve">
+    <value>לוח הבקרה</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>מחק</value>
+  </data>
+  <data name="DriverSetup" xml:space="preserve">
+    <value>התקנת Driver לבקר</value>
+  </data>
+  <data name="Duplicate" xml:space="preserve">
+    <value>שכפול</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>עריכה</value>
+  </data>
+  <data name="EditAction" xml:space="preserve">
+    <value>ערוך פעולה</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>יצוא</value>
+  </data>
+  <data name="Full" xml:space="preserve">
+    <value>מלא</value>
+  </data>
+  <data name="Gyro" xml:space="preserve">
+    <value>חיישן התנועה</value>
+  </data>
+  <data name="HideUnchecked" xml:space="preserve">
+    <value>הסתר אפשרויות שלא נבחרו</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>יבוא</value>
+  </data>
+  <data name="LeftStick" xml:space="preserve">
+    <value>סטיק שמאלי</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>יומן</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>שם</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>חדש</value>
+  </data>
+  <data name="NewAction" xml:space="preserve">
+    <value>פעולה חדשה</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>פרופיל חדש</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>ללא</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>נתיב</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>פרופיל</value>
+  </data>
+  <data name="ProfileFolder" xml:space="preserve">
+    <value>תיקיית הפרופילים</value>
+  </data>
+  <data name="QuickCharge" xml:space="preserve">
+    <value>טעינה מהירה</value>
+  </data>
+  <data name="RecordText" xml:space="preserve">
+    <value>הקלטה</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>הסר</value>
+  </data>
+  <data name="RemoveAction" xml:space="preserve">
+    <value>הסר פעולה</value>
+  </data>
+  <data name="RightStick" xml:space="preserve">
+    <value>סטיק ימני</value>
+  </data>
+  <data name="Rumble" xml:space="preserve">
+    <value>רטט</value>
+  </data>
+  <data name="RunAtStartup" xml:space="preserve">
+    <value>פתח בהפעלת ה-Windows</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>שמור</value>
+  </data>
+  <data name="SaveProfile" xml:space="preserve">
+    <value>שמור</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>הגדרות</value>
+  </data>
+  <data name="ShowNotifications" xml:space="preserve">
+    <value>הצג התראות</value>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>התחל ממוזער</value>
+  </data>
+  <data name="StartText" xml:space="preserve">
+    <value>התחל</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>סטטוס</value>
+  </data>
+  <data name="StopText" xml:space="preserve">
+    <value>עצור</value>
+  </data>
+  <data name="TouchScroll" xml:space="preserve">
+    <value>גלילה</value>
+  </data>
+  <data name="TouchSlide" xml:space="preserve">
+    <value>החלקה</value>
+  </data>
+  <data name="TouchTap" xml:space="preserve">
+    <value>לחיצה</value>
+  </data>
+  <data name="Trigger" xml:space="preserve">
+    <value>טריגר</value>
+  </data>
+  <data name="WarningsOnly" xml:space="preserve">
+    <value>אזהרות בלבד</value>
+  </data>
+  <data name="RumbleMaxSecs" xml:space="preserve">
+    <value>שניות</value>
+  </data>
+  <data name="RumbleMaxSecsTip" xml:space="preserve">
+    <value>שניות לעצירה אוטומטית של רטט (0=אל תעצור אוטומטית)</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>כותרת חלון</value>
+  </data>
+  <data name="MoveUp" xml:space="preserve">
+    <value>למעלה</value>
+  </data>
+  <data name="MoveDown" xml:space="preserve">
+    <value>למטה</value>
+  </data>
+  <data name="AutoProfPathTip" xml:space="preserve">
+    <value>Process path. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*)</value>
+  </data>
+  <data name="AutoProfTitleTip" xml:space="preserve">
+    <value>Window title. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*)</value>
+  </data>
+  <data name="GamepadTest" xml:space="preserve">
+    <value>בדיקת בקר</value>
+  </data>
+  <data name="EnableOutputDataToDS4" xml:space="preserve">
+    <value>אפשר פלט אל בקר ה-DS4</value>
+  </data>
+  <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
+    <value>שלח מידע על תאורה ורטט לסירוגין אל הבקר. בטל בחירה אם הבקר אינו תומך בקבלת מידע.
+שינוי הגדרה זו יחל בחיבור הבקר</value>
+    <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>החל</value>
+  </data>
+  <data name="HidNinja" xml:space="preserve">
+    <value>HidNinja</value>
+  </data>
+  <data name="CustomExeName" xml:space="preserve">
+    <value>שם מותאם אישית לקובץ EXE</value>
+  </data>
+  <data name="CustomExeNameInfo" xml:space="preserve">
+    <value>חלק מהמשחקים מבצעים התעלמות מבקר DS4 אם התהליכים DS4WINDOWS.exe או InputMapper.exe פועלים. ניתן לעקוף בעיה זו בעזרת שינוי שם הקובץ DS4Windows.exe כך שהבדיקה של המשחק תיכשל. שינוי שם קובץ ה-EXE בהגדרה זו מאפשר לעדכונים בעתיד ליצור עותק של התוכנה לתוך קובץ ה-EXE עם השם החדש. שים לב - יש להזין שם ללא הסיומת.
+
+לדוגמא: whyme_DS4Windows</value>
+  </data>
+  <data name="XInputChecker" xml:space="preserve">
+    <value>XInputChecker</value>
+  </data>
+  <data name="Controller5Text" xml:space="preserve">
+    <value>בקר 5</value>
+  </data>
+  <data name="Controller6Text" xml:space="preserve">
+    <value>בקר 6</value>
+  </data>
+  <data name="Controller7Text" xml:space="preserve">
+    <value>בקר 7</value>
+  </data>
+  <data name="Controller8Text" xml:space="preserve">
+    <value>בקר 8</value>
+  </data>
+  <data name="GamepadGyroCameraDescription" xml:space="preserve">
+    <value>ממפה את המידע הנשלח לבקר Xinput סטנדרטי או DS4. חיישן התנועה ידמה תנועת ג'ויסטיק עכבר.</value>
+  </data>
+  <data name="GamepadGyroCameraName" xml:space="preserve">
+    <value>בקר עם ג'ויסטיק עכבר</value>
+  </data>
+  <data name="GamepadPresetDescription" xml:space="preserve">
+    <value>ממפה את המידע הנשלח בתור בקר משחק סטנדרטי</value>
+  </data>
+  <data name="GamepadPresetName" xml:space="preserve">
+    <value>בקר</value>
+  </data>
+  <data name="KBMGyroMouseDescription" xml:space="preserve">
+    <value>ממפה את המידע הנשלח מהבקר לכפתורי KB+M וירטואליים. שימושי במשחקי יריות מגוף ראשון שלא תומכים בבקרי משחק. חיישן התנועה ממופה בתור עכבר.</value>
+  </data>
+  <data name="KBMGyroMouseName" xml:space="preserve">
+    <value>מקשי KM+M עם חיישן התנועה בתור עכבר.</value>
+  </data>
+  <data name="KBMPresetDescription" xml:space="preserve">
+    <value>ממפה את המידע הנשלח מהבקר לכפתורי KB+M וירטואליים. שימושי במשחקי יריות מגוף ראשון שלא תומכים בבקרי משחק.</value>
+  </data>
+  <data name="KBMPresetName" xml:space="preserve">
+    <value>מקשי KB+M.</value>
+  </data>
+  <data name="MixedGyroMousePresetDescription" xml:space="preserve">
+    <value>ממפה את הכפתורים והצירים (סטיק) לבקר משחק סטנדרטי. ממפה את חיישן התנועה בתור עכבר.</value>
+  </data>
+  <data name="MixedGyroMousePresetName" xml:space="preserve">
+    <value>בקר עם חיישן תנועה</value>
+  </data>
+  <data name="MixedPresetDescription" xml:space="preserve">
+    <value>ממפה את הבקר לבקר XInput משולב + עכבר בסטיק הימני.</value>
+  </data>
+  <data name="MixedPresetName" xml:space="preserve">
+    <value>בקר עם מצלמה עם דיוק גבוה</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>תיאור</value>
+  </data>
+  <data name="PresetIntroText" xml:space="preserve">
+    <value>האם תרצה להשתמש בהגדרות מוכנות מראש? אם תבחר לא, עורך הפרופילים יפתח פרופיל ריק ללא הגדרות.</value>
+  </data>
+  <data name="Presets" xml:space="preserve">
+    <value>הגדרות מוכנות מראש</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>יומן שינויים</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>סגור</value>
+  </data>
+  <data name="Profiles" xml:space="preserve">
+    <value>פרופילים</value>
+  </data>
+  <data name="NoControllersConnected" xml:space="preserve">
+    <value>אין בקרים מחוברים (מקסימום {0})</value>
+  </data>
+  <data name="FlickThreshold" xml:space="preserve">
+    <value>זמן להתחלת לחיצה</value>
+  </data>
+  <data name="FlickTime" xml:space="preserve">
+    <value>זמן לחיצה</value>
+  </data>
+  <data name="MinAngleThreshold" xml:space="preserve">
+    <value>זווית מינימלית ללחיצה</value>
+  </data>
+  <data name="RealWorldCalibration" xml:space="preserve">
+    <value>כיול לפי העולם האמיתי</value>
+  </data>
+</root>

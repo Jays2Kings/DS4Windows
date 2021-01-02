@@ -2009,10 +2009,19 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             outputMouseSpeed = CalculateOutputMouseSpeed(ButtonMouseSensitivity);
             mouseOffsetSpeed = RawButtonMouseOffset * outputMouseSpeed;
 
-            ImageSourceConverter sourceConverter = new ImageSourceConverter();
+            /*ImageSourceConverter sourceConverter = new ImageSourceConverter();
             ImageSource temp = sourceConverter.
                 ConvertFromString($"{Global.ASSEMBLY_RESOURCE_PREFIX}component/Resources/rainbowCCrop.png") as ImageSource;
             lightbarImgBrush.ImageSource = temp.Clone();
+            */
+            Uri tempResourceUri = new Uri($"{Global.ASSEMBLY_RESOURCE_PREFIX}component/Resources/rainbowCCrop.png");
+            BitmapImage tempBitmap = new BitmapImage();
+            tempBitmap.BeginInit();
+            // Needed for some systems not using the System default color profile
+            tempBitmap.CreateOptions = BitmapCreateOptions.IgnoreColorProfile;
+            tempBitmap.UriSource = tempResourceUri;
+            tempBitmap.EndInit();
+            lightbarImgBrush.ImageSource = tempBitmap.Clone();
 
             presetMenuUtil = new PresetMenuHelper(device);
             gyroMouseSmoothMethodIndex = FindGyroMouseSmoothMethodIndex();

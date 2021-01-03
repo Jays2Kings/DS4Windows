@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics;
@@ -2471,7 +2471,39 @@ namespace DS4Windows
                                 {
                                     actionDone[index].dev[device] = true;
                                     if (!string.IsNullOrEmpty(action.extra))
-                                        Process.Start(action.details, action.extra);
+                                    {
+                                        int pos = action.extra.IndexOf("$hidden", StringComparison.OrdinalIgnoreCase);
+                                        if (pos >= 0)
+                                        {
+                                            System.Diagnostics.Process specActionLaunchProc = new System.Diagnostics.Process();
+
+                                            // LaunchProgram specAction has $hidden argument to indicate that the child process window should be hidden (especially useful when launching .bat/.cmd batch files).
+                                            // Removes the first occurence of $hidden substring from extra argument because it was a special action modifier keyword
+                                            string cmdArgs = specActionLaunchProc.StartInfo.Arguments = action.extra.Remove(pos, 7);
+                                            string cmdExt = Path.GetExtension(action.details).ToLower();
+
+                                            if (cmdExt == ".bat" || cmdExt == ".cmd")
+                                            {
+                                                // Launch batch script using the default command shell cmd (COMSPEC env variable)
+                                                specActionLaunchProc.StartInfo.FileName = System.Environment.GetEnvironmentVariable("COMSPEC");
+                                                specActionLaunchProc.StartInfo.Arguments = "/C \"" + action.details + "\" " + cmdArgs;
+                                            }
+                                            else
+                                            {
+                                                // Normal EXE executable app (action.details) with optional cmdline arguments (action.extra)
+                                                specActionLaunchProc.StartInfo.FileName = action.details;
+                                                specActionLaunchProc.StartInfo.Arguments = cmdArgs;
+                                            }
+
+                                            // Launch child process using hidden wnd option (the child process should probably do something and then close itself unless you want it to remain hidden in background)
+                                            specActionLaunchProc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                                            specActionLaunchProc.StartInfo.CreateNoWindow = true;
+                                            specActionLaunchProc.Start();
+                                        }                                            
+                                        else
+                                            // No special process modifiers (ie. $hidden wnd keyword). Launch the child process using the default WinOS settings
+                                            Process.Start(action.details, action.extra);
+                                    }
                                     else
                                         Process.Start(action.details);
                                 }

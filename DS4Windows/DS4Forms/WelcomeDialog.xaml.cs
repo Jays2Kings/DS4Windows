@@ -13,10 +13,16 @@ namespace DS4WinWPF.DS4Forms
     /// </summary>
     public partial class WelcomeDialog : Window
     {
-        private const string InstallerDL =
+        private const string InstallerDL1_16 =
             "https://github.com/ViGEm/ViGEmBus/releases/download/setup-v1.16.116/ViGEmBus_Setup_1.16.116.exe";
-        private const string InstFileName = "ViGEmBus_Setup_1.16.116.exe";
+        private const string InstallerDL =
+            "https://github.com/ViGEm/ViGEmBus/releases/download/setup-v1.17.333/ViGEmBusSetup_x64.msi";
+        private const string InstFileName1_16 = "ViGEmBus_Setup_1.16.116.exe";
+        private const string InstFileName = "ViGEmBusSetup_x64.msi";
         private string tempInstFileName;
+
+        private string installDL = InstallerDL;
+        private string installFileName = InstFileName;
 
         Process monitorProc;
         NonFormTimer monitorTimer;
@@ -32,7 +38,13 @@ namespace DS4WinWPF.DS4Forms
 
             InitializeComponent();
 
-            tempInstFileName = DS4Windows.Global.exedirpath + $"\\{InstFileName}.tmp";
+            if (!DS4Windows.Global.IsWin10OrGreater())
+            {
+                installDL = InstallerDL1_16;
+                installFileName = InstFileName1_16;
+            }
+
+            tempInstFileName = DS4Windows.Global.exedirpath + $"\\{installFileName}.tmp";
         }
 
         private void FinishedBtn_Click(object sender, RoutedEventArgs e)
@@ -42,9 +54,9 @@ namespace DS4WinWPF.DS4Forms
 
         private void VigemInstallBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (File.Exists(DS4Windows.Global.exedirpath + $"\\{InstFileName}"))
+            if (File.Exists(DS4Windows.Global.exedirpath + $"\\{installFileName}"))
             {
-                File.Delete(DS4Windows.Global.exedirpath + $"\\{InstFileName}");
+                File.Delete(DS4Windows.Global.exedirpath + $"\\{installFileName}");
             }
 
             if (File.Exists(tempInstFileName))
@@ -56,7 +68,7 @@ namespace DS4WinWPF.DS4Forms
             ViGEmDownloadLaunch();
 
             /*WebClient wb = new WebClient();
-            wb.DownloadFileAsync(new Uri(InstallerDL), exepath + $"\\{InstFileName}");
+            wb.DownloadFileAsync(new Uri(InstallerDL), exepath + $"\\{installFileName}");
 
             wb.DownloadProgressChanged += wb_DownloadProgressChanged;
             wb.DownloadFileCompleted += wb_DownloadFileCompleted;
@@ -75,11 +87,11 @@ namespace DS4WinWPF.DS4Forms
                 //Console.WriteLine(x.PercentComplete.ToString("P"));
             });
 
-            string filename = DS4Windows.Global.exedirpath + $"\\{InstFileName}";
+            string filename = DS4Windows.Global.exedirpath + $"\\{installFileName}";
             bool success = false;
             using (var downloadStream = new FileStream(tempInstFileName, FileMode.CreateNew))
             {
-                HttpResponseMessage response = await App.requestClient.GetAsync(InstallerDL,
+                HttpResponseMessage response = await App.requestClient.GetAsync(installDL,
                     downloadStream, progress);
                 success = response.IsSuccessStatusCode;
             }
@@ -90,10 +102,10 @@ namespace DS4WinWPF.DS4Forms
             }
             success = false; // Reset for later check
 
-            if (File.Exists(DS4Windows.Global.exedirpath + $"\\{InstFileName}"))
+            if (File.Exists(DS4Windows.Global.exedirpath + $"\\{installFileName}"))
             {
                 //vigemInstallBtn.Content = Properties.Resources.OpeningInstaller;
-                monitorProc = Process.Start(DS4Windows.Global.exedirpath + $"\\{InstFileName}");
+                monitorProc = Process.Start(DS4Windows.Global.exedirpath + $"\\{installFileName}");
                 vigemInstallBtn.Content = Properties.Resources.Installing;
                 success = true;
             }
@@ -136,7 +148,7 @@ namespace DS4WinWPF.DS4Forms
                     }), null);
                 }
 
-                File.Delete(DS4Windows.Global.exedirpath + $"\\{InstFileName}");
+                File.Delete(DS4Windows.Global.exedirpath + $"\\{installFileName}");
                 ((NonFormTimer)sender).Stop();
                 finished = true;
             }

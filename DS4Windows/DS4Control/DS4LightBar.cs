@@ -305,17 +305,22 @@ namespace DS4Windows
                     }
                 }
 
-                DS4HapticState haptics = new DS4HapticState
+                /*DS4HapticState haptics = new DS4HapticState
                 {
                     LightBarColor = color
                 };
+                */
+                DS4LightbarState lightState = new DS4LightbarState
+                {
+                    LightBarColor = color,
+                };
 
-                if (haptics.IsLightBarSet())
+                if (lightState.IsLightBarSet())
                 {
                     if (useForceLight && forcedFlash[deviceNum] > 0)
                     {
-                        haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)(25 - forcedFlash[deviceNum]);
-                        haptics.LightBarExplicitlyOff = true;
+                        lightState.LightBarFlashDurationOff = lightState.LightBarFlashDurationOn = (byte)(25 - forcedFlash[deviceNum]);
+                        lightState.LightBarExplicitlyOff = true;
                     }
                     else if (device.getBattery() <= lightModeInfo.flashAt && lightModeInfo.flashType == 0 && !defaultLight && !device.isCharging())
                     {
@@ -323,31 +328,32 @@ namespace DS4Windows
                         if (level >= 10)
                             level = 10; // all values of >~100% are rendered the same
 
-                        haptics.LightBarFlashDurationOn = BatteryIndicatorDurations[level, 0];
-                        haptics.LightBarFlashDurationOff = BatteryIndicatorDurations[level, 1];
+                        lightState.LightBarFlashDurationOn = BatteryIndicatorDurations[level, 0];
+                        lightState.LightBarFlashDurationOff = BatteryIndicatorDurations[level, 1];
                     }
                     else if (distanceprofile && device.getLeftHeavySlowRumble() > 155) //also part of Distance
                     {
-                        haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)((-device.getLeftHeavySlowRumble() + 265));
-                        haptics.LightBarExplicitlyOff = true;
+                        lightState.LightBarFlashDurationOff = lightState.LightBarFlashDurationOn = (byte)((-device.getLeftHeavySlowRumble() + 265));
+                        lightState.LightBarExplicitlyOff = true;
                     }
                     else
                     {
                         //haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 1;
-                        haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 0;
-                        haptics.LightBarExplicitlyOff = true;
+                        lightState.LightBarFlashDurationOff = lightState.LightBarFlashDurationOn = 0;
+                        lightState.LightBarExplicitlyOff = true;
                     }
                 }
                 else
                 {
-                    haptics.LightBarExplicitlyOff = true;
+                    lightState.LightBarExplicitlyOff = true;
                 }
 
                 byte tempLightBarOnDuration = device.getLightBarOnDuration();
-                if (tempLightBarOnDuration != haptics.LightBarFlashDurationOn && tempLightBarOnDuration != 1 && haptics.LightBarFlashDurationOn == 0)
-                    haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 1;
+                if (tempLightBarOnDuration != lightState.LightBarFlashDurationOn && tempLightBarOnDuration != 1 && lightState.LightBarFlashDurationOn == 0)
+                    lightState.LightBarFlashDurationOff = lightState.LightBarFlashDurationOn = 1;
 
-                device.SetHapticState(ref haptics);
+                device.SetLightbarState(ref lightState);
+                //device.SetHapticState(ref haptics);
                 //device.pushHapticState(ref haptics);
             }
         }

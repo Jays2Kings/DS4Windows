@@ -11,8 +11,10 @@ namespace DS4Windows
 {
     public class Xbox360OutDevice : OutputDevice
     {
-        private const int inputResolution = 127 - (-128);
-        private const float reciprocalInputResolution = 1 / (float)inputResolution;
+        //private const int inputResolution = 127 - (-128);
+        //private const float reciprocalInputResolution = 1 / (float)inputResolution;
+        private const float recipInputPosResolution = 1 / 127f;
+        private const float recipInputNegResolution = 1 / 128f;
         private const int outputResolution = 32767 - (-32768);
         public const string devType = "X360";
 
@@ -29,7 +31,7 @@ namespace DS4Windows
         {
             if (!connected) return;
 
-            cont.ResetReport();
+            //cont.ResetReport();
             ushort tempButtons = 0;
 
             unchecked
@@ -130,10 +132,12 @@ namespace DS4Windows
             unchecked
             {
                 Value -= 0x80;
+                float recipRun = Value >= 0 ? recipInputPosResolution : recipInputNegResolution;
 
-                //float temp = (Value - (-128)) / (float)inputResolution;
-                float temp = (Value - (-128)) * reciprocalInputResolution;
-                if (Flip) temp = (temp - 0.5f) * -1.0f + 0.5f;
+                float temp = Value * recipRun;
+                //if (Flip) temp = (temp - 0.5f) * -1.0f + 0.5f;
+                if (Flip) temp = -temp;
+                temp = (temp + 1.0f) * 0.5f;
 
                 return (short)(temp * outputResolution + (-32768));
             }

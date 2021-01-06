@@ -562,7 +562,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             {
                 ImageSource exeicon = null;
                 string path = Global.LaunchProgram[device];
-                if (File.Exists(path) && Path.GetExtension(path) == ".exe")
+                if (File.Exists(path) && Path.GetExtension(path).ToLower() == ".exe")
                 {
                     using (Icon ico = Icon.ExtractAssociatedIcon(path))
                     {
@@ -678,6 +678,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         index = 1; break;
                     case GyroOutMode.MouseJoystick:
                         index = 2; break;
+                    case GyroOutMode.Passthru:
+                        index = 3; break;
                     default: break;
                 }
 
@@ -693,6 +695,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         temp = GyroOutMode.Mouse; break;
                     case 2:
                         temp = GyroOutMode.MouseJoystick; break;
+                    case 3:
+                        temp = GyroOutMode.Passthru; break;
                     default: break;
                 }
 
@@ -1372,6 +1376,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         index = 1; break;
                     case TouchpadOutMode.AbsoluteMouse:
                         index = 2; break;
+                    case TouchpadOutMode.Passthru:
+                        index = 3; break;
                     default: break;
                 }
                 return index;
@@ -1386,6 +1392,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         temp = TouchpadOutMode.Controls; break;
                     case 2:
                         temp = TouchpadOutMode.AbsoluteMouse; break;
+                    case 3:
+                        temp = TouchpadOutMode.Passthru; break;
                     default: break;
                 }
 
@@ -2001,10 +2009,19 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             outputMouseSpeed = CalculateOutputMouseSpeed(ButtonMouseSensitivity);
             mouseOffsetSpeed = RawButtonMouseOffset * outputMouseSpeed;
 
-            ImageSourceConverter sourceConverter = new ImageSourceConverter();
+            /*ImageSourceConverter sourceConverter = new ImageSourceConverter();
             ImageSource temp = sourceConverter.
                 ConvertFromString($"{Global.ASSEMBLY_RESOURCE_PREFIX}component/Resources/rainbowCCrop.png") as ImageSource;
             lightbarImgBrush.ImageSource = temp.Clone();
+            */
+            Uri tempResourceUri = new Uri($"{Global.ASSEMBLY_RESOURCE_PREFIX}component/Resources/rainbowCCrop.png");
+            BitmapImage tempBitmap = new BitmapImage();
+            tempBitmap.BeginInit();
+            // Needed for some systems not using the System default color profile
+            tempBitmap.CreateOptions = BitmapCreateOptions.IgnoreColorProfile;
+            tempBitmap.UriSource = tempResourceUri;
+            tempBitmap.EndInit();
+            lightbarImgBrush.ImageSource = tempBitmap.Clone();
 
             presetMenuUtil = new PresetMenuHelper(device);
             gyroMouseSmoothMethodIndex = FindGyroMouseSmoothMethodIndex();
@@ -2444,14 +2461,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     {
                         using (RegistryKey browserPathCmdKey = Registry.ClassesRoot.OpenSubKey($"{progId}\\shell\\open\\command"))
                         {
-                            defaultBrowserCmd = browserPathCmdKey?.GetValue(null).ToString();
+                            defaultBrowserCmd = browserPathCmdKey?.GetValue(null).ToString().ToLower();
                         }
 
                         if (!String.IsNullOrEmpty(defaultBrowserCmd))
                         {
                             int iStartPos = (defaultBrowserCmd[0] == '"' ? 1 : 0);
                             defaultBrowserCmd = defaultBrowserCmd.Substring(iStartPos, defaultBrowserCmd.LastIndexOf(".exe") + 4 - iStartPos);
-                            if (Path.GetFileName(defaultBrowserCmd).ToLower() == "launchwinapp.exe")
+                            if (Path.GetFileName(defaultBrowserCmd) == "launchwinapp.exe")
                                 defaultBrowserCmd = String.Empty;
                         }
 

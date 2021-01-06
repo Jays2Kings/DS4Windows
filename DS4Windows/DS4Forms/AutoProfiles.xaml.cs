@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
 using Ookii.Dialogs.Wpf;
 using DS4WinWPF.DS4Forms.ViewModels;
 using Microsoft.Win32;
@@ -84,6 +85,12 @@ namespace DS4WinWPF.DS4Forms
             //autoProfilesGrid.DataContext = autoProfVM;
             outerEditControlsPanel.DataContext = autoProfVM;
             this.profileList = profileList;
+
+            // Sort auto profile list by application file name
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(programListLV.ItemsSource);
+            view.SortDescriptions.Clear();
+            view.SortDescriptions.Add(new SortDescription("Filename", ListSortDirection.Ascending));
+            view.Refresh();
 
             sidebarScrollViewer.ScrollToTop();
         }

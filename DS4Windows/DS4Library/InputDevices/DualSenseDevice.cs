@@ -455,6 +455,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     tempByte = inputReport[10 + reportOffset];
                     cState.PS = (tempByte & (1 << 0)) != 0;
                     cState.TouchButton = (tempByte & 0x02) != 0;
+                    cState.Mute = (tempByte & (1 << 2)) != 0;
                     //cState.FrameCounter = (byte)(tempByte >> 2);
 
                     if ((this.featureSet & VidPidFeatureSet.NoBatteryReading) == 0)
@@ -541,6 +542,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     //Console.WriteLine("{0} {1} {2} {3} {4} Diff({5}) TSms({6}) Sys({7})", tempStamp, inputReport[31 + reportOffset], inputReport[30 + reportOffset], inputReport[29 + reportOffset], inputReport[28 + reportOffset], tempStamp - timeStampPrevious, elapsedDeltaTime, lastTimeElapsedDouble * 0.001);
 
                     cState.elapsedTime = elapsedDeltaTime;
+                    cState.ds4Timestamp = (ushort)((tempStamp / 16) % ushort.MaxValue);
                     timeStampPrevious = tempStamp;
 
                     //elapsedDeltaTime = lastTimeElapsedDouble * .001;
@@ -548,11 +550,13 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     //cState.totalMicroSec = pState.totalMicroSec + (uint)(elapsedDeltaTime * 1000000);
 
                     // Simpler touch storing
+                    cState.TrackPadTouch0.RawTrackingNum = inputReport[33+reportOffset];
                     cState.TrackPadTouch0.Id = (byte)(inputReport[33+reportOffset] & 0x7f);
                     cState.TrackPadTouch0.IsActive = (inputReport[33+reportOffset] & 0x80) == 0;
                     cState.TrackPadTouch0.X = (short)(((ushort)(inputReport[35+reportOffset] & 0x0f) << 8) | (ushort)(inputReport[34+reportOffset]));
                     cState.TrackPadTouch0.Y = (short)(((ushort)(inputReport[36+reportOffset]) << 4) | ((ushort)(inputReport[35+reportOffset] & 0xf0) >> 4));
 
+                    cState.TrackPadTouch0.RawTrackingNum = inputReport[37+reportOffset];
                     cState.TrackPadTouch1.Id = (byte)(inputReport[37+reportOffset] & 0x7f);
                     cState.TrackPadTouch1.IsActive = (inputReport[37+reportOffset] & 0x80) == 0;
                     cState.TrackPadTouch1.X = (short)(((ushort)(inputReport[39+reportOffset] & 0x0f) << 8) | (ushort)(inputReport[38+reportOffset]));
@@ -778,9 +782,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 outputReport[2] = 0x15; // 0x04 | 0x01 | 0x10
 
                 // Right? High Freq Motor
-                outputReport[3] = currentHap.RumbleMotorStrengthRightLightFast;
+                outputReport[3] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast;
                 // Left? Low Freq Motor
-                outputReport[4] = currentHap.RumbleMotorStrengthLeftHeavySlow;
+                outputReport[4] = currentHap.rumbleState.RumbleMotorStrengthLeftHeavySlow;
 
                 /*
                 // Headphone volume
@@ -820,9 +824,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 //*/
 
                 /* Lightbar colors */
-                outputReport[45] = currentHap.LightBarColor.red;
-                outputReport[46] = currentHap.LightBarColor.green;
-                outputReport[47] = currentHap.LightBarColor.blue;
+                outputReport[45] = currentHap.lightbarState.LightBarColor.red;
+                outputReport[46] = currentHap.lightbarState.LightBarColor.green;
+                outputReport[47] = currentHap.lightbarState.LightBarColor.blue;
 
                 if (!previousHapticState.Equals(currentHap))
                 {
@@ -881,9 +885,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 outputReport[3] = 0x15; // 0x04 | 0x01 | 0x10
 
                 // Right? High Freq Motor
-                outputReport[4] = currentHap.RumbleMotorStrengthRightLightFast;
+                outputReport[4] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast;
                 // Left? Low Freq Motor
-                outputReport[5] = currentHap.RumbleMotorStrengthLeftHeavySlow;
+                outputReport[5] = currentHap.rumbleState.RumbleMotorStrengthLeftHeavySlow;
 
                 /*
                 // Headphone volume
@@ -923,9 +927,9 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 //*/
 
                 /* Lightbar colors */
-                outputReport[46] = currentHap.LightBarColor.red;
-                outputReport[47] = currentHap.LightBarColor.green;
-                outputReport[48] = currentHap.LightBarColor.blue;
+                outputReport[46] = currentHap.lightbarState.LightBarColor.red;
+                outputReport[47] = currentHap.lightbarState.LightBarColor.green;
+                outputReport[48] = currentHap.lightbarState.LightBarColor.blue;
 
                 change = !previousHapticState.Equals(currentHap);
 

@@ -89,6 +89,7 @@ namespace DS4Windows
 
     public delegate CheckVirtualInfo CheckVirtualDelegate(string deviceInstanceId);
     public delegate ConnectionType CheckConnectionDelegate(HidDevice hidDevice);
+    public delegate void PrepareInitDelegate(DS4Device device);
 
     public class DS4Devices
     {
@@ -103,6 +104,7 @@ namespace DS4Windows
         private static Stopwatch sw = new Stopwatch();
         public static event RequestElevationDelegate RequestElevation;
         public static CheckVirtualDelegate checkVirtualFunc = null;
+        public static PrepareInitDelegate PrepareDS4Init = null;
         public static bool isExclusiveMode = false;
         internal const int SONY_VID = 0x054C;
         internal const int RAZER_VID = 0x1532;
@@ -304,6 +306,7 @@ namespace DS4Windows
                                 continue;
                             }
 
+                            PrepareDS4Init?.Invoke(ds4Device);
                             ds4Device.PostInit();
                             //ds4Device.Removal += On_Removal;
                             if (!ds4Device.ExitOutputThread)

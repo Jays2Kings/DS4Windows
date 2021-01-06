@@ -17,6 +17,7 @@ using System.Windows.Interop;
 using WPFLocalizeExtension.Engine;
 using NLog;
 using System.Windows.Media;
+using System.Net;
 
 namespace DS4WinWPF
 {
@@ -144,10 +145,11 @@ namespace DS4WinWPF
             string version = DS4Windows.Global.exeversion;
             logger.Info($"DS4Windows version {version}");
             logger.Info($"DS4Windows exe file: {DS4Windows.Global.exeFileName}");
+            logger.Info($"DS4Windows Assembly Architecture: {(Environment.Is64BitProcess ? "x64" : "x86")}");
             logger.Info($"OS Version: {Environment.OSVersion}");
             logger.Info($"OS Product Name: {DS4Windows.Util.GetOSProductName()}");
             logger.Info($"OS Release ID: {DS4Windows.Util.GetOSReleaseId()}");
-            logger.Info($"System Architecture: {(Environment.Is64BitOperatingSystem ? "x64" : "x32")}");
+            logger.Info($"System Architecture: {(Environment.Is64BitOperatingSystem ? "x64" : "x86")}");
             //logger.Info("DS4Windows version 2.0");
             logger.Info("Logger created");
 
@@ -412,7 +414,14 @@ namespace DS4WinWPF
         private void CreateControlService(ArgumentParser parser)
         {
             controlThread = new Thread(() => {
+
+                if (!DS4Windows.Global.IsWin8OrGreater())
+                {
+                    ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
+                }
+
                 rootHub = new DS4Windows.ControlService(parser);
+
                 DS4Windows.Program.rootHub = rootHub;
                 requestClient = new HttpClient();
                 collectTimer = new Timer(GarbageTask, null, 30000, 30000);
@@ -428,6 +437,11 @@ namespace DS4WinWPF
         private void CreateBaseThread()
         {
             controlThread = new Thread(() => {
+                if (!DS4Windows.Global.IsWin8OrGreater())
+                {
+                    ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
+                }
+
                 DS4Windows.Program.rootHub = rootHub;
                 requestClient = new HttpClient();
                 collectTimer = new Timer(GarbageTask, null, 30000, 30000);

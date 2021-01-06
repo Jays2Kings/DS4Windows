@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics;
@@ -107,6 +107,8 @@ namespace DS4Windows
                 squared = new DS4Vector2(0.0, 0.0);
             }
 
+            // Modification of squared stick routine documented
+            // at http://theinstructionlimit.com/squaring-the-thumbsticks
             public void CircleToSquare(double roundness)
             {
                 const double PiOverFour = Math.PI / 4.0;
@@ -264,7 +266,7 @@ namespace DS4Windows
         private static int wheel = 0, keyshelddown = 0;
 
         //mapcustom
-        public static bool[] pressedonce = new bool[2400], macrodone = new bool[38];
+        public static bool[] pressedonce = new bool[2400], macrodone = new bool[39];
         static bool[] macroControl = new bool[25];
         static uint macroCount = 0;
         static Dictionary<string, Task>[] macroTaskQueue = new Dictionary<string, Task>[Global.MAX_DS4_CONTROLLER_COUNT] { new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>() };
@@ -282,14 +284,17 @@ namespace DS4Windows
         public static DateTime[] oldnowKeyAct = new DateTime[Global.MAX_DS4_CONTROLLER_COUNT] { DateTime.MinValue,
             DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
 
-        private static DS4Controls[] shiftTriggerMapping = new DS4Controls[26] { DS4Controls.None, DS4Controls.Cross, DS4Controls.Circle, DS4Controls.Square,
+        private static DS4Controls[] shiftTriggerMapping = new DS4Controls[28] { DS4Controls.None, DS4Controls.Cross, DS4Controls.Circle, DS4Controls.Square,
             DS4Controls.Triangle, DS4Controls.Options, DS4Controls.Share, DS4Controls.DpadUp, DS4Controls.DpadDown,
             DS4Controls.DpadLeft, DS4Controls.DpadRight, DS4Controls.PS, DS4Controls.L1, DS4Controls.R1, DS4Controls.L2,
             DS4Controls.R2, DS4Controls.L3, DS4Controls.R3, DS4Controls.TouchLeft, DS4Controls.TouchUpper, DS4Controls.TouchMulti,
             DS4Controls.TouchRight, DS4Controls.GyroZNeg, DS4Controls.GyroZPos, DS4Controls.GyroXPos, DS4Controls.GyroXNeg,
+            DS4Controls.None, DS4Controls.Mute,
         };
 
-        private static int[] ds4ControlMapping = new int[38] { 0, // DS4Control.None
+        // Button to index mapping used for macrodone array. Not even sure this
+        // is needed. This was originally made to replace a switch test used in the DS4ControlToInt method.
+        private static int[] ds4ControlMapping = new int[39] { 0, // DS4Control.None
             16, // DS4Controls.LXNeg
             20, // DS4Controls.LXPos
             17, // DS4Controls.LYNeg
@@ -319,14 +324,15 @@ namespace DS4Windows
             28, // DS4Controls.TouchRight
             1,  // DS4Controls.Share
             2,  // DS4Controls.Options
-            31, // DS4Controls.GyroXPos
-            30, // DS4Controls.GyroXNeg
-            33, // DS4Controls.GyroZPos
-            32, // DS4Controls.GyroZNeg
-            34, // DS4Controls.SwipeLeft
-            35, // DS4Controls.SwipeRight
-            36, // DS4Controls.SwipeUp
-            37  // DS4Controls.SwipeDown
+            30, // DS4Controls.Mute
+            32, // DS4Controls.GyroXPos
+            31, // DS4Controls.GyroXNeg
+            34, // DS4Controls.GyroZPos
+            33, // DS4Controls.GyroZNeg
+            35, // DS4Controls.SwipeLeft
+            36, // DS4Controls.SwipeRight
+            37, // DS4Controls.SwipeUp
+            38  // DS4Controls.SwipeDown
         };
 
         // Define here to save some time processing.
@@ -1525,11 +1531,12 @@ namespace DS4Windows
             {
                 result = false;
             }
-            else if (trigger < 26)
+            else if (trigger < 28 && trigger != 26)
             {
                 DS4Controls ds = shiftTriggerMapping[trigger];
                 result = getBoolMapping2(device, ds, cState, eState, tp, fieldMapping);
             }
+            // 26 is a special case. It does not correlate to a direct DS4Controls value
             else if (trigger == 26)
             {
                 result = cState.Touch1Finger;
@@ -2474,7 +2481,39 @@ namespace DS4Windows
                                 {
                                     actionDone[index].dev[device] = true;
                                     if (!string.IsNullOrEmpty(action.extra))
-                                        Process.Start(action.details, action.extra);
+                                    {
+                                        int pos = action.extra.IndexOf("$hidden", StringComparison.OrdinalIgnoreCase);
+                                        if (pos >= 0)
+                                        {
+                                            System.Diagnostics.Process specActionLaunchProc = new System.Diagnostics.Process();
+
+                                            // LaunchProgram specAction has $hidden argument to indicate that the child process window should be hidden (especially useful when launching .bat/.cmd batch files).
+                                            // Removes the first occurence of $hidden substring from extra argument because it was a special action modifier keyword
+                                            string cmdArgs = specActionLaunchProc.StartInfo.Arguments = action.extra.Remove(pos, 7);
+                                            string cmdExt = Path.GetExtension(action.details).ToLower();
+
+                                            if (cmdExt == ".bat" || cmdExt == ".cmd")
+                                            {
+                                                // Launch batch script using the default command shell cmd (COMSPEC env variable)
+                                                specActionLaunchProc.StartInfo.FileName = System.Environment.GetEnvironmentVariable("COMSPEC");
+                                                specActionLaunchProc.StartInfo.Arguments = "/C \"" + action.details + "\" " + cmdArgs;
+                                            }
+                                            else
+                                            {
+                                                // Normal EXE executable app (action.details) with optional cmdline arguments (action.extra)
+                                                specActionLaunchProc.StartInfo.FileName = action.details;
+                                                specActionLaunchProc.StartInfo.Arguments = cmdArgs;
+                                            }
+
+                                            // Launch child process using hidden wnd option (the child process should probably do something and then close itself unless you want it to remain hidden in background)
+                                            specActionLaunchProc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                                            specActionLaunchProc.StartInfo.CreateNoWindow = true;
+                                            specActionLaunchProc.Start();
+                                        }                                            
+                                        else
+                                            // No special process modifiers (ie. $hidden wnd keyword). Launch the child process using the default WinOS settings
+                                            Process.Start(action.details, action.extra);
+                                    }
                                     else
                                         Process.Start(action.details);
                                 }
@@ -2519,6 +2558,7 @@ namespace DS4Windows
 
                                     AppLogger.LogToGui(prolog, false);
                                     LoadTempProfile(device, action.details, true, ctrl);
+                                    //LoadProfile(device, false, ctrl);
 
                                     if (action.uTrigger.Count == 0 && !action.automaticUntrigger)
                                     {

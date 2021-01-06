@@ -359,8 +359,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
     {
         private static string[] imageSources = new string[]
         {
-            $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("KeyUpImg")}",
             $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("KeyDownImg")}",
+            $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("KeyUpImg")}",
             $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("ClockImg")}",
         };
 
@@ -368,8 +368,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             imageSources = new string[]
             {
-                $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("KeyUpImg")}",
                 $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("KeyDownImg")}",
+                $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("KeyUpImg")}",
                 $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("ClockImg")}",
             };
         }

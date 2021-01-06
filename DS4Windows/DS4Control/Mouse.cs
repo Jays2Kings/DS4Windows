@@ -397,6 +397,7 @@ namespace DS4Windows
                 case 17: return s.Share;
                 case 18: return s.PS;
                 case 19: return s.TouchButton;
+                case 20: return s.Mute;
                 default: break;
             }
 

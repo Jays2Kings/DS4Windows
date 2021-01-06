@@ -219,9 +219,18 @@ namespace DS4Windows
             outputslotMan = new OutputSlotManager();
             DS4Devices.RequestElevation += DS4Devices_RequestElevation;
             DS4Devices.checkVirtualFunc = CheckForVirtualDevice;
+            DS4Devices.PrepareDS4Init = PrepareDS4DeviceInit;
 
             Global.UDPServerSmoothingMincutoffChanged += ChangeUdpSmoothingAttrs;
             Global.UDPServerSmoothingBetaChanged += ChangeUdpSmoothingAttrs;
+        }
+
+        public void PrepareDS4DeviceInit(DS4Device device)
+        {
+            if (!Global.IsWin8OrGreater())
+            {
+                device.BTOutputMethod = DS4Device.BTOutputReportMethod.HidD_SetOutputReport;
+            }
         }
 
         public CheckVirtualInfo CheckForVirtualDevice(string deviceInstanceId)
@@ -568,6 +577,8 @@ namespace DS4Windows
                 Xbox360OutDevice tempXbox = outDevice as Xbox360OutDevice;
                 Nefarius.ViGEm.Client.Targets.Xbox360FeedbackReceivedEventHandler p = (sender, args) =>
                 {
+                    //Console.WriteLine("Rumble ({0}, {1}) {2}",
+                    //    args.LargeMotor, args.SmallMotor, DateTime.Now.ToLongTimeString());
                     SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
                 };
                 tempXbox.cont.FeedbackReceived += p;
@@ -628,11 +639,18 @@ namespace DS4Windows
                     if (useLight)
                     {
                         //Console.WriteLine("Change lightbar color");
-                        DS4HapticState haptics = new DS4HapticState
+                        /*DS4HapticState haptics = new DS4HapticState
                         {
                             LightBarColor = color,
                         };
                         device.SetHapticState(ref haptics);
+                        */
+
+                        DS4LightbarState lightState = new DS4LightbarState
+                        {
+                            LightBarColor = color,
+                        };
+                        device.SetLightbarState(ref lightState);
                     }
 
                     //Console.WriteLine();
@@ -1331,11 +1349,14 @@ namespace DS4Windows
 
         public void ResetUdpSmoothingFilters(int idx)
         {
-            OneEuroFilter3D temp = udpEuroPairAccel[idx] = new OneEuroFilter3D();
-            temp.SetFilterAttrs(Global.UDPServerSmoothingMincutoff, Global.UDPServerSmoothingBeta);
+            if (idx < UdpServer.NUMBER_SLOTS)
+            {
+                OneEuroFilter3D temp = udpEuroPairAccel[idx] = new OneEuroFilter3D();
+                temp.SetFilterAttrs(Global.UDPServerSmoothingMincutoff, Global.UDPServerSmoothingBeta);
 
-            temp = udpEuroPairGyro[idx] = new OneEuroFilter3D();
-            temp.SetFilterAttrs(Global.UDPServerSmoothingMincutoff, Global.UDPServerSmoothingBeta);
+                temp = udpEuroPairGyro[idx] = new OneEuroFilter3D();
+                temp.SetFilterAttrs(Global.UDPServerSmoothingMincutoff, Global.UDPServerSmoothingBeta);
+            }
         }
 
         private void ChangeUdpSmoothingAttrs(object sender, EventArgs e)
@@ -1679,9 +1700,11 @@ namespace DS4Windows
                     inWarnMonitor[ind] = false;
                     useDInputOnly[ind] = true;
                     Global.activeOutDevType[ind] = OutContType.None;
-                    Global.useTempProfile[ind] = false;
-                    Global.tempprofilename[ind] = string.Empty;
-                    Global.tempprofileDistance[ind] = false;
+                    /* Leave up to Auto Profile system to change the following flags? */
+                    //Global.useTempProfile[ind] = false;
+                    //Global.tempprofilename[ind] = string.Empty;
+                    //Global.tempprofileDistance[ind] = false;
+
                     //Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                 }
             }
@@ -1792,8 +1815,14 @@ namespace DS4Windows
                     containsCustomAction(ind) || containsCustomExtras(ind) ||
                     getProfileActionCount(ind) > 0))
                 {
-                    Mapping.MapCustom(ind, cState, MappedState[ind], ExposedState[ind], touchPad[ind], this);
-                    cState = MappedState[ind];
+                    DS4State tempMapState = MappedState[ind];
+                    Mapping.MapCustom(ind, cState, tempMapState, ExposedState[ind], touchPad[ind], this);
+
+                    // Copy current Touchpad and Gyro data
+                    tempMapState.Motion = cState.Motion;
+                    tempMapState.TrackPadTouch0 = cState.TrackPadTouch0;
+                    tempMapState.TrackPadTouch1 = cState.TrackPadTouch1;
+                    cState = tempMapState;
                 }
 
                 if (!useDInputOnly[ind])

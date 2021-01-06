@@ -189,7 +189,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             foreach (string target in exepaths)
             {
-                bool skip = !File.Exists(target) || Path.GetExtension(target) != ".exe";
+                bool skip = !File.Exists(target) || Path.GetExtension(target).ToLower() != ".exe";
                 skip = skip || (skipsetupapps && (target.Contains("etup") || target.Contains("dotnet") || target.Contains("SETUP")
                     || target.Contains("edist") || target.Contains("nstall") || string.IsNullOrEmpty(target)));
                 skip = skip || (checkexisting && existingapps.Contains(target));

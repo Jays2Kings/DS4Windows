@@ -109,7 +109,6 @@
       <HintPath>..\packages\Ookii.Dialogs.Wpf.1.1.0\lib\net45\Ookii.Dialogs.Wpf.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -165,6 +164,10 @@
     <Compile Include="DS4Control\ControlService.cs" />
     <Compile Include="DS4Control\DS4LightBar.cs" />
     <Compile Include="DS4Control\DS4OutDevice.cs" />
+    <Compile Include="DS4Control\DS4OutDevices\DS4OutDeviceBasic.cs" />
+    <Compile Include="DS4Control\DS4OutDevices\DS4OutDeviceExt.cs" />
+    <Compile Include="DS4Control\DS4OutDevices\DS4OutDeviceExtras.cs" />
+    <Compile Include="DS4Control\DS4OutDevices\DS4OutDeviceFactory.cs" />
     <Compile Include="DS4Control\DS4StateFieldMapping.cs" />
     <Compile Include="DS4Control\InputMethods.cs" />
     <Compile Include="DS4Control\ITouchpadBehaviour.cs" />
@@ -615,7 +618,7 @@
     <PostBuildEvent>rem Copy compiled l18n assemblies to alt folder
 GOTO END
 if not exist $(TargetDir)Lang mkdir $(TargetDir)Lang
-set langs=cs de es fr it ja nl pt-BR ru zh-CN zh-TW uk-UA hu-HU pl ar
+set langs=cs de es fr he it ja nl pt-BR ru zh-CN zh-TW uk-UA hu-HU pl ar
 
 for %25%25l in (%25langs%25) do (
   xcopy $(TargetDir)%25%25l $(TargetDir)Lang\%25%25l\ /s /y

@@ -1078,6 +1078,10 @@ Suspend support not enabled.", true);
                                     if (Program.rootHub.running)
                                         ChangeService();
                                 }
+                                else if (strData[0] == "cycle")
+                                {
+                                    ChangeService();
+                                }
                                 else if (strData[0] == "shutdown")
                                 {
                                     // Force disconnect all gamepads before closing the app to avoid "Are you sure you want to close the app" messagebox

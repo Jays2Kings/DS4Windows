@@ -49,7 +49,7 @@ namespace DS4WinWPF.DS4Forms
             {
                 crossTrigCk, circleTrigCk, squareTrigCk, triangleTrigCk,
                 optionsTrigCk, shareTrigCk, upTrigCk, downTrigCk,
-                leftTrigCk, rightTrigCk, psTrigCk, l1TrigCk,
+                leftTrigCk, rightTrigCk, psTrigCk, muteTrigCk, l1TrigCk,
                 r1TrigCk, l2TrigCk, r2TrigCk, l3TrigCk,
                 r3TrigCk, leftTouchTrigCk, upperTouchTrigCk, multitouchTrigCk,
                 rightTouchTrigCk, lsuTrigCk, lsdTrigCk, lslTrigCk,
@@ -63,7 +63,7 @@ namespace DS4WinWPF.DS4Forms
             {
                 unloadCrossTrigCk, unloadCircleTrigCk, unloadSquareTrigCk, unloadTriangleTrigCk,
                 unloadOptionsTrigCk, unloadShareTrigCk, unloadUpTrigCk, unloadDownTrigCk,
-                unloadLeftTrigCk, unloadRightTrigCk, unloadPsTrigCk, unloadL1TrigCk,
+                unloadLeftTrigCk, unloadRightTrigCk, unloadPsTrigCk, unloadMuteTrigCk, unloadL1TrigCk,
                 unloadR1TrigCk, unloadL2TrigCk, unloadR2TrigCk, unloadL3TrigCk,
                 unloadR3TrigCk, unloadLeftTouchTrigCk, unloadUpperTouchTrigCk, unloadMultitouchTrigCk,
                 unloadRightTouchTrigCk, unloadLsuTrigCk, unloadLsdTrigCk, unloadLslTrigCk,
@@ -460,7 +460,7 @@ namespace DS4WinWPF.DS4Forms
             dialog.Multiselect = false;
             dialog.AddExtension = true;
             dialog.DefaultExt = ".exe";
-            dialog.Filter = "Exe (*.exe)|*.exe";
+            dialog.Filter = "Exe (*.exe)|*.exe|Batch (*.bat,*.cmd)|*.bat;*.cmd";
             dialog.Title = "Select Program";
 
             dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);

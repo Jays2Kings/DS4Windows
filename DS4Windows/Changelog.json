@@ -1,9 +1,85 @@
 {
-  "latest_version": "2.1.22",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 22},
-  "updated_at": "2020-12-13T15:42:18+0000",
+  "latest_version": "2.2.1",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 1},
+  "updated_at": "2020-12-31T05:22:47+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.2.1",
+        "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 1},
+        "base_header": "Version 2.2.1",
+        "release_date": "2020-12-31T05:22:47+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.2.1",
+            "log_text": ["* Put lock block in for DS4 USB output routine"],
+            "editor": "ryochan7",
+            "editors_note": ["Too many cases to test and my dying PC"],
+            "updated_at": "2020-12-31T05:22:47+0000"
+          }
+        ]
+      },
+      {
+        "version_str": "2.2.0",
+        "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 0},
+        "base_header": "Version 2.2.0",
+        "release_date": "2020-12-31T03:22:07+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.2.0",
+            "log_text": ["* Import newer ViGEm.NET libraries for ViGEmBus 1.17.333.0 extended support",
+              "* Allow passthru of Touchpad and Gyro to output virtual DS4. Requires ViGEmBus 1.17.333.0 and Windows 10",
+              "* Put note about DS4Windows assembly architecture in Log. Needed to diagnose Exclusive mode problems.",
+              "* No longer reset X360 report data each gamepad poll",
+              "* Fixed Touchpad Swipe and Gyro Tilt controls index values for Profile Editor controls",
+              "* Fixed some 8 controller bugs. Make sure to save set profile and load setting",
+              "* Don't reset auto profile flags on device removal",
+              "* Sort auto profile list by app file name",
+              "* Allow binding to Mute button in Special Action editor",
+              "* Added DualSense Mute button to Gyro and Touchpad triggers",
+              "* Allow Mute button as a Shift Trigger",
+              "* Use a WrapPanel for Utils section",
+              "* Fixed crash on Windows 7 when attempting to download ViGEm installer. Side effect of targeting .NET Framework 4.8",
+              "* Remove Aero2 assembly reference",
+              "* Changed output method used for Windows 7 BT DS4 devices. Forced to use Control endpoint on Windows 7",
+              "* Have driver installer window choose different ViGEmBus installer depending on detected Windows OS install"],
+            "editor": "ryochan7",
+            "editors_note": ["Windows 7 EOL seriously this time"],
+            "updated_at": "2020-12-31T03:22:07+0000"
+          }
+        ]
+      },
+      {
+        "version_str": "2.1.23",
+        "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 23},
+        "base_header": "Version 2.1.23",
+        "release_date": "2020-12-25T15:51:12+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.1.23",
+            "log_text": ["* Updated App.config file with proper .NET Framework version",
+              "* Added support for mapping DualSense Mute button",
+              "* Fixed Dark theme crashing app in Windows 7. Removed Aero2 elements from Dark theme.",
+              "* Disable apply button when creating a new profile. Further enforce current flow",
+              "* Added feature set check before generating CRC-32 output data",
+              "* Fixed theme style for SaveWhere window",
+              "* Corrected KeyDown and KeyUp images in Macro editor",
+              "* Split DS4HapticState to two structs. Separate force feedback data from lightbar color",
+              "* Added -command cycle cmd flag. Allows for an easy on/off shortcut without having to set any conditions. Contribution by **wingfixer**",
+              "* Changed AutoProfile EXE file extension check to be case-sensitive. Contribution by **mika-n**",
+              "* Added MinWidth back in Dark theme for combobox. Was removed with Aero2 tags.",
+              "* Updated Russian translation file. Contribution by **shikulja**",
+              "* Don't display data write failure if device is known to be disconnecting. Hopefully eliminates excessive gamepad write failure log messages when Idle Disconnect is executed.",
+              "* Tweaked axis scaling to output Xbox 360 axis. Low end now can scale to 0 properly."],
+            "editor": "ryochan7",
+            "editors_note": ["Not much"],
+            "updated_at": "2020-12-25T15:51:12+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.1.22",
         "version_number_info": {"majorPart": 2, "minorPart": 1, "buildPart": 22},

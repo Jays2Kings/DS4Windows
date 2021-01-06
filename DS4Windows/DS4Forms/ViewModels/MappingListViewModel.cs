@@ -44,6 +44,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             mappings.Add(new MappedControl(devIndex, DS4Controls.DpadLeft, "Left", devType));
             mappings.Add(new MappedControl(devIndex, DS4Controls.DpadRight, "Right", devType));
             mappings.Add(new MappedControl(devIndex, DS4Controls.PS, "PS", devType));
+            mappings.Add(new MappedControl(devIndex, DS4Controls.Mute, "Mute", devType));
             mappings.Add(new MappedControl(devIndex, DS4Controls.L1, "L1", devType));
             mappings.Add(new MappedControl(devIndex, DS4Controls.R1, "R1", devType));
             mappings.Add(new MappedControl(devIndex, DS4Controls.L2, "L2", devType));
@@ -206,7 +207,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 }
             }
             else if (!extra && !shift)
-                temp = Global.getX360ControlString(Global.defaultButtonMapping[(int)control], devType);
+            {
+                X360Controls tempOutControl = Global.defaultButtonMapping[(int)control];
+                if (tempOutControl != X360Controls.None)
+                {
+                    temp = Global.getX360ControlString(tempOutControl, devType);
+                }
+            }
             else if (shift)
                 temp = "";
 

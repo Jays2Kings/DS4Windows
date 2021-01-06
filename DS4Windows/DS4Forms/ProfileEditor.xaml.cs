@@ -199,36 +199,37 @@ namespace DS4WinWPF.DS4Forms
             hoverIndexes[leftConBtn] = 8;
             hoverIndexes[rightConBtn] = 9;
             hoverIndexes[guideConBtn] = 10;
-            hoverIndexes[l1ConBtn] = 11;
-            hoverIndexes[r1ConBtn] = 12;
-            hoverIndexes[l2ConBtn] = 13;
-            hoverIndexes[r2ConBtn] = 14;
-            hoverIndexes[l3ConBtn] = 15;
-            hoverIndexes[r3ConBtn] = 16;
-            hoverIndexes[leftTouchConBtn] = 17;
-            hoverIndexes[rightTouchConBtn] = 18;
-            hoverIndexes[multiTouchConBtn] = 19;
-            hoverIndexes[topTouchConBtn] = 20;
+            hoverIndexes[muteConBtn] = 11;
+            hoverIndexes[l1ConBtn] = 12;
+            hoverIndexes[r1ConBtn] = 13;
+            hoverIndexes[l2ConBtn] = 14;
+            hoverIndexes[r2ConBtn] = 15;
+            hoverIndexes[l3ConBtn] = 16;
+            hoverIndexes[r3ConBtn] = 17;
+            hoverIndexes[leftTouchConBtn] = 18;
+            hoverIndexes[rightTouchConBtn] = 19;
+            hoverIndexes[multiTouchConBtn] = 20;
+            hoverIndexes[topTouchConBtn] = 21;
 
-            hoverIndexes[lsuConBtn] = 21;
-            hoverIndexes[lsdConBtn] = 22;
-            hoverIndexes[lslConBtn] = 23;
-            hoverIndexes[lsrConBtn] = 24;
+            hoverIndexes[lsuConBtn] = 22;
+            hoverIndexes[lsdConBtn] = 23;
+            hoverIndexes[lslConBtn] = 24;
+            hoverIndexes[lsrConBtn] = 25;
 
-            hoverIndexes[rsuConBtn] = 25;
-            hoverIndexes[rsdConBtn] = 26;
-            hoverIndexes[rslConBtn] = 27;
-            hoverIndexes[rsrConBtn] = 28;
+            hoverIndexes[rsuConBtn] = 26;
+            hoverIndexes[rsdConBtn] = 27;
+            hoverIndexes[rslConBtn] = 28;
+            hoverIndexes[rsrConBtn] = 29;
 
-            hoverIndexes[gyroZNBtn] = 29;
-            hoverIndexes[gyroZPBtn] = 30;
-            hoverIndexes[gyroXNBtn] = 31;
-            hoverIndexes[gyroXPBtn] = 32;
+            hoverIndexes[gyroZNBtn] = 30;
+            hoverIndexes[gyroZPBtn] = 31;
+            hoverIndexes[gyroXNBtn] = 32;
+            hoverIndexes[gyroXPBtn] = 33;
 
-            hoverIndexes[swipeUpBtn] = 33;
-            hoverIndexes[swipeDownBtn] = 34;
-            hoverIndexes[swipeLeftBtn] = 35;
-            hoverIndexes[swipeRightBtn] = 36;
+            hoverIndexes[swipeUpBtn] = 34;
+            hoverIndexes[swipeDownBtn] = 35;
+            hoverIndexes[swipeLeftBtn] = 36;
+            hoverIndexes[swipeRightBtn] = 37;
         }
 
         private void PopulateHoverLocations()
@@ -255,6 +256,11 @@ namespace DS4WinWPF.DS4Forms
                 size = new Size(optionsConBtn.Width, optionsConBtn.Height) };
             hoverLocations[guideConBtn] = new HoverImageInfo() { point = new Point(Canvas.GetLeft(guideConBtn), Canvas.GetTop(guideConBtn)),
                 size = new Size(guideConBtn.Width, guideConBtn.Height) };
+            hoverLocations[muteConBtn] = new HoverImageInfo()
+            {
+                point = new Point(Canvas.GetLeft(muteConBtn), Canvas.GetTop(muteConBtn)),
+                size = new Size(muteConBtn.Width, muteConBtn.Height)
+            };
 
             hoverLocations[leftTouchConBtn] = new HoverImageInfo() { point = new Point(144, 44), size = new Size(140, 98) };
             hoverLocations[multiTouchConBtn] = new HoverImageInfo() { point = new Point(143, 42), size = new Size(158, 100) };
@@ -306,6 +312,7 @@ namespace DS4WinWPF.DS4Forms
             shareConBtn.Content = "";
             optionsConBtn.Content = "";
             guideConBtn.Content = "";
+            muteConBtn.Content = "";
             leftTouchConBtn.Content = "";
             multiTouchConBtn.Content = "";
             rightTouchConBtn.Content = "";
@@ -463,6 +470,7 @@ namespace DS4WinWPF.DS4Forms
             hoverImages[shareConBtn] = shareHover;
             hoverImages[optionsConBtn] = optionsHover;
             hoverImages[guideConBtn] = guideHover;
+            hoverImages[muteConBtn] = guideHover;
 
             hoverImages[leftTouchConBtn] = leftTouchHover;
             hoverImages[multiTouchConBtn] = multiTouchTouchHover;
@@ -504,6 +512,7 @@ namespace DS4WinWPF.DS4Forms
                 Global.LoadProfile(device, false, App.rootHub, false);
                 profileNameTxt.Text = profile.Name;
                 profileNameTxt.IsEnabled = false;
+                applyBtn.IsEnabled = true;
             }
             else
             {
@@ -1352,5 +1361,18 @@ namespace DS4WinWPF.DS4Forms
         {
             ApplyProfileStep();
         }
+    }
+
+    public class ControlIndexCheck
+    {
+        public int TiltUp { get => (int)DS4Controls.GyroZNeg; }
+        public int TiltDown { get => (int)DS4Controls.GyroZPos; }
+        public int TiltLeft { get => (int)DS4Controls.GyroXPos; }
+        public int TiltRight { get => (int)DS4Controls.GyroXNeg; }
+
+        public int SwipeUp { get => (int)DS4Controls.SwipeUp; }
+        public int SwipeDown { get => (int)DS4Controls.SwipeDown; }
+        public int SwipeLeft { get => (int)DS4Controls.SwipeLeft; }
+        public int SwipeRight { get => (int)DS4Controls.SwipeRight; }
     }
 }

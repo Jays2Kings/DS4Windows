@@ -967,6 +967,7 @@
                                 </StackPanel>
                             </StackPanel>
                         </TabItem>
+                        <TabItem Header="Passthru" Visibility="Collapsed" />
                     </TabControl>
                 </StackPanel>
             </TabItem>
@@ -1307,6 +1308,8 @@
                             </StackPanel>
                         </GroupBox>
                     </StackPanel>
+
+                    <StackPanel x:Name="passthruPanel" Visibility="Collapsed" />
                 </StackPanel>
             </TabItem>
 

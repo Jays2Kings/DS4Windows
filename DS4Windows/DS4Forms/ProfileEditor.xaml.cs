@@ -109,6 +109,8 @@ namespace DS4WinWPF.DS4Forms
                     activeGyroModePanel = gyroMousePanel; break;
                 case 2:
                     activeGyroModePanel = gyroMouseJoystickPanel; break;
+                case 3:
+                    activeGyroModePanel = passthruPanel; break;
                 default:
                     activeGyroModePanel = gyroControlsPanel; break;
             }
@@ -117,6 +119,7 @@ namespace DS4WinWPF.DS4Forms
             gyroControlsPanel.Visibility = Visibility.Collapsed;
             gyroMousePanel.Visibility = Visibility.Collapsed;
             gyroMouseJoystickPanel.Visibility = Visibility.Collapsed;
+            passthruPanel.Visibility = Visibility.Collapsed;
             activeGyroModePanel.Visibility = Visibility.Visible;
         }
 

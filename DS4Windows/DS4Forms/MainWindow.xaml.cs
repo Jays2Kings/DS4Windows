@@ -891,7 +891,10 @@ Suspend support not enabled.", true);
         private void ContStatusImg_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             CompositeDeviceModel item = conLvViewModel.CurrentItem;
-            item.RequestDisconnect();
+            if (item != null)
+            {
+                item.RequestDisconnect();
+            }
         }
 
         private void ExportLogBtn_Click(object sender, RoutedEventArgs e)

@@ -65,7 +65,7 @@ namespace DS4Windows
 
         public readonly static int DS4_TOUCHPAD_DATA_OFFSET = 35;
         public const int RESOLUTION_X_MAX = 1920;
-        public const int RESOLUTION_Y_MAX = 900;
+        public const int RESOLUTION_Y_MAX = 942;
         public const int RES_HALFED_X = (int)(RESOLUTION_X_MAX * 0.5);
         public const int RES_HALFED_Y = (int)(RESOLUTION_Y_MAX * 0.5);
 

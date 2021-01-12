@@ -6,9 +6,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using DS4Windows;
 
-namespace DS4WinWPF.DS4Library.InputDevices
+namespace DS4Windows.InputDevices
 {
     public class JoyConDevice : DS4Device
     {
@@ -243,6 +242,15 @@ namespace DS4WinWPF.DS4Library.InputDevices
         public override void PostInit()
         {
             sideType = DetermineSideType();
+            if (sideType == JoyConSide.Left)
+            {
+                deviceType = InputDeviceType.JoyConL;
+            }
+            else if (sideType == JoyConSide.Right)
+            {
+                deviceType = InputDeviceType.JoyConR;
+            }
+
             conType = ConnectionType.BT;
             warnInterval = WARN_INTERVAL_BT;
 

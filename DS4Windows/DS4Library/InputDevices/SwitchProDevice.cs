@@ -1,5 +1,4 @@
-﻿using DS4Windows;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DS4WinWPF.DS4Library.InputDevices
+namespace DS4Windows.InputDevices
 {
     public class SwitchProDevice : DS4Device
     {
@@ -222,6 +221,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
         public override void PostInit()
         {
+            deviceType = InputDeviceType.SwitchPro;
             conType = DetermineConnectionType(hDevice);
 
             if (conType == ConnectionType.BT)

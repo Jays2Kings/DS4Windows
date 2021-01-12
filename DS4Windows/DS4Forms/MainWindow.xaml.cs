@@ -1667,5 +1667,14 @@ Suspend support not enabled.", true);
             ChangelogWindow changelogWin = new ChangelogWindow();
             changelogWin.ShowDialog();
         }
+
+        private void DeviceOptionSettingsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ControllerRegisterOptionsWindow optsWindow =
+                new ControllerRegisterOptionsWindow(Program.rootHub.DeviceOptions);
+
+            optsWindow.Owner = this;
+            optsWindow.Show();
+        }
     }
 }

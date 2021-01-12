@@ -1910,6 +1910,8 @@ namespace DS4Windows
         public static TouchpadAbsMouseSettings[] TouchAbsMouse => m_Config.touchpadAbsMouse;
         public static TouchpadRelMouseSettings[] TouchRelMouse => m_Config.touchpadRelMouse;
 
+        public static ControlServiceDeviceOptions DeviceOptions => m_Config.deviceOptions;
+
         public static OutContType[] OutContType => m_Config.outputDevType;
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
@@ -2594,6 +2596,9 @@ namespace DS4Windows
         public string customSteamFolder;
         public AppThemeChoice useCurrentTheme;
         public string fakeExeFileName = string.Empty;
+
+        public ControlServiceDeviceOptions deviceOptions =
+            new ControlServiceDeviceOptions();
 
         // Cache whether profile has custom action
         public bool[] containsCustomAction = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
@@ -5118,6 +5123,67 @@ namespace DS4Windows
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/AutoProfileRevertDefaultProfile"); Boolean.TryParse(Item.InnerText, out autoProfileRevertDefaultProfile); }
                     catch { missingSetting = true; }
 
+
+                    XmlNode xmlDeviceOptions = m_Xdoc.SelectSingleNode("DeviceOptions");
+                    if (xmlDeviceOptions != null)
+                    {
+                        XmlNode xmlDS4Support = xmlDeviceOptions.SelectSingleNode("DS4SupportSettings");
+                        if (xmlDS4Support != null)
+                        {
+                            try
+                            {
+                                XmlNode item = xmlDS4Support.SelectSingleNode("Enabled");
+                                bool.TryParse(item?.InnerText ?? "", out bool temp);
+                                deviceOptions.DS4DeviceOpts.Enabled = temp;
+                            }
+                            catch { }
+                        }
+
+                        XmlNode xmlDualSenseSupport = xmlDeviceOptions.SelectSingleNode("DualSenseSupportSettings");
+                        if (xmlDualSenseSupport != null)
+                        {
+                            try
+                            {
+                                XmlNode item = xmlDualSenseSupport.SelectSingleNode("Enabled");
+                                bool.TryParse(item?.InnerText ?? "", out bool temp);
+                                deviceOptions.DualSenseOpts.Enabled = temp;
+                            }
+                            catch { }
+
+                            try
+                            {
+                                XmlNode item = xmlDualSenseSupport.SelectSingleNode("EnableRumble");
+                                bool.TryParse(item?.InnerText ?? "", out bool temp);
+                                deviceOptions.DualSenseOpts.EnableRumble = temp;
+                            }
+                            catch { }
+                        }
+
+                        XmlNode xmlSwitchProSupport = xmlDeviceOptions.SelectSingleNode("SwitchProSupportSettings");
+                        if (xmlSwitchProSupport != null)
+                        {
+                            try
+                            {
+                                XmlNode item = xmlSwitchProSupport.SelectSingleNode("Enabled");
+                                bool.TryParse(item?.InnerText ?? "", out bool temp);
+                                deviceOptions.SwitchProDeviceOpts.Enabled = temp;
+                            }
+                            catch { }
+                        }
+
+                        XmlNode xmlJoyConSupport = xmlDeviceOptions.SelectSingleNode("JoyConSupportSettings");
+                        if (xmlJoyConSupport != null)
+                        {
+                            try
+                            {
+                                XmlNode item = xmlSwitchProSupport.SelectSingleNode("Enabled");
+                                bool.TryParse(item?.InnerText ?? "", out bool temp);
+                                deviceOptions.JoyConDeviceOpts.Enabled = temp;
+                            }
+                            catch { }
+                        }
+                    }
+
                     for (int i = 0; i < Global.MAX_DS4_CONTROLLER_COUNT; i++)
                     {
                         try
@@ -5229,6 +5295,36 @@ namespace DS4Windows
             XmlNode xmlUseCustomSteamFolder = m_Xdoc.CreateNode(XmlNodeType.Element, "UseCustomSteamFolder", null); xmlUseCustomSteamFolder.InnerText = useCustomSteamFolder.ToString(); rootElement.AppendChild(xmlUseCustomSteamFolder);
             XmlNode xmlCustomSteamFolder = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomSteamFolder", null); xmlCustomSteamFolder.InnerText = customSteamFolder; rootElement.AppendChild(xmlCustomSteamFolder);
             XmlNode xmlAutoProfileRevertDefaultProfile = m_Xdoc.CreateNode(XmlNodeType.Element, "AutoProfileRevertDefaultProfile", null); xmlAutoProfileRevertDefaultProfile.InnerText = autoProfileRevertDefaultProfile.ToString(); rootElement.AppendChild(xmlAutoProfileRevertDefaultProfile);
+
+            XmlElement xmlDeviceOptions = m_Xdoc.CreateElement("DeviceOptions", null);
+            XmlElement xmlDS4Support = m_Xdoc.CreateElement("DS4SupportSettings", null);
+            XmlElement xmlDS4Enabled = m_Xdoc.CreateElement("Enabled", null);
+            xmlDS4Enabled.InnerText = deviceOptions.DS4DeviceOpts.Enabled.ToString();
+            xmlDS4Support.AppendChild(xmlDS4Enabled);
+            xmlDeviceOptions.AppendChild(xmlDS4Support);
+
+            XmlElement xmlDualSenseSupport = m_Xdoc.CreateElement("DualSenseSupportSettings", null);
+            XmlElement xmlDualSenseEnabled = m_Xdoc.CreateElement("Enabled", null);
+            xmlDualSenseEnabled.InnerText = deviceOptions.DualSenseOpts.Enabled.ToString();
+            xmlDualSenseSupport.AppendChild(xmlDualSenseEnabled);
+            XmlElement xmlDualSenseEnableRumble = m_Xdoc.CreateElement("EnableRumble", null);
+            xmlDualSenseEnableRumble.InnerText = deviceOptions.DualSenseOpts.EnableRumble.ToString();
+            xmlDualSenseSupport.AppendChild(xmlDualSenseEnableRumble);
+            xmlDeviceOptions.AppendChild(xmlDualSenseSupport);
+
+            XmlElement xmlSwitchProSupport = m_Xdoc.CreateElement("SwitchProSupportSettings", null);
+            XmlElement xmlSwitchProEnabled = m_Xdoc.CreateElement("Enabled", null);
+            xmlSwitchProEnabled.InnerText = deviceOptions.SwitchProDeviceOpts.Enabled.ToString();
+            xmlSwitchProSupport.AppendChild(xmlSwitchProEnabled);
+            xmlDeviceOptions.AppendChild(xmlSwitchProSupport);
+
+            XmlElement xmlJoyConSupport = m_Xdoc.CreateElement("JoyConSupportSettings", null);
+            XmlElement xmlJoyconEnabled = m_Xdoc.CreateElement("Enabled", null);
+            xmlJoyconEnabled.InnerText = deviceOptions.JoyConDeviceOpts.Enabled.ToString();
+            xmlJoyConSupport.AppendChild(xmlJoyconEnabled);
+            xmlDeviceOptions.AppendChild(xmlJoyConSupport);
+
+            rootElement.AppendChild(xmlDeviceOptions);
 
             for (int i = 0; i < Global.MAX_DS4_CONTROLLER_COUNT; i++)
             {

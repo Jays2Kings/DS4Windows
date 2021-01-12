@@ -61,6 +61,8 @@ namespace DS4Windows
         private HashSet<string> hidguardAffectedDevs = new HashSet<string>();
         private HashSet<string> hidguardExemptedDevs = new HashSet<string>();
         private bool hidguardForced = false;
+        private ControlServiceDeviceOptions deviceOptions;
+        public ControlServiceDeviceOptions DeviceOptions { get => deviceOptions; }
 
         public event EventHandler ServiceStarted;
         public event EventHandler PreServiceStop;
@@ -205,12 +207,49 @@ namespace DS4Windows
             }
 
             outputslotMan = new OutputSlotManager();
+            deviceOptions = Global.DeviceOptions;
+
             DS4Devices.RequestElevation += DS4Devices_RequestElevation;
             DS4Devices.checkVirtualFunc = CheckForVirtualDevice;
             DS4Devices.PrepareDS4Init = PrepareDS4DeviceInit;
+            DS4Devices.PostDS4Init = PostDS4DeviceInit;
+            DS4Devices.PreparePendingDevice = CheckForSupportedDevice;
 
             Global.UDPServerSmoothingMincutoffChanged += ChangeUdpSmoothingAttrs;
             Global.UDPServerSmoothingBetaChanged += ChangeUdpSmoothingAttrs;
+        }
+
+        public void PostDS4DeviceInit(DS4Device device)
+        {
+            if (device.DeviceType == InputDevices.InputDeviceType.DualSense)
+            {
+                device.UseRumble = deviceOptions.DualSenseOpts.EnableRumble;
+            }
+        }
+
+        public bool CheckForSupportedDevice(HidDevice device, VidPidInfo metaInfo)
+        {
+            bool result = false;
+            switch (metaInfo.inputDevType)
+            {
+                case InputDevices.InputDeviceType.DS4:
+                    result = deviceOptions.DS4DeviceOpts.Enabled;
+                    break;
+                case InputDevices.InputDeviceType.DualSense:
+                    result = deviceOptions.DualSenseOpts.Enabled;
+                    break;
+                case InputDevices.InputDeviceType.SwitchPro:
+                    result = deviceOptions.SwitchProDeviceOpts.Enabled;
+                    break;
+                case InputDevices.InputDeviceType.JoyConL:
+                case InputDevices.InputDeviceType.JoyConR:
+                    result = deviceOptions.JoyConDeviceOpts.Enabled;
+                    break;
+                default:
+                    break;
+            }
+
+            return result;
         }
 
         public void PrepareDS4DeviceInit(DS4Device device)

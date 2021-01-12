@@ -159,6 +159,7 @@
     <Compile Include="BezierCurveEditor\BezierCurve.cs" />
     <Compile Include="DS4Control\ControllerSlotManager.cs" />
     <Compile Include="DS4Control\ControlService.cs" />
+    <Compile Include="DS4Control\ControlServiceDeviceOptions.cs" />
     <Compile Include="DS4Control\DS4LightBar.cs" />
     <Compile Include="DS4Control\DS4OutDevice.cs" />
     <Compile Include="DS4Control\DS4OutDevices\DS4OutDeviceBasic.cs" />
@@ -203,6 +204,9 @@
     <Compile Include="DS4Forms\ControllerReadingsControl.xaml.cs">
       <DependentUpon>ControllerReadingsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DS4Forms\ControllerRegisterOptionsWindow.xaml.cs">
+      <DependentUpon>ControllerRegisterOptionsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DS4Forms\DupBox.xaml.cs">
       <DependentUpon>DupBox.xaml</DependentUpon>
     </Compile>
@@ -244,6 +248,7 @@
     <Compile Include="DS4Forms\ViewModels\BindingWindowViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\ChangelogViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\ControllerListViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\ControllerRegDeviceOptsViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\CurrentOutDeviceViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\LanguagePackViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\MainWindowsViewModel.cs" />
@@ -324,6 +329,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DS4Forms\ControllerReadingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\ControllerRegisterOptionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -371,6 +371,9 @@ namespace DS4Windows
             return featureSet;
         }
 
+        protected bool useRumble = true;
+        public bool UseRumble { get => useRumble; set => useRumble = value; }
+
         public int Battery => battery;
         public delegate void BatteryUpdateHandler(object sender, EventArgs e);
         public virtual event EventHandler BatteryChanged;
@@ -536,6 +539,9 @@ namespace DS4Windows
         private BTOutputReportMethod btOutputMethod;
         public BTOutputReportMethod BTOutputMethod { get => btOutputMethod; set => btOutputMethod = value; }
 
+        protected InputDevices.InputDeviceType deviceType;
+        public InputDevices.InputDeviceType DeviceType { get => deviceType; }
+
         public DS4Device(HidDevice hidDevice, string disName, VidPidFeatureSet featureSet = VidPidFeatureSet.DefaultDS4)
         {
             hDevice = hidDevice;
@@ -562,6 +568,7 @@ namespace DS4Windows
         public virtual void PostInit()
         {
             HidDevice hidDevice = hDevice;
+            deviceType = InputDevices.InputDeviceType.DS4;
 
             if (conType == ConnectionType.USB || conType == ConnectionType.SONYWA)
             {

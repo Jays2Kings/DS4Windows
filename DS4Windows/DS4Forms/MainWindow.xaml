@@ -404,6 +404,8 @@
                                 </Button>
                             </WrapPanel>
                         </GroupBox>
+
+                        <Button x:Name="deviceOptionSettingsBtn" MaxWidth="100" HorizontalAlignment="Left" Content="Device Options" Click="DeviceOptionSettingsBtn_Click" />
                     </WrapPanel>
                 </ScrollViewer>
 

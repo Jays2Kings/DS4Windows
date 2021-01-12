@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using DS4Windows;
 
-namespace DS4WinWPF.DS4Library.InputDevices
+namespace DS4Windows.InputDevices
 {
     public class DualSenseDevice : DS4Device
     {
@@ -69,6 +69,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
         public override void PostInit()
         {
             HidDevice hidDevice = hDevice;
+            deviceType = InputDeviceType.DualSense;
 
             conType = DetermineConnectionType(hDevice);
 
@@ -773,7 +774,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 // 0x20 Enable internal speaker (even while headset is connected)
                 // 0x40 Enable modification of microphone volume
                 // 0x80 Enable internal mic (even while headset is connected)
-                outputReport[1] = 0x03; // 0x02 | 0x01
+                outputReport[1] = useRumble ? (byte)0x03 : (byte)0x00; // 0x02 | 0x01
 
                 // 0x01 Toggling microphone LED, 0x02 Toggling Audio/Mic Mute
                 // 0x04 Toggling LED strips on the sides of the Touchpad, 0x08 Turn off all LED lights
@@ -781,10 +782,13 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 // 0x40 Adjust overall motor/effect power, 0x80 ???
                 outputReport[2] = 0x15; // 0x04 | 0x01 | 0x10
 
-                // Right? High Freq Motor
-                outputReport[3] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast;
-                // Left? Low Freq Motor
-                outputReport[4] = currentHap.rumbleState.RumbleMotorStrengthLeftHeavySlow;
+                if (useRumble)
+                {
+                    // Right? High Freq Motor
+                    outputReport[3] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast;
+                    // Left? Low Freq Motor
+                    outputReport[4] = currentHap.rumbleState.RumbleMotorStrengthLeftHeavySlow;
+                }
 
                 /*
                 // Headphone volume
@@ -876,7 +880,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 // 0x20 Enable internal speaker (even while headset is connected)
                 // 0x40 Enable modification of microphone volume
                 // 0x80 Enable internal mic (even while headset is connected)
-                outputReport[2] = 0x03; // 0x02 | 0x01;
+                outputReport[2] = useRumble ? (byte)0x03 : (byte)0x00; // 0x02 | 0x01;
 
                 // 0x01 Toggling microphone LED, 0x02 Toggling Audio/Mic Mute
                 // 0x04 Toggling LED strips on the sides of the Touchpad, 0x08 Turn off all LED lights
@@ -884,10 +888,13 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 // 0x40 Adjust overall motor/effect power, 0x80 ???
                 outputReport[3] = 0x15; // 0x04 | 0x01 | 0x10
 
-                // Right? High Freq Motor
-                outputReport[4] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast;
-                // Left? Low Freq Motor
-                outputReport[5] = currentHap.rumbleState.RumbleMotorStrengthLeftHeavySlow;
+                if (useRumble)
+                {
+                    // Right? High Freq Motor
+                    outputReport[4] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast;
+                    // Left? Low Freq Motor
+                    outputReport[5] = currentHap.rumbleState.RumbleMotorStrengthLeftHeavySlow;
+                }
 
                 /*
                 // Headphone volume

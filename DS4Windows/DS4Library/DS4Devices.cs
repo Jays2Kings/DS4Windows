@@ -1,11 +1,11 @@
-﻿using DS4WinWPF.DS4Library.InputDevices;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Threading;
+using DS4Windows.InputDevices;
 
 namespace DS4Windows
 {
@@ -90,6 +90,7 @@ namespace DS4Windows
     public delegate CheckVirtualInfo CheckVirtualDelegate(string deviceInstanceId);
     public delegate ConnectionType CheckConnectionDelegate(HidDevice hidDevice);
     public delegate void PrepareInitDelegate(DS4Device device);
+    public delegate bool CheckPendingDevice(HidDevice device, VidPidInfo vidPidInfo);
 
     public class DS4Devices
     {
@@ -105,6 +106,8 @@ namespace DS4Windows
         public static event RequestElevationDelegate RequestElevation;
         public static CheckVirtualDelegate checkVirtualFunc = null;
         public static PrepareInitDelegate PrepareDS4Init = null;
+        public static PrepareInitDelegate PostDS4Init = null;
+        public static CheckPendingDevice PreparePendingDevice = null;
         public static bool isExclusiveMode = false;
         internal const int SONY_VID = 0x054C;
         internal const int RAZER_VID = 0x1532;
@@ -185,6 +188,13 @@ namespace DS4Windows
             lock (Devices)
             {
                 IEnumerable<HidDevice> hDevices = HidDevices.EnumerateDS4(knownDevices);
+                hDevices = hDevices.Where(d =>
+                {
+                    VidPidInfo metainfo = knownDevices.Single(x => x.vid == d.Attributes.VendorId &&
+                        x.pid == d.Attributes.ProductId);
+                    return PreparePendingDevice(d, metainfo);
+                });
+
                 if (checkVirtualFunc != null)
                 {
                     hDevices = hDevices.Where(dev => IsRealDS4(dev)).Select(dev => dev);
@@ -309,6 +319,7 @@ namespace DS4Windows
 
                             PrepareDS4Init?.Invoke(ds4Device);
                             ds4Device.PostInit();
+                            PostDS4Init?.Invoke(ds4Device);
                             //ds4Device.Removal += On_Removal;
                             if (!ds4Device.ExitOutputThread)
                             {

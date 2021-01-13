@@ -208,7 +208,35 @@
                         <CheckBox Content="Turn Off DS4Window Temporarily" Margin="{StaticResource spaceMargin}"
                           IsChecked="{Binding Turnoff}" />
                         <TextBox Text="{Binding Path}" Margin="{StaticResource spaceMargin}" ToolTip="{lex:Loc AutoProfPathTip}"/>
-                        <TextBox Text="{Binding Title, UpdateSourceTrigger=LostFocus}" Margin="{StaticResource spaceMargin}" ToolTip="{lex:Loc AutoProfTitleTip}"/>
+
+                        <Grid>
+                            <TextBlock Margin="5,2" MinWidth="50" Text="Window Title" Foreground="{DynamicResource ForegroundColor}" Opacity="0.7" IsHitTestVisible="False">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding ElementName=mainTxtBox, Path=IsKeyboardFocused, Mode=OneWay}" Value="False" />
+                                                    <Condition Binding="{Binding ElementName=mainTxtBox, Path=Text.IsEmpty, Mode=OneWay}" Value="True" />
+                                                </MultiDataTrigger.Conditions>
+
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </MultiDataTrigger>
+
+                                            <DataTrigger Binding="{Binding ElementName=mainTxtBox, Path=Text.IsEmpty, Mode=OneWay}" Value="False">
+                                                <Setter Property="Visibility" Value="Hidden" />
+                                            </DataTrigger>
+
+                                            <DataTrigger Binding="{Binding ElementName=mainTxtBox, Path=IsKeyboardFocused, Mode=OneWay}" Value="True">
+                                                <Setter Property="Visibility" Value="Hidden" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBox x:Name="mainTxtBox" Text="{Binding Title, UpdateSourceTrigger=LostFocus}" Margin="{StaticResource spaceMargin}" ToolTip="{lex:Loc AutoProfTitleTip}" Background="Transparent" />
+                        </Grid>
+
                         <Border Height="4" Background="#FFDADADA" Margin="0,10,0,0" />
                     </StackPanel>
                     <CheckBox x:Name="revertDefaultProfileOnUnknownCk" Content="Revert to default profile on unknown" Margin="0,10,0,0" IsChecked="{Binding RevertDefaultProfileOnUnknown}" />

@@ -214,7 +214,7 @@
                 </DockPanel>
             </TabItem>
             <TabItem Header="{lex:Loc AutoProfiles}" IsEnabled="{Binding FullTabsEnabled,Mode=OneWay}">
-                <local:AutoProfiles x:Name="autoProfControl" Background="{DynamicResource BackgroundColor}">
+                <local:AutoProfiles x:Name="autoProfControl">
 
                 </local:AutoProfiles>
             </TabItem>

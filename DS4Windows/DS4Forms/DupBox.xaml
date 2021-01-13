@@ -7,7 +7,7 @@
              mc:Ignorable="d" Height="30" Width="436">
     <DockPanel Margin="4">
         <TextBox x:Name="profileTxt" TextWrapping="Wrap" Text="TextBox" Width="160" HorizontalAlignment="Left" Margin="20,0,0,0"
-                 VerticalAlignment="Center" MouseEnter="ProfileTxt_MouseEnter" MouseLeave="ProfileTxt_MouseLeave" MaxLines="1"/>
+                 VerticalAlignment="Center" GotKeyboardFocus="profileTxt_GotKeyboardFocus" LostKeyboardFocus="profileTxt_LostKeyboardFocus" MaxLines="1"/>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,30,0">
             <Button x:Name="saveBtn" Content="Save" Width="80" Click="SaveBtn_Click" />
             <Button x:Name="cancelBtn" Content="Cancel" Width="80" Click="CancelBtn_Click" Margin="20,0,0,0" />

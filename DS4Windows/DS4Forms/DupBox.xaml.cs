@@ -55,13 +55,13 @@ namespace DS4WinWPF.DS4Forms
             Cancel?.Invoke(this, EventArgs.Empty);
         }
 
-        private void ProfileTxt_MouseEnter(object sender, MouseEventArgs e)
+        private void profileTxt_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             if (profileTxt.Text == "<" + Properties.Resources.TypeNewName + ">")
                 profileTxt.Text = "";
         }
 
-        private void ProfileTxt_MouseLeave(object sender, MouseEventArgs e)
+        private void profileTxt_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             if (profileTxt.Text == "")
                 profileTxt.Text = "<" + Properties.Resources.TypeNewName + ">";

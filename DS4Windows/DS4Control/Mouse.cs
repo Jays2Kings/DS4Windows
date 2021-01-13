@@ -48,7 +48,7 @@ namespace DS4Windows
         {
             deviceNum = deviceID;
             dev = d;
-            cursor = new MouseCursor(deviceNum);
+            cursor = new MouseCursor(deviceNum, d.GyroMouseSensSettings);
             wheel = new MouseWheel(deviceNum);
             trackballAccel = TRACKBALL_RADIUS * TRACKBALL_INIT_FICTION / TRACKBALL_INERTIA;
             firstTouch = new Touch(0, 0, 0, null);

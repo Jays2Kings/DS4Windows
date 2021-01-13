@@ -251,6 +251,7 @@ namespace DS4Windows.InputDevices
                 deviceType = InputDeviceType.JoyConR;
             }
 
+            gyroMouseSensSettings = new GyroMouseSens();
             conType = ConnectionType.BT;
             warnInterval = WARN_INTERVAL_BT;
 

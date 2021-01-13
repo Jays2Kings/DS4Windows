@@ -12,6 +12,20 @@ namespace DS4Windows.InputDevices
 {
     public class DualSenseDevice : DS4Device
     {
+        public class GyroMouseSensDualSense : GyroMouseSens
+        {
+            private const double MOUSE_COEFFICIENT = 0.009;
+            private const double MOUSE_OFFSET = 0.15;
+            private const double SMOOTH_MOUSE_OFFSET = 0.15;
+
+            public GyroMouseSensDualSense() : base()
+            {
+                mouseCoefficient = MOUSE_COEFFICIENT;
+                mouseOffset = MOUSE_OFFSET;
+                mouseSmoothOffset = SMOOTH_MOUSE_OFFSET;
+            }
+        }
+
         public abstract class InputReportDataBytes
         {
             public const int REPORT_OFFSET = 0;
@@ -54,7 +68,9 @@ namespace DS4Windows.InputDevices
         private bool outputDirty = false;
         private DS4HapticState previousHapticState = new DS4HapticState();
         private byte[] outputBTCrc32Head = new byte[] { 0xA2 };
-        private byte outputPendCount = 0;
+        //private byte outputPendCount = 0;
+        private new GyroMouseSensDualSense gyroMouseSensSettings;
+        public override GyroMouseSens GyroMouseSensSettings { get => gyroMouseSensSettings; }
 
         public override event ReportHandler<EventArgs> Report = null;
         public override event EventHandler BatteryChanged;
@@ -70,6 +86,7 @@ namespace DS4Windows.InputDevices
         {
             HidDevice hidDevice = hDevice;
             deviceType = InputDeviceType.DualSense;
+            gyroMouseSensSettings = new GyroMouseSensDualSense();
 
             conType = DetermineConnectionType(hDevice);
 

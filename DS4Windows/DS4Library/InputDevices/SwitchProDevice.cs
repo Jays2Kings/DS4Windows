@@ -222,6 +222,7 @@ namespace DS4Windows.InputDevices
         public override void PostInit()
         {
             deviceType = InputDeviceType.SwitchPro;
+            gyroMouseSensSettings = new GyroMouseSens();
             conType = DetermineConnectionType(hDevice);
 
             if (conType == ConnectionType.BT)

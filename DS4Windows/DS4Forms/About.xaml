@@ -42,10 +42,6 @@
                     BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="Minds">
                 <Image Source="/DS4Windows;component/Resources/social/minds.png" Height="32" Margin="4,0,0,0" />
             </Button>
-            <Button x:Name="parlerSocialBtn" Click="ParlerSocialBtn_Click"
-                    BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="Parler">
-                <Image Source="/DS4Windows;component/Resources/social/parler.png" Height="32" Margin="4,0,0,0" />
-            </Button>
         </StackPanel>
         <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0,4,0,0">
             <Hyperlink x:Name="changeLogLink" Click="ChangeLogLink_Click" Foreground="{DynamicResource AccentColor}">Changelog</Hyperlink>

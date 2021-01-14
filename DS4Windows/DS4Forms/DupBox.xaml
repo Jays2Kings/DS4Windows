@@ -10,7 +10,7 @@
              lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d" Height="30" Width="436">
     <DockPanel Margin="4">
-        <Grid DockPanel.Dock="Left" Margin="20,0,0,0">
+        <Canvas DockPanel.Dock="Left" Margin="20,0,0,0">
             <TextBox x:Name="profileTxt" TextWrapping="Wrap" Text="" Width="160" HorizontalAlignment="Left"
                  VerticalAlignment="Center" MaxLines="1"/>
 
@@ -29,7 +29,7 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-        </Grid>
+        </Canvas>
 
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,30,0">
             <Button x:Name="saveBtn" Content="Save" Width="80" Click="SaveBtn_Click" />

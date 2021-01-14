@@ -9,7 +9,7 @@ using System.Windows.Data;
 
 namespace DS4WinWPF.DS4Forms.Converters
 {
-    public class InvertBoolToVisibility : IValueConverter
+    public class InvertBoolToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

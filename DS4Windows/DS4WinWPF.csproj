@@ -207,7 +207,7 @@
     <Compile Include="DS4Forms\ControllerRegisterOptionsWindow.xaml.cs">
       <DependentUpon>ControllerRegisterOptionsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DS4Forms\Converters\InvertBoolToVisibility.cs" />
+    <Compile Include="DS4Forms\Converters\InvertBoolToVisibilityConverter.cs" />
     <Compile Include="DS4Forms\DupBox.xaml.cs">
       <DependentUpon>DupBox.xaml</DependentUpon>
     </Compile>

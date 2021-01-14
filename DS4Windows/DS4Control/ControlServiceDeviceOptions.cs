@@ -41,11 +41,17 @@ namespace DS4Windows
     {
         private bool enabled = true;
         public bool Enabled { get => enabled; set => enabled = value; }
+
+        private bool enableHomeLED = true;
+        public bool EnableHomeLED { get => enableHomeLED; set => enableHomeLED = value; }
     }
 
     public class JoyConDeviceOptions
     {
         private bool enabled = true;
         public bool Enabled { get => enabled; set => enabled = value; }
+
+        private bool enableHomeLED = true;
+        public bool EnableHomeLED { get => enableHomeLED; set => enableHomeLED = value; }
     }
 }

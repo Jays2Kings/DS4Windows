@@ -210,6 +210,9 @@ namespace DS4Windows.InputDevices
         private double combLatency;
         public double CombLatency { get => combLatency; set => combLatency = value; }
 
+        private bool enableHomeLED = true;
+        public bool EnableHomeLED { get => enableHomeLED; set => enableHomeLED = value; }
+
         public override event ReportHandler<EventArgs> Report = null;
         public override event EventHandler<EventArgs> Removal = null;
         public override event EventHandler BatteryChanged;
@@ -674,7 +677,7 @@ namespace DS4Windows.InputDevices
             byte[] powerChoiceArray = new byte[] { 0x00 };
             Subcommand(SwitchProSubCmd.SET_LOW_POWER_STATE, powerChoiceArray, 1, checkResponse: true);
 
-            if (sideType == JoyConSide.Right)
+            if (sideType == JoyConSide.Right && enableHomeLED)
             {
                 // Turn on Home light (Solid)
                 byte[] light = Enumerable.Repeat((byte)0xFF, 25).ToArray();

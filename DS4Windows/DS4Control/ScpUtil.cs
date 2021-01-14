@@ -4991,7 +4991,7 @@ namespace DS4Windows
                         string contTag = $"/Profile/Controller{i+1}";
                         try
                         {
-                            Item = m_Xdoc.SelectSingleNode(contTag); profilePath[i] = Item.InnerText;
+                            Item = m_Xdoc.SelectSingleNode(contTag); profilePath[i] = Item?.InnerText ?? string.Empty;
                             if (profilePath[i].ToLower().Contains("distance"))
                             {
                                 distanceProfiles[i] = true;
@@ -4999,7 +4999,7 @@ namespace DS4Windows
 
                             olderProfilePath[i] = profilePath[i];
                         }
-                        catch { profilePath[i] = olderProfilePath[i] = string.Empty; distanceProfiles[i] = false; missingSetting = true; }
+                        catch { profilePath[i] = olderProfilePath[i] = string.Empty; distanceProfiles[i] = false; }
                     }
 
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/LastChecked"); DateTime.TryParse(Item.InnerText, out lastChecked); }
@@ -5124,7 +5124,7 @@ namespace DS4Windows
                     catch { missingSetting = true; }
 
 
-                    XmlNode xmlDeviceOptions = m_Xdoc.SelectSingleNode("DeviceOptions");
+                    XmlNode xmlDeviceOptions = m_Xdoc.SelectSingleNode("/Profile/DeviceOptions");
                     if (xmlDeviceOptions != null)
                     {
                         XmlNode xmlDS4Support = xmlDeviceOptions.SelectSingleNode("DS4SupportSettings");
@@ -5169,6 +5169,14 @@ namespace DS4Windows
                                 deviceOptions.SwitchProDeviceOpts.Enabled = temp;
                             }
                             catch { }
+
+                            try
+                            {
+                                XmlNode item = xmlSwitchProSupport.SelectSingleNode("EnableHomeLED");
+                                bool.TryParse(item?.InnerText ?? "", out bool temp);
+                                deviceOptions.SwitchProDeviceOpts.EnableHomeLED = temp;
+                            }
+                            catch { }
                         }
 
                         XmlNode xmlJoyConSupport = xmlDeviceOptions.SelectSingleNode("JoyConSupportSettings");
@@ -5176,9 +5184,17 @@ namespace DS4Windows
                         {
                             try
                             {
-                                XmlNode item = xmlSwitchProSupport.SelectSingleNode("Enabled");
+                                XmlNode item = xmlJoyConSupport.SelectSingleNode("Enabled");
                                 bool.TryParse(item?.InnerText ?? "", out bool temp);
                                 deviceOptions.JoyConDeviceOpts.Enabled = temp;
+                            }
+                            catch { }
+
+                            try
+                            {
+                                XmlNode item = xmlJoyConSupport.SelectSingleNode("EnableHomeLED");
+                                bool.TryParse(item?.InnerText ?? "", out bool temp);
+                                deviceOptions.JoyConDeviceOpts.EnableHomeLED = temp;
                             }
                             catch { }
                         }
@@ -5316,12 +5332,20 @@ namespace DS4Windows
             XmlElement xmlSwitchProEnabled = m_Xdoc.CreateElement("Enabled", null);
             xmlSwitchProEnabled.InnerText = deviceOptions.SwitchProDeviceOpts.Enabled.ToString();
             xmlSwitchProSupport.AppendChild(xmlSwitchProEnabled);
+
+            XmlElement xmlSwitchEnableHomeLED = m_Xdoc.CreateElement("EnableHomeLED", null);
+            xmlSwitchEnableHomeLED.InnerText = deviceOptions.SwitchProDeviceOpts.EnableHomeLED.ToString();
+            xmlSwitchProSupport.AppendChild(xmlSwitchEnableHomeLED);
             xmlDeviceOptions.AppendChild(xmlSwitchProSupport);
 
             XmlElement xmlJoyConSupport = m_Xdoc.CreateElement("JoyConSupportSettings", null);
             XmlElement xmlJoyconEnabled = m_Xdoc.CreateElement("Enabled", null);
             xmlJoyconEnabled.InnerText = deviceOptions.JoyConDeviceOpts.Enabled.ToString();
             xmlJoyConSupport.AppendChild(xmlJoyconEnabled);
+
+            XmlElement xmlJoyConHomeLED = m_Xdoc.CreateElement("EnableHomeLED", null);
+            xmlJoyConHomeLED.InnerText = deviceOptions.JoyConDeviceOpts.EnableHomeLED.ToString();
+            xmlJoyConSupport.AppendChild(xmlJoyConHomeLED);
             xmlDeviceOptions.AppendChild(xmlJoyConSupport);
 
             rootElement.AppendChild(xmlDeviceOptions);

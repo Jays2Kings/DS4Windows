@@ -19,8 +19,20 @@
         </StackPanel>
         <TabControl DockPanel.Dock="Right" Margin="40,4,4,4">
             <TabItem x:Name="dualSenseOptsTabItem" Header="DualSense" Visibility="{Binding DSDeviceOpts.Enabled, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue='Collapsed'}">
-                <StackPanel  Visibility="{Binding DSDeviceOpts.Enabled, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue='Collapsed'}">
+                <StackPanel Visibility="{Binding DSDeviceOpts.Enabled, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue='Collapsed'}">
                     <CheckBox Content="Enable Rumble Emulation" IsChecked="{Binding DSDeviceOpts.EnableRumble, FallbackValue='False'}" />
+                </StackPanel>
+            </TabItem>
+
+            <TabItem x:Name="switchProOptsTabItem" Header="Switch Pro" Visibility="{Binding SwitchProDeviceOpts.Enabled, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue='Collapsed'}">
+                <StackPanel Visibility="{Binding SwitchProDeviceOpts.Enabled, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue='Collapsed'}">
+                    <CheckBox Content="Enable Home LED" IsChecked="{Binding SwitchProDeviceOpts.EnableHomeLED, FallbackValue='False'}" />
+                </StackPanel>
+            </TabItem>
+
+            <TabItem x:Name="joyConOptsTabItem" Header="JoyCon" Visibility="{Binding JoyConDeviceOpts.Enabled, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue='Collapsed'}">
+                <StackPanel Visibility="{Binding JoyConDeviceOpts.Enabled, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue='Collapsed'}">
+                    <CheckBox Content="Enable Home LED" IsChecked="{Binding JoyConDeviceOpts.EnableHomeLED, FallbackValue='False'}" />
                 </StackPanel>
             </TabItem>
         </TabControl>

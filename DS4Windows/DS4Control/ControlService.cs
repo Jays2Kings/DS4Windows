@@ -225,6 +225,17 @@ namespace DS4Windows
             {
                 device.UseRumble = deviceOptions.DualSenseOpts.EnableRumble;
             }
+            else if (device.DeviceType == InputDevices.InputDeviceType.SwitchPro)
+            {
+                InputDevices.SwitchProDevice tempSwitch = device as InputDevices.SwitchProDevice;
+                tempSwitch.EnableHomeLED = deviceOptions.SwitchProDeviceOpts.EnableHomeLED;
+            }
+            else if (device.DeviceType == InputDevices.InputDeviceType.JoyConL ||
+                device.DeviceType == InputDevices.InputDeviceType.JoyConR)
+            {
+                InputDevices.JoyConDevice tempJoy = device as InputDevices.JoyConDevice;
+                tempJoy.EnableHomeLED = deviceOptions.JoyConDeviceOpts.EnableHomeLED;
+            }
         }
 
         public bool CheckForSupportedDevice(HidDevice device, VidPidInfo metaInfo)

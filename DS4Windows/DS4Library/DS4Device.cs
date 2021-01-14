@@ -153,7 +153,7 @@ namespace DS4Windows
         public class GyroMouseSens
         {
             public double mouseOffset = 0.2;
-            public double mouseCoefficient = 0.12;
+            public double mouseCoefficient = 0.012;
             public double mouseSmoothOffset = 0.2;
         }
 

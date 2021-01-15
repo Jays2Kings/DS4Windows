@@ -11,10 +11,14 @@
         lex:ResxLocalizationProvider.DefaultDictionary="Strings"
         xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
         xmlns:localConverters="clr-namespace:DS4WinWPF.DS4Forms.Converters"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         xml:lang="en-US"
         mc:Ignorable="d"
         Title="DS4Windows" Height="500" Width="800" Closing="MainDS4Window_Closing" Closed="MainDS4Window_Closed" StateChanged="MainDS4Window_StateChanged" SizeChanged="MainDS4Window_SizeChanged" LocationChanged="MainDS4Window_LocationChanged" MinWidth="600" MinHeight="250"
         Style="{DynamicResource WindowStyle}">
+    <Window.Resources>
+        <local:ImageLocationPaths x:Key="ImgLocPaths" />
+    </Window.Resources>
     <DockPanel>
         <tb:TaskbarIcon x:Name="notifyIcon" IconSource="{Binding IconSource,Mode=OneWay}" ToolTipText="{Binding TooltipText,Mode=OneWay}" MenuActivation="RightClick" TrayRightMouseUp="NotifyIcon_TrayRightMouseUp" TrayMiddleMouseDown="NotifyIcon_TrayMiddleMouseDown" TrayMouseDoubleClick="NotifyIcon_TrayMouseDoubleClick">
             <!--<tb:TaskbarIcon.ContextMenu>
@@ -151,7 +155,7 @@
                         <Button x:Name="newProfListBtn" Click="NewProfListBtn_Click">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="/DS4Windows;component/Resources/newprofile.png" />
+                                    <Image Source="{Binding NewProfile, Source={StaticResource ImgLocPaths}}" />
                                     <TextBlock Text="{lex:Loc New}" />
                                 </StackPanel>
                             </Button.Content>
@@ -159,7 +163,7 @@
                         <Button x:Name="editProfBtn" Margin="10,0,0,0" IsEnabled="False" Click="EditProfBtn_Click">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="/DS4Windows;component/Resources/edit.png" />
+                                    <Image Source="{Binding EditProfile, Source={StaticResource ImgLocPaths}}" />
                                     <TextBlock Text="{lex:Loc Edit}" />
                                 </StackPanel>
                             </Button.Content>
@@ -167,7 +171,7 @@
                         <Button x:Name="deleteProfBtn" Margin="10,0,0,0" IsEnabled="False" Click="DeleteProfBtn_Click">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="/DS4Windows;component/Resources/delete.png" />
+                                    <Image Source="{Binding DeleteProfile, Source={StaticResource ImgLocPaths}}" />
                                     <TextBlock Text="{lex:Loc Delete}" />
                                 </StackPanel>
                             </Button.Content>
@@ -175,7 +179,7 @@
                         <Button x:Name="dupProfBtn" Margin="10,0,0,0" IsEnabled="False" Click="DupProfBtn_Click">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="/DS4Windows;component/Resources/copy.png" />
+                                    <Image Source="{Binding DuplicateProfile, Source={StaticResource ImgLocPaths}}" />
                                     <TextBlock Text="{lex:Loc Duplicate}" />
                                 </StackPanel>
                             </Button.Content>
@@ -183,7 +187,7 @@
                         <Button x:Name="importProfBtn" Margin="10,0,0,0" Click="ImportProfBtn_Click">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="/DS4Windows;component/Resources/import.png" />
+                                    <Image Source="{Binding ImportProfile, Source={StaticResource ImgLocPaths}}" />
                                     <TextBlock Text="{lex:Loc Import}" />
                                 </StackPanel>
                             </Button.Content>
@@ -191,7 +195,7 @@
                         <Button x:Name="exportProfBtn" Margin="10,0,0,0" IsEnabled="False" Click="ExportProfBtn_Click">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="/DS4Windows;component/Resources/export.png" />
+                                    <Image Source="{Binding ExportProfile, Source={StaticResource ImgLocPaths}}" />
                                     <TextBlock Text="{lex:Loc Export}" />
                                 </StackPanel>
                             </Button.Content>

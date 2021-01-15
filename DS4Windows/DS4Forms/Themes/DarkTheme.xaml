@@ -18,6 +18,13 @@
     <system:String x:Key="KeyDownImg">keydown_white.png</system:String>
     <system:String x:Key="ClockImg">clock_white.png</system:String>
 
+    <system:String x:Key="CopyImg">copy_white.png</system:String>
+    <system:String x:Key="DeleteImg">delete_white.png</system:String>
+    <system:String x:Key="EditImg">edit_white.png</system:String>
+    <system:String x:Key="ExportImg">export_white.png</system:String>
+    <system:String x:Key="ImportImg">import_white.png</system:String>
+    <system:String x:Key="NewProfileImg">newprofile_white.png</system:String>
+
     <!-- Window Style -->
     <Style x:Key="WindowStyle" TargetType="{x:Type Window}">
         <Setter Property="Background" Value="{StaticResource BackgroundColor}" />

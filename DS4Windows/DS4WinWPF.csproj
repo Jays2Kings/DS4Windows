@@ -543,6 +543,12 @@
     <Content Include="BezierCurveEditor\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\newprofile_white.png" />
+    <Resource Include="Resources\copy_white.png" />
+    <Resource Include="Resources\delete_white.png" />
+    <Resource Include="Resources\edit_white.png" />
+    <Resource Include="Resources\export_white.png" />
+    <Resource Include="Resources\import_white.png" />
     <Resource Include="Resources\clock_white.png" />
     <Resource Include="Resources\BT_white.png" />
     <Resource Include="Resources\cancel_white.png" />

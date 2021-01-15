@@ -435,7 +435,8 @@ Suspend support not enabled.", true);
         private void SettingsWrapVM_AppChoiceIndexChanged(object sender, EventArgs e)
         {
             AppThemeChoice choice = Global.UseCurrentTheme;
-            App.ChangeTheme(choice);
+            App current = App.Current as App;
+            current.ChangeTheme(choice);
             trayIconVM.PopulateContextMenu();
         }
 
@@ -1675,6 +1676,43 @@ Suspend support not enabled.", true);
 
             optsWindow.Owner = this;
             optsWindow.Show();
+        }
+    }
+
+    class ImageLocationPaths
+    {
+        public string NewProfile { get => $"/DS4Windows;component/Resources/{App.Current.FindResource("NewProfileImg")}"; }
+        public event EventHandler NewProfileChanged;
+
+        public string EditProfile { get => $"/DS4Windows;component/Resources/{App.Current.FindResource("EditImg")}"; }
+        public event EventHandler EditProfileChanged;
+
+        public string DeleteProfile { get => $"/DS4Windows;component/Resources/{App.Current.FindResource("DeleteImg")}"; }
+        public event EventHandler DeleteProfileChanged;
+
+        public string DuplicateProfile { get => $"/DS4Windows;component/Resources/{App.Current.FindResource("CopyImg")}"; }
+        public event EventHandler DuplicateProfileChanged;
+
+        public string ExportProfile { get => $"/DS4Windows;component/Resources/{App.Current.FindResource("ExportImg")}"; }
+        public event EventHandler ExportProfileChanged;
+
+        public string ImportProfile { get => $"/DS4Windows;component/Resources/{App.Current.FindResource("ImportImg")}"; }
+        public event EventHandler ImportProfileChanged;
+
+        public ImageLocationPaths()
+        {
+            App current = App.Current as App;
+            current.ThemeChanged += Current_ThemeChanged;
+        }
+
+        private void Current_ThemeChanged(object sender, EventArgs e)
+        {
+            NewProfileChanged?.Invoke(this, EventArgs.Empty);
+            EditProfileChanged?.Invoke(this, EventArgs.Empty);
+            DeleteProfileChanged?.Invoke(this, EventArgs.Empty);
+            DuplicateProfileChanged?.Invoke(this, EventArgs.Empty);
+            ExportProfileChanged?.Invoke(this, EventArgs.Empty);
+            ImportProfileChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -639,7 +639,7 @@ namespace DS4WinWPF
 
                 if (fireChanged)
                 {
-                    this?.ThemeChanged(this, EventArgs.Empty);
+                    ThemeChanged?.Invoke(this, EventArgs.Empty);
                 }
             }
         }

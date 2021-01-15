@@ -1707,6 +1707,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         break;
                 }
 
+                gyroMouseSmoothMethodIndex = value;
                 GyroMouseSmoothMethodIndexChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -1714,13 +1715,42 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public Visibility GyroMouseWeightAvgPanelVisibility
         {
-            get => Global.GyroMouseInfo[device].smoothingMethod == GyroMouseInfo.SmoothingMethod.WeightedAverage ? Visibility.Visible : Visibility.Collapsed;
+            get
+            {
+                Visibility result = Visibility.Collapsed;
+                switch (Global.GyroMouseInfo[device].smoothingMethod)
+                {
+                    case GyroMouseInfo.SmoothingMethod.WeightedAverage:
+                        result = Visibility.Visible;
+                        break;
+                    default:
+                        break;
+                }
+
+                return result;
+            }
+
         }
         public event EventHandler GyroMouseWeightAvgPanelVisibilityChanged;
 
         public Visibility GyroMouseOneEuroPanelVisibility
         {
-            get => Global.GyroMouseInfo[device].smoothingMethod == GyroMouseInfo.SmoothingMethod.OneEuro ? Visibility.Visible : Visibility.Collapsed;
+            get
+            {
+                Visibility result = Visibility.Collapsed;
+                switch(Global.GyroMouseInfo[device].smoothingMethod)
+                {
+                    case GyroMouseInfo.SmoothingMethod.OneEuro:
+                    case GyroMouseInfo.SmoothingMethod.None:
+                        result = Visibility.Visible;
+                        break;
+                    default:
+                        break;
+                }
+
+                return result;
+            }
+
         }
         public event EventHandler GyroMouseOneEuroPanelVisibilityChanged;
 
@@ -1770,6 +1800,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         break;
                 }
 
+                gyroMouseStickSmoothMethodIndex = value;
                 GyroMouseStickSmoothMethodIndexChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -1777,15 +1808,40 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public Visibility GyroMouseStickWeightAvgPanelVisibility
         {
-            get => Global.GyroMouseStickInf[device].smoothingMethod == GyroMouseStickInfo.SmoothingMethod.WeightedAverage
-                ? Visibility.Visible : Visibility.Collapsed;
+            get
+            {
+                Visibility result = Visibility.Collapsed;
+                switch (Global.GyroMouseStickInf[device].smoothingMethod)
+                {
+                    case GyroMouseStickInfo.SmoothingMethod.WeightedAverage:
+                        result = Visibility.Visible;
+                        break;
+                    default:
+                        break;
+                }
+
+                return result;
+            }
         }
         public event EventHandler GyroMouseStickWeightAvgPanelVisibilityChanged;
 
         public Visibility GyroMouseStickOneEuroPanelVisibility
         {
-            get => Global.GyroMouseStickInf[device].smoothingMethod == GyroMouseStickInfo.SmoothingMethod.OneEuro
-                ? Visibility.Visible : Visibility.Collapsed;
+            get
+            {
+                Visibility result = Visibility.Collapsed;
+                switch (Global.GyroMouseStickInf[device].smoothingMethod)
+                {
+                    case GyroMouseStickInfo.SmoothingMethod.OneEuro:
+                    case GyroMouseStickInfo.SmoothingMethod.None:
+                        result = Visibility.Visible;
+                        break;
+                    default:
+                        break;
+                }
+
+                return result;
+            }
         }
         public event EventHandler GyroMouseStickOneEuroPanelVisibilityChanged;
 
@@ -2034,7 +2090,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             int result = 0;
             GyroMouseInfo tempInfo = Global.GyroMouseInfo[device];
-            if (tempInfo.smoothingMethod == GyroMouseInfo.SmoothingMethod.OneEuro)
+            if (tempInfo.smoothingMethod == GyroMouseInfo.SmoothingMethod.OneEuro ||
+                tempInfo.smoothingMethod == GyroMouseInfo.SmoothingMethod.None)
             {
                 result = 0;
             }
@@ -2053,6 +2110,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             switch (tempInfo.smoothingMethod)
             {
                 case GyroMouseStickInfo.SmoothingMethod.OneEuro:
+                case GyroMouseStickInfo.SmoothingMethod.None:
                     result = 0;
                     break;
                 case GyroMouseStickInfo.SmoothingMethod.WeightedAverage:

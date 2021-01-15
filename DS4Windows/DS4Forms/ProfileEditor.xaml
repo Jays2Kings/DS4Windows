@@ -1164,13 +1164,7 @@
                                     <ComboBoxItem Content="Weighted Average" />
                                 </ComboBox>
 
-                                <StackPanel x:Name="gyroMouseWeightedAvgPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseWeightAvgPanelVisibility,FallbackValue='Collapsed'}">
-                                    <Label Content="Smooth Weight" Padding="0" />
-                                    <xctk:DoubleUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
-                                                   Value="{Binding GyroMouseSmoothWeight}" Minimum="0.0" Maximum="1.0" Increment="0.1" />
-                                </StackPanel>
-
-                                <StackPanel x:Name="gyroMouseOneEuroPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseOneEuroPanelVisibility,FallbackValue='Collapsed'}">
+                                <StackPanel x:Name="gyroMouseOneEuroPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseOneEuroPanelVisibility,FallbackValue='Visible'}">
                                     <StackPanel Orientation="Horizontal">
                                         <Label Content="1&#x20ac; MinCutoff" />
                                         <xctk:DoubleUpDown d:IsHidden="True" FormatString="F5" Value="{Binding GyroMouseOneEuroMinCutoff,FallbackValue=1.0,UpdateSourceTrigger=LostFocus}"
@@ -1181,6 +1175,12 @@
                                         <xctk:DoubleUpDown  d:IsHidden="True" FormatString="F5" Value="{Binding GyroMouseOneEuroBeta,FallbackValue=0.0,UpdateSourceTrigger=LostFocus}"
                                                            Minimum="0.0" Maximum="1.0" Increment="0.1" MinWidth="60" />
                                     </StackPanel>
+                                </StackPanel>
+
+                                <StackPanel x:Name="gyroMouseWeightedAvgPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseWeightAvgPanelVisibility,FallbackValue='Collapsed'}">
+                                    <Label Content="Smooth Weight" Padding="0" />
+                                    <xctk:DoubleUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
+                                                   Value="{Binding GyroMouseSmoothWeight}" Minimum="0.0" Maximum="1.0" Increment="0.1" />
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
@@ -1287,12 +1287,6 @@
                                     <ComboBoxItem Content="Weighted Average" />
                                 </ComboBox>
 
-                                <StackPanel x:Name="gyroMouseStickWeightedAvgPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseStickWeightAvgPanelVisibility,FallbackValue='Collapsed'}">
-                                    <Label Content="Weight" Padding="0" Margin="20,0,0,0" />
-                                    <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" FormatString="F2" Value="{Binding GyroMouseStickSmoothWeight}"
-                                               Minimum="0.0" Maximum="1.0" Increment="0.1" MinWidth="60" IsEnabled="{Binding GyroMouseStickSmooth}" />
-                                </StackPanel>
-
                                 <StackPanel x:Name="gyroMouseStickOneEuroPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseStickOneEuroPanelVisibility,FallbackValue='Visible'}">
                                     <StackPanel Orientation="Horizontal">
                                         <Label Content="1&#x20ac; MinCutoff" />
@@ -1305,6 +1299,13 @@
                                                            Minimum="0.0" Maximum="1.0" Increment="0.1" MinWidth="60" />
                                     </StackPanel>
                                 </StackPanel>
+
+                                <StackPanel x:Name="gyroMouseStickWeightedAvgPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseStickWeightAvgPanelVisibility,FallbackValue='Collapsed'}">
+                                    <Label Content="Weight" Padding="0" Margin="20,0,0,0" />
+                                    <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" FormatString="F2" Value="{Binding GyroMouseStickSmoothWeight}"
+                                               Minimum="0.0" Maximum="1.0" Increment="0.1" MinWidth="60" IsEnabled="{Binding GyroMouseStickSmooth}" />
+                                </StackPanel>
+
                             </StackPanel>
                         </GroupBox>
                     </StackPanel>

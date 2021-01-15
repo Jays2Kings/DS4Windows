@@ -1730,7 +1730,11 @@ namespace DS4Windows
                     device.IsRemoved = true;
                     device.Synced = false;
                     DS4Controllers[ind] = null;
-                    slotManager.RemoveController(device, ind);
+                    eventDispatcher.Invoke(() =>
+                    {
+                        slotManager.RemoveController(device, ind);
+                    });
+
                     touchPad[ind] = null;
                     lag[ind] = false;
                     inWarnMonitor[ind] = false;

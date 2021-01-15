@@ -699,6 +699,10 @@ namespace DS4WinWPF.DS4Forms
                 {
                     activeGyroModePanel = gyroMouseJoystickPanel;
                 }
+                else if (idx == 3)
+                {
+                    activeGyroModePanel = passthruPanel;
+                }
 
                 activeGyroModePanel.Visibility = Visibility.Visible;
 

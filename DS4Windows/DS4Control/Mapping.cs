@@ -1139,8 +1139,24 @@ namespace DS4Windows
                 }
                 else if (lsOutCurveMode == 6)
                 {
-                    dState.LX = lsOutBezierCurveObj[device].arrayBezierLUT[dState.LX];
-                    dState.LY = lsOutBezierCurveObj[device].arrayBezierLUT[dState.LY];
+                    // Get max values and circular distance of axes
+                    double maxX = (dState.LX >= 128 ? 127 : 128);
+                    double maxY = (dState.LY >= 128 ? 127 : 128);
+                    byte tempOutX = (byte)(tempRatioX * maxX + 128.0);
+                    byte tempOutY = (byte)(tempRatioY * maxY + 128.0);
+
+                    // Perform curve based on byte values from vector
+                    byte tempX = lsOutBezierCurveObj[device].arrayBezierLUT[tempOutX];
+                    byte tempY = lsOutBezierCurveObj[device].arrayBezierLUT[tempOutY];
+
+                    // Calculate new ratio
+                    double tempRatioOutX = (tempX - 128.0) / maxX;
+                    double tempRatioOutY = (tempY - 128.0) / maxY;
+
+                    // Map back to stick coordinates
+                    dState.LX = (byte)(tempRatioOutX * capX + 128);
+                    dState.LY = (byte)(tempRatioOutY * capY + 128);
+                    //Console.WriteLine("X(I){0} X(O){1} {2} {3}", tempOutX, dState.LX, tempOutY, dState.LY);
                 }
             }
             
@@ -1249,8 +1265,23 @@ namespace DS4Windows
                 }
                 else if (rsOutCurveMode == 6)
                 {
-                    dState.RX = rsOutBezierCurveObj[device].arrayBezierLUT[dState.RX];
-                    dState.RY = rsOutBezierCurveObj[device].arrayBezierLUT[dState.RY];
+                    // Get max values and circular distance of axes
+                    double maxX = (dState.RX >= 128 ? 127 : 128);
+                    double maxY = (dState.RY >= 128 ? 127 : 128);
+                    byte tempOutX = (byte)(tempRatioX * maxX + 128.0);
+                    byte tempOutY = (byte)(tempRatioY * maxY + 128.0);
+
+                    // Perform curve based on byte values from vector
+                    byte tempX = rsOutBezierCurveObj[device].arrayBezierLUT[tempOutX];
+                    byte tempY = rsOutBezierCurveObj[device].arrayBezierLUT[tempOutY];
+
+                    // Calculate new ratio
+                    double tempRatioOutX = (tempX - 128.0) / maxX;
+                    double tempRatioOutY = (tempY - 128.0) / maxY;
+
+                    // Map back to stick coordinates
+                    dState.RX = (byte)(tempRatioOutX * capX + 128);
+                    dState.RY = (byte)(tempRatioOutY * capY + 128);
                 }
             }
 

@@ -543,6 +543,7 @@
     <Content Include="BezierCurveEditor\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\DS4 Config_white.png" />
     <Resource Include="Resources\newprofile_white.png" />
     <Resource Include="Resources\copy_white.png" />
     <Resource Include="Resources\delete_white.png" />

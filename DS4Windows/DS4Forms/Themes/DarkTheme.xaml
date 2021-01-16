@@ -17,6 +17,7 @@
     <system:String x:Key="KeyUpImg">keyup_white.png</system:String>
     <system:String x:Key="KeyDownImg">keydown_white.png</system:String>
     <system:String x:Key="ClockImg">clock_white.png</system:String>
+    <system:String x:Key="DS4ConfigImg">DS4 Config_white.png</system:String>
 
     <system:String x:Key="CopyImg">copy_white.png</system:String>
     <system:String x:Key="DeleteImg">delete_white.png</system:String>

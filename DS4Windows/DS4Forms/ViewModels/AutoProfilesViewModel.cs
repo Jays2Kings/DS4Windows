@@ -419,7 +419,18 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private ImageSource exeicon;
         private bool turnoff;
 
-        public string Path { get => path; set => path = value; }
+        public string Path { get => path;
+            set
+            {
+                if (path == value) return;
+                path = value;
+                if (matchedAutoProfile != null)
+                {
+                    matchedAutoProfile.Path = value;
+                }
+            }
+        }
+
         public string Title { get => title;
             set
             {
@@ -433,6 +444,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 TitleChanged?.Invoke(this, EventArgs.Empty);
             }
         }
+
         public event EventHandler TitleChanged;
         public AutoProfileEntity MatchedAutoProfile
         {

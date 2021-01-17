@@ -48,6 +48,13 @@ namespace DS4Windows.InputDevices
             public new const int LY = InputReportDataBytes.LY + REPORT_OFFSET;
         }
 
+        public enum HapticIntensity : uint
+        {
+            Low,
+            Medium,
+            High,
+        }
+
         private const int BT_REPORT_OFFSET = 2;
         private InputReportDataBytes dataBytes;
         protected new const int BT_OUTPUT_REPORT_LENGTH = 78;
@@ -71,6 +78,26 @@ namespace DS4Windows.InputDevices
         //private byte outputPendCount = 0;
         private new GyroMouseSensDualSense gyroMouseSensSettings;
         public override GyroMouseSens GyroMouseSensSettings { get => gyroMouseSensSettings; }
+
+        private byte hapticsIntensityByte = 0x02;
+        public HapticIntensity HapticChoice {
+            set
+            {
+                switch(value)
+                {
+                    case HapticIntensity.Low:
+                        hapticsIntensityByte = 0x05;
+                        break;
+                    case HapticIntensity.High:
+                        hapticsIntensityByte = 0x00;
+                        break;
+                    case HapticIntensity.Medium:
+                    default:
+                        hapticsIntensityByte = 0x02;
+                        break;
+                }
+            }
+        }
 
         public override event ReportHandler<EventArgs> Report = null;
         public override event EventHandler BatteryChanged;
@@ -825,7 +852,7 @@ namespace DS4Windows.InputDevices
                 outputReport[9] = 0x00;
 
                 // (lower nibble: main motor; upper nibble trigger effects) 0x00 to 0x07 - reduce overall power of the respective motors/effects by 12.5% per increment (this does not affect the regular trigger motor settings, just the automatically repeating trigger effects)
-                outputReport[37] = 0x02;
+                outputReport[37] = hapticsIntensityByte;
                 // Volume of internal speaker (0-7; ties in with index 6. The PS5 default appears to be set a 4)
                 //outputReport[38] = 0x00;
 
@@ -931,7 +958,7 @@ namespace DS4Windows.InputDevices
                 outputReport[10] = 0x00;
 
                 // (lower nibble: main motor; upper nibble trigger effects) 0x00 to 0x07 - reduce overall power of the respective motors/effects by 12.5% per increment (this does not affect the regular trigger motor settings, just the automatically repeating trigger effects)
-                outputReport[38] = 0x02;
+                outputReport[38] = hapticsIntensityByte;
                 // Volume of internal speaker (0-7; ties in with index 6. The PS5 default appears to be set a 4)
                 //outputReport[39] = 0x00;
 

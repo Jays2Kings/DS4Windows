@@ -223,7 +223,9 @@ namespace DS4Windows
         {
             if (device.DeviceType == InputDevices.InputDeviceType.DualSense)
             {
-                device.UseRumble = deviceOptions.DualSenseOpts.EnableRumble;
+                InputDevices.DualSenseDevice tempDSDev = device as InputDevices.DualSenseDevice;
+                tempDSDev.UseRumble = deviceOptions.DualSenseOpts.EnableRumble;
+                tempDSDev.HapticChoice = deviceOptions.DualSenseOpts.HapticIntensity;
             }
             else if (device.DeviceType == InputDevices.InputDeviceType.SwitchPro)
             {

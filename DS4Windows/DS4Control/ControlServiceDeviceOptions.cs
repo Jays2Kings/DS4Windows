@@ -35,6 +35,13 @@ namespace DS4Windows
 
         private bool enableRumble = true;
         public bool EnableRumble { get => enableRumble; set => enableRumble = value; }
+
+        private InputDevices.DualSenseDevice.HapticIntensity hapticIntensity = InputDevices.DualSenseDevice.HapticIntensity.Medium;
+        public InputDevices.DualSenseDevice.HapticIntensity HapticIntensity
+        {
+            get => hapticIntensity;
+            set => hapticIntensity = value;
+        }
     }
 
     public class SwitchProDeviceOptions

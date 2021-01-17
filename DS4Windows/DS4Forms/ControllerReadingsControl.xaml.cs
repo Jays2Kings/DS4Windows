@@ -197,6 +197,7 @@ namespace DS4WinWPF.DS4Forms
                 //DS4StateExposed tmpexposeState = Program.rootHub.ExposedState[deviceNum];
                 DS4State tmpbaseState = Program.rootHub.getDS4State(deviceNum);
                 DS4State tmpinterState = Program.rootHub.getDS4StateTemp(deviceNum);
+                long cntCalibrating = ds.SixAxis.CntCalibrating;
 
                 // Wait for controller to be in a wait period
                 ds.ReadWaitEv.Wait();
@@ -305,7 +306,7 @@ namespace DS4WinWPF.DS4Forms
                     prevWarnMode = warnMode;
 
                     batteryLvlLb.Content = $"{Translations.Strings.Battery}: {baseState.Battery}%";
-
+                    gyroCalEllipse.Visibility = cntCalibrating > 0 && ((cntCalibrating / 250) % 2 == 1) ? Visibility.Visible : Visibility.Hidden;
                     UpdateCoordLabels(baseState, interState, exposeState);
                 });
             }

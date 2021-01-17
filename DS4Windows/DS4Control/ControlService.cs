@@ -1054,6 +1054,8 @@ namespace DS4Windows
                         }
 
                         TouchPadOn(i, device);
+                        device.DeviceSlotNumber = i;
+
                         CheckProfileOptions(i, device, true);
                         device.StartUpdate();
                         //string filename = ProfilePath[ind];
@@ -1371,6 +1373,8 @@ namespace DS4Windows
                             }
 
                             TouchPadOn(Index, device);
+                            device.DeviceSlotNumber = Index;
+
                             CheckProfileOptions(Index, device);
                             device.StartUpdate();
 

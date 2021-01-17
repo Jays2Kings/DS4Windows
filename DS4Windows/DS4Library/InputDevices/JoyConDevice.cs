@@ -224,6 +224,9 @@ namespace DS4Windows.InputDevices
         {
             runCalib = false;
             synced = true;
+            DeviceSlotNumberChanged += (sender, e) => {
+                CalculateDeviceSlotMask();
+            };
         }
 
         private JoyConSide DetermineSideType()
@@ -687,7 +690,7 @@ namespace DS4Windows.InputDevices
             }
 
             // Turn on bottom LEDs
-            byte[] leds = new byte[] { 0x01 };
+            byte[] leds = new byte[] { deviceSlotMask };
             //Thread.Sleep(1000);
             Subcommand(0x30, leds, 1, checkResponse: true);
 
@@ -1207,6 +1210,34 @@ namespace DS4Windows.InputDevices
             // Revert back to low power state
             byte[] powerChoiceArray = new byte[] { 0x01 };
             Subcommand(SwitchProSubCmd.SET_LOW_POWER_STATE, powerChoiceArray, 1, checkResponse: true);
+        }
+
+        private void CalculateDeviceSlotMask()
+        {
+            switch (deviceSlotNumber)
+            {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    deviceSlotMask = (byte)Math.Pow(2, deviceSlotNumber);
+                    break;
+                case 4:
+                    deviceSlotMask = 0x01 | 0x02;
+                    break;
+                case 5:
+                    deviceSlotMask = 0x01 | 0x04;
+                    break;
+                case 6:
+                    deviceSlotMask = 0x01 | 0x08;
+                    break;
+                case 7:
+                    deviceSlotMask = 0x01 | 0x10;
+                    break;
+                default:
+                    deviceSlotMask = 0x00;
+                    break;
+            }
         }
     }
 }

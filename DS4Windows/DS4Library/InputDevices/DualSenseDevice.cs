@@ -67,6 +67,7 @@ namespace DS4Windows.InputDevices
 
         private const byte OUTPUT_REPORT_ID_USB = 0x02;
         private const byte OUTPUT_REPORT_ID_BT = 0x31;
+        private const byte OUTPUT_REPORT_ID_DATA = 0x02;
         private new const byte USB_OUTPUT_CHANGE_LENGTH = 48;
         private const int OUTPUT_MIN_COUNT_BT = 20;
         private bool timeStampInit = false;
@@ -107,6 +108,9 @@ namespace DS4Windows.InputDevices
             base(hidDevice, disName, featureSet)
         {
             synced = true;
+            DeviceSlotNumberChanged += (sender, e) => {
+                CalculateDeviceSlotMask();
+            };
         }
 
         public override void PostInit()
@@ -759,14 +763,16 @@ namespace DS4Windows.InputDevices
 
         private void SendEmptyOutputReport()
         {
+            int reportOffset = conType == ConnectionType.BT ? 1 : 0;
             Array.Clear(outputReport, 0, outputReport.Length);
 
             outputReport[0] = conType == ConnectionType.USB ? OUTPUT_REPORT_ID_USB :
                 OUTPUT_REPORT_ID_BT;
+            outputReport[2 + reportOffset] = 0x08; // Turn off all LED lights
 
             if (conType == ConnectionType.BT)
             {
-                outputReport[1] = 0x02;
+                outputReport[1] = OUTPUT_REPORT_ID_DATA;
 
                 // Need to calculate and populate CRC32 data so controller will accept the report
                 uint calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);
@@ -786,7 +792,7 @@ namespace DS4Windows.InputDevices
             Array.Clear(outputReport, 0, outputReport.Length);
 
             outputReport[0] = OUTPUT_REPORT_ID_BT; // Report ID
-            outputReport[1] = 0x02;
+            outputReport[1] = OUTPUT_REPORT_ID_DATA;
             outputReport[3] = 0x08; // Turn off all LED lights
 
             // Need to calculate and populate CRC32 data so controller will accept the report
@@ -859,7 +865,6 @@ namespace DS4Windows.InputDevices
                 /* Player LED section */
                 // 0x01 Enabled LED brightness (value in index 43)
                 // 0x02 Uninterruptable blue LED pulse (action in index 42)
-                /*
                 outputReport[39] = 0x02;
                 // 0x01 Slowly (2s?) fade to blue (scheduled to when the regular LED settings are active)
                 // 0x02 Slowly (2s?) fade out (scheduled after fade-in completion) with eventual switch back to configured LED color; only a fade-out can cancel the pulse (neither index 2, 0x08, nor turning this off will cancel it!)
@@ -868,8 +873,7 @@ namespace DS4Windows.InputDevices
                 outputReport[43] = 0x02;
                 // 5 player LED lights below Touchpad.
                 // Bitmask 0x00-0x1F from left to right with 0x04 being the center LED. Bit 0x20 sets the brightness immediately with no fade in
-                outputReport[44] = 0x04;
-                //*/
+                outputReport[44] = deviceSlotMask;
 
                 /* Lightbar colors */
                 outputReport[45] = currentHap.lightbarState.LightBarColor.red;
@@ -914,7 +918,7 @@ namespace DS4Windows.InputDevices
             {
                 //outReportBuffer[0] = OUTPUT_REPORT_ID_BT; // Report ID
                 outputReport[0] = OUTPUT_REPORT_ID_BT; // Report ID
-                outputReport[1] = 0x02;
+                outputReport[1] = OUTPUT_REPORT_ID_DATA;
 
                 // 0x01 Set the main motors (also requires flag 0x02)
                 // 0x02 Set the main motors (also requires flag 0x01)
@@ -965,7 +969,6 @@ namespace DS4Windows.InputDevices
                 /* Player LED section */
                 // 0x01 Enabled LED brightness (value in index 43)
                 // 0x02 Uninterruptable blue LED pulse (action in index 42)
-                /*
                 outputReport[40] = 0x02;
                 // 0x01 Slowly (2s?) fade to blue (scheduled to when the regular LED settings are active)
                 // 0x02 Slowly (2s?) fade out (scheduled after fade-in completion) with eventual switch back to configured LED color; only a fade-out can cancel the pulse (neither index 2, 0x08, nor turning this off will cancel it!)
@@ -974,8 +977,7 @@ namespace DS4Windows.InputDevices
                 outputReport[44] = 0x02;
                 // 5 player LED lights below Touchpad.
                 // Bitmask 0x00-0x1F from left to right with 0x04 being the center LED. Bit 0x20 sets the brightness immediately with no fade in
-                outputReport[45] = 0x04;
-                //*/
+                outputReport[45] = deviceSlotMask;
 
                 /* Lightbar colors */
                 outputReport[46] = currentHap.lightbarState.LightBarColor.red;
@@ -1073,6 +1075,32 @@ namespace DS4Windows.InputDevices
         private void Detach()
         {
             SendEmptyOutputReport();
+        }
+
+        private void CalculateDeviceSlotMask()
+        {
+            switch(deviceSlotNumber)
+            {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    deviceSlotMask = (byte)Math.Pow(2, deviceSlotNumber);
+                    break;
+                case 5:
+                    deviceSlotMask = 0x01 | 0x02;
+                    break;
+                case 6:
+                    deviceSlotMask = 0x01 | 0x04;
+                    break;
+                case 7:
+                    deviceSlotMask = 0x01 | 0x08;
+                    break;
+                default:
+                    deviceSlotMask = 0x00;
+                    break;
+            }
         }
     }
 }

@@ -797,7 +797,7 @@ namespace DS4Windows.InputDevices
                 // 0x04 Toggling LED strips on the sides of the Touchpad, 0x08 Turn off all LED lights
                 // 0x10 Toggle player LED lights below Touchpad, 0x20 ???
                 // 0x40 Adjust overall motor/effect power, 0x80 ???
-                outputReport[2] = 0x15; // 0x04 | 0x01 | 0x10
+                outputReport[2] = 0x55; // 0x04 | 0x01 | 0x10 | 0x40
 
                 if (useRumble)
                 {
@@ -825,7 +825,7 @@ namespace DS4Windows.InputDevices
                 outputReport[9] = 0x00;
 
                 // (lower nibble: main motor; upper nibble trigger effects) 0x00 to 0x07 - reduce overall power of the respective motors/effects by 12.5% per increment (this does not affect the regular trigger motor settings, just the automatically repeating trigger effects)
-                outputReport[37] = 0x04;
+                outputReport[37] = 0x02;
                 // Volume of internal speaker (0-7; ties in with index 6. The PS5 default appears to be set a 4)
                 //outputReport[38] = 0x00;
 
@@ -903,7 +903,7 @@ namespace DS4Windows.InputDevices
                 // 0x04 Toggling LED strips on the sides of the Touchpad, 0x08 Turn off all LED lights
                 // 0x10 Toggle player LED lights below Touchpad, 0x20 ???
                 // 0x40 Adjust overall motor/effect power, 0x80 ???
-                outputReport[3] = 0x15; // 0x04 | 0x01 | 0x10
+                outputReport[3] = 0x55; // 0x04 | 0x01 | 0x10 | 0x40
 
                 if (useRumble)
                 {
@@ -931,7 +931,7 @@ namespace DS4Windows.InputDevices
                 outputReport[10] = 0x00;
 
                 // (lower nibble: main motor; upper nibble trigger effects) 0x00 to 0x07 - reduce overall power of the respective motors/effects by 12.5% per increment (this does not affect the regular trigger motor settings, just the automatically repeating trigger effects)
-                outputReport[38] = 0x04;
+                outputReport[38] = 0x02;
                 // Volume of internal speaker (0-7; ties in with index 6. The PS5 default appears to be set a 4)
                 //outputReport[39] = 0x00;
 

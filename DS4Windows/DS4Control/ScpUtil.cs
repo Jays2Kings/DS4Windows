@@ -6382,6 +6382,12 @@ namespace DS4Windows
             rsInfo.antiDeadZone = 0;
             rsInfo.maxZone = 90;
 
+            TriggerDeadZoneZInfo l2Info = l2ModInfo[device];
+            l2Info.deadZone = (byte)(0.20 * 255);
+
+            TriggerDeadZoneZInfo r2Info = r2ModInfo[device];
+            r2Info.deadZone = (byte)(0.20 * 255);
+
             // Flag to unplug virtual controller
             dinputOnly[device] = true;
 
@@ -6480,6 +6486,12 @@ namespace DS4Windows
             rsInfo.deadZone = (int)(0.105 * 127);
             rsInfo.antiDeadZone = 0;
             rsInfo.maxZone = 90;
+
+            TriggerDeadZoneZInfo l2Info = l2ModInfo[device];
+            l2Info.deadZone = (byte)(0.20 * 255);
+
+            TriggerDeadZoneZInfo r2Info = r2ModInfo[device];
+            r2Info.deadZone = (byte)(0.20 * 255);
 
             gyroOutMode[device] = GyroOutMode.Mouse;
             sATriggers[device] = "4";

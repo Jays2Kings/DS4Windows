@@ -732,6 +732,19 @@ namespace DS4Windows
 
         private void synthesizeMouseButtons()
         {
+            TouchpadOutMode tempMode = Global.TouchOutMode[deviceNum];
+            if (tempMode != TouchpadOutMode.Passthru)
+            {
+                // Reset output Touchpad click button when
+                // not using Passthru mode on Touchpad
+                s.OutputTouchButton = false;
+            }
+            else
+            {
+                // Don't allow virtual buttons for Passthru mode
+                return;
+            }
+
             if (Global.GetDS4Action(deviceNum, DS4Controls.TouchLeft, false) == null && leftDown)
             {
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);

@@ -1215,7 +1215,7 @@ namespace DS4Windows.InputDevices
                 case 1:
                 case 2:
                 case 3:
-                    deviceSlotMask = (byte)Math.Pow(2, deviceSlotNumber);
+                    deviceSlotMask = (byte)(1 << deviceSlotNumber);
                     break;
                 case 4:
                     deviceSlotMask = 0x01 | 0x02;

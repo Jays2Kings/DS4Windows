@@ -49,6 +49,16 @@
                     <ListView x:Name="controllerLV" ItemsSource="{Binding ControllerCol}" SelectionMode="Single" SelectedIndex="{Binding CurrentIndex, Mode=OneWayToSource}" Margin="0">
                         <ListView.View>
                             <GridView>
+                                <GridViewColumn x:Name="indexColumn" Header="#" Width="30">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel  Width="{Binding ElementName=indexColumn, Path=Width}">
+                                                <TextBlock Text="{Binding DisplayDevIndex}" HorizontalAlignment="Center" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
                                 <GridViewColumn x:Name="idColumn" Header="ID" Width="120">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>

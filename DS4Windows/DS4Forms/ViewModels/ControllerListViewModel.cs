@@ -289,6 +289,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
 
         public int DevIndex { get => devIndex; }
+        public int DisplayDevIndex { get => devIndex + 1; }
 
         public string TooltipIDText
         {

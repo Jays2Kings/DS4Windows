@@ -21,9 +21,11 @@ using System.IO;
 using System.Management;
 using NonFormTimer = System.Timers.Timer;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
+using HttpProgress;
+
 using DS4WinWPF.DS4Forms.ViewModels;
 using DS4Windows;
-using HttpProgress;
 using DS4WinWPF.Translations;
 
 namespace DS4WinWPF.DS4Forms
@@ -82,7 +84,14 @@ namespace DS4WinWPF.DS4Forms
 
             conLvViewModel = new ControllerListViewModel(App.rootHub, profileListHolder);
             controllerLV.DataContext = conLvViewModel;
+            controllerLV.ItemsSource = conLvViewModel.ControllerCol;
             ChangeControllerPanel();
+            // Sort device by input slot number
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(controllerLV.ItemsSource);
+            view.SortDescriptions.Clear();
+            view.SortDescriptions.Add(new SortDescription("DevIndex", ListSortDirection.Ascending));
+            view.Refresh();
+
             trayIconVM = new TrayIconViewModel(App.rootHub, profileListHolder);
             notifyIcon.DataContext = trayIconVM;
 

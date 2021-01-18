@@ -28,6 +28,8 @@ namespace DS4Windows
         public DS4Device[] DS4Controllers = new DS4Device[MAX_DS4_CONTROLLER_COUNT];
         public Mouse[] touchPad = new Mouse[MAX_DS4_CONTROLLER_COUNT];
         public bool running = false;
+        public bool loopControllers = true;
+        public bool inServiceTask = false;
         private DS4State[] MappedState = new DS4State[MAX_DS4_CONTROLLER_COUNT];
         private DS4State[] CurrentState = new DS4State[MAX_DS4_CONTROLLER_COUNT];
         private DS4State[] PreviousState = new DS4State[MAX_DS4_CONTROLLER_COUNT];
@@ -214,9 +216,23 @@ namespace DS4Windows
             DS4Devices.PrepareDS4Init = PrepareDS4DeviceInit;
             DS4Devices.PostDS4Init = PostDS4DeviceInit;
             DS4Devices.PreparePendingDevice = CheckForSupportedDevice;
+            outputslotMan.ViGEmFailure += OutputslotMan_ViGEmFailure;
 
             Global.UDPServerSmoothingMincutoffChanged += ChangeUdpSmoothingAttrs;
             Global.UDPServerSmoothingBetaChanged += ChangeUdpSmoothingAttrs;
+        }
+
+        private void OutputslotMan_ViGEmFailure(object sender, EventArgs e)
+        {
+            eventDispatcher.BeginInvoke((Action)(() =>
+            {
+                loopControllers = false;
+                while (inServiceTask)
+                    Thread.SpinWait(1000);
+
+                LogDebug(DS4WinWPF.Translations.Strings.ViGEmPluginFailure, true);
+                Stop();
+            }));
         }
 
         public void PostDS4DeviceInit(DS4Device device)
@@ -906,6 +922,7 @@ namespace DS4Windows
 
         public bool Start(bool showlog = true)
         {
+            inServiceTask = true;
             startViGEm();
             if (vigemTestClient != null)
             //if (x360Bus.Open() && x360Bus.Start())
@@ -937,6 +954,7 @@ namespace DS4Windows
 
                 try
                 {
+                    loopControllers = true;
                     AssignInitialDevices();
 
                     eventDispatcher.Invoke(() =>
@@ -952,7 +970,7 @@ namespace DS4Windows
 
                     //for (int i = 0, devCount = devices.Count(); i < devCount; i++)
                     int i = 0;
-                    for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext(); i++)
+                    for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext() && loopControllers; i++)
                     {
                         DS4Device device = devEnum.Current;
                         //DS4Device device = devices.ElementAt(i);
@@ -1109,6 +1127,7 @@ namespace DS4Windows
                 AppLogger.LogToTray(logMessage);
             }
 
+            inServiceTask = false;
             runHotPlug = true;
             ServiceStarted?.Invoke(this, EventArgs.Empty);
             RunningChanged?.Invoke(this, EventArgs.Empty);
@@ -1145,6 +1164,7 @@ namespace DS4Windows
             {
                 running = false;
                 runHotPlug = false;
+                inServiceTask = true;
                 PreServiceStop?.Invoke(this, EventArgs.Empty);
 
                 if (showlog)
@@ -1198,6 +1218,7 @@ namespace DS4Windows
                         //outputDevices[i] = null;
                         //useDInputOnly[i] = true;
                         //Global.activeOutDevType[i] = OutContType.None;
+                        useDInputOnly[i] = true;
                         DS4Controllers[i] = null;
                         touchPad[i] = null;
                         lag[i] = false;
@@ -1229,6 +1250,7 @@ namespace DS4Windows
                 }
 
                 stopViGEm();
+                inServiceTask = false;
             }
 
             runHotPlug = false;
@@ -1241,6 +1263,8 @@ namespace DS4Windows
         {
             if (running)
             {
+                inServiceTask = true;
+                loopControllers = true;
                 eventDispatcher.Invoke(() =>
                 {
                     DS4Devices.findControllers();
@@ -1250,7 +1274,7 @@ namespace DS4Windows
                 IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
                 //foreach (DS4Device device in devices)
                 //for (int i = 0, devlen = devices.Count(); i < devlen; i++)
-                for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext();)
+                for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext() && loopControllers;)
                 {
                     DS4Device device = devEnum.Current;
                     //DS4Device device = devices.ElementAt(i);
@@ -1384,6 +1408,8 @@ namespace DS4Windows
                         }
                     }
                 }
+
+                inServiceTask = false;
             }
 
             return true;

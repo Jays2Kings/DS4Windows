@@ -214,7 +214,7 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Check for DS4Windows Updates at Startup.
+        ///   Looks up a localized string similar to Check for updates at DS4Windows startup.
         /// </summary>
         public static string CheckUpdateStartup {
             get {
@@ -978,6 +978,15 @@ namespace DS4WinWPF.Translations {
         public static string Trigger {
             get {
                 return ResourceManager.GetString("Trigger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ViGEm Device Plugin Failed. Closing connection..
+        /// </summary>
+        public static string ViGEmPluginFailure {
+            get {
+                return ResourceManager.GetString("ViGEmPluginFailure", resourceCulture);
             }
         }
         

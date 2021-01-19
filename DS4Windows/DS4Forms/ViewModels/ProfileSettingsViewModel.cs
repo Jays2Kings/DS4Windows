@@ -2559,6 +2559,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             tempBtPollRate = Global.BTPollRate[device];
             outputMouseSpeed = CalculateOutputMouseSpeed(ButtonMouseSensitivity);
             mouseOffsetSpeed = RawButtonMouseOffset * outputMouseSpeed;
+            gyroMouseSmoothMethodIndex = FindGyroMouseSmoothMethodIndex();
+            gyroMouseStickSmoothMethodIndex = FindGyroMouseStickSmoothMethodIndex();
         }
     }
 

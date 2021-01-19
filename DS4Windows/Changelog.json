@@ -42,7 +42,8 @@
               "* Changed output device pluging routine. Stop DS4Windows service if ViGEm device connect call fails",
               "* Changed default dead zone for KBM profile templates",
               "* Only output DS4 touchpad button click when in Passthru mode",
-              "* Make sure to refresh gyro mouse smoothing combobox indexes after loading from a preset"],
+              "* Make sure to refresh gyro mouse smoothing combobox indexes after loading from a preset",
+              "* Bundled DS4Updater 1.4.5"],
             "editor": "ryochan7",
             "editors_note": ["Burnout"],
             "updated_at": "2021-01-19T17:17:09+0000"

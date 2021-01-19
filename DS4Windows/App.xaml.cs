@@ -70,6 +70,8 @@ namespace DS4WinWPF
             [DS4Windows.AppThemeChoice.Dark] = "DS4Forms/Themes/DarkTheme.xaml",
         };
 
+        public event EventHandler ThemeChanged;
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             runShutdown = true;
@@ -183,7 +185,7 @@ namespace DS4WinWPF
             DS4Windows.AppThemeChoice themeChoice = DS4Windows.Global.UseCurrentTheme;
             if (themeChoice != DS4Windows.AppThemeChoice.Default)
             {
-                ChangeTheme(DS4Windows.Global.UseCurrentTheme);
+                ChangeTheme(DS4Windows.Global.UseCurrentTheme, false);
             }
 
             DS4Windows.Global.LoadLinkedProfiles();
@@ -630,12 +632,18 @@ namespace DS4WinWPF
             catch (CultureNotFoundException) { /* Skip setting culture that we cannot set */ }
         }
 
-        public static void ChangeTheme(DS4Windows.AppThemeChoice themeChoice)
+        public void ChangeTheme(DS4Windows.AppThemeChoice themeChoice,
+            bool fireChanged=true)
         {
             if (themeLocs.TryGetValue(themeChoice, out string loc))
             {
                 Application.Current.Resources.MergedDictionaries.Clear();
                 Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri(loc, uriKind: UriKind.Relative) });
+
+                if (fireChanged)
+                {
+                    ThemeChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 

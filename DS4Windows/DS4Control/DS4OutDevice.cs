@@ -19,6 +19,7 @@ namespace DS4Windows
         public DS4OutDevice(ViGEmClient client)
         {
             cont = client.CreateDualShock4Controller();
+            //cont = client.CreateDualShock4Controller(0x054C, 0x09CC);
             cont.AutoSubmitReport = false;
         }
 

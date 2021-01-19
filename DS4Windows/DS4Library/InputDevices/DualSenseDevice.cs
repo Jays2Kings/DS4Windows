@@ -8,10 +8,24 @@ using System.Threading;
 using System.Threading.Tasks;
 using DS4Windows;
 
-namespace DS4WinWPF.DS4Library.InputDevices
+namespace DS4Windows.InputDevices
 {
     public class DualSenseDevice : DS4Device
     {
+        public class GyroMouseSensDualSense : GyroMouseSens
+        {
+            private const double MOUSE_COEFFICIENT = 0.009;
+            private const double MOUSE_OFFSET = 0.15;
+            private const double SMOOTH_MOUSE_OFFSET = 0.15;
+
+            public GyroMouseSensDualSense() : base()
+            {
+                mouseCoefficient = MOUSE_COEFFICIENT;
+                mouseOffset = MOUSE_OFFSET;
+                mouseSmoothOffset = SMOOTH_MOUSE_OFFSET;
+            }
+        }
+
         public abstract class InputReportDataBytes
         {
             public const int REPORT_OFFSET = 0;
@@ -34,6 +48,13 @@ namespace DS4WinWPF.DS4Library.InputDevices
             public new const int LY = InputReportDataBytes.LY + REPORT_OFFSET;
         }
 
+        public enum HapticIntensity : uint
+        {
+            Low,
+            Medium,
+            High,
+        }
+
         private const int BT_REPORT_OFFSET = 2;
         private InputReportDataBytes dataBytes;
         protected new const int BT_OUTPUT_REPORT_LENGTH = 78;
@@ -46,6 +67,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
         private const byte OUTPUT_REPORT_ID_USB = 0x02;
         private const byte OUTPUT_REPORT_ID_BT = 0x31;
+        private const byte OUTPUT_REPORT_ID_DATA = 0x02;
         private new const byte USB_OUTPUT_CHANGE_LENGTH = 48;
         private const int OUTPUT_MIN_COUNT_BT = 20;
         private bool timeStampInit = false;
@@ -54,7 +76,29 @@ namespace DS4WinWPF.DS4Library.InputDevices
         private bool outputDirty = false;
         private DS4HapticState previousHapticState = new DS4HapticState();
         private byte[] outputBTCrc32Head = new byte[] { 0xA2 };
-        private byte outputPendCount = 0;
+        //private byte outputPendCount = 0;
+        private new GyroMouseSensDualSense gyroMouseSensSettings;
+        public override GyroMouseSens GyroMouseSensSettings { get => gyroMouseSensSettings; }
+
+        private byte hapticsIntensityByte = 0x02;
+        public HapticIntensity HapticChoice {
+            set
+            {
+                switch(value)
+                {
+                    case HapticIntensity.Low:
+                        hapticsIntensityByte = 0x05;
+                        break;
+                    case HapticIntensity.High:
+                        hapticsIntensityByte = 0x00;
+                        break;
+                    case HapticIntensity.Medium:
+                    default:
+                        hapticsIntensityByte = 0x02;
+                        break;
+                }
+            }
+        }
 
         public override event ReportHandler<EventArgs> Report = null;
         public override event EventHandler BatteryChanged;
@@ -64,11 +108,16 @@ namespace DS4WinWPF.DS4Library.InputDevices
             base(hidDevice, disName, featureSet)
         {
             synced = true;
+            DeviceSlotNumberChanged += (sender, e) => {
+                CalculateDeviceSlotMask();
+            };
         }
 
         public override void PostInit()
         {
             HidDevice hidDevice = hDevice;
+            deviceType = InputDeviceType.DualSense;
+            gyroMouseSensSettings = new GyroMouseSensDualSense();
 
             conType = DetermineConnectionType(hDevice);
 
@@ -455,6 +504,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                     tempByte = inputReport[10 + reportOffset];
                     cState.PS = (tempByte & (1 << 0)) != 0;
                     cState.TouchButton = (tempByte & 0x02) != 0;
+                    cState.OutputTouchButton = cState.TouchButton;
                     cState.Mute = (tempByte & (1 << 2)) != 0;
                     //cState.FrameCounter = (byte)(tempByte >> 2);
 
@@ -714,14 +764,16 @@ namespace DS4WinWPF.DS4Library.InputDevices
 
         private void SendEmptyOutputReport()
         {
+            int reportOffset = conType == ConnectionType.BT ? 1 : 0;
             Array.Clear(outputReport, 0, outputReport.Length);
 
             outputReport[0] = conType == ConnectionType.USB ? OUTPUT_REPORT_ID_USB :
                 OUTPUT_REPORT_ID_BT;
+            outputReport[2 + reportOffset] = 0x08; // Turn off all LED lights
 
             if (conType == ConnectionType.BT)
             {
-                outputReport[1] = 0x02;
+                outputReport[1] = OUTPUT_REPORT_ID_DATA;
 
                 // Need to calculate and populate CRC32 data so controller will accept the report
                 uint calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);
@@ -741,7 +793,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
             Array.Clear(outputReport, 0, outputReport.Length);
 
             outputReport[0] = OUTPUT_REPORT_ID_BT; // Report ID
-            outputReport[1] = 0x02;
+            outputReport[1] = OUTPUT_REPORT_ID_DATA;
             outputReport[3] = 0x08; // Turn off all LED lights
 
             // Need to calculate and populate CRC32 data so controller will accept the report
@@ -773,18 +825,21 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 // 0x20 Enable internal speaker (even while headset is connected)
                 // 0x40 Enable modification of microphone volume
                 // 0x80 Enable internal mic (even while headset is connected)
-                outputReport[1] = 0x03; // 0x02 | 0x01
+                outputReport[1] = useRumble ? (byte)0x03 : (byte)0x00; // 0x02 | 0x01
 
                 // 0x01 Toggling microphone LED, 0x02 Toggling Audio/Mic Mute
                 // 0x04 Toggling LED strips on the sides of the Touchpad, 0x08 Turn off all LED lights
                 // 0x10 Toggle player LED lights below Touchpad, 0x20 ???
                 // 0x40 Adjust overall motor/effect power, 0x80 ???
-                outputReport[2] = 0x15; // 0x04 | 0x01 | 0x10
+                outputReport[2] = 0x55; // 0x04 | 0x01 | 0x10 | 0x40
 
-                // Right? High Freq Motor
-                outputReport[3] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast;
-                // Left? Low Freq Motor
-                outputReport[4] = currentHap.rumbleState.RumbleMotorStrengthLeftHeavySlow;
+                if (useRumble)
+                {
+                    // Right? High Freq Motor
+                    outputReport[3] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast;
+                    // Left? Low Freq Motor
+                    outputReport[4] = currentHap.rumbleState.RumbleMotorStrengthLeftHeavySlow;
+                }
 
                 /*
                 // Headphone volume
@@ -804,14 +859,13 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 outputReport[9] = 0x00;
 
                 // (lower nibble: main motor; upper nibble trigger effects) 0x00 to 0x07 - reduce overall power of the respective motors/effects by 12.5% per increment (this does not affect the regular trigger motor settings, just the automatically repeating trigger effects)
-                outputReport[37] = 0x04;
+                outputReport[37] = hapticsIntensityByte;
                 // Volume of internal speaker (0-7; ties in with index 6. The PS5 default appears to be set a 4)
                 //outputReport[38] = 0x00;
 
                 /* Player LED section */
                 // 0x01 Enabled LED brightness (value in index 43)
                 // 0x02 Uninterruptable blue LED pulse (action in index 42)
-                /*
                 outputReport[39] = 0x02;
                 // 0x01 Slowly (2s?) fade to blue (scheduled to when the regular LED settings are active)
                 // 0x02 Slowly (2s?) fade out (scheduled after fade-in completion) with eventual switch back to configured LED color; only a fade-out can cancel the pulse (neither index 2, 0x08, nor turning this off will cancel it!)
@@ -820,8 +874,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 outputReport[43] = 0x02;
                 // 5 player LED lights below Touchpad.
                 // Bitmask 0x00-0x1F from left to right with 0x04 being the center LED. Bit 0x20 sets the brightness immediately with no fade in
-                outputReport[44] = 0x04;
-                //*/
+                outputReport[44] = deviceSlotMask;
 
                 /* Lightbar colors */
                 outputReport[45] = currentHap.lightbarState.LightBarColor.red;
@@ -866,7 +919,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
             {
                 //outReportBuffer[0] = OUTPUT_REPORT_ID_BT; // Report ID
                 outputReport[0] = OUTPUT_REPORT_ID_BT; // Report ID
-                outputReport[1] = 0x02;
+                outputReport[1] = OUTPUT_REPORT_ID_DATA;
 
                 // 0x01 Set the main motors (also requires flag 0x02)
                 // 0x02 Set the main motors (also requires flag 0x01)
@@ -876,18 +929,21 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 // 0x20 Enable internal speaker (even while headset is connected)
                 // 0x40 Enable modification of microphone volume
                 // 0x80 Enable internal mic (even while headset is connected)
-                outputReport[2] = 0x03; // 0x02 | 0x01;
+                outputReport[2] = useRumble ? (byte)0x03 : (byte)0x00; // 0x02 | 0x01;
 
                 // 0x01 Toggling microphone LED, 0x02 Toggling Audio/Mic Mute
                 // 0x04 Toggling LED strips on the sides of the Touchpad, 0x08 Turn off all LED lights
                 // 0x10 Toggle player LED lights below Touchpad, 0x20 ???
                 // 0x40 Adjust overall motor/effect power, 0x80 ???
-                outputReport[3] = 0x15; // 0x04 | 0x01 | 0x10
+                outputReport[3] = 0x55; // 0x04 | 0x01 | 0x10 | 0x40
 
-                // Right? High Freq Motor
-                outputReport[4] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast;
-                // Left? Low Freq Motor
-                outputReport[5] = currentHap.rumbleState.RumbleMotorStrengthLeftHeavySlow;
+                if (useRumble)
+                {
+                    // Right? High Freq Motor
+                    outputReport[4] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast;
+                    // Left? Low Freq Motor
+                    outputReport[5] = currentHap.rumbleState.RumbleMotorStrengthLeftHeavySlow;
+                }
 
                 /*
                 // Headphone volume
@@ -907,14 +963,13 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 outputReport[10] = 0x00;
 
                 // (lower nibble: main motor; upper nibble trigger effects) 0x00 to 0x07 - reduce overall power of the respective motors/effects by 12.5% per increment (this does not affect the regular trigger motor settings, just the automatically repeating trigger effects)
-                outputReport[38] = 0x04;
+                outputReport[38] = hapticsIntensityByte;
                 // Volume of internal speaker (0-7; ties in with index 6. The PS5 default appears to be set a 4)
                 //outputReport[39] = 0x00;
 
                 /* Player LED section */
                 // 0x01 Enabled LED brightness (value in index 43)
                 // 0x02 Uninterruptable blue LED pulse (action in index 42)
-                /*
                 outputReport[40] = 0x02;
                 // 0x01 Slowly (2s?) fade to blue (scheduled to when the regular LED settings are active)
                 // 0x02 Slowly (2s?) fade out (scheduled after fade-in completion) with eventual switch back to configured LED color; only a fade-out can cancel the pulse (neither index 2, 0x08, nor turning this off will cancel it!)
@@ -923,8 +978,7 @@ namespace DS4WinWPF.DS4Library.InputDevices
                 outputReport[44] = 0x02;
                 // 5 player LED lights below Touchpad.
                 // Bitmask 0x00-0x1F from left to right with 0x04 being the center LED. Bit 0x20 sets the brightness immediately with no fade in
-                outputReport[45] = 0x04;
-                //*/
+                outputReport[45] = deviceSlotMask;
 
                 /* Lightbar colors */
                 outputReport[46] = currentHap.lightbarState.LightBarColor.red;
@@ -1022,6 +1076,111 @@ namespace DS4WinWPF.DS4Library.InputDevices
         private void Detach()
         {
             SendEmptyOutputReport();
+        }
+
+        private void CalculateDeviceSlotMask()
+        {
+            // Map 1-31 as a set of 5 LED lights
+            switch (deviceSlotNumber)
+            {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    deviceSlotMask = (byte)(1 << deviceSlotNumber);
+                    break;
+
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                    deviceSlotMask = (byte)(0x01 | (1 << (deviceSlotNumber - 4)));
+                    break;
+
+                case 9:
+                    deviceSlotMask = 0x02 | 0x04;
+                    break;
+                case 10:
+                    deviceSlotMask = 0x02 | 0x08;
+                    break;
+                case 11:
+                    deviceSlotMask = 0x02 | 0x10;
+                    break;
+
+                case 12:
+                    deviceSlotMask = 0x04 | 0x08;
+                    break;
+                case 13:
+                    deviceSlotMask = 0x04 | 0x10;
+                    break;
+
+                case 14:
+                    deviceSlotMask = 0x08 | 0x10;
+                    break;
+
+                case 15:
+                    deviceSlotMask = 0x01 | 0x02 | 0x04;
+                    break;
+                case 16:
+                    deviceSlotMask = 0x01 | 0x02 | 0x08;
+                    break;
+                case 17:
+                    deviceSlotMask = 0x01 | 0x02 | 0x10;
+                    break;
+
+                case 18:
+                    deviceSlotMask = 0x01 | 0x04 | 0x08;
+                    break;
+                case 19:
+                    deviceSlotMask = 0x01 | 0x04 | 0x10;
+                    break;
+
+                case 20:
+                    deviceSlotMask = 0x01 | 0x08 | 0x10;
+                    break;
+
+                case 21:
+                    deviceSlotMask = 0x02 | 0x04 | 0x08;
+                    break;
+                case 22:
+                    deviceSlotMask = 0x02 | 0x04 | 0x10;
+                    break;
+                case 23:
+                    deviceSlotMask = 0x02 | 0x08 | 0x10;
+                    break;
+
+                case 24:
+                    deviceSlotMask = 0x04 | 0x08 | 0x10;
+                    break;
+
+                case 25:
+                    deviceSlotMask = 0x01 | 0x02 | 0x04 | 0x08;
+                    break;
+                case 26:
+                    deviceSlotMask = 0x01 | 0x02 | 0x04 | 0x10;
+                    break;
+
+                case 27:
+                    deviceSlotMask = 0x01 | 0x02 | 0x08 | 0x10;
+                    break;
+
+                case 28:
+                    deviceSlotMask = 0x01 | 0x04 | 0x08 | 0x10;
+                    break;
+
+                case 29:
+                    deviceSlotMask = 0x02 | 0x04 | 0x08 | 0x10;
+                    break;
+
+                case 30:
+                    deviceSlotMask = 0x01 | 0x02 | 0x04 | 0x08 | 0x10;
+                    break;
+
+                default:
+                    deviceSlotMask = 0x00;
+                    break;
+            }
         }
     }
 }

@@ -48,7 +48,7 @@ namespace DS4Windows
         {
             deviceNum = deviceID;
             dev = d;
-            cursor = new MouseCursor(deviceNum);
+            cursor = new MouseCursor(deviceNum, d.GyroMouseSensSettings);
             wheel = new MouseWheel(deviceNum);
             trackballAccel = TRACKBALL_RADIUS * TRACKBALL_INIT_FICTION / TRACKBALL_INERTIA;
             firstTouch = new Touch(0, 0, 0, null);
@@ -732,6 +732,19 @@ namespace DS4Windows
 
         private void synthesizeMouseButtons()
         {
+            TouchpadOutMode tempMode = Global.TouchOutMode[deviceNum];
+            if (tempMode != TouchpadOutMode.Passthru)
+            {
+                // Reset output Touchpad click button when
+                // not using Passthru mode on Touchpad
+                s.OutputTouchButton = false;
+            }
+            else
+            {
+                // Don't allow virtual buttons for Passthru mode
+                return;
+            }
+
             if (Global.GetDS4Action(deviceNum, DS4Controls.TouchLeft, false) == null && leftDown)
             {
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);

@@ -5,9 +5,11 @@ namespace DS4Windows
     public class MouseCursor
     {
         private readonly int deviceNumber;
-        public MouseCursor(int deviceNum)
+        private DS4Device.GyroMouseSens gyroMouseSensSettings;
+        public MouseCursor(int deviceNum, DS4Device.GyroMouseSens gyroMouseSens)
         {
             deviceNumber = deviceNum;
+            gyroMouseSensSettings = gyroMouseSens;
             filterPair.axis1Filter.MinCutoff = filterPair.axis2Filter.MinCutoff = GyroMouseInfo.DEFAULT_MINCUTOFF;
             filterPair.axis1Filter.Beta = filterPair.axis2Filter.Beta = GyroMouseInfo.DEFAULT_BETA;
             Global.GyroMouseInfo[deviceNum].SetRefreshEvents(filterPair.axis1Filter);
@@ -38,10 +40,7 @@ namespace DS4Windows
             verticalDirection = Direction.Neutral;
         private Direction hDirection = Direction.Neutral, vDirection = Direction.Neutral;
 
-        private const double GYRO_MOUSE_COEFFICIENT = 0.012;
         public const int GYRO_MOUSE_DEADZONE = 10;
-        private const double GYRO_MOUSE_OFFSET = 0.2;
-        private const double GYRO_SMOOTH_MOUSE_OFFSET = 0.2;
         private const double TOUCHPAD_MOUSE_OFFSET = 0.015;
 
         private const int SMOOTH_BUFFER_LEN = 3;
@@ -75,11 +74,11 @@ namespace DS4Windows
             gyroSmooth = tempInfo.enableSmoothing;
             double gyroSmoothWeight = 0.0;
 
-            coefficient = (Global.getGyroSensitivity(deviceNumber) * 0.01) * GYRO_MOUSE_COEFFICIENT;
-            double offset = GYRO_MOUSE_OFFSET;
+            coefficient = (Global.getGyroSensitivity(deviceNumber) * 0.01) * gyroMouseSensSettings.mouseCoefficient;
+            double offset = gyroMouseSensSettings.mouseOffset;
             if (gyroSmooth)
             {
-                offset = GYRO_SMOOTH_MOUSE_OFFSET;
+                offset = gyroMouseSensSettings.mouseSmoothOffset;
             }
 
             double tempAngle = Math.Atan2(-deltaY, deltaX);

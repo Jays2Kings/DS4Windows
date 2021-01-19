@@ -29,6 +29,8 @@ namespace DS4Windows
         public DS4Device[] DS4Controllers = new DS4Device[MAX_DS4_CONTROLLER_COUNT];
         public Mouse[] touchPad = new Mouse[MAX_DS4_CONTROLLER_COUNT];
         public bool running = false;
+        public bool loopControllers = true;
+        public bool inServiceTask = false;
         private DS4State[] MappedState = new DS4State[MAX_DS4_CONTROLLER_COUNT];
         private DS4State[] CurrentState = new DS4State[MAX_DS4_CONTROLLER_COUNT];
         private DS4State[] PreviousState = new DS4State[MAX_DS4_CONTROLLER_COUNT];
@@ -62,6 +64,8 @@ namespace DS4Windows
         private HashSet<string> hidguardAffectedDevs = new HashSet<string>();
         private HashSet<string> hidguardExemptedDevs = new HashSet<string>();
         private bool hidguardForced = false;
+        private ControlServiceDeviceOptions deviceOptions;
+        public ControlServiceDeviceOptions DeviceOptions { get => deviceOptions; }
 
         public event EventHandler ServiceStarted;
         public event EventHandler PreServiceStop;
@@ -217,12 +221,76 @@ namespace DS4Windows
             }
 
             outputslotMan = new OutputSlotManager();
+            deviceOptions = Global.DeviceOptions;
+
             DS4Devices.RequestElevation += DS4Devices_RequestElevation;
             DS4Devices.checkVirtualFunc = CheckForVirtualDevice;
             DS4Devices.PrepareDS4Init = PrepareDS4DeviceInit;
+            DS4Devices.PostDS4Init = PostDS4DeviceInit;
+            DS4Devices.PreparePendingDevice = CheckForSupportedDevice;
+            outputslotMan.ViGEmFailure += OutputslotMan_ViGEmFailure;
 
             Global.UDPServerSmoothingMincutoffChanged += ChangeUdpSmoothingAttrs;
             Global.UDPServerSmoothingBetaChanged += ChangeUdpSmoothingAttrs;
+        }
+
+        private void OutputslotMan_ViGEmFailure(object sender, EventArgs e)
+        {
+            eventDispatcher.BeginInvoke((Action)(() =>
+            {
+                loopControllers = false;
+                while (inServiceTask)
+                    Thread.SpinWait(1000);
+
+                LogDebug(DS4WinWPF.Translations.Strings.ViGEmPluginFailure, true);
+                Stop();
+            }));
+        }
+
+        public void PostDS4DeviceInit(DS4Device device)
+        {
+            if (device.DeviceType == InputDevices.InputDeviceType.DualSense)
+            {
+                InputDevices.DualSenseDevice tempDSDev = device as InputDevices.DualSenseDevice;
+                tempDSDev.UseRumble = deviceOptions.DualSenseOpts.EnableRumble;
+                tempDSDev.HapticChoice = deviceOptions.DualSenseOpts.HapticIntensity;
+            }
+            else if (device.DeviceType == InputDevices.InputDeviceType.SwitchPro)
+            {
+                InputDevices.SwitchProDevice tempSwitch = device as InputDevices.SwitchProDevice;
+                tempSwitch.EnableHomeLED = deviceOptions.SwitchProDeviceOpts.EnableHomeLED;
+            }
+            else if (device.DeviceType == InputDevices.InputDeviceType.JoyConL ||
+                device.DeviceType == InputDevices.InputDeviceType.JoyConR)
+            {
+                InputDevices.JoyConDevice tempJoy = device as InputDevices.JoyConDevice;
+                tempJoy.EnableHomeLED = deviceOptions.JoyConDeviceOpts.EnableHomeLED;
+            }
+        }
+
+        public bool CheckForSupportedDevice(HidDevice device, VidPidInfo metaInfo)
+        {
+            bool result = false;
+            switch (metaInfo.inputDevType)
+            {
+                case InputDevices.InputDeviceType.DS4:
+                    result = deviceOptions.DS4DeviceOpts.Enabled;
+                    break;
+                case InputDevices.InputDeviceType.DualSense:
+                    result = deviceOptions.DualSenseOpts.Enabled;
+                    break;
+                case InputDevices.InputDeviceType.SwitchPro:
+                    result = deviceOptions.SwitchProDeviceOpts.Enabled;
+                    break;
+                case InputDevices.InputDeviceType.JoyConL:
+                case InputDevices.InputDeviceType.JoyConR:
+                    result = deviceOptions.JoyConDeviceOpts.Enabled;
+                    break;
+                default:
+                    break;
+            }
+
+            return result;
         }
 
         public void PrepareDS4DeviceInit(DS4Device device)
@@ -868,6 +936,7 @@ namespace DS4Windows
 
         public bool Start(bool showlog = true)
         {
+            inServiceTask = true;
             startViGEm();
             if (vigemTestClient != null)
             //if (x360Bus.Open() && x360Bus.Start())
@@ -899,6 +968,7 @@ namespace DS4Windows
 
                 try
                 {
+                    loopControllers = true;
                     AssignInitialDevices();
 
                     eventDispatcher.Invoke(() =>
@@ -914,7 +984,7 @@ namespace DS4Windows
 
                     //for (int i = 0, devCount = devices.Count(); i < devCount; i++)
                     int i = 0;
-                    for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext(); i++)
+                    for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext() && loopControllers; i++)
                     {
                         DS4Device device = devEnum.Current;
                         //DS4Device device = devices.ElementAt(i);
@@ -1016,6 +1086,8 @@ namespace DS4Windows
                         }
 
                         TouchPadOn(i, device);
+                        device.DeviceSlotNumber = i;
+
                         CheckProfileOptions(i, device, true);
                         device.StartUpdate();
                         //string filename = ProfilePath[ind];
@@ -1069,6 +1141,7 @@ namespace DS4Windows
                 AppLogger.LogToTray(logMessage);
             }
 
+            inServiceTask = false;
             runHotPlug = true;
             ServiceStarted?.Invoke(this, EventArgs.Empty);
             RunningChanged?.Invoke(this, EventArgs.Empty);
@@ -1105,6 +1178,7 @@ namespace DS4Windows
             {
                 running = false;
                 runHotPlug = false;
+                inServiceTask = true;
                 PreServiceStop?.Invoke(this, EventArgs.Empty);
 
                 if (showlog)
@@ -1158,6 +1232,7 @@ namespace DS4Windows
                         //outputDevices[i] = null;
                         //useDInputOnly[i] = true;
                         //Global.activeOutDevType[i] = OutContType.None;
+                        useDInputOnly[i] = true;
                         DS4Controllers[i] = null;
                         touchPad[i] = null;
                         lag[i] = false;
@@ -1189,6 +1264,7 @@ namespace DS4Windows
                 }
 
                 stopViGEm();
+                inServiceTask = false;
             }
 
             runHotPlug = false;
@@ -1201,6 +1277,8 @@ namespace DS4Windows
         {
             if (running)
             {
+                inServiceTask = true;
+                loopControllers = true;
                 eventDispatcher.Invoke(() =>
                 {
                     DS4Devices.findControllers();
@@ -1210,7 +1288,7 @@ namespace DS4Windows
                 IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
                 //foreach (DS4Device device in devices)
                 //for (int i = 0, devlen = devices.Count(); i < devlen; i++)
-                for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext();)
+                for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext() && loopControllers;)
                 {
                     DS4Device device = devEnum.Current;
                     //DS4Device device = devices.ElementAt(i);
@@ -1333,6 +1411,8 @@ namespace DS4Windows
                             }
 
                             TouchPadOn(Index, device);
+                            device.DeviceSlotNumber = Index;
+
                             CheckProfileOptions(Index, device);
                             device.StartUpdate();
 
@@ -1342,6 +1422,8 @@ namespace DS4Windows
                         }
                     }
                 }
+
+                inServiceTask = false;
             }
 
             return true;
@@ -1694,7 +1776,11 @@ namespace DS4Windows
                     device.IsRemoved = true;
                     device.Synced = false;
                     DS4Controllers[ind] = null;
-                    slotManager.RemoveController(device, ind);
+                    eventDispatcher.Invoke(() =>
+                    {
+                        slotManager.RemoveController(device, ind);
+                    });
+
                     touchPad[ind] = null;
                     lag[ind] = false;
                     inWarnMonitor[ind] = false;

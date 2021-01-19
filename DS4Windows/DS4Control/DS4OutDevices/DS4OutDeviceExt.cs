@@ -59,7 +59,7 @@ namespace DS4Windows
                 if (state.Cross) tempButtons |= DualShock4Button.Cross.Value;
                 if (state.Square) tempButtons |= DualShock4Button.Square.Value;
                 if (state.PS) tempSpecial |= DualShock4SpecialButton.Ps.Value;
-                if (state.TouchButton) tempSpecial |= DualShock4SpecialButton.Touchpad.Value;
+                if (state.OutputTouchButton) tempSpecial |= DualShock4SpecialButton.Touchpad.Value;
 
                 outDS4Report.wButtons = tempButtons;
                 outDS4Report.bSpecial = (byte)tempSpecial;

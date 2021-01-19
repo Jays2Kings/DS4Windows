@@ -1,0 +1,45 @@
+﻿<Window x:Class="DS4WinWPF.DS4Forms.ControllerRegisterOptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
+        mc:Ignorable="d"
+        Title="Controller Type Options" Height="450" Width="800"
+        Style="{DynamicResource WindowStyle}">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+    <DockPanel x:Name="devOptionsDockPanel" Margin="4">
+        <StackPanel>
+            <CheckBox Content="DS4 Controller Support" IsChecked="{Binding DS4DeviceOpts.Enabled}" />
+            <CheckBox Content="DualSense Controller Support" IsChecked="{Binding DSDeviceOpts.Enabled}" />
+            <CheckBox Content="Switch Pro Controller Support" IsChecked="{Binding SwitchProDeviceOpts.Enabled}" />
+            <CheckBox Content="JoyCon Controller Support" IsChecked="{Binding JoyConDeviceOpts.Enabled}" />
+        </StackPanel>
+        <TabControl DockPanel.Dock="Right" Margin="40,4,4,4">
+            <TabItem x:Name="dualSenseOptsTabItem" Header="DualSense" Visibility="{Binding DSDeviceOpts.Enabled, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue='Collapsed'}">
+                <StackPanel Visibility="{Binding DSDeviceOpts.Enabled, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue='Collapsed'}" Margin="4">
+                    <CheckBox Content="Enable Rumble Emulation" IsChecked="{Binding DSDeviceOpts.EnableRumble, FallbackValue='False'}" />
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0" IsEnabled="{Binding DSDeviceOpts.EnableRumble}">
+                        <Label Content="Rumble Strength" ContentStringFormat="{}{0}:" />
+                        <ComboBox ItemsSource="{Binding Path=DSHapticOptions}" DisplayMemberPath="DisplayName" SelectedValuePath="ChoiceValue" SelectedValue="{Binding DSDeviceOpts.HapticIntensity}" Margin="8,0,0,0" />
+                    </StackPanel>
+
+                </StackPanel>
+            </TabItem>
+
+            <TabItem x:Name="switchProOptsTabItem" Header="Switch Pro" Visibility="{Binding SwitchProDeviceOpts.Enabled, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue='Collapsed'}">
+                <StackPanel Visibility="{Binding SwitchProDeviceOpts.Enabled, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue='Collapsed'}" Margin="4">
+                    <CheckBox Content="Enable Home LED" IsChecked="{Binding SwitchProDeviceOpts.EnableHomeLED, FallbackValue='False'}" />
+                </StackPanel>
+            </TabItem>
+
+            <TabItem x:Name="joyConOptsTabItem" Header="JoyCon" Visibility="{Binding JoyConDeviceOpts.Enabled, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue='Collapsed'}">
+                <StackPanel Visibility="{Binding JoyConDeviceOpts.Enabled, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue='Collapsed'}" Margin="4">
+                    <CheckBox Content="Enable Home LED" IsChecked="{Binding JoyConDeviceOpts.EnableHomeLED, FallbackValue='False'}" />
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

@@ -30,7 +30,6 @@ namespace DS4WinWPF.DS4Forms
         public DupBox()
         {
             InitializeComponent();
-            profileTxt.Text = "<" + Properties.Resources.TypeNewName + ">";
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
@@ -53,18 +52,6 @@ namespace DS4WinWPF.DS4Forms
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Cancel?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void ProfileTxt_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (profileTxt.Text == "<" + Properties.Resources.TypeNewName + ">")
-                profileTxt.Text = "";
-        }
-
-        private void ProfileTxt_MouseLeave(object sender, MouseEventArgs e)
-        {
-            if (profileTxt.Text == "")
-                profileTxt.Text = "<" + Properties.Resources.TypeNewName + ">";
         }
     }
 }

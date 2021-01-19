@@ -14,6 +14,14 @@
     <system:String x:Key="KeyUpImg">keyup.png</system:String>
     <system:String x:Key="KeyDownImg">keydown.png</system:String>
     <system:String x:Key="ClockImg">clock.png</system:String>
+    <system:String x:Key="DS4ConfigImg">DS4 Config.png</system:String>
+
+    <system:String x:Key="CopyImg">copy.png</system:String>
+    <system:String x:Key="DeleteImg">delete.png</system:String>
+    <system:String x:Key="EditImg">edit.png</system:String>
+    <system:String x:Key="ExportImg">export.png</system:String>
+    <system:String x:Key="ImportImg">import.png</system:String>
+    <system:String x:Key="NewProfileImg">newprofile.png</system:String>
 
     <Style x:Key="WindowStyle" TargetType="{x:Type Window}" />
 </ResourceDictionary>

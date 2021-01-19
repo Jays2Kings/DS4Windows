@@ -21,9 +21,11 @@ using System.IO;
 using System.Management;
 using NonFormTimer = System.Timers.Timer;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
+using HttpProgress;
+
 using DS4WinWPF.DS4Forms.ViewModels;
 using DS4Windows;
-using HttpProgress;
 using DS4WinWPF.Translations;
 
 namespace DS4WinWPF.DS4Forms
@@ -82,7 +84,14 @@ namespace DS4WinWPF.DS4Forms
 
             conLvViewModel = new ControllerListViewModel(App.rootHub, profileListHolder);
             controllerLV.DataContext = conLvViewModel;
+            controllerLV.ItemsSource = conLvViewModel.ControllerCol;
             ChangeControllerPanel();
+            // Sort device by input slot number
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(controllerLV.ItemsSource);
+            view.SortDescriptions.Clear();
+            view.SortDescriptions.Add(new SortDescription("DevIndex", ListSortDirection.Ascending));
+            view.Refresh();
+
             trayIconVM = new TrayIconViewModel(App.rootHub, profileListHolder);
             notifyIcon.DataContext = trayIconVM;
 
@@ -435,7 +444,8 @@ Suspend support not enabled.", true);
         private void SettingsWrapVM_AppChoiceIndexChanged(object sender, EventArgs e)
         {
             AppThemeChoice choice = Global.UseCurrentTheme;
-            App.ChangeTheme(choice);
+            App current = App.Current as App;
+            current.ChangeTheme(choice);
             trayIconVM.PopulateContextMenu();
         }
 
@@ -891,7 +901,10 @@ Suspend support not enabled.", true);
         private void ContStatusImg_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             CompositeDeviceModel item = conLvViewModel.CurrentItem;
-            item.RequestDisconnect();
+            if (item != null)
+            {
+                item.RequestDisconnect();
+            }
         }
 
         private void ExportLogBtn_Click(object sender, RoutedEventArgs e)
@@ -1663,6 +1676,52 @@ Suspend support not enabled.", true);
         {
             ChangelogWindow changelogWin = new ChangelogWindow();
             changelogWin.ShowDialog();
+        }
+
+        private void DeviceOptionSettingsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ControllerRegisterOptionsWindow optsWindow =
+                new ControllerRegisterOptionsWindow(Program.rootHub.DeviceOptions);
+
+            optsWindow.Owner = this;
+            optsWindow.Show();
+        }
+    }
+
+    class ImageLocationPaths
+    {
+        public string NewProfile { get => $"/DS4Windows;component/Resources/{App.Current.FindResource("NewProfileImg")}"; }
+        public event EventHandler NewProfileChanged;
+
+        public string EditProfile { get => $"/DS4Windows;component/Resources/{App.Current.FindResource("EditImg")}"; }
+        public event EventHandler EditProfileChanged;
+
+        public string DeleteProfile { get => $"/DS4Windows;component/Resources/{App.Current.FindResource("DeleteImg")}"; }
+        public event EventHandler DeleteProfileChanged;
+
+        public string DuplicateProfile { get => $"/DS4Windows;component/Resources/{App.Current.FindResource("CopyImg")}"; }
+        public event EventHandler DuplicateProfileChanged;
+
+        public string ExportProfile { get => $"/DS4Windows;component/Resources/{App.Current.FindResource("ExportImg")}"; }
+        public event EventHandler ExportProfileChanged;
+
+        public string ImportProfile { get => $"/DS4Windows;component/Resources/{App.Current.FindResource("ImportImg")}"; }
+        public event EventHandler ImportProfileChanged;
+
+        public ImageLocationPaths()
+        {
+            App current = App.Current as App;
+            current.ThemeChanged += Current_ThemeChanged;
+        }
+
+        private void Current_ThemeChanged(object sender, EventArgs e)
+        {
+            NewProfileChanged?.Invoke(this, EventArgs.Empty);
+            EditProfileChanged?.Invoke(this, EventArgs.Empty);
+            DeleteProfileChanged?.Invoke(this, EventArgs.Empty);
+            DuplicateProfileChanged?.Invoke(this, EventArgs.Empty);
+            ExportProfileChanged?.Invoke(this, EventArgs.Empty);
+            ImportProfileChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

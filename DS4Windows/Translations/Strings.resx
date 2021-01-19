@@ -436,4 +436,7 @@ Example: whyme_DS4Windows</value>
   <data name="RealWorldCalibration" xml:space="preserve">
     <value>Real World Calibration</value>
   </data>
+  <data name="ViGEmPluginFailure" xml:space="preserve">
+    <value>ViGEm Device Plugin Failed. Closing connection.</value>
+  </data>
 </root>

@@ -10,7 +10,7 @@ namespace DS4Windows
         public bool DpadUp, DpadDown, DpadLeft, DpadRight;
         public bool L1, L2Btn, L3, R1, R2Btn, R3;
         public bool Share, Options, PS, Mute, Touch1, Touch2, TouchButton, TouchRight,
-            TouchLeft, Touch1Finger, Touch2Fingers;
+            TouchLeft, Touch1Finger, Touch2Fingers, OutputTouchButton;
         public byte Touch1Identifier, Touch2Identifier;
         public byte LX, RX, LY, RY, L2, R2;
         public byte FrameCounter; // 0, 1, 2...62, 63, 0....
@@ -49,7 +49,7 @@ namespace DS4Windows
             Square = Triangle = Circle = Cross = false;
             DpadUp = DpadDown = DpadLeft = DpadRight = false;
             L1 = L2Btn = L3 = R1 = R2Btn = R3 = false;
-            Share = Options = PS = Mute = Touch1 = Touch2 = TouchButton = TouchRight = TouchLeft = false;
+            Share = Options = PS = Mute = Touch1 = Touch2 = TouchButton = OutputTouchButton = TouchRight = TouchLeft = false;
             Touch1Finger = Touch2Fingers = false;
             LX = RX = LY = RY = 128;
             L2 = R2 = 0;
@@ -104,6 +104,7 @@ namespace DS4Windows
             Touch2 = state.Touch2;
             Touch2Identifier = state.Touch2Identifier;
             TouchButton = state.TouchButton;
+            OutputTouchButton = state.OutputTouchButton;
             TouchPacketCounter = state.TouchPacketCounter;
             Touch1Finger = state.Touch1Finger;
             Touch2Fingers = state.Touch2Fingers;
@@ -166,6 +167,7 @@ namespace DS4Windows
             state.TouchLeft = TouchLeft;
             state.TouchRight = TouchRight;
             state.TouchButton = TouchButton;
+            state.OutputTouchButton = OutputTouchButton;
             state.TouchPacketCounter = TouchPacketCounter;
             state.Touch1Finger = Touch1Finger;
             state.Touch2Fingers = Touch2Fingers;

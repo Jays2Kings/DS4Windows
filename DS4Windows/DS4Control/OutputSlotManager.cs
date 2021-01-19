@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -59,6 +60,8 @@ namespace DS4Windows
         public delegate void SlotUnassignedDelegate(OutputSlotManager sender,
             int slotNum, OutSlotDevice outSlotDev);
         public event SlotUnassignedDelegate SlotUnassigned;
+
+        public event EventHandler ViGEmFailure;
 
         public OutputSlotManager()
         {
@@ -135,7 +138,17 @@ namespace DS4Windows
                 int slot = FindEmptySlot();
                 if (slot != -1)
                 {
-                    outputDevice.Connect();
+                    try
+                    {
+                        outputDevice.Connect();
+                    }
+                    catch (Win32Exception)
+                    {
+                        // Leave task immediately if connect call failed
+                        ViGEmFailure?.Invoke(this, EventArgs.Empty);
+                        return;
+                    }
+
                     outputDevices[slot] = outputDevice;
                     deviceDict.Add(slot, outputDevice);
                     revDeviceDict.Add(outputDevice, slot);

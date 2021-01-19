@@ -1214,6 +1214,7 @@ namespace DS4Windows.InputDevices
 
         private void CalculateDeviceSlotMask()
         {
+            // Map 1-15 as a set of 4 LED lights
             switch (deviceSlotNumber)
             {
                 case 0:
@@ -1231,8 +1232,34 @@ namespace DS4Windows.InputDevices
                 case 6:
                     deviceSlotMask = 0x01 | 0x08;
                     break;
+
                 case 7:
-                    deviceSlotMask = 0x01 | 0x10;
+                    deviceSlotMask = 0x02 | 0x04;
+                    break;
+                case 8:
+                    deviceSlotMask = 0x02 | 0x08;
+                    break;
+
+                case 9:
+                    deviceSlotMask = 0x04 | 0x08;
+                    break;
+
+                case 10:
+                    deviceSlotMask = 0x01 | 0x02 | 0x04;
+                    break;
+                case 11:
+                    deviceSlotMask = 0x01 | 0x02 | 0x08;
+                    break;
+                case 12:
+                    deviceSlotMask = 0x01 | 0x04 | 0x08;
+                    break;
+
+                case 13:
+                    deviceSlotMask = 0x02 | 0x04 | 0x08;
+                    break;
+
+                case 14:
+                    deviceSlotMask = 0x01 | 0x02 | 0x04 | 0x08;
                     break;
                 default:
                     deviceSlotMask = 0x00;

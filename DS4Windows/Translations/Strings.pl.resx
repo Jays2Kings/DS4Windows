@@ -153,16 +153,16 @@
     <value>Anuluj</value>
   </data>
   <data name="CheckUpdateNow" xml:space="preserve">
-    <value>Sprawdź aktualizacje teraz</value>
+    <value>Sprawdź aktualizacje</value>
   </data>
   <data name="CheckUpdateStartup" xml:space="preserve">
-    <value>Sprawdź aktualizacje podczas uruchamiania programu</value>
+    <value>Sprawdzaj aktualizacje przy uruchamianiu programu</value>
   </data>
   <data name="Clear" xml:space="preserve">
     <value>Wyczyść</value>
   </data>
   <data name="CloseMinimizes" xml:space="preserve">
-    <value>Zamknięcie minimalizuje program</value>
+    <value>Minimalizuj program po zamknięciu</value>
   </data>
   <data name="Color" xml:space="preserve">
     <value>Kolor</value>
@@ -386,7 +386,7 @@ Przykład: 1_DS4Windows</value>
     <value>Klawiatura i mysz</value>
   </data>
   <data name="KBMPresetDescription" xml:space="preserve">
-    <value>Mapuje kontroler jako klawiaturę i myszkę. Użyteczne w przypadku gier FPS bez wsparcia dla kontrolerów..</value>
+    <value>Mapuje kontroler jako klawiaturę i myszkę. Użyteczne w przypadku gier FPS bez wsparcia dla kontrolerów.</value>
   </data>
   <data name="KBMPresetName" xml:space="preserve">
     <value>Klawiatura i mysz - przyciski</value>
@@ -422,7 +422,7 @@ Przykład: 1_DS4Windows</value>
     <value>Profile</value>
   </data>
   <data name="NoControllersConnected" xml:space="preserve">
-    <value>Brak podłączonych kontrolerów (Max {0})</value>
+    <value>Brak podłączonych kontrolerów (Maks. {0})</value>
   </data>
   <data name="FlickThreshold" xml:space="preserve">
     <value>Próg szybkiego ruchu</value>
@@ -435,5 +435,8 @@ Przykład: 1_DS4Windows</value>
   </data>
   <data name="RealWorldCalibration" xml:space="preserve">
     <value>Kalibracja w świecie rzeczywistym</value>
+  </data>
+  <data name="ViGEmPluginFailure" xml:space="preserve">
+    <value>Wystąpił problem z wtyczką ViGEm. Zamykanie połączenia.</value>
   </data>
 </root>

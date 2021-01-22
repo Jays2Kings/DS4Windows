@@ -97,6 +97,13 @@ namespace DS4Windows
             eventDispatchThread = null;
         }
 
+        public void Stop()
+        {
+            UnplugRemainingControllers();
+            deviceDict.Clear();
+            revDeviceDict.Clear();
+        }
+
         public OutputDevice AllocateController(OutContType contType, ViGEmClient client)
         {
             OutputDevice outputDevice = null;
@@ -177,7 +184,8 @@ namespace DS4Windows
             }));
         }
 
-        public void DeferredRemoval(OutputDevice outputDevice, int inIdx, OutputDevice[] outdevs, bool immediate = false)
+        public void DeferredRemoval(OutputDevice outputDevice, int inIdx,
+            OutputDevice[] outdevs, bool immediate = false)
         {
             Action tempAction = new Action(() =>
             {
@@ -288,6 +296,34 @@ namespace DS4Windows
             }
 
             return temp;
+        }
+
+        public void UnplugRemainingControllers()
+        {
+            Action tempAction = new Action(() =>
+            {
+                foreach (OutSlotDevice device in outputSlots)
+                {
+                    if (device.CurrentAttachedStatus ==
+                        OutSlotDevice.AttachedStatus.Attached)
+                    {
+                        device.DetachDevice();
+                        Task.Delay(DELAY_TIME).Wait();
+                    }
+                }
+            });
+
+            queueLocker.EnterWriteLock();
+            queuedTasks++;
+            queueLocker.ExitWriteLock();
+
+            eventDispatcher.BeginInvoke((Action)(() =>
+            {
+                tempAction.Invoke();
+                queueLocker.EnterWriteLock();
+                queuedTasks--;
+                queueLocker.ExitWriteLock();
+            }));
         }
     }
 }

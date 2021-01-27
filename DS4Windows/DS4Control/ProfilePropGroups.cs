@@ -480,6 +480,22 @@ namespace DS4Windows
         FlickStick,
     }
 
+    public enum TriggerMode : uint
+    {
+        Normal,
+        TwoStage,
+    }
+
+    public enum TwoStageTriggerMode : uint
+    {
+        Disabled,
+        Normal,
+        ExclusiveButtons,
+        HairTrigger,
+        HipFire,
+        HipFireExclusiveButtons,
+    }
+
     public class FlickStickSettings
     {
         public const double DEFAULT_FLICK_THRESHOLD = 0.9;
@@ -579,6 +595,23 @@ namespace DS4Windows
             mode = StickMode.Controls;
             outputSettings.controlSettings.Reset();
             outputSettings.flickSettings.Reset();
+        }
+    }
+
+    public class TriggerOutputSettings
+    {
+        private const TwoStageTriggerMode DEFAULT_TRIG_MODE = TwoStageTriggerMode.Disabled;
+        private const int DEFAULT_HIP_TIME = 100;
+
+        //public TriggerMode mode = TriggerMode.Normal;
+        public TwoStageTriggerMode twoStageMode = DEFAULT_TRIG_MODE;
+        public int hipFireMS = DEFAULT_HIP_TIME;
+
+        public void ResetSettings()
+        {
+            //mode = TriggerMode.Normal;
+            twoStageMode = DEFAULT_TRIG_MODE;
+            hipFireMS = DEFAULT_HIP_TIME;
         }
     }
 }

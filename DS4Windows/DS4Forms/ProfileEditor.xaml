@@ -553,6 +553,9 @@
                                     <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
                                     <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
                                     <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
+                                    <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
+                                    <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
+                                    <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
                                 </Grid.RowDefinitions>
 
                                 <Grid.ColumnDefinitions>
@@ -628,6 +631,33 @@
                                     <TextBox Text="{Binding R2CustomCurve,FallbackValue='0.00, 0.00, 1.00, 1.00'}" DockPanel.Dock="Left"
                                              Margin="{StaticResource spaceMargin}" />
                                 </DockPanel>
+
+                                <Label Content="Two Stage Mode:" Grid.Row="8" Grid.Column="0" />
+                                <ComboBox Grid.Row="8" Grid.Column="1" ItemsSource="{Binding Path=TwoStageModeChoices}"
+                                          DisplayMemberPath="DisplayName" SelectedValuePath="Mode" SelectedValue="{Binding L2TriggerMode}" Margin="{StaticResource spaceMargin}" />
+
+                                <ComboBox Grid.Row="8" Grid.Column="2" ItemsSource="{Binding Path=TwoStageModeChoices}"
+                                          DisplayMemberPath="DisplayName" SelectedValuePath="Mode" SelectedValue="{Binding R2TriggerMode}" Margin="{StaticResource spaceMargin}" />
+
+                                <Label Content="Full Pull Btn:" Grid.Row="9" Grid.Column="0" />
+                                <DockPanel Grid.Row="9" Grid.Column="1">
+                                    <Button Content="Full" MinWidth="40" Tag="{Binding L2FullPull, Source={StaticResource controlIndexCheck}}" Click="TriggerFullPullBtn_Click"
+                                            Margin="{StaticResource spaceMargin}" />
+                                    <Label x:Name="l2FullPullLb" Content="{Binding MappingName,FallbackValue=Unassigned}"
+                                           Margin="{StaticResource spaceMargin}"/>
+                                </DockPanel>
+                                <DockPanel Grid.Row="9" Grid.Column="2">
+                                    <Button Content="Full" MinWidth="40" Tag="{Binding R2FullPull, Source={StaticResource controlIndexCheck}}" Click="TriggerFullPullBtn_Click"
+                                            Margin="{StaticResource spaceMargin}" />
+                                    <Label x:Name="r2FullPullLb" Content="{Binding MappingName,FallbackValue=Unassigned}"
+                                           Margin="{StaticResource spaceMargin}" />
+                                </DockPanel>
+
+                                <Label Content="Hip Fire Delay:" Grid.Row="10" Grid.Column="0" />
+                                <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding L2HipFireTime}" MinWidth="50" Grid.Row="10" Grid.Column="1" Maximum="5000" Minimum="0" Increment="10"
+                                                   Margin="{StaticResource spaceMargin}" />
+                                <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding R2HipFireTime}" MinWidth="50" Grid.Row="10" Grid.Column="2" Maximum="5000" Minimum="0" Increment="10"
+                                                   Margin="{StaticResource spaceMargin}" />
                             </Grid>
                         </GroupBox>
 

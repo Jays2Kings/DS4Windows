@@ -20,7 +20,7 @@ namespace DS4Windows
     [Flags]
     public enum DS4KeyType : byte { None = 0, ScanCode = 1, Toggle = 2, Unbound = 4, Macro = 8, HoldMacro = 16, RepeatMacro = 32 }; // Increment by exponents of 2*, starting at 2^0
     public enum Ds3PadId : byte { None = 0xFF, One = 0x00, Two = 0x01, Three = 0x02, Four = 0x03, All = 0x04 };
-    public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options, Mute, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown };
+    public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options, Mute, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown, L2FullPull, R2FullPull };
     public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, TouchpadClick, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, Unbound };
 
     public enum SASteeringWheelEmulationAxisType: byte { None = 0, LX, LY, RX, RY, L2R2, VJoy1X, VJoy1Y, VJoy1Z, VJoy2X, VJoy2Y, VJoy2Z };
@@ -131,7 +131,9 @@ namespace DS4Windows
         public List<DS4ControlSettings> LS = new List<DS4ControlSettings>();
         public List<DS4ControlSettings> RS = new List<DS4ControlSettings>();
         public DS4ControlSettings L2;
+        public DS4ControlSettings L2FullPull;
         public DS4ControlSettings R2;
+        public DS4ControlSettings R2FullPull;
 
         public List<DS4ControlSettings> ControlButtons =
             new List<DS4ControlSettings>();
@@ -150,6 +152,9 @@ namespace DS4Windows
 
             L2 = settingsList[(int)DS4Controls.L2-1];
             R2 = settingsList[(int)DS4Controls.R2-1];
+
+            L2FullPull = settingsList[(int)DS4Controls.L2FullPull - 1];
+            R2FullPull = settingsList[(int)DS4Controls.R2FullPull - 1];
 
             ControlButtons.Add(settingsList[(int)DS4Controls.L1-1]);
             ControlButtons.Add(settingsList[(int)DS4Controls.L3-1]);
@@ -444,6 +449,8 @@ namespace DS4Windows
             X360Controls.None, // DS4Controls.SwipeRight
             X360Controls.None, // DS4Controls.SwipeUp
             X360Controls.None, // DS4Controls.SwipeDown
+            X360Controls.None, // DS4Controls.L2FullPull
+            X360Controls.None, // DS4Controls.R2FullPull
         };
 
         // Create mapping array at runtime
@@ -602,6 +609,8 @@ namespace DS4Windows
             [DS4Controls.SwipeRight] = "Swipe Right",
             [DS4Controls.SwipeUp] = "Swipe Up",
             [DS4Controls.SwipeDown] = "Swipe Down",
+            [DS4Controls.L2FullPull] = "L2 Full Pull",
+            [DS4Controls.R2FullPull] = "R2 Full Pull",
         };
 
         public static Dictionary<DS4Controls, int> macroDS4Values = new Dictionary<DS4Controls, int>()
@@ -1835,6 +1844,9 @@ namespace DS4Windows
         public static StickOutputSetting[] LSOutputSettings => m_Config.lsOutputSettings;
         public static StickOutputSetting[] RSOutputSettings => m_Config.rsOutputSettings;
 
+        public static TriggerOutputSettings[] L2OutputSettings => m_Config.l2OutputSettings;
+        public static TriggerOutputSettings[] R2OutputSettings => m_Config.r2OutputSettings;
+
         public static void setLsOutCurveMode(int index, int value)
         {
             m_Config.setLsOutCurveMode(index, value);
@@ -2424,6 +2436,20 @@ namespace DS4Windows
             new StickOutputSetting(), new StickOutputSetting(), new StickOutputSetting(),
             new StickOutputSetting(), new StickOutputSetting(), new StickOutputSetting(),
             new StickOutputSetting(), new StickOutputSetting(), new StickOutputSetting(),
+        };
+
+        public TriggerOutputSettings[] l2OutputSettings = new TriggerOutputSettings[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            new TriggerOutputSettings(), new TriggerOutputSettings(), new TriggerOutputSettings(),
+            new TriggerOutputSettings(), new TriggerOutputSettings(), new TriggerOutputSettings(),
+            new TriggerOutputSettings(), new TriggerOutputSettings(), new TriggerOutputSettings(),
+        };
+
+        public TriggerOutputSettings[] r2OutputSettings = new TriggerOutputSettings[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            new TriggerOutputSettings(), new TriggerOutputSettings(), new TriggerOutputSettings(),
+            new TriggerOutputSettings(), new TriggerOutputSettings(), new TriggerOutputSettings(),
+            new TriggerOutputSettings(), new TriggerOutputSettings(), new TriggerOutputSettings(),
         };
 
         public SteeringWheelSmoothingInfo[] wheelSmoothInfo = new SteeringWheelSmoothingInfo[Global.TEST_PROFILE_ITEM_COUNT]
@@ -3186,6 +3212,9 @@ namespace DS4Windows
 
                 XmlNode xmlL2OutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "L2OutputCurveMode", null); xmlL2OutputCurveMode.InnerText = axisOutputCurveString(getL2OutCurveMode(device)); rootElement.AppendChild(xmlL2OutputCurveMode);
                 XmlNode xmlL2OutputCurveCustom = m_Xdoc.CreateNode(XmlNodeType.Element, "L2OutputCurveCustom", null); xmlL2OutputCurveCustom.InnerText = l2OutBezierCurveObj[device].ToString(); rootElement.AppendChild(xmlL2OutputCurveCustom);
+
+                XmlNode xmlL2TwoStageMode = m_Xdoc.CreateNode(XmlNodeType.Element, "L2TwoStageMode", null); xmlL2TwoStageMode.InnerText = l2OutputSettings[device].twoStageMode.ToString(); rootElement.AppendChild(xmlL2TwoStageMode);
+                XmlNode xmlR2TwoStageMode = m_Xdoc.CreateNode(XmlNodeType.Element, "R2TwoStageMode", null); xmlR2TwoStageMode.InnerText = r2OutputSettings[device].twoStageMode.ToString(); rootElement.AppendChild(xmlR2TwoStageMode);
 
                 XmlNode xmlR2OutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "R2OutputCurveMode", null); xmlR2OutputCurveMode.InnerText = axisOutputCurveString(getR2OutCurveMode(device)); rootElement.AppendChild(xmlR2OutputCurveMode);
                 XmlNode xmlR2OutputCurveCustom = m_Xdoc.CreateNode(XmlNodeType.Element, "R2OutputCurveCustom", null); xmlR2OutputCurveCustom.InnerText = r2OutBezierCurveObj[device].ToString(); rootElement.AppendChild(xmlR2OutputCurveCustom);
@@ -4595,10 +4624,50 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2OutputCurveMode"); setL2OutCurveMode(device, axisOutputCurveId(Item.InnerText)); }
                 catch { setL2OutCurveMode(device, 0); missingSetting = true; }
 
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2TwoStageMode");
+                    if (Enum.TryParse(Item?.InnerText, out TwoStageTriggerMode tempMode))
+                    {
+                        l2OutputSettings[device].twoStageMode = tempMode;
+                    }
+                }
+                catch { }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2HipFireDelay");
+                    if (int.TryParse(Item?.InnerText, out int temp))
+                    {
+                        l2OutputSettings[device].hipFireMS = Math.Max(Math.Min(0, temp), 5000);
+                    }
+                }
+                catch { }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2OutputCurveCustom"); r2OutBezierCurveObj[device].CustomDefinition = Item.InnerText; }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2OutputCurveMode"); setR2OutCurveMode(device, axisOutputCurveId(Item.InnerText)); }
                 catch { setR2OutCurveMode(device, 0); missingSetting = true; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2TwoStageMode");
+                    if (Enum.TryParse(Item?.InnerText, out TwoStageTriggerMode tempMode))
+                    {
+                        r2OutputSettings[device].twoStageMode = tempMode;
+                    }
+                }
+                catch { }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2HipFireDelay");
+                    if (int.TryParse(Item?.InnerText, out int temp))
+                    {
+                        r2OutputSettings[device].hipFireMS = Math.Max(Math.Min(0, temp), 5000);
+                    }
+                }
+                catch { }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXOutputCurveCustom"); sxOutBezierCurveObj[device].CustomDefinition = Item.InnerText; }
                 catch { missingSetting = true; }
@@ -6085,6 +6154,7 @@ namespace DS4Windows
             l2ModInfo[device].antiDeadZone = r2ModInfo[device].antiDeadZone = 0;
             l2ModInfo[device].maxZone = r2ModInfo[device].maxZone = 100;
             l2ModInfo[device].maxOutput = r2ModInfo[device].maxOutput = 100.0;
+
             LSRotation[device] = 0.0;
             RSRotation[device] = 0.0;
             SXDeadzone[device] = SZDeadzone[device] = 0.25;
@@ -6101,6 +6171,8 @@ namespace DS4Windows
 
             lsOutputSettings[device].ResetSettings();
             rsOutputSettings[device].ResetSettings();
+            l2OutputSettings[device].ResetSettings();
+            r2OutputSettings[device].ResetSettings();
 
             LightbarSettingInfo lightbarSettings = lightbarSettingInfo[device];
             LightbarDS4WinInfo lightInfo = lightbarSettings.ds4winSettings;

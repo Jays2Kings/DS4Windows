@@ -31,6 +31,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private Dictionary<DS4Controls, MappedControl> controlMap = new Dictionary<DS4Controls, MappedControl>();
         public Dictionary<DS4Controls, MappedControl> ControlMap { get => controlMap; }
 
+        private MappedControl l2FullPullControl;
+        public MappedControl L2FullPullControl { get => l2FullPullControl; }
+
+        private MappedControl r2FullPullControl;
+        public MappedControl R2FullPullControl { get => r2FullPullControl; }
+
+        private List<MappedControl> extraControls = new List<MappedControl>();
+
         public MappingListViewModel(int devIndex, OutContType devType)
         {
             mappings.Add(new MappedControl(devIndex, DS4Controls.Cross, "Cross",  devType));
@@ -80,6 +88,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             {
                 controlMap.Add(mapped.Control, mapped);
             }
+
+            l2FullPullControl = new MappedControl(devIndex, DS4Controls.L2FullPull, "L2 Full Pull", devType);
+            r2FullPullControl = new MappedControl(devIndex, DS4Controls.R2FullPull, "R2 Full Pull", devType);
+
+            extraControls.Add(l2FullPullControl);
+            extraControls.Add(R2FullPullControl);
+            controlMap.Add(DS4Controls.L2FullPull, l2FullPullControl);
+            controlMap.Add(DS4Controls.R2FullPull, R2FullPullControl);
         }
 
         public void UpdateMappingDevType(OutContType devType)
@@ -88,11 +104,21 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             {
                 mapped.DevType = devType;
             }
+
+            foreach(MappedControl mapped in extraControls)
+            {
+                mapped.DevType = devType;
+            }
         }
 
         public void UpdateMappings()
         {
             foreach (MappedControl mapped in mappings)
+            {
+                mapped.UpdateMappingName();
+            }
+
+            foreach (MappedControl mapped in extraControls)
             {
                 mapped.UpdateMappingName();
             }

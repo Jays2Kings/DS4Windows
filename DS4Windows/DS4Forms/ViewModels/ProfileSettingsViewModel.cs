@@ -1278,10 +1278,10 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             get => Global.L2OutputSettings[device].twoStageMode;
             set
             {
-                TwoStageTriggerMode temp = Global.L2OutputSettings[device].twoStageMode;
+                TwoStageTriggerMode temp = Global.L2OutputSettings[device].TwoStageMode;
                 if (temp == value) return;
 
-                Global.L2OutputSettings[device].twoStageMode = value;
+                Global.L2OutputSettings[device].TwoStageMode = value;
                 L2TriggerModeChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -1289,10 +1289,10 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public TwoStageTriggerMode R2TriggerMode
         {
-            get => Global.R2OutputSettings[device].twoStageMode;
+            get => Global.R2OutputSettings[device].TwoStageMode;
             set
             {
-                TwoStageTriggerMode temp = Global.R2OutputSettings[device].twoStageMode;
+                TwoStageTriggerMode temp = Global.R2OutputSettings[device].TwoStageMode;
                 if (temp == value) return;
 
                 Global.R2OutputSettings[device].twoStageMode = value;

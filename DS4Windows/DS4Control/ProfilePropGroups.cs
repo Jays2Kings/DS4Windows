@@ -605,12 +605,24 @@ namespace DS4Windows
 
         //public TriggerMode mode = TriggerMode.Normal;
         public TwoStageTriggerMode twoStageMode = DEFAULT_TRIG_MODE;
+        public TwoStageTriggerMode TwoStageMode
+        {
+            get => twoStageMode;
+            set
+            {
+                if (twoStageMode == value) return;
+                twoStageMode = value;
+                TwoStageModeChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
         public int hipFireMS = DEFAULT_HIP_TIME;
+
+        public event EventHandler TwoStageModeChanged;
 
         public void ResetSettings()
         {
             //mode = TriggerMode.Normal;
-            twoStageMode = DEFAULT_TRIG_MODE;
+            TwoStageMode = DEFAULT_TRIG_MODE;
             hipFireMS = DEFAULT_HIP_TIME;
         }
     }

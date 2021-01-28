@@ -206,6 +206,17 @@ namespace DS4Windows
                 TempState[i] = new DS4State();
                 PreviousState[i] = new DS4State();
                 ExposedState[i] = new DS4StateExposed(CurrentState[i]);
+
+                int tempDev = i;
+                Global.L2OutputSettings[i].TwoStageModeChanged += (sender, e) =>
+                {
+                    Mapping.l2TwoStageMappingData[tempDev].Reset();
+                };
+
+                Global.R2OutputSettings[i].TwoStageModeChanged += (sender, e) =>
+                {
+                    Mapping.r2TwoStageMappingData[tempDev].Reset();
+                };
             }
 
             outputslotMan = new OutputSlotManager();

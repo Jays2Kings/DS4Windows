@@ -249,7 +249,7 @@ namespace DS4Windows
             public bool outputActive;
             public bool softPullActActive;
             public bool fullPullActActive;
-            public EngageButtonsMode actionStateMode;
+            public EngageButtonsMode actionStateMode = EngageButtonsMode.Both;
 
             public void StartProcessing()
             {
@@ -258,6 +258,7 @@ namespace DS4Windows
                 outputActive = false;
                 softPullActActive = false;
                 fullPullActActive = false;
+                actionStateMode = EngageButtonsMode.Both;
             }
 
             public void Reset()
@@ -267,7 +268,7 @@ namespace DS4Windows
                 outputActive = false;
                 softPullActActive = false;
                 fullPullActActive = false;
-                actionStateMode = EngageButtonsMode.None;
+                actionStateMode = EngageButtonsMode.Both;
             }
         }
 
@@ -2027,10 +2028,10 @@ namespace DS4Windows
                     {
                         triggerData.Reset();
                     }
-                    else if (triggerData.outputActive)
-                    {
-                        //Console.WriteLine(triggerValue);
-                    }
+                    //else if (triggerData.outputActive)
+                    //{
+                    //    Console.WriteLine(triggerValue);
+                    //}
 
                     break;
 
@@ -2071,9 +2072,13 @@ namespace DS4Windows
                         {
                             dcsFullPull = fullPull;
                             triggerData.fullPullActActive = true;
+                            if (triggerData.actionStateMode == TwoStageTriggerMappingData.EngageButtonsMode.Both)
+                            {
+                                dcsTemp = softPull;
+                            }
                         }
-                        else if (triggerValue != 0 &&
-                            triggerData.actionStateMode == TwoStageTriggerMappingData.EngageButtonsMode.Both)
+                        else if (triggerValue != 0 && triggerData.actionStateMode ==
+                            TwoStageTriggerMappingData.EngageButtonsMode.Both)
                         {
                             triggerData.fullPullActActive = false;
 

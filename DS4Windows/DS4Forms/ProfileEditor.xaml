@@ -554,7 +554,7 @@
                                     <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
                                     <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
                                     <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
-                                    <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
                                     <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
                                 </Grid.RowDefinitions>
 
@@ -642,15 +642,15 @@
                                 <Label Content="Full Pull Btn:" Grid.Row="9" Grid.Column="0" />
                                 <DockPanel Grid.Row="9" Grid.Column="1">
                                     <Button Content="Full" MinWidth="40" Tag="{Binding L2FullPull, Source={StaticResource controlIndexCheck}}" Click="TriggerFullPullBtn_Click"
-                                            Margin="{StaticResource spaceMargin}" />
+                                            Margin="{StaticResource spaceMargin}" DockPanel.Dock="Top" />
                                     <Label x:Name="l2FullPullLb" Content="{Binding MappingName,FallbackValue=Unassigned}"
-                                           Margin="{StaticResource spaceMargin}"/>
+                                           Margin="{StaticResource spaceMargin}" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
                                 </DockPanel>
                                 <DockPanel Grid.Row="9" Grid.Column="2">
                                     <Button Content="Full" MinWidth="40" Tag="{Binding R2FullPull, Source={StaticResource controlIndexCheck}}" Click="TriggerFullPullBtn_Click"
-                                            Margin="{StaticResource spaceMargin}" />
+                                            Margin="{StaticResource spaceMargin}" DockPanel.Dock="Top" />
                                     <Label x:Name="r2FullPullLb" Content="{Binding MappingName,FallbackValue=Unassigned}"
-                                           Margin="{StaticResource spaceMargin}" />
+                                           Margin="{StaticResource spaceMargin}" HorizontalAlignment="Center" DockPanel.Dock="Top" />
                                 </DockPanel>
 
                                 <Label Content="Hip Fire Delay:" Grid.Row="10" Grid.Column="0" />

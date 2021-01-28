@@ -622,8 +622,9 @@ namespace DS4Windows
         public void ResetSettings()
         {
             //mode = TriggerMode.Normal;
-            TwoStageMode = DEFAULT_TRIG_MODE;
+            twoStageMode = DEFAULT_TRIG_MODE;
             hipFireMS = DEFAULT_HIP_TIME;
+            TwoStageModeChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

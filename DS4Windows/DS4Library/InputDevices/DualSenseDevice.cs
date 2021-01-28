@@ -48,6 +48,62 @@ namespace DS4Windows.InputDevices
             public new const int LY = InputReportDataBytes.LY + REPORT_OFFSET;
         }
 
+        public struct TriggerEffectData
+        {
+            public byte triggerMotorMode;
+            public byte triggerStartResistance;
+            public byte triggerEffectForce;
+            public byte triggerRangeForce;
+            public byte triggerNearReleaseStrength;
+            public byte triggerNearMiddleStrength;
+            public byte triggerPressedStrength;
+            public byte triggerActuationFrequency;
+
+            public void ChangeData(TriggerEffects effect)
+            {
+                switch (effect)
+                {
+                    case TriggerEffects.None:
+                        triggerMotorMode = triggerStartResistance = triggerEffectForce =
+                            triggerRangeForce = triggerNearReleaseStrength = triggerNearMiddleStrength =
+                            triggerPressedStrength = triggerActuationFrequency = 0;
+                        break;
+                    case TriggerEffects.FullClick:
+                        triggerMotorMode = 0x02;
+                        triggerStartResistance = 0xAA;
+                        triggerEffectForce = 0xB4;
+                        triggerRangeForce = 0xFF;
+                        triggerNearReleaseStrength = 0x00;
+                        triggerNearMiddleStrength = 0x00;
+                        triggerPressedStrength = 0x00;
+                        triggerActuationFrequency = 0x00;
+                        break;
+                    case TriggerEffects.Rigid:
+                        triggerMotorMode = 0x01;
+                        triggerStartResistance = 0x00;
+                        triggerEffectForce = 0x00;
+                        triggerRangeForce = 0x00;
+                        triggerNearReleaseStrength = 0x00;
+                        triggerNearMiddleStrength = 0x00;
+                        triggerPressedStrength = 0x00;
+                        triggerActuationFrequency = 0x00;
+                        break;
+                    case TriggerEffects.Pulse:
+                        triggerMotorMode = 0x02;
+                        triggerStartResistance = 0x00;
+                        triggerEffectForce = 0x00;
+                        triggerRangeForce = 0x00;
+                        triggerNearReleaseStrength = 0x00;
+                        triggerNearMiddleStrength = 0x00;
+                        triggerPressedStrength = 0x00;
+                        triggerActuationFrequency = 0x00;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
         public enum HapticIntensity : uint
         {
             Low,
@@ -99,6 +155,9 @@ namespace DS4Windows.InputDevices
                 }
             }
         }
+
+        private TriggerEffectData l2EffectData;
+        private TriggerEffectData r2EffectData;
 
         public override event ReportHandler<EventArgs> Report = null;
         public override event EventHandler BatteryChanged;
@@ -769,6 +828,9 @@ namespace DS4Windows.InputDevices
 
             outputReport[0] = conType == ConnectionType.USB ? OUTPUT_REPORT_ID_USB :
                 OUTPUT_REPORT_ID_BT;
+
+            // Disable haptics and trigger motors
+            outputReport[1 + reportOffset] = useRumble ? (byte)0x0F : (byte)0x0C;
             outputReport[2 + reportOffset] = 0x08; // Turn off all LED lights
 
             if (conType == ConnectionType.BT)
@@ -825,7 +887,7 @@ namespace DS4Windows.InputDevices
                 // 0x20 Enable internal speaker (even while headset is connected)
                 // 0x40 Enable modification of microphone volume
                 // 0x80 Enable internal mic (even while headset is connected)
-                outputReport[1] = useRumble ? (byte)0x03 : (byte)0x00; // 0x02 | 0x01
+                outputReport[1] = useRumble ? (byte)0x0F : (byte)0x0C; // 0x02 | 0x01 | 0x04 | 0x08;
 
                 // 0x01 Toggling microphone LED, 0x02 Toggling Audio/Mic Mute
                 // 0x04 Toggling LED strips on the sides of the Touchpad, 0x08 Turn off all LED lights
@@ -857,6 +919,37 @@ namespace DS4Windows.InputDevices
 
                 // Mute button LED. 0x01 = Solid. 0x02 = Pulsating
                 outputReport[9] = 0x00;
+
+                // audio settings requiring mute toggling flags
+                //outputReport[10] = 0x00; // 0x10 microphone mute, 0x40 audio mute
+
+                /* TRIGGER MOTORS  */
+                // R2 Effects
+                outputReport[11] = r2EffectData.triggerMotorMode; // right trigger motor mode (0 = no resistance, 1 = continuous resistance, 2 = section resistance, 0x20 and 0x04 enable additional effects together with 1 and 2 (configuration yet unknown), 252 = likely a calibration program* / PS Remote Play defaults this to 5; bit 4 only disables the motor?)
+                outputReport[12] = r2EffectData.triggerStartResistance; // right trigger start of resistance section 0-255 (0 = released state; 0xb0 roughly matches trigger value 0xff); in mode 26 this field has something to do with motor re-extension after a press-release-cycle (0 = no re-extension)
+                outputReport[13] = r2EffectData.triggerEffectForce; // right trigger
+                                         // (mode1) amount of force exerted; 0-255
+                                         // (mode2) end of resistance section (>= begin of resistance section is enforced); 0xff makes it behave like mode1
+                                         // (supplemental mode 4+20) flag(s?) 0x02 = do not pause effect when fully pressed
+                outputReport[14] = r2EffectData.triggerRangeForce; // right trigger force exerted in range (mode2), 0-255
+                outputReport[15] = r2EffectData.triggerNearReleaseStrength; // strength of effect near release state (requires supplement modes 4 and 20)
+                outputReport[16] = r2EffectData.triggerNearMiddleStrength; // strength of effect near middle (requires supplement modes 4 and 20)
+                outputReport[17] = r2EffectData.triggerPressedStrength; // strength of effect at pressed state (requires supplement modes 4 and 20)
+                outputReport[20] = r2EffectData.triggerActuationFrequency; // effect actuation frequency in Hz (requires supplement modes 4 and 20)
+
+
+                // L2 Effects
+                outputReport[22] = l2EffectData.triggerMotorMode; // left trigger motor mode (0 = no resistance, 1 = continuous resistance, 2 = section resistance, 0x20 and 0x04 enable additional effects together with 1 and 2 (configuration yet unknown), 252 = likely a calibration program* / PS Remote Play defaults this to 5; bit 4 only disables the motor?)
+                outputReport[23] = l2EffectData.triggerStartResistance; // left trigger start of resistance section 0-255 (0 = released state; 0xb0 roughly matches trigger value 0xff); in mode 26 this field has something to do with motor re-extension after a press-release-cycle (0 = no re-extension)
+                outputReport[24] = l2EffectData.triggerEffectForce; // left trigger
+                                         // (mode1) amount of force exerted; 0-255
+                                         // (mode2) end of resistance section (>= begin of resistance section is enforced); 0xff makes it behave like mode1
+                                         // (supplemental mode 4+20) flag(s?) 0x02 = do not pause effect when fully pressed
+                outputReport[25] = l2EffectData.triggerRangeForce; // left trigger: (mode2) amount of force exerted within range; 0-255
+                outputReport[26] = l2EffectData.triggerNearReleaseStrength; // strength of effect near release state (requires supplement modes 4 and 20)
+                outputReport[27] = l2EffectData.triggerNearMiddleStrength; // strength of effect near middle (requires supplement modes 4 and 20)
+                outputReport[28] = l2EffectData.triggerPressedStrength; // strength of effect at pressed state (requires supplement modes 4 and 20)
+                outputReport[31] = l2EffectData.triggerActuationFrequency; // effect actuation frequency in Hz (requires supplement modes 4 and 20)
 
                 // (lower nibble: main motor; upper nibble trigger effects) 0x00 to 0x07 - reduce overall power of the respective motors/effects by 12.5% per increment (this does not affect the regular trigger motor settings, just the automatically repeating trigger effects)
                 outputReport[37] = hapticsIntensityByte;
@@ -929,7 +1022,7 @@ namespace DS4Windows.InputDevices
                 // 0x20 Enable internal speaker (even while headset is connected)
                 // 0x40 Enable modification of microphone volume
                 // 0x80 Enable internal mic (even while headset is connected)
-                outputReport[2] = useRumble ? (byte)0x03 : (byte)0x00; // 0x02 | 0x01;
+                outputReport[2] = useRumble ? (byte)0x0F : (byte)0x0C; // 0x02 | 0x01 | 0x04 | 0x08;
 
                 // 0x01 Toggling microphone LED, 0x02 Toggling Audio/Mic Mute
                 // 0x04 Toggling LED strips on the sides of the Touchpad, 0x08 Turn off all LED lights
@@ -961,6 +1054,37 @@ namespace DS4Windows.InputDevices
 
                 // Mute button LED. 0x01 = Solid. 0x02 = Pulsating
                 outputReport[10] = 0x00;
+
+                // audio settings requiring mute toggling flags
+                //outputReport[11] = 0x00; // 0x10 microphone mute, 0x40 audio mute
+
+                /* TRIGGER MOTORS  */
+                // R2 Effects
+                outputReport[12] = r2EffectData.triggerMotorMode; // right trigger motor mode (0 = no resistance, 1 = continuous resistance, 2 = section resistance, 0x20 and 0x04 enable additional effects together with 1 and 2 (configuration yet unknown), 252 = likely a calibration program* / PS Remote Play defaults this to 5; bit 4 only disables the motor?)
+                outputReport[13] = r2EffectData.triggerStartResistance; // right trigger start of resistance section 0-255 (0 = released state; 0xb0 roughly matches trigger value 0xff); in mode 26 this field has something to do with motor re-extension after a press-release-cycle (0 = no re-extension)
+                outputReport[14] = r2EffectData.triggerEffectForce; // right trigger
+                                                                    // (mode1) amount of force exerted; 0-255
+                                                                    // (mode2) end of resistance section (>= begin of resistance section is enforced); 0xff makes it behave like mode1
+                                                                    // (supplemental mode 4+20) flag(s?) 0x02 = do not pause effect when fully pressed
+                outputReport[15] = r2EffectData.triggerRangeForce; // right trigger force exerted in range (mode2), 0-255
+                outputReport[16] = r2EffectData.triggerNearReleaseStrength; // strength of effect near release state (requires supplement modes 4 and 20)
+                outputReport[17] = r2EffectData.triggerNearMiddleStrength; // strength of effect near middle (requires supplement modes 4 and 20)
+                outputReport[18] = r2EffectData.triggerPressedStrength; // strength of effect at pressed state (requires supplement modes 4 and 20)
+                outputReport[21] = r2EffectData.triggerActuationFrequency; // effect actuation frequency in Hz (requires supplement modes 4 and 20)
+
+
+                // L2 Effects
+                outputReport[23] = l2EffectData.triggerMotorMode; // left trigger motor mode (0 = no resistance, 1 = continuous resistance, 2 = section resistance, 0x20 and 0x04 enable additional effects together with 1 and 2 (configuration yet unknown), 252 = likely a calibration program* / PS Remote Play defaults this to 5; bit 4 only disables the motor?)
+                outputReport[24] = l2EffectData.triggerStartResistance; // left trigger start of resistance section 0-255 (0 = released state; 0xb0 roughly matches trigger value 0xff); in mode 26 this field has something to do with motor re-extension after a press-release-cycle (0 = no re-extension)
+                outputReport[25] = l2EffectData.triggerEffectForce; // left trigger
+                                                                    // (mode1) amount of force exerted; 0-255
+                                                                    // (mode2) end of resistance section (>= begin of resistance section is enforced); 0xff makes it behave like mode1
+                                                                    // (supplemental mode 4+20) flag(s?) 0x02 = do not pause effect when fully pressed
+                outputReport[26] = l2EffectData.triggerRangeForce; // left trigger: (mode2) amount of force exerted within range; 0-255
+                outputReport[27] = l2EffectData.triggerNearReleaseStrength; // strength of effect near release state (requires supplement modes 4 and 20)
+                outputReport[28] = l2EffectData.triggerNearMiddleStrength; // strength of effect near middle (requires supplement modes 4 and 20)
+                outputReport[29] = l2EffectData.triggerPressedStrength; // strength of effect at pressed state (requires supplement modes 4 and 20)
+                outputReport[32] = l2EffectData.triggerActuationFrequency; // effect actuation frequency in Hz (requires supplement modes 4 and 20)
 
                 // (lower nibble: main motor; upper nibble trigger effects) 0x00 to 0x07 - reduce overall power of the respective motors/effects by 12.5% per increment (this does not affect the regular trigger motor settings, just the automatically repeating trigger effects)
                 outputReport[38] = hapticsIntensityByte;
@@ -1181,6 +1305,28 @@ namespace DS4Windows.InputDevices
                     deviceSlotMask = 0x00;
                     break;
             }
+        }
+
+        public override void PrepareTriggerEffect(int trigger, TriggerEffects effect)
+        {
+            if (trigger == 0)
+            {
+                l2EffectData.ChangeData(effect);
+            }
+            else if (trigger == 1)
+            {
+                r2EffectData.ChangeData(effect);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("Invalid Trigger Id");
+            }
+
+            queueEvent(() =>
+            {
+                outputDirty = true;
+                PrepareOutReport();
+            });
         }
     }
 }

@@ -3216,6 +3216,9 @@ namespace DS4Windows
                 XmlNode xmlL2TwoStageMode = m_Xdoc.CreateNode(XmlNodeType.Element, "L2TwoStageMode", null); xmlL2TwoStageMode.InnerText = l2OutputSettings[device].twoStageMode.ToString(); rootElement.AppendChild(xmlL2TwoStageMode);
                 XmlNode xmlR2TwoStageMode = m_Xdoc.CreateNode(XmlNodeType.Element, "R2TwoStageMode", null); xmlR2TwoStageMode.InnerText = r2OutputSettings[device].twoStageMode.ToString(); rootElement.AppendChild(xmlR2TwoStageMode);
 
+                XmlNode xmlL2TriggerEffect = m_Xdoc.CreateNode(XmlNodeType.Element, "L2TriggerEffect", null); xmlL2TriggerEffect.InnerText = l2OutputSettings[device].triggerEffect.ToString(); rootElement.AppendChild(xmlL2TriggerEffect);
+                XmlNode xmlR2TriggerEffect = m_Xdoc.CreateNode(XmlNodeType.Element, "R2TriggerEffect", null); xmlR2TriggerEffect.InnerText = r2OutputSettings[device].triggerEffect.ToString(); rootElement.AppendChild(xmlR2TriggerEffect);
+
                 XmlNode xmlR2OutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "R2OutputCurveMode", null); xmlR2OutputCurveMode.InnerText = axisOutputCurveString(getR2OutCurveMode(device)); rootElement.AppendChild(xmlR2OutputCurveMode);
                 XmlNode xmlR2OutputCurveCustom = m_Xdoc.CreateNode(XmlNodeType.Element, "R2OutputCurveCustom", null); xmlR2OutputCurveCustom.InnerText = r2OutBezierCurveObj[device].ToString(); rootElement.AppendChild(xmlR2OutputCurveCustom);
 
@@ -4629,7 +4632,7 @@ namespace DS4Windows
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2TwoStageMode");
                     if (Enum.TryParse(Item?.InnerText, out TwoStageTriggerMode tempMode))
                     {
-                        l2OutputSettings[device].twoStageMode = tempMode;
+                        l2OutputSettings[device].TwoStageMode = tempMode;
                     }
                 }
                 catch { }
@@ -4644,6 +4647,16 @@ namespace DS4Windows
                 }
                 catch { }
 
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2TriggerEffect");
+                    if (Enum.TryParse(Item?.InnerText, out InputDevices.TriggerEffects tempMode))
+                    {
+                        l2OutputSettings[device].TriggerEffect = tempMode;
+                    }
+                }
+                catch { }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2OutputCurveCustom"); r2OutBezierCurveObj[device].CustomDefinition = Item.InnerText; }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2OutputCurveMode"); setR2OutCurveMode(device, axisOutputCurveId(Item.InnerText)); }
@@ -4654,7 +4667,7 @@ namespace DS4Windows
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2TwoStageMode");
                     if (Enum.TryParse(Item?.InnerText, out TwoStageTriggerMode tempMode))
                     {
-                        r2OutputSettings[device].twoStageMode = tempMode;
+                        r2OutputSettings[device].TwoStageMode = tempMode;
                     }
                 }
                 catch { }
@@ -4665,6 +4678,16 @@ namespace DS4Windows
                     if (int.TryParse(Item?.InnerText, out int temp))
                     {
                         r2OutputSettings[device].hipFireMS = Math.Max(Math.Min(0, temp), 5000);
+                    }
+                }
+                catch { }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2TriggerEffect");
+                    if (Enum.TryParse(Item?.InnerText, out InputDevices.TriggerEffects tempMode))
+                    {
+                        r2OutputSettings[device].TriggerEffect = tempMode;
                     }
                 }
                 catch { }

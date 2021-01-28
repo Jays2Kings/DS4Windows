@@ -1313,6 +1313,39 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.R2OutputSettings[device].hipFireMS = value;
         }
 
+        private List<TriggerEffectChoice> triggerEffectChoices = new List<TriggerEffectChoice>()
+        {
+            new TriggerEffectChoice("None", DS4Windows.InputDevices.TriggerEffects.None),
+            new TriggerEffectChoice("Full Click", DS4Windows.InputDevices.TriggerEffects.FullClick),
+            new TriggerEffectChoice("Rigid", DS4Windows.InputDevices.TriggerEffects.Rigid),
+            new TriggerEffectChoice("Pulse", DS4Windows.InputDevices.TriggerEffects.Pulse),
+        };
+        public List<TriggerEffectChoice> TriggerEffectChoices { get => triggerEffectChoices; }
+
+        public DS4Windows.InputDevices.TriggerEffects L2TriggerEffect
+        {
+            get => Global.L2OutputSettings[device].triggerEffect;
+            set
+            {
+                DS4Windows.InputDevices.TriggerEffects temp = Global.L2OutputSettings[device].TriggerEffect;
+                if (temp == value) return;
+
+                Global.L2OutputSettings[device].TriggerEffect = value;
+            }
+        }
+
+        public DS4Windows.InputDevices.TriggerEffects R2TriggerEffect
+        {
+            get => Global.R2OutputSettings[device].triggerEffect;
+            set
+            {
+                DS4Windows.InputDevices.TriggerEffects temp = Global.R2OutputSettings[device].TriggerEffect;
+                if (temp == value) return;
+
+                Global.R2OutputSettings[device].TriggerEffect = value;
+            }
+        }
+
         public double SXDeadZone
         {
             get => Global.SXDeadzone[device];
@@ -3117,6 +3150,22 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public TwoStageTriggerMode Mode { get => mode; set => mode = value; }
 
         public TwoStageChoice(string name, TwoStageTriggerMode mode)
+        {
+            this.displayName = name;
+            this.mode = mode;
+        }
+    }
+
+    public class TriggerEffectChoice
+    {
+        private string displayName;
+        public string DisplayName { get => displayName; set => displayName = value; }
+
+
+        private DS4Windows.InputDevices.TriggerEffects mode;
+        public DS4Windows.InputDevices.TriggerEffects Mode { get => mode; set => mode = value; }
+
+        public TriggerEffectChoice(string name, DS4Windows.InputDevices.TriggerEffects mode)
         {
             this.displayName = name;
             this.mode = mode;

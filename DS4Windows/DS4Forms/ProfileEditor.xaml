@@ -556,6 +556,7 @@
                                     <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
+                                    <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
                                 </Grid.RowDefinitions>
 
                                 <Grid.ColumnDefinitions>
@@ -654,10 +655,24 @@
                                 </DockPanel>
 
                                 <Label Content="Hip Fire Delay:" Grid.Row="10" Grid.Column="0" />
-                                <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding L2HipFireTime}" MinWidth="50" Grid.Row="10" Grid.Column="1" Maximum="5000" Minimum="0" Increment="10"
+                                <DockPanel Grid.Row="10" Grid.Column="1">
+                                    <Label Content="ms" DockPanel.Dock="Right" />
+                                    <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding L2HipFireTime}" MinWidth="50" Maximum="5000" Minimum="0" Increment="10"
                                                    Margin="{StaticResource spaceMargin}" />
-                                <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding R2HipFireTime}" MinWidth="50" Grid.Row="10" Grid.Column="2" Maximum="5000" Minimum="0" Increment="10"
+                                </DockPanel>
+
+                                <DockPanel Grid.Row="10" Grid.Column="2">
+                                    <Label Content="ms" DockPanel.Dock="Right" />
+                                    <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding R2HipFireTime}" MinWidth="50" Maximum="5000" Minimum="0" Increment="10"
                                                    Margin="{StaticResource spaceMargin}" />
+                                </DockPanel>
+
+                                <Label Content="Trigger Effect:" Grid.Row="11" Grid.Column="0" />
+
+                                <ComboBox Grid.Row="11" Grid.Column="1" ItemsSource="{Binding Path=TriggerEffectChoices}"
+                                          DisplayMemberPath="DisplayName" SelectedValuePath="Mode" SelectedValue="{Binding L2TriggerEffect}" Margin="{StaticResource spaceMargin}" />
+                                <ComboBox Grid.Row="11" Grid.Column="2" ItemsSource="{Binding Path=TriggerEffectChoices}"
+                                          DisplayMemberPath="DisplayName" SelectedValuePath="Mode" SelectedValue="{Binding R2TriggerEffect}" Margin="{StaticResource spaceMargin}" />
                             </Grid>
                         </GroupBox>
 

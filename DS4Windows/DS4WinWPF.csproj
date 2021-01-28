@@ -287,6 +287,7 @@
     <Compile Include="DS4Library\InputDevices\InputDeviceFactory.cs" />
     <Compile Include="DS4Library\InputDevices\JoyConDevice.cs" />
     <Compile Include="DS4Library\InputDevices\SwitchProDevice.cs" />
+    <Compile Include="DS4Library\InputDevices\TriggerEffects.cs" />
     <Compile Include="HidLibrary\Extensions.cs" />
     <Compile Include="HidLibrary\HidDevice.cs" />
     <Compile Include="HidLibrary\HidDeviceAttributes.cs" />

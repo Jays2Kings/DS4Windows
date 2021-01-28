@@ -1489,6 +1489,19 @@ namespace DS4Windows
             flickStickSettings = Global.RSOutputSettings[ind].outputSettings.flickSettings;
             flickStickSettings.RemoveRefreshEvents();
             flickStickSettings.SetRefreshEvents(Mapping.flickMappingData[ind].flickFilter);
+
+            device.PrepareTriggerEffect(0, Global.L2OutputSettings[ind].TriggerEffect);
+            device.PrepareTriggerEffect(1, Global.R2OutputSettings[ind].TriggerEffect);
+
+            int tempIdx = ind;
+            Global.L2OutputSettings[ind].TriggerEffectChanged += (sender, e) =>
+            {
+                device.PrepareTriggerEffect(0, Global.L2OutputSettings[tempIdx].TriggerEffect);
+            };
+            Global.R2OutputSettings[ind].TriggerEffectChanged += (sender, e) =>
+            {
+                device.PrepareTriggerEffect(1, Global.R2OutputSettings[tempIdx].TriggerEffect);
+            };
         }
 
         private void CheckLauchProfileOption(int ind, DS4Device device)

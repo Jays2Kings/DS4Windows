@@ -1392,7 +1392,6 @@ namespace DS4WinWPF.DS4Forms
             window.Owner = App.Current.MainWindow;
             window.ShowDialog();
             mpControl.UpdateMappingName();
-            UpdateHighlightLabel(mpControl);
             Global.CacheProfileCustomsFlags(profileSettingsVM.Device);
         }
     }

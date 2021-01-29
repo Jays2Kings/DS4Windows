@@ -3721,7 +3721,7 @@ namespace DS4Windows
 
                 if (m_Xdoc.SelectSingleNode(rootname) == null)
                 {
-                    rootname = "ScpControl";
+                    rootname = "DS4Windows";
                     missingSetting = true;
                 }
 
@@ -4175,7 +4175,7 @@ namespace DS4Windows
                     bool.TryParse(Item.InnerText, out bool temp);
                     if (temp) touchOutMode[device] = TouchpadOutMode.Controls;
                 }
-                catch { touchOutMode[device] = TouchpadOutMode.Mouse; missingSetting = true; }
+                catch { touchOutMode[device] = TouchpadOutMode.Mouse; }
 
                 // Fallback lookup if GyroOutMode is not set
                 try
@@ -4184,7 +4184,7 @@ namespace DS4Windows
                     bool.TryParse(Item.InnerText, out bool temp);
                     if (temp) gyroOutMode[device] = GyroOutMode.Mouse;
                 }
-                catch { gyroOutMode[device] = GyroOutMode.Controls; missingSetting = true; }
+                catch { gyroOutMode[device] = GyroOutMode.Controls; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SATriggers"); sATriggers[device] = Item.InnerText; }
                 catch { sATriggers[device] = "-1"; missingSetting = true; }
@@ -4816,8 +4816,11 @@ namespace DS4Windows
                     {
                         foreach (XmlNode item in ParentItem.ChildNodes)
                         {
-                            UpdateDS4CSetting(device, item.Name, false, getX360ControlsByName(item.InnerText), "", DS4KeyType.None, 0);
-                            customMapButtons.Add(getDS4ControlsByName(item.Name), getX360ControlsByName(item.InnerText));
+                            if (Enum.TryParse(item.Name, out DS4Controls currentControl))
+                            {
+                                UpdateDS4CSetting(device, item.Name, false, getX360ControlsByName(item.InnerText), "", DS4KeyType.None, 0);
+                                customMapButtons.Add(getDS4ControlsByName(item.Name), getX360ControlsByName(item.InnerText));
+                            }
                         }
                     }
 
@@ -4843,7 +4846,10 @@ namespace DS4Windows
                             for (int i = 0, keylen = keys.Length; i < keylen; i++)
                                 keys[i] = int.Parse(skeys[i]);
 
-                            UpdateDS4CSetting(device, item.Name, false, keys, "", DS4KeyType.None, 0);
+                            if (Enum.TryParse(item.Name, out DS4Controls currentControl))
+                            {
+                                UpdateDS4CSetting(device, item.Name, false, keys, "", DS4KeyType.None, 0);
+                            }
                         }
                     }
 
@@ -4852,7 +4858,7 @@ namespace DS4Windows
                     {
                         foreach (XmlNode item in ParentItem.ChildNodes)
                         {
-                            if (ushort.TryParse(item.InnerText, out wvk))
+                            if (ushort.TryParse(item.InnerText, out wvk) && Enum.TryParse(item.Name, out DS4Controls currentControl))
                             {
                                 UpdateDS4CSetting(device, item.Name, false, wvk, "", DS4KeyType.None, 0);
                                 customMapKeys.Add(getDS4ControlsByName(item.Name), wvk);
@@ -4865,7 +4871,7 @@ namespace DS4Windows
                     {
                         foreach (XmlNode item in ParentItem.ChildNodes)
                         {
-                            if (item.InnerText != string.Empty)
+                            if (item.InnerText != string.Empty && Enum.TryParse(item.Name, out DS4Controls currentControl))
                             {
                                 UpdateDS4CExtra(device, item.Name, false, item.InnerText);
                                 customMapExtras.Add(getDS4ControlsByName(item.Name), item.InnerText);
@@ -4893,7 +4899,8 @@ namespace DS4Windows
                                     keyType |= DS4KeyType.HoldMacro;
                                 if (item.InnerText.Contains(DS4KeyType.Unbound.ToString()))
                                     keyType |= DS4KeyType.Unbound;
-                                if (keyType != DS4KeyType.None)
+
+                                if (keyType != DS4KeyType.None && Enum.TryParse(item.Name, out DS4Controls currentControl))
                                 {
                                     UpdateDS4CKeyType(device, item.Name, false, keyType);
                                     customMapKeyTypes.Add(getDS4ControlsByName(item.Name), keyType);
@@ -4910,8 +4917,12 @@ namespace DS4Windows
                             int shiftT = shiftM;
                             if (item.HasAttribute("Trigger"))
                                 int.TryParse(item.Attributes["Trigger"].Value, out shiftT);
-                            UpdateDS4CSetting(device, item.Name, true, getX360ControlsByName(item.InnerText), "", DS4KeyType.None, shiftT);
-                            shiftCustomMapButtons.Add(getDS4ControlsByName(item.Name), getX360ControlsByName(item.InnerText));
+
+                            if (Enum.TryParse(item.Name, out DS4Controls currentControl))
+                            {
+                                UpdateDS4CSetting(device, item.Name, true, getX360ControlsByName(item.InnerText), "", DS4KeyType.None, shiftT);
+                                shiftCustomMapButtons.Add(getDS4ControlsByName(item.Name), getX360ControlsByName(item.InnerText));
+                            }
                         }
                     }
 
@@ -4940,7 +4951,11 @@ namespace DS4Windows
                             int shiftT = shiftM;
                             if (item.HasAttribute("Trigger"))
                                 int.TryParse(item.Attributes["Trigger"].Value, out shiftT);
-                            UpdateDS4CSetting(device, item.Name, true, keys, "", DS4KeyType.None, shiftT);
+
+                            if (Enum.TryParse(item.Name, out DS4Controls currentControl))
+                            {
+                                UpdateDS4CSetting(device, item.Name, true, keys, "", DS4KeyType.None, shiftT);
+                            }
                         }
                     }
 
@@ -4954,8 +4969,12 @@ namespace DS4Windows
                                 int shiftT = shiftM;
                                 if (item.HasAttribute("Trigger"))
                                     int.TryParse(item.Attributes["Trigger"].Value, out shiftT);
-                                UpdateDS4CSetting(device, item.Name, true, wvk, "", DS4KeyType.None, shiftT);
-                                shiftCustomMapKeys.Add(getDS4ControlsByName(item.Name), wvk);
+
+                                if (Enum.TryParse(item.Name, out DS4Controls currentControl))
+                                {
+                                    UpdateDS4CSetting(device, item.Name, true, wvk, "", DS4KeyType.None, shiftT);
+                                    shiftCustomMapKeys.Add(getDS4ControlsByName(item.Name), wvk);
+                                }
                             }
                         }
                     }
@@ -4967,8 +4986,11 @@ namespace DS4Windows
                         {
                             if (item.InnerText != string.Empty)
                             {
-                                UpdateDS4CExtra(device, item.Name, true, item.InnerText);
-                                shiftCustomMapExtras.Add(getDS4ControlsByName(item.Name), item.InnerText);
+                                if (Enum.TryParse(item.Name, out DS4Controls currentControl))
+                                {
+                                    UpdateDS4CExtra(device, item.Name, true, item.InnerText);
+                                    shiftCustomMapExtras.Add(getDS4ControlsByName(item.Name), item.InnerText);
+                                }
                             }
                             else
                                 ParentItem.RemoveChild(item);
@@ -4993,7 +5015,8 @@ namespace DS4Windows
                                     keyType |= DS4KeyType.HoldMacro;
                                 if (item.InnerText.Contains(DS4KeyType.Unbound.ToString()))
                                     keyType |= DS4KeyType.Unbound;
-                                if (keyType != DS4KeyType.None)
+
+                                if (keyType != DS4KeyType.None && Enum.TryParse(item.Name, out DS4Controls currentControl))
                                 {
                                     UpdateDS4CKeyType(device, item.Name, true, keyType);
                                     shiftCustomMapKeyTypes.Add(getDS4ControlsByName(item.Name), keyType);

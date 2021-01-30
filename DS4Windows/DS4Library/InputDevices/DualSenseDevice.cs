@@ -1236,13 +1236,13 @@ namespace DS4Windows.InputDevices
             }
         }
 
-        public override void PrepareTriggerEffect(int trigger, TriggerEffects effect)
+        public override void PrepareTriggerEffect(TriggerId trigger, TriggerEffects effect)
         {
-            if (trigger == 0)
+            if (trigger == TriggerId.LeftTrigger)
             {
                 l2EffectData.ChangeData(effect);
             }
-            else if (trigger == 1)
+            else if (trigger == TriggerId.RightTrigger)
             {
                 r2EffectData.ChangeData(effect);
             }

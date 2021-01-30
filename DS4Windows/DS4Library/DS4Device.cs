@@ -1918,7 +1918,7 @@ namespace DS4Windows
             abortInputThread = true;
         }
 
-        public virtual void PrepareTriggerEffect(int trigger, InputDevices.TriggerEffects effect)
+        public virtual void PrepareTriggerEffect(InputDevices.TriggerId trigger, InputDevices.TriggerEffects effect)
         {
         }
     }

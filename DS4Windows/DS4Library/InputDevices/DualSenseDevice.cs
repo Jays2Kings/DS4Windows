@@ -1204,103 +1204,32 @@ namespace DS4Windows.InputDevices
 
         private void CalculateDeviceSlotMask()
         {
-            // Map 1-31 as a set of 5 LED lights
+            // Map 1-8 to a symmetrical LED array from a set of
+            // 5 LED lights
             switch (deviceSlotNumber)
             {
                 case 0:
+                    deviceSlotMask = 0x04;
+                    break;
                 case 1:
-                case 2:
-                case 3:
-                case 4:
-                    deviceSlotMask = (byte)(1 << deviceSlotNumber);
-                    break;
-
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                    deviceSlotMask = (byte)(0x01 | (1 << (deviceSlotNumber - 4)));
-                    break;
-
-                case 9:
-                    deviceSlotMask = 0x02 | 0x04;
-                    break;
-                case 10:
                     deviceSlotMask = 0x02 | 0x08;
                     break;
-                case 11:
-                    deviceSlotMask = 0x02 | 0x10;
-                    break;
-
-                case 12:
-                    deviceSlotMask = 0x04 | 0x08;
-                    break;
-                case 13:
-                    deviceSlotMask = 0x04 | 0x10;
-                    break;
-
-                case 14:
-                    deviceSlotMask = 0x08 | 0x10;
-                    break;
-
-                case 15:
-                    deviceSlotMask = 0x01 | 0x02 | 0x04;
-                    break;
-                case 16:
-                    deviceSlotMask = 0x01 | 0x02 | 0x08;
-                    break;
-                case 17:
-                    deviceSlotMask = 0x01 | 0x02 | 0x10;
-                    break;
-
-                case 18:
-                    deviceSlotMask = 0x01 | 0x04 | 0x08;
-                    break;
-                case 19:
+                case 2:
                     deviceSlotMask = 0x01 | 0x04 | 0x10;
                     break;
-
-                case 20:
-                    deviceSlotMask = 0x01 | 0x08 | 0x10;
-                    break;
-
-                case 21:
+                case 3:
                     deviceSlotMask = 0x02 | 0x04 | 0x08;
                     break;
-                case 22:
-                    deviceSlotMask = 0x02 | 0x04 | 0x10;
+                case 4:
+                    deviceSlotMask = 0x01 | 0x10;
                     break;
-                case 23:
-                    deviceSlotMask = 0x02 | 0x08 | 0x10;
-                    break;
-
-                case 24:
-                    deviceSlotMask = 0x04 | 0x08 | 0x10;
-                    break;
-
-                case 25:
-                    deviceSlotMask = 0x01 | 0x02 | 0x04 | 0x08;
-                    break;
-                case 26:
-                    deviceSlotMask = 0x01 | 0x02 | 0x04 | 0x10;
-                    break;
-
-                case 27:
+                case 5:
                     deviceSlotMask = 0x01 | 0x02 | 0x08 | 0x10;
                     break;
-
-                case 28:
-                    deviceSlotMask = 0x01 | 0x04 | 0x08 | 0x10;
-                    break;
-
-                case 29:
-                    deviceSlotMask = 0x02 | 0x04 | 0x08 | 0x10;
-                    break;
-
-                case 30:
+                case 6:
                     deviceSlotMask = 0x01 | 0x02 | 0x04 | 0x08 | 0x10;
                     break;
-
+                case 7:
                 default:
                     deviceSlotMask = 0x00;
                     break;

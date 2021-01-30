@@ -6941,7 +6941,9 @@ namespace DS4Windows
                 case "Right Stick Right": return DS4Controls.RXPos;
                 case "Right Stick Down": return DS4Controls.RYPos;
                 case "L2": return DS4Controls.L2;
+                case "L2 Full Pull": return DS4Controls.L2FullPull;
                 case "R2": return DS4Controls.R2;
+                case "R2 Full Pull": return DS4Controls.R2FullPull;
 
                 case "Left Touch": return DS4Controls.TouchLeft;
                 case "Multitouch": return DS4Controls.TouchMulti;

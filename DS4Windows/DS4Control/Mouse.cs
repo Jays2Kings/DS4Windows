@@ -735,9 +735,12 @@ namespace DS4Windows
             TouchpadOutMode tempMode = Global.TouchOutMode[deviceNum];
             if (tempMode != TouchpadOutMode.Passthru)
             {
-                // Reset output Touchpad click button when
-                // not using Passthru mode on Touchpad
-                s.OutputTouchButton = false;
+                bool touchClickPass = Global.TouchClickPassthru[deviceNum];
+                if (!touchClickPass)
+                {
+                    // Reset output Touchpad click button
+                    s.OutputTouchButton = false;
+                }
             }
             else
             {

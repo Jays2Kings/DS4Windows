@@ -1612,6 +1612,15 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
 
+        public bool TouchpadClickPassthru
+        {
+            get => Global.TouchClickPassthru[device];
+            set
+            {
+                Global.TouchClickPassthru[device] = value;
+            }
+        }
+
         public bool StartTouchpadOff
         {
             get => Global.StartTouchpadOff[device];

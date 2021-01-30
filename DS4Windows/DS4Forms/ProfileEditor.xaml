@@ -880,6 +880,7 @@
                                         <RowDefinition />
                                         <RowDefinition />
                                         <RowDefinition />
+                                        <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
@@ -909,10 +910,12 @@
 
                                     <CheckBox Content="Lower Right as RMB" Grid.Row="2" Grid.Column="1" IsChecked="{Binding LowerRightTouchRMB}" VerticalAlignment="Center"
                                                           ToolTip="{lex:Loc Resources:BestUsedRightSide}" />
+
+                                    <CheckBox Content="Passthru Click Action (DS4 mode)" Grid.Row="3" Grid.Column="0" IsChecked="{Binding TouchpadClickPassthru}" VerticalAlignment="Center" />
                                 </Grid>
 
                                 <CheckBox Content="Start with Slide/Scroll Off" IsChecked="{Binding StartTouchpadOff}" VerticalAlignment="Center"
-                                                    ToolTip="{lex:Loc Resources:TouchpadOffTip}" Margin="{StaticResource spaceMargin}" />
+                                                    ToolTip="{lex:Loc Resources:TouchpadOffTip}" Margin="0,10,0,0" />
 
                                 <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
                                     <Label Content="Rotation" ContentStringFormat="{}{0}:" />
@@ -994,6 +997,9 @@
                                     <Button x:Name="swipeRightBtn" Content="Swipe Right" MinWidth="100" Tag="{Binding SwipeRight, Source={StaticResource controlIndexCheck}}" Click="SwipeControlsButton_Click" />
                                     <Label x:Name="swipeRightLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
                                 </StackPanel>
+
+                                <CheckBox Content="Passthru Click Action (DS4 mode)" IsChecked="{Binding TouchpadClickPassthru}" VerticalAlignment="Center"
+                                                          Margin="5,8,0,0" />
                             </StackPanel>
                         </TabItem>
                         <TabItem Header="Absolute Mouse" Visibility="Collapsed">

@@ -720,23 +720,26 @@ namespace DS4WinWPF.DS4Forms
             }
         }
 
-        private void SetLateProperties()
+        private void SetLateProperties(bool fullSave = true)
         {
             Global.BTPollRate[deviceNum] = profileSettingsVM.TempBTPollRateIndex;
             Global.OutContType[deviceNum] = profileSettingsVM.TempConType;
-            Global.outDevTypeTemp[deviceNum] = OutContType.X360;
+            if (fullSave)
+            {
+                Global.outDevTypeTemp[deviceNum] = OutContType.X360;
+            }
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            bool saved = ApplyProfileStep();
+            bool saved = ApplyProfileStep(false);
             if (saved)
             {
                 Closed?.Invoke(this, EventArgs.Empty);
             }
         }
 
-        private bool ApplyProfileStep()
+        private bool ApplyProfileStep(bool fullSave = true)
         {
             bool result = false;
             if (profileSettingsVM.FuncDevNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
@@ -748,7 +751,7 @@ namespace DS4WinWPF.DS4Forms
             if (!string.IsNullOrWhiteSpace(temp) &&
                 temp.IndexOfAny(System.IO.Path.GetInvalidFileNameChars()) == -1)
             {
-                SetLateProperties();
+                SetLateProperties(false);
                 DS4Windows.Global.ProfilePath[deviceNum] =
                     DS4Windows.Global.OlderProfilePath[deviceNum] = temp;
 

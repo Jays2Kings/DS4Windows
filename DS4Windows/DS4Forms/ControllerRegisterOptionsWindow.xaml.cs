@@ -23,13 +23,38 @@ namespace DS4WinWPF.DS4Forms
     {
         private ControllerRegDeviceOptsViewModel deviceOptsVM;
 
-        public ControllerRegisterOptionsWindow(ControlServiceDeviceOptions deviceOptions)
+        public ControllerRegisterOptionsWindow(ControlServiceDeviceOptions deviceOptions, ControlService service)
         {
             InitializeComponent();
 
-            deviceOptsVM = new ControllerRegDeviceOptsViewModel(deviceOptions);
+            deviceOptsVM = new ControllerRegDeviceOptsViewModel(deviceOptions, service);
 
             devOptionsDockPanel.DataContext = deviceOptsVM;
+            deviceOptsVM.ControllerSelectedIndexChanged += ChangeActiveDeviceTab;
+        }
+
+        private void ChangeActiveDeviceTab(object sender, EventArgs e)
+        {
+            TabItem currentTab = deviceSettingsTabControl.SelectedItem as TabItem;
+            if (currentTab != null)
+            {
+                currentTab.DataContext = null;
+            }
+
+            int tabIdx = deviceOptsVM.FindTabOptionsIndex();
+            if (tabIdx >= 0)
+            {
+                TabItem pendingTab = deviceSettingsTabControl.Items[tabIdx] as TabItem;
+                deviceOptsVM.FindFittingDataContext();
+                pendingTab.DataContext = deviceOptsVM.DataContextObject;
+            }
+
+            deviceOptsVM.CurrentTabSelectedIndex = tabIdx;
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            deviceOptsVM.SaveControllerConfigs();
         }
     }
 }

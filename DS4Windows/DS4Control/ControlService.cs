@@ -66,6 +66,9 @@ namespace DS4Windows
         private ControlServiceDeviceOptions deviceOptions;
         public ControlServiceDeviceOptions DeviceOptions { get => deviceOptions; }
 
+        private ControllerOptionsStore[] optionsStores = new ControllerOptionsStore[MAX_DS4_CONTROLLER_COUNT];
+        public ControllerOptionsStore[] OptionsStores { get => optionsStores; }
+
         public event EventHandler ServiceStarted;
         public event EventHandler PreServiceStop;
         public event EventHandler ServiceStopped;
@@ -225,12 +228,38 @@ namespace DS4Windows
             DS4Devices.RequestElevation += DS4Devices_RequestElevation;
             DS4Devices.checkVirtualFunc = CheckForVirtualDevice;
             DS4Devices.PrepareDS4Init = PrepareDS4DeviceInit;
-            DS4Devices.PostDS4Init = PostDS4DeviceInit;
+            //DS4Devices.PostDS4Init = PostDS4DeviceInit;
             DS4Devices.PreparePendingDevice = CheckForSupportedDevice;
             outputslotMan.ViGEmFailure += OutputslotMan_ViGEmFailure;
 
             Global.UDPServerSmoothingMincutoffChanged += ChangeUdpSmoothingAttrs;
             Global.UDPServerSmoothingBetaChanged += ChangeUdpSmoothingAttrs;
+        }
+
+        private ControllerOptionsStore PrepareDeviceSettingsStore(int index, DS4Device device)
+        {
+            ControllerOptionsStore tempStore = null;
+
+            switch(device.DeviceType)
+            {
+                case InputDevices.InputDeviceType.DS4:
+                    tempStore = new DS4ControllerOptions(device.DeviceType);
+                    break;
+                case InputDevices.InputDeviceType.DualSense:
+                    tempStore = new DualSenseControllerOptions(device.DeviceType);
+                    break;
+                case InputDevices.InputDeviceType.SwitchPro:
+                    tempStore = new SwitchProControllerOptions(device.DeviceType);
+                    break;
+                case InputDevices.InputDeviceType.JoyConL:
+                case InputDevices.InputDeviceType.JoyConR:
+                    tempStore = new JoyConControllerOptions(device.DeviceType);
+                    break;
+                default:
+                    break;
+            }
+
+            return tempStore;
         }
 
         private void OutputslotMan_ViGEmFailure(object sender, EventArgs e)
@@ -251,19 +280,22 @@ namespace DS4Windows
             if (device.DeviceType == InputDevices.InputDeviceType.DualSense)
             {
                 InputDevices.DualSenseDevice tempDSDev = device as InputDevices.DualSenseDevice;
-                tempDSDev.UseRumble = deviceOptions.DualSenseOpts.EnableRumble;
-                tempDSDev.HapticChoice = deviceOptions.DualSenseOpts.HapticIntensity;
+                DualSenseControllerOptions dSOpts = tempDSDev.optionsStore as DualSenseControllerOptions;
+                tempDSDev.UseRumble = dSOpts.EnableRumble;
+                tempDSDev.HapticChoice = dSOpts.HapticIntensity;
             }
             else if (device.DeviceType == InputDevices.InputDeviceType.SwitchPro)
             {
                 InputDevices.SwitchProDevice tempSwitch = device as InputDevices.SwitchProDevice;
-                tempSwitch.EnableHomeLED = deviceOptions.SwitchProDeviceOpts.EnableHomeLED;
+                SwitchProControllerOptions switchOpts = tempSwitch.optionsStore as SwitchProControllerOptions;
+                tempSwitch.EnableHomeLED = switchOpts.EnableHomeLED;
             }
             else if (device.DeviceType == InputDevices.InputDeviceType.JoyConL ||
                 device.DeviceType == InputDevices.InputDeviceType.JoyConR)
             {
                 InputDevices.JoyConDevice tempJoy = device as InputDevices.JoyConDevice;
-                tempJoy.EnableHomeLED = deviceOptions.JoyConDeviceOpts.EnableHomeLED;
+                JoyConControllerOptions joyOpts = tempJoy.optionsStore as JoyConControllerOptions;
+                tempJoy.EnableHomeLED = joyOpts.EnableHomeLED;
             }
         }
 
@@ -975,6 +1007,7 @@ namespace DS4Windows
                     //DS4Devices.FindControllersWrapper();
                     //DS4Devices.findControllers();
                     IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
+                    int numControllers = new List<DS4Device>(devices).Count;
                     //int ind = 0;
                     DS4LightBar.defaultLight = false;
                     //foreach (DS4Device device in devices)
@@ -998,6 +1031,13 @@ namespace DS4Windows
                         task.Start();
 
                         DS4Controllers[i] = device;
+                        device.DeviceSlotNumber = i;
+                        device.optionsStore = PrepareDeviceSettingsStore(i, device);
+                        optionsStores[i] = device.optionsStore;
+                        Global.LoadControllerConfigs(device);
+                        PostDS4DeviceInit(device);
+                        device.CheckDeviceSettings(numControllers);
+
                         slotManager.AddController(device, i);
                         device.Removal += this.On_DS4Removal;
                         device.Removal += DS4Devices.On_Removal;
@@ -1083,7 +1123,6 @@ namespace DS4Windows
                         }
 
                         TouchPadOn(i, device);
-                        device.DeviceSlotNumber = i;
 
                         CheckProfileOptions(i, device, true);
                         device.StartUpdate();
@@ -1234,6 +1273,7 @@ namespace DS4Windows
                         touchPad[i] = null;
                         lag[i] = false;
                         inWarnMonitor[i] = false;
+                        optionsStores[i] = null;
                     }
                 }
 
@@ -1284,6 +1324,7 @@ namespace DS4Windows
                 //DS4Devices.FindControllersWrapper();
                 //DS4Devices.findControllers();
                 IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
+                int numControllers = new List<DS4Device>(devices).Count;
                 //foreach (DS4Device device in devices)
                 //for (int i = 0, devlen = devices.Count(); i < devlen; i++)
                 for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext() && loopControllers;)
@@ -1300,7 +1341,10 @@ namespace DS4Windows
                         {
                             if (DS4Controllers[Index] != null &&
                                 DS4Controllers[Index].getMacAddress() == device.getMacAddress())
+                            {
+                                device.CheckDeviceSettings(numControllers);
                                 return true;
+                            }
                         }
 
                         return false;
@@ -1325,6 +1369,13 @@ namespace DS4Windows
                             Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
                             task.Start();
                             DS4Controllers[Index] = device;
+                            device.DeviceSlotNumber = Index;
+                            device.optionsStore = PrepareDeviceSettingsStore(Index, device);
+                            optionsStores[Index] = device.optionsStore;
+                            Global.LoadControllerConfigs(device);
+                            PostDS4DeviceInit(device);
+                            device.CheckDeviceSettings(numControllers);
+
                             slotManager.AddController(device, Index);
                             device.Removal += this.On_DS4Removal;
                             device.Removal += DS4Devices.On_Removal;
@@ -1409,7 +1460,6 @@ namespace DS4Windows
                             }
 
                             TouchPadOn(Index, device);
-                            device.DeviceSlotNumber = Index;
 
                             CheckProfileOptions(Index, device);
                             device.StartUpdate();
@@ -1456,7 +1506,6 @@ namespace DS4Windows
 
         private void CheckProfileOptions(int ind, DS4Device device, bool startUp=false)
         {
-
             device.ModifyFeatureSetFlag(VidPidFeatureSet.NoOutputData, !getEnableOutputDataToDS4(ind));
             if (!getEnableOutputDataToDS4(ind))
                 LogDebug("Output data to DS4 disabled. Lightbar and rumble events are not written to DS4 gamepad. If the gamepad is connected over BT then IdleDisconnect option is recommended to let DS4Windows to close the connection after long period of idling.");
@@ -1787,6 +1836,7 @@ namespace DS4Windows
                     device.IsRemoved = true;
                     device.Synced = false;
                     DS4Controllers[ind] = null;
+                    optionsStores[ind] = null;
                     //eventDispatcher.Invoke(() =>
                     //{
                         slotManager.RemoveController(device, ind);

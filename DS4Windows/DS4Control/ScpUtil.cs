@@ -5276,25 +5276,25 @@ namespace DS4Windows
                             }
                             catch { }
 
-                            try
-                            {
-                                XmlNode item = xmlDualSenseSupport.SelectSingleNode("EnableRumble");
-                                if (bool.TryParse(item?.InnerText ?? "", out bool temp))
-                                {
-                                    deviceOptions.DualSenseOpts.EnableRumble = temp;
-                                }
-                            }
-                            catch { }
+                            //try
+                            //{
+                            //    XmlNode item = xmlDualSenseSupport.SelectSingleNode("EnableRumble");
+                            //    if (bool.TryParse(item?.InnerText ?? "", out bool temp))
+                            //    {
+                            //        deviceOptions.DualSenseOpts.EnableRumble = temp;
+                            //    }
+                            //}
+                            //catch { }
 
-                            try
-                            {
-                                XmlNode item = xmlDualSenseSupport.SelectSingleNode("RumbleStrength");
-                                if (Enum.TryParse(item?.InnerText ?? "", out InputDevices.DualSenseDevice.HapticIntensity temp))
-                                {
-                                    deviceOptions.DualSenseOpts.HapticIntensity = temp;
-                                }
-                            }
-                            catch { }
+                            //try
+                            //{
+                            //    XmlNode item = xmlDualSenseSupport.SelectSingleNode("RumbleStrength");
+                            //    if (Enum.TryParse(item?.InnerText ?? "", out InputDevices.DualSenseDevice.HapticIntensity temp))
+                            //    {
+                            //        deviceOptions.DualSenseOpts.HapticIntensity = temp;
+                            //    }
+                            //}
+                            //catch { }
                         }
 
                         XmlNode xmlSwitchProSupport = xmlDeviceOptions.SelectSingleNode("SwitchProSupportSettings");
@@ -5310,15 +5310,15 @@ namespace DS4Windows
                             }
                             catch { }
 
-                            try
-                            {
-                                XmlNode item = xmlSwitchProSupport.SelectSingleNode("EnableHomeLED");
-                                if (bool.TryParse(item?.InnerText ?? "", out bool temp))
-                                {
-                                    deviceOptions.SwitchProDeviceOpts.EnableHomeLED = temp;
-                                }
-                            }
-                            catch { }
+                            //try
+                            //{
+                            //    XmlNode item = xmlSwitchProSupport.SelectSingleNode("EnableHomeLED");
+                            //    if (bool.TryParse(item?.InnerText ?? "", out bool temp))
+                            //    {
+                            //        deviceOptions.SwitchProDeviceOpts.EnableHomeLED = temp;
+                            //    }
+                            //}
+                            //catch { }
                         }
 
                         XmlNode xmlJoyConSupport = xmlDeviceOptions.SelectSingleNode("JoyConSupportSettings");
@@ -5334,15 +5334,15 @@ namespace DS4Windows
                             }
                             catch { }
 
-                            try
-                            {
-                                XmlNode item = xmlJoyConSupport.SelectSingleNode("EnableHomeLED");
-                                if (bool.TryParse(item?.InnerText ?? "", out bool temp))
-                                {
-                                    deviceOptions.JoyConDeviceOpts.EnableHomeLED = temp;
-                                }
-                            }
-                            catch { }
+                            //try
+                            //{
+                            //    XmlNode item = xmlJoyConSupport.SelectSingleNode("EnableHomeLED");
+                            //    if (bool.TryParse(item?.InnerText ?? "", out bool temp))
+                            //    {
+                            //        deviceOptions.JoyConDeviceOpts.EnableHomeLED = temp;
+                            //    }
+                            //}
+                            //catch { }
                         }
                     }
 
@@ -5469,13 +5469,13 @@ namespace DS4Windows
             XmlElement xmlDualSenseEnabled = m_Xdoc.CreateElement("Enabled", null);
             xmlDualSenseEnabled.InnerText = deviceOptions.DualSenseOpts.Enabled.ToString();
             xmlDualSenseSupport.AppendChild(xmlDualSenseEnabled);
-            XmlElement xmlDualSenseEnableRumble = m_Xdoc.CreateElement("EnableRumble", null);
-            xmlDualSenseEnableRumble.InnerText = deviceOptions.DualSenseOpts.EnableRumble.ToString();
-            xmlDualSenseSupport.AppendChild(xmlDualSenseEnableRumble);
+            //XmlElement xmlDualSenseEnableRumble = m_Xdoc.CreateElement("EnableRumble", null);
+            //xmlDualSenseEnableRumble.InnerText = deviceOptions.DualSenseOpts.EnableRumble.ToString();
+            //xmlDualSenseSupport.AppendChild(xmlDualSenseEnableRumble);
 
-            XmlElement xmlDualSenseHapticStrength = m_Xdoc.CreateElement("RumbleStrength", null);
-            xmlDualSenseHapticStrength.InnerText = deviceOptions.DualSenseOpts.HapticIntensity.ToString();
-            xmlDualSenseSupport.AppendChild(xmlDualSenseHapticStrength);
+            //XmlElement xmlDualSenseHapticStrength = m_Xdoc.CreateElement("RumbleStrength", null);
+            //xmlDualSenseHapticStrength.InnerText = deviceOptions.DualSenseOpts.HapticIntensity.ToString();
+            //xmlDualSenseSupport.AppendChild(xmlDualSenseHapticStrength);
             xmlDeviceOptions.AppendChild(xmlDualSenseSupport);
 
             XmlElement xmlSwitchProSupport = m_Xdoc.CreateElement("SwitchProSupportSettings", null);
@@ -5483,9 +5483,9 @@ namespace DS4Windows
             xmlSwitchProEnabled.InnerText = deviceOptions.SwitchProDeviceOpts.Enabled.ToString();
             xmlSwitchProSupport.AppendChild(xmlSwitchProEnabled);
 
-            XmlElement xmlSwitchEnableHomeLED = m_Xdoc.CreateElement("EnableHomeLED", null);
-            xmlSwitchEnableHomeLED.InnerText = deviceOptions.SwitchProDeviceOpts.EnableHomeLED.ToString();
-            xmlSwitchProSupport.AppendChild(xmlSwitchEnableHomeLED);
+            //XmlElement xmlSwitchEnableHomeLED = m_Xdoc.CreateElement("EnableHomeLED", null);
+            //xmlSwitchEnableHomeLED.InnerText = deviceOptions.SwitchProDeviceOpts.EnableHomeLED.ToString();
+            //xmlSwitchProSupport.AppendChild(xmlSwitchEnableHomeLED);
             xmlDeviceOptions.AppendChild(xmlSwitchProSupport);
 
             XmlElement xmlJoyConSupport = m_Xdoc.CreateElement("JoyConSupportSettings", null);
@@ -5493,9 +5493,9 @@ namespace DS4Windows
             xmlJoyconEnabled.InnerText = deviceOptions.JoyConDeviceOpts.Enabled.ToString();
             xmlJoyConSupport.AppendChild(xmlJoyconEnabled);
 
-            XmlElement xmlJoyConHomeLED = m_Xdoc.CreateElement("EnableHomeLED", null);
-            xmlJoyConHomeLED.InnerText = deviceOptions.JoyConDeviceOpts.EnableHomeLED.ToString();
-            xmlJoyConSupport.AppendChild(xmlJoyConHomeLED);
+            //XmlElement xmlJoyConHomeLED = m_Xdoc.CreateElement("EnableHomeLED", null);
+            //xmlJoyConHomeLED.InnerText = deviceOptions.JoyConDeviceOpts.EnableHomeLED.ToString();
+            //xmlJoyConSupport.AppendChild(xmlJoyConHomeLED);
             xmlDeviceOptions.AppendChild(xmlJoyConSupport);
 
             rootElement.AppendChild(xmlDeviceOptions);
@@ -5891,6 +5891,8 @@ namespace DS4Windows
                     if (Int32.TryParse(node["wheel90DegPointRight"].InnerText.Split(',')[0], out intValue)) device.wheel90DegPointRight.X = intValue;
                     if (Int32.TryParse(node["wheel90DegPointRight"].InnerText.Split(',')[1], out intValue)) device.wheel90DegPointRight.Y = intValue;
 
+                    device.optionsStore.LoadSettings(xmlDoc, node);
+
                     loaded = true;
                 }
             }
@@ -5917,9 +5919,9 @@ namespace DS4Windows
                 xmlDoc.Load(m_controllerConfigs);
 
                 XmlNode node = xmlDoc.SelectSingleNode("/Controllers/Controller[@Mac=\"" + device.getMacAddress() + "\"]");
+                XmlNode xmlControllersNode = xmlDoc.SelectSingleNode("/Controllers");
                 if (node == null)
                 {
-                    XmlNode xmlControllersNode = xmlDoc.SelectSingleNode("/Controllers");
                     XmlElement el = xmlDoc.CreateElement("Controller");
                     el.SetAttribute("Mac", device.getMacAddress());
 
@@ -5934,6 +5936,25 @@ namespace DS4Windows
                 node["wheel90DegPointLeft"].InnerText = $"{device.wheel90DegPointLeft.X},{device.wheel90DegPointLeft.Y}";
                 node["wheel90DegPointRight"].InnerText = $"{device.wheel90DegPointRight.X},{device.wheel90DegPointRight.Y}";
 
+                device.optionsStore.PersistSettings(xmlDoc, node);
+
+                // Remove old elements
+                xmlDoc.RemoveAll();
+
+                XmlNode Node;
+                Node = xmlDoc.CreateXmlDeclaration("1.0", "utf-8", string.Empty);
+                xmlDoc.AppendChild(Node);
+
+                Node = xmlDoc.CreateComment(string.Format(" Controller config data. {0} ", DateTime.Now));
+                xmlDoc.AppendChild(Node);
+
+                Node = xmlDoc.CreateWhitespace("\r\n");
+                xmlDoc.AppendChild(Node);
+
+                // Write old Controllers node back in
+                xmlDoc.AppendChild(xmlControllersNode);
+
+                // Save XML to file
                 xmlDoc.Save(m_controllerConfigs);
             }
             catch (UnauthorizedAccessException)

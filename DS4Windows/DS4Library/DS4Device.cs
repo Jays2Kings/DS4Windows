@@ -216,6 +216,8 @@ namespace DS4Windows
             set => readyQuickChargeDisconnect = value;
         }
 
+        public ControllerOptionsStore optionsStore;
+
         public Int32 wheelPrevPhysicalAngle = 0;
         public Int32 wheelPrevFullAngle = 0;
         public Int32 wheelFullTurnCount = 0;
@@ -1918,7 +1920,12 @@ namespace DS4Windows
             abortInputThread = true;
         }
 
-        public virtual void PrepareTriggerEffect(InputDevices.TriggerId trigger, InputDevices.TriggerEffects effect)
+        public virtual void PrepareTriggerEffect(InputDevices.TriggerId trigger,
+            InputDevices.TriggerEffects effect)
+        {
+        }
+
+        public virtual void CheckDeviceSettings(int numControllers)
         {
         }
     }

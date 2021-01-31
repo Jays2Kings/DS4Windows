@@ -126,6 +126,7 @@ namespace DS4Windows.InputDevices
         private const byte OUTPUT_REPORT_ID_DATA = 0x02;
         private new const byte USB_OUTPUT_CHANGE_LENGTH = 48;
         private const int OUTPUT_MIN_COUNT_BT = 20;
+        private const byte LED_PLAYER_BAR_TOGGLE = 0x10;
         private bool timeStampInit = false;
         private uint timeStampPrevious = 0;
         private uint deltaTimeCurrent = 0;
@@ -136,11 +137,13 @@ namespace DS4Windows.InputDevices
         private new GyroMouseSensDualSense gyroMouseSensSettings;
         public override GyroMouseSens GyroMouseSensSettings { get => gyroMouseSensSettings; }
 
+        private byte activeDeviceMask = 0x00;
+
         private byte hapticsIntensityByte = 0x02;
         public HapticIntensity HapticChoice {
             set
             {
-                switch(value)
+                switch (value)
                 {
                     case HapticIntensity.Low:
                         hapticsIntensityByte = 0x05;
@@ -967,7 +970,7 @@ namespace DS4Windows.InputDevices
                 outputReport[43] = 0x02;
                 // 5 player LED lights below Touchpad.
                 // Bitmask 0x00-0x1F from left to right with 0x04 being the center LED. Bit 0x20 sets the brightness immediately with no fade in
-                outputReport[44] = deviceSlotMask;
+                outputReport[44] = activeDeviceMask;
 
                 /* Lightbar colors */
                 outputReport[45] = currentHap.lightbarState.LightBarColor.red;
@@ -1102,7 +1105,7 @@ namespace DS4Windows.InputDevices
                 outputReport[44] = 0x02;
                 // 5 player LED lights below Touchpad.
                 // Bitmask 0x00-0x1F from left to right with 0x04 being the center LED. Bit 0x20 sets the brightness immediately with no fade in
-                outputReport[45] = deviceSlotMask;
+                outputReport[45] = activeDeviceMask;
 
                 /* Lightbar colors */
                 outputReport[46] = currentHap.lightbarState.LightBarColor.red;
@@ -1255,6 +1258,37 @@ namespace DS4Windows.InputDevices
             {
                 outputDirty = true;
                 PrepareOutReport();
+            });
+        }
+
+        public override void CheckDeviceSettings(int numControllers)
+        {
+            DualSenseControllerOptions tempStore = optionsStore as DualSenseControllerOptions;
+            if (tempStore != null)
+            {
+                if (tempStore.LedMode == DualSenseControllerOptions.LEDBarMode.Off)
+                {
+                    activeDeviceMask = 0x00;
+                }
+                else if (tempStore.LedMode == DualSenseControllerOptions.LEDBarMode.On)
+                {
+                    activeDeviceMask = deviceSlotMask;
+                }
+                else if (tempStore.LedMode == DualSenseControllerOptions.LEDBarMode.MultipleControllers &&
+                    numControllers > 1)
+                {
+                    activeDeviceMask = deviceSlotMask;
+                }
+                else
+                {
+                    activeDeviceMask = 0x00;
+                }
+            }
+
+            queueEvent(() =>
+            {
+                outputDirty = true;
+                //PrepareOutReport();
             });
         }
     }

@@ -678,8 +678,8 @@ namespace DS4Windows
             // Use Tuple here for convenience
             var reportIds = new (byte Id, int Length)[]
             {
-                (0x11, BT_OUTPUT_REPORT_0x11_LENGTH),
                 (0x15, BT_OUTPUT_REPORT_0x15_LENGTH),
+                (0x11, BT_OUTPUT_REPORT_0x11_LENGTH),
             };
 
             byte finalReport = 0x00;

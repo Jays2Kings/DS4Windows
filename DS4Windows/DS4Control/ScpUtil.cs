@@ -5872,6 +5872,7 @@ namespace DS4Windows
                 {
                     XmlElement el = xmlDoc.CreateElement("Controller");
                     el.SetAttribute("Mac", device.getMacAddress());
+                    el.SetAttribute("ControllerType", device.DeviceType.ToString());
 
                     el.AppendChild(xmlDoc.CreateElement("wheelCenterPoint"));
                     el.AppendChild(xmlDoc.CreateElement("wheel90DegPointLeft"));
@@ -5880,6 +5881,14 @@ namespace DS4Windows
                     node = xmlControllersNode.AppendChild(el);
                 }
 
+                XmlAttribute tempAttr = node.Attributes["ControllerType"];
+                if (tempAttr == null)
+                {
+                    tempAttr = xmlDoc.CreateAttribute("ControllerType");
+                    node.Attributes.Append(tempAttr);
+                }
+
+                tempAttr.Value = device.DeviceType.ToString();
                 node["wheelCenterPoint"].InnerText = $"{device.wheelCenterPoint.X},{device.wheelCenterPoint.Y}";
                 node["wheel90DegPointLeft"].InnerText = $"{device.wheel90DegPointLeft.X},{device.wheel90DegPointLeft.Y}";
                 node["wheel90DegPointRight"].InnerText = $"{device.wheel90DegPointRight.X},{device.wheel90DegPointRight.Y}";

@@ -85,16 +85,6 @@ namespace DS4Windows
             }
         }
         public event EventHandler EnabledChanged;
-
-        private bool enableRumble = true;
-        public bool EnableRumble { get => enableRumble; set => enableRumble = value; }
-
-        private DualSenseDevice.HapticIntensity hapticIntensity = DualSenseDevice.HapticIntensity.Medium;
-        public DualSenseDevice.HapticIntensity HapticIntensity
-        {
-            get => hapticIntensity;
-            set => hapticIntensity = value;
-        }
     }
 
     public class DualSenseControllerOptions : ControllerOptionsStore
@@ -210,9 +200,6 @@ namespace DS4Windows
             }
         }
         public event EventHandler EnabledChanged;
-
-        private bool enableHomeLED = true;
-        public bool EnableHomeLED { get => enableHomeLED; set => enableHomeLED = value; }
     }
 
     public class SwitchProControllerOptions : ControllerOptionsStore
@@ -271,9 +258,6 @@ namespace DS4Windows
             }
         }
         public event EventHandler EnabledChanged;
-
-        private bool enableHomeLED = true;
-        public bool EnableHomeLED { get => enableHomeLED; set => enableHomeLED = value; }
     }
 
     public class JoyConControllerOptions : ControllerOptionsStore

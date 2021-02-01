@@ -1,9 +1,39 @@
 {
-  "latest_version": "2.2.2",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 2},
-  "updated_at": "2021-01-19T17:17:09+0000",
+  "latest_version": "2.2.3",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 3},
+  "updated_at": "2021-02-01T21:09:33+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.2.3",
+        "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 3},
+        "base_header": "Version 2.2.3",
+        "release_date": "2021-02-01T21:09:33+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.2.3",
+            "log_text": ["* Added an extra precaution to unplug any permanent output devices upon service stop. ViGEmBus should handle this already but just want to make sure.",
+              "* Updated Polish translation. Contribution by **gregory678**",
+              "* Changed locking strategy for ControllerSlotManager collection",
+              "* Fixed right click disconnect slot index for new sorted list",
+              "* Implemented a variant of Two Stage Triggers",
+              "* Added Trigger effects presets. Currently only useful for the DualSense controller",
+              "* Added averaging gyro calibration upon device connection. Contribution by **firodj**",
+              "* Skip unknown DS4Controls names while loading a profile",
+              "* Fixed issue with missingSettings being set for fallback value lookup on Profile load. Constantly re-saved profiles",
+              "* Only reset outDevTypeTemp on full profile save. Ensured proper controller image is used in Binding window after clicking Apply in Profile Editor",
+              "* Change arrangement of lit LED lights for DualSense controller",
+              "* Allow Touchpad Click button passthru with Mouse and Controls mode",
+              "* Changed device type settings. Now use device specific (serial) settings. Now saved to ControllerConfigs.xml",
+              "* Added check for valid output report types upon DS4 BT device connection. Can revert to using output report 0x11 if needed. Not sure if it will matter",
+              "* Ignore output plugin routine and other calls if requested profile file does not exist"],
+            "editor": "ryochan7",
+            "editors_note": ["None"],
+            "updated_at": "2021-02-01T21:09:33+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.2.2",
         "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 2},

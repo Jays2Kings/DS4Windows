@@ -219,6 +219,7 @@ namespace DS4Windows
         }
 
         public ControllerOptionsStore optionsStore;
+        private DS4ControllerOptions nativeOptionsStore;
 
         public Int32 wheelPrevPhysicalAngle = 0;
         public Int32 wheelPrevFullAngle = 0;
@@ -601,6 +602,8 @@ namespace DS4Windows
             HidDevice hidDevice = hDevice;
             deviceType = InputDevices.InputDeviceType.DS4;
             gyroMouseSensSettings = new GyroMouseSens();
+            optionsStore = nativeOptionsStore = new DS4ControllerOptions(deviceType);
+            SetupOptionsEvents();
 
             if (conType == ConnectionType.USB || conType == ConnectionType.SONYWA)
             {
@@ -1999,13 +2002,25 @@ namespace DS4Windows
             abortInputThread = true;
         }
 
+        private void SetupOptionsEvents()
+        {
+            if (nativeOptionsStore != null)
+            {
+            }
+        }
+
         public virtual void PrepareTriggerEffect(InputDevices.TriggerId trigger,
             InputDevices.TriggerEffects effect)
         {
         }
 
-        public virtual void CheckDeviceSettings(int numControllers)
+        public virtual void CheckControllerNumDeviceSettings(int numControllers)
         {
+        }
+
+        public virtual void LoadStoreSettings()
+        {
+
         }
     }
 }

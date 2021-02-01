@@ -113,8 +113,14 @@ namespace DS4Windows
         public DualSenseDevice.HapticIntensity HapticIntensity
         {
             get => hapticIntensity;
-            set => hapticIntensity = value;
+            set
+            {
+                if (hapticIntensity == value) return;
+                hapticIntensity = value;
+                HapticIntensityChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
+        public event EventHandler HapticIntensityChanged;
 
         private LEDBarMode ledMode = LEDBarMode.MultipleControllers;
         public LEDBarMode LedMode
@@ -122,9 +128,12 @@ namespace DS4Windows
             get => ledMode;
             set
             {
+                if (ledMode == value) return;
                 ledMode = value;
+                LedModeChanged?.Invoke(this, EventArgs.Empty);
             }
         }
+        public event EventHandler LedModeChanged;
 
         public DualSenseControllerOptions(InputDeviceType deviceType) :
             base(deviceType)
@@ -205,7 +214,17 @@ namespace DS4Windows
     public class SwitchProControllerOptions : ControllerOptionsStore
     {
         private bool enableHomeLED = true;
-        public bool EnableHomeLED { get => enableHomeLED; set => enableHomeLED = value; }
+        public bool EnableHomeLED
+        {
+            get => enableHomeLED;
+            set
+            {
+                if (enableHomeLED == value) return;
+                enableHomeLED = value;
+                EnableHomeLEDChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler EnableHomeLEDChanged;
 
         public SwitchProControllerOptions(InputDeviceType deviceType) : base(deviceType)
         {
@@ -263,7 +282,17 @@ namespace DS4Windows
     public class JoyConControllerOptions : ControllerOptionsStore
     {
         private bool enableHomeLED = true;
-        public bool EnableHomeLED { get => enableHomeLED; set => enableHomeLED = value; }
+        public bool EnableHomeLED
+        {
+            get => enableHomeLED;
+            set
+            {
+                if (enableHomeLED == value) return;
+                enableHomeLED = value;
+                EnableHomeLEDChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler EnableHomeLEDChanged;
 
         public JoyConControllerOptions(InputDeviceType deviceType) :
             base(deviceType)

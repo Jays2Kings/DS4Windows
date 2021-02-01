@@ -162,6 +162,9 @@ namespace DS4Windows.InputDevices
         private TriggerEffectData l2EffectData;
         private TriggerEffectData r2EffectData;
 
+        private DualSenseControllerOptions nativeOptionsStore;
+        public DualSenseControllerOptions NativeOptionsStore { get => nativeOptionsStore; }
+
         public override event ReportHandler<EventArgs> Report = null;
         public override event EventHandler BatteryChanged;
         public override event EventHandler ChargingChanged;
@@ -180,6 +183,8 @@ namespace DS4Windows.InputDevices
             HidDevice hidDevice = hDevice;
             deviceType = InputDeviceType.DualSense;
             gyroMouseSensSettings = new GyroMouseSensDualSense();
+            optionsStore = nativeOptionsStore = new DualSenseControllerOptions(deviceType);
+            SetupOptionsEvents();
 
             conType = DetermineConnectionType(hDevice);
 
@@ -1261,20 +1266,19 @@ namespace DS4Windows.InputDevices
             });
         }
 
-        public override void CheckDeviceSettings(int numControllers)
+        public override void CheckControllerNumDeviceSettings(int numControllers)
         {
-            DualSenseControllerOptions tempStore = optionsStore as DualSenseControllerOptions;
-            if (tempStore != null)
+            if (nativeOptionsStore != null)
             {
-                if (tempStore.LedMode == DualSenseControllerOptions.LEDBarMode.Off)
+                if (nativeOptionsStore.LedMode == DualSenseControllerOptions.LEDBarMode.Off)
                 {
                     activeDeviceMask = 0x00;
                 }
-                else if (tempStore.LedMode == DualSenseControllerOptions.LEDBarMode.On)
+                else if (nativeOptionsStore.LedMode == DualSenseControllerOptions.LEDBarMode.On)
                 {
                     activeDeviceMask = deviceSlotMask;
                 }
-                else if (tempStore.LedMode == DualSenseControllerOptions.LEDBarMode.MultipleControllers &&
+                else if (nativeOptionsStore.LedMode == DualSenseControllerOptions.LEDBarMode.MultipleControllers &&
                     numControllers > 1)
                 {
                     activeDeviceMask = deviceSlotMask;
@@ -1290,6 +1294,32 @@ namespace DS4Windows.InputDevices
                 outputDirty = true;
                 //PrepareOutReport();
             });
+        }
+
+        private void SetupOptionsEvents()
+        {
+            if (nativeOptionsStore != null)
+            {
+                nativeOptionsStore.EnableRumbleChanged += (sender, e) =>
+                {
+                    UseRumble = nativeOptionsStore.EnableRumble;
+                    queueEvent(() => { outputDirty = true; });
+                };
+                nativeOptionsStore.HapticIntensityChanged += (sender, e) =>
+                {
+                    HapticChoice = nativeOptionsStore.HapticIntensity;
+                    queueEvent(() => { outputDirty = true; });
+                };
+            }
+        }
+
+        public override void LoadStoreSettings()
+        {
+            if (nativeOptionsStore != null)
+            {
+                UseRumble = nativeOptionsStore.EnableRumble;
+                HapticChoice = nativeOptionsStore.HapticIntensity;
+            }
         }
     }
 }

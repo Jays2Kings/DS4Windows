@@ -194,6 +194,8 @@ namespace DS4Windows.InputDevices
         private bool enableHomeLED = true;
         public bool EnableHomeLED { get => enableHomeLED; set => enableHomeLED = value; }
 
+        private SwitchProControllerOptions nativeOptionsStore;
+
         public override event ReportHandler<EventArgs> Report = null;
         public override event EventHandler<EventArgs> Removal = null;
 
@@ -231,6 +233,8 @@ namespace DS4Windows.InputDevices
             deviceType = InputDeviceType.SwitchPro;
             gyroMouseSensSettings = new GyroMouseSens();
             conType = DetermineConnectionType(hDevice);
+            optionsStore = nativeOptionsStore = new SwitchProControllerOptions(deviceType);
+            SetupOptionsEvents();
 
             if (conType == ConnectionType.BT)
             {
@@ -1259,6 +1263,21 @@ namespace DS4Windows.InputDevices
                 default:
                     deviceSlotMask = 0x00;
                     break;
+            }
+        }
+
+        private void SetupOptionsEvents()
+        {
+            if (nativeOptionsStore != null)
+            {
+            }
+        }
+
+        public override void LoadStoreSettings()
+        {
+            if (nativeOptionsStore != null)
+            {
+                enableHomeLED = nativeOptionsStore.EnableHomeLED;
             }
         }
     }

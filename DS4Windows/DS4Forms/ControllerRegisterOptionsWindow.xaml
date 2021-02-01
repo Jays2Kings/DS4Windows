@@ -54,13 +54,13 @@
 
             <TabItem x:Name="switchProOptsTabItem" Header="Switch Pro" Visibility="Collapsed">
                 <StackPanel Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="4">
-                    <CheckBox Content="Enable Home LED" IsChecked="{Binding EnableHomeLED, FallbackValue='False'}" />
+                    <CheckBox Content="Enable Home LED" IsChecked="{Binding Options.EnableHomeLED, FallbackValue='False'}" />
                 </StackPanel>
             </TabItem>
 
             <TabItem x:Name="joyConOptsTabItem" Header="JoyCon" Visibility="Collapsed">
                 <StackPanel Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="4">
-                    <CheckBox Content="Enable Home LED" IsChecked="{Binding EnableHomeLED, FallbackValue='False'}" />
+                    <CheckBox Content="Enable Home LED" IsChecked="{Binding Options.EnableHomeLED, FallbackValue='False'}" />
                 </StackPanel>
             </TabItem>
         </TabControl>

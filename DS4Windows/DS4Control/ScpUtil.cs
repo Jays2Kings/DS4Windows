@@ -5033,6 +5033,25 @@ namespace DS4Windows
                     }
                 }
             }
+            else
+            {
+                Loaded = false;
+                // Unplug existing output device if requested profile does not exist
+                OutputDevice tempOutDev = control.outputDevices[device];
+                if (tempOutDev != null)
+                {
+                    tempOutDev = null;
+                    //Global.activeOutDevType[device] = OutContType.None;
+                    DS4Device tempDev = control.DS4Controllers[device];
+                    if (tempDev != null)
+                    {
+                        tempDev.queueEvent(() =>
+                        {
+                            control.UnplugOutDev(device, tempDev);
+                        });
+                    }
+                }
+            }
 
             // Only add missing settings if the actual load was graceful
             if ((missingSetting || migratePerformed) && Loaded)// && buttons != null)
@@ -5041,31 +5060,34 @@ namespace DS4Windows
                 SaveProfile(device, proName);
             }
 
-            CacheProfileCustomsFlags(device);
-            buttonMouseInfos[device].activeButtonSensitivity =
-                buttonMouseInfos[device].buttonSensitivity;
-
-            if (device < Global.MAX_DS4_CONTROLLER_COUNT && control.touchPad[device] != null)
+            if (Loaded)
             {
-                control.touchPad[device]?.ResetToggleGyroM();
-                GyroOutMode currentGyro = gyroOutMode[device];
-                if (currentGyro == GyroOutMode.Mouse)
-                {
-                    control.touchPad[device].ToggleGyroMouse =
-                        gyroMouseToggle[device];
-                }
-                else if (currentGyro == GyroOutMode.MouseJoystick)
-                {
-                    control.touchPad[device].ToggleGyroMouse =
-                        gyroMouseStickToggle[device];
-                }
-            }
+                CacheProfileCustomsFlags(device);
+                buttonMouseInfos[device].activeButtonSensitivity =
+                    buttonMouseInfos[device].buttonSensitivity;
 
-            // If a device exists, make sure to transfer relevant profile device
-            // options to device instance
-            if (postLoad && device < Global.MAX_DS4_CONTROLLER_COUNT)
-            {
-                PostLoadSnippet(device, control, xinputStatus, xinputPlug);
+                if (device < Global.MAX_DS4_CONTROLLER_COUNT && control.touchPad[device] != null)
+                {
+                    control.touchPad[device]?.ResetToggleGyroM();
+                    GyroOutMode currentGyro = gyroOutMode[device];
+                    if (currentGyro == GyroOutMode.Mouse)
+                    {
+                        control.touchPad[device].ToggleGyroMouse =
+                            gyroMouseToggle[device];
+                    }
+                    else if (currentGyro == GyroOutMode.MouseJoystick)
+                    {
+                        control.touchPad[device].ToggleGyroMouse =
+                            gyroMouseStickToggle[device];
+                    }
+                }
+
+                // If a device exists, make sure to transfer relevant profile device
+                // options to device instance
+                if (postLoad && device < Global.MAX_DS4_CONTROLLER_COUNT)
+                {
+                    PostLoadSnippet(device, control, xinputStatus, xinputPlug);
+                }
             }
 
             return Loaded;

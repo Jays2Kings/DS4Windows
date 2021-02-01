@@ -1006,7 +1006,7 @@ namespace DS4Windows
                         device.ChargingChanged += CheckQuickCharge;
 
                         touchPad[i] = new Mouse(i, device);
-
+                        bool profileLoaded = false;
                         if (!useTempProfile[i])
                         {
                             if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
@@ -1020,21 +1020,26 @@ namespace DS4Windows
                                 Global.linkedProfileCheck[i] = false;
                             }
 
-                            LoadProfile(i, false, this, false, false);
+                            profileLoaded = LoadProfile(i, false, this, false, false);
                         }
 
-                        device.LightBarColor = getMainColor(i);
+                        if (profileLoaded)
+                        {
+                            device.LightBarColor = getMainColor(i);
 
-                        if (!getDInputOnly(i) && device.isSynced())
-                        {
-                            //useDInputOnly[i] = false;
-                            PluginOutDev(i, device);
-                            
-                        }
-                        else
-                        {
-                            useDInputOnly[i] = true;
-                            Global.activeOutDevType[i] = OutContType.None;
+                            if (!getDInputOnly(i) && device.isSynced())
+                            {
+                                //useDInputOnly[i] = false;
+                                PluginOutDev(i, device);
+                            }
+                            else
+                            {
+                                useDInputOnly[i] = true;
+                                Global.activeOutDevType[i] = OutContType.None;
+                            }
+
+                            TouchPadOn(i, device);
+                            CheckProfileOptions(i, device, true);
                         }
 
                         int tempIdx = i;
@@ -1045,7 +1050,6 @@ namespace DS4Windows
 
                         if (_udpServer != null && i < UdpServer.NUMBER_SLOTS)
                         {
-
                             DS4Device.ReportHandler<EventArgs> tempEvnt = (sender, args) =>
                             {
                                 DualShockPadMeta padDetail = new DualShockPadMeta();
@@ -1077,13 +1081,9 @@ namespace DS4Windows
                             };
 							
                             device.MotionEvent = tempEvnt;
-
                             device.Report += tempEvnt;
                         }
 
-                        TouchPadOn(i, device);
-
-                        CheckProfileOptions(i, device, true);
                         device.StartUpdate();
                         //string filename = ProfilePath[ind];
                         //ind++;
@@ -1344,7 +1344,7 @@ namespace DS4Windows
                             device.ChargingChanged += CheckQuickCharge;
 
                             touchPad[Index] = new Mouse(Index, device);
-
+                            bool profileLoaded = false;
                             if (!useTempProfile[Index])
                             {
                                 if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
@@ -1358,10 +1358,27 @@ namespace DS4Windows
                                     Global.linkedProfileCheck[Index] = false;
                                 }
 
-                                LoadProfile(Index, false, this, false, false);
+                                profileLoaded = LoadProfile(Index, false, this, false, false);
                             }
 
-                            device.LightBarColor = getMainColor(Index);
+                            if (profileLoaded)
+                            {
+                                device.LightBarColor = getMainColor(Index);
+
+                                if (!getDInputOnly(Index) && device.isSynced())
+                                {
+                                    //useDInputOnly[Index] = false;
+                                    PluginOutDev(Index, device);
+                                }
+                                else
+                                {
+                                    useDInputOnly[Index] = true;
+                                    Global.activeOutDevType[Index] = OutContType.None;
+                                }
+
+                                TouchPadOn(Index, device);
+                                CheckProfileOptions(Index, device);
+                            }
 
                             int tempIdx = Index;
                             device.Report += (sender, e) =>
@@ -1403,28 +1420,11 @@ namespace DS4Windows
                                     _udpServer.NewReportIncoming(ref padDetail, stateForUdp, udpOutBuffers[tempIdx]);
                                 };
                                 device.MotionEvent = tempEvnt;
-
                                 device.Report += tempEvnt;
                             }
-                            
-                            if (!getDInputOnly(Index) && device.isSynced())
-                            {
-                                //useDInputOnly[Index] = false;
-                                PluginOutDev(Index, device);
-                            }
-                            else
-                            {
-                                useDInputOnly[Index] = true;
-                                Global.activeOutDevType[Index] = OutContType.None;
-                            }
 
-                            TouchPadOn(Index, device);
-
-                            CheckProfileOptions(Index, device);
                             device.StartUpdate();
-
                             HotplugController?.Invoke(this, device, Index);
-
                             break;
                         }
                     }

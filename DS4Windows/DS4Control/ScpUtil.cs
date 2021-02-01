@@ -2094,22 +2094,26 @@ namespace DS4Windows
 
         public static bool Load() => m_Config.Load();
         
-        public static void LoadProfile(int device, bool launchprogram, ControlService control,
+        public static bool LoadProfile(int device, bool launchprogram, ControlService control,
             bool xinputChange = true, bool postLoad = true)
         {
-            m_Config.LoadProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            bool result = m_Config.LoadProfile(device, launchprogram, control, "", xinputChange, postLoad);
             tempprofilename[device] = string.Empty;
             useTempProfile[device] = false;
             tempprofileDistance[device] = false;
+
+            return result;
         }
 
-        public static void LoadTempProfile(int device, string name, bool launchprogram,
+        public static bool LoadTempProfile(int device, string name, bool launchprogram,
             ControlService control, bool xinputChange = true)
         {
-            m_Config.LoadProfile(device, launchprogram, control, appdatapath + @"\Profiles\" + name + ".xml");
+            bool result = m_Config.LoadProfile(device, launchprogram, control, appdatapath + @"\Profiles\" + name + ".xml");
             tempprofilename[device] = name;
             useTempProfile[device] = true;
             tempprofileDistance[device] = name.ToLower().Contains("distance");
+
+            return result;
         }
 
         public static void LoadBlankDevProfile(int device, bool launchprogram, ControlService control,
@@ -5036,6 +5040,8 @@ namespace DS4Windows
             else
             {
                 Loaded = false;
+                ResetProfile(device);
+
                 // Unplug existing output device if requested profile does not exist
                 OutputDevice tempOutDev = control.outputDevices[device];
                 if (tempOutDev != null)

@@ -1,9 +1,26 @@
 {
-  "latest_version": "2.2.3",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 3},
-  "updated_at": "2021-02-01T21:09:33+0000",
+  "latest_version": "2.2.4",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 4},
+  "updated_at": "2021-02-02T22:25:55+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.2.4",
+        "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 4},
+        "base_header": "Version 2.2.4",
+        "release_date": "2021-02-02T22:25:55+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.2.4",
+            "log_text": ["* Fixed SelectedValue display in Dark theme for some dynamic ComboBox controls",
+              "* Added Gyro Directional Swipe mode"],
+            "editor": "ryochan7",
+            "editors_note": ["None"],
+            "updated_at": "2021-02-02T22:25:55+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.2.3",
         "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 3},

@@ -80,6 +80,7 @@ namespace DS4WinWPF.DS4Forms
             AssignTiltAssociation();
             AssignSwipeAssociation();
             AssignTriggerFullPullAssociation();
+            AssignGyroSwipeAssociation();
 
             inputTimer = new NonFormTimer(100);
             inputTimer.Elapsed += InputDS4;
@@ -111,6 +112,8 @@ namespace DS4WinWPF.DS4Forms
                 case 2:
                     activeGyroModePanel = gyroMouseJoystickPanel; break;
                 case 3:
+                    activeGyroModePanel = gyroDirSwipePanel; break;
+                case 4:
                     activeGyroModePanel = passthruPanel; break;
                 default:
                     activeGyroModePanel = gyroControlsPanel; break;
@@ -120,6 +123,7 @@ namespace DS4WinWPF.DS4Forms
             gyroControlsPanel.Visibility = Visibility.Collapsed;
             gyroMousePanel.Visibility = Visibility.Collapsed;
             gyroMouseJoystickPanel.Visibility = Visibility.Collapsed;
+            gyroDirSwipePanel.Visibility = Visibility.Collapsed;
             passthruPanel.Visibility = Visibility.Collapsed;
             activeGyroModePanel.Visibility = Visibility.Visible;
         }
@@ -174,6 +178,14 @@ namespace DS4WinWPF.DS4Forms
         {
             l2FullPullLb.DataContext = mappingListVM.ControlMap[DS4Controls.L2FullPull];
             r2FullPullLb.DataContext = mappingListVM.ControlMap[DS4Controls.R2FullPull];
+        }
+
+        private void AssignGyroSwipeAssociation()
+        {
+            gyroSwipeLeftLb.DataContext = mappingListVM.ControlMap[DS4Controls.GyroSwipeLeft];
+            gyroSwipeRightLb.DataContext = mappingListVM.ControlMap[DS4Controls.GyroSwipeRight];
+            gyroSwipeUpLb.DataContext = mappingListVM.ControlMap[DS4Controls.GyroSwipeUp];
+            gyroSwipeDownLb.DataContext = mappingListVM.ControlMap[DS4Controls.GyroSwipeDown];
         }
 
         private void MappingListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -557,6 +569,7 @@ namespace DS4WinWPF.DS4Forms
             profileSettingsVM.PopulateTouchDisInver(touchDisInvertBtn.ContextMenu);
             profileSettingsVM.PopulateGyroMouseTrig(gyroMouseTrigBtn.ContextMenu);
             profileSettingsVM.PopulateGyroMouseStickTrig(gyroMouseStickTrigBtn.ContextMenu);
+            profileSettingsVM.PopulateGyroSwipeTrig(gyroSwipeTrigBtn.ContextMenu);
             profileSettingsTabCon.DataContext = profileSettingsVM;
             mappingListBox.DataContext = mappingListVM;
             specialActionsTab.DataContext = specialActionsVM;
@@ -592,6 +605,7 @@ namespace DS4WinWPF.DS4Forms
             profileSettingsVM.PopulateTouchDisInver(touchDisInvertBtn.ContextMenu);
             profileSettingsVM.PopulateGyroMouseTrig(gyroMouseTrigBtn.ContextMenu);
             profileSettingsVM.PopulateGyroMouseStickTrig(gyroMouseStickTrigBtn.ContextMenu);
+            profileSettingsVM.PopulateGyroSwipeTrig(gyroSwipeTrigBtn.ContextMenu);
             profileSettingsTabCon.DataContext = profileSettingsVM;
             mappingListBox.DataContext = mappingListVM;
             specialActionsTab.DataContext = specialActionsVM;
@@ -707,6 +721,10 @@ namespace DS4WinWPF.DS4Forms
                     activeGyroModePanel = gyroMouseJoystickPanel;
                 }
                 else if (idx == 3)
+                {
+                    activeGyroModePanel = gyroDirSwipePanel;
+                }
+                else if (idx == 4)
                 {
                     activeGyroModePanel = passthruPanel;
                 }
@@ -1071,7 +1089,7 @@ namespace DS4WinWPF.DS4Forms
 
         private void GyroMouseStickTrigBtn_Click(object sender, RoutedEventArgs e)
         {
-            gyroMouseStickTrigBtn.ContextMenu.IsOpen = true;
+            gyroSwipeTrigBtn.ContextMenu.IsOpen = true;
         }
 
         private void OutConTypeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1407,6 +1425,32 @@ namespace DS4WinWPF.DS4Forms
                 d.SixAxis.ResetContinuousCalibration();
             }
         }
+
+        private void GyroSwipeTrigBtn_Click(object sender, RoutedEventArgs e)
+        {
+            gyroSwipeTrigBtn.ContextMenu.IsOpen = true;
+        }
+
+        private void GyroSwipeTrigMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ContextMenu menu = gyroSwipeTrigBtn.ContextMenu;
+            int itemCount = menu.Items.Count;
+            MenuItem alwaysOnItem = menu.Items[itemCount - 1] as MenuItem;
+
+            profileSettingsVM.UpdateGyroSwipeTrig(menu, e.OriginalSource == alwaysOnItem);
+        }
+
+        private void GyroSwipeControlsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            DS4Controls control = (DS4Controls)Convert.ToInt32(btn.Tag);
+            MappedControl mpControl = mappingListVM.ControlMap[control];
+            BindingWindow window = new BindingWindow(deviceNum, mpControl.Setting);
+            window.Owner = App.Current.MainWindow;
+            window.ShowDialog();
+            mpControl.UpdateMappingName();
+            Global.CacheProfileCustomsFlags(profileSettingsVM.Device);
+        }
     }
 
     public class ControlIndexCheck
@@ -1422,5 +1466,10 @@ namespace DS4WinWPF.DS4Forms
         public int SwipeRight { get => (int)DS4Controls.SwipeRight; }
         public int L2FullPull { get => (int)DS4Controls.L2FullPull; }
         public int R2FullPull { get => (int)DS4Controls.R2FullPull; }
+
+        public int GyroSwipeLeft { get => (int)DS4Controls.GyroSwipeLeft; }
+        public int GyroSwipeRight { get => (int)DS4Controls.GyroSwipeRight; }
+        public int GyroSwipeUp { get => (int)DS4Controls.GyroSwipeUp; }
+        public int GyroSwipeDown { get => (int)DS4Controls.GyroSwipeDown; }
     }
 }

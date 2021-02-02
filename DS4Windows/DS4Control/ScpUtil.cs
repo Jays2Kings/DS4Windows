@@ -20,7 +20,7 @@ namespace DS4Windows
     [Flags]
     public enum DS4KeyType : byte { None = 0, ScanCode = 1, Toggle = 2, Unbound = 4, Macro = 8, HoldMacro = 16, RepeatMacro = 32 }; // Increment by exponents of 2*, starting at 2^0
     public enum Ds3PadId : byte { None = 0xFF, One = 0x00, Two = 0x01, Three = 0x02, Four = 0x03, All = 0x04 };
-    public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options, Mute, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown, L2FullPull, R2FullPull };
+    public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options, Mute, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown, L2FullPull, R2FullPull, GyroSwipeLeft, GyroSwipeRight, GyroSwipeUp, GyroSwipeDown };
     public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, TouchpadClick, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, Unbound };
 
     public enum SASteeringWheelEmulationAxisType: byte { None = 0, LX, LY, RX, RY, L2R2, VJoy1X, VJoy1Y, VJoy1Z, VJoy2X, VJoy2Y, VJoy2Z };
@@ -32,6 +32,7 @@ namespace DS4Windows
         Controls,
         Mouse,
         MouseJoystick,
+        DirectionalSwipe,
         Passthru,
     }
 
@@ -135,6 +136,11 @@ namespace DS4Windows
         public DS4ControlSettings R2;
         public DS4ControlSettings R2FullPull;
 
+        public DS4ControlSettings GyroSwipeLeft;
+        public DS4ControlSettings GyroSwipeRight;
+        public DS4ControlSettings GyroSwipeUp;
+        public DS4ControlSettings GyroSwipeDown;
+
         public List<DS4ControlSettings> ControlButtons =
             new List<DS4ControlSettings>();
 
@@ -155,6 +161,11 @@ namespace DS4Windows
 
             L2FullPull = settingsList[(int)DS4Controls.L2FullPull - 1];
             R2FullPull = settingsList[(int)DS4Controls.R2FullPull - 1];
+
+            GyroSwipeLeft = settingsList[(int)DS4Controls.GyroSwipeLeft - 1];
+            GyroSwipeRight = settingsList[(int)DS4Controls.GyroSwipeRight - 1];
+            GyroSwipeUp = settingsList[(int)DS4Controls.GyroSwipeUp - 1];
+            GyroSwipeDown = settingsList[(int)DS4Controls.GyroSwipeDown - 1];
 
             ControlButtons.Add(settingsList[(int)DS4Controls.L1-1]);
             ControlButtons.Add(settingsList[(int)DS4Controls.L3-1]);
@@ -451,6 +462,10 @@ namespace DS4Windows
             X360Controls.None, // DS4Controls.SwipeDown
             X360Controls.None, // DS4Controls.L2FullPull
             X360Controls.None, // DS4Controls.R2FullPull
+            X360Controls.None, // DS4Controls.GyroSwipeLeft
+            X360Controls.None, // DS4Controls.GyroSwipeRight
+            X360Controls.None, // DS4Controls.GyroSwipeUp
+            X360Controls.None, // DS4Controls.GyroSwipeDown
         };
 
         // Create mapping array at runtime
@@ -611,6 +626,11 @@ namespace DS4Windows
             [DS4Controls.SwipeDown] = "Swipe Down",
             [DS4Controls.L2FullPull] = "L2 Full Pull",
             [DS4Controls.R2FullPull] = "R2 Full Pull",
+
+            [DS4Controls.GyroSwipeLeft] = "Gyro Swipe Left",
+            [DS4Controls.GyroSwipeRight] = "Gyro Swipe Right",
+            [DS4Controls.GyroSwipeUp] = "Gyro Swipe Up",
+            [DS4Controls.GyroSwipeDown] = "Gyro Swipe Down",
         };
 
         public static Dictionary<DS4Controls, int> macroDS4Values = new Dictionary<DS4Controls, int>()
@@ -1474,6 +1494,12 @@ namespace DS4Windows
         public static GyroMouseStickInfo GetGyroMouseStickInfo(int device)
         {
             return m_Config.gyroMStickInfo[device];
+        }
+
+        public static GyroDirectionalSwipeInfo[] GyroSwipeInf => m_Config.gyroSwipeInfo;
+        public static GyroDirectionalSwipeInfo GetGyroSwipeInfo(int device)
+        {
+            return m_Config.gyroSwipeInfo[device];
         }
 
         public static bool[] GyroMouseStickToggle => m_Config.gyroMouseStickToggle;
@@ -2570,7 +2596,15 @@ namespace DS4Windows
             new GyroMouseStickInfo(), new GyroMouseStickInfo(),
             new GyroMouseStickInfo(),
         };
-        
+        public GyroDirectionalSwipeInfo[] gyroSwipeInfo = new GyroDirectionalSwipeInfo[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            new GyroDirectionalSwipeInfo(), new GyroDirectionalSwipeInfo(),
+            new GyroDirectionalSwipeInfo(), new GyroDirectionalSwipeInfo(),
+            new GyroDirectionalSwipeInfo(), new GyroDirectionalSwipeInfo(),
+            new GyroDirectionalSwipeInfo(), new GyroDirectionalSwipeInfo(),
+            new GyroDirectionalSwipeInfo(),
+        };
+
         public bool[] gyroMouseStickToggle = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false,
             false, false, false, false, false, false };
 
@@ -3183,6 +3217,14 @@ namespace DS4Windows
                 XmlNode xmlGyroMStickSmoothMincutoff = m_Xdoc.CreateNode(XmlNodeType.Element, "SmoothingMinCutoff", null); xmlGyroMStickSmoothMincutoff.InnerText = gyroMStickInfo[device].minCutoff.ToString(); xmlGyroMStickSmoothingElement.AppendChild(xmlGyroMStickSmoothMincutoff);
                 XmlNode xmlGyroMStickSmoothBeta = m_Xdoc.CreateNode(XmlNodeType.Element, "SmoothingBeta", null); xmlGyroMStickSmoothBeta.InnerText = gyroMStickInfo[device].beta.ToString(); xmlGyroMStickSmoothingElement.AppendChild(xmlGyroMStickSmoothBeta);
                 rootElement.AppendChild(xmlGyroMStickSmoothingElement);
+
+                XmlElement xmlGyroSwipeSettingsElement = m_Xdoc.CreateElement("GyroSwipeSettings");
+                XmlNode xmlGyroSwipeDeadzoneX = m_Xdoc.CreateNode(XmlNodeType.Element, "DeadZoneX", null); xmlGyroSwipeDeadzoneX.InnerText = gyroSwipeInfo[device].deadzoneX.ToString(); xmlGyroSwipeSettingsElement.AppendChild(xmlGyroSwipeDeadzoneX);
+                XmlNode xmlGyroSwipeDeadzoneY = m_Xdoc.CreateNode(XmlNodeType.Element, "DeadZoneY", null); xmlGyroSwipeDeadzoneY.InnerText = gyroSwipeInfo[device].deadzoneY.ToString(); xmlGyroSwipeSettingsElement.AppendChild(xmlGyroSwipeDeadzoneY);
+                XmlNode xmlGyroSwipeTriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "Triggers", null); xmlGyroSwipeTriggers.InnerText = gyroSwipeInfo[device].triggers; xmlGyroSwipeSettingsElement.AppendChild(xmlGyroSwipeTriggers);
+                XmlNode xmlGyroSwipeTriggerCond = m_Xdoc.CreateNode(XmlNodeType.Element, "TriggerCond", null); xmlGyroSwipeTriggerCond.InnerText = SaTriggerCondString(gyroSwipeInfo[device].triggerCond); xmlGyroSwipeSettingsElement.AppendChild(xmlGyroSwipeTriggerCond);
+                XmlNode xmlGyroSwipeXAxis = m_Xdoc.CreateNode(XmlNodeType.Element, "XAxis", null); xmlGyroSwipeXAxis.InnerText = gyroSwipeInfo[device].xAxis.ToString(); xmlGyroSwipeSettingsElement.AppendChild(xmlGyroSwipeXAxis);
+                rootElement.AppendChild(xmlGyroSwipeSettingsElement);
 
                 XmlNode xmlLSC = m_Xdoc.CreateNode(XmlNodeType.Element, "LSCurve", null); xmlLSC.InnerText = lsCurve[device].ToString(); rootElement.AppendChild(xmlLSC);
                 XmlNode xmlRSC = m_Xdoc.CreateNode(XmlNodeType.Element, "RSCurve", null); xmlRSC.InnerText = rsCurve[device].ToString(); rootElement.AppendChild(xmlRSC);
@@ -4375,6 +4417,61 @@ namespace DS4Windows
                 else
                 {
                     missingSetting = true;
+                }
+
+                XmlNode xmlGyroSwipeElement =
+                    m_Xdoc.SelectSingleNode("/" + rootname + "/GyroSwipeSettings");
+                if (xmlGyroSwipeElement != null)
+                {
+                    try
+                    {
+                        Item = xmlGyroSwipeElement.SelectSingleNode("DeadZoneX");
+                        if (int.TryParse(Item?.InnerText ?? "", out int tempDead))
+                        {
+                            gyroSwipeInfo[device].deadzoneX = tempDead;
+                        }
+                    }
+                    catch {}
+
+                    try
+                    {
+                        Item = xmlGyroSwipeElement.SelectSingleNode("DeadZoneY");
+                        if (int.TryParse(Item?.InnerText ?? "", out int tempDead))
+                        {
+                            gyroSwipeInfo[device].deadzoneY = tempDead;
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = xmlGyroSwipeElement.SelectSingleNode("Triggers");
+                        if (Item != null)
+                        {
+                            gyroSwipeInfo[device].triggers = Item.InnerText;
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = xmlGyroSwipeElement.SelectSingleNode("TriggerCond");
+                        if (Item != null)
+                        {
+                            gyroSwipeInfo[device].triggerCond = SaTriggerCondValue(Item.InnerText);
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = xmlGyroSwipeElement.SelectSingleNode("XAxis");
+                        if (Enum.TryParse(Item?.InnerText ?? "", out GyroDirectionalSwipeInfo.XAxisSwipe tempX))
+                        {
+                            gyroSwipeInfo[device].xAxis = tempX;
+                        }
+                    }
+                    catch { }
                 }
 
                 // Check for TouchpadOutputMode if UseTPforControls is not present in profile
@@ -6276,6 +6373,7 @@ namespace DS4Windows
             sAMouseStickTriggerCond[device] = true;
 
             gyroMStickInfo[device].Reset();
+            gyroSwipeInfo[device].Reset();
 
             gyroMouseStickToggle[device] = false;
             gyroMouseStickTriggerTurns[device] = true;

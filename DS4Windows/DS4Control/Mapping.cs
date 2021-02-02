@@ -1856,6 +1856,45 @@ namespace DS4Windows
                     ref tempMouseDeltaY, ctrl);
             }
 
+            //if (GyroOutputMode[device] == GyroOutMode.DirectionalSwipe)
+            if (true)
+            {
+                DS4ControlSettings gyroSwipeXDcs = null;
+                DS4ControlSettings gyroSwipeYDcs = null;
+
+                if (tp.gyroSwipe.swipeLeft)
+                {
+                    gyroSwipeXDcs = controlSetGroup.GyroSwipeLeft;
+                }
+                else if (tp.gyroSwipe.swipeRight)
+                {
+                    gyroSwipeXDcs = controlSetGroup.GyroSwipeRight;
+                }
+
+                if (tp.gyroSwipe.swipeUp)
+                {
+                    gyroSwipeYDcs = controlSetGroup.GyroSwipeUp;
+                }
+                else if (tp.gyroSwipe.swipeDown)
+                {
+                    gyroSwipeYDcs = controlSetGroup.GyroSwipeDown;
+                }
+
+                if (gyroSwipeXDcs != null)
+                {
+                    ProcessControlSettingAction(gyroSwipeXDcs, device, cState, MappedState, eState,
+                        tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                        ref tempMouseDeltaY, ctrl);
+                }
+
+                if (gyroSwipeYDcs != null)
+                {
+                    ProcessControlSettingAction(gyroSwipeYDcs, device, cState, MappedState, eState,
+                        tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                        ref tempMouseDeltaY, ctrl);
+                }
+            }
+
             Queue<ControlToXInput> tempControl = customMapQueue[device];
             unchecked
             {

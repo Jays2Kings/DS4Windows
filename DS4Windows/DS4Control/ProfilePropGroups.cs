@@ -291,6 +291,34 @@ namespace DS4Windows
         }
     }
 
+    public class GyroDirectionalSwipeInfo
+    {
+        public enum XAxisSwipe : ushort
+        {
+            Yaw,
+            Roll,
+        }
+
+        public const string DEFAULT_TRIGGERS = "-1";
+        public const int DEFAULT_GYRO_DIR_SPEED = 80; // degrees per second
+        public const bool DEFAULT_TRIGGER_COND = true;
+
+        public int deadzoneX = DEFAULT_GYRO_DIR_SPEED;
+        public int deadzoneY = DEFAULT_GYRO_DIR_SPEED;
+        public string triggers = DEFAULT_TRIGGERS;
+        public bool triggerCond = DEFAULT_TRIGGER_COND;
+        public XAxisSwipe xAxis = XAxisSwipe.Yaw;
+
+        public void Reset()
+        {
+            deadzoneX = DEFAULT_GYRO_DIR_SPEED;
+            deadzoneY = DEFAULT_GYRO_DIR_SPEED;
+            triggers = DEFAULT_TRIGGERS;
+            triggerCond = DEFAULT_TRIGGER_COND;
+            xAxis = XAxisSwipe.Yaw;
+        }
+    }
+
     public class ButtonMouseInfo
     {
         //public const double MOUSESTICKANTIOFFSET = 0.0128;

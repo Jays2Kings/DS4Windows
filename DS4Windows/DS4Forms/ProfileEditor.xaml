@@ -1031,6 +1031,7 @@
                             <ComboBoxItem Content="Controls" />
                             <ComboBoxItem Content="Mouse" />
                             <ComboBoxItem Content="Mouse Joystick" />
+                            <ComboBoxItem Content="Directional Swipe" />
                             <ComboBoxItem Content="Passthru" />
                         </ComboBox>
                     </StackPanel>
@@ -1363,6 +1364,93 @@
 
                             </StackPanel>
                         </GroupBox>
+                    </StackPanel>
+
+                    <StackPanel x:Name="gyroDirSwipePanel" Visibility="Collapsed">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Button x:Name="gyroSwipeLeftBtn" Content="Swipe Left" Width="100" Tag="{Binding GyroSwipeLeft, Source={StaticResource controlIndexCheck}}" Click="GyroSwipeControlsBtn_Click" />
+                            <Label x:Name="gyroSwipeLeftLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Button x:Name="gyroSwipeRightBtn" Content="Swipe Right" Width="100" Tag="{Binding GyroSwipeRight, Source={StaticResource controlIndexCheck}}" Click="GyroSwipeControlsBtn_Click" />
+                            <Label x:Name="gyroSwipeRightLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Button x:Name="gyroSwipeUpBtn" Content="Swipe Up" Width="100" Tag="{Binding GyroSwipeUp, Source={StaticResource controlIndexCheck}}" Click="GyroSwipeControlsBtn_Click" />
+                            <Label x:Name="gyroSwipeUpLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Button x:Name="gyroSwipeDownBtn" Content="Swipe Down" Width="100" Tag="{Binding GyroSwipeDown, Source={StaticResource controlIndexCheck}}" Click="GyroSwipeControlsBtn_Click" />
+                            <Label x:Name="gyroSwipeDownLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <Label Content="Triggers" />
+                            <Button x:Name="gyroSwipeTrigBtn" Content="{Binding GyroSwipeTrigDisplay,FallbackValue=Always On}" MinWidth="160" Click="GyroSwipeTrigBtn_Click" >
+                                <Button.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Cross" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Circle" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Square" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Triangle" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="L1" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="L2" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="R1" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="R2" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Up" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Down" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Left" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Right" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="L3" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="R3" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Options" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Share" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="PS" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Mute" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Always On" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                    </ContextMenu>
+                                </Button.ContextMenu>
+                            </Button>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                            <StackPanel>
+                                <Label Content="Eval Cond." Margin="{StaticResource spaceMargin}" />
+                                <ComboBox SelectedIndex="{Binding GyroSwipeEvalCondIndex,FallbackValue=0}">
+                                    <ComboBoxItem Content="And" />
+                                    <ComboBoxItem Content="Or" />
+                                </ComboBox>
+                            </StackPanel>
+
+                            <StackPanel Margin="20,0,0,0">
+                                <Label Content="X Axis" Margin="{StaticResource spaceMargin}" />
+                                <ComboBox SelectedIndex="{Binding GyroSwipeXAxis,FallbackValue=0}">
+                                    <ComboBoxItem Content="Yaw" />
+                                    <ComboBoxItem Content="Roll" />
+                                </ComboBox>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                            <Label Content="Deadzone X" />
+                            <xctk:IntegerUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
+                                                Value="{Binding GyroSwipeDeadZoneX}" Minimum="0" Maximum="2000" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                            <Label Content="Deadzone Y" />
+                            <xctk:IntegerUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
+                                                Value="{Binding GyroSwipeDeadZoneY}" Minimum="0" Maximum="2000" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                        </StackPanel>
                     </StackPanel>
 
                     <StackPanel x:Name="passthruPanel" Visibility="Collapsed" />

@@ -37,6 +37,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private MappedControl r2FullPullControl;
         public MappedControl R2FullPullControl { get => r2FullPullControl; }
 
+        private MappedControl gyroSwipeLeftControl;
+        private MappedControl gyroSwipeRightControl;
+        private MappedControl gyroSwipeUpControl;
+        private MappedControl gyroSwipeDownControl;
+
         private List<MappedControl> extraControls = new List<MappedControl>();
 
         public MappingListViewModel(int devIndex, OutContType devType)
@@ -92,10 +97,24 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             l2FullPullControl = new MappedControl(devIndex, DS4Controls.L2FullPull, "L2 Full Pull", devType);
             r2FullPullControl = new MappedControl(devIndex, DS4Controls.R2FullPull, "R2 Full Pull", devType);
 
+            gyroSwipeLeftControl = new MappedControl(devIndex, DS4Controls.GyroSwipeLeft, "Gyro Swipe Left", devType);
+            gyroSwipeRightControl = new MappedControl(devIndex, DS4Controls.GyroSwipeRight, "Gyro Swipe Right", devType);
+            gyroSwipeUpControl = new MappedControl(devIndex, DS4Controls.GyroSwipeUp, "Gyro Swipe Up", devType);
+            gyroSwipeDownControl = new MappedControl(devIndex, DS4Controls.GyroSwipeDown, "Gyro Swipe Down", devType);
+
             extraControls.Add(l2FullPullControl);
-            extraControls.Add(R2FullPullControl);
+            extraControls.Add(r2FullPullControl);
+            extraControls.Add(gyroSwipeLeftControl);
+            extraControls.Add(gyroSwipeRightControl);
+            extraControls.Add(gyroSwipeUpControl);
+            extraControls.Add(gyroSwipeDownControl);
+
             controlMap.Add(DS4Controls.L2FullPull, l2FullPullControl);
-            controlMap.Add(DS4Controls.R2FullPull, R2FullPullControl);
+            controlMap.Add(DS4Controls.R2FullPull, r2FullPullControl);
+            controlMap.Add(DS4Controls.GyroSwipeLeft, gyroSwipeLeftControl);
+            controlMap.Add(DS4Controls.GyroSwipeRight, gyroSwipeRightControl);
+            controlMap.Add(DS4Controls.GyroSwipeUp, gyroSwipeUpControl);
+            controlMap.Add(DS4Controls.GyroSwipeDown, gyroSwipeDownControl);
         }
 
         public void UpdateMappingDevType(OutContType devType)

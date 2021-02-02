@@ -1856,8 +1856,7 @@ namespace DS4Windows
                     ref tempMouseDeltaY, ctrl);
             }
 
-            //if (GyroOutputMode[device] == GyroOutMode.DirectionalSwipe)
-            if (true)
+            if (GyroOutputMode[device] == GyroOutMode.DirectionalSwipe)
             {
                 DS4ControlSettings gyroSwipeXDcs = null;
                 DS4ControlSettings gyroSwipeYDcs = null;

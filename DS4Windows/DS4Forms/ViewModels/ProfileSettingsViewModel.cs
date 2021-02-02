@@ -2161,6 +2161,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public event EventHandler GyroSwipeTrigDisplayChanged;
 
+        public bool GyroSwipeTurns
+        {
+            get => Global.GyroSwipeInf[device].triggerTurns;
+            set => Global.GyroSwipeInf[device].triggerTurns = value;
+        }
+
         public int GyroSwipeEvalCondIndex
         {
             get => Global.GyroSwipeInf[device].triggerCond ? 0 : 1;

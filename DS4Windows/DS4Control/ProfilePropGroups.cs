@@ -302,12 +302,15 @@ namespace DS4Windows
         public const string DEFAULT_TRIGGERS = "-1";
         public const int DEFAULT_GYRO_DIR_SPEED = 80; // degrees per second
         public const bool DEFAULT_TRIGGER_COND = true;
+        public const bool DEFAULT_TRIGGER_TURNS = true;
+        public const XAxisSwipe DEFAULT_X_AXIS = XAxisSwipe.Yaw;
 
         public int deadzoneX = DEFAULT_GYRO_DIR_SPEED;
         public int deadzoneY = DEFAULT_GYRO_DIR_SPEED;
         public string triggers = DEFAULT_TRIGGERS;
         public bool triggerCond = DEFAULT_TRIGGER_COND;
-        public XAxisSwipe xAxis = XAxisSwipe.Yaw;
+        public bool triggerTurns = DEFAULT_TRIGGER_TURNS;
+        public XAxisSwipe xAxis = DEFAULT_X_AXIS;
 
         public void Reset()
         {
@@ -315,7 +318,8 @@ namespace DS4Windows
             deadzoneY = DEFAULT_GYRO_DIR_SPEED;
             triggers = DEFAULT_TRIGGERS;
             triggerCond = DEFAULT_TRIGGER_COND;
-            xAxis = XAxisSwipe.Yaw;
+            triggerTurns = DEFAULT_TRIGGER_TURNS;
+            xAxis = DEFAULT_X_AXIS;
         }
     }
 

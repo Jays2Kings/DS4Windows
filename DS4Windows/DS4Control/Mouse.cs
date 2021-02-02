@@ -198,6 +198,7 @@ namespace DS4Windows
                 s = dev.getCurrentStateRef();
 
                 GyroDirectionalSwipeInfo swipeMapInfo = Global.GetGyroSwipeInfo(deviceNum);
+                useReverseRatchet = swipeMapInfo.triggerTurns;
                 int i = 0;
                 string[] ss = swipeMapInfo.triggers.Split(',');
                 bool andCond = swipeMapInfo.triggerCond;
@@ -221,7 +222,11 @@ namespace DS4Windows
                     }
                 }
 
-                if (triggeractivated)
+                if (useReverseRatchet && triggeractivated)
+                {
+                    SixDirectionalSwipe(arg, swipeMapInfo);
+                }
+                else if (!useReverseRatchet && !triggeractivated)
                 {
                     SixDirectionalSwipe(arg, swipeMapInfo);
                 }

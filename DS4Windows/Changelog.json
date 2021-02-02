@@ -14,7 +14,7 @@
             "code": "en",
             "header": "Version 2.2.4",
             "log_text": ["* Fixed SelectedValue display in Dark theme for some dynamic ComboBox controls",
-              "* Added Gyro Directional Swipe mode"],
+              "* Added Gyro Directional Swipe output mode"],
             "editor": "ryochan7",
             "editors_note": ["None"],
             "updated_at": "2021-02-02T22:25:55+0000"

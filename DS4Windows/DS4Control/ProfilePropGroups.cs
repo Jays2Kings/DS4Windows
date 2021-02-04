@@ -291,6 +291,38 @@ namespace DS4Windows
         }
     }
 
+    public class GyroDirectionalSwipeInfo
+    {
+        public enum XAxisSwipe : ushort
+        {
+            Yaw,
+            Roll,
+        }
+
+        public const string DEFAULT_TRIGGERS = "-1";
+        public const int DEFAULT_GYRO_DIR_SPEED = 80; // degrees per second
+        public const bool DEFAULT_TRIGGER_COND = true;
+        public const bool DEFAULT_TRIGGER_TURNS = true;
+        public const XAxisSwipe DEFAULT_X_AXIS = XAxisSwipe.Yaw;
+
+        public int deadzoneX = DEFAULT_GYRO_DIR_SPEED;
+        public int deadzoneY = DEFAULT_GYRO_DIR_SPEED;
+        public string triggers = DEFAULT_TRIGGERS;
+        public bool triggerCond = DEFAULT_TRIGGER_COND;
+        public bool triggerTurns = DEFAULT_TRIGGER_TURNS;
+        public XAxisSwipe xAxis = DEFAULT_X_AXIS;
+
+        public void Reset()
+        {
+            deadzoneX = DEFAULT_GYRO_DIR_SPEED;
+            deadzoneY = DEFAULT_GYRO_DIR_SPEED;
+            triggers = DEFAULT_TRIGGERS;
+            triggerCond = DEFAULT_TRIGGER_COND;
+            triggerTurns = DEFAULT_TRIGGER_TURNS;
+            xAxis = DEFAULT_X_AXIS;
+        }
+    }
+
     public class ButtonMouseInfo
     {
         //public const double MOUSESTICKANTIOFFSET = 0.0128;
@@ -480,6 +512,22 @@ namespace DS4Windows
         FlickStick,
     }
 
+    public enum TriggerMode : uint
+    {
+        Normal,
+        TwoStage,
+    }
+
+    public enum TwoStageTriggerMode : uint
+    {
+        Disabled,
+        Normal,
+        ExclusiveButtons,
+        HairTrigger,
+        HipFire,
+        HipFireExclusiveButtons,
+    }
+
     public class FlickStickSettings
     {
         public const double DEFAULT_FLICK_THRESHOLD = 0.9;
@@ -579,6 +627,51 @@ namespace DS4Windows
             mode = StickMode.Controls;
             outputSettings.controlSettings.Reset();
             outputSettings.flickSettings.Reset();
+        }
+    }
+
+    public class TriggerOutputSettings
+    {
+        private const TwoStageTriggerMode DEFAULT_TRIG_MODE = TwoStageTriggerMode.Disabled;
+        private const int DEFAULT_HIP_TIME = 100;
+        private const InputDevices.TriggerEffects DEFAULT_TRIGGER_EFFECT = InputDevices.TriggerEffects.None;
+
+        //public TriggerMode mode = TriggerMode.Normal;
+        public TwoStageTriggerMode twoStageMode = DEFAULT_TRIG_MODE;
+        public TwoStageTriggerMode TwoStageMode
+        {
+            get => twoStageMode;
+            set
+            {
+                if (twoStageMode == value) return;
+                twoStageMode = value;
+                TwoStageModeChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler TwoStageModeChanged;
+
+        public int hipFireMS = DEFAULT_HIP_TIME;
+        public InputDevices.TriggerEffects triggerEffect = DEFAULT_TRIGGER_EFFECT;
+        public InputDevices.TriggerEffects TriggerEffect
+        {
+            get => triggerEffect;
+            set
+            {
+                if (triggerEffect == value) return;
+                triggerEffect = value;
+                TriggerEffectChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler TriggerEffectChanged;
+
+        public void ResetSettings()
+        {
+            //mode = TriggerMode.Normal;
+            twoStageMode = DEFAULT_TRIG_MODE;
+            hipFireMS = DEFAULT_HIP_TIME;
+            triggerEffect = DEFAULT_TRIGGER_EFFECT;
+            TwoStageModeChanged?.Invoke(this, EventArgs.Empty);
+            TriggerEffectChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

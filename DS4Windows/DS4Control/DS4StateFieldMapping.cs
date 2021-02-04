@@ -5,16 +5,16 @@ namespace DS4Windows
     {
         public enum ControlType: int { Unknown = 0, Button, AxisDir, Trigger, Touch, GyroDir, SwipeDir }
 
-        public bool[] buttons = new bool[(int)DS4Controls.SwipeDown + 1];
-        public byte[] axisdirs = new byte[(int)DS4Controls.SwipeDown + 1];
-        public byte[] triggers = new byte[(int)DS4Controls.SwipeDown + 1];
-        public int[] gryodirs = new int[(int)DS4Controls.SwipeDown + 1];
-        public byte[] swipedirs = new byte[(int)DS4Controls.SwipeDown + 1];
-        public bool[] swipedirbools = new bool[(int)DS4Controls.SwipeDown + 1];
+        public bool[] buttons = new bool[(int)DS4Controls.GyroSwipeDown + 1];
+        public byte[] axisdirs = new byte[(int)DS4Controls.GyroSwipeDown + 1];
+        public byte[] triggers = new byte[(int)DS4Controls.GyroSwipeDown + 1];
+        public int[] gryodirs = new int[(int)DS4Controls.GyroSwipeDown + 1];
+        public byte[] swipedirs = new byte[(int)DS4Controls.GyroSwipeDown + 1];
+        public bool[] swipedirbools = new bool[(int)DS4Controls.GyroSwipeDown + 1];
         public bool touchButton = false;
         public bool outputTouchButton = false;
 
-        public static ControlType[] mappedType = new ControlType[39] { ControlType.Unknown, // DS4Controls.None
+        public static ControlType[] mappedType = new ControlType[45] { ControlType.Unknown, // DS4Controls.None
             ControlType.AxisDir, // DS4Controls.LXNeg
             ControlType.AxisDir, // DS4Controls.LXPos
             ControlType.AxisDir, // DS4Controls.LYNeg
@@ -53,6 +53,12 @@ namespace DS4Windows
             ControlType.SwipeDir, // DS4Controls.SwipeRight
             ControlType.SwipeDir, // DS4Controls.SwipeUp
             ControlType.SwipeDir, // DS4Controls.SwipeDown
+            ControlType.Button, // DS4Controls.L2FullPull
+            ControlType.Button, // DS4Controls.R2FullPull
+            ControlType.Button, // DS4Controls.GyroSwipeLeft
+            ControlType.Button, // DS4Controls.GyroSwipeRight
+            ControlType.Button, // DS4Controls.GyroSwipeUp
+            ControlType.Button, // DS4Controls.GyroSwipeDown
         };
 
         public DS4StateFieldMapping()
@@ -82,8 +88,10 @@ namespace DS4Windows
                 triggers[(int)DS4Controls.R2] = cState.R2;
 
                 buttons[(int)DS4Controls.L1] = cState.L1;
+                buttons[(int)DS4Controls.L2FullPull] = cState.L2 == 255;
                 buttons[(int)DS4Controls.L3] = cState.L3;
                 buttons[(int)DS4Controls.R1] = cState.R1;
+                buttons[(int)DS4Controls.R2FullPull] = cState.R2 == 255;
                 buttons[(int)DS4Controls.R3] = cState.R3;
 
                 buttons[(int)DS4Controls.Cross] = cState.Cross;
@@ -122,6 +130,12 @@ namespace DS4Windows
                 swipedirbools[(int)DS4Controls.SwipeRight] = tp != null ? (!priorMouse ? tp.swipeRight : tp.priorSwipeRight) : false;
                 swipedirbools[(int)DS4Controls.SwipeUp] = tp != null ? (!priorMouse ? tp.swipeUp : tp.priorSwipeUp) : false;
                 swipedirbools[(int)DS4Controls.SwipeDown] = tp != null ? (!priorMouse ? tp.swipeDown : tp.priorSwipeDown) : false;
+
+                buttons[(int)DS4Controls.GyroSwipeLeft] = tp != null ? tp.gyroSwipe.swipeLeft : false;
+                buttons[(int)DS4Controls.GyroSwipeRight] = tp != null ? tp.gyroSwipe.swipeRight : false;
+                buttons[(int)DS4Controls.GyroSwipeUp] = tp != null ? tp.gyroSwipe.swipeUp : false;
+                buttons[(int)DS4Controls.GyroSwipeDown] = tp != null ? tp.gyroSwipe.swipeDown : false;
+
                 touchButton = cState.TouchButton;
                 outputTouchButton = cState.OutputTouchButton;
             }

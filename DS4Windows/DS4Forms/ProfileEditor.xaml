@@ -553,6 +553,10 @@
                                     <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
                                     <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
                                     <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
+                                    <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
+                                    <RowDefinition Style="{StaticResource gridRowHeight}"></RowDefinition>
                                 </Grid.RowDefinitions>
 
                                 <Grid.ColumnDefinitions>
@@ -628,6 +632,47 @@
                                     <TextBox Text="{Binding R2CustomCurve,FallbackValue='0.00, 0.00, 1.00, 1.00'}" DockPanel.Dock="Left"
                                              Margin="{StaticResource spaceMargin}" />
                                 </DockPanel>
+
+                                <Label Content="Two Stage Mode:" Grid.Row="8" Grid.Column="0" />
+                                <ComboBox Grid.Row="8" Grid.Column="1" ItemsSource="{Binding Path=TwoStageModeChoices}"
+                                          DisplayMemberPath="DisplayName" SelectedValuePath="Mode" SelectedValue="{Binding L2TriggerMode}" Margin="{StaticResource spaceMargin}" />
+
+                                <ComboBox Grid.Row="8" Grid.Column="2" ItemsSource="{Binding Path=TwoStageModeChoices}"
+                                          DisplayMemberPath="DisplayName" SelectedValuePath="Mode" SelectedValue="{Binding R2TriggerMode}" Margin="{StaticResource spaceMargin}" />
+
+                                <Label Content="Full Pull Btn:" Grid.Row="9" Grid.Column="0" />
+                                <DockPanel Grid.Row="9" Grid.Column="1">
+                                    <Button Content="Full" MinWidth="40" Tag="{Binding L2FullPull, Source={StaticResource controlIndexCheck}}" Click="TriggerFullPullBtn_Click"
+                                            Margin="{StaticResource spaceMargin}" DockPanel.Dock="Top" />
+                                    <Label x:Name="l2FullPullLb" Content="{Binding MappingName,FallbackValue=Unassigned}"
+                                           Margin="{StaticResource spaceMargin}" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+                                </DockPanel>
+                                <DockPanel Grid.Row="9" Grid.Column="2">
+                                    <Button Content="Full" MinWidth="40" Tag="{Binding R2FullPull, Source={StaticResource controlIndexCheck}}" Click="TriggerFullPullBtn_Click"
+                                            Margin="{StaticResource spaceMargin}" DockPanel.Dock="Top" />
+                                    <Label x:Name="r2FullPullLb" Content="{Binding MappingName,FallbackValue=Unassigned}"
+                                           Margin="{StaticResource spaceMargin}" HorizontalAlignment="Center" DockPanel.Dock="Top" />
+                                </DockPanel>
+
+                                <Label Content="Hip Fire Delay:" Grid.Row="10" Grid.Column="0" />
+                                <DockPanel Grid.Row="10" Grid.Column="1">
+                                    <Label Content="ms" DockPanel.Dock="Right" />
+                                    <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding L2HipFireTime}" MinWidth="50" Maximum="5000" Minimum="0" Increment="10"
+                                                   Margin="{StaticResource spaceMargin}" />
+                                </DockPanel>
+
+                                <DockPanel Grid.Row="10" Grid.Column="2">
+                                    <Label Content="ms" DockPanel.Dock="Right" />
+                                    <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding R2HipFireTime}" MinWidth="50" Maximum="5000" Minimum="0" Increment="10"
+                                                   Margin="{StaticResource spaceMargin}" />
+                                </DockPanel>
+
+                                <Label Content="Trigger Effect:" Grid.Row="11" Grid.Column="0" />
+
+                                <ComboBox Grid.Row="11" Grid.Column="1" ItemsSource="{Binding Path=TriggerEffectChoices}"
+                                          DisplayMemberPath="DisplayName" SelectedValuePath="Mode" SelectedValue="{Binding L2TriggerEffect}" Margin="{StaticResource spaceMargin}" />
+                                <ComboBox Grid.Row="11" Grid.Column="2" ItemsSource="{Binding Path=TriggerEffectChoices}"
+                                          DisplayMemberPath="DisplayName" SelectedValuePath="Mode" SelectedValue="{Binding R2TriggerEffect}" Margin="{StaticResource spaceMargin}" />
                             </Grid>
                         </GroupBox>
 
@@ -835,6 +880,7 @@
                                         <RowDefinition />
                                         <RowDefinition />
                                         <RowDefinition />
+                                        <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
@@ -864,10 +910,12 @@
 
                                     <CheckBox Content="Lower Right as RMB" Grid.Row="2" Grid.Column="1" IsChecked="{Binding LowerRightTouchRMB}" VerticalAlignment="Center"
                                                           ToolTip="{lex:Loc Resources:BestUsedRightSide}" />
+
+                                    <CheckBox Content="Passthru Click Action (DS4 mode)" Grid.Row="3" Grid.Column="0" IsChecked="{Binding TouchpadClickPassthru}" VerticalAlignment="Center" />
                                 </Grid>
 
                                 <CheckBox Content="Start with Slide/Scroll Off" IsChecked="{Binding StartTouchpadOff}" VerticalAlignment="Center"
-                                                    ToolTip="{lex:Loc Resources:TouchpadOffTip}" Margin="{StaticResource spaceMargin}" />
+                                                    ToolTip="{lex:Loc Resources:TouchpadOffTip}" Margin="0,10,0,0" />
 
                                 <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
                                     <Label Content="Rotation" ContentStringFormat="{}{0}:" />
@@ -949,6 +997,9 @@
                                     <Button x:Name="swipeRightBtn" Content="Swipe Right" MinWidth="100" Tag="{Binding SwipeRight, Source={StaticResource controlIndexCheck}}" Click="SwipeControlsButton_Click" />
                                     <Label x:Name="swipeRightLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
                                 </StackPanel>
+
+                                <CheckBox Content="Passthru Click Action (DS4 mode)" IsChecked="{Binding TouchpadClickPassthru}" VerticalAlignment="Center"
+                                                          Margin="5,8,0,0" />
                             </StackPanel>
                         </TabItem>
                         <TabItem Header="Absolute Mouse" Visibility="Collapsed">
@@ -980,6 +1031,7 @@
                             <ComboBoxItem Content="Controls" />
                             <ComboBoxItem Content="Mouse" />
                             <ComboBoxItem Content="Mouse Joystick" />
+                            <ComboBoxItem Content="Directional Swipe" />
                             <ComboBoxItem Content="Passthru" />
                         </ComboBox>
                     </StackPanel>
@@ -1069,6 +1121,10 @@
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
+                            <Button x:Name="gyroCalBtn" Content="Gyro Calibration" Width="100"  Click="GyroCalibration_Click" />
+                        </StackPanel>
                     </StackPanel>
 
                     <StackPanel x:Name="gyroMousePanel" Visibility="Collapsed" Margin="{StaticResource spaceMargin}">
@@ -1308,6 +1364,98 @@
 
                             </StackPanel>
                         </GroupBox>
+                    </StackPanel>
+
+                    <StackPanel x:Name="gyroDirSwipePanel" Visibility="Collapsed">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Button x:Name="gyroSwipeUpBtn" Content="Swipe Up" Width="100" Tag="{Binding GyroSwipeUp, Source={StaticResource controlIndexCheck}}" Click="GyroSwipeControlsBtn_Click" />
+                            <Label x:Name="gyroSwipeUpLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Button x:Name="gyroSwipeDownBtn" Content="Swipe Down" Width="100" Tag="{Binding GyroSwipeDown, Source={StaticResource controlIndexCheck}}" Click="GyroSwipeControlsBtn_Click" />
+                            <Label x:Name="gyroSwipeDownLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Button x:Name="gyroSwipeLeftBtn" Content="Swipe Left" Width="100" Tag="{Binding GyroSwipeLeft, Source={StaticResource controlIndexCheck}}" Click="GyroSwipeControlsBtn_Click" />
+                            <Label x:Name="gyroSwipeLeftLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Button x:Name="gyroSwipeRightBtn" Content="Swipe Right" Width="100" Tag="{Binding GyroSwipeRight, Source={StaticResource controlIndexCheck}}" Click="GyroSwipeControlsBtn_Click" />
+                            <Label x:Name="gyroSwipeRightLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <Label Content="Triggers" />
+                            <Button x:Name="gyroSwipeTrigBtn" Content="{Binding GyroSwipeTrigDisplay,FallbackValue=Always On}" MinWidth="160" Click="GyroSwipeTrigBtn_Click" >
+                                <Button.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Cross" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Circle" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Square" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Triangle" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="L1" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="L2" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="R1" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="R2" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Up" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Down" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Left" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Right" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="L3" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="R3" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Options" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Share" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="PS" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Mute" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        <MenuItem Header="Always On" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                    </ContextMenu>
+                                </Button.ContextMenu>
+                            </Button>
+                        </StackPanel>
+
+                        <CheckBox Content="Turn Behavior - Turns Gyro" Margin="0,8,0,0"
+                                  IsChecked="{Binding GyroSwipeTurns}" ToolTip="{lex:Loc Resources:GyroTriggerBehavior}" />
+
+                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                            <StackPanel>
+                                <Label Content="Eval Cond." Margin="{StaticResource spaceMargin}" />
+                                <ComboBox SelectedIndex="{Binding GyroSwipeEvalCondIndex,FallbackValue=0}">
+                                    <ComboBoxItem Content="And" />
+                                    <ComboBoxItem Content="Or" />
+                                </ComboBox>
+                            </StackPanel>
+
+                            <StackPanel Margin="20,0,0,0">
+                                <Label Content="X Axis" Margin="{StaticResource spaceMargin}" />
+                                <ComboBox SelectedIndex="{Binding GyroSwipeXAxis,FallbackValue=0}">
+                                    <ComboBoxItem Content="Yaw" />
+                                    <ComboBoxItem Content="Roll" />
+                                </ComboBox>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                            <Label Content="Deadzone X" />
+                            <xctk:IntegerUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
+                                                Value="{Binding GyroSwipeDeadZoneX}" Minimum="0" Maximum="2000" />
+                            <Label Content="deg/sec." />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                            <Label Content="Deadzone Y" />
+                            <xctk:IntegerUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
+                                                Value="{Binding GyroSwipeDeadZoneY}" Minimum="0" Maximum="2000" />
+                            <Label Content="deg/sec." />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                        </StackPanel>
                     </StackPanel>
 
                     <StackPanel x:Name="passthruPanel" Visibility="Collapsed" />

@@ -82,7 +82,13 @@
                         <CheckBox x:Name="l2TrigCk" Content="L2" Tag="L2" Click="ControlTriggerCheckBox_Click" />
                     </ListViewItem>
                     <ListViewItem>
+                        <CheckBox x:Name="l2FullPullTrigCk" Content="L2 Full Pull" Tag="L2 Full Pull" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
                         <CheckBox x:Name="r2TrigCk" Content="R2" Tag="R2" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="r2TrigFullPullCk" Content="R2 Full Pull" Tag="R2 Full Pull" Click="ControlTriggerCheckBox_Click" />
                     </ListViewItem>
                     <ListViewItem>
                         <CheckBox x:Name="l3TrigCk" Content="L3" Tag="L3" Click="ControlTriggerCheckBox_Click" />
@@ -212,7 +218,13 @@
                         <CheckBox x:Name="unloadL2TrigCk" Content="L2" Tag="L2" Click="ControlUnloadTriggerCheckBox_Click" />
                     </ListViewItem>
                     <ListViewItem>
+                        <CheckBox x:Name="unloadL2FullPullTrigCk" Content="L2 Full Pull" Tag="L2 Full Pull" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
                         <CheckBox x:Name="unloadR2TrigCk" Content="R2" Tag="R2" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadR2FullPullTrigCk" Content="R2 Full Pull" Tag="R2 Full Pull" Click="ControlUnloadTriggerCheckBox_Click" />
                     </ListViewItem>
                     <ListViewItem>
                         <CheckBox x:Name="unloadL3TrigCk" Content="L3" Tag="L3" Click="ControlUnloadTriggerCheckBox_Click" />

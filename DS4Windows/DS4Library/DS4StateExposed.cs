@@ -43,6 +43,11 @@ namespace DS4Windows
         byte R2 { get { return _state.R2; } }
         int Battery { get { return _state.Battery; } }
 
+        public SixAxis Motion
+        {
+            get => _state.Motion;
+        }
+
         public int GyroYaw { get { return _state.Motion.gyroYaw; } }
         public int getGyroYaw()
         {

@@ -166,6 +166,8 @@ namespace DS4Windows
 
         //internal const int BT_OUTPUT_REPORT_LENGTH = 78;
         protected const int BT_OUTPUT_REPORT_LENGTH = 334;
+        private const int BT_OUTPUT_REPORT_0x15_LENGTH = BT_OUTPUT_REPORT_LENGTH;
+        private const int BT_OUTPUT_REPORT_0x11_LENGTH = 78;
         internal const int BT_INPUT_REPORT_LENGTH = 547;
         internal const int BT_OUTPUT_CHANGE_LENGTH = 13;
         internal const int USB_OUTPUT_CHANGE_LENGTH = 11;
@@ -215,6 +217,9 @@ namespace DS4Windows
             get => readyQuickChargeDisconnect;
             set => readyQuickChargeDisconnect = value;
         }
+
+        public ControllerOptionsStore optionsStore;
+        private DS4ControllerOptions nativeOptionsStore;
 
         public Int32 wheelPrevPhysicalAngle = 0;
         public Int32 wheelPrevFullAngle = 0;
@@ -377,6 +382,9 @@ namespace DS4Windows
             else featureSet &= ~featureBitFlag;
             return featureSet;
         }
+
+        private const byte DEFAULT_BT_REPORT_TYPE = 0x15;
+        private byte knownGoodBTOutputReportType = DEFAULT_BT_REPORT_TYPE;
 
         protected bool useRumble = true;
         public bool UseRumble { get => useRumble; set => useRumble = value; }
@@ -594,6 +602,8 @@ namespace DS4Windows
             HidDevice hidDevice = hDevice;
             deviceType = InputDevices.InputDeviceType.DS4;
             gyroMouseSensSettings = new GyroMouseSens();
+            optionsStore = nativeOptionsStore = new DS4ControllerOptions(deviceType);
+            SetupOptionsEvents();
 
             if (conType == ConnectionType.USB || conType == ConnectionType.SONYWA)
             {
@@ -657,7 +667,55 @@ namespace DS4Windows
                 hDevice.OpenFileStream(outputReport.Length);
             }
 
+            if (conType == ConnectionType.BT &&
+                !featureSet.HasFlag(VidPidFeatureSet.NoOutputData) && !featureSet.HasFlag(VidPidFeatureSet.OnlyOutputData0x05))
+            {
+                CheckOutputReportTypes();
+            }
+
             sendOutputReport(true, true, false); // initialize the output report (don't force disconnect the gamepad on initialization even if writeData fails because some fake DS4 gamepads don't support writeData over BT)
+        }
+
+        private void CheckOutputReportTypes()
+        {
+            // Use Tuple here for convenience
+            var reportIds = new (byte Id, int Length)[]
+            {
+                (0x15, BT_OUTPUT_REPORT_0x15_LENGTH),
+                (0x11, BT_OUTPUT_REPORT_0x11_LENGTH),
+            };
+
+            byte finalReport = 0x00;
+            foreach(var element in reportIds)
+            {
+                int len = element.Length;
+                byte[] outputBuffer = new byte[element.Length];
+                outputBuffer[0] = element.Id;
+                //outputBuffer[1] = (byte)(0xC0 | 0x04);
+                outputBuffer[2] = 0xA0;
+
+                // Need to calculate and populate CRC-32 data so controller will accept the report
+                uint calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);
+                calcCrc32 = ~Crc32Algorithm.CalculateBasicHash(ref calcCrc32, ref outputBuffer, 0, len - 4);
+                outputBuffer[len - 4] = (byte)calcCrc32;
+                outputBuffer[len - 3] = (byte)(calcCrc32 >> 8);
+                outputBuffer[len - 2] = (byte)(calcCrc32 >> 16);
+                outputBuffer[len - 1] = (byte)(calcCrc32 >> 24);
+
+                if (WriteOutput(outputBuffer))
+                {
+                    finalReport = element.Id;
+                    knownGoodBTOutputReportType = element.Id;
+                    outputReport = new byte[len];
+                    outReportBuffer = new byte[len];
+                    break;
+                }
+            }
+
+            if (finalReport == 0x00)
+            {
+                ModifyFeatureSetFlag(VidPidFeatureSet.NoOutputData, true);
+            }
         }
 
         private void TimeoutTestThread()
@@ -805,6 +863,30 @@ namespace DS4Windows
                         Console.WriteLine(e.Message);
                     }
                 }
+            }
+        }
+
+        protected bool WriteOutput(byte[] outputBuffer)
+        {
+            if (conType == ConnectionType.BT)
+            {
+                //if ((this.featureSet & VidPidFeatureSet.OnlyOutputData0x05) == 0)
+                //    return hDevice.WriteOutputReportViaControl(outputReport);
+
+                if (btOutputMethod == BTOutputReportMethod.WriteFile)
+                {
+                    // Use Interrupt endpoint for almost BT DS4 connected devices now
+                    return hDevice.WriteOutputReportViaInterrupt(outputBuffer, READ_STREAM_TIMEOUT);
+                }
+                else
+                {
+                    // Mainly needed for Windows 7 support
+                    return hDevice.WriteOutputReportViaControl(outputBuffer);
+                }
+            }
+            else
+            {
+                return hDevice.WriteOutputReportViaInterrupt(outputBuffer, READ_STREAM_TIMEOUT);
             }
         }
 
@@ -1426,15 +1508,16 @@ namespace DS4Windows
 
             if (usingBT && (this.featureSet & VidPidFeatureSet.OnlyOutputData0x05) == 0)
             {
-                outReportBuffer[0] = 0x15;
-                //outReportBuffer[0] = 0x11;
+                outReportBuffer[0] = knownGoodBTOutputReportType;
+                //outReportBuffer[0] = 0x15;
                 //outReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
                 outReportBuffer[1] = (byte)(0xC0 | btPollRate); // input report rate
+                outReportBuffer[2] = 0xA0;
 
                 // enable rumble (0x01), lightbar (0x02), flash (0x04)
-                outReportBuffer[2] = 0xA0;
                 outReportBuffer[3] = 0xf7;
                 outReportBuffer[4] = 0x04;
+
                 outReportBuffer[6] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast; // fast motor
                 outReportBuffer[7] = currentHap.rumbleState.RumbleMotorStrengthLeftHeavySlow; // slow motor
                 outReportBuffer[8] = currentHap.lightbarState.LightBarColor.red; // red
@@ -1564,12 +1647,13 @@ namespace DS4Windows
                         if ((this.featureSet & VidPidFeatureSet.OnlyOutputData0x05) == 0)
                         {
                             // Need to calculate and populate CRC-32 data so controller will accept the report
+                            int len = outputReport.Length;
                             uint calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);
-                            calcCrc32 = ~Crc32Algorithm.CalculateBasicHash(ref calcCrc32, ref outputReport, 0, BT_OUTPUT_REPORT_LENGTH - 4);
-                            outputReport[BT_OUTPUT_REPORT_LENGTH - 4] = (byte)calcCrc32;
-                            outputReport[BT_OUTPUT_REPORT_LENGTH - 3] = (byte)(calcCrc32 >> 8);
-                            outputReport[BT_OUTPUT_REPORT_LENGTH - 2] = (byte)(calcCrc32 >> 16);
-                            outputReport[BT_OUTPUT_REPORT_LENGTH - 1] = (byte)(calcCrc32 >> 24);
+                            calcCrc32 = ~Crc32Algorithm.CalculateBasicHash(ref calcCrc32, ref outputReport, 0, len - 4);
+                            outputReport[len - 4] = (byte)calcCrc32;
+                            outputReport[len - 3] = (byte)(calcCrc32 >> 8);
+                            outputReport[len - 2] = (byte)(calcCrc32 >> 16);
+                            outputReport[len - 1] = (byte)(calcCrc32 >> 24);
 
                             //Console.WriteLine("Write CRC-32 to output report");
                         }
@@ -1916,6 +2000,27 @@ namespace DS4Windows
         public void PrepareAbort()
         {
             abortInputThread = true;
+        }
+
+        private void SetupOptionsEvents()
+        {
+            if (nativeOptionsStore != null)
+            {
+            }
+        }
+
+        public virtual void PrepareTriggerEffect(InputDevices.TriggerId trigger,
+            InputDevices.TriggerEffects effect)
+        {
+        }
+
+        public virtual void CheckControllerNumDeviceSettings(int numControllers)
+        {
+        }
+
+        public virtual void LoadStoreSettings()
+        {
+
         }
     }
 }

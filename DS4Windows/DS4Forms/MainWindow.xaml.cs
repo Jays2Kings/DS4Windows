@@ -900,7 +900,10 @@ Suspend support not enabled.", true);
 
         private void ContStatusImg_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
+            Image img = sender as Image;
+            int tag = Convert.ToInt32(img.Tag);
             CompositeDeviceModel item = conLvViewModel.CurrentItem;
+            //CompositeDeviceModel item = conLvViewModel.ControllerDict[tag];
             if (item != null)
             {
                 item.RequestDisconnect();
@@ -1681,7 +1684,7 @@ Suspend support not enabled.", true);
         private void DeviceOptionSettingsBtn_Click(object sender, RoutedEventArgs e)
         {
             ControllerRegisterOptionsWindow optsWindow =
-                new ControllerRegisterOptionsWindow(Program.rootHub.DeviceOptions);
+                new ControllerRegisterOptionsWindow(Program.rootHub.DeviceOptions, Program.rootHub);
 
             optsWindow.Owner = this;
             optsWindow.Show();

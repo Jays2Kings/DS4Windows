@@ -117,6 +117,7 @@
                     </Rectangle>
                     <Rectangle x:Name="sixAxisValRec" Width="6" Height="6" Canvas.Left="62" Canvas.Top="62" Fill="{DynamicResource ForegroundColor}">
                     </Rectangle>
+                    <Ellipse x:Name="gyroCalEllipse" Fill="#FF1FCF1F" Height="32" Canvas.Left="90" Canvas.Top="10" Width="32"/>
                 </Canvas>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <StackPanel Orientation="Horizontal">

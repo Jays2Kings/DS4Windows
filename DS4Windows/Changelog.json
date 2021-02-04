@@ -1,9 +1,102 @@
 {
-  "latest_version": "2.2.1",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 1},
-  "updated_at": "2020-12-31T05:22:47+0000",
+  "latest_version": "2.2.4",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 4},
+  "updated_at": "2021-02-02T22:25:55+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.2.4",
+        "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 4},
+        "base_header": "Version 2.2.4",
+        "release_date": "2021-02-02T22:25:55+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.2.4",
+            "log_text": ["* Fixed SelectedValue display in Dark theme for some dynamic ComboBox controls",
+              "* Added Gyro Directional Swipe output mode"],
+            "editor": "ryochan7",
+            "editors_note": ["None"],
+            "updated_at": "2021-02-02T22:25:55+0000"
+          }
+        ]
+      },
+      {
+        "version_str": "2.2.3",
+        "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 3},
+        "base_header": "Version 2.2.3",
+        "release_date": "2021-02-01T21:09:33+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.2.3",
+            "log_text": ["* Added an extra precaution to unplug any permanent output devices upon service stop. ViGEmBus should handle this already but just want to make sure.",
+              "* Updated Polish translation. Contribution by **gregory678**",
+              "* Changed locking strategy for ControllerSlotManager collection",
+              "* Fixed right click disconnect slot index for new sorted list",
+              "* Implemented a variant of Two Stage Triggers",
+              "* Added Trigger effects presets. Currently only useful for the DualSense controller",
+              "* Added averaging gyro calibration upon device connection. Contribution by **firodj**",
+              "* Skip unknown DS4Controls names while loading a profile",
+              "* Fixed issue with missingSettings being set for fallback value lookup on Profile load. Constantly re-saved profiles",
+              "* Only reset outDevTypeTemp on full profile save. Ensured proper controller image is used in Binding window after clicking Apply in Profile Editor",
+              "* Change arrangement of lit LED lights for DualSense controller",
+              "* Allow Touchpad Click button passthru with Mouse and Controls mode",
+              "* Changed device type settings. Now use device specific (serial) settings. Now saved to ControllerConfigs.xml",
+              "* Added check for valid output report types upon DS4 BT device connection. Can revert to using output report 0x11 if needed. Not sure if it will matter",
+              "* Ignore output plugin routine and other calls if requested profile file does not exist"],
+            "editor": "ryochan7",
+            "editors_note": ["None"],
+            "updated_at": "2021-02-01T21:09:33+0000"
+          }
+        ]
+      },
+      {
+        "version_str": "2.2.2",
+        "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 2},
+        "base_header": "Version 2.2.2",
+        "release_date": "2021-01-19T17:17:09+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.2.2",
+            "log_text": ["* Have app ignore embedded color profile for rainbowCCrop image. Fixes Profile Editor crashing app on some systems",
+              "* Supports .BAT/.CMD batch scripts in specAction LaunchProgram. Contribution by **mika-n**",
+              "* Added Hebrew translation. Contribution by **avsha114**",
+              "* Corrected Touchpad Resolution Y Max for DS4 and DualSense",
+              "* Fixed crash when right click disconnect is done twice and GUI has not changed yet. More of a pre-caution than anything",
+              "* Gioteck VX4 gamepad support. Contribution by **mika-n**",
+              "* Fixed passthru panels showing up properly for Touchpad and Gyro",
+              "* Pushing half-baked controller options window",
+              "* Change DupBox placeholder text behavior",
+              "* Removed Parler link from About window for now. RIP Parler",
+              "* Now use device specific Gyro Mouse sensitivity values",
+              "* Decreased sensitivity of DualSense Gyro Mouse slightly",
+              "* Added placeholder help text for window title auto profile field",
+              "* Fixed window style for Updater window",
+              "* Allow Home LED to be disabled for Switch Pro and JoyCon",
+              "* Fixed app config loading. Stopped extra config saves on program launch from missingSetting being set unintentionally",
+              "* Added more white variation of images for use in Dark theme",
+              "* Make custom Bezier curve perform circular interpolation rather than per axis",
+              "* Use ControlService event dispatcher for synchronization on device unplug",
+              "* Fixed Gyro Mouse and Mouse Joystick Smoothing panels visibility in Profile Editor under certain scenarios",
+              "* Fixed a bug in autoProfile set Path handler. Contribution by **mika-n**",
+              "* Lowered default rumble emulation strength of DualSense controller",
+              "* Allow configurable rumble strength setting for DualSense controllers. Will likely change later",
+              "* Now use player LEDs on Switch Pro, JoyCon, and DualSense controllers. Used to display input device slot number",
+              "* Display input slot number in controller list",
+              "* Now sort main controller list by device index",
+              "* Changed output device pluging routine. Stop DS4Windows service if ViGEm device connect call fails",
+              "* Changed default dead zone for KBM profile templates",
+              "* Only output DS4 touchpad button click when in Passthru mode",
+              "* Make sure to refresh gyro mouse smoothing combobox indexes after loading from a preset",
+              "* Bundled DS4Updater 1.4.5"],
+            "editor": "ryochan7",
+            "editors_note": ["Burnout"],
+            "updated_at": "2021-01-19T17:17:09+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.2.1",
         "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 1},

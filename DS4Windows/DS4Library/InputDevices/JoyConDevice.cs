@@ -213,6 +213,8 @@ namespace DS4Windows.InputDevices
         private bool enableHomeLED = true;
         public bool EnableHomeLED { get => enableHomeLED; set => enableHomeLED = value; }
 
+        private JoyConControllerOptions nativeOptionsStore;
+
         public override event ReportHandler<EventArgs> Report = null;
         public override event EventHandler<EventArgs> Removal = null;
         public override event EventHandler BatteryChanged;
@@ -257,9 +259,12 @@ namespace DS4Windows.InputDevices
                 deviceType = InputDeviceType.JoyConR;
             }
 
-            gyroMouseSensSettings = new GyroMouseSens();
             conType = ConnectionType.BT;
             warnInterval = WARN_INTERVAL_BT;
+
+            gyroMouseSensSettings = new GyroMouseSens();
+            optionsStore = nativeOptionsStore = new JoyConControllerOptions(deviceType);
+            SetupOptionsEvents();
 
             inputReportBuffer = new byte[INPUT_REPORT_LEN];
             outputReportBuffer = new byte[OUTPUT_REPORT_LEN];
@@ -1264,6 +1269,21 @@ namespace DS4Windows.InputDevices
                 default:
                     deviceSlotMask = 0x00;
                     break;
+            }
+        }
+
+        private void SetupOptionsEvents()
+        {
+            if (nativeOptionsStore != null)
+            {
+            }
+        }
+
+        public override void LoadStoreSettings()
+        {
+            if (nativeOptionsStore != null)
+            {
+                enableHomeLED = nativeOptionsStore.EnableHomeLED;
             }
         }
     }

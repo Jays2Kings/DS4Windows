@@ -214,7 +214,7 @@ namespace DS4Windows
             public const double DEFAULT_FLICK_PROGRESS = 0.0;
             public const double DEFAULT_FLICK_SIZE = 0.0;
             public const double DEFAULT_FLICK_ANGLE_REMAINDER = 0.0;
-            
+
             public OneEuroFilter flickFilter = new OneEuroFilter(DEFAULT_MINCUTOFF, DEFAULT_BETA);
             public double flickProgress = DEFAULT_FLICK_PROGRESS;
             public double flickSize = DEFAULT_FLICK_SIZE;
@@ -233,6 +233,58 @@ namespace DS4Windows
             new FlickStickMappingData(), new FlickStickMappingData(), new FlickStickMappingData(),
             new FlickStickMappingData(), new FlickStickMappingData(), new FlickStickMappingData(),
             new FlickStickMappingData(), new FlickStickMappingData(),
+        };
+
+        public class TwoStageTriggerMappingData
+        {
+            public enum EngageButtonsMode : uint
+            {
+                None,
+                SoftPullOnly,
+                FullPullOnly,
+                Both,
+            }
+
+            public bool startCheck;
+            public DateTime checkTime;
+            public bool outputActive;
+            public bool softPullActActive;
+            public bool fullPullActActive;
+            public EngageButtonsMode actionStateMode = EngageButtonsMode.Both;
+
+            public void StartProcessing()
+            {
+                startCheck = true;
+                checkTime = DateTime.Now;
+                outputActive = false;
+                softPullActActive = false;
+                fullPullActActive = false;
+                actionStateMode = EngageButtonsMode.Both;
+            }
+
+            public void Reset()
+            {
+                checkTime = DateTime.Now;
+                startCheck = false;
+                outputActive = false;
+                softPullActActive = false;
+                fullPullActActive = false;
+                actionStateMode = EngageButtonsMode.Both;
+            }
+        }
+
+        public static TwoStageTriggerMappingData[] l2TwoStageMappingData = new TwoStageTriggerMappingData[Global.MAX_DS4_CONTROLLER_COUNT]
+        {
+            new TwoStageTriggerMappingData(), new TwoStageTriggerMappingData(), new TwoStageTriggerMappingData(),
+            new TwoStageTriggerMappingData(), new TwoStageTriggerMappingData(), new TwoStageTriggerMappingData(), 
+            new TwoStageTriggerMappingData(), new TwoStageTriggerMappingData(),
+        };
+
+        public static TwoStageTriggerMappingData[] r2TwoStageMappingData = new TwoStageTriggerMappingData[Global.MAX_DS4_CONTROLLER_COUNT]
+        {
+            new TwoStageTriggerMappingData(), new TwoStageTriggerMappingData(), new TwoStageTriggerMappingData(),
+            new TwoStageTriggerMappingData(), new TwoStageTriggerMappingData(), new TwoStageTriggerMappingData(),
+            new TwoStageTriggerMappingData(), new TwoStageTriggerMappingData(),
         };
 
         static ReaderWriterLockSlim syncStateLock = new ReaderWriterLockSlim();
@@ -1738,16 +1790,67 @@ namespace DS4Windows
                 }
             }
 
+            TriggerOutputSettings l2TriggerSettings = Global.L2OutputSettings[device];
             DS4ControlSettings dcsTemp = controlSetGroup.L2;
-            ProcessControlSettingAction(dcsTemp, device, cState, MappedState, eState,
-                tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
-                ref tempMouseDeltaY, ctrl);
+            if (l2TriggerSettings.twoStageMode == TwoStageTriggerMode.Disabled)
+            {
+                ProcessControlSettingAction(dcsTemp, device, cState, MappedState, eState,
+                    tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                    ref tempMouseDeltaY, ctrl);
+            }
+            else
+            {
+                DS4ControlSettings l2FullPull = controlSetGroup.L2FullPull;
+                TwoStageTriggerMappingData l2TwoStageData = l2TwoStageMappingData[device];
+                ProcessTwoStageTrigger(device, cState, cState.L2, ref dcsTemp, ref l2FullPull, l2TriggerSettings, l2TwoStageData);
 
+                // Check for Soft Pull activation
+                if (dcsTemp != null)
+                {
+                    ProcessControlSettingAction(dcsTemp, device, cState, MappedState, eState,
+                        tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                        ref tempMouseDeltaY, ctrl);
+                }
+
+                // Check for Full Pull activation
+                if (l2FullPull != null)
+                {
+                    ProcessControlSettingAction(l2FullPull, device, cState, MappedState, eState,
+                        tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                        ref tempMouseDeltaY, ctrl);
+                }
+            }
+
+            TriggerOutputSettings r2TriggerSettings = Global.R2OutputSettings[device];
             dcsTemp = controlSetGroup.R2;
-            ProcessControlSettingAction(dcsTemp, device, cState, MappedState, eState,
-                tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
-                ref tempMouseDeltaY, ctrl);
+            if (r2TriggerSettings.twoStageMode == TwoStageTriggerMode.Disabled)
+            {
+                ProcessControlSettingAction(dcsTemp, device, cState, MappedState, eState,
+                    tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                    ref tempMouseDeltaY, ctrl);
+            }
+            else
+            {
+                DS4ControlSettings r2FullPull = controlSetGroup.R2FullPull;
+                TwoStageTriggerMappingData r2TwoStageData = r2TwoStageMappingData[device];
+                ProcessTwoStageTrigger(device, cState, cState.R2, ref dcsTemp, ref r2FullPull, r2TriggerSettings, r2TwoStageData);
 
+                // Check for Soft Pull activation
+                if (dcsTemp != null)
+                {
+                    ProcessControlSettingAction(dcsTemp, device, cState, MappedState, eState,
+                        tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                        ref tempMouseDeltaY, ctrl);
+                }
+
+                // Check for Full Pull activation
+                if (r2FullPull != null)
+                {
+                    ProcessControlSettingAction(r2FullPull, device, cState, MappedState, eState,
+                        tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                        ref tempMouseDeltaY, ctrl);
+                }
+            }
 
             for (var settingEnum = controlSetGroup.ControlButtons.GetEnumerator(); settingEnum.MoveNext();)
             {
@@ -1755,6 +1858,44 @@ namespace DS4Windows
                 ProcessControlSettingAction(dcs, device, cState, MappedState, eState,
                     tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
                     ref tempMouseDeltaY, ctrl);
+            }
+
+            if (GyroOutputMode[device] == GyroOutMode.DirectionalSwipe)
+            {
+                DS4ControlSettings gyroSwipeXDcs = null;
+                DS4ControlSettings gyroSwipeYDcs = null;
+
+                if (tp.gyroSwipe.swipeLeft)
+                {
+                    gyroSwipeXDcs = controlSetGroup.GyroSwipeLeft;
+                }
+                else if (tp.gyroSwipe.swipeRight)
+                {
+                    gyroSwipeXDcs = controlSetGroup.GyroSwipeRight;
+                }
+
+                if (tp.gyroSwipe.swipeUp)
+                {
+                    gyroSwipeYDcs = controlSetGroup.GyroSwipeUp;
+                }
+                else if (tp.gyroSwipe.swipeDown)
+                {
+                    gyroSwipeYDcs = controlSetGroup.GyroSwipeDown;
+                }
+
+                if (gyroSwipeXDcs != null)
+                {
+                    ProcessControlSettingAction(gyroSwipeXDcs, device, cState, MappedState, eState,
+                        tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                        ref tempMouseDeltaY, ctrl);
+                }
+
+                if (gyroSwipeYDcs != null)
+                {
+                    ProcessControlSettingAction(gyroSwipeYDcs, device, cState, MappedState, eState,
+                        tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                        ref tempMouseDeltaY, ctrl);
+                }
             }
 
             Queue<ControlToXInput> tempControl = customMapQueue[device];
@@ -1862,6 +2003,202 @@ namespace DS4Windows
             {
                 outputKBMHandler.MoveRelativeMouse(mouseDeltaX, mouseDeltaY);
             }
+        }
+
+        private static void ProcessTwoStageTrigger(int device, DS4State cState, byte triggerValue,
+            ref DS4ControlSettings softPull, ref DS4ControlSettings fullPull, TriggerOutputSettings outputSettings,
+            TwoStageTriggerMappingData twoStageData)
+        {
+            DS4ControlSettings dcsTemp = softPull;
+            DS4ControlSettings dcsFullPull = null;
+            TwoStageTriggerMappingData triggerData = twoStageData;
+
+            switch (outputSettings.twoStageMode)
+            {
+                case TwoStageTriggerMode.Normal:
+                    if (triggerValue == 255)
+                    {
+                        dcsFullPull = fullPull;
+                    }
+
+                    break;
+                case TwoStageTriggerMode.ExclusiveButtons:
+                    if (triggerValue == 255)
+                    {
+                        dcsFullPull = fullPull;
+                        dcsTemp = null;
+                        triggerData.actionStateMode =
+                            TwoStageTriggerMappingData.EngageButtonsMode.FullPullOnly;
+                        triggerData.outputActive = true;
+                    }
+                    else if (triggerValue != 0 && triggerData.actionStateMode !=
+                        TwoStageTriggerMappingData.EngageButtonsMode.FullPullOnly)
+                    {
+                        triggerData.actionStateMode =
+                            TwoStageTriggerMappingData.EngageButtonsMode.Both;
+                        triggerData.outputActive = true;
+                    }
+                    else if (triggerValue == 0 && triggerData.outputActive)
+                    {
+                        triggerData.Reset();
+                    }
+
+                    break;
+                case TwoStageTriggerMode.HairTrigger:
+                    dcsTemp = null;
+
+                    triggerData.actionStateMode = TwoStageTriggerMappingData.EngageButtonsMode.Both;
+
+                    if (triggerValue == 255)
+                    {
+                        // Full pull now activates both. Soft pull action
+                        // no longer engaged with threshold
+                        dcsTemp = softPull;
+                        dcsFullPull = fullPull;
+                        triggerData.softPullActActive = true;
+                        triggerData.fullPullActActive = true;
+                        triggerData.outputActive = true;
+                    }
+                    else if (triggerValue != 0 && !triggerData.fullPullActActive)
+                    {
+                        // Full pull not engaged yet. Activate Soft pull action.
+                        dcsTemp = softPull;
+                        triggerData.softPullActActive = true;
+                        triggerData.outputActive = true;
+                    }
+                    else if (triggerValue == 0 && triggerData.outputActive)
+                    {
+                        triggerData.Reset();
+                    }
+                    //else if (triggerData.outputActive)
+                    //{
+                    //    Console.WriteLine(triggerValue);
+                    //}
+
+                    break;
+
+                case TwoStageTriggerMode.HipFire:
+                    dcsTemp = null;
+
+                    if (triggerValue != 0 && !triggerData.startCheck)
+                    {
+                        triggerData.StartProcessing();
+                        dcsTemp = null;
+                    }
+                    else if (triggerValue != 0 && !triggerData.outputActive)
+                    {
+                        bool outputActive = triggerData.checkTime +
+                            TimeSpan.FromMilliseconds(outputSettings.hipFireMS) < DateTime.Now;
+                        if (outputActive)
+                        {
+                            triggerData.outputActive = true;
+
+                            if (triggerValue == 255)
+                            {
+                                dcsFullPull = fullPull;
+                                triggerData.fullPullActActive = true;
+                                triggerData.actionStateMode = TwoStageTriggerMappingData.EngageButtonsMode.FullPullOnly;
+                            }
+                            else if (triggerValue != 0)
+                            {
+                                dcsTemp = softPull;
+                                triggerData.softPullActActive = true;
+                                triggerData.actionStateMode = TwoStageTriggerMappingData.EngageButtonsMode.Both;
+                            }
+                        }
+                    }
+                    else if (triggerData.outputActive)
+                    {
+                        //DS4State pState = d.getPreviousStateRef();
+                        if (triggerValue == 255)
+                        {
+                            dcsFullPull = fullPull;
+                            triggerData.fullPullActActive = true;
+                            if (triggerData.actionStateMode == TwoStageTriggerMappingData.EngageButtonsMode.Both)
+                            {
+                                dcsTemp = softPull;
+                            }
+                        }
+                        else if (triggerValue != 0 && triggerData.actionStateMode ==
+                            TwoStageTriggerMappingData.EngageButtonsMode.Both)
+                        {
+                            triggerData.fullPullActActive = false;
+
+                            dcsTemp = softPull;
+                            triggerData.softPullActActive = true;
+                        }
+                        else if (triggerValue == 0)
+                        {
+                            triggerData.Reset();
+                        }
+                    }
+                    else if (triggerData.startCheck)
+                    {
+                        triggerData.Reset();
+                    }
+
+                    break;
+                case TwoStageTriggerMode.HipFireExclusiveButtons:
+                    dcsTemp = null;
+
+                    if (triggerValue != 0 && !triggerData.startCheck)
+                    {
+                        triggerData.StartProcessing();
+                        dcsTemp = null;
+                    }
+                    else if (triggerValue != 0 && !triggerData.outputActive)
+                    {
+                        bool outputActive = triggerData.checkTime + TimeSpan.FromMilliseconds(outputSettings.hipFireMS) < DateTime.Now;
+                        if (outputActive)
+                        {
+                            triggerData.outputActive = true;
+
+                            if (triggerValue == 255)
+                            {
+                                dcsFullPull = fullPull;
+                                triggerData.fullPullActActive = true;
+                                triggerData.actionStateMode =
+                                    TwoStageTriggerMappingData.EngageButtonsMode.FullPullOnly;
+                            }
+                            else if (triggerValue != 0)
+                            {
+                                dcsTemp = softPull;
+                                triggerData.softPullActActive = true;
+                                triggerData.actionStateMode =
+                                    TwoStageTriggerMappingData.EngageButtonsMode.SoftPullOnly;
+                            }
+                        }
+                    }
+                    else if (triggerData.outputActive)
+                    {
+                        //DS4State pState = d.getPreviousStateRef();
+                        if (triggerValue == 255 &&
+                            triggerData.actionStateMode == TwoStageTriggerMappingData.EngageButtonsMode.FullPullOnly)
+                        {
+                            dcsFullPull = fullPull;
+                        }
+                        else if (triggerValue != 0 && triggerData.actionStateMode ==
+                            TwoStageTriggerMappingData.EngageButtonsMode.SoftPullOnly)
+                        {
+                            dcsTemp = softPull;
+                        }
+                        else if (triggerValue == 0)
+                        {
+                            triggerData.Reset();
+                        }
+                    }
+                    else if (triggerData.startCheck)
+                    {
+                        triggerData.Reset();
+                    }
+
+                    break;
+                default:
+                    break;
+            }
+
+            softPull = dcsTemp;
+            fullPull = dcsFullPull;
         }
 
         private static void ProcessFlickStick(int device, DS4State cRawState, byte stickX, byte stickY, byte prevStickX, byte prevStickY, ControlService ctrl, FlickStickSettings flickSettings, ref double tempMouseDeltaX)

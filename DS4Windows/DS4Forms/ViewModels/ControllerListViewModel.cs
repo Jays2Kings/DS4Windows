@@ -31,7 +31,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             get
             {
                 if (currentIndex == -1) return null;
-                return controllerCol[currentIndex];
+                controllerDict.TryGetValue(currentIndex, out CompositeDeviceModel item);
+                return item;
             }
         }
 
@@ -113,33 +114,36 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private void ControllersChanged(object sender, EventArgs e)
         {
             //IEnumerable<DS4Device> devices = DS4Windows.DS4Devices.getDS4Controllers();
-            foreach (DS4Device currentDev in controlService.slotManager.ControllerColl)
+            using (ReadLocker locker = new ReadLocker(controlService.slotManager.CollectionLocker))
             {
-                bool found = false;
-                _colListLocker.EnterReadLock();
-                foreach (CompositeDeviceModel temp in controllerCol)
+                foreach (DS4Device currentDev in controlService.slotManager.ControllerColl)
                 {
-                    if (temp.Device == currentDev)
+                    bool found = false;
+                    _colListLocker.EnterReadLock();
+                    foreach (CompositeDeviceModel temp in controllerCol)
                     {
-                        found = true;
-                        break;
+                        if (temp.Device == currentDev)
+                        {
+                            found = true;
+                            break;
+                        }
                     }
-                }
-                _colListLocker.ExitReadLock();
+                    _colListLocker.ExitReadLock();
 
 
-                if (!found)
-                {
-                    //int idx = controllerCol.Count;
-                    _colListLocker.EnterWriteLock();
-                    int idx = controlService.slotManager.ReverseControllerDict[currentDev];
-                    CompositeDeviceModel temp = new CompositeDeviceModel(currentDev,
-                        idx, Global.ProfilePath[idx], profileListHolder);
-                    controllerCol.Add(temp);
-                    controllerDict.Add(idx, temp);
-                    _colListLocker.ExitWriteLock();
+                    if (!found)
+                    {
+                        //int idx = controllerCol.Count;
+                        _colListLocker.EnterWriteLock();
+                        int idx = controlService.slotManager.ReverseControllerDict[currentDev];
+                        CompositeDeviceModel temp = new CompositeDeviceModel(currentDev,
+                            idx, Global.ProfilePath[idx], profileListHolder);
+                        controllerCol.Add(temp);
+                        controllerDict.Add(idx, temp);
+                        _colListLocker.ExitWriteLock();
 
-                    currentDev.Removal += Controller_Removal;
+                        currentDev.Removal += Controller_Removal;
+                    }
                 }
             }
         }

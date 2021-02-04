@@ -44,6 +44,13 @@ namespace DS4Windows
         private double trackballDXRemain = 0.0;
         private double trackballDYRemain = 0.0;
 
+        public struct GyroSwipeData
+        {
+            public bool swipeLeft, swipeRight, swipeUp, swipeDown;
+        }
+
+        public GyroSwipeData gyroSwipe;
+
         public Mouse(int deviceID, DS4Device d)
         {
             deviceNum = deviceID;
@@ -185,6 +192,49 @@ namespace DS4Windows
                     SixMouseStick(arg);
                 else
                     SixMouseReset(arg);
+            }
+            else if (outMode == GyroOutMode.DirectionalSwipe)
+            {
+                s = dev.getCurrentStateRef();
+
+                GyroDirectionalSwipeInfo swipeMapInfo = Global.GetGyroSwipeInfo(deviceNum);
+                useReverseRatchet = swipeMapInfo.triggerTurns;
+                int i = 0;
+                string[] ss = swipeMapInfo.triggers.Split(',');
+                bool andCond = swipeMapInfo.triggerCond;
+                triggeractivated = andCond ? true : false;
+                if (!string.IsNullOrEmpty(ss[0]))
+                {
+                    string s = string.Empty;
+                    for (int index = 0, arlen = ss.Length; index < arlen; index++)
+                    {
+                        s = ss[index];
+                        if (andCond && !(int.TryParse(s, out i) && getDS4ControlsByName(i)))
+                        {
+                            triggeractivated = false;
+                            break;
+                        }
+                        else if (!andCond && int.TryParse(s, out i) && getDS4ControlsByName(i))
+                        {
+                            triggeractivated = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (useReverseRatchet && triggeractivated)
+                {
+                    SixDirectionalSwipe(arg, swipeMapInfo);
+                }
+                else if (!useReverseRatchet && !triggeractivated)
+                {
+                    SixDirectionalSwipe(arg, swipeMapInfo);
+                }
+                else
+                {
+                    gyroSwipe.swipeLeft = gyroSwipe.swipeRight =
+                        gyroSwipe.swipeUp = gyroSwipe.swipeDown = false;
+                }
             }
         }
 
@@ -370,6 +420,30 @@ namespace DS4Windows
             byte axisYOut = (byte)(yNorm * maxDirY + 128.0);
             Mapping.gyroStickX[deviceNum] = axisXOut;
             Mapping.gyroStickY[deviceNum] = axisYOut;
+        }
+
+        private void SixDirectionalSwipe(SixAxisEventArgs arg, GyroDirectionalSwipeInfo swipeInfo)
+        {
+            double velX = swipeInfo.xAxis == GyroDirectionalSwipeInfo.XAxisSwipe.Yaw ?
+                arg.sixAxis.angVelYaw : arg.sixAxis.angVelRoll;
+            double velY = arg.sixAxis.angVelPitch;
+
+            int deadzoneX = (int)Math.Abs(swipeInfo.deadzoneX);
+            int deadzoneY = (int)Math.Abs(swipeInfo.deadzoneY);
+
+            gyroSwipe.swipeLeft = gyroSwipe.swipeRight = false;
+            if (Math.Abs(velX) > deadzoneX)
+            {
+                if (velX > 0) gyroSwipe.swipeRight = true;
+                else gyroSwipe.swipeLeft = true;
+            }
+
+            gyroSwipe.swipeUp = gyroSwipe.swipeDown = false;
+            if (Math.Abs(velY) > deadzoneY)
+            {
+                if (velY > 0) gyroSwipe.swipeUp = true;
+                else gyroSwipe.swipeDown = true;
+            }
         }
 
         private bool getDS4ControlsByName(int key)
@@ -735,9 +809,12 @@ namespace DS4Windows
             TouchpadOutMode tempMode = Global.TouchOutMode[deviceNum];
             if (tempMode != TouchpadOutMode.Passthru)
             {
-                // Reset output Touchpad click button when
-                // not using Passthru mode on Touchpad
-                s.OutputTouchButton = false;
+                bool touchClickPass = Global.TouchClickPassthru[deviceNum];
+                if (!touchClickPass)
+                {
+                    // Reset output Touchpad click button
+                    s.OutputTouchButton = false;
+                }
             }
             else
             {

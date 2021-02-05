@@ -6298,11 +6298,7 @@ namespace DS4Windows
 
         private void ResetProfile(int device)
         {
-            buttonMouseInfos[device].buttonSensitivity = ButtonMouseInfo.DEFAULT_BUTTON_SENS;
-            buttonMouseInfos[device].activeButtonSensitivity = ButtonMouseInfo.DEFAULT_BUTTON_SENS;
-            buttonMouseInfos[device].mouseVelocityOffset = ButtonMouseInfo.MOUSESTICKANTIOFFSET;
-            buttonMouseInfos[device].buttonVerticalScale = ButtonMouseInfo.DEFAULT_BUTTON_VERTICAL_SCALE;
-            buttonMouseInfos[device].mouseAccel = false;
+            buttonMouseInfos[device].Reset();
             enableTouchToggle[device] = true;
             idleDisconnectTimeout[device] = 0;
             enableOutputDataToDS4[device] = true;

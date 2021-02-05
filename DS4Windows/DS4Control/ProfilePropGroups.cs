@@ -329,13 +329,39 @@ namespace DS4Windows
         public const double MOUSESTICKANTIOFFSET = 0.008;
         public const int DEFAULT_BUTTON_SENS = 25;
         public const double DEFAULT_BUTTON_VERTICAL_SCALE = 1.0;
+        public const int DEFAULT_TEMP_SENS = -1;
 
         public int buttonSensitivity = DEFAULT_BUTTON_SENS;
+        public int ButtonSensitivity
+        {
+            get => buttonSensitivity;
+            set
+            {
+                if (buttonSensitivity == value) return;
+                buttonSensitivity = value;
+                ButtonMouseInfoChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler ButtonMouseInfoChanged;
+
         public bool mouseAccel;
         public int activeButtonSensitivity = DEFAULT_BUTTON_SENS;
-        public int tempButtonSensitivity = -1;
+        public int tempButtonSensitivity = DEFAULT_TEMP_SENS;
         public double mouseVelocityOffset = MOUSESTICKANTIOFFSET;
         public double buttonVerticalScale = DEFAULT_BUTTON_VERTICAL_SCALE;
+
+        public ButtonMouseInfo()
+        {
+            ButtonMouseInfoChanged += ButtonMouseInfo_ButtonMouseInfoChanged;
+        }
+
+        private void ButtonMouseInfo_ButtonMouseInfoChanged(object sender, EventArgs e)
+        {
+            if (tempButtonSensitivity == DEFAULT_TEMP_SENS)
+            {
+                activeButtonSensitivity = buttonSensitivity;
+            }
+        }
 
         public void SetActiveButtonSensitivity(int sens)
         {
@@ -347,7 +373,7 @@ namespace DS4Windows
             buttonSensitivity = DEFAULT_BUTTON_SENS;
             mouseAccel = false;
             activeButtonSensitivity = DEFAULT_BUTTON_SENS;
-            tempButtonSensitivity = -1;
+            tempButtonSensitivity = DEFAULT_TEMP_SENS;
             mouseVelocityOffset = MOUSESTICKANTIOFFSET;
             buttonVerticalScale = DEFAULT_BUTTON_VERTICAL_SCALE;
         }

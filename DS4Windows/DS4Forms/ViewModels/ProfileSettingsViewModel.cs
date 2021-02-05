@@ -439,7 +439,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             {
                 int temp = Global.ButtonMouseInfos[device].buttonSensitivity;
                 if (temp == value) return;
-                Global.ButtonMouseInfos[device].buttonSensitivity = value;
+                Global.ButtonMouseInfos[device].ButtonSensitivity = value;
                 ButtonMouseSensitivityChanged?.Invoke(this, EventArgs.Empty);
             }
         }

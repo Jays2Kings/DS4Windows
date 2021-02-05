@@ -297,48 +297,51 @@ namespace DS4Windows
         public unsafe void handleSixaxis(byte* gyro, byte* accel, DS4State state,
             double elapsedDelta)
         {
-            int currentYaw = (short)((ushort)(gyro[3] << 8) | gyro[2]);
-            int currentPitch = (short)((ushort)(gyro[1] << 8) | gyro[0]);
-            int currentRoll = (short)((ushort)(gyro[5] << 8) | gyro[4]);
-            int AccelX = (short)((ushort)(accel[1] << 8) | accel[0]);
-            int AccelY = (short)((ushort)(accel[3] << 8) | accel[2]);
-            int AccelZ = (short)((ushort)(accel[5] << 8) | accel[4]);
-
-            //Console.WriteLine("AccelZ: {0}", AccelZ);
-
-            if (calibrationDone)
-                applyCalibs(ref currentYaw, ref currentPitch, ref currentRoll, ref AccelX, ref AccelY, ref AccelZ);
-
-            if (gyroAverageTimer.IsRunning)
+            unchecked
             {
-                double accelMag = Math.Sqrt(AccelX * AccelX + AccelY * AccelY + AccelZ * AccelZ);
-                PushSensorSamples(currentYaw, currentPitch, currentRoll, (float)accelMag);
-                if (gyroAverageTimer.ElapsedMilliseconds > 5000L)
+                int currentYaw = (short)((ushort)(gyro[3] << 8) | gyro[2]);
+                int currentPitch = (short)((ushort)(gyro[1] << 8) | gyro[0]);
+                int currentRoll = (short)((ushort)(gyro[5] << 8) | gyro[4]);
+                int AccelX = (short)((ushort)(accel[1] << 8) | accel[0]);
+                int AccelY = (short)((ushort)(accel[3] << 8) | accel[2]);
+                int AccelZ = (short)((ushort)(accel[5] << 8) | accel[4]);
+
+                //Console.WriteLine("AccelZ: {0}", AccelZ);
+
+                if (calibrationDone)
+                    applyCalibs(ref currentYaw, ref currentPitch, ref currentRoll, ref AccelX, ref AccelY, ref AccelZ);
+
+                if (gyroAverageTimer.IsRunning)
                 {
-                    gyroAverageTimer.Stop();
-                    AverageGyro(ref gyro_offset_x, ref gyro_offset_y, ref gyro_offset_z, ref gyro_accel_magnitude);
+                    double accelMag = Math.Sqrt(AccelX * AccelX + AccelY * AccelY + AccelZ * AccelZ);
+                    PushSensorSamples(currentYaw, currentPitch, currentRoll, (float)accelMag);
+                    if (gyroAverageTimer.ElapsedMilliseconds > 5000L)
+                    {
+                        gyroAverageTimer.Stop();
+                        AverageGyro(ref gyro_offset_x, ref gyro_offset_y, ref gyro_offset_z, ref gyro_accel_magnitude);
 #if DEBUG
                     Console.WriteLine("AverageGyro {0} {1} {2} {3}", gyro_offset_x, gyro_offset_y, gyro_offset_z, gyro_accel_magnitude);
 #endif
+                    }
                 }
-            }
 
-            currentYaw -= gyro_offset_x;
-            currentPitch -= gyro_offset_y;
-            currentRoll -= gyro_offset_z;
+                currentYaw -= gyro_offset_x;
+                currentPitch -= gyro_offset_y;
+                currentRoll -= gyro_offset_z;
 
-            SixAxisEventArgs args = null;
-            if (AccelX != 0 || AccelY != 0 || AccelZ != 0)
-            {
-                if (SixAccelMoved != null)
+                SixAxisEventArgs args = null;
+                if (AccelX != 0 || AccelY != 0 || AccelZ != 0)
                 {
-                    sPrev.copy(now);
-                    now.populate(currentYaw, currentPitch, currentRoll,
-                        AccelX, AccelY, AccelZ, elapsedDelta, sPrev);
+                    if (SixAccelMoved != null)
+                    {
+                        sPrev.copy(now);
+                        now.populate(currentYaw, currentPitch, currentRoll,
+                            AccelX, AccelY, AccelZ, elapsedDelta, sPrev);
 
-                    args = new SixAxisEventArgs(state.ReportTimeStamp, now);
-                    state.Motion = now;
-                    SixAccelMoved(this, args);
+                        args = new SixAxisEventArgs(state.ReportTimeStamp, now);
+                        state.Motion = now;
+                        SixAccelMoved(this, args);
+                    }
                 }
             }
         }

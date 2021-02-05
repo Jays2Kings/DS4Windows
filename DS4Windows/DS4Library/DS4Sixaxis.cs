@@ -113,15 +113,15 @@ namespace DS4Windows
 
     public class GyroAverageWindow
     {
-        public float x;
-        public float y;
-        public float z;
-        public float accelMagnitude;
+        public int x;
+        public int y;
+        public int z;
+        public double accelMagnitude;
         public int numSamples;
         public DateTime start;
         public DateTime stop;
 
-        public int durationMs   // property
+        public int DurationMs   // property
         {
             get
             {
@@ -137,7 +137,8 @@ namespace DS4Windows
 
         public void Reset()
         {
-            x = y = z = accelMagnitude = numSamples = 0;
+            x = y = z = numSamples = 0;
+            accelMagnitude = 0.0;
             start = stop = DateTime.UtcNow;
         }
 
@@ -149,10 +150,10 @@ namespace DS4Windows
             if (!shouldStop) stop = end;
             return shouldStop;
         }
-        public float GetWeight(int expectedMs)
+        public double GetWeight(int expectedMs)
         {
             if (expectedMs == 0) return 0;
-            return (float)Math.Min(1.0, (float)durationMs / expectedMs);
+            return Math.Min(1.0, DurationMs / expectedMs);
         }
     }
 
@@ -171,11 +172,11 @@ namespace DS4Windows
         private int gyro_average_window_front_index = 0;
         const int gyro_average_window_ms = 5000;
         private GyroAverageWindow[] gyro_average_window = new GyroAverageWindow[num_gyro_average_windows];
-        private float gyro_offset_x = 0;
-        private float gyro_offset_y = 0;
-        private float gyro_offset_z = 0;
-        private float gyro_accel_magnitude = 1.0f;
-        private readonly Stopwatch gyroAverageTimer = new Stopwatch();
+        private int gyro_offset_x = 0;
+        private int gyro_offset_y = 0;
+        private int gyro_offset_z = 0;
+        private double gyro_accel_magnitude = 1.0f;
+        private Stopwatch gyroAverageTimer = new Stopwatch();
         public long CntCalibrating
         {
             get
@@ -322,9 +323,9 @@ namespace DS4Windows
                 }
             }
 
-            currentYaw -= (int)gyro_offset_x;
-            currentPitch -= (int)gyro_offset_y;
-            currentRoll -= (int)gyro_offset_z;
+            currentYaw -= gyro_offset_x;
+            currentPitch -= gyro_offset_y;
+            currentRoll -= gyro_offset_z;
 
             SixAxisEventArgs args = null;
             if (AccelX != 0 || AccelY != 0 || AccelZ != 0)
@@ -365,10 +366,11 @@ namespace DS4Windows
         {
             for (int i = 0; i < num_gyro_average_windows; i++)
                 gyro_average_window[i].Reset();
+
             gyroAverageTimer.Restart();
         }
 
-        public unsafe void PushSensorSamples(float x, float y, float z, float accelMagnitude)
+        public unsafe void PushSensorSamples(int x, int y, int z, double accelMagnitude)
         {
             // push samples
             GyroAverageWindow windowPointer = gyro_average_window[gyro_average_window_front_index];
@@ -391,33 +393,34 @@ namespace DS4Windows
             windowPointer.accelMagnitude += accelMagnitude;
         }
 
-        public void AverageGyro(ref float x, ref float y, ref float z, ref float accelMagnitude)
+        public void AverageGyro(ref int x, ref int y, ref int z, ref double accelMagnitude)
         {
-            float weight = 0.0f;
-            float totalX = 0.0f;
-            float totalY = 0.0f;
-            float totalZ = 0.0f;
-            float totalAccelMagnitude = 0.0f;
+            double weight = 0.0;
+            double totalX = 0.0;
+            double totalY = 0.0;
+            double totalZ = 0.0;
+            double totalAccelMagnitude = 0.0;
 
             int wantedMs = 5000;
             for (int i = 0; i < num_gyro_average_windows && wantedMs > 0; i++)
             {
                 int cycledIndex = (i + gyro_average_window_front_index) % num_gyro_average_windows;
                 GyroAverageWindow windowPointer = gyro_average_window[cycledIndex];
-                if (windowPointer.numSamples == 0 || windowPointer.durationMs == 0) continue;
+                if (windowPointer.numSamples == 0 || windowPointer.DurationMs == 0) continue;
 
-                float thisWeight;
-                float fNumSamples = windowPointer.numSamples;
-                if (wantedMs < windowPointer.durationMs)
+                double thisWeight;
+                double fNumSamples = windowPointer.numSamples;
+                if (wantedMs < windowPointer.DurationMs)
                 {
-                    thisWeight = (float)wantedMs / windowPointer.durationMs;
+                    thisWeight = (float)wantedMs / windowPointer.DurationMs;
                     wantedMs = 0;
                 }
                 else
                 {
                     thisWeight = windowPointer.GetWeight(gyro_average_window_ms);
-                    wantedMs -= windowPointer.durationMs;
+                    wantedMs -= windowPointer.DurationMs;
                 }
+
                 totalX += (windowPointer.x / fNumSamples) * thisWeight;
                 totalY += (windowPointer.y / fNumSamples) * thisWeight;
                 totalZ += (windowPointer.z / fNumSamples) * thisWeight;
@@ -427,9 +430,9 @@ namespace DS4Windows
 
             if (weight > 0.0)
             {
-                x = totalX / weight;
-                y = totalY / weight;
-                z = totalZ / weight;
+                x = (int)(totalX / weight);
+                y = (int)(totalY / weight);
+                z = (int)(totalZ / weight);
                 accelMagnitude = totalAccelMagnitude / weight;
             }
         }

@@ -839,7 +839,7 @@ namespace DS4Windows.InputDevices
 
             // Disable haptics and trigger motors
             outputReport[1 + reportOffset] = useRumble ? (byte)0x0F : (byte)0x0C;
-            outputReport[2 + reportOffset] = 0x08; // Turn off all LED lights
+            outputReport[2 + reportOffset] = 0x14; // Turn off all LED lights. 0x04 | 0x10
 
             if (conType == ConnectionType.BT)
             {
@@ -864,7 +864,7 @@ namespace DS4Windows.InputDevices
 
             outputReport[0] = OUTPUT_REPORT_ID_BT; // Report ID
             outputReport[1] = OUTPUT_REPORT_ID_DATA;
-            outputReport[3] = 0x08; // Turn off all LED lights
+            outputReport[3] = 0x14; // Turn off all LED lights. 0x04 | 0x10
 
             // Need to calculate and populate CRC32 data so controller will accept the report
             uint calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);

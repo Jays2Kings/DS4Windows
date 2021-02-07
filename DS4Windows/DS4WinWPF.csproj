@@ -436,9 +436,14 @@
       <SubType>Designer</SubType>
       <DependentUpon>Resources.resx</DependentUpon>
     </EmbeddedResource>
+
     <EmbeddedResource Include="Translations\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+	<EmbeddedResource Include="Translations\Strings.ar.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Translations\Strings.cs.resx">
       <SubType>Designer</SubType>
@@ -460,11 +465,23 @@
       <SubType>Designer</SubType>
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Translations\Strings.he.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+	<EmbeddedResource Include="Translations\Strings.hu-HU.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Translations\Strings.it.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Translations\Strings.ja.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+	<EmbeddedResource Include="Translations\Strings.pl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
@@ -476,6 +493,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
+	<EmbeddedResource Include="Translations\Strings.uk-UA.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Translations\Strings.zh-CN.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Strings.resx</DependentUpon>
@@ -484,22 +505,7 @@
       <SubType>Designer</SubType>
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Translations\Strings.uk-UA.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Translations\Strings.hu-HU.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Translations\Strings.pl.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Translations\Strings.ar.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </EmbeddedResource>
+
     <None Include="app.manifest" />
     <None Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

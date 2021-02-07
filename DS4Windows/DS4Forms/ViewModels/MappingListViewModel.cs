@@ -219,31 +219,26 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public string GetMappingString(bool shift = false)
         {
             string temp = Properties.Resources.Unassigned;
-            object action = !shift ? setting.action : setting.shiftAction;
+            ControlActionData action = !shift ? setting.action : setting.shiftAction;
             bool sc = !shift ? setting.keyType.HasFlag(DS4KeyType.ScanCode) :
                 setting.shiftKeyType.HasFlag(DS4KeyType.ScanCode);
             bool extra = control >= DS4Controls.GyroXPos && control <= DS4Controls.SwipeDown;
-            if (action != null)
+            DS4ControlSettings.ActionType actionType = !shift ? setting.actionType : setting.shiftActionType;
+            if (actionType != DS4ControlSettings.ActionType.Default)
             {
-                if (action is int || action is ushort)
+                if (actionType == DS4ControlSettings.ActionType.Key)
                 {
                     //return (Keys)int.Parse(action.ToString()) + (sc ? " (" + Properties.Resources.ScanCode + ")" : "");
-                    temp = KeyInterop.KeyFromVirtualKey(Convert.ToInt32(action)) + (sc ? " (" + Properties.Resources.ScanCode + ")" : "");
+                    temp = KeyInterop.KeyFromVirtualKey(action.actionKey) + (sc ? " (" + Properties.Resources.ScanCode + ")" : "");
                 }
-                else if (action is int[])
+                else if (actionType == DS4ControlSettings.ActionType.Macro)
                 {
                     temp = Properties.Resources.Macro + (sc ? " (" + Properties.Resources.ScanCode + ")" : "");
                 }
-                else if (action is X360Controls)
+                else if (actionType == DS4ControlSettings.ActionType.Button)
                 {
                     string tag;
-                    tag = Global.getX360ControlString((X360Controls)action, devType);
-                    temp = tag;
-                }
-                else if (action is string)
-                {
-                    string tag;
-                    tag = action.ToString();
+                    tag = Global.getX360ControlString((X360Controls)action.actionBtn, devType);
                     temp = tag;
                 }
                 else
@@ -267,7 +262,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public bool HasShiftAction()
         {
-            return setting.shiftAction != null;
+            return setting.shiftActionType != DS4ControlSettings.ActionType.Default;
         }
 
         private static string ShiftTrigger(int trigger)

@@ -59,6 +59,13 @@ namespace DS4Windows
         Dark,
     }
 
+    public class ControlActionData
+    {
+        public int actionKey;
+        public X360Controls actionBtn;
+        public int[] actionMacro = new int[1];
+    }
+
     public class DS4ControlSettings
     {
         public DS4Controls control;
@@ -66,9 +73,9 @@ namespace DS4Windows
         public DS4KeyType keyType = DS4KeyType.None;
         public enum ActionType : byte { Default, Key, Button, Macro };
         public ActionType actionType = ActionType.Default;
-        public object action = null;
+        public ControlActionData action = new ControlActionData();
         public ActionType shiftActionType = ActionType.Default;
-        public object shiftAction = null;
+        public ControlActionData shiftAction = new ControlActionData();
         public int shiftTrigger = 0;
         public string shiftExtras = null;
         public DS4KeyType shiftKeyType = DS4KeyType.None;
@@ -83,9 +90,9 @@ namespace DS4Windows
             extras = null;
             keyType = DS4KeyType.None;
             actionType = ActionType.Default;
-            action = null;
+            action = new ControlActionData();
             shiftActionType = ActionType.Default;
-            shiftAction = null;
+            shiftAction = new ControlActionData();
             shiftTrigger = 0;
             shiftExtras = null;
             shiftKeyType = DS4KeyType.None;
@@ -96,30 +103,66 @@ namespace DS4Windows
             if (!shift)
             {
                 if (act is int || act is ushort)
+                {
                     actionType = ActionType.Key;
+                    action.actionKey = Convert.ToInt32(act);
+                }
                 else if (act is string || act is X360Controls)
+                {
                     actionType = ActionType.Button;
+                    if (act is X360Controls)
+                    {
+                        action.actionBtn = (X360Controls)act;
+                    }
+                    else
+                    {
+                        Enum.TryParse(act.ToString(), out action.actionBtn);
+                    }
+                }
                 else if (act is int[])
+                {
                     actionType = ActionType.Macro;
+                    action.actionMacro = (int[])act;
+                }
                 else
+                {
                     actionType = ActionType.Default;
+                    action.actionKey = 0;
+                }
 
-                action = act;
                 extras = exts;
                 keyType = kt;
             }
             else
             {
                 if (act is int || act is ushort)
+                {
                     shiftActionType = ActionType.Key;
+                    shiftAction.actionKey = Convert.ToInt32(act);
+                }
                 else if (act is string || act is X360Controls)
+                {
                     shiftActionType = ActionType.Button;
+                    if (act is X360Controls)
+                    {
+                        shiftAction.actionBtn = (X360Controls)act;
+                    }
+                    else
+                    {
+                        Enum.TryParse(act.ToString(), out shiftAction.actionBtn);
+                    }
+                }
                 else if (act is int[])
+                {
                     shiftActionType = ActionType.Macro;
+                    shiftAction.actionMacro = (int[])act;
+                }
                 else
+                {
                     shiftActionType = ActionType.Default;
+                    shiftAction.actionKey = 0;
+                }
 
-                shiftAction = act;
                 shiftExtras = exts;
                 shiftKeyType = kt;
                 shiftTrigger = trigger;
@@ -3310,15 +3353,15 @@ namespace DS4Windows
 
                 foreach (DS4ControlSettings dcs in ds4settings[device])
                 {
-                    if (dcs.action != null)
+                    if (dcs.actionType != DS4ControlSettings.ActionType.Default)
                     {
                         XmlNode buttonNode;
                         string keyType = string.Empty;
 
-                        if (dcs.action is string)
+                        if (dcs.actionType == DS4ControlSettings.ActionType.Button &&
+                            dcs.action.actionBtn == X360Controls.Unbound)
                         {
-                            if (dcs.action.ToString() == "Unbound")
-                                keyType += DS4KeyType.Unbound;
+                            keyType += DS4KeyType.Unbound;
                         }
 
                         if (dcs.keyType.HasFlag(DS4KeyType.HoldMacro))
@@ -3339,25 +3382,20 @@ namespace DS4Windows
                         }
 
                         buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, dcs.control.ToString(), null);
-                        if (dcs.action is IEnumerable<int> || dcs.action is int[] || dcs.action is ushort[])
+                        if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
                         {
-                            int[] ii = (int[])dcs.action;
+                            int[] ii = dcs.action.actionMacro;
                             buttonNode.InnerText = string.Join("/", ii);
                             Macro.AppendChild(buttonNode);
                         }
-                        else if (dcs.action is int || dcs.action is ushort || dcs.action is byte)
+                        else if (dcs.actionType == DS4ControlSettings.ActionType.Key)
                         {
                             buttonNode.InnerText = dcs.action.ToString();
                             Key.AppendChild(buttonNode);
                         }
-                        else if (dcs.action is string)
+                        else if (dcs.actionType == DS4ControlSettings.ActionType.Button)
                         {
-                            buttonNode.InnerText = dcs.action.ToString();
-                            Button.AppendChild(buttonNode);
-                        }
-                        else if (dcs.action is X360Controls)
-                        {
-                            buttonNode.InnerText = getX360ControlString((X360Controls)dcs.action);
+                            buttonNode.InnerText = getX360ControlString((X360Controls)dcs.action.actionBtn);
                             Button.AppendChild(buttonNode);
                         }
                     }
@@ -3382,15 +3420,15 @@ namespace DS4Windows
                         Extras.AppendChild(extraNode);
                     }
 
-                    if (dcs.shiftAction != null && dcs.shiftTrigger > 0)
+                    if (dcs.shiftActionType != DS4ControlSettings.ActionType.Default && dcs.shiftTrigger > 0)
                     {
                         XmlElement buttonNode;
                         string keyType = string.Empty;
 
-                        if (dcs.shiftAction is string)
+                        if (dcs.shiftActionType == DS4ControlSettings.ActionType.Button &&
+                            dcs.shiftAction.actionBtn == X360Controls.Unbound)
                         {
-                            if (dcs.shiftAction.ToString() == "Unbound")
-                                keyType += DS4KeyType.Unbound;
+                            keyType += DS4KeyType.Unbound;
                         }
 
                         if (dcs.shiftKeyType.HasFlag(DS4KeyType.HoldMacro))
@@ -3411,20 +3449,20 @@ namespace DS4Windows
 
                         buttonNode = m_Xdoc.CreateElement(dcs.control.ToString());
                         buttonNode.SetAttribute("Trigger", dcs.shiftTrigger.ToString());
-                        if (dcs.shiftAction is IEnumerable<int> || dcs.shiftAction is int[] || dcs.shiftAction is ushort[])
+                        if (dcs.shiftActionType == DS4ControlSettings.ActionType.Macro)
                         {
-                            int[] ii = (int[])dcs.shiftAction;
+                            int[] ii = dcs.shiftAction.actionMacro;
                             buttonNode.InnerText = string.Join("/", ii);
                             ShiftMacro.AppendChild(buttonNode);
                         }
-                        else if (dcs.shiftAction is int || dcs.shiftAction is ushort || dcs.shiftAction is byte)
+                        else if (dcs.shiftActionType == DS4ControlSettings.ActionType.Key)
                         {
                             buttonNode.InnerText = dcs.shiftAction.ToString();
                             ShiftKey.AppendChild(buttonNode);
                         }
-                        else if (dcs.shiftAction is string || dcs.shiftAction is X360Controls)
+                        else if (dcs.shiftActionType == DS4ControlSettings.ActionType.Button)
                         {
-                            buttonNode.InnerText = dcs.shiftAction.ToString();
+                            buttonNode.InnerText = dcs.shiftAction.actionBtn.ToString();
                             ShiftButton.AppendChild(buttonNode);
                         }
                     }
@@ -6276,7 +6314,7 @@ namespace DS4Windows
             for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
             {
                 DS4ControlSettings dcs = ds4settingsList[i];
-                if (dcs.action != null || dcs.shiftAction != null)
+                if (dcs.actionType != DS4ControlSettings.ActionType.Default || dcs.shiftActionType != DS4ControlSettings.ActionType.Default)
                     return true;
             }
 

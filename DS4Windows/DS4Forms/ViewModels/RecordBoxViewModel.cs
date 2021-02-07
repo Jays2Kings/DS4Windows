@@ -105,11 +105,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 useScanCode = true;
             }
 
-            if (!shift && settings.action is int[])
+            if (!shift && settings.actionType == DS4ControlSettings.ActionType.Macro)
             {
                 LoadMacro();
             }
-            else if (shift && settings.shiftAction is int[])
+            else if (shift && settings.shiftActionType == DS4ControlSettings.ActionType.Macro)
             {
                 LoadMacro();
             }
@@ -135,11 +135,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             int[] macro;
             if (!shift)
             {
-                macro = (int[])settings.action;
+                macro = (int[])settings.action.actionMacro;
             }
             else
             {
-                macro = (int[])settings.shiftAction;
+                macro = (int[])settings.shiftAction.actionMacro;
             }
 
             MacroParser macroParser = new MacroParser(macro);
@@ -163,7 +163,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
             if (!shift)
             {
-                settings.action = outmac;
+                settings.action.actionMacro = outmac;
                 settings.actionType = DS4ControlSettings.ActionType.Macro;
                 settings.keyType = DS4KeyType.Macro;
                 if (macroModeIndex == 1)
@@ -177,7 +177,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
             else
             {
-                settings.shiftAction = outmac;
+                settings.shiftAction.actionMacro = outmac;
                 settings.shiftActionType = DS4ControlSettings.ActionType.Macro;
                 settings.shiftKeyType = DS4KeyType.Macro;
                 if (macroModeIndex == 1)

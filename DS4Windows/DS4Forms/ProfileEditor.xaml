@@ -1024,488 +1024,490 @@
             </TabItem>
 
             <TabItem Header="Gyro">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                        <Label Content="Output Mode" />
-                        <ComboBox x:Name="gyroOutModeCombo" Width="160" SelectedIndex="{Binding GyroOutModeIndex, FallbackValue=0}" VerticalContentAlignment="Center" Margin="10,0,0,0">
-                            <ComboBoxItem Content="Controls" />
-                            <ComboBoxItem Content="Mouse" />
-                            <ComboBoxItem Content="Mouse Joystick" />
-                            <ComboBoxItem Content="Directional Swipe" />
-                            <ComboBoxItem Content="Passthru" />
-                        </ComboBox>
-                    </StackPanel>
-
-                    <StackPanel x:Name="gyroControlsPanel" Visibility="Visible">
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <Button x:Name="gyroZNBtn" Content="Tilt Up" Width="100" Tag="{Binding TiltUp, Source={StaticResource controlIndexCheck}}" Click="TiltControlsButton_Click" />
-                            <Label x:Name="gyroZNLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <Button x:Name="gyroZPBtn" Content="Tilt Down" Width="100" Tag="{Binding TiltDown, Source={StaticResource controlIndexCheck}}" Click="TiltControlsButton_Click" />
-                            <Label x:Name="gyroZPLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <Button x:Name="gyroXPBtn" Content="Tilt Left" Width="100" Tag="{Binding TiltLeft, Source={StaticResource controlIndexCheck}}" Click="TiltControlsButton_Click" />
-                            <Label x:Name="gyroXLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <Button x:Name="gyroXNBtn" Content="Tilt Right" Width="100" Tag="{Binding TiltRight, Source={StaticResource controlIndexCheck}}" Click="TiltControlsButton_Click" />
-                            <Label x:Name="gyroXNLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
-                            <Label Content="Triggers" />
-                            <Button x:Name="gyroControlsTrigBtn" Content="{Binding GyroControlsTrigDisplay,FallbackValue='Always On'}" MinWidth="160" Click="GyroControlsTrigBtn_Click" >
-                                <Button.ContextMenu>
-                                    <ContextMenu>
-                                        <MenuItem Header="Cross" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="Circle" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="Square" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="Triangle" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="L1" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="L2" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="R1" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="R2" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="Up" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="Down" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="Left" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="Right" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="L3" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="R3" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="Options" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="Share" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="PS" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="Mute" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                        <MenuItem Header="Always On" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                    </ContextMenu>
-                                </Button.ContextMenu>
-                            </Button>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                            <CheckBox Content="Turn Behavior - Turns Gyro"
-                                  IsChecked="{Binding GyroControlsTurns}" ToolTip="{lex:Loc Resources:GyroTriggerBehavior}" />
-                            <CheckBox Content="Toggle" IsChecked="{Binding GyroControlsToggle}" Margin="20,0,0,0" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                            <Label Content="Eval Cond." />
-                            <ComboBox SelectedIndex="{Binding GyroControlsEvalCondIndex,FallbackValue=0}" Margin="8,0,0,0">
-                                <ComboBoxItem Content="And" />
-                                <ComboBoxItem Content="Or" />
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Label Content="Output Mode" />
+                            <ComboBox x:Name="gyroOutModeCombo" Width="160" SelectedIndex="{Binding GyroOutModeIndex, FallbackValue=0}" VerticalContentAlignment="Center" Margin="10,0,0,0">
+                                <ComboBoxItem Content="Controls" />
+                                <ComboBoxItem Content="Mouse" />
+                                <ComboBoxItem Content="Mouse Joystick" />
+                                <ComboBoxItem Content="Directional Swipe" />
+                                <ComboBoxItem Content="Passthru" />
                             </ComboBox>
                         </StackPanel>
 
-                        <GroupBox Header="360 Steering Wheel" Margin="0,16,0,0" Padding="2,4">
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                    <Label Content="Steering wheel axis" />
-                                    <ComboBox Width="160" Margin="8,0,0,0" SelectedIndex="{Binding SASteeringWheelEmulationAxisIndex,FallbackValue=0}">
-                                        <ComboBoxItem Content="None" />
-                                        <ComboBoxItem Content="Left X-Axis" />
-                                        <ComboBoxItem Content="Left Y-Axis" />
-                                        <ComboBoxItem Content="Right X-Axis" />
-                                        <ComboBoxItem Content="Right Y-Axis" />
-                                        <ComboBoxItem Content="Trigger L+R Axis" />
-                                        <ComboBoxItem Content="VJoy1 X-Axis" />
-                                        <ComboBoxItem Content="VJoy1 Y-Axis" />
-                                        <ComboBoxItem Content="VJoy1 Z-Axis" />
-                                        <ComboBoxItem Content="VJoy2 X-Axis" />
-                                        <ComboBoxItem Content="VJoy2 Y-Axis" />
-                                        <ComboBoxItem Content="VJoy2 Z-Axis" />
-                                    </ComboBox>
-                                </StackPanel>
+                        <StackPanel x:Name="gyroControlsPanel" Visibility="Visible">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <Button x:Name="gyroZNBtn" Content="Tilt Up" Width="100" Tag="{Binding TiltUp, Source={StaticResource controlIndexCheck}}" Click="TiltControlsButton_Click" />
+                                <Label x:Name="gyroZNLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
+                            </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                    <Label Content="Steering wheel range" />
-                                    <ComboBox Margin="8,0,0,0" SelectedIndex="{Binding SASteeringWheelEmulationRangeIndex,FallbackValue=0}">
-                                        <ComboBoxItem Content="90" />
-                                        <ComboBoxItem Content="180" />
-                                        <ComboBoxItem Content="270" />
-                                        <ComboBoxItem Content="360" />
-                                        <ComboBoxItem Content="450" />
-                                        <ComboBoxItem Content="720" />
-                                        <ComboBoxItem Content="900" />
-                                        <ComboBoxItem Content="1080" />
-                                        <ComboBoxItem Content="1440" />
-                                    </ComboBox>
-                                    <Button x:Name="steeringWheelEmulationCalibrateBtn" Content="Calibrate" Margin="8,0,0,0"
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <Button x:Name="gyroZPBtn" Content="Tilt Down" Width="100" Tag="{Binding TiltDown, Source={StaticResource controlIndexCheck}}" Click="TiltControlsButton_Click" />
+                                <Label x:Name="gyroZPLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <Button x:Name="gyroXPBtn" Content="Tilt Left" Width="100" Tag="{Binding TiltLeft, Source={StaticResource controlIndexCheck}}" Click="TiltControlsButton_Click" />
+                                <Label x:Name="gyroXLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <Button x:Name="gyroXNBtn" Content="Tilt Right" Width="100" Tag="{Binding TiltRight, Source={StaticResource controlIndexCheck}}" Click="TiltControlsButton_Click" />
+                                <Label x:Name="gyroXNLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                                <Label Content="Triggers" />
+                                <Button x:Name="gyroControlsTrigBtn" Content="{Binding GyroControlsTrigDisplay,FallbackValue='Always On'}" MinWidth="160" Click="GyroControlsTrigBtn_Click" >
+                                    <Button.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Cross" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="Circle" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="Square" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="Triangle" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="L1" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="L2" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="R1" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="R2" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="Up" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="Down" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="Left" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="Right" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="L3" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="R3" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="Options" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="Share" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="PS" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="Mute" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                            <MenuItem Header="Always On" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        </ContextMenu>
+                                    </Button.ContextMenu>
+                                </Button>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                <CheckBox Content="Turn Behavior - Turns Gyro"
+                                  IsChecked="{Binding GyroControlsTurns}" ToolTip="{lex:Loc Resources:GyroTriggerBehavior}" />
+                                <CheckBox Content="Toggle" IsChecked="{Binding GyroControlsToggle}" Margin="20,0,0,0" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                <Label Content="Eval Cond." />
+                                <ComboBox SelectedIndex="{Binding GyroControlsEvalCondIndex,FallbackValue=0}" Margin="8,0,0,0">
+                                    <ComboBoxItem Content="And" />
+                                    <ComboBoxItem Content="Or" />
+                                </ComboBox>
+                            </StackPanel>
+
+                            <GroupBox Header="360 Steering Wheel" Margin="0,16,0,0" Padding="2,4">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                        <Label Content="Steering wheel axis" />
+                                        <ComboBox Width="160" Margin="8,0,0,0" SelectedIndex="{Binding SASteeringWheelEmulationAxisIndex,FallbackValue=0}">
+                                            <ComboBoxItem Content="None" />
+                                            <ComboBoxItem Content="Left X-Axis" />
+                                            <ComboBoxItem Content="Left Y-Axis" />
+                                            <ComboBoxItem Content="Right X-Axis" />
+                                            <ComboBoxItem Content="Right Y-Axis" />
+                                            <ComboBoxItem Content="Trigger L+R Axis" />
+                                            <ComboBoxItem Content="VJoy1 X-Axis" />
+                                            <ComboBoxItem Content="VJoy1 Y-Axis" />
+                                            <ComboBoxItem Content="VJoy1 Z-Axis" />
+                                            <ComboBoxItem Content="VJoy2 X-Axis" />
+                                            <ComboBoxItem Content="VJoy2 Y-Axis" />
+                                            <ComboBoxItem Content="VJoy2 Z-Axis" />
+                                        </ComboBox>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                        <Label Content="Steering wheel range" />
+                                        <ComboBox Margin="8,0,0,0" SelectedIndex="{Binding SASteeringWheelEmulationRangeIndex,FallbackValue=0}">
+                                            <ComboBoxItem Content="90" />
+                                            <ComboBoxItem Content="180" />
+                                            <ComboBoxItem Content="270" />
+                                            <ComboBoxItem Content="360" />
+                                            <ComboBoxItem Content="450" />
+                                            <ComboBoxItem Content="720" />
+                                            <ComboBoxItem Content="900" />
+                                            <ComboBoxItem Content="1080" />
+                                            <ComboBoxItem Content="1440" />
+                                        </ComboBox>
+                                        <Button x:Name="steeringWheelEmulationCalibrateBtn" Content="Calibrate" Margin="8,0,0,0"
                                         Click="SteeringWheelEmulationCalibrateBtn_Click" />
-                                </StackPanel>
+                                    </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                    <Label Content="Fuzz:" />
-                                    <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding SASteeringWheelFuzz}"
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                        <Label Content="Fuzz:" />
+                                        <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding SASteeringWheelFuzz}"
                                                     Minimum="0" Maximum="100"
                                                     Margin="{StaticResource spaceMargin}" />
-                                    <TextBlock Text="units" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
+                                        <TextBlock Text="units" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                        <CheckBox Content="Use Smoothing" IsChecked="{Binding SASteeringWheelUseSmoothing}" />
+                                    </StackPanel>
+
+                                    <StackPanel x:Name="euroFilterOptionsPanel" IsEnabled="{Binding SASteeringWheelUseSmoothing,FallbackValue=False}"
+                                            Orientation="Horizontal" Margin="0,0,0,8">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="1&#x20ac; MinCutoff" />
+                                            <xctk:DoubleUpDown x:Name="euroMinCutoff" d:IsHidden="True" FormatString="F5" Value="{Binding SASteeringWheelSmoothMinCutoff,FallbackValue=1.0,UpdateSourceTrigger=LostFocus}"
+                                                           Minimum="0.00001" Maximum="1000.0" Increment="0.1" MinWidth="60" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
+                                            <Label Content="1&#x20ac; Beta" />
+                                            <xctk:DoubleUpDown x:Name="euroBeta" d:IsHidden="True" FormatString="F5" Value="{Binding SASteeringWheelSmoothBeta,FallbackValue=0.0,UpdateSourceTrigger=LostFocus}"
+                                                           Minimum="0.0" Maximum="1.0" MinWidth="60" />
+                                        </StackPanel>
+                                    </StackPanel>
                                 </StackPanel>
-                                
-                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                    <CheckBox Content="Use Smoothing" IsChecked="{Binding SASteeringWheelUseSmoothing}" />
+                            </GroupBox>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
+                                <Button x:Name="gyroCalBtn" Content="Gyro Calibration" Width="100"  Click="GyroCalibration_Click" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel x:Name="gyroMousePanel" Visibility="Collapsed" Margin="{StaticResource spaceMargin}">
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <Label Content="Triggers" />
+                                <Button x:Name="gyroMouseTrigBtn" Content="{Binding GyroMouseTrigDisplay,FallbackValue=Always On}" MinWidth="160" Click="GyroMouseTrigBtn_Click" >
+                                    <Button.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Cross" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="Circle" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="Square" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="Triangle" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="L1" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="L2" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="R1" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="R2" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="Up" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="Down" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="Left" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="Right" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="L3" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="R3" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="Options" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="Share" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="PS" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="Mute" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                            <MenuItem Header="Always On" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                        </ContextMenu>
+                                    </Button.ContextMenu>
+                                </Button>
+                            </StackPanel>
+
+                            <CheckBox Content="Turn Behavior - Turns Gyro" Margin="{StaticResource spaceMargin}"
+                                  IsChecked="{Binding GyroMouseTurns}" ToolTip="{lex:Loc Resources:GyroTriggerBehavior}" />
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <Label Content="Gyro Sensitivity:" />
+                                <xctk:IntegerUpDown d:IsHidden="True" MinWidth="50" Margin="8,0,0,0" Value="{Binding GyroSensitivity}"
+                                                Minimum="0" Maximum="500" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <Label Content="Vertical Scale:" />
+                                <xctk:IntegerUpDown d:IsHidden="True" MinWidth="50" Margin="8,0,0,0" Value="{Binding GyroVertScale}"
+                                                Minimum="0" Maximum="400" Increment="10" />
+                                <Label Content="%" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <StackPanel>
+                                    <Label Content="Eval Cond." Margin="{StaticResource spaceMargin}" />
+                                    <ComboBox SelectedIndex="{Binding GyroMouseEvalCondIndex,FallbackValue=0}">
+                                        <ComboBoxItem Content="And" />
+                                        <ComboBoxItem Content="Or" />
+                                    </ComboBox>
                                 </StackPanel>
 
-                                <StackPanel x:Name="euroFilterOptionsPanel" IsEnabled="{Binding SASteeringWheelUseSmoothing,FallbackValue=False}"
-                                            Orientation="Horizontal" Margin="0,0,0,8">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="1&#x20ac; MinCutoff" />
-                                        <xctk:DoubleUpDown x:Name="euroMinCutoff" d:IsHidden="True" FormatString="F5" Value="{Binding SASteeringWheelSmoothMinCutoff,FallbackValue=1.0,UpdateSourceTrigger=LostFocus}"
-                                                           Minimum="0.00001" Maximum="1000.0" Increment="0.1" MinWidth="60" />
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
-                                        <Label Content="1&#x20ac; Beta" />
-                                        <xctk:DoubleUpDown x:Name="euroBeta" d:IsHidden="True" FormatString="F5" Value="{Binding SASteeringWheelSmoothBeta,FallbackValue=0.0,UpdateSourceTrigger=LostFocus}"
-                                                           Minimum="0.0" Maximum="1.0" MinWidth="60" />
-                                    </StackPanel>
+                                <StackPanel Margin="20,0,0,0">
+                                    <Label Content="X Axis" Margin="{StaticResource spaceMargin}" />
+                                    <ComboBox SelectedIndex="{Binding GyroMouseXAxis,FallbackValue=0}">
+                                        <ComboBoxItem Content="Yaw" />
+                                        <ComboBoxItem Content="Roll" />
+                                    </ComboBox>
                                 </StackPanel>
                             </StackPanel>
-                        </GroupBox>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
-                            <Button x:Name="gyroCalBtn" Content="Gyro Calibration" Width="100"  Click="GyroCalibration_Click" />
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <Label Content="Invert" Padding="0"/>
+                                <CheckBox Content="X" Margin="8,0,0,0" IsChecked="{Binding GyroMouseInvertX}" />
+                                <CheckBox Content="Y" Margin="8,0,0,0" IsChecked="{Binding GyroMouseInvertY}" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <Label Content="Deadzone" />
+                                <xctk:IntegerUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
+                                                Value="{Binding GyroMouseDeadZone}" Minimum="0" Maximum="1000" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <Label Content="Min Threshold" ContentStringFormat="{}{0}:" />
+                                <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="1.0" Maximum="40.0" Increment="1.0" FormatString="F1" Value="{Binding GyroMouseMinThreshold,FallbackValue='1.0'}" Margin="8,0,0,0" />
+                            </StackPanel>
+
+                            <CheckBox Content="Toggle" IsChecked="{Binding GyroMouseToggle}" Margin="{StaticResource spaceMargin}" />
+
+                            <CheckBox Content="Smoothing" IsChecked="{Binding GyroMouseSmooth,FallbackValue='False'}"  Margin="{StaticResource spaceMargin}" />
+                            <GroupBox Header="Smoothing Options" IsEnabled="{Binding GyroMouseSmooth,FallbackValue='False'}" Margin="{StaticResource spaceMargin}">
+                                <StackPanel>
+                                    <ComboBox x:Name="gyroMouseSmoothMethodCombo" Margin="{StaticResource spaceMargin}" SelectedIndex="{Binding GyroMouseSmoothMethodIndex,FallbackValue='0'}">
+                                        <ComboBoxItem Content="1&#x20ac; Filter" />
+                                        <ComboBoxItem Content="Weighted Average" />
+                                    </ComboBox>
+
+                                    <StackPanel x:Name="gyroMouseOneEuroPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseOneEuroPanelVisibility,FallbackValue='Visible'}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="1&#x20ac; MinCutoff" />
+                                            <xctk:DoubleUpDown d:IsHidden="True" FormatString="F5" Value="{Binding GyroMouseOneEuroMinCutoff,FallbackValue=1.0,UpdateSourceTrigger=LostFocus}"
+                                                           Minimum="0.00001" Maximum="100.0" Increment="0.1" MinWidth="60" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
+                                            <Label Content="1&#x20ac; Beta" />
+                                            <xctk:DoubleUpDown  d:IsHidden="True" FormatString="F5" Value="{Binding GyroMouseOneEuroBeta,FallbackValue=0.0,UpdateSourceTrigger=LostFocus}"
+                                                           Minimum="0.0" Maximum="1.0" Increment="0.1" MinWidth="60" />
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel x:Name="gyroMouseWeightedAvgPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseWeightAvgPanelVisibility,FallbackValue='Collapsed'}">
+                                        <Label Content="Smooth Weight" Padding="0" />
+                                        <xctk:DoubleUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
+                                                   Value="{Binding GyroMouseSmoothWeight}" Minimum="0.0" Maximum="1.0" Increment="0.1" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
                         </StackPanel>
-                    </StackPanel>
 
-                    <StackPanel x:Name="gyroMousePanel" Visibility="Collapsed" Margin="{StaticResource spaceMargin}">
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <Label Content="Triggers" />
-                            <Button x:Name="gyroMouseTrigBtn" Content="{Binding GyroMouseTrigDisplay,FallbackValue=Always On}" MinWidth="160" Click="GyroMouseTrigBtn_Click" >
-                                <Button.ContextMenu>
-                                    <ContextMenu>
-                                        <MenuItem Header="Cross" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="Circle" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="Square" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="Triangle" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="L1" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="L2" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="R1" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="R2" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="Up" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="Down" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="Left" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="Right" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="L3" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="R3" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="Options" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="Share" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="PS" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="Mute" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                        <MenuItem Header="Always On" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                    </ContextMenu>
-                                </Button.ContextMenu>
-                            </Button>
-                        </StackPanel>
+                        <StackPanel x:Name="gyroMouseJoystickPanel" Visibility="Collapsed">
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <Label Content="Triggers" />
+                                <Button x:Name="gyroMouseStickTrigBtn" Content="{Binding GyroMouseStickTrigDisplay,FallbackValue='Always On'}" MinWidth="160"
+                                    Margin="8,0,0,0" Click="GyroMouseStickTrigBtn_Click" >
+                                    <Button.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Cross" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="Circle" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="Square" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="Triangle" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="L1" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="L2" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="R1" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="R2" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="Up" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="Down" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="Left" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="Right" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="L3" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="R3" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="Options" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="Share" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="PS" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="Mute" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                            <MenuItem Header="Always On" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                        </ContextMenu>
+                                    </Button.ContextMenu>
+                                </Button>
+                            </StackPanel>
 
-                        <CheckBox Content="Turn Behavior - Turns Gyro" Margin="{StaticResource spaceMargin}"
-                                  IsChecked="{Binding GyroMouseTurns}" ToolTip="{lex:Loc Resources:GyroTriggerBehavior}" />
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <Label Content="Gyro Sensitivity:" />
-                            <xctk:IntegerUpDown d:IsHidden="True" MinWidth="50" Margin="8,0,0,0" Value="{Binding GyroSensitivity}"
-                                                Minimum="0" Maximum="500" />
-                        </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <CheckBox Content="Turn Behavior - Turns Gyro" IsChecked="{Binding GyroMouseStickTurns}"
+                                      ToolTip="{lex:Loc Resources:GyroTriggerBehavior}" />
+                                <CheckBox Content="Toggle" Margin="8,0,0,0" IsChecked="{Binding GyroMouseStickToggle}" />
+                            </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <Label Content="Vertical Scale:" />
-                            <xctk:IntegerUpDown d:IsHidden="True" MinWidth="50" Margin="8,0,0,0" Value="{Binding GyroVertScale}"
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <Label Content="Dead Zone" />
+                                <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickDeadZone}" MinWidth="60" />
+                                <Label Content="Max Zone" Margin="8,0,0,0" />
+                                <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickMaxZone}" MinWidth="60"
+                                                Minimum="1" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Height="30" Margin="{StaticResource spaceMargin}">
+                                <Label Content="Minimum X" />
+                                <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickAntiDeadX}" MinWidth="60"
+                                               FormatString="F0" Minimum="0.0" Maximum="100.0" Increment="10.0" />
+                                <Label Content="%" />
+
+                                <Label Content="Minimum Y" Margin="8,0,0,0" />
+                                <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickAntiDeadY}" MinWidth="60"
+                                               FormatString="F0" Minimum="0.0" Maximum="100.0" Increment="10.0" />
+                                <Label Content="%" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <Label Content="Vertical Scale" />
+                                <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickVertScale}" MinWidth="60"
                                                 Minimum="0" Maximum="400" Increment="10" />
-                            <Label Content="%" />
-                        </StackPanel>
+                                <Label Content="%" />
+                            </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <StackPanel>
-                                <Label Content="Eval Cond." Margin="{StaticResource spaceMargin}" />
-                                <ComboBox SelectedIndex="{Binding GyroMouseEvalCondIndex,FallbackValue=0}">
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <CheckBox Content="Max Output" IsChecked="{Binding GyroMouseStickMaxOutputEnabled,FallbackValue=False}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickMaxOutput}" IsEnabled="{Binding GyroMouseStickMaxOutputEnabled,FallbackValue=False}"
+                                               FormatString="F0" MinWidth="60" Maximum="100.0" Minimum="0.0" Increment="10.0" />
+                                <Label Content="%" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <Label Content="Eval Cond." />
+                                <ComboBox SelectedIndex="{Binding GyroMouseStickEvalCondIndex,FallbackValue=0}" Margin="8,0,0,0">
                                     <ComboBoxItem Content="And" />
                                     <ComboBoxItem Content="Or" />
                                 </ComboBox>
-                            </StackPanel>
 
-                            <StackPanel Margin="20,0,0,0">
-                                <Label Content="X Axis" Margin="{StaticResource spaceMargin}" />
-                                <ComboBox SelectedIndex="{Binding GyroMouseXAxis,FallbackValue=0}">
+                                <Label Content="X-Axis" Margin="20,0,0,0" />
+                                <ComboBox SelectedIndex="{Binding GyroMouseStickXAxis,FallbackValue=0}" Margin="8,0,0,0">
                                     <ComboBoxItem Content="Yaw" />
                                     <ComboBoxItem Content="Roll" />
                                 </ComboBox>
                             </StackPanel>
-                        </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <Label Content="Invert" Padding="0"/>
-                            <CheckBox Content="X" Margin="8,0,0,0" IsChecked="{Binding GyroMouseInvertX}" />
-                            <CheckBox Content="Y" Margin="8,0,0,0" IsChecked="{Binding GyroMouseInvertY}" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <Label Content="Deadzone" />
-                            <xctk:IntegerUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
-                                                Value="{Binding GyroMouseDeadZone}" Minimum="0" Maximum="1000" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <Label Content="Min Threshold" ContentStringFormat="{}{0}:" />
-                            <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="1.0" Maximum="40.0" Increment="1.0" FormatString="F1" Value="{Binding GyroMouseMinThreshold,FallbackValue='1.0'}" Margin="8,0,0,0" />
-                        </StackPanel>
-
-                        <CheckBox Content="Toggle" IsChecked="{Binding GyroMouseToggle}" Margin="{StaticResource spaceMargin}" />
-
-                        <CheckBox Content="Smoothing" IsChecked="{Binding GyroMouseSmooth,FallbackValue='False'}"  Margin="{StaticResource spaceMargin}" />
-                        <GroupBox Header="Smoothing Options" IsEnabled="{Binding GyroMouseSmooth,FallbackValue='False'}" Margin="{StaticResource spaceMargin}">
-                            <StackPanel>
-                                <ComboBox x:Name="gyroMouseSmoothMethodCombo" Margin="{StaticResource spaceMargin}" SelectedIndex="{Binding GyroMouseSmoothMethodIndex,FallbackValue='0'}">
-                                    <ComboBoxItem Content="1&#x20ac; Filter" />
-                                    <ComboBoxItem Content="Weighted Average" />
-                                </ComboBox>
-
-                                <StackPanel x:Name="gyroMouseOneEuroPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseOneEuroPanelVisibility,FallbackValue='Visible'}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="1&#x20ac; MinCutoff" />
-                                        <xctk:DoubleUpDown d:IsHidden="True" FormatString="F5" Value="{Binding GyroMouseOneEuroMinCutoff,FallbackValue=1.0,UpdateSourceTrigger=LostFocus}"
-                                                           Minimum="0.00001" Maximum="100.0" Increment="0.1" MinWidth="60" />
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
-                                        <Label Content="1&#x20ac; Beta" />
-                                        <xctk:DoubleUpDown  d:IsHidden="True" FormatString="F5" Value="{Binding GyroMouseOneEuroBeta,FallbackValue=0.0,UpdateSourceTrigger=LostFocus}"
-                                                           Minimum="0.0" Maximum="1.0" Increment="0.1" MinWidth="60" />
-                                    </StackPanel>
-                                </StackPanel>
-
-                                <StackPanel x:Name="gyroMouseWeightedAvgPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseWeightAvgPanelVisibility,FallbackValue='Collapsed'}">
-                                    <Label Content="Smooth Weight" Padding="0" />
-                                    <xctk:DoubleUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
-                                                   Value="{Binding GyroMouseSmoothWeight}" Minimum="0.0" Maximum="1.0" Increment="0.1" />
-                                </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <CheckBox Content="Invert X" IsChecked="{Binding GyroMouseStickInvertX}"/>
+                                <CheckBox Content="Invert Y" Margin="10,0,0,0" IsChecked="{Binding GyroMouseStickInvertY}" />
                             </StackPanel>
-                        </GroupBox>
-                    </StackPanel>
 
-                    <StackPanel x:Name="gyroMouseJoystickPanel" Visibility="Collapsed">
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <Label Content="Triggers" />
-                            <Button x:Name="gyroMouseStickTrigBtn" Content="{Binding GyroMouseStickTrigDisplay,FallbackValue='Always On'}" MinWidth="160"
-                                    Margin="8,0,0,0" Click="GyroMouseStickTrigBtn_Click" >
-                                <Button.ContextMenu>
-                                    <ContextMenu>
-                                        <MenuItem Header="Cross" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="Circle" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="Square" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="Triangle" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="L1" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="L2" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="R1" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="R2" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="Up" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="Down" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="Left" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="Right" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="L3" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="R3" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="Options" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="Share" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="PS" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="Mute" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                        <MenuItem Header="Always On" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                    </ContextMenu>
-                                </Button.ContextMenu>
-                            </Button>
-                        </StackPanel>
+                            <CheckBox Content="Smoothing" IsChecked="{Binding GyroMouseStickSmooth}" Margin="{StaticResource spaceMargin}" />
+                            <GroupBox Header="Smoothing Options" IsEnabled="{Binding GyroMouseStickSmooth,FallbackValue='False'}" Margin="{StaticResource spaceMargin}">
+                                <StackPanel>
+                                    <ComboBox x:Name="gyroMouseStickSmoothMethodCombo" Margin="{StaticResource spaceMargin}" SelectedIndex="{Binding GyroMouseStickSmoothMethodIndex,FallbackValue='0'}">
+                                        <ComboBoxItem Content="1&#x20ac; Filter" />
+                                        <ComboBoxItem Content="Weighted Average" />
+                                    </ComboBox>
 
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <CheckBox Content="Turn Behavior - Turns Gyro" IsChecked="{Binding GyroMouseStickTurns}"
-                                      ToolTip="{lex:Loc Resources:GyroTriggerBehavior}" />
-                            <CheckBox Content="Toggle" Margin="8,0,0,0" IsChecked="{Binding GyroMouseStickToggle}" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <Label Content="Dead Zone" />
-                            <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickDeadZone}" MinWidth="60" />
-                            <Label Content="Max Zone" Margin="8,0,0,0" />
-                            <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickMaxZone}" MinWidth="60"
-                                                Minimum="1" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Height="30" Margin="{StaticResource spaceMargin}">
-                            <Label Content="Minimum X" />
-                            <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickAntiDeadX}" MinWidth="60"
-                                               FormatString="F0" Minimum="0.0" Maximum="100.0" Increment="10.0" />
-                            <Label Content="%" />
-
-                            <Label Content="Minimum Y" Margin="8,0,0,0" />
-                            <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickAntiDeadY}" MinWidth="60"
-                                               FormatString="F0" Minimum="0.0" Maximum="100.0" Increment="10.0" />
-                            <Label Content="%" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <Label Content="Vertical Scale" />
-                            <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickVertScale}" MinWidth="60"
-                                                Minimum="0" Maximum="400" Increment="10" />
-                            <Label Content="%" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <CheckBox Content="Max Output" IsChecked="{Binding GyroMouseStickMaxOutputEnabled,FallbackValue=False}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickMaxOutput}" IsEnabled="{Binding GyroMouseStickMaxOutputEnabled,FallbackValue=False}"
-                                               FormatString="F0" MinWidth="60" Maximum="100.0" Minimum="0.0" Increment="10.0" />
-                            <Label Content="%" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <Label Content="Eval Cond." />
-                            <ComboBox SelectedIndex="{Binding GyroMouseStickEvalCondIndex,FallbackValue=0}" Margin="8,0,0,0">
-                                <ComboBoxItem Content="And" />
-                                <ComboBoxItem Content="Or" />
-                            </ComboBox>
-
-                            <Label Content="X-Axis" Margin="20,0,0,0" />
-                            <ComboBox SelectedIndex="{Binding GyroMouseStickXAxis,FallbackValue=0}" Margin="8,0,0,0">
-                                <ComboBoxItem Content="Yaw" />
-                                <ComboBoxItem Content="Roll" />
-                            </ComboBox>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <CheckBox Content="Invert X" IsChecked="{Binding GyroMouseStickInvertX}"/>
-                            <CheckBox Content="Invert Y" Margin="10,0,0,0" IsChecked="{Binding GyroMouseStickInvertY}" />
-                        </StackPanel>
-
-                        <CheckBox Content="Smoothing" IsChecked="{Binding GyroMouseStickSmooth}" Margin="{StaticResource spaceMargin}" />
-                        <GroupBox Header="Smoothing Options" IsEnabled="{Binding GyroMouseStickSmooth,FallbackValue='False'}" Margin="{StaticResource spaceMargin}">
-                            <StackPanel>
-                                <ComboBox x:Name="gyroMouseStickSmoothMethodCombo" Margin="{StaticResource spaceMargin}" SelectedIndex="{Binding GyroMouseStickSmoothMethodIndex,FallbackValue='0'}">
-                                    <ComboBoxItem Content="1&#x20ac; Filter" />
-                                    <ComboBoxItem Content="Weighted Average" />
-                                </ComboBox>
-
-                                <StackPanel x:Name="gyroMouseStickOneEuroPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseStickOneEuroPanelVisibility,FallbackValue='Visible'}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="1&#x20ac; MinCutoff" />
-                                        <xctk:DoubleUpDown d:IsHidden="True" FormatString="F5" Value="{Binding GyroMouseStickOneEuroMinCutoff,FallbackValue=1.0,UpdateSourceTrigger=LostFocus}"
+                                    <StackPanel x:Name="gyroMouseStickOneEuroPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseStickOneEuroPanelVisibility,FallbackValue='Visible'}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="1&#x20ac; MinCutoff" />
+                                            <xctk:DoubleUpDown d:IsHidden="True" FormatString="F5" Value="{Binding GyroMouseStickOneEuroMinCutoff,FallbackValue=1.0,UpdateSourceTrigger=LostFocus}"
                                                            Minimum="0.00001" Maximum="100.0" Increment="0.1" MinWidth="60" />
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
-                                        <Label Content="1&#x20ac; Beta" />
-                                        <xctk:DoubleUpDown d:IsHidden="True" FormatString="F5" Value="{Binding GyroMouseStickOneEuroBeta,FallbackValue=0.0,UpdateSourceTrigger=LostFocus}"
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
+                                            <Label Content="1&#x20ac; Beta" />
+                                            <xctk:DoubleUpDown d:IsHidden="True" FormatString="F5" Value="{Binding GyroMouseStickOneEuroBeta,FallbackValue=0.0,UpdateSourceTrigger=LostFocus}"
                                                            Minimum="0.0" Maximum="1.0" Increment="0.1" MinWidth="60" />
+                                        </StackPanel>
                                     </StackPanel>
-                                </StackPanel>
 
-                                <StackPanel x:Name="gyroMouseStickWeightedAvgPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseStickWeightAvgPanelVisibility,FallbackValue='Collapsed'}">
-                                    <Label Content="Weight" Padding="0" Margin="20,0,0,0" />
-                                    <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" FormatString="F2" Value="{Binding GyroMouseStickSmoothWeight}"
+                                    <StackPanel x:Name="gyroMouseStickWeightedAvgPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseStickWeightAvgPanelVisibility,FallbackValue='Collapsed'}">
+                                        <Label Content="Weight" Padding="0" Margin="20,0,0,0" />
+                                        <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" FormatString="F2" Value="{Binding GyroMouseStickSmoothWeight}"
                                                Minimum="0.0" Maximum="1.0" Increment="0.1" MinWidth="60" IsEnabled="{Binding GyroMouseStickSmooth}" />
+                                    </StackPanel>
+
                                 </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
 
+                        <StackPanel x:Name="gyroDirSwipePanel" Visibility="Collapsed">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <Button x:Name="gyroSwipeUpBtn" Content="Swipe Up" Width="100" Tag="{Binding GyroSwipeUp, Source={StaticResource controlIndexCheck}}" Click="GyroSwipeControlsBtn_Click" />
+                                <Label x:Name="gyroSwipeUpLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
                             </StackPanel>
-                        </GroupBox>
-                    </StackPanel>
 
-                    <StackPanel x:Name="gyroDirSwipePanel" Visibility="Collapsed">
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <Button x:Name="gyroSwipeUpBtn" Content="Swipe Up" Width="100" Tag="{Binding GyroSwipeUp, Source={StaticResource controlIndexCheck}}" Click="GyroSwipeControlsBtn_Click" />
-                            <Label x:Name="gyroSwipeUpLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
-                        </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <Button x:Name="gyroSwipeDownBtn" Content="Swipe Down" Width="100" Tag="{Binding GyroSwipeDown, Source={StaticResource controlIndexCheck}}" Click="GyroSwipeControlsBtn_Click" />
+                                <Label x:Name="gyroSwipeDownLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
+                            </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <Button x:Name="gyroSwipeDownBtn" Content="Swipe Down" Width="100" Tag="{Binding GyroSwipeDown, Source={StaticResource controlIndexCheck}}" Click="GyroSwipeControlsBtn_Click" />
-                            <Label x:Name="gyroSwipeDownLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
-                        </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <Button x:Name="gyroSwipeLeftBtn" Content="Swipe Left" Width="100" Tag="{Binding GyroSwipeLeft, Source={StaticResource controlIndexCheck}}" Click="GyroSwipeControlsBtn_Click" />
+                                <Label x:Name="gyroSwipeLeftLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
+                            </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <Button x:Name="gyroSwipeLeftBtn" Content="Swipe Left" Width="100" Tag="{Binding GyroSwipeLeft, Source={StaticResource controlIndexCheck}}" Click="GyroSwipeControlsBtn_Click" />
-                            <Label x:Name="gyroSwipeLeftLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
-                        </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <Button x:Name="gyroSwipeRightBtn" Content="Swipe Right" Width="100" Tag="{Binding GyroSwipeRight, Source={StaticResource controlIndexCheck}}" Click="GyroSwipeControlsBtn_Click" />
+                                <Label x:Name="gyroSwipeRightLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
+                            </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <Button x:Name="gyroSwipeRightBtn" Content="Swipe Right" Width="100" Tag="{Binding GyroSwipeRight, Source={StaticResource controlIndexCheck}}" Click="GyroSwipeControlsBtn_Click" />
-                            <Label x:Name="gyroSwipeRightLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
-                        </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                <Label Content="Triggers" />
+                                <Button x:Name="gyroSwipeTrigBtn" Content="{Binding GyroSwipeTrigDisplay,FallbackValue=Always On}" MinWidth="160" Click="GyroSwipeTrigBtn_Click" >
+                                    <Button.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Cross" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="Circle" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="Square" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="Triangle" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="L1" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="L2" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="R1" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="R2" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="Up" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="Down" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="Left" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="Right" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="L3" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="R3" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="Options" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="Share" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="PS" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="Mute" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                            <MenuItem Header="Always On" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                        </ContextMenu>
+                                    </Button.ContextMenu>
+                                </Button>
+                            </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                            <Label Content="Triggers" />
-                            <Button x:Name="gyroSwipeTrigBtn" Content="{Binding GyroSwipeTrigDisplay,FallbackValue=Always On}" MinWidth="160" Click="GyroSwipeTrigBtn_Click" >
-                                <Button.ContextMenu>
-                                    <ContextMenu>
-                                        <MenuItem Header="Cross" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="Circle" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="Square" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="Triangle" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="L1" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="L2" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="R1" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="R2" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="Up" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="Down" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="Left" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="Right" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="L3" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="R3" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="Options" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="Share" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="PS" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="Mute" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                        <MenuItem Header="Always On" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                    </ContextMenu>
-                                </Button.ContextMenu>
-                            </Button>
-                        </StackPanel>
-
-                        <CheckBox Content="Turn Behavior - Turns Gyro" Margin="0,8,0,0"
+                            <CheckBox Content="Turn Behavior - Turns Gyro" Margin="0,8,0,0"
                                   IsChecked="{Binding GyroSwipeTurns}" ToolTip="{lex:Loc Resources:GyroTriggerBehavior}" />
 
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <StackPanel>
-                                <Label Content="Eval Cond." Margin="{StaticResource spaceMargin}" />
-                                <ComboBox SelectedIndex="{Binding GyroSwipeEvalCondIndex,FallbackValue=0}">
-                                    <ComboBoxItem Content="And" />
-                                    <ComboBoxItem Content="Or" />
-                                </ComboBox>
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <StackPanel>
+                                    <Label Content="Eval Cond." Margin="{StaticResource spaceMargin}" />
+                                    <ComboBox SelectedIndex="{Binding GyroSwipeEvalCondIndex,FallbackValue=0}">
+                                        <ComboBoxItem Content="And" />
+                                        <ComboBoxItem Content="Or" />
+                                    </ComboBox>
+                                </StackPanel>
+
+                                <StackPanel Margin="20,0,0,0">
+                                    <Label Content="X Axis" Margin="{StaticResource spaceMargin}" />
+                                    <ComboBox SelectedIndex="{Binding GyroSwipeXAxis,FallbackValue=0}">
+                                        <ComboBoxItem Content="Yaw" />
+                                        <ComboBoxItem Content="Roll" />
+                                    </ComboBox>
+                                </StackPanel>
                             </StackPanel>
 
-                            <StackPanel Margin="20,0,0,0">
-                                <Label Content="X Axis" Margin="{StaticResource spaceMargin}" />
-                                <ComboBox SelectedIndex="{Binding GyroSwipeXAxis,FallbackValue=0}">
-                                    <ComboBoxItem Content="Yaw" />
-                                    <ComboBoxItem Content="Roll" />
-                                </ComboBox>
-                            </StackPanel>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <Label Content="Deadzone X" />
-                            <xctk:IntegerUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <Label Content="Deadzone X" />
+                                <xctk:IntegerUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
                                                 Value="{Binding GyroSwipeDeadZoneX}" Minimum="0" Maximum="2000" />
-                            <Label Content="deg/sec." />
-                        </StackPanel>
+                                <Label Content="deg/sec." />
+                            </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <Label Content="Deadzone Y" />
-                            <xctk:IntegerUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <Label Content="Deadzone Y" />
+                                <xctk:IntegerUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
                                                 Value="{Binding GyroSwipeDeadZoneY}" Minimum="0" Maximum="2000" />
-                            <Label Content="deg/sec." />
+                                <Label Content="deg/sec." />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            </StackPanel>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                        </StackPanel>
+                        <StackPanel x:Name="passthruPanel" Visibility="Collapsed" />
                     </StackPanel>
-
-                    <StackPanel x:Name="passthruPanel" Visibility="Collapsed" />
-                </StackPanel>
+                </ScrollViewer>
             </TabItem>
 
             <TabItem Header="Other">

@@ -2147,6 +2147,15 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.GyroControlsInf[device].triggerCond = value == 0 ? true : false;
         }
 
+        public bool GyroControlsToggle
+        {
+            get => Global.GyroControlsInf[device].triggerToggle;
+            set
+            {
+                Global.SetGyroControlsToggle(device, value, App.rootHub);
+            }
+        }
+
 
         private string gyroMouseTrigDisplay = "Always On";
         public string GyroMouseTrigDisplay

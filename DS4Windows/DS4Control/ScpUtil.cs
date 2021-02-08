@@ -1612,6 +1612,9 @@ namespace DS4Windows
         public static void SetGyroMouseToggle(int index, bool value, ControlService control) 
             => m_Config.SetGyroMouseToggle(index, value, control);
 
+        public static void SetGyroControlsToggle(int index, bool value, ControlService control)
+            => m_Config.SetGyroControlsToggle(index, value, control);
+
         public static GyroMouseInfo[] GyroMouseInfo => m_Config.gyroMouseInfo;
 
         public static GyroControlsInfo[] GyroControlsInf => m_Config.gyroControlsInf;
@@ -2568,7 +2571,7 @@ namespace DS4Windows
         public BezierCurve[] szOutBezierCurveObj = new BezierCurve[Global.TEST_PROFILE_ITEM_COUNT] { new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve(), new BezierCurve() };
 
         private int[] _lsOutCurveMode = new int[Global.TEST_PROFILE_ITEM_COUNT] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        public int getLsOutCurveMode(int index) { return _lsOutCurveMode[index];  }
+        public int getLsOutCurveMode(int index) { return _lsOutCurveMode[index]; }
         public void setLsOutCurveMode(int index, int value)
         {
             if (value >= 1) setOutBezierCurveObjArrayItem(lsOutBezierCurveObj, index, value, BezierCurve.AxisType.LSRS);
@@ -2952,6 +2955,13 @@ namespace DS4Windows
                 control.touchPad[index].CursorGyroDead = value;
         }
 
+        public void SetGyroControlsToggle(int index, bool value, ControlService control)
+        {
+            gyroControlsInf[index].triggerToggle = value;
+            if (index < ControlService.CURRENT_DS4_CONTROLLER_LIMIT && control.touchPad[index] != null)
+                control.touchPad[index].ToggleGyroControls = value;
+        }
+
         public void SetGyroMouseToggle(int index, bool value, ControlService control)
         {
             gyroMouseToggle[index] = value;
@@ -2963,7 +2973,7 @@ namespace DS4Windows
         {
             gyroMouseStickToggle[index] = value;
             if (index < ControlService.CURRENT_DS4_CONTROLLER_LIMIT && control.touchPad[index] != null)
-                control.touchPad[index].ToggleGyroMouse = value;
+                control.touchPad[index].ToggleGyroStick = value;
         }
 
         private string OutContDeviceString(OutContType id)
@@ -3005,7 +3015,7 @@ namespace DS4Windows
         private string GetGyroOutModeString(GyroOutMode mode)
         {
             string result = "None";
-            switch(mode)
+            switch (mode)
             {
                 case GyroOutMode.Controls:
                     result = "Controls";
@@ -3029,7 +3039,7 @@ namespace DS4Windows
         private GyroOutMode GetGyroOutModeType(string modeString)
         {
             GyroOutMode result = GyroOutMode.None;
-            switch(modeString)
+            switch (modeString)
             {
                 case "Controls":
                     result = GyroOutMode.Controls;
@@ -3238,6 +3248,7 @@ namespace DS4Windows
                 XmlNode xmlGyroControlsTriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "Triggers", null); xmlGyroControlsTriggers.InnerText = gyroControlsInf[device].triggers; xmlGyroControlsSettingsElement.AppendChild(xmlGyroControlsTriggers);
                 XmlNode xmlGyroControlsTriggerCond = m_Xdoc.CreateNode(XmlNodeType.Element, "TriggerCond", null); xmlGyroControlsTriggerCond.InnerText = SaTriggerCondString(gyroControlsInf[device].triggerCond); xmlGyroControlsSettingsElement.AppendChild(xmlGyroControlsTriggerCond);
                 XmlNode xmlGyroControlsTriggerTurns = m_Xdoc.CreateNode(XmlNodeType.Element, "TriggerTurns", null); xmlGyroControlsTriggerTurns.InnerText = gyroControlsInf[device].triggerTurns.ToString(); xmlGyroControlsSettingsElement.AppendChild(xmlGyroControlsTriggerTurns);
+                XmlNode xmlGyroControlsToggle = m_Xdoc.CreateNode(XmlNodeType.Element, "Toggle", null); xmlGyroControlsToggle.InnerText = gyroControlsInf[device].triggerToggle.ToString(); xmlGyroControlsSettingsElement.AppendChild(xmlGyroControlsToggle);
                 rootElement.AppendChild(xmlGyroControlsSettingsElement);
 
                 XmlElement xmlGyroSmoothingElement = m_Xdoc.CreateElement("GyroMouseSmoothingSettings");
@@ -3295,7 +3306,7 @@ namespace DS4Windows
                 XmlNode xmlBTPollRate = m_Xdoc.CreateNode(XmlNodeType.Element, "BTPollRate", null); xmlBTPollRate.InnerText = btPollRate[device].ToString(); rootElement.AppendChild(xmlBTPollRate);
 
                 XmlNode xmlLsOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOutputCurveMode", null); xmlLsOutputCurveMode.InnerText = stickOutputCurveString(getLsOutCurveMode(device)); rootElement.AppendChild(xmlLsOutputCurveMode);
-                XmlNode xmlLsOutputCurveCustom  = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOutputCurveCustom", null); xmlLsOutputCurveCustom.InnerText = lsOutBezierCurveObj[device].ToString(); rootElement.AppendChild(xmlLsOutputCurveCustom);
+                XmlNode xmlLsOutputCurveCustom = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOutputCurveCustom", null); xmlLsOutputCurveCustom.InnerText = lsOutBezierCurveObj[device].ToString(); rootElement.AppendChild(xmlLsOutputCurveCustom);
 
                 XmlNode xmlRsOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOutputCurveMode", null); xmlRsOutputCurveMode.InnerText = stickOutputCurveString(getRsOutCurveMode(device)); rootElement.AppendChild(xmlRsOutputCurveMode);
                 XmlNode xmlRsOutputCurveCustom = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOutputCurveCustom", null); xmlRsOutputCurveCustom.InnerText = rsOutBezierCurveObj[device].ToString(); rootElement.AppendChild(xmlRsOutputCurveCustom);
@@ -3533,7 +3544,7 @@ namespace DS4Windows
                     NodeShiftControl.AppendChild(ShiftKeyType);
                 if (ShiftExtras.HasChildNodes)
                     NodeShiftControl.AppendChild(ShiftExtras);
-                
+
                 m_Xdoc.AppendChild(rootElement);
                 m_Xdoc.Save(path);
             }
@@ -3845,6 +3856,7 @@ namespace DS4Windows
 
                 // Make sure to reset currently set profile values before parsing
                 ResetProfile(device);
+                ResetMouseProperties(device, control);
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/touchToggle"); Boolean.TryParse(Item.InnerText, out enableTouchToggle[device]); }
                 catch { missingSetting = true; }
@@ -4029,7 +4041,7 @@ namespace DS4Windows
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2MaxOutput"); double temp = 100.0;
-                    temp =  double.Parse(Item.InnerText);
+                    temp = double.Parse(Item.InnerText);
                     r2ModInfo[device].maxOutput = Math.Min(Math.Max(temp, 0.0), 100.0);
                 }
                 catch { r2ModInfo[device].maxOutput = 100.0; missingSetting = true; }
@@ -4392,6 +4404,16 @@ namespace DS4Windows
                         }
                     }
                     catch { }
+
+                    try
+                    {
+                        Item = xmlGyroControlsElement.SelectSingleNode("Toggle");
+                        if (bool.TryParse(Item?.InnerText ?? "", out bool tempToggle))
+                        {
+                            SetGyroControlsToggle(device, tempToggle, control);
+                        }
+                    }
+                    catch { }
                 }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickTriggers"); sAMouseStickTriggers[device] = Item.InnerText; }
@@ -4408,7 +4430,7 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickDeadZone"); int.TryParse(Item.InnerText, out int temp);
                     gyroMStickInfo[device].deadZone = temp; }
-                catch { gyroMStickInfo[device].deadZone = 30;  missingSetting = true; }
+                catch { gyroMStickInfo[device].deadZone = 30; missingSetting = true; }
 
                 try
                 {
@@ -4436,10 +4458,15 @@ namespace DS4Windows
 
                 try
                 {
-                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickToggle"); bool.TryParse(Item.InnerText, out bool temp);
-                    gyroMouseStickToggle[device] = temp;
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseStickToggle");
+                    bool.TryParse(Item.InnerText, out bool temp);
+                    SetGyroMouseStickToggle(device, temp, control);
                 }
-                catch { gyroMouseStickToggle[device] = false; missingSetting = true; }
+                catch
+                {
+                    SetGyroMouseStickToggle(device, false, control);
+                    missingSetting = true;
+                }
 
                 try
                 {
@@ -4524,7 +4551,7 @@ namespace DS4Windows
                             gyroSwipeInfo[device].deadzoneX = tempDead;
                         }
                     }
-                    catch {}
+                    catch { }
 
                     try
                     {
@@ -4681,7 +4708,7 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseDeadZone"); int.TryParse(Item.InnerText, out int temp);
                     SetGyroMouseDZ(device, temp, control); }
-                catch { SetGyroMouseDZ(device, MouseCursor.GYRO_MOUSE_DEADZONE, control);  missingSetting = true; }
+                catch { SetGyroMouseDZ(device, MouseCursor.GYRO_MOUSE_DEADZONE, control); missingSetting = true; }
 
                 try
                 {
@@ -4694,10 +4721,15 @@ namespace DS4Windows
 
                 try
                 {
-                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseToggle"); bool.TryParse(Item.InnerText, out bool temp);
-                    gyroMouseToggle[device] = temp;
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseToggle");
+                    bool.TryParse(Item.InnerText, out bool temp);
+                    SetGyroMouseToggle(device, temp, control);
                 }
-                catch { gyroMouseToggle[device] = false; missingSetting = true; }
+                catch
+                {
+                    SetGyroMouseToggle(device, false, control);
+                    missingSetting = true;
+                }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSCurve"); int.TryParse(Item.InnerText, out lsCurve[device]); }
                 catch { lsCurve[device] = 0; missingSetting = true; }
@@ -5241,6 +5273,7 @@ namespace DS4Windows
             {
                 Loaded = false;
                 ResetProfile(device);
+                ResetMouseProperties(device, control);
 
                 // Unplug existing output device if requested profile does not exist
                 OutputDevice tempOutDev = control.outputDevices[device];
@@ -5272,21 +5305,21 @@ namespace DS4Windows
                 buttonMouseInfos[device].activeButtonSensitivity =
                     buttonMouseInfos[device].buttonSensitivity;
 
-                if (device < Global.MAX_DS4_CONTROLLER_COUNT && control.touchPad[device] != null)
-                {
-                    control.touchPad[device]?.ResetToggleGyroM();
-                    GyroOutMode currentGyro = gyroOutMode[device];
-                    if (currentGyro == GyroOutMode.Mouse)
-                    {
-                        control.touchPad[device].ToggleGyroMouse =
-                            gyroMouseToggle[device];
-                    }
-                    else if (currentGyro == GyroOutMode.MouseJoystick)
-                    {
-                        control.touchPad[device].ToggleGyroMouse =
-                            gyroMouseStickToggle[device];
-                    }
-                }
+                //if (device < Global.MAX_DS4_CONTROLLER_COUNT && control.touchPad[device] != null)
+                //{
+                //    control.touchPad[device]?.ResetToggleGyroModes();
+                //    GyroOutMode currentGyro = gyroOutMode[device];
+                //    if (currentGyro == GyroOutMode.Mouse)
+                //    {
+                //        control.touchPad[device].ToggleGyroMouse =
+                //            gyroMouseToggle[device];
+                //    }
+                //    else if (currentGyro == GyroOutMode.MouseJoystick)
+                //    {
+                //        control.touchPad[device].ToggleGyroMouse =
+                //            gyroMouseStickToggle[device];
+                //    }
+                //}
 
                 // If a device exists, make sure to transfer relevant profile device
                 // options to device instance
@@ -5338,7 +5371,7 @@ namespace DS4Windows
 
                     for (int i = 0; i < Global.MAX_DS4_CONTROLLER_COUNT; i++)
                     {
-                        string contTag = $"/Profile/Controller{i+1}";
+                        string contTag = $"/Profile/Controller{i + 1}";
                         try
                         {
                             Item = m_Xdoc.SelectSingleNode(contTag); profilePath[i] = Item?.InnerText ?? string.Empty;
@@ -5605,7 +5638,7 @@ namespace DS4Windows
 
             for (int i = 0; i < Global.MAX_DS4_CONTROLLER_COUNT; i++)
             {
-                string contTagName = $"Controller{i+1}";
+                string contTagName = $"Controller{i + 1}";
                 XmlNode xmlControllerNode = m_Xdoc.CreateNode(XmlNodeType.Element, contTagName, null); xmlControllerNode.InnerText = !Global.linkedProfileCheck[i] ? profilePath[i] : olderProfilePath[i];
                 if (!string.IsNullOrEmpty(xmlControllerNode.InnerText))
                 {
@@ -6388,6 +6421,15 @@ namespace DS4Windows
             return false;
         }
 
+        private void ResetMouseProperties(int device, ControlService control)
+        {
+            if (device < Global.MAX_DS4_CONTROLLER_COUNT &&
+                    control.touchPad[device] != null)
+            {
+                control.touchPad[device]?.ResetToggleGyroModes();
+            }
+        }
+
         private void ResetProfile(int device)
         {
             buttonMouseInfos[device].Reset();
@@ -6520,6 +6562,7 @@ namespace DS4Windows
 
             // Make sure to reset currently set profile values before parsing
             ResetProfile(device);
+            ResetMouseProperties(device, control);
 
             // Only change xinput devices under certain conditions. Avoid
             // performing this upon program startup before loading devices.
@@ -6554,6 +6597,7 @@ namespace DS4Windows
 
             // Make sure to reset currently set profile values before parsing
             ResetProfile(device);
+            ResetMouseProperties(device, control);
 
             // Only change xinput devices under certain conditions. Avoid
             // performing this upon program startup before loading devices.
@@ -6595,6 +6639,7 @@ namespace DS4Windows
 
             // Make sure to reset currently set profile values before parsing
             ResetProfile(device);
+            ResetMouseProperties(device, control);
 
             // Only change xinput devices under certain conditions. Avoid
             // performing this upon program startup before loading devices.
@@ -6641,6 +6686,7 @@ namespace DS4Windows
 
             // Make sure to reset currently set profile values before parsing
             ResetProfile(device);
+            ResetMouseProperties(device, control);
 
             // Only change xinput devices under certain conditions. Avoid
             // performing this upon program startup before loading devices.
@@ -6689,6 +6735,7 @@ namespace DS4Windows
 
             // Make sure to reset currently set profile values before parsing
             ResetProfile(device);
+            ResetMouseProperties(device, control);
 
             // Only change xinput devices under certain conditions. Avoid
             // performing this upon program startup before loading devices.
@@ -6794,6 +6841,7 @@ namespace DS4Windows
 
             // Make sure to reset currently set profile values before parsing
             ResetProfile(device);
+            ResetMouseProperties(device, control);
 
             // Only change xinput devices under certain conditions. Avoid
             // performing this upon program startup before loading devices.

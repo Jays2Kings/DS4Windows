@@ -1089,8 +1089,11 @@
                             </Button>
                         </StackPanel>
 
-                        <CheckBox Content="Turn Behavior - Turns Gyro" Margin="0,8,0,0"
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <CheckBox Content="Turn Behavior - Turns Gyro"
                                   IsChecked="{Binding GyroControlsTurns}" ToolTip="{lex:Loc Resources:GyroTriggerBehavior}" />
+                            <CheckBox Content="Toggle" IsChecked="{Binding GyroControlsToggle}" Margin="20,0,0,0" />
+                        </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
                             <Label Content="Eval Cond." />

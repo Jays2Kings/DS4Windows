@@ -1472,6 +1472,7 @@ namespace DS4Windows
             device.setIdleTimeout(getIdleDisconnectTimeout(ind));
             device.setBTPollRate(getBTPollRate(ind));
             touchPad[ind].ResetTrackAccel(getTrackballFriction(ind));
+            touchPad[ind].ResetToggleGyroModes();
             if (!startUp)
             {
                 CheckLauchProfileOption(ind, device);

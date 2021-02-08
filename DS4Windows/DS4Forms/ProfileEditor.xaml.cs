@@ -735,7 +735,7 @@ namespace DS4WinWPF.DS4Forms
 
                 if (deviceNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
                 {
-                    App.rootHub.touchPad[deviceNum]?.ResetToggleGyroM();
+                    App.rootHub.touchPad[deviceNum]?.ResetToggleGyroModes();
                 }
             }
         }

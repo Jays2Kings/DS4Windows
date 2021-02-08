@@ -71,9 +71,12 @@ namespace DS4Windows
             trackballAccel = TRACKBALL_RADIUS * friction / TRACKBALL_INERTIA;
         }
 
-        public void ResetToggleGyroM()
+        public void ResetToggleGyroModes()
         {
+            currentToggleGyroControls = false;
             currentToggleGyroM = false;
+            currentToggleGyroStick = false;
+
             previousTriggerActivated = false;
             triggeractivated = false;
         }
@@ -81,13 +84,45 @@ namespace DS4Windows
         bool triggeractivated = false;
         bool previousTriggerActivated = false;
         bool useReverseRatchet = false;
-        bool toggleGyroMouse = true;
-        public bool ToggleGyroMouse { get => toggleGyroMouse;
-            set { toggleGyroMouse = value; ResetToggleGyroM(); } }
+
+        private bool toggleGyroControls = true;
+        public bool ToggleGyroControls
+        {
+            get => toggleGyroControls;
+            set
+            {
+                toggleGyroControls = value;
+                ResetToggleGyroModes();
+            }
+        }
+
+        private bool toggleGyroMouse = true;
+        public bool ToggleGyroMouse
+        {
+            get => toggleGyroMouse;
+            set
+            {
+                toggleGyroMouse = value;
+                ResetToggleGyroModes();
+            }
+        }
+
+        private bool toggleGyroStick = true;
+        public bool ToggleGyroStick
+        {
+            get => toggleGyroStick;
+            set
+            {
+                toggleGyroStick = value;
+                ResetToggleGyroModes();
+            }
+        }
 
         public MouseCursor Cursor => cursor;
 
+        bool currentToggleGyroControls = false;
         bool currentToggleGyroM = false;
+        bool currentToggleGyroStick = false;
 
         public virtual void sixaxisMoved(DS4SixAxis sender, SixAxisEventArgs arg)
         {
@@ -119,6 +154,21 @@ namespace DS4Windows
                             break;
                         }
                     }
+                }
+
+                if (toggleGyroControls)
+                {
+                    if (triggeractivated && triggeractivated != previousTriggerActivated)
+                    {
+                        currentToggleGyroStick = !currentToggleGyroStick;
+                    }
+
+                    previousTriggerActivated = triggeractivated;
+                    triggeractivated = currentToggleGyroStick;
+                }
+                else
+                {
+                    previousTriggerActivated = triggeractivated;
                 }
 
                 if (useReverseRatchet && triggeractivated)
@@ -162,15 +212,15 @@ namespace DS4Windows
                     }
                 }
 
-                if (toggleGyroMouse)
+                if (toggleGyroStick)
                 {
                     if (triggeractivated && triggeractivated != previousTriggerActivated)
                     {
-                        currentToggleGyroM = !currentToggleGyroM;
+                        currentToggleGyroControls = !currentToggleGyroControls;
                     }
 
                     previousTriggerActivated = triggeractivated;
-                    triggeractivated = currentToggleGyroM;
+                    triggeractivated = currentToggleGyroControls;
                 }
                 else
                 {

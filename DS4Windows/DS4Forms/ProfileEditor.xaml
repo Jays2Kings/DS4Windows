@@ -1057,7 +1057,50 @@
                             <Label x:Name="gyroXNLb" Content="{Binding MappingName,FallbackValue=Unassigned}" />
                         </StackPanel>
 
-                        <GroupBox Header="360 Steering Wheel" Margin="0,10,0,0" Padding="2,4">
+                        <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                            <Label Content="Triggers" />
+                            <Button x:Name="gyroControlsTrigBtn" Content="{Binding GyroControlsTrigDisplay,FallbackValue='Always On'}" MinWidth="160" Click="GyroControlsTrigBtn_Click" >
+                                <Button.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Cross" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="Circle" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="Square" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="Triangle" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="L1" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="L2" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="R1" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="R2" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="Up" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="Down" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="Left" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="Right" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="L3" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="R3" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="Options" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="Share" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="PS" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="Mute" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                        <MenuItem Header="Always On" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                    </ContextMenu>
+                                </Button.ContextMenu>
+                            </Button>
+                        </StackPanel>
+
+                        <CheckBox Content="Turn Behavior - Turns Gyro" Margin="0,8,0,0"
+                                  IsChecked="{Binding GyroControlsTurns}" ToolTip="{lex:Loc Resources:GyroTriggerBehavior}" />
+
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <Label Content="Eval Cond." />
+                            <ComboBox SelectedIndex="{Binding GyroControlsEvalCondIndex,FallbackValue=0}" Margin="8,0,0,0">
+                                <ComboBoxItem Content="And" />
+                                <ComboBoxItem Content="Or" />
+                            </ComboBox>
+                        </StackPanel>
+
+                        <GroupBox Header="360 Steering Wheel" Margin="0,16,0,0" Padding="2,4">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                                     <Label Content="Steering wheel axis" />

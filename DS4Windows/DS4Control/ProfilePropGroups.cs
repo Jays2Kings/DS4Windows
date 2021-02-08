@@ -323,6 +323,24 @@ namespace DS4Windows
         }
     }
 
+    public class GyroControlsInfo
+    {
+        public const string DEFAULT_TRIGGERS = "-1";
+        public const bool DEFAULT_TRIGGER_COND = true;
+        public const bool DEFAULT_TRIGGER_TURNS = true;
+
+        public string triggers = DEFAULT_TRIGGERS;
+        public bool triggerCond = DEFAULT_TRIGGER_COND;
+        public bool triggerTurns = DEFAULT_TRIGGER_TURNS;
+
+        public void Reset()
+        {
+            triggers = DEFAULT_TRIGGERS;
+            triggerCond = DEFAULT_TRIGGER_COND;
+            triggerTurns = DEFAULT_TRIGGER_TURNS;
+        }
+    }
+
     public class ButtonMouseInfo
     {
         //public const double MOUSESTICKANTIOFFSET = 0.0128;

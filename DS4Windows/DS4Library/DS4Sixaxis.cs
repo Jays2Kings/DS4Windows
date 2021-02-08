@@ -93,9 +93,11 @@ namespace DS4Windows
             accelX = -aX / 64;
             accelY = -aY / 64;
             accelZ = aZ / 64;
-            outputAccelX = accelX;
-            outputAccelY = accelY;
-            outputAccelZ = accelZ;
+
+            // Leave blank and have mapping routine alter values as needed
+            outputAccelX = 0;
+            outputAccelY = 0;
+            outputAccelZ = 0;
 
             elapsed = elapsedDelta;
             previousAxis = prevAxis;

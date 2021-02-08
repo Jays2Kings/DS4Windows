@@ -50,6 +50,7 @@ namespace DS4Windows
         }
 
         public GyroSwipeData gyroSwipe;
+        public bool gyroControlsActive;
 
         public Mouse(int deviceID, DS4Device d)
         {
@@ -92,7 +93,49 @@ namespace DS4Windows
         public virtual void sixaxisMoved(DS4SixAxis sender, SixAxisEventArgs arg)
         {
             GyroOutMode outMode = Global.GetGyroOutMode(deviceNum);
-            if (outMode == GyroOutMode.Mouse && Global.getGyroSensitivity(deviceNum) > 0)
+            if (outMode == GyroOutMode.Controls)
+            {
+                s = dev.getCurrentStateRef();
+
+                GyroControlsInfo controlsMapInfo = Global.GetGyroControlsInfo(deviceNum);
+                useReverseRatchet = controlsMapInfo.triggerTurns;
+                int i = 0;
+                string[] ss = controlsMapInfo.triggers.Split(',');
+                bool andCond = controlsMapInfo.triggerCond;
+                triggeractivated = andCond ? true : false;
+                if (!string.IsNullOrEmpty(ss[0]))
+                {
+                    string s = string.Empty;
+                    for (int index = 0, arlen = ss.Length; index < arlen; index++)
+                    {
+                        s = ss[index];
+                        if (andCond && !(int.TryParse(s, out i) && getDS4ControlsByName(i)))
+                        {
+                            triggeractivated = false;
+                            break;
+                        }
+                        else if (!andCond && int.TryParse(s, out i) && getDS4ControlsByName(i))
+                        {
+                            triggeractivated = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (useReverseRatchet && triggeractivated)
+                {
+                    gyroControlsActive = true;
+                }
+                else if (!useReverseRatchet && !triggeractivated)
+                {
+                    gyroControlsActive = true;
+                }
+                else
+                {
+                    gyroControlsActive = false;
+                }
+            }
+            else if (outMode == GyroOutMode.Mouse && Global.getGyroSensitivity(deviceNum) > 0)
             {
                 s = dev.getCurrentStateRef();
 

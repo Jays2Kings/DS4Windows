@@ -2120,9 +2120,33 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 TouchDisInvertStringChanged?.Invoke(this, EventArgs.Empty);
             }
         }
-
-        
         public event EventHandler TouchDisInvertStringChanged;
+
+
+        private string gyroControlsTrigDisplay = "Always On";
+        public string GyroControlsTrigDisplay
+        {
+            get => gyroControlsTrigDisplay;
+            set
+            {
+                gyroControlsTrigDisplay = value;
+                GyroControlsTrigDisplayChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler GyroControlsTrigDisplayChanged;
+
+        public bool GyroControlsTurns
+        {
+            get => Global.GyroControlsInf[device].triggerTurns;
+            set => Global.GyroControlsInf[device].triggerTurns = value;
+        }
+
+        public int GyroControlsEvalCondIndex
+        {
+            get => Global.GyroControlsInf[device].triggerCond ? 0 : 1;
+            set => Global.GyroControlsInf[device].triggerCond = value == 0 ? true : false;
+        }
+
 
         private string gyroMouseTrigDisplay = "Always On";
         public string GyroMouseTrigDisplay
@@ -2717,6 +2741,82 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
 
             GyroSwipeTrigDisplay = string.Join(", ", triggerName.ToArray());
+        }
+
+
+        public void UpdateGyroControlsTrig(ContextMenu menu, bool alwaysOnChecked)
+        {
+            int index = 0;
+            List<int> triggerList = new List<int>();
+            List<string> triggerName = new List<string>();
+
+            int itemCount = menu.Items.Count;
+            MenuItem alwaysOnItem = menu.Items[itemCount - 1] as MenuItem;
+            if (alwaysOnChecked)
+            {
+                for (int i = 0; i < itemCount - 1; i++)
+                {
+                    MenuItem item = menu.Items[i] as MenuItem;
+                    item.IsChecked = false;
+                }
+            }
+            else
+            {
+                alwaysOnItem.IsChecked = false;
+                foreach (MenuItem item in menu.Items)
+                {
+                    if (item.IsChecked)
+                    {
+                        triggerList.Add(index);
+                        triggerName.Add(item.Header.ToString());
+                    }
+
+                    index++;
+                }
+            }
+
+            if (triggerList.Count == 0)
+            {
+                triggerList.Add(-1);
+                triggerName.Add("Always On");
+                alwaysOnItem.IsChecked = true;
+            }
+
+            Global.GyroControlsInf[device].triggers = string.Join(",", triggerList.ToArray());
+            GyroControlsTrigDisplay = string.Join(", ", triggerName.ToArray());
+        }
+
+        public void PopulateGyroControlsTrig(ContextMenu menu)
+        {
+            string[] triggers = Global.GyroControlsInf[device].triggers.Split(',');
+            int itemCount = menu.Items.Count;
+            List<string> triggerName = new List<string>();
+            foreach (string trig in triggers)
+            {
+                bool valid = int.TryParse(trig, out int trigid);
+                if (valid && trigid >= 0 && trigid < itemCount - 1)
+                {
+                    MenuItem current = menu.Items[trigid] as MenuItem;
+                    current.IsChecked = true;
+                    triggerName.Add(current.Header.ToString());
+                }
+                else if (valid && trigid == -1)
+                {
+                    MenuItem current = menu.Items[itemCount - 1] as MenuItem;
+                    current.IsChecked = true;
+                    triggerName.Add("Always On");
+                    break;
+                }
+            }
+
+            if (triggerName.Count == 0)
+            {
+                MenuItem current = menu.Items[itemCount - 1] as MenuItem;
+                current.IsChecked = true;
+                triggerName.Add("Always On");
+            }
+
+            GyroControlsTrigDisplay = string.Join(", ", triggerName.ToArray());
         }
 
         private int CalculateOutputMouseSpeed(int mouseSpeed)

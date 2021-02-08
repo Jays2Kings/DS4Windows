@@ -54,6 +54,13 @@ namespace DS4WinWPF.DS4Forms
             }
 
             tempInstFileName = DS4Windows.Global.exedirpath + $"\\{installFileName}.tmp";
+
+            // Disable Xbox 360 driver installer button if running on Windows 8 or greater.
+            // Driver come pre-installed on a standed OS install
+            if (DS4Windows.Global.IsWin8OrGreater())
+            {
+                step2Btn.IsEnabled = false;
+            }
         }
 
         private void FinishedBtn_Click(object sender, RoutedEventArgs e)

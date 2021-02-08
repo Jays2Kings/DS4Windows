@@ -208,7 +208,7 @@ namespace DS4WinWPF.DS4Forms
                 tmpinterState.CopyTo(interState);
 
                 if (deviceNum != profileDeviceNum)
-                    Mapping.SetCurveAndDeadzone(profileDeviceNum, baseState, interState, Program.rootHub.touchPad[profileDeviceNum]);
+                    Mapping.SetCurveAndDeadzone(profileDeviceNum, baseState, interState);
 
                 // Done with copying. Allow input thread to resume
                 ds.ReadWaitEv.Set();

@@ -50,7 +50,6 @@ namespace DS4Windows
         }
 
         public GyroSwipeData gyroSwipe;
-        public bool gyroControlsActive;
 
         public Mouse(int deviceID, DS4Device d)
         {
@@ -124,15 +123,15 @@ namespace DS4Windows
 
                 if (useReverseRatchet && triggeractivated)
                 {
-                    gyroControlsActive = true;
+                    s.Motion.outputGyroControls = true;
                 }
                 else if (!useReverseRatchet && !triggeractivated)
                 {
-                    gyroControlsActive = true;
+                    s.Motion.outputGyroControls = true;
                 }
                 else
                 {
-                    gyroControlsActive = false;
+                    s.Motion.outputGyroControls = false;
                 }
             }
             else if (outMode == GyroOutMode.Mouse && Global.getGyroSensitivity(deviceNum) > 0)

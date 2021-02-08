@@ -25,6 +25,7 @@ namespace DS4Windows
 
         public int gyroYaw, gyroPitch, gyroRoll, accelX, accelY, accelZ;
         public int outputAccelX, outputAccelY, outputAccelZ;
+        public bool outputGyroControls;
         public double accelXG, accelYG, accelZG;
         public double angVelYaw, angVelPitch, angVelRoll;
         public int gyroYawFull, gyroPitchFull, gyroRollFull;
@@ -68,6 +69,7 @@ namespace DS4Windows
 
             elapsed = src.elapsed;
             previousAxis = src.previousAxis;
+            outputGyroControls = src.outputGyroControls;
         }
 
         public void populate(int X, int Y, int Z,
@@ -98,6 +100,7 @@ namespace DS4Windows
             outputAccelX = 0;
             outputAccelY = 0;
             outputAccelZ = 0;
+            outputGyroControls = false;
 
             elapsed = elapsedDelta;
             previousAxis = prevAxis;

@@ -1914,7 +1914,7 @@ namespace DS4Windows
                 if (getEnableTouchToggle(ind))
                     CheckForTouchToggle(ind, cState, pState);
 
-                cState = Mapping.SetCurveAndDeadzone(ind, cState, TempState[ind], touchPad[ind]);
+                cState = Mapping.SetCurveAndDeadzone(ind, cState, TempState[ind]);
 
                 if (!recordingMacro && (useTempProfile[ind] ||
                     containsCustomAction(ind) || containsCustomExtras(ind) ||

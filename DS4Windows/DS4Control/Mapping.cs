@@ -669,7 +669,7 @@ namespace DS4Windows
             return (value < min) ? min : (value > max) ? max : value;
         }
 
-        public static DS4State SetCurveAndDeadzone(int device, DS4State cState, DS4State dState, Mouse tp)
+        public static DS4State SetCurveAndDeadzone(int device, DS4State cState, DS4State dState)
         {
             double rotation = /*tempDoubleArray[device] =*/  getLSRotation(device);
             if (rotation > 0.0 || rotation < 0.0)
@@ -1425,7 +1425,7 @@ namespace DS4Windows
                 
 
             bool saControls = IsUsingSAForControls(device);
-            if (saControls && tp != null && tp.gyroControlsActive)
+            if (saControls && dState.Motion.outputGyroControls)
             {
                 int SXD = (int)(128d * getSXDeadzone(device));
                 int SZD = (int)(128d * getSZDeadzone(device));

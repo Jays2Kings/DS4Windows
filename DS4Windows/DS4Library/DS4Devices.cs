@@ -276,6 +276,11 @@ namespace DS4Windows
                         {
                             serial = hDevice.ReadSerial(DualSenseDevice.SERIAL_FEATURE_ID);
                         }
+                        else if (metainfo.inputDevType == InputDeviceType.DS4 &&
+                            metainfo.checkConnection(hDevice) == ConnectionType.SONYWA)
+                        {
+                            serial = hDevice.GenerateFakeHwSerial();
+                        }
                         else
                         {
                             serial = hDevice.ReadSerial(DS4Device.SERIAL_FEATURE_ID);

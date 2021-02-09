@@ -617,10 +617,17 @@ namespace DS4Windows
                     if (tempAttr.VendorId == 0x054C && tempAttr.ProductId == 0x09CC)
                     {
                         audio = new DS4Audio(searchDeviceInstance: hidDevice.ParentPath);
-                        micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture, searchDeviceInstance: hidDevice.ParentPath);
+                        micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture,
+                            searchDeviceInstance: hidDevice.ParentPath);
                     }
                     else if (tempAttr.VendorId == DS4Devices.RAZER_VID &&
                         tempAttr.ProductId == 0x1007)
+                    {
+                        audio = new DS4Audio(searchDeviceInstance: hidDevice.ParentPath);
+                        micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture,
+                            searchDeviceInstance: hidDevice.ParentPath);
+                    }
+                    else if (featureSet.HasFlag(VidPidFeatureSet.MonitorAudio))
                     {
                         audio = new DS4Audio(searchDeviceInstance: hidDevice.ParentPath);
                         micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture,

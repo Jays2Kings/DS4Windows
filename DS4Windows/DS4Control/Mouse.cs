@@ -212,7 +212,7 @@ namespace DS4Windows
                     }
                 }
 
-                if (toggleGyroStick)
+                if (toggleGyroMouse)
                 {
                     if (triggeractivated && triggeractivated != previousTriggerActivated)
                     {
@@ -263,7 +263,7 @@ namespace DS4Windows
                     }
                 }
 
-                if (toggleGyroMouse)
+                if (toggleGyroStick)
                 {
                     if (triggeractivated && triggeractivated != previousTriggerActivated)
                     {

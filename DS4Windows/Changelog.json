@@ -1,9 +1,38 @@
 {
-  "latest_version": "2.2.4",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 4},
-  "updated_at": "2021-02-02T22:25:55+0000",
+  "latest_version": "2.2.5",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 5},
+  "updated_at": "2021-02-10T03:07:55+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.2.5",
+        "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 5},
+        "base_header": "Version 2.2.5",
+        "release_date": "2021-02-10T03:07:55+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.2.5",
+            "log_text": ["* Fixed sync between button mouse sens and active mouse sens in Profile Editor",
+              "* Changed DualSense blanking flags used for initial connection and detach",
+              "* Now use defined ControlActionData for mapped actions rather than unboxing object references. Speeds up the mapping routine a good amount.",
+              "* Hebrew translation added to project file. Translation was never added in",
+              "* Allow Gyro triggers for Gyro Controls mode",
+              "* Reset Gyro Controls output accel values to 0 for each poll",
+              "* Driver installer window now takes arch into account when downloading the latest ViGEm installer. It uses a different setup file for each arch",
+              "* Disable Xbox 360 installer button in Welcome Dialog if running on Win8 or greater",
+              "* Added toggle mode to Gyro Controls",
+              "* Added ScrollViewer for Gyro tab",
+              "* Increased Full Click trigger effect resistance a bit",
+              "* Use fake HW serial to index SonyWA connections. Should allow multiple Sony dongles to work",
+              "* Allow audio volume searching for Nacon Rev Pro v.2 controller.",
+              "* Added DS4 setting to attempt to change output report features for copycat controllers"],
+            "editor": "ryochan7",
+            "editors_note": ["None"],
+            "updated_at": "2021-02-10T03:07:55+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.2.4",
         "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 4},

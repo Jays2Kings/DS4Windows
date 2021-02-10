@@ -55,6 +55,10 @@
                         <ComboBox ItemsSource="{Binding Path=DsLEDModes}" DisplayMemberPath="DisplayName" SelectedValuePath="ChoiceValue" SelectedValue="{Binding Options.LedMode}" Margin="8,0,0,0" />
                     </StackPanel>
 
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                        <Label Content="Mute LED Mode" ContentStringFormat="{}{0}:" />
+                        <ComboBox ItemsSource="{Binding Path=DsMuteLEDModes}" DisplayMemberPath="DisplayName" SelectedValuePath="ChoiceValue" SelectedValue="{Binding Options.MuteLedMode}" Margin="8,0,0,0" />
+                    </StackPanel>
                 </StackPanel>
             </TabItem>
 

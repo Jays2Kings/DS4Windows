@@ -136,6 +136,13 @@ namespace DS4Windows
             On,
         }
 
+        public enum MuteLEDMode : ushort
+        {
+            Off,
+            On,
+            Pulse
+        }
+
         private bool enableRumble = true;
         public bool EnableRumble
         {
@@ -175,6 +182,19 @@ namespace DS4Windows
         }
         public event EventHandler LedModeChanged;
 
+        private MuteLEDMode muteLedMode = MuteLEDMode.Off;
+        public MuteLEDMode MuteLedMode
+        {
+            get => muteLedMode;
+            set
+            {
+                if (muteLedMode == value) return;
+                muteLedMode = value;
+                MuteLedModeChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler MuteLedModeChanged;
+
         public DualSenseControllerOptions(InputDeviceType deviceType) :
             base(deviceType)
         {
@@ -204,6 +224,10 @@ namespace DS4Windows
             tempLedMode.InnerText = ledMode.ToString();
             tempOptsNode.AppendChild(tempLedMode);
 
+            XmlNode tempMuteLedMode = xmlDoc.CreateElement("MuteLEDMode");
+            tempMuteLedMode.InnerText = muteLedMode.ToString();
+            tempOptsNode.AppendChild(tempMuteLedMode);
+
             node.AppendChild(tempOptsNode);
         }
 
@@ -230,6 +254,13 @@ namespace DS4Windows
                     out LEDBarMode tempLED))
                 {
                     ledMode = tempLED;
+                }
+
+                XmlNode itemMuteLedMode = baseNode.SelectSingleNode("MuteLEDMode");
+                if (Enum.TryParse(itemMuteLedMode?.InnerText ?? "",
+                    out MuteLEDMode tempMuteLED))
+                {
+                    muteLedMode = tempMuteLED;
                 }
             }
         }

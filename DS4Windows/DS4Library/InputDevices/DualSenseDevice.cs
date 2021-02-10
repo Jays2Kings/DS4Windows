@@ -162,6 +162,8 @@ namespace DS4Windows.InputDevices
         private TriggerEffectData l2EffectData;
         private TriggerEffectData r2EffectData;
 
+        private byte muteLEDByte = 0x00;
+
         private DualSenseControllerOptions nativeOptionsStore;
         public DualSenseControllerOptions NativeOptionsStore { get => nativeOptionsStore; }
 
@@ -839,7 +841,7 @@ namespace DS4Windows.InputDevices
 
             // Disable haptics and trigger motors
             outputReport[1 + reportOffset] = useRumble ? (byte)0x0F : (byte)0x0C;
-            outputReport[2 + reportOffset] = 0x14; // Turn off all LED lights. 0x04 | 0x10
+            outputReport[2 + reportOffset] = 0x15; // Toggle all LED lights. 0x01 | 0x04 | 0x10
 
             if (conType == ConnectionType.BT)
             {
@@ -864,7 +866,7 @@ namespace DS4Windows.InputDevices
 
             outputReport[0] = OUTPUT_REPORT_ID_BT; // Report ID
             outputReport[1] = OUTPUT_REPORT_ID_DATA;
-            outputReport[3] = 0x14; // Turn off all LED lights. 0x04 | 0x10
+            outputReport[3] = 0x15; // Toggle all LED lights. 0x01 | 0x04 | 0x10
 
             // Need to calculate and populate CRC32 data so controller will accept the report
             uint calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);
@@ -926,7 +928,7 @@ namespace DS4Windows.InputDevices
                 //*/
 
                 // Mute button LED. 0x01 = Solid. 0x02 = Pulsating
-                outputReport[9] = 0x00;
+                outputReport[9] = muteLEDByte;
 
                 // audio settings requiring mute toggling flags
                 //outputReport[10] = 0x00; // 0x10 microphone mute, 0x40 audio mute
@@ -1061,7 +1063,7 @@ namespace DS4Windows.InputDevices
                 //*/
 
                 // Mute button LED. 0x01 = Solid. 0x02 = Pulsating
-                outputReport[10] = 0x00;
+                outputReport[10] = muteLEDByte;
 
                 // audio settings requiring mute toggling flags
                 //outputReport[11] = 0x00; // 0x10 microphone mute, 0x40 audio mute
@@ -1244,6 +1246,28 @@ namespace DS4Windows.InputDevices
             }
         }
 
+        private void PrepareMuteLEDByte()
+        {
+            if (nativeOptionsStore != null)
+            {
+                switch (nativeOptionsStore.MuteLedMode)
+                {
+                    case DualSenseControllerOptions.MuteLEDMode.Off:
+                        muteLEDByte = 0x00;
+                        break;
+                    case DualSenseControllerOptions.MuteLEDMode.On:
+                        muteLEDByte = 0x01;
+                        break;
+                    case DualSenseControllerOptions.MuteLEDMode.Pulse:
+                        muteLEDByte = 0x02;
+                        break;
+                    default:
+                        muteLEDByte = 0x00;
+                        break;
+                }
+            }
+        }
+
         public override void PrepareTriggerEffect(TriggerId trigger, TriggerEffects effect)
         {
             if (trigger == TriggerId.LeftTrigger)
@@ -1310,6 +1334,12 @@ namespace DS4Windows.InputDevices
                     HapticChoice = nativeOptionsStore.HapticIntensity;
                     queueEvent(() => { outputDirty = true; });
                 };
+
+                nativeOptionsStore.MuteLedModeChanged += (sender, e) =>
+                {
+                    PrepareMuteLEDByte();
+                    queueEvent(() => { outputDirty = true; });
+                };
             }
         }
 
@@ -1319,6 +1349,7 @@ namespace DS4Windows.InputDevices
             {
                 UseRumble = nativeOptionsStore.EnableRumble;
                 HapticChoice = nativeOptionsStore.HapticIntensity;
+                PrepareMuteLEDByte();
             }
         }
     }

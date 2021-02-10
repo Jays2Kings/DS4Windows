@@ -1411,6 +1411,10 @@
 
                                 </StackPanel>
                             </GroupBox>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
+                                <Button x:Name="gyroCalBtn1" Content="Gyro Calibration" Width="100"  Click="GyroCalibration_Click" />
+                            </StackPanel>
                         </StackPanel>
 
                         <StackPanel x:Name="gyroDirSwipePanel" Visibility="Collapsed">
@@ -1503,9 +1507,17 @@
 
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                             </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
+                                <Button x:Name="gyroCalBtn2" Content="Gyro Calibration" Width="100"  Click="GyroCalibration_Click" />
+                            </StackPanel>
                         </StackPanel>
 
-                        <StackPanel x:Name="passthruPanel" Visibility="Collapsed" />
+                        <StackPanel x:Name="passthruPanel" Visibility="Collapsed">
+                            <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
+                                <Button x:Name="gyroCalBtn3" Content="Gyro Calibration" Width="100"  Click="GyroCalibration_Click" />
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>

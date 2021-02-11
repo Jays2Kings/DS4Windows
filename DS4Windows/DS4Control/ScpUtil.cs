@@ -80,6 +80,9 @@ namespace DS4Windows
         public string shiftExtras = null;
         public DS4KeyType shiftKeyType = DS4KeyType.None;
 
+        public bool IsDefault { get => actionType == ActionType.Default; }
+        public bool IsShiftDefault { get => shiftActionType == ActionType.Default; }
+
         public DS4ControlSettings(DS4Controls ctrl)
         {
             control = ctrl;
@@ -2039,8 +2042,8 @@ namespace DS4Windows
             m_Config.containsCustomExtras[deviceNum] = m_Config.HasCustomExtras(deviceNum);
         }
 
-        public static object GetDS4Action(int deviceNum, string buttonName, bool shift) => m_Config.GetDS4Action(deviceNum, buttonName, shift);
-        public static object GetDS4Action(int deviceNum, DS4Controls control, bool shift) => m_Config.GetDS4Action(deviceNum, control, shift);
+        public static ControlActionData GetDS4Action(int deviceNum, string buttonName, bool shift) => m_Config.GetDS4Action(deviceNum, buttonName, shift);
+        public static ControlActionData GetDS4Action(int deviceNum, DS4Controls control, bool shift) => m_Config.GetDS4Action(deviceNum, control, shift);
         public static DS4KeyType GetDS4KeyType(int deviceNum, string buttonName, bool shift) => m_Config.GetDS4KeyType(deviceNum, buttonName, shift);
         public static string GetDS4Extra(int deviceNum, string buttonName, bool shift) => m_Config.GetDS4Extra(deviceNum, buttonName, shift);
         public static int GetDS4STrigger(int deviceNum, string buttonName) => m_Config.GetDS4STrigger(deviceNum, buttonName);
@@ -6241,7 +6244,7 @@ namespace DS4Windows
             }
         }
 
-        public object GetDS4Action(int deviceNum, string buttonName, bool shift)
+        public ControlActionData GetDS4Action(int deviceNum, string buttonName, bool shift)
         {
             DS4Controls dc;
             if (buttonName.StartsWith("bn"))
@@ -6267,7 +6270,7 @@ namespace DS4Windows
             return null;
         }
 
-        public object GetDS4Action(int deviceNum, DS4Controls dc, bool shift)
+        public ControlActionData GetDS4Action(int deviceNum, DS4Controls dc, bool shift)
         {
             int temp = (int)dc;
             if (temp > 0)

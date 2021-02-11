@@ -914,7 +914,8 @@ namespace DS4Windows
                 return;
             }
 
-            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchLeft, false) == null && leftDown)
+            if (Global.getDS4CSetting(deviceNum, DS4Controls.TouchLeft).IsDefault &&
+                leftDown)
             {
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
                 dragging2 = true;
@@ -924,14 +925,23 @@ namespace DS4Windows
                 dragging2 = false;
             }
 
-            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchUpper, false) == null && upperDown)
+            if (Global.getDS4CSetting(deviceNum, DS4Controls.TouchUpper).IsDefault &&
+                upperDown)
+            {
                 Mapping.MapClick(deviceNum, Mapping.Click.Middle);
+            }
 
-            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchRight, false) == null && rightDown)
+            if (Global.getDS4CSetting(deviceNum, DS4Controls.TouchRight).IsDefault &&
+                rightDown)
+            {
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
+            }
 
-            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchMulti, false) == null && multiDown)
+            if (Global.getDS4CSetting(deviceNum, DS4Controls.TouchMulti).IsDefault &&
+                multiDown)
+            {
                 Mapping.MapClick(deviceNum, Mapping.Click.Right);
+            }
 
             if (Global.TouchOutMode[deviceNum] == TouchpadOutMode.Mouse)
             {

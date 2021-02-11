@@ -914,7 +914,7 @@ namespace DS4Windows
                 return;
             }
 
-            if (Global.getDS4CSetting(deviceNum, DS4Controls.TouchLeft).IsDefault &&
+            if (Global.GetDS4CSetting(deviceNum, DS4Controls.TouchLeft).IsDefault &&
                 leftDown)
             {
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
@@ -925,19 +925,19 @@ namespace DS4Windows
                 dragging2 = false;
             }
 
-            if (Global.getDS4CSetting(deviceNum, DS4Controls.TouchUpper).IsDefault &&
+            if (Global.GetDS4CSetting(deviceNum, DS4Controls.TouchUpper).IsDefault &&
                 upperDown)
             {
                 Mapping.MapClick(deviceNum, Mapping.Click.Middle);
             }
 
-            if (Global.getDS4CSetting(deviceNum, DS4Controls.TouchRight).IsDefault &&
+            if (Global.GetDS4CSetting(deviceNum, DS4Controls.TouchRight).IsDefault &&
                 rightDown)
             {
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
             }
 
-            if (Global.getDS4CSetting(deviceNum, DS4Controls.TouchMulti).IsDefault &&
+            if (Global.GetDS4CSetting(deviceNum, DS4Controls.TouchMulti).IsDefault &&
                 multiDown)
             {
                 Mapping.MapClick(deviceNum, Mapping.Click.Right);

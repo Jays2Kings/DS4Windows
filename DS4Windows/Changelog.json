@@ -1,9 +1,30 @@
 {
-  "latest_version": "2.2.5",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 5},
+  "latest_version": "2.2.6",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 6},
   "updated_at": "2021-02-10T03:07:55+0000",
   "changelog": {
     "versions": [
+      {
+        "version_str": "2.2.6",
+        "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 6},
+        "base_header": "Version 2.2.6",
+        "release_date": "2021-02-11T03:50:45+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.2.6",
+            "log_text": ["* Fixed Gyro Mouse Joystick trigger selection",
+              "* Corrected Gyro Mouse and Gyro Mouse Joystick toggle flags",
+              "* Put Gyro Calibration button in other Gyro mode panels",
+              "* Added Mute LED mode for DualSense device options",
+              "* Fixed default virtual Touchpad button bindings",
+              "* Corrected Special Action regression"],
+            "editor": "ryochan7",
+            "editors_note": ["None"],
+            "updated_at": "2021-02-11T03:50:45+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.2.5",
         "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 5},

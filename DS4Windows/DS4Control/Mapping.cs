@@ -2665,7 +2665,7 @@ namespace DS4Windows
 
         private static bool IfAxisIsNotModified(int device, bool shift, DS4Controls dc)
         {
-            return shift ? false : GetDS4Action(device, dc, false) == null;
+            return shift ? false : GetDS4CSetting(device, dc).actionType == DS4ControlSettings.ActionType.Default;
         }
 
         private static async void MapCustomAction(int device, DS4State cState, DS4State MappedState,
@@ -2709,7 +2709,7 @@ namespace DS4Windows
                     //If a key or button is assigned to the trigger, a key special action is used like
                     //a quick tap to use and hold to use the regular custom button/key
                     bool triggerToBeTapped = action.typeID == SpecialAction.ActionTypeId.None && action.trigger.Count == 1 &&
-                            GetDS4Action(device, action.trigger[0], false) == null;
+                            GetDS4CSetting(device, action.trigger[0]).IsDefault;
                     if (!(action.typeID == SpecialAction.ActionTypeId.None || index < 0))
                     {
                         bool triggeractivated = true;
@@ -2889,7 +2889,7 @@ namespace DS4Windows
                                     for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                                     {
                                         DS4Controls dc = action.trigger[i];
-                                        DS4ControlSettings dcs = getDS4CSetting(device, dc);
+                                        DS4ControlSettings dcs = GetDS4CSetting(device, dc);
                                         if (dcs.actionType != DS4ControlSettings.ActionType.Default)
                                         {
                                             if (dcs.actionType == DS4ControlSettings.ActionType.Key)
@@ -3347,7 +3347,7 @@ namespace DS4Windows
                             {
                                 DS4Controls dc = action.uTrigger[i];
                                 actionDone[index].dev[device] = true;
-                                DS4ControlSettings dcs = getDS4CSetting(device, dc);
+                                DS4ControlSettings dcs = GetDS4CSetting(device, dc);
                                 if (dcs.actionType != DS4ControlSettings.ActionType.Default)
                                 {
                                     if (dcs.actionType == DS4ControlSettings.ActionType.Key)
@@ -3390,7 +3390,7 @@ namespace DS4Windows
             for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
             {
                 DS4Controls dc = action.trigger[i];
-                DS4ControlSettings dcs = getDS4CSetting(device, dc);
+                DS4ControlSettings dcs = GetDS4CSetting(device, dc);
                 if (dcs.actionType != DS4ControlSettings.ActionType.Default)
                 {
                     if (dcs.actionType == DS4ControlSettings.ActionType.Key)

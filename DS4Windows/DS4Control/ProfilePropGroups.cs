@@ -304,6 +304,7 @@ namespace DS4Windows
         public const bool DEFAULT_TRIGGER_COND = true;
         public const bool DEFAULT_TRIGGER_TURNS = true;
         public const XAxisSwipe DEFAULT_X_AXIS = XAxisSwipe.Yaw;
+        public const int DEFAULT_DELAY_TIME = 0;
 
         public int deadzoneX = DEFAULT_GYRO_DIR_SPEED;
         public int deadzoneY = DEFAULT_GYRO_DIR_SPEED;
@@ -311,6 +312,7 @@ namespace DS4Windows
         public bool triggerCond = DEFAULT_TRIGGER_COND;
         public bool triggerTurns = DEFAULT_TRIGGER_TURNS;
         public XAxisSwipe xAxis = DEFAULT_X_AXIS;
+        public int delayTime = DEFAULT_DELAY_TIME;
 
         public void Reset()
         {
@@ -320,6 +322,7 @@ namespace DS4Windows
             triggerCond = DEFAULT_TRIGGER_COND;
             triggerTurns = DEFAULT_TRIGGER_TURNS;
             xAxis = DEFAULT_X_AXIS;
+            delayTime = DEFAULT_DELAY_TIME;
         }
     }
 

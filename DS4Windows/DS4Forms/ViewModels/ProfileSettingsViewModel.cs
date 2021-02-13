@@ -2230,6 +2230,15 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
 
+        public int GyroSwipeDelayTime
+        {
+            get => Global.GyroSwipeInf[device].delayTime;
+            set
+            {
+                Global.GyroSwipeInf[device].delayTime = value;
+            }
+        }
+
         private PresetMenuHelper presetMenuUtil;
         public PresetMenuHelper PresetMenuUtil
         {

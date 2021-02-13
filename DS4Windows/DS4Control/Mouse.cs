@@ -689,8 +689,8 @@ namespace DS4Windows
             {
                 if (!(swipeUp || swipeDown || swipeLeft || swipeRight) && arg.touches.Length == 1)
                 {
-                    if (arg.touches[0].hwX - firstTouch.hwX > 400) swipeRight = true;
-                    if (arg.touches[0].hwX - firstTouch.hwX < -400) swipeLeft = true;
+                    if (arg.touches[0].hwX - firstTouch.hwX > 300) swipeRight = true;
+                    if (arg.touches[0].hwX - firstTouch.hwX < -300) swipeLeft = true;
                     if (arg.touches[0].hwY - firstTouch.hwY > 300) swipeDown = true;
                     if (arg.touches[0].hwY - firstTouch.hwY < -300) swipeUp = true;
                 }

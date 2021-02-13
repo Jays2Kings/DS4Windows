@@ -20,7 +20,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels.SpecialActions
 
         public void SaveAction(SpecialAction action, bool edit = false)
         {
-            Global.SaveAction(action.name, action.controls, 7, delay.ToString(), edit);
+            Global.SaveAction(action.name, action.controls, 8, delay.ToString(), edit);
         }
 
         public override bool IsValid(SpecialAction action)

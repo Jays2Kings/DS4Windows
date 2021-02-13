@@ -1506,6 +1506,10 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <Label Content="Delay Time" ContentStringFormat="{}{0}:" />
+                                <xctk:IntegerUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
+                                                Value="{Binding GyroSwipeDelayTime}" Minimum="0" Maximum="5000" Increment="10" />
+                                <Label Content="ms" />
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0,8,0,8">

@@ -47,6 +47,16 @@ namespace DS4Windows
         public struct GyroSwipeData
         {
             public bool swipeLeft, swipeRight, swipeUp, swipeDown;
+            public enum XDir : ushort { None, Left, Right }
+            public enum YDir : ushort { None, Up, Down }
+
+            public XDir currentXDir;
+            public YDir currentYDir;
+            public bool xActive;
+            public bool yActive;
+
+            public DateTime initialTimeX;
+            public DateTime initialTimeY;
         }
 
         public GyroSwipeData gyroSwipe;
@@ -519,6 +529,7 @@ namespace DS4Windows
             double velX = swipeInfo.xAxis == GyroDirectionalSwipeInfo.XAxisSwipe.Yaw ?
                 arg.sixAxis.angVelYaw : arg.sixAxis.angVelRoll;
             double velY = arg.sixAxis.angVelPitch;
+            int delayTime = swipeInfo.delayTime;
 
             int deadzoneX = (int)Math.Abs(swipeInfo.deadzoneX);
             int deadzoneY = (int)Math.Abs(swipeInfo.deadzoneY);
@@ -526,15 +537,75 @@ namespace DS4Windows
             gyroSwipe.swipeLeft = gyroSwipe.swipeRight = false;
             if (Math.Abs(velX) > deadzoneX)
             {
-                if (velX > 0) gyroSwipe.swipeRight = true;
-                else gyroSwipe.swipeLeft = true;
+                if (velX > 0)
+                {
+                    if (gyroSwipe.currentXDir != GyroSwipeData.XDir.Right)
+                    {
+                        gyroSwipe.initialTimeX = DateTime.Now;
+                        gyroSwipe.currentXDir = GyroSwipeData.XDir.Right;
+                        gyroSwipe.xActive = delayTime == 0;
+                    }
+
+                    if (gyroSwipe.xActive || (gyroSwipe.xActive = gyroSwipe.initialTimeX + TimeSpan.FromMilliseconds(delayTime) < DateTime.Now))
+                    {
+                        gyroSwipe.swipeRight = true;
+                    }
+                }
+                else
+                {
+                    if (gyroSwipe.currentXDir != GyroSwipeData.XDir.Left)
+                    {
+                        gyroSwipe.initialTimeX = DateTime.Now;
+                        gyroSwipe.currentXDir = GyroSwipeData.XDir.Left;
+                        gyroSwipe.xActive = delayTime == 0;
+                    }
+
+                    if (gyroSwipe.xActive || (gyroSwipe.xActive = gyroSwipe.initialTimeX + TimeSpan.FromMilliseconds(delayTime) < DateTime.Now))
+                    {
+                        gyroSwipe.swipeLeft = true;
+                    }
+                }
+            }
+            else
+            {
+                gyroSwipe.currentXDir = GyroSwipeData.XDir.None;
             }
 
             gyroSwipe.swipeUp = gyroSwipe.swipeDown = false;
             if (Math.Abs(velY) > deadzoneY)
             {
-                if (velY > 0) gyroSwipe.swipeUp = true;
-                else gyroSwipe.swipeDown = true;
+                if (velY > 0)
+                {
+                    if (gyroSwipe.currentYDir != GyroSwipeData.YDir.Up)
+                    {
+                        gyroSwipe.initialTimeY = DateTime.Now;
+                        gyroSwipe.currentYDir = GyroSwipeData.YDir.Up;
+                        gyroSwipe.yActive = delayTime == 0;
+                    }
+
+                    if (gyroSwipe.yActive || (gyroSwipe.yActive = gyroSwipe.initialTimeY + TimeSpan.FromMilliseconds(delayTime) < DateTime.Now))
+                    {
+                        gyroSwipe.swipeUp = true;
+                    }
+                }
+                else
+                {
+                    if (gyroSwipe.currentYDir != GyroSwipeData.YDir.Down)
+                    {
+                        gyroSwipe.initialTimeY = DateTime.Now;
+                        gyroSwipe.currentYDir = GyroSwipeData.YDir.Down;
+                        gyroSwipe.yActive = delayTime == 0;
+                    }
+
+                    if (gyroSwipe.yActive || (gyroSwipe.yActive = gyroSwipe.initialTimeY + TimeSpan.FromMilliseconds(delayTime) < DateTime.Now))
+                    {
+                        gyroSwipe.swipeDown = true;
+                    }
+                }
+            }
+            else
+            {
+                gyroSwipe.currentYDir = GyroSwipeData.YDir.None;
             }
         }
 

@@ -1807,6 +1807,8 @@ namespace DS4Windows
             }
             else
             {
+                outputfieldMapping.triggers[(int)DS4Controls.L2] = 0;
+
                 DS4ControlSettings l2FullPull = controlSetGroup.L2FullPull;
                 TwoStageTriggerMappingData l2TwoStageData = l2TwoStageMappingData[device];
                 ProcessTwoStageTrigger(device, cState, cState.L2, ref dcsTemp, ref l2FullPull,
@@ -1817,7 +1819,17 @@ namespace DS4Windows
                 if (outputSoftPull != null ||
                     (l2TwoStageData.previousActiveButtons & TwoStageTriggerMappingData.ActiveZoneButtons.SoftPull) != 0)
                 {
-                    if (outputSoftPull != null) tempButtons |= TwoStageTriggerMappingData.ActiveZoneButtons.SoftPull;
+                    if (outputSoftPull != null)
+                    {
+                        tempButtons |= TwoStageTriggerMappingData.ActiveZoneButtons.SoftPull;
+                    }
+                    else
+                    {
+                        // Need to reset input state so output binding is not activated.
+                        // Used to de-activate Extras
+                        fieldMapping.triggers[(int)DS4Controls.L2] = 0;
+                    }
+
                     ProcessControlSettingAction(dcsTemp, device, cState, MappedState, eState,
                         tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
                         ref tempMouseDeltaY, ctrl);
@@ -1827,7 +1839,17 @@ namespace DS4Windows
                 if (outputFullPull != null ||
                     (l2TwoStageData.previousActiveButtons & TwoStageTriggerMappingData.ActiveZoneButtons.FullPull) != 0)
                 {
-                    if (outputFullPull != null) tempButtons |= TwoStageTriggerMappingData.ActiveZoneButtons.FullPull;
+                    if (outputFullPull != null)
+                    {
+                        tempButtons |= TwoStageTriggerMappingData.ActiveZoneButtons.FullPull;
+                    }
+                    else
+                    {
+                        // Need to reset input state so output binding is not activated.
+                        // Used to de-activate Extras
+                        fieldMapping.buttons[(int)DS4Controls.L2FullPull] = false;
+                    }
+
                     ProcessControlSettingAction(l2FullPull, device, cState, MappedState, eState,
                         tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
                         ref tempMouseDeltaY, ctrl);
@@ -1847,6 +1869,8 @@ namespace DS4Windows
             }
             else
             {
+                outputfieldMapping.triggers[(int)DS4Controls.R2] = 0;
+
                 DS4ControlSettings r2FullPull = controlSetGroup.R2FullPull;
                 TwoStageTriggerMappingData r2TwoStageData = r2TwoStageMappingData[device];
                 ProcessTwoStageTrigger(device, cState, cState.R2, ref dcsTemp, ref r2FullPull,
@@ -1857,7 +1881,17 @@ namespace DS4Windows
                 if (outputSoftPull != null ||
                     (r2TwoStageData.previousActiveButtons & TwoStageTriggerMappingData.ActiveZoneButtons.SoftPull) != 0)
                 {
-                    if (outputSoftPull != null) tempButtons |= TwoStageTriggerMappingData.ActiveZoneButtons.SoftPull;
+                    if (outputSoftPull != null)
+                    {
+                        tempButtons |= TwoStageTriggerMappingData.ActiveZoneButtons.SoftPull;
+                    }
+                    else
+                    {
+                        // Need to reset input state so output binding is not activated.
+                        // Used to de-activate Extras
+                        fieldMapping.triggers[(int)DS4Controls.R2] = 0;
+                    }
+
                     ProcessControlSettingAction(dcsTemp, device, cState, MappedState, eState,
                         tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
                         ref tempMouseDeltaY, ctrl);
@@ -1870,6 +1904,12 @@ namespace DS4Windows
                     if (outputFullPull != null)
                     {
                         tempButtons |= TwoStageTriggerMappingData.ActiveZoneButtons.FullPull;
+                    }
+                    else
+                    {
+                        // Need to reset input state so output binding is not activated.
+                        // Used to de-activate Extras
+                        fieldMapping.buttons[(int)DS4Controls.R2FullPull] = false;
                     }
 
                     ProcessControlSettingAction(r2FullPull, device, cState, MappedState, eState,

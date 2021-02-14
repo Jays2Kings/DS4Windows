@@ -571,7 +571,6 @@
     <Resource Include="Resources\social\twitter_logo_initial.png" />
     <Resource Include="Resources\social\minds.png" />
     <Resource Include="Resources\social\mastodon.png" />
-    <Resource Include="Resources\social\frog_site_logo.png" />
     <Resource Include="Resources\social\discord.png" />
     <Resource Include="Resources\social\bittube.png" />
     <Resource Include="Resources\rainbowCCrop.png" />

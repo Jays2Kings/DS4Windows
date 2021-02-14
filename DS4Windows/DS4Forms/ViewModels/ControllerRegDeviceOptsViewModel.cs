@@ -220,6 +220,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             new EnumChoiceSelection<LEDBarMode>("Off", LEDBarMode.Off),
             new EnumChoiceSelection<LEDBarMode>("Only for multiple controllers", LEDBarMode.MultipleControllers),
+            new EnumChoiceSelection<LEDBarMode>("Battery Percentage", LEDBarMode.BatteryPercentage),
             new EnumChoiceSelection<LEDBarMode>("On", LEDBarMode.On),
         };
         public List<EnumChoiceSelection<LEDBarMode>> DsLEDModes { get => dsLEDModeOptions; }

@@ -244,12 +244,21 @@ namespace DS4Windows
                 Both,
             }
 
+            [Flags]
+            public enum ActiveZoneButtons : ushort
+            {
+                None,
+                SoftPull,
+                FullPull
+            }
+
             public bool startCheck;
             public DateTime checkTime;
             public bool outputActive;
             public bool softPullActActive;
             public bool fullPullActActive;
             public EngageButtonsMode actionStateMode = EngageButtonsMode.Both;
+            public ActiveZoneButtons previousActiveButtons = ActiveZoneButtons.None;
 
             public void StartProcessing()
             {
@@ -259,6 +268,7 @@ namespace DS4Windows
                 softPullActActive = false;
                 fullPullActActive = false;
                 actionStateMode = EngageButtonsMode.Both;
+                previousActiveButtons = ActiveZoneButtons.None;
             }
 
             public void Reset()
@@ -269,6 +279,7 @@ namespace DS4Windows
                 softPullActActive = false;
                 fullPullActActive = false;
                 actionStateMode = EngageButtonsMode.Both;
+                previousActiveButtons = ActiveZoneButtons.None;
             }
         }
 
@@ -1798,23 +1809,32 @@ namespace DS4Windows
             {
                 DS4ControlSettings l2FullPull = controlSetGroup.L2FullPull;
                 TwoStageTriggerMappingData l2TwoStageData = l2TwoStageMappingData[device];
-                ProcessTwoStageTrigger(device, cState, cState.L2, ref dcsTemp, ref l2FullPull, l2TriggerSettings, l2TwoStageData);
+                ProcessTwoStageTrigger(device, cState, cState.L2, ref dcsTemp, ref l2FullPull,
+                    l2TriggerSettings, l2TwoStageData, out DS4ControlSettings outputSoftPull, out DS4ControlSettings outputFullPull);
 
+                TwoStageTriggerMappingData.ActiveZoneButtons tempButtons = TwoStageTriggerMappingData.ActiveZoneButtons.None;
                 // Check for Soft Pull activation
-                if (dcsTemp != null)
+                if (outputSoftPull != null ||
+                    (l2TwoStageData.previousActiveButtons & TwoStageTriggerMappingData.ActiveZoneButtons.SoftPull) != 0)
                 {
+                    if (outputSoftPull != null) tempButtons |= TwoStageTriggerMappingData.ActiveZoneButtons.SoftPull;
                     ProcessControlSettingAction(dcsTemp, device, cState, MappedState, eState,
                         tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
                         ref tempMouseDeltaY, ctrl);
                 }
 
                 // Check for Full Pull activation
-                if (l2FullPull != null)
+                if (outputFullPull != null ||
+                    (l2TwoStageData.previousActiveButtons & TwoStageTriggerMappingData.ActiveZoneButtons.FullPull) != 0)
                 {
+                    if (outputFullPull != null) tempButtons |= TwoStageTriggerMappingData.ActiveZoneButtons.FullPull;
                     ProcessControlSettingAction(l2FullPull, device, cState, MappedState, eState,
                         tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
                         ref tempMouseDeltaY, ctrl);
                 }
+
+                // Store active buttons state
+                l2TwoStageData.previousActiveButtons = tempButtons;
             }
 
             TriggerOutputSettings r2TriggerSettings = Global.R2OutputSettings[device];
@@ -1829,23 +1849,36 @@ namespace DS4Windows
             {
                 DS4ControlSettings r2FullPull = controlSetGroup.R2FullPull;
                 TwoStageTriggerMappingData r2TwoStageData = r2TwoStageMappingData[device];
-                ProcessTwoStageTrigger(device, cState, cState.R2, ref dcsTemp, ref r2FullPull, r2TriggerSettings, r2TwoStageData);
+                ProcessTwoStageTrigger(device, cState, cState.R2, ref dcsTemp, ref r2FullPull,
+                    r2TriggerSettings, r2TwoStageData, out DS4ControlSettings outputSoftPull, out DS4ControlSettings outputFullPull);
 
+                TwoStageTriggerMappingData.ActiveZoneButtons tempButtons = TwoStageTriggerMappingData.ActiveZoneButtons.None;
                 // Check for Soft Pull activation
-                if (dcsTemp != null)
+                if (outputSoftPull != null ||
+                    (r2TwoStageData.previousActiveButtons & TwoStageTriggerMappingData.ActiveZoneButtons.SoftPull) != 0)
                 {
+                    if (outputSoftPull != null) tempButtons |= TwoStageTriggerMappingData.ActiveZoneButtons.SoftPull;
                     ProcessControlSettingAction(dcsTemp, device, cState, MappedState, eState,
                         tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
                         ref tempMouseDeltaY, ctrl);
                 }
 
                 // Check for Full Pull activation
-                if (r2FullPull != null)
+                if (outputFullPull != null ||
+                    (r2TwoStageData.previousActiveButtons & TwoStageTriggerMappingData.ActiveZoneButtons.FullPull) != 0)
                 {
+                    if (outputFullPull != null)
+                    {
+                        tempButtons |= TwoStageTriggerMappingData.ActiveZoneButtons.FullPull;
+                    }
+
                     ProcessControlSettingAction(r2FullPull, device, cState, MappedState, eState,
                         tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
                         ref tempMouseDeltaY, ctrl);
                 }
+
+                // Store active buttons state
+                r2TwoStageData.previousActiveButtons = tempButtons;
             }
 
             for (var settingEnum = controlSetGroup.ControlButtons.GetEnumerator(); settingEnum.MoveNext();)
@@ -2002,10 +2035,10 @@ namespace DS4Windows
         }
 
         private static void ProcessTwoStageTrigger(int device, DS4State cState, byte triggerValue,
-            ref DS4ControlSettings softPull, ref DS4ControlSettings fullPull, TriggerOutputSettings outputSettings,
-            TwoStageTriggerMappingData twoStageData)
+            ref DS4ControlSettings inputSoftPull, ref DS4ControlSettings inputFullPull, TriggerOutputSettings outputSettings,
+            TwoStageTriggerMappingData twoStageData, out DS4ControlSettings outputSoftPull, out DS4ControlSettings outputFullPull)
         {
-            DS4ControlSettings dcsTemp = softPull;
+            DS4ControlSettings dcsTemp = inputSoftPull;
             DS4ControlSettings dcsFullPull = null;
             TwoStageTriggerMappingData triggerData = twoStageData;
 
@@ -2014,14 +2047,14 @@ namespace DS4Windows
                 case TwoStageTriggerMode.Normal:
                     if (triggerValue == 255)
                     {
-                        dcsFullPull = fullPull;
+                        dcsFullPull = inputFullPull;
                     }
 
                     break;
                 case TwoStageTriggerMode.ExclusiveButtons:
                     if (triggerValue == 255)
                     {
-                        dcsFullPull = fullPull;
+                        dcsFullPull = inputFullPull;
                         dcsTemp = null;
                         triggerData.actionStateMode =
                             TwoStageTriggerMappingData.EngageButtonsMode.FullPullOnly;
@@ -2049,8 +2082,8 @@ namespace DS4Windows
                     {
                         // Full pull now activates both. Soft pull action
                         // no longer engaged with threshold
-                        dcsTemp = softPull;
-                        dcsFullPull = fullPull;
+                        dcsTemp = inputSoftPull;
+                        dcsFullPull = inputFullPull;
                         triggerData.softPullActActive = true;
                         triggerData.fullPullActActive = true;
                         triggerData.outputActive = true;
@@ -2058,7 +2091,7 @@ namespace DS4Windows
                     else if (triggerValue != 0 && !triggerData.fullPullActActive)
                     {
                         // Full pull not engaged yet. Activate Soft pull action.
-                        dcsTemp = softPull;
+                        dcsTemp = inputSoftPull;
                         triggerData.softPullActActive = true;
                         triggerData.outputActive = true;
                     }
@@ -2091,13 +2124,13 @@ namespace DS4Windows
 
                             if (triggerValue == 255)
                             {
-                                dcsFullPull = fullPull;
+                                dcsFullPull = inputFullPull;
                                 triggerData.fullPullActActive = true;
                                 triggerData.actionStateMode = TwoStageTriggerMappingData.EngageButtonsMode.FullPullOnly;
                             }
                             else if (triggerValue != 0)
                             {
-                                dcsTemp = softPull;
+                                dcsTemp = inputSoftPull;
                                 triggerData.softPullActActive = true;
                                 triggerData.actionStateMode = TwoStageTriggerMappingData.EngageButtonsMode.Both;
                             }
@@ -2108,11 +2141,11 @@ namespace DS4Windows
                         //DS4State pState = d.getPreviousStateRef();
                         if (triggerValue == 255)
                         {
-                            dcsFullPull = fullPull;
+                            dcsFullPull = inputFullPull;
                             triggerData.fullPullActActive = true;
                             if (triggerData.actionStateMode == TwoStageTriggerMappingData.EngageButtonsMode.Both)
                             {
-                                dcsTemp = softPull;
+                                dcsTemp = inputSoftPull;
                             }
                         }
                         else if (triggerValue != 0 && triggerData.actionStateMode ==
@@ -2120,7 +2153,7 @@ namespace DS4Windows
                         {
                             triggerData.fullPullActActive = false;
 
-                            dcsTemp = softPull;
+                            dcsTemp = inputSoftPull;
                             triggerData.softPullActActive = true;
                         }
                         else if (triggerValue == 0)
@@ -2151,14 +2184,14 @@ namespace DS4Windows
 
                             if (triggerValue == 255)
                             {
-                                dcsFullPull = fullPull;
+                                dcsFullPull = inputFullPull;
                                 triggerData.fullPullActActive = true;
                                 triggerData.actionStateMode =
                                     TwoStageTriggerMappingData.EngageButtonsMode.FullPullOnly;
                             }
                             else if (triggerValue != 0)
                             {
-                                dcsTemp = softPull;
+                                dcsTemp = inputSoftPull;
                                 triggerData.softPullActActive = true;
                                 triggerData.actionStateMode =
                                     TwoStageTriggerMappingData.EngageButtonsMode.SoftPullOnly;
@@ -2171,12 +2204,12 @@ namespace DS4Windows
                         if (triggerValue == 255 &&
                             triggerData.actionStateMode == TwoStageTriggerMappingData.EngageButtonsMode.FullPullOnly)
                         {
-                            dcsFullPull = fullPull;
+                            dcsFullPull = inputFullPull;
                         }
                         else if (triggerValue != 0 && triggerData.actionStateMode ==
                             TwoStageTriggerMappingData.EngageButtonsMode.SoftPullOnly)
                         {
-                            dcsTemp = softPull;
+                            dcsTemp = inputSoftPull;
                         }
                         else if (triggerValue == 0)
                         {
@@ -2193,8 +2226,8 @@ namespace DS4Windows
                     break;
             }
 
-            softPull = dcsTemp;
-            fullPull = dcsFullPull;
+            outputSoftPull = dcsTemp;
+            outputFullPull = dcsFullPull;
         }
 
         private static void ProcessFlickStick(int device, DS4State cRawState, byte stickX, byte stickY, byte prevStickX, byte prevStickY, ControlService ctrl, FlickStickSettings flickSettings, ref double tempMouseDeltaX)

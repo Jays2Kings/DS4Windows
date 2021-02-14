@@ -1933,6 +1933,8 @@ namespace DS4Windows
             {
                 DS4ControlSettings gyroSwipeXDcs = null;
                 DS4ControlSettings gyroSwipeYDcs = null;
+                DS4ControlSettings previousGyroSwipeXDcs = null;
+                DS4ControlSettings previousGyroSwipeYDcs = null;
 
                 if (tp.gyroSwipe.swipeLeft)
                 {
@@ -1941,6 +1943,15 @@ namespace DS4Windows
                 else if (tp.gyroSwipe.swipeRight)
                 {
                     gyroSwipeXDcs = controlSetGroup.GyroSwipeRight;
+                }
+
+                if (tp.gyroSwipe.previousSwipeLeft && !tp.gyroSwipe.swipeLeft)
+                {
+                    previousGyroSwipeXDcs = controlSetGroup.GyroSwipeLeft;
+                }
+                else if (tp.gyroSwipe.previousSwipeRight && !tp.gyroSwipe.swipeRight)
+                {
+                    previousGyroSwipeXDcs = controlSetGroup.GyroSwipeRight;
                 }
 
                 if (tp.gyroSwipe.swipeUp)
@@ -1952,9 +1963,34 @@ namespace DS4Windows
                     gyroSwipeYDcs = controlSetGroup.GyroSwipeDown;
                 }
 
+                if (tp.gyroSwipe.previousSwipeUp && !tp.gyroSwipe.swipeUp)
+                {
+                    previousGyroSwipeYDcs = controlSetGroup.GyroSwipeUp;
+                }
+                else if (tp.gyroSwipe.previousSwipeDown && !tp.gyroSwipe.swipeDown)
+                {
+                    previousGyroSwipeYDcs = controlSetGroup.GyroSwipeDown;
+                }
+
+                // Disable previous button before possibly activating current button
+                if (previousGyroSwipeXDcs != null)
+                {
+                    ProcessControlSettingAction(previousGyroSwipeXDcs, device, cState, MappedState, eState,
+                        tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                        ref tempMouseDeltaY, ctrl);
+                }
+
                 if (gyroSwipeXDcs != null)
                 {
                     ProcessControlSettingAction(gyroSwipeXDcs, device, cState, MappedState, eState,
+                        tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                        ref tempMouseDeltaY, ctrl);
+                }
+
+                // Disable previous button before possibly activating current button
+                if (previousGyroSwipeYDcs != null)
+                {
+                    ProcessControlSettingAction(previousGyroSwipeYDcs, device, cState, MappedState, eState,
                         tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
                         ref tempMouseDeltaY, ctrl);
                 }

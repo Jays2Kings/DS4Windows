@@ -47,6 +47,7 @@ namespace DS4Windows
         public struct GyroSwipeData
         {
             public bool swipeLeft, swipeRight, swipeUp, swipeDown;
+            public bool previousSwipeLeft, previousSwipeRight, previousSwipeUp, previousSwipeDown;
             public enum XDir : ushort { None, Left, Right }
             public enum YDir : ushort { None, Up, Down }
 
@@ -323,6 +324,11 @@ namespace DS4Windows
                         }
                     }
                 }
+
+                gyroSwipe.previousSwipeLeft = gyroSwipe.swipeLeft;
+                gyroSwipe.previousSwipeRight = gyroSwipe.swipeRight;
+                gyroSwipe.previousSwipeUp = gyroSwipe.swipeUp;
+                gyroSwipe.previousSwipeDown = gyroSwipe.swipeDown;
 
                 if (useReverseRatchet && triggeractivated)
                 {

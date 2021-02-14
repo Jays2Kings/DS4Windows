@@ -47,6 +47,7 @@ namespace DS4Windows
         public struct GyroSwipeData
         {
             public bool swipeLeft, swipeRight, swipeUp, swipeDown;
+            public bool previousSwipeLeft, previousSwipeRight, previousSwipeUp, previousSwipeDown;
             public enum XDir : ushort { None, Left, Right }
             public enum YDir : ushort { None, Up, Down }
 
@@ -323,6 +324,11 @@ namespace DS4Windows
                         }
                     }
                 }
+
+                gyroSwipe.previousSwipeLeft = gyroSwipe.swipeLeft;
+                gyroSwipe.previousSwipeRight = gyroSwipe.swipeRight;
+                gyroSwipe.previousSwipeUp = gyroSwipe.swipeUp;
+                gyroSwipe.previousSwipeDown = gyroSwipe.swipeDown;
 
                 if (useReverseRatchet && triggeractivated)
                 {
@@ -689,8 +695,8 @@ namespace DS4Windows
             {
                 if (!(swipeUp || swipeDown || swipeLeft || swipeRight) && arg.touches.Length == 1)
                 {
-                    if (arg.touches[0].hwX - firstTouch.hwX > 400) swipeRight = true;
-                    if (arg.touches[0].hwX - firstTouch.hwX < -400) swipeLeft = true;
+                    if (arg.touches[0].hwX - firstTouch.hwX > 300) swipeRight = true;
+                    if (arg.touches[0].hwX - firstTouch.hwX < -300) swipeLeft = true;
                     if (arg.touches[0].hwY - firstTouch.hwY > 300) swipeDown = true;
                     if (arg.touches[0].hwY - firstTouch.hwY < -300) swipeUp = true;
                 }

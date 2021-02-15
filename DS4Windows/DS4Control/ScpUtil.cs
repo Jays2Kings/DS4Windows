@@ -5290,7 +5290,8 @@ namespace DS4Windows
                 ResetMouseProperties(device, control);
 
                 // Unplug existing output device if requested profile does not exist
-                OutputDevice tempOutDev = control.outputDevices[device];
+                OutputDevice tempOutDev = device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT ?
+                    control.outputDevices[device] : null;
                 if (tempOutDev != null)
                 {
                     tempOutDev = null;

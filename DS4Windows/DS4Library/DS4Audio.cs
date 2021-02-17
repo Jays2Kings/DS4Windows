@@ -207,7 +207,7 @@ namespace DS4Windows.DS4Library
                             ref requiredSize, 0);
 
                         tmp = System.Text.Encoding.Unicode.GetString(descriptionBuffer);
-                        tmp = tmp.Remove(tmp.IndexOf("\0\0"));
+                        tmp = tmp.TrimEnd('\0');
                         result = tmp;
                         break;
                      }

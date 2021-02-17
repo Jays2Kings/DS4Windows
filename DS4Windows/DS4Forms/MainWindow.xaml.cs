@@ -1691,7 +1691,7 @@ Suspend support not enabled.", true);
         }
     }
 
-    class ImageLocationPaths
+    public class ImageLocationPaths
     {
         public string NewProfile { get => $"/DS4Windows;component/Resources/{App.Current.FindResource("NewProfileImg")}"; }
         public event EventHandler NewProfileChanged;
@@ -1714,7 +1714,10 @@ Suspend support not enabled.", true);
         public ImageLocationPaths()
         {
             App current = App.Current as App;
-            current.ThemeChanged += Current_ThemeChanged;
+            if (current != null)
+            {
+                current.ThemeChanged += Current_ThemeChanged;
+            }
         }
 
         private void Current_ThemeChanged(object sender, EventArgs e)

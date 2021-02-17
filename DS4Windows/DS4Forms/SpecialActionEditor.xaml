@@ -11,7 +11,7 @@
              lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              xmlns:entity="clr-namespace:DS4WinWPF"
              mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="420" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource ForegroundColor}">
+             d:DesignHeight="350" d:DesignWidth="420">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top" Margin="4,8,4,8">
             <Label Content="Name:" DockPanel.Dock="Left" />

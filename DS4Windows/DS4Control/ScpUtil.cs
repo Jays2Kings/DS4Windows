@@ -944,7 +944,7 @@ namespace DS4Windows
                                                             ref requiredSize, 0);
 
                     string tmpitnow = System.Text.Encoding.Unicode.GetString(descriptionBuffer);
-                    string tempStrip = tmpitnow.Remove(tmpitnow.IndexOf("\0\0"));
+                    string tempStrip = tmpitnow.TrimEnd('\0');
                     string[] tmparray = tempStrip.Split((char)0);
                     hardwareIds.AddRange(tmparray);
                 }
@@ -5290,7 +5290,8 @@ namespace DS4Windows
                 ResetMouseProperties(device, control);
 
                 // Unplug existing output device if requested profile does not exist
-                OutputDevice tempOutDev = control.outputDevices[device];
+                OutputDevice tempOutDev = device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT ?
+                    control.outputDevices[device] : null;
                 if (tempOutDev != null)
                 {
                     tempOutDev = null;

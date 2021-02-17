@@ -1592,7 +1592,14 @@
                     <CheckBox Content="{lex:Loc EnableOutputDataToDS4}" IsChecked="{Binding EnableOutputDataToDS4}" Margin="0,6,0,0" ToolTip="{lex:Loc EnableOutputDataToDS4Tip}" />
                     <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
                         <CheckBox x:Name="launchProgCk" Content="Launch program with profile" IsChecked="{Binding LaunchProgramExists}" IsEnabled="{Binding LaunchProgramExists}" />
-                        <Button x:Name="launchProgBrowseBtn" Content="{Binding LaunchProgramName,FallbackValue={lex:Loc Browse}}" Click="LaunchProgBrowseBtn_Click" Width="80" Height="30" Margin="20,0,0,0" />
+                        <Button x:Name="launchProgBrowseBtn" Click="LaunchProgBrowseBtn_Click" Width="80" Height="30" Margin="20,0,0,0">
+                            <Button.Content>
+                                <PriorityBinding>
+                                    <Binding Path="LaunchProgramName" />
+                                    <lex:BLoc Key="Browse" />
+                                </PriorityBinding>
+                            </Button.Content>
+                        </Button>
                         <Button x:Name="launchProgIconBtn" Width="20" Height="20" Margin="20,0,0,0" Focusable="False" >
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding LaunchProgramIcon}" />

@@ -1,9 +1,44 @@
 {
-  "latest_version": "2.2.6",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 6},
-  "updated_at": "2021-02-10T03:07:55+0000",
+  "latest_version": "2.2.7",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 7},
+  "updated_at": "2021-02-18T21:49:24+0000",
   "changelog": {
     "versions": [
+	{
+        "version_str": "2.2.7",
+        "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 7},
+        "base_header": "Version 2.2.7",
+        "release_date": "2021-02-18T21:49:24+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.2.7",
+            "log_text": ["* Added delay time to Gyro Directional Swipe action",
+              "* Fixed populate of Gyro Directional Swipe and Gyro Controls triggers buttons",
+              "* Lowered touchpad slide distance for Controls mode",
+              "* Fixed Steering Wheel calibration Special Action saving",
+              "* Allow resetting of extras for Trigger soft pull and full pull",
+			  "* Allow resetting Extras bound to Gyro Swipe actions",
+			  "* Now officially only support Windows 10 and later. THANKS MICROSOFT",
+			  "* Added BatteryPercentage mode for DualSense Player LED Bar",
+			  "* Fixed Switch Pro and JoyCon AccelY coordinate used by UDP Server",
+			  "* Fixed profile cancelling for the test index",
+			  "* Tweaked disable device time for Exclusive mode routine",
+			  "* Removed DynamicResource lookups for Special Action Editor",
+			  "* .NET 5 port in progress",
+			  "* Added App instance check to work around Design mode in .NET 5.0.",
+			  "* Changed Browse Programs fallback value in Profile Editor for .NET 5.0",
+			  "* Changed method to strip null terminated strings",
+			  "* Use smart pointers in ViGEmClient library",
+			  "* Added Gyro Calibration button to Gyro Mouse StackPanel",
+			  "* Updated ViGEmClient library to use notification queue",
+			  "* Fixed critical notification callback bug in ViGEm.NET library"],
+            "editor": "ryochan7",
+            "editors_note": ["ViGEm updates are the most relevant"],
+            "updated_at": "2021-02-18T21:49:24+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.2.6",
         "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 6},

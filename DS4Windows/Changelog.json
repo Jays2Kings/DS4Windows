@@ -31,10 +31,11 @@
               "* Changed method to strip null terminated strings",
               "* Added Gyro Calibration button to Gyro Mouse StackPanel",
               "* Updated ViGEmClient library to use notification queue",
-              "* Fixed critical notification callback bug in ViGEm.NET library"],
+              "* Fixed critical notification callback bug in ViGEm.NET library",
+              "* Fixed infinite rumble problem stemming from ViGEm library issues"],
             "editor": "ryochan7",
             "editors_note": ["ViGEm updates are the most relevant"],
-            "updated_at": "2021-02-18T21:49:24+0000"
+            "updated_at": "2021-02-19T17:57:22+0000"
           }
         ]
       },

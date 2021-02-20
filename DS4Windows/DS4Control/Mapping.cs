@@ -1807,8 +1807,6 @@ namespace DS4Windows
             }
             else
             {
-                outputfieldMapping.triggers[(int)DS4Controls.L2] = 0;
-
                 DS4ControlSettings l2FullPull = controlSetGroup.L2FullPull;
                 TwoStageTriggerMappingData l2TwoStageData = l2TwoStageMappingData[device];
                 ProcessTwoStageTrigger(device, cState, cState.L2, ref dcsTemp, ref l2FullPull,
@@ -1828,11 +1826,17 @@ namespace DS4Windows
                         // Need to reset input state so output binding is not activated.
                         // Used to de-activate Extras
                         fieldMapping.triggers[(int)DS4Controls.L2] = 0;
+                        outputfieldMapping.triggers[(int)DS4Controls.L2] = 0;
                     }
 
                     ProcessControlSettingAction(dcsTemp, device, cState, MappedState, eState,
                         tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
                         ref tempMouseDeltaY, ctrl);
+                }
+                else
+                {
+                    // Soft Pull binding not engaged
+                    outputfieldMapping.triggers[(int)DS4Controls.L2] = 0;
                 }
 
                 // Check for Full Pull activation
@@ -1869,8 +1873,6 @@ namespace DS4Windows
             }
             else
             {
-                outputfieldMapping.triggers[(int)DS4Controls.R2] = 0;
-
                 DS4ControlSettings r2FullPull = controlSetGroup.R2FullPull;
                 TwoStageTriggerMappingData r2TwoStageData = r2TwoStageMappingData[device];
                 ProcessTwoStageTrigger(device, cState, cState.R2, ref dcsTemp, ref r2FullPull,
@@ -1890,11 +1892,17 @@ namespace DS4Windows
                         // Need to reset input state so output binding is not activated.
                         // Used to de-activate Extras
                         fieldMapping.triggers[(int)DS4Controls.R2] = 0;
+                        outputfieldMapping.triggers[(int)DS4Controls.R2] = 0;
                     }
 
                     ProcessControlSettingAction(dcsTemp, device, cState, MappedState, eState,
                         tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
                         ref tempMouseDeltaY, ctrl);
+                }
+                else
+                {
+                    // Soft Pull binding not engaged
+                    outputfieldMapping.triggers[(int)DS4Controls.R2] = 0;
                 }
 
                 // Check for Full Pull activation

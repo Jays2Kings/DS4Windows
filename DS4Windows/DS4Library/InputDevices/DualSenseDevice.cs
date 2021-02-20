@@ -600,6 +600,15 @@ namespace DS4Windows.InputDevices
                             // Full Charge flag found
                             tempBattery = 100;
                         }
+                        else if (conType == ConnectionType.BT && !charging)
+                        {
+                            // Partial charge with a BT controller.
+                            // Battery indicator starts at value of
+                            // 4 for some reason
+                            tempByte -= 0x04;
+                            tempBattery = (tempByte & 0x0F) * 100 / maxBatteryValue;
+                            tempBattery = Math.Min(tempBattery, 100);
+                        }
                         else
                         {
                             // Partial charge

@@ -39,7 +39,6 @@ using Microsoft BT stack. Toshiba's adapters currently do not work.
 
 ## Social
 
-[Discord](https://discord.gg/zrpPgyN)  
 [Twitter @ds4windows](https://twitter.com/ds4windows)  
 [YouTube](https://www.youtube.com/channel/UCIoUA_XLlCSZbvZGeg3Byeg)  
 [BitChute](https://www.bitchute.com/channel/uE2CbiV96u1k/)  

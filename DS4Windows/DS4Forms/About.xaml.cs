@@ -90,10 +90,5 @@ namespace DS4WinWPF.DS4Forms
         {
             Util.StartProcessHelper("https://www.minds.com/ds4windows/");
         }
-
-        private void DiscordSocialBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Util.StartProcessHelper("https://discord.gg/zrpPgyN");
-        }
     }
 }

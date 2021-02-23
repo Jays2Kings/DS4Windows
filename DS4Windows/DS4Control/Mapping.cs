@@ -174,12 +174,13 @@ namespace DS4Windows
         public static byte[] gyroStickY = new byte[Global.MAX_DS4_CONTROLLER_COUNT] { 128, 128, 128, 128, 128, 128, 128, 128 };
 
         // [<Device>][<AxisId>]. LX = 0, LY = 1, RX = 2, RY = 3
-        public static byte[][] lastStickAxisValues = new byte[Global.MAX_DS4_CONTROLLER_COUNT][]
+        public static byte[][] lastStickAxisValues = new byte[Global.TEST_PROFILE_ITEM_COUNT][]
         {
             new byte[4] {128, 128, 128, 128}, new byte[4] {128, 128, 128, 128},
             new byte[4] {128, 128, 128, 128}, new byte[4] {128, 128, 128, 128},
             new byte[4] {128, 128, 128, 128}, new byte[4] {128, 128, 128, 128},
             new byte[4] {128, 128, 128, 128}, new byte[4] {128, 128, 128, 128},
+            new byte[4] {128, 128, 128, 128}
         };
 
         private class LastWheelGyroCoord

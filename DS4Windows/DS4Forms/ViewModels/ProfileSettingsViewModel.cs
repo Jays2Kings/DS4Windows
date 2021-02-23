@@ -985,6 +985,41 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.RSModInfo[device].fuzz = value;
         }
 
+        public bool LSAntiBounce
+        {
+            get => Global.LSAntiBounceInfo[device].enabled;
+            set => Global.LSAntiBounceInfo[device].enabled = value;
+        }
+
+        public bool RSAntiBounce
+        {
+            get => Global.RSAntiBounceInfo[device].enabled;
+            set => Global.RSAntiBounceInfo[device].enabled = value;
+        }
+
+        public double LSAntiBounceDelta
+        {
+            get => Global.LSAntiBounceInfo[device].delta;
+            set => Global.LSAntiBounceInfo[device].delta = value;
+        }
+
+        public double RSAntiBounceDelta
+        {
+            get => Global.RSAntiBounceInfo[device].delta;
+            set => Global.RSAntiBounceInfo[device].delta = value;
+        }
+        public int LSAntiBounceTimeout
+        {
+            get => Global.LSAntiBounceInfo[device].timeout;
+            set => Global.LSAntiBounceInfo[device].timeout = value;
+        }
+
+        public int RSAntiBounceTimeout
+        {
+            get => Global.RSAntiBounceInfo[device].timeout;
+            set => Global.RSAntiBounceInfo[device].timeout = value;
+        }
+
         public int LSOutputIndex
         {
             get

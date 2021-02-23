@@ -1923,6 +1923,18 @@ namespace DS4Windows
             return m_Config.squStickInfo[device];
         }
 
+        public static StickAntiBounceInfo[] LSAntiBounceInfo => m_Config.lsAntiBounceInfo;
+        public static StickAntiBounceInfo GetLSAntiBounceInfo(int device)
+        {
+            return m_Config.lsAntiBounceInfo[device];
+        }
+
+        public static StickAntiBounceInfo[] RSAntiBounceInfo => m_Config.rsAntiBounceInfo;
+        public static StickAntiBounceInfo GetRSAntiBounceInfo(int device)
+        {
+            return m_Config.rsAntiBounceInfo[device];
+        }
+
         public static StickOutputSetting[] LSOutputSettings => m_Config.lsOutputSettings;
         public static StickOutputSetting[] RSOutputSettings => m_Config.rsOutputSettings;
 
@@ -2509,6 +2521,24 @@ namespace DS4Windows
             new SquareStickInfo(), new SquareStickInfo(),
             new SquareStickInfo(), new SquareStickInfo(),
             new SquareStickInfo(),
+        };
+
+        public StickAntiBounceInfo[] lsAntiBounceInfo = new StickAntiBounceInfo[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            new StickAntiBounceInfo(), new StickAntiBounceInfo(),
+            new StickAntiBounceInfo(), new StickAntiBounceInfo(),
+            new StickAntiBounceInfo(), new StickAntiBounceInfo(),
+            new StickAntiBounceInfo(), new StickAntiBounceInfo(),
+            new StickAntiBounceInfo(),
+        };
+
+        public StickAntiBounceInfo[] rsAntiBounceInfo = new StickAntiBounceInfo[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            new StickAntiBounceInfo(), new StickAntiBounceInfo(),
+            new StickAntiBounceInfo(), new StickAntiBounceInfo(),
+            new StickAntiBounceInfo(), new StickAntiBounceInfo(),
+            new StickAntiBounceInfo(), new StickAntiBounceInfo(),
+            new StickAntiBounceInfo(),
         };
 
         public StickOutputSetting[] lsOutputSettings = new StickOutputSetting[Global.TEST_PROFILE_ITEM_COUNT]
@@ -3320,6 +3350,15 @@ namespace DS4Windows
 
                 XmlNode xmlSquareStickRoundness = m_Xdoc.CreateNode(XmlNodeType.Element, "SquareStickRoundness", null); xmlSquareStickRoundness.InnerText = squStickInfo[device].lsRoundness.ToString(); rootElement.AppendChild(xmlSquareStickRoundness);
                 XmlNode xmlSquareRStickRoundness = m_Xdoc.CreateNode(XmlNodeType.Element, "SquareRStickRoundness", null); xmlSquareRStickRoundness.InnerText = squStickInfo[device].rsRoundness.ToString(); rootElement.AppendChild(xmlSquareRStickRoundness);
+
+                XmlNode xmlLsAntiBounceEnabled = m_Xdoc.CreateNode(XmlNodeType.Element, "LSAntiBounce", null); xmlLsAntiBounceEnabled.InnerText = lsAntiBounceInfo[device].enabled.ToString(); rootElement.AppendChild(xmlLsAntiBounceEnabled);
+                XmlNode xmlRsAntiBounceEnabled = m_Xdoc.CreateNode(XmlNodeType.Element, "RSAntiBounce", null); xmlRsAntiBounceEnabled.InnerText = rsAntiBounceInfo[device].enabled.ToString(); rootElement.AppendChild(xmlRsAntiBounceEnabled);
+
+                XmlNode xmlLsAntiBounceDelta = m_Xdoc.CreateNode(XmlNodeType.Element, "LSAntiBounceDelta", null); xmlLsAntiBounceDelta.InnerText = lsAntiBounceInfo[device].delta.ToString(); rootElement.AppendChild(xmlLsAntiBounceDelta);
+                XmlNode xmlRsAntiBounceDelta = m_Xdoc.CreateNode(XmlNodeType.Element, "RSAntiBounceDelta", null); xmlRsAntiBounceDelta.InnerText = rsAntiBounceInfo[device].delta.ToString(); rootElement.AppendChild(xmlRsAntiBounceDelta);
+
+                XmlNode xmlLsAntiBounceTimeout = m_Xdoc.CreateNode(XmlNodeType.Element, "LSAntiBounceTimeout", null); xmlLsAntiBounceTimeout.InnerText = lsAntiBounceInfo[device].timeout.ToString(); rootElement.AppendChild(xmlLsAntiBounceTimeout);
+                XmlNode xmlRsAntiBounceTimeout = m_Xdoc.CreateNode(XmlNodeType.Element, "RSAntiBounceTimeout", null); xmlRsAntiBounceTimeout.InnerText = rsAntiBounceInfo[device].timeout.ToString(); rootElement.AppendChild(xmlRsAntiBounceTimeout);
 
                 XmlNode xmlLsOutputMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOutputMode", null); xmlLsOutputMode.InnerText = lsOutputSettings[device].mode.ToString(); rootElement.AppendChild(xmlLsOutputMode);
                 XmlNode xmlRsOutputMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOutputMode", null); xmlRsOutputMode.InnerText = rsOutputSettings[device].mode.ToString(); rootElement.AppendChild(xmlRsOutputMode);
@@ -4780,6 +4819,22 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSSquareStick"); bool.TryParse(Item.InnerText, out squStickInfo[device].rsMode); }
                 catch { squStickInfo[device].rsMode = false; missingSetting = true; }
+
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSAntiBounce"); bool.TryParse(Item.InnerText, out lsAntiBounceInfo[device].enabled); }
+                catch { lsAntiBounceInfo[device].enabled = StickAntiBounceInfo.DEFAULT_ENABLED; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSAntiBounce"); bool.TryParse(Item.InnerText, out rsAntiBounceInfo[device].enabled); }
+                catch { rsAntiBounceInfo[device].enabled = StickAntiBounceInfo.DEFAULT_ENABLED; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSAntiBounceDelta"); double.TryParse(Item.InnerText, out lsAntiBounceInfo[device].delta); }
+                catch { lsAntiBounceInfo[device].delta = StickAntiBounceInfo.DEFAULT_DELTA; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSAntiBounceDelta"); double.TryParse(Item.InnerText, out rsAntiBounceInfo[device].delta); }
+                catch { rsAntiBounceInfo[device].delta = StickAntiBounceInfo.DEFAULT_DELTA; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSAntiBounceTimeout"); int.TryParse(Item.InnerText, out lsAntiBounceInfo[device].timeout); }
+                catch { lsAntiBounceInfo[device].timeout = StickAntiBounceInfo.DEFAULT_TIMEOUT; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSAntiBounceTimeout"); int.TryParse(Item.InnerText, out rsAntiBounceInfo[device].timeout); }
+                catch { rsAntiBounceInfo[device].timeout = StickAntiBounceInfo.DEFAULT_TIMEOUT; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSOutputMode"); Enum.TryParse(Item.InnerText, out lsOutputSettings[device].mode); }
                 catch { missingSetting = true; }
@@ -6553,6 +6608,9 @@ namespace DS4Windows
             squStickInfo[device].rsMode = false;
             squStickInfo[device].lsRoundness = 5.0;
             squStickInfo[device].rsRoundness = 5.0;
+            lsAntiBounceInfo[device].timeout = StickAntiBounceInfo.DEFAULT_TIMEOUT;
+            lsAntiBounceInfo[device].delta = StickAntiBounceInfo.DEFAULT_DELTA;
+            lsAntiBounceInfo[device].enabled = StickAntiBounceInfo.DEFAULT_ENABLED;
             setLsOutCurveMode(device, 0);
             setRsOutCurveMode(device, 0);
             setL2OutCurveMode(device, 0);

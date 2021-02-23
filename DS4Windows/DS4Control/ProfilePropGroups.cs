@@ -24,6 +24,17 @@ namespace DS4Windows
         public int fuzz = DEFAULT_FUZZ;
     }
 
+    public class StickAntiBounceInfo
+    {
+        public const double DEFAULT_DELTA = 135;
+        public const int DEFAULT_TIMEOUT = 50;
+        public const bool DEFAULT_ENABLED = false;
+
+        public bool enabled = DEFAULT_ENABLED;
+        public double delta = DEFAULT_DELTA;
+        public int timeout = DEFAULT_TIMEOUT;
+    }
+
     public class TriggerDeadZoneZInfo
     {
         public byte deadZone; // Trigger deadzone is expressed in axis units

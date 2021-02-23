@@ -275,7 +275,9 @@
                                                 <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                 <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                 <RowDefinition Style="{StaticResource gridRowHeight}" />
-                                                <RowDefinition Style="{StaticResource gridRowHeight}"/>
+                                                <RowDefinition Style="{StaticResource gridRowHeight}" />
+                                                <RowDefinition Style="{StaticResource gridRowHeight}" />
+                                                <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                 <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                 <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                 <RowDefinition Style="{StaticResource gridRowHeight}" />
@@ -350,6 +352,23 @@
                                                     Minimum="0" Maximum="100"
                                                     Margin="{StaticResource spaceMargin}" />
                                             </DockPanel>
+                                            
+                                            <Label Content="Anti Bounce:" Grid.Row="11" Grid.Column="0" />
+                                            <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="1" HorizontalAlignment="Right">
+                                                <CheckBox IsChecked="{Binding LSAntiBounce}" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
+                                                <xctk:DoubleUpDown d:IsHidden="True" FormatString="F1" Value="{Binding LSAntiBounceDelta, FallbackValue=135}"
+                                                       MinWidth="100" Minimum="0.0" Maximum="256.0" Increment="1.0" IsEnabled="{Binding LSAntiBounce}"
+                                                       Margin="{StaticResource spaceMargin}" />
+                                                <TextBlock Text="units" DockPanel.Dock="Right" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
+                                            </StackPanel>
+                                            
+                                            <Label Content="Anti Bounce:" Grid.Row="12" Grid.Column="0" />
+                                            <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="1" HorizontalAlignment="Right">
+                                                <xctk:IntegerUpDown d:IsHidden="True" FormatString="F1" Value="{Binding LSAntiBounceTimeout}"
+                                                       MinWidth="100" Minimum="0" Maximum="1000" Increment="1" IsEnabled="{Binding LSAntiBounce}"
+                                                       Margin="{StaticResource spaceMargin}" />
+                                                <TextBlock Text="ms" DockPanel.Dock="Right" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
+                                            </StackPanel>
                                         </Grid>
                                     </TabItem>
                                     <TabItem Header="FlickStick" Visibility="Collapsed">
@@ -423,7 +442,9 @@
                                                 <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                 <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                 <RowDefinition Style="{StaticResource gridRowHeight}" />
-                                                <RowDefinition Style="{StaticResource gridRowHeight}"/>
+                                                <RowDefinition Style="{StaticResource gridRowHeight}" />
+                                                <RowDefinition Style="{StaticResource gridRowHeight}" />
+                                                <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                 <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                 <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                 <RowDefinition Style="{StaticResource gridRowHeight}" />
@@ -498,6 +519,23 @@
                                                     Minimum="0" Maximum="100"
                                                     Margin="{StaticResource spaceMargin}" />
                                             </DockPanel>
+                                            
+                                            <Label Content="Anti Bounce:" Grid.Row="11" Grid.Column="0" />
+                                            <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="1" HorizontalAlignment="Right">
+                                                <CheckBox IsChecked="{Binding RSAntiBounce}" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
+                                                <xctk:DoubleUpDown d:IsHidden="True" FormatString="F1" Value="{Binding RSAntiBounceDelta, FallbackValue=135}"
+                                                       MinWidth="100" Minimum="0.0" Maximum="256.0" Increment="1.0" IsEnabled="{Binding LSAntiBounce}"
+                                                       Margin="{StaticResource spaceMargin}" />
+                                                <TextBlock Text="units" DockPanel.Dock="Right" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
+                                            </StackPanel>
+
+                                            <Label Content="Anti Bounce:" Grid.Row="12" Grid.Column="0" />
+                                            <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="1" HorizontalAlignment="Right">
+                                                <xctk:IntegerUpDown d:IsHidden="True" FormatString="F1" Value="{Binding RSAntiBounceTimeout}"
+                                                       MinWidth="100" Minimum="0" Maximum="1000" Increment="1" IsEnabled="{Binding RSAntiBounce}"
+                                                       Margin="{StaticResource spaceMargin}" />
+                                                <TextBlock Text="ms" DockPanel.Dock="Right" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
+                                            </StackPanel>
                                         </Grid>
                                     </TabItem>
                                     <TabItem Header="FlickStick" Visibility="Collapsed">

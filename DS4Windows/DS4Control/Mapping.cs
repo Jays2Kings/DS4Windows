@@ -5455,7 +5455,21 @@ namespace DS4Windows
             {
                 queue.Dequeue();
             }
-            if (queue.Any(oldValues => Math.Sqrt(Math.Pow(axisXValue - oldValues.x, 2) + Math.Pow(axisYValue - oldValues.y, 2)) >= delta))
+            if (queue.Any(oldValues => {
+                double distanceSquared = Math.Pow(axisXValue - oldValues.x, 2) + Math.Pow(axisYValue - oldValues.y, 2);
+                if (distanceSquared >= (delta * delta))
+                { 
+                    //Checks if the line between two points touches a 15 unit circle in the middle
+                    double t = ((128 - axisXValue) * (oldValues.x - axisXValue) + (128 - axisYValue) * (oldValues.y - axisYValue)) / distanceSquared;
+                    t = Math.Max(0, Math.Min(1, t));
+                    double distanceToMiddleSquared = Math.Pow(128 - (axisXValue + t * (oldValues.x - axisXValue)), 2) + Math.Pow(128 - (axisYValue + t * (oldValues.y - axisYValue)), 2);
+                    return distanceToMiddleSquared <= 15 * 15;
+                }
+                else
+                {
+                    return false;
+                }
+            }))
             {
                 useAxisX = useAxisY = 128;
             }

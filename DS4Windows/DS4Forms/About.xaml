@@ -3,13 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DS4WinWPF"
+        xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
         mc:Ignorable="d"
         Title="Hotkeys/About" Height="450" Width="800"
         Style="{DynamicResource WindowStyle}">
+    <Window.Resources>
+        <local:AboutImgPathLocations x:Key="aboutImgPathLocs" />
+    </Window.Resources>
     <DockPanel>
         <Label x:Name="headerLb" Content="DS4Windows - Ryochan7 Build (Version " DockPanel.Dock="Top" HorizontalAlignment="Center" />
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0,4,0,0">
+            <Button x:Name="githubSocialBtn" Click="GithubSocialBtn_Click"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" ToolTip="GitHub">
+                <Image Source="{Binding GitHubImg, Source={StaticResource aboutImgPathLocs}}" Height="32" />
+            </Button>
             <Button x:Name="youtubeSocialBtn" Click="YoutubeSocialBtn_Click"
                     BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" ToolTip="YouTube">
                 <Image Source="/DS4Windows;component/Resources/social/youtube_social_icon_red.png" Height="32" />

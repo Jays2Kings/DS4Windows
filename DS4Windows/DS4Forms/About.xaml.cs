@@ -90,5 +90,15 @@ namespace DS4WinWPF.DS4Forms
         {
             Util.StartProcessHelper("https://www.minds.com/ds4windows/");
         }
+
+        private void GithubSocialBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessHelper("https://github.com/Ryochan7/DS4Windows");
+        }
+    }
+
+    public class AboutImgPathLocations
+    {
+        public string GitHubImg { get => $"/DS4Windows;component/Resources/social/{App.Current.FindResource("GitHubImg")}"; }
     }
 }

@@ -318,16 +318,7 @@ namespace DS4Windows
 
                 if (gyroAverageTimer.IsRunning)
                 {
-                    double accelMag = Math.Sqrt(AccelX * AccelX + AccelY * AccelY + AccelZ * AccelZ);
-                    PushSensorSamples(currentYaw, currentPitch, currentRoll, (float)accelMag);
-                    if (gyroAverageTimer.ElapsedMilliseconds > 5000L)
-                    {
-                        gyroAverageTimer.Stop();
-                        AverageGyro(ref gyro_offset_x, ref gyro_offset_y, ref gyro_offset_z, ref gyro_accel_magnitude);
-#if DEBUG
-                    Console.WriteLine("AverageGyro {0} {1} {2} {3}", gyro_offset_x, gyro_offset_y, gyro_offset_z, gyro_accel_magnitude);
-#endif
-                    }
+                    CalcSensorCamples(ref currentYaw, ref currentPitch, ref currentRoll, ref AccelX, ref AccelY, ref AccelZ);
                 }
 
                 currentYaw -= gyro_offset_x;
@@ -347,6 +338,23 @@ namespace DS4Windows
                         state.Motion = now;
                         SixAccelMoved(this, args);
                     }
+                }
+            }
+        }
+
+        private unsafe void CalcSensorCamples(ref int currentYaw, ref int currentPitch, ref int currentRoll, ref int AccelX, ref int AccelY, ref int AccelZ)
+        {
+            unchecked
+            {
+                double accelMag = Math.Sqrt(AccelX * AccelX + AccelY * AccelY + AccelZ * AccelZ);
+                PushSensorSamples(currentYaw, currentPitch, currentRoll, (float)accelMag);
+                if (gyroAverageTimer.ElapsedMilliseconds > 5000L)
+                {
+                    gyroAverageTimer.Stop();
+                    AverageGyro(ref gyro_offset_x, ref gyro_offset_y, ref gyro_offset_z, ref gyro_accel_magnitude);
+#if DEBUG
+                    Console.WriteLine("AverageGyro {0} {1} {2} {3}", gyro_offset_x, gyro_offset_y, gyro_offset_z, gyro_accel_magnitude);
+#endif
                 }
             }
         }

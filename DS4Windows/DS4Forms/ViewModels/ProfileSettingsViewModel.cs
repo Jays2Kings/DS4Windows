@@ -985,39 +985,39 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.RSModInfo[device].fuzz = value;
         }
 
-        public bool LSAntiBounce
+        public bool LSAntiSnapback
         {
-            get => Global.LSAntiBounceInfo[device].enabled;
-            set => Global.LSAntiBounceInfo[device].enabled = value;
+            get => Global.LSAntiSnapbackInfo[device].enabled;
+            set => Global.LSAntiSnapbackInfo[device].enabled = value;
         }
 
-        public bool RSAntiBounce
+        public bool RSAntiSnapback
         {
-            get => Global.RSAntiBounceInfo[device].enabled;
-            set => Global.RSAntiBounceInfo[device].enabled = value;
+            get => Global.RSAntiSnapbackInfo[device].enabled;
+            set => Global.RSAntiSnapbackInfo[device].enabled = value;
         }
 
-        public double LSAntiBounceDelta
+        public double LSAntiSnapbackDelta
         {
-            get => Global.LSAntiBounceInfo[device].delta;
-            set => Global.LSAntiBounceInfo[device].delta = value;
+            get => Global.LSAntiSnapbackInfo[device].delta;
+            set => Global.LSAntiSnapbackInfo[device].delta = value;
         }
 
-        public double RSAntiBounceDelta
+        public double RSAntiSnapbackDelta
         {
-            get => Global.RSAntiBounceInfo[device].delta;
-            set => Global.RSAntiBounceInfo[device].delta = value;
+            get => Global.RSAntiSnapbackInfo[device].delta;
+            set => Global.RSAntiSnapbackInfo[device].delta = value;
         }
-        public int LSAntiBounceTimeout
+        public int LSAntiSnapbackTimeout
         {
-            get => Global.LSAntiBounceInfo[device].timeout;
-            set => Global.LSAntiBounceInfo[device].timeout = value;
+            get => Global.LSAntiSnapbackInfo[device].timeout;
+            set => Global.LSAntiSnapbackInfo[device].timeout = value;
         }
 
-        public int RSAntiBounceTimeout
+        public int RSAntiSnapbackTimeout
         {
-            get => Global.RSAntiBounceInfo[device].timeout;
-            set => Global.RSAntiBounceInfo[device].timeout = value;
+            get => Global.RSAntiSnapbackInfo[device].timeout;
+            set => Global.RSAntiSnapbackInfo[device].timeout = value;
         }
 
         public int LSOutputIndex

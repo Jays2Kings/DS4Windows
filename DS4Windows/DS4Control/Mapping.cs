@@ -717,17 +717,17 @@ namespace DS4Windows
             if (rotationRS > 0.0 || rotationRS < 0.0)
                 cState.rotateRSCoordinates(rotationRS);
 
-            StickAntiBounceInfo lsAntiBounce = GetLSAntiBounceInfo(device);
-            StickAntiBounceInfo rsAntiBounce = GetRSAntiBounceInfo(device);
+            StickAntiSnapbackInfo lsAntiSnapback = GetLSAntiSnapbackInfo(device);
+            StickAntiSnapbackInfo rsAntiSnapback = GetRSAntiSnapbackInfo(device);
 
-            if (lsAntiBounce.enabled)
+            if (lsAntiSnapback.enabled)
             {
-                CalcBouncyStick(device, 0, lsAntiBounce.delta, lsAntiBounce.timeout, cState.LX, cState.LY, out cState.LX, out cState.LY);
+                CalcAntiSnapbackStick(device, 0, lsAntiSnapback.delta, lsAntiSnapback.timeout, cState.LX, cState.LY, out cState.LX, out cState.LY);
             }
 
-            if (rsAntiBounce.enabled)
+            if (rsAntiSnapback.enabled)
             {
-                CalcBouncyStick(device, 1, rsAntiBounce.delta, rsAntiBounce.timeout, cState.RX, cState.RY, out cState.RX, out cState.RY);
+                CalcAntiSnapbackStick(device, 1, rsAntiSnapback.delta, rsAntiSnapback.timeout, cState.RX, cState.RY, out cState.RX, out cState.RY);
             }
 
             StickDeadZoneInfo lsMod = GetLSDeadInfo(device);
@@ -5444,7 +5444,7 @@ namespace DS4Windows
             }
         }
 
-        private static void CalcBouncyStick(int device,
+        private static void CalcAntiSnapbackStick(int device,
             int stickId, double delta, long timeout, byte axisXValue, byte axisYValue,
             out byte useAxisX, out byte useAxisY)
         {

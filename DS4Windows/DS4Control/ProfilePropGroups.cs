@@ -24,7 +24,7 @@ namespace DS4Windows
         public int fuzz = DEFAULT_FUZZ;
     }
 
-    public class StickAntiBounceInfo
+    public class StickAntiSnapbackInfo
     {
         public const double DEFAULT_DELTA = 135;
         public const int DEFAULT_TIMEOUT = 50;

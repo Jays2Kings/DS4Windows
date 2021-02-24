@@ -2623,7 +2623,7 @@ namespace DS4Windows
                     {
                         bool value = getBoolMapping2(device, dcs.control, cState, eState, tp, fieldMapping);
                         if (value)
-                            outputfieldMapping.touchButton = value;
+                            outputfieldMapping.outputTouchButton = value;
                     }
                     else if (xboxControl >= X360Controls.LeftMouse && xboxControl <= X360Controls.WDOWN)
                     {

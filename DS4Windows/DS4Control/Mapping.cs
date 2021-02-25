@@ -5450,8 +5450,7 @@ namespace DS4Windows
         {
             long timestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             ref Queue<DS4TimedStickAxisValue> queue = ref stickValueHistory[device][stickId];
-            queue.Enqueue(new DS4TimedStickAxisValue(axisXValue, axisYValue, timestamp));
-            while(queue.Peek().timestamp < timestamp - timeout)
+            while(queue.Count > 0 && queue.Peek().timestamp < timestamp - timeout)
             {
                 queue.Dequeue();
             }
@@ -5478,6 +5477,7 @@ namespace DS4Windows
                 useAxisX = axisXValue;
                 useAxisY = axisYValue;
             }
+            queue.Enqueue(new DS4TimedStickAxisValue(axisXValue, axisYValue, timestamp));
         }
     }
 }

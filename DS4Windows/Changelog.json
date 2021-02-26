@@ -1,10 +1,32 @@
 {
-  "latest_version": "2.2.7",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 7},
-  "updated_at": "2021-02-18T21:49:24+0000",
+  "latest_version": "2.2.8",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 8},
+  "updated_at": "2021-02-26T18:33:49+0000",
   "changelog": {
     "versions": [
-	{
+    {
+      "version_str": "2.2.8",
+      "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 8},
+      "base_header": "Version 2.2.8",
+      "release_date": "2021-02-26T18:33:49+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 2.2.8",
+          "log_text": ["* Fixed resetting of trigger values for Two Stage modes",
+            "* Removed references to old Discord server",
+            "* Pull gyro calibration sampling routine out to its own method",
+            "* Fixed normal button binding to Touchpad Click output",
+            "* Attempt to go to DS4Updater Release page if automatic download of updater failed",
+            "* Added GitHub link to Social row in About window",
+            "* Fixed x86 ViGEm installer URL"],
+          "editor": "ryochan7",
+          "editors_note": ["Take a break"],
+          "updated_at": "2021-02-26T18:33:49+0000"
+        }
+      ]
+    },
+    {
         "version_str": "2.2.7",
         "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 7},
         "base_header": "Version 2.2.7",

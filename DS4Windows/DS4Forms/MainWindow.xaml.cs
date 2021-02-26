@@ -295,6 +295,7 @@ namespace DS4WinWPF.DS4Forms
                         Dispatcher.Invoke(() =>
                         {
                             MessageBox.Show(Properties.Resources.PleaseDownloadUpdater);
+                            Util.StartProcessHelper("https://github.com/Ryochan7/DS4Updater/releases/tag/v{UPDATER_VERSION}");
                         });
                         //Process.Start($"https://github.com/Ryochan7/DS4Updater/releases/download/v{UPDATER_VERSION}/{updaterExe}");
                     }
@@ -1691,7 +1692,7 @@ Suspend support not enabled.", true);
         }
     }
 
-    class ImageLocationPaths
+    public class ImageLocationPaths
     {
         public string NewProfile { get => $"/DS4Windows;component/Resources/{App.Current.FindResource("NewProfileImg")}"; }
         public event EventHandler NewProfileChanged;
@@ -1714,7 +1715,10 @@ Suspend support not enabled.", true);
         public ImageLocationPaths()
         {
             App current = App.Current as App;
-            current.ThemeChanged += Current_ThemeChanged;
+            if (current != null)
+            {
+                current.ThemeChanged += Current_ThemeChanged;
+            }
         }
 
         private void Current_ThemeChanged(object sender, EventArgs e)

@@ -47,6 +47,17 @@ namespace DS4Windows
         public struct GyroSwipeData
         {
             public bool swipeLeft, swipeRight, swipeUp, swipeDown;
+            public bool previousSwipeLeft, previousSwipeRight, previousSwipeUp, previousSwipeDown;
+            public enum XDir : ushort { None, Left, Right }
+            public enum YDir : ushort { None, Up, Down }
+
+            public XDir currentXDir;
+            public YDir currentYDir;
+            public bool xActive;
+            public bool yActive;
+
+            public DateTime initialTimeX;
+            public DateTime initialTimeY;
         }
 
         public GyroSwipeData gyroSwipe;
@@ -71,9 +82,12 @@ namespace DS4Windows
             trackballAccel = TRACKBALL_RADIUS * friction / TRACKBALL_INERTIA;
         }
 
-        public void ResetToggleGyroM()
+        public void ResetToggleGyroModes()
         {
+            currentToggleGyroControls = false;
             currentToggleGyroM = false;
+            currentToggleGyroStick = false;
+
             previousTriggerActivated = false;
             triggeractivated = false;
         }
@@ -81,18 +95,107 @@ namespace DS4Windows
         bool triggeractivated = false;
         bool previousTriggerActivated = false;
         bool useReverseRatchet = false;
-        bool toggleGyroMouse = true;
-        public bool ToggleGyroMouse { get => toggleGyroMouse;
-            set { toggleGyroMouse = value; ResetToggleGyroM(); } }
+
+        private bool toggleGyroControls = true;
+        public bool ToggleGyroControls
+        {
+            get => toggleGyroControls;
+            set
+            {
+                toggleGyroControls = value;
+                ResetToggleGyroModes();
+            }
+        }
+
+        private bool toggleGyroMouse = true;
+        public bool ToggleGyroMouse
+        {
+            get => toggleGyroMouse;
+            set
+            {
+                toggleGyroMouse = value;
+                ResetToggleGyroModes();
+            }
+        }
+
+        private bool toggleGyroStick = true;
+        public bool ToggleGyroStick
+        {
+            get => toggleGyroStick;
+            set
+            {
+                toggleGyroStick = value;
+                ResetToggleGyroModes();
+            }
+        }
 
         public MouseCursor Cursor => cursor;
 
+        bool currentToggleGyroControls = false;
         bool currentToggleGyroM = false;
+        bool currentToggleGyroStick = false;
 
         public virtual void sixaxisMoved(DS4SixAxis sender, SixAxisEventArgs arg)
         {
             GyroOutMode outMode = Global.GetGyroOutMode(deviceNum);
-            if (outMode == GyroOutMode.Mouse && Global.getGyroSensitivity(deviceNum) > 0)
+            if (outMode == GyroOutMode.Controls)
+            {
+                s = dev.getCurrentStateRef();
+
+                GyroControlsInfo controlsMapInfo = Global.GetGyroControlsInfo(deviceNum);
+                useReverseRatchet = controlsMapInfo.triggerTurns;
+                int i = 0;
+                string[] ss = controlsMapInfo.triggers.Split(',');
+                bool andCond = controlsMapInfo.triggerCond;
+                triggeractivated = andCond ? true : false;
+                if (!string.IsNullOrEmpty(ss[0]))
+                {
+                    string s = string.Empty;
+                    for (int index = 0, arlen = ss.Length; index < arlen; index++)
+                    {
+                        s = ss[index];
+                        if (andCond && !(int.TryParse(s, out i) && getDS4ControlsByName(i)))
+                        {
+                            triggeractivated = false;
+                            break;
+                        }
+                        else if (!andCond && int.TryParse(s, out i) && getDS4ControlsByName(i))
+                        {
+                            triggeractivated = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (toggleGyroControls)
+                {
+                    if (triggeractivated && triggeractivated != previousTriggerActivated)
+                    {
+                        currentToggleGyroStick = !currentToggleGyroStick;
+                    }
+
+                    previousTriggerActivated = triggeractivated;
+                    triggeractivated = currentToggleGyroStick;
+                }
+                else
+                {
+                    previousTriggerActivated = triggeractivated;
+                }
+
+                if (useReverseRatchet && triggeractivated)
+                {
+                    s.Motion.outputGyroControls = true;
+                }
+                else if (!useReverseRatchet && !triggeractivated)
+                {
+                    s.Motion.outputGyroControls = true;
+                }
+                else
+                {
+                    s.Motion.outputGyroControls = false;
+                }
+            }
+            else if (outMode == GyroOutMode.Mouse && Global.getGyroSensitivity(deviceNum) > 0)
             {
                 s = dev.getCurrentStateRef();
 
@@ -124,11 +227,11 @@ namespace DS4Windows
                 {
                     if (triggeractivated && triggeractivated != previousTriggerActivated)
                     {
-                        currentToggleGyroM = !currentToggleGyroM;
+                        currentToggleGyroControls = !currentToggleGyroControls;
                     }
 
                     previousTriggerActivated = triggeractivated;
-                    triggeractivated = currentToggleGyroM;
+                    triggeractivated = currentToggleGyroControls;
                 }
                 else
                 {
@@ -171,7 +274,7 @@ namespace DS4Windows
                     }
                 }
 
-                if (toggleGyroMouse)
+                if (toggleGyroStick)
                 {
                     if (triggeractivated && triggeractivated != previousTriggerActivated)
                     {
@@ -221,6 +324,11 @@ namespace DS4Windows
                         }
                     }
                 }
+
+                gyroSwipe.previousSwipeLeft = gyroSwipe.swipeLeft;
+                gyroSwipe.previousSwipeRight = gyroSwipe.swipeRight;
+                gyroSwipe.previousSwipeUp = gyroSwipe.swipeUp;
+                gyroSwipe.previousSwipeDown = gyroSwipe.swipeDown;
 
                 if (useReverseRatchet && triggeractivated)
                 {
@@ -427,6 +535,7 @@ namespace DS4Windows
             double velX = swipeInfo.xAxis == GyroDirectionalSwipeInfo.XAxisSwipe.Yaw ?
                 arg.sixAxis.angVelYaw : arg.sixAxis.angVelRoll;
             double velY = arg.sixAxis.angVelPitch;
+            int delayTime = swipeInfo.delayTime;
 
             int deadzoneX = (int)Math.Abs(swipeInfo.deadzoneX);
             int deadzoneY = (int)Math.Abs(swipeInfo.deadzoneY);
@@ -434,15 +543,75 @@ namespace DS4Windows
             gyroSwipe.swipeLeft = gyroSwipe.swipeRight = false;
             if (Math.Abs(velX) > deadzoneX)
             {
-                if (velX > 0) gyroSwipe.swipeRight = true;
-                else gyroSwipe.swipeLeft = true;
+                if (velX > 0)
+                {
+                    if (gyroSwipe.currentXDir != GyroSwipeData.XDir.Right)
+                    {
+                        gyroSwipe.initialTimeX = DateTime.Now;
+                        gyroSwipe.currentXDir = GyroSwipeData.XDir.Right;
+                        gyroSwipe.xActive = delayTime == 0;
+                    }
+
+                    if (gyroSwipe.xActive || (gyroSwipe.xActive = gyroSwipe.initialTimeX + TimeSpan.FromMilliseconds(delayTime) < DateTime.Now))
+                    {
+                        gyroSwipe.swipeRight = true;
+                    }
+                }
+                else
+                {
+                    if (gyroSwipe.currentXDir != GyroSwipeData.XDir.Left)
+                    {
+                        gyroSwipe.initialTimeX = DateTime.Now;
+                        gyroSwipe.currentXDir = GyroSwipeData.XDir.Left;
+                        gyroSwipe.xActive = delayTime == 0;
+                    }
+
+                    if (gyroSwipe.xActive || (gyroSwipe.xActive = gyroSwipe.initialTimeX + TimeSpan.FromMilliseconds(delayTime) < DateTime.Now))
+                    {
+                        gyroSwipe.swipeLeft = true;
+                    }
+                }
+            }
+            else
+            {
+                gyroSwipe.currentXDir = GyroSwipeData.XDir.None;
             }
 
             gyroSwipe.swipeUp = gyroSwipe.swipeDown = false;
             if (Math.Abs(velY) > deadzoneY)
             {
-                if (velY > 0) gyroSwipe.swipeUp = true;
-                else gyroSwipe.swipeDown = true;
+                if (velY > 0)
+                {
+                    if (gyroSwipe.currentYDir != GyroSwipeData.YDir.Up)
+                    {
+                        gyroSwipe.initialTimeY = DateTime.Now;
+                        gyroSwipe.currentYDir = GyroSwipeData.YDir.Up;
+                        gyroSwipe.yActive = delayTime == 0;
+                    }
+
+                    if (gyroSwipe.yActive || (gyroSwipe.yActive = gyroSwipe.initialTimeY + TimeSpan.FromMilliseconds(delayTime) < DateTime.Now))
+                    {
+                        gyroSwipe.swipeUp = true;
+                    }
+                }
+                else
+                {
+                    if (gyroSwipe.currentYDir != GyroSwipeData.YDir.Down)
+                    {
+                        gyroSwipe.initialTimeY = DateTime.Now;
+                        gyroSwipe.currentYDir = GyroSwipeData.YDir.Down;
+                        gyroSwipe.yActive = delayTime == 0;
+                    }
+
+                    if (gyroSwipe.yActive || (gyroSwipe.yActive = gyroSwipe.initialTimeY + TimeSpan.FromMilliseconds(delayTime) < DateTime.Now))
+                    {
+                        gyroSwipe.swipeDown = true;
+                    }
+                }
+            }
+            else
+            {
+                gyroSwipe.currentYDir = GyroSwipeData.YDir.None;
             }
         }
 
@@ -526,8 +695,8 @@ namespace DS4Windows
             {
                 if (!(swipeUp || swipeDown || swipeLeft || swipeRight) && arg.touches.Length == 1)
                 {
-                    if (arg.touches[0].hwX - firstTouch.hwX > 400) swipeRight = true;
-                    if (arg.touches[0].hwX - firstTouch.hwX < -400) swipeLeft = true;
+                    if (arg.touches[0].hwX - firstTouch.hwX > 300) swipeRight = true;
+                    if (arg.touches[0].hwX - firstTouch.hwX < -300) swipeLeft = true;
                     if (arg.touches[0].hwY - firstTouch.hwY > 300) swipeDown = true;
                     if (arg.touches[0].hwY - firstTouch.hwY < -300) swipeUp = true;
                 }
@@ -822,7 +991,8 @@ namespace DS4Windows
                 return;
             }
 
-            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchLeft, false) == null && leftDown)
+            if (Global.GetDS4CSetting(deviceNum, DS4Controls.TouchLeft).IsDefault &&
+                leftDown)
             {
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
                 dragging2 = true;
@@ -832,14 +1002,23 @@ namespace DS4Windows
                 dragging2 = false;
             }
 
-            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchUpper, false) == null && upperDown)
+            if (Global.GetDS4CSetting(deviceNum, DS4Controls.TouchUpper).IsDefault &&
+                upperDown)
+            {
                 Mapping.MapClick(deviceNum, Mapping.Click.Middle);
+            }
 
-            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchRight, false) == null && rightDown)
+            if (Global.GetDS4CSetting(deviceNum, DS4Controls.TouchRight).IsDefault &&
+                rightDown)
+            {
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
+            }
 
-            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchMulti, false) == null && multiDown)
+            if (Global.GetDS4CSetting(deviceNum, DS4Controls.TouchMulti).IsDefault &&
+                multiDown)
+            {
                 Mapping.MapClick(deviceNum, Mapping.Click.Right);
+            }
 
             if (Global.TouchOutMode[deviceNum] == TouchpadOutMode.Mouse)
             {

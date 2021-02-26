@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DS4Windows;
 using LEDBarMode = DS4Windows.DualSenseControllerOptions.LEDBarMode;
+using MuteLEDMode = DS4Windows.DualSenseControllerOptions.MuteLEDMode;
 
 namespace DS4WinWPF.DS4Forms.ViewModels
 {
@@ -104,21 +105,21 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             ControllerOptionsStore currentStore =
                 controllerOptionsStores[controllerSelectedIndex];
 
-            int result = -1;
+            int result = 0;
             switch (currentStore.DeviceType)
             {
                 case DS4Windows.InputDevices.InputDeviceType.DS4:
-                    result = 0;
-                    break;
-                case DS4Windows.InputDevices.InputDeviceType.DualSense:
                     result = 1;
                     break;
-                case DS4Windows.InputDevices.InputDeviceType.SwitchPro:
+                case DS4Windows.InputDevices.InputDeviceType.DualSense:
                     result = 2;
+                    break;
+                case DS4Windows.InputDevices.InputDeviceType.SwitchPro:
+                    result = 3;
                     break;
                 case DS4Windows.InputDevices.InputDeviceType.JoyConL:
                 case DS4Windows.InputDevices.InputDeviceType.JoyConR:
-                    result = 3;
+                    result = 4;
                     break;
                 default:
                     break;
@@ -219,9 +220,18 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             new EnumChoiceSelection<LEDBarMode>("Off", LEDBarMode.Off),
             new EnumChoiceSelection<LEDBarMode>("Only for multiple controllers", LEDBarMode.MultipleControllers),
+            new EnumChoiceSelection<LEDBarMode>("Battery Percentage", LEDBarMode.BatteryPercentage),
             new EnumChoiceSelection<LEDBarMode>("On", LEDBarMode.On),
         };
         public List<EnumChoiceSelection<LEDBarMode>> DsLEDModes { get => dsLEDModeOptions; }
+
+        private List<EnumChoiceSelection<MuteLEDMode>> dsMuteLEDModes = new List<EnumChoiceSelection<MuteLEDMode>>()
+        {
+            new EnumChoiceSelection<MuteLEDMode>("Off", MuteLEDMode.Off),
+            new EnumChoiceSelection<MuteLEDMode>("On", MuteLEDMode.On),
+            new EnumChoiceSelection<MuteLEDMode>("Pulse", MuteLEDMode.Pulse),
+        };
+        public List<EnumChoiceSelection<MuteLEDMode>> DsMuteLEDModes { get => dsMuteLEDModes; }
 
         public DualSenseControllerOptionsWrapper(DualSenseControllerOptions options,
             DualSenseDeviceOptions parentOpts)

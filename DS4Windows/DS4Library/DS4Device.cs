@@ -386,6 +386,10 @@ namespace DS4Windows
         private const byte DEFAULT_BT_REPORT_TYPE = 0x15;
         private byte knownGoodBTOutputReportType = DEFAULT_BT_REPORT_TYPE;
 
+        private const byte DEFAULT_OUTPUT_FEATURES = 0xF7;
+        private const byte COPYCAT_OUTPUT_FEATURES = 0xF3; // Remove flash flag
+        private byte outputFeaturesByte = DEFAULT_OUTPUT_FEATURES;
+
         protected bool useRumble = true;
         public bool UseRumble { get => useRumble; set => useRumble = value; }
 
@@ -617,10 +621,17 @@ namespace DS4Windows
                     if (tempAttr.VendorId == 0x054C && tempAttr.ProductId == 0x09CC)
                     {
                         audio = new DS4Audio(searchDeviceInstance: hidDevice.ParentPath);
-                        micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture, searchDeviceInstance: hidDevice.ParentPath);
+                        micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture,
+                            searchDeviceInstance: hidDevice.ParentPath);
                     }
                     else if (tempAttr.VendorId == DS4Devices.RAZER_VID &&
                         tempAttr.ProductId == 0x1007)
+                    {
+                        audio = new DS4Audio(searchDeviceInstance: hidDevice.ParentPath);
+                        micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture,
+                            searchDeviceInstance: hidDevice.ParentPath);
+                    }
+                    else if (featureSet.HasFlag(VidPidFeatureSet.MonitorAudio))
                     {
                         audio = new DS4Audio(searchDeviceInstance: hidDevice.ParentPath);
                         micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture,
@@ -1514,8 +1525,8 @@ namespace DS4Windows
                 outReportBuffer[1] = (byte)(0xC0 | btPollRate); // input report rate
                 outReportBuffer[2] = 0xA0;
 
-                // enable rumble (0x01), lightbar (0x02), flash (0x04)
-                outReportBuffer[3] = 0xf7;
+                // enable rumble (0x01), lightbar (0x02), flash (0x04). Default: 0xF7
+                outReportBuffer[3] = outputFeaturesByte;
                 outReportBuffer[4] = 0x04;
 
                 outReportBuffer[6] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast; // fast motor
@@ -1543,8 +1554,8 @@ namespace DS4Windows
             else
             {
                 outReportBuffer[0] = 0x05;
-                // enable rumble (0x01), lightbar (0x02), flash (0x04)
-                outReportBuffer[1] = 0xf7;
+                // enable rumble (0x01), lightbar (0x02), flash (0x04). Default: 0xF7
+                outReportBuffer[1] = outputFeaturesByte;
                 outReportBuffer[2] = 0x04;
                 outReportBuffer[4] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast; // fast motor
                 outReportBuffer[5] = currentHap.rumbleState.RumbleMotorStrengthLeftHeavySlow; // slow  motor
@@ -2002,10 +2013,29 @@ namespace DS4Windows
             abortInputThread = true;
         }
 
+        private void PrepareOutputFeaturesByte()
+        {
+            if (nativeOptionsStore != null)
+            {
+                if (nativeOptionsStore.IsCopyCat)
+                {
+                    outputFeaturesByte = COPYCAT_OUTPUT_FEATURES;
+                }
+                else
+                {
+                    outputFeaturesByte = DEFAULT_OUTPUT_FEATURES;
+                }
+            }
+        }
+
         private void SetupOptionsEvents()
         {
             if (nativeOptionsStore != null)
             {
+                nativeOptionsStore.IsCopyCatChanged += (sender, e) =>
+                {
+                    PrepareOutputFeaturesByte();
+                };
             }
         }
 
@@ -2020,7 +2050,10 @@ namespace DS4Windows
 
         public virtual void LoadStoreSettings()
         {
-
+            if (nativeOptionsStore != null)
+            {
+                PrepareOutputFeaturesByte();
+            }
         }
     }
 }

@@ -1,9 +1,94 @@
 {
-  "latest_version": "2.2.4",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 4},
-  "updated_at": "2021-02-02T22:25:55+0000",
+  "latest_version": "2.2.7",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 7},
+  "updated_at": "2021-02-18T21:49:24+0000",
   "changelog": {
     "versions": [
+	{
+        "version_str": "2.2.7",
+        "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 7},
+        "base_header": "Version 2.2.7",
+        "release_date": "2021-02-18T21:49:24+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.2.7",
+            "log_text": ["* Added delay time to Gyro Directional Swipe action",
+              "* Fixed populate of Gyro Directional Swipe and Gyro Controls triggers buttons",
+              "* Lowered touchpad slide distance for Controls mode",
+              "* Fixed Steering Wheel calibration Special Action saving",
+              "* Allow resetting of extras for Trigger soft pull and full pull",
+              "* Allow resetting Extras bound to Gyro Swipe actions",
+              "* Now officially only support Windows 10 and later. THANKS MICROSOFT",
+              "* Added BatteryPercentage mode for DualSense Player LED Bar",
+              "* Fixed Switch Pro and JoyCon AccelY coordinate used by UDP Server",
+              "* Fixed profile cancelling for the test index",
+              "* Tweaked disable device time for Exclusive mode routine",
+              "* Removed DynamicResource lookups for Special Action Editor",
+              "* .NET 5 port in progress",
+              "* Added App instance check to work around Design mode in .NET 5.0.",
+              "* Changed Browse Programs fallback value in Profile Editor for .NET 5.0",
+              "* Changed method to strip null terminated strings",
+              "* Added Gyro Calibration button to Gyro Mouse StackPanel",
+              "* Updated ViGEmClient library to use notification queue",
+              "* Fixed critical notification callback bug in ViGEm.NET library",
+              "* Fixed infinite rumble problem stemming from ViGEm library issues"],
+            "editor": "ryochan7",
+            "editors_note": ["ViGEm updates are the most relevant"],
+            "updated_at": "2021-02-19T17:57:22+0000"
+          }
+        ]
+      },
+      {
+        "version_str": "2.2.6",
+        "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 6},
+        "base_header": "Version 2.2.6",
+        "release_date": "2021-02-11T03:50:45+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.2.6",
+            "log_text": ["* Fixed Gyro Mouse Joystick trigger selection",
+              "* Corrected Gyro Mouse and Gyro Mouse Joystick toggle flags",
+              "* Put Gyro Calibration button in other Gyro mode panels",
+              "* Added Mute LED mode for DualSense device options",
+              "* Fixed default virtual Touchpad button bindings",
+              "* Corrected Special Action regression"],
+            "editor": "ryochan7",
+            "editors_note": ["None"],
+            "updated_at": "2021-02-11T03:50:45+0000"
+          }
+        ]
+      },
+      {
+        "version_str": "2.2.5",
+        "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 5},
+        "base_header": "Version 2.2.5",
+        "release_date": "2021-02-10T03:07:55+0000",
+        "locales": [
+          {
+            "code": "en",
+            "header": "Version 2.2.5",
+            "log_text": ["* Fixed sync between button mouse sens and active mouse sens in Profile Editor",
+              "* Changed DualSense blanking flags used for initial connection and detach",
+              "* Now use defined ControlActionData for mapped actions rather than unboxing object references. Speeds up the mapping routine a good amount.",
+              "* Hebrew translation added to project file. Translation was never added in",
+              "* Allow Gyro triggers for Gyro Controls mode",
+              "* Reset Gyro Controls output accel values to 0 for each poll",
+              "* Driver installer window now takes arch into account when downloading the latest ViGEm installer. It uses a different setup file for each arch",
+              "* Disable Xbox 360 installer button in Welcome Dialog if running on Win8 or greater",
+              "* Added toggle mode to Gyro Controls",
+              "* Added ScrollViewer for Gyro tab",
+              "* Increased Full Click trigger effect resistance a bit",
+              "* Use fake HW serial to index SonyWA connections. Should allow multiple Sony dongles to work",
+              "* Allow audio volume searching for Nacon Rev Pro v.2 controller.",
+              "* Added DS4 setting to attempt to change output report features for copycat controllers"],
+            "editor": "ryochan7",
+            "editors_note": ["None"],
+            "updated_at": "2021-02-10T03:07:55+0000"
+          }
+        ]
+      },
       {
         "version_str": "2.2.4",
         "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 4},

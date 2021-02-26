@@ -339,7 +339,7 @@ namespace DS4WinWPF.DS4Forms
             recordWin.Saved += (sender2, args) =>
             {
                 macroActVM.Macro.Clear();
-                macroActVM.Macro.AddRange((int[])settings.action);
+                macroActVM.Macro.AddRange((int[])settings.action.actionMacro);
                 macroActVM.UpdateMacroString();
             };
 
@@ -419,7 +419,7 @@ namespace DS4WinWPF.DS4Forms
             recordWin.Saved += (sender2, args) =>
             {
                 multiActButtonVM.TapMacro.Clear();
-                multiActButtonVM.TapMacro.AddRange((int[])settings.action);
+                multiActButtonVM.TapMacro.AddRange((int[])settings.action.actionMacro);
                 multiActButtonVM.UpdateTapDisplayText();
             };
 
@@ -433,7 +433,7 @@ namespace DS4WinWPF.DS4Forms
             recordWin.Saved += (sender2, args) =>
             {
                 multiActButtonVM.HoldMacro.Clear();
-                multiActButtonVM.HoldMacro.AddRange((int[])settings.action);
+                multiActButtonVM.HoldMacro.AddRange((int[])settings.action.actionMacro);
                 multiActButtonVM.UpdateHoldDisplayText();
             };
 
@@ -447,7 +447,7 @@ namespace DS4WinWPF.DS4Forms
             recordWin.Saved += (sender2, args) =>
             {
                 multiActButtonVM.DoubleTapMacro.Clear();
-                multiActButtonVM.DoubleTapMacro.AddRange((int[])settings.action);
+                multiActButtonVM.DoubleTapMacro.AddRange((int[])settings.action.actionMacro);
                 multiActButtonVM.UpdateDoubleTapDisplayText();
             };
 

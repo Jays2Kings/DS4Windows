@@ -304,6 +304,7 @@ namespace DS4Windows
         public const bool DEFAULT_TRIGGER_COND = true;
         public const bool DEFAULT_TRIGGER_TURNS = true;
         public const XAxisSwipe DEFAULT_X_AXIS = XAxisSwipe.Yaw;
+        public const int DEFAULT_DELAY_TIME = 0;
 
         public int deadzoneX = DEFAULT_GYRO_DIR_SPEED;
         public int deadzoneY = DEFAULT_GYRO_DIR_SPEED;
@@ -311,6 +312,7 @@ namespace DS4Windows
         public bool triggerCond = DEFAULT_TRIGGER_COND;
         public bool triggerTurns = DEFAULT_TRIGGER_TURNS;
         public XAxisSwipe xAxis = DEFAULT_X_AXIS;
+        public int delayTime = DEFAULT_DELAY_TIME;
 
         public void Reset()
         {
@@ -320,6 +322,28 @@ namespace DS4Windows
             triggerCond = DEFAULT_TRIGGER_COND;
             triggerTurns = DEFAULT_TRIGGER_TURNS;
             xAxis = DEFAULT_X_AXIS;
+            delayTime = DEFAULT_DELAY_TIME;
+        }
+    }
+
+    public class GyroControlsInfo
+    {
+        public const string DEFAULT_TRIGGERS = "-1";
+        public const bool DEFAULT_TRIGGER_COND = true;
+        public const bool DEFAULT_TRIGGER_TURNS = true;
+        public const bool DEFAULT_TRIGGER_TOGGLE = false;
+
+        public string triggers = DEFAULT_TRIGGERS;
+        public bool triggerCond = DEFAULT_TRIGGER_COND;
+        public bool triggerTurns = DEFAULT_TRIGGER_TURNS;
+        public bool triggerToggle = DEFAULT_TRIGGER_TOGGLE;
+
+        public void Reset()
+        {
+            triggers = DEFAULT_TRIGGERS;
+            triggerCond = DEFAULT_TRIGGER_COND;
+            triggerTurns = DEFAULT_TRIGGER_TURNS;
+            triggerToggle = DEFAULT_TRIGGER_TOGGLE;
         }
     }
 
@@ -329,13 +353,39 @@ namespace DS4Windows
         public const double MOUSESTICKANTIOFFSET = 0.008;
         public const int DEFAULT_BUTTON_SENS = 25;
         public const double DEFAULT_BUTTON_VERTICAL_SCALE = 1.0;
+        public const int DEFAULT_TEMP_SENS = -1;
 
         public int buttonSensitivity = DEFAULT_BUTTON_SENS;
+        public int ButtonSensitivity
+        {
+            get => buttonSensitivity;
+            set
+            {
+                if (buttonSensitivity == value) return;
+                buttonSensitivity = value;
+                ButtonMouseInfoChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler ButtonMouseInfoChanged;
+
         public bool mouseAccel;
         public int activeButtonSensitivity = DEFAULT_BUTTON_SENS;
-        public int tempButtonSensitivity = -1;
+        public int tempButtonSensitivity = DEFAULT_TEMP_SENS;
         public double mouseVelocityOffset = MOUSESTICKANTIOFFSET;
         public double buttonVerticalScale = DEFAULT_BUTTON_VERTICAL_SCALE;
+
+        public ButtonMouseInfo()
+        {
+            ButtonMouseInfoChanged += ButtonMouseInfo_ButtonMouseInfoChanged;
+        }
+
+        private void ButtonMouseInfo_ButtonMouseInfoChanged(object sender, EventArgs e)
+        {
+            if (tempButtonSensitivity == DEFAULT_TEMP_SENS)
+            {
+                activeButtonSensitivity = buttonSensitivity;
+            }
+        }
 
         public void SetActiveButtonSensitivity(int sens)
         {
@@ -347,7 +397,7 @@ namespace DS4Windows
             buttonSensitivity = DEFAULT_BUTTON_SENS;
             mouseAccel = false;
             activeButtonSensitivity = DEFAULT_BUTTON_SENS;
-            tempButtonSensitivity = -1;
+            tempButtonSensitivity = DEFAULT_TEMP_SENS;
             mouseVelocityOffset = MOUSESTICKANTIOFFSET;
             buttonVerticalScale = DEFAULT_BUTTON_VERTICAL_SCALE;
         }

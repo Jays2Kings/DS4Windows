@@ -17,9 +17,10 @@ namespace DS4Windows
     // NoOutputData         = Gamepad doesn't support lightbar and rumble data writing at all. DS4Win app does not try to write out anything to gamepad.
     // NoBatteryReading     = Gamepad doesn't send battery readings in the same format than DS4 gamepad (DS4Win app reports always 0% and starts to blink lightbar). Skip reading a battery fields and report fixed 99% battery level to avoid "low battery" LED flashes.
     // NoGyroCalib          = Gamepad doesn't support or need gyro calibration routines. Skip gyro calibration if this flag is set. Some gamepad do have gyro, but don't support calibration or gyro sensors are missing.
+    // MonitorAudio         = Attempt to read volume levels for Gamepad headphone jack sink in Windows. Only with USB or SONYWA connections
     //
     [Flags]
-    public enum VidPidFeatureSet : ushort { DefaultDS4 = 0, OnlyInputData0x01 = 1, OnlyOutputData0x05 = 2, NoOutputData = 4, NoBatteryReading = 8, NoGyroCalib = 16 };
+    public enum VidPidFeatureSet : ushort { DefaultDS4 = 0, OnlyInputData0x01 = 1, OnlyOutputData0x05 = 2, NoOutputData = 4, NoBatteryReading = 8, NoGyroCalib = 16, MonitorAudio = 32 };
 
     public class VidPidInfo
     {
@@ -123,13 +124,13 @@ namespace DS4Windows
 
         private static VidPidInfo[] knownDevices =
         {
-            new VidPidInfo(SONY_VID, 0xBA0, "Sony WA"),
+            new VidPidInfo(SONY_VID, 0xBA0, "Sony WA", InputDeviceType.DS4, VidPidFeatureSet.MonitorAudio),
             new VidPidInfo(SONY_VID, 0x5C4, "DS4 v.1"),
-            new VidPidInfo(SONY_VID, 0x09CC, "DS4 v.2"),
+            new VidPidInfo(SONY_VID, 0x09CC, "DS4 v.2", InputDeviceType.DS4, VidPidFeatureSet.MonitorAudio),
             new VidPidInfo(SONY_VID, 0x0CE6, "DualSense", InputDeviceType.DualSense, VidPidFeatureSet.DefaultDS4, DualSenseDevice.DetermineConnectionType),
             new VidPidInfo(RAZER_VID, 0x1000, "Razer Raiju PS4"),
             new VidPidInfo(NACON_VID, 0x0D01, "Nacon Revol Pro v.1", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib), // Nacon Revolution Pro v1 and v2 doesn't support DS4 gyro calibration routines
-            new VidPidInfo(NACON_VID, 0x0D02, "Nacon Revol Pro v.2", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib),
+            new VidPidInfo(NACON_VID, 0x0D02, "Nacon Revol Pro v.2", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib | VidPidFeatureSet.MonitorAudio),
             new VidPidInfo(HORI_VID, 0x00EE, "Hori PS4 Mini", InputDeviceType.DS4, VidPidFeatureSet.NoOutputData | VidPidFeatureSet.NoBatteryReading | VidPidFeatureSet.NoGyroCalib),  // Hori PS4 Mini Wired Gamepad
             new VidPidInfo(0x7545, 0x0104, "Armor 3 LU Cobra"), // Armor 3 Level Up Cobra
             new VidPidInfo(0x2E95, 0x7725, "Scuf Vantage"), // Scuf Vantage gamepad
@@ -275,6 +276,11 @@ namespace DS4Windows
                         if (metainfo.inputDevType == InputDeviceType.DualSense)
                         {
                             serial = hDevice.ReadSerial(DualSenseDevice.SERIAL_FEATURE_ID);
+                        }
+                        else if (metainfo.inputDevType == InputDeviceType.DS4 &&
+                            metainfo.checkConnection(hDevice) == ConnectionType.SONYWA)
+                        {
+                            serial = hDevice.GenerateFakeHwSerial();
                         }
                         else
                         {
@@ -507,11 +513,11 @@ namespace DS4Windows
 
             //System.Threading.Thread.Sleep(50);
             sw.Restart();
-            while (sw.ElapsedMilliseconds < 100)
+            while (sw.ElapsedMilliseconds < 500)
             {
                 // Use SpinWait to keep control of current thread. Using Sleep could potentially
                 // cause other events to get run out of order
-                System.Threading.Thread.SpinWait(100);
+                System.Threading.Thread.SpinWait(250);
             }
             sw.Stop();
 

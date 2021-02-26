@@ -23,5 +23,7 @@
     <system:String x:Key="ImportImg">import.png</system:String>
     <system:String x:Key="NewProfileImg">newprofile.png</system:String>
 
+    <system:String x:Key="GitHubImg">GitHub-Mark-64px.png</system:String>
+
     <Style x:Key="WindowStyle" TargetType="{x:Type Window}" />
 </ResourceDictionary>

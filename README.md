@@ -17,7 +17,7 @@ website at [ds4windows.com](http://ds4windows.com).
 
 ## Requirements
 
-- Windows 8.1 or newer
+- Windows 10 or newer (Thanks Microsoft)
 - [Microsoft .NET 4.8 or higher (needed to unzip the driver and for macros to
 work properly)](https://support.microsoft.com/en-us/office/microsoft-net-framework-4-8-offline-installer-for-windows-9d23f658-3b97-68ab-d013-aa3c3e7495e0)
 - Visual C++ 2015-2019 Redistributable. [x64](https://aka.ms/vs/16/release/vc_redist.x64.exe) or [x86](https://aka.ms/vs/16/release/vc_redist.x86.exe)
@@ -39,7 +39,6 @@ using Microsoft BT stack. Toshiba's adapters currently do not work.
 
 ## Social
 
-[Discord](https://discord.gg/zrpPgyN)  
 [Twitter @ds4windows](https://twitter.com/ds4windows)  
 [YouTube](https://www.youtube.com/channel/UCIoUA_XLlCSZbvZGeg3Byeg)  
 [BitChute](https://www.bitchute.com/channel/uE2CbiV96u1k/)  

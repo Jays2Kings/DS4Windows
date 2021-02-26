@@ -570,6 +570,7 @@ namespace DS4WinWPF.DS4Forms
             profileSettingsVM.PopulateGyroMouseTrig(gyroMouseTrigBtn.ContextMenu);
             profileSettingsVM.PopulateGyroMouseStickTrig(gyroMouseStickTrigBtn.ContextMenu);
             profileSettingsVM.PopulateGyroSwipeTrig(gyroSwipeTrigBtn.ContextMenu);
+            profileSettingsVM.PopulateGyroControlsTrig(gyroControlsTrigBtn.ContextMenu);
             profileSettingsTabCon.DataContext = profileSettingsVM;
             mappingListBox.DataContext = mappingListVM;
             specialActionsTab.DataContext = specialActionsVM;
@@ -606,6 +607,7 @@ namespace DS4WinWPF.DS4Forms
             profileSettingsVM.PopulateGyroMouseTrig(gyroMouseTrigBtn.ContextMenu);
             profileSettingsVM.PopulateGyroMouseStickTrig(gyroMouseStickTrigBtn.ContextMenu);
             profileSettingsVM.PopulateGyroSwipeTrig(gyroSwipeTrigBtn.ContextMenu);
+            profileSettingsVM.PopulateGyroControlsTrig(gyroControlsTrigBtn.ContextMenu);
             profileSettingsTabCon.DataContext = profileSettingsVM;
             mappingListBox.DataContext = mappingListVM;
             specialActionsTab.DataContext = specialActionsVM;
@@ -733,7 +735,7 @@ namespace DS4WinWPF.DS4Forms
 
                 if (deviceNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
                 {
-                    App.rootHub.touchPad[deviceNum]?.ResetToggleGyroM();
+                    App.rootHub.touchPad[deviceNum]?.ResetToggleGyroModes();
                 }
             }
         }
@@ -1089,7 +1091,7 @@ namespace DS4WinWPF.DS4Forms
 
         private void GyroMouseStickTrigBtn_Click(object sender, RoutedEventArgs e)
         {
-            gyroSwipeTrigBtn.ContextMenu.IsOpen = true;
+            gyroMouseStickTrigBtn.ContextMenu.IsOpen = true;
         }
 
         private void OutConTypeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1450,6 +1452,20 @@ namespace DS4WinWPF.DS4Forms
             window.ShowDialog();
             mpControl.UpdateMappingName();
             Global.CacheProfileCustomsFlags(profileSettingsVM.Device);
+        }
+
+        private void GyroControlsTrigBtn_Click(object sender, RoutedEventArgs e)
+        {
+            gyroControlsTrigBtn.ContextMenu.IsOpen = true;
+        }
+
+        private void GyroControlsMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ContextMenu menu = gyroControlsTrigBtn.ContextMenu;
+            int itemCount = menu.Items.Count;
+            MenuItem alwaysOnItem = menu.Items[itemCount - 1] as MenuItem;
+
+            profileSettingsVM.UpdateGyroControlsTrig(menu, e.OriginalSource == alwaysOnItem);
         }
     }
 

@@ -70,7 +70,7 @@ namespace DS4Windows.InputDevices
                         break;
                     case TriggerEffects.FullClick:
                         triggerMotorMode = 0x02;
-                        triggerStartResistance = 0xAA;
+                        triggerStartResistance = 0xA4;
                         triggerEffectForce = 0xB4;
                         triggerRangeForce = 0xFF;
                         triggerNearReleaseStrength = 0x00;
@@ -137,7 +137,7 @@ namespace DS4Windows.InputDevices
         private new GyroMouseSensDualSense gyroMouseSensSettings;
         public override GyroMouseSens GyroMouseSensSettings { get => gyroMouseSensSettings; }
 
-        private byte activeDeviceMask = 0x00;
+        private byte activePlayerLEDMask = 0x00;
 
         private byte hapticsIntensityByte = 0x02;
         public HapticIntensity HapticChoice {
@@ -162,6 +162,8 @@ namespace DS4Windows.InputDevices
         private TriggerEffectData l2EffectData;
         private TriggerEffectData r2EffectData;
 
+        private byte muteLEDByte = 0x00;
+
         private DualSenseControllerOptions nativeOptionsStore;
         public DualSenseControllerOptions NativeOptionsStore { get => nativeOptionsStore; }
 
@@ -175,6 +177,11 @@ namespace DS4Windows.InputDevices
             synced = true;
             DeviceSlotNumberChanged += (sender, e) => {
                 CalculateDeviceSlotMask();
+            };
+
+            BatteryChanged += (sender, e) =>
+            {
+                PreparePlayerLEDBarByte();
             };
         }
 
@@ -839,7 +846,7 @@ namespace DS4Windows.InputDevices
 
             // Disable haptics and trigger motors
             outputReport[1 + reportOffset] = useRumble ? (byte)0x0F : (byte)0x0C;
-            outputReport[2 + reportOffset] = 0x08; // Turn off all LED lights
+            outputReport[2 + reportOffset] = 0x15; // Toggle all LED lights. 0x01 | 0x04 | 0x10
 
             if (conType == ConnectionType.BT)
             {
@@ -864,7 +871,7 @@ namespace DS4Windows.InputDevices
 
             outputReport[0] = OUTPUT_REPORT_ID_BT; // Report ID
             outputReport[1] = OUTPUT_REPORT_ID_DATA;
-            outputReport[3] = 0x08; // Turn off all LED lights
+            outputReport[3] = 0x15; // Toggle all LED lights. 0x01 | 0x04 | 0x10
 
             // Need to calculate and populate CRC32 data so controller will accept the report
             uint calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);
@@ -926,7 +933,7 @@ namespace DS4Windows.InputDevices
                 //*/
 
                 // Mute button LED. 0x01 = Solid. 0x02 = Pulsating
-                outputReport[9] = 0x00;
+                outputReport[9] = muteLEDByte;
 
                 // audio settings requiring mute toggling flags
                 //outputReport[10] = 0x00; // 0x10 microphone mute, 0x40 audio mute
@@ -975,7 +982,7 @@ namespace DS4Windows.InputDevices
                 outputReport[43] = 0x02;
                 // 5 player LED lights below Touchpad.
                 // Bitmask 0x00-0x1F from left to right with 0x04 being the center LED. Bit 0x20 sets the brightness immediately with no fade in
-                outputReport[44] = activeDeviceMask;
+                outputReport[44] = activePlayerLEDMask;
 
                 /* Lightbar colors */
                 outputReport[45] = currentHap.lightbarState.LightBarColor.red;
@@ -1061,7 +1068,7 @@ namespace DS4Windows.InputDevices
                 //*/
 
                 // Mute button LED. 0x01 = Solid. 0x02 = Pulsating
-                outputReport[10] = 0x00;
+                outputReport[10] = muteLEDByte;
 
                 // audio settings requiring mute toggling flags
                 //outputReport[11] = 0x00; // 0x10 microphone mute, 0x40 audio mute
@@ -1110,7 +1117,7 @@ namespace DS4Windows.InputDevices
                 outputReport[44] = 0x02;
                 // 5 player LED lights below Touchpad.
                 // Bitmask 0x00-0x1F from left to right with 0x04 being the center LED. Bit 0x20 sets the brightness immediately with no fade in
-                outputReport[45] = activeDeviceMask;
+                outputReport[45] = activePlayerLEDMask;
 
                 /* Lightbar colors */
                 outputReport[46] = currentHap.lightbarState.LightBarColor.red;
@@ -1244,6 +1251,47 @@ namespace DS4Windows.InputDevices
             }
         }
 
+        private void PrepareMuteLEDByte()
+        {
+            if (nativeOptionsStore != null)
+            {
+                switch (nativeOptionsStore.MuteLedMode)
+                {
+                    case DualSenseControllerOptions.MuteLEDMode.Off:
+                        muteLEDByte = 0x00;
+                        break;
+                    case DualSenseControllerOptions.MuteLEDMode.On:
+                        muteLEDByte = 0x01;
+                        break;
+                    case DualSenseControllerOptions.MuteLEDMode.Pulse:
+                        muteLEDByte = 0x02;
+                        break;
+                    default:
+                        muteLEDByte = 0x00;
+                        break;
+                }
+            }
+        }
+
+        private void PreparePlayerLEDBarByte()
+        {
+            if (nativeOptionsStore != null)
+            {
+                if (nativeOptionsStore.LedMode == DualSenseControllerOptions.LEDBarMode.Off)
+                {
+                    activePlayerLEDMask = 0x00;
+                }
+                else if (nativeOptionsStore.LedMode == DualSenseControllerOptions.LEDBarMode.On)
+                {
+                    activePlayerLEDMask = deviceSlotMask;
+                }
+                else if (nativeOptionsStore.LedMode == DualSenseControllerOptions.LEDBarMode.BatteryPercentage)
+                {
+                    activePlayerLEDMask = DeviceBatteryLinearMask(battery);
+                }
+            }
+        }
+
         public override void PrepareTriggerEffect(TriggerId trigger, TriggerEffects effect)
         {
             if (trigger == TriggerId.LeftTrigger)
@@ -1266,26 +1314,40 @@ namespace DS4Windows.InputDevices
             });
         }
 
+        private byte DeviceBatteryLinearMask(int deviceBattery)
+        {
+            byte batteryMask;
+            if (deviceBattery >= 95)
+                batteryMask = 0x01 | 0x02 | 0x08 | 0x10;
+            else if (deviceBattery >= 70)
+                batteryMask = 0x01 | 0x02 | 0x08;
+            else if (deviceBattery >= 50)
+                batteryMask = 0x01 | 0x02;
+            else if (deviceBattery >= 20)
+                batteryMask = 0x01;
+            else if (deviceBattery >= 5)
+                batteryMask = 0x01 | 0x02 | 0x04;
+            else
+                batteryMask = 0x00;
+
+            return batteryMask;
+        }
+
         public override void CheckControllerNumDeviceSettings(int numControllers)
         {
             if (nativeOptionsStore != null)
             {
-                if (nativeOptionsStore.LedMode == DualSenseControllerOptions.LEDBarMode.Off)
+                if (nativeOptionsStore.LedMode ==
+                    DualSenseControllerOptions.LEDBarMode.MultipleControllers)
                 {
-                    activeDeviceMask = 0x00;
-                }
-                else if (nativeOptionsStore.LedMode == DualSenseControllerOptions.LEDBarMode.On)
-                {
-                    activeDeviceMask = deviceSlotMask;
-                }
-                else if (nativeOptionsStore.LedMode == DualSenseControllerOptions.LEDBarMode.MultipleControllers &&
-                    numControllers > 1)
-                {
-                    activeDeviceMask = deviceSlotMask;
-                }
-                else
-                {
-                    activeDeviceMask = 0x00;
+                    if (numControllers > 1)
+                    {
+                        activePlayerLEDMask = deviceSlotMask;
+                    }
+                    else
+                    {
+                        activePlayerLEDMask = 0x00;
+                    }
                 }
             }
 
@@ -1310,6 +1372,18 @@ namespace DS4Windows.InputDevices
                     HapticChoice = nativeOptionsStore.HapticIntensity;
                     queueEvent(() => { outputDirty = true; });
                 };
+
+                nativeOptionsStore.MuteLedModeChanged += (sender, e) =>
+                {
+                    PrepareMuteLEDByte();
+                    queueEvent(() => { outputDirty = true; });
+                };
+
+                nativeOptionsStore.LedModeChanged += (sender, e) =>
+                {
+                    PreparePlayerLEDBarByte();
+                    queueEvent(() => { outputDirty = true; });
+                };
             }
         }
 
@@ -1319,6 +1393,8 @@ namespace DS4Windows.InputDevices
             {
                 UseRumble = nativeOptionsStore.EnableRumble;
                 HapticChoice = nativeOptionsStore.HapticIntensity;
+                PrepareMuteLEDByte();
+                PreparePlayerLEDBarByte();
             }
         }
     }

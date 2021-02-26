@@ -3,13 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DS4WinWPF"
+        xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
         mc:Ignorable="d"
         Title="Hotkeys/About" Height="450" Width="800"
         Style="{DynamicResource WindowStyle}">
+    <Window.Resources>
+        <local:AboutImgPathLocations x:Key="aboutImgPathLocs" />
+    </Window.Resources>
     <DockPanel>
         <Label x:Name="headerLb" Content="DS4Windows - Ryochan7 Build (Version " DockPanel.Dock="Top" HorizontalAlignment="Center" />
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0,4,0,0">
+            <Button x:Name="githubSocialBtn" Click="GithubSocialBtn_Click"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" ToolTip="GitHub">
+                <Image Source="{Binding GitHubImg, Source={StaticResource aboutImgPathLocs}}" Height="32" />
+            </Button>
             <Button x:Name="youtubeSocialBtn" Click="YoutubeSocialBtn_Click"
                     BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" ToolTip="YouTube">
                 <Image Source="/DS4Windows;component/Resources/social/youtube_social_icon_red.png" Height="32" />
@@ -21,10 +28,6 @@
             <Button x:Name="bittubeSocialBtn" Click="BittubeSocialBtn_Click"
                     BorderBrush="{x:Null}" Margin="4,0,0,0" Background="{x:Null}" Cursor="Hand" ToolTip="Bittube">
                 <Image Source="/DS4Windows;component/Resources/social/bittube.png" Height="32" />
-            </Button>
-            <Button x:Name="discordSocialBtn" Click="DiscordSocialBtn_Click"
-                    BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="Discord">
-                <Image Source="/DS4Windows;component/Resources/social/discord.png" Height="32" Margin="4,0,0,0" />
             </Button>
             <Button x:Name="twitterSocialBtn" Click="TwitterSocialBtn_Click"
                     BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="Twitter">
@@ -83,17 +86,21 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
                         <Label Content="Translators:" Margin="0,20,0,0" />
                     </StackPanel>
                     <TextBox TextWrapping="Wrap" xml:space="preserve" IsReadOnly="True"
-                             DockPanel.Dock="Bottom" VerticalScrollBarVisibility="Auto" Margin="10,0,10,10">mayawei - Chinese
+                             DockPanel.Dock="Bottom" VerticalScrollBarVisibility="Auto" Margin="10,0,10,10">xLive - Arabic
+mayawei - Chinese
 SyaoranChang - Chinese (Taiwan)
 Maikeru007 - Czech
 RedDevilus - Dutch
 RedDevilus - French
 Flo082002, Haamar - German
+avsha114 - Hebrew
 RaydenX93 - Italian
 jeek-midford, Ryochan7, stryblt - Japanese
+gregory678 - Polish
 Leomelati - Portuguese (Brazilian)
 peter9811 - Spanish
-dondrakon, DragonZX - Russian
+dondrakon, DragonZX, shikulja - Russian
+dondrakon - Ukranian
                     </TextBox>
                 </DockPanel>
             </TabItem>

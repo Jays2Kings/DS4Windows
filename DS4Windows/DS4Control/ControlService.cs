@@ -648,7 +648,7 @@ namespace DS4Windows
                 Nefarius.ViGEm.Client.Targets.Xbox360FeedbackReceivedEventHandler p = (sender, args) =>
                 {
                     //Console.WriteLine("Rumble ({0}, {1}) {2}",
-                    //    args.LargeMotor, args.SmallMotor, DateTime.Now.ToLongTimeString());
+                    //    args.LargeMotor, args.SmallMotor, DateTime.Now.ToString("hh:mm:ss.FFFF"));
                     SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
                 };
                 tempXbox.cont.FeedbackReceived += p;
@@ -1486,6 +1486,7 @@ namespace DS4Windows
             device.setIdleTimeout(getIdleDisconnectTimeout(ind));
             device.setBTPollRate(getBTPollRate(ind));
             touchPad[ind].ResetTrackAccel(getTrackballFriction(ind));
+            touchPad[ind].ResetToggleGyroModes();
             if (!startUp)
             {
                 CheckLauchProfileOption(ind, device);

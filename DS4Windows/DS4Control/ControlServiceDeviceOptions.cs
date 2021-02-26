@@ -61,13 +61,53 @@ namespace DS4Windows
 
     public class DS4ControllerOptions : ControllerOptionsStore
     {
+        private bool copyCatController;
+        public bool IsCopyCat
+        {
+            get => copyCatController;
+            set
+            {
+                if (copyCatController == value) return;
+                copyCatController = value;
+                IsCopyCatChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler IsCopyCatChanged;
+
         public DS4ControllerOptions(InputDeviceType deviceType) : base(deviceType)
         {
         }
 
         public override void PersistSettings(XmlDocument xmlDoc, XmlNode node)
         {
-            
+            XmlNode tempOptsNode = node.SelectSingleNode("DS4SupportSettings");
+            if (tempOptsNode == null)
+            {
+                tempOptsNode = xmlDoc.CreateElement("DS4SupportSettings");
+            }
+            else
+            {
+                tempOptsNode.RemoveAll();
+            }
+
+            XmlNode tempRumbleNode = xmlDoc.CreateElement("Copycat");
+            tempRumbleNode.InnerText = copyCatController.ToString();
+            tempOptsNode.AppendChild(tempRumbleNode);
+
+            node.AppendChild(tempOptsNode);
+        }
+
+        public override void LoadSettings(XmlDocument xmlDoc, XmlNode node)
+        {
+            XmlNode baseNode = node.SelectSingleNode("DS4SupportSettings");
+            if (baseNode != null)
+            {
+                XmlNode item = baseNode.SelectSingleNode("Copycat");
+                if (bool.TryParse(item?.InnerText ?? "", out bool temp))
+                {
+                    copyCatController = temp;
+                }
+            }
         }
     }
 
@@ -93,7 +133,15 @@ namespace DS4Windows
         {
             Off,
             MultipleControllers,
+            BatteryPercentage,
             On,
+        }
+
+        public enum MuteLEDMode : ushort
+        {
+            Off,
+            On,
+            Pulse
         }
 
         private bool enableRumble = true;
@@ -135,6 +183,19 @@ namespace DS4Windows
         }
         public event EventHandler LedModeChanged;
 
+        private MuteLEDMode muteLedMode = MuteLEDMode.Off;
+        public MuteLEDMode MuteLedMode
+        {
+            get => muteLedMode;
+            set
+            {
+                if (muteLedMode == value) return;
+                muteLedMode = value;
+                MuteLedModeChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler MuteLedModeChanged;
+
         public DualSenseControllerOptions(InputDeviceType deviceType) :
             base(deviceType)
         {
@@ -164,6 +225,10 @@ namespace DS4Windows
             tempLedMode.InnerText = ledMode.ToString();
             tempOptsNode.AppendChild(tempLedMode);
 
+            XmlNode tempMuteLedMode = xmlDoc.CreateElement("MuteLEDMode");
+            tempMuteLedMode.InnerText = muteLedMode.ToString();
+            tempOptsNode.AppendChild(tempMuteLedMode);
+
             node.AppendChild(tempOptsNode);
         }
 
@@ -190,6 +255,13 @@ namespace DS4Windows
                     out LEDBarMode tempLED))
                 {
                     ledMode = tempLED;
+                }
+
+                XmlNode itemMuteLedMode = baseNode.SelectSingleNode("MuteLEDMode");
+                if (Enum.TryParse(itemMuteLedMode?.InnerText ?? "",
+                    out MuteLEDMode tempMuteLED))
+                {
+                    muteLedMode = tempMuteLED;
                 }
             }
         }

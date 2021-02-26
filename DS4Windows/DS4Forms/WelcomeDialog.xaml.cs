@@ -15,14 +15,18 @@ namespace DS4WinWPF.DS4Forms
     {
         private const string InstallerDL1_16 =
             "https://github.com/ViGEm/ViGEmBus/releases/download/setup-v1.16.116/ViGEmBus_Setup_1.16.116.exe";
-        private const string InstallerDL =
+        private const string InstallerDLX64 =
             "https://github.com/ViGEm/ViGEmBus/releases/download/setup-v1.17.333/ViGEmBusSetup_x64.msi";
+        private const string InstallerDLX86 =
+            "https://github.com/ViGEm/ViGEmBus/releases/download/setup-v1.17.333/ViGEmBusSetup_x86.msi";
+
         private const string InstFileName1_16 = "ViGEmBus_Setup_1.16.116.exe";
-        private const string InstFileName = "ViGEmBusSetup_x64.msi";
+        private const string InstFileNameX64 = "ViGEmBusSetup_x64.msi";
+        private const string InstFileNameX86 = "ViGEmBusSetup_x86.msi";
         private string tempInstFileName;
 
-        private string installDL = InstallerDL;
-        private string installFileName = InstFileName;
+        private string installDL = InstallerDLX64;
+        private string installFileName = InstFileNameX64;
 
         Process monitorProc;
         NonFormTimer monitorTimer;
@@ -43,8 +47,20 @@ namespace DS4WinWPF.DS4Forms
                 installDL = InstallerDL1_16;
                 installFileName = InstFileName1_16;
             }
+            else if (!Environment.Is64BitOperatingSystem)
+            {
+                installDL = InstallerDLX86;
+                installFileName = InstFileNameX86;
+            }
 
             tempInstFileName = DS4Windows.Global.exedirpath + $"\\{installFileName}.tmp";
+
+            // Disable Xbox 360 driver installer button if running on Windows 8 or greater.
+            // Driver come pre-installed on a standard OS install
+            if (DS4Windows.Global.IsWin8OrGreater())
+            {
+                step2Btn.IsEnabled = false;
+            }
         }
 
         private void FinishedBtn_Click(object sender, RoutedEventArgs e)

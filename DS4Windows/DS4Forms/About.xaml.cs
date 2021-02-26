@@ -91,9 +91,30 @@ namespace DS4WinWPF.DS4Forms
             Util.StartProcessHelper("https://www.minds.com/ds4windows/");
         }
 
-        private void DiscordSocialBtn_Click(object sender, RoutedEventArgs e)
+        private void GithubSocialBtn_Click(object sender, RoutedEventArgs e)
         {
-            Util.StartProcessHelper("https://discord.gg/zrpPgyN");
+            Util.StartProcessHelper("https://github.com/Ryochan7/DS4Windows");
+        }
+    }
+
+    public class AboutImgPathLocations
+    {
+        private string gitHubImg =
+            $"{Global.RESOURCES_PREFIX}/social/GitHub-Mark-64px.png";
+        public string GitHubImg { get => gitHubImg; }
+
+        public AboutImgPathLocations()
+        {
+            App current = App.Current as App;
+            if (current != null)
+            {
+                PopulateFromAppResources(current);
+            }
+        }
+
+        private void PopulateFromAppResources(App currentApp)
+        {
+            gitHubImg = $"{Global.RESOURCES_PREFIX}/social/{currentApp.FindResource("GitHubImg")}";
         }
     }
 }

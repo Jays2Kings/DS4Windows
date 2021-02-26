@@ -99,6 +99,22 @@ namespace DS4WinWPF.DS4Forms
 
     public class AboutImgPathLocations
     {
-        public string GitHubImg { get => $"/DS4Windows;component/Resources/social/{App.Current.FindResource("GitHubImg")}"; }
+        private string gitHubImg =
+            $"{Global.RESOURCES_PREFIX}/social/GitHub-Mark-64px.png";
+        public string GitHubImg { get => gitHubImg; }
+
+        public AboutImgPathLocations()
+        {
+            App current = App.Current as App;
+            if (current != null)
+            {
+                PopulateFromAppResources(current);
+            }
+        }
+
+        private void PopulateFromAppResources(App currentApp)
+        {
+            gitHubImg = $"{Global.RESOURCES_PREFIX}/social/{currentApp.FindResource("GitHubImg")}";
+        }
     }
 }

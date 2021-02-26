@@ -463,6 +463,7 @@ namespace DS4Windows
         public const int CONFIG_VERSION = 5;
         public const int APP_CONFIG_VERSION = 2;
         public const string ASSEMBLY_RESOURCE_PREFIX = "pack://application:,,,/DS4Windows;";
+        public const string RESOURCES_PREFIX = "/DS4Windows;component/Resources";
         public const string CUSTOM_EXE_CONFIG_FILENAME = "custom_exe_name.txt";
         public const string XML_EXTENSION = ".xml";
 

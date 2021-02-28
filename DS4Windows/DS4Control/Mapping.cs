@@ -163,6 +163,32 @@ namespace DS4Windows
             }
         }
 
+        public struct DS4TimedStickAxisValue
+        {
+            public long timestamp;
+            public double x;
+            public double y;
+            public DS4TimedStickAxisValue(byte x, byte y, long timestamp)
+            {
+                this.timestamp = timestamp;
+                this.x = x;
+                this.y = y;
+            }
+        }
+
+        public static Queue<DS4TimedStickAxisValue>[][] stickValueHistory = new Queue<DS4TimedStickAxisValue>[Global.TEST_PROFILE_ITEM_COUNT][]
+        {
+            new Queue<DS4TimedStickAxisValue>[2] { new Queue<DS4TimedStickAxisValue>(), new Queue<DS4TimedStickAxisValue>() },
+            new Queue<DS4TimedStickAxisValue>[2] { new Queue<DS4TimedStickAxisValue>(), new Queue<DS4TimedStickAxisValue>() },
+            new Queue<DS4TimedStickAxisValue>[2] { new Queue<DS4TimedStickAxisValue>(), new Queue<DS4TimedStickAxisValue>() },
+            new Queue<DS4TimedStickAxisValue>[2] { new Queue<DS4TimedStickAxisValue>(), new Queue<DS4TimedStickAxisValue>() },
+            new Queue<DS4TimedStickAxisValue>[2] { new Queue<DS4TimedStickAxisValue>(), new Queue<DS4TimedStickAxisValue>() },
+            new Queue<DS4TimedStickAxisValue>[2] { new Queue<DS4TimedStickAxisValue>(), new Queue<DS4TimedStickAxisValue>() },
+            new Queue<DS4TimedStickAxisValue>[2] { new Queue<DS4TimedStickAxisValue>(), new Queue<DS4TimedStickAxisValue>() },
+            new Queue<DS4TimedStickAxisValue>[2] { new Queue<DS4TimedStickAxisValue>(), new Queue<DS4TimedStickAxisValue>() },
+            new Queue<DS4TimedStickAxisValue>[2] { new Queue<DS4TimedStickAxisValue>(), new Queue<DS4TimedStickAxisValue>() }
+        };
+
         private static DS4SquareStick[] outSqrStk = new DS4SquareStick[Global.TEST_PROFILE_ITEM_COUNT]
         {
             new DS4SquareStick(), new DS4SquareStick(), new DS4SquareStick(), new DS4SquareStick(),
@@ -174,12 +200,13 @@ namespace DS4Windows
         public static byte[] gyroStickY = new byte[Global.MAX_DS4_CONTROLLER_COUNT] { 128, 128, 128, 128, 128, 128, 128, 128 };
 
         // [<Device>][<AxisId>]. LX = 0, LY = 1, RX = 2, RY = 3
-        public static byte[][] lastStickAxisValues = new byte[Global.MAX_DS4_CONTROLLER_COUNT][]
+        public static byte[][] lastStickAxisValues = new byte[Global.TEST_PROFILE_ITEM_COUNT][]
         {
             new byte[4] {128, 128, 128, 128}, new byte[4] {128, 128, 128, 128},
             new byte[4] {128, 128, 128, 128}, new byte[4] {128, 128, 128, 128},
             new byte[4] {128, 128, 128, 128}, new byte[4] {128, 128, 128, 128},
             new byte[4] {128, 128, 128, 128}, new byte[4] {128, 128, 128, 128},
+            new byte[4] {128, 128, 128, 128}
         };
 
         private class LastWheelGyroCoord
@@ -689,6 +716,19 @@ namespace DS4Windows
             double rotationRS = /*tempDoubleArray[device] =*/ getRSRotation(device);
             if (rotationRS > 0.0 || rotationRS < 0.0)
                 cState.rotateRSCoordinates(rotationRS);
+
+            StickAntiSnapbackInfo lsAntiSnapback = GetLSAntiSnapbackInfo(device);
+            StickAntiSnapbackInfo rsAntiSnapback = GetRSAntiSnapbackInfo(device);
+
+            if (lsAntiSnapback.enabled)
+            {
+                CalcAntiSnapbackStick(device, 0, lsAntiSnapback.delta, lsAntiSnapback.timeout, cState.LX, cState.LY, out cState.LX, out cState.LY);
+            }
+
+            if (rsAntiSnapback.enabled)
+            {
+                CalcAntiSnapbackStick(device, 1, rsAntiSnapback.delta, rsAntiSnapback.timeout, cState.RX, cState.RY, out cState.RX, out cState.RY);
+            }
 
             StickDeadZoneInfo lsMod = GetLSDeadInfo(device);
             StickDeadZoneInfo rsMod = GetRSDeadInfo(device);
@@ -5412,5 +5452,40 @@ namespace DS4Windows
             }
         }
 
+        private static void CalcAntiSnapbackStick(int device,
+            int stickId, double delta, long timeout, byte axisXValue, byte axisYValue,
+            out byte useAxisX, out byte useAxisY)
+        {
+            long timestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            ref Queue<DS4TimedStickAxisValue> queue = ref stickValueHistory[device][stickId];
+            while(queue.Count > 0 && queue.Peek().timestamp < timestamp - timeout)
+            {
+                queue.Dequeue();
+            }
+            if (queue.Any(oldValues => {
+                double distanceSquared = Math.Pow(axisXValue - oldValues.x, 2) + Math.Pow(axisYValue - oldValues.y, 2);
+                if (distanceSquared >= (delta * delta))
+                { 
+                    //Checks if the line between two points touches a 15 unit circle in the middle
+                    double t = ((128 - axisXValue) * (oldValues.x - axisXValue) + (128 - axisYValue) * (oldValues.y - axisYValue)) / distanceSquared;
+                    t = Math.Max(0, Math.Min(1, t));
+                    double distanceToMiddleSquared = Math.Pow(128 - (axisXValue + t * (oldValues.x - axisXValue)), 2) + Math.Pow(128 - (axisYValue + t * (oldValues.y - axisYValue)), 2);
+                    return distanceToMiddleSquared <= 15 * 15;
+                }
+                else
+                {
+                    return false;
+                }
+            }))
+            {
+                useAxisX = useAxisY = 128;
+            }
+            else
+            {
+                useAxisX = axisXValue;
+                useAxisY = axisYValue;
+            }
+            queue.Enqueue(new DS4TimedStickAxisValue(axisXValue, axisYValue, timestamp));
+        }
     }
 }

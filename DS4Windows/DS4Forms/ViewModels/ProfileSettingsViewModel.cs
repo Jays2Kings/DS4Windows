@@ -985,6 +985,41 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.RSModInfo[device].fuzz = value;
         }
 
+        public bool LSAntiSnapback
+        {
+            get => Global.LSAntiSnapbackInfo[device].enabled;
+            set => Global.LSAntiSnapbackInfo[device].enabled = value;
+        }
+
+        public bool RSAntiSnapback
+        {
+            get => Global.RSAntiSnapbackInfo[device].enabled;
+            set => Global.RSAntiSnapbackInfo[device].enabled = value;
+        }
+
+        public double LSAntiSnapbackDelta
+        {
+            get => Global.LSAntiSnapbackInfo[device].delta;
+            set => Global.LSAntiSnapbackInfo[device].delta = value;
+        }
+
+        public double RSAntiSnapbackDelta
+        {
+            get => Global.RSAntiSnapbackInfo[device].delta;
+            set => Global.RSAntiSnapbackInfo[device].delta = value;
+        }
+        public int LSAntiSnapbackTimeout
+        {
+            get => Global.LSAntiSnapbackInfo[device].timeout;
+            set => Global.LSAntiSnapbackInfo[device].timeout = value;
+        }
+
+        public int RSAntiSnapbackTimeout
+        {
+            get => Global.RSAntiSnapbackInfo[device].timeout;
+            set => Global.RSAntiSnapbackInfo[device].timeout = value;
+        }
+
         public int LSOutputIndex
         {
             get

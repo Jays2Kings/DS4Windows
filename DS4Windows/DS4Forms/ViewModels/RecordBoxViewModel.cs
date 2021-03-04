@@ -76,8 +76,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         private bool useScanCode;
 
+        private bool repeatable;
+        public bool Repeatable { get => repeatable; }
 
-        public RecordBoxViewModel(int deviceNum, DS4ControlSettings controlSettings, bool shift)
+
+        public RecordBoxViewModel(int deviceNum, DS4ControlSettings controlSettings, bool shift, bool repeatable = true)
         {
             if (keydownOverrides == null)
             {
@@ -113,6 +116,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             {
                 LoadMacro();
             }
+
+            this.repeatable = repeatable;
 
             BindingOperations.EnableCollectionSynchronization(macroSteps, _colLockobj);
             

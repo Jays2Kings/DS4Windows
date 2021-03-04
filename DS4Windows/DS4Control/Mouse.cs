@@ -668,8 +668,9 @@ namespace DS4Windows
                     if (Global.getTrackballMode(deviceNum))
                     {
                         int iIndex = trackballBufferTail;
-                        trackballXBuffer[iIndex] = (arg.touches[0].deltaX * TRACKBALL_SCALE) / dev.getCurrentStateRef().elapsedTime;
-                        trackballYBuffer[iIndex] = (arg.touches[0].deltaY * TRACKBALL_SCALE) / dev.getCurrentStateRef().elapsedTime;
+                        // Establish 4 ms as the base
+                        trackballXBuffer[iIndex] = (arg.touches[0].deltaX * TRACKBALL_SCALE) / 0.004; // dev.getCurrentStateRef().elapsedTime;
+                        trackballYBuffer[iIndex] = (arg.touches[0].deltaY * TRACKBALL_SCALE) / 0.004; // dev.getCurrentStateRef().elapsedTime;
                         trackballBufferTail = (iIndex + 1) % TRACKBALL_BUFFER_LEN;
                         if (trackballBufferHead == trackballBufferTail)
                             trackballBufferHead = (trackballBufferHead + 1) % TRACKBALL_BUFFER_LEN;

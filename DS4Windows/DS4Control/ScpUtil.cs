@@ -396,7 +396,7 @@ namespace DS4Windows
         public const int OLD_XINPUT_CONTROLLER_COUNT = 4;
         protected static BackingStore m_Config = new BackingStore();
         protected static Int32 m_IdleTimeout = 600000;
-        public static string exelocation = Assembly.GetExecutingAssembly().Location;
+        public static string exelocation = Path.ChangeExtension(Assembly.GetExecutingAssembly().Location, "exe");
         public static string exedirpath = Directory.GetParent(exelocation).FullName;
         public static string exeFileName = Path.GetFileName(exelocation);
         public static FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(exelocation);

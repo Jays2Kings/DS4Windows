@@ -1110,6 +1110,16 @@ Suspend support not enabled.", true);
                                     MainDS4Window_Closing(null, new System.ComponentModel.CancelEventArgs());
                                     MainDS4Window_Closed(this, new System.EventArgs());
                                 }
+                                else if (strData[0] == "disconnect")
+                                {
+                                    // Command syntax: Disconnect.device (fex Disconnect.1)
+                                    if (int.TryParse(strData[1], out tdevice)) tdevice--;
+
+                                    if (conLvViewModel.ControllerDict.TryGetValue(tdevice, out CompositeDeviceModel model))
+                                    {
+                                        model.RequestDisconnect();
+                                    }
+                                }
                                 else if ((strData[0] == "loadprofile" || strData[0] == "loadtempprofile") && strData.Length >= 3)
                                 {
                                     // Command syntax: LoadProfile.device#.profileName (fex LoadProfile.1.GameSnake or LoadTempProfile.1.WebBrowserSet)

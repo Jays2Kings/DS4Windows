@@ -903,6 +903,7 @@ Suspend support not enabled.", true);
         {
             Image img = sender as Image;
             int tag = Convert.ToInt32(img.Tag);
+            conLvViewModel.CurrentIndex = tag;
             CompositeDeviceModel item = conLvViewModel.CurrentItem;
             //CompositeDeviceModel item = conLvViewModel.ControllerDict[tag];
             if (item != null)

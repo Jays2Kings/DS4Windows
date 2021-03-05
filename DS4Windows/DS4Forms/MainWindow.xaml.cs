@@ -1112,12 +1112,27 @@ Suspend support not enabled.", true);
                                 }
                                 else if (strData[0] == "disconnect")
                                 {
-                                    // Command syntax: Disconnect.device (fex Disconnect.1)
-                                    if (int.TryParse(strData[1], out tdevice)) tdevice--;
-
-                                    if (conLvViewModel.ControllerDict.TryGetValue(tdevice, out CompositeDeviceModel model))
+                                    // Command syntax: Disconnect[.device#] (fex Disconnect.1)
+                                    // Disconnect all wireless controllers. ex. (Disconnect)
+                                    if (strData.Length == 1)
                                     {
-                                        model.RequestDisconnect();
+                                        // Attempt to disconnect all wireless controllers
+                                        // Opt to make copy of Dictionary before iterating over contents
+                                        var dictCopy = new Dictionary<int, CompositeDeviceModel>(conLvViewModel.ControllerDict);
+                                        foreach(KeyValuePair<int, CompositeDeviceModel> pair in dictCopy)
+                                        {
+                                            pair.Value.RequestDisconnect();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        // Attempt to disconnect one wireless controller
+                                        if (int.TryParse(strData[1], out tdevice)) tdevice--;
+
+                                        if (conLvViewModel.ControllerDict.TryGetValue(tdevice, out CompositeDeviceModel model))
+                                        {
+                                            model.RequestDisconnect();
+                                        }
                                     }
                                 }
                                 else if ((strData[0] == "loadprofile" || strData[0] == "loadtempprofile") && strData.Length >= 3)

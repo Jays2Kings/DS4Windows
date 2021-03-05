@@ -725,12 +725,12 @@ namespace DS4Windows
                 tempXbox.cont.FeedbackReceived -= tempXbox.forceFeedbackCall;
                 tempXbox.forceFeedbackCall = null;
             }
-            else if (contType == OutContType.DS4)
-            {
-                DS4OutDevice tempDS4 = outDevice as DS4OutDevice;
-                tempDS4.cont.FeedbackReceived -= tempDS4.forceFeedbackCall;
-                tempDS4.forceFeedbackCall = null;
-            }
+            //else if (contType == OutContType.DS4)
+            //{
+            //    DS4OutDevice tempDS4 = outDevice as DS4OutDevice;
+            //    tempDS4.cont.FeedbackReceived -= tempDS4.forceFeedbackCall;
+            //    tempDS4.forceFeedbackCall = null;
+            //}
         }
 
         public void AttachNewUnboundOutDev(OutContType contType)

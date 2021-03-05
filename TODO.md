@@ -1,7 +1,7 @@
 # TODO
 
-* Increase max friction rating for Touchpad trackball support
-* Test ViGEm libraries compiled for .NET Core in .NET 5 port
+* ~~Increase max friction rating for Touchpad trackball support~~
+* ~~Test ViGEm libraries compiled for .NET Core in .NET 5 port~~
 * Look into finalizing and integrating union JoyCon support
 * Add hooks to keep track of active display monitors for Absolute Mouse
 * Figure out desired options for Absolute Mouse support

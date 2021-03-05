@@ -1,9 +1,34 @@
 {
-  "latest_version": "2.2.8",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 8},
-  "updated_at": "2021-02-26T18:33:49+0000",
+  "latest_version": "2.2.9",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 9},
+  "updated_at": "2021-03-05T02:36:16+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "2.2.9",
+      "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 9},
+      "base_header": "Version 2.2.9",
+      "release_date": "2021-03-05T02:36:16+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 2.2.9",
+          "log_text": ["* Profile settings fuzz option hang fix. Contribution by **RokasKil**",
+            "* Anti-snapback stick settings added. Contribution by **RokasKil**",
+            "* .NET 5 progress complete. Will keep net5 branch updated regularly until used in public build. Contribution by **sitiom**",
+            "* Fixed index out of bounds error when loading profiles in virtual output device check",
+            "* Fixed current item selection for right click Disconnect BT",
+            "* Removed references to Frog site. No longer posting updates there",
+            "* Changed initial trackball velocity calculations to attempt to make numbers more uniform across devices",
+            "* Added Disconnect command line option",
+            "* Disable macro mode combobox when opening Macro used in a Multi-Action Button special action",
+            "* Take out nag disclaimer window regarding Hide DS4 Controller option"],
+          "editor": "ryochan7",
+          "editors_note": ["Burnout"],
+          "updated_at": "2021-03-05T02:36:16+0000"
+        }
+      ]
+    },
     {
       "version_str": "2.2.8",
       "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 8},

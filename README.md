@@ -4,7 +4,8 @@ Like those other DS4 tools, but sexier.
 
 DS4Windows is an extract anywhere program that allows you to get the best
 DualShock 4 experience on your PC. By emulating an Xbox 360 controller, many
-more games are accessible.
+more games are accessible. Other input controllers are also supported including the
+DualSense, Switch Pro, and JoyCon controllers (**first party hardware only**).
 
 This project is a fork of the work of Jays2Kings. You can find the old project
 website at [ds4windows.com](http://ds4windows.com).
@@ -24,7 +25,7 @@ work properly)](https://support.microsoft.com/en-us/office/microsoft-net-framewo
 - [ViGEmBus](https://vigem.org/) driver (DS4Windows will install it for you)
 - Microsoft 360 Driver (link inside DS4Windows, already installed by Windows if
 you've used a 360 controller before)
-- Sony DualShock 4
+- **Sony** DualShock 4 or other supported controller
 - Connection method:
   - Micro USB cable
   - [Sony Wireless Adapter](https://www.amazon.com/gp/product/B01KYVLKG2)

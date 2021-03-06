@@ -578,6 +578,49 @@ namespace DS4Windows
         protected event EventHandler DeviceSlotNumberChanged;
         protected byte deviceSlotMask = 0x00;
 
+        protected DS4State jointState = new DS4State();
+        protected DS4State jointPreviousState = new DS4State();
+        public DS4State JointState
+        {
+            get => jointState;
+            set => jointState = value;
+        }
+
+        public DS4State JointPreviousState
+        {
+            get => jointPreviousState;
+            set => jointPreviousState = value;
+        }
+
+        protected bool performStateMerge;
+        public bool PerformStateMerge
+        {
+            get => performStateMerge;
+            set => performStateMerge = value;
+        }
+
+        protected bool primaryDevice = true;
+        public bool PrimaryDevice
+        {
+            get => primaryDevice;
+            set => primaryDevice = value;
+        }
+
+        public const int DEFAULT_JOINT_SLOT_NUMBER = -1;
+        protected int jointDeviceSlotNumber = DEFAULT_JOINT_SLOT_NUMBER;
+        public virtual int JointDeviceSlotNumber
+        {
+            get => jointDeviceSlotNumber;
+            set => jointDeviceSlotNumber = value;
+        }
+
+        protected bool outputMapGyro = true;
+        public bool OutputMapGyro
+        {
+            get => outputMapGyro;
+            set => outputMapGyro = value;
+        }
+
         public DS4Device(HidDevice hidDevice, string disName, VidPidFeatureSet featureSet = VidPidFeatureSet.DefaultDS4)
         {
             hDevice = hidDevice;
@@ -1894,34 +1937,48 @@ namespace DS4Windows
             }
         }
 
-        public DS4State getCurrentState()
+        public DS4State getRawCurrentState()
         {
             return cState.Clone();
         }
 
-        public DS4State getPreviousState()
+        public DS4State getRawPreviousState()
         {
             return pState.Clone();
         }
 
-        public void getCurrentState(DS4State state)
+        public void getRawCurrentState(DS4State state)
         {
             cState.CopyTo(state);
         }
 
-        public void getPreviousState(DS4State state)
+        public void getRawPreviousState(DS4State state)
         {
             pState.CopyTo(state);
         }
 
-        public DS4State getCurrentStateRef()
+        public virtual DS4State getCurrentStateRef()
         {
             return cState;
         }
 
-        public DS4State getPreviousStateRef()
+        public virtual DS4State getPreviousStateRef()
         {
             return pState;
+        }
+
+        public DS4State GetRawCurrentStateRef()
+        {
+            return cState;
+        }
+
+        public DS4State GetRawPreviousStateRef()
+        {
+            return pState;
+        }
+
+        public virtual void PreserveMergedStateData()
+        {
         }
 
         public bool isDS4Idle()
@@ -2011,6 +2068,10 @@ namespace DS4Windows
         public void PrepareAbort()
         {
             abortInputThread = true;
+        }
+
+        public virtual void MergeStateData(DS4State dState)
+        {
         }
 
         private void PrepareOutputFeaturesByte()

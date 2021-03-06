@@ -70,7 +70,24 @@
 
             <TabItem x:Name="joyConOptsTabItem" Header="JoyCon" Visibility="Collapsed">
                 <StackPanel Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="4">
-                    <CheckBox Content="Enable Home LED" IsChecked="{Binding Options.EnableHomeLED, FallbackValue='False'}" />
+                    <TextBlock Text="Changes take effect on new device connection" Foreground="#FFDE4343" FontWeight="Bold" />
+
+                    <GroupBox Header="JoyCon Global Options" Margin="0,8,0,0">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                <Label Content="Link Mode" ContentStringFormat="{}{0}:" />
+                                <ComboBox ItemsSource="{Binding Path=LinkModes}" DisplayMemberPath="DisplayName" SelectedValuePath="ChoiceValue" SelectedValue="{Binding ParentOptions.LinkedMode}" Margin="8,0,0,0" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                <Label Content="Joined Gyro Provider" ContentStringFormat="{}{0}:" />
+                                <ComboBox ItemsSource="{Binding Path=JoinGyroOptions}" DisplayMemberPath="DisplayName" SelectedValuePath="ChoiceValue" SelectedValue="{Binding ParentOptions.JoinGyroProv}" Margin="8,0,0,0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <CheckBox Content="Enable Home LED" IsChecked="{Binding Options.EnableHomeLED, FallbackValue='False'}"
+                              Margin="0,16,0,0" />
                 </StackPanel>
             </TabItem>
         </TabControl>

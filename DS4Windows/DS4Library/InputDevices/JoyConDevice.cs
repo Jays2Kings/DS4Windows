@@ -215,6 +215,37 @@ namespace DS4Windows.InputDevices
 
         private JoyConControllerOptions nativeOptionsStore;
 
+        private ReaderWriterLockSlim lockSlim = new ReaderWriterLockSlim();
+        private JoyConDevice jointDevice;
+        public JoyConDevice JointDevice
+        {
+            get => jointDevice;
+            set
+            {
+                jointDevice = value;
+                if (jointDevice == null)
+                {
+                }
+                else
+                {
+                }
+            }
+        }
+
+        public override int JointDeviceSlotNumber
+        {
+            get
+            {
+                int result = -1;
+                if (jointDevice != null)
+                {
+                    result = jointDevice.deviceSlotNumber;
+                }
+
+                return result;
+            }
+        }
+
         public override event ReportHandler<EventArgs> Report = null;
         public override event EventHandler<EventArgs> Removal = null;
         public override event EventHandler BatteryChanged;
@@ -1286,6 +1317,96 @@ namespace DS4Windows.InputDevices
             if (nativeOptionsStore != null)
             {
                 enableHomeLED = nativeOptionsStore.EnableHomeLED;
+            }
+        }
+
+        public override DS4State getCurrentStateRef()
+        {
+            DS4State tempState = null;
+            if (!performStateMerge)
+            {
+                tempState = cState;
+            }
+            else
+            {
+                tempState = jointState;
+            }
+
+            return tempState;
+        }
+
+        public override DS4State getPreviousStateRef()
+        {
+            DS4State tempState = null;
+            if (!performStateMerge)
+            {
+                tempState = pState;
+            }
+            else
+            {
+                tempState = jointPreviousState;
+            }
+
+            return tempState;
+        }
+
+        public override void PreserveMergedStateData()
+        {
+            jointState.CopyTo(jointPreviousState);
+        }
+
+        public override void MergeStateData(DS4State dState)
+        {
+
+            using (WriteLocker locker = new WriteLocker(lockSlim))
+            {
+                if (DeviceType == InputDeviceType.JoyConL)
+                {
+                    dState.LX = cState.LX;
+                    dState.LY = cState.LY;
+                    dState.L1 = cState.L1;
+                    dState.L2 = cState.L2;
+                    dState.L3 = cState.L3;
+                    dState.L2Btn = cState.L2Btn;
+                    dState.DpadUp = cState.DpadUp;
+                    dState.DpadDown = cState.DpadDown;
+                    dState.DpadLeft = cState.DpadLeft;
+                    dState.DpadRight = cState.DpadRight;
+                    dState.Share = cState.Share;
+                    if (primaryDevice)
+                    {
+                        dState.elapsedTime = cState.elapsedTime;
+                        dState.totalMicroSec = cState.totalMicroSec;
+                        dState.ReportTimeStamp = cState.ReportTimeStamp;
+                    }
+
+                    if (outputMapGyro) dState.Motion = cState.Motion;
+                    //dState.Motion = cState.Motion;
+                }
+                else if (DeviceType == InputDeviceType.JoyConR)
+                {
+                    dState.RX = cState.RX;
+                    dState.RY = cState.RY;
+                    dState.R1 = cState.R1;
+                    dState.R2 = cState.R2;
+                    dState.R3 = cState.R3;
+                    dState.R2Btn = cState.R2Btn;
+                    dState.Cross = cState.Cross;
+                    dState.Circle = cState.Circle;
+                    dState.Triangle = cState.Triangle;
+                    dState.Square = cState.Square;
+                    dState.PS = cState.PS;
+                    dState.Options = cState.Options;
+                    if (primaryDevice)
+                    {
+                        dState.elapsedTime = cState.elapsedTime;
+                        dState.totalMicroSec = cState.totalMicroSec;
+                        dState.ReportTimeStamp = cState.ReportTimeStamp;
+                    }
+
+                    if (outputMapGyro) dState.Motion = cState.Motion;
+                    //dState.Motion = cState.Motion;
+                }
             }
         }
     }

@@ -339,6 +339,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
 
+        public bool PrimaryDevice
+        {
+            get => device.PrimaryDevice;
+        }
+
         public delegate void CustomColorHandler(CompositeDeviceModel sender);
         public event CustomColorHandler RequestColorPicker;
 

@@ -42,5 +42,13 @@ namespace DS4Windows
             cont = null;
         }
         public override string GetDeviceType() => devtype;
+
+        public override void RemoveFeedbacks()
+        {
+        }
+
+        public override void RemoveFeedback(int inIdx)
+        {
+        }
     }
 }

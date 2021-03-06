@@ -17,6 +17,7 @@
         Title="DS4Windows" Height="500" Width="800" Closing="MainDS4Window_Closing" Closed="MainDS4Window_Closed" StateChanged="MainDS4Window_StateChanged" SizeChanged="MainDS4Window_SizeChanged" LocationChanged="MainDS4Window_LocationChanged" MinWidth="600" MinHeight="250"
         Style="{DynamicResource WindowStyle}">
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <local:ImageLocationPaths x:Key="ImgLocPaths" />
     </Window.Resources>
     <DockPanel>
@@ -95,11 +96,11 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn x:Name="LinkProfColumn" Header="Link Profile/ID" Width="100" >
+                                <GridViewColumn x:Name="LinkProfColumn" Header="Link Profile/ID" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Width="{Binding ElementName=LinkProfColumn, Path=Width}">
-                                                <CheckBox IsChecked="{Binding LinkedProfile}" HorizontalAlignment="Center" />
+                                                <CheckBox IsChecked="{Binding LinkedProfile}" HorizontalAlignment="Center" IsEnabled="{Binding PrimaryDevice}" />
                                             </StackPanel>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -109,7 +110,7 @@
                                         <DataTemplate>
                                             <StackPanel Width="{Binding Path=Width, ElementName=selectProfileColumn, Mode=OneWay}" HorizontalAlignment="Center">
                                                 <ComboBox x:Name="selectProfCombo" Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=OneWay}"
-                                                          ItemsSource="{Binding ProfileListCol}" SelectedIndex="{Binding SelectedIndex}" Height="Auto" Tag="{Binding DevIndex, Mode=OneTime}" Margin="0"
+                                                          ItemsSource="{Binding ProfileListCol}" SelectedIndex="{Binding SelectedIndex}" Height="Auto" Tag="{Binding DevIndex, Mode=OneTime}" Visibility="{Binding PrimaryDevice, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0"
                                                           SelectionChanged="SelectProfCombo_SelectionChanged" KeyDown="SelectProfCombo_KeyDown">
                                                     <ComboBox.ItemTemplate>
                                                         <DataTemplate>
@@ -125,7 +126,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Width="{Binding ElementName=editColumn, Path=Width}">
-                                                <xctk:SplitButton x:Name="ProfEditSBtn" Content="{lex:Loc Edit}" Height="20" MinWidth="60"
+                                                <xctk:SplitButton x:Name="ProfEditSBtn" Content="{lex:Loc Edit}" Height="20" MinWidth="60" Visibility="{Binding PrimaryDevice, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                                   Tag="{Binding DevIndex, Mode=OneTime}" Click="ProfEditSBtn_Click" HorizontalAlignment="Center">
                                                     <xctk:SplitButton.DropDownContent>
                                                         <Button x:Name="newProfBtn" Content="{lex:Loc NewProfile}" MinWidth="120" Tag="{Binding DevIndex, Mode=OneTime}" Click="NewProfBtn_Click"  />

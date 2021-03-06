@@ -19,7 +19,10 @@ namespace DS4Windows
         public const string devType = "X360";
 
         public IXbox360Controller cont;
-        public Xbox360FeedbackReceivedEventHandler forceFeedbackCall;
+        //public Xbox360FeedbackReceivedEventHandler forceFeedbackCall;
+        // Input index, Xbox360FeedbackReceivedEventHandler instance
+        public Dictionary<int, Xbox360FeedbackReceivedEventHandler> forceFeedbacksDict =
+            new Dictionary<int, Xbox360FeedbackReceivedEventHandler>();
 
         public Xbox360OutDevice(ViGEmClient client)
         {
@@ -150,11 +153,12 @@ namespace DS4Windows
         }
         public override void Disconnect()
         {
-            if (forceFeedbackCall != null)
+            foreach (KeyValuePair<int, Xbox360FeedbackReceivedEventHandler> pair in forceFeedbacksDict)
             {
-                cont.FeedbackReceived -= forceFeedbackCall;
-                forceFeedbackCall = null;
+                cont.FeedbackReceived -= pair.Value;
             }
+
+            forceFeedbacksDict.Clear();
 
             connected = false;
             cont.Disconnect();
@@ -168,6 +172,25 @@ namespace DS4Windows
             if (submit)
             {
                 cont.SubmitReport();
+            }
+        }
+
+        public override void RemoveFeedbacks()
+        {
+            foreach (KeyValuePair<int, Xbox360FeedbackReceivedEventHandler> pair in forceFeedbacksDict)
+            {
+                cont.FeedbackReceived -= pair.Value;
+            }
+
+            forceFeedbacksDict.Clear();
+        }
+
+        public override void RemoveFeedback(int inIdx)
+        {
+            if (forceFeedbacksDict.TryGetValue(inIdx, out Xbox360FeedbackReceivedEventHandler handler))
+            {
+                cont.FeedbackReceived -= handler;
+                forceFeedbacksDict.Remove(inIdx);
             }
         }
     }

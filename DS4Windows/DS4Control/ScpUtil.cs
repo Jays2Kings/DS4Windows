@@ -5635,6 +5635,26 @@ namespace DS4Windows
                                 }
                             }
                             catch { }
+
+                            try
+                            {
+                                XmlNode item = xmlJoyConSupport.SelectSingleNode("LinkMode");
+                                if (Enum.TryParse(item?.InnerText ?? "", out JoyConDeviceOptions.LinkMode temp))
+                                {
+                                    deviceOptions.JoyConDeviceOpts.LinkedMode = temp;
+                                }
+                            }
+                            catch { }
+
+                            try
+                            {
+                                XmlNode item = xmlJoyConSupport.SelectSingleNode("JoinedGyroProvider");
+                                if (Enum.TryParse(item?.InnerText ?? "", out JoyConDeviceOptions.JoinedGyroProvider temp))
+                                {
+                                    deviceOptions.JoyConDeviceOpts.JoinGyroProv = temp;
+                                }
+                            }
+                            catch { }
                         }
                     }
 
@@ -5775,6 +5795,12 @@ namespace DS4Windows
             XmlElement xmlJoyconEnabled = m_Xdoc.CreateElement("Enabled", null);
             xmlJoyconEnabled.InnerText = deviceOptions.JoyConDeviceOpts.Enabled.ToString();
             xmlJoyConSupport.AppendChild(xmlJoyconEnabled);
+            XmlElement xmlJoyconLinkMode = m_Xdoc.CreateElement("LinkMode", null);
+            xmlJoyconLinkMode.InnerText = deviceOptions.JoyConDeviceOpts.LinkedMode.ToString();
+            xmlJoyConSupport.AppendChild(xmlJoyconLinkMode);
+            XmlElement xmlJoyconUnionGyro = m_Xdoc.CreateElement("JoinedGyroProvider", null);
+            xmlJoyconUnionGyro.InnerText = deviceOptions.JoyConDeviceOpts.JoinGyroProv.ToString();
+            xmlJoyConSupport.AppendChild(xmlJoyconUnionGyro);
 
             xmlDeviceOptions.AppendChild(xmlJoyConSupport);
 
@@ -7024,7 +7050,7 @@ namespace DS4Windows
             xinputPlug = false;
             xinputStatus = false;
 
-            if (device < Global.MAX_DS4_CONTROLLER_COUNT)
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 bool oldUseDInputOnly = Global.useDInputOnly[device];
                 DS4Device tempDevice = control.DS4Controllers[device];
@@ -7062,25 +7088,27 @@ namespace DS4Windows
                 {
                     tempDev.setIdleTimeout(idleDisconnectTimeout[device]);
                     tempDev.setBTPollRate(btPollRate[device]);
-                    if (xinputStatus && xinputPlug)
+                    if (xinputStatus && tempDev.PrimaryDevice)
                     {
-                        OutputDevice tempOutDev = control.outputDevices[device];
-                        if (tempOutDev != null)
+                        if (xinputPlug)
                         {
-                            tempOutDev = null;
+                            OutputDevice tempOutDev = control.outputDevices[device];
+                            if (tempOutDev != null)
+                            {
+                                tempOutDev = null;
+                                //Global.activeOutDevType[device] = OutContType.None;
+                                control.UnplugOutDev(device, tempDev);
+                            }
+
+                            OutContType tempContType = outputDevType[device];
+                            control.PluginOutDev(device, tempDev);
+                            //Global.useDInputOnly[device] = false;
+                        }
+                        else
+                        {
                             //Global.activeOutDevType[device] = OutContType.None;
                             control.UnplugOutDev(device, tempDev);
                         }
-
-                        OutContType tempContType = outputDevType[device];
-                        control.PluginOutDev(device, tempDev);
-                        //Global.useDInputOnly[device] = false;
-
-                    }
-                    else if (xinputStatus && !xinputPlug)
-                    {
-                        //Global.activeOutDevType[device] = OutContType.None;
-                        control.UnplugOutDev(device, tempDev);
                     }
 
                     tempDev.RumbleAutostopTime = rumbleAutostopTime[device];

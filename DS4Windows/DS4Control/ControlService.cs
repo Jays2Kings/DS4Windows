@@ -10,6 +10,7 @@ using System.Windows.Threading;
 using DS4WinWPF.DS4Control;
 using Microsoft.Win32;
 using Sensorit.Base;
+using System.Linq;
 
 namespace DS4Windows
 {
@@ -255,6 +256,40 @@ namespace DS4Windows
 
                 DualSenseControllerOptions dSOpts = tempDSDev.NativeOptionsStore;
                 dSOpts.LedModeChanged += (sender, e) => { tempDSDev.CheckControllerNumDeviceSettings(activeControllers); };
+            }
+            else if (device.DeviceType == InputDevices.InputDeviceType.JoyConL ||
+                device.DeviceType == InputDevices.InputDeviceType.JoyConR)
+            {
+                if (deviceOptions.JoyConDeviceOpts.LinkedMode == JoyConDeviceOptions.LinkMode.Joined)
+                {
+                    InputDevices.JoyConDevice tempJoyDev = device as InputDevices.JoyConDevice;
+                    tempJoyDev.PerformStateMerge = true;
+
+                    if (device.DeviceType == InputDevices.InputDeviceType.JoyConL)
+                    {
+                        tempJoyDev.PrimaryDevice = true;
+                        if (deviceOptions.JoyConDeviceOpts.JoinGyroProv == JoyConDeviceOptions.JoinedGyroProvider.JoyConL)
+                        {
+                            tempJoyDev.OutputMapGyro = true;
+                        }
+                        else
+                        {
+                            tempJoyDev.OutputMapGyro = false;
+                        }
+                    }
+                    else
+                    {
+                        tempJoyDev.PrimaryDevice = false;
+                        if (deviceOptions.JoyConDeviceOpts.JoinGyroProv == JoyConDeviceOptions.JoinedGyroProvider.JoyConR)
+                        {
+                            tempJoyDev.OutputMapGyro = true;
+                        }
+                        else
+                        {
+                            tempJoyDev.OutputMapGyro = false;
+                        }
+                    }
+                }
             }
         }
 
@@ -623,7 +658,7 @@ namespace DS4Windows
             return temp;
         }
 
-        private void EstablishOutFeedback(int index, OutContType contType,
+        public void EstablishOutFeedback(int index, OutContType contType,
             OutputDevice outDevice, DS4Device device)
         {
             int devIndex = index;
@@ -638,7 +673,7 @@ namespace DS4Windows
                     SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
                 };
                 tempXbox.cont.FeedbackReceived += p;
-                tempXbox.forceFeedbackCall = p;
+                tempXbox.forceFeedbacksDict.Add(index, p);
             }
             //else if (contType == OutContType.DS4)
             //{
@@ -717,13 +752,14 @@ namespace DS4Windows
             //}
         }
 
-        public void RemoveOutFeedback(OutContType contType, OutputDevice outDevice)
+        public void RemoveOutFeedback(OutContType contType, OutputDevice outDevice, int inIdx)
         {
             if (contType == OutContType.X360)
             {
                 Xbox360OutDevice tempXbox = outDevice as Xbox360OutDevice;
-                tempXbox.cont.FeedbackReceived -= tempXbox.forceFeedbackCall;
-                tempXbox.forceFeedbackCall = null;
+                tempXbox.RemoveFeedback(inIdx);
+                //tempXbox.cont.FeedbackReceived -= tempXbox.forceFeedbackCall;
+                //tempXbox.forceFeedbackCall = null;
             }
             //else if (contType == OutContType.DS4)
             //{
@@ -790,8 +826,19 @@ namespace DS4Windows
                             
                             // Enable ViGem feedback callback handler only if lightbar/rumble data output is enabled (if those are disabled then no point enabling ViGem callback handler call)
                             if (Global.EnableOutputDataToDS4[index])
+                            {
                                 EstablishOutFeedback(index, OutContType.X360, tempXbox, device);
-                            
+
+                                if (device.JointDeviceSlotNumber != -1)
+                                {
+                                    DS4Device tempDS4Device = DS4Controllers[device.JointDeviceSlotNumber];
+                                    if (tempDS4Device != null)
+                                    {
+                                        EstablishOutFeedback(device.JointDeviceSlotNumber, OutContType.X360, tempXbox, tempDS4Device);
+                                    }
+                                }
+                            }
+
                             outputslotMan.DeferredPlugin(tempXbox, index, outputDevices, contType);
                             //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
@@ -810,7 +857,18 @@ namespace DS4Windows
 
                         // Enable ViGem feedback callback handler only if lightbar/rumble data output is enabled (if those are disabled then no point enabling ViGem callback handler call)
                         if (Global.EnableOutputDataToDS4[index])
+                        {
                             EstablishOutFeedback(index, OutContType.X360, tempXbox, device);
+
+                            if (device.JointDeviceSlotNumber != -1)
+                            {
+                                DS4Device tempDS4Device = DS4Controllers[device.JointDeviceSlotNumber];
+                                if (tempDS4Device != null)
+                                {
+                                    EstablishOutFeedback(device.JointDeviceSlotNumber, OutContType.X360, tempXbox, tempDS4Device);
+                                }
+                            }
+                        }
 
                         outputslotMan.EventDispatcher.BeginInvoke((Action)(() =>
                         {
@@ -837,9 +895,20 @@ namespace DS4Windows
                             as DS4OutDevice;
 
                             // Enable ViGem feedback callback handler only if DS4 lightbar/rumble data output is enabled (if those are disabled then no point enabling ViGem callback handler call)
-                            if (Global.EnableOutputDataToDS4[index])
-                                EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
-                                
+                            //if (Global.EnableOutputDataToDS4[index])
+                            //{
+                            //    EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
+
+                            //    if (device.JointDeviceSlotNumber != -1)
+                            //    {
+                            //        DS4Device tempDS4Device = DS4Controllers[device.JointDeviceSlotNumber];
+                            //        if (tempDS4Device != null)
+                            //        {
+                            //            EstablishOutFeedback(device.JointDeviceSlotNumber, OutContType.DS4, tempDS4, tempDS4Device);
+                            //        }
+                            //    }
+                            //}
+
                             outputslotMan.DeferredPlugin(tempDS4, index, outputDevices, contType);
                             //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
@@ -857,8 +926,19 @@ namespace DS4Windows
                         DS4OutDevice tempDS4 = slotDevice.OutputDevice as DS4OutDevice;
 
                         // Enable ViGem feedback callback handler only if lightbar/rumble data output is enabled (if those are disabled then no point enabling ViGem callback handler call)
-                        if (Global.EnableOutputDataToDS4[index])
-                            EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
+                        //if (Global.EnableOutputDataToDS4[index])
+                        //{
+                        //    EstablishOutFeedback(index, OutContType.DS4, tempDS4, device);
+
+                        //    if (device.JointDeviceSlotNumber != -1)
+                        //    {
+                        //        DS4Device tempDS4Device = DS4Controllers[device.JointDeviceSlotNumber];
+                        //        if (tempDS4Device != null)
+                        //        {
+                        //            EstablishOutFeedback(device.JointDeviceSlotNumber, OutContType.DS4, tempDS4, tempDS4Device);
+                        //        }
+                        //    }
+                        //}
 
                         outputslotMan.EventDispatcher.BeginInvoke((Action)(() =>
                         {
@@ -912,7 +992,8 @@ namespace DS4Windows
                     {
                         slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Unbound;
                         dev.ResetState();
-                        RemoveOutFeedback(currentType, dev);
+                        dev.RemoveFeedbacks();
+                        //RemoveOutFeedback(currentType, dev);
                     }
                     //dev.Disconnect();
                     //LogDebug(tempType + " Controller # " + (index + 1) + " unplugged");
@@ -974,6 +1055,7 @@ namespace DS4Windows
 
                     //for (int i = 0, devCount = devices.Count(); i < devCount; i++)
                     int i = 0;
+                    InputDevices.JoyConDevice tempPrimaryJoyDev = null;
                     for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext() && loopControllers; i++)
                     {
                         DS4Device device = devEnum.Current;
@@ -990,10 +1072,37 @@ namespace DS4Windows
                         Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
                         task.Start();
 
+                        PostDS4DeviceInit(device);
+
+                        if (deviceOptions.JoyConDeviceOpts.LinkedMode == JoyConDeviceOptions.LinkMode.Joined)
+                        {
+                            if ((device.DeviceType == InputDevices.InputDeviceType.JoyConL ||
+                                device.DeviceType == InputDevices.InputDeviceType.JoyConR) && device.PerformStateMerge)
+                            {
+                                if (tempPrimaryJoyDev == null)
+                                {
+                                    tempPrimaryJoyDev = device as InputDevices.JoyConDevice;
+                                }
+                                else
+                                {
+                                    InputDevices.JoyConDevice currentJoyDev = device as InputDevices.JoyConDevice;
+                                    tempPrimaryJoyDev.JointDevice = currentJoyDev;
+                                    currentJoyDev.JointDevice = tempPrimaryJoyDev;
+
+                                    tempPrimaryJoyDev.JointState = currentJoyDev.JointState;
+
+                                    InputDevices.JoyConDevice parentJoy = tempPrimaryJoyDev;
+                                    tempPrimaryJoyDev.Removal += (sender, args) => { currentJoyDev.JointDevice = null; };
+                                    currentJoyDev.Removal += (sender, args) => { parentJoy.JointDevice = null; };
+
+                                    tempPrimaryJoyDev = null;
+                                }
+                            }
+                        }
+
                         DS4Controllers[i] = device;
                         device.DeviceSlotNumber = i;
                         Global.LoadControllerConfigs(device);
-                        PostDS4DeviceInit(device);
                         device.LoadStoreSettings();
                         device.CheckControllerNumDeviceSettings(numControllers);
 
@@ -1030,7 +1139,28 @@ namespace DS4Windows
                             if (!getDInputOnly(i) && device.isSynced())
                             {
                                 //useDInputOnly[i] = false;
-                                PluginOutDev(i, device);
+                                //PluginOutDev(i, device);
+                                if (device.PrimaryDevice)
+                                {
+                                    PluginOutDev(i, device);
+                                }
+                                else if (device.JointDeviceSlotNumber != DS4Device.DEFAULT_JOINT_SLOT_NUMBER)
+                                {
+                                    int otherIdx = device.JointDeviceSlotNumber;
+                                    OutputDevice tempOutDev = outputDevices[otherIdx];
+                                    if (tempOutDev != null)
+                                    {
+                                        OutContType tempConType = activeOutDevType[otherIdx];
+                                        EstablishOutFeedback(i, tempConType, tempOutDev, device);
+                                        outputDevices[i] = tempOutDev;
+                                        Global.activeOutDevType[i] = tempConType;
+                                        //useDInputOnly[i] = false;
+                                        //Global.activeOutDevType[i] = OutContType.X360;
+                                    }
+
+                                    //useDInputOnly[i] = true;
+                                    //Global.activeOutDevType[i] = OutContType.None;
+                                }
                             }
                             else
                             {
@@ -1038,7 +1168,26 @@ namespace DS4Windows
                                 Global.activeOutDevType[i] = OutContType.None;
                             }
 
-                            TouchPadOn(i, device);
+                            //TouchPadOn(i, device);
+                            if (device.PrimaryDevice && device.OutputMapGyro)
+                            {
+                                TouchPadOn(i, device);
+                            }
+                            else if (device.JointDeviceSlotNumber != DS4Device.DEFAULT_JOINT_SLOT_NUMBER)
+                            {
+                                int otherIdx = device.JointDeviceSlotNumber;
+                                DS4Device tempDev = DS4Controllers[otherIdx];
+                                if (tempDev != null)
+                                {
+                                    int mappedIdx = tempDev.PrimaryDevice ? otherIdx : i;
+                                    DS4Device gyroDev = device.OutputMapGyro ? device : (tempDev.OutputMapGyro ? tempDev : null);
+                                    if (gyroDev != null)
+                                    {
+                                        TouchPadOn(mappedIdx, gyroDev);
+                                    }
+                                }
+                            }
+
                             CheckProfileOptions(i, device, true);
                         }
 
@@ -1048,7 +1197,7 @@ namespace DS4Windows
                             this.On_Report(sender, e, tempIdx);
                         };
 
-                        if (_udpServer != null && i < UdpServer.NUMBER_SLOTS)
+                        if (_udpServer != null && i < UdpServer.NUMBER_SLOTS && device.PrimaryDevice)
                         {
                             DS4Device.ReportHandler<EventArgs> tempEvnt = (sender, args) =>
                             {
@@ -1287,6 +1436,20 @@ namespace DS4Windows
                 activeControllers = numControllers;
                 //foreach (DS4Device device in devices)
                 //for (int i = 0, devlen = devices.Count(); i < devlen; i++)
+                InputDevices.JoyConDevice tempPrimaryJoyDev = null;
+                InputDevices.JoyConDevice tempSecondaryJoyDev = null;
+
+                if (deviceOptions.JoyConDeviceOpts.LinkedMode == JoyConDeviceOptions.LinkMode.Joined)
+                {
+                    tempPrimaryJoyDev = devices.Where(d =>
+                        (d.DeviceType == InputDevices.InputDeviceType.JoyConL || d.DeviceType == InputDevices.InputDeviceType.JoyConR)
+                         && d.PrimaryDevice && d.JointDeviceSlotNumber == -1).FirstOrDefault() as InputDevices.JoyConDevice;
+
+                    tempSecondaryJoyDev = devices.Where(d =>
+                        (d.DeviceType == InputDevices.InputDeviceType.JoyConL || d.DeviceType == InputDevices.InputDeviceType.JoyConR)
+                        && !d.PrimaryDevice && d.JointDeviceSlotNumber == -1).FirstOrDefault() as InputDevices.JoyConDevice;
+                }
+
                 for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext() && loopControllers;)
                 {
                     DS4Device device = devEnum.Current;
@@ -1328,10 +1491,51 @@ namespace DS4Windows
 
                             Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
                             task.Start();
+
+                            PostDS4DeviceInit(device);
+
+                            if (deviceOptions.JoyConDeviceOpts.LinkedMode == JoyConDeviceOptions.LinkMode.Joined)
+                            {
+                                if ((device.DeviceType == InputDevices.InputDeviceType.JoyConL ||
+                                    device.DeviceType == InputDevices.InputDeviceType.JoyConR) && device.PerformStateMerge)
+                                {
+                                    if (device.PrimaryDevice &&
+                                        tempSecondaryJoyDev != null)
+                                    {
+                                        InputDevices.JoyConDevice currentJoyDev = device as InputDevices.JoyConDevice;
+                                        tempSecondaryJoyDev.JointDevice = currentJoyDev;
+                                        currentJoyDev.JointDevice = tempSecondaryJoyDev;
+
+                                        tempSecondaryJoyDev.JointState = currentJoyDev.JointState;
+
+                                        InputDevices.JoyConDevice secondaryJoy = tempSecondaryJoyDev;
+                                        secondaryJoy.Removal += (sender, args) => { currentJoyDev.JointDevice = null; };
+                                        currentJoyDev.Removal += (sender, args) => { secondaryJoy.JointDevice = null; };
+
+                                        tempSecondaryJoyDev = null;
+                                        tempPrimaryJoyDev = null;
+                                    }
+                                    else if (!device.PrimaryDevice &&
+                                        tempPrimaryJoyDev != null)
+                                    {
+                                        InputDevices.JoyConDevice currentJoyDev = device as InputDevices.JoyConDevice;
+                                        tempPrimaryJoyDev.JointDevice = currentJoyDev;
+                                        currentJoyDev.JointDevice = tempPrimaryJoyDev;
+
+                                        tempPrimaryJoyDev.JointState = currentJoyDev.JointState;
+
+                                        InputDevices.JoyConDevice parentJoy = tempPrimaryJoyDev;
+                                        tempPrimaryJoyDev.Removal += (sender, args) => { currentJoyDev.JointDevice = null; };
+                                        currentJoyDev.Removal += (sender, args) => { parentJoy.JointDevice = null; };
+
+                                        tempPrimaryJoyDev = null;
+                                    }
+                                }
+                            }
+
                             DS4Controllers[Index] = device;
                             device.DeviceSlotNumber = Index;
                             Global.LoadControllerConfigs(device);
-                            PostDS4DeviceInit(device);
                             device.LoadStoreSettings();
                             device.CheckControllerNumDeviceSettings(numControllers);
 
@@ -1368,7 +1572,29 @@ namespace DS4Windows
                                 if (!getDInputOnly(Index) && device.isSynced())
                                 {
                                     //useDInputOnly[Index] = false;
-                                    PluginOutDev(Index, device);
+                                    //PluginOutDev(Index, device);
+                                    if (device.PrimaryDevice)
+                                    {
+                                        PluginOutDev(Index, device);
+                                    }
+                                    else
+                                    {
+                                        int otherIdx = (device as InputDevices.JoyConDevice).JointDevice.DeviceSlotNumber;
+                                        OutputDevice tempOutDev = outputDevices[otherIdx];
+                                        if (tempOutDev != null)
+                                        {
+                                            OutContType tempConType = activeOutDevType[otherIdx];
+                                            EstablishOutFeedback(Index, tempConType, tempOutDev, device);
+                                            outputDevices[Index] = tempOutDev;
+                                            Global.activeOutDevType[Index] = tempConType;
+
+                                            //useDInputOnly[i] = false;
+                                            //Global.activeOutDevType[i] = OutContType.X360;
+                                        }
+
+                                        //useDInputOnly[Index] = true;
+                                        //Global.activeOutDevType[Index] = OutContType.None;
+                                    }
                                 }
                                 else
                                 {
@@ -1376,7 +1602,26 @@ namespace DS4Windows
                                     Global.activeOutDevType[Index] = OutContType.None;
                                 }
 
-                                TouchPadOn(Index, device);
+                                //TouchPadOn(Index, device);
+                                if (device.PrimaryDevice && device.OutputMapGyro)
+                                {
+                                    TouchPadOn(Index, device);
+                                }
+                                else if (device.JointDeviceSlotNumber != DS4Device.DEFAULT_JOINT_SLOT_NUMBER)
+                                {
+                                    int otherIdx = device.JointDeviceSlotNumber;
+                                    DS4Device tempDev = DS4Controllers[otherIdx];
+                                    if (tempDev != null)
+                                    {
+                                        int mappedIdx = tempDev.PrimaryDevice ? otherIdx : Index;
+                                        DS4Device gyroDev = device.OutputMapGyro ? device : (tempDev.OutputMapGyro ? tempDev : null);
+                                        if (gyroDev != null)
+                                        {
+                                            TouchPadOn(mappedIdx, gyroDev);
+                                        }
+                                    }
+                                }
+
                                 CheckProfileOptions(Index, device);
                             }
 
@@ -1386,7 +1631,7 @@ namespace DS4Windows
                                 this.On_Report(sender, e, tempIdx);
                             };
 
-                            if (_udpServer != null && Index < UdpServer.NUMBER_SLOTS)
+                            if (_udpServer != null && Index < UdpServer.NUMBER_SLOTS && device.PrimaryDevice)
                             {
                                 DS4Device.ReportHandler<EventArgs> tempEvnt = (sender, args) =>
                                 {
@@ -1766,6 +2011,15 @@ namespace DS4Windows
                     {
                         UnplugOutDev(ind, device);
                     }
+                    else if (!device.PrimaryDevice)
+                    {
+                        OutputDevice outDev = outputDevices[ind];
+                        if (outDev != null)
+                        {
+                            outDev.RemoveFeedback(ind);
+                            outputDevices[ind] = null;
+                        }
+                    }
 
                     // Use Task to reset device synth state and commit it
                     Task.Run(() =>
@@ -1873,8 +2127,18 @@ namespace DS4Windows
                     }
                 }
 
-                device.getCurrentState(CurrentState[ind]);
-                DS4State cState = CurrentState[ind];
+                DS4State cState;
+                if (!device.PerformStateMerge)
+                {
+                    cState = CurrentState[ind];
+                    device.getRawCurrentState(cState);
+                }
+                else
+                {
+                    cState = device.JointState;
+                    device.MergeStateData(cState);
+                }
+
                 DS4State pState = device.getPreviousStateRef();
                 //device.getPreviousState(PreviousState[ind]);
                 //DS4State pState = PreviousState[ind];
@@ -1911,6 +2175,12 @@ namespace DS4Windows
                 //    }), null);
                 //    */
                 //}
+
+                if (!device.PrimaryDevice)
+                {
+                    // Skip mapping routine if part of a joined device
+                    return;
+                }
 
                 if (getEnableTouchToggle(ind))
                     CheckForTouchToggle(ind, cState, pState);
@@ -1983,6 +2253,11 @@ namespace DS4Windows
 
                 // Update the GUI/whatever.
                 DS4LightBar.updateLightBar(device, ind);
+
+                if (device.PerformStateMerge)
+                {
+                    device.PreserveMergedStateData();
+                }
             }
         }
 

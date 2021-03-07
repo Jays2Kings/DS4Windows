@@ -1207,10 +1207,24 @@ namespace DS4Windows.InputDevices
             Console.WriteLine("Disconnect successful: " + success);
             success = true;
 
+            // Need to grab reference here as Removal call would
+            // remove device reference
+            JoyConDevice tempJointDevice = jointDevice;
             if (callRemoval)
             {
                 isDisconnecting = true;
                 Removal?.Invoke(this, EventArgs.Empty);
+            }
+
+            // Place check here for now due to direct calls in other portions of
+            // code. Would be better placed in DisconnectWireless method
+            if (sideType == JoyConSide.Left &&
+                tempJointDevice != null)
+            {
+                tempJointDevice.queueEvent(() =>
+                {
+                    tempJointDevice.DisconnectBT(callRemoval);
+                });
             }
 
             return success;

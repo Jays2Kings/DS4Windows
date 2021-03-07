@@ -227,7 +227,7 @@ namespace DS4Windows
             DS4Devices.RequestElevation += DS4Devices_RequestElevation;
             DS4Devices.checkVirtualFunc = CheckForVirtualDevice;
             DS4Devices.PrepareDS4Init = PrepareDS4DeviceInit;
-            //DS4Devices.PostDS4Init = PostDS4DeviceInit;
+            DS4Devices.PostDS4Init = PostDS4DeviceInit;
             DS4Devices.PreparePendingDevice = CheckForSupportedDevice;
             outputslotMan.ViGEmFailure += OutputslotMan_ViGEmFailure;
 
@@ -250,14 +250,7 @@ namespace DS4Windows
 
         public void PostDS4DeviceInit(DS4Device device)
         {
-            if (device.DeviceType == InputDevices.InputDeviceType.DualSense)
-            {
-                InputDevices.DualSenseDevice tempDSDev = device as InputDevices.DualSenseDevice;
-
-                DualSenseControllerOptions dSOpts = tempDSDev.NativeOptionsStore;
-                dSOpts.LedModeChanged += (sender, e) => { tempDSDev.CheckControllerNumDeviceSettings(activeControllers); };
-            }
-            else if (device.DeviceType == InputDevices.InputDeviceType.JoyConL ||
+            if (device.DeviceType == InputDevices.InputDeviceType.JoyConL ||
                 device.DeviceType == InputDevices.InputDeviceType.JoyConR)
             {
                 if (deviceOptions.JoyConDeviceOpts.LinkedMode == JoyConDeviceOptions.LinkMode.Joined)
@@ -290,6 +283,21 @@ namespace DS4Windows
                         }
                     }
                 }
+            }
+        }
+
+        private void PrepareDS4DeviceSettingHooks(DS4Device device)
+        {
+            if (device.DeviceType == InputDevices.InputDeviceType.DualSense)
+            {
+                InputDevices.DualSenseDevice tempDSDev = device as InputDevices.DualSenseDevice;
+
+                DualSenseControllerOptions dSOpts = tempDSDev.NativeOptionsStore;
+                dSOpts.LedModeChanged += (sender, e) => { tempDSDev.CheckControllerNumDeviceSettings(activeControllers); };
+            }
+            else if (device.DeviceType == InputDevices.InputDeviceType.JoyConL ||
+                device.DeviceType == InputDevices.InputDeviceType.JoyConR)
+            {
             }
         }
 
@@ -1072,7 +1080,7 @@ namespace DS4Windows
                         Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
                         task.Start();
 
-                        PostDS4DeviceInit(device);
+                        PrepareDS4DeviceSettingHooks(device);
 
                         if (deviceOptions.JoyConDeviceOpts.LinkedMode == JoyConDeviceOptions.LinkMode.Joined)
                         {
@@ -1492,7 +1500,7 @@ namespace DS4Windows
                             Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
                             task.Start();
 
-                            PostDS4DeviceInit(device);
+                            PrepareDS4DeviceSettingHooks(device);
 
                             if (deviceOptions.JoyConDeviceOpts.LinkedMode == JoyConDeviceOptions.LinkMode.Joined)
                             {

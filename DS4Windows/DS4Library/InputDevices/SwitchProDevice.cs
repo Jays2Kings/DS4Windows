@@ -414,6 +414,7 @@ namespace DS4Windows.InputDevices
                     if ((this.featureSet & VidPidFeatureSet.NoBatteryReading) == 0)
                     {
                         tempByte = inputReportBuffer[2];
+                        // Strip out LSB from high nibble. Used as Charging flag and will be checked later
                         tempBattery = ((tempByte & 0xE0) >> 4) * 100 / 8;
                         tempBattery = Math.Min(tempBattery, 100);
                         if (tempBattery != battery)

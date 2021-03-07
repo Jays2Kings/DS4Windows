@@ -7023,7 +7023,8 @@ namespace DS4Windows
             setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.C), "", DS4KeyType.None);
 
             setting = GetDS4CSetting(device, DS4Controls.L1);
-            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.Q), "", DS4KeyType.None);
+            //setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.Q), "", DS4KeyType.None);
+            setting.UpdateSettings(false, X360Controls.Unbound, "", DS4KeyType.None);
             setting = GetDS4CSetting(device, DS4Controls.L2);
             setting.UpdateSettings(false, X360Controls.RightMouse, "", DS4KeyType.None);
             setting = GetDS4CSetting(device, DS4Controls.R1);

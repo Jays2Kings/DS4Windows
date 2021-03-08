@@ -331,7 +331,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             {
                 DS4Device dev = Program.rootHub.DS4Controllers[0];
                 DS4State cState = dev.getCurrentStateRef();
-                for (DS4Controls dc = DS4Controls.LXNeg; dc < DS4Controls.GyroXPos; dc++)
+                for (DS4Controls dc = DS4Controls.LXNeg; dc < DS4Controls.Mute ; dc++)
                 {
                     // Ignore Touch controls
                     if (dc >= DS4Controls.TouchLeft && dc <= DS4Controls.TouchRight)

@@ -1585,9 +1585,9 @@ namespace DS4Windows
                                     {
                                         PluginOutDev(Index, device);
                                     }
-                                    else
+                                    else if (device.JointDeviceSlotNumber != DS4Device.DEFAULT_JOINT_SLOT_NUMBER)
                                     {
-                                        int otherIdx = (device as InputDevices.JoyConDevice).JointDevice.DeviceSlotNumber;
+                                        int otherIdx = device.JointDeviceSlotNumber;
                                         OutputDevice tempOutDev = outputDevices[otherIdx];
                                         if (tempOutDev != null)
                                         {

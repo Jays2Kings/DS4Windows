@@ -1221,7 +1221,10 @@ namespace DS4Windows.InputDevices
             if (primaryDevice &&
                 tempJointDevice != null)
             {
-                tempJointDevice.DisconnectBT(callRemoval);
+                tempJointDevice.queueEvent(() =>
+                {
+                    tempJointDevice.DisconnectBT(callRemoval);
+                });
             }
 
             return success;

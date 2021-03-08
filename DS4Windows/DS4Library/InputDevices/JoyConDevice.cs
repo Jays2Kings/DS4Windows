@@ -1218,14 +1218,11 @@ namespace DS4Windows.InputDevices
 
             // Place check here for now due to direct calls in other portions of
             // code. Would be better placed in DisconnectWireless method
-            //if (primaryDevice &&
-            //    tempJointDevice != null)
-            //{
-            //    tempJointDevice.queueEvent(() =>
-            //    {
-            //        tempJointDevice.DisconnectBT(callRemoval);
-            //    });
-            //}
+            if (primaryDevice &&
+                tempJointDevice != null)
+            {
+                tempJointDevice.DisconnectBT(callRemoval);
+            }
 
             return success;
         }

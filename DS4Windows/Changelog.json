@@ -1,9 +1,33 @@
 {
-  "latest_version": "2.2.9",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 9},
-  "updated_at": "2021-03-05T02:36:16+0000",
+  "latest_version": "2.2.10",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 10},
+  "updated_at": "2021-03-09T20:14:08+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "2.2.10",
+      "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 10},
+      "base_header": "Version 2.2.10",
+      "release_date": "2021-03-09T20:14:08+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 2.2.10",
+          "log_text": ["* Change Disconnect command syntax to allow all wireless controllers to get disconnected",
+            "* Increased GUI enforced max Trackball Friction value to 20.0",
+            "* Slightly edited colors used in Dark theme",
+            "* Disabled virtual DS4 feedback routine again",
+            "* Allow Joined JoyCon support. Joined link mode is now the default",
+            "* Changed L1 binding for KB+M and Gyro preset profile. Make Unbound",
+            "* Fixed macroRecorder bug where MUTE control threw an exception because it is not in macroDS4Values array. Contribution by **mika-n**",
+            "* Fixed wrong on-screen button indexes while remapping using 'readout' feature. Contribution by **mika-n**",
+            "* Added artificial VID/PID for DualShock 3 running under DsHidMini drivers. Contribution by **nefarius**"],
+          "editor": "ryochan7",
+          "editors_note": ["None"],
+          "updated_at": "2021-03-09T20:14:08+0000"
+        }
+      ]
+    },
     {
       "version_str": "2.2.9",
       "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 9},

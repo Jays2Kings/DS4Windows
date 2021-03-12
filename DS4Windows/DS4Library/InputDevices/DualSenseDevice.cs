@@ -404,6 +404,9 @@ namespace DS4Windows.InputDevices
                 int crcoffset = 0;
                 long latencySum = 0;
                 int reportOffset = conType == ConnectionType.BT ? 1 : 0;
+
+                // Run continuous calibration on Gyro when starting input loop
+                sixAxis.ResetContinuousCalibration();
                 standbySw.Start();
 
                 while (!exitInputThread)

@@ -342,6 +342,23 @@ namespace DS4Windows
             }
         }
 
+        // Entry point to run continuous calibration for non-DS4 input devices
+        public unsafe void PrepareNonDS4SixAxis(ref int currentYaw, ref int currentPitch, ref int currentRoll,
+            ref int AccelX, ref int AccelY, ref int AccelZ)
+        {
+            unchecked
+            {
+                if (gyroAverageTimer.IsRunning)
+                {
+                    CalcSensorCamples(ref currentYaw, ref currentPitch, ref currentRoll, ref AccelX, ref AccelY, ref AccelZ);
+                }
+
+                currentYaw -= gyro_offset_x;
+                currentPitch -= gyro_offset_y;
+                currentRoll -= gyro_offset_z;
+            }
+        }
+
         private unsafe void CalcSensorCamples(ref int currentYaw, ref int currentPitch, ref int currentRoll, ref int AccelX, ref int AccelY, ref int AccelZ)
         {
             unchecked

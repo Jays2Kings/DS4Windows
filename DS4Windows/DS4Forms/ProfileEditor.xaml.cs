@@ -1426,6 +1426,11 @@ namespace DS4WinWPF.DS4Forms
             {
                 DS4Device d = App.rootHub.DS4Controllers[deviceNum];
                 d.SixAxis.ResetContinuousCalibration();
+                if (d.JointDeviceSlotNumber != DS4Device.DEFAULT_JOINT_SLOT_NUMBER)
+                {
+                    DS4Device tempDev = App.rootHub.DS4Controllers[d.JointDeviceSlotNumber];
+                    tempDev?.SixAxis.ResetContinuousCalibration();
+                }
             }
         }
 

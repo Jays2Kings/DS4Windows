@@ -640,4 +640,7 @@
   <data name="SquareStickRoundness" xml:space="preserve">
     <value>Roundness of Square Stick corners</value>
   </data>
+  <data name="XMLActionsCorrupt" xml:space="preserve">
+    <value>Actions.xml file was corrupt. Starting from scratch.</value>
+  </data>
 </root>

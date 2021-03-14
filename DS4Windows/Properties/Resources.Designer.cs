@@ -1621,6 +1621,15 @@ namespace DS4WinWPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actions.xml file was corrupt. Starting from scratch..
+        /// </summary>
+        public static string XMLActionsCorrupt {
+            get {
+                return ResourceManager.GetString("XMLActionsCorrupt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to XML Files (*.xml).
         /// </summary>
         public static string XMLFiles {

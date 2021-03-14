@@ -5839,20 +5839,25 @@ namespace DS4Windows
         private void CreateAction()
         {
             XmlDocument m_Xdoc = new XmlDocument();
+            PrepareActionsXml(m_Xdoc);
+            m_Xdoc.Save(m_Actions);
+        }
+
+        private void PrepareActionsXml(XmlDocument xmlDoc)
+        {
             XmlNode Node;
 
-            Node = m_Xdoc.CreateXmlDeclaration("1.0", "utf-8", String.Empty);
-            m_Xdoc.AppendChild(Node);
+            Node = xmlDoc.CreateXmlDeclaration("1.0", "utf-8", String.Empty);
+            xmlDoc.AppendChild(Node);
 
-            Node = m_Xdoc.CreateComment(String.Format(" Special Actions Configuration Data. {0} ", DateTime.Now));
-            m_Xdoc.AppendChild(Node);
+            Node = xmlDoc.CreateComment(String.Format(" Special Actions Configuration Data. {0} ", DateTime.Now));
+            xmlDoc.AppendChild(Node);
 
-            Node = m_Xdoc.CreateWhitespace("\r\n");
-            m_Xdoc.AppendChild(Node);
+            Node = xmlDoc.CreateWhitespace("\r\n");
+            xmlDoc.AppendChild(Node);
 
-            Node = m_Xdoc.CreateNode(XmlNodeType.Element, "Actions", "");
-            m_Xdoc.AppendChild(Node);
-            m_Xdoc.Save(m_Actions);
+            Node = xmlDoc.CreateNode(XmlNodeType.Element, "Actions", "");
+            xmlDoc.AppendChild(Node);
         }
 
         public bool SaveAction(string name, string controls, int mode, string details, bool edit, string extras = "")
@@ -5860,7 +5865,19 @@ namespace DS4Windows
             bool saved = true;
             if (!File.Exists(m_Actions))
                 CreateAction();
-            m_Xdoc.Load(m_Actions);
+
+            try
+            {
+                m_Xdoc.Load(m_Actions);
+            }
+            catch (XmlException)
+            {
+                // XML file has become corrupt. Start from scratch
+                AppLogger.LogToGui(DS4WinWPF.Properties.Resources.XMLActionsCorrupt, true);
+                m_Xdoc.RemoveAll();
+                PrepareActionsXml(m_Xdoc);
+            }
+
             XmlNode Node;
 
             Node = m_Xdoc.CreateComment(String.Format(" Special Actions Configuration Data. {0} ", DateTime.Now));

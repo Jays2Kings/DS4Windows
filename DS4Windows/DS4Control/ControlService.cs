@@ -514,15 +514,18 @@ namespace DS4Windows
             IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
             if (state)
             {
+                int i = 0;
                 foreach (DS4Device dev in devices)
                 {
                     dev.queueEvent(() =>
                     {
-                        if (dev.MotionEvent != null)
+                        if (i < UdpServer.NUMBER_SLOTS && dev.PrimaryDevice)
                         {
-                            dev.Report += dev.MotionEvent;
+                            PrepareDevUDPMotion(dev, i);
                         }
                     });
+
+                    i++;
                 }
             }
             else
@@ -534,6 +537,7 @@ namespace DS4Windows
                         if (dev.MotionEvent != null)
                         {
                             dev.Report -= dev.MotionEvent;
+                            dev.MotionEvent = null;
                         }
                     });
                 }
@@ -1208,38 +1212,7 @@ namespace DS4Windows
 
                         if (_udpServer != null && i < UdpServer.NUMBER_SLOTS && device.PrimaryDevice)
                         {
-                            DS4Device.ReportHandler<EventArgs> tempEvnt = (sender, args) =>
-                            {
-                                DualShockPadMeta padDetail = new DualShockPadMeta();
-                                GetPadDetailForIdx(tempIdx, ref padDetail);
-                                DS4State stateForUdp = TempState[tempIdx];
-
-                                CurrentState[tempIdx].CopyTo(stateForUdp);
-                                if (Global.IsUsingUDPServerSmoothing())
-                                {
-                                    if (stateForUdp.elapsedTime == 0)
-                                    {
-                                        // No timestamp was found. Exit out of routine
-                                        return;
-                                    }
-
-                                    double rate = 1.0 / stateForUdp.elapsedTime;
-                                    OneEuroFilter3D accelFilter = udpEuroPairAccel[tempIdx];
-                                    stateForUdp.Motion.accelXG = accelFilter.axis1Filter.Filter(stateForUdp.Motion.accelXG, rate);
-                                    stateForUdp.Motion.accelYG = accelFilter.axis2Filter.Filter(stateForUdp.Motion.accelYG, rate);
-                                    stateForUdp.Motion.accelZG = accelFilter.axis3Filter.Filter(stateForUdp.Motion.accelZG, rate);
-
-                                    OneEuroFilter3D gyroFilter = udpEuroPairGyro[tempIdx];
-                                    stateForUdp.Motion.angVelYaw = gyroFilter.axis1Filter.Filter(stateForUdp.Motion.angVelYaw, rate);
-                                    stateForUdp.Motion.angVelPitch = gyroFilter.axis2Filter.Filter(stateForUdp.Motion.angVelPitch, rate);
-                                    stateForUdp.Motion.angVelRoll = gyroFilter.axis3Filter.Filter(stateForUdp.Motion.angVelRoll, rate);
-                                }
-
-                                _udpServer.NewReportIncoming(ref padDetail, stateForUdp, udpOutBuffers[tempIdx]);
-                            };
-							
-                            device.MotionEvent = tempEvnt;
-                            device.Report += tempEvnt;
+                            PrepareDevUDPMotion(device, tempIdx);
                         }
 
                         device.StartUpdate();
@@ -1299,6 +1272,43 @@ namespace DS4Windows
             ServiceStarted?.Invoke(this, EventArgs.Empty);
             RunningChanged?.Invoke(this, EventArgs.Empty);
             return true;
+        }
+
+        private void PrepareDevUDPMotion(DS4Device device, int index)
+        {
+            int tempIdx = index;
+            DS4Device.ReportHandler<EventArgs> tempEvnt = (sender, args) =>
+            {
+                DualShockPadMeta padDetail = new DualShockPadMeta();
+                GetPadDetailForIdx(tempIdx, ref padDetail);
+                DS4State stateForUdp = TempState[tempIdx];
+
+                CurrentState[tempIdx].CopyTo(stateForUdp);
+                if (Global.IsUsingUDPServerSmoothing())
+                {
+                    if (stateForUdp.elapsedTime == 0)
+                    {
+                        // No timestamp was found. Exit out of routine
+                        return;
+                    }
+
+                    double rate = 1.0 / stateForUdp.elapsedTime;
+                    OneEuroFilter3D accelFilter = udpEuroPairAccel[tempIdx];
+                    stateForUdp.Motion.accelXG = accelFilter.axis1Filter.Filter(stateForUdp.Motion.accelXG, rate);
+                    stateForUdp.Motion.accelYG = accelFilter.axis2Filter.Filter(stateForUdp.Motion.accelYG, rate);
+                    stateForUdp.Motion.accelZG = accelFilter.axis3Filter.Filter(stateForUdp.Motion.accelZG, rate);
+
+                    OneEuroFilter3D gyroFilter = udpEuroPairGyro[tempIdx];
+                    stateForUdp.Motion.angVelYaw = gyroFilter.axis1Filter.Filter(stateForUdp.Motion.angVelYaw, rate);
+                    stateForUdp.Motion.angVelPitch = gyroFilter.axis2Filter.Filter(stateForUdp.Motion.angVelPitch, rate);
+                    stateForUdp.Motion.angVelRoll = gyroFilter.axis3Filter.Filter(stateForUdp.Motion.angVelRoll, rate);
+                }
+
+                _udpServer.NewReportIncoming(ref padDetail, stateForUdp, udpOutBuffers[tempIdx]);
+            };
+
+            device.MotionEvent = tempEvnt;
+            device.Report += tempEvnt;
         }
 
         private void CheckQuickCharge(object sender, EventArgs e)
@@ -1642,39 +1652,7 @@ namespace DS4Windows
 
                             if (_udpServer != null && Index < UdpServer.NUMBER_SLOTS && device.PrimaryDevice)
                             {
-                                DS4Device.ReportHandler<EventArgs> tempEvnt = (sender, args) =>
-                                {
-                                    DualShockPadMeta padDetail = new DualShockPadMeta();
-                                    GetPadDetailForIdx(tempIdx, ref padDetail);
-                                    DS4State stateForUdp = TempState[tempIdx];
-
-                                    CurrentState[tempIdx].CopyTo(stateForUdp);
-
-                                    if (Global.IsUsingUDPServerSmoothing())
-                                    {
-                                        if (stateForUdp.elapsedTime == 0)
-                                        {
-                                            // No timestamp was found. Exit out of routine
-                                            return;
-                                        }
-
-                                        double rate = 1.0 / stateForUdp.elapsedTime;
-                                        OneEuroFilter3D accelFilter = udpEuroPairAccel[tempIdx];
-                                        stateForUdp.Motion.accelXG = accelFilter.axis1Filter.Filter(stateForUdp.Motion.accelXG, rate);
-                                        stateForUdp.Motion.accelYG = accelFilter.axis2Filter.Filter(stateForUdp.Motion.accelYG, rate);
-                                        stateForUdp.Motion.accelZG = accelFilter.axis3Filter.Filter(stateForUdp.Motion.accelZG, rate);
-
-
-                                        OneEuroFilter3D gyroFilter = udpEuroPairGyro[tempIdx];
-                                        stateForUdp.Motion.angVelYaw = gyroFilter.axis1Filter.Filter(stateForUdp.Motion.angVelYaw, rate);
-                                        stateForUdp.Motion.angVelPitch = gyroFilter.axis2Filter.Filter(stateForUdp.Motion.angVelPitch, rate);
-                                        stateForUdp.Motion.angVelRoll = gyroFilter.axis3Filter.Filter(stateForUdp.Motion.angVelRoll, rate);
-                                    }
-
-                                    _udpServer.NewReportIncoming(ref padDetail, stateForUdp, udpOutBuffers[tempIdx]);
-                                };
-                                device.MotionEvent = tempEvnt;
-                                device.Report += tempEvnt;
+                                PrepareDevUDPMotion(device, tempIdx);
                             }
 
                             device.StartUpdate();

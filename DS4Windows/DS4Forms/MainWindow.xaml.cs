@@ -159,6 +159,7 @@ namespace DS4WinWPF.DS4Forms
                 //UpdateTheUpdater();
             });
 
+            // Log exceptions that might occur
             Util.LogAssistBackgroundTask(tempTask);
 
             tempTask = Task.Delay(100).ContinueWith((t) =>
@@ -844,13 +845,17 @@ Suspend support not enabled.", true);
             App root = Application.Current as App;
             //Tester service = root.rootHubtest;
             ControlService service = App.rootHub;
-            await Task.Run(() =>
+            Task serviceTask = Task.Run(() =>
             {
                 if (service.running)
                     service.Stop();
                 else
                     service.Start();
             });
+
+            // Log exceptions that might occur
+            Util.LogAssistBackgroundTask(serviceTask);
+            await serviceTask;
         }
 
         private void LogListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -1062,7 +1067,9 @@ Suspend support not enabled.", true);
                             if (!inHotPlug)
                             {
                                 inHotPlug = true;
-                                Task.Run(() => { InnerHotplug2(); });
+                                Task hotplugTask = Task.Run(() => { InnerHotplug2(); });
+                                // Log exceptions that might occur
+                                Util.LogAssistBackgroundTask(hotplugTask);
                             }
                         }
                     }
@@ -1335,11 +1342,15 @@ Suspend support not enabled.", true);
             StartStopBtn.IsEnabled = false;
             //bool checkStatus = hideDS4ContCk.IsChecked == true;
             hideDS4ContCk.IsEnabled = false;
-            await Task.Run(() =>
+            Task serviceTask = Task.Run(() =>
             {
                 App.rootHub.Stop();
                 App.rootHub.Start();
             });
+
+            // Log exceptions that might occur
+            Util.LogAssistBackgroundTask(serviceTask);
+            await serviceTask;
 
             hideDS4ContCk.IsEnabled = true;
             StartStopBtn.IsEnabled = true;

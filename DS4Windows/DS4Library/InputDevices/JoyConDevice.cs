@@ -612,7 +612,7 @@ namespace DS4Windows.InputDevices
                     if (sideType == JoyConSide.Right)
                     {
                         accelX *= -1; accelZ *= -1; // accelY *= -1;
-                        gyroYaw *= -1; gyroPitch *= -1; gyroRoll *= -1;
+                        gyroYaw *= -1; gyroPitch *= -1; //gyroRoll *= -1;
                     }
 
                     tempMotion.gyroYawFull = gyroYaw; tempMotion.gyroPitchFull = -gyroPitch; tempMotion.gyroRollFull = gyroRoll;

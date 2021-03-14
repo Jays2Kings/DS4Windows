@@ -2146,6 +2146,7 @@ namespace DS4Windows
                 {
                     cState = device.JointState;
                     device.MergeStateData(cState);
+                    CurrentState[ind] = cState;
                 }
 
                 DS4State pState = device.getPreviousStateRef();

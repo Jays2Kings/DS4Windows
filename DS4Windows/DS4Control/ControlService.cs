@@ -89,7 +89,7 @@ namespace DS4Windows
             meta.Model = DsModel.DS4;
 
             var d = DS4Controllers[padIdx];
-            if (d == null)
+            if (d == null || !d.PrimaryDevice)
             {
                 meta.PadMacAddress = null;
                 meta.PadState = DsState.Disconnected;

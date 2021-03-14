@@ -2146,7 +2146,8 @@ namespace DS4Windows
                 {
                     cState = device.JointState;
                     device.MergeStateData(cState);
-                    CurrentState[ind] = cState;
+                    // Need to copy state object info for use in UDP server
+                    cState.CopyTo(CurrentState[ind]);
                 }
 
                 DS4State pState = device.getPreviousStateRef();

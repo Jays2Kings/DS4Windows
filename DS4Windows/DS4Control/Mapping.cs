@@ -5249,7 +5249,8 @@ namespace DS4Windows
                 // If calibration values are missing then use "educated guesses" about good starting values
                 if (controller.wheelCenterPoint.IsEmpty)
                 {
-                    if (!Global.LoadControllerConfigs(controller))
+                    // Run if no controller config exists or if an empty wheelCenterPoint is still being used
+                    if (!Global.LoadControllerConfigs(controller) || controller.wheelCenterPoint.IsEmpty)
                     {
                         AppLogger.LogToGui($"Controller {1 + device} sixaxis steering wheel calibration data missing. It is recommended to run steering wheel calibration process by pressing SASteeringWheelEmulationCalibration special action key. Using estimated values until the controller is calibrated at least once.", false);
 

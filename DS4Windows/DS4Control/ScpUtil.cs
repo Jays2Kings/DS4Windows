@@ -6246,27 +6246,35 @@ namespace DS4Windows
                 if (node == null)
                 {
                     XmlElement el = xmlDoc.CreateElement("Controller");
-                    el.SetAttribute("Mac", device.getMacAddress());
-                    el.SetAttribute("ControllerType", device.DeviceType.ToString());
-
-                    el.AppendChild(xmlDoc.CreateElement("wheelCenterPoint"));
-                    el.AppendChild(xmlDoc.CreateElement("wheel90DegPointLeft"));
-                    el.AppendChild(xmlDoc.CreateElement("wheel90DegPointRight"));
-
                     node = xmlControllersNode.AppendChild(el);
                 }
-
-                XmlAttribute tempAttr = node.Attributes["ControllerType"];
-                if (tempAttr == null)
+                else
                 {
-                    tempAttr = xmlDoc.CreateAttribute("ControllerType");
-                    node.Attributes.Append(tempAttr);
+                    node.RemoveAll();
                 }
 
-                tempAttr.Value = device.DeviceType.ToString();
-                node["wheelCenterPoint"].InnerText = $"{device.wheelCenterPoint.X},{device.wheelCenterPoint.Y}";
-                node["wheel90DegPointLeft"].InnerText = $"{device.wheel90DegPointLeft.X},{device.wheel90DegPointLeft.Y}";
-                node["wheel90DegPointRight"].InnerText = $"{device.wheel90DegPointRight.X},{device.wheel90DegPointRight.Y}";
+                XmlAttribute macAttr = xmlDoc.CreateAttribute("Mac");
+                macAttr.Value = device.getMacAddress();
+                node.Attributes.Append(macAttr);
+
+                XmlAttribute contTypeAttr = xmlDoc.CreateAttribute("ControllerType");
+                contTypeAttr.Value = device.DeviceType.ToString();
+                node.Attributes.Append(contTypeAttr);
+
+                if (!device.wheelCenterPoint.IsEmpty)
+                {
+                    XmlElement wheelCenterEl = xmlDoc.CreateElement("wheelCenterPoint");
+                    wheelCenterEl.InnerText = $"{device.wheelCenterPoint.X},{device.wheelCenterPoint.Y}";
+                    node.AppendChild(wheelCenterEl);
+
+                    XmlElement wheel90DegPointLeftEl = xmlDoc.CreateElement("wheel90DegPointLeft");
+                    wheel90DegPointLeftEl.InnerText = $"{device.wheel90DegPointLeft.X},{device.wheel90DegPointLeft.Y}";
+                    node.AppendChild(wheel90DegPointLeftEl);
+
+                    XmlElement wheel90DegPointRightEl = xmlDoc.CreateElement("wheel90DegPointLeft");
+                    wheel90DegPointRightEl.InnerText = $"{device.wheel90DegPointRight.X},{device.wheel90DegPointRight.Y}";
+                    node.AppendChild(wheel90DegPointRightEl);
+                }
 
                 device.optionsStore.PersistSettings(xmlDoc, node);
 

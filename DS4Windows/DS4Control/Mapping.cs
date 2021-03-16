@@ -1342,21 +1342,33 @@ namespace DS4Windows
                 dState.LY = (byte)(tempY * capY + 128.0);
             }
 
-            /* TODO: Look at old code for performing per-axis curve interpretation */
             int lsOutCurveMode = getLsOutCurveMode(device);
             if (lsOutCurveMode > 0 && (dState.LX != 128 || dState.LY != 128))
             {
-                double r = Math.Atan2(-(dState.LY - 128.0), (dState.LX - 128.0));
-                double maxOutXRatio = Math.Abs(Math.Cos(r));
-                double maxOutYRatio = Math.Abs(Math.Sin(r));
-                double sideX = dState.LX - 128; double sideY = dState.LY - 128.0;
-                double capX = dState.LX >= 128 ? maxOutXRatio * 127.0 : maxOutXRatio * 128.0;
-                double capY = dState.LY >= 128 ? maxOutYRatio * 127.0 : maxOutYRatio * 128.0;
-                double absSideX = Math.Abs(sideX); double absSideY = Math.Abs(sideY);
-                if (absSideX > capX) capX = absSideX;
-                if (absSideY > capY) capY = absSideY;
-                double tempRatioX = capX > 0 ? (dState.LX - 128.0) / capX : 0;
-                double tempRatioY = capY > 0 ? (dState.LY - 128.0) / capY : 0;
+                double tempRatioX = 0.0, tempRatioY = 0.0;
+                double capX = 0.0, capY = 0.0;
+                if (lsMod.deadzoneType == StickDeadZoneInfo.DeadZoneType.Radial)
+                {
+                    double r = Math.Atan2(-(dState.LY - 128.0), (dState.LX - 128.0));
+                    double maxOutXRatio = Math.Abs(Math.Cos(r));
+                    double maxOutYRatio = Math.Abs(Math.Sin(r));
+                    double sideX = dState.LX - 128; double sideY = dState.LY - 128.0;
+                    capX = dState.LX >= 128 ? maxOutXRatio * 127.0 : maxOutXRatio * 128.0;
+                    capY = dState.LY >= 128 ? maxOutYRatio * 127.0 : maxOutYRatio * 128.0;
+                    double absSideX = Math.Abs(sideX); double absSideY = Math.Abs(sideY);
+                    if (absSideX > capX) capX = absSideX;
+                    if (absSideY > capY) capY = absSideY;
+                    tempRatioX = capX > 0 ? (dState.LX - 128.0) / capX : 0;
+                    tempRatioY = capY > 0 ? (dState.LY - 128.0) / capY : 0;
+                }
+                else if (lsMod.deadzoneType == StickDeadZoneInfo.DeadZoneType.Axial)
+                {
+                    capX = dState.LX >= 128 ? 127.0 : 128.0;
+                    capY = dState.LY >= 128 ? 127.0 : 128.0;
+                    tempRatioX = (dState.LX - 128.0) / capX;
+                    tempRatioY = (dState.LY - 128.0) / capY;
+                }
+
                 double signX = tempRatioX >= 0.0 ? 1.0 : -1.0;
                 double signY = tempRatioY >= 0.0 ? 1.0 : -1.0;
 
@@ -1430,24 +1442,32 @@ namespace DS4Windows
                 }
                 else if (lsOutCurveMode == 6)
                 {
-                    // Get max values and circular distance of axes
-                    double maxX = (dState.LX >= 128 ? 127 : 128);
-                    double maxY = (dState.LY >= 128 ? 127 : 128);
-                    byte tempOutX = (byte)(tempRatioX * maxX + 128.0);
-                    byte tempOutY = (byte)(tempRatioY * maxY + 128.0);
+                    if (lsMod.deadzoneType == StickDeadZoneInfo.DeadZoneType.Radial)
+                    {
+                        // Get max values and circular distance of axes
+                        double maxX = (dState.LX >= 128 ? 127 : 128);
+                        double maxY = (dState.LY >= 128 ? 127 : 128);
+                        byte tempOutX = (byte)(tempRatioX * maxX + 128.0);
+                        byte tempOutY = (byte)(tempRatioY * maxY + 128.0);
 
-                    // Perform curve based on byte values from vector
-                    byte tempX = lsOutBezierCurveObj[device].arrayBezierLUT[tempOutX];
-                    byte tempY = lsOutBezierCurveObj[device].arrayBezierLUT[tempOutY];
+                        // Perform curve based on byte values from vector
+                        byte tempX = lsOutBezierCurveObj[device].arrayBezierLUT[tempOutX];
+                        byte tempY = lsOutBezierCurveObj[device].arrayBezierLUT[tempOutY];
 
-                    // Calculate new ratio
-                    double tempRatioOutX = (tempX - 128.0) / maxX;
-                    double tempRatioOutY = (tempY - 128.0) / maxY;
+                        // Calculate new ratio
+                        double tempRatioOutX = (tempX - 128.0) / maxX;
+                        double tempRatioOutY = (tempY - 128.0) / maxY;
 
-                    // Map back to stick coordinates
-                    dState.LX = (byte)(tempRatioOutX * capX + 128);
-                    dState.LY = (byte)(tempRatioOutY * capY + 128);
-                    //Console.WriteLine("X(I){0} X(O){1} {2} {3}", tempOutX, dState.LX, tempOutY, dState.LY);
+                        // Map back to stick coordinates
+                        dState.LX = (byte)(tempRatioOutX * capX + 128);
+                        dState.LY = (byte)(tempRatioOutY * capY + 128);
+                        //Console.WriteLine("X(I){0} X(O){1} {2} {3}", tempOutX, dState.LX, tempOutY, dState.LY);
+                    }
+                    else if (lsMod.deadzoneType == StickDeadZoneInfo.DeadZoneType.Axial)
+                    {
+                        dState.LX = lsOutBezierCurveObj[device].arrayBezierLUT[dState.LX];
+                        dState.LY = lsOutBezierCurveObj[device].arrayBezierLUT[dState.LY];
+                    }
                 }
             }
             
@@ -1469,21 +1489,33 @@ namespace DS4Windows
                 dState.RY = (byte)(tempY * capY + 128.0);
             }
 
-            /* TODO: Look at old code for performing per-axis curve interpretation */
             int rsOutCurveMode = getRsOutCurveMode(device);
             if (rsOutCurveMode > 0 && (dState.RX != 128 || dState.RY != 128))
             {
-                double r = Math.Atan2(-(dState.RY - 128.0), (dState.RX - 128.0));
-                double maxOutXRatio = Math.Abs(Math.Cos(r));
-                double maxOutYRatio = Math.Abs(Math.Sin(r));
-                double sideX = dState.RX - 128; double sideY = dState.RY - 128.0;
-                double capX = dState.RX >= 128 ? maxOutXRatio * 127.0 : maxOutXRatio * 128.0;
-                double capY = dState.RY >= 128 ? maxOutYRatio * 127.0 : maxOutYRatio * 128.0;
-                double absSideX = Math.Abs(sideX); double absSideY = Math.Abs(sideY);
-                if (absSideX > capX) capX = absSideX;
-                if (absSideY > capY) capY = absSideY;
-                double tempRatioX = capX > 0 ? (dState.RX - 128.0) / capX : 0;
-                double tempRatioY = capY > 0 ? (dState.RY - 128.0) / capY : 0;
+                double tempRatioX = 0.0, tempRatioY = 0.0;
+                double capX = 0.0, capY = 0.0;
+                if (rsMod.deadzoneType == StickDeadZoneInfo.DeadZoneType.Radial)
+                {
+                    double r = Math.Atan2(-(dState.RY - 128.0), (dState.RX - 128.0));
+                    double maxOutXRatio = Math.Abs(Math.Cos(r));
+                    double maxOutYRatio = Math.Abs(Math.Sin(r));
+                    double sideX = dState.RX - 128; double sideY = dState.RY - 128.0;
+                    capX = dState.RX >= 128 ? maxOutXRatio * 127.0 : maxOutXRatio * 128.0;
+                    capY = dState.RY >= 128 ? maxOutYRatio * 127.0 : maxOutYRatio * 128.0;
+                    double absSideX = Math.Abs(sideX); double absSideY = Math.Abs(sideY);
+                    if (absSideX > capX) capX = absSideX;
+                    if (absSideY > capY) capY = absSideY;
+                    tempRatioX = capX > 0 ? (dState.RX - 128.0) / capX : 0;
+                    tempRatioY = capY > 0 ? (dState.RY - 128.0) / capY : 0;
+                }
+                else if (rsMod.deadzoneType == StickDeadZoneInfo.DeadZoneType.Axial)
+                {
+                    capX = dState.RX >= 128 ? 127.0 : 128.0;
+                    capY = dState.RY >= 128 ? 127.0 : 128.0;
+                    tempRatioX = (dState.RX - 128.0) / capX;
+                    tempRatioY = (dState.RY - 128.0) / capY;
+                }
+
                 double signX = tempRatioX >= 0.0 ? 1.0 : -1.0;
                 double signY = tempRatioY >= 0.0 ? 1.0 : -1.0;
 
@@ -1557,23 +1589,31 @@ namespace DS4Windows
                 }
                 else if (rsOutCurveMode == 6)
                 {
-                    // Get max values and circular distance of axes
-                    double maxX = (dState.RX >= 128 ? 127 : 128);
-                    double maxY = (dState.RY >= 128 ? 127 : 128);
-                    byte tempOutX = (byte)(tempRatioX * maxX + 128.0);
-                    byte tempOutY = (byte)(tempRatioY * maxY + 128.0);
+                    if (rsMod.deadzoneType == StickDeadZoneInfo.DeadZoneType.Radial)
+                    {
+                        // Get max values and circular distance of axes
+                        double maxX = (dState.RX >= 128 ? 127 : 128);
+                        double maxY = (dState.RY >= 128 ? 127 : 128);
+                        byte tempOutX = (byte)(tempRatioX * maxX + 128.0);
+                        byte tempOutY = (byte)(tempRatioY * maxY + 128.0);
 
-                    // Perform curve based on byte values from vector
-                    byte tempX = rsOutBezierCurveObj[device].arrayBezierLUT[tempOutX];
-                    byte tempY = rsOutBezierCurveObj[device].arrayBezierLUT[tempOutY];
+                        // Perform curve based on byte values from vector
+                        byte tempX = rsOutBezierCurveObj[device].arrayBezierLUT[tempOutX];
+                        byte tempY = rsOutBezierCurveObj[device].arrayBezierLUT[tempOutY];
 
-                    // Calculate new ratio
-                    double tempRatioOutX = (tempX - 128.0) / maxX;
-                    double tempRatioOutY = (tempY - 128.0) / maxY;
+                        // Calculate new ratio
+                        double tempRatioOutX = (tempX - 128.0) / maxX;
+                        double tempRatioOutY = (tempY - 128.0) / maxY;
 
-                    // Map back to stick coordinates
-                    dState.RX = (byte)(tempRatioOutX * capX + 128);
-                    dState.RY = (byte)(tempRatioOutY * capY + 128);
+                        // Map back to stick coordinates
+                        dState.RX = (byte)(tempRatioOutX * capX + 128);
+                        dState.RY = (byte)(tempRatioOutY * capY + 128);
+                    }
+                    else if (rsMod.deadzoneType == StickDeadZoneInfo.DeadZoneType.Axial)
+                    {
+                        dState.RX = rsOutBezierCurveObj[device].arrayBezierLUT[dState.RX];
+                        dState.RY = rsOutBezierCurveObj[device].arrayBezierLUT[dState.RY];
+                    }
                 }
             }
 

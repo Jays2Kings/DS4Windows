@@ -198,6 +198,11 @@ namespace DS4Windows
             gyroAverageTimer.Start();
         }
 
+        public void stopCalibration()
+        {
+            gyroAverageTimer.Stop();
+        }
+
         int temInt = 0;
         public void setCalibrationData(ref byte[] calibData, bool useAltGyroCalib)
         {

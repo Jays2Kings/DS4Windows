@@ -1452,6 +1452,10 @@ namespace DS4Windows
                         {
                             sixAxis.handleSixaxis(pbGyro, pbAccel, cState, elapsedDeltaTime);
                         }
+                        else
+                        {
+                            sixAxis.stopCalibration();
+                        }
                     }
 
                     /* Debug output of incoming HID data:

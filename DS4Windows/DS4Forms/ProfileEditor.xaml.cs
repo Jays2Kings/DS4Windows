@@ -76,7 +76,6 @@ namespace DS4WinWPF.DS4Forms
             PopulateHoverIndexes();
             PopulateReverseHoverIndexes();
 
-            ColorByBatteryPerCheck();
             AssignTiltAssociation();
             AssignSwipeAssociation();
             AssignTriggerFullPullAssociation();
@@ -547,6 +546,8 @@ namespace DS4WinWPF.DS4Forms
                     Global.LoadBlankDevProfile(device, false, App.rootHub, false);
                 }
             }
+
+            ColorByBatteryPerCheck();
 
             if (device < Global.TEST_PROFILE_INDEX)
             {

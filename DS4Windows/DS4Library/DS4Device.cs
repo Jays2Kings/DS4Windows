@@ -831,6 +831,7 @@ namespace DS4Windows
             {
                 hDevice.readFeatureData(calibration);
                 sixAxis.setCalibrationData(ref calibration, conType == ConnectionType.USB);
+                sixAxis.ResetContinuousCalibration();
             }
         }
 

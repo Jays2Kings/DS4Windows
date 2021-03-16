@@ -869,6 +869,74 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.RSModInfo[device].maxOutput = value * 100.0;
         }
 
+        public int LSDeadTypeIndex
+        {
+            get
+            {
+                int index = 0;
+                switch(Global.LSModInfo[device].deadzoneType)
+                {
+                    case StickDeadZoneInfo.DeadZoneType.Radial:
+                        break;
+                    case StickDeadZoneInfo.DeadZoneType.Axial:
+                        index = 1; break;
+                    default: break;
+                }
+
+                return index;
+            }
+            set
+            {
+                StickDeadZoneInfo.DeadZoneType temp = StickDeadZoneInfo.DeadZoneType.Radial;
+                switch(value)
+                {
+                    case 0: break;
+                    case 1:
+                        temp = StickDeadZoneInfo.DeadZoneType.Axial;
+                        break;
+                    default: break;
+                }
+
+                StickDeadZoneInfo.DeadZoneType current = Global.LSModInfo[device].deadzoneType;
+                if (temp == current) return;
+                Global.LSModInfo[device].deadzoneType = temp;
+            }
+        }
+
+        public int RSDeadTypeIndex
+        {
+            get
+            {
+                int index = 0;
+                switch (Global.RSModInfo[device].deadzoneType)
+                {
+                    case StickDeadZoneInfo.DeadZoneType.Radial:
+                        break;
+                    case StickDeadZoneInfo.DeadZoneType.Axial:
+                        index = 1; break;
+                    default: break;
+                }
+
+                return index;
+            }
+            set
+            {
+                StickDeadZoneInfo.DeadZoneType temp = StickDeadZoneInfo.DeadZoneType.Radial;
+                switch (value)
+                {
+                    case 0: break;
+                    case 1:
+                        temp = StickDeadZoneInfo.DeadZoneType.Axial;
+                        break;
+                    default: break;
+                }
+
+                StickDeadZoneInfo.DeadZoneType current = Global.RSModInfo[device].deadzoneType;
+                if (temp == current) return;
+                Global.RSModInfo[device].deadzoneType = temp;
+            }
+        }
+
         public double LSSens
         {
             get => Global.LSSens[device];

@@ -93,6 +93,7 @@ namespace DS4WinWPF.DS4Forms
             outConTypeCombo.SelectionChanged += OutConTypeCombo_SelectionChanged;
             mappingListBox.SelectionChanged += MappingListBox_SelectionChanged;
             Closed += ProfileEditor_Closed;
+
             profileSettingsVM.LSDeadZoneChanged += UpdateReadingsLsDeadZone;
             profileSettingsVM.RSDeadZoneChanged += UpdateReadingsRsDeadZone;
             profileSettingsVM.L2DeadZoneChanged += UpdateReadingsL2DeadZone;
@@ -148,14 +149,36 @@ namespace DS4WinWPF.DS4Forms
             conReadingsUserCon.L2Dead = profileSettingsVM.L2DeadZone;
         }
 
-        private void UpdateReadingsRsDeadZone(object sender, EventArgs e)
-        {
-            conReadingsUserCon.RsDead = profileSettingsVM.RSDeadZone;
-        }
-
         private void UpdateReadingsLsDeadZone(object sender, EventArgs e)
         {
-            conReadingsUserCon.LsDead = profileSettingsVM.LSDeadZone;
+            conReadingsUserCon.LsDeadX = profileSettingsVM.LSDeadZone;
+            conReadingsUserCon.LsDeadY = profileSettingsVM.LSDeadZone;
+        }
+
+        private void UpdateReadingsLsDeadZoneX(object sender, EventArgs e)
+        {
+            conReadingsUserCon.LsDeadX = axialLSStickControl.AxialVM.DeadZoneX;
+        }
+
+        private void UpdateReadingsLsDeadZoneY(object sender, EventArgs e)
+        {
+            conReadingsUserCon.LsDeadY = axialLSStickControl.AxialVM.DeadZoneY;
+        }
+
+        private void UpdateReadingsRsDeadZone(object sender, EventArgs e)
+        {
+            conReadingsUserCon.RsDeadX = profileSettingsVM.RSDeadZone;
+            conReadingsUserCon.RsDeadY = profileSettingsVM.RSDeadZone;
+        }
+
+        private void UpdateReadingsRsDeadZoneX(object sender, EventArgs e)
+        {
+            conReadingsUserCon.RsDeadX = axialRSStickControl.AxialVM.DeadZoneX;
+        }
+
+        private void UpdateReadingsRsDeadZoneY(object sender, EventArgs e)
+        {
+            conReadingsUserCon.RsDeadY = axialRSStickControl.AxialVM.DeadZoneY;
         }
 
         private void AssignTiltAssociation()
@@ -562,6 +585,8 @@ namespace DS4WinWPF.DS4Forms
             }
 
             conReadingsUserCon.EnableControl(false);
+            axialLSStickControl.UseDevice(Global.LSModInfo[device]);
+            axialRSStickControl.UseDevice(Global.RSModInfo[device]);
 
             specialActionsVM.LoadActions(currentProfile == null);
             mappingListVM.UpdateMappings();
@@ -577,12 +602,39 @@ namespace DS4WinWPF.DS4Forms
             lightbarRect.DataContext = profileSettingsVM;
             SetupGyroPanel();
 
-            conReadingsUserCon.LsDead = profileSettingsVM.LSDeadZone;
-            conReadingsUserCon.RsDead = profileSettingsVM.RSDeadZone;
+            StickDeadZoneInfo lsMod = Global.LSModInfo[device];
+            if (lsMod.deadzoneType == StickDeadZoneInfo.DeadZoneType.Radial)
+            {
+                conReadingsUserCon.LsDeadX = profileSettingsVM.LSDeadZone;
+                conReadingsUserCon.LsDeadY = profileSettingsVM.LSDeadZone;
+            }
+            else if (lsMod.deadzoneType == StickDeadZoneInfo.DeadZoneType.Axial)
+            {
+                conReadingsUserCon.LsDeadX = axialLSStickControl.AxialVM.DeadZoneX;
+                conReadingsUserCon.LsDeadY = axialLSStickControl.AxialVM.DeadZoneY;
+            }
+
+            StickDeadZoneInfo rsMod = Global.RSModInfo[device];
+            if (rsMod.deadzoneType == StickDeadZoneInfo.DeadZoneType.Radial)
+            {
+                conReadingsUserCon.RsDeadX = profileSettingsVM.RSDeadZone;
+                conReadingsUserCon.RsDeadY = profileSettingsVM.RSDeadZone;
+            }
+            else if (rsMod.deadzoneType == StickDeadZoneInfo.DeadZoneType.Axial)
+            {
+                conReadingsUserCon.RsDeadX = axialRSStickControl.AxialVM.DeadZoneX;
+                conReadingsUserCon.RsDeadY = axialRSStickControl.AxialVM.DeadZoneY;
+            }
+
             conReadingsUserCon.L2Dead = profileSettingsVM.L2DeadZone;
             conReadingsUserCon.R2Dead = profileSettingsVM.R2DeadZone;
             conReadingsUserCon.SixAxisXDead = profileSettingsVM.SXDeadZone;
             conReadingsUserCon.SixAxisZDead = profileSettingsVM.SZDeadZone;
+
+            axialLSStickControl.AxialVM.DeadZoneXChanged += UpdateReadingsLsDeadZoneX;
+            axialLSStickControl.AxialVM.DeadZoneYChanged += UpdateReadingsLsDeadZoneY;
+            axialRSStickControl.AxialVM.DeadZoneXChanged += UpdateReadingsRsDeadZoneX;
+            axialRSStickControl.AxialVM.DeadZoneYChanged += UpdateReadingsRsDeadZoneY;
 
             if (profileSettingsVM.UseControllerReadout)
             {
@@ -614,8 +666,8 @@ namespace DS4WinWPF.DS4Forms
             lightbarRect.DataContext = profileSettingsVM;
             SetupGyroPanel();
 
-            conReadingsUserCon.LsDead = profileSettingsVM.LSDeadZone;
-            conReadingsUserCon.RsDead = profileSettingsVM.RSDeadZone;
+            conReadingsUserCon.LsDeadX = profileSettingsVM.LSDeadZone;
+            conReadingsUserCon.RsDeadX = profileSettingsVM.RSDeadZone;
             conReadingsUserCon.L2Dead = profileSettingsVM.L2DeadZone;
             conReadingsUserCon.R2Dead = profileSettingsVM.R2DeadZone;
             conReadingsUserCon.SixAxisXDead = profileSettingsVM.SXDeadZone;

@@ -192,6 +192,9 @@
     <Compile Include="DS4Forms\AutoProfiles.xaml.cs">
       <DependentUpon>AutoProfiles.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DS4Forms\AxialStickUserControl.xaml.cs">
+      <DependentUpon>AxialStickUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DS4Forms\BindingWindow.xaml.cs">
       <DependentUpon>BindingWindow.xaml</DependentUpon>
     </Compile>
@@ -246,6 +249,7 @@
     </Compile>
     <Compile Include="DS4Forms\Converters\EscapeAccessKeysConverter.cs" />
     <Compile Include="DS4Forms\ViewModels\AutoProfilesViewModel.cs" />
+    <Compile Include="DS4Forms\ViewModels\AxialStickControlViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\BindingWindowViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\ChangelogViewModel.cs" />
     <Compile Include="DS4Forms\ViewModels\ControllerListViewModel.cs" />
@@ -315,6 +319,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DS4Forms\AutoProfiles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DS4Forms\AxialStickUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

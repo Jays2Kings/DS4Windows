@@ -34,34 +34,59 @@ namespace DS4WinWPF.DS4Forms
         private event EventHandler DeviceNumChanged;
         private NonFormTimer readingTimer;
         private bool useTimer;
-        private double lsDead;
-        private double rsDead;
+        private double lsDeadX;
+        private double lsDeadY;
+        private double rsDeadX;
+        private double rsDeadY;
+
         private double sixAxisXDead;
         private double sixAxisZDead;
         private double l2Dead;
         private double r2Dead;
 
-        public double LsDead
+        public double LsDeadX
         {
-            get => lsDead;
+            get => lsDeadX;
             set
             {
-                lsDead = value;
-                LsDeadChanged?.Invoke(this, EventArgs.Empty);
+                lsDeadX = value;
+                LsDeadXChanged?.Invoke(this, EventArgs.Empty);
             }
         }
-        public event EventHandler LsDeadChanged;
+        public event EventHandler LsDeadXChanged;
 
-        public double RsDead
+        public double LsDeadY
         {
-            get => rsDead;
+            get => lsDeadY;
             set
             {
-                rsDead = value;
-                RsDeadChanged?.Invoke(this, EventArgs.Empty);
+                lsDeadY = value;
+                LsDeadYChanged?.Invoke(this, EventArgs.Empty);
             }
         }
-        public event EventHandler RsDeadChanged;
+        public event EventHandler LsDeadYChanged;
+
+        public double RsDeadX
+        {
+            get => rsDeadX;
+            set
+            {
+                rsDeadX = value;
+                RsDeadXChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler RsDeadXChanged;
+
+        public double RsDeadY
+        {
+            get => rsDeadY;
+            set
+            {
+                rsDeadY = value;
+                RsDeadYChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler RsDeadYChanged;
 
         public double SixAxisXDead
         {
@@ -125,8 +150,12 @@ namespace DS4WinWPF.DS4Forms
             readingTimer = new NonFormTimer();
             readingTimer.Interval = 1000 / 60.0;
 
-            LsDeadChanged += ChangeLsDeadControls;
-            RsDeadChanged += ChangeRsDeadControls;
+            LsDeadXChanged += ChangeLsDeadControls;
+            LsDeadYChanged += ChangeLsDeadControls;
+
+            RsDeadXChanged += ChangeRsDeadControls;
+            RsDeadYChanged += ChangeRsDeadControls;
+
             SixAxisDeadXChanged += ChangeSixAxisDeadControls;
             SixAxisDeadZChanged += ChangeSixAxisDeadControls;
             DeviceNumChanged += ControllerReadingsControl_DeviceNumChanged;
@@ -147,18 +176,18 @@ namespace DS4WinWPF.DS4Forms
 
         private void ChangeRsDeadControls(object sender, EventArgs e)
         {
-            rsDeadEllipse.Width = rsDead * CANVAS_WIDTH;
-            rsDeadEllipse.Height = rsDead * CANVAS_WIDTH;
-            Canvas.SetLeft(rsDeadEllipse, CANVAS_MIDPOINT - (rsDead * CANVAS_WIDTH / 2.0));
-            Canvas.SetTop(rsDeadEllipse, CANVAS_MIDPOINT - (rsDead * CANVAS_WIDTH / 2.0));
+            rsDeadEllipse.Width = rsDeadX * CANVAS_WIDTH;
+            rsDeadEllipse.Height = rsDeadY * CANVAS_WIDTH;
+            Canvas.SetLeft(rsDeadEllipse, CANVAS_MIDPOINT - (rsDeadX * CANVAS_WIDTH / 2.0));
+            Canvas.SetTop(rsDeadEllipse, CANVAS_MIDPOINT - (rsDeadY * CANVAS_WIDTH / 2.0));
         }
 
         private void ChangeLsDeadControls(object sender, EventArgs e)
         {
-            lsDeadEllipse.Width = lsDead * CANVAS_WIDTH;
-            lsDeadEllipse.Height = lsDead * CANVAS_WIDTH;
-            Canvas.SetLeft(lsDeadEllipse, CANVAS_MIDPOINT - (lsDead * CANVAS_WIDTH / 2.0));
-            Canvas.SetTop(lsDeadEllipse, CANVAS_MIDPOINT - (lsDead * CANVAS_WIDTH / 2.0));
+            lsDeadEllipse.Width = lsDeadX * CANVAS_WIDTH;
+            lsDeadEllipse.Height = lsDeadY * CANVAS_WIDTH;
+            Canvas.SetLeft(lsDeadEllipse, CANVAS_MIDPOINT - (lsDeadX * CANVAS_WIDTH / 2.0));
+            Canvas.SetTop(lsDeadEllipse, CANVAS_MIDPOINT - (lsDeadY * CANVAS_WIDTH / 2.0));
         }
 
         public void UseDevice(int index, int profileDevIdx)

@@ -1454,7 +1454,7 @@ namespace DS4Windows
                         }
                         else
                         {
-                            sixAxis.stopCalibration();
+                            sixAxis.StopContinuousCalibration();
                         }
                     }
 

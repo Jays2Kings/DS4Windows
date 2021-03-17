@@ -1,9 +1,41 @@
 {
-  "latest_version": "2.2.10",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 10},
-  "updated_at": "2021-03-09T20:14:08+0000",
+  "latest_version": "2.2.11",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 11},
+  "updated_at": "2021-03-17T20:05:46+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "2.2.11",
+      "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 11},
+      "base_header": "Version 2.2.11",
+      "release_date": "2021-03-17T20:05:46+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 2.2.11",
+          "log_text": ["* Implemented newer feedback handler routine for virtual DS4 devices. Added virtual DS4 rumble back in",
+            "* Now sure to use continous calibration routine for non-DS4 devices",
+            "* Changed severity of ViGEmPluginFailure message. Now indicates that a user should probably reboot Windows if it happens",
+            "* Fixed JoyCon R Gyro Roll. Old value was inverted",
+            "* Copy modified JoyCon current state for use in UDP server",
+            "* Only display device in UDP server if it is a primary device. Mainly needed due to JoyCon R in Joined JoyCon mode",
+            "* Added exception catching when saving Actions xml file. File corruption will now cause the file to be written from scratch",
+            "* Use Task error log helper for some background service tasks. Allows some extra possible error messages to show up in the Log",
+            "* Simplify UDP motion event creation. Allow motion event to be created when enabling UDP server",
+            "* Make Flash at High Latency default to 50 ms",
+            "* Dark Theme color changes. Color contrast has been reduced. Contribution by **AnessZurba**",
+            "* Skip writing device wheel calibraton nodes if empty",
+            "* Now use estimated wheel center values if controller config has an empty entry. Problem caused some app instability and memory bloating due to excessive log messages in Log tab (over 1GB RAM usage)",
+            "* Implemented axial dead zone and related settings",
+            "* Fixed ColorByBattery panel visibility for first open. Contribution by **MakiseKurisu**",
+            "* Changes for continous calibration routine for Sony Wireless Adapter connections. Contribution by **MakiseKurisu**",
+            "* Tweaked profile loading for some older fallback options"],
+          "editor": "ryochan7",
+          "editors_note": ["None"],
+          "updated_at": "2021-03-17T20:05:46+0000"
+        }
+      ]
+    },
     {
       "version_str": "2.2.10",
       "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 10},

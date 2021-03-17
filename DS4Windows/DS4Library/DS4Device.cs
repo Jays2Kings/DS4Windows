@@ -1398,10 +1398,12 @@ namespace DS4Windows
                             if (synced)
                             {
                                 forceWrite = true;
+                                sixAxis.ResetContinuousCalibration();
                             }
                             else
                             {
                                 standbySw.Reset();
+                                sixAxis.StopContinuousCalibration();
                             }
                         }
                     }

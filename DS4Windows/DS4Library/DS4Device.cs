@@ -831,6 +831,7 @@ namespace DS4Windows
             {
                 hDevice.readFeatureData(calibration);
                 sixAxis.setCalibrationData(ref calibration, conType == ConnectionType.USB);
+                sixAxis.ResetContinuousCalibration();
             }
         }
 
@@ -1451,6 +1452,10 @@ namespace DS4Windows
                         if (synced)
                         {
                             sixAxis.handleSixaxis(pbGyro, pbAccel, cState, elapsedDeltaTime);
+                        }
+                        else
+                        {
+                            sixAxis.StopContinuousCalibration();
                         }
                     }
 

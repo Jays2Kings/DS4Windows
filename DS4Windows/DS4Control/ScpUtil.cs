@@ -4529,20 +4529,27 @@ namespace DS4Windows
                 XmlNode xmlUseTPForControlsElement =
                     m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls");
                 tpForControlsPresent = xmlUseTPForControlsElement != null;
-                try
+                if (tpForControlsPresent)
                 {
-                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls");
-                    bool.TryParse(Item.InnerText, out bool temp);
-                    if (temp) touchOutMode[device] = TouchpadOutMode.Controls;
+                    try
+                    {
+                        Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls");
+                        if (bool.TryParse(Item?.InnerText ?? "", out bool temp))
+                        {
+                            if (temp) touchOutMode[device] = TouchpadOutMode.Controls;
+                        }
+                    }
+                    catch { touchOutMode[device] = TouchpadOutMode.Mouse; }
                 }
-                catch { touchOutMode[device] = TouchpadOutMode.Mouse; }
 
                 // Fallback lookup if GyroOutMode is not set
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseSAforMouse");
-                    bool.TryParse(Item.InnerText, out bool temp);
-                    if (temp) gyroOutMode[device] = GyroOutMode.Mouse;
+                    if (bool.TryParse(Item?.InnerText ?? "", out bool temp))
+                    {
+                        if (temp) gyroOutMode[device] = GyroOutMode.Mouse;
+                    }
                 }
                 catch { gyroOutMode[device] = GyroOutMode.Controls; }
 

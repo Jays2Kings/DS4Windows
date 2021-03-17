@@ -517,11 +517,12 @@ namespace DS4Windows
                 int i = 0;
                 foreach (DS4Device dev in devices)
                 {
+                    int tempIdx = i;
                     dev.queueEvent(() =>
                     {
                         if (i < UdpServer.NUMBER_SLOTS && dev.PrimaryDevice)
                         {
-                            PrepareDevUDPMotion(dev, i);
+                            PrepareDevUDPMotion(dev, tempIdx);
                         }
                     });
 

@@ -1199,6 +1199,7 @@ namespace DS4Windows
                                 int winError = Marshal.GetLastWin32Error();
                                 Console.WriteLine(Mac.ToString() + " " + DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + winError);
                                 //Log.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
+                                AppLogger.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
                             }
 
                             readWaitEv.Reset();

@@ -349,6 +349,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data integrity checks failed for wireless device. Closing device..
+        /// </summary>
+        public static string CRC32Fail {
+            get {
+                return ResourceManager.GetString("CRC32Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Custom Exe Name.
         /// </summary>
         public static string CustomExeName {

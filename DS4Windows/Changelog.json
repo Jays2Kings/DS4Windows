@@ -1,9 +1,27 @@
 {
-  "latest_version": "2.2.11",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 11},
-  "updated_at": "2021-03-17T20:05:46+0000",
+  "latest_version": "2.2.12",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 12},
+  "updated_at": "2021-03-19T14:01:18+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "2.2.12",
+      "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 12},
+      "base_header": "Version 2.2.12",
+      "release_date": "2021-03-19T14:01:18+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 2.2.12",
+          "log_text": ["* Fixed CRC32 error counter for DualSense",
+            "* Fixed bad copy pasta regarding device setting wheel calibration saving",
+            "* Added error checking with device wheel calibration loading"],
+          "editor": "ryochan7",
+          "editors_note": ["None"],
+          "updated_at": "2021-03-19T14:01:18+0000"
+        }
+      ]
+    },
     {
       "version_str": "2.2.11",
       "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 11},

@@ -159,6 +159,7 @@ namespace DS4WinWPF.DS4Forms
                 //UpdateTheUpdater();
             });
 
+            // Log exceptions that might occur
             Util.LogAssistBackgroundTask(tempTask);
 
             tempTask = Task.Delay(100).ContinueWith((t) =>
@@ -844,13 +845,17 @@ Suspend support not enabled.", true);
             App root = Application.Current as App;
             //Tester service = root.rootHubtest;
             ControlService service = App.rootHub;
-            await Task.Run(() =>
+            Task serviceTask = Task.Run(() =>
             {
                 if (service.running)
                     service.Stop();
                 else
                     service.Start();
             });
+
+            // Log exceptions that might occur
+            Util.LogAssistBackgroundTask(serviceTask);
+            await serviceTask;
         }
 
         private void LogListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -903,6 +908,7 @@ Suspend support not enabled.", true);
         {
             Image img = sender as Image;
             int tag = Convert.ToInt32(img.Tag);
+            conLvViewModel.CurrentIndex = tag;
             CompositeDeviceModel item = conLvViewModel.CurrentItem;
             //CompositeDeviceModel item = conLvViewModel.ControllerDict[tag];
             if (item != null)
@@ -1061,7 +1067,9 @@ Suspend support not enabled.", true);
                             if (!inHotPlug)
                             {
                                 inHotPlug = true;
-                                Task.Run(() => { InnerHotplug2(); });
+                                Task hotplugTask = Task.Run(() => { InnerHotplug2(); });
+                                // Log exceptions that might occur
+                                Util.LogAssistBackgroundTask(hotplugTask);
                             }
                         }
                     }
@@ -1108,6 +1116,31 @@ Suspend support not enabled.", true);
                                     // Call closing method and let it to close editor wnd (if it is open) before proceeding to the actual "app closed" handler
                                     MainDS4Window_Closing(null, new System.ComponentModel.CancelEventArgs());
                                     MainDS4Window_Closed(this, new System.EventArgs());
+                                }
+                                else if (strData[0] == "disconnect")
+                                {
+                                    // Command syntax: Disconnect[.device#] (fex Disconnect.1)
+                                    // Disconnect all wireless controllers. ex. (Disconnect)
+                                    if (strData.Length == 1)
+                                    {
+                                        // Attempt to disconnect all wireless controllers
+                                        // Opt to make copy of Dictionary before iterating over contents
+                                        var dictCopy = new Dictionary<int, CompositeDeviceModel>(conLvViewModel.ControllerDict);
+                                        foreach(KeyValuePair<int, CompositeDeviceModel> pair in dictCopy)
+                                        {
+                                            pair.Value.RequestDisconnect();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        // Attempt to disconnect one wireless controller
+                                        if (int.TryParse(strData[1], out tdevice)) tdevice--;
+
+                                        if (conLvViewModel.ControllerDict.TryGetValue(tdevice, out CompositeDeviceModel model))
+                                        {
+                                            model.RequestDisconnect();
+                                        }
+                                    }
                                 }
                                 else if ((strData[0] == "loadprofile" || strData[0] == "loadtempprofile") && strData.Length >= 3)
                                 {
@@ -1302,18 +1335,22 @@ Suspend support not enabled.", true);
             mainTabCon.SelectedIndex = 1;
             //controllerLV.Focus();
         }
+
         // Ex Mode Re-Enable
         private async void HideDS4ContCk_Click(object sender, RoutedEventArgs e)
         {
-            if (DS4Windows.Global.UseExclusiveMode == true) { MessageBox.Show("This feature is depreciated and no longer supported. Exclusive mode usage is provided mearly as a legacy feature. Do NOT ask for help for this feature, you will not recieve any.", "Feature no longer supported"); }
             StartStopBtn.IsEnabled = false;
             //bool checkStatus = hideDS4ContCk.IsChecked == true;
             hideDS4ContCk.IsEnabled = false;
-            await Task.Run(() =>
+            Task serviceTask = Task.Run(() =>
             {
                 App.rootHub.Stop();
                 App.rootHub.Start();
             });
+
+            // Log exceptions that might occur
+            Util.LogAssistBackgroundTask(serviceTask);
+            await serviceTask;
 
             hideDS4ContCk.IsEnabled = true;
             StartStopBtn.IsEnabled = true;

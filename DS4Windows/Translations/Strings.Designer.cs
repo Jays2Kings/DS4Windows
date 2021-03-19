@@ -349,6 +349,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data integrity checks failed for wireless device. Closing device..
+        /// </summary>
+        public static string CRC32Fail {
+            get {
+                return ResourceManager.GetString("CRC32Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Custom Exe Name.
         /// </summary>
         public static string CustomExeName {
@@ -982,7 +991,7 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ViGEm Device Plugin Failed. Closing connection..
+        ///   Looks up a localized string similar to ViGEm Device Plugin Failed. Likely an internal ViGEmBus problem. Closing connection. If issue persist, please reboot Windows. WARNING: You will likely get a BSOD on Windows shutdown..
         /// </summary>
         public static string ViGEmPluginFailure {
             get {

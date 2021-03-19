@@ -1937,6 +1937,18 @@ namespace DS4Windows
             return m_Config.squStickInfo[device];
         }
 
+        public static StickAntiSnapbackInfo[] LSAntiSnapbackInfo => m_Config.lsAntiSnapbackInfo;
+        public static StickAntiSnapbackInfo GetLSAntiSnapbackInfo(int device)
+        {
+            return m_Config.lsAntiSnapbackInfo[device];
+        }
+
+        public static StickAntiSnapbackInfo[] RSAntiSnapbackInfo => m_Config.rsAntiSnapbackInfo;
+        public static StickAntiSnapbackInfo GetRSAntiSnapbackInfo(int device)
+        {
+            return m_Config.rsAntiSnapbackInfo[device];
+        }
+
         public static StickOutputSetting[] LSOutputSettings => m_Config.lsOutputSettings;
         public static StickOutputSetting[] RSOutputSettings => m_Config.rsOutputSettings;
 
@@ -2555,6 +2567,24 @@ namespace DS4Windows
             new SquareStickInfo(),
         };
 
+        public StickAntiSnapbackInfo[] lsAntiSnapbackInfo = new StickAntiSnapbackInfo[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            new StickAntiSnapbackInfo(), new StickAntiSnapbackInfo(),
+            new StickAntiSnapbackInfo(), new StickAntiSnapbackInfo(),
+            new StickAntiSnapbackInfo(), new StickAntiSnapbackInfo(),
+            new StickAntiSnapbackInfo(), new StickAntiSnapbackInfo(),
+            new StickAntiSnapbackInfo(),
+        };
+
+        public StickAntiSnapbackInfo[] rsAntiSnapbackInfo = new StickAntiSnapbackInfo[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            new StickAntiSnapbackInfo(), new StickAntiSnapbackInfo(),
+            new StickAntiSnapbackInfo(), new StickAntiSnapbackInfo(),
+            new StickAntiSnapbackInfo(), new StickAntiSnapbackInfo(),
+            new StickAntiSnapbackInfo(), new StickAntiSnapbackInfo(),
+            new StickAntiSnapbackInfo(),
+        };
+
         public StickOutputSetting[] lsOutputSettings = new StickOutputSetting[Global.TEST_PROFILE_ITEM_COUNT]
         {
             new StickOutputSetting(), new StickOutputSetting(), new StickOutputSetting(),
@@ -2756,7 +2786,7 @@ namespace DS4Windows
         public bool downloadLang = true;
         public TrayIconChoice useIconChoice;
         public bool flashWhenLate = true;
-        public int flashWhenLateAt = 40;
+        public int flashWhenLateAt = 50;
         public bool useUDPServ = false;
         public int udpServPort = 26760;
         public string udpServListenAddress = "127.0.0.1"; // 127.0.0.1=IPAddress.Loopback (default), 0.0.0.0=IPAddress.Any as all interfaces, x.x.x.x = Specific ipv4 interface address or hostname
@@ -3236,6 +3266,31 @@ namespace DS4Windows
                 XmlNode xmlRSMaxZone = m_Xdoc.CreateNode(XmlNodeType.Element, "RSMaxZone", null); xmlRSMaxZone.InnerText = rsModInfo[device].maxZone.ToString(); rootElement.AppendChild(xmlRSMaxZone);
                 XmlNode xmlLSMaxOutput = m_Xdoc.CreateNode(XmlNodeType.Element, "LSMaxOutput", null); xmlLSMaxOutput.InnerText = lsModInfo[device].maxOutput.ToString(); rootElement.AppendChild(xmlLSMaxOutput);
                 XmlNode xmlRSMaxOutput = m_Xdoc.CreateNode(XmlNodeType.Element, "RSMaxOutput", null); xmlRSMaxOutput.InnerText = rsModInfo[device].maxOutput.ToString(); rootElement.AppendChild(xmlRSMaxOutput);
+                XmlNode xmlLSDeadZoneType = m_Xdoc.CreateNode(XmlNodeType.Element, "LSDeadZoneType", null); xmlLSDeadZoneType.InnerText = lsModInfo[device].deadzoneType.ToString(); rootElement.AppendChild(xmlLSDeadZoneType);
+                XmlNode xmlRSDeadZoneType = m_Xdoc.CreateNode(XmlNodeType.Element, "RSDeadZoneType", null); xmlRSDeadZoneType.InnerText = rsModInfo[device].deadzoneType.ToString(); rootElement.AppendChild(xmlRSDeadZoneType);
+
+                XmlElement xmlLSAxialDeadGroupEl = m_Xdoc.CreateElement("LSAxialDeadOptions");
+                XmlElement xmlLSAxialDeadX = m_Xdoc.CreateElement("DeadZoneX"); xmlLSAxialDeadX.InnerText = lsModInfo[device].xAxisDeadInfo.deadZone.ToString(); xmlLSAxialDeadGroupEl.AppendChild(xmlLSAxialDeadX);
+                XmlElement xmlLSAxialDeadY = m_Xdoc.CreateElement("DeadZoneY"); xmlLSAxialDeadY.InnerText = lsModInfo[device].yAxisDeadInfo.deadZone.ToString(); xmlLSAxialDeadGroupEl.AppendChild(xmlLSAxialDeadY);
+                XmlElement xmlLSAxialMaxX = m_Xdoc.CreateElement("MaxZoneX"); xmlLSAxialMaxX.InnerText = lsModInfo[device].xAxisDeadInfo.maxZone.ToString(); xmlLSAxialDeadGroupEl.AppendChild(xmlLSAxialMaxX);
+                XmlElement xmlLSAxialMaxY = m_Xdoc.CreateElement("MaxZoneY"); xmlLSAxialMaxY.InnerText = lsModInfo[device].yAxisDeadInfo.maxZone.ToString(); xmlLSAxialDeadGroupEl.AppendChild(xmlLSAxialMaxY);
+                XmlElement xmlLSAxialAntiDeadX = m_Xdoc.CreateElement("AntiDeadZoneX"); xmlLSAxialAntiDeadX.InnerText = lsModInfo[device].xAxisDeadInfo.antiDeadZone.ToString(); xmlLSAxialDeadGroupEl.AppendChild(xmlLSAxialAntiDeadX);
+                XmlElement xmlLSAxialAntiDeadY = m_Xdoc.CreateElement("AntiDeadZoneY"); xmlLSAxialAntiDeadY.InnerText = lsModInfo[device].yAxisDeadInfo.antiDeadZone.ToString(); xmlLSAxialDeadGroupEl.AppendChild(xmlLSAxialAntiDeadY);
+                XmlElement xmlLSAxialMaxOutputX = m_Xdoc.CreateElement("MaxOutputX"); xmlLSAxialMaxOutputX.InnerText = lsModInfo[device].xAxisDeadInfo.maxOutput.ToString(); xmlLSAxialDeadGroupEl.AppendChild(xmlLSAxialMaxOutputX);
+                XmlElement xmlLSAxialMaxOutputY = m_Xdoc.CreateElement("MaxOutputY"); xmlLSAxialMaxOutputY.InnerText = lsModInfo[device].yAxisDeadInfo.maxOutput.ToString(); xmlLSAxialDeadGroupEl.AppendChild(xmlLSAxialMaxOutputY);
+                rootElement.AppendChild(xmlLSAxialDeadGroupEl);
+
+                XmlElement xmlRSAxialDeadGroupEl = m_Xdoc.CreateElement("RSAxialDeadOptions");
+                XmlElement xmlRSAxialDeadX = m_Xdoc.CreateElement("DeadZoneX"); xmlRSAxialDeadX.InnerText = rsModInfo[device].xAxisDeadInfo.deadZone.ToString(); xmlRSAxialDeadGroupEl.AppendChild(xmlRSAxialDeadX);
+                XmlElement xmlRSAxialDeadY = m_Xdoc.CreateElement("DeadZoneY"); xmlRSAxialDeadY.InnerText = rsModInfo[device].yAxisDeadInfo.deadZone.ToString(); xmlRSAxialDeadGroupEl.AppendChild(xmlRSAxialDeadY);
+                XmlElement xmlRSAxialMaxX = m_Xdoc.CreateElement("MaxZoneX"); xmlRSAxialMaxX.InnerText = rsModInfo[device].xAxisDeadInfo.maxZone.ToString(); xmlRSAxialDeadGroupEl.AppendChild(xmlRSAxialMaxX);
+                XmlElement xmlRSAxialMaxY = m_Xdoc.CreateElement("MaxZoneY"); xmlRSAxialMaxY.InnerText = rsModInfo[device].yAxisDeadInfo.maxZone.ToString(); xmlRSAxialDeadGroupEl.AppendChild(xmlRSAxialMaxY);
+                XmlElement xmlRSAxialAntiDeadX = m_Xdoc.CreateElement("AntiDeadZoneX"); xmlRSAxialAntiDeadX.InnerText = rsModInfo[device].xAxisDeadInfo.antiDeadZone.ToString(); xmlRSAxialDeadGroupEl.AppendChild(xmlRSAxialAntiDeadX);
+                XmlElement xmlRSAxialAntiDeadY = m_Xdoc.CreateElement("AntiDeadZoneY"); xmlRSAxialAntiDeadY.InnerText = rsModInfo[device].yAxisDeadInfo.antiDeadZone.ToString(); xmlRSAxialDeadGroupEl.AppendChild(xmlRSAxialAntiDeadY);
+                XmlElement xmlRSAxialMaxOutputX = m_Xdoc.CreateElement("MaxOutputX"); xmlRSAxialMaxOutputX.InnerText = rsModInfo[device].xAxisDeadInfo.maxOutput.ToString(); xmlRSAxialDeadGroupEl.AppendChild(xmlRSAxialMaxOutputX);
+                XmlElement xmlRSAxialMaxOutputY = m_Xdoc.CreateElement("MaxOutputY"); xmlRSAxialMaxOutputY.InnerText = rsModInfo[device].yAxisDeadInfo.maxOutput.ToString(); xmlRSAxialDeadGroupEl.AppendChild(xmlRSAxialMaxOutputY);
+                rootElement.AppendChild(xmlRSAxialDeadGroupEl);
+
                 XmlNode xmlLSRotation = m_Xdoc.CreateNode(XmlNodeType.Element, "LSRotation", null); xmlLSRotation.InnerText = Convert.ToInt32(LSRotation[device] * 180.0 / Math.PI).ToString(); rootElement.AppendChild(xmlLSRotation);
                 XmlNode xmlRSRotation = m_Xdoc.CreateNode(XmlNodeType.Element, "RSRotation", null); xmlRSRotation.InnerText = Convert.ToInt32(RSRotation[device] * 180.0 / Math.PI).ToString(); rootElement.AppendChild(xmlRSRotation);
                 XmlNode xmlLSFuzz = m_Xdoc.CreateNode(XmlNodeType.Element, "LSFuzz", null); xmlLSFuzz.InnerText = lsModInfo[device].fuzz.ToString(); rootElement.AppendChild(xmlLSFuzz);
@@ -3364,6 +3419,15 @@ namespace DS4Windows
 
                 XmlNode xmlSquareStickRoundness = m_Xdoc.CreateNode(XmlNodeType.Element, "SquareStickRoundness", null); xmlSquareStickRoundness.InnerText = squStickInfo[device].lsRoundness.ToString(); rootElement.AppendChild(xmlSquareStickRoundness);
                 XmlNode xmlSquareRStickRoundness = m_Xdoc.CreateNode(XmlNodeType.Element, "SquareRStickRoundness", null); xmlSquareRStickRoundness.InnerText = squStickInfo[device].rsRoundness.ToString(); rootElement.AppendChild(xmlSquareRStickRoundness);
+
+                XmlNode xmlLsAntiSnapbackEnabled = m_Xdoc.CreateNode(XmlNodeType.Element, "LSAntiSnapback", null); xmlLsAntiSnapbackEnabled.InnerText = lsAntiSnapbackInfo[device].enabled.ToString(); rootElement.AppendChild(xmlLsAntiSnapbackEnabled);
+                XmlNode xmlRsAntiSnapbackEnabled = m_Xdoc.CreateNode(XmlNodeType.Element, "RSAntiSnapback", null); xmlRsAntiSnapbackEnabled.InnerText = rsAntiSnapbackInfo[device].enabled.ToString(); rootElement.AppendChild(xmlRsAntiSnapbackEnabled);
+
+                XmlNode xmlLsAntiSnapbackDelta = m_Xdoc.CreateNode(XmlNodeType.Element, "LSAntiSnapbackDelta", null); xmlLsAntiSnapbackDelta.InnerText = lsAntiSnapbackInfo[device].delta.ToString(); rootElement.AppendChild(xmlLsAntiSnapbackDelta);
+                XmlNode xmlRsAntiSnapbackDelta = m_Xdoc.CreateNode(XmlNodeType.Element, "RSAntiSnapbackDelta", null); xmlRsAntiSnapbackDelta.InnerText = rsAntiSnapbackInfo[device].delta.ToString(); rootElement.AppendChild(xmlRsAntiSnapbackDelta);
+
+                XmlNode xmlLsAntiSnapbackTimeout = m_Xdoc.CreateNode(XmlNodeType.Element, "LSAntiSnapbackTimeout", null); xmlLsAntiSnapbackTimeout.InnerText = lsAntiSnapbackInfo[device].timeout.ToString(); rootElement.AppendChild(xmlLsAntiSnapbackTimeout);
+                XmlNode xmlRsAntiSnapbackTimeout = m_Xdoc.CreateNode(XmlNodeType.Element, "RSAntiSnapbackTimeout", null); xmlRsAntiSnapbackTimeout.InnerText = rsAntiSnapbackInfo[device].timeout.ToString(); rootElement.AppendChild(xmlRsAntiSnapbackTimeout);
 
                 XmlNode xmlLsOutputMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOutputMode", null); xmlLsOutputMode.InnerText = lsOutputSettings[device].mode.ToString(); rootElement.AppendChild(xmlLsOutputMode);
                 XmlNode xmlRsOutputMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOutputMode", null); xmlRsOutputMode.InnerText = rsOutputSettings[device].mode.ToString(); rootElement.AppendChild(xmlRsOutputMode);
@@ -4177,9 +4241,9 @@ namespace DS4Windows
                 }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSAntiDeadZone"); int.TryParse(Item.InnerText, out lsModInfo[device].antiDeadZone); }
-                catch { lsModInfo[device].antiDeadZone = 25; missingSetting = true; }
+                catch { lsModInfo[device].antiDeadZone = 20; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSAntiDeadZone"); int.TryParse(Item.InnerText, out rsModInfo[device].antiDeadZone); }
-                catch { rsModInfo[device].antiDeadZone = 25; missingSetting = true; }
+                catch { rsModInfo[device].antiDeadZone = 20; missingSetting = true; }
 
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSMaxZone"); int temp = 100;
@@ -4210,6 +4274,174 @@ namespace DS4Windows
                     rsModInfo[device].maxOutput = Math.Min(Math.Max(temp, 0.0), 100.0);
                 }
                 catch { rsModInfo[device].maxOutput = 100; missingSetting = true; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSDeadZoneType");
+                    if (Enum.TryParse(Item?.InnerText ?? "", out StickDeadZoneInfo.DeadZoneType temp))
+                    {
+                        lsModInfo[device].deadzoneType = temp;
+                    }
+                }
+                catch {}
+
+                bool lsAxialDeadGroup = false;
+                XmlNode lsAxialDeadElement =
+                    m_Xdoc.SelectSingleNode("/" + rootname + "/LSAxialDeadOptions");
+                lsAxialDeadGroup = lsAxialDeadElement != null;
+
+                if (lsAxialDeadGroup)
+                {
+                    try
+                    {
+                        Item = lsAxialDeadElement.SelectSingleNode("DeadZoneX");
+                        int.TryParse(Item.InnerText, out int temp);
+                        temp = Math.Min(Math.Max(temp, 0), 127);
+                        lsModInfo[device].xAxisDeadInfo.deadZone = temp;
+                    }
+                    catch {}
+
+                    try
+                    {
+                        Item = lsAxialDeadElement.SelectSingleNode("DeadZoneY");
+                        int.TryParse(Item.InnerText, out int temp);
+                        temp = Math.Min(Math.Max(temp, 0), 127);
+                        lsModInfo[device].yAxisDeadInfo.deadZone = temp;
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = lsAxialDeadElement.SelectSingleNode("MaxZoneX");
+                        int.TryParse(Item.InnerText, out int temp);
+                        lsModInfo[device].xAxisDeadInfo.maxZone = Math.Min(Math.Max(temp, 0), 100);
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = lsAxialDeadElement.SelectSingleNode("MaxZoneY");
+                        int.TryParse(Item.InnerText, out int temp);
+                        lsModInfo[device].yAxisDeadInfo.maxZone = Math.Min(Math.Max(temp, 0), 100);
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = lsAxialDeadElement.SelectSingleNode("AntiDeadZoneX");
+                        int.TryParse(Item.InnerText, out int temp);
+                        lsModInfo[device].xAxisDeadInfo.antiDeadZone = Math.Min(Math.Max(temp, 0), 100);
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = lsAxialDeadElement.SelectSingleNode("AntiDeadZoneY");
+                        int.TryParse(Item.InnerText, out int temp);
+                        lsModInfo[device].yAxisDeadInfo.antiDeadZone = Math.Min(Math.Max(temp, 0), 100);
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = lsAxialDeadElement.SelectSingleNode("MaxOutputX");
+                        double.TryParse(Item.InnerText, out double temp);
+                        lsModInfo[device].xAxisDeadInfo.maxOutput = Math.Min(Math.Max(temp, 0.0), 100.0);
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = lsAxialDeadElement.SelectSingleNode("MaxOutputY");
+                        double.TryParse(Item.InnerText, out double temp);
+                        lsModInfo[device].yAxisDeadInfo.maxOutput = Math.Min(Math.Max(temp, 0.0), 100.0);
+                    }
+                    catch { }
+                }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSDeadZoneType");
+                    if (Enum.TryParse(Item?.InnerText ?? "", out StickDeadZoneInfo.DeadZoneType temp))
+                    {
+                        rsModInfo[device].deadzoneType = temp;
+                    }
+                }
+                catch { }
+
+                bool rsAxialDeadGroup = false;
+                XmlNode rsAxialDeadElement =
+                    m_Xdoc.SelectSingleNode("/" + rootname + "/RSAxialDeadOptions");
+                rsAxialDeadGroup = rsAxialDeadElement != null;
+
+                if (rsAxialDeadGroup)
+                {
+                    try
+                    {
+                        Item = rsAxialDeadElement.SelectSingleNode("DeadZoneX");
+                        int.TryParse(Item.InnerText, out int temp);
+                        temp = Math.Min(Math.Max(temp, 0), 127);
+                        rsModInfo[device].xAxisDeadInfo.deadZone = temp;
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = rsAxialDeadElement.SelectSingleNode("DeadZoneY");
+                        int.TryParse(Item.InnerText, out int temp);
+                        temp = Math.Min(Math.Max(temp, 0), 127);
+                        rsModInfo[device].yAxisDeadInfo.deadZone = temp;
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = rsAxialDeadElement.SelectSingleNode("MaxZoneX");
+                        int.TryParse(Item.InnerText, out int temp);
+                        rsModInfo[device].xAxisDeadInfo.maxZone = Math.Min(Math.Max(temp, 0), 100);
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = rsAxialDeadElement.SelectSingleNode("MaxZoneY");
+                        int.TryParse(Item.InnerText, out int temp);
+                        rsModInfo[device].yAxisDeadInfo.maxZone = Math.Min(Math.Max(temp, 0), 100);
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = rsAxialDeadElement.SelectSingleNode("AntiDeadZoneX");
+                        int.TryParse(Item.InnerText, out int temp);
+                        rsModInfo[device].xAxisDeadInfo.antiDeadZone = Math.Min(Math.Max(temp, 0), 100);
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = rsAxialDeadElement.SelectSingleNode("AntiDeadZoneY");
+                        int.TryParse(Item.InnerText, out int temp);
+                        rsModInfo[device].yAxisDeadInfo.antiDeadZone = Math.Min(Math.Max(temp, 0), 100);
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = rsAxialDeadElement.SelectSingleNode("MaxOutputX");
+                        double.TryParse(Item.InnerText, out double temp);
+                        rsModInfo[device].xAxisDeadInfo.maxOutput = Math.Min(Math.Max(temp, 0.0), 100.0);
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = rsAxialDeadElement.SelectSingleNode("MaxOutputY");
+                        double.TryParse(Item.InnerText, out double temp);
+                        rsModInfo[device].yAxisDeadInfo.maxOutput = Math.Min(Math.Max(temp, 0.0), 100.0);
+                    }
+                    catch { }
+                }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXDeadZone"); double.TryParse(Item.InnerText, out SXDeadzone[device]); }
                 catch { SXDeadzone[device] = 0.02; missingSetting = true; }
@@ -4340,20 +4572,27 @@ namespace DS4Windows
                 XmlNode xmlUseTPForControlsElement =
                     m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls");
                 tpForControlsPresent = xmlUseTPForControlsElement != null;
-                try
+                if (tpForControlsPresent)
                 {
-                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls");
-                    bool.TryParse(Item.InnerText, out bool temp);
-                    if (temp) touchOutMode[device] = TouchpadOutMode.Controls;
+                    try
+                    {
+                        Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls");
+                        if (bool.TryParse(Item?.InnerText ?? "", out bool temp))
+                        {
+                            if (temp) touchOutMode[device] = TouchpadOutMode.Controls;
+                        }
+                    }
+                    catch { touchOutMode[device] = TouchpadOutMode.Mouse; }
                 }
-                catch { touchOutMode[device] = TouchpadOutMode.Mouse; }
 
                 // Fallback lookup if GyroOutMode is not set
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseSAforMouse");
-                    bool.TryParse(Item.InnerText, out bool temp);
-                    if (temp) gyroOutMode[device] = GyroOutMode.Mouse;
+                    if (bool.TryParse(Item?.InnerText ?? "", out bool temp))
+                    {
+                        if (temp) gyroOutMode[device] = GyroOutMode.Mouse;
+                    }
                 }
                 catch { gyroOutMode[device] = GyroOutMode.Controls; }
 
@@ -4825,6 +5064,22 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSSquareStick"); bool.TryParse(Item.InnerText, out squStickInfo[device].rsMode); }
                 catch { squStickInfo[device].rsMode = false; missingSetting = true; }
 
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSAntiSnapback"); bool.TryParse(Item.InnerText, out lsAntiSnapbackInfo[device].enabled); }
+                catch { lsAntiSnapbackInfo[device].enabled = StickAntiSnapbackInfo.DEFAULT_ENABLED; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSAntiSnapback"); bool.TryParse(Item.InnerText, out rsAntiSnapbackInfo[device].enabled); }
+                catch { rsAntiSnapbackInfo[device].enabled = StickAntiSnapbackInfo.DEFAULT_ENABLED; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSAntiSnapbackDelta"); double.TryParse(Item.InnerText, out lsAntiSnapbackInfo[device].delta); }
+                catch { lsAntiSnapbackInfo[device].delta = StickAntiSnapbackInfo.DEFAULT_DELTA; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSAntiSnapbackDelta"); double.TryParse(Item.InnerText, out rsAntiSnapbackInfo[device].delta); }
+                catch { rsAntiSnapbackInfo[device].delta = StickAntiSnapbackInfo.DEFAULT_DELTA; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSAntiSnapbackTimeout"); int.TryParse(Item.InnerText, out lsAntiSnapbackInfo[device].timeout); }
+                catch { lsAntiSnapbackInfo[device].timeout = StickAntiSnapbackInfo.DEFAULT_TIMEOUT; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSAntiSnapbackTimeout"); int.TryParse(Item.InnerText, out rsAntiSnapbackInfo[device].timeout); }
+                catch { rsAntiSnapbackInfo[device].timeout = StickAntiSnapbackInfo.DEFAULT_TIMEOUT; missingSetting = true; }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSOutputMode"); Enum.TryParse(Item.InnerText, out lsOutputSettings[device].mode); }
                 catch { missingSetting = true; }
 
@@ -5069,7 +5324,7 @@ namespace DS4Windows
 
                 // Only change xinput devices under certain conditions. Avoid
                 // performing this upon program startup before loading devices.
-                if (xinputChange)
+                if (xinputChange && device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
                 {
                     CheckOldDevicestatus(device, control, oldContType,
                         out xinputPlug, out xinputStatus);
@@ -5623,6 +5878,26 @@ namespace DS4Windows
                                 }
                             }
                             catch { }
+
+                            try
+                            {
+                                XmlNode item = xmlJoyConSupport.SelectSingleNode("LinkMode");
+                                if (Enum.TryParse(item?.InnerText ?? "", out JoyConDeviceOptions.LinkMode temp))
+                                {
+                                    deviceOptions.JoyConDeviceOpts.LinkedMode = temp;
+                                }
+                            }
+                            catch { }
+
+                            try
+                            {
+                                XmlNode item = xmlJoyConSupport.SelectSingleNode("JoinedGyroProvider");
+                                if (Enum.TryParse(item?.InnerText ?? "", out JoyConDeviceOptions.JoinedGyroProvider temp))
+                                {
+                                    deviceOptions.JoyConDeviceOpts.JoinGyroProv = temp;
+                                }
+                            }
+                            catch { }
                         }
                     }
 
@@ -5763,6 +6038,12 @@ namespace DS4Windows
             XmlElement xmlJoyconEnabled = m_Xdoc.CreateElement("Enabled", null);
             xmlJoyconEnabled.InnerText = deviceOptions.JoyConDeviceOpts.Enabled.ToString();
             xmlJoyConSupport.AppendChild(xmlJoyconEnabled);
+            XmlElement xmlJoyconLinkMode = m_Xdoc.CreateElement("LinkMode", null);
+            xmlJoyconLinkMode.InnerText = deviceOptions.JoyConDeviceOpts.LinkedMode.ToString();
+            xmlJoyConSupport.AppendChild(xmlJoyconLinkMode);
+            XmlElement xmlJoyconUnionGyro = m_Xdoc.CreateElement("JoinedGyroProvider", null);
+            xmlJoyconUnionGyro.InnerText = deviceOptions.JoyConDeviceOpts.JoinGyroProv.ToString();
+            xmlJoyConSupport.AppendChild(xmlJoyconUnionGyro);
 
             xmlDeviceOptions.AppendChild(xmlJoyConSupport);
 
@@ -5801,20 +6082,25 @@ namespace DS4Windows
         private void CreateAction()
         {
             XmlDocument m_Xdoc = new XmlDocument();
+            PrepareActionsXml(m_Xdoc);
+            m_Xdoc.Save(m_Actions);
+        }
+
+        private void PrepareActionsXml(XmlDocument xmlDoc)
+        {
             XmlNode Node;
 
-            Node = m_Xdoc.CreateXmlDeclaration("1.0", "utf-8", String.Empty);
-            m_Xdoc.AppendChild(Node);
+            Node = xmlDoc.CreateXmlDeclaration("1.0", "utf-8", String.Empty);
+            xmlDoc.AppendChild(Node);
 
-            Node = m_Xdoc.CreateComment(String.Format(" Special Actions Configuration Data. {0} ", DateTime.Now));
-            m_Xdoc.AppendChild(Node);
+            Node = xmlDoc.CreateComment(String.Format(" Special Actions Configuration Data. {0} ", DateTime.Now));
+            xmlDoc.AppendChild(Node);
 
-            Node = m_Xdoc.CreateWhitespace("\r\n");
-            m_Xdoc.AppendChild(Node);
+            Node = xmlDoc.CreateWhitespace("\r\n");
+            xmlDoc.AppendChild(Node);
 
-            Node = m_Xdoc.CreateNode(XmlNodeType.Element, "Actions", "");
-            m_Xdoc.AppendChild(Node);
-            m_Xdoc.Save(m_Actions);
+            Node = xmlDoc.CreateNode(XmlNodeType.Element, "Actions", "");
+            xmlDoc.AppendChild(Node);
         }
 
         public bool SaveAction(string name, string controls, int mode, string details, bool edit, string extras = "")
@@ -5822,7 +6108,19 @@ namespace DS4Windows
             bool saved = true;
             if (!File.Exists(m_Actions))
                 CreateAction();
-            m_Xdoc.Load(m_Actions);
+
+            try
+            {
+                m_Xdoc.Load(m_Actions);
+            }
+            catch (XmlException)
+            {
+                // XML file has become corrupt. Start from scratch
+                AppLogger.LogToGui(DS4WinWPF.Properties.Resources.XMLActionsCorrupt, true);
+                m_Xdoc.RemoveAll();
+                PrepareActionsXml(m_Xdoc);
+            }
+
             XmlNode Node;
 
             Node = m_Xdoc.CreateComment(String.Format(" Special Actions Configuration Data. {0} ", DateTime.Now));
@@ -6152,12 +6450,12 @@ namespace DS4Windows
                 if (node != null)
                 {
                     Int32 intValue;
-                    if (Int32.TryParse(node["wheelCenterPoint"].InnerText.Split(',')[0], out intValue)) device.wheelCenterPoint.X = intValue;
-                    if (Int32.TryParse(node["wheelCenterPoint"].InnerText.Split(',')[1], out intValue)) device.wheelCenterPoint.Y = intValue;
-                    if (Int32.TryParse(node["wheel90DegPointLeft"].InnerText.Split(',')[0], out intValue)) device.wheel90DegPointLeft.X = intValue;
-                    if (Int32.TryParse(node["wheel90DegPointLeft"].InnerText.Split(',')[1], out intValue)) device.wheel90DegPointLeft.Y = intValue;
-                    if (Int32.TryParse(node["wheel90DegPointRight"].InnerText.Split(',')[0], out intValue)) device.wheel90DegPointRight.X = intValue;
-                    if (Int32.TryParse(node["wheel90DegPointRight"].InnerText.Split(',')[1], out intValue)) device.wheel90DegPointRight.Y = intValue;
+                    if (Int32.TryParse(node["wheelCenterPoint"]?.InnerText.Split(',')[0] ?? "", out intValue)) device.wheelCenterPoint.X = intValue;
+                    if (Int32.TryParse(node["wheelCenterPoint"]?.InnerText.Split(',')[1] ?? "", out intValue)) device.wheelCenterPoint.Y = intValue;
+                    if (Int32.TryParse(node["wheel90DegPointLeft"]?.InnerText.Split(',')[0] ?? "", out intValue)) device.wheel90DegPointLeft.X = intValue;
+                    if (Int32.TryParse(node["wheel90DegPointLeft"]?.InnerText.Split(',')[1] ?? "", out intValue)) device.wheel90DegPointLeft.Y = intValue;
+                    if (Int32.TryParse(node["wheel90DegPointRight"]?.InnerText.Split(',')[0] ?? "", out intValue)) device.wheel90DegPointRight.X = intValue;
+                    if (Int32.TryParse(node["wheel90DegPointRight"]?.InnerText.Split(',')[1] ?? "", out intValue)) device.wheel90DegPointRight.Y = intValue;
 
                     device.optionsStore.LoadSettings(xmlDoc, node);
 
@@ -6191,27 +6489,35 @@ namespace DS4Windows
                 if (node == null)
                 {
                     XmlElement el = xmlDoc.CreateElement("Controller");
-                    el.SetAttribute("Mac", device.getMacAddress());
-                    el.SetAttribute("ControllerType", device.DeviceType.ToString());
-
-                    el.AppendChild(xmlDoc.CreateElement("wheelCenterPoint"));
-                    el.AppendChild(xmlDoc.CreateElement("wheel90DegPointLeft"));
-                    el.AppendChild(xmlDoc.CreateElement("wheel90DegPointRight"));
-
                     node = xmlControllersNode.AppendChild(el);
                 }
-
-                XmlAttribute tempAttr = node.Attributes["ControllerType"];
-                if (tempAttr == null)
+                else
                 {
-                    tempAttr = xmlDoc.CreateAttribute("ControllerType");
-                    node.Attributes.Append(tempAttr);
+                    node.RemoveAll();
                 }
 
-                tempAttr.Value = device.DeviceType.ToString();
-                node["wheelCenterPoint"].InnerText = $"{device.wheelCenterPoint.X},{device.wheelCenterPoint.Y}";
-                node["wheel90DegPointLeft"].InnerText = $"{device.wheel90DegPointLeft.X},{device.wheel90DegPointLeft.Y}";
-                node["wheel90DegPointRight"].InnerText = $"{device.wheel90DegPointRight.X},{device.wheel90DegPointRight.Y}";
+                XmlAttribute macAttr = xmlDoc.CreateAttribute("Mac");
+                macAttr.Value = device.getMacAddress();
+                node.Attributes.Append(macAttr);
+
+                XmlAttribute contTypeAttr = xmlDoc.CreateAttribute("ControllerType");
+                contTypeAttr.Value = device.DeviceType.ToString();
+                node.Attributes.Append(contTypeAttr);
+
+                if (!device.wheelCenterPoint.IsEmpty)
+                {
+                    XmlElement wheelCenterEl = xmlDoc.CreateElement("wheelCenterPoint");
+                    wheelCenterEl.InnerText = $"{device.wheelCenterPoint.X},{device.wheelCenterPoint.Y}";
+                    node.AppendChild(wheelCenterEl);
+
+                    XmlElement wheel90DegPointLeftEl = xmlDoc.CreateElement("wheel90DegPointLeft");
+                    wheel90DegPointLeftEl.InnerText = $"{device.wheel90DegPointLeft.X},{device.wheel90DegPointLeft.Y}";
+                    node.AppendChild(wheel90DegPointLeftEl);
+
+                    XmlElement wheel90DegPointRightEl = xmlDoc.CreateElement("wheel90DegPointRight");
+                    wheel90DegPointRightEl.InnerText = $"{device.wheel90DegPointRight.X},{device.wheel90DegPointRight.Y}";
+                    node.AppendChild(wheel90DegPointRightEl);
+                }
 
                 device.optionsStore.PersistSettings(xmlDoc, node);
 
@@ -6505,12 +6811,16 @@ namespace DS4Windows
             rumble[device] = 100;
             rumbleAutostopTime[device] = 0;
             touchSensitivity[device] = 100;
-            l2ModInfo[device].deadZone = r2ModInfo[device].deadZone = 0;
+
+            lsModInfo[device].Reset();
+            rsModInfo[device].Reset();
             lsModInfo[device].deadZone = rsModInfo[device].deadZone = 10;
             lsModInfo[device].antiDeadZone = rsModInfo[device].antiDeadZone = 20;
             lsModInfo[device].maxZone = rsModInfo[device].maxZone = 100;
             lsModInfo[device].maxOutput = rsModInfo[device].maxOutput = 100.0;
             lsModInfo[device].fuzz = rsModInfo[device].fuzz = StickDeadZoneInfo.DEFAULT_FUZZ;
+
+            l2ModInfo[device].deadZone = r2ModInfo[device].deadZone = 0;
             l2ModInfo[device].antiDeadZone = r2ModInfo[device].antiDeadZone = 0;
             l2ModInfo[device].maxZone = r2ModInfo[device].maxZone = 100;
             l2ModInfo[device].maxOutput = r2ModInfo[device].maxOutput = 100.0;
@@ -6598,6 +6908,9 @@ namespace DS4Windows
             squStickInfo[device].rsMode = false;
             squStickInfo[device].lsRoundness = 5.0;
             squStickInfo[device].rsRoundness = 5.0;
+            lsAntiSnapbackInfo[device].timeout = StickAntiSnapbackInfo.DEFAULT_TIMEOUT;
+            lsAntiSnapbackInfo[device].delta = StickAntiSnapbackInfo.DEFAULT_DELTA;
+            lsAntiSnapbackInfo[device].enabled = StickAntiSnapbackInfo.DEFAULT_ENABLED;
             setLsOutCurveMode(device, 0);
             setRsOutCurveMode(device, 0);
             setL2OutCurveMode(device, 0);
@@ -6983,7 +7296,8 @@ namespace DS4Windows
             setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.C), "", DS4KeyType.None);
 
             setting = GetDS4CSetting(device, DS4Controls.L1);
-            setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.Q), "", DS4KeyType.None);
+            //setting.UpdateSettings(false, KeyInterop.VirtualKeyFromKey(Key.Q), "", DS4KeyType.None);
+            setting.UpdateSettings(false, X360Controls.Unbound, "", DS4KeyType.None);
             setting = GetDS4CSetting(device, DS4Controls.L2);
             setting.UpdateSettings(false, X360Controls.RightMouse, "", DS4KeyType.None);
             setting = GetDS4CSetting(device, DS4Controls.R1);
@@ -7010,7 +7324,7 @@ namespace DS4Windows
             xinputPlug = false;
             xinputStatus = false;
 
-            if (device < Global.MAX_DS4_CONTROLLER_COUNT)
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 bool oldUseDInputOnly = Global.useDInputOnly[device];
                 DS4Device tempDevice = control.DS4Controllers[device];
@@ -7048,25 +7362,27 @@ namespace DS4Windows
                 {
                     tempDev.setIdleTimeout(idleDisconnectTimeout[device]);
                     tempDev.setBTPollRate(btPollRate[device]);
-                    if (xinputStatus && xinputPlug)
+                    if (xinputStatus && tempDev.PrimaryDevice)
                     {
-                        OutputDevice tempOutDev = control.outputDevices[device];
-                        if (tempOutDev != null)
+                        if (xinputPlug)
                         {
-                            tempOutDev = null;
+                            OutputDevice tempOutDev = control.outputDevices[device];
+                            if (tempOutDev != null)
+                            {
+                                tempOutDev = null;
+                                //Global.activeOutDevType[device] = OutContType.None;
+                                control.UnplugOutDev(device, tempDev);
+                            }
+
+                            OutContType tempContType = outputDevType[device];
+                            control.PluginOutDev(device, tempDev);
+                            //Global.useDInputOnly[device] = false;
+                        }
+                        else
+                        {
                             //Global.activeOutDevType[device] = OutContType.None;
                             control.UnplugOutDev(device, tempDev);
                         }
-
-                        OutContType tempContType = outputDevType[device];
-                        control.PluginOutDev(device, tempDev);
-                        //Global.useDInputOnly[device] = false;
-
-                    }
-                    else if (xinputStatus && !xinputPlug)
-                    {
-                        //Global.activeOutDevType[device] = OutContType.None;
-                        control.UnplugOutDev(device, tempDev);
                     }
 
                     tempDev.RumbleAutostopTime = rumbleAutostopTime[device];

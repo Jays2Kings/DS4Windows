@@ -21,11 +21,11 @@ namespace DS4WinWPF.DS4Forms
     {
         public event EventHandler Saved;
 
-        public RecordBoxWindow(int deviceNum, DS4Windows.DS4ControlSettings settings)
+        public RecordBoxWindow(int deviceNum, DS4Windows.DS4ControlSettings settings, bool repeatable = true)
         {
             InitializeComponent();
 
-            RecordBox box = new RecordBox(deviceNum, settings, false);
+            RecordBox box = new RecordBox(deviceNum, settings, false, repeatable: repeatable);
             mainPanel.Children.Add(box);
 
             box.Save += RecordBox_Save;

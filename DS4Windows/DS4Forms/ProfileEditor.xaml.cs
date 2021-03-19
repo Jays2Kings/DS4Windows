@@ -76,7 +76,6 @@ namespace DS4WinWPF.DS4Forms
             PopulateHoverIndexes();
             PopulateReverseHoverIndexes();
 
-            ColorByBatteryPerCheck();
             AssignTiltAssociation();
             AssignSwipeAssociation();
             AssignTriggerFullPullAssociation();
@@ -93,6 +92,7 @@ namespace DS4WinWPF.DS4Forms
             outConTypeCombo.SelectionChanged += OutConTypeCombo_SelectionChanged;
             mappingListBox.SelectionChanged += MappingListBox_SelectionChanged;
             Closed += ProfileEditor_Closed;
+
             profileSettingsVM.LSDeadZoneChanged += UpdateReadingsLsDeadZone;
             profileSettingsVM.RSDeadZoneChanged += UpdateReadingsRsDeadZone;
             profileSettingsVM.L2DeadZoneChanged += UpdateReadingsL2DeadZone;
@@ -148,14 +148,36 @@ namespace DS4WinWPF.DS4Forms
             conReadingsUserCon.L2Dead = profileSettingsVM.L2DeadZone;
         }
 
-        private void UpdateReadingsRsDeadZone(object sender, EventArgs e)
-        {
-            conReadingsUserCon.RsDead = profileSettingsVM.RSDeadZone;
-        }
-
         private void UpdateReadingsLsDeadZone(object sender, EventArgs e)
         {
-            conReadingsUserCon.LsDead = profileSettingsVM.LSDeadZone;
+            conReadingsUserCon.LsDeadX = profileSettingsVM.LSDeadZone;
+            conReadingsUserCon.LsDeadY = profileSettingsVM.LSDeadZone;
+        }
+
+        private void UpdateReadingsLsDeadZoneX(object sender, EventArgs e)
+        {
+            conReadingsUserCon.LsDeadX = axialLSStickControl.AxialVM.DeadZoneX;
+        }
+
+        private void UpdateReadingsLsDeadZoneY(object sender, EventArgs e)
+        {
+            conReadingsUserCon.LsDeadY = axialLSStickControl.AxialVM.DeadZoneY;
+        }
+
+        private void UpdateReadingsRsDeadZone(object sender, EventArgs e)
+        {
+            conReadingsUserCon.RsDeadX = profileSettingsVM.RSDeadZone;
+            conReadingsUserCon.RsDeadY = profileSettingsVM.RSDeadZone;
+        }
+
+        private void UpdateReadingsRsDeadZoneX(object sender, EventArgs e)
+        {
+            conReadingsUserCon.RsDeadX = axialRSStickControl.AxialVM.DeadZoneX;
+        }
+
+        private void UpdateReadingsRsDeadZoneY(object sender, EventArgs e)
+        {
+            conReadingsUserCon.RsDeadY = axialRSStickControl.AxialVM.DeadZoneY;
         }
 
         private void AssignTiltAssociation()
@@ -548,6 +570,8 @@ namespace DS4WinWPF.DS4Forms
                 }
             }
 
+            ColorByBatteryPerCheck();
+
             if (device < Global.TEST_PROFILE_INDEX)
             {
                 useControllerUD.Value = device + 1;
@@ -562,6 +586,8 @@ namespace DS4WinWPF.DS4Forms
             }
 
             conReadingsUserCon.EnableControl(false);
+            axialLSStickControl.UseDevice(Global.LSModInfo[device]);
+            axialRSStickControl.UseDevice(Global.RSModInfo[device]);
 
             specialActionsVM.LoadActions(currentProfile == null);
             mappingListVM.UpdateMappings();
@@ -577,12 +603,39 @@ namespace DS4WinWPF.DS4Forms
             lightbarRect.DataContext = profileSettingsVM;
             SetupGyroPanel();
 
-            conReadingsUserCon.LsDead = profileSettingsVM.LSDeadZone;
-            conReadingsUserCon.RsDead = profileSettingsVM.RSDeadZone;
+            StickDeadZoneInfo lsMod = Global.LSModInfo[device];
+            if (lsMod.deadzoneType == StickDeadZoneInfo.DeadZoneType.Radial)
+            {
+                conReadingsUserCon.LsDeadX = profileSettingsVM.LSDeadZone;
+                conReadingsUserCon.LsDeadY = profileSettingsVM.LSDeadZone;
+            }
+            else if (lsMod.deadzoneType == StickDeadZoneInfo.DeadZoneType.Axial)
+            {
+                conReadingsUserCon.LsDeadX = axialLSStickControl.AxialVM.DeadZoneX;
+                conReadingsUserCon.LsDeadY = axialLSStickControl.AxialVM.DeadZoneY;
+            }
+
+            StickDeadZoneInfo rsMod = Global.RSModInfo[device];
+            if (rsMod.deadzoneType == StickDeadZoneInfo.DeadZoneType.Radial)
+            {
+                conReadingsUserCon.RsDeadX = profileSettingsVM.RSDeadZone;
+                conReadingsUserCon.RsDeadY = profileSettingsVM.RSDeadZone;
+            }
+            else if (rsMod.deadzoneType == StickDeadZoneInfo.DeadZoneType.Axial)
+            {
+                conReadingsUserCon.RsDeadX = axialRSStickControl.AxialVM.DeadZoneX;
+                conReadingsUserCon.RsDeadY = axialRSStickControl.AxialVM.DeadZoneY;
+            }
+
             conReadingsUserCon.L2Dead = profileSettingsVM.L2DeadZone;
             conReadingsUserCon.R2Dead = profileSettingsVM.R2DeadZone;
             conReadingsUserCon.SixAxisXDead = profileSettingsVM.SXDeadZone;
             conReadingsUserCon.SixAxisZDead = profileSettingsVM.SZDeadZone;
+
+            axialLSStickControl.AxialVM.DeadZoneXChanged += UpdateReadingsLsDeadZoneX;
+            axialLSStickControl.AxialVM.DeadZoneYChanged += UpdateReadingsLsDeadZoneY;
+            axialRSStickControl.AxialVM.DeadZoneXChanged += UpdateReadingsRsDeadZoneX;
+            axialRSStickControl.AxialVM.DeadZoneYChanged += UpdateReadingsRsDeadZoneY;
 
             if (profileSettingsVM.UseControllerReadout)
             {
@@ -614,8 +667,8 @@ namespace DS4WinWPF.DS4Forms
             lightbarRect.DataContext = profileSettingsVM;
             SetupGyroPanel();
 
-            conReadingsUserCon.LsDead = profileSettingsVM.LSDeadZone;
-            conReadingsUserCon.RsDead = profileSettingsVM.RSDeadZone;
+            conReadingsUserCon.LsDeadX = profileSettingsVM.LSDeadZone;
+            conReadingsUserCon.RsDeadX = profileSettingsVM.RSDeadZone;
             conReadingsUserCon.L2Dead = profileSettingsVM.L2DeadZone;
             conReadingsUserCon.R2Dead = profileSettingsVM.R2DeadZone;
             conReadingsUserCon.SixAxisXDead = profileSettingsVM.SXDeadZone;
@@ -1229,24 +1282,25 @@ namespace DS4WinWPF.DS4Forms
                     case DS4Controls.DpadLeft: index = 8; break;
                     case DS4Controls.DpadRight: index = 9; break;
                     case DS4Controls.PS: index = 10; break;
-                    case DS4Controls.L1: index = 11; break;
-                    case DS4Controls.R1: index = 12; break;
-                    case DS4Controls.L2: index = 13; break;
-                    case DS4Controls.R2: index = 14; break;
-                    case DS4Controls.L3: index = 15; break;
-                    case DS4Controls.R3: index = 16; break;
-                    case DS4Controls.TouchLeft: index = 17; break;
-                    case DS4Controls.TouchRight: index = 18; break;
-                    case DS4Controls.TouchMulti: index = 19; break;
-                    case DS4Controls.TouchUpper: index = 20; break;
-                    case DS4Controls.LYNeg: index = 21; break;
-                    case DS4Controls.LYPos: index = 22; break;
-                    case DS4Controls.LXNeg: index = 23; break;
-                    case DS4Controls.LXPos: index = 24; break;
-                    case DS4Controls.RYNeg: index = 25; break;
-                    case DS4Controls.RYPos: index = 26; break;
-                    case DS4Controls.RXNeg: index = 27; break;
-                    case DS4Controls.RXPos: index = 28; break;
+                    case DS4Controls.Mute: index = 11; break;
+                    case DS4Controls.L1: index = 12; break;
+                    case DS4Controls.R1: index = 13; break;
+                    case DS4Controls.L2: index = 14; break;
+                    case DS4Controls.R2: index = 15; break;
+                    case DS4Controls.L3: index = 16; break;
+                    case DS4Controls.R3: index = 17; break;
+                    case DS4Controls.TouchLeft: index = 18; break;
+                    case DS4Controls.TouchRight: index = 19; break;
+                    case DS4Controls.TouchMulti: index = 20; break;
+                    case DS4Controls.TouchUpper: index = 21; break;
+                    case DS4Controls.LYNeg: index = 22; break;
+                    case DS4Controls.LYPos: index = 23; break;
+                    case DS4Controls.LXNeg: index = 24; break;
+                    case DS4Controls.LXPos: index = 25; break;
+                    case DS4Controls.RYNeg: index = 26; break;
+                    case DS4Controls.RYPos: index = 27; break;
+                    case DS4Controls.RXNeg: index = 28; break;
+                    case DS4Controls.RXPos: index = 29; break;
                     default: break;
                 }
 
@@ -1425,6 +1479,11 @@ namespace DS4WinWPF.DS4Forms
             {
                 DS4Device d = App.rootHub.DS4Controllers[deviceNum];
                 d.SixAxis.ResetContinuousCalibration();
+                if (d.JointDeviceSlotNumber != DS4Device.DEFAULT_JOINT_SLOT_NUMBER)
+                {
+                    DS4Device tempDev = App.rootHub.DS4Controllers[d.JointDeviceSlotNumber];
+                    tempDev?.SixAxis.ResetContinuousCalibration();
+                }
             }
         }
 

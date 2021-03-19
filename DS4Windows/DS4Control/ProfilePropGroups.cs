@@ -13,15 +13,68 @@ namespace DS4Windows
 
     public class StickDeadZoneInfo
     {
+        public enum DeadZoneType : ushort
+        {
+            Radial,
+            Axial
+        }
+
+        public const int DEFAULT_DEADZONE = 10;
+        public const int DEFAULT_ANTIDEADZONE = 20;
         public const int DEFAULT_MAXZONE = 100;
         public const double DEFAULT_MAXOUTPUT = 100.0;
         public const int DEFAULT_FUZZ = 0;
+        public const DeadZoneType DEFAULT_DEADZONE_TYPE = DeadZoneType.Radial;
 
+        public class AxisDeadZoneInfo
+        {
+            // DeadZone value from 0-127 (old bad convention)
+            public int deadZone = DEFAULT_DEADZONE;
+            public int antiDeadZone = DEFAULT_ANTIDEADZONE;
+            public int maxZone = DEFAULT_MAXZONE;
+            public double maxOutput = DEFAULT_MAXOUTPUT;
+
+            public void Reset()
+            {
+                deadZone = DEFAULT_DEADZONE;
+                antiDeadZone = DEFAULT_ANTIDEADZONE;
+                maxZone = DEFAULT_MAXZONE;
+                maxOutput = DEFAULT_MAXOUTPUT;
+            }
+        }
+
+        // DeadZone value from 0-127 (old bad convention)
         public int deadZone;
         public int antiDeadZone;
-        public int maxZone = 100;
-        public double maxOutput = 100.0;
+        public int maxZone = DEFAULT_MAXZONE;
+        public double maxOutput = DEFAULT_MAXOUTPUT;
         public int fuzz = DEFAULT_FUZZ;
+        public DeadZoneType deadzoneType = DEFAULT_DEADZONE_TYPE;
+        public AxisDeadZoneInfo xAxisDeadInfo = new AxisDeadZoneInfo();
+        public AxisDeadZoneInfo yAxisDeadInfo = new AxisDeadZoneInfo();
+
+        public void Reset()
+        {
+            deadZone = 0;
+            antiDeadZone = 0;
+            maxZone = DEFAULT_MAXZONE;
+            maxOutput = DEFAULT_MAXOUTPUT;
+            fuzz = DEFAULT_FUZZ;
+            deadzoneType = DEFAULT_DEADZONE_TYPE;
+            xAxisDeadInfo.Reset();
+            yAxisDeadInfo.Reset();
+        }
+    }
+
+    public class StickAntiSnapbackInfo
+    {
+        public const double DEFAULT_DELTA = 135;
+        public const int DEFAULT_TIMEOUT = 50;
+        public const bool DEFAULT_ENABLED = false;
+
+        public bool enabled = DEFAULT_ENABLED;
+        public double delta = DEFAULT_DELTA;
+        public int timeout = DEFAULT_TIMEOUT;
     }
 
     public class TriggerDeadZoneZInfo

@@ -157,6 +157,7 @@ namespace DS4Windows
             new VidPidInfo(NINTENDO_VENDOR_ID, JOYCON_L_PRODUCT_ID, "JoyCon (L)", InputDeviceType.JoyConL, VidPidFeatureSet.DefaultDS4, checkConnection: JoyConDevice.DetermineConnectionType),
             new VidPidInfo(NINTENDO_VENDOR_ID, JOYCON_R_PRODUCT_ID, "JoyCon (R)", InputDeviceType.JoyConR, VidPidFeatureSet.DefaultDS4, checkConnection: JoyConDevice.DetermineConnectionType),
             new VidPidInfo(0x7545, 0x1122, "Gioteck VX4", InputDeviceType.DS4), // Gioteck VX4 (no real lightbar, only some RGB leds)
+            new VidPidInfo(0x7331, 0x0001, "DualShock 3 (DS4 mode)", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib), // Sony DualShock 3 running DsHidMini driver
         };
 
         public static string devicePathToInstanceId(string devicePath)

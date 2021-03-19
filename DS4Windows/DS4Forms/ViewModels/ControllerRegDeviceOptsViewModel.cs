@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using DS4Windows;
 using LEDBarMode = DS4Windows.DualSenseControllerOptions.LEDBarMode;
 using MuteLEDMode = DS4Windows.DualSenseControllerOptions.MuteLEDMode;
+using LinkMode = DS4Windows.JoyConDeviceOptions.LinkMode;
+using JoinedGyroProvider = DS4Windows.JoyConDeviceOptions.JoinedGyroProvider;
 
 namespace DS4WinWPF.DS4Forms.ViewModels
 {
@@ -266,9 +268,24 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public JoyConControllerOptions Options { get => options; }
 
         private JoyConDeviceOptions parentOptions;
+        public JoyConDeviceOptions ParentOptions { get => parentOptions; }
 
         public bool Visible { get => parentOptions.Enabled; }
         public event EventHandler VisibleChanged;
+
+        private List<EnumChoiceSelection<LinkMode>> linkModes = new List<EnumChoiceSelection<LinkMode>>()
+        {
+            new EnumChoiceSelection<LinkMode>("Split", LinkMode.Split),
+            new EnumChoiceSelection<LinkMode>("Joined", LinkMode.Joined),
+        };
+        public List<EnumChoiceSelection<LinkMode>> LinkModes { get => linkModes; }
+
+        private List<EnumChoiceSelection<JoinedGyroProvider>> joinGyroOptions = new List<EnumChoiceSelection<JoinedGyroProvider>>()
+        {
+            new EnumChoiceSelection<JoinedGyroProvider>("Left", JoinedGyroProvider.JoyConL),
+            new EnumChoiceSelection<JoinedGyroProvider>("Right", JoinedGyroProvider.JoyConR),
+        };
+        public List<EnumChoiceSelection<JoinedGyroProvider>> JoinGyroOptions { get => joinGyroOptions; }
 
         public JoyConControllerOptionsWrapper(JoyConControllerOptions options,
             JoyConDeviceOptions parentOpts)

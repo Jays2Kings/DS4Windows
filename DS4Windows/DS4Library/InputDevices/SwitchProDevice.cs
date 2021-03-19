@@ -333,8 +333,10 @@ namespace DS4Windows.InputDevices
                 double elapsedDeltaTime = 0.0;
                 uint tempDelta = 0;
                 byte tempByte = 0;
-
                 long latencySum = 0;
+
+                // Run continuous calibration on Gyro when starting input loop
+                sixAxis.ResetContinuousCalibration();
                 standbySw.Start();
 
                 while (!exitInputThread)
@@ -414,6 +416,7 @@ namespace DS4Windows.InputDevices
                     if ((this.featureSet & VidPidFeatureSet.NoBatteryReading) == 0)
                     {
                         tempByte = inputReportBuffer[2];
+                        // Strip out LSB from high nibble. Used as Charging flag and will be checked later
                         tempBattery = ((tempByte & 0xE0) >> 4) * 100 / 8;
                         tempBattery = Math.Min(tempBattery, 100);
                         if (tempBattery != battery)
@@ -515,22 +518,25 @@ namespace DS4Windows.InputDevices
                     }
 
                     // For Accel, just use most recent sampled values
-                    short accelX = accel_raw[IMU_XAXIS_IDX];
-                    short accelY = accel_raw[IMU_YAXIS_IDX];
-                    short accelZ = accel_raw[IMU_ZAXIS_IDX];
+                    int accelX = accel_raw[IMU_XAXIS_IDX];
+                    int accelY = accel_raw[IMU_YAXIS_IDX];
+                    int accelZ = accel_raw[IMU_ZAXIS_IDX];
 
                     // Just use most recent sample for now
-                    short gyroYaw = (short)(-1 * (gyro_out[6 + IMU_YAW_IDX] - gyroBias[IMU_YAW_IDX] + gyroCalibOffsets[IMU_YAW_IDX]));
-                    short gyroPitch = (short)(gyro_out[6 + IMU_PITCH_IDX] - gyroBias[IMU_PITCH_IDX] - gyroCalibOffsets[IMU_PITCH_IDX]);
-                    short gyroRoll = (short)(gyro_out[6 + IMU_ROLL_IDX] - gyroBias[IMU_ROLL_IDX] - gyroCalibOffsets[IMU_ROLL_IDX]);
+                    int gyroYaw = (short)(-1 * (gyro_out[6 + IMU_YAW_IDX] - gyroBias[IMU_YAW_IDX] + gyroCalibOffsets[IMU_YAW_IDX]));
+                    int gyroPitch = (short)(gyro_out[6 + IMU_PITCH_IDX] - gyroBias[IMU_PITCH_IDX] - gyroCalibOffsets[IMU_PITCH_IDX]);
+                    int gyroRoll = (short)(gyro_out[6 + IMU_ROLL_IDX] - gyroBias[IMU_ROLL_IDX] - gyroCalibOffsets[IMU_ROLL_IDX]);
                     //cState.Motion.populate(gyroYaw, gyroPitch, gyroRoll, accelX, accelY, accelZ, cState.elapsedTime, pState.Motion);
                     
                     // Need to populate the SixAxis object manually to work around conversions
                     //Console.WriteLine("GyroYaw: {0}", gyroYaw);
                     SixAxis tempMotion = cState.Motion;
+                    sixAxis.PrepareNonDS4SixAxis(ref gyroYaw, ref gyroPitch, ref gyroRoll,
+                        ref accelX, ref accelY, ref accelZ);
+
                     tempMotion.gyroYawFull = gyroYaw; tempMotion.gyroPitchFull = -gyroPitch; tempMotion.gyroRollFull = gyroRoll;
                     tempMotion.accelXFull = accelX * 2; tempMotion.accelYFull = -accelZ * 2; tempMotion.accelZFull = -accelY * 2;
-                    
+
                     tempMotion.elapsed = elapsedDeltaTime;
                     tempMotion.previousAxis = pState.Motion;
                     tempMotion.gyroYaw = gyroYaw / 256; tempMotion.gyroPitch = -gyroPitch / 256; tempMotion.gyroRoll = gyroRoll / 256;

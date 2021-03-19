@@ -36,13 +36,14 @@ namespace DS4WinWPF.DS4Forms
         private ColorPickerWindow colorDialog;
         private NonFormTimer ds4 = new NonFormTimer();
 
-        public RecordBox(int deviceNum, DS4Windows.DS4ControlSettings controlSettings, bool shift, bool showscan = true)
+        public RecordBox(int deviceNum, DS4Windows.DS4ControlSettings controlSettings, bool shift, bool showscan = true, bool repeatable = true)
         {
             InitializeComponent();
 
-            recordBoxVM = new RecordBoxViewModel(deviceNum, controlSettings, shift);
+            recordBoxVM = new RecordBoxViewModel(deviceNum, controlSettings, shift, repeatable);
             mouseButtonsPanel.Visibility = Visibility.Hidden;
             extraConPanel.Visibility = Visibility.Hidden;
+            macroModeCombo.IsEnabled = repeatable;
             if (!showscan)
             {
                 useScanCode.Visibility = Visibility.Collapsed;
@@ -210,7 +211,7 @@ namespace DS4WinWPF.DS4Forms
             cancelBtn.IsEnabled = on;
             loadPresetBtn.IsEnabled = on;
             savePresetBtn.IsEnabled = on;
-            macroModeCombo.IsEnabled = on;
+            macroModeCombo.IsEnabled = on && recordBoxVM.Repeatable;
             clearStepsBtn.IsEnabled = on;
             addWaitTimeBtn.IsEnabled = on;
         }

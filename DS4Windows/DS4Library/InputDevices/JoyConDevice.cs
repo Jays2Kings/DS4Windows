@@ -215,6 +215,37 @@ namespace DS4Windows.InputDevices
 
         private JoyConControllerOptions nativeOptionsStore;
 
+        private ReaderWriterLockSlim lockSlim = new ReaderWriterLockSlim();
+        private JoyConDevice jointDevice;
+        public JoyConDevice JointDevice
+        {
+            get => jointDevice;
+            set
+            {
+                jointDevice = value;
+                if (jointDevice == null)
+                {
+                }
+                else
+                {
+                }
+            }
+        }
+
+        public override int JointDeviceSlotNumber
+        {
+            get
+            {
+                int result = -1;
+                if (jointDevice != null)
+                {
+                    result = jointDevice.deviceSlotNumber;
+                }
+
+                return result;
+            }
+        }
+
         public override event ReportHandler<EventArgs> Report = null;
         public override event EventHandler<EventArgs> Removal = null;
         public override event EventHandler BatteryChanged;
@@ -347,8 +378,10 @@ namespace DS4Windows.InputDevices
                 double elapsedDeltaTime = 0.0;
                 uint tempDelta = 0;
                 byte tempByte = 0;
-
                 long latencySum = 0;
+
+                // Run continuous calibration on Gyro when starting input loop
+                sixAxis.ResetContinuousCalibration();
                 standbySw.Start();
 
                 while (!exitInputThread)
@@ -428,6 +461,7 @@ namespace DS4Windows.InputDevices
                     if ((this.featureSet & VidPidFeatureSet.NoBatteryReading) == 0)
                     {
                         tempByte = inputReportBuffer[2];
+                        // Strip out LSB from high nibble. Used as Charging flag and will be checked later
                         tempBattery = ((tempByte & 0xE0) >> 4) * 100 / 8;
                         tempBattery = Math.Min(tempBattery, 100);
                         if (tempBattery != battery)
@@ -557,26 +591,30 @@ namespace DS4Windows.InputDevices
                     }
 
                     // For Accel, just use most recent sampled values
-                    short accelX = accel_raw[IMU_XAXIS_IDX];
-                    short accelY = accel_raw[IMU_YAXIS_IDX];
-                    short accelZ = accel_raw[IMU_ZAXIS_IDX];
+                    int accelX = accel_raw[IMU_XAXIS_IDX];
+                    int accelY = accel_raw[IMU_YAXIS_IDX];
+                    int accelZ = accel_raw[IMU_ZAXIS_IDX];
 
                     // Just use most recent sample for now
-                    short gyroYaw = (short)(-1 * (gyro_out[6 + IMU_YAW_IDX] - gyroBias[IMU_YAW_IDX] + gyroCalibOffsets[IMU_YAW_IDX]));
-                    short gyroPitch = (short)(gyro_out[6 + IMU_PITCH_IDX] - gyroBias[IMU_PITCH_IDX] - gyroCalibOffsets[IMU_PITCH_IDX]);
-                    short gyroRoll = (short)(gyro_out[6 + IMU_ROLL_IDX] - gyroBias[IMU_ROLL_IDX] - gyroCalibOffsets[IMU_ROLL_IDX]);
+                    int gyroYaw = (short)(-1 * (gyro_out[6 + IMU_YAW_IDX] - gyroBias[IMU_YAW_IDX] + gyroCalibOffsets[IMU_YAW_IDX]));
+                    int gyroPitch = (short)(gyro_out[6 + IMU_PITCH_IDX] - gyroBias[IMU_PITCH_IDX] - gyroCalibOffsets[IMU_PITCH_IDX]);
+                    int gyroRoll = (short)(gyro_out[6 + IMU_ROLL_IDX] - gyroBias[IMU_ROLL_IDX] - gyroCalibOffsets[IMU_ROLL_IDX]);
                     //cState.Motion.populate(gyroYaw, gyroPitch, gyroRoll, accelX, accelY, accelZ, cState.elapsedTime, pState.Motion);
+
+                    // Need to populate the SixAxis object manually to work around conversions
+                    //Console.WriteLine("GyroYaw: {0}", gyroYaw);
+                    SixAxis tempMotion = cState.Motion;
+                    // Perform continous calibration routine with raw values
+                    sixAxis.PrepareNonDS4SixAxis(ref gyroYaw, ref gyroPitch, ref gyroRoll,
+                        ref accelX, ref accelY, ref accelZ);
 
                     // JoyCon Right axes are inverted. Adjust axes directions
                     if (sideType == JoyConSide.Right)
                     {
                         accelX *= -1; accelZ *= -1; // accelY *= -1;
-                        gyroYaw *= -1; gyroPitch *= -1; gyroRoll *= -1;
+                        gyroYaw *= -1; gyroPitch *= -1; //gyroRoll *= -1;
                     }
 
-                    // Need to populate the SixAxis object manually to work around conversions
-                    //Console.WriteLine("GyroYaw: {0}", gyroYaw);
-                    SixAxis tempMotion = cState.Motion;
                     tempMotion.gyroYawFull = gyroYaw; tempMotion.gyroPitchFull = -gyroPitch; tempMotion.gyroRollFull = gyroRoll;
                     tempMotion.accelXFull = accelX * 2; tempMotion.accelYFull = -accelZ * 2; tempMotion.accelZFull = -accelY * 2;
 
@@ -1175,10 +1213,24 @@ namespace DS4Windows.InputDevices
             Console.WriteLine("Disconnect successful: " + success);
             success = true;
 
+            // Need to grab reference here as Removal call would
+            // remove device reference
+            JoyConDevice tempJointDevice = jointDevice;
             if (callRemoval)
             {
                 isDisconnecting = true;
                 Removal?.Invoke(this, EventArgs.Empty);
+            }
+
+            // Place check here for now due to direct calls in other portions of
+            // code. Would be better placed in DisconnectWireless method
+            if (primaryDevice &&
+                tempJointDevice != null)
+            {
+                tempJointDevice.queueEvent(() =>
+                {
+                    tempJointDevice.DisconnectBT(callRemoval);
+                });
             }
 
             return success;
@@ -1286,6 +1338,96 @@ namespace DS4Windows.InputDevices
             if (nativeOptionsStore != null)
             {
                 enableHomeLED = nativeOptionsStore.EnableHomeLED;
+            }
+        }
+
+        public override DS4State getCurrentStateRef()
+        {
+            DS4State tempState = null;
+            if (!performStateMerge)
+            {
+                tempState = cState;
+            }
+            else
+            {
+                tempState = jointState;
+            }
+
+            return tempState;
+        }
+
+        public override DS4State getPreviousStateRef()
+        {
+            DS4State tempState = null;
+            if (!performStateMerge)
+            {
+                tempState = pState;
+            }
+            else
+            {
+                tempState = jointPreviousState;
+            }
+
+            return tempState;
+        }
+
+        public override void PreserveMergedStateData()
+        {
+            jointState.CopyTo(jointPreviousState);
+        }
+
+        public override void MergeStateData(DS4State dState)
+        {
+
+            using (WriteLocker locker = new WriteLocker(lockSlim))
+            {
+                if (DeviceType == InputDeviceType.JoyConL)
+                {
+                    dState.LX = cState.LX;
+                    dState.LY = cState.LY;
+                    dState.L1 = cState.L1;
+                    dState.L2 = cState.L2;
+                    dState.L3 = cState.L3;
+                    dState.L2Btn = cState.L2Btn;
+                    dState.DpadUp = cState.DpadUp;
+                    dState.DpadDown = cState.DpadDown;
+                    dState.DpadLeft = cState.DpadLeft;
+                    dState.DpadRight = cState.DpadRight;
+                    dState.Share = cState.Share;
+                    if (primaryDevice)
+                    {
+                        dState.elapsedTime = cState.elapsedTime;
+                        dState.totalMicroSec = cState.totalMicroSec;
+                        dState.ReportTimeStamp = cState.ReportTimeStamp;
+                    }
+
+                    if (outputMapGyro) dState.Motion = cState.Motion;
+                    //dState.Motion = cState.Motion;
+                }
+                else if (DeviceType == InputDeviceType.JoyConR)
+                {
+                    dState.RX = cState.RX;
+                    dState.RY = cState.RY;
+                    dState.R1 = cState.R1;
+                    dState.R2 = cState.R2;
+                    dState.R3 = cState.R3;
+                    dState.R2Btn = cState.R2Btn;
+                    dState.Cross = cState.Cross;
+                    dState.Circle = cState.Circle;
+                    dState.Triangle = cState.Triangle;
+                    dState.Square = cState.Square;
+                    dState.PS = cState.PS;
+                    dState.Options = cState.Options;
+                    if (primaryDevice)
+                    {
+                        dState.elapsedTime = cState.elapsedTime;
+                        dState.totalMicroSec = cState.totalMicroSec;
+                        dState.ReportTimeStamp = cState.ReportTimeStamp;
+                    }
+
+                    if (outputMapGyro) dState.Motion = cState.Motion;
+                    //dState.Motion = cState.Motion;
+                }
             }
         }
     }

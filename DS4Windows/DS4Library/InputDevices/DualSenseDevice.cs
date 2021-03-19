@@ -404,6 +404,9 @@ namespace DS4Windows.InputDevices
                 int crcoffset = 0;
                 long latencySum = 0;
                 int reportOffset = conType == ConnectionType.BT ? 1 : 0;
+
+                // Run continuous calibration on Gyro when starting input loop
+                sixAxis.ResetContinuousCalibration();
                 standbySw.Start();
 
                 while (!exitInputThread)
@@ -445,6 +448,7 @@ namespace DS4Windows.InputDevices
                                 {
                                     exitInputThread = true;
 
+                                    AppLogger.LogToGui(DS4WinWPF.Translations.Strings.CRC32Fail, true);
                                     readWaitEv.Reset();
                                     //sendOutputReport(true, true); // Kick Windows into noticing the disconnection.
                                     StopOutputUpdate();
@@ -462,6 +466,10 @@ namespace DS4Windows.InputDevices
                                 readWaitEv.Reset();
                                 continue;
                             }
+                            else
+                            {
+                                this.inputReportErrorCount = 0;
+                            }
                         }
                         else
                         {
@@ -474,6 +482,7 @@ namespace DS4Windows.InputDevices
                                 int winError = Marshal.GetLastWin32Error();
                                 Console.WriteLine(Mac.ToString() + " " + DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + winError);
                                 //Log.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
+                                AppLogger.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
                             }
 
                             exitInputThread = true;

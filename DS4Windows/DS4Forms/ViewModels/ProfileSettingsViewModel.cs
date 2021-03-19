@@ -869,6 +869,74 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.RSModInfo[device].maxOutput = value * 100.0;
         }
 
+        public int LSDeadTypeIndex
+        {
+            get
+            {
+                int index = 0;
+                switch(Global.LSModInfo[device].deadzoneType)
+                {
+                    case StickDeadZoneInfo.DeadZoneType.Radial:
+                        break;
+                    case StickDeadZoneInfo.DeadZoneType.Axial:
+                        index = 1; break;
+                    default: break;
+                }
+
+                return index;
+            }
+            set
+            {
+                StickDeadZoneInfo.DeadZoneType temp = StickDeadZoneInfo.DeadZoneType.Radial;
+                switch(value)
+                {
+                    case 0: break;
+                    case 1:
+                        temp = StickDeadZoneInfo.DeadZoneType.Axial;
+                        break;
+                    default: break;
+                }
+
+                StickDeadZoneInfo.DeadZoneType current = Global.LSModInfo[device].deadzoneType;
+                if (temp == current) return;
+                Global.LSModInfo[device].deadzoneType = temp;
+            }
+        }
+
+        public int RSDeadTypeIndex
+        {
+            get
+            {
+                int index = 0;
+                switch (Global.RSModInfo[device].deadzoneType)
+                {
+                    case StickDeadZoneInfo.DeadZoneType.Radial:
+                        break;
+                    case StickDeadZoneInfo.DeadZoneType.Axial:
+                        index = 1; break;
+                    default: break;
+                }
+
+                return index;
+            }
+            set
+            {
+                StickDeadZoneInfo.DeadZoneType temp = StickDeadZoneInfo.DeadZoneType.Radial;
+                switch (value)
+                {
+                    case 0: break;
+                    case 1:
+                        temp = StickDeadZoneInfo.DeadZoneType.Axial;
+                        break;
+                    default: break;
+                }
+
+                StickDeadZoneInfo.DeadZoneType current = Global.RSModInfo[device].deadzoneType;
+                if (temp == current) return;
+                Global.RSModInfo[device].deadzoneType = temp;
+            }
+        }
+
         public double LSSens
         {
             get => Global.LSSens[device];
@@ -983,6 +1051,41 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             get => Global.RSModInfo[device].fuzz;
             set => Global.RSModInfo[device].fuzz = value;
+        }
+
+        public bool LSAntiSnapback
+        {
+            get => Global.LSAntiSnapbackInfo[device].enabled;
+            set => Global.LSAntiSnapbackInfo[device].enabled = value;
+        }
+
+        public bool RSAntiSnapback
+        {
+            get => Global.RSAntiSnapbackInfo[device].enabled;
+            set => Global.RSAntiSnapbackInfo[device].enabled = value;
+        }
+
+        public double LSAntiSnapbackDelta
+        {
+            get => Global.LSAntiSnapbackInfo[device].delta;
+            set => Global.LSAntiSnapbackInfo[device].delta = value;
+        }
+
+        public double RSAntiSnapbackDelta
+        {
+            get => Global.RSAntiSnapbackInfo[device].delta;
+            set => Global.RSAntiSnapbackInfo[device].delta = value;
+        }
+        public int LSAntiSnapbackTimeout
+        {
+            get => Global.LSAntiSnapbackInfo[device].timeout;
+            set => Global.LSAntiSnapbackInfo[device].timeout = value;
+        }
+
+        public int RSAntiSnapbackTimeout
+        {
+            get => Global.RSAntiSnapbackInfo[device].timeout;
+            set => Global.RSAntiSnapbackInfo[device].timeout = value;
         }
 
         public int LSOutputIndex

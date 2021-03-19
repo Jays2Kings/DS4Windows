@@ -1,10 +1,131 @@
 {
-  "latest_version": "2.2.7",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 7},
-  "updated_at": "2021-02-18T21:49:24+0000",
+  "latest_version": "2.2.12",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 12},
+  "updated_at": "2021-03-19T14:01:18+0000",
   "changelog": {
     "versions": [
-	{
+    {
+      "version_str": "2.2.12",
+      "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 12},
+      "base_header": "Version 2.2.12",
+      "release_date": "2021-03-19T14:01:18+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 2.2.12",
+          "log_text": ["* Fixed CRC32 error counter for DualSense",
+            "* Fixed bad copy pasta regarding device setting wheel calibration saving",
+            "* Added error checking with device wheel calibration loading"],
+          "editor": "ryochan7",
+          "editors_note": ["None"],
+          "updated_at": "2021-03-19T14:01:18+0000"
+        }
+      ]
+    },
+    {
+      "version_str": "2.2.11",
+      "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 11},
+      "base_header": "Version 2.2.11",
+      "release_date": "2021-03-17T20:05:46+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 2.2.11",
+          "log_text": ["* Implemented newer feedback handler routine for virtual DS4 devices. Added virtual DS4 rumble back in",
+            "* Now sure to use continuous calibration routine for non-DS4 devices",
+            "* Changed severity of ViGEmPluginFailure message. Now indicates that a user should probably reboot Windows if it happens",
+            "* Fixed JoyCon R Gyro Roll. Old value was inverted",
+            "* Copy modified JoyCon current state for use in UDP server",
+            "* Only display device in UDP server if it is a primary device. Mainly needed due to JoyCon R in Joined JoyCon mode",
+            "* Added exception catching when saving Actions xml file. File corruption will now cause the file to be written from scratch",
+            "* Use Task error log helper for some background service tasks. Allows some extra possible error messages to show up in the Log",
+            "* Simplify UDP motion event creation. Allow motion event to be created when enabling UDP server",
+            "* Make Flash at High Latency default to 50 ms",
+            "* Dark Theme color changes. Color contrast has been reduced. Contribution by **AnessZurba**",
+            "* Skip writing device wheel calibraton nodes if empty",
+            "* Now use estimated wheel center values if controller config has an empty entry. Problem caused some app instability and memory bloating due to excessive log messages in Log tab (over 1GB RAM usage)",
+            "* Implemented axial dead zone and related settings",
+            "* Fixed ColorByBattery panel visibility for first open. Contribution by **MakiseKurisu**",
+            "* Changes for continuous calibration routine for Sony Wireless Adapter connections. Contribution by **MakiseKurisu**",
+            "* Tweaked profile loading for some older fallback options"],
+          "editor": "ryochan7",
+          "editors_note": ["None"],
+          "updated_at": "2021-03-17T20:05:46+0000"
+        }
+      ]
+    },
+    {
+      "version_str": "2.2.10",
+      "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 10},
+      "base_header": "Version 2.2.10",
+      "release_date": "2021-03-09T20:14:08+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 2.2.10",
+          "log_text": ["* Change Disconnect command syntax to allow all wireless controllers to get disconnected",
+            "* Increased GUI enforced max Trackball Friction value to 20.0",
+            "* Slightly edited colors used in Dark theme",
+            "* Disabled virtual DS4 feedback routine again",
+            "* Allow Joined JoyCon support. Joined link mode is now the default",
+            "* Changed L1 binding for KB+M and Gyro preset profile. Make Unbound",
+            "* Fixed macroRecorder bug where MUTE control threw an exception because it is not in macroDS4Values array. Contribution by **mika-n**",
+            "* Fixed wrong on-screen button indexes while remapping using 'readout' feature. Contribution by **mika-n**",
+            "* Added artificial VID/PID for DualShock 3 running under DsHidMini drivers. Contribution by **nefarius**"],
+          "editor": "ryochan7",
+          "editors_note": ["None"],
+          "updated_at": "2021-03-09T20:14:08+0000"
+        }
+      ]
+    },
+    {
+      "version_str": "2.2.9",
+      "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 9},
+      "base_header": "Version 2.2.9",
+      "release_date": "2021-03-05T02:36:16+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 2.2.9",
+          "log_text": ["* Profile settings fuzz option hang fix. Contribution by **RokasKil**",
+            "* Anti-snapback stick settings added. Contribution by **RokasKil**",
+            "* .NET 5 progress complete. Will keep net5 branch updated regularly until used in public build. Contribution by **sitiom**",
+            "* Fixed index out of bounds error when loading profiles in virtual output device check",
+            "* Fixed current item selection for right click Disconnect BT",
+            "* Removed references to Frog site. No longer posting updates there",
+            "* Changed initial trackball velocity calculations to attempt to make numbers more uniform across devices",
+            "* Added Disconnect command line option",
+            "* Disable macro mode combobox when opening Macro used in a Multi-Action Button special action",
+            "* Take out nag disclaimer window regarding Hide DS4 Controller option"],
+          "editor": "ryochan7",
+          "editors_note": ["Burnout"],
+          "updated_at": "2021-03-05T02:36:16+0000"
+        }
+      ]
+    },
+    {
+      "version_str": "2.2.8",
+      "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 8},
+      "base_header": "Version 2.2.8",
+      "release_date": "2021-02-26T18:33:49+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 2.2.8",
+          "log_text": ["* Fixed resetting of trigger values for Two Stage modes",
+            "* Removed references to old Discord server",
+            "* Pull gyro calibration sampling routine out to its own method",
+            "* Fixed normal button binding to Touchpad Click output",
+            "* Attempt to go to DS4Updater Release page if automatic download of updater failed",
+            "* Added GitHub link to Social row in About window",
+            "* Fixed x86 ViGEm installer URL"],
+          "editor": "ryochan7",
+          "editors_note": ["Take a break"],
+          "updated_at": "2021-02-26T18:33:49+0000"
+        }
+      ]
+    },
+    {
         "version_str": "2.2.7",
         "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 7},
         "base_header": "Version 2.2.7",

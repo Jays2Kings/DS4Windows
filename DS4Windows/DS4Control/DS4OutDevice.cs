@@ -14,7 +14,9 @@ namespace DS4Windows
         public const string devtype = "DS4";
 
         public IDualShock4Controller cont;
-        public DualShock4FeedbackReceivedEventHandler forceFeedbackCall;
+        //public DualShock4FeedbackReceivedEventHandler forceFeedbackCall;
+        public Dictionary<int, DualShock4FeedbackReceivedEventHandler> forceFeedbacksDict =
+            new Dictionary<int, DualShock4FeedbackReceivedEventHandler>();
 
         public DS4OutDevice(ViGEmClient client)
         {
@@ -30,11 +32,12 @@ namespace DS4Windows
         }
         public override void Disconnect()
         {
-            if (forceFeedbackCall != null)
+            foreach (KeyValuePair<int, DualShock4FeedbackReceivedEventHandler> pair in forceFeedbacksDict)
             {
-                cont.FeedbackReceived -= forceFeedbackCall;
-                forceFeedbackCall = null;
+                cont.FeedbackReceived -= pair.Value;
             }
+
+            forceFeedbacksDict.Clear();
 
             connected = false;
             cont.Disconnect();
@@ -42,5 +45,24 @@ namespace DS4Windows
             cont = null;
         }
         public override string GetDeviceType() => devtype;
+
+        public override void RemoveFeedbacks()
+        {
+            foreach (KeyValuePair<int, DualShock4FeedbackReceivedEventHandler> pair in forceFeedbacksDict)
+            {
+                cont.FeedbackReceived -= pair.Value;
+            }
+
+            forceFeedbacksDict.Clear();
+        }
+
+        public override void RemoveFeedback(int inIdx)
+        {
+            if (forceFeedbacksDict.TryGetValue(inIdx, out DualShock4FeedbackReceivedEventHandler handler))
+            {
+                cont.FeedbackReceived -= handler;
+                forceFeedbacksDict.Remove(inIdx);
+            }
+        }
     }
 }

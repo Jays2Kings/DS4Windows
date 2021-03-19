@@ -37,10 +37,6 @@
                     BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="Mastodon">
                 <Image Source="/DS4Windows;component/Resources/social/mastodon.png" Height="32" Margin="4,0,0,0" />
             </Button>
-            <Button x:Name="frogSiteSocialBtn" BorderBrush="{x:Null}" Background="{x:Null}"
-                    Foreground="{x:Null}" Margin="4,0,0,0" Style="{StaticResource NoBGHoverBtn}" ToolTip="@ds4windows">
-                <Image Source="/DS4Windows;component/Resources/social/frog_site_logo.png" Height="32" Margin="4,0,0,0" />
-            </Button>
             <Button x:Name="mindsSocialBtn" Click="MindsSocialBtn_Click"
                     BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="4,0,0,0" ToolTip="Minds">
                 <Image Source="/DS4Windows;component/Resources/social/minds.png" Height="32" Margin="4,0,0,0" />

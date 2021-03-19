@@ -1130,7 +1130,8 @@ namespace DS4Windows
 
                         touchPad[i] = new Mouse(i, device);
                         bool profileLoaded = false;
-                        if (!useTempProfile[i])
+                        bool useAutoProfile = useTempProfile[i];
+                        if (!useAutoProfile)
                         {
                             if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
                             {
@@ -1146,7 +1147,7 @@ namespace DS4Windows
                             profileLoaded = LoadProfile(i, false, this, false, false);
                         }
 
-                        if (profileLoaded)
+                        if (profileLoaded || useAutoProfile)
                         {
                             device.LightBarColor = getMainColor(i);
 
@@ -1569,7 +1570,8 @@ namespace DS4Windows
 
                             touchPad[Index] = new Mouse(Index, device);
                             bool profileLoaded = false;
-                            if (!useTempProfile[Index])
+                            bool useAutoProfile = useTempProfile[Index];
+                            if (!useAutoProfile)
                             {
                                 if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
                                 {
@@ -1585,7 +1587,7 @@ namespace DS4Windows
                                 profileLoaded = LoadProfile(Index, false, this, false, false);
                             }
 
-                            if (profileLoaded)
+                            if (profileLoaded || useAutoProfile)
                             {
                                 device.LightBarColor = getMainColor(Index);
 

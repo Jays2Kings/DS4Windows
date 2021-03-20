@@ -13,7 +13,8 @@
         {
           "code": "en",
           "header": "Version 2.2.13",
-          "log_text": ["* Have device hotplug routine enforce profile settings when using a temp auto profile"],
+          "log_text": ["* Have device hotplug routine enforce profile settings when using a temp auto profile",
+            "* Bundled DS4Updater 1.4.7"],
           "editor": "ryochan7",
           "editors_note": ["None"],
           "updated_at": "2021-03-20T02:48:37+0000"

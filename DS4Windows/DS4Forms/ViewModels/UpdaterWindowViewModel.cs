@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Documents;
 using HttpProgress;
 using Newtonsoft.Json;
-using MarkdownEngine = Markdown.Xaml.Markdown;
+using MarkdownEngine = MdXaml.Markdown;
 
 namespace DS4WinWPF.DS4Forms.ViewModels
 {

@@ -1,9 +1,25 @@
 {
-  "latest_version": "2.2.12",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 12},
-  "updated_at": "2021-03-19T14:01:18+0000",
+  "latest_version": "2.2.13",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 13},
+  "updated_at": "2021-03-20T02:48:37+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "2.2.13",
+      "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 13},
+      "base_header": "Version 2.2.13",
+      "release_date": "2021-03-20T02:48:37+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 2.2.13",
+          "log_text": ["* Have device hotplug routine enforce profile settings when using a temp auto profile"],
+          "editor": "ryochan7",
+          "editors_note": ["None"],
+          "updated_at": "2021-03-20T02:48:37+0000"
+        }
+      ]
+    },
     {
       "version_str": "2.2.12",
       "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 12},

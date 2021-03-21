@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 using HttpProgress;
-using Newtonsoft.Json;
+using System.Text.Json;
 using MarkdownEngine = MdXaml.Markdown;
 
 namespace DS4WinWPF.DS4Forms.ViewModels
@@ -61,10 +61,15 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 string temp = File.ReadAllText(filename).Trim();
                 try
                 {
-                    ChangelogInfo tempInfo = JsonConvert.DeserializeObject<ChangelogInfo>(temp);
+                    JsonSerializerOptions options = new JsonSerializerOptions()
+                    {
+                        PropertyNameCaseInsensitive = true,
+                    };
+                    options.Converters.Add(new DateTimeJsonConverter.DateTimeConverterUsingDateTimeParse());
+                    ChangelogInfo tempInfo = JsonSerializer.Deserialize<ChangelogInfo>(temp, options);
                     BuildChangelogDocument(tempInfo);
                 }
-                catch (JsonSerializationException) { }
+                catch (JsonException) {}
             }
             else if (!readFile)
             {

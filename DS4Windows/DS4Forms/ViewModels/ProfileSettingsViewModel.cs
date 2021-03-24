@@ -857,10 +857,22 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.RSModInfo[device].antiDeadZone = (int)(value * 100.0);
         }
 
+        public double LSVerticalScale
+        {
+            get => Global.LSModInfo[device].verticalScale / 100.0;
+            set => Global.LSModInfo[device].verticalScale = value * 100.0;
+        }
+
         public double LSMaxOutput
         {
             get => Global.LSModInfo[device].maxOutput / 100.0;
             set => Global.LSModInfo[device].maxOutput = value * 100.0;
+        }
+
+        public double RSVerticalScale
+        {
+            get => Global.RSModInfo[device].verticalScale / 100.0;
+            set => Global.RSModInfo[device].verticalScale = value * 100.0;
         }
 
         public double RSMaxOutput

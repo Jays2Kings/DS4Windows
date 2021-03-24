@@ -487,6 +487,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .NET 5 Runtime was not detected on your system. Please download and install .NET 5 Runtime to ensure compatibility with future DS4Windows builds. Will redirecting to download page upon window close..
+        /// </summary>
+        public static string FutureNetNotInstalled {
+            get {
+                return ResourceManager.GetString("FutureNetNotInstalled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maps the controller output to a standard XInput gamepad or DS4 pad. Gyro is mapped to a Mouse-like Joystick..
         /// </summary>
         public static string GamepadGyroCameraDescription {
@@ -987,6 +996,15 @@ namespace DS4WinWPF.Translations {
         public static string Trigger {
             get {
                 return ResourceManager.GetString("Trigger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please update .NET Runtime.
+        /// </summary>
+        public static string UpgradeNetCaption {
+            get {
+                return ResourceManager.GetString("UpgradeNetCaption", resourceCulture);
             }
         }
         

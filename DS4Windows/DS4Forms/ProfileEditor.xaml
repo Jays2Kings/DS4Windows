@@ -284,6 +284,7 @@
                                                             <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                             <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                             <RowDefinition Style="{StaticResource gridRowHeight}" />
+                                                            <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                         </Grid.RowDefinitions>
 
                                                         <Label Content="Dead Zone:" Grid.Row="0" Grid.Column="0" />
@@ -302,8 +303,12 @@
                                                         <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSMaxOutput}" FormatString="F2" MinWidth="50" Grid.Row="3" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
-                                                        <Label Content="Sensitivity:" Grid.Row="4" Grid.Column="0" />
-                                                        <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding LSSens}" MinWidth="50" Grid.Row="4" Grid.Column="1" Maximum="5.0" Minimum="0.5" Increment="0.1"
+                                                        <Label Content="Vertical Scale:" Grid.Row="4" Grid.Column="0" />
+                                                        <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSVerticalScale}" FormatString="F2" MinWidth="50" Grid.Row="4" Grid.Column="1" Maximum="2.0" Minimum="0.0" Increment="0.1"
+                                                   Margin="{StaticResource spaceMargin}" />
+
+                                                        <Label Content="Sensitivity:" Grid.Row="5" Grid.Column="0" />
+                                                        <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding LSSens}" MinWidth="50" Grid.Row="5" Grid.Column="1" Maximum="5.0" Minimum="0.5" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
                                                     </Grid>
@@ -479,6 +484,7 @@
                                                             <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                             <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                             <RowDefinition Style="{StaticResource gridRowHeight}" />
+                                                            <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                         </Grid.RowDefinitions>
 
                                                         <Label Content="Dead Zone:" Grid.Row="0" Grid.Column="0" />
@@ -497,8 +503,12 @@
                                                         <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSMaxOutput}" FormatString="F2" MinWidth="50" Grid.Row="3" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
-                                                        <Label Content="Sensitivity:" Grid.Row="4" Grid.Column="0" />
-                                                        <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding RSSens}" MinWidth="50" Grid.Row="4" Grid.Column="1" Maximum="5.0" Minimum="0.5" Increment="0.1"
+                                                        <Label Content="Vertical Scale:" Grid.Row="4" Grid.Column="0" />
+                                                        <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSVerticalScale}" FormatString="F2" MinWidth="50" Grid.Row="4" Grid.Column="1" Maximum="2.0" Minimum="0.0" Increment="0.1"
+                                                   Margin="{StaticResource spaceMargin}" />
+
+                                                        <Label Content="Sensitivity:" Grid.Row="5" Grid.Column="0" />
+                                                        <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding RSSens}" MinWidth="50" Grid.Row="5" Grid.Column="1" Maximum="5.0" Minimum="0.5" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
                                                     </Grid>
                                                 </TabItem>

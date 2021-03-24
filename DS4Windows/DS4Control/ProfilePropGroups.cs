@@ -25,6 +25,7 @@ namespace DS4Windows
         public const double DEFAULT_MAXOUTPUT = 100.0;
         public const int DEFAULT_FUZZ = 0;
         public const DeadZoneType DEFAULT_DEADZONE_TYPE = DeadZoneType.Radial;
+        public const double DEFAULT_VERTICAL_SCALE = 100.0;
 
         public class AxisDeadZoneInfo
         {
@@ -49,6 +50,7 @@ namespace DS4Windows
         public int maxZone = DEFAULT_MAXZONE;
         public double maxOutput = DEFAULT_MAXOUTPUT;
         public int fuzz = DEFAULT_FUZZ;
+        public double verticalScale = DEFAULT_VERTICAL_SCALE;
         public DeadZoneType deadzoneType = DEFAULT_DEADZONE_TYPE;
         public AxisDeadZoneInfo xAxisDeadInfo = new AxisDeadZoneInfo();
         public AxisDeadZoneInfo yAxisDeadInfo = new AxisDeadZoneInfo();
@@ -60,6 +62,7 @@ namespace DS4Windows
             maxZone = DEFAULT_MAXZONE;
             maxOutput = DEFAULT_MAXOUTPUT;
             fuzz = DEFAULT_FUZZ;
+            verticalScale = DEFAULT_VERTICAL_SCALE;
             deadzoneType = DEFAULT_DEADZONE_TYPE;
             xAxisDeadInfo.Reset();
             yAxisDeadInfo.Reset();

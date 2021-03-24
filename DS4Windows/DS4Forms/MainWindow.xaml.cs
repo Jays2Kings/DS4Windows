@@ -157,6 +157,18 @@ namespace DS4WinWPF.DS4Forms
                 }
 
                 //UpdateTheUpdater();
+
+                Version netInstallVersion = StartupMethods.NetVersionInstalled();
+                Version minFutureNetVersion = new Version("5.0.0");
+                if (netInstallVersion.CompareTo(minFutureNetVersion) < 0)
+                {
+                    Dispatcher.BeginInvoke((Action)(() =>
+                    {
+                        MessageBox.Show(Strings.FutureNetNotInstalled, Strings.UpgradeNetCaption,
+                            MessageBoxButton.OK, MessageBoxImage.Warning);
+                        Util.StartProcessHelper("https://dotnet.microsoft.com/download");
+                    }));
+                }
             });
 
             // Log exceptions that might occur

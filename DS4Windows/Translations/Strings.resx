@@ -442,4 +442,10 @@ Example: whyme_DS4Windows</value>
   <data name="CRC32Fail" xml:space="preserve">
     <value>Data integrity checks failed for wireless device. Closing device.</value>
   </data>
+  <data name="FutureNetNotInstalled" xml:space="preserve">
+    <value>.NET 5 Runtime was not detected on your system. Please download and install .NET 5 Runtime to ensure compatibility with future DS4Windows builds. Will redirecting to download page upon window close.</value>
+  </data>
+  <data name="UpgradeNetCaption" xml:space="preserve">
+    <value>Please update .NET Runtime</value>
+  </data>
 </root>

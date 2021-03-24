@@ -1,9 +1,26 @@
 {
-  "latest_version": "2.2.13",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 13},
-  "updated_at": "2021-03-20T02:48:37+0000",
+  "latest_version": "2.2.14",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 14},
+  "updated_at": "2021-03-24T18:19:59+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "2.2.14",
+      "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 14},
+      "base_header": "Version 2.2.14",
+      "release_date": "2021-03-24T18:19:59+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 2.2.14",
+          "log_text": ["* Implemented stick vertical scale",
+            "* Include nag window telling people to install .NET 5 Runtime. Window will open at program startup if needed."],
+          "editor": "ryochan7",
+          "editors_note": ["None"],
+          "updated_at": "2021-03-24T18:19:59+0000"
+        }
+      ]
+    },
     {
       "version_str": "2.2.13",
       "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 13},

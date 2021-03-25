@@ -312,6 +312,11 @@ namespace DS4Windows
                                 //DevicePaths.Add(hDevice.DevicePath);
                                 newdev = false;
                             }
+                            else
+                            {
+                                // Using shared mode. Serial already exists. Ignore device
+                                newdev = false;
+                            }
                         }
 
                         if (newdev)

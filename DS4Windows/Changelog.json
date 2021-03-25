@@ -1,9 +1,27 @@
 {
-  "latest_version": "2.2.14",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 14},
-  "updated_at": "2021-03-24T18:19:59+0000",
+  "latest_version": "2.2.15",
+  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 15},
+  "updated_at": "2021-03-25T16:22:38+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "2.2.15",
+      "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 15},
+      "base_header": "Version 2.2.15",
+      "release_date": "2021-03-25T16:22:38+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 2.2.15",
+          "log_text": ["* Ignore duplicate device when in Shared mode",
+            "* Added extra processing to Version string for .NET 5 and later. Expecting Microsoft to use their own standard was a mistake",
+            "* Changed URL used for .NET 5 Runtime download"],
+          "editor": "ryochan7",
+          "editors_note": ["None"],
+          "updated_at": "2021-03-25T16:22:38+0000"
+        }
+      ]
+    },
     {
       "version_str": "2.2.14",
       "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 14},

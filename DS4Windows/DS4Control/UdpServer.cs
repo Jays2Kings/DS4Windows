@@ -211,11 +211,16 @@ namespace DS4Windows
             args.RemoteEndPoint = clientEP;
             Array.Copy(packetData, args.Buffer, packetData.Length);
             //args.SetBuffer(packetData, 0, packetData.Length);
+            bool sentAsync = false;
             try {
-                bool sentAsync = udpSock.SendToAsync(args);
+                sentAsync = udpSock.SendToAsync(args);
                 if (!sentAsync) CompletedSynchronousSocketEvent();
             }
             catch (Exception e) { }
+            finally
+            {
+                if (!sentAsync) CompletedSynchronousSocketEvent();
+            }
         }
 
         private void ProcessIncoming(byte[] localMsg, IPEndPoint clientEP)
@@ -706,11 +711,15 @@ namespace DS4Windows
                     _pool.Wait();
                     args.RemoteEndPoint = cl;
                     Array.Copy(outputData, args.Buffer, outputData.Length);
+                    bool sentAsync = false;
                     try {
-                        bool sendAsync = udpSock.SendToAsync(args);
-                        if (!sendAsync) CompletedSynchronousSocketEvent();
+                        sentAsync = udpSock.SendToAsync(args);
                     }
                     catch (SocketException ex) { }
+                    finally
+                    {
+                        if (!sentAsync) CompletedSynchronousSocketEvent();
+                    }
                 }
             }
 

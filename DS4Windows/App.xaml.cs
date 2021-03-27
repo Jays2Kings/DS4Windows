@@ -150,8 +150,7 @@ namespace DS4WinWPF
                 savewh.ShowDialog();
             }
 
-            DS4Windows.Global.Load();
-            if (!CreateConfDirSkeleton())
+            if (firstRun && !CreateConfDirSkeleton())
             {
                 MessageBox.Show($"Cannot create config folder structure in {DS4Windows.Global.appdatapath}. Exiting",
                     "DS4Windows", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -172,6 +171,12 @@ namespace DS4WinWPF
             logger.Info($"System Architecture: {(Environment.Is64BitOperatingSystem ? "x64" : "x86")}");
             //logger.Info("DS4Windows version 2.0");
             logger.Info("Logger created");
+
+            bool readAppConfig = DS4Windows.Global.Load();
+            if (!firstRun && !readAppConfig)
+            {
+                logger.Info($@"Profiles.xml not read at location ${DS4Windows.Global.appdatapath}\Profiles.xml. Using default app settings");
+            }
 
             //DS4Windows.Global.ProfilePath[0] = "mixed";
             //DS4Windows.Global.LoadProfile(0, false, rootHub, false, false);

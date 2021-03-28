@@ -2759,8 +2759,8 @@ namespace DS4Windows
 
             if (usingExtra == DS4Controls.None || usingExtra == dcs.control)
             {
-                bool shiftE = !string.IsNullOrEmpty(dcs.shiftExtras) && ShiftTrigger2(dcs.shiftTrigger, device, cState, eState, tp, fieldMapping);
-                bool regE = !string.IsNullOrEmpty(dcs.extras);
+                bool shiftE = !dcs.IsExtrasEmpty(dcs.shiftExtras) && ShiftTrigger2(dcs.shiftTrigger, device, cState, eState, tp, fieldMapping);
+                bool regE = !dcs.IsExtrasEmpty(dcs.extras);
                 if ((regE || shiftE) && getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                 {
                     usingExtra = dcs.control;

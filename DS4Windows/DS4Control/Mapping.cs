@@ -1979,7 +1979,8 @@ namespace DS4Windows
         /// <summary>
         /// Map DS4 Buttons/Axes to other DS4 Buttons/Axes (largely the same as Xinput ones) and to keyboard and mouse buttons.
         /// </summary>
-        static bool[] held = new bool[Global.MAX_DS4_CONTROLLER_COUNT];
+        static DS4Controls[] held = new DS4Controls[Global.MAX_DS4_CONTROLLER_COUNT];
+
         public static void MapCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState,
             Mouse tp, ControlService ctrl)
         {
@@ -2779,7 +2780,7 @@ namespace DS4Windows
                             extras[i] = b;
                     }
 
-                    held[device] = true;
+                    held[device] = dcs.control;
                     try
                     {
                         if (!(extras[0] == extras[1] && extras[1] == 0))
@@ -2808,7 +2809,7 @@ namespace DS4Windows
                     }
                     catch { }
                 }
-                else if ((regE || shiftE) && held[device])
+                else if ((regE || shiftE) && held[device] == dcs.control)
                 {
                     DS4LightBar.forcelight[device] = false;
                     DS4LightBar.forcedFlash[device] = 0;
@@ -2825,7 +2826,7 @@ namespace DS4Windows
                         extrasRumbleActive[device] = false;
                     }
 
-                    held[device] = false;
+                    held[device] = DS4Controls.None;
                     usingExtra = DS4Controls.None;
                 }
             }

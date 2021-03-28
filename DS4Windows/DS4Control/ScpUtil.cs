@@ -103,7 +103,7 @@ namespace DS4Windows
 
         public bool IsExtrasEmpty(string extraStr)
         {
-            return string.IsNullOrEmpty(extraStr) || extraStr == "0,0,0,0,0,0,0,0";
+            return string.IsNullOrEmpty(extraStr) || extraStr == "0,0,0,0,0,0,0,0,0";
         }
 
         internal void UpdateSettings(bool shift, object act, string exts, DS4KeyType kt, int trigger = 0)

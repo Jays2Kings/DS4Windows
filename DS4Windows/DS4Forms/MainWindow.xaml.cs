@@ -27,6 +27,7 @@ using HttpProgress;
 using DS4WinWPF.DS4Forms.ViewModels;
 using DS4Windows;
 using DS4WinWPF.Translations;
+using System.IO.Compression;
 
 namespace DS4WinWPF.DS4Forms
 {
@@ -203,7 +204,7 @@ namespace DS4WinWPF.DS4Forms
         {
             string result = string.Empty;
             // Sorry other devs, gonna have to find your own server
-            Uri url = new Uri("https://raw.githubusercontent.com/Ryochan7/DS4Updater/master/Updater2/newest.txt");
+            Uri url = new Uri("https://raw.githubusercontent.com/Ryochan7/DS4Updater/master/Updater2/app_newest.txt");
             string filename = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "DS4Updater_version.txt");
             bool readFile = false;
             using (var downloadStream = new FileStream(filename, FileMode.Create))
@@ -235,7 +236,7 @@ namespace DS4WinWPF.DS4Forms
             if (versionFileExists)
             {
                 newversion = File.ReadAllText(versionFilePath).Trim();
-                //newversion = "2.1.3";
+                //newversion = "3.0.0";
             }
 
             ulong newversionNum = !string.IsNullOrEmpty(newversion) ?
@@ -328,9 +329,12 @@ namespace DS4WinWPF.DS4Forms
                 (!string.IsNullOrEmpty(version) && FileVersionInfo.GetVersionInfo(destPath).FileVersion.CompareTo(version) != 0))
             {
                 launch = false;
-                Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{version}/{mainWinVM.updaterExe}");
-                string filename = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "DS4Updater.exe");
-                using (var downloadStream = new FileStream(filename, FileMode.Create))
+                string updaterArchiveFile =  mainWinVM.GetUpdaterArchiveName(version);
+                Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{version}/{updaterArchiveFile}");
+                string tempPath = System.IO.Path.GetTempPath();
+                string tempUpdaterDirPath = System.IO.Path.Combine(tempPath, "DS4Updater");
+                string archiveFilename = System.IO.Path.Combine(tempPath, updaterArchiveFile);
+                using (var downloadStream = new FileStream(archiveFilename, FileMode.Create))
                 {
                     Task<System.Net.Http.HttpResponseMessage> temp =
                         App.requestClient.GetAsync(url2.ToString(), downloadStream);
@@ -338,17 +342,60 @@ namespace DS4WinWPF.DS4Forms
                     if (temp.Result.IsSuccessStatusCode) launch = true;
                 }
 
+                launch = true;
+                string[] updaterFiles = new string[0];
+                if (launch)
+                {
+                    // Delete old extracted folder if it exists
+                    if (Directory.Exists(tempUpdaterDirPath))
+                    {
+                        Directory.Delete(tempUpdaterDirPath, true);
+                    }
+
+                    try
+                    {
+                        // Extract zip file and grab all the filenames
+                        ZipFile.ExtractToDirectory(archiveFilename, tempPath);
+                        updaterFiles = Directory.GetFiles(tempUpdaterDirPath, "*", SearchOption.AllDirectories);
+                    }
+                    catch (IOException)
+                    {
+                        // Zip extraction failed. Skip updater
+                        launch = false;
+                    }
+                }
+
                 if (launch)
                 {
                     if (Global.AdminNeeded())
                     {
-                        int copyStatus = Util.ElevatedCopyUpdater(filename);
+                        // Need to launch created bat file to copy files over
+                        int copyStatus = Util.ElevatedCopyUpdater(tempUpdaterDirPath, updaterFiles);
                         if (copyStatus != 0) launch = false;
                     }
                     else
                     {
-                        if (updaterExists) File.Delete(destPath);
-                        File.Move(filename, destPath);
+                        foreach (string outputFile in updaterFiles)
+                        {
+                            string partialPath = outputFile.Replace($"{tempUpdaterDirPath}\\", "");
+                            string destFilePath = System.IO.Path.Combine(Global.exedirpath, partialPath);
+                            if (File.Exists(destFilePath))
+                            {
+                                File.Delete(destFilePath);
+                            }
+
+                            FileInfo tempInfo = new FileInfo(destFilePath);
+                            if (!Directory.Exists(tempInfo.Directory.FullName))
+                            {
+                                tempInfo.Directory.Create();
+                            }
+
+                            File.Move(outputFile, destFilePath);
+                        }
+
+                        Directory.Delete(tempUpdaterDirPath, true);
+                        //if (updaterExists) File.Delete(destPath);
+                        //File.Move(filename, destPath);
                     }
                 }
             }
@@ -572,27 +619,27 @@ Suspend support not enabled.", true);
 
         private void UpdateTheUpdater()
         {
-            if (File.Exists(Global.exedirpath + "\\Update Files\\DS4Windows\\DS4Updater.exe"))
-            {
-                Process[] processes = Process.GetProcessesByName("DS4Updater");
-                while (processes.Length > 0)
-                {
-                    Thread.Sleep(500);
-                    processes = Process.GetProcessesByName("DS4Updater");
-                }
+            //if (File.Exists(Global.exedirpath + "\\Update Files\\DS4Windows\\DS4Updater.exe"))
+            //{
+            //    Process[] processes = Process.GetProcessesByName("DS4Updater");
+            //    while (processes.Length > 0)
+            //    {
+            //        Thread.Sleep(500);
+            //        processes = Process.GetProcessesByName("DS4Updater");
+            //    }
 
-                if (!Global.AdminNeeded())
-                {
-                    File.Delete(Global.exedirpath + "\\DS4Updater.exe");
-                    File.Move(Global.exedirpath + "\\Update Files\\DS4Windows\\DS4Updater.exe",
-                        Global.exedirpath + "\\DS4Updater.exe");
-                    Directory.Delete(Global.exedirpath + "\\Update Files", true);
-                }
-                else
-                {
-                    Util.ElevatedCopyUpdater(Global.exedirpath + "\\Update Files\\DS4Windows\\DS4Updater.exe", true);
-                }
-            }
+            //    if (!Global.AdminNeeded())
+            //    {
+            //        File.Delete(Global.exedirpath + "\\DS4Updater.exe");
+            //        File.Move(Global.exedirpath + "\\Update Files\\DS4Windows\\DS4Updater.exe",
+            //            Global.exedirpath + "\\DS4Updater.exe");
+            //        Directory.Delete(Global.exedirpath + "\\Update Files", true);
+            //    }
+            //    else
+            //    {
+            //        Util.ElevatedCopyUpdater(Global.exedirpath + "\\Update Files\\DS4Windows\\DS4Updater.exe", true);
+            //    }
+            //}
         }
 
         private void ChangeHotkeysStatus(bool state)

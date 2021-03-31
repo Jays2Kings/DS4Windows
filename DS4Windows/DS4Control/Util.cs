@@ -189,7 +189,7 @@ namespace DS4Windows
             });
         }
 
-        public static int ElevatedCopyUpdater(string tmpUpdaterPath, bool deleteUpdatesDir=false)
+        public static int ElevatedCopyUpdater(string tempDirPath, string[] tmpUpdaterPaths, bool deleteUpdatesDir=false)
         {
             int result = -1;
             string tmpPath = Path.Combine(Path.GetTempPath(), "updatercopy.bat");
@@ -199,13 +199,22 @@ namespace DS4Windows
             {
                 w.WriteLine("@echo off"); // Turn off echo
                 w.WriteLine("@echo Attempting to replace updater, please wait...");
-                // Move temp downloaded file to destination
-                w.WriteLine($"@mov /Y \"{tmpUpdaterPath}\" \"{Global.exedirpath}\\DS4Updater.exe\"");
+                // Move temp downloaded files to destination
+                foreach (string outputFile in tmpUpdaterPaths)
+                {
+                    string partialPath = outputFile.Replace($"{tempDirPath}\\", "");
+                    string destDirPath = Directory.GetParent(Path.Combine(Global.exedirpath, partialPath)).FullName;
+                    w.WriteLine($"@xcopy /s /y \"{outputFile}\" \"{destDirPath}\\\"");
+                }
+
                 if (deleteUpdatesDir)
                 {
-                    w.WriteLine($"@del /S \"{Global.exedirpath}\\Update Files\\DS4Windows\"");
+                    //w.WriteLine($"@del /S \"{Global.exedirpath}\\Update Files\\DS4Windows\\\"");
+                    w.WriteLine($"@rd /s /q \"{Global.exedirpath}\\Update Files\\\"");
                 }
-                w.WriteLine("@DEL \"%~f0\""); // Attempt to delete myself without opening a time paradox.
+
+                w.WriteLine($"@rd /s /q \"{tempDirPath}\\\"");
+                w.WriteLine("@start /b \"\" cmd /c DEL \"%~f0\"&exit /b"); // Attempt to delete myself without opening a time paradox.
                 w.Close();
             }
 

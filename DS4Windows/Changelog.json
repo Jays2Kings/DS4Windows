@@ -1,9 +1,35 @@
 {
-  "latest_version": "2.2.15",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 15},
-  "updated_at": "2021-03-25T16:22:38+0000",
+  "latest_version": "3.0.0",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 0},
+  "updated_at": "2021-04-01T20:29:11+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.0.0",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 0},
+      "base_header": "Version 3.0.0",
+      "release_date": "2021-04-01T20:29:11+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.0",
+          "log_text": ["* DS4Windows now targets .NET 5",
+            "* Changed ViGEm libraries to target .NET Core 3.1",
+            "* Now use MdXaml rather than Markdown.Xaml",
+            "* Removed Newtonsoft.Json library dependency",
+            "* Removed use of .NET 5 Runtime check nag window",
+            "* Fixed UDP Server locking device input in .NET 5. Caused by API change for SocketAsyncEventArgs",
+            "* Moved app config loading to occur after logger is created",
+            "* Change extras flag to take current DS4Control into account",
+            "* Added additionalProbingPaths to runtimeconfig.json",
+            "* Use UseShellExecute for ProcessStartInfo. Due to Process.Start change in .NET 5",
+            "* Added newer bat self deletion routine. Make sure to return 0 status code in process when performing bat self-delete"],
+          "editor": "ryochan7",
+          "editors_note": [".NET 5 updates"],
+          "updated_at": "2021-04-01T20:29:11+0000"
+        }
+      ]
+    },
     {
       "version_str": "2.2.15",
       "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 15},

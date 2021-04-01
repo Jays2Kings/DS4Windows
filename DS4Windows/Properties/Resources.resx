@@ -578,7 +578,7 @@
     <value>Up</value>
   </data>
   <data name="UpToDate" xml:space="preserve">
-    <value>You are up to date</value>
+    <value>DS4Windows application is up-to-date.</value>
   </data>
   <data name="UseControllerForMapping" xml:space="preserve">
     <value>You can also use your controller to change controls</value>

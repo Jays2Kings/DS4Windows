@@ -322,11 +322,11 @@ namespace DS4WinWPF.DS4Forms
 
         private bool RunUpdaterCheck(bool launch)
         {
-            string currentUpdaterPath = Global.exedirpath + "\\DS4Updater.exe";
-            bool updaterExists = File.Exists(currentUpdaterPath);
+            string destPath = Global.exedirpath + "\\DS4Updater.exe";
+            bool updaterExists = File.Exists(destPath);
             string version = DownloadUpstreamUpdaterVersion();
             if (!updaterExists ||
-                (!string.IsNullOrEmpty(version) && FileVersionInfo.GetVersionInfo(currentUpdaterPath).FileVersion.CompareTo(version) != 0))
+                (!string.IsNullOrEmpty(version) && FileVersionInfo.GetVersionInfo(destPath).FileVersion.CompareTo(version) != 0))
             {
                 launch = false;
                 string updaterArchiveFile =  mainWinVM.GetUpdaterArchiveName(version);

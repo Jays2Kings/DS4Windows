@@ -15,7 +15,7 @@
           "header": "Version 3.0.0",
           "log_text": ["* DS4Windows now targets .NET 5",
             "* Changed ViGEm libraries to target .NET Core 3.1",
-            "* Now use MdXaml rather than Markdown.Xaml",
+            "* Now use MdXaml rather than Markdown.Xaml for Changelog text rendering",
             "* Removed Newtonsoft.Json library dependency",
             "* Removed use of .NET 5 Runtime check nag window",
             "* Fixed UDP Server locking device input in .NET 5. Caused by API change for SocketAsyncEventArgs",

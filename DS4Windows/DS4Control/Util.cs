@@ -206,7 +206,7 @@ namespace DS4Windows
                 {
                     w.WriteLine($"@del /S \"{Global.exedirpath}\\Update Files\\DS4Windows\"");
                 }
-                w.WriteLine("@start /b \"\" cmd DEL \"%~f0\"&exit /b"); // Attempt to delete myself without opening a time paradox.
+                w.WriteLine("@start /b \"\" cmd /c DEL \"%~f0\"&exit /b"); // Attempt to delete myself without opening a time paradox.
                 w.Close();
             }
 

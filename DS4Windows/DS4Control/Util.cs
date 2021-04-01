@@ -171,6 +171,7 @@ namespace DS4Windows
             // interpreted as a delimiter
             startInfo.Arguments = $"\"{path}\"";
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            startInfo.UseShellExecute = true;
             try
             {
                 using (Process temp = Process.Start(startInfo)) { }

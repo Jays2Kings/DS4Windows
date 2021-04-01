@@ -150,7 +150,15 @@ namespace DS4Windows
         {
             if (!Global.IsAdministrator())
             {
-                Process.Start(path);
+                ProcessStartInfo startInfo = new ProcessStartInfo(path);
+                startInfo.UseShellExecute = true;
+                try
+                {
+                    using (Process temp = Process.Start(startInfo))
+                    {
+                    }
+                }
+                catch { }
             }
             else
             {

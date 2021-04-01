@@ -1378,7 +1378,15 @@ Suspend support not enabled.", true);
 
         private void ProfFolderBtn_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start(Global.appdatapath + "\\Profiles");
+            ProcessStartInfo startInfo = new ProcessStartInfo(Global.appdatapath + "\\Profiles");
+            startInfo.UseShellExecute = true;
+            try
+            {
+                using (Process temp = Process.Start(startInfo))
+                {
+                }
+            }
+            catch { }
         }
 
         private void ControlPanelBtn_Click(object sender, RoutedEventArgs e)
@@ -1685,7 +1693,9 @@ Suspend support not enabled.", true);
             {
                 try
                 {
-                    using (Process proc = Process.Start(path)) { }
+                    ProcessStartInfo startInfo = new ProcessStartInfo(path);
+                    startInfo.UseShellExecute = true;
+                    using (Process proc = Process.Start(startInfo)) { }
                 }
                 catch { }
             }

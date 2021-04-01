@@ -367,6 +367,7 @@ namespace DS4Windows
                 new ProcessStartInfo(Global.exelocation);
             startInfo.Verb = "runas";
             startInfo.Arguments = "re-enabledevice " + args.InstanceId;
+            startInfo.UseShellExecute = true;
 
             try
             {

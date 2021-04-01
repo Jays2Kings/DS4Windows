@@ -3001,8 +3001,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 if (!String.IsNullOrEmpty(defaultBrowserCmd))
                     System.Diagnostics.Process.Start(defaultBrowserCmd, $"\"file:///{Global.exedirpath}\\BezierCurveEditor\\index.html?curve={customDefinition.Replace(" ", "")}\"");
                 else
-                    System.Diagnostics.Process.Start($"{Global.exedirpath}\\BezierCurveEditor\\index.html");
-
+                {
+                    System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo($"{Global.exedirpath}\\BezierCurveEditor\\index.html");
+                    startInfo.UseShellExecute = true;
+                    using (System.Diagnostics.Process temp = System.Diagnostics.Process.Start(startInfo))
+                    {
+                    }
+                }
             }
             catch (Exception ex)
             {

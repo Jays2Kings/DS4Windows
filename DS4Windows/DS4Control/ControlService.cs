@@ -395,8 +395,13 @@ namespace DS4Windows
                 startInfo.Verb = "runas";
                 startInfo.Arguments = Process.GetCurrentProcess().Id.ToString();
                 startInfo.WorkingDirectory = Global.exedirpath;
+                startInfo.UseShellExecute = true;
                 try
-                { Process tempProc = Process.Start(startInfo); tempProc.Dispose(); }
+                {
+                    using (Process tempProc = Process.Start(startInfo))
+                    {
+                    }
+                }
                 catch { }
             }
         }

@@ -1,9 +1,28 @@
 {
-  "latest_version": "3.0.0",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 0},
-  "updated_at": "2021-04-01T20:29:11+0000",
+  "latest_version": "3.0.1",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 1},
+  "updated_at": "2021-04-02T17:46:02+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.0.1",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 1},
+      "base_header": "Version 3.0.1",
+      "release_date": "2021-04-02T17:46:02+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.1",
+          "log_text": ["* Fixed launching of HidGuardHelper for .NET 5 usage",
+            "* Fixed URL string generation for updater version redirect on download failure",
+            "* Fixed a few typos in the English strings. Contribution by **instilledbee**",
+            "* Bundled HidGuardHelper 0.2.0"],
+          "editor": "ryochan7",
+          "editors_note": ["nothing"],
+          "updated_at": "2021-04-02T17:46:02+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.0.0",
       "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 0},

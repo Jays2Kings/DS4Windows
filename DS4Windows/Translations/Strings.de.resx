@@ -53,6 +53,7 @@
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
+
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
@@ -111,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Accel" xml:space="preserve">
     <value>Achse</value>
@@ -123,16 +124,16 @@
     <value>Aktion</value>
   </data>
   <data name="AddDirectory" xml:space="preserve">
-    <value>Add Directory</value>
+    <value>Verzeichnis hinzufügen</value>
   </data>
   <data name="AddPrograms" xml:space="preserve">
     <value>Programme hinzufügen</value>
   </data>
   <data name="AddStartMenuPrograms" xml:space="preserve">
-    <value>Start Menu Programm hinzufügen</value>
+    <value>Startmenü-Programm hinzufügen</value>
   </data>
   <data name="AddSteamGames" xml:space="preserve">
-    <value>Steam Spiel hinzufügen</value>
+    <value>Steam-Spiel hinzufügen</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>Alle</value>
@@ -183,13 +184,13 @@
     <value>Controller</value>
   </data>
   <data name="ControlPanel" xml:space="preserve">
-    <value>Einstellungs Panel</value>
+    <value>Systemsteuerungs-Panel</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Löschen</value>
   </data>
   <data name="DriverSetup" xml:space="preserve">
-    <value>Controller/Treiber Setup</value>
+    <value>Treiber-Setup</value>
   </data>
   <data name="Duplicate" xml:space="preserve">
     <value>Kopieren</value>
@@ -210,7 +211,7 @@
     <value>Gyro</value>
   </data>
   <data name="HideUnchecked" xml:space="preserve">
-    <value>Unmakierte ausblenden</value>
+    <value>Abgewählte ausblenden</value>
   </data>
   <data name="Import" xml:space="preserve">
     <value>Importieren</value>
@@ -237,16 +238,16 @@
     <value>Keine</value>
   </data>
   <data name="Path" xml:space="preserve">
-    <value>Pfard</value>
+    <value>Pfad</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profil</value>
   </data>
   <data name="ProfileFolder" xml:space="preserve">
-    <value>Profil Ordner</value>
+    <value>Profil-Ordner</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
-    <value>Schnelladen</value>
+    <value>Schnell laden</value>
   </data>
   <data name="RecordText" xml:space="preserve">
     <value>Aufnehmen</value>
@@ -255,7 +256,7 @@
     <value>Entfernen</value>
   </data>
   <data name="RemoveAction" xml:space="preserve">
-    <value>AktionEntfernen</value>
+    <value>Aktion entfernen</value>
   </data>
   <data name="RightStick" xml:space="preserve">
     <value>Rechter Stick</value>
@@ -264,10 +265,10 @@
     <value>Vibration</value>
   </data>
   <data name="RunAtStartup" xml:space="preserve">
-    <value>Beim Hochfahren ausführen</value>
+    <value>Mit Windows starten</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Speichern</value>
   </data>
   <data name="SaveProfile" xml:space="preserve">
     <value>Speichern</value>
@@ -291,7 +292,7 @@
     <value>Stop</value>
   </data>
   <data name="TouchScroll" xml:space="preserve">
-    <value>Skrollen</value>
+    <value>Scrollen</value>
   </data>
   <data name="TouchSlide" xml:space="preserve">
     <value>Wischen</value>
@@ -312,7 +313,7 @@
     <value>Automatisches stoppen der Vibration in Sekunden (0 = automatisches stoppen deaktiviert)</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Fenster Titel</value>
+    <value>Fenstertitel</value>
   </data>
   <data name="MoveUp" xml:space="preserve">
     <value>Nach oben bewegen</value>
@@ -321,38 +322,37 @@
     <value>Nach unten bewegen</value>
   </data>
   <data name="AutoProfPathTip" xml:space="preserve">
-    <value>Process path. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*)</value>
+    <value>Prozesspfad. ^ABC = Übereinstimmung am Anfang der Zeichenfolge (^) | ABC$ = Übereinstimmung am Ende der Zeichenfolge ($) | *ABC = Enthält eine Zeichenfolge (*)</value>
   </data>
   <data name="AutoProfTitleTip" xml:space="preserve">
-    <value>Window title. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*)</value>
+    <value>Fenstertitel. ^ABC = Übereinstimmung am Anfang der Zeichenfolge (^) | ABC$ = Übereinstimmung am Ende der Zeichenfolge ($) | *ABC = Enthält eine Zeichenfolge (*)</value>
   </data>
   <data name="GamepadTest" xml:space="preserve">
-    <value>Gamepad Test</value>
+    <value>Gamepad-Test</value>
   </data>
   <data name="EnableOutputDataToDS4" xml:space="preserve">
-    <value>Enable Output data to DS4</value>
+    <value>Datenausgabe an DS4 aktivieren</value>
   </data>
   <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
-    <value>Output lightbar and rumble data periodically to DS4 gamepad. Untick if the gamepad doesn't support data receiving.
-Changes to this option takes effect at the gamepad connection time.</value>
+    <value>Licht- und Vibrationsdaten regelmäßig auf dem DS4-Controller ausgeben. Abwählen wenn der Controller keinen Datenempfang unterstützt. Änderungen dieser Option werden zum Zeitpunkt der Verbindung des Controllers wirksam.</value>
     <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
   </data>
   <data name="Apply" xml:space="preserve">
-    <value>Apply</value>
+    <value>Anwenden</value>
   </data>
   <data name="HidNinja" xml:space="preserve">
     <value>HidNinja</value>
   </data>
   <data name="CustomExeName" xml:space="preserve">
-    <value>Custom Exe Name</value>
+    <value>Eigener EXE-Name</value>
   </data>
   <data name="CustomExeNameInfo" xml:space="preserve">
-    <value>Some games implement a block that causes DS4 input to be ignored if a game detects either DS4Windows.exe or InputMapper.exe running at the time. A workaround to the block is to rename DS4Windows.exe so the check in the game fails. Specifying a custom exe name here allows DS4Updater to automatically update a custom copy of DS4Windows to the desired file name. Make sure to omit the extension.
+    <value>Einige Spiele ignorieren DS4-Eingaben wenn sie erkennen, dass DS4Windows.exe oder InputMapper.exe läuft. Mit dem Umbennen von DS4Windows.exe schlägt die Überprüfung im Spiel fehl und die Sperre kann somit umgangen werden. Wird hier ein eigener EXE-Name angegeben, kann DS4Updater eine Kopie von DS4Windows mit dem eigenen Namen automatisch aktualisieren. Stelle sicher, dass die Dateiendung weggelassen wird.
 
-Example: whyme_DS4Windows</value>
+Beispiel: whyme_DS4Windows</value>
   </data>
   <data name="XInputChecker" xml:space="preserve">
-    <value>XInputChecker</value>
+    <value>XInput-Tester</value>
   </data>
   <data name="Controller5Text" xml:space="preserve">
     <value>Controller 5</value>
@@ -367,46 +367,46 @@ Example: whyme_DS4Windows</value>
     <value>Controller 8</value>
   </data>
   <data name="GamepadGyroCameraDescription" xml:space="preserve">
-    <value>Maps the controller output to a standard XInput gamepad or DS4 pad. Gyro is mapped to a Mouse-like Joystick.</value>
+    <value>Ordnet die Controller-Ausgabe einem standardmäßigen XInput- oder DS4-Gamepad zu. Gyro ist einem Maus-ähnlichen Joystick zugeordnet.</value>
   </data>
   <data name="GamepadGyroCameraName" xml:space="preserve">
-    <value>Gamepad with Mouse-like Joystick</value>
+    <value>Gamepad mit Maus-ähnlichem Joystick</value>
   </data>
   <data name="GamepadPresetDescription" xml:space="preserve">
-    <value>Maps the controller output to a standard gamepad</value>
+    <value>Ordnet die Controller-Ausgabe einem Standard-Gamepad zu</value>
   </data>
   <data name="GamepadPresetName" xml:space="preserve">
     <value>Gamepad</value>
   </data>
   <data name="KBMGyroMouseDescription" xml:space="preserve">
-    <value>Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support. Gyro is mapped to a virtual Mouse.</value>
+    <value>Ordnet die Controller-Ausgabe virtuellen KB+M-Tasten zu. Nützlich für FPS-Spiele ohne Controller-Unterstützung. Gyro ist einer virtuellen Maus zugeordnet.</value>
   </data>
   <data name="KBMGyroMouseName" xml:space="preserve">
-    <value>KB+M Controls with Gyro Mouse</value>
+    <value>KB+M-Steuerung mit Gyro-Maus</value>
   </data>
   <data name="KBMPresetDescription" xml:space="preserve">
-    <value>Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support.</value>
+    <value>Ordnet die Controller-Ausgabe virtuellen KB+M-Tasten zu. Nützlich für FPS-Spiele ohne Controller-Unterstützung. Gyro ist einer virtuellen Maus zugeordnet.</value>
   </data>
   <data name="KBMPresetName" xml:space="preserve">
-    <value>KB+M Controls</value>
+    <value>KB+M-Steuerung</value>
   </data>
   <data name="MixedGyroMousePresetDescription" xml:space="preserve">
-    <value>Maps the buttons and axes to a standard gamepad. Maps the Gyro to a virtual mouse</value>
+    <value>Ordnet die Tasten und Achsen einem Standard-Gamepad zu. Gyro ist einer virtuellen Maus zugeordnet.</value>
   </data>
   <data name="MixedGyroMousePresetName" xml:space="preserve">
-    <value>Gamepad with Gyro Mouse</value>
+    <value>Gamepad mit Gyro-Maus</value>
   </data>
   <data name="MixedPresetDescription" xml:space="preserve">
-    <value>Maps the controller output to mixed XInput gamepad + RS mouse.</value>
+    <value>Ordnet die Controller-Ausgabe einem gemischen XInput-Gamepad + RS-Maus zu.</value>
   </data>
   <data name="MixedPresetName" xml:space="preserve">
-    <value>Gamepad with High Precision Camera</value>
+    <value>Gamepad mit hochpräziser Kamera</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>Beschreibung</value>
   </data>
   <data name="PresetIntroText" xml:space="preserve">
-    <value>Do you want to use a preset option? Choosing No will cause the Profile Editor to use an empty Gamepad profile.</value>
+    <value>Preset-Option verweden? Bei der Auswahl von Nein wird der Profil-Editor ein leeres Gamepad-Profil laden.</value>
   </data>
   <data name="Presets" xml:space="preserve">
     <value>Presets</value>
@@ -415,24 +415,24 @@ Example: whyme_DS4Windows</value>
     <value>Changelog</value>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>Close</value>
+    <value>Schließen</value>
   </data>
   <data name="Profiles" xml:space="preserve">
-    <value>Profiles</value>
+    <value>Profile</value>
   </data>
   <data name="NoControllersConnected" xml:space="preserve">
-    <value>No Controllers Connected (Max {0})</value>
+    <value>Keine Controller verbunden (max. {0})</value>
   </data>
   <data name="FlickThreshold" xml:space="preserve">
-    <value>Flick Threshold</value>
+    <value>Blinkschwelle</value>
   </data>
   <data name="FlickTime" xml:space="preserve">
-    <value>Flick Time</value>
+    <value>Blinkzeit</value>
   </data>
   <data name="MinAngleThreshold" xml:space="preserve">
-    <value>Min Angle Threshold</value>
+    <value>Min. Winkelschwelle</value>
   </data>
   <data name="RealWorldCalibration" xml:space="preserve">
-    <value>Real World Calibration</value>
+    <value>Echtwelt-Kalibrierung</value>
   </data>
 </root>

@@ -1404,11 +1404,17 @@ Suspend support not enabled.", true);
             });
 
             StartStopBtn.IsEnabled = true;
-            Process p = new Process();
-            p.StartInfo.FileName = Global.exelocation;
-            p.StartInfo.Arguments = "-driverinstall";
-            p.StartInfo.Verb = "runas";
-            try { p.Start(); }
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = Global.exelocation;
+            startInfo.Arguments = "-driverinstall";
+            startInfo.Verb = "runas";
+            startInfo.UseShellExecute = true;
+            try
+            {
+                using (Process temp = Process.Start(startInfo))
+                {
+                }
+            }
             catch { }
         }
 
@@ -1426,11 +1432,17 @@ Suspend support not enabled.", true);
             bool deriverinstalled = Global.IsViGEmBusInstalled();
             if (!deriverinstalled)
             {
-                Process p = new Process();
-                p.StartInfo.FileName = $"{Global.exelocation}";
-                p.StartInfo.Arguments = "-driverinstall";
-                p.StartInfo.Verb = "runas";
-                try { p.Start(); }
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = $"{Global.exelocation}";
+                startInfo.Arguments = "-driverinstall";
+                startInfo.Verb = "runas";
+                startInfo.UseShellExecute = true;
+                try
+                {
+                    using (Process temp = Process.Start(startInfo))
+                    {
+                    }
+                }
                 catch { }
             }
         }

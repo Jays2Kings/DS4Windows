@@ -1540,7 +1540,7 @@ namespace DS4WinWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are up to date.
+        ///   Looks up a localized string similar to DS4Windows application is up-to-date.
         /// </summary>
         public static string UpToDate {
             get {

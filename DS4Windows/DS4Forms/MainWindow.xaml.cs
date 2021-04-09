@@ -1142,6 +1142,21 @@ Suspend support not enabled.", true);
                                         }
                                     }
                                 }
+                                else if ((strData[0] == "changeledcolor") && strData.Length >= 5)
+                                {
+                                        // Command syntax: changeledcolor.device#.red.gree.blue (ex changeledcolor.1.255.0.0)
+                                   if (int.TryParse(strData[1], out tdevice))
+                                        tdevice--;
+                                    if (tdevice >= 0 && tdevice < ControlService.MAX_DS4_CONTROLLER_COUNT)
+                                    {
+                                        byte.TryParse(strData[2], out byte red);
+                                        byte.TryParse(strData[3], out byte green);
+                                        byte.TryParse(strData[4], out byte blue);
+
+                                        conLvViewModel.ControllerCol[tdevice].UpdateCustomLightColor(Color.FromRgb(red, green, blue));
+                                    }
+
+                                }
                                 else if ((strData[0] == "loadprofile" || strData[0] == "loadtempprofile") && strData.Length >= 3)
                                 {
                                     // Command syntax: LoadProfile.device#.profileName (fex LoadProfile.1.GameSnake or LoadTempProfile.1.WebBrowserSet)

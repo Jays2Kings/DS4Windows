@@ -3908,10 +3908,14 @@ namespace DS4Windows
                     m_Xdoc.Load(tmpMigration.ProfileReader);
                     migratePerformed = true;
                 }
-                else
+                else if (tmpMigration.ProfileReader != null)
                 {
                     m_Xdoc.Load(tmpMigration.ProfileReader);
                     //m_Xdoc.Load(profilepath);
+                }
+                else
+                {
+                    Loaded = false;
                 }
 
                 if (m_Xdoc.SelectSingleNode(rootname) == null)

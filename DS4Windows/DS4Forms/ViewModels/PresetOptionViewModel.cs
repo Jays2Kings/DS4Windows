@@ -10,6 +10,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
     public class PresetOptionViewModel
     {
         private int presetIndex;
+        private PresetOption.OutputContChoice controllerChoice =
+            PresetOption.OutputContChoice.Xbox360;
 
         public int PresetIndex
         {
@@ -32,6 +34,27 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public event EventHandler PresetDescriptionChanged;
 
+        public bool PresetDisplayOutputCont
+        {
+            get => presetList[presetIndex].OutputControllerChoice;
+        }
+        public event EventHandler PresetDisplayOutputContChanged;
+
+        public PresetOption.OutputContChoice ControllerChoice
+        {
+            get => controllerChoice;
+            set => controllerChoice = value;
+        }
+
+        private List<EnumChoiceSelection<PresetOption.OutputContChoice>> outputChoices =
+            new List<EnumChoiceSelection<PresetOption.OutputContChoice>>()
+            {
+                new EnumChoiceSelection<PresetOption.OutputContChoice>("Xbox 360", PresetOption.OutputContChoice.Xbox360),
+                new EnumChoiceSelection<PresetOption.OutputContChoice>("DualShock 4", PresetOption.OutputContChoice.DualShock4),
+            };
+
+        public List<EnumChoiceSelection<PresetOption.OutputContChoice>> OutputChoices { get => outputChoices; }
+
         public PresetOptionViewModel()
         {
             presetList = new List<PresetOption>();
@@ -48,6 +71,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private void PresetOptionViewModel_PresetIndexChanged(object sender, EventArgs e)
         {
             PresetDescriptionChanged?.Invoke(this, EventArgs.Empty);
+            PresetDisplayOutputContChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public void ApplyPreset(int index)
@@ -55,6 +79,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             if (presetIndex >= 0)
             {
                 PresetOption current = presetList[presetIndex];
+                if (current.OutputControllerChoice &&
+                    controllerChoice != PresetOption.OutputContChoice.None)
+                {
+                    current.OutputCont = controllerChoice;
+                }
+
                 current.ApplyPreset(index);
             }
         }

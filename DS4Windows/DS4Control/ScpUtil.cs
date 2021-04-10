@@ -2227,10 +2227,34 @@ namespace DS4Windows
             tempprofileDistance[device] = false;
         }
 
+        public static void LoadBlankDS4Profile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
+        {
+            m_Config.LoadBlankDS4Profile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.EstablishDefaultSpecialActions(device);
+            m_Config.CacheExtraProfileInfo(device);
+
+            tempprofilename[device] = string.Empty;
+            useTempProfile[device] = false;
+            tempprofileDistance[device] = false;
+        }
+
         public static void LoadDefaultGamepadGyroProfile(int device, bool launchprogram, ControlService control,
             bool xinputChange = true, bool postLoad = true)
         {
             m_Config.LoadDefaultGamepadGyroProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.EstablishDefaultSpecialActions(device);
+            m_Config.CacheExtraProfileInfo(device);
+
+            tempprofilename[device] = string.Empty;
+            useTempProfile[device] = false;
+            tempprofileDistance[device] = false;
+        }
+
+        public static void LoadDefaultDS4GamepadGyroProfile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
+        {
+            m_Config.LoadDefaultDS4GamepadGyroProfile(device, launchprogram, control, "", xinputChange, postLoad);
             m_Config.EstablishDefaultSpecialActions(device);
             m_Config.CacheExtraProfileInfo(device);
 
@@ -2251,10 +2275,34 @@ namespace DS4Windows
             tempprofileDistance[device] = false;
         }
 
+        public static void LoadDefaultDS4MixedControlsProfile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
+        {
+            m_Config.LoadDefaultMixedControlsProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.EstablishDefaultSpecialActions(device);
+            m_Config.CacheExtraProfileInfo(device);
+
+            tempprofilename[device] = string.Empty;
+            useTempProfile[device] = false;
+            tempprofileDistance[device] = false;
+        }
+
         public static void LoadDefaultMixedGyroMouseProfile(int device, bool launchprogram, ControlService control,
             bool xinputChange = true, bool postLoad = true)
         {
             m_Config.LoadDefaultMixedGyroMouseProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.EstablishDefaultSpecialActions(device);
+            m_Config.CacheExtraProfileInfo(device);
+
+            tempprofilename[device] = string.Empty;
+            useTempProfile[device] = false;
+            tempprofileDistance[device] = false;
+        }
+
+        public static void LoadDefaultDS4MixedGyroMouseProfile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
+        {
+            m_Config.LoadDefaultDS4MixedGyroMouseProfile(device, launchprogram, control, "", xinputChange, postLoad);
             m_Config.EstablishDefaultSpecialActions(device);
             m_Config.CacheExtraProfileInfo(device);
 
@@ -6912,6 +6960,64 @@ namespace DS4Windows
             ds4Mapping = false;
         }
 
+        private void PrepareBlankingProfile(int device, ControlService control, out bool xinputPlug, out bool xinputStatus, bool xinputChange = true)
+        {
+            xinputPlug = false;
+            xinputStatus = false;
+
+            OutContType oldContType = Global.activeOutDevType[device];
+
+            // Make sure to reset currently set profile values before parsing
+            ResetProfile(device);
+            ResetMouseProperties(device, control);
+
+            // Only change xinput devices under certain conditions. Avoid
+            // performing this upon program startup before loading devices.
+            if (xinputChange)
+            {
+                CheckOldDevicestatus(device, control, oldContType,
+                    out xinputPlug, out xinputStatus);
+            }
+
+            foreach (DS4ControlSettings dcs in ds4settings[device])
+                dcs.Reset();
+
+            profileActions[device].Clear();
+            containsCustomAction[device] = false;
+            containsCustomExtras[device] = false;
+        }
+
+        public void LoadBlankDS4Profile(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true, bool postLoad = true)
+        {
+            PrepareBlankingProfile(device, control, out bool xinputPlug, out bool xinputStatus, xinputChange);
+
+            StickDeadZoneInfo lsInfo = lsModInfo[device];
+            lsInfo.deadZone = (int)(0.00 * 127);
+            lsInfo.antiDeadZone = 0;
+            lsInfo.maxZone = 100;
+
+            StickDeadZoneInfo rsInfo = rsModInfo[device];
+            rsInfo.deadZone = (int)(0.00 * 127);
+            rsInfo.antiDeadZone = 0;
+            rsInfo.maxZone = 100;
+
+            TriggerDeadZoneZInfo l2Info = l2ModInfo[device];
+            l2Info.deadZone = (byte)(0.00 * 255);
+
+            TriggerDeadZoneZInfo r2Info = r2ModInfo[device];
+            r2Info.deadZone = (byte)(0.00 * 255);
+
+            outputDevType[device] = OutContType.DS4;
+
+            // If a device exists, make sure to transfer relevant profile device
+            // options to device instance
+            if (postLoad && device < Global.MAX_DS4_CONTROLLER_COUNT)
+            {
+                PostLoadSnippet(device, control, xinputStatus, xinputPlug);
+            }
+        }
+
         public void LoadBlankProfile(int device, bool launchprogram, ControlService control,
             string propath = "", bool xinputChange = true, bool postLoad = true)
         {
@@ -6989,6 +7095,45 @@ namespace DS4Windows
             }
         }
 
+
+        public void LoadDefaultDS4GamepadGyroProfile(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true, bool postLoad = true)
+        {
+            PrepareBlankingProfile(device, control, out bool xinputPlug, out bool xinputStatus, xinputChange);
+
+            StickDeadZoneInfo lsInfo = lsModInfo[device];
+            lsInfo.deadZone = (int)(0.00 * 127);
+            lsInfo.antiDeadZone = 0;
+            lsInfo.maxZone = 100;
+
+            StickDeadZoneInfo rsInfo = rsModInfo[device];
+            rsInfo.deadZone = (int)(0.00 * 127);
+            rsInfo.antiDeadZone = 0;
+            rsInfo.maxZone = 100;
+
+            TriggerDeadZoneZInfo l2Info = l2ModInfo[device];
+            l2Info.deadZone = (byte)(0.00 * 255);
+
+            TriggerDeadZoneZInfo r2Info = r2ModInfo[device];
+            r2Info.deadZone = (byte)(0.00 * 255);
+
+            gyroOutMode[device] = GyroOutMode.MouseJoystick;
+            sAMouseStickTriggers[device] = "4";
+            sAMouseStickTriggerCond[device] = true;
+            gyroMouseStickTriggerTurns[device] = false;
+            gyroMStickInfo[device].useSmoothing = true;
+            gyroMStickInfo[device].smoothingMethod = GyroMouseStickInfo.SmoothingMethod.OneEuro;
+
+            outputDevType[device] = OutContType.DS4;
+
+            // If a device exists, make sure to transfer relevant profile device
+            // options to device instance
+            if (postLoad && device < Global.MAX_DS4_CONTROLLER_COUNT)
+            {
+                PostLoadSnippet(device, control, xinputStatus, xinputPlug);
+            }
+        }
+
         public void LoadDefaultMixedGyroMouseProfile(int device, bool launchprogram, ControlService control,
             string propath = "", bool xinputChange = true, bool postLoad = true)
         {
@@ -7027,6 +7172,74 @@ namespace DS4Windows
             rsInfo.deadZone = (int)(0.10 * 127);
             rsInfo.antiDeadZone = 0;
             rsInfo.maxZone = 90;
+
+            // If a device exists, make sure to transfer relevant profile device
+            // options to device instance
+            if (postLoad && device < Global.MAX_DS4_CONTROLLER_COUNT)
+            {
+                PostLoadSnippet(device, control, xinputStatus, xinputPlug);
+            }
+        }
+
+
+        public void LoadDefaultDS4MixedGyroMouseProfile(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true, bool postLoad = true)
+        {
+            PrepareBlankingProfile(device, control, out bool xinputPlug, out bool xinputStatus, xinputChange);
+
+            StickDeadZoneInfo lsInfo = lsModInfo[device];
+            lsInfo.deadZone = (int)(0.00 * 127);
+            lsInfo.antiDeadZone = 0;
+            lsInfo.maxZone = 100;
+
+            StickDeadZoneInfo rsInfo = rsModInfo[device];
+            rsInfo.deadZone = (int)(0.10 * 127);
+            rsInfo.antiDeadZone = 0;
+            rsInfo.maxZone = 100;
+
+            TriggerDeadZoneZInfo l2Info = l2ModInfo[device];
+            l2Info.deadZone = (byte)(0.00 * 255);
+
+            TriggerDeadZoneZInfo r2Info = r2ModInfo[device];
+            r2Info.deadZone = (byte)(0.00 * 255);
+
+            gyroOutMode[device] = GyroOutMode.Mouse;
+            sATriggers[device] = "4";
+            sATriggerCond[device] = true;
+            gyroTriggerTurns[device] = false;
+            gyroMouseInfo[device].enableSmoothing = true;
+            gyroMouseInfo[device].smoothingMethod = GyroMouseInfo.SmoothingMethod.OneEuro;
+
+            outputDevType[device] = OutContType.DS4;
+
+            // If a device exists, make sure to transfer relevant profile device
+            // options to device instance
+            if (postLoad && device < Global.MAX_DS4_CONTROLLER_COUNT)
+            {
+                PostLoadSnippet(device, control, xinputStatus, xinputPlug);
+            }
+        }
+
+        public void LoadDefaultDS4MixedControlsProfile(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true, bool postLoad = true)
+        {
+            PrepareBlankingProfile(device, control, out bool xinputPlug, out bool xinputStatus, xinputChange);
+
+            DS4ControlSettings setting = GetDS4CSetting(device, DS4Controls.RYNeg);
+            setting.UpdateSettings(false, X360Controls.MouseUp, "", DS4KeyType.None);
+            setting = GetDS4CSetting(device, DS4Controls.RYPos);
+            setting.UpdateSettings(false, X360Controls.MouseDown, "", DS4KeyType.None);
+            setting = GetDS4CSetting(device, DS4Controls.RXNeg);
+            setting.UpdateSettings(false, X360Controls.MouseLeft, "", DS4KeyType.None);
+            setting = GetDS4CSetting(device, DS4Controls.RXPos);
+            setting.UpdateSettings(false, X360Controls.MouseRight, "", DS4KeyType.None);
+
+            StickDeadZoneInfo rsInfo = rsModInfo[device];
+            rsInfo.deadZone = (int)(0.035 * 127);
+            rsInfo.antiDeadZone = 0;
+            rsInfo.maxZone = 90;
+
+            outputDevType[device] = OutContType.DS4;
 
             // If a device exists, make sure to transfer relevant profile device
             // options to device instance

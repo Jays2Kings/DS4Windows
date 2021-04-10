@@ -6,8 +6,8 @@
     <!-- Brushes -->
     <SolidColorBrush x:Key="BackgroundColor" Color="#FF202020" />
     <SolidColorBrush x:Key="ForegroundColor" Color="#FFCACACA" />
-    <SolidColorBrush x:Key="SecondaryColor" Color="#FF254D7A" />
-    <SolidColorBrush x:Key="AccentColor" Color="#FF437DBf" />
+    <SolidColorBrush x:Key="SecondaryColor" Color="#FF2d5a8c" />
+    <SolidColorBrush x:Key="AccentColor" Color="#FF5990cf" />
 
     <system:String x:Key="KeyImageImg">key-solid_white.png</system:String>
     <system:String x:Key="CancelImg">cancel_white.png</system:String>

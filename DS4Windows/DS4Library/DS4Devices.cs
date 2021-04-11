@@ -163,12 +163,23 @@ namespace DS4Windows
         public static string devicePathToInstanceId(string devicePath)
         {
             string deviceInstanceId = devicePath;
-            deviceInstanceId = deviceInstanceId.Remove(0, deviceInstanceId.LastIndexOf("?\\") + 2);
-            deviceInstanceId = deviceInstanceId.Remove(deviceInstanceId.LastIndexOf('{'));
-            deviceInstanceId = deviceInstanceId.Replace('#', '\\');
-            if (deviceInstanceId.EndsWith("\\"))
+            if (!string.IsNullOrEmpty(deviceInstanceId))
             {
-                deviceInstanceId = deviceInstanceId.Remove(deviceInstanceId.Length - 1);
+                int searchIdx = deviceInstanceId.LastIndexOf("?\\");
+                if (searchIdx + 2 <= deviceInstanceId.Length)
+                {
+                    deviceInstanceId = deviceInstanceId.Remove(0, searchIdx + 2);
+                    deviceInstanceId = deviceInstanceId.Remove(deviceInstanceId.LastIndexOf('{'));
+                    deviceInstanceId = deviceInstanceId.Replace('#', '\\');
+                    if (deviceInstanceId.EndsWith("\\"))
+                    {
+                        deviceInstanceId = deviceInstanceId.Remove(deviceInstanceId.Length - 1);
+                    }
+                }
+                else
+                {
+                    deviceInstanceId = string.Empty;
+                }
             }
 
             return deviceInstanceId;
@@ -176,9 +187,16 @@ namespace DS4Windows
 
         private static bool IsRealDS4(HidDevice hDevice)
         {
+            // Assume true by default
+            bool result = true;
             string deviceInstanceId = devicePathToInstanceId(hDevice.DevicePath);
-            CheckVirtualInfo info = checkVirtualFunc(deviceInstanceId);
-            return string.IsNullOrEmpty(info.PropertyValue);
+            if (!string.IsNullOrEmpty(deviceInstanceId))
+            {
+                CheckVirtualInfo info = checkVirtualFunc(deviceInstanceId);
+                result = string.IsNullOrEmpty(info.PropertyValue);
+            }
+
+            return result;
             //string temp = Global.GetDeviceProperty(deviceInstanceId,
             //    NativeMethods.DEVPKEY_Device_UINumber);
             //return string.IsNullOrEmpty(temp);

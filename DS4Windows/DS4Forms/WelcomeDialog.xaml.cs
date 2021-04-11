@@ -114,7 +114,9 @@ namespace DS4WinWPF.DS4Forms
             if (File.Exists(DS4Windows.Global.exedirpath + $"\\{installFileName}"))
             {
                 //vigemInstallBtn.Content = Properties.Resources.OpeningInstaller;
-                monitorProc = Process.Start(DS4Windows.Global.exedirpath + $"\\{installFileName}");
+                ProcessStartInfo startInfo = new ProcessStartInfo(DS4Windows.Global.exedirpath + $"\\{installFileName}");
+                startInfo.UseShellExecute = true; // Needed to run program as admin
+                monitorProc = Process.Start(startInfo);
                 vigemInstallBtn.Content = Properties.Resources.Installing;
                 success = true;
             }

@@ -459,12 +459,13 @@ namespace DS4Windows
             DS4Windows.OutContType.None, DS4Windows.OutContType.None,
             DS4Windows.OutContType.None, DS4Windows.OutContType.None,
             DS4Windows.OutContType.None};
+        public const string BLANK_VIGEMBUS_VERSION = "0.0.0.0";
         public static bool vigemInstalled = IsViGEmBusInstalled();
         public static bool hidguardInstalled = IsHidGuardianInstalled();
         public static string vigembusVersion = ViGEmBusVersion();
         public static Version vigemBusVersionInfo =
             new Version(!string.IsNullOrEmpty(vigembusVersion) ? vigembusVersion :
-                "0.0.0.0");
+                BLANK_VIGEMBUS_VERSION);
         public static Version minSupportedViGEmBusVersionInfo = new Version("1.17.333.0");
         public const int CONFIG_VERSION = 5;
         public const int APP_CONFIG_VERSION = 2;
@@ -982,6 +983,14 @@ namespace DS4Windows
         {
             return vigemInstalled &&
                 minSupportedViGEmBusVersionInfo.CompareTo(vigemBusVersionInfo) <= 0;
+        }
+
+        public static void RefreshViGEmBusInfo()
+        {
+            vigemInstalled = IsViGEmBusInstalled();
+            vigembusVersion = ViGEmBusVersion();
+            vigemBusVersionInfo = new Version(!string.IsNullOrEmpty(vigembusVersion) ? vigembusVersion :
+                BLANK_VIGEMBUS_VERSION);
         }
 
         public static void FindConfigLocation()

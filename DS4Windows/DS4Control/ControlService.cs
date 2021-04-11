@@ -610,21 +610,24 @@ namespace DS4Windows
             }
         }
 
-        private void startViGEm()
+        private void StartViGEm()
         {
-            tempThread = new Thread(() => { try { vigemTestClient = new ViGEmClient(); } catch { } });
-            tempThread.Priority = ThreadPriority.AboveNormal;
-            tempThread.IsBackground = true;
-            tempThread.Start();
-            while (tempThread.IsAlive)
+            if (Global.IsRunningSupportedViGEmBus())
             {
-                Thread.SpinWait(500);
+                tempThread = new Thread(() => { try { vigemTestClient = new ViGEmClient(); } catch { } });
+                tempThread.Priority = ThreadPriority.AboveNormal;
+                tempThread.IsBackground = true;
+                tempThread.Start();
+                while (tempThread.IsAlive)
+                {
+                    Thread.SpinWait(500);
+                }
             }
 
             tempThread = null;
         }
 
-        private void stopViGEm()
+        private void StopViGEm()
         {
             if (vigemTestClient != null)
             {
@@ -1026,7 +1029,7 @@ namespace DS4Windows
         public bool Start(bool showlog = true)
         {
             inServiceTask = true;
-            startViGEm();
+            StartViGEm();
             if (vigemTestClient != null)
             //if (x360Bus.Open() && x360Bus.Start())
             {
@@ -1266,6 +1269,10 @@ namespace DS4Windows
                 {
                     logMessage = "ViGEmBus is not installed";
                 }
+                else if (!Global.IsRunningSupportedViGEmBus())
+                {
+                    logMessage = "Unsupported ViGEmBus found. Please install at least ViGEmBus 1.17.333.0";
+                }
                 else
                 {
                     logMessage = "Could not connect to ViGEmBus. Please check the status of the System device in Device Manager and if Visual C++ 2017 Redistributable is installed.";
@@ -1435,7 +1442,7 @@ namespace DS4Windows
                     Thread.Sleep(OutputSlotManager.DELAY_TIME);
                 }
 
-                stopViGEm();
+                StopViGEm();
                 inServiceTask = false;
                 activeControllers = 0;
             }

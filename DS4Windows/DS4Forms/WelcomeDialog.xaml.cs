@@ -25,6 +25,7 @@ namespace DS4WinWPF.DS4Forms
         private const string InstFileNameX86 = "ViGEmBusSetup_x86.msi";
         private string tempInstFileName;
 
+        // Default to latest known ViGEmBus installer
         private string installDL = InstallerDLX64;
         private string installFileName = InstFileNameX64;
 
@@ -42,12 +43,7 @@ namespace DS4WinWPF.DS4Forms
 
             InitializeComponent();
 
-            if (!DS4Windows.Global.IsWin10OrGreater())
-            {
-                installDL = InstallerDL1_16;
-                installFileName = InstFileName1_16;
-            }
-            else if (!Environment.Is64BitOperatingSystem)
+            if (!Environment.Is64BitOperatingSystem)
             {
                 installDL = InstallerDLX86;
                 installFileName = InstFileNameX86;
@@ -56,11 +52,8 @@ namespace DS4WinWPF.DS4Forms
             tempInstFileName = DS4Windows.Global.exedirpath + $"\\{installFileName}.tmp";
 
             // Disable Xbox 360 driver installer button if running on Windows 8 or greater.
-            // Driver come pre-installed on a standard OS install
-            if (DS4Windows.Global.IsWin8OrGreater())
-            {
-                step2Btn.IsEnabled = false;
-            }
+            // Driver comes pre-installed on a standard OS install
+            step2Btn.IsEnabled = false;
         }
 
         private void FinishedBtn_Click(object sender, RoutedEventArgs e)

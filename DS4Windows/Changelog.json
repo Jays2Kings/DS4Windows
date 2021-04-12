@@ -1,9 +1,37 @@
 {
-  "latest_version": "3.0.1",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 1},
-  "updated_at": "2021-04-02T17:46:02+0000",
+  "latest_version": "3.0.2",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 2},
+  "updated_at": "2021-04-12T00:45:20+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.0.2",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 2},
+      "base_header": "Version 3.0.2",
+      "release_date": "2021-04-12T00:45:20+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.2",
+          "log_text": ["* Use UseShellExecute for ProcessStartInfo in more places for .NET 5 changes",
+            "* DS4Windows updater message update. Contribution **RedDevilus**",
+            "* German translation update. Contribution by **jmg2k**",
+            "* Added Portuguese (Portugal) translation. Contribution by **joaopedrogome**",
+            "* Add cmd line command for 'Change led color'. Contribution by **bernspedras**",
+            "* Muted blues used in Dark theme. Contribution by **AnessZurba**",
+            "* Added some exception handling for XML in ProfileMigration",
+            "* Added output controller option to Preset Window for certain Presets. Change profile values based on output controller type.",
+            "* Added some precautions for possible empty devicePath string",
+            "* Changed GroupBox template for Dark theme",
+            "* Now enforcing ViGEmBus minimum supported version. Targetting ViGEmBus 1.17.333.0",
+            "* Fixed ProcessStartInfo for ViGEmBus installer launching with .NET 5",
+            "* Refresh internal data about ViGEmBus on service startup"],
+          "editor": "ryochan7",
+          "editors_note": ["Why"],
+          "updated_at": "2021-04-12T00:45:20+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.0.1",
       "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 1},

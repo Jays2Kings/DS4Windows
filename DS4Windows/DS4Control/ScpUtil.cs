@@ -466,7 +466,7 @@ namespace DS4Windows
         public static Version vigemBusVersionInfo =
             new Version(!string.IsNullOrEmpty(vigembusVersion) ? vigembusVersion :
                 BLANK_VIGEMBUS_VERSION);
-        public static Version minSupportedViGEmBusVersionInfo = new Version("1.17.333.0");
+        public static Version minSupportedViGEmBusVersionInfo = new Version("1.16.112.0");
         public const int CONFIG_VERSION = 5;
         public const int APP_CONFIG_VERSION = 2;
         public const string ASSEMBLY_RESOURCE_PREFIX = "pack://application:,,,/DS4Windows;";

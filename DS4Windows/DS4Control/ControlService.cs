@@ -1273,7 +1273,7 @@ namespace DS4Windows
                 }
                 else if (!Global.IsRunningSupportedViGEmBus())
                 {
-                    logMessage = "Unsupported ViGEmBus found. Please install at least ViGEmBus 1.17.333.0";
+                    logMessage = string.Format("Unsupported ViGEmBus found ({0}). Please install at least ViGEmBus 1.17.333.0", Global.vigembusVersion);
                 }
                 else
                 {

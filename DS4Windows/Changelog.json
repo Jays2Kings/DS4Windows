@@ -14,7 +14,7 @@
           "code": "en",
           "header": "Version 3.0.3",
           "log_text": ["* Fixed Open Program Folder link in tray menu",
-            "* Lessen ViGEmBus restriction for now. Allow connecting to ViGEmBus 1.16.112.0. PLEASE DON'T MAKE ME REGRET THIS."],
+            "* Lessen ViGEmBus restriction for now. Allow connecting to ViGEmBus 1.16.112.0. **PLEASE DON'T MAKE ME REGRET THIS**."],
           "editor": "ryochan7",
           "editors_note": ["Can't move forward"],
           "updated_at": "2021-04-15T16:32:18+0000"

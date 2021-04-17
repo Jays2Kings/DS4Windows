@@ -18,9 +18,10 @@ namespace DS4Windows
     // NoBatteryReading     = Gamepad doesn't send battery readings in the same format than DS4 gamepad (DS4Win app reports always 0% and starts to blink lightbar). Skip reading a battery fields and report fixed 99% battery level to avoid "low battery" LED flashes.
     // NoGyroCalib          = Gamepad doesn't support or need gyro calibration routines. Skip gyro calibration if this flag is set. Some gamepad do have gyro, but don't support calibration or gyro sensors are missing.
     // MonitorAudio         = Attempt to read volume levels for Gamepad headphone jack sink in Windows. Only with USB or SONYWA connections
+    // VendorDefinedDevice  = Accept the gamepad VID/PID even when it would be shown as vendor defined HID device on Windows (fex DS3 over DsMiniHid gamepad may have vendor defined HID type)
     //
     [Flags]
-    public enum VidPidFeatureSet : ushort { DefaultDS4 = 0, OnlyInputData0x01 = 1, OnlyOutputData0x05 = 2, NoOutputData = 4, NoBatteryReading = 8, NoGyroCalib = 16, MonitorAudio = 32 };
+    public enum VidPidFeatureSet : ushort { DefaultDS4 = 0, OnlyInputData0x01 = 1, OnlyOutputData0x05 = 2, NoOutputData = 4, NoBatteryReading = 8, NoGyroCalib = 16, MonitorAudio = 32, VendorDefinedDevice = 64 };
 
     public class VidPidInfo
     {
@@ -157,7 +158,7 @@ namespace DS4Windows
             new VidPidInfo(NINTENDO_VENDOR_ID, JOYCON_L_PRODUCT_ID, "JoyCon (L)", InputDeviceType.JoyConL, VidPidFeatureSet.DefaultDS4, checkConnection: JoyConDevice.DetermineConnectionType),
             new VidPidInfo(NINTENDO_VENDOR_ID, JOYCON_R_PRODUCT_ID, "JoyCon (R)", InputDeviceType.JoyConR, VidPidFeatureSet.DefaultDS4, checkConnection: JoyConDevice.DetermineConnectionType),
             new VidPidInfo(0x7545, 0x1122, "Gioteck VX4", InputDeviceType.DS4), // Gioteck VX4 (no real lightbar, only some RGB leds)
-            new VidPidInfo(0x7331, 0x0001, "DualShock 3 (DS4 mode)", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib), // Sony DualShock 3 running DsHidMini driver
+            new VidPidInfo(0x7331, 0x0001, "DualShock 3 (DS4 mode)", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib | VidPidFeatureSet.VendorDefinedDevice), // Sony DualShock 3 using DsHidMini driver both in DS4 mode and as vendor-defined HID device
         };
 
         public static string devicePathToInstanceId(string devicePath)
@@ -244,13 +245,14 @@ namespace DS4Windows
                 //foreach (HidDevice hDevice in hDevices)
                 {
                     HidDevice hDevice = tempList[i];
-                    if (hDevice.Description == "HID-compliant vendor-defined device")
+                    VidPidInfo metainfo = knownDevices.Single(x => x.vid == hDevice.Attributes.VendorId &&
+                        x.pid == hDevice.Attributes.ProductId);
+
+                    if (!metainfo.featureSet.HasFlag(VidPidFeatureSet.VendorDefinedDevice) && hDevice.Description == "HID-compliant vendor-defined device")
                         continue; // ignore the Nacon Revolution Pro programming interface
                     else if (DevicePaths.Contains(hDevice.DevicePath))
                         continue; // BT/USB endpoint already open once
 
-                    VidPidInfo metainfo = knownDevices.Single(x => x.vid == hDevice.Attributes.VendorId &&
-                        x.pid == hDevice.Attributes.ProductId);
                     if (!hDevice.IsOpen)
                     {
                         hDevice.OpenDevice(isExclusiveMode);

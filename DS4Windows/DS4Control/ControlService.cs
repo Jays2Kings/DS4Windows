@@ -1352,7 +1352,7 @@ namespace DS4Windows
             }
         }
 
-        public bool Stop(bool showlog = true)
+        public bool Stop(bool showlog = true, bool immediateUnplug = false)
         {
             if (running)
             {
@@ -1405,7 +1405,7 @@ namespace DS4Windows
                         OutputDevice tempout = outputDevices[i];
                         if (tempout != null)
                         {
-                            UnplugOutDev(i, tempDevice, immediate: false, force: true);
+                            UnplugOutDev(i, tempDevice, immediate: immediateUnplug, force: true);
                             anyUnplugged = true;
                         }
 

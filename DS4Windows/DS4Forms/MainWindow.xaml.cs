@@ -560,7 +560,7 @@ Suspend support not enabled.", true);
                             StartStopBtn.IsEnabled = false;
                         }));
 
-                        App.rootHub.Stop();
+                        App.rootHub.Stop(immediateUnplug: true);
                         wasrunning = true;
                     }
 

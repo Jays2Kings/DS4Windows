@@ -616,7 +616,14 @@ namespace DS4Windows
             Global.RefreshViGEmBusInfo();
             if (Global.IsRunningSupportedViGEmBus())
             {
-                tempThread = new Thread(() => { try { vigemTestClient = new ViGEmClient(); } catch { } });
+                tempThread = new Thread(() =>
+                {
+                    try
+                    {
+                        vigemTestClient = new ViGEmClient();
+                    }
+                    catch {}
+                });
                 tempThread.Priority = ThreadPriority.AboveNormal;
                 tempThread.IsBackground = true;
                 tempThread.Start();

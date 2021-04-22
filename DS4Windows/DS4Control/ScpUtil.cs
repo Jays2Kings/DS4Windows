@@ -813,7 +813,7 @@ namespace DS4Windows
             public string driverProviderName;
         }
 
-        public static void FindViGEmDeviceInfo()
+        private static void FindViGEmDeviceInfo()
         {
             bool result = false;
             Guid deviceGuid = Guid.Parse(VIGEMBUS_GUID);
@@ -897,10 +897,10 @@ namespace DS4Windows
             }
 
             // Iterate over list and find most recent version number
-            IEnumerable<ViGEmBusInfo> tempResults = tempViGEmBusInfoList.Where(item => minSupportedViGEmBusVersionInfo.CompareTo(item.deviceVersion) <= 0);
+            //IEnumerable<ViGEmBusInfo> tempResults = tempViGEmBusInfoList.Where(item => minSupportedViGEmBusVersionInfo.CompareTo(item.deviceVersion) <= 0);
             Version latestKnown = new Version(BLANK_VIGEMBUS_VERSION);
             string deviceInstanceId = string.Empty;
-            foreach (ViGEmBusInfo item in tempResults)
+            foreach (ViGEmBusInfo item in tempViGEmBusInfoList)
             {
                 if (latestKnown.CompareTo(item.deviceVersion) <= 0)
                 {
@@ -911,7 +911,7 @@ namespace DS4Windows
 
             // Get bus info for most recent version found and save info
             ViGEmBusInfo latestBusInfo =
-                tempResults.SingleOrDefault(item => item.instanceId == deviceInstanceId);
+                tempViGEmBusInfoList.SingleOrDefault(item => item.instanceId == deviceInstanceId);
             PopulateFromViGEmBusInfo(latestBusInfo);
         }
 
@@ -1064,6 +1064,7 @@ namespace DS4Windows
 
         public static bool IsRunningSupportedViGEmBus()
         {
+            //return vigemInstalled;
             return vigemInstalled &&
                 minSupportedViGEmBusVersionInfo.CompareTo(vigemBusVersionInfo) <= 0;
         }

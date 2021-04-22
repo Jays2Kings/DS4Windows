@@ -150,6 +150,8 @@ namespace DS4WinWPF.DS4Forms
             bool finished = false;
             if (monitorProc != null && monitorProc.HasExited)
             {
+                // Retrieve info about installed ViGEmBus device if found
+                DS4Windows.Global.RefreshViGEmBusInfo();
                 if (DS4Windows.Global.IsViGEmBusInstalled())
                 {
                     Dispatcher.BeginInvoke((Action)(() =>

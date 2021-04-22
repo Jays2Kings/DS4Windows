@@ -235,7 +235,10 @@ namespace DS4Windows
         internal static DEVPROPKEY DEVPKEY_Device_BusReportedDeviceDesc = 
             new DEVPROPKEY { fmtid = new Guid(0x540b947e, 0x8b40, 0x45bc, 0xa8, 0xa2, 0x6a, 0x0b, 0x89, 0x4c, 0xbd, 0xa2), pid = 4 };
 
-        internal static DEVPROPKEY DEVPKEY_Device_HardwareIds =
+		internal static DEVPROPKEY DEVPKEY_Device_DeviceDesc =
+			new DEVPROPKEY { fmtid = new Guid(0xa45c254e, 0xdf1c, 0x4efd, 0x80, 0x20, 0x67, 0xd1, 0x46, 0xa8, 0x50, 0xe0), pid = 2 };
+
+		internal static DEVPROPKEY DEVPKEY_Device_HardwareIds =
             new DEVPROPKEY { fmtid = new Guid(0xa45c254e, 0xdf1c, 0x4efd, 0x80, 0x20, 0x67, 0xd1, 0x46, 0xa8, 0x50, 0xe0), pid = 3 };
 
         internal static DEVPROPKEY DEVPKEY_Device_UINumber =
@@ -243,6 +246,12 @@ namespace DS4Windows
 
         internal static DEVPROPKEY DEVPKEY_Device_DriverVersion =
             new DEVPROPKEY { fmtid = new Guid(0xa8b865dd, 0x2e3d, 0x4094, 0xad, 0x97, 0xe5, 0x93, 0xa7, 0xc, 0x75, 0xd6), pid = 3 };
+
+		internal static DEVPROPKEY DEVPKEY_Device_Manufacturer =
+			new DEVPROPKEY { fmtid = new Guid(0xa45c254e, 0xdf1c, 0x4efd, 0x80, 0x20, 0x67, 0xd1, 0x46, 0xa8, 0x50, 0xe0), pid = 13 };
+
+		internal static DEVPROPKEY DEVPKEY_Device_Provider =
+			new DEVPROPKEY { fmtid = new Guid(0xa8b865dd, 0x2e3d, 0x4094, 0xad, 0x97, 0xe5, 0x93, 0xa7, 0xc, 0x75, 0xd6), pid = 9 };
 
 		internal static DEVPROPKEY DEVPKEY_Device_Parent =
 			new DEVPROPKEY { fmtid = new Guid(0x4340a6c5, 0x93fa, 0x4706, 0x97, 0x2c, 0x7b, 0x64, 0x80, 0x08, 0xa5, 0xa7), pid = 8 };

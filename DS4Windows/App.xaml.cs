@@ -135,6 +135,9 @@ namespace DS4WinWPF
             }
             catch { /* don't care about errors */ }
 
+            // Retrieve info about installed ViGEmBus device if found
+            DS4Windows.Global.RefreshViGEmBusInfo();
+
             // Create the Event handle
             threadComEvent = new EventWaitHandle(false, EventResetMode.ManualReset, SingleAppComEventName);
             CreateTempWorkerThread();
@@ -336,6 +339,10 @@ namespace DS4WinWPF
             }
             else if (parser.Driverinstall)
             {
+                // Retrieve info about installed ViGEmBus device if found.
+                // Might not be needed here
+                DS4Windows.Global.RefreshViGEmBusInfo();
+
                 CreateBaseThread();
                 DS4Forms.WelcomeDialog dialog = new DS4Forms.WelcomeDialog(true);
                 dialog.ShowDialog();

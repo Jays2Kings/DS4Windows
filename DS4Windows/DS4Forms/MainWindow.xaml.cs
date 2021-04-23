@@ -848,7 +848,7 @@ Suspend support not enabled.", true);
             Task serviceTask = Task.Run(() =>
             {
                 if (service.running)
-                    service.Stop();
+                    service.Stop(immediateUnplug: true);
                 else
                     service.Start();
             });

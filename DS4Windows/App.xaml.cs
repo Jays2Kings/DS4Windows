@@ -705,7 +705,7 @@ namespace DS4WinWPF
                     {
                         if (rootHub.running)
                         {
-                            rootHub.Stop();
+                            rootHub.Stop(immediateUnplug: true);
                             rootHub.ShutDown();
                         }
                     }).Wait();

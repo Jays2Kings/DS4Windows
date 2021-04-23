@@ -192,7 +192,11 @@ namespace DS4WinWPF
                 //Directory.CreateDirectory(DS4Windows.Global.appdatapath + @"\Profiles\");
                 //Directory.CreateDirectory(DS4Windows.Global.appdatapath + @"\Macros\");
                 DS4Windows.Global.SaveAsNewProfile(0, "Default");
-                DS4Windows.Global.ProfilePath[0] = DS4Windows.Global.OlderProfilePath[0] = "Default";
+                for (int i = 0; i < DS4Windows.ControlService.MAX_DS4_CONTROLLER_COUNT; i++)
+                {
+                    DS4Windows.Global.ProfilePath[i] = DS4Windows.Global.OlderProfilePath[i] = "Default";
+                }
+
                 /*DS4Windows.Global.ProfilePath[1] = DS4Windows.Global.OlderProfilePath[1] = "Default";
                 DS4Windows.Global.ProfilePath[2] = DS4Windows.Global.OlderProfilePath[2] = "Default";
                 DS4Windows.Global.ProfilePath[3] = DS4Windows.Global.OlderProfilePath[3] = "Default";

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Security;
+using System.Text;
 using Microsoft.Win32.SafeHandles; 
 
 namespace DS4Windows
@@ -32,6 +33,9 @@ namespace DS4Windows
 
 		[DllImport("kernel32.dll", SetLastError = true, ExactSpelling = true, CharSet = CharSet.Auto)]
         internal static extern bool CloseHandle(IntPtr hObject);
+
+		[DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true, EntryPoint = "QueryDosDeviceW")]
+		internal static extern uint QueryDosDevice(string lpDeviceName, StringBuilder lpTargetPath, int ucchMax);
 
 		internal const uint FILE_ATTRIBUTE_NORMAL = 0x80;
 	    internal const int FILE_FLAG_OVERLAPPED = 0x40000000;

@@ -52,7 +52,7 @@ namespace DS4WinWPF.DS4Control
             return result;
         }
 
-        public List<string> GetBlackList()
+        public List<string> GetBlacklist()
         {
             List<string> instances = new List<string>();
 
@@ -94,6 +94,70 @@ namespace DS4WinWPF.DS4Control
             return instances;
         }
 
+        public List<string> GetWhitelist()
+        {
+            List<string> instances = new List<string>();
+
+            int bytesReturned = 0;
+            bool result = NativeMethods.DeviceIoControl(hidHideHandle.DangerousGetHandle(),
+                IOCTL_GET_WHITELIST,
+                IntPtr.Zero,
+                0,
+                IntPtr.Zero,
+                0,
+                ref bytesReturned,
+                IntPtr.Zero);
+
+            if (bytesReturned > 0)
+            {
+                byte[] dataBuffer = new byte[bytesReturned];
+                int requiredBytes = bytesReturned;
+                bytesReturned = 0;
+
+                IntPtr buffer = Marshal.AllocHGlobal(requiredBytes);
+
+                result = NativeMethods.DeviceIoControl(hidHideHandle.DangerousGetHandle(),
+                    IOCTL_GET_WHITELIST,
+                    IntPtr.Zero,
+                    0,
+                    buffer,
+                    requiredBytes,
+                    ref bytesReturned,
+                    IntPtr.Zero);
+
+                //int error = Marshal.GetLastWin32Error();
+                Marshal.Copy(buffer, dataBuffer, 0, requiredBytes);
+                string tempstring = Encoding.Unicode.GetString(dataBuffer).TrimEnd(char.MinValue);
+                instances = tempstring.Split(char.MinValue).ToList();
+
+                Marshal.FreeHGlobal(buffer);
+            }
+
+            return instances;
+        }
+
+        public bool SetWhitelist(List<string> instances)
+        {
+            bool result = false;
+            int bytesReturned = 0;
+            IntPtr inBuffer =
+                StringListToMultiSzPointer(instances, out int inBufferLength);
+
+            result = NativeMethods.DeviceIoControl(hidHideHandle.DangerousGetHandle(),
+                IOCTL_SET_WHITELIST,
+                inBuffer,
+                inBufferLength,
+                IntPtr.Zero,
+                0,
+                ref bytesReturned,
+                IntPtr.Zero);
+
+            //int error = Marshal.GetLastWin32Error();
+            Marshal.FreeHGlobal(inBuffer);
+
+            return result;
+        }
+
         public bool IsOpen()
         {
             return hidHideHandle != null && (!hidHideHandle.IsClosed && !hidHideHandle.IsInvalid);
@@ -112,6 +176,35 @@ namespace DS4WinWPF.DS4Control
         public void Dispose()
         {
             Close();
+        }
+
+        private IntPtr StringListToMultiSzPointer(List<string> strList,
+            out int length)
+        {
+            // Temporary byte list
+            IEnumerable<byte> multiSz = new List<byte>();
+
+            // Convert each string into wide multi-byte and add NULL-terminator in between
+            multiSz = strList.Aggregate(multiSz,
+                (current, entry) =>
+                {
+                    return current.Concat(Encoding.Unicode.GetBytes(entry))
+                                    .Concat(Encoding.Unicode.GetBytes(new[] { char.MinValue }));
+                });
+
+            // Add another NULL-terminator to signal end of list
+            multiSz = multiSz.Concat(Encoding.Unicode.GetBytes(new[] { char.MinValue }));
+
+            // Convert list to array
+            byte[] multiSzArray = multiSz.ToArray();
+
+            // Copy array content to allocated buffer
+            length = multiSzArray.Length;
+            IntPtr buffer = Marshal.AllocHGlobal(length);
+            Marshal.Copy(multiSzArray, 0, buffer, length);
+
+            // Return IntPtr to caller. Caller MUST free data when finsihed with it
+            return buffer;
         }
     }
 }

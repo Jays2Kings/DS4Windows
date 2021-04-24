@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Windows.Threading;
 using Microsoft.Win32;
 using System.Linq;
+using System.Text;
 using Sensorit.Base;
 using DS4WinWPF.DS4Control;
 using Nefarius.ViGEm.Client;
@@ -414,6 +415,40 @@ namespace DS4Windows
             if (Global.hidHideInstalled)
             {
                 LogDebug("HidHide control device found");
+                using (HidHideAPIDevice hidHideDevice = new HidHideAPIDevice())
+                {
+                    if (!hidHideDevice.IsOpen())
+                    {
+                        return;
+                    }
+
+                    List<string> dosPaths = hidHideDevice.GetWhitelist();
+
+                    int maxPathCheckLength = 512;
+                    StringBuilder sb = new StringBuilder(maxPathCheckLength);
+                    string driveLetter = Path.GetPathRoot(Global.exelocation).Replace("\\", "");
+                    uint _ = NativeMethods.QueryDosDevice(driveLetter, sb, maxPathCheckLength);
+                    //int error = Marshal.GetLastWin32Error();
+
+                    string dosDrivePath = sb.ToString();
+                    // Strip a possible \??\ prefix.
+                    if (dosDrivePath.StartsWith(@"\??\"))
+                    {
+                        dosDrivePath = dosDrivePath.Remove(0, 4);
+                    }
+
+                    string partial = Global.exelocation.Replace(driveLetter, "");
+                    // Need to trim starting '\\' from path2 or Path.Combine will
+                    // treat it as an absolute path and only return path2
+                    string realPath = Path.Combine(dosDrivePath, partial.TrimStart('\\'));
+                    bool exists = dosPaths.Contains(realPath);
+                    if (!exists)
+                    {
+                        LogDebug("DS4Windows not found in HidHide whitelist. Adding DS4Windows to list");
+                        dosPaths.Add(realPath);
+                        hidHideDevice.SetWhitelist(dosPaths);
+                    }
+                }
             }
         }
 
@@ -470,7 +505,7 @@ namespace DS4Windows
                     }
 
                     bool active = hidHideDevice.GetActiveState();
-                    List<string> instances = hidHideDevice.GetBlackList();
+                    List<string> instances = hidHideDevice.GetBlacklist();
 
                     hidDeviceHidingEnabled = active;
                     foreach (string instance in instances)

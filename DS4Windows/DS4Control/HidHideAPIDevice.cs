@@ -16,7 +16,7 @@ namespace DS4WinWPF.DS4Control
         private const uint IOCTL_GET_ACTIVE = 0x80016010;
         private const uint IOCTL_SET_ACTIVE = 0x80016014;
 
-        public const string CONTROL_DEVICE_FILENAME = "\\\\.\\HidHide";
+        private const string CONTROL_DEVICE_FILENAME = "\\\\.\\HidHide";
 
         private SafeHandle hidHideHandle;
 

@@ -265,6 +265,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         imgName = (string)App.Current.FindResource("CheckedImg");
                         source = $"/DS4Windows;component/Resources/{imgName}";
                         break;
+                    case DS4Device.ExclusiveStatus.HidHideAffected:
                     case DS4Device.ExclusiveStatus.HidGuardAffected:
                         imgName = (string)App.Current.FindResource("KeyImageImg");
                         source = $"/DS4Windows;component/Resources/{imgName}";
@@ -327,6 +328,9 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 {
                     case DS4Device.ExclusiveStatus.Exclusive:
                         temp = "Exclusive Access";
+                        break;
+                    case DS4Device.ExclusiveStatus.HidHideAffected:
+                        temp = "HidHide Access";
                         break;
                     case DS4Device.ExclusiveStatus.HidGuardAffected:
                         temp = "HidGuardian Access";

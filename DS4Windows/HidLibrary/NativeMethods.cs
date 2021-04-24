@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Security;
 using Microsoft.Win32.SafeHandles; 
+
 namespace DS4Windows
 {
     [SuppressUnmanagedCodeSecurity]
@@ -24,11 +25,15 @@ namespace DS4Windows
         internal extern static bool BluetoothFindRadioClose(IntPtr hFind);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        internal static extern Boolean DeviceIoControl(IntPtr DeviceHandle, Int32 IoControlCode, ref long InBuffer, Int32 InBufferSize, IntPtr OutBuffer, Int32 OutBufferSize, ref Int32 BytesReturned, IntPtr Overlapped);
+        internal static extern Boolean DeviceIoControl(IntPtr DeviceHandle, UInt32 IoControlCode, ref long InBuffer, Int32 InBufferSize, IntPtr OutBuffer, Int32 OutBufferSize, ref Int32 BytesReturned, IntPtr Overlapped);
 
-        [DllImport("kernel32.dll", SetLastError = true, ExactSpelling = true, CharSet = CharSet.Auto)]
+		[DllImport("kernel32.dll", SetLastError = true, EntryPoint = "DeviceIoControl")]
+		internal static extern Boolean DeviceIoControl(IntPtr DeviceHandle, UInt32 IoControlCode, IntPtr InBuffer, Int32 InBufferSize, IntPtr OutBuffer, Int32 OutBufferSize, ref Int32 BytesReturned, IntPtr Overlapped);
+
+		[DllImport("kernel32.dll", SetLastError = true, ExactSpelling = true, CharSet = CharSet.Auto)]
         internal static extern bool CloseHandle(IntPtr hObject);
 
+		internal const uint FILE_ATTRIBUTE_NORMAL = 0x80;
 	    internal const int FILE_FLAG_OVERLAPPED = 0x40000000;
 	    internal const uint FILE_FLAG_NO_BUFFERING = 0x20000000;
 	    internal const uint FILE_FLAG_WRITE_THROUGH = 0x80000000;

@@ -4,13 +4,13 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Diagnostics;
-using static DS4Windows.Global;
-using Nefarius.ViGEm.Client;
 using System.Windows.Threading;
-using DS4WinWPF.DS4Control;
 using Microsoft.Win32;
-using Sensorit.Base;
 using System.Linq;
+using Sensorit.Base;
+using DS4WinWPF.DS4Control;
+using Nefarius.ViGEm.Client;
+using static DS4Windows.Global;
 
 namespace DS4Windows
 {
@@ -62,9 +62,12 @@ namespace DS4Windows
         //SoundPlayer sp = new SoundPlayer();
         private UdpServer _udpServer;
         private OutputSlotManager outputslotMan;
-        private HashSet<string> hidguardAffectedDevs = new HashSet<string>();
-        private HashSet<string> hidguardExemptedDevs = new HashSet<string>();
-        private bool hidguardForced = false;
+
+        private HashSet<string> hidDeviceHidingAffectedDevs = new HashSet<string>();
+        private HashSet<string> hidDeviceHidingExemptedDevs = new HashSet<string>();
+        private bool hidDeviceHidingForced = false;
+        private bool hidDeviceHidingEnabled = false;
+
         private ControlServiceDeviceOptions deviceOptions;
         public ControlServiceDeviceOptions DeviceOptions { get => deviceOptions; }
 
@@ -406,6 +409,14 @@ namespace DS4Windows
             }
         }
 
+        public void CheckHidHidePresence()
+        {
+            if (Global.hidHideInstalled)
+            {
+                LogDebug("HidHide control device found");
+            }
+        }
+
         public void LoadPermanentSlotsConfig()
         {
             OutputSlotPersist.ReadConfig(outputslotMan);
@@ -415,8 +426,11 @@ namespace DS4Windows
         {
             if (Global.hidguardInstalled)
             {
-                hidguardAffectedDevs.Clear();
-                hidguardExemptedDevs.Clear();
+                hidDeviceHidingAffectedDevs.Clear();
+                hidDeviceHidingExemptedDevs.Clear();
+                hidDeviceHidingForced = false;
+                hidDeviceHidingEnabled = true;
+
                 using (RegistryKey hidParamsKey = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters", false))
                 {
                     if (hidParamsKey != null)
@@ -424,32 +438,92 @@ namespace DS4Windows
                         string[] devlist = (string[])hidParamsKey.GetValue("AffectedDevices") ?? new string[0] { };
                         foreach(string device in devlist)
                         {
-                            hidguardAffectedDevs.Add(device);
+                            hidDeviceHidingAffectedDevs.Add(device);
                         }
 
                         devlist = (string[])hidParamsKey.GetValue("ExemptedDevices") ?? new string[0] { };
                         foreach (string device in devlist)
                         {
-                            hidguardExemptedDevs.Add(device);
+                            hidDeviceHidingExemptedDevs.Add(device);
                         }
 
-                        hidguardForced = Convert.ToBoolean(hidParamsKey.GetValue("Force", false));
+                        hidDeviceHidingForced = Convert.ToBoolean(hidParamsKey.GetValue("Force", false));
                     }
                 }
+            }
+        }
+
+        public void UpdateHidHideAttributes()
+        {
+            if (Global.hidHideInstalled)
+            {
+                hidDeviceHidingAffectedDevs.Clear();
+                hidDeviceHidingExemptedDevs.Clear(); // No known equivalent in HidHide
+                hidDeviceHidingForced = false; // No known equivalent in HidHide
+                hidDeviceHidingEnabled = false;
+
+                using (HidHideAPIDevice hidHideDevice = new HidHideAPIDevice())
+                {
+                    if (!hidHideDevice.IsOpen())
+                    {
+                        return;
+                    }
+
+                    bool active = hidHideDevice.GetActiveState();
+                    List<string> instances = hidHideDevice.GetBlackList();
+
+                    hidDeviceHidingEnabled = active;
+                    foreach (string instance in instances)
+                    {
+                        hidDeviceHidingAffectedDevs.Add(instance.ToUpper());
+                    }
+                }
+            }
+        }
+
+        public void UpdateHidHiddenAttributes()
+        {
+            if (Global.hidguardInstalled)
+            {
+                UpdateHidGuardAttributes();
+            }
+            else if (Global.hidHideInstalled)
+            {
+                UpdateHidHideAttributes();
             }
         }
 
         private bool CheckAffected(DS4Device dev)
         {
             bool result = false;
-            if (dev != null)
+            if (dev != null && hidDeviceHidingEnabled)
             {
                 string deviceInstanceId = DS4Devices.devicePathToInstanceId(dev.HidDevice.DevicePath);
-                result = Global.CheckAffectedStatus(deviceInstanceId,
-                    hidguardAffectedDevs, hidguardExemptedDevs, hidguardForced);
+                if (Global.hidguardInstalled)
+                {
+                    result = Global.CheckHidGuardianAffectedStatus(deviceInstanceId,
+                        hidDeviceHidingAffectedDevs, hidDeviceHidingExemptedDevs, hidDeviceHidingForced);
+                }
+                else if (Global.hidHideInstalled)
+                {
+                    result = Global.CheckHidHideAffectedStatus(deviceInstanceId,
+                        hidDeviceHidingAffectedDevs, hidDeviceHidingExemptedDevs, hidDeviceHidingForced);
+                }
             }
 
             return result;
+        }
+
+        private void ChangeExclusiveStatus(DS4Device dev)
+        {
+            if (Global.hidHideInstalled)
+            {
+                dev.CurrentExclusiveStatus = DS4Device.ExclusiveStatus.HidHideAffected;
+            }
+            else if (Global.hidguardInstalled)
+            {
+                dev.CurrentExclusiveStatus = DS4Device.ExclusiveStatus.HidGuardAffected;
+            }
         }
 
         private void TestQueueBus(Action temp)
@@ -1049,7 +1123,7 @@ namespace DS4Windows
 
                 DS4Devices.isExclusiveMode = getUseExclusiveMode(); //Re-enable Exclusive Mode
 
-                UpdateHidGuardAttributes();
+                UpdateHidHiddenAttributes();
 
                 //uiContext = tempui as SynchronizationContext;
                 if (showlog)
@@ -1096,9 +1170,10 @@ namespace DS4Windows
                             LogDebug(DS4WinWPF.Properties.Resources.FoundController + " " + device.getMacAddress() + " (" + device.getConnectionType() + ") (" +
                                 device.DisplayName + ")");
 
-                        if (Global.hidguardInstalled && CheckAffected(device))
+                        if (hidDeviceHidingEnabled && CheckAffected(device))
                         {
-                            device.CurrentExclusiveStatus = DS4Device.ExclusiveStatus.HidGuardAffected;
+                            //device.CurrentExclusiveStatus = DS4Device.ExclusiveStatus.HidGuardAffected;
+                            ChangeExclusiveStatus(device);
                         }
 
                         Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
@@ -1527,9 +1602,10 @@ namespace DS4Windows
                             LogDebug(DS4WinWPF.Properties.Resources.FoundController + " " + device.getMacAddress() + " (" + device.getConnectionType() + ") (" +
                                 device.DisplayName + ")");
 
-                            if (Global.hidguardInstalled && CheckAffected(device))
+                            if (hidDeviceHidingEnabled && CheckAffected(device))
                             {
-                                device.CurrentExclusiveStatus = DS4Device.ExclusiveStatus.HidGuardAffected;
+                                //device.CurrentExclusiveStatus = DS4Device.ExclusiveStatus.HidGuardAffected;
+                                ChangeExclusiveStatus(device);
                             }
 
                             Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });

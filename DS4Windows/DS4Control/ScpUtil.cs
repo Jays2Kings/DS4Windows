@@ -471,6 +471,7 @@ namespace DS4Windows
                 BLANK_VIGEMBUS_VERSION);
         public static Version minSupportedViGEmBusVersionInfo = new Version(MIN_SUPPORTED_VIGEMBUS_VERSION);
         public static bool hidguardInstalled = IsHidGuardianInstalled();
+        public static bool hidHideInstalled = IsHidHideInstalled();
 
         public const int CONFIG_VERSION = 5;
         public const int APP_CONFIG_VERSION = 2;
@@ -977,7 +978,16 @@ namespace DS4Windows
             return result;
         }
 
-        public static bool CheckAffectedStatus(string deviceInstanceId,
+        public static bool CheckHidHideAffectedStatus(string deviceInstanceId,
+            HashSet<string> affectedDevs, HashSet<string> exemptedDevices, bool force = false)
+        {
+            bool result = false;
+            string tempDeviceInstanceId = deviceInstanceId.ToUpper();
+            result = affectedDevs.Contains(tempDeviceInstanceId);
+            return result;
+        }
+
+        public static bool CheckHidGuardianAffectedStatus(string deviceInstanceId,
             HashSet<string> affectedDevs, HashSet<string> exemptedDevices, bool force=false)
         {
             bool result = false;
@@ -1054,6 +1064,11 @@ namespace DS4Windows
         public static bool IsHidGuardianInstalled()
         {
             return CheckForSysDevice(@"Root\HidGuardian");
+        }
+
+        public static bool IsHidHideInstalled()
+        {
+            return CheckForSysDevice(@"root\HidHide");
         }
 
         const string VIGEMBUS_GUID = "{96E42B22-F5E9-42F8-B043-ED0F932F014F}";

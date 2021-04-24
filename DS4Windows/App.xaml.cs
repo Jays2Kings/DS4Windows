@@ -227,7 +227,15 @@ namespace DS4WinWPF
 
             window.CheckMinStatus();
             rootHub.LogDebug($"Running as {(DS4Windows.Global.IsAdministrator() ? "Admin" : "User")}");
-            rootHub.LaunchHidGuardHelper();
+            if (DS4Windows.Global.hidguardInstalled)
+            {
+                rootHub.LaunchHidGuardHelper();
+            }
+            else if (DS4Windows.Global.hidHideInstalled)
+            {
+                rootHub.CheckHidHidePresence();
+            }
+
             rootHub.LoadPermanentSlotsConfig();
             window.LateChecks(parser);
         }

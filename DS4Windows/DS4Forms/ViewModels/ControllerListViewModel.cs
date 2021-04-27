@@ -323,17 +323,17 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             get
             {
-                string temp = "Shared Access";
+                string temp = Translations.Strings.SharedAccess;
                 switch(device.CurrentExclusiveStatus)
                 {
                     case DS4Device.ExclusiveStatus.Exclusive:
-                        temp = "Exclusive Access";
+                        temp = Translations.Strings.ExclusiveAccess;
                         break;
                     case DS4Device.ExclusiveStatus.HidHideAffected:
-                        temp = "HidHide Access";
+                        temp = Translations.Strings.HidHideAccess;
                         break;
                     case DS4Device.ExclusiveStatus.HidGuardAffected:
-                        temp = "HidGuardian Access";
+                        temp = Translations.Strings.HidGuardianAccess;
                         break;
                     default:
                         break;

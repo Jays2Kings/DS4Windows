@@ -454,4 +454,16 @@ Example: whyme_DS4Windows</value>
   <data name="HidHideConfigClient" xml:space="preserve">
     <value>HidHide Configuration Client</value>
   </data>
+  <data name="ExclusiveAccess" xml:space="preserve">
+    <value>Exclusive Access</value>
+  </data>
+  <data name="HidGuardianAccess" xml:space="preserve">
+    <value>HidGuardian Access</value>
+  </data>
+  <data name="HidHideAccess" xml:space="preserve">
+    <value>HidHide Access</value>
+  </data>
+  <data name="SharedAccess" xml:space="preserve">
+    <value>Shared Access</value>
+  </data>
 </root>

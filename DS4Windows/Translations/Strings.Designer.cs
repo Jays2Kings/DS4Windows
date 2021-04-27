@@ -451,6 +451,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exclusive Access.
+        /// </summary>
+        public static string ExclusiveAccess {
+            get {
+                return ResourceManager.GetString("ExclusiveAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
         public static string Export {
@@ -559,11 +568,29 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HidGuardian Access.
+        /// </summary>
+        public static string HidGuardianAccess {
+            get {
+                return ResourceManager.GetString("HidGuardianAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HidHide.
         /// </summary>
         public static string HidHide {
             get {
                 return ResourceManager.GetString("HidHide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HidHide Access.
+        /// </summary>
+        public static string HidHideAccess {
+            get {
+                return ResourceManager.GetString("HidHideAccess", resourceCulture);
             }
         }
         
@@ -933,6 +960,15 @@ namespace DS4WinWPF.Translations {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shared Access.
+        /// </summary>
+        public static string SharedAccess {
+            get {
+                return ResourceManager.GetString("SharedAccess", resourceCulture);
             }
         }
         

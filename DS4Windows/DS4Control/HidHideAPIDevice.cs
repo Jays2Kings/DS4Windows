@@ -52,6 +52,28 @@ namespace DS4WinWPF.DS4Control
             return result;
         }
 
+        public bool SetActiveState(bool state)
+        {
+            bool result = false;
+
+            unsafe
+            {
+                int bytesReturned = 0;
+                NativeMethods.DeviceIoControl(hidHideHandle.DangerousGetHandle(),
+                    HidHideAPIDevice.IOCTL_SET_ACTIVE,
+                    new IntPtr(&state),
+                    1,
+                    IntPtr.Zero,
+                    0,
+                    ref bytesReturned,
+                    IntPtr.Zero);
+
+                //int error = Marshal.GetLastWin32Error();
+            }
+
+            return result;
+        }
+
         public List<string> GetBlacklist()
         {
             List<string> instances = new List<string>();
@@ -92,6 +114,29 @@ namespace DS4WinWPF.DS4Control
             }
 
             return instances;
+        }
+
+        public bool SetBlacklist(List<string> instances)
+        {
+            bool result = false;
+            int bytesReturned = 0;
+            IntPtr inBuffer =
+                StringListToMultiSzPointer(instances, out int inBufferLength);
+
+            result = NativeMethods.DeviceIoControl(hidHideHandle.DangerousGetHandle(),
+                IOCTL_SET_BLACKLIST,
+                inBuffer,
+                inBufferLength,
+                IntPtr.Zero,
+                0,
+                ref bytesReturned,
+                IntPtr.Zero);
+
+            //int error = Marshal.GetLastWin32Error();
+            // Free buffer returned from StringListToMultiSzPointer
+            Marshal.FreeHGlobal(inBuffer);
+
+            return result;
         }
 
         public List<string> GetWhitelist()
@@ -153,6 +198,7 @@ namespace DS4WinWPF.DS4Control
                 IntPtr.Zero);
 
             //int error = Marshal.GetLastWin32Error();
+            // Free buffer returned from StringListToMultiSzPointer
             Marshal.FreeHGlobal(inBuffer);
 
             return result;

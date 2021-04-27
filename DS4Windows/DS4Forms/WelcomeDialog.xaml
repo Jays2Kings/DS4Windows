@@ -51,7 +51,7 @@
                 <Button x:Name="hidHideInstallBtn" Content="(Optional) Step 4: Install HidHide Driver" Click="HidHideInstall_Click" />
                 <TextBlock TextWrapping="Wrap" TextAlignment="Center" Margin="0, 10, 0, 0">
                     <TextBlock.Text>
-                        Use HidHide to configure and hide the input controller from other apps running on your system.
+                        Use HidHide to configure and hide any input controllers from other apps running on your system.
                         Some games require only one controller to be present or double input will cause problems in game.
                     </TextBlock.Text>
                 </TextBlock>

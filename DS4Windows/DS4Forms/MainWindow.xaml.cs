@@ -1428,6 +1428,10 @@ Suspend support not enabled.", true);
             {
                 using (Process temp = Process.Start(startInfo))
                 {
+                    temp.WaitForExit();
+                    Global.RefreshHidHideInfo();
+
+                    settingsWrapVM.DriverCheckRefresh();
                 }
             }
             catch { }
@@ -1709,6 +1713,24 @@ Suspend support not enabled.", true);
         private void Html5GameBtn_Click(object sender, RoutedEventArgs e)
         {
             Util.StartProcessHelper("https://gamepad-tester.com/");
+        }
+
+        private void HidHideBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string driveLetter = System.IO.Path.GetPathRoot(Global.exedirpath);
+            string path = System.IO.Path.Combine(driveLetter, "Program Files",
+                "Nefarius Software Solutions e.U", "HidHideClient", "HidHideClient.exe");
+
+            if (File.Exists(path))
+            {
+                try
+                {
+                    ProcessStartInfo startInfo = new ProcessStartInfo(path);
+                    startInfo.UseShellExecute = true;
+                    using (Process proc = Process.Start(startInfo)) { }
+                }
+                catch { }
+            }
         }
 
         private void HidNinjaBtn_Click(object sender, RoutedEventArgs e)

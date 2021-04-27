@@ -1089,6 +1089,11 @@ namespace DS4Windows
             FindViGEmDeviceInfo();
         }
 
+        public static void RefreshHidHideInfo()
+        {
+            hidHideInstalled = IsHidHideInstalled();
+        }
+
         private static void PopulateFromViGEmBusInfo(ViGEmBusInfo busInfo)
         {
             if (busInfo != null)

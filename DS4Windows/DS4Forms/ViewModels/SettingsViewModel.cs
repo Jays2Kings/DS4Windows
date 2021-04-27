@@ -296,6 +296,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public delegate void FakeExeNameChangeHandler(SettingsViewModel sender,
             string oldvalue, string newvalue);
 
+
+        public bool HidHideInstalled { get => DS4Windows.Global.hidHideInstalled; }
+        public event EventHandler HidHideInstalledChanged;
+
+        public bool HidGuardianInstalled { get => DS4Windows.Global.hidguardInstalled; }
+        public event EventHandler HidGuardianInstalledChanged;
+
         public SettingsViewModel()
         {
             checkEveryUnitIdx = 1;
@@ -512,6 +519,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
             File.Copy(DS4Windows.Global.exelocation, exefile);
             File.Copy(current_conf_file_path, conf_file);
+        }
+
+        public void DriverCheckRefresh()
+        {
+            HidHideInstalledChanged?.Invoke(this, EventArgs.Empty);
+            HidGuardianInstalledChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

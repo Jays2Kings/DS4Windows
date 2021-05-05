@@ -1,9 +1,37 @@
 {
-  "latest_version": "3.0.3",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 3},
-  "updated_at": "2021-04-15T16:32:18+0000",
+  "latest_version": "3.0.4",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 4},
+  "updated_at": "2021-05-05T14:47:29+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.0.4",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 4},
+      "base_header": "Version 3.0.4",
+      "release_date": "2021-05-05T14:47:29+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.4",
+          "log_text": ["* Support for DS3 gamepad as vendor defined device over DsHidMini driver. Contribution by **mika-n**",
+            "* Now issue immediate virtual device unplug upon Windows suspend",
+            "* Changed ViGEmBus lookup routine to perform a list based lookup for potential drivers. Attempt to discover newest version from version info",
+            "* Changed ViGEmClient library to attempt to connect to newest available version of ViGEmBus on a system rather than the first version found",
+            "* Set all controller slots to use the Default profile initially when making a new config",
+            "* Immediately issue unplug of all virtual controllers when pressing main Stop button",
+            "* Initial implementation of HidHide integration. Display key icon for HidHdide hidden device. Insert DS4Windows.exe into whitelist at startup if necessary",
+            "* Change method of obtaining current executable file location. Needed due to assembly changes in .NET 5 breaking support for custom exe filenames",
+            "* Added HidHide installer link to Welcome dialog window",
+            "* Added HidHide Configuration Client app link in app",
+            "* Hide HidNinja link in Settings tab if HidGuardian is not installed",
+            "* Show the text value of 'Max Saturation' lightbar setting. Contribution by **sabihoshi**",
+            "* Changed Launch Program special action to use UseShellExecute"],
+          "editor": "ryochan7",
+          "editors_note": ["Major ViGEmBus changes. HidHide support"],
+          "updated_at": "2021-05-05T14:47:29+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.0.3",
       "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 3},

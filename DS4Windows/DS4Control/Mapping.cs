@@ -3262,14 +3262,30 @@ namespace DS4Windows
                                             // Launch child process using hidden wnd option (the child process should probably do something and then close itself unless you want it to remain hidden in background)
                                             specActionLaunchProc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                                             specActionLaunchProc.StartInfo.CreateNoWindow = true;
+                                            specActionLaunchProc.StartInfo.UseShellExecute = true;
                                             specActionLaunchProc.Start();
-                                        }                                            
+                                        }
                                         else
+                                        {
                                             // No special process modifiers (ie. $hidden wnd keyword). Launch the child process using the default WinOS settings
-                                            Process.Start(action.details, action.extra);
+                                            using (Process temp = new Process())
+                                            {
+                                                temp.StartInfo.FileName = action.details;
+                                                temp.StartInfo.Arguments = action.extra;
+                                                temp.StartInfo.UseShellExecute = true;
+                                                temp.Start();
+                                            }
+                                        }
                                     }
                                     else
-                                        Process.Start(action.details);
+                                    {
+                                        using (Process temp = new Process())
+                                        {
+                                            temp.StartInfo.FileName = action.details;
+                                            temp.StartInfo.UseShellExecute = true;
+                                            temp.Start();
+                                        }
+                                    }
                                 }
                             }
                             else if (action.typeID == SpecialAction.ActionTypeId.Profile)

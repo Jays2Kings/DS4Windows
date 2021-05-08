@@ -440,6 +440,7 @@ namespace DS4Windows
         public static bool firstRun = false;
         public static bool multisavespots = false;
         public static string appDataPpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows";
+        public static string localAppDataPpath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "DS4Windows");
         public static bool runHotPlug = false;
         public static string[] tempprofilename = new string[TEST_PROFILE_ITEM_COUNT] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         public static bool[] useTempProfile = new bool[TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
@@ -1112,18 +1113,29 @@ namespace DS4Windows
 
         public static void FindConfigLocation()
         {
-            if (File.Exists(exedirpath + "\\Auto Profiles.xml")
-                && File.Exists(appDataPpath + "\\Auto Profiles.xml"))
+            bool programFolderAutoProfilesExists = File.Exists(Path.Combine(exedirpath, "Auto Profiles.xml"));
+            bool appDataAutoProfilesExists = File.Exists(Path.Combine(appDataPpath, "Auto Profiles.xml"));
+            bool localAppDataAutoProfilesExists = File.Exists(Path.Combine(localAppDataPpath, "Auto Profiles.xml"));
+            bool systemAppConfigExists = appDataAutoProfilesExists || localAppDataAutoProfilesExists;
+
+            if (programFolderAutoProfilesExists && systemAppConfigExists)
             {
                 Global.firstRun = true;
                 Global.multisavespots = true;
             }
-            else if (File.Exists(exedirpath + "\\Auto Profiles.xml"))
+            else if (programFolderAutoProfilesExists)
+            {
                 SaveWhere(exedirpath);
-            else if (File.Exists(appDataPpath + "\\Auto Profiles.xml"))
+            }
+            else if (localAppDataAutoProfilesExists)
+            {
+                SaveWhere(localAppDataPpath);
+            }
+            else if (appDataAutoProfilesExists)
+            {
                 SaveWhere(appDataPpath);
-            else if (!File.Exists(exedirpath + "\\Auto Profiles.xml")
-                && !File.Exists(appDataPpath + "\\Auto Profiles.xml"))
+            }
+            else if (!programFolderAutoProfilesExists && !systemAppConfigExists)
             {
                 Global.firstRun = true;
                 Global.multisavespots = false;
@@ -2617,7 +2629,6 @@ namespace DS4Windows
         public const double DEFAULT_UDP_SMOOTH_MINCUTOFF = 0.4;
         public const double DEFAULT_UDP_SMOOTH_BETA = 0.2;
 
-        //public String m_Profile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool" + "\\Profiles.xml";
         public String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + "\\Profiles.xml";
         public String m_Actions = Global.appdatapath + "\\Actions.xml";
         public string m_linkedProfiles = Global.appdatapath + "\\LinkedProfiles.xml";

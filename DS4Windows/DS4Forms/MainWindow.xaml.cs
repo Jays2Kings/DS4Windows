@@ -1474,7 +1474,7 @@ Suspend support not enabled.", true);
             dialog.Filter = "DS4Windows Profile (*.xml)|*.xml";
             dialog.Title = "Select Profile to Import File";
             if (Global.appdatapath != Global.exedirpath)
-                dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows" + @"\Profiles\";
+                dialog.InitialDirectory = Global.localAppDataPpath;
             else
                 dialog.InitialDirectory = Global.exedirpath + @"\Profiles\";
 

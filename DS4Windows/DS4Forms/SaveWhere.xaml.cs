@@ -36,7 +36,15 @@ namespace DS4WinWPF.DS4Forms
             {
                 try
                 {
-                    Directory.Delete(DS4Windows.Global.appDataPpath, true);
+                    if (Directory.Exists(DS4Windows.Global.localAppDataPpath))
+                    {
+                        Directory.Delete(DS4Windows.Global.localAppDataPpath, true);
+                    }
+
+                    if (Directory.Exists(DS4Windows.Global.appDataPpath))
+                    {
+                        Directory.Delete(DS4Windows.Global.appDataPpath, true);
+                    }
                 }
                 catch { }
             }

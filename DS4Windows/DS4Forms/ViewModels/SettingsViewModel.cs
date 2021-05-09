@@ -415,6 +415,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             string old_exefile = Path.Combine(DS4Windows.Global.exedirpath, $"{oldvalue}.exe");
             string old_conf_file = Path.Combine(DS4Windows.Global.exedirpath, $"{oldvalue}.runtimeconfig.json");
+            string old_deps_file = Path.Combine(DS4Windows.Global.exedirpath, $"{oldvalue}.deps.json");
 
             if (!string.IsNullOrEmpty(oldvalue))
             {
@@ -426,6 +427,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 if (File.Exists(old_conf_file))
                 {
                     File.Delete(old_conf_file);
+                }
+
+                if (File.Exists(old_deps_file))
+                {
+                    File.Delete(old_deps_file);
                 }
             }
         }
@@ -514,11 +520,17 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public void CreateFakeExe(string filename)
         {
             string exefile = Path.Combine(DS4Windows.Global.exedirpath, $"{filename}.exe");
-            string current_conf_file_path = $"{DS4Windows.Global.exelocation}.config";
-            string conf_file = Path.Combine(DS4Windows.Global.exedirpath, $"{filename}.runtimeconfig.json");
+            string current_conf_file_path = $"{DS4Windows.Global.exelocation}.runtimeconfig.json";
+            string current_deps_file_path = $"{DS4Windows.Global.exelocation}.deps.json";
 
-            File.Copy(DS4Windows.Global.exelocation, exefile);
-            File.Copy(current_conf_file_path, conf_file);
+            string fake_conf_file = Path.Combine(DS4Windows.Global.exedirpath, $"{filename}.runtimeconfig.json");
+            string fake_deps_file = Path.Combine(DS4Windows.Global.exedirpath, $"{filename}.deps.json");
+
+            File.Copy(DS4Windows.Global.exelocation, exefile); // Copy exe
+
+            // Copy needed app config and deps files
+            File.Copy(current_conf_file_path, fake_conf_file);
+            File.Copy(current_deps_file_path, fake_deps_file);
         }
 
         public void DriverCheckRefresh()

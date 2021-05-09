@@ -173,7 +173,6 @@ namespace DS4WinWPF
             logger.Info($"OS Product Name: {DS4Windows.Util.GetOSProductName()}");
             logger.Info($"OS Release ID: {DS4Windows.Util.GetOSReleaseId()}");
             logger.Info($"System Architecture: {(Environment.Is64BitOperatingSystem ? "x64" : "x86")}");
-            //logger.Info("DS4Windows version 2.0");
             logger.Info("Logger created");
 
             bool readAppConfig = DS4Windows.Global.Load();
@@ -182,26 +181,17 @@ namespace DS4WinWPF
                 logger.Info($@"Profiles.xml not read at location ${DS4Windows.Global.appdatapath}\Profiles.xml. Using default app settings");
             }
 
-            //DS4Windows.Global.ProfilePath[0] = "mixed";
-            //DS4Windows.Global.LoadProfile(0, false, rootHub, false, false);
             if (firstRun)
             {
                 logger.Info("No config found. Creating default config");
-                //Directory.CreateDirectory(DS4Windows.Global.appdatapath);
                 AttemptSave();
 
-                //Directory.CreateDirectory(DS4Windows.Global.appdatapath + @"\Profiles\");
-                //Directory.CreateDirectory(DS4Windows.Global.appdatapath + @"\Macros\");
                 DS4Windows.Global.SaveAsNewProfile(0, "Default");
                 for (int i = 0; i < DS4Windows.ControlService.MAX_DS4_CONTROLLER_COUNT; i++)
                 {
                     DS4Windows.Global.ProfilePath[i] = DS4Windows.Global.OlderProfilePath[i] = "Default";
                 }
 
-                /*DS4Windows.Global.ProfilePath[1] = DS4Windows.Global.OlderProfilePath[1] = "Default";
-                DS4Windows.Global.ProfilePath[2] = DS4Windows.Global.OlderProfilePath[2] = "Default";
-                DS4Windows.Global.ProfilePath[3] = DS4Windows.Global.OlderProfilePath[3] = "Default";
-                */
                 logger.Info("Default config created");
             }
 
@@ -277,8 +267,8 @@ namespace DS4WinWPF
 
         private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            //Console.WriteLine("App Crashed");
-            //Console.WriteLine(e.Exception.StackTrace);
+            //Debug.WriteLine("App Crashed");
+            //Debug.WriteLine(e.Exception.StackTrace);
             Logger logger = logHolder.Logger;
             logger.Error($"Thread Crashed with message {e.Exception.Message}");
             logger.Error(e.Exception.ToString());

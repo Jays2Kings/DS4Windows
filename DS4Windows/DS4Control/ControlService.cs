@@ -106,17 +106,14 @@ namespace DS4Windows
             }
 
             bool isValidSerial = false;
-            //if (d.isValidSerial())
-            //{
-                string stringMac = d.getMacAddress();
-                if (!string.IsNullOrEmpty(stringMac))
-                {
-                    stringMac = string.Join("", stringMac.Split(':'));
-                    //stringMac = stringMac.Replace(":", "").Trim();
-                    meta.PadMacAddress = System.Net.NetworkInformation.PhysicalAddress.Parse(stringMac);
-                    isValidSerial = d.isValidSerial();
-                }
-            //}
+            string stringMac = d.getMacAddress();
+            if (!string.IsNullOrEmpty(stringMac))
+            {
+                stringMac = string.Join("", stringMac.Split(':'));
+                //stringMac = stringMac.Replace(":", "").Trim();
+                meta.PadMacAddress = System.Net.NetworkInformation.PhysicalAddress.Parse(stringMac);
+                isValidSerial = d.isValidSerial();
+            }
 
             if (!isValidSerial)
             {
@@ -134,19 +131,20 @@ namespace DS4Windows
             meta.ConnectionType = (d.getConnectionType() == ConnectionType.USB) ? DsConnection.Usb : DsConnection.Bluetooth;
             meta.IsActive = !d.isDS4Idle();
 
-            if (d.isCharging() && d.getBattery() >= 100)
+            int batteryLevel = d.getBattery();
+            if (d.isCharging() && batteryLevel >= 100)
                 meta.BatteryStatus = DsBattery.Charged;
             else
             {
-                if (d.getBattery() >= 95)
+                if (batteryLevel >= 95)
                     meta.BatteryStatus = DsBattery.Full;
-                else if (d.getBattery() >= 70)
+                else if (batteryLevel >= 70)
                     meta.BatteryStatus = DsBattery.High;
-                else if (d.getBattery() >= 50)
+                else if (batteryLevel >= 50)
                     meta.BatteryStatus = DsBattery.Medium;
-                else if (d.getBattery() >= 20)
+                else if (batteryLevel >= 20)
                     meta.BatteryStatus = DsBattery.Low;
-                else if (d.getBattery() >= 5)
+                else if (batteryLevel >= 5)
                     meta.BatteryStatus = DsBattery.Dying;
                 else
                     meta.BatteryStatus = DsBattery.None;
@@ -1185,22 +1183,19 @@ namespace DS4Windows
                     {
                         DS4Devices.findControllers();
                     });
-                    //DS4Devices.FindControllersWrapper();
-                    //DS4Devices.findControllers();
+
                     IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
                     int numControllers = new List<DS4Device>(devices).Count;
                     activeControllers = numControllers;
                     //int ind = 0;
                     DS4LightBar.defaultLight = false;
                     //foreach (DS4Device device in devices)
-
                     //for (int i = 0, devCount = devices.Count(); i < devCount; i++)
                     int i = 0;
                     InputDevices.JoyConDevice tempPrimaryJoyDev = null;
                     for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext() && loopControllers; i++)
                     {
                         DS4Device device = devEnum.Current;
-                        //DS4Device device = devices.ElementAt(i);
                         if (showlog)
                             LogDebug(DS4WinWPF.Properties.Resources.FoundController + " " + device.getMacAddress() + " (" + device.getConnectionType() + ") (" +
                                 device.DisplayName + ")");
@@ -1281,8 +1276,6 @@ namespace DS4Windows
 
                             if (!getDInputOnly(i) && device.isSynced())
                             {
-                                //useDInputOnly[i] = false;
-                                //PluginOutDev(i, device);
                                 if (device.PrimaryDevice)
                                 {
                                     PluginOutDev(i, device);
@@ -1297,12 +1290,7 @@ namespace DS4Windows
                                         EstablishOutFeedback(i, tempConType, tempOutDev, device);
                                         outputDevices[i] = tempOutDev;
                                         Global.activeOutDevType[i] = tempConType;
-                                        //useDInputOnly[i] = false;
-                                        //Global.activeOutDevType[i] = OutContType.X360;
                                     }
-
-                                    //useDInputOnly[i] = true;
-                                    //Global.activeOutDevType[i] = OutContType.None;
                                 }
                             }
                             else
@@ -1311,7 +1299,6 @@ namespace DS4Windows
                                 Global.activeOutDevType[i] = OutContType.None;
                             }
 
-                            //TouchPadOn(i, device);
                             if (device.PrimaryDevice && device.OutputMapGyro)
                             {
                                 TouchPadOn(i, device);
@@ -1544,8 +1531,9 @@ namespace DS4Windows
                 slotManager.ClearControllerList();
 
                 if (_udpServer != null)
+                {
                     ChangeUDPStatus(false);
-                    //_udpServer.Stop();
+                }
 
                 if (showlog)
                     LogDebug(DS4WinWPF.Properties.Resources.StoppedDS4Windows);
@@ -1582,8 +1570,7 @@ namespace DS4Windows
                 {
                     DS4Devices.findControllers();
                 });
-                //DS4Devices.FindControllersWrapper();
-                //DS4Devices.findControllers();
+
                 IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
                 int numControllers = new List<DS4Device>(devices).Count;
                 activeControllers = numControllers;
@@ -1606,7 +1593,6 @@ namespace DS4Windows
                 for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext() && loopControllers;)
                 {
                     DS4Device device = devEnum.Current;
-                    //DS4Device device = devices.ElementAt(i);
 
                     if (device.isDisconnectingStatus())
                         continue;
@@ -1726,8 +1712,6 @@ namespace DS4Windows
 
                                 if (!getDInputOnly(Index) && device.isSynced())
                                 {
-                                    //useDInputOnly[Index] = false;
-                                    //PluginOutDev(Index, device);
                                     if (device.PrimaryDevice)
                                     {
                                         PluginOutDev(Index, device);
@@ -1742,13 +1726,7 @@ namespace DS4Windows
                                             EstablishOutFeedback(Index, tempConType, tempOutDev, device);
                                             outputDevices[Index] = tempOutDev;
                                             Global.activeOutDevType[Index] = tempConType;
-
-                                            //useDInputOnly[i] = false;
-                                            //Global.activeOutDevType[i] = OutContType.X360;
                                         }
-
-                                        //useDInputOnly[Index] = true;
-                                        //Global.activeOutDevType[Index] = OutContType.None;
                                     }
                                 }
                                 else
@@ -1757,7 +1735,6 @@ namespace DS4Windows
                                     Global.activeOutDevType[Index] = OutContType.None;
                                 }
 
-                                //TouchPadOn(Index, device);
                                 if (device.PrimaryDevice && device.OutputMapGyro)
                                 {
                                     TouchPadOn(Index, device);
@@ -1938,80 +1915,7 @@ namespace DS4Windows
             //Log.LogToTray("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
         }
 
-        public string getDS4ControllerInfo(int index)
-        {
-            DS4Device d = DS4Controllers[index];
-            if (d != null)
-            {
-                if (!d.IsAlive())
-                {
-                    return DS4WinWPF.Properties.Resources.Connecting;
-                }
-
-                string battery;
-                if (d.isCharging())
-                {
-                    if (d.getBattery() >= 100)
-                        battery = DS4WinWPF.Properties.Resources.Charged;
-                    else
-                        battery = DS4WinWPF.Properties.Resources.Charging.Replace("*number*", d.getBattery().ToString());
-                }
-                else
-                {
-                    battery = DS4WinWPF.Properties.Resources.Battery.Replace("*number*", d.getBattery().ToString());
-                }
-
-                return d.getMacAddress() + " (" + d.getConnectionType() + "), " + battery;
-                //return d.MacAddress + " (" + d.ConnectionType + "), Battery is " + battery + ", Touchpad in " + modeSwitcher[index].ToString();
-            }
-            else
-                return string.Empty;
-        }
-
-        public string getDS4MacAddress(int index)
-        {
-            DS4Device d = DS4Controllers[index];
-            if (d != null)
-            {
-                if (!d.IsAlive())
-                {
-                    return DS4WinWPF.Properties.Resources.Connecting;
-                }
-
-                return d.getMacAddress();
-            }
-            else
-                return string.Empty;
-        }
-
-        public string getShortDS4ControllerInfo(int index)
-        {
-            DS4Device d = DS4Controllers[index];
-            if (d != null)
-            {
-                string battery;
-                if (!d.IsAlive())
-                    battery = "...";
-
-                if (d.isCharging())
-                {
-                    if (d.getBattery() >= 100)
-                        battery = DS4WinWPF.Properties.Resources.Full;
-                    else
-                        battery = d.getBattery() + "%+";
-                }
-                else
-                {
-                    battery = d.getBattery() + "%";
-                }
-
-                return (d.getConnectionType() + " " + battery);
-            }
-            else
-                return DS4WinWPF.Properties.Resources.NoneText;
-        }
-
-        public string getDS4Battery(int index)
+        public string GetDS4Battery(int index)
         {
             DS4Device d = DS4Controllers[index];
             if (d != null)

@@ -3456,7 +3456,7 @@ namespace DS4Windows
                                 if (bool.Parse(dets[1]) && !actionDone[index].dev[device])
                                 {
                                     AppLogger.LogToTray("Controller " + (device + 1) + ": " +
-                                        ctrl.getDS4Battery(device), true);
+                                        ctrl.GetDS4Battery(device), true);
                                 }
                                 if (bool.Parse(dets[2]))
                                 {

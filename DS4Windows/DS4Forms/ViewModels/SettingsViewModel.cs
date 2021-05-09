@@ -414,7 +414,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             string oldvalue, string newvalue)
         {
             string old_exefile = Path.Combine(DS4Windows.Global.exedirpath, $"{oldvalue}.exe");
-            string old_conf_file = Path.Combine(DS4Windows.Global.exedirpath, $"{oldvalue}.exe.config");
+            string old_conf_file = Path.Combine(DS4Windows.Global.exedirpath, $"{oldvalue}.runtimeconfig.json");
 
             if (!string.IsNullOrEmpty(oldvalue))
             {
@@ -515,7 +515,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             string exefile = Path.Combine(DS4Windows.Global.exedirpath, $"{filename}.exe");
             string current_conf_file_path = $"{DS4Windows.Global.exelocation}.config";
-            string conf_file = Path.Combine(DS4Windows.Global.exedirpath, $"{filename}.exe.config");
+            string conf_file = Path.Combine(DS4Windows.Global.exedirpath, $"{filename}.runtimeconfig.json");
 
             File.Copy(DS4Windows.Global.exelocation, exefile);
             File.Copy(current_conf_file_path, conf_file);

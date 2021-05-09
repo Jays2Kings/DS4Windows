@@ -149,7 +149,8 @@ namespace DS4WinWPF
             bool firstRun = DS4Windows.Global.firstRun;
             if (firstRun)
             {
-                DS4Forms.SaveWhere savewh = new DS4Forms.SaveWhere(false);
+                DS4Forms.SaveWhere savewh =
+                    new DS4Forms.SaveWhere(DS4Windows.Global.multisavespots);
                 savewh.ShowDialog();
             }
 

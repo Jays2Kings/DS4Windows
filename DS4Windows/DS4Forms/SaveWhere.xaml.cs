@@ -36,7 +36,7 @@ namespace DS4WinWPF.DS4Forms
             {
                 try
                 {
-                    Directory.Delete(DS4Windows.Global.localAppDataPpath, true);
+                    Directory.Delete(DS4Windows.Global.appDataPpath, true);
                 }
                 catch { }
             }

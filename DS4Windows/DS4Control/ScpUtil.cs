@@ -1115,10 +1115,13 @@ namespace DS4Windows
         {
             bool programFolderAutoProfilesExists = File.Exists(Path.Combine(exedirpath, "Auto Profiles.xml"));
             bool appDataAutoProfilesExists = File.Exists(Path.Combine(appDataPpath, "Auto Profiles.xml"));
-            bool localAppDataAutoProfilesExists = File.Exists(Path.Combine(localAppDataPpath, "Auto Profiles.xml"));
-            bool systemAppConfigExists = appDataAutoProfilesExists || localAppDataAutoProfilesExists;
+            //bool localAppDataAutoProfilesExists = File.Exists(Path.Combine(localAppDataPpath, "Auto Profiles.xml"));
+            //bool systemAppConfigExists = appDataAutoProfilesExists || localAppDataAutoProfilesExists;
+            bool systemAppConfigExists = appDataAutoProfilesExists;
+            bool isSameFolder = appDataAutoProfilesExists && exedirpath == appDataPpath;
 
-            if (programFolderAutoProfilesExists && systemAppConfigExists)
+            if (programFolderAutoProfilesExists && appDataAutoProfilesExists &&
+                !isSameFolder)
             {
                 Global.firstRun = true;
                 Global.multisavespots = true;
@@ -1127,15 +1130,15 @@ namespace DS4Windows
             {
                 SaveWhere(exedirpath);
             }
-            else if (localAppDataAutoProfilesExists)
-            {
-                SaveWhere(localAppDataPpath);
-            }
+            //else if (localAppDataAutoProfilesExists)
+            //{
+            //    SaveWhere(localAppDataPpath);
+            //}
             else if (appDataAutoProfilesExists)
             {
                 SaveWhere(appDataPpath);
             }
-            else if (!programFolderAutoProfilesExists && !systemAppConfigExists)
+            else if (!programFolderAutoProfilesExists && !appDataAutoProfilesExists)
             {
                 Global.firstRun = true;
                 Global.multisavespots = false;

@@ -25,7 +25,7 @@
             <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Width="200">
                 <Button x:Name="appdataBtn" Content="Appdata" Click="AppdataBtn_Click" />
                 <TextBlock TextWrapping="Wrap" TextAlignment="Center">
-                    For those who prefer a regular install. Settings saved at %LocalAppData%\DS4Windows
+                    For those who prefer a regular install. Settings saved at %appdata%\DS4Windows
                 </TextBlock>
             </StackPanel>
         </DockPanel>

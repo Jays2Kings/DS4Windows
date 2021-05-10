@@ -36,11 +36,6 @@ namespace DS4WinWPF.DS4Forms
             {
                 try
                 {
-                    if (Directory.Exists(DS4Windows.Global.localAppDataPpath))
-                    {
-                        Directory.Delete(DS4Windows.Global.localAppDataPpath, true);
-                    }
-
                     if (Directory.Exists(DS4Windows.Global.appDataPpath))
                     {
                         Directory.Delete(DS4Windows.Global.appDataPpath, true);
@@ -74,10 +69,10 @@ namespace DS4WinWPF.DS4Forms
             }
             else if (!multisaves)
             {
-                DS4Windows.Global.SaveDefault(System.IO.Path.Combine(DS4Windows.Global.localAppDataPpath, "Profiles.xml"));
+                DS4Windows.Global.SaveDefault(Path.Combine(DS4Windows.Global.appDataPpath, "Profiles.xml"));
             }
 
-            DS4Windows.Global.SaveWhere(DS4Windows.Global.localAppDataPpath);
+            DS4Windows.Global.SaveWhere(DS4Windows.Global.appDataPpath);
             choiceMade = true;
             Close();
         }

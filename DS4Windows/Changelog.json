@@ -20,7 +20,7 @@
             "* Updated MdXaml to version 1.10.0",
             "* Updated NLog to version 4.7.9",
             "* Check if DS4Windows program folder is actually AppData subfolder when locating program config. Treat case as Program Folder option",
-            "* Added All Files option for Launch Program special action File Dialog. Use Explorer to launch associated program for an arbitray file"],
+            "* Added All Files option for Launch Program special action File Dialog. Use Explorer to launch associated program for an arbitrary file"],
           "editor": "ryochan7",
           "editors_note": ["I'm on break"],
           "updated_at": "2021-05-10T06:11:48+0000"

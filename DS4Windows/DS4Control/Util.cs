@@ -202,6 +202,7 @@ namespace DS4Windows
         {
             int result = -1;
             string tmpPath = Path.Combine(Path.GetTempPath(), "updatercopy.bat");
+            //string tmpPath = Path.GetTempFileName();
             // Create temporary bat script that will later be executed
             using (StreamWriter w = new StreamWriter(new FileStream(tmpPath,
                 FileMode.Create, FileAccess.Write)))
@@ -214,7 +215,7 @@ namespace DS4Windows
                 {
                     w.WriteLine($"@del /S \"{Global.exedirpath}\\Update Files\\DS4Windows\"");
                 }
-                w.WriteLine("@start /b \"\" cmd /c DEL \"%~f0\"&exit /b"); // Attempt to delete myself without opening a time paradox.
+
                 w.Close();
             }
 

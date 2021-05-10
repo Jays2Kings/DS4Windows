@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -8,12 +7,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.Windows.Interop;
 using System.Diagnostics;
@@ -155,8 +150,6 @@ namespace DS4WinWPF.DS4Forms
                     App.rootHub.Start();
                     //root.rootHubtest.Start();
                 }
-
-                //UpdateTheUpdater();
             });
 
             // Log exceptions that might occur
@@ -567,31 +560,6 @@ Suspend support not enabled.", true);
                     break;
 
                 default: break;
-            }
-        }
-
-        private void UpdateTheUpdater()
-        {
-            if (File.Exists(Global.exedirpath + "\\Update Files\\DS4Windows\\DS4Updater.exe"))
-            {
-                Process[] processes = Process.GetProcessesByName("DS4Updater");
-                while (processes.Length > 0)
-                {
-                    Thread.Sleep(500);
-                    processes = Process.GetProcessesByName("DS4Updater");
-                }
-
-                if (!Global.AdminNeeded())
-                {
-                    File.Delete(Global.exedirpath + "\\DS4Updater.exe");
-                    File.Move(Global.exedirpath + "\\Update Files\\DS4Windows\\DS4Updater.exe",
-                        Global.exedirpath + "\\DS4Updater.exe");
-                    Directory.Delete(Global.exedirpath + "\\Update Files", true);
-                }
-                else
-                {
-                    Util.ElevatedCopyUpdater(Global.exedirpath + "\\Update Files\\DS4Windows\\DS4Updater.exe", true);
-                }
             }
         }
 

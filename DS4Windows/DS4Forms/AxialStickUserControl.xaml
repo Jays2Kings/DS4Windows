@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="DS4WinWPF.DS4Forms.AxialStickUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture=""
+             lex:ResxLocalizationProvider.DefaultAssembly="DS4Windows"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
+             mc:Ignorable="d" 
+             d:DesignHeight="180" d:DesignWidth="600">
+    <Grid x:Name="mainGrid">
+        <Grid.Resources>
+            <Thickness x:Key="spaceMargin" Left="10" Bottom="6" />
+            <Style x:Key="gridRowHeight" TargetType="{x:Type RowDefinition}">
+                <Setter Property="Height" Value="30" />
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Style="{StaticResource gridRowHeight}" />
+            <RowDefinition Style="{StaticResource gridRowHeight}" />
+            <RowDefinition Style="{StaticResource gridRowHeight}" />
+            <RowDefinition Style="{StaticResource gridRowHeight}" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="X" Grid.Column="1" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,8" />
+        <TextBlock Text="Y" Grid.Column="2"  FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,8" />
+
+        <Label Content="Dead Zone:" Grid.Row="1" Grid.Column="0" />
+        <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding DeadZoneX,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="1" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
+                                                   Margin="{StaticResource spaceMargin}" />
+        <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding DeadZoneY,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="1" Grid.Column="2" Maximum="1.0" Minimum="0.0" Increment="0.1"
+                                                   Margin="{StaticResource spaceMargin}" />
+
+        <Label Content="Max Zone:" Grid.Row="2" Grid.Column="0" />
+        <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding MaxZoneX}" FormatString="F2" MinWidth="50" Grid.Row="2" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
+                                                   Margin="{StaticResource spaceMargin}" />
+        <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding MaxZoneY}" FormatString="F2" MinWidth="50" Grid.Row="2" Grid.Column="2" Maximum="1.0" Minimum="0.0" Increment="0.1"
+                                                   Margin="{StaticResource spaceMargin}" />
+
+        <Label Content="Anti-dead Zone:" Grid.Row="3" Grid.Column="0" />
+        <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding AntiDeadZoneX}" FormatString="F2" MinWidth="50" Grid.Row="3" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
+                                                   Margin="{StaticResource spaceMargin}" />
+        <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding AntiDeadZoneY}" FormatString="F2" MinWidth="50" Grid.Row="3" Grid.Column="2" Maximum="1.0" Minimum="0.0" Increment="0.1"
+                                                   Margin="{StaticResource spaceMargin}" />
+
+        <Label Content="Max Output:" Grid.Row="4" Grid.Column="0" />
+        <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding MaxOutputX}" FormatString="F2" MinWidth="50" Grid.Row="4" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
+                                                   Margin="{StaticResource spaceMargin}" />
+        <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding MaxOutputY}" FormatString="F2" MinWidth="50" Grid.Row="4" Grid.Column="2" Maximum="1.0" Minimum="0.0" Increment="0.1"
+                                                   Margin="{StaticResource spaceMargin}" />
+    </Grid>
+</UserControl>

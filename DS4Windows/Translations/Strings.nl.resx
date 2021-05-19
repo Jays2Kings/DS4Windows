@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Accel" xml:space="preserve">
+    <value>Versnel</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Actie</value>
+  </data>
+  <data name="AddDirectory" xml:space="preserve">
+    <value>Map toevoegen</value>
+  </data>
+  <data name="AddPrograms" xml:space="preserve">
+    <value>Programma's toevoegen</value>
+  </data>
+  <data name="AddStartMenuPrograms" xml:space="preserve">
+    <value>Startmenu-programmma's toevoegen</value>
+  </data>
+  <data name="AddSteamGames" xml:space="preserve">
+    <value>Steam-spellen toevoegen</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Alles</value>
+  </data>
+  <data name="AutoProfiles" xml:space="preserve">
+    <value>Automatische profielen</value>
+  </data>
+  <data name="Battery" xml:space="preserve">
+    <value>Batterij</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Bladeren</value>
+  </data>
+  <data name="BrowseOtherPrograms" xml:space="preserve">
+    <value>Bladeren naar andere programma's</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="CheckUpdateNow" xml:space="preserve">
+    <value>Updates ophalen</value>
+  </data>
+  <data name="CheckUpdateStartup" xml:space="preserve">
+    <value>Updates ophalen bij opstarten PC</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Legen</value>
+  </data>
+  <data name="CloseMinimizes" xml:space="preserve">
+    <value>Sluiten zorgt voor minimaliseren</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Kleur</value>
+  </data>
+  <data name="Controller1Text" xml:space="preserve">
+    <value>Controller 1</value>
+  </data>
+  <data name="Controller2Text" xml:space="preserve">
+    <value>Controller 2</value>
+  </data>
+  <data name="Controller3Text" xml:space="preserve">
+    <value>Controller 3</value>
+  </data>
+  <data name="Controller4Text" xml:space="preserve">
+    <value>Controller 4</value>
+  </data>
+  <data name="Controllers" xml:space="preserve">
+    <value>Controllers</value>
+  </data>
+  <data name="ControlPanel" xml:space="preserve">
+    <value>Paneel instellingen</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Verwijderen</value>
+  </data>
+  <data name="DriverSetup" xml:space="preserve">
+    <value>Controller/Driver installeren</value>
+  </data>
+  <data name="Duplicate" xml:space="preserve">
+    <value>Kopiëren</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Bewerken</value>
+  </data>
+  <data name="EditAction" xml:space="preserve">
+    <value>Aanpassen van actie</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Exporteren</value>
+  </data>
+  <data name="Full" xml:space="preserve">
+    <value>Volledig</value>
+  </data>
+  <data name="Gyro" xml:space="preserve">
+    <value>Gyro</value>
+  </data>
+  <data name="HideUnchecked" xml:space="preserve">
+    <value>Verberg de NIET aangevinkte</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importeren</value>
+  </data>
+  <data name="LeftStick" xml:space="preserve">
+    <value>Linkse stick</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Logboek</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Naam</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Nieuw</value>
+  </data>
+  <data name="NewAction" xml:space="preserve">
+    <value>Nieuwe actie</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Nieuw profiel aanmaken</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Geen</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Pad</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profiel</value>
+  </data>
+  <data name="ProfileFolder" xml:space="preserve">
+    <value>Profielsbestand</value>
+  </data>
+  <data name="QuickCharge" xml:space="preserve">
+    <value>Snelladen</value>
+  </data>
+  <data name="RecordText" xml:space="preserve">
+    <value>Opnemen</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Verwijderen</value>
+  </data>
+  <data name="RemoveAction" xml:space="preserve">
+    <value>Verwijderen van actie</value>
+  </data>
+  <data name="RightStick" xml:space="preserve">
+    <value>Rechtse stick</value>
+  </data>
+  <data name="Rumble" xml:space="preserve">
+    <value>Vibratie/trillen</value>
+  </data>
+  <data name="RunAtStartup" xml:space="preserve">
+    <value>Starten bij opstarten PC</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Opslaan</value>
+  </data>
+  <data name="SaveProfile" xml:space="preserve">
+    <value>Profiel opslaan</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+  <data name="ShowNotifications" xml:space="preserve">
+    <value>Meldingen tonen</value>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>Geminimaliseerd starten</value>
+  </data>
+  <data name="StartText" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="StopText" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="TouchScroll" xml:space="preserve">
+    <value>Scrollen</value>
+  </data>
+  <data name="TouchSlide" xml:space="preserve">
+    <value>Schuiven</value>
+  </data>
+  <data name="TouchTap" xml:space="preserve">
+    <value>Tikken</value>
+  </data>
+  <data name="Trigger" xml:space="preserve">
+    <value>Trekker</value>
+  </data>
+  <data name="WarningsOnly" xml:space="preserve">
+    <value>Alleen waarschuwingen</value>
+  </data>
+  <data name="RumbleMaxSecs" xml:space="preserve">
+    <value>Maximum vibratie-seconden</value>
+  </data>
+  <data name="RumbleMaxSecsTip" xml:space="preserve">
+    <value>Automatisch stoppen van vibratie/trillen in seconden (0 = Oneindig trillen)</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Titelscherm</value>
+  </data>
+  <data name="MoveUp" xml:space="preserve">
+    <value>Naar boven</value>
+  </data>
+  <data name="MoveDown" xml:space="preserve">
+    <value>Naar beneden</value>
+  </data>
+  <data name="AutoProfPathTip" xml:space="preserve">
+    <value>Process pad. ^ABC = Overeenkomen van de beginstekst (^) | ABC$ = Overeenkomen van de eindtekst ($) | *ABC = Bevat tekstlijn (*)</value>
+  </data>
+  <data name="AutoProfTitleTip" xml:space="preserve">
+    <value>Titelscherm. ^ABC = Overeenkomen van de beginstekst (^) | ABC$ = Overeenkomen van de eindtekst ($) | *ABC = Bevat tekstlijn (*)</value>
+  </data>
+  <data name="GamepadTest" xml:space="preserve">
+    <value>Gamepad testen</value>
+  </data>
+  <data name="EnableOutputDataToDS4" xml:space="preserve">
+    <value>Enable Output data to DS4</value>
+  </data>
+  <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
+    <value>Geef regelmatig licht- en trildata naar de DS4 gamepad.Doe het vinkje uit als je geen data ontvangt.
+Wijzigen op deze instellingen hebben een effect op de verbindingsnelheid van de controller.</value>
+    <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Toepassen</value>
+  </data>
+  <data name="HidNinja" xml:space="preserve">
+    <value>HidNinja</value>
+  </data>
+  <data name="CustomExeName" xml:space="preserve">
+    <value>Aangepaste Exe Naam</value>
+  </data>
+  <data name="CustomExeNameInfo" xml:space="preserve">
+    <value>Sommige spellen voegen een codeblok toe dat zorgt dat de invoer van de DS4 wordt genegeerd als ze DS4Windows.exe of InputMapper.exe zien op hetzelfde moment. Een omweg voor dit codeblok is om DS4Windows.exe te hernoemen zodat de contoleerder faalt en het normaal werkt. Je kan een aangepaste exe name verkrijgen door de toegang te geven aan DS4Updater om dit automatisch aan te passen naar een andere bestandsnaam met een aangepaste versie. Zorg ervoor dat je geen bestandextensie toevoegt.
+
+Example: whyme_DS4Windows</value>
+  </data>
+  <data name="XInputChecker" xml:space="preserve">
+    <value>XInputChecker</value>
+  </data>
+  <data name="Controller5Text" xml:space="preserve">
+    <value>Controller 5</value>
+  </data>
+  <data name="Controller6Text" xml:space="preserve">
+    <value>Controller 6</value>
+  </data>
+  <data name="Controller7Text" xml:space="preserve">
+    <value>Controller 7</value>
+  </data>
+  <data name="Controller8Text" xml:space="preserve">
+    <value>Controller 8</value>
+  </data>
+  <data name="GamepadGyroCameraDescription" xml:space="preserve">
+    <value>Toewijzen uitgangen van controller en binden aan een standaard Xinput-gamepad of DS4-pad. Gyro is toegewezen als een Muisachtige Joystick.</value>
+  </data>
+  <data name="GamepadGyroCameraName" xml:space="preserve">
+    <value>Gamepad met Muisachtige Joystick</value>
+  </data>
+  <data name="GamepadPresetDescription" xml:space="preserve">
+    <value>Toewijzen uitgangen van controller en binden aan een standaard gamepad.</value>
+  </data>
+  <data name="GamepadPresetName" xml:space="preserve">
+    <value>Gamepad</value>
+  </data>
+  <data name="KBMGyroMouseDescription" xml:space="preserve">
+    <value>Toewijzen uitgangen van controller en binden aan virtuele- Muis en toetsenbord. Handig voor schietspellen dat geen controller ondersteuning hebben. Gyro is toegewezen als een virtuele Muis.</value>
+  </data>
+  <data name="KBMGyroMouseName" xml:space="preserve">
+    <value>Toetsenbord en Muis-bewegingen met gyro Muis.</value>
+  </data>
+  <data name="KBMPresetDescription" xml:space="preserve">
+    <value>Toewijzen uitgang van controller en binden aan virtuele- Muis en toetsenbord.ontrols. Handig voor schietspellen dat geen controller ondersteuning hebben.</value>
+  </data>
+  <data name="KBMPresetName" xml:space="preserve">
+    <value>Toetsenbord en Muis</value>
+  </data>
+  <data name="MixedGyroMousePresetDescription" xml:space="preserve">
+    <value>Toewijzen van knoppen en assen als standaard gamepad. Gyro is toegewezen als een virtuele Muis.</value>
+  </data>
+  <data name="MixedGyroMousePresetName" xml:space="preserve">
+    <value>Gamepad met Gyro Muis</value>
+  </data>
+  <data name="MixedPresetDescription" xml:space="preserve">
+    <value>Toewijzen uitgangen van controller en binding als een gemixte Xinput gamepad + Muis.</value>
+  </data>
+  <data name="MixedPresetName" xml:space="preserve">
+    <value>Gamepad met Hoogaccurate camera</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beschrijving</value>
+  </data>
+  <data name="PresetIntroText" xml:space="preserve">
+    <value>Wilt u één van de vooraf ingestelde opties gebruiken? Kies Nee als je een leeg Gamepad profiel wenst.</value>
+  </data>
+  <data name="Presets" xml:space="preserve">
+    <value>Voorinstellingen</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>Wijzigenlogboek</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Sluiten</value>
+  </data>
+  <data name="Profiles" xml:space="preserve">
+    <value>Profielen</value>
+  </data>
+  <data name="NoControllersConnected" xml:space="preserve">
+    <value>Geen controllers verbonden (Max {0})</value>
+  </data>
+  <data name="FlickThreshold" xml:space="preserve">
+    <value>Flick Threshold</value>
+  </data>
+  <data name="FlickTime" xml:space="preserve">
+    <value>Flick Time</value>
+  </data>
+  <data name="MinAngleThreshold" xml:space="preserve">
+    <value>Min Angle Threshold</value>
+  </data>
+  <data name="RealWorldCalibration" xml:space="preserve">
+    <value>Real World Calibration</value>
+  </data>
+</root>

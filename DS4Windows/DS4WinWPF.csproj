@@ -1,0 +1,263 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Platforms>x64;x86</Platforms>
+    <RuntimeIdentifiers>win-x64;win-x86</RuntimeIdentifiers>
+    <RootNamespace>DS4WinWPF</RootNamespace>
+    <AssemblyName>DS4Windows</AssemblyName>
+    <ApplicationIcon>DS4W.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <StartupObject>DS4WinWPF.App</StartupObject>
+    <NeutralLanguage>en</NeutralLanguage>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <EnableNETAnalyzers>false</EnableNETAnalyzers>
+    <ServerGarbageCollection>true</ServerGarbageCollection>
+    <AssemblyVersion>3.0.5</AssemblyVersion>
+    <FileVersion>3.0.5</FileVersion>
+    <Version>3.0.5</Version>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <Copyright>Copyright © Scarlet.Crush Productions 2012, 2013; InhexSTER, HecticSeptic, electrobrains 2013, 2014; Jays2Kings 2013, 2014, 2015, 2016; Ryochan7 2017, 2018, 2019, 2020, 2021</Copyright>
+    <Description>Sony DualShock 4 to Microsoft Xinput controller mapper</Description>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>none</ErrorReport>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>none</ErrorReport>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="libs\x64\**" Condition="'$(Platform)' != 'x64'" />
+    <None Remove="libs\x86\**" Condition="'$(Platform)' != 'x86'" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="BezierCurveEditor\build.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BezierCurveEditor\index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="bloomtom.HttpProgress" Version="2.3.2" />
+    <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="4.6.97" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf.NetCore" Version="1.0.18" />
+    <PackageReference Include="MdXaml" Version="1.10.0" />
+    <PackageReference Include="NLog" Version="4.7.9" />
+    <PackageReference Include="Ookii.Dialogs.Wpf" Version="3.1.0" />
+    <PackageReference Include="System.Management" Version="5.0.0" />
+    <PackageReference Include="TaskScheduler" Version="2.9.1" />
+    <PackageReference Include="WPFLocalizeExtension" Version="3.8.0" />
+
+    <Reference Include="Nefarius.ViGEm.Client">
+      <HintPath>..\libs\$(Platform)\Nefarius.ViGEm.Client\Nefarius.ViGEm.Client.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\social\bitchute.png" />
+    <Resource Include="Resources\social\bittube.png" />
+	<Resource Include="Resources\social\GitHub-Mark-Light-64px.png" />
+    <Resource Include="Resources\social\GitHub-Mark-64px.png" />
+    <Resource Include="Resources\social\mastodon.png" />
+    <Resource Include="Resources\social\minds.png" />
+    <Resource Include="Resources\social\parler.png" />
+    <Resource Include="Resources\social\twitter_logo_initial.png" />
+    <Resource Include="Resources\social\youtube_social_icon_red.png" />
+
+    <Resource Include="Resources\DS4 Config_white.png" />
+    <Resource Include="Resources\newprofile_white.png" />
+    <Resource Include="Resources\copy_white.png" />
+    <Resource Include="Resources\delete_white.png" />
+    <Resource Include="Resources\edit_white.png" />
+    <Resource Include="Resources\export_white.png" />
+    <Resource Include="Resources\import_white.png" />
+    <Resource Include="Resources\clock_white.png" />
+    <Resource Include="Resources\BT_white.png" />
+    <Resource Include="Resources\cancel_white.png" />
+    <Resource Include="Resources\checked_white.png" />
+    <Resource Include="Resources\key-solid_white.png" />
+    <Resource Include="Resources\keydown_white.png" />
+    <Resource Include="Resources\keyup_white.png" />
+    <Resource Include="Resources\USB_white.png" />
+    <Resource Include="Resources\DS4W - Black.ico" />
+    <Resource Include="Resources\key-solid.png" />
+    <Resource Include="Resources\rainbowCCrop.png" />
+    <Resource Include="Resources\rainbowC.png" />
+    <Resource Include="Resources\DS4 lightbar.png" />
+    <Resource Include="Resources\keydown.png" />
+    <Resource Include="Resources\keyup.png" />
+    <Resource Include="Resources\clock.png" />
+    <Resource Include="Resources\right touch.png" />
+    <Resource Include="Resources\left touch.png" />
+    <Resource Include="Resources\mouse.png" />
+    <Resource Include="Resources\360 highlight.png" />
+    <Resource Include="Resources\360 map.png" />
+    <Resource Include="Resources\size.png" />
+    <Resource Include="Resources\DS4-Config_PS.png" />
+    <Resource Include="Resources\DS4-Config_Right.png" />
+    <Resource Include="Resources\DS4-Config_Left.png" />
+    <Resource Include="Resources\DS4-Config_Down.png" />
+    <Resource Include="Resources\DS4-Config_Up.png" />
+    <Resource Include="Resources\DS4-Config_LS.png" />
+    <Resource Include="Resources\DS4-Config_TouchUpper.png" />
+    <Resource Include="Resources\DS4-Config_TouchMulti.png" />
+    <Resource Include="Resources\DS4-Config_TouchRight.png" />
+    <Resource Include="Resources\DS4-Config_TouchLeft.png" />
+    <Resource Include="Resources\DS4-Config_options.png" />
+    <Resource Include="Resources\DS4-Config_Share.png" />
+    <Resource Include="Resources\DS4-Config_R2.png" />
+    <Resource Include="Resources\DS4-Config_L2.png" />
+    <Resource Include="Resources\DS4-Config_R1.png" />
+    <Resource Include="Resources\DS4-Config_L1.png" />
+    <Resource Include="Resources\DS4-Config_Triangle.png" />
+    <Resource Include="Resources\DS4-Config_Square.png" />
+    <Resource Include="Resources\DS4-Config_Circle.png" />
+    <Resource Include="Resources\DS4-Config_Cross.png" />
+    <Resource Include="Resources\rainbow.png" />
+    <Resource Include="Resources\DS4-Config_RS.png" />
+    <Resource Include="Resources\DS4 Config.png" />
+    <Resource Include="Resources\Pairmode.png" />
+    <Resource Include="Resources\USB.png" />
+
+    <Resource Include="Resources\newprofile.png" />
+    <Resource Include="Resources\BT.png" />
+    <Resource Include="Resources\cancel.png" />
+    <Resource Include="Resources\checked.png" />
+    <Resource Include="Resources\copy.png" />
+    <Resource Include="Resources\DS4W - White.ico" />
+    <Resource Include="Resources\DS4W.ico" />
+    <Resource Include="Resources\edit.png" />
+    <Resource Include="Resources\delete.png" />
+    <Resource Include="Resources\export.png" />
+    <Resource Include="Resources\import.png" />
+    
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Translations\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+
+    <Compile Update="Translations\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+
+    <EmbeddedResource Update="Translations\Strings.ar.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.cs.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.de.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.es.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.fr.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.he.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.hu-HU.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.it.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.ja.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.nl.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.pl.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.pt.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.pt-BR.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.ru.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.uk-UA.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.zh-CN.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.zh-TW.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="rem Copy compiled l18n assemblies to alt folder&#xD;&#xA;GOTO END&#xD;&#xA;if not exist $(TargetDir)Lang mkdir $(TargetDir)Lang&#xD;&#xA;set langs=cs de es fr he it ja nl pt pt-BR ru zh-CN zh-TW uk-UA hu-HU pl ar&#xD;&#xA;&#xD;&#xA;for %25%25l in (%25langs%25) do (&#xD;&#xA;  xcopy $(TargetDir)%25%25l $(TargetDir)Lang\%25%25l\ /s /y&#xD;&#xA;)&#xD;&#xA;&#xD;&#xA;echo $(Version)&gt; $(ProjectDir)\newest.txt&#xD;&#xA;&#xD;&#xA;:END&#xD;&#xA;" />
+  </Target>
+</Project>

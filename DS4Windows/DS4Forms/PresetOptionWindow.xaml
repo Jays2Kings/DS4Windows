@@ -1,0 +1,58 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
+        x:Class="DS4WinWPF.DS4Forms.PresetOptionWindow"
+        lex:LocalizeDictionary.DesignCulture=""
+        lex:ResxLocalizationProvider.DefaultAssembly="DS4Windows"
+        lex:ResxLocalizationProvider.DefaultDictionary="Strings"
+        mc:Ignorable="d"
+        Title="Select Preset" Height="250" Width="600" Padding="0"
+        Style="{DynamicResource WindowStyle}">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+    <DockPanel>
+        <TabControl x:Name="screensTabControl" BorderBrush="{x:Null}">
+            <TabItem x:Name="IntroTab" Header="Intro">
+                <DockPanel Margin="4,0,4,8">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+                        <Button x:Name="noPresetBtn" Content="No" MinWidth="60" Margin="0,0,20,0" TabIndex="0" Click="NoPresetBtn_Click" />
+                        <Button x:Name="yesPresetBtn" Content="Yes" MinWidth="60" TabIndex="1" Click="YesPresetBtn_Click" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="{lex:Loc PresetIntrotext}" TextWrapping="Wrap" />
+                    </StackPanel>
+                </DockPanel>
+            </TabItem>
+            <TabItem x:Name="PresetListTab" Header="Preset Menu">
+                <DockPanel Margin="4,0,4,8">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                        <Label Content="{lex:Loc Presets}" />
+                        <ComboBox x:Name="presetComboBox" ItemsSource="{Binding PresetsList, Mode=OneTime}" SelectedIndex="{Binding PresetIndex, FallbackValue=0}" MinWidth="200" Margin="20,0,0,0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel x:Name="outputContStackPanel" Orientation="Horizontal" DockPanel.Dock="Top" Visibility="{Binding PresetDisplayOutputCont, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" Margin="0,10,0,10">
+                        <Label Content="Output Controller:" />
+                        <ComboBox ItemsSource="{Binding OutputChoices}" DisplayMemberPath="DisplayName" SelectedValuePath="ChoiceValue" SelectedValue="{Binding ControllerChoice}" Margin="8,0,0,0" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+                        <Button x:Name="presetCancelBtn" Content="{lex:Loc Cancel}" MinWidth="60" Margin="0,0,20,0" Click="PresetCancelBtn_Click" />
+                        <Button x:Name="presetApplyBtn" Content="{lex:Loc Apply}" MinWidth="60" Click="PresetApplyBtn_Click" />
+                    </StackPanel>
+                    <Label Content="{lex:Loc Description}" FontSize="10" FontWeight="Bold" DockPanel.Dock="Top" />
+                    <TextBlock Text="{Binding PresetDescription, Mode=OneWay}" DockPanel.Dock="Bottom" TextWrapping="Wrap" />
+                </DockPanel>
+
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

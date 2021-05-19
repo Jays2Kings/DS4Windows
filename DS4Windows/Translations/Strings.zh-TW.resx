@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Accel" xml:space="preserve">
+    <value>加速儀</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="AddDirectory" xml:space="preserve">
+    <value>新增資料夾</value>
+  </data>
+  <data name="AddPrograms" xml:space="preserve">
+    <value>新增應用程式</value>
+  </data>
+  <data name="AddStartMenuPrograms" xml:space="preserve">
+    <value>新增 [開始]功能表上 的應用程式</value>
+  </data>
+  <data name="AddSteamGames" xml:space="preserve">
+    <value>新增 Steam 上的遊戲</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="AutoProfiles" xml:space="preserve">
+    <value>自動設定檔</value>
+  </data>
+  <data name="Battery" xml:space="preserve">
+    <value>電量</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>瀏覽</value>
+  </data>
+  <data name="BrowseOtherPrograms" xml:space="preserve">
+    <value>瀏覽其它應用程式</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="CheckUpdateNow" xml:space="preserve">
+    <value>立即檢查更新</value>
+  </data>
+  <data name="CheckUpdateStartup" xml:space="preserve">
+    <value>啟動時檢查更新</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="CloseMinimizes" xml:space="preserve">
+    <value>關閉時最小化</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>顏色</value>
+  </data>
+  <data name="Controller1Text" xml:space="preserve">
+    <value>控制器1</value>
+  </data>
+  <data name="Controller2Text" xml:space="preserve">
+    <value>控制器2</value>
+  </data>
+  <data name="Controller3Text" xml:space="preserve">
+    <value>控制器3</value>
+  </data>
+  <data name="Controller4Text" xml:space="preserve">
+    <value>控制器4</value>
+  </data>
+  <data name="Controllers" xml:space="preserve">
+    <value>控制器</value>
+  </data>
+  <data name="ControlPanel" xml:space="preserve">
+    <value>控制面板</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>刪除</value>
+  </data>
+  <data name="DriverSetup" xml:space="preserve">
+    <value>控制器/驅動程序設置</value>
+  </data>
+  <data name="Duplicate" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>編輯</value>
+  </data>
+  <data name="EditAction" xml:space="preserve">
+    <value>編輯操作</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>匯出</value>
+  </data>
+  <data name="Full" xml:space="preserve">
+    <value>充滿</value>
+  </data>
+  <data name="Gyro" xml:space="preserve">
+    <value>陀螺儀</value>
+  </data>
+  <data name="HideUnchecked" xml:space="preserve">
+    <value>隱藏未勾選</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>匯入</value>
+  </data>
+  <data name="LeftStick" xml:space="preserve">
+    <value>左類比</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>日誌</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名稱</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="NewAction" xml:space="preserve">
+    <value>新增操作</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>新增設定檔</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>無</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>路徑</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>設定檔</value>
+  </data>
+  <data name="ProfileFolder" xml:space="preserve">
+    <value>設定檔資料夾</value>
+  </data>
+  <data name="QuickCharge" xml:space="preserve">
+    <value>快速充電</value>
+  </data>
+  <data name="RecordText" xml:space="preserve">
+    <value>錄製</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>移除</value>
+  </data>
+  <data name="RemoveAction" xml:space="preserve">
+    <value>移除操作</value>
+  </data>
+  <data name="RightStick" xml:space="preserve">
+    <value>右類比</value>
+  </data>
+  <data name="Rumble" xml:space="preserve">
+    <value>震動</value>
+  </data>
+  <data name="RunAtStartup" xml:space="preserve">
+    <value>開機時自動啟動</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="SaveProfile" xml:space="preserve">
+    <value>保存設定檔</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>設置</value>
+  </data>
+  <data name="ShowNotifications" xml:space="preserve">
+    <value>顯示通知</value>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>開始時最小化</value>
+  </data>
+  <data name="StartText" xml:space="preserve">
+    <value>開始</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="StopText" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="TouchScroll" xml:space="preserve">
+    <value>捲動</value>
+  </data>
+  <data name="TouchSlide" xml:space="preserve">
+    <value>滑動</value>
+  </data>
+  <data name="TouchTap" xml:space="preserve">
+    <value>觸碰</value>
+  </data>
+  <data name="Trigger" xml:space="preserve">
+    <value>觸發</value>
+  </data>
+  <data name="WarningsOnly" xml:space="preserve">
+    <value>只有警告</value>
+  </data>
+  <data name="RumbleMaxSecs" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="RumbleMaxSecsTip" xml:space="preserve">
+    <value>自動停止震動的時間，單位為秒 (0則不自動停止)</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>視窗標題</value>
+  </data>
+  <data name="MoveUp" xml:space="preserve">
+    <value>上移</value>
+  </data>
+  <data name="MoveDown" xml:space="preserve">
+    <value>下移</value>
+  </data>
+  <data name="AutoProfPathTip" xml:space="preserve">
+    <value>執行檔路徑. ^ABC = 在字符串開頭匹配 (^) | ABC$ = 在字符串末尾匹配 ($) | *ABC = 包含一個字符串 (*)</value>
+  </data>
+  <data name="AutoProfTitleTip" xml:space="preserve">
+    <value>視窗標題. ^ABC = 在字符串開頭匹配 (^) | ABC$ = 在字符串末尾匹配 ($) | *ABC = 包含一個字符串 (*)</value>
+  </data>
+  <data name="GamepadTest" xml:space="preserve">
+    <value>遊戲控制器輸入測試</value>
+  </data>
+  <data name="EnableOutputDataToDS4" xml:space="preserve">
+    <value>啟用輸出資料到DS4</value>
+  </data>
+  <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
+    <value>定期將光條和震動的資料輸出到DS4遊戲控制器。 如果遊戲控制器不支援接收資料時，請取消勾選。
+對此選項所做的更動，會在遊戲控制器連接時生效。</value>
+    <comment>要在Visual Studio資源編輯器中在字符串資源值中輸入換行符，請按Shift + Enter。</comment>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>套用</value>
+  </data>
+  <data name="HidNinja" xml:space="preserve">
+    <value>HidNinja</value>
+  </data>
+  <data name="CustomExeName" xml:space="preserve">
+    <value>自定義 Exe 名稱</value>
+  </data>
+  <data name="CustomExeNameInfo" xml:space="preserve">
+    <value>如果遊戲檢測到當時正在運行的 DS4Windows.exe 或 InputMapper.exe ，則某些遊戲執行的攔阻會導致忽略DS4的輸入。 解決該問題的方法是重命名 DS4Windows.exe ，以便讓遊戲中的檢查失效。 在此處指定自定義的 exe 執行檔名稱可以使 DS4Updater 自動將 DS4Windows 的自定義副本更新為想要的檔名。 確保省略副檔名。
+
+例如: whyme_DS4Windows</value>
+  </data>
+  <data name="XInputChecker" xml:space="preserve">
+    <value>XInputChecker</value>
+  </data>
+  <data name="Controller5Text" xml:space="preserve">
+    <value>控制器5</value>
+  </data>
+  <data name="Controller6Text" xml:space="preserve">
+    <value>控制器6</value>
+  </data>
+  <data name="Controller7Text" xml:space="preserve">
+    <value>控制器7</value>
+  </data>
+  <data name="Controller8Text" xml:space="preserve">
+    <value>控制器8</value>
+  </data>
+  <data name="GamepadGyroCameraDescription" xml:space="preserve">
+    <value>將控制器的輸出映射到標準 XInput 遊戲控制器或DS4控制器。 陀螺映射到類滑鼠的操縱桿。
+Maps the controller output to a standard XInput gamepad or DS4 pad. Gyro is mapped to a Mouse-like Joystick.</value>
+  </data>
+  <data name="GamepadGyroCameraName" xml:space="preserve">
+    <value>帶有類滑鼠的操縱桿的遊戲控制器(Gamepad with Mouse-like Joystick)</value>
+  </data>
+  <data name="GamepadPresetDescription" xml:space="preserve">
+    <value>將控制器的輸出映射到標準遊戲控制器
+Maps the controller output to a standard gamepad</value>
+  </data>
+  <data name="GamepadPresetName" xml:space="preserve">
+    <value>遊戲控制器</value>
+  </data>
+  <data name="KBMGyroMouseDescription" xml:space="preserve">
+    <value>將控制器的輸出映射到虛擬鍵盤+滑鼠的控制。 對於不支持遊戲控制器的FPS第一人稱射擊遊戲很有用。 陀螺儀已映射到虛擬滑鼠。
+Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support. Gyro is mapped to a virtual Mouse.</value>
+  </data>
+  <data name="KBMGyroMouseName" xml:space="preserve">
+    <value>帶有利用陀螺儀來控制滑鼠的鍵盤+滑鼠的控制器(KB+M Controls with Gyro Mouse)</value>
+  </data>
+  <data name="KBMPresetDescription" xml:space="preserve">
+    <value>將控制器的輸出映射到虛擬鍵盤+滑鼠的控制。 對於不支持遊戲控制器的FPS第一人稱射擊遊戲很有用。
+Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support.</value>
+  </data>
+  <data name="KBMPresetName" xml:space="preserve">
+    <value>鍵盤+滑鼠的控制器(KB+M Controls)</value>
+  </data>
+  <data name="MixedGyroMousePresetDescription" xml:space="preserve">
+    <value>將按鈕和六軸映射到標準遊戲控制器。 將陀螺儀映射到虛擬滑鼠
+Maps the buttons and axes to a standard gamepad. Maps the Gyro to a virtual mouse</value>
+  </data>
+  <data name="MixedGyroMousePresetName" xml:space="preserve">
+    <value>帶有利用陀螺儀來控制滑鼠的遊戲控制器(Gamepad with Gyro Mouse)</value>
+  </data>
+  <data name="MixedPresetDescription" xml:space="preserve">
+    <value>將控制器的輸出映射到混合的 XInput 遊戲控制器+右類比滑鼠。
+Maps the controller output to mixed XInput gamepad + RS mouse.</value>
+  </data>
+  <data name="MixedPresetName" xml:space="preserve">
+    <value>帶有高精度設相機控制的遊戲控制器(Gamepad with High Precision Camera)</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>說明</value>
+  </data>
+  <data name="PresetIntroText" xml:space="preserve">
+    <value>您要使用預設選項嗎？ 選擇“否”將會使得設定檔編輯器使用空的控制器設定檔。</value>
+  </data>
+  <data name="Presets" xml:space="preserve">
+    <value>預設集</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>更新日誌</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="Profiles" xml:space="preserve">
+    <value>設定檔</value>
+  </data>
+  <data name="NoControllersConnected" xml:space="preserve">
+    <value>未連接控制器 (最大 {0})</value>
+  </data>
+  <data name="FlickThreshold" xml:space="preserve">
+    <value>Flick Threshold</value>
+  </data>
+  <data name="FlickTime" xml:space="preserve">
+    <value>Flick Time</value>
+  </data>
+  <data name="MinAngleThreshold" xml:space="preserve">
+    <value>Min Angle Threshold</value>
+  </data>
+  <data name="RealWorldCalibration" xml:space="preserve">
+    <value>Real World Calibration</value>
+  </data>
+</root>

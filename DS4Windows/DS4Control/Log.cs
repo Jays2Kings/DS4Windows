@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace DS4Windows
 {
-    public class Log
+    public class AppLogger
     {
         public static event EventHandler<DebugEventArgs> TrayIconLog;
         public static event EventHandler<DebugEventArgs> GuiLog;
 
-        public static void LogToGui(string data, bool warning)
+        public static void LogToGui(string data, bool warning, bool temporary = false)
         {
             if (GuiLog != null)
             {
-                GuiLog(null, new DebugEventArgs(data, warning));
+                GuiLog(null, new DebugEventArgs(data, warning, temporary));
             }
         }
 

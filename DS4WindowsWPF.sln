@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS4WinWPF", "DS4Windows\DS4WinWPF.csproj", "{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Debug|x64.ActiveCfg = Debug|x64
+		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Debug|x64.Build.0 = Debug|x64
+		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Debug|x86.ActiveCfg = Debug|x86
+		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Debug|x86.Build.0 = Debug|x86
+		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Release|x64.ActiveCfg = Release|x64
+		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Release|x64.Build.0 = Release|x64
+		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Release|x86.ActiveCfg = Release|x86
+		{0135A24D-5DBB-483C-9FC5-9A869E23DA9A}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2BE30981-376A-4DEA-B2B1-247BADB864FC}
+	EndGlobalSection
+EndGlobal

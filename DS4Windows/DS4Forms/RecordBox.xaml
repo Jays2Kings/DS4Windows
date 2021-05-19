@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="DS4WinWPF.DS4Forms.RecordBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture=""
+             lex:ResxLocalizationProvider.DefaultAssembly="DS4Windows"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
+             xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="800" KeyDown="UserControl_KeyDown" KeyUp="UserControl_KeyUp" MouseDown="UserControl_MouseDown" MouseUp="UserControl_MouseUp" Focusable="True" >
+    <UserControl.Resources>
+        <DataTemplate x:Key="DisplayTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding Image}" Height="16" Width="16" Margin="0,0,8,0" />
+                <TextBlock Text="{Binding Step.Name}" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="EditTemplate">
+            <xctk:IntegerUpDown x:Name="waitIUD" Value="{Binding DisplayValue,UpdateSourceTrigger=Explicit}"
+                                KeyDown="WaitIUD_KeyDown" />
+        </DataTemplate>
+        <DataTemplate x:Key="EditRumbleTemplate">
+            <StackPanel x:Name="rumbleEditPabel" Orientation="Horizontal">
+                <xctk:IntegerUpDown x:Name="heavyRumbleUD" Value="{Binding RumbleHeavy,UpdateSourceTrigger=Explicit}" Minimum="0" Maximum="255" />
+                <xctk:IntegerUpDown x:Name="lightRumbleUD" Value="{Binding RumbleLight,UpdateSourceTrigger=Explicit}" Minimum="0" Maximum="255" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <DockPanel Margin="4">
+        <DockPanel DockPanel.Dock="Right" Width="200" LastChildFill="False" Margin="4,0">
+            <StackPanel DockPanel.Dock="Top">
+                <UniformGrid Rows="1">
+                    <Button x:Name="saveBtn" Content="{lex:Loc Save}" Click="SaveBtn_Click" Margin="0,0,5,0" />
+                    <Button x:Name="cancelBtn" Content="{lex:Loc Cancel}" Click="CancelBtn_Click" Margin="5,0,0,0" />
+                </UniformGrid>
+
+                <Button x:Name="recordBtn" Content="{lex:Loc RecordText}" Margin="0,10,0,0" Click="RecordBtn_Click" />
+
+                <UniformGrid Rows="1" Columns="2" FirstColumn="1" Margin="0,10,0,0">
+                    <Button x:Name="clearStepsBtn" Content="{lex:Loc Clear}" Margin="5,00,0,0" Click="ClearStepsBtn_Click" />
+                </UniformGrid>
+                
+                <UniformGrid Rows="1" Margin="0,10,0,0">
+                    <Button x:Name="loadPresetBtn" Content="Load Preset" Margin="0,0,5,0" Click="LoadPresetBtn_Click">
+                        <Button.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem x:Name="cycleProgPresetMenuItem" Header="Cycle Programs" Click="CycleProgPresetMenuItem_Click" />
+                                <MenuItem x:Name="loadPresetFromFileMenuItem" Header="From File..." Click="LoadPresetFromFileMenuItem_Click" />
+                            </ContextMenu>
+                        </Button.ContextMenu>
+                    </Button>
+                    <Button x:Name="savePresetBtn" Content="Save Preset" Margin="5,0,0,0" Click="SavePresetBtn_Click" />
+                </UniformGrid>
+
+                <Button x:Name="addWaitTimeBtn" Content="Insert Wait" Margin="0,10,5,0" Click="AddWaitTimeBtn_Click" />
+
+                <CheckBox x:Name="recordDelaysCk" Content="Record Delays" HorizontalAlignment="Center" IsChecked="{Binding RecordDelays}" Margin="0,10,0,0" />
+                <TextBlock Text="Double click on a wait to edit the time" Margin="0,10,0,0" />
+                <ComboBox x:Name="macroModeCombo" SelectedIndex="{Binding MacroModeIndex,FallbackValue=0}" Margin="0,10,0,0">
+                    <ComboBoxItem Content="Play Once" />
+                    <ComboBoxItem Content="Repeat While Held" />
+                </ComboBox>
+                <CheckBox x:Name="useScanCode" Content="Scan Code" IsChecked="{Binding UseScanCode}" Margin="0,10,0,0"
+                          HorizontalAlignment="Center" />
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Bottom">
+                <StackPanel x:Name="mouseButtonsPanel">
+                    <Button x:Name="fourMouseBtn" Content="4th Mouse Button" Width="120" Click="FourMouseBtn_Click" />
+                    <Button x:Name="fiveMouseBtn" Content="5th Mouse Button" Width="120" Click="FiveMouseBtn_Click" Margin="0,10,0,0" />
+                </StackPanel>
+
+                <StackPanel x:Name="extraConPanel">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">
+                        <Button x:Name="addRumbleBtn" Content="Add Rumble" Width="124" Click="AddRumbleBtn_Click" />
+                        <Image Source="/DS4Windows;component/Resources/left touch.png" Width="43" Visibility="Collapsed" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+                        <Button x:Name="changeLightBtn" Content="Change Lightbar Color" Width="124" Click="ChangeLightBtn_Click" />
+                        <Image Source="/DS4Windows;component/Resources/left touch.png" Width="43" Visibility="Collapsed" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </DockPanel>
+        <DockPanel x:Name="leftSideDockPanel" DockPanel.Dock="Left">
+            <DockPanel DockPanel.Dock="Top">
+                <Label Content="Macro Order" />
+                <Label Content="Use Keyboard/Mouse + Controller 1 to record" DockPanel.Dock="Right" HorizontalAlignment="Right" />
+            </DockPanel>
+            <ListBox x:Name="macroListBox" ItemsSource="{Binding MacroSteps}" SelectedIndex="{Binding MacroStepIndex}"
+                     ItemTemplate="{StaticResource DisplayTemplate}" MouseDoubleClick="MacroListBox_MouseDoubleClick"
+                     LostFocus="MacroListBox_LostFocus">
+            </ListBox>
+        </DockPanel>
+    </DockPanel>
+</UserControl>

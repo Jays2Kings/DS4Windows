@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="DS4WinWPF.DS4Forms.OutputSlotManagerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="800">
+    <DockPanel Margin="4,8">
+        <StackPanel x:Name="plugDevStackPanel" Orientation="Horizontal" DockPanel.Dock="Bottom" Height="30" Margin="0,20,0,0">
+            <Button x:Name="pluginBtn" MinWidth="60" Content="Plug" IsEnabled="{Binding PluginEnabled}" Click="PluginBtn_Click" />
+            <Button x:Name="unplugBtn" MinWidth="60" Content="Unplug" IsEnabled="{Binding UnpluginEnabled}" Click="UnplugBtn_Click" Margin="30,0,0,0" />
+        </StackPanel>
+
+        <DockPanel>
+            <StackPanel x:Name="sideStackPanel" Orientation="Vertical" Width="100" DockPanel.Dock="Right" Visibility="{Binding SidePanelVisibility}" Margin="10,0,10,0">
+                <StackPanel x:Name="outSlotStackPanel">
+                    <ComboBox x:Name="reserveCombo" SelectedIndex="{Binding ReserveChoice,FallbackValue=0}">
+                        <ComboBoxItem Tag="0" Content="Dynamic" />
+                        <ComboBoxItem Tag="1" Content="Permanent" />
+                    </ComboBox>
+
+                    <Button x:Name="slotChangeAcceptBtn" Content="Accept" IsEnabled="{Binding Dirty,FallbackValue=False}"
+                            Click="SlotChangeAcceptBtn_Click" Margin="0,8,0,0" />
+                </StackPanel>
+            </StackPanel>
+            <ListView x:Name="currentOutDevLV" ItemsSource="{Binding SlotDeviceEntries}" SelectedIndex="{Binding SelectedIndex,Mode=OneWayToSource}" DockPanel.Dock="Top">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="200" Header="Current">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding CurrentType}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="200" Header="Requested">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DesiredType}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="60" Header="Active">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding BoundInput,Mode=OneWay}" IsEnabled="False" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
+
+        <!--<ListView x:Name="permanentOutDevLV" IsEnabled="False" DockPanel.Dock="Top" Height="200">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding DevType}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>-->
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Accel" xml:space="preserve">
+    <value>Przysp.</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Akcja</value>
+  </data>
+  <data name="AddDirectory" xml:space="preserve">
+    <value>Dodaj folder</value>
+  </data>
+  <data name="AddPrograms" xml:space="preserve">
+    <value>Dodaj programy</value>
+  </data>
+  <data name="AddStartMenuPrograms" xml:space="preserve">
+    <value>Dodaj programy Menu Start</value>
+  </data>
+  <data name="AddSteamGames" xml:space="preserve">
+    <value>Dodaj gry ze Steama</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Wszystko</value>
+  </data>
+  <data name="AutoProfiles" xml:space="preserve">
+    <value>Autom. profil</value>
+  </data>
+  <data name="Battery" xml:space="preserve">
+    <value>Bateria</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Przeglądaj</value>
+  </data>
+  <data name="BrowseOtherPrograms" xml:space="preserve">
+    <value>Inne programy</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+  <data name="CheckUpdateNow" xml:space="preserve">
+    <value>Sprawdź aktualizacje</value>
+  </data>
+  <data name="CheckUpdateStartup" xml:space="preserve">
+    <value>Sprawdzaj aktualizacje przy uruchamianiu programu</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Wyczyść</value>
+  </data>
+  <data name="CloseMinimizes" xml:space="preserve">
+    <value>Minimalizuj program po zamknięciu</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Kolor</value>
+  </data>
+  <data name="Controller1Text" xml:space="preserve">
+    <value>Kontroler 1</value>
+  </data>
+  <data name="Controller2Text" xml:space="preserve">
+    <value>Kontroler 2</value>
+  </data>
+  <data name="Controller3Text" xml:space="preserve">
+    <value>Kontroler 3</value>
+  </data>
+  <data name="Controller4Text" xml:space="preserve">
+    <value>Kontroler 4</value>
+  </data>
+  <data name="Controllers" xml:space="preserve">
+    <value>Kontrolery</value>
+  </data>
+  <data name="ControlPanel" xml:space="preserve">
+    <value>Panel sterowania</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="DriverSetup" xml:space="preserve">
+    <value>Konfiguracja kontrolera / sterownika</value>
+  </data>
+  <data name="Duplicate" xml:space="preserve">
+    <value>Kopiuj</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edytuj</value>
+  </data>
+  <data name="EditAction" xml:space="preserve">
+    <value>Edytuj akcję</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Eksportuj</value>
+  </data>
+  <data name="Full" xml:space="preserve">
+    <value>Pełny</value>
+  </data>
+  <data name="Gyro" xml:space="preserve">
+    <value>Żyroskop</value>
+  </data>
+  <data name="HideUnchecked" xml:space="preserve">
+    <value>Ukryj niezaznaczone</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importuj</value>
+  </data>
+  <data name="LeftStick" xml:space="preserve">
+    <value>Lewy drążek</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Dziennik</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nazwa</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Nowy</value>
+  </data>
+  <data name="NewAction" xml:space="preserve">
+    <value>Nowa akcja</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Nowy profil</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Brak</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Ścieżka</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="ProfileFolder" xml:space="preserve">
+    <value>Folder z profilami</value>
+  </data>
+  <data name="QuickCharge" xml:space="preserve">
+    <value>Szybkie ładowanie</value>
+  </data>
+  <data name="RecordText" xml:space="preserve">
+    <value>Nagraj</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="RemoveAction" xml:space="preserve">
+    <value>Usuń akcję</value>
+  </data>
+  <data name="RightStick" xml:space="preserve">
+    <value>Prawy drążek</value>
+  </data>
+  <data name="Rumble" xml:space="preserve">
+    <value>Wibracje</value>
+  </data>
+  <data name="RunAtStartup" xml:space="preserve">
+    <value>Uruchom przy starcie systemu</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Zapisz</value>
+  </data>
+  <data name="SaveProfile" xml:space="preserve">
+    <value>Zapisz</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Ustawienia</value>
+  </data>
+  <data name="ShowNotifications" xml:space="preserve">
+    <value>Pokazuj powiadomienia</value>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>Uruchom zminimalizowany</value>
+  </data>
+  <data name="StartText" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="StopText" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="TouchScroll" xml:space="preserve">
+    <value>Przewijanie</value>
+  </data>
+  <data name="TouchSlide" xml:space="preserve">
+    <value>Przesuwanie</value>
+  </data>
+  <data name="TouchTap" xml:space="preserve">
+    <value>Dotknięcie</value>
+  </data>
+  <data name="Trigger" xml:space="preserve">
+    <value>Spust</value>
+  </data>
+  <data name="WarningsOnly" xml:space="preserve">
+    <value>Tylko ostrzeżenia</value>
+  </data>
+  <data name="RumbleMaxSecs" xml:space="preserve">
+    <value>sek</value>
+  </data>
+  <data name="RumbleMaxSecsTip" xml:space="preserve">
+    <value>Zatrzymaj wibracje po upływie x sekund (0=wył.)</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Nazwa okna</value>
+  </data>
+  <data name="MoveUp" xml:space="preserve">
+    <value>Do góry</value>
+  </data>
+  <data name="MoveDown" xml:space="preserve">
+    <value>Na dół</value>
+  </data>
+  <data name="AutoProfPathTip" xml:space="preserve">
+    <value>Ścieżka do procesu. ^ABC = Dopasuj na początku ciągu (^) | ABC$ = Dopasuj na końcu ciągu ($) | *ABC = Zawiera ciąg (*)</value>
+  </data>
+  <data name="AutoProfTitleTip" xml:space="preserve">
+    <value>Nazwa okna. ^ABC = Dopasuj na początku ciągu (^) | ABC$ = Dopasuj na końcu ciągu ($) | *ABC = Zawiera ciąg (*)</value>
+  </data>
+  <data name="GamepadTest" xml:space="preserve">
+    <value>Test kontrolera</value>
+  </data>
+  <data name="EnableOutputDataToDS4" xml:space="preserve">
+    <value>Włącz dane wyjściowe do DS4</value>
+  </data>
+  <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
+    <value>Wysyłaj okresowo dane paska świetlnego i wibracji do kontrolera.
+Odznacz, jeśli nie wspiera on funkcji otrzymywania danych.
+Zmiany zostaną zastosowane przy łączeniu się z kontrolerem.</value>
+    <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Zastosuj</value>
+  </data>
+  <data name="HidNinja" xml:space="preserve">
+    <value>HidNinja</value>
+  </data>
+  <data name="CustomExeName" xml:space="preserve">
+    <value>Własna nazwa EXE</value>
+  </data>
+  <data name="CustomExeNameInfo" xml:space="preserve">
+    <value>Niektóre gry blokują użycie kontrolera, gdy wykryją one działający program DS4Windows.exe lub InputMapper.exe. Obejść to można zmieniając nazwę programu DS4Windows.exe. Podanie tutaj własnej nazwy tego programu pozwala programowi aktualizującemu na automatyczną aktualizację DS4Windows pod zmienioną nazwą. Pamiętaj, aby nie dodawać rozszerzenia.
+
+Przykład: 1_DS4Windows</value>
+  </data>
+  <data name="XInputChecker" xml:space="preserve">
+    <value>XInputChecker</value>
+  </data>
+  <data name="Controller5Text" xml:space="preserve">
+    <value>Kontroler 5</value>
+  </data>
+  <data name="Controller6Text" xml:space="preserve">
+    <value>Kontroler 6</value>
+  </data>
+  <data name="Controller7Text" xml:space="preserve">
+    <value>Kontroler 7</value>
+  </data>
+  <data name="Controller8Text" xml:space="preserve">
+    <value>Kontroler 8</value>
+  </data>
+  <data name="GamepadGyroCameraDescription" xml:space="preserve">
+    <value>Mapuje kontroler jako standardowy kontroler XInput lub DS4. Żyroskop jest mapowny jako myszkopodobny joystick.</value>
+  </data>
+  <data name="GamepadGyroCameraName" xml:space="preserve">
+    <value>Kontroler z myszkopodobnym joystickiem</value>
+  </data>
+  <data name="GamepadPresetDescription" xml:space="preserve">
+    <value>Mapuje kontroler jako standardowy</value>
+  </data>
+  <data name="GamepadPresetName" xml:space="preserve">
+    <value>Kontroler</value>
+  </data>
+  <data name="KBMGyroMouseDescription" xml:space="preserve">
+    <value>Mapuje kontroler jako klawiaturę i myszkę. Użyteczne w przypadku gier FPS bez wsparcia dla kontrolerów. Żyroskop mapowany jest jako mysz.</value>
+  </data>
+  <data name="KBMGyroMouseName" xml:space="preserve">
+    <value>Klawiatura i mysz</value>
+  </data>
+  <data name="KBMPresetDescription" xml:space="preserve">
+    <value>Mapuje kontroler jako klawiaturę i myszkę. Użyteczne w przypadku gier FPS bez wsparcia dla kontrolerów.</value>
+  </data>
+  <data name="KBMPresetName" xml:space="preserve">
+    <value>Klawiatura i mysz - przyciski</value>
+  </data>
+  <data name="MixedGyroMousePresetDescription" xml:space="preserve">
+    <value>Mapuje przyciski i osie jako standardowy kontroler. Żyroskop mapowany jest jako mysz.</value>
+  </data>
+  <data name="MixedGyroMousePresetName" xml:space="preserve">
+    <value>Kontroler z myszką</value>
+  </data>
+  <data name="MixedPresetDescription" xml:space="preserve">
+    <value>Mapuje kontroler jako mieszankę kontrolera XInput i myszy.</value>
+  </data>
+  <data name="MixedPresetName" xml:space="preserve">
+    <value>Kontroler z kamerą wysokiej precyzji</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Opis</value>
+  </data>
+  <data name="PresetIntroText" xml:space="preserve">
+    <value>Czy chcesz uzyć presetu? Wybranie opcji 'Nie' spowoduje utworzenie pustego profilu kontrolera.</value>
+  </data>
+  <data name="Presets" xml:space="preserve">
+    <value>Presety</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>Lista zmian</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Zamknij</value>
+  </data>
+  <data name="Profiles" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="NoControllersConnected" xml:space="preserve">
+    <value>Brak podłączonych kontrolerów (Maks. {0})</value>
+  </data>
+  <data name="FlickThreshold" xml:space="preserve">
+    <value>Próg szybkiego ruchu</value>
+  </data>
+  <data name="FlickTime" xml:space="preserve">
+    <value>Czas szybkiego ruchu</value>
+  </data>
+  <data name="MinAngleThreshold" xml:space="preserve">
+    <value>Próg kąta minimalnego</value>
+  </data>
+  <data name="RealWorldCalibration" xml:space="preserve">
+    <value>Kalibracja w świecie rzeczywistym</value>
+  </data>
+  <data name="ViGEmPluginFailure" xml:space="preserve">
+    <value>Wystąpił problem z wtyczką ViGEm. Zamykanie połączenia.</value>
+  </data>
+</root>

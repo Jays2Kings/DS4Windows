@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="DS4WinWPF.DS4Forms.DupBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture=""
+             lex:ResxLocalizationProvider.DefaultAssembly="DS4Windows"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
+             mc:Ignorable="d" Height="30" Width="436">
+    <DockPanel Margin="4">
+        <Canvas DockPanel.Dock="Left" Margin="20,0,0,0">
+            <TextBox x:Name="profileTxt" TextWrapping="Wrap" Text="" Width="160" HorizontalAlignment="Left"
+                 VerticalAlignment="Center" MaxLines="1"/>
+
+            <TextBlock Margin="5,2" MinWidth="50" Text="{Binding Source={lex:Loc Resources:TypeNewName}, StringFormat='&lt;{0}&gt;'}" Foreground="{DynamicResource ForegroundColor}" Opacity="0.7" IsHitTestVisible="False">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=profileTxt, Path=Text.IsEmpty, Mode=OneWay}" Value="False">
+                                <Setter Property="Visibility" Value="Hidden" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding ElementName=profileTxt, Path=Text.IsEmpty, Mode=OneWay}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Canvas>
+
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,30,0">
+            <Button x:Name="saveBtn" Content="Save" Width="80" Click="SaveBtn_Click" />
+            <Button x:Name="cancelBtn" Content="Cancel" Width="80" Click="CancelBtn_Click" Margin="20,0,0,0" />
+        </StackPanel>
+    </DockPanel>
+</UserControl>

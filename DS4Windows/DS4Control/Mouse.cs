@@ -40,9 +40,32 @@ namespace DS4Windows
                 int i = 0;
                 string[] ss = Global.SATriggers[deviceNum].Split(',');
                 if (!string.IsNullOrEmpty(ss[0]))
-                    foreach (string s in ss)
-                        if (!(int.TryParse(s, out i) && getDS4ControlsByName(i)))
-                            triggeractivated = false;
+                {
+                    if (Global.BothTrigger[deviceNum]) //we want all of the trigger keys are pressed
+                    {
+                        foreach (string s in ss)
+                        {
+                            //if one of the trigger key not pressed
+                            if(!(int.TryParse(s, out i) && getDS4ControlsByName(i)))
+                                triggeractivated = false;
+                        }
+                    }
+                    else //any of the trigger key is pressed
+                    {
+                        triggeractivated = false;
+                        foreach(string s in ss)
+                        {
+                            //if one of them is pressed
+                            if (int.TryParse(s, out i) && getDS4ControlsByName(i))
+                            {
+                                triggeractivated = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                    
+                        
                 if (triggeractivated)
                     cursor.sixaxisMoved(arg);
                 dev.getCurrentState(s);

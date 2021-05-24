@@ -1017,7 +1017,7 @@ namespace DS4Windows
                         success = true;
                     }
 
-                    if (success) LogDebug("Associate X360 Controller for input DS4 #" + (index + 1));
+                    if (success) LogDebug($"Associate X360 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} slot #{slotDevice.Index+1} for input {device.DisplayName} controller #{index + 1}");
 
                     //tempXbox.Connect();
                     //LogDebug("X360 Controller #" + (index + 1) + " connected");
@@ -1087,7 +1087,7 @@ namespace DS4Windows
                         success = true;
                     }
 
-                    if (success) LogDebug("Associate DS4 Controller for input DS4 #" + (index + 1));
+                    if (success) LogDebug($"Associate DS4 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} slot #{slotDevice.Index + 1} for input {device.DisplayName} controller #{index + 1}");
 
                     //DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
                     //DS4OutDevice tempDS4 = outputslotMan.AllocateController(OutContType.DS4, vigemTestClient)
@@ -1115,7 +1115,7 @@ namespace DS4Windows
                 if (dev != null && slotDevice != null)
                 {
                     string tempType = dev.GetDeviceType();
-                    LogDebug("Disassociate " + tempType + " Controller for input DS4 #" + (index + 1), false);
+                    LogDebug($"Disassociate {tempType} Controller from{(slotDevice.CurrentReserveStatus == OutSlotDevice.ReserveStatus.Permanent ? " permanent" : "")} slot #{slotDevice.Index+1} for input {device.DisplayName} controller #{index + 1}", false);
 
                     OutContType currentType = activeOutDevType[index];
                     outputDevices[index] = null;

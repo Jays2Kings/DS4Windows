@@ -1,11 +1,15 @@
-# DS4Windows
+## This version of DS4Windows is no longer maintained and will recieve no future updates. For a newer version and more updates, download [Ryochan7's DS4Windows](https://github.com/Ryochan7/DS4Windows)
+
+
+
+## DS4Windows
 Like those other ds4tools, but sexier.
 
 DS4Windows is a portable program that allows you to get the best experience while using a DualShock 4 on your PC. By emulating a Xbox 360 controller, many more games are accessible.
 
 You can find the latest and older versions [here](https://github.com/Jays2Kings/DS4Windows/releases)
 
-## Requirements
+### Requirements
 
 [Microsoft .NET 4.5 or higher (needed to unzip the driver and for macros to work properly)](http://www.microsoft.com/en-us/download/details.aspx?id=42642)
 DS4 Driver (Downloaded & Installed with DS4Windows)

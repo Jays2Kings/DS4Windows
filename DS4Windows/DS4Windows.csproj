@@ -98,6 +98,8 @@
     <Compile Include="DS4Control\X360Device.designer.cs">
       <DependentUpon>X360Device.cs</DependentUpon>
     </Compile>
+    <Compile Include="DS4Interception\Interception.cs" />
+    <Compile Include="DS4Interception\InterceptionLayer.cs" />
     <Compile Include="DS4Library\DS4Device.cs" />
     <Compile Include="DS4Library\DS4Devices.cs" />
     <Compile Include="DS4Library\DS4Sixaxis.cs" />

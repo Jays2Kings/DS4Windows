@@ -1,9 +1,25 @@
 {
-  "latest_version": "3.0.5",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 5},
-  "updated_at": "2021-05-10T06:11:48+0000",
+  "latest_version": "3.0.6",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 6},
+  "updated_at": "2021-05-27T05:02:47+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.0.6",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 6},
+      "base_header": "Version 3.0.6",
+      "release_date": "2021-05-27T05:02:47+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.6",
+          "log_text": ["* Re-compiled program and tools"],
+          "editor": "ryochan7",
+          "editors_note": ["Nothin"],
+          "updated_at": "2021-05-10T06:11:48+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.0.5",
       "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 5},

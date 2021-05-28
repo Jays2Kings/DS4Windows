@@ -485,6 +485,7 @@ namespace DS4Windows
         public static Version minSupportedViGEmBusVersionInfo = new Version(MIN_SUPPORTED_VIGEMBUS_VERSION);
         public static bool hidguardInstalled = IsHidGuardianInstalled();
         public static bool hidHideInstalled = IsHidHideInstalled();
+        public static bool fakerInputInstalled = IsFakerInputInstalled();
 		
 		public static VirtualKBMBase outputKBMHandler = null;
         public static VirtualKBMMapping outputKBMMapping = null;
@@ -1085,6 +1086,11 @@ namespace DS4Windows
         public static bool IsHidHideInstalled()
         {
             return CheckForSysDevice(@"root\HidHide");
+        }
+
+        public static bool IsFakerInputInstalled()
+        {
+            return CheckForSysDevice(@"root\FakerInput");
         }
 
         const string VIGEMBUS_GUID = "{96E42B22-F5E9-42F8-B043-ED0F932F014F}";

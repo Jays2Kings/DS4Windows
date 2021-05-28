@@ -4,11 +4,26 @@ namespace DS4Windows.DS4Control
 {
     public static class VirtualKBMFactory
     {
+        public const string DEFAULT_IDENTIFIER = "default";
+
         public static VirtualKBMBase DetermineHandler(string identifier =
             SendInputHandler.IDENTIFIER)
         {
             VirtualKBMBase handler = null;
-            if (identifier == SendInputHandler.IDENTIFIER)
+            if (identifier == DEFAULT_IDENTIFIER)
+            {
+                // Run through event handler discovery routine
+                if (Global.fakerInputInstalled)
+                {
+                    handler = new FakerInputHandler();
+                }
+                else
+                {
+                    // Virtual KB+M driver not found. Use fallback system instead
+                    handler = GetFallbackHandler();
+                }
+            }
+            else if (identifier == SendInputHandler.IDENTIFIER)
             {
                 handler = new SendInputHandler();
             }

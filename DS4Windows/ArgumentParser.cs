@@ -14,7 +14,7 @@ namespace DS4WinWPF
         private bool runtask;
         private bool command;
         private string commandArgs;
-        private string virtualkbmHandler = SendInputHandler.IDENTIFIER;
+        private string virtualkbmHandler = VirtualKBMFactory.DEFAULT_IDENTIFIER;
 
         private Dictionary<string, string> errors =
             new Dictionary<string, string>();

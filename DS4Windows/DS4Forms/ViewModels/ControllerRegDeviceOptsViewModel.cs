@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DS4Windows;
+using DS4WinWPF.DS4Forms.ViewModels.Util;
 using LEDBarMode = DS4Windows.DualSenseControllerOptions.LEDBarMode;
 using MuteLEDMode = DS4Windows.DualSenseControllerOptions.MuteLEDMode;
 using LinkMode = DS4Windows.JoyConDeviceOptions.LinkMode;
@@ -318,25 +319,6 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public override string ToString()
         {
             return displayName;
-        }
-    }
-
-    public class EnumChoiceSelection<T>
-    {
-        private string displayName;
-        public string DisplayName { get => displayName; }
-
-        private T choiceValue;
-        public T ChoiceValue
-        {
-            get => choiceValue;
-            set => choiceValue = value;
-        }
-
-        public EnumChoiceSelection(string name, T currentValue)
-        {
-            displayName = name;
-            choiceValue = currentValue;
         }
     }
 }

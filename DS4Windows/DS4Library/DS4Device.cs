@@ -162,6 +162,7 @@ namespace DS4Windows
             Shared = 0,
             Exclusive = 1,
             HidGuardAffected = 2,
+            HidHideAffected = 3,
         }
 
         //internal const int BT_OUTPUT_REPORT_LENGTH = 78;
@@ -1824,7 +1825,7 @@ namespace DS4Windows
                 StopOutputUpdate();
                 Console.WriteLine("Trying to disconnect BT device " + Mac);
                 IntPtr btHandle = IntPtr.Zero;
-                int IOCTL_BTH_DISCONNECT_DEVICE = 0x41000c;
+                uint IOCTL_BTH_DISCONNECT_DEVICE = 0x41000c;
 
                 byte[] btAddr = new byte[8];
                 string[] sbytes = Mac.Split(':');

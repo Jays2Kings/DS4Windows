@@ -1983,7 +1983,8 @@ namespace DS4Windows
         /// <summary>
         /// Map DS4 Buttons/Axes to other DS4 Buttons/Axes (largely the same as Xinput ones) and to keyboard and mouse buttons.
         /// </summary>
-        static bool[] held = new bool[Global.MAX_DS4_CONTROLLER_COUNT];
+        static DS4Controls[] held = new DS4Controls[Global.MAX_DS4_CONTROLLER_COUNT];
+
         public static void MapCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState,
             Mouse tp, ControlService ctrl)
         {
@@ -2766,8 +2767,8 @@ namespace DS4Windows
 
             if (usingExtra == DS4Controls.None || usingExtra == dcs.control)
             {
-                bool shiftE = !string.IsNullOrEmpty(dcs.shiftExtras) && ShiftTrigger2(dcs.shiftTrigger, device, cState, eState, tp, fieldMapping);
-                bool regE = !string.IsNullOrEmpty(dcs.extras);
+                bool shiftE = !dcs.IsExtrasEmpty(dcs.shiftExtras) && ShiftTrigger2(dcs.shiftTrigger, device, cState, eState, tp, fieldMapping);
+                bool regE = !dcs.IsExtrasEmpty(dcs.extras);
                 if ((regE || shiftE) && getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                 {
                     usingExtra = dcs.control;
@@ -2787,7 +2788,7 @@ namespace DS4Windows
                             extras[i] = b;
                     }
 
-                    held[device] = true;
+                    held[device] = dcs.control;
                     try
                     {
                         if (!(extras[0] == extras[1] && extras[1] == 0))
@@ -2816,7 +2817,7 @@ namespace DS4Windows
                     }
                     catch { }
                 }
-                else if ((regE || shiftE) && held[device])
+                else if ((regE || shiftE) && held[device] == dcs.control)
                 {
                     DS4LightBar.forcelight[device] = false;
                     DS4LightBar.forcedFlash[device] = 0;
@@ -2833,7 +2834,7 @@ namespace DS4Windows
                         extrasRumbleActive[device] = false;
                     }
 
-                    held[device] = false;
+                    held[device] = DS4Controls.None;
                     usingExtra = DS4Controls.None;
                 }
             }
@@ -3272,14 +3273,30 @@ namespace DS4Windows
                                             // Launch child process using hidden wnd option (the child process should probably do something and then close itself unless you want it to remain hidden in background)
                                             specActionLaunchProc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                                             specActionLaunchProc.StartInfo.CreateNoWindow = true;
+                                            specActionLaunchProc.StartInfo.UseShellExecute = true;
                                             specActionLaunchProc.Start();
-                                        }                                            
+                                        }
                                         else
+                                        {
                                             // No special process modifiers (ie. $hidden wnd keyword). Launch the child process using the default WinOS settings
-                                            Process.Start(action.details, action.extra);
+                                            using (Process temp = new Process())
+                                            {
+                                                temp.StartInfo.FileName = action.details;
+                                                temp.StartInfo.Arguments = action.extra;
+                                                temp.StartInfo.UseShellExecute = true;
+                                                temp.Start();
+                                            }
+                                        }
                                     }
                                     else
-                                        Process.Start(action.details);
+                                    {
+                                        using (Process temp = new Process())
+                                        {
+                                            temp.StartInfo.FileName = action.details;
+                                            temp.StartInfo.UseShellExecute = true;
+                                            temp.Start();
+                                        }
+                                    }
                                 }
                             }
                             else if (action.typeID == SpecialAction.ActionTypeId.Profile)
@@ -3455,7 +3472,7 @@ namespace DS4Windows
                                 if (bool.Parse(dets[1]) && !actionDone[index].dev[device])
                                 {
                                     AppLogger.LogToTray("Controller " + (device + 1) + ": " +
-                                        ctrl.getDS4Battery(device), true);
+                                        ctrl.GetDS4Battery(device), true);
                                 }
                                 if (bool.Parse(dets[2]))
                                 {

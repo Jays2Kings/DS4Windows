@@ -1107,7 +1107,7 @@ namespace DS4Windows.InputDevices
             StopOutputUpdate();
             Detach();
 
-            int IOCTL_BTH_DISCONNECT_DEVICE = 0x41000c;
+            uint IOCTL_BTH_DISCONNECT_DEVICE = 0x41000c;
 
             byte[] btAddr = new byte[8];
             string[] sbytes = Mac.Split(':');

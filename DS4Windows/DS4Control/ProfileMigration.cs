@@ -22,18 +22,25 @@ namespace DS4Windows
             currentMigrationText = innerStreamReader.ReadToEnd();
             innerStreamReader.Dispose();
 
-            profileReader = XmlReader.Create(new StringReader(currentMigrationText));
-            // Move stream to root element
-            profileReader.MoveToContent();
-            string temp = profileReader.GetAttribute("config_version");
-            if (!string.IsNullOrEmpty(temp))
+            bool profileRead = false;
+            try
             {
-                int.TryParse(temp, out configFileVersion);
+                profileReader = XmlReader.Create(new StringReader(currentMigrationText));
+                // Move stream to root element
+                profileReader.MoveToContent();
+                string temp = profileReader.GetAttribute("config_version");
+                if (!string.IsNullOrEmpty(temp))
+                {
+                    int.TryParse(temp, out configFileVersion);
+                }
+
+                profileRead = true;
             }
+            catch (XmlException) { }
 
             // config_version not available in file. Assume either version 1 or 2.
             // Try to determine which version
-            if (configFileVersion == 0)
+            if (profileRead && configFileVersion == 0)
             {
                 DetermineProfileVersion();
             }

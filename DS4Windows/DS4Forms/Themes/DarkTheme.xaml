@@ -6,8 +6,8 @@
     <!-- Brushes -->
     <SolidColorBrush x:Key="BackgroundColor" Color="#FF202020" />
     <SolidColorBrush x:Key="ForegroundColor" Color="#FFCACACA" />
-    <SolidColorBrush x:Key="SecondaryColor" Color="#FF254D7A" />
-    <SolidColorBrush x:Key="AccentColor" Color="#FF437DBf" />
+    <SolidColorBrush x:Key="SecondaryColor" Color="#FF2d5a8c" />
+    <SolidColorBrush x:Key="AccentColor" Color="#FF5990cf" />
 
     <system:String x:Key="KeyImageImg">key-solid_white.png</system:String>
     <system:String x:Key="CancelImg">cancel_white.png</system:String>
@@ -965,6 +965,49 @@
         <Setter Property="Stroke" Value="{StaticResource ForegroundColor}" />
     </Style>
 
+    <BorderGapMaskConverter x:Key="BorderGapMaskConverter"/>
+    <Style x:Key="GroupBoxStyle" TargetType="{x:Type GroupBox}">
+        <Setter Property="BorderBrush" Value="#D5DFE5"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type GroupBox}">
+                    <Grid SnapsToDevicePixels="true">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="6"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="6"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="6"/>
+                        </Grid.RowDefinitions>
+                        <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="Transparent" CornerRadius="4" Grid.ColumnSpan="4" Grid.Column="0" Grid.RowSpan="3" Grid.Row="1"/>
+                        <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="Transparent" CornerRadius="4" Grid.ColumnSpan="4" Grid.RowSpan="3" Grid.Row="1">
+                            <Border.OpacityMask>
+                                <MultiBinding Converter="{StaticResource BorderGapMaskConverter}" ConverterParameter="7">
+                                    <Binding ElementName="Header" Path="ActualWidth"/>
+                                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}"/>
+                                    <Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}"/>
+                                </MultiBinding>
+                            </Border.OpacityMask>
+                            <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="3">
+                                <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="Transparent" CornerRadius="2"/>
+                            </Border>
+                        </Border>
+                        <Border x:Name="Header" Grid.Column="1" Padding="3,1,3,0" Grid.RowSpan="2" Grid.Row="0">
+                            <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ContentPresenter Grid.ColumnSpan="2" Grid.Column="1" Margin="{TemplateBinding Padding}" Grid.Row="2" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- Now apply custom styles -->
     <Style BasedOn="{StaticResource WindowStyle}" TargetType="{x:Type Window}" />
     <!--<Style BasedOn="{StaticResource RectangleStyle}" TargetType="{x:Type Rectangle}" />-->
@@ -990,5 +1033,6 @@
     <Style BasedOn="{StaticResource MenuStyle}" TargetType="{x:Type Menu}" />
     <Style BasedOn="{StaticResource MenuItemStyle}" TargetType="{x:Type MenuItem}" />
     <Style BasedOn="{StaticResource ToolTipStyle}" TargetType="{x:Type ToolTip}" />
+    <Style BasedOn="{StaticResource GroupBoxStyle}" TargetType="{x:Type GroupBox}" />
 
 </ResourceDictionary>

@@ -62,7 +62,8 @@ namespace DS4Windows
                 {
                     VidPidInfo tempInfo = devInfo[j];
                     if ((tempDev.Capabilities.Usage == HID_USAGE_GAMEPAD ||
-                        tempDev.Capabilities.Usage == HID_USAGE_JOYSTICK)  &&
+                        tempDev.Capabilities.Usage == HID_USAGE_JOYSTICK ||
+                        tempInfo.featureSet.HasFlag(VidPidFeatureSet.VendorDefinedDevice))  &&
                         tempDev.Attributes.VendorId == tempInfo.vid &&
                         tempDev.Attributes.ProductId == tempInfo.pid)
                     {

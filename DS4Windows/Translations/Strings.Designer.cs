@@ -451,6 +451,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exclusive Access.
+        /// </summary>
+        public static string ExclusiveAccess {
+            get {
+                return ResourceManager.GetString("ExclusiveAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
         public static string Export {
@@ -487,7 +496,7 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .NET 5 Runtime was not detected on your system. Please download and install .NET 5 Runtime to ensure compatibility with future DS4Windows builds. Will redirecting to download page upon window close..
+        ///   Looks up a localized string similar to .NET 5 Runtime was not detected on your system. Please download and install .NET 5 Runtime to ensure compatibility with future DS4Windows builds. You will be redirected to the .NET 5 Runtime download page upon closing this window..
         /// </summary>
         public static string FutureNetNotInstalled {
             get {
@@ -555,6 +564,42 @@ namespace DS4WinWPF.Translations {
         public static string HideUnchecked {
             get {
                 return ResourceManager.GetString("HideUnchecked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HidGuardian Access.
+        /// </summary>
+        public static string HidGuardianAccess {
+            get {
+                return ResourceManager.GetString("HidGuardianAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HidHide.
+        /// </summary>
+        public static string HidHide {
+            get {
+                return ResourceManager.GetString("HidHide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HidHide Access.
+        /// </summary>
+        public static string HidHideAccess {
+            get {
+                return ResourceManager.GetString("HidHideAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HidHide Configuration Client.
+        /// </summary>
+        public static string HidHideConfigClient {
+            get {
+                return ResourceManager.GetString("HidHideConfigClient", resourceCulture);
             }
         }
         
@@ -919,6 +964,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shared Access.
+        /// </summary>
+        public static string SharedAccess {
+            get {
+                return ResourceManager.GetString("SharedAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show Notifications.
         /// </summary>
         public static string ShowNotifications {
@@ -1009,7 +1063,7 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ViGEm Device Plugin Failed. Likely an internal ViGEmBus problem. Closing connection. If issue persist, please reboot Windows. WARNING: You will likely get a BSOD on Windows shutdown..
+        ///   Looks up a localized string similar to ViGEm Device Plugin Failed. Likely an internal ViGEmBus problem. Closing connection. If the issue persists, please reboot Windows. WARNING: You will likely get a BSOD on Windows shutdown..
         /// </summary>
         public static string ViGEmPluginFailure {
             get {

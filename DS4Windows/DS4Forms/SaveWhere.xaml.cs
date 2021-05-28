@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace DS4WinWPF.DS4Forms
 {
@@ -44,11 +34,19 @@ namespace DS4WinWPF.DS4Forms
             DS4Windows.Global.SaveWhere(DS4Windows.Global.exedirpath);
             if (multisaves && dontDeleteCk.IsChecked == false)
             {
-                try { Directory.Delete(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows", true); }
+                try
+                {
+                    if (Directory.Exists(DS4Windows.Global.appDataPpath))
+                    {
+                        Directory.Delete(DS4Windows.Global.appDataPpath, true);
+                    }
+                }
                 catch { }
             }
             else if (!multisaves)
+            {
                 DS4Windows.Global.SaveDefault(DS4Windows.Global.exedirpath + "\\Profiles.xml");
+            }
 
             choiceMade = true;
             Close();
@@ -64,12 +62,17 @@ namespace DS4WinWPF.DS4Forms
                     File.Delete(DS4Windows.Global.exedirpath + "\\Profiles.xml");
                     File.Delete(DS4Windows.Global.exedirpath + "\\Auto Profiles.xml");
                 }
-                catch (UnauthorizedAccessException) { MessageBox.Show("Cannot Delete old settings, please manaully delete", "DS4Windows"); }
+                catch (UnauthorizedAccessException)
+                {
+                    MessageBox.Show("Cannot Delete old settings, please manaully delete", "DS4Windows");
+                }
             }
             else if (!multisaves)
-                DS4Windows.Global.SaveDefault(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows\\Profiles.xml");
+            {
+                DS4Windows.Global.SaveDefault(Path.Combine(DS4Windows.Global.appDataPpath, "Profiles.xml"));
+            }
 
-            DS4Windows.Global.SaveWhere(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows");
+            DS4Windows.Global.SaveWhere(DS4Windows.Global.appDataPpath);
             choiceMade = true;
             Close();
         }

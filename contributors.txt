@@ -1,6 +1,7 @@
 Travis Nickles (Ryochan7)
 AnessZurba
 avsha114
+bernspedras
 carloshbcabral
 DandelionSprout
 dante38
@@ -12,6 +13,8 @@ Haamar
 hpesoj
 jdanders
 jdfeng
+jmg2k
+joaopedrogomes
 justalemon
 Kamilczak020
 Кладовая
@@ -26,6 +29,7 @@ peter9811
 Rajko Stojadinovic (rajkosto)
 RedDevilus
 RokasKil
+sabihoshi
 Sander0542
 shikulja
 sitiom

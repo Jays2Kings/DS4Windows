@@ -100,6 +100,11 @@ namespace DS4Windows
             _pool.Release();
         }
 
+        private void CompletedSynchronousSocketEvent()
+        {
+            _pool.Release();
+        }
+
         enum MessageType
         {
             DSUC_VersionReq = 0x100000,
@@ -206,10 +211,16 @@ namespace DS4Windows
             args.RemoteEndPoint = clientEP;
             Array.Copy(packetData, args.Buffer, packetData.Length);
             //args.SetBuffer(packetData, 0, packetData.Length);
+            bool sentAsync = false;
             try {
-                udpSock.SendToAsync(args);
+                sentAsync = udpSock.SendToAsync(args);
+                if (!sentAsync) CompletedSynchronousSocketEvent();
             }
             catch (Exception e) { }
+            finally
+            {
+                if (!sentAsync) CompletedSynchronousSocketEvent();
+            }
         }
 
         private void ProcessIncoming(byte[] localMsg, IPEndPoint clientEP)
@@ -700,10 +711,15 @@ namespace DS4Windows
                     _pool.Wait();
                     args.RemoteEndPoint = cl;
                     Array.Copy(outputData, args.Buffer, outputData.Length);
+                    bool sentAsync = false;
                     try {
-                        udpSock.SendToAsync(args);
+                        sentAsync = udpSock.SendToAsync(args);
                     }
                     catch (SocketException ex) { }
+                    finally
+                    {
+                        if (!sentAsync) CompletedSynchronousSocketEvent();
+                    }
                 }
             }
 

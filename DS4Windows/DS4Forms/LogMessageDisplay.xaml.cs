@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
-using MarkdownEngine = Markdown.Xaml.Markdown;
+using MarkdownEngine = MdXaml.Markdown;
 
 namespace DS4WinWPF.DS4Forms
 {

@@ -6,9 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using HttpProgress;
-using Newtonsoft.Json;
-using MarkdownEngine = Markdown.Xaml.Markdown;
+using MarkdownEngine = MdXaml.Markdown;
 
 namespace DS4WinWPF.DS4Forms.ViewModels
 {
@@ -63,10 +64,15 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 string temp = File.ReadAllText(filename).Trim();
                 try
                 {
-                    ChangelogInfo tempInfo = JsonConvert.DeserializeObject<ChangelogInfo>(temp);
+                    JsonSerializerOptions options = new JsonSerializerOptions()
+                    {
+                        PropertyNameCaseInsensitive = true,
+                    };
+                    options.Converters.Add(new DateTimeJsonConverter.DateTimeConverterUsingDateTimeParse());
+                    ChangelogInfo tempInfo = JsonSerializer.Deserialize<ChangelogInfo>(temp, options);
                     BuildChangelogDocument(tempInfo);
                 }
-                catch (JsonSerializationException) { }
+                catch (JsonException) { }
             }
             else if (!readFile)
             {
@@ -141,17 +147,18 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private DateTime updatedAt;
         private ChangelogVersions changelog;
 
-        [JsonProperty("latest_version")]
+        [JsonPropertyName("latest_version")]
         public string LatestVersion { get => latestVersion; set => latestVersion = value; }
 
 
-        [JsonProperty("updated_at")]
+        [JsonPropertyName("updated_at")]
         public DateTime UpdatedAt { get => updatedAt; set => updatedAt = value; }
 
-        [JsonProperty("changelog")]
+        [JsonPropertyName("changelog")]
         public ChangelogVersions Changelog { get => changelog; set => changelog = value; }
 
-        [JsonProperty("latest_version_number_info", Required = Required.Always)]
+        [JsonPropertyName("latest_version_number_info")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
         public ChangeVersionNumberInfo LatestVersionInfo
         {
             get => latestVersionInfo;
@@ -166,16 +173,16 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private ushort buildPart;
         private ushort privatePart;
 
-        [JsonProperty("majorPart")]
+        [JsonPropertyName("majorPart")]
         public ushort MajorPart { get => majorPart; set => majorPart = value; }
 
-        [JsonProperty("minorPart")]
+        [JsonPropertyName("minorPart")]
         public ushort MinorPart { get => minorPart; set => minorPart = value; }
 
-        [JsonProperty("buildPart")]
+        [JsonPropertyName("buildPart")]
         public ushort BuildPart { get => buildPart; set => buildPart = value; }
 
-        [JsonProperty("privatePart")]
+        [JsonPropertyName("privatePart")]
         public ushort PrivatePart { get => privatePart; set => privatePart = value; }
 
         public ulong GetVersionNumber()
@@ -190,7 +197,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
     {
         private List<ChangeVersionInfo> versions;
 
-        [JsonProperty("versions")]
+        [JsonPropertyName("versions")]
         public List<ChangeVersionInfo> Versions { get => versions; set => versions = value; }
     }
 
@@ -202,19 +209,20 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private DateTime releaseDate;
         private List<VersionLogLocale> versionLocales;
 
-        [JsonProperty("version_str")]
+        [JsonPropertyName("version_str")]
         public string Version { get => version; set => version = value; }
 
-        [JsonProperty("base_header")]
+        [JsonPropertyName("base_header")]
         public string BaseHeader { get => baseHeader; set => baseHeader = value; }
 
-        [JsonProperty("release_date")]
+        [JsonPropertyName("release_date")]
         public DateTime ReleaseDate { get => releaseDate; set => releaseDate = value; }
 
-        [JsonProperty("locales")]
+        [JsonPropertyName("locales")]
         public List<VersionLogLocale> VersionLocales { get => versionLocales; set => versionLocales = value; }
 
-        [JsonProperty("version_number_info", Required = Required.Always)]
+        [JsonPropertyName("version_number_info")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
         public ChangeVersionNumberInfo VersionNumberInfo
         {
             get => versionNumberInfo; set => versionNumberInfo = value;
@@ -279,7 +287,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public string Code { get => code; set => code = value; }
         public string Header { get => header; set => header = value; }
 
-        [JsonProperty("log_text")]
+        [JsonPropertyName("log_text")]
         public List<string> LogText
         {
             get => logText;
@@ -289,13 +297,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
 
-        [JsonProperty("editor")]
+        [JsonPropertyName("editor")]
         public string Editor { get => editor; set => editor = value; }
 
-        [JsonProperty("editors_note")]
+        [JsonPropertyName("editors_note")]
         public List<string> EditorsNote { get => editorsNote; set => editorsNote = value; }
 
-        [JsonProperty("updated_at")]
+        [JsonPropertyName("updated_at")]
         public DateTime EditedAt { get => editedAt; set => editedAt = value; }
 
         public void BuildDisplayText()

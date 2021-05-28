@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActionExists" xml:space="preserve">
     <value>Name of this action already exists</value>
@@ -234,7 +234,7 @@
   <data name="DownText" xml:space="preserve">
     <value>Down</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="DS4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DS4.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -419,7 +419,7 @@
     <value>Programs</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
-    <value>EXPERIMENTAL: Auto-Disable BT when connecting to USB</value>
+    <value>Auto-Disable BT when connecting to USB</value>
   </data>
   <data name="QuitOtherPrograms" xml:space="preserve">
     <value>You must quit other applications like UWP apps (Netflix), Steam, Uplay, Edge, NVIDIA IN-GAME before activating the 'Hide DS4 Controller' option. For more info check https://github.com/Ryochan7/DS4Windows/wiki/Exclusive-Mode-(Hide-DS4-Controller-config-option)-tips-and-issues</value>
@@ -578,7 +578,7 @@
     <value>Up</value>
   </data>
   <data name="UpToDate" xml:space="preserve">
-    <value>You are up to date</value>
+    <value>DS4Windows application is up-to-date.</value>
   </data>
   <data name="UseControllerForMapping" xml:space="preserve">
     <value>You can also use your controller to change controls</value>

@@ -399,8 +399,12 @@
                                     Style="{StaticResource NoBGHoverBtn}" Click="XinputCheckerBtn_Click" >
                                     <TextBlock Text="{lex:Loc XInputChecker}" TextDecorations="Underline" Foreground="{DynamicResource AccentColor}" Cursor="Hand" />
                                 </Button>
+                                <Button x:Name="hidHideBtn" BorderThickness="0" Margin="0,0,4,4" Background="{x:Null}" BorderBrush="{x:Null}"
+                                    Style="{StaticResource NoBGHoverBtn}" Click="HidHideBtn_Click" Visibility="{Binding HidHideInstalled, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" >
+                                    <TextBlock Text="{lex:Loc HidHideConfigClient}" TextDecorations="Underline" Foreground="{DynamicResource AccentColor}" Cursor="Hand" />
+                                </Button>
                                 <Button x:Name="hidNinjaBtn" BorderThickness="0" Margin="0,0,4,4" Background="{x:Null}" BorderBrush="{x:Null}"
-                                    Style="{StaticResource NoBGHoverBtn}" Click="HidNinjaBtn_Click" >
+                                    Style="{StaticResource NoBGHoverBtn}" Click="HidNinjaBtn_Click" Visibility="{Binding HidGuardianInstalled, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
                                     <TextBlock Text="{lex:Loc HidNinja}" TextDecorations="Underline" Foreground="{DynamicResource AccentColor}" Cursor="Hand" />
                                 </Button>
                                 <Button x:Name="driverSetupBtn" BorderThickness="0" Margin="0,0,4,4" Background="{x:Null}" BorderBrush="{x:Null}"

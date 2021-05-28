@@ -1,9 +1,184 @@
 {
-  "latest_version": "2.2.14",
-  "latest_version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 14},
-  "updated_at": "2021-03-24T18:19:59+0000",
+  "latest_version": "3.0.6",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 6},
+  "updated_at": "2021-05-27T05:02:47+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.0.6",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 6},
+      "base_header": "Version 3.0.6",
+      "release_date": "2021-05-27T05:02:47+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.6",
+          "log_text": ["* Re-compiled program and tools"],
+          "editor": "ryochan7",
+          "editors_note": ["Nothin"],
+          "updated_at": "2021-05-10T06:11:48+0000"
+        }
+      ]
+    },
+    {
+      "version_str": "3.0.5",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 5},
+      "base_header": "Version 3.0.5",
+      "release_date": "2021-05-10T06:11:48+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.5",
+          "log_text": ["* Fixed copying of app config file for fake named exe",
+            "* Now copy deps file for fake named exe",
+            "* Fixed initial Config folder selection dialog when multiple configs (Program Folder and AppData) are found. Make sure to display option to delete one of the configs",
+            "* Updated DotNetProjects.Extended.Wpf.Toolkit to version 4.6.97",
+            "* Updated MdXaml to version 1.10.0",
+            "* Updated NLog to version 4.7.9",
+            "* Check if DS4Windows program folder is actually AppData subfolder when locating program config. Treat case as Program Folder option",
+            "* Added All Files option for Launch Program special action File Dialog. Use Explorer to launch associated program for an arbitrary file"],
+          "editor": "ryochan7",
+          "editors_note": ["I'm on break"],
+          "updated_at": "2021-05-10T06:11:48+0000"
+        }
+      ]
+    },
+    {
+      "version_str": "3.0.4",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 4},
+      "base_header": "Version 3.0.4",
+      "release_date": "2021-05-05T14:47:29+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.4",
+          "log_text": ["* Support for DS3 gamepad as vendor defined device over DsHidMini driver. Contribution by **mika-n**",
+            "* Now issue immediate virtual device unplug upon Windows suspend",
+            "* Changed ViGEmBus lookup routine to perform a list based lookup for potential drivers. Attempt to discover newest version from version info",
+            "* Changed ViGEmClient library to attempt to connect to newest available version of ViGEmBus on a system rather than the first version found",
+            "* Set all controller slots to use the Default profile initially when making a new config",
+            "* Immediately issue unplug of all virtual controllers when pressing main Stop button",
+            "* Initial implementation of HidHide integration. Display key icon for HidHide hidden device. Insert DS4Windows.exe into whitelist at startup if necessary",
+            "* Changed method of obtaining current executable file location. Needed due to assembly changes in .NET 5 breaking support for custom exe filenames",
+            "* Added HidHide installer link to Welcome dialog window",
+            "* Added HidHide Configuration Client app link in Settings tab",
+            "* Hide HidNinja link in Settings tab if HidGuardian is not installed",
+            "* Show the text value of 'Max Saturation' lightbar setting. Contribution by **sabihoshi**",
+            "* Changed Launch Program special action to use UseShellExecute"],
+          "editor": "ryochan7",
+          "editors_note": ["Major ViGEmBus changes. HidHide support"],
+          "updated_at": "2021-05-05T14:47:29+0000"
+        }
+      ]
+    },
+    {
+      "version_str": "3.0.3",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 3},
+      "base_header": "Version 3.0.3",
+      "release_date": "2021-04-15T16:32:18+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.3",
+          "log_text": ["* Fixed Open Program Folder link in tray menu",
+            "* Lessen ViGEmBus restriction for now. Allow connecting to ViGEmBus 1.16.112.0. **PLEASE DON'T MAKE ME REGRET THIS**."],
+          "editor": "ryochan7",
+          "editors_note": ["Can't move forward"],
+          "updated_at": "2021-04-15T16:32:18+0000"
+        }
+      ]
+    },
+    {
+      "version_str": "3.0.2",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 2},
+      "base_header": "Version 3.0.2",
+      "release_date": "2021-04-12T00:45:20+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.2",
+          "log_text": ["* Use UseShellExecute for ProcessStartInfo in more places for .NET 5 changes",
+            "* DS4Windows updater message update. Contribution **RedDevilus**",
+            "* German translation update. Contribution by **jmg2k**",
+            "* Added Portuguese (Portugal) translation. Contribution by **joaopedrogome**",
+            "* Add cmd line command for 'Change led color'. Contribution by **bernspedras**",
+            "* Muted blues used in Dark theme. Contribution by **AnessZurba**",
+            "* Added some exception handling for XML in ProfileMigration",
+            "* Added output controller option to Preset Window for certain Presets. Change profile values based on output controller type.",
+            "* Added some precautions for possible empty devicePath string",
+            "* Changed GroupBox template for Dark theme",
+            "* Now enforcing ViGEmBus minimum supported version. Targetting ViGEmBus 1.17.333.0",
+            "* Fixed ProcessStartInfo for ViGEmBus installer launching with .NET 5",
+            "* Refresh internal data about ViGEmBus on service startup"],
+          "editor": "ryochan7",
+          "editors_note": ["Why"],
+          "updated_at": "2021-04-12T00:45:20+0000"
+        }
+      ]
+    },
+    {
+      "version_str": "3.0.1",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 1},
+      "base_header": "Version 3.0.1",
+      "release_date": "2021-04-02T17:46:02+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.1",
+          "log_text": ["* Fixed launching of HidGuardHelper for .NET 5 usage",
+            "* Fixed URL string generation for updater version redirect on download failure",
+            "* Fixed a few typos in the English strings. Contribution by **instilledbee**",
+            "* Bundled HidGuardHelper 0.2.0"],
+          "editor": "ryochan7",
+          "editors_note": ["nothing"],
+          "updated_at": "2021-04-02T17:46:02+0000"
+        }
+      ]
+    },
+    {
+      "version_str": "3.0.0",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 0},
+      "base_header": "Version 3.0.0",
+      "release_date": "2021-04-01T20:29:11+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.0",
+          "log_text": ["* DS4Windows now targets .NET 5",
+            "* Changed ViGEm libraries to target .NET Core 3.1",
+            "* Now use MdXaml rather than Markdown.Xaml for Changelog text rendering",
+            "* Removed Newtonsoft.Json library dependency",
+            "* Removed use of .NET 5 Runtime check nag window",
+            "* Fixed UDP Server locking device input in .NET 5. Caused by API change for SocketAsyncEventArgs",
+            "* Moved app config loading to occur after logger is created",
+            "* Change extras flag to take current DS4Control into account",
+            "* Added additionalProbingPaths to runtimeconfig.json",
+            "* Use UseShellExecute for ProcessStartInfo. Due to Process.Start change in .NET 5",
+            "* Added newer bat self deletion routine. Make sure to return 0 status code in process when performing bat self-delete"],
+          "editor": "ryochan7",
+          "editors_note": [".NET 5 updates"],
+          "updated_at": "2021-04-01T20:29:11+0000"
+        }
+      ]
+    },
+    {
+      "version_str": "2.2.15",
+      "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 15},
+      "base_header": "Version 2.2.15",
+      "release_date": "2021-03-25T16:22:38+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 2.2.15",
+          "log_text": ["* Ignore duplicate device when in Shared mode",
+            "* Added extra processing to Version string for .NET 5 and later. Expecting Microsoft to use their own standard was a mistake",
+            "* Changed URL used for .NET 5 Runtime download"],
+          "editor": "ryochan7",
+          "editors_note": ["None"],
+          "updated_at": "2021-03-25T16:22:38+0000"
+        }
+      ]
+    },
     {
       "version_str": "2.2.14",
       "version_number_info": {"majorPart": 2, "minorPart": 2, "buildPart": 14},

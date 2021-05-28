@@ -950,8 +950,8 @@
                             <xctk:IntegerUpDown MinWidth="30" Height="30" Minimum="0" Maximum="60" Increment="1" Margin="8,0,0,0"
                                             Value="{Binding Rainbow,FallbackValue=5}" IsEnabled="{Binding RainbowExists}" />
                             <Label Content="secs/cycle" Padding="0" Margin="8,0,0,0" VerticalContentAlignment="Center" />
-                            <StackPanel Margin="8,0,0,0">
-                                <Label Content="Max Sat." />
+                            <StackPanel Margin="8,0,0,0" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding MaxSatRainbow,FallbackValue=100,StringFormat=Max Sat. {0:N2}%}" Margin="0,0,0,5" />
                                 <Slider Value="{Binding MaxSatRainbow,FallbackValue=100}" Minimum="0" Maximum="100" Width="100" IsEnabled="{Binding RainbowExists}" />
                             </StackPanel>
                         </StackPanel>

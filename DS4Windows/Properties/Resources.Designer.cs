@@ -1036,7 +1036,7 @@ namespace DS4WinWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EXPERIMENTAL: Auto-Disable BT when connecting to USB.
+        ///   Looks up a localized string similar to Auto-Disable BT when connecting to USB.
         /// </summary>
         public static string QuickCharge {
             get {
@@ -1540,7 +1540,7 @@ namespace DS4WinWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are up to date.
+        ///   Looks up a localized string similar to DS4Windows application is up-to-date..
         /// </summary>
         public static string UpToDate {
             get {

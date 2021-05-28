@@ -112,6 +112,11 @@ namespace DS4Windows
             shiftKeyType = DS4KeyType.None;
         }
 
+        public bool IsExtrasEmpty(string extraStr)
+        {
+            return string.IsNullOrEmpty(extraStr) || extraStr == "0,0,0,0,0,0,0,0,0";
+        }
+
         internal void UpdateSettings(bool shift, object act, string exts, DS4KeyType kt, int trigger = 0)
         {
             if (!shift)
@@ -407,7 +412,7 @@ namespace DS4Windows
         public const int OLD_XINPUT_CONTROLLER_COUNT = 4;
         protected static BackingStore m_Config = new BackingStore();
         protected static Int32 m_IdleTimeout = 600000;
-        public static string exelocation = Assembly.GetExecutingAssembly().Location;
+        public static string exelocation = Process.GetCurrentProcess().MainModule.FileName;
         public static string exedirpath = Directory.GetParent(exelocation).FullName;
         public static string exeFileName = Path.GetFileName(exelocation);
         public static FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(exelocation);
@@ -446,6 +451,7 @@ namespace DS4Windows
         public static bool firstRun = false;
         public static bool multisavespots = false;
         public static string appDataPpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows";
+        public static string localAppDataPpath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "DS4Windows");
         public static bool runHotPlug = false;
         public static string[] tempprofilename = new string[TEST_PROFILE_ITEM_COUNT] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         public static bool[] useTempProfile = new bool[TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
@@ -465,14 +471,24 @@ namespace DS4Windows
             DS4Windows.OutContType.None, DS4Windows.OutContType.None,
             DS4Windows.OutContType.None, DS4Windows.OutContType.None,
             DS4Windows.OutContType.None};
-        public static bool vigemInstalled = IsViGEmBusInstalled();
-        public static bool hidguardInstalled = IsHidGuardianInstalled();
-        public static string vigembusVersion = ViGEmBusVersion();
-        public static VirtualKBMBase outputKBMHandler = null;
-        public static VirtualKBMMapping outputKBMMapping = null;
+
+        public const string BLANK_VIGEMBUS_VERSION = "0.0.0.0";
+        public const string MIN_SUPPORTED_VIGEMBUS_VERSION = "1.16.112.0";
+
+        //public static bool vigemInstalled = IsViGEmBusInstalled();
+        public static bool vigemInstalled = false;
+        //public static string vigembusVersion = ViGEmBusVersion();
+        public static string vigembusVersion = BLANK_VIGEMBUS_VERSION;
         public static Version vigemBusVersionInfo =
             new Version(!string.IsNullOrEmpty(vigembusVersion) ? vigembusVersion :
-                "0.0.0.0");
+                BLANK_VIGEMBUS_VERSION);
+        public static Version minSupportedViGEmBusVersionInfo = new Version(MIN_SUPPORTED_VIGEMBUS_VERSION);
+        public static bool hidguardInstalled = IsHidGuardianInstalled();
+        public static bool hidHideInstalled = IsHidHideInstalled();
+		
+		public static VirtualKBMBase outputKBMHandler = null;
+        public static VirtualKBMMapping outputKBMMapping = null;
+
         public const int CONFIG_VERSION = 5;
         public const int APP_CONFIG_VERSION = 2;
         public const string ASSEMBLY_RESOURCE_PREFIX = "pack://application:,,,/DS4Windows;";
@@ -803,6 +819,119 @@ namespace DS4Windows
             return result;
         }
 
+        private class ViGEmBusInfo
+        {
+            //public string path;
+            public string instanceId;
+            public string deviceName;
+            public string deviceVersionStr;
+            public Version deviceVersion;
+            public string manufacturer;
+            public string driverProviderName;
+        }
+
+        private static void FindViGEmDeviceInfo()
+        {
+            bool result = false;
+            Guid deviceGuid = Guid.Parse(VIGEMBUS_GUID);
+            NativeMethods.SP_DEVINFO_DATA deviceInfoData =
+                new NativeMethods.SP_DEVINFO_DATA();
+            deviceInfoData.cbSize =
+                System.Runtime.InteropServices.Marshal.SizeOf(deviceInfoData);
+
+            var dataBuffer = new byte[4096];
+            ulong propertyType = 0;
+            var requiredSize = 0;
+
+            // Properties to retrieve
+            NativeMethods.DEVPROPKEY[] lookupProperties = new NativeMethods.DEVPROPKEY[]
+            {
+                NativeMethods.DEVPKEY_Device_DriverVersion, NativeMethods.DEVPKEY_Device_InstanceId,
+                NativeMethods.DEVPKEY_Device_Manufacturer, NativeMethods.DEVPKEY_Device_Provider,
+                NativeMethods.DEVPKEY_Device_DeviceDesc,
+            };
+
+            List<ViGEmBusInfo> tempViGEmBusInfoList = new List<ViGEmBusInfo>();
+
+            IntPtr deviceInfoSet = NativeMethods.SetupDiGetClassDevs(ref deviceGuid, null, 0,
+                NativeMethods.DIGCF_DEVICEINTERFACE);
+            for (int i = 0; !result && NativeMethods.SetupDiEnumDeviceInfo(deviceInfoSet, i, ref deviceInfoData); i++)
+            {
+                ViGEmBusInfo tempBusInfo = new ViGEmBusInfo();
+
+                foreach (NativeMethods.DEVPROPKEY currentDevKey in lookupProperties)
+                {
+                    NativeMethods.DEVPROPKEY tempKey = currentDevKey;
+                    if (NativeMethods.SetupDiGetDeviceProperty(deviceInfoSet, ref deviceInfoData,
+                        ref tempKey, ref propertyType,
+                        dataBuffer, dataBuffer.Length, ref requiredSize, 0))
+                    {
+                        string temp = dataBuffer.ToUTF16String();
+                        if (currentDevKey.fmtid == NativeMethods.DEVPKEY_Device_DriverVersion.fmtid &&
+                            currentDevKey.pid == NativeMethods.DEVPKEY_Device_DriverVersion.pid)
+                        {
+                            try
+                            {
+                                tempBusInfo.deviceVersion = new Version(temp);
+                                tempBusInfo.deviceVersionStr = temp;
+                            }
+                            catch (ArgumentException)
+                            {
+                                // Default to unknown version
+                                tempBusInfo.deviceVersionStr = BLANK_VIGEMBUS_VERSION;
+                                tempBusInfo.deviceVersion = new Version(tempBusInfo.deviceVersionStr);
+                            }
+                        }
+                        else if (currentDevKey.fmtid == NativeMethods.DEVPKEY_Device_InstanceId.fmtid &&
+                            currentDevKey.pid == NativeMethods.DEVPKEY_Device_InstanceId.pid)
+                        {
+                            tempBusInfo.instanceId = temp;
+                        }
+                        else if (currentDevKey.fmtid == NativeMethods.DEVPKEY_Device_Manufacturer.fmtid &&
+                            currentDevKey.pid == NativeMethods.DEVPKEY_Device_Manufacturer.pid)
+                        {
+                            tempBusInfo.manufacturer = temp;
+                        }
+                        else if (currentDevKey.fmtid == NativeMethods.DEVPKEY_Device_Provider.fmtid &&
+                            currentDevKey.pid == NativeMethods.DEVPKEY_Device_Provider.pid)
+                        {
+                            tempBusInfo.driverProviderName = temp;
+                        }
+                        else if (currentDevKey.fmtid == NativeMethods.DEVPKEY_Device_DeviceDesc.fmtid &&
+                            currentDevKey.pid == NativeMethods.DEVPKEY_Device_DeviceDesc.pid)
+                        {
+                            tempBusInfo.deviceName = temp;
+                        }
+                    }
+                }
+
+                tempViGEmBusInfoList.Add(tempBusInfo);
+            }
+
+            if (deviceInfoSet.ToInt64() != NativeMethods.INVALID_HANDLE_VALUE)
+            {
+                NativeMethods.SetupDiDestroyDeviceInfoList(deviceInfoSet);
+            }
+
+            // Iterate over list and find most recent version number
+            //IEnumerable<ViGEmBusInfo> tempResults = tempViGEmBusInfoList.Where(item => minSupportedViGEmBusVersionInfo.CompareTo(item.deviceVersion) <= 0);
+            Version latestKnown = new Version(BLANK_VIGEMBUS_VERSION);
+            string deviceInstanceId = string.Empty;
+            foreach (ViGEmBusInfo item in tempViGEmBusInfoList)
+            {
+                if (latestKnown.CompareTo(item.deviceVersion) <= 0)
+                {
+                    latestKnown = item.deviceVersion;
+                    deviceInstanceId = item.instanceId;
+                }
+            }
+
+            // Get bus info for most recent version found and save info
+            ViGEmBusInfo latestBusInfo =
+                tempViGEmBusInfoList.SingleOrDefault(item => item.instanceId == deviceInstanceId);
+            PopulateFromViGEmBusInfo(latestBusInfo);
+        }
+
         private static bool CheckForSysDevice(string searchHardwareId)
         {
             bool result = false;
@@ -865,37 +994,16 @@ namespace DS4Windows
             return result;
         }
 
-        private static string GetViGEmDriverProperty(NativeMethods.DEVPROPKEY prop)
+        public static bool CheckHidHideAffectedStatus(string deviceInstanceId,
+            HashSet<string> affectedDevs, HashSet<string> exemptedDevices, bool force = false)
         {
-            string result = string.Empty;
-            Guid deviceGuid = Guid.Parse(VIGEMBUS_GUID);
-            NativeMethods.SP_DEVINFO_DATA deviceInfoData =
-                new NativeMethods.SP_DEVINFO_DATA();
-            deviceInfoData.cbSize =
-                System.Runtime.InteropServices.Marshal.SizeOf(deviceInfoData);
-
-            var dataBuffer = new byte[4096];
-            ulong propertyType = 0;
-            var requiredSize = 0;
-
-            IntPtr deviceInfoSet = NativeMethods.SetupDiGetClassDevs(ref deviceGuid, null, 0,
-                NativeMethods.DIGCF_DEVICEINTERFACE);
-            NativeMethods.SetupDiEnumDeviceInfo(deviceInfoSet, 0, ref deviceInfoData);
-            if (NativeMethods.SetupDiGetDeviceProperty(deviceInfoSet, ref deviceInfoData, ref prop, ref propertyType,
-                    dataBuffer, dataBuffer.Length, ref requiredSize, 0))
-            {
-                result = dataBuffer.ToUTF16String();
-            }
-
-            if (deviceInfoSet.ToInt64() != NativeMethods.INVALID_HANDLE_VALUE)
-            {
-                NativeMethods.SetupDiDestroyDeviceInfoList(deviceInfoSet);
-            }
-
+            bool result = false;
+            string tempDeviceInstanceId = deviceInstanceId.ToUpper();
+            result = affectedDevs.Contains(tempDeviceInstanceId);
             return result;
         }
 
-        public static bool CheckAffectedStatus(string deviceInstanceId,
+        public static bool CheckHidGuardianAffectedStatus(string deviceInstanceId,
             HashSet<string> affectedDevs, HashSet<string> exemptedDevices, bool force=false)
         {
             bool result = false;
@@ -974,31 +1082,78 @@ namespace DS4Windows
             return CheckForSysDevice(@"Root\HidGuardian");
         }
 
+        public static bool IsHidHideInstalled()
+        {
+            return CheckForSysDevice(@"root\HidHide");
+        }
+
         const string VIGEMBUS_GUID = "{96E42B22-F5E9-42F8-B043-ED0F932F014F}";
         public static bool IsViGEmBusInstalled()
         {
-            return CheckForDevice(VIGEMBUS_GUID);
+            return vigemInstalled;
         }
 
-        public static string ViGEmBusVersion()
+        public static bool IsRunningSupportedViGEmBus()
         {
-            return GetViGEmDriverProperty(NativeMethods.DEVPKEY_Device_DriverVersion);
+            //return vigemInstalled;
+            return vigemInstalled &&
+                minSupportedViGEmBusVersionInfo.CompareTo(vigemBusVersionInfo) <= 0;
+        }
+
+        public static void RefreshViGEmBusInfo()
+        {
+            FindViGEmDeviceInfo();
+        }
+
+        public static void RefreshHidHideInfo()
+        {
+            hidHideInstalled = IsHidHideInstalled();
+        }
+
+        private static void PopulateFromViGEmBusInfo(ViGEmBusInfo busInfo)
+        {
+            if (busInfo != null)
+            {
+                vigemInstalled = true;
+                vigembusVersion = busInfo.deviceVersionStr;
+                vigemBusVersionInfo = busInfo.deviceVersion;
+            }
+            else
+            {
+                vigemInstalled = false;
+                vigembusVersion = BLANK_VIGEMBUS_VERSION;
+                vigemBusVersionInfo = new Version(BLANK_VIGEMBUS_VERSION);
+            }
         }
 
         public static void FindConfigLocation()
         {
-            if (File.Exists(exedirpath + "\\Auto Profiles.xml")
-                && File.Exists(appDataPpath + "\\Auto Profiles.xml"))
+            bool programFolderAutoProfilesExists = File.Exists(Path.Combine(exedirpath, "Auto Profiles.xml"));
+            bool appDataAutoProfilesExists = File.Exists(Path.Combine(appDataPpath, "Auto Profiles.xml"));
+            //bool localAppDataAutoProfilesExists = File.Exists(Path.Combine(localAppDataPpath, "Auto Profiles.xml"));
+            //bool systemAppConfigExists = appDataAutoProfilesExists || localAppDataAutoProfilesExists;
+            bool systemAppConfigExists = appDataAutoProfilesExists;
+            bool isSameFolder = appDataAutoProfilesExists && exedirpath == appDataPpath;
+
+            if (programFolderAutoProfilesExists && appDataAutoProfilesExists &&
+                !isSameFolder)
             {
                 Global.firstRun = true;
                 Global.multisavespots = true;
             }
-            else if (File.Exists(exedirpath + "\\Auto Profiles.xml"))
+            else if (programFolderAutoProfilesExists)
+            {
                 SaveWhere(exedirpath);
-            else if (File.Exists(appDataPpath + "\\Auto Profiles.xml"))
+            }
+            //else if (localAppDataAutoProfilesExists)
+            //{
+            //    SaveWhere(localAppDataPpath);
+            //}
+            else if (appDataAutoProfilesExists)
+            {
                 SaveWhere(appDataPpath);
-            else if (!File.Exists(exedirpath + "\\Auto Profiles.xml")
-                && !File.Exists(appDataPpath + "\\Auto Profiles.xml"))
+            }
+            else if (!programFolderAutoProfilesExists && !appDataAutoProfilesExists)
             {
                 Global.firstRun = true;
                 Global.multisavespots = false;
@@ -2235,10 +2390,34 @@ namespace DS4Windows
             tempprofileDistance[device] = false;
         }
 
+        public static void LoadBlankDS4Profile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
+        {
+            m_Config.LoadBlankDS4Profile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.EstablishDefaultSpecialActions(device);
+            m_Config.CacheExtraProfileInfo(device);
+
+            tempprofilename[device] = string.Empty;
+            useTempProfile[device] = false;
+            tempprofileDistance[device] = false;
+        }
+
         public static void LoadDefaultGamepadGyroProfile(int device, bool launchprogram, ControlService control,
             bool xinputChange = true, bool postLoad = true)
         {
             m_Config.LoadDefaultGamepadGyroProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.EstablishDefaultSpecialActions(device);
+            m_Config.CacheExtraProfileInfo(device);
+
+            tempprofilename[device] = string.Empty;
+            useTempProfile[device] = false;
+            tempprofileDistance[device] = false;
+        }
+
+        public static void LoadDefaultDS4GamepadGyroProfile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
+        {
+            m_Config.LoadDefaultDS4GamepadGyroProfile(device, launchprogram, control, "", xinputChange, postLoad);
             m_Config.EstablishDefaultSpecialActions(device);
             m_Config.CacheExtraProfileInfo(device);
 
@@ -2259,10 +2438,34 @@ namespace DS4Windows
             tempprofileDistance[device] = false;
         }
 
+        public static void LoadDefaultDS4MixedControlsProfile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
+        {
+            m_Config.LoadDefaultMixedControlsProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.EstablishDefaultSpecialActions(device);
+            m_Config.CacheExtraProfileInfo(device);
+
+            tempprofilename[device] = string.Empty;
+            useTempProfile[device] = false;
+            tempprofileDistance[device] = false;
+        }
+
         public static void LoadDefaultMixedGyroMouseProfile(int device, bool launchprogram, ControlService control,
             bool xinputChange = true, bool postLoad = true)
         {
             m_Config.LoadDefaultMixedGyroMouseProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.EstablishDefaultSpecialActions(device);
+            m_Config.CacheExtraProfileInfo(device);
+
+            tempprofilename[device] = string.Empty;
+            useTempProfile[device] = false;
+            tempprofileDistance[device] = false;
+        }
+
+        public static void LoadDefaultDS4MixedGyroMouseProfile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
+        {
+            m_Config.LoadDefaultDS4MixedGyroMouseProfile(device, launchprogram, control, "", xinputChange, postLoad);
             m_Config.EstablishDefaultSpecialActions(device);
             m_Config.CacheExtraProfileInfo(device);
 
@@ -2474,7 +2677,6 @@ namespace DS4Windows
         public const double DEFAULT_UDP_SMOOTH_MINCUTOFF = 0.4;
         public const double DEFAULT_UDP_SMOOTH_BETA = 0.2;
 
-        //public String m_Profile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool" + "\\Profiles.xml";
         public String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + "\\Profiles.xml";
         public String m_Actions = Global.appdatapath + "\\Actions.xml";
         public string m_linkedProfiles = Global.appdatapath + "\\LinkedProfiles.xml";
@@ -3946,10 +4148,14 @@ namespace DS4Windows
                     m_Xdoc.Load(tmpMigration.ProfileReader);
                     migratePerformed = true;
                 }
-                else
+                else if (tmpMigration.ProfileReader != null)
                 {
                     m_Xdoc.Load(tmpMigration.ProfileReader);
                     //m_Xdoc.Load(profilepath);
+                }
+                else
+                {
+                    Loaded = false;
                 }
 
                 if (m_Xdoc.SelectSingleNode(rootname) == null)
@@ -6947,6 +7153,64 @@ namespace DS4Windows
             ds4Mapping = false;
         }
 
+        private void PrepareBlankingProfile(int device, ControlService control, out bool xinputPlug, out bool xinputStatus, bool xinputChange = true)
+        {
+            xinputPlug = false;
+            xinputStatus = false;
+
+            OutContType oldContType = Global.activeOutDevType[device];
+
+            // Make sure to reset currently set profile values before parsing
+            ResetProfile(device);
+            ResetMouseProperties(device, control);
+
+            // Only change xinput devices under certain conditions. Avoid
+            // performing this upon program startup before loading devices.
+            if (xinputChange)
+            {
+                CheckOldDevicestatus(device, control, oldContType,
+                    out xinputPlug, out xinputStatus);
+            }
+
+            foreach (DS4ControlSettings dcs in ds4settings[device])
+                dcs.Reset();
+
+            profileActions[device].Clear();
+            containsCustomAction[device] = false;
+            containsCustomExtras[device] = false;
+        }
+
+        public void LoadBlankDS4Profile(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true, bool postLoad = true)
+        {
+            PrepareBlankingProfile(device, control, out bool xinputPlug, out bool xinputStatus, xinputChange);
+
+            StickDeadZoneInfo lsInfo = lsModInfo[device];
+            lsInfo.deadZone = (int)(0.00 * 127);
+            lsInfo.antiDeadZone = 0;
+            lsInfo.maxZone = 100;
+
+            StickDeadZoneInfo rsInfo = rsModInfo[device];
+            rsInfo.deadZone = (int)(0.00 * 127);
+            rsInfo.antiDeadZone = 0;
+            rsInfo.maxZone = 100;
+
+            TriggerDeadZoneZInfo l2Info = l2ModInfo[device];
+            l2Info.deadZone = (byte)(0.00 * 255);
+
+            TriggerDeadZoneZInfo r2Info = r2ModInfo[device];
+            r2Info.deadZone = (byte)(0.00 * 255);
+
+            outputDevType[device] = OutContType.DS4;
+
+            // If a device exists, make sure to transfer relevant profile device
+            // options to device instance
+            if (postLoad && device < Global.MAX_DS4_CONTROLLER_COUNT)
+            {
+                PostLoadSnippet(device, control, xinputStatus, xinputPlug);
+            }
+        }
+
         public void LoadBlankProfile(int device, bool launchprogram, ControlService control,
             string propath = "", bool xinputChange = true, bool postLoad = true)
         {
@@ -7024,6 +7288,45 @@ namespace DS4Windows
             }
         }
 
+
+        public void LoadDefaultDS4GamepadGyroProfile(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true, bool postLoad = true)
+        {
+            PrepareBlankingProfile(device, control, out bool xinputPlug, out bool xinputStatus, xinputChange);
+
+            StickDeadZoneInfo lsInfo = lsModInfo[device];
+            lsInfo.deadZone = (int)(0.00 * 127);
+            lsInfo.antiDeadZone = 0;
+            lsInfo.maxZone = 100;
+
+            StickDeadZoneInfo rsInfo = rsModInfo[device];
+            rsInfo.deadZone = (int)(0.00 * 127);
+            rsInfo.antiDeadZone = 0;
+            rsInfo.maxZone = 100;
+
+            TriggerDeadZoneZInfo l2Info = l2ModInfo[device];
+            l2Info.deadZone = (byte)(0.00 * 255);
+
+            TriggerDeadZoneZInfo r2Info = r2ModInfo[device];
+            r2Info.deadZone = (byte)(0.00 * 255);
+
+            gyroOutMode[device] = GyroOutMode.MouseJoystick;
+            sAMouseStickTriggers[device] = "4";
+            sAMouseStickTriggerCond[device] = true;
+            gyroMouseStickTriggerTurns[device] = false;
+            gyroMStickInfo[device].useSmoothing = true;
+            gyroMStickInfo[device].smoothingMethod = GyroMouseStickInfo.SmoothingMethod.OneEuro;
+
+            outputDevType[device] = OutContType.DS4;
+
+            // If a device exists, make sure to transfer relevant profile device
+            // options to device instance
+            if (postLoad && device < Global.MAX_DS4_CONTROLLER_COUNT)
+            {
+                PostLoadSnippet(device, control, xinputStatus, xinputPlug);
+            }
+        }
+
         public void LoadDefaultMixedGyroMouseProfile(int device, bool launchprogram, ControlService control,
             string propath = "", bool xinputChange = true, bool postLoad = true)
         {
@@ -7062,6 +7365,74 @@ namespace DS4Windows
             rsInfo.deadZone = (int)(0.10 * 127);
             rsInfo.antiDeadZone = 0;
             rsInfo.maxZone = 90;
+
+            // If a device exists, make sure to transfer relevant profile device
+            // options to device instance
+            if (postLoad && device < Global.MAX_DS4_CONTROLLER_COUNT)
+            {
+                PostLoadSnippet(device, control, xinputStatus, xinputPlug);
+            }
+        }
+
+
+        public void LoadDefaultDS4MixedGyroMouseProfile(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true, bool postLoad = true)
+        {
+            PrepareBlankingProfile(device, control, out bool xinputPlug, out bool xinputStatus, xinputChange);
+
+            StickDeadZoneInfo lsInfo = lsModInfo[device];
+            lsInfo.deadZone = (int)(0.00 * 127);
+            lsInfo.antiDeadZone = 0;
+            lsInfo.maxZone = 100;
+
+            StickDeadZoneInfo rsInfo = rsModInfo[device];
+            rsInfo.deadZone = (int)(0.10 * 127);
+            rsInfo.antiDeadZone = 0;
+            rsInfo.maxZone = 100;
+
+            TriggerDeadZoneZInfo l2Info = l2ModInfo[device];
+            l2Info.deadZone = (byte)(0.00 * 255);
+
+            TriggerDeadZoneZInfo r2Info = r2ModInfo[device];
+            r2Info.deadZone = (byte)(0.00 * 255);
+
+            gyroOutMode[device] = GyroOutMode.Mouse;
+            sATriggers[device] = "4";
+            sATriggerCond[device] = true;
+            gyroTriggerTurns[device] = false;
+            gyroMouseInfo[device].enableSmoothing = true;
+            gyroMouseInfo[device].smoothingMethod = GyroMouseInfo.SmoothingMethod.OneEuro;
+
+            outputDevType[device] = OutContType.DS4;
+
+            // If a device exists, make sure to transfer relevant profile device
+            // options to device instance
+            if (postLoad && device < Global.MAX_DS4_CONTROLLER_COUNT)
+            {
+                PostLoadSnippet(device, control, xinputStatus, xinputPlug);
+            }
+        }
+
+        public void LoadDefaultDS4MixedControlsProfile(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true, bool postLoad = true)
+        {
+            PrepareBlankingProfile(device, control, out bool xinputPlug, out bool xinputStatus, xinputChange);
+
+            DS4ControlSettings setting = GetDS4CSetting(device, DS4Controls.RYNeg);
+            setting.UpdateSettings(false, X360Controls.MouseUp, "", DS4KeyType.None);
+            setting = GetDS4CSetting(device, DS4Controls.RYPos);
+            setting.UpdateSettings(false, X360Controls.MouseDown, "", DS4KeyType.None);
+            setting = GetDS4CSetting(device, DS4Controls.RXNeg);
+            setting.UpdateSettings(false, X360Controls.MouseLeft, "", DS4KeyType.None);
+            setting = GetDS4CSetting(device, DS4Controls.RXPos);
+            setting.UpdateSettings(false, X360Controls.MouseRight, "", DS4KeyType.None);
+
+            StickDeadZoneInfo rsInfo = rsModInfo[device];
+            rsInfo.deadZone = (int)(0.035 * 127);
+            rsInfo.antiDeadZone = 0;
+            rsInfo.maxZone = 90;
+
+            outputDevType[device] = OutContType.DS4;
 
             // If a device exists, make sure to transfer relevant profile device
             // options to device instance

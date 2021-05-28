@@ -8,11 +8,26 @@ namespace DS4WinWPF.DS4Control
 {
     public abstract class PresetOption
     {
+        public enum OutputContChoice : ushort
+        {
+            None,
+            Xbox360,
+            DualShock4,
+        }
+
         protected string name;
         protected string description;
+        protected bool outputControllerChoice;
+        protected OutputContChoice outputCont;
 
         public string Name { get => name; }
         public string Description { get => description; }
+        public bool OutputControllerChoice { get => outputControllerChoice; }
+        public OutputContChoice OutputCont
+        {
+            get => outputCont;
+            set => outputCont = value;
+        }
 
         public abstract void ApplyPreset(int idx);
     }
@@ -23,11 +38,20 @@ namespace DS4WinWPF.DS4Control
         {
             name = Translations.Strings.GamepadPresetName;
             description = Translations.Strings.GamepadPresetDescription;
+            outputControllerChoice = true;
+            outputCont = OutputContChoice.Xbox360;
         }
 
         public override void ApplyPreset(int idx)
         {
-            DS4Windows.Global.LoadBlankDevProfile(idx, false, App.rootHub, false);
+            if (outputCont == OutputContChoice.Xbox360)
+            {
+                DS4Windows.Global.LoadBlankDevProfile(idx, false, App.rootHub, false);
+            }
+            else if (outputCont == OutputContChoice.DualShock4)
+            {
+                DS4Windows.Global.LoadBlankDS4Profile(idx, false, App.rootHub, false);
+            }
         }
     }
 
@@ -37,11 +61,20 @@ namespace DS4WinWPF.DS4Control
         {
             name = Translations.Strings.GamepadGyroCameraName;
             description = Translations.Strings.GamepadGyroCameraDescription;
+            outputControllerChoice = true;
+            outputCont = OutputContChoice.Xbox360;
         }
 
         public override void ApplyPreset(int idx)
         {
-            DS4Windows.Global.LoadDefaultGamepadGyroProfile(idx, false, App.rootHub, false);
+            if (outputCont == OutputContChoice.Xbox360)
+            {
+                DS4Windows.Global.LoadDefaultGamepadGyroProfile(idx, false, App.rootHub, false);
+            }
+            else if (outputCont == OutputContChoice.DualShock4)
+            {
+                DS4Windows.Global.LoadDefaultDS4GamepadGyroProfile(idx, false, App.rootHub, false);
+            }
         }
     }
 
@@ -51,11 +84,20 @@ namespace DS4WinWPF.DS4Control
         {
             name = Translations.Strings.MixedPresetName;
             description = Translations.Strings.MixedPresetDescription;
+            outputControllerChoice = true;
+            outputCont = OutputContChoice.Xbox360;
         }
 
         public override void ApplyPreset(int idx)
         {
-            DS4Windows.Global.LoadDefaultMixedControlsProfile(idx, false, App.rootHub, false);
+            if (outputCont == OutputContChoice.Xbox360)
+            {
+                DS4Windows.Global.LoadDefaultMixedControlsProfile(idx, false, App.rootHub, false);
+            }
+            else if (outputCont == OutputContChoice.DualShock4)
+            {
+                DS4Windows.Global.LoadDefaultMixedControlsProfile(idx, false, App.rootHub, false);
+            }
         }
     }
 
@@ -65,11 +107,20 @@ namespace DS4WinWPF.DS4Control
         {
             name = Translations.Strings.MixedGyroMousePresetName;
             description = Translations.Strings.MixedGyroMousePresetDescription;
+            outputControllerChoice = true;
+            outputCont = OutputContChoice.Xbox360;
         }
 
         public override void ApplyPreset(int idx)
         {
-            DS4Windows.Global.LoadDefaultMixedGyroMouseProfile(idx, false, App.rootHub, false);
+            if (outputCont == OutputContChoice.Xbox360)
+            {
+                DS4Windows.Global.LoadDefaultMixedGyroMouseProfile(idx, false, App.rootHub, false);
+            }
+            else if (outputCont == OutputContChoice.DualShock4)
+            {
+                DS4Windows.Global.LoadDefaultDS4MixedGyroMouseProfile(idx, false, App.rootHub, false);
+            }
         }
     }
 

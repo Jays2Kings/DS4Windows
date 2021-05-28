@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
         mc:Ignorable="d"
-        Title="Welcome to DS4Windows" Height="356.246" Width="418" MinWidth="418" MinHeight="440"
+        Title="Welcome to DS4Windows" Height="440" Width="418" MinWidth="500" MinHeight="500"
         Style="{DynamicResource WindowStyle}">
     <Window.Resources>
         <Style TargetType="{x:Type Button}" x:Key="CommonMargin" BasedOn="{StaticResource {x:Type Button}}">
@@ -15,36 +15,49 @@
             <Setter Property="Margin" Value="0,10,0,0" />
         </Style>
     </Window.Resources>
-    <DockPanel Margin="10,0">
-        <Button x:Name="vigemInstallBtn" Content="Step 1: Install ViGEmBus Driver" Style="{StaticResource CommonMargin}" DockPanel.Dock="Top" Click="VigemInstallBtn_Click" />
-        <TextBlock TextAlignment="Center" DockPanel.Dock="Top" TextWrapping="Wrap">
-            <TextBlock.Text>
-                If this window reappears after installing, you may need to reboot your PC.
-            </TextBlock.Text>
-        </TextBlock>
-        <Button x:Name="step2Btn" Content="Step 2: If on Windows 7, Install 360 Driver" Style="{StaticResource CommonMargin}" DockPanel.Dock="Top"
+    <ScrollViewer>
+        <DockPanel Margin="10,10,10,10" LastChildFill="False">
+            <Button x:Name="vigemInstallBtn" Content="Step 1: Install ViGEmBus Driver" Style="{StaticResource CommonMargin}" DockPanel.Dock="Top" Click="VigemInstallBtn_Click" />
+            <TextBlock TextAlignment="Center" DockPanel.Dock="Top" TextWrapping="Wrap">
+                <TextBlock.Text>
+                    If this window reappears after installing, you may need to reboot your PC.
+                </TextBlock.Text>
+            </TextBlock>
+            <Button x:Name="step2Btn" Content="Step 2: If on Windows 7, Install 360 Driver" Style="{StaticResource CommonMargin}" DockPanel.Dock="Top"
                 Click="Step2Btn_Click" />
-        <TextBlock TextAlignment="Center" DockPanel.Dock="Top">
-            <TextBlock.Text>
-                If you've used a 360 controller on this PC, you can skip this step.
-            </TextBlock.Text>
-        </TextBlock>
-        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource CommonMarginTxt}" DockPanel.Dock="Top">
+            <TextBlock TextAlignment="Center" DockPanel.Dock="Top">
+                <TextBlock.Text>
+                    If you've used a 360 controller on this PC, you can skip this step.
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource CommonMarginTxt}" DockPanel.Dock="Top">
             Step 3: Connecting the DualShock 4 controller.<LineBreak />
             To setup wired/USB:<LineBreak />
             Simply plug a micro-USB into your PC and DualShock 4.<LineBreak />
             <LineBreak />
             To setup Bluetooth (optional):
             Hold the PS Button and Share for 3 seconds. The lightbar will begin to double flash.
-        </TextBlock>
-        <DockPanel Margin="0,10" DockPanel.Dock="Top">
-            <Button x:Name="finishedBtn" Content="Finished" HorizontalAlignment="Center" Padding="10,1" Style="{StaticResource CommonMargin}" Click="FinishedBtn_Click" DockPanel.Dock="Bottom" />
-            <TextBlock TextAlignment="Center" TextWrapping="Wrap" Style="{StaticResource CommonMarginTxt}" DockPanel.Dock="Bottom">
+            </TextBlock>
+            <DockPanel Margin="0,10" DockPanel.Dock="Top">
+                <TextBlock TextAlignment="Center" TextWrapping="Wrap" Style="{StaticResource CommonMarginTxt}" DockPanel.Dock="Bottom">
                 Once flashing go to your <Hyperlink x:Name="bluetoothSetLink" Click="BluetoothSetLink_Click" Foreground="{DynamicResource AccentColor}">Bluetooth Settings</Hyperlink> and
                 connect to "Wireless Controller". If asked, enter pair code 0000.
                 Once paired, you're ready. Have fun!
-            </TextBlock>
-            <Image Source="/DS4Windows;component/Resources/Pairmode.png" Height="80" DockPanel.Dock="Top" />
+                </TextBlock>
+                <Image Source="/DS4Windows;component/Resources/Pairmode.png" Height="80" DockPanel.Dock="Top" />
+            </DockPanel>
+
+            <StackPanel x:Name="step4HidHidePanel" DockPanel.Dock="Top" Margin="0,8,0,0">
+                <Button x:Name="hidHideInstallBtn" Content="(Optional) Step 4: Install HidHide Driver" Click="HidHideInstall_Click" />
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center" Margin="0, 10, 0, 0">
+                    <TextBlock.Text>
+                        Use HidHide to configure and hide any input controllers from other apps running on your system.
+                        Some games require only one controller to be present or double input will cause problems in game.
+                    </TextBlock.Text>
+                </TextBlock>
+            </StackPanel>
+
+            <Button x:Name="finishedBtn" Content="Finished" HorizontalAlignment="Center" Padding="10,1" Style="{StaticResource CommonMargin}" Click="FinishedBtn_Click" DockPanel.Dock="Bottom" />
         </DockPanel>
-    </DockPanel>
+    </ScrollViewer>
 </Window>

@@ -223,7 +223,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         private void OpenProgramFolderItem_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            Process.Start(Global.exedirpath);
+            ProcessStartInfo startInfo = new ProcessStartInfo(Global.exedirpath);
+            startInfo.UseShellExecute = true;
+            using (Process temp = Process.Start(startInfo))
+            {
+            }
         }
 
         private void OpenMenuItem_Click(object sender, System.Windows.RoutedEventArgs e)

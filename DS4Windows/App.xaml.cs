@@ -18,6 +18,7 @@ using WPFLocalizeExtension.Engine;
 using NLog;
 using System.Windows.Media;
 using System.Net;
+using Microsoft.Win32.SafeHandles;
 
 namespace DS4WinWPF
 {
@@ -35,6 +36,9 @@ namespace DS4WinWPF
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
         private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, ref COPYDATASTRUCT lParam);
+
+        [DllImport("kernel32", EntryPoint = "OpenEventW", SetLastError = true, CharSet = CharSet.Unicode)]
+        private static extern SafeWaitHandle OpenEvent(uint desiredAccess, bool inheritHandle, string name);
 
         [StructLayout(LayoutKind.Sequential)]
         public struct COPYDATASTRUCT
@@ -72,6 +76,17 @@ namespace DS4WinWPF
 
         public event EventHandler ThemeChanged;
 
+        private static EventWaitHandle CreateAndReplaceHandle(SafeWaitHandle replacementHandle)
+        {
+            EventWaitHandle eventWaitHandle = new EventWaitHandle(default, default);
+
+            SafeWaitHandle old = eventWaitHandle.SafeWaitHandle;
+            eventWaitHandle.SafeWaitHandle = replacementHandle;
+            old.Dispose();
+
+            return eventWaitHandle;
+        }
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             runShutdown = true;
@@ -105,10 +120,13 @@ namespace DS4WinWPF
 
             try
             {
+                // https://github.com/dotnet/runtime/issues/2117
                 // another instance is already running if OpenExisting succeeds.
-                threadComEvent = EventWaitHandle.OpenExisting(SingleAppComEventName,
-                    System.Security.AccessControl.EventWaitHandleRights.Synchronize |
-                    System.Security.AccessControl.EventWaitHandleRights.Modify);
+                //threadComEvent = EventWaitHandle.OpenExisting(SingleAppComEventName,
+                //    System.Security.AccessControl.EventWaitHandleRights.Synchronize |
+                //    System.Security.AccessControl.EventWaitHandleRights.Modify);
+                // Use this for now
+                threadComEvent = CreateAndReplaceHandle(OpenEvent((uint)(System.Security.AccessControl.EventWaitHandleRights.Synchronize | System.Security.AccessControl.EventWaitHandleRights.Modify), false, SingleAppComEventName));
                 threadComEvent.Set();  // signal the other instance.
                 threadComEvent.Close();
                 Current.Shutdown();    // Quit temp instance
@@ -116,6 +134,9 @@ namespace DS4WinWPF
                 return;
             }
             catch { /* don't care about errors */ }
+
+            // Retrieve info about installed ViGEmBus device if found
+            DS4Windows.Global.RefreshViGEmBusInfo();
 
             // Create the Event handle
             threadComEvent = new EventWaitHandle(false, EventResetMode.ManualReset, SingleAppComEventName);
@@ -128,12 +149,12 @@ namespace DS4WinWPF
             bool firstRun = DS4Windows.Global.firstRun;
             if (firstRun)
             {
-                DS4Forms.SaveWhere savewh = new DS4Forms.SaveWhere(false);
+                DS4Forms.SaveWhere savewh =
+                    new DS4Forms.SaveWhere(DS4Windows.Global.multisavespots);
                 savewh.ShowDialog();
             }
 
-            DS4Windows.Global.Load();
-            if (!CreateConfDirSkeleton())
+            if (firstRun && !CreateConfDirSkeleton())
             {
                 MessageBox.Show($"Cannot create config folder structure in {DS4Windows.Global.appdatapath}. Exiting",
                     "DS4Windows", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -152,25 +173,25 @@ namespace DS4WinWPF
             logger.Info($"OS Product Name: {DS4Windows.Util.GetOSProductName()}");
             logger.Info($"OS Release ID: {DS4Windows.Util.GetOSReleaseId()}");
             logger.Info($"System Architecture: {(Environment.Is64BitOperatingSystem ? "x64" : "x86")}");
-            //logger.Info("DS4Windows version 2.0");
             logger.Info("Logger created");
 
-            //DS4Windows.Global.ProfilePath[0] = "mixed";
-            //DS4Windows.Global.LoadProfile(0, false, rootHub, false, false);
+            bool readAppConfig = DS4Windows.Global.Load();
+            if (!firstRun && !readAppConfig)
+            {
+                logger.Info($@"Profiles.xml not read at location ${DS4Windows.Global.appdatapath}\Profiles.xml. Using default app settings");
+            }
+
             if (firstRun)
             {
                 logger.Info("No config found. Creating default config");
-                //Directory.CreateDirectory(DS4Windows.Global.appdatapath);
                 AttemptSave();
 
-                //Directory.CreateDirectory(DS4Windows.Global.appdatapath + @"\Profiles\");
-                //Directory.CreateDirectory(DS4Windows.Global.appdatapath + @"\Macros\");
                 DS4Windows.Global.SaveAsNewProfile(0, "Default");
-                DS4Windows.Global.ProfilePath[0] = DS4Windows.Global.OlderProfilePath[0] = "Default";
-                /*DS4Windows.Global.ProfilePath[1] = DS4Windows.Global.OlderProfilePath[1] = "Default";
-                DS4Windows.Global.ProfilePath[2] = DS4Windows.Global.OlderProfilePath[2] = "Default";
-                DS4Windows.Global.ProfilePath[3] = DS4Windows.Global.OlderProfilePath[3] = "Default";
-                */
+                for (int i = 0; i < DS4Windows.ControlService.MAX_DS4_CONTROLLER_COUNT; i++)
+                {
+                    DS4Windows.Global.ProfilePath[i] = DS4Windows.Global.OlderProfilePath[i] = "Default";
+                }
+
                 logger.Info("Default config created");
             }
 
@@ -197,8 +218,19 @@ namespace DS4WinWPF
 
             window.CheckMinStatus();
             rootHub.LogDebug($"Running as {(DS4Windows.Global.IsAdministrator() ? "Admin" : "User")}");
+
+            if (DS4Windows.Global.hidguardInstalled)
+            {
+                rootHub.LaunchHidGuardHelper();
+            }
+            else if (DS4Windows.Global.hidHideInstalled)
+            {
+                rootHub.CheckHidHidePresence();
+            }
+
             rootHub.LogDebug($"Using output KB+M handler: {DS4Windows.Global.outputKBMHandler.GetDisplayName()}");
             rootHub.LaunchHidGuardHelper();
+
             rootHub.LoadPermanentSlotsConfig();
             window.LateChecks(parser);
         }
@@ -239,8 +271,8 @@ namespace DS4WinWPF
 
         private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            //Console.WriteLine("App Crashed");
-            //Console.WriteLine(e.Exception.StackTrace);
+            //Debug.WriteLine("App Crashed");
+            //Debug.WriteLine(e.Exception.StackTrace);
             Logger logger = logHolder.Logger;
             logger.Error($"Thread Crashed with message {e.Exception.Message}");
             logger.Error(e.Exception.ToString());
@@ -314,6 +346,10 @@ namespace DS4WinWPF
             }
             else if (parser.Driverinstall)
             {
+                // Retrieve info about installed ViGEmBus device if found.
+                // Might not be needed here
+                DS4Windows.Global.RefreshViGEmBusInfo();
+
                 CreateBaseThread();
                 DS4Forms.WelcomeDialog dialog = new DS4Forms.WelcomeDialog(true);
                 dialog.ShowDialog();
@@ -674,7 +710,7 @@ namespace DS4WinWPF
                     {
                         if (rootHub.running)
                         {
-                            rootHub.Stop();
+                            rootHub.Stop(immediateUnplug: true);
                             rootHub.ShutDown();
                         }
                     }).Wait();

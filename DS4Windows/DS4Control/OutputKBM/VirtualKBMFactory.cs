@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DS4Windows.DS4Control
 {
@@ -16,9 +12,9 @@ namespace DS4Windows.DS4Control
             {
                 handler = new SendInputHandler();
             }
-            else if (identifier == VMultiHandler.IDENTIFIER)
+            else if (identifier == FakerInputHandler.IDENTIFIER)
             {
-                handler = new VMultiHandler();
+                handler = new FakerInputHandler();
             }
             else
             {
@@ -27,7 +23,7 @@ namespace DS4Windows.DS4Control
 
             return handler;
             //return new SendInputHandler();
-            //return new VMultiHandler();
+            //return new FakerInputMapping();
         }
 
         public static VirtualKBMMapping GetMappingInstance(string identifier =
@@ -38,9 +34,9 @@ namespace DS4Windows.DS4Control
             {
                 temp = new SendInputMapping();
             }
-            else if (identifier == VMultiHandler.IDENTIFIER)
+            else if (identifier == FakerInputHandler.IDENTIFIER)
             {
-                temp = new VMultiMapping();
+                temp = new FakerInputMapping();
             }
             else
             {
@@ -80,7 +76,7 @@ namespace DS4Windows.DS4Control
                 case SendInputHandler.IDENTIFIER:
                     result = true;
                     break;
-                case VMultiHandler.IDENTIFIER:
+                case FakerInputHandler.IDENTIFIER:
                     result = true;
                     break;
                 default:

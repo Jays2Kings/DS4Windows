@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Input;
-using VMultiDllWrapper;
-using MouseButton = VMultiDllWrapper.MouseButton;
+using FakerInputWrapper;
+using MouseButton = FakerInputWrapper.MouseButton;
 
 namespace DS4Windows.DS4Control
 {
-    public class VMultiMapping : VirtualKBMMapping
+    public class FakerInputMapping : VirtualKBMMapping
     {
-        private Dictionary<ushort, ushort> mappingPairs = new Dictionary<ushort, ushort>();
+        private Dictionary<ushort, uint> mappingPairs = new Dictionary<ushort, uint>();
 
         /// <summary>
         /// Use to define keys not available in the VMultiDllWrapper. Might not use
@@ -29,7 +29,7 @@ namespace DS4Windows.DS4Control
             MOUSEEVENTF_WHEEL = 0x0800; MOUSEEVENTF_HWHEEL = 0x1000;
 
             KEY_TAB = (uint)KeyboardKey.Tab;
-            KEY_LALT = (uint)KeyboardModifier.LAlt | VMultiHandler.MODIFIER_MASK;
+            KEY_LALT = (uint)KeyboardModifier.LAlt | FakerInputHandler.MODIFIER_MASK;
             WHEEL_TICK_DOWN = -1; WHEEL_TICK_UP = 1;
             macroKeyTranslate = true;
         }
@@ -114,65 +114,65 @@ namespace DS4Windows.DS4Control
                 // Map modifier keys. Need to add a mask to separate modifier key values
                 // from normal keyboard keys.
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.LeftCtrl),
-                    (ushort)KeyboardModifier.LControl | VMultiHandler.MODIFIER_MASK);
+                    (ushort)KeyboardModifier.LControl | FakerInputHandler.MODIFIER_MASK);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.RightCtrl),
-                    (ushort)KeyboardModifier.RControl | VMultiHandler.MODIFIER_MASK);
+                    (ushort)KeyboardModifier.RControl | FakerInputHandler.MODIFIER_MASK);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.LeftAlt),
-                    (ushort)KeyboardModifier.LAlt | VMultiHandler.MODIFIER_MASK);
+                    (ushort)KeyboardModifier.LAlt | FakerInputHandler.MODIFIER_MASK);
                 // Bind VK_MENU to LAlt as well
                 mappingPairs.Add(0x12,
-                    (ushort)KeyboardModifier.LAlt | VMultiHandler.MODIFIER_MASK);
+                    (ushort)KeyboardModifier.LAlt | FakerInputHandler.MODIFIER_MASK);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.RightAlt),
-                    (ushort)KeyboardModifier.RAlt | VMultiHandler.MODIFIER_MASK);
+                    (ushort)KeyboardModifier.RAlt | FakerInputHandler.MODIFIER_MASK);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.LeftShift),
-                    (ushort)KeyboardModifier.LShift | VMultiHandler.MODIFIER_MASK);
+                    (ushort)KeyboardModifier.LShift | FakerInputHandler.MODIFIER_MASK);
                 // Bind VK_SHIFT to LeftShift as well
                 mappingPairs.Add(0x10,
-                    (ushort)KeyboardModifier.LShift | VMultiHandler.MODIFIER_MASK);
+                    (ushort)KeyboardModifier.LShift | FakerInputHandler.MODIFIER_MASK);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.RightShift),
-                    (ushort)KeyboardModifier.RShift | VMultiHandler.MODIFIER_MASK);
+                    (ushort)KeyboardModifier.RShift | FakerInputHandler.MODIFIER_MASK);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.LWin),
-                    (ushort)KeyboardModifier.LWin | VMultiHandler.MODIFIER_MASK);
+                    (ushort)KeyboardModifier.LWin | FakerInputHandler.MODIFIER_MASK);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.RWin),
-                    (ushort)KeyboardModifier.RWin | VMultiHandler.MODIFIER_MASK);
+                    (ushort)KeyboardModifier.RWin | FakerInputHandler.MODIFIER_MASK);
 
                 // Map Enhanced Keys. Need to add a mask to separate modifier key values
                 // from normal keyboard keys.
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.BrowserFavorites),
-                    (ushort)EnhancedKey.WWWFav | VMultiHandler.MODIFIER_ENHANCED);
+                    (uint)EnhancedKey.ACBookmarks | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.BrowserSearch),
-                    (ushort)EnhancedKey.WWWSearch | VMultiHandler.MODIFIER_ENHANCED);
+                    (ushort)EnhancedKey.WWWSearch | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.BrowserStop),
-                    (ushort)EnhancedKey.WWWStop | VMultiHandler.MODIFIER_ENHANCED);
+                    (uint)EnhancedKey.ACStop | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.BrowserBack),
-                    (ushort)EnhancedKey.WWWBack | VMultiHandler.MODIFIER_ENHANCED);
+                    (uint)EnhancedKey.WWWBack | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.SelectMedia),
-                    (ushort)EnhancedKey.MediaSelect | VMultiHandler.MODIFIER_ENHANCED);
+                    (ushort)EnhancedKey.MediaSelect | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.LaunchMail),
-                    (ushort)EnhancedKey.Mail | VMultiHandler.MODIFIER_ENHANCED);
+                    (ushort)EnhancedKey.Mail | FakerInputHandler.MODIFIER_ENHANCED);
 
                 // Map Multimedia Keys. Need to add a mask to separate modifier key values
                 // from normal keyboard keys.
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.MediaNextTrack),
-                    (ushort)MultimediaKey.ScanNextTrack | VMultiHandler.MODIFIER_MULTIMEDIA);
+                    (ushort)EnhancedKey.ScanNextTrack | FakerInputHandler.MODIFIER_MULTIMEDIA);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.MediaPreviousTrack),
-                    (ushort)MultimediaKey.ScanPreviousTrack | VMultiHandler.MODIFIER_MULTIMEDIA);
+                    (ushort)EnhancedKey.ScanPreviousTrack | FakerInputHandler.MODIFIER_MULTIMEDIA);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.MediaStop),
-                    (ushort)MultimediaKey.Stop | VMultiHandler.MODIFIER_MULTIMEDIA);
+                    (ushort)EnhancedKey.Stop | FakerInputHandler.MODIFIER_MULTIMEDIA);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.MediaPlayPause),
-                    (ushort)MultimediaKey.PlayPause | VMultiHandler.MODIFIER_MULTIMEDIA);
+                    (ushort)EnhancedKey.PlayPause | FakerInputHandler.MODIFIER_MULTIMEDIA);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.VolumeMute),
-                    (ushort)MultimediaKey.Mute | VMultiHandler.MODIFIER_MULTIMEDIA);
+                    (ushort)EnhancedKey.Mute | FakerInputHandler.MODIFIER_MULTIMEDIA);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.VolumeUp),
-                    (ushort)MultimediaKey.VolumeUp | VMultiHandler.MODIFIER_MULTIMEDIA);
+                    (ushort)EnhancedKey.VolumeUp | FakerInputHandler.MODIFIER_MULTIMEDIA);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.VolumeDown),
-                    (ushort)MultimediaKey.VolumeDown | VMultiHandler.MODIFIER_MULTIMEDIA);
+                    (ushort)EnhancedKey.VolumeDown | FakerInputHandler.MODIFIER_MULTIMEDIA);
             }
         }
 
         public override uint GetRealEventKey(uint winVkKey)
         {
-            mappingPairs.TryGetValue((ushort)winVkKey, out ushort result);
+            mappingPairs.TryGetValue((ushort)winVkKey, out uint result);
             return result;
         }
     }

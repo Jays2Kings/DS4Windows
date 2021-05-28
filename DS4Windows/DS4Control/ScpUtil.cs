@@ -2658,7 +2658,7 @@ namespace DS4Windows
                 setting.actionAlias = 0;
                 if (setting.actionType == DS4ControlSettings.ActionType.Key)
                 {
-                    setting.actionAlias = outputKBMMapping.GetRealEventKey(Convert.ToUInt32(setting.action));
+                    setting.actionAlias = outputKBMMapping.GetRealEventKey(Convert.ToUInt32(setting.action.actionKey));
                 }
             }
             else
@@ -2666,7 +2666,7 @@ namespace DS4Windows
                 setting.shiftActionAlias = 0;
                 if (setting.shiftActionType == DS4ControlSettings.ActionType.Key)
                 {
-                    setting.shiftActionAlias = outputKBMMapping.GetRealEventKey(Convert.ToUInt32(setting.shiftAction));
+                    setting.shiftActionAlias = outputKBMMapping.GetRealEventKey(Convert.ToUInt32(setting.shiftAction.actionKey));
                 }
             }
         }

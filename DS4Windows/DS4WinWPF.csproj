@@ -55,6 +55,7 @@
   <ItemGroup>
     <None Remove="libs\x64\**" Condition="'$(Platform)' != 'x64'" />
     <None Remove="libs\x86\**" Condition="'$(Platform)' != 'x86'" />
+    <None Remove="libs\x64\VMultiDLL\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -79,6 +80,10 @@
 
     <Reference Include="Nefarius.ViGEm.Client">
       <HintPath>..\libs\$(Platform)\Nefarius.ViGEm.Client\Nefarius.ViGEm.Client.dll</HintPath>
+    </Reference>
+
+    <Reference Include="FakerInputWrapper">
+      <HintPath>..\libs\$(Platform)\FakerInputWrapper\FakerInputWrapper.dll</HintPath>
     </Reference>
   </ItemGroup>
 
@@ -248,6 +253,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="libs\x64\FakerInputWrapper\FakerInputDll.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>FakerInputDll.dll</Link>
+    </None>
     <None Update="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

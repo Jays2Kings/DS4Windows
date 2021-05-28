@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using VMultiDllWrapper;
+using FakerInputWrapper;
 
 namespace DS4Windows.DS4Control
 {
-    public class VMultiHandler : VirtualKBMBase
+    public class FakerInputHandler : VirtualKBMBase
     {
-        public const string DISPLAY_NAME = "VMulti";
-        public const string IDENTIFIER = "vmulti";
+        public const string DISPLAY_NAME = "FakerInput";
+        public const string IDENTIFIER = "fakerinput";
         public const int MODIFIER_MASK = 1 << 9;
         public const int MODIFIER_MULTIMEDIA = 1 << 10;
         public const int MODIFIER_ENHANCED = 1 << 11;
 
-        private VMulti vMulti = null;
+        private FakerInput fakerInput = null;
         private RelativeMouseReport mouseReport = new RelativeMouseReport();
         private KeyboardReport keyReport = new KeyboardReport();
         private KeyboardEnhancedReport mediaKeyReport = new KeyboardEnhancedReport();
@@ -23,21 +23,21 @@ namespace DS4Windows.DS4Control
         // Used to guard reports and attempt to keep methods thread safe
         private ReaderWriterLockSlim eventLock = new ReaderWriterLockSlim();
 
-        public VMultiHandler()
+        public FakerInputHandler()
         {
-            vMulti = new VMulti();
+            fakerInput = new FakerInput();
         }
 
         public override bool Connect()
         {
-            return vMulti.connect();
+            return fakerInput.Connect();
         }
 
         public override bool Disconnect()
         {
             Release();
-            vMulti.disconnect();
-            return !vMulti.isConnected();
+            fakerInput.Disconnect();
+            return !fakerInput.IsConnected();
         }
 
         private void Release()
@@ -45,25 +45,25 @@ namespace DS4Windows.DS4Control
             eventLock.EnterWriteLock();
 
             mouseReport.ResetMousePos();
-            vMulti.updateMouse(mouseReport);
+            fakerInput.UpdateRelativeMouse(mouseReport);
 
             foreach(KeyboardModifier mod in modifiers)
             {
-                keyReport.keyUp(mod);
+                keyReport.KeyUp(mod);
             }
             modifiers.Clear();
 
             foreach(KeyboardKey key in pressedKeys)
             {
-                keyReport.keyUp(key);
+                keyReport.KeyUp(key);
             }
             pressedKeys.Clear();
 
-            vMulti.updateKeyboard(keyReport);
+            fakerInput.UpdateKeyboard(keyReport);
 
             mediaKeyReport.EnhancedKeys = 0;
-            mediaKeyReport.MediaKeys = 0;
-            vMulti.updateKeyboardEnhanced(mediaKeyReport);
+            //mediaKeyReport.MediaKeys = 0;
+            fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
 
             eventLock.ExitWriteLock();
         }
@@ -77,11 +77,11 @@ namespace DS4Windows.DS4Control
 
             mouseReport.ResetMousePos();
 
-            mouseReport.MouseX = (ushort)(x < MOUSE_MIN ? MOUSE_MIN : (x > MOUSE_MAX) ? MOUSE_MAX : x);
-            mouseReport.MouseY = (ushort)(y < MOUSE_MIN ? MOUSE_MIN : (y > MOUSE_MAX) ? MOUSE_MAX : y);
+            mouseReport.MouseX = (short)(x < MOUSE_MIN ? MOUSE_MIN : (x > MOUSE_MAX) ? MOUSE_MAX : x);
+            mouseReport.MouseY = (short)(y < MOUSE_MIN ? MOUSE_MIN : (y > MOUSE_MAX) ? MOUSE_MAX : y);
             //Console.WriteLine("LKJDFSLKJDFSLKJS {0} {1}", mouseReport.MouseX, mouseReport.MouseY);
 
-            vMulti.updateMouse(mouseReport);
+            fakerInput.UpdateRelativeMouse(mouseReport);
 
             eventLock.ExitWriteLock();
         }
@@ -98,7 +98,7 @@ namespace DS4Windows.DS4Control
                 KeyboardKey temp = (KeyboardKey)key;
                 if (!pressedKeys.Contains(temp))
                 {
-                    keyReport.keyDown(temp);
+                    keyReport.KeyDown(temp);
                     pressedKeys.Add(temp);
                     sync = true;
                 }
@@ -108,14 +108,14 @@ namespace DS4Windows.DS4Control
                 KeyboardModifier modifier = (KeyboardModifier)(key & ~MODIFIER_MASK);
                 if (!modifiers.Contains(modifier))
                 {
-                    keyReport.keyDown(modifier);
+                    keyReport.KeyDown(modifier);
                     modifiers.Add(modifier);
                     sync = true;
                 }
             }
             else if (key < MODIFIER_ENHANCED)
             {
-                MultimediaKey temp = (MultimediaKey)(key & ~MODIFIER_MULTIMEDIA);
+                EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_MULTIMEDIA);
                 mediaKeyReport.KeyDown(temp);
                 syncEnhanced = true;
             }
@@ -128,12 +128,12 @@ namespace DS4Windows.DS4Control
 
             if (sync)
             {
-                vMulti.updateKeyboard(keyReport);
+                fakerInput.UpdateKeyboard(keyReport);
             }
 
             if (syncEnhanced)
             {
-                vMulti.updateKeyboardEnhanced(mediaKeyReport);
+                fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
             }
 
             eventLock.ExitWriteLock();
@@ -155,7 +155,7 @@ namespace DS4Windows.DS4Control
                 KeyboardKey temp = (KeyboardKey)key;
                 if (!pressedKeys.Contains(temp))
                 {
-                    keyReport.keyDown(temp);
+                    keyReport.KeyDown(temp);
                     pressedKeys.Add(temp);
                     sync = true;
                 }
@@ -165,14 +165,14 @@ namespace DS4Windows.DS4Control
                 KeyboardModifier modifier = (KeyboardModifier)(key & ~MODIFIER_MASK);
                 if (!modifiers.Contains(modifier))
                 {
-                    keyReport.keyDown(modifier);
+                    keyReport.KeyDown(modifier);
                     modifiers.Add(modifier);
                     sync = true;
                 }
             }
             else if (key < MODIFIER_ENHANCED)
             {
-                MultimediaKey temp = (MultimediaKey)(key & ~MODIFIER_MULTIMEDIA);
+                EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_MULTIMEDIA);
                 mediaKeyReport.KeyDown(temp);
                 syncEnhanced = true;
             }
@@ -185,12 +185,12 @@ namespace DS4Windows.DS4Control
 
             if (sync)
             {
-                vMulti.updateKeyboard(keyReport);
+                fakerInput.UpdateKeyboard(keyReport);
             }
 
             if (syncEnhanced)
             {
-                vMulti.updateKeyboardEnhanced(mediaKeyReport);
+                fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
             }
 
             eventLock.ExitWriteLock();
@@ -208,7 +208,7 @@ namespace DS4Windows.DS4Control
                 KeyboardKey temp = (KeyboardKey)key;
                 if (pressedKeys.Contains(temp))
                 {
-                    keyReport.keyUp(temp);
+                    keyReport.KeyUp(temp);
                     pressedKeys.Remove(temp);
                     sync = true;
                 }
@@ -218,14 +218,14 @@ namespace DS4Windows.DS4Control
                 KeyboardModifier modifier = (KeyboardModifier)(key & ~MODIFIER_MASK);
                 if (modifiers.Contains(modifier))
                 {
-                    keyReport.keyUp(modifier);
+                    keyReport.KeyUp(modifier);
                     modifiers.Remove(modifier);
                     sync = true;
                 }
             }
             else if (key < MODIFIER_ENHANCED)
             {
-                MultimediaKey temp = (MultimediaKey)(key & ~MODIFIER_MULTIMEDIA);
+                EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_MULTIMEDIA);
                 mediaKeyReport.KeyUp(temp);
                 syncEnhanced = true;
             }
@@ -238,12 +238,12 @@ namespace DS4Windows.DS4Control
 
             if (sync)
             {
-                vMulti.updateKeyboard(keyReport);
+                fakerInput.UpdateKeyboard(keyReport);
             }
 
             if (syncEnhanced)
             {
-                vMulti.updateKeyboardEnhanced(mediaKeyReport);
+                fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
             }
 
             eventLock.ExitWriteLock();
@@ -265,7 +265,7 @@ namespace DS4Windows.DS4Control
                 KeyboardKey temp = (KeyboardKey)key;
                 if (pressedKeys.Contains(temp))
                 {
-                    keyReport.keyUp(temp);
+                    keyReport.KeyUp(temp);
                     pressedKeys.Remove(temp);
                     sync = true;
                 }
@@ -275,14 +275,14 @@ namespace DS4Windows.DS4Control
                 KeyboardModifier modifier = (KeyboardModifier)(key & ~MODIFIER_MASK);
                 if (modifiers.Contains(modifier))
                 {
-                    keyReport.keyUp(modifier);
+                    keyReport.KeyUp(modifier);
                     modifiers.Remove(modifier);
                     sync = true;
                 }
             }
             else if (key < MODIFIER_ENHANCED)
             {
-                MultimediaKey temp = (MultimediaKey)(key & ~MODIFIER_MULTIMEDIA);
+                EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_MULTIMEDIA);
                 mediaKeyReport.KeyUp(temp);
                 syncEnhanced = true;
             }
@@ -295,12 +295,12 @@ namespace DS4Windows.DS4Control
 
             if (sync)
             {
-                vMulti.updateKeyboard(keyReport);
+                fakerInput.UpdateKeyboard(keyReport);
             }
 
             if (syncEnhanced)
             {
-                vMulti.updateKeyboardEnhanced(mediaKeyReport);
+                fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
             }
 
             eventLock.ExitWriteLock();
@@ -327,7 +327,7 @@ namespace DS4Windows.DS4Control
 
             if (sync)
             {
-                vMulti.updateMouse(mouseReport);
+                fakerInput.UpdateRelativeMouse(mouseReport);
             }
 
             eventLock.ExitWriteLock();
@@ -359,7 +359,7 @@ namespace DS4Windows.DS4Control
 
             if (sync)
             {
-                vMulti.updateMouse(mouseReport);
+                fakerInput.UpdateRelativeMouse(mouseReport);
             }
 
             eventLock.ExitWriteLock();
@@ -376,7 +376,7 @@ namespace DS4Windows.DS4Control
             mouseReport.ResetMousePos();
             mouseReport.WheelPosition = (byte)vertical;
             mouseReport.HWheelPosition = (byte)horizontal;
-            vMulti.updateMouse(mouseReport);
+            fakerInput.UpdateRelativeMouse(mouseReport);
             eventLock.ExitWriteLock();
         }
 
@@ -405,7 +405,7 @@ namespace DS4Windows.DS4Control
 
             if (sync)
             {
-                vMulti.updateMouse(mouseReport);
+                fakerInput.UpdateRelativeMouse(mouseReport);
             }
 
             eventLock.ExitWriteLock();
@@ -426,7 +426,7 @@ namespace DS4Windows.DS4Control
 
             if (sync)
             {
-                vMulti.updateMouse(mouseReport);
+                fakerInput.UpdateRelativeMouse(mouseReport);
             }
 
             eventLock.ExitWriteLock();

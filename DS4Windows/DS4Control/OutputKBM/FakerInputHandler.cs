@@ -20,6 +20,11 @@ namespace DS4Windows.DS4Control
         private HashSet<KeyboardModifier> modifiers = new HashSet<KeyboardModifier>();
         private HashSet<KeyboardKey> pressedKeys = new HashSet<KeyboardKey>();
 
+        private bool syncKeyboard;
+        private bool syncEnhancedKeyboard;
+        private bool syncRelativeMouse;
+        private bool syncAbsoluteMouse;
+
         // Used to guard reports and attempt to keep methods thread safe
         private ReaderWriterLockSlim eventLock = new ReaderWriterLockSlim();
 
@@ -45,7 +50,8 @@ namespace DS4Windows.DS4Control
             eventLock.EnterWriteLock();
 
             mouseReport.ResetMousePos();
-            fakerInput.UpdateRelativeMouse(mouseReport);
+            syncRelativeMouse = true;
+            //fakerInput.UpdateRelativeMouse(mouseReport);
 
             foreach(KeyboardModifier mod in modifiers)
             {
@@ -59,13 +65,17 @@ namespace DS4Windows.DS4Control
             }
             pressedKeys.Clear();
 
-            fakerInput.UpdateKeyboard(keyReport);
+            syncKeyboard = true;
+            //fakerInput.UpdateKeyboard(keyReport);
 
             mediaKeyReport.EnhancedKeys = 0;
             //mediaKeyReport.MediaKeys = 0;
-            fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
+            syncEnhancedKeyboard = true;
+            //fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
 
             eventLock.ExitWriteLock();
+
+            Sync();
         }
 
         public override void MoveRelativeMouse(int x, int y)
@@ -81,7 +91,8 @@ namespace DS4Windows.DS4Control
             mouseReport.MouseY = (short)(y < MOUSE_MIN ? MOUSE_MIN : (y > MOUSE_MAX) ? MOUSE_MAX : y);
             //Console.WriteLine("LKJDFSLKJDFSLKJS {0} {1}", mouseReport.MouseX, mouseReport.MouseY);
 
-            fakerInput.UpdateRelativeMouse(mouseReport);
+            syncRelativeMouse = true;
+            //fakerInput.UpdateRelativeMouse(mouseReport);
 
             eventLock.ExitWriteLock();
         }
@@ -100,7 +111,8 @@ namespace DS4Windows.DS4Control
                 {
                     keyReport.KeyDown(temp);
                     pressedKeys.Add(temp);
-                    sync = true;
+                    //sync = true;
+                    syncKeyboard = true;
                 }
             }
             else if (key < MODIFIER_MULTIMEDIA)
@@ -110,31 +122,34 @@ namespace DS4Windows.DS4Control
                 {
                     keyReport.KeyDown(modifier);
                     modifiers.Add(modifier);
-                    sync = true;
+                    syncKeyboard = true;
+                    //sync = true;
                 }
             }
             else if (key < MODIFIER_ENHANCED)
             {
                 EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_MULTIMEDIA);
                 mediaKeyReport.KeyDown(temp);
-                syncEnhanced = true;
+                syncEnhancedKeyboard = true;
+                //syncEnhanced = true;
             }
             else
             {
                 EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_ENHANCED);
                 mediaKeyReport.KeyDown(temp);
-                syncEnhanced = true;
+                syncEnhancedKeyboard = true;
+                //syncEnhanced = true;
             }
 
-            if (sync)
-            {
-                fakerInput.UpdateKeyboard(keyReport);
-            }
+            //if (sync)
+            //{
+            //    fakerInput.UpdateKeyboard(keyReport);
+            //}
 
-            if (syncEnhanced)
-            {
-                fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
-            }
+            //if (syncEnhanced)
+            //{
+            //    fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
+            //}
 
             eventLock.ExitWriteLock();
         }
@@ -157,7 +172,8 @@ namespace DS4Windows.DS4Control
                 {
                     keyReport.KeyDown(temp);
                     pressedKeys.Add(temp);
-                    sync = true;
+                    syncKeyboard = true;
+                    //sync = true;
                 }
             }
             else if (key < MODIFIER_MULTIMEDIA)
@@ -167,31 +183,34 @@ namespace DS4Windows.DS4Control
                 {
                     keyReport.KeyDown(modifier);
                     modifiers.Add(modifier);
-                    sync = true;
+                    syncKeyboard = true;
+                    //sync = true;
                 }
             }
             else if (key < MODIFIER_ENHANCED)
             {
                 EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_MULTIMEDIA);
                 mediaKeyReport.KeyDown(temp);
-                syncEnhanced = true;
+                syncEnhancedKeyboard = true;
+                //syncEnhanced = true;
             }
             else
             {
                 EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_ENHANCED);
                 mediaKeyReport.KeyDown(temp);
-                syncEnhanced = true;
+                syncEnhancedKeyboard = true;
+                //syncEnhanced = true;
             }
 
-            if (sync)
-            {
-                fakerInput.UpdateKeyboard(keyReport);
-            }
+            //if (sync)
+            //{
+            //    fakerInput.UpdateKeyboard(keyReport);
+            //}
 
-            if (syncEnhanced)
-            {
-                fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
-            }
+            //if (syncEnhanced)
+            //{
+            //    fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
+            //}
 
             eventLock.ExitWriteLock();
         }
@@ -210,7 +229,8 @@ namespace DS4Windows.DS4Control
                 {
                     keyReport.KeyUp(temp);
                     pressedKeys.Remove(temp);
-                    sync = true;
+                    syncKeyboard = true;
+                    //sync = true;
                 }
             }
             else if (key < MODIFIER_MULTIMEDIA)
@@ -220,31 +240,34 @@ namespace DS4Windows.DS4Control
                 {
                     keyReport.KeyUp(modifier);
                     modifiers.Remove(modifier);
-                    sync = true;
+                    syncKeyboard = true;
+                    //sync = true;
                 }
             }
             else if (key < MODIFIER_ENHANCED)
             {
                 EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_MULTIMEDIA);
                 mediaKeyReport.KeyUp(temp);
-                syncEnhanced = true;
+                syncEnhancedKeyboard = true;
+                //syncEnhanced = true;
             }
             else
             {
                 EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_ENHANCED);
                 mediaKeyReport.KeyUp(temp);
                 syncEnhanced = true;
+                //syncEnhanced = true;
             }
 
-            if (sync)
-            {
-                fakerInput.UpdateKeyboard(keyReport);
-            }
+            //if (sync)
+            //{
+            //    fakerInput.UpdateKeyboard(keyReport);
+            //}
 
-            if (syncEnhanced)
-            {
-                fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
-            }
+            //if (syncEnhanced)
+            //{
+            //    fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
+            //}
 
             eventLock.ExitWriteLock();
         }
@@ -267,7 +290,8 @@ namespace DS4Windows.DS4Control
                 {
                     keyReport.KeyUp(temp);
                     pressedKeys.Remove(temp);
-                    sync = true;
+                    syncKeyboard = true;
+                    //sync = true;
                 }
             }
             else if (key < MODIFIER_MULTIMEDIA)
@@ -277,31 +301,34 @@ namespace DS4Windows.DS4Control
                 {
                     keyReport.KeyUp(modifier);
                     modifiers.Remove(modifier);
-                    sync = true;
+                    syncKeyboard = true;
+                    //sync = true;
                 }
             }
             else if (key < MODIFIER_ENHANCED)
             {
                 EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_MULTIMEDIA);
                 mediaKeyReport.KeyUp(temp);
-                syncEnhanced = true;
+                syncEnhancedKeyboard = true;
+                //syncEnhanced = true;
             }
             else
             {
                 EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_ENHANCED);
                 mediaKeyReport.KeyUp(temp);
-                syncEnhanced = true;
+                syncEnhancedKeyboard = true;
+                //syncEnhanced = true;
             }
 
-            if (sync)
-            {
-                fakerInput.UpdateKeyboard(keyReport);
-            }
+            //if (sync)
+            //{
+            //    fakerInput.UpdateKeyboard(keyReport);
+            //}
 
-            if (syncEnhanced)
-            {
-                fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
-            }
+            //if (syncEnhanced)
+            //{
+            //    fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
+            //}
 
             eventLock.ExitWriteLock();
         }
@@ -317,18 +344,20 @@ namespace DS4Windows.DS4Control
             if (!mouseReport.HeldButtons.Contains(temp))
             {
                 mouseReport.ButtonDown(temp);
-                sync = true;
+                syncRelativeMouse = true;
+                //sync = true;
             }
             else
             {
                 mouseReport.ButtonUp(temp);
-                sync = true;
+                syncRelativeMouse = true;
+                //sync = true;
             }
 
-            if (sync)
-            {
-                fakerInput.UpdateRelativeMouse(mouseReport);
-            }
+            //if (sync)
+            //{
+            //    fakerInput.UpdateRelativeMouse(mouseReport);
+            //}
 
             eventLock.ExitWriteLock();
         }
@@ -349,18 +378,20 @@ namespace DS4Windows.DS4Control
             if (!mouseReport.HeldButtons.Contains(temp))
             {
                 mouseReport.ButtonDown(temp);
-                sync = true;
+                syncRelativeMouse = true;
+                //sync = true;
             }
             else
             {
                 mouseReport.ButtonUp(temp);
-                sync = true;
+                syncRelativeMouse = true;
+                //sync = true;
             }
 
-            if (sync)
-            {
-                fakerInput.UpdateRelativeMouse(mouseReport);
-            }
+            //if (sync)
+            //{
+            //    fakerInput.UpdateRelativeMouse(mouseReport);
+            //}
 
             eventLock.ExitWriteLock();
         }
@@ -376,7 +407,8 @@ namespace DS4Windows.DS4Control
             mouseReport.ResetMousePos();
             mouseReport.WheelPosition = (byte)vertical;
             mouseReport.HWheelPosition = (byte)horizontal;
-            fakerInput.UpdateRelativeMouse(mouseReport);
+            syncRelativeMouse = true;
+            //fakerInput.UpdateRelativeMouse(mouseReport);
             eventLock.ExitWriteLock();
         }
 
@@ -400,13 +432,14 @@ namespace DS4Windows.DS4Control
             {
                 mouseReport.ResetMousePos();
                 mouseReport.ButtonDown(tempButton);
-                sync = true;
+                syncRelativeMouse = true;
+                //sync = true;
             }
 
-            if (sync)
-            {
-                fakerInput.UpdateRelativeMouse(mouseReport);
-            }
+            //if (sync)
+            //{
+            //    fakerInput.UpdateRelativeMouse(mouseReport);
+            //}
 
             eventLock.ExitWriteLock();
         }
@@ -421,15 +454,42 @@ namespace DS4Windows.DS4Control
             {
                 mouseReport.ResetMousePos();
                 mouseReport.ButtonUp(tempButton);
-                sync = true;
+                syncRelativeMouse = true;
+                //sync = true;
             }
 
-            if (sync)
-            {
-                fakerInput.UpdateRelativeMouse(mouseReport);
-            }
+            //if (sync)
+            //{
+            //    fakerInput.UpdateRelativeMouse(mouseReport);
+            //}
 
             eventLock.ExitWriteLock();
+        }
+
+        public override void Sync()
+        {
+            if (syncRelativeMouse)
+            {
+                fakerInput.UpdateRelativeMouse(mouseReport);
+                syncRelativeMouse = false;
+            }
+
+            if (syncAbsoluteMouse)
+            {
+                syncAbsoluteMouse = false;
+            }
+
+            if (syncKeyboard)
+            {
+                fakerInput.UpdateKeyboard(keyReport);
+                syncKeyboard = false;
+            }
+
+            if (syncEnhancedKeyboard)
+            {
+                fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
+                syncEnhancedKeyboard = false;
+            }
         }
     }
 }

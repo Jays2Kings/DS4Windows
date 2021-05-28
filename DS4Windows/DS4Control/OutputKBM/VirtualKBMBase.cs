@@ -38,6 +38,10 @@ namespace DS4Windows.DS4Control
         public abstract void PerformKeyRelease(uint key);
         public abstract void PerformKeyReleaseAlt(uint key);
 
+        public virtual void Sync()
+        {
+        }
+
         public abstract string GetDisplayName();
         public abstract string GetIdentifier();
     }

@@ -653,10 +653,15 @@ namespace DS4Windows
                     }
                 }
             }
+
             globalState.SaveToPrevious(false);
 
             syncStateLock.ExitWriteLock();
             state.SaveToPrevious(true);
+
+            // Send possible virtual events to system. Only used for FakerInput atm.
+            // SendInput version does nothing
+            outputKBMHandler.Sync();
         }
 
         public enum Click { None, Left, Middle, Right, Fourth, Fifth, WUP, WDOWN };

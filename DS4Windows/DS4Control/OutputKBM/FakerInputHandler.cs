@@ -13,8 +13,11 @@ namespace DS4Windows.DS4Control
         public const int MODIFIER_MULTIMEDIA = 1 << 10;
         public const int MODIFIER_ENHANCED = 1 << 11;
 
+        private const double ABSOLUTE_MOUSE_COOR_MAX = 32767.0;
+
         private FakerInput fakerInput = null;
         private RelativeMouseReport mouseReport = new RelativeMouseReport();
+        private AbsoluteMouseReport absoluteMouseReport = new AbsoluteMouseReport();
         private KeyboardReport keyReport = new KeyboardReport();
         private KeyboardEnhancedReport mediaKeyReport = new KeyboardEnhancedReport();
         private HashSet<KeyboardModifier> modifiers = new HashSet<KeyboardModifier>();
@@ -49,9 +52,13 @@ namespace DS4Windows.DS4Control
         {
             eventLock.EnterWriteLock();
 
-            mouseReport.ResetMousePos();
+            //mouseReport.ResetMousePos();
+            mouseReport.Reset();
             syncRelativeMouse = true;
             //fakerInput.UpdateRelativeMouse(mouseReport);
+
+            absoluteMouseReport.Reset();
+            syncAbsoluteMouse = true;
 
             foreach(KeyboardModifier mod in modifiers)
             {
@@ -75,6 +82,7 @@ namespace DS4Windows.DS4Control
 
             eventLock.ExitWriteLock();
 
+            // Perform sync here after changing report objects
             Sync();
         }
 
@@ -93,6 +101,22 @@ namespace DS4Windows.DS4Control
 
             syncRelativeMouse = true;
             //fakerInput.UpdateRelativeMouse(mouseReport);
+
+            eventLock.ExitWriteLock();
+        }
+
+        /// <summary>
+        /// Move the mouse cursor to an absolute position on the virtual desktop
+        /// </summary>
+        /// <param name="x">X coordinate in range of [0.0, 1.0]. 0.0 for left. 1.0 for far right</param>
+        /// <param name="y">Y coordinate in range of [0.0, 1.0]. 0.0 for top. 1.0 for bottom</param>
+        public override void MoveAbsoluteMouse(double x, double y)
+        {
+            eventLock.EnterWriteLock();
+
+            absoluteMouseReport.MouseX = (ushort)(x * ABSOLUTE_MOUSE_COOR_MAX);
+            absoluteMouseReport.MouseY = (ushort)(y * ABSOLUTE_MOUSE_COOR_MAX);
+            syncAbsoluteMouse = true;
 
             eventLock.ExitWriteLock();
         }
@@ -468,6 +492,8 @@ namespace DS4Windows.DS4Control
 
         public override void Sync()
         {
+            eventLock.EnterWriteLock();
+
             if (syncRelativeMouse)
             {
                 fakerInput.UpdateRelativeMouse(mouseReport);
@@ -476,6 +502,7 @@ namespace DS4Windows.DS4Control
 
             if (syncAbsoluteMouse)
             {
+                fakerInput.UpdateAbsoluteMouse(absoluteMouseReport);
                 syncAbsoluteMouse = false;
             }
 
@@ -490,6 +517,8 @@ namespace DS4Windows.DS4Control
                 fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
                 syncEnhancedKeyboard = false;
             }
+
+            eventLock.ExitWriteLock();
         }
     }
 }

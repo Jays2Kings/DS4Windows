@@ -316,12 +316,14 @@ namespace DS4Windows
 
             double absX = (currentX * mX - bX) / (double)DS4Touchpad.RESOLUTION_X_MAX;
             double absY = (currentY * mY - bY) / (double)DS4Touchpad.RESOLUTION_Y_MAX;
-            InputMethods.MoveAbsoluteMouse(absX, absY);
+            //InputMethods.MoveAbsoluteMouse(absX, absY);
+            Global.outputKBMHandler.MoveAbsoluteMouse(absX, absY);
         }
 
         public void TouchCenterAbsolute()
         {
-            InputMethods.MoveAbsoluteMouse(0.5, 0.5);
+            //InputMethods.MoveAbsoluteMouse(0.5, 0.5);
+            Global.outputKBMHandler.MoveAbsoluteMouse(0.5, 0.5);
         }
 
         public void TouchMoveCursor(int dx, int dy, bool disableInvert = false)

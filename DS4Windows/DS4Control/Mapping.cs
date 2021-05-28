@@ -3123,7 +3123,7 @@ namespace DS4Windows
                     //If a key or button is assigned to the trigger, a key special action is used like
                     //a quick tap to use and hold to use the regular custom button/key
                     bool triggerToBeTapped = action.typeID == SpecialAction.ActionTypeId.None && action.trigger.Count == 1 &&
-                            GetDS4CSetting(device, action.trigger[0]).IsDefault;
+                            (GetDS4CSetting(device, action.trigger[0])?.IsDefault ?? false);
                     if (!(action.typeID == SpecialAction.ActionTypeId.None || index < 0))
                     {
                         bool triggeractivated = true;

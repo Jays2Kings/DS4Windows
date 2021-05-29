@@ -20,6 +20,7 @@ namespace DS4Windows.DS4Control
         private AbsoluteMouseReport absoluteMouseReport = new AbsoluteMouseReport();
         private KeyboardReport keyReport = new KeyboardReport();
         private KeyboardEnhancedReport mediaKeyReport = new KeyboardEnhancedReport();
+
         private HashSet<KeyboardModifier> modifiers = new HashSet<KeyboardModifier>();
         private HashSet<KeyboardKey> pressedKeys = new HashSet<KeyboardKey>();
 
@@ -124,8 +125,6 @@ namespace DS4Windows.DS4Control
         public override void PerformKeyPress(uint key)
         {
             //Console.WriteLine("PerformKeyPress {0}", key);
-            bool sync = false;
-            bool syncEnhanced = false;
             eventLock.EnterWriteLock();
 
             if (key < MODIFIER_MASK)
@@ -135,7 +134,6 @@ namespace DS4Windows.DS4Control
                 {
                     keyReport.KeyDown(temp);
                     pressedKeys.Add(temp);
-                    //sync = true;
                     syncKeyboard = true;
                 }
             }
@@ -147,7 +145,6 @@ namespace DS4Windows.DS4Control
                     keyReport.KeyDown(modifier);
                     modifiers.Add(modifier);
                     syncKeyboard = true;
-                    //sync = true;
                 }
             }
             else if (key < MODIFIER_ENHANCED)
@@ -155,25 +152,13 @@ namespace DS4Windows.DS4Control
                 EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_MULTIMEDIA);
                 mediaKeyReport.KeyDown(temp);
                 syncEnhancedKeyboard = true;
-                //syncEnhanced = true;
             }
             else
             {
                 EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_ENHANCED);
                 mediaKeyReport.KeyDown(temp);
                 syncEnhancedKeyboard = true;
-                //syncEnhanced = true;
             }
-
-            //if (sync)
-            //{
-            //    fakerInput.UpdateKeyboard(keyReport);
-            //}
-
-            //if (syncEnhanced)
-            //{
-            //    fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
-            //}
 
             eventLock.ExitWriteLock();
         }
@@ -185,8 +170,6 @@ namespace DS4Windows.DS4Control
         public override void PerformKeyPressAlt(uint key)
         {
             //Console.WriteLine("PerformKeyPressAlt {0}", key);
-            bool sync = false;
-            bool syncEnhanced = false;
             eventLock.EnterWriteLock();
 
             if (key < MODIFIER_MASK)
@@ -197,7 +180,6 @@ namespace DS4Windows.DS4Control
                     keyReport.KeyDown(temp);
                     pressedKeys.Add(temp);
                     syncKeyboard = true;
-                    //sync = true;
                 }
             }
             else if (key < MODIFIER_MULTIMEDIA)
@@ -208,7 +190,6 @@ namespace DS4Windows.DS4Control
                     keyReport.KeyDown(modifier);
                     modifiers.Add(modifier);
                     syncKeyboard = true;
-                    //sync = true;
                 }
             }
             else if (key < MODIFIER_ENHANCED)
@@ -216,25 +197,13 @@ namespace DS4Windows.DS4Control
                 EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_MULTIMEDIA);
                 mediaKeyReport.KeyDown(temp);
                 syncEnhancedKeyboard = true;
-                //syncEnhanced = true;
             }
             else
             {
                 EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_ENHANCED);
                 mediaKeyReport.KeyDown(temp);
                 syncEnhancedKeyboard = true;
-                //syncEnhanced = true;
             }
-
-            //if (sync)
-            //{
-            //    fakerInput.UpdateKeyboard(keyReport);
-            //}
-
-            //if (syncEnhanced)
-            //{
-            //    fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
-            //}
 
             eventLock.ExitWriteLock();
         }
@@ -242,8 +211,6 @@ namespace DS4Windows.DS4Control
         public override void PerformKeyRelease(uint key)
         {
             //Console.WriteLine("PerformKeyRelease {0}", key);
-            bool sync = false;
-            bool syncEnhanced = false;
             eventLock.EnterWriteLock();
 
             if (key < MODIFIER_MASK)
@@ -254,7 +221,6 @@ namespace DS4Windows.DS4Control
                     keyReport.KeyUp(temp);
                     pressedKeys.Remove(temp);
                     syncKeyboard = true;
-                    //sync = true;
                 }
             }
             else if (key < MODIFIER_MULTIMEDIA)
@@ -265,7 +231,6 @@ namespace DS4Windows.DS4Control
                     keyReport.KeyUp(modifier);
                     modifiers.Remove(modifier);
                     syncKeyboard = true;
-                    //sync = true;
                 }
             }
             else if (key < MODIFIER_ENHANCED)
@@ -273,25 +238,13 @@ namespace DS4Windows.DS4Control
                 EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_MULTIMEDIA);
                 mediaKeyReport.KeyUp(temp);
                 syncEnhancedKeyboard = true;
-                //syncEnhanced = true;
             }
             else
             {
                 EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_ENHANCED);
                 mediaKeyReport.KeyUp(temp);
-                syncEnhanced = true;
-                //syncEnhanced = true;
+                syncEnhancedKeyboard = true;
             }
-
-            //if (sync)
-            //{
-            //    fakerInput.UpdateKeyboard(keyReport);
-            //}
-
-            //if (syncEnhanced)
-            //{
-            //    fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
-            //}
 
             eventLock.ExitWriteLock();
         }
@@ -303,8 +256,6 @@ namespace DS4Windows.DS4Control
         public override void PerformKeyReleaseAlt(uint key)
         {
             //Console.WriteLine("PerformKeyReleaseAlt {0}", key);
-            bool sync = false;
-            bool syncEnhanced = false;
             eventLock.EnterWriteLock();
 
             if (key < MODIFIER_MASK)
@@ -315,7 +266,6 @@ namespace DS4Windows.DS4Control
                     keyReport.KeyUp(temp);
                     pressedKeys.Remove(temp);
                     syncKeyboard = true;
-                    //sync = true;
                 }
             }
             else if (key < MODIFIER_MULTIMEDIA)
@@ -326,7 +276,6 @@ namespace DS4Windows.DS4Control
                     keyReport.KeyUp(modifier);
                     modifiers.Remove(modifier);
                     syncKeyboard = true;
-                    //sync = true;
                 }
             }
             else if (key < MODIFIER_ENHANCED)
@@ -334,32 +283,19 @@ namespace DS4Windows.DS4Control
                 EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_MULTIMEDIA);
                 mediaKeyReport.KeyUp(temp);
                 syncEnhancedKeyboard = true;
-                //syncEnhanced = true;
             }
             else
             {
                 EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_ENHANCED);
                 mediaKeyReport.KeyUp(temp);
                 syncEnhancedKeyboard = true;
-                //syncEnhanced = true;
             }
-
-            //if (sync)
-            //{
-            //    fakerInput.UpdateKeyboard(keyReport);
-            //}
-
-            //if (syncEnhanced)
-            //{
-            //    fakerInput.UpdateKeyboardEnhanced(mediaKeyReport);
-            //}
 
             eventLock.ExitWriteLock();
         }
 
         public override void PerformMouseButtonEvent(uint mouseButton)
         {
-            bool sync = false;
             MouseButton temp = (MouseButton)mouseButton;
             eventLock.EnterWriteLock();
 
@@ -369,19 +305,12 @@ namespace DS4Windows.DS4Control
             {
                 mouseReport.ButtonDown(temp);
                 syncRelativeMouse = true;
-                //sync = true;
             }
             else
             {
                 mouseReport.ButtonUp(temp);
                 syncRelativeMouse = true;
-                //sync = true;
             }
-
-            //if (sync)
-            //{
-            //    fakerInput.UpdateRelativeMouse(mouseReport);
-            //}
 
             eventLock.ExitWriteLock();
         }
@@ -393,7 +322,6 @@ namespace DS4Windows.DS4Control
         /// <param name="type"></param>
         public override void PerformMouseButtonEventAlt(uint mouseButton, int type)
         {
-            bool sync = false;
             MouseButton temp = (MouseButton)mouseButton;
             eventLock.EnterWriteLock();
 
@@ -403,19 +331,12 @@ namespace DS4Windows.DS4Control
             {
                 mouseReport.ButtonDown(temp);
                 syncRelativeMouse = true;
-                //sync = true;
             }
             else
             {
                 mouseReport.ButtonUp(temp);
                 syncRelativeMouse = true;
-                //sync = true;
             }
-
-            //if (sync)
-            //{
-            //    fakerInput.UpdateRelativeMouse(mouseReport);
-            //}
 
             eventLock.ExitWriteLock();
         }
@@ -448,7 +369,6 @@ namespace DS4Windows.DS4Control
 
         public override void PerformMouseButtonPress(uint mouseButton)
         {
-            bool sync = false;
             eventLock.EnterWriteLock();
 
             MouseButton tempButton = (MouseButton)mouseButton;
@@ -457,20 +377,13 @@ namespace DS4Windows.DS4Control
                 mouseReport.ResetMousePos();
                 mouseReport.ButtonDown(tempButton);
                 syncRelativeMouse = true;
-                //sync = true;
             }
-
-            //if (sync)
-            //{
-            //    fakerInput.UpdateRelativeMouse(mouseReport);
-            //}
 
             eventLock.ExitWriteLock();
         }
 
         public override void PerformMouseButtonRelease(uint mouseButton)
         {
-            bool sync = false;
             eventLock.EnterWriteLock();
 
             MouseButton tempButton = (MouseButton)mouseButton;
@@ -479,13 +392,7 @@ namespace DS4Windows.DS4Control
                 mouseReport.ResetMousePos();
                 mouseReport.ButtonUp(tempButton);
                 syncRelativeMouse = true;
-                //sync = true;
             }
-
-            //if (sync)
-            //{
-            //    fakerInput.UpdateRelativeMouse(mouseReport);
-            //}
 
             eventLock.ExitWriteLock();
         }

@@ -21,8 +21,8 @@ namespace DS4WinWPF.DS4Forms
             "https://github.com/ViGEm/ViGEmBus/releases/download/setup-v1.17.333/ViGEmBusSetup_x86.msi";
 
         private const string InstallerHidHideX64 = "https://github.com/ViGEm/HidHide/releases/download/v1.0.30.0/HidHideMSI.msi";
-        private const string InstallerFakerInputX64 = "https://github.com/Ryochan7/FakerInputSetup/releases/download/v0.0.1/FakerInput_0.0.1_x64.msi";
-        private const string InstallerFakerInputX86 = "https://github.com/Ryochan7/FakerInputSetup/releases/download/v0.0.1/FakerInput_0.0.1_x86.msi";
+        private const string InstallerFakerInputX64 = "https://github.com/Ryochan7/FakerInput/releases/download/v0.0.0.1/FakerInput_0.0.0.1_x64.msi";
+        private const string InstallerFakerInputX86 = "https://github.com/Ryochan7/FakerInput/releases/download/v0.0.0.1/FakerInput_0.0.0.1_x86.msi";
 
         private const string InstFileName1_16 = "ViGEmBus_Setup_1.16.116.exe";
         private const string InstFileNameX64 = "ViGEmBusSetup_x64.msi";
@@ -103,7 +103,7 @@ namespace DS4WinWPF.DS4Forms
 
             // Just leave panel disabled for now. Download link does not
             // exist currently
-            step5FakerInputPanel.IsEnabled = false;
+            //step5FakerInputPanel.IsEnabled = false;
         }
 
         private bool IsHidHideControlCompatible()
@@ -116,8 +116,8 @@ namespace DS4WinWPF.DS4Forms
         private bool IsFakerInputControlCompatible()
         {
             // FakerInput works on Windows 8.1 and later. Going to attempt
-            // to support x64 and x86 arch. Just leave disabled for now
-            return false && DS4Windows.Global.IsWin8OrGreater();
+            // to support x64 and x86 arch
+            return DS4Windows.Global.IsWin8OrGreater();
         }
 
         private void FinishedBtn_Click(object sender, RoutedEventArgs e)

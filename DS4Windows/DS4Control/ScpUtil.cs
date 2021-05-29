@@ -63,6 +63,9 @@ namespace DS4Windows
     public class ControlActionData
     {
         public int actionKey;
+        // Alias to real value for current output KB+M event system.
+        // Allows skipping a translation call every frame
+        public uint actionAlias = 0;
         public X360Controls actionBtn;
         public int[] actionMacro = new int[1];
     }
@@ -75,15 +78,15 @@ namespace DS4Windows
         public enum ActionType : byte { Default, Key, Button, Macro };
         public ActionType actionType = ActionType.Default;
         public ControlActionData action = new ControlActionData();
-		// Alias to real value for current output KB+M event system.
+        // Alias to real value for current output KB+M event system.
         // Allows skipping a translation call every frame
-        public uint actionAlias = 0;
+        //public uint actionAlias = 0;
 		
         public ActionType shiftActionType = ActionType.Default;
         public ControlActionData shiftAction = new ControlActionData();
-		// Alias to real value for current output KB+M event system.
+        // Alias to real value for current output KB+M event system.
         // Allows skipping a translation call every frame
-        public uint shiftActionAlias = 0;
+        //public uint shiftActionAlias = 0;
         public int shiftTrigger = 0;
         public string shiftExtras = null;
         public DS4KeyType shiftKeyType = DS4KeyType.None;
@@ -102,11 +105,13 @@ namespace DS4Windows
             keyType = DS4KeyType.None;
             actionType = ActionType.Default;
             action = new ControlActionData();
-			actionAlias = 0;
+            action.actionAlias = 0;
+            //actionAlias = 0;
 
             shiftActionType = ActionType.Default;
             shiftAction = new ControlActionData();
-			shiftActionAlias = 0;
+            shiftAction.actionAlias = 0;
+            //shiftActionAlias = 0;
             shiftTrigger = 0;
             shiftExtras = null;
             shiftKeyType = DS4KeyType.None;
@@ -2661,18 +2666,18 @@ namespace DS4Windows
         {
             if (!shift)
             {
-                setting.actionAlias = 0;
+                setting.action.actionAlias = 0;
                 if (setting.actionType == DS4ControlSettings.ActionType.Key)
                 {
-                    setting.actionAlias = outputKBMMapping.GetRealEventKey(Convert.ToUInt32(setting.action.actionKey));
+                    setting.action.actionAlias = outputKBMMapping.GetRealEventKey(Convert.ToUInt32(setting.action.actionKey));
                 }
             }
             else
             {
-                setting.shiftActionAlias = 0;
+                setting.shiftAction.actionAlias = 0;
                 if (setting.shiftActionType == DS4ControlSettings.ActionType.Key)
                 {
-                    setting.shiftActionAlias = outputKBMMapping.GetRealEventKey(Convert.ToUInt32(setting.shiftAction.actionKey));
+                    setting.shiftAction.actionAlias = outputKBMMapping.GetRealEventKey(Convert.ToUInt32(setting.shiftAction.actionKey));
                 }
             }
         }

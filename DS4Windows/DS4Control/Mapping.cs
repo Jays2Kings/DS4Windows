@@ -2759,14 +2759,14 @@ namespace DS4Windows
             {
                 action = dcs.shiftAction;
                 actionType = dcs.shiftActionType;
-                actionAlias = dcs.shiftActionAlias;
+                actionAlias = dcs.shiftAction.actionAlias;
                 keyType = dcs.shiftKeyType;
             }
             else if (dcs.actionType != DS4ControlSettings.ActionType.Default)
             {
                 action = dcs.action;
                 actionType = dcs.actionType;
-                actionAlias = dcs.actionAlias;
+                actionAlias = dcs.action.actionAlias;
                 keyType = dcs.keyType;
             }
 

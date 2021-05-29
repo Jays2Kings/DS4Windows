@@ -154,19 +154,19 @@ namespace DS4Windows.DS4Control
                 // Map Multimedia Keys. Need to add a mask to separate modifier key values
                 // from normal keyboard keys.
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.MediaNextTrack),
-                    (ushort)EnhancedKey.ScanNextTrack | FakerInputHandler.MODIFIER_MULTIMEDIA);
+                    (ushort)EnhancedKey.ScanNextTrack | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.MediaPreviousTrack),
-                    (ushort)EnhancedKey.ScanPreviousTrack | FakerInputHandler.MODIFIER_MULTIMEDIA);
+                    (ushort)EnhancedKey.ScanPreviousTrack | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.MediaStop),
-                    (ushort)EnhancedKey.Stop | FakerInputHandler.MODIFIER_MULTIMEDIA);
+                    (ushort)EnhancedKey.Stop | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.MediaPlayPause),
-                    (ushort)EnhancedKey.PlayPause | FakerInputHandler.MODIFIER_MULTIMEDIA);
+                    (ushort)EnhancedKey.PlayPause | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.VolumeMute),
-                    (ushort)EnhancedKey.Mute | FakerInputHandler.MODIFIER_MULTIMEDIA);
+                    (ushort)EnhancedKey.Mute | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.VolumeUp),
-                    (ushort)EnhancedKey.VolumeUp | FakerInputHandler.MODIFIER_MULTIMEDIA);
+                    (ushort)EnhancedKey.VolumeUp | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.VolumeDown),
-                    (ushort)EnhancedKey.VolumeDown | FakerInputHandler.MODIFIER_MULTIMEDIA);
+                    (ushort)EnhancedKey.VolumeDown | FakerInputHandler.MODIFIER_ENHANCED);
             }
         }
 

@@ -9,9 +9,10 @@ namespace DS4Windows.DS4Control
     {
         public const string DISPLAY_NAME = "FakerInput";
         public const string IDENTIFIER = "fakerinput";
+        // Keys values are under 255
         public const int MODIFIER_MASK = 1 << 9;
-        public const int MODIFIER_MULTIMEDIA = 1 << 10;
-        public const int MODIFIER_ENHANCED = 1 << 11;
+        // Can only map to 31 keys with this approach. Underlying key value is a uint
+        public const uint MODIFIER_ENHANCED = 1 << 32;
 
         private const double ABSOLUTE_MOUSE_COOR_MAX = 32767.0;
 
@@ -24,6 +25,7 @@ namespace DS4Windows.DS4Control
         private HashSet<KeyboardModifier> modifiers = new HashSet<KeyboardModifier>();
         private HashSet<KeyboardKey> pressedKeys = new HashSet<KeyboardKey>();
 
+        // Flags that will dictate which output report methods to call in Sync method
         private bool syncKeyboard;
         private bool syncEnhancedKeyboard;
         private bool syncRelativeMouse;
@@ -137,7 +139,7 @@ namespace DS4Windows.DS4Control
                     syncKeyboard = true;
                 }
             }
-            else if (key < MODIFIER_MULTIMEDIA)
+            else if (key < MODIFIER_ENHANCED)
             {
                 KeyboardModifier modifier = (KeyboardModifier)(key & ~MODIFIER_MASK);
                 if (!modifiers.Contains(modifier))
@@ -146,12 +148,6 @@ namespace DS4Windows.DS4Control
                     modifiers.Add(modifier);
                     syncKeyboard = true;
                 }
-            }
-            else if (key < MODIFIER_ENHANCED)
-            {
-                EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_MULTIMEDIA);
-                mediaKeyReport.KeyDown(temp);
-                syncEnhancedKeyboard = true;
             }
             else
             {
@@ -182,7 +178,7 @@ namespace DS4Windows.DS4Control
                     syncKeyboard = true;
                 }
             }
-            else if (key < MODIFIER_MULTIMEDIA)
+            else if (key < MODIFIER_ENHANCED)
             {
                 KeyboardModifier modifier = (KeyboardModifier)(key & ~MODIFIER_MASK);
                 if (!modifiers.Contains(modifier))
@@ -191,12 +187,6 @@ namespace DS4Windows.DS4Control
                     modifiers.Add(modifier);
                     syncKeyboard = true;
                 }
-            }
-            else if (key < MODIFIER_ENHANCED)
-            {
-                EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_MULTIMEDIA);
-                mediaKeyReport.KeyDown(temp);
-                syncEnhancedKeyboard = true;
             }
             else
             {
@@ -223,7 +213,7 @@ namespace DS4Windows.DS4Control
                     syncKeyboard = true;
                 }
             }
-            else if (key < MODIFIER_MULTIMEDIA)
+            else if (key < MODIFIER_ENHANCED)
             {
                 KeyboardModifier modifier = (KeyboardModifier)(key & ~MODIFIER_MASK);
                 if (modifiers.Contains(modifier))
@@ -232,12 +222,6 @@ namespace DS4Windows.DS4Control
                     modifiers.Remove(modifier);
                     syncKeyboard = true;
                 }
-            }
-            else if (key < MODIFIER_ENHANCED)
-            {
-                EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_MULTIMEDIA);
-                mediaKeyReport.KeyUp(temp);
-                syncEnhancedKeyboard = true;
             }
             else
             {
@@ -268,7 +252,7 @@ namespace DS4Windows.DS4Control
                     syncKeyboard = true;
                 }
             }
-            else if (key < MODIFIER_MULTIMEDIA)
+            else if (key < MODIFIER_ENHANCED)
             {
                 KeyboardModifier modifier = (KeyboardModifier)(key & ~MODIFIER_MASK);
                 if (modifiers.Contains(modifier))
@@ -277,12 +261,6 @@ namespace DS4Windows.DS4Control
                     modifiers.Remove(modifier);
                     syncKeyboard = true;
                 }
-            }
-            else if (key < MODIFIER_ENHANCED)
-            {
-                EnhancedKey temp = (EnhancedKey)(key & ~MODIFIER_MULTIMEDIA);
-                mediaKeyReport.KeyUp(temp);
-                syncEnhancedKeyboard = true;
             }
             else
             {

@@ -57,6 +57,19 @@
                 </TextBlock>
             </StackPanel>
 
+            <StackPanel x:Name="step5FakerInputPanel" DockPanel.Dock="Top" Margin="0,8,0,0">
+                <Button x:Name="fakerInputInstallBtn" Content="(Optional) Step 5: Install FakerInput Driver" Click="FakerInputInstallBtn_Click" />
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center" Margin="0, 10, 0, 0">
+                    <TextBlock.Text>
+                        Use FakerInput driver to expose system-wide virtual keyboard, relative mouse, and absolute mouse.
+                        Allows virtual KB+M events to be usable in some situations when SendInput fails.
+                        Such situations are elevated process and games, UAC prompts, anti-cheat systems that block SendInput events.
+                        Use of FakerInput is necessary to allow DS4Windows to work with some games with anti-cheat protection
+                        like Valorant.
+                    </TextBlock.Text>
+                </TextBlock>
+            </StackPanel>
+
             <Button x:Name="finishedBtn" Content="Finished" HorizontalAlignment="Center" Padding="10,1" Style="{StaticResource CommonMargin}" Click="FinishedBtn_Click" DockPanel.Dock="Bottom" />
         </DockPanel>
     </ScrollViewer>

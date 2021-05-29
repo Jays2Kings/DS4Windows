@@ -63,7 +63,7 @@
                     <TextBlock.Text>
                         Use FakerInput driver to expose system-wide virtual keyboard, relative mouse, and absolute mouse.
                         Allows virtual KB+M events to be usable in some situations when SendInput fails.
-                        Such situations are elevated process and games, UAC prompts, anti-cheat systems that block SendInput events.
+                        Such situations are elevated process and games, UAC prompts, and anti-cheat systems that block SendInput events.
                         Use of FakerInput is necessary to allow DS4Windows to work with some games with anti-cheat protection
                         like Valorant.
                     </TextBlock.Text>

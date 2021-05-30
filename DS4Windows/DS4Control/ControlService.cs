@@ -168,6 +168,14 @@ namespace DS4Windows
             {
                 Global.outputKBMHandler = VirtualKBMFactory.GetFallbackHandler();
             }
+            else
+            {
+                // Connection was made. Check if version number should get populated
+                if (outputKBMHandler.GetIdentifier() == FakerInputHandler.IDENTIFIER)
+                {
+                    Global.outputKBMHandler.Version = Global.fakerInputVersion;
+                }
+            }
 
             Global.InitOutputKBMMapping(Global.outputKBMHandler.GetIdentifier());
             Global.outputKBMMapping.PopulateConstants();

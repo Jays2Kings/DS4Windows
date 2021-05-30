@@ -13,6 +13,13 @@ namespace DS4Windows.DS4Control
 
         public bool fakeKeyRepeat = false;
 
+        public Version version = new Version("0.0.0.0");
+        public string Version
+        {
+            get => version.ToString();
+            set => version = new Version(value);
+        }
+
         public abstract bool Connect();
         public abstract bool Disconnect();
 
@@ -41,5 +48,7 @@ namespace DS4Windows.DS4Control
 
         public abstract string GetDisplayName();
         public abstract string GetIdentifier();
+
+        public abstract string GetFullDisplayName();
     }
 }

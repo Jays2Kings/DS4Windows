@@ -236,6 +236,11 @@ namespace DS4Windows.DS4Control
             return DISPLAY_NAME;
         }
 
+        public override string GetFullDisplayName()
+        {
+            return DISPLAY_NAME;
+        }
+
         public override string GetIdentifier()
         {
             return IDENTIFIER;

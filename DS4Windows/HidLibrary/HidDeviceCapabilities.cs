@@ -23,8 +23,8 @@
 
         }
 
-        public short Usage { get; private set; }
-        public short UsagePage { get; private set; }
+        public ushort Usage { get; private set; }
+        public ushort UsagePage { get; private set; }
         public short InputReportByteLength { get; private set; }
         public short OutputReportByteLength { get; private set; }
         public short FeatureReportByteLength { get; private set; }

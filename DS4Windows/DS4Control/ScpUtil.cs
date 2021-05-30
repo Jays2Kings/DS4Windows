@@ -15,6 +15,7 @@ using System.Diagnostics;
 using Sensorit.Base;
 using DS4Windows.DS4Control;
 using System.Windows.Input;
+using System.Runtime.InteropServices;
 
 namespace DS4Windows
 {
@@ -491,6 +492,8 @@ namespace DS4Windows
         public static bool hidguardInstalled = IsHidGuardianInstalled();
         public static bool hidHideInstalled = IsHidHideInstalled();
         public static bool fakerInputInstalled = IsFakerInputInstalled();
+        public const string BLANK_FAKERINPUT_VERSION = "0.0.0.0";
+        public static string fakerInputVersion = FakerInputVersion();
 		
 		public static VirtualKBMBase outputKBMHandler = null;
         public static VirtualKBMMapping outputKBMMapping = null;
@@ -1135,6 +1138,43 @@ namespace DS4Windows
                 vigembusVersion = BLANK_VIGEMBUS_VERSION;
                 vigemBusVersionInfo = new Version(BLANK_VIGEMBUS_VERSION);
             }
+        }
+
+        public static string FakerInputVersion()
+        {
+            // Start with BLANK_FAKERINPUT_VERSION for result
+            string result = BLANK_FAKERINPUT_VERSION;
+            IntPtr deviceInfoSet = NativeMethods.SetupDiGetClassDevs(ref Util.fakerInputGuid, null, 0, NativeMethods.DIGCF_DEVICEINTERFACE);
+            NativeMethods.SP_DEVINFO_DATA deviceInfoData = new NativeMethods.SP_DEVINFO_DATA();
+            deviceInfoData.cbSize = System.Runtime.InteropServices.Marshal.SizeOf(deviceInfoData);
+            bool foundDev = false;
+            //bool success = NativeMethods.SetupDiEnumDeviceInfo(deviceInfoSet, 0, ref deviceInfoData);
+            for (int i = 0; !foundDev && NativeMethods.SetupDiEnumDeviceInfo(deviceInfoSet, i, ref deviceInfoData); i++)
+            {
+                ulong devPropertyType = 0;
+                int requiredSizeProp = 0;
+                NativeMethods.SetupDiGetDeviceProperty(deviceInfoSet, ref deviceInfoData,
+                    ref NativeMethods.DEVPKEY_Device_DriverVersion, ref devPropertyType, null, 0, ref requiredSizeProp, 0);
+
+                if (requiredSizeProp > 0)
+                {
+                    var versionTextBuffer = new byte[requiredSizeProp];
+                    NativeMethods.SetupDiGetDeviceProperty(deviceInfoSet, ref deviceInfoData,
+                        ref NativeMethods.DEVPKEY_Device_DriverVersion, ref devPropertyType, versionTextBuffer, requiredSizeProp, ref requiredSizeProp, 0);
+
+                    string tmpitnow = System.Text.Encoding.Unicode.GetString(versionTextBuffer);
+                    string tempStrip = tmpitnow.TrimEnd('\0');
+                    foundDev = true;
+                    result = tempStrip;
+                }
+            }
+
+            if (deviceInfoSet.ToInt64() != NativeMethods.INVALID_HANDLE_VALUE)
+            {
+                NativeMethods.SetupDiDestroyDeviceInfoList(deviceInfoSet);
+            }
+
+            return result;
         }
 
         public static void FindConfigLocation()

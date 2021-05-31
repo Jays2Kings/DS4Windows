@@ -228,7 +228,6 @@ namespace DS4WinWPF
                 rootHub.CheckHidHidePresence();
             }
 
-            rootHub.LogDebug($"Using output KB+M handler: {DS4Windows.Global.outputKBMHandler.GetFullDisplayName()}");
             rootHub.LaunchHidGuardHelper();
 
             rootHub.LoadPermanentSlotsConfig();

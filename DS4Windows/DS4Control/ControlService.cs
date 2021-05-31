@@ -73,6 +73,8 @@ namespace DS4Windows
         private ControlServiceDeviceOptions deviceOptions;
         public ControlServiceDeviceOptions DeviceOptions { get => deviceOptions; }
 
+        private DS4WinWPF.ArgumentParser cmdParser;
+
         public event EventHandler ServiceStarted;
         public event EventHandler PreServiceStop;
         public event EventHandler ServiceStopped;
@@ -160,26 +162,10 @@ namespace DS4Windows
         private object busEvtQueueLock = new object();
         public ControlService(DS4WinWPF.ArgumentParser cmdParser)
         {
-            Crc32Algorithm.InitializeTable(DS4Device.DefaultPolynomial);
-            string attemptVirtualkbmHandler = cmdParser.VirtualkbmHandler;
-            Global.InitOutputKBMHandler(attemptVirtualkbmHandler);
-            if (!Global.outputKBMHandler.Connect() &&
-                attemptVirtualkbmHandler != VirtualKBMFactory.GetFallbackHandlerIdentifier())
-            {
-                Global.outputKBMHandler = VirtualKBMFactory.GetFallbackHandler();
-            }
-            else
-            {
-                // Connection was made. Check if version number should get populated
-                if (outputKBMHandler.GetIdentifier() == FakerInputHandler.IDENTIFIER)
-                {
-                    Global.outputKBMHandler.Version = Global.fakerInputVersion;
-                }
-            }
+            this.cmdParser = cmdParser;
 
-            Global.InitOutputKBMMapping(Global.outputKBMHandler.GetIdentifier());
-            Global.outputKBMMapping.PopulateConstants();
-            Global.outputKBMMapping.PopulateMappings();
+            Crc32Algorithm.InitializeTable(DS4Device.DefaultPolynomial);
+            InitOutputKBMHandler();
 
             //sp.Stream = DS4WinWPF.Properties.Resources.EE;
             // Cause thread affinity to not be tied to main GUI thread
@@ -255,6 +241,45 @@ namespace DS4Windows
 
             Global.UDPServerSmoothingMincutoffChanged += ChangeUdpSmoothingAttrs;
             Global.UDPServerSmoothingBetaChanged += ChangeUdpSmoothingAttrs;
+        }
+
+        public void RefreshOutputKBMHandler()
+        {
+            if (Global.outputKBMHandler != null)
+            {
+                Global.outputKBMHandler.Disconnect();
+                Global.outputKBMHandler = null;
+            }
+
+            if (Global.outputKBMMapping != null)
+            {
+                Global.outputKBMMapping = null;
+            }
+
+            InitOutputKBMHandler();
+        }
+
+        private void InitOutputKBMHandler()
+        {
+            string attemptVirtualkbmHandler = cmdParser.VirtualkbmHandler;
+            Global.InitOutputKBMHandler(attemptVirtualkbmHandler);
+            if (!Global.outputKBMHandler.Connect() &&
+                attemptVirtualkbmHandler != VirtualKBMFactory.GetFallbackHandlerIdentifier())
+            {
+                Global.outputKBMHandler = VirtualKBMFactory.GetFallbackHandler();
+            }
+            else
+            {
+                // Connection was made. Check if version number should get populated
+                if (outputKBMHandler.GetIdentifier() == FakerInputHandler.IDENTIFIER)
+                {
+                    Global.outputKBMHandler.Version = Global.fakerInputVersion;
+                }
+            }
+
+            Global.InitOutputKBMMapping(Global.outputKBMHandler.GetIdentifier());
+            Global.outputKBMMapping.PopulateConstants();
+            Global.outputKBMMapping.PopulateMappings();
         }
 
         private void OutputslotMan_ViGEmFailure(object sender, EventArgs e)
@@ -1174,6 +1199,7 @@ namespace DS4Windows
                 if (showlog)
                     LogDebug(DS4WinWPF.Properties.Resources.Starting);
 
+                LogDebug($"Using output KB+M handler: {DS4Windows.Global.outputKBMHandler.GetFullDisplayName()}");
                 LogDebug($"Connection to ViGEmBus {Global.vigembusVersion} established");
 
                 DS4Devices.isExclusiveMode = getUseExclusiveMode(); //Re-enable Exclusive Mode

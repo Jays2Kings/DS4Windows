@@ -1398,6 +1398,7 @@ Suspend support not enabled.", true);
                 {
                     temp.WaitForExit();
                     Global.RefreshHidHideInfo();
+                    Program.rootHub.RefreshOutputKBMHandler();
 
                     settingsWrapVM.DriverCheckRefresh();
                 }

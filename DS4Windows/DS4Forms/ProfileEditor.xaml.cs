@@ -17,6 +17,7 @@ using Microsoft.Win32;
 using NonFormTimer = System.Timers.Timer;
 using DS4WinWPF.DS4Forms.ViewModels;
 using DS4Windows;
+using System.ComponentModel;
 
 namespace DS4WinWPF.DS4Forms
 {
@@ -636,6 +637,12 @@ namespace DS4WinWPF.DS4Forms
             axialLSStickControl.AxialVM.DeadZoneYChanged += UpdateReadingsLsDeadZoneY;
             axialRSStickControl.AxialVM.DeadZoneXChanged += UpdateReadingsRsDeadZoneX;
             axialRSStickControl.AxialVM.DeadZoneYChanged += UpdateReadingsRsDeadZoneY;
+
+            // Sort special action list by action name
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(specialActionsVM.ActionCol);
+            view.SortDescriptions.Clear();
+            view.SortDescriptions.Add(new SortDescription("TypeName", ListSortDirection.Ascending));
+            view.Refresh();
 
             if (profileSettingsVM.UseControllerReadout)
             {

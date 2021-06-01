@@ -100,6 +100,11 @@ namespace DS4Windows
         public void Stop(bool immediate = false)
         {
             UnplugRemainingControllers(immediate);
+            while (RunningQueue)
+            {
+                Thread.SpinWait(500);
+            }
+
             deviceDict.Clear();
             revDeviceDict.Clear();
         }
@@ -302,17 +307,23 @@ namespace DS4Windows
         {
             Action tempAction = new Action(() =>
             {
+                int slotIdx = 0;
                 foreach (OutSlotDevice device in outputSlots)
                 {
-                    if (device.CurrentAttachedStatus ==
-                        OutSlotDevice.AttachedStatus.Attached)
+                    if (device.OutputDevice != null)
                     {
+                        outputDevices[slotIdx] = null;
+                        device.OutputDevice.Disconnect();
+
                         device.DetachDevice();
+                        SlotUnassigned?.Invoke(this, slotIdx, outputSlots[slotIdx]);
                         if (!immediate)
                         {
                             Task.Delay(DELAY_TIME).Wait();
                         }
                     }
+
+                    slotIdx++;
                 }
             });
 

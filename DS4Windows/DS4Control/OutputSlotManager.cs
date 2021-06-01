@@ -97,9 +97,9 @@ namespace DS4Windows
             eventDispatchThread = null;
         }
 
-        public void Stop()
+        public void Stop(bool immediate = false)
         {
-            UnplugRemainingControllers();
+            UnplugRemainingControllers(immediate);
             deviceDict.Clear();
             revDeviceDict.Clear();
         }
@@ -189,9 +189,9 @@ namespace DS4Windows
         {
             Action tempAction = new Action(() =>
             {
-                if (revDeviceDict.ContainsKey(outputDevice))
+                if (revDeviceDict.TryGetValue(outputDevice, out int slot))
                 {
-                    int slot = revDeviceDict[outputDevice];
+                    //int slot = revDeviceDict[outputDevice];
                     outputDevices[slot] = null;
                     deviceDict.Remove(slot);
                     revDeviceDict.Remove(outputDevice);
@@ -298,7 +298,7 @@ namespace DS4Windows
             return temp;
         }
 
-        public void UnplugRemainingControllers()
+        public void UnplugRemainingControllers(bool immediate=false)
         {
             Action tempAction = new Action(() =>
             {

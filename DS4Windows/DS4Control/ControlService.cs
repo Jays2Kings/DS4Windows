@@ -1586,11 +1586,11 @@ namespace DS4Windows
                 if (showlog)
                     LogDebug(DS4WinWPF.Properties.Resources.StoppedDS4Windows);
 
-                outputslotMan.Stop();
                 while (outputslotMan.RunningQueue)
                 {
                     Thread.SpinWait(500);
                 }
+                outputslotMan.Stop(true);
 
                 if (anyUnplugged)
                 {

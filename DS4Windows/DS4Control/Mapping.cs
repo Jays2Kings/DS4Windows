@@ -4384,7 +4384,7 @@ namespace DS4Windows
             }
 
             //double mouseXTemp = rawMouseX - (Math.IEEERemainder(rawMouseX * 1000.0, 1.0) / 1000.0);
-            double mouseXTemp = rawMouseX - (remainderCutoff(rawMouseX * 1000.0, 1.0) / 1000.0);
+            double mouseXTemp = rawMouseX - (remainderCutoff(rawMouseX * 100.0, 1.0) / 100.0);
             //double mouseXTemp = rawMouseX - (rawMouseX * 1000.0 - (1.0 * (int)(rawMouseX * 1000.0 / 1.0)));
             mouseX = (int)mouseXTemp;
             horizontalRemainder = mouseXTemp - mouseX;
@@ -4401,7 +4401,7 @@ namespace DS4Windows
             }
 
             //double mouseYTemp = rawMouseY - (Math.IEEERemainder(rawMouseY * 1000.0, 1.0) / 1000.0);
-            double mouseYTemp = rawMouseY - (remainderCutoff(rawMouseY * 1000.0, 1.0) / 1000.0);
+            double mouseYTemp = rawMouseY - (remainderCutoff(rawMouseY * 100.0, 1.0) / 100.0);
             mouseY = (int)mouseYTemp;
             verticalRemainder = mouseYTemp - mouseY;
             //mouseY = (int)rawMouseY;

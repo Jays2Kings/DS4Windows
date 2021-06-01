@@ -308,7 +308,10 @@ namespace DS4Windows
                         OutSlotDevice.AttachedStatus.Attached)
                     {
                         device.DetachDevice();
-                        Task.Delay(DELAY_TIME).Wait();
+                        if (!immediate)
+                        {
+                            Task.Delay(DELAY_TIME).Wait();
+                        }
                     }
                 }
             });

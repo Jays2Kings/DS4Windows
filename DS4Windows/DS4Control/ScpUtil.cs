@@ -1140,7 +1140,7 @@ namespace DS4Windows
             }
         }
 
-        public static string FakerInputVersion()
+        private static string FakerInputVersion()
         {
             // Start with BLANK_FAKERINPUT_VERSION for result
             string result = BLANK_FAKERINPUT_VERSION;
@@ -2700,6 +2700,12 @@ namespace DS4Windows
         public static void InitOutputKBMMapping(string identifier)
         {
             outputKBMMapping = VirtualKBMFactory.GetMappingInstance(identifier);
+        }
+
+        public static void RefreshFakerInputInfo()
+        {
+            fakerInputInstalled = IsFakerInputInstalled();
+            fakerInputVersion = FakerInputVersion();
         }
 
         public static void RefreshActionAlias(DS4ControlSettings setting, bool shift)

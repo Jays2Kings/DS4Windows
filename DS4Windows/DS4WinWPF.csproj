@@ -15,9 +15,9 @@
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <EnableNETAnalyzers>false</EnableNETAnalyzers>
     <ServerGarbageCollection>true</ServerGarbageCollection>
-    <AssemblyVersion>3.0.6</AssemblyVersion>
-    <FileVersion>3.0.6</FileVersion>
-    <Version>3.0.6</Version>
+    <AssemblyVersion>3.0.7</AssemblyVersion>
+    <FileVersion>3.0.7</FileVersion>
+    <Version>3.0.7</Version>
     <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
     <Copyright>Copyright © Scarlet.Crush Productions 2012, 2013; InhexSTER, HecticSeptic, electrobrains 2013, 2014; Jays2Kings 2013, 2014, 2015, 2016; Ryochan7 2017, 2018, 2019, 2020, 2021</Copyright>
@@ -55,7 +55,6 @@
   <ItemGroup>
     <None Remove="libs\x64\**" Condition="'$(Platform)' != 'x64'" />
     <None Remove="libs\x86\**" Condition="'$(Platform)' != 'x86'" />
-    <None Remove="libs\x64\VMultiDLL\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -253,7 +252,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="libs\x64\FakerInputWrapper\FakerInputDll.dll">
+    <None Update="libs\$(Platform)\FakerInputWrapper\FakerInputDll.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Link>FakerInputDll.dll</Link>
     </None>

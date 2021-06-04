@@ -1,9 +1,31 @@
 {
-  "latest_version": "3.0.6",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 6},
-  "updated_at": "2021-05-27T05:02:47+0000",
+  "latest_version": "3.0.7",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 7},
+  "updated_at": "2021-06-04T20:24:42+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.0.7",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 7},
+      "base_header": "Version 3.0.7",
+      "release_date": "2021-06-04T20:24:42+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.7",
+          "log_text": ["* Added slot# log messages to a gamepad connect/disconnect handler and 'permanent' slot debug msg. Contribution by **mika-n**",
+            "* Small special action fix when action trigger is somehow flagged as None",
+            "* Added support for virtual KB+M driver FakerInput v. 0.1. Needed to play Valorant and other apps that block SendInput events.",
+            "* Sort Special Action list by action name",
+            "* Fixed event order issue that caused output slots to not get disconnected",
+            "* Reduced mouse remainder cutoff to the hundredths place",
+            "* Fixed OutSlotDevice check to make sure Permanent slots are detached on service stop"],
+          "editor": "ryochan7",
+          "editors_note": ["Driver hell"],
+          "updated_at": "2021-06-04T20:24:42+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.0.6",
       "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 6},

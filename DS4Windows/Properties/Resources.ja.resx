@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActionExists" xml:space="preserve">
+    <value>このアクション名はすでに存在します</value>
+  </data>
+  <data name="ChargeController" xml:space="preserve">
+    <value>バッテリーを充電</value>
+  </data>
+  <data name="CheckBattery" xml:space="preserve">
+    <value>バッテリー残量を確認</value>
+  </data>
+  <data name="CloseConfirm" xml:space="preserve">
+    <value>接続中のすべてのコントローラーを切断します。よろしいですか?</value>
+  </data>
+  <data name="ColorByBattery" xml:space="preserve">
+    <value>バッテリー残量によるカラー</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>確認...</value>
+  </data>
+  <data name="ControllerWasRemoved" xml:space="preserve">
+    <value>コントローラー *Mac address* は削除されたか接続が切断されました</value>
+  </data>
+  <data name="CouldNotOpenDS4" xml:space="preserve">
+    <value>警告: DS4 *Mac address* を排他モードで開けませんでした。</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>プロファイルを削除しますか?</value>
+  </data>
+  <data name="DimByBattery" xml:space="preserve">
+    <value>バッテリー残量によって暗くする</value>
+  </data>
+  <data name="DisconnectBT" xml:space="preserve">
+    <value>Bluetoothを切断</value>
+  </data>
+  <data name="Downloading" xml:space="preserve">
+    <value>ダウンロード中 *number*%</value>
+  </data>
+  <data name="DownloadVersion" xml:space="preserve">
+    <value>バージョン *number* を今すぐダウンロードしますか?</value>
+  </data>
+  <data name="DS4Update" xml:space="preserve">
+    <value>DS4Windows の更新を利用可能です!</value>
+  </data>
+  <data name="FallBack" xml:space="preserve">
+    <value>フォールバック</value>
+  </data>
+  <data name="FoundController" xml:space="preserve">
+    <value>コントローラーを検出しました:</value>
+  </data>
+  <data name="Full" xml:space="preserve">
+    <value>満充電</value>
+  </data>
+  <data name="InputDelay" xml:space="preserve">
+    <value>入力遅延: {0:0.##} ms</value>
+  </data>
+  <data name="InstallComplete" xml:space="preserve">
+    <value>インストール完了</value>
+  </data>
+  <data name="InstallFailed" xml:space="preserve">
+    <value>インストールに失敗しました。再度試してみてください。</value>
+  </data>
+  <data name="Installing" xml:space="preserve">
+    <value>インストール中...</value>
+  </data>
+  <data name="LanguagePackApplyRestartRequired" xml:space="preserve">
+    <value>言語パックの変更は、DS4Windows の再起動後に反映されます。</value>
+  </data>
+  <data name="LatencyNotOverTen" xml:space="preserve">
+    <value>コントローラー *number* の遅延は 10ms 以下です</value>
+  </data>
+  <data name="LatencyOverTen" xml:space="preserve">
+    <value>コントローラー {0} の遅延は 10ms を超えています ({1} ms)</value>
+  </data>
+  <data name="LaunchProgram" xml:space="preserve">
+    <value>*program* を起動</value>
+  </data>
+  <data name="LoadProfile" xml:space="preserve">
+    <value>*profile* をロード</value>
+  </data>
+  <data name="Macro" xml:space="preserve">
+    <value>マクロ</value>
+  </data>
+  <data name="MacroRecorded" xml:space="preserve">
+    <value>Macro Recorded</value>
+  </data>
+  <data name="MultiAction" xml:space="preserve">
+    <value>マルチアクションボタン</value>
+  </data>
+  <data name="NA" xml:space="preserve">
+    <value>不明</value>
+  </data>
+  <data name="NoneText" xml:space="preserve">
+    <value>なし</value>
+  </data>
+  <data name="NotUsingProfile" xml:space="preserve">
+    <value>コントローラー {0} はプロファイルを使用していません。バッテリー残量は {1}% です</value>
+  </data>
+  <data name="NotValid" xml:space="preserve">
+    <value>無効</value>
+  </data>
+  <data name="OtherFileLocation" xml:space="preserve">
+    <value>、他の位置にあるファイルは削除されます</value>
+  </data>
+  <data name="PleaseDownloadUpdater" xml:space="preserve">
+    <value>アップデーターをダウンロードして、プログラムフォルダ下に格納し DS4Updater.exe にリネームしてください。x86 の場合、再度更新を確認してください。このウインドウを閉じると、DS4Windows は DS4Updater のリリースページを開こうとします。</value>
+  </data>
+  <data name="ProfileCannotRestore" xml:space="preserve">
+    <value>*Profile name* を復元することはできません。</value>
+  </data>
+  <data name="QuitOtherPrograms" xml:space="preserve">
+    <value>'DS4コントローラーを隠す'オプションを有効にする前に、UWPアプリ(Netflix)、Steam、Uplay、Edge、NVIDIA IN-GAMEなどの他のアプリケーションを終了する必要があります。詳しくは https://github.com/Ryochan7/DS4Windows/wiki/Exclusive-Mode-(Hide-DS4-Controller-config-option)-tips-and-issues をご覧ください。</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrate" xml:space="preserve">
+    <value>6軸ホイールエミュレーションの調整</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrateInstruction" xml:space="preserve">
+    <value>ライトバーが緑色になるとすべての調整ポイントが設定されます。コントローラーの回転中はライトバーが点滅し、調整中であることを示します。OKボタンで調整を開始します</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrateInstruction1" xml:space="preserve">
+    <value>(1) コントローラーを中央で固定し、"X"ボタンを押してください</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrateInstruction2" xml:space="preserve">
+    <value>(2) 左(または右)に90度回転し、"X"ボタンを押してください</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrateInstruction3" xml:space="preserve">
+    <value>(3) 右(または左)に90度回転し、"X"ボタンを押してください</value>
+  </data>
+  <data name="SASteeringWheelEmulationCalibrateNoControllerError" xml:space="preserve">
+    <value>コントローラーなしでは、(6軸)ジャイロステアリングホイールのエミュレーションを調整できません。Bluetooth または USB でコントローラーを接続してください</value>
+  </data>
+  <data name="ScanCode" xml:space="preserve">
+    <value>コードをスキャン</value>
+  </data>
+  <data name="SearchingController" xml:space="preserve">
+    <value>コントローラーを検索中...</value>
+  </data>
+  <data name="SelectMacro" xml:space="preserve">
+    <value>マクロを選択</value>
+  </data>
+  <data name="Starting" xml:space="preserve">
+    <value>開始中...</value>
+  </data>
+  <data name="StopHText" xml:space="preserve">
+    <value>強振動を停止</value>
+  </data>
+  <data name="StopLText" xml:space="preserve">
+    <value>弱振動を停止</value>
+  </data>
+  <data name="StoppedDS4Windows" xml:space="preserve">
+    <value>DS4Windows を停止しました</value>
+  </data>
+  <data name="StoppingDS4" xml:space="preserve">
+    <value>DS4 入力コントローラーを停止中</value>
+  </data>
+  <data name="StoppingX360" xml:space="preserve">
+    <value>仮想出力コントローラーを停止中</value>
+  </data>
+  <data name="StopText" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="TestHText" xml:space="preserve">
+    <value>強振動をテスト</value>
+  </data>
+  <data name="TestLText" xml:space="preserve">
+    <value>弱振動をテスト</value>
+  </data>
+  <data name="TestText" xml:space="preserve">
+    <value>テスト</value>
+  </data>
+  <data name="TiltDown" xml:space="preserve">
+    <value>下に傾ける</value>
+  </data>
+  <data name="TiltLeft" xml:space="preserve">
+    <value>左に傾ける</value>
+  </data>
+  <data name="TiltRight" xml:space="preserve">
+    <value>右に傾ける</value>
+  </data>
+  <data name="TiltUp" xml:space="preserve">
+    <value>上に傾ける</value>
+  </data>
+  <data name="TouchpadMovementOff" xml:space="preserve">
+    <value>タッチパッド動作が無効です</value>
+  </data>
+  <data name="TouchpadMovementOn" xml:space="preserve">
+    <value>タッチパッド動作が有効です</value>
+  </data>
+  <data name="Unassigned" xml:space="preserve">
+    <value>未割り当て</value>
+  </data>
+  <data name="UpToDate" xml:space="preserve">
+    <value>DS4Windows は最新バージョンです。</value>
+  </data>
+  <data name="UsingExclusive" xml:space="preserve">
+    <value>排他モードで使用</value>
+  </data>
+  <data name="UsingProfile" xml:space="preserve">
+    <value>コントローラー {0} はプロファイル "{1}" を使用しています。バッテリー残量は {2}% です</value>
+  </data>
+  <data name="UsingShared" xml:space="preserve">
+    <value>共有モードで使用</value>
+  </data>
+  <data name="ValidName" xml:space="preserve">
+    <value>有効な名前を入力してください</value>
+  </data>
+  <data name="XMLActionsCorrupt" xml:space="preserve">
+    <value>Actions.xml ファイルが壊れていました。空の状態から開始します。</value>
+  </data>
+</root>

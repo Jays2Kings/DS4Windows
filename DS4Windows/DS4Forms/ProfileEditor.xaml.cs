@@ -641,7 +641,7 @@ namespace DS4WinWPF.DS4Forms
             // Sort special action list by action name
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(specialActionsVM.ActionCol);
             view.SortDescriptions.Clear();
-            view.SortDescriptions.Add(new SortDescription("TypeName", ListSortDirection.Ascending));
+            view.SortDescriptions.Add(new SortDescription("ActionName", ListSortDirection.Ascending));
             view.Refresh();
 
             if (profileSettingsVM.UseControllerReadout)

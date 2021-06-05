@@ -147,6 +147,9 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             this.typeName = displayName;
         }
 
+        /// <summary>
+        /// The user defined name for a Special Action
+        /// </summary>
         public string ActionName
         {
             get => specialAction.name;
@@ -157,6 +160,9 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public event EventHandler ActionNameChanged;
 
+        /// <summary>
+        /// Flag to determine if a Special Action is enabled in a specific Profile
+        /// </summary>
         public bool Active
         {
             get => active;
@@ -168,11 +174,22 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
         public event EventHandler ActiveChanged;
+
+        /// <summary>
+        /// Display string with the trigger controls that launch a Special Action
+        /// </summary>
         public string Controls { get => specialAction.controls.Replace("/", ", "); }
 
         public event EventHandler ControlsChanged;
 
+        /// <summary>
+        /// Cached display string for the base type of the Special Action
+        /// </summary>
         public string TypeName { get => typeName; }
+
+        /// <summary>
+        /// Reference to the SpecialAction instance
+        /// </summary>
         public SpecialAction SpecialAction { get => specialAction; }
 
         public void Refresh()

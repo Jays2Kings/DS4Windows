@@ -434,27 +434,6 @@ namespace DS4Windows
             catch { }
         }
 
-        public void LaunchHidGuardHelper()
-        {
-            if (Global.hidguardInstalled)
-            {
-                LogDebug("HidGuardian in use. Launching HidGuardHelper.");
-                ProcessStartInfo startInfo =
-                    new ProcessStartInfo(Global.exedirpath + "\\HidGuardHelper.exe");
-                startInfo.Verb = "runas";
-                startInfo.Arguments = Process.GetCurrentProcess().Id.ToString();
-                startInfo.WorkingDirectory = Global.exedirpath;
-                startInfo.UseShellExecute = true;
-                try
-                {
-                    using (Process tempProc = Process.Start(startInfo))
-                    {
-                    }
-                }
-                catch { }
-            }
-        }
-
         public void CheckHidHidePresence()
         {
             if (Global.hidHideInstalled)
@@ -502,37 +481,6 @@ namespace DS4Windows
             OutputSlotPersist.ReadConfig(outputslotMan);
         }
 
-        public void UpdateHidGuardAttributes()
-        {
-            if (Global.hidguardInstalled)
-            {
-                hidDeviceHidingAffectedDevs.Clear();
-                hidDeviceHidingExemptedDevs.Clear();
-                hidDeviceHidingForced = false;
-                hidDeviceHidingEnabled = true;
-
-                using (RegistryKey hidParamsKey = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters", false))
-                {
-                    if (hidParamsKey != null)
-                    {
-                        string[] devlist = (string[])hidParamsKey.GetValue("AffectedDevices") ?? new string[0] { };
-                        foreach(string device in devlist)
-                        {
-                            hidDeviceHidingAffectedDevs.Add(device);
-                        }
-
-                        devlist = (string[])hidParamsKey.GetValue("ExemptedDevices") ?? new string[0] { };
-                        foreach (string device in devlist)
-                        {
-                            hidDeviceHidingExemptedDevs.Add(device);
-                        }
-
-                        hidDeviceHidingForced = Convert.ToBoolean(hidParamsKey.GetValue("Force", false));
-                    }
-                }
-            }
-        }
-
         public void UpdateHidHideAttributes()
         {
             if (Global.hidHideInstalled)
@@ -563,11 +511,7 @@ namespace DS4Windows
 
         public void UpdateHidHiddenAttributes()
         {
-            if (Global.hidguardInstalled)
-            {
-                UpdateHidGuardAttributes();
-            }
-            else if (Global.hidHideInstalled)
+            if (Global.hidHideInstalled)
             {
                 UpdateHidHideAttributes();
             }
@@ -579,12 +523,7 @@ namespace DS4Windows
             if (dev != null && hidDeviceHidingEnabled)
             {
                 string deviceInstanceId = DS4Devices.devicePathToInstanceId(dev.HidDevice.DevicePath);
-                if (Global.hidguardInstalled)
-                {
-                    result = Global.CheckHidGuardianAffectedStatus(deviceInstanceId,
-                        hidDeviceHidingAffectedDevs, hidDeviceHidingExemptedDevs, hidDeviceHidingForced);
-                }
-                else if (Global.hidHideInstalled)
+                if (Global.hidHideInstalled)
                 {
                     result = Global.CheckHidHideAffectedStatus(deviceInstanceId,
                         hidDeviceHidingAffectedDevs, hidDeviceHidingExemptedDevs, hidDeviceHidingForced);
@@ -599,10 +538,6 @@ namespace DS4Windows
             if (Global.hidHideInstalled)
             {
                 dev.CurrentExclusiveStatus = DS4Device.ExclusiveStatus.HidHideAffected;
-            }
-            else if (Global.hidguardInstalled)
-            {
-                dev.CurrentExclusiveStatus = DS4Device.ExclusiveStatus.HidGuardAffected;
             }
         }
 

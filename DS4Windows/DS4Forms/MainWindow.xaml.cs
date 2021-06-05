@@ -1703,23 +1703,6 @@ Suspend support not enabled.", true);
             }
         }
 
-        private void HidNinjaBtn_Click(object sender, RoutedEventArgs e)
-        {
-            string path = System.IO.Path.Combine(Global.exedirpath, "Tools",
-                "HidNinja", "HidNinja.exe");
-
-            if (File.Exists(path))
-            {
-                try
-                {
-                    ProcessStartInfo startInfo = new ProcessStartInfo(path);
-                    startInfo.UseShellExecute = true;
-                    using (Process proc = Process.Start(startInfo)) { }
-                }
-                catch { }
-            }
-        }
-
         private void FakeExeNameExplainBtn_Click(object sender, RoutedEventArgs e)
         {
             string message = Translations.Strings.CustomExeNameInfo;

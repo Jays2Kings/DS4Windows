@@ -228,8 +228,6 @@ namespace DS4WinWPF
                 rootHub.CheckHidHidePresence();
             }
 
-            rootHub.LaunchHidGuardHelper();
-
             rootHub.LoadPermanentSlotsConfig();
             window.LateChecks(parser);
         }

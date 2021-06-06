@@ -1,9 +1,26 @@
 {
-  "latest_version": "3.0.7",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 7},
-  "updated_at": "2021-06-04T20:24:42+0000",
+  "latest_version": "3.0.8",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 8},
+  "updated_at": "2021-06-06T03:50:47+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.0.8",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 8},
+      "base_header": "Version 3.0.8",
+      "release_date": "2021-06-06T03:50:47+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.8",
+          "log_text": ["* Fixed Special Action sorting to sort by user defined Action name",
+            "* Removed support for HidGuardian completely. **HidHide is the only supported HID device blocking driver now**"],
+          "editor": "ryochan7",
+          "editors_note": ["Done"],
+          "updated_at": "2021-06-06T03:50:47+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.0.7",
       "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 7},

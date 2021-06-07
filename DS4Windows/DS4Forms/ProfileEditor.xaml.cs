@@ -1180,6 +1180,8 @@ namespace DS4WinWPF.DS4Forms
                 SpecialAction action = Global.GetAction(actionName);
                 SpecialActionItem newitem = specialActionsVM.CreateActionItem(action);
                 newitem.Active = true;
+                int lastIdx = specialActionsVM.ActionCol.Count;
+                newitem.Index = lastIdx;
                 specialActionsVM.ActionCol.Add(newitem);
                 specialActionDockPanel.Children.Remove(actEditor);
                 baseSpeActPanel.Visibility = Visibility.Visible;
@@ -1193,8 +1195,9 @@ namespace DS4WinWPF.DS4Forms
         {
             if (specialActionsVM.SpecialActionIndex >= 0)
             {
-                int currentIndex = specialActionsVM.SpecialActionIndex;
-                SpecialActionItem item = specialActionsVM.ActionCol[specialActionsVM.SpecialActionIndex];
+                int viewIndex = specialActionsVM.SpecialActionIndex;
+                int currentIndex = specialActionsVM.ActionCol[viewIndex].Index;
+                SpecialActionItem item = specialActionsVM.ActionCol[currentIndex];
                 baseSpeActPanel.Visibility = Visibility.Collapsed;
                 ProfileList profList = (Application.Current.MainWindow as MainWindow).ProfileListHolder;
                 SpecialActionEditor actEditor = new SpecialActionEditor(deviceNum, profList, item.SpecialAction);
@@ -1210,6 +1213,7 @@ namespace DS4WinWPF.DS4Forms
                     DS4Windows.SpecialAction action = DS4Windows.Global.GetAction(actionName);
                     SpecialActionItem newitem = specialActionsVM.CreateActionItem(action);
                     newitem.Active = item.Active;
+                    newitem.Index = currentIndex;
                     specialActionsVM.ActionCol.RemoveAt(currentIndex);
                     specialActionsVM.ActionCol.Insert(currentIndex, newitem);
                     specialActionDockPanel.Children.Remove(actEditor);
@@ -1223,7 +1227,8 @@ namespace DS4WinWPF.DS4Forms
         {
             if (specialActionsVM.SpecialActionIndex >= 0)
             {
-                SpecialActionItem item = specialActionsVM.ActionCol[specialActionsVM.SpecialActionIndex];
+                int currentIndex = specialActionsVM.ActionCol[specialActionsVM.SpecialActionIndex].Index;
+                SpecialActionItem item = specialActionsVM.ActionCol[currentIndex];
                 specialActionsVM.RemoveAction(item);
                 Global.CacheExtraProfileInfo(profileSettingsVM.Device);
             }

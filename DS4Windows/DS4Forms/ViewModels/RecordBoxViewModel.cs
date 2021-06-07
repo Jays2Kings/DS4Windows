@@ -71,13 +71,24 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public static HashSet<int> KeydownOverrides { get => keydownOverrides; }
 
         private int editMacroIndex = -1;
+        /// <summary>
+        /// (Output value, active bool)
+        /// </summary>
         private Dictionary<int, bool> keysdownMap = new Dictionary<int, bool>();
         private static HashSet<int> keydownOverrides;
+
+        private Dictionary<int, bool> ds4InputMap = new Dictionary<int, bool>();
 
         private bool useScanCode;
 
         private bool repeatable;
         public bool Repeatable { get => repeatable; }
+
+        /// <summary>
+        /// Cached initial profile mode set for Touchpad.
+        /// Needed to revert output control to Touchpad later
+        /// </summary>
+        private TouchpadOutMode oldTouchpadMode = TouchpadOutMode.None;
 
 
         public RecordBoxViewModel(int deviceNum, DS4ControlSettings controlSettings, bool shift, bool repeatable = true)
@@ -125,6 +136,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             this.MacroStepIndex = -1;
 
             MacroStepItem.CacheImgLocations();
+
+            // Temporarily use Passthru mode for Touchpad. Store old TouchOutMode.
+            // Don't conflict Touchpad Click with default output Mouse button controls
+            oldTouchpadMode = Global.TouchOutMode[deviceNum];
+            Global.TouchOutMode[deviceNum] = TouchpadOutMode.Passthru;
         }
 
         private void CreateKeyDownOverrides()
@@ -331,32 +347,45 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             {
                 DS4Device dev = Program.rootHub.DS4Controllers[0];
                 DS4State cState = dev.getCurrentStateRef();
-                for (DS4Controls dc = DS4Controls.LXNeg; dc < DS4Controls.Mute ; dc++)
+                DS4Windows.Mouse tp = Program.rootHub.touchPad[0];
+                for (DS4Controls dc = DS4Controls.LXNeg; dc < DS4Controls.Mute; dc++)
                 {
-                    // Ignore Touch controls
-                    if (dc >= DS4Controls.TouchLeft && dc <= DS4Controls.TouchRight)
-                    {
-                        continue;
-                    }
-
                     int macroValue = Global.macroDS4Values[dc];
-                    keysdownMap.TryGetValue(macroValue, out bool isdown);
-                    if (!isdown && Mapping.getBoolMapping(0, dc, cState, null, null))
+                    ds4InputMap.TryGetValue((int)dc, out bool isdown);
+                    keysdownMap.TryGetValue(macroValue, out bool outputExists);
+                    if (!isdown && Mapping.getBoolMapping(0, dc, cState, null, tp))
                     {
                         MacroStep step = new MacroStep(macroValue, MacroParser.macroInputNames[macroValue],
                                 MacroStep.StepType.ActDown, MacroStep.StepOutput.Button);
                         AddMacroStep(step);
-                        keysdownMap.Add(macroValue, true);
+                        ds4InputMap.Add((int)dc, true);
+                        if (!outputExists)
+                        {
+                            keysdownMap.Add(macroValue, true);
+                        }
                     }
-                    else if (isdown && !Mapping.getBoolMapping(0, dc, cState, null, null))
+                    else if (isdown && !Mapping.getBoolMapping(0, dc, cState, null, tp))
                     {
                         MacroStep step = new MacroStep(macroValue, MacroParser.macroInputNames[macroValue],
                                 MacroStep.StepType.ActUp, MacroStep.StepOutput.Button);
                         AddMacroStep(step);
-                        keysdownMap.Remove(macroValue);
+                        ds4InputMap.Remove((int)dc);
+                        if (outputExists)
+                        {
+                            keysdownMap.Remove(macroValue);
+                        }
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Revert any necessary outside 
+        /// </summary>
+        public void RevertControlsSettings()
+        {
+            Global.TouchOutMode[deviceNum] = oldTouchpadMode;
+            oldTouchpadMode = TouchpadOutMode.None;
         }
     }
 

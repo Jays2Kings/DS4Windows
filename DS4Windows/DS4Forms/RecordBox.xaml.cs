@@ -49,6 +49,7 @@ namespace DS4WinWPF.DS4Forms
                 useScanCode.Visibility = Visibility.Collapsed;
             }
 
+            ds4.Enabled = false;
             ds4.Elapsed += Ds4_Tick;
             ds4.Interval = 10;
             DataContext = recordBoxVM;
@@ -57,13 +58,32 @@ namespace DS4WinWPF.DS4Forms
 
         private void Ds4_Tick(object sender, System.Timers.ElapsedEventArgs e)
         {
+            ds4.Stop();
+
             recordBoxVM.ProcessDS4Tick();
+
+            if (recordBoxVM.Recording)
+            {
+                ds4.Start();
+            }
         }
 
         private void SetupLateEvents()
         {
             macroListBox.SelectionChanged += MacroListBox_SelectionChanged;
             recordBoxVM.MacroSteps.CollectionChanged += MacroSteps_CollectionChanged;
+            Save += RecordBox_Save;
+            Cancel += RecordBox_Cancel;
+        }
+
+        private void RecordBox_Cancel(object sender, EventArgs e)
+        {
+            recordBoxVM.RevertControlsSettings();
+        }
+
+        private void RecordBox_Save(object sender, EventArgs e)
+        {
+            recordBoxVM.RevertControlsSettings();
         }
 
         private void MacroSteps_CollectionChanged(object sender,

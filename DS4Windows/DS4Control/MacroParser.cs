@@ -17,7 +17,8 @@ namespace DS4Windows
         {
             [256] = "Left Mouse Button", [257] = "Right Mouse Button",
             [258] = "Middle Mouse Button", [259] = "4th Mouse Button",
-            [260] = "5th Mouse Button", [261] = "A Button",
+            [260] = "5th Mouse Button",
+            [261] = "A Button",
             [262] = "B Button", [263] = "X Button",
             [264] = "Y Button", [265] = "Start",
             [266] = "Back", [267] = "Up Button",
@@ -30,6 +31,7 @@ namespace DS4Windows
             [280] = "LS Down", [281] = "LS Up",
             [282] = "RS Right", [283] = "RS Left",
             [284] = "RS Down", [285] = "RS Up",
+            [286] = "Touchpad Click",
         };
 
         public List<MacroStep> MacroSteps { get => macroSteps; }

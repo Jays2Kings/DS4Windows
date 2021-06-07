@@ -73,6 +73,8 @@ namespace DS4Windows
 
     public class DS4ControlSettings
     {
+        public const int MAX_MACRO_VALUE = 286;
+
         public DS4Controls control;
         public string extras = null;
         public DS4KeyType keyType = DS4KeyType.None;
@@ -732,6 +734,8 @@ namespace DS4Windows
             [DS4Controls.LYNeg] = 281, [DS4Controls.RXPos] = 282,
             [DS4Controls.RXNeg] = 283, [DS4Controls.RYPos] = 284,
             [DS4Controls.RYNeg] = 285,
+            [DS4Controls.TouchLeft] = 286, [DS4Controls.TouchRight] = 286,
+            [DS4Controls.TouchUpper] = 286, [DS4Controls.TouchMulti] = 286,
         };
 
         public static Dictionary<TrayIconChoice, string> iconChoiceResources = new Dictionary<TrayIconChoice, string>

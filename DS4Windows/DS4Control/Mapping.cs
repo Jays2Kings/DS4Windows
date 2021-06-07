@@ -356,8 +356,8 @@ namespace DS4Windows
         private static int wheel = 0, keyshelddown = 0;
 
         //mapcustom
-        public static bool[] pressedonce = new bool[2400], macrodone = new bool[39];
-        static bool[] macroControl = new bool[25];
+        public static bool[] pressedonce = new bool[2400], macrodone = new bool[40];
+        static bool[] macroControl = new bool[26];
         static uint macroCount = 0;
         static Dictionary<string, Task>[] macroTaskQueue = new Dictionary<string, Task>[Global.MAX_DS4_CONTROLLER_COUNT] { new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>() };
 
@@ -2376,6 +2376,7 @@ namespace DS4Windows
                 if (macroControl[22]) MappedState.RX = 0;
                 if (macroControl[23]) MappedState.RY = 255;
                 if (macroControl[24]) MappedState.RY = 0;
+                if (macroControl[25]) MappedState.OutputTouchButton = true;
             }
 
             if (GetSASteeringWheelEmulationAxis(device) != SASteeringWheelEmulationAxisType.None)
@@ -3960,7 +3961,7 @@ namespace DS4Windows
         private static bool PlayMacroCodeValue(int device, bool[] macrocontrol, DS4KeyType keyType, int macroCodeValue, bool[] keydown)
         {
             bool doDelayOnCaller = false;
-            if (macroCodeValue >= 261 && macroCodeValue <= 285)
+            if (macroCodeValue >= 261 && macroCodeValue <= DS4ControlSettings.MAX_MACRO_VALUE)
             {
                 // Gamepad button up or down macro event. macroCodeValue index value is the button identifier (codeValue-261 = idx in 0..24 range)
                 if (!keydown[macroCodeValue])

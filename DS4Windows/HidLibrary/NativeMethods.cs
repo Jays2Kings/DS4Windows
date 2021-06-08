@@ -320,6 +320,9 @@ namespace DS4Windows
         [DllImport("setupapi.dll", CharSet = CharSet.Auto)]
         static internal extern bool SetupDiGetDeviceInstanceId(IntPtr deviceInfoSet, ref SP_DEVINFO_DATA deviceInfoData, char[] deviceInstanceId, Int32 deviceInstanceIdSize, ref int requiredSize);
 
+        [DllImport("setupapi.dll", SetLastError = true)]
+        static internal extern bool SetupDiClassGuidsFromName(string ClassName, ref Guid ClassGuidArray1stItem, UInt32 ClassGuidArraySize, out UInt32 RequiredSize);
+
         [DllImport("user32.dll")]
         static internal extern bool UnregisterDeviceNotification(IntPtr handle);
 

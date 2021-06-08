@@ -1001,6 +1001,7 @@ namespace DS4Windows
 
                     if (success)
                     {
+                        // Need to send Log output in EventDispatcher. Needed to make sure slotDevice.Index is correct
                         outputslotMan.EventDispatcher.BeginInvoke((Action)(() =>
                         {
                             LogDebug($"Associate X360 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} slot #{slotDevice.Index + 1} for input {device.DisplayName} controller #{index + 1}");
@@ -1077,6 +1078,7 @@ namespace DS4Windows
 
                     if (success)
                     {
+                        // Need to send Log output in EventDispatcher. Needed to make sure slotDevice.Index is correct
                         outputslotMan.EventDispatcher.BeginInvoke((Action)(() =>
                         {
                             LogDebug($"Associate DS4 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} slot #{slotDevice.Index + 1} for input {device.DisplayName} controller #{index + 1}");

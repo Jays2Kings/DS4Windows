@@ -270,10 +270,10 @@ namespace DS4Windows
         {
             try
             {
-                if (safeReadHandle == null)
-                    safeReadHandle = OpenHandle(_devicePath, true, enumerate: false);
-                if (fileStream == null && !safeReadHandle.IsInvalid)
-                    fileStream = new FileStream(safeReadHandle, FileAccess.ReadWrite, inputBuffer.Length, true);
+                //if (safeReadHandle == null)
+                //    safeReadHandle = OpenHandle(_devicePath, true, enumerate: false);
+                //if (fileStream == null && !safeReadHandle.IsInvalid)
+                //    fileStream = new FileStream(safeReadHandle, FileAccess.ReadWrite, inputBuffer.Length, true);
 
                 if (!safeReadHandle.IsInvalid && fileStream.CanRead)
                 {
@@ -320,10 +320,10 @@ namespace DS4Windows
         {
             try
             {
-                if (safeReadHandle == null)
-                    safeReadHandle = OpenHandle(_devicePath, true, enumerate: false);
-                if (fileStream == null && !safeReadHandle.IsInvalid)
-                    fileStream = new FileStream(safeReadHandle, FileAccess.ReadWrite, inputBuffer.Length, true);
+                //if (safeReadHandle == null)
+                //    safeReadHandle = OpenHandle(_devicePath, true, enumerate: false);
+                //if (fileStream == null && !safeReadHandle.IsInvalid)
+                //    fileStream = new FileStream(safeReadHandle, FileAccess.ReadWrite, inputBuffer.Length, true);
 
                 if (!safeReadHandle.IsInvalid && fileStream.CanRead)
                 {
@@ -394,14 +394,14 @@ namespace DS4Windows
         {
             try
             {
-                if (safeReadHandle == null)
-                {
-                    safeReadHandle = OpenHandle(_devicePath, true, enumerate: false);
-                }
-                if (fileStream == null && !safeReadHandle.IsInvalid)
-                {
-                    fileStream = new FileStream(safeReadHandle, FileAccess.ReadWrite, outputBuffer.Length, true);
-                }
+                //if (safeReadHandle == null)
+                //{
+                //    safeReadHandle = OpenHandle(_devicePath, true, enumerate: false);
+                //}
+                //if (fileStream == null && !safeReadHandle.IsInvalid)
+                //{
+                //    fileStream = new FileStream(safeReadHandle, FileAccess.ReadWrite, outputBuffer.Length, true);
+                //}
                 if (fileStream != null && fileStream.CanWrite && !safeReadHandle.IsInvalid)
                 {
                     fileStream.Write(outputBuffer, 0, outputBuffer.Length);
@@ -423,14 +423,15 @@ namespace DS4Windows
         {
             try
             {
-                if (safeReadHandle == null)
-                {
-                    safeReadHandle = OpenHandle(_devicePath, true, enumerate: false);
-                }
-                if (fileStream == null && !safeReadHandle.IsInvalid)
-                {
-                    fileStream = new FileStream(safeReadHandle, FileAccess.ReadWrite, outputBuffer.Length, true);
-                }
+                //if (safeReadHandle == null)
+                //{
+                //    safeReadHandle = OpenHandle(_devicePath, true, enumerate: false);
+                //}
+                //if (fileStream == null && !safeReadHandle.IsInvalid)
+                //{
+                //    fileStream = new FileStream(safeReadHandle, FileAccess.ReadWrite, outputBuffer.Length, true);
+                //}
+
                 if (fileStream != null && fileStream.CanWrite && !safeReadHandle.IsInvalid)
                 {
                     Task writeTask = fileStream.WriteAsync(outputBuffer, 0, outputBuffer.Length);

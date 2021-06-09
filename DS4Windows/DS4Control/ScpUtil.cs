@@ -84,7 +84,7 @@ namespace DS4Windows
         // Alias to real value for current output KB+M event system.
         // Allows skipping a translation call every frame
         //public uint actionAlias = 0;
-		
+
         public ActionType shiftActionType = ActionType.Default;
         public ControlActionData shiftAction = new ControlActionData();
         // Alias to real value for current output KB+M event system.
@@ -495,8 +495,8 @@ namespace DS4Windows
         public static bool fakerInputInstalled = IsFakerInputInstalled();
         public const string BLANK_FAKERINPUT_VERSION = "0.0.0.0";
         public static string fakerInputVersion = FakerInputVersion();
-		
-		public static VirtualKBMBase outputKBMHandler = null;
+
+        public static VirtualKBMBase outputKBMHandler = null;
         public static VirtualKBMMapping outputKBMMapping = null;
 
         public const int CONFIG_VERSION = 5;

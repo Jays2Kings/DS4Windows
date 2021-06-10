@@ -437,7 +437,7 @@ Example: whyme_DS4Windows</value>
     <value>Real World Calibration</value>
   </data>
   <data name="ViGEmPluginFailure" xml:space="preserve">
-    <value>ViGEm Device Plugin Failed. Likely an internal ViGEmBus problem. Closing connection. If the issue persists, please reboot Windows. WARNING: You will likely get a BSOD on Windows shutdown.</value>
+    <value>ViGEm Device Plugin Failed. Likely an internal ViGEmBus problem. Closing connection. If the issue persists, please close DS4Windows and then run the PurgeOldXInput app from the Tools folder. A Windows reboot might be needed as well.</value>
   </data>
   <data name="CRC32Fail" xml:space="preserve">
     <value>Data integrity checks failed for wireless device. Closing device.</value>

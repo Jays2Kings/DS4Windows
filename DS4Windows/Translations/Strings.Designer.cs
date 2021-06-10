@@ -1063,7 +1063,7 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ViGEm Device Plugin Failed. Likely an internal ViGEmBus problem. Closing connection. If the issue persists, please reboot Windows. WARNING: You will likely get a BSOD on Windows shutdown..
+        ///   Looks up a localized string similar to ViGEm Device Plugin Failed. Likely an internal ViGEmBus problem. Closing connection. If the issue persists, please close DS4Windows and then run the PurgeOldXInput app from the Tools folder. A Windows reboot might be needed as well..
         /// </summary>
         public static string ViGEmPluginFailure {
             get {

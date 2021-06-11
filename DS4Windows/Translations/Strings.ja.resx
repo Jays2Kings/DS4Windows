@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Accel" xml:space="preserve">
     <value>加速度</value>
@@ -154,16 +154,16 @@
     <value>キャンセル</value>
   </data>
   <data name="CheckUpdateNow" xml:space="preserve">
-    <value>今すぐアップデートを確認</value>
+    <value>今すぐ更新を確認</value>
   </data>
   <data name="CheckUpdateStartup" xml:space="preserve">
-    <value>起動時にアップデートを確認</value>
+    <value>起動時に更新を確認</value>
   </data>
   <data name="Clear" xml:space="preserve">
     <value>クリア</value>
   </data>
   <data name="CloseMinimizes" xml:space="preserve">
-    <value>閉じるﾎﾞﾀﾝで最小化</value>
+    <value>閉じるボタンで最小化</value>
   </data>
   <data name="Color" xml:space="preserve">
     <value>色</value>
@@ -190,7 +190,7 @@
     <value>削除</value>
   </data>
   <data name="DriverSetup" xml:space="preserve">
-    <value>ドライバーのセットアップ</value>
+    <value>コントローラー/ドライバーのセットアップ</value>
   </data>
   <data name="Duplicate" xml:space="preserve">
     <value>複製</value>
@@ -217,7 +217,7 @@
     <value>インポート</value>
   </data>
   <data name="LeftStick" xml:space="preserve">
-    <value>左ステイック</value>
+    <value>左スティック</value>
   </data>
   <data name="Log" xml:space="preserve">
     <value>ログ</value>
@@ -250,7 +250,7 @@
     <value>急速充電</value>
   </data>
   <data name="RecordText" xml:space="preserve">
-    <value>レコード</value>
+    <value>記録</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>削除</value>
@@ -259,7 +259,7 @@
     <value>アクションを除去</value>
   </data>
   <data name="RightStick" xml:space="preserve">
-    <value>右ステイック</value>
+    <value>右スティック</value>
   </data>
   <data name="Rumble" xml:space="preserve">
     <value>振動</value>
@@ -271,7 +271,7 @@
     <value>保存</value>
   </data>
   <data name="SaveProfile" xml:space="preserve">
-    <value>プロファイルを保存</value>
+    <value>保存</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>設定</value>
@@ -310,7 +310,7 @@
     <value>秒</value>
   </data>
   <data name="RumbleMaxSecsTip" xml:space="preserve">
-    <value>振動を自動停止させる時間を秒単位で指定 (0で自動停止しません)</value>
+    <value>振動を自動停止するまでの秒数 (0で自動停止しません)</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>ウインドウ名</value>
@@ -322,10 +322,10 @@
     <value>下に移動</value>
   </data>
   <data name="AutoProfPathTip" xml:space="preserve">
-    <value>プロセスのパス. ^ABC = ABCで始まる文字列に一致 (^) | ABC$ = ABCで終わる文字列に一致 ($) | *ABC = ABCを含む文字列に一致 (*)</value>
+    <value>プロセスのパス。^ABC = ABCで始まる文字列に一致 (^) | ABC$ = ABCで終わる文字列に一致 ($) | *ABC = ABCを含む文字列に一致 (*)</value>
   </data>
   <data name="AutoProfTitleTip" xml:space="preserve">
-    <value>ウィンドウ名. ^ABC = ABCで始まる文字列に一致 (^) | ABC$ = ABCで終わる文字列に一致 ($) | *ABC = ABCを含む文字列に一致 (*)</value>
+    <value>ウィンドウ名。^ABC = ABCで始まる文字列に一致 (^) | ABC$ = ABCで終わる文字列に一致 ($) | *ABC = ABCを含む文字列に一致 (*)</value>
   </data>
   <data name="GamepadTest" xml:space="preserve">
     <value>ゲームパッド入力テスト</value>
@@ -335,105 +335,135 @@
   </data>
   <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
     <value>ライトバーと振動のデータを定期的にDS4に送ります。データ受信をサポートしないゲームパッドではチェックを外してください。
-設定変更はゲームパッドの次回接続開始時に反映されます。</value>
+設定変更はゲームパッドの次回接続時に反映されます。</value>
     <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
   </data>
   <data name="Apply" xml:space="preserve">
-    <value>Apply</value>
+    <value>適用</value>
   </data>
   <data name="HidNinja" xml:space="preserve">
     <value>HidNinja</value>
   </data>
   <data name="CustomExeName" xml:space="preserve">
-    <value>Custom Exe Name</value>
+    <value>カスタム実行ファイル名</value>
   </data>
   <data name="CustomExeNameInfo" xml:space="preserve">
-    <value>Some games implement a block that causes DS4 input to be ignored if a game detects either DS4Windows.exe or InputMapper.exe running at the time. A workaround to the block is to rename DS4Windows.exe so the check in the game fails. Specifying a custom exe name here allows DS4Updater to automatically update a custom copy of DS4Windows to the desired file name. Make sure to omit the extension.
+    <value>いくつかのゲームは、実行時に DS4Windows.exe や InputMapper.exe を検出すると、そこからの入力を無視するように実装されています。その回避策として、DS4Windows.exe をリネームします。ここにカスタム実行ファイル名を指定すると、DS4Updater が自動的に DS4Windows を指定された名前にコピーして使用します。 拡張子は必ず取り除いてください。
 
-Example: whyme_DS4Windows</value>
+例: whyme_DS4Windows</value>
   </data>
   <data name="XInputChecker" xml:space="preserve">
     <value>XInputChecker</value>
   </data>
   <data name="Controller5Text" xml:space="preserve">
-    <value>Controller 5</value>
+    <value>コントローラー5</value>
   </data>
   <data name="Controller6Text" xml:space="preserve">
-    <value>Controller 6</value>
+    <value>コントローラー6</value>
   </data>
   <data name="Controller7Text" xml:space="preserve">
-    <value>Controller 7</value>
+    <value>コントローラー7</value>
   </data>
   <data name="Controller8Text" xml:space="preserve">
-    <value>Controller 8</value>
+    <value>コントローラー8</value>
   </data>
   <data name="GamepadGyroCameraDescription" xml:space="preserve">
-    <value>Maps the controller output to a standard XInput gamepad or DS4 pad. Gyro is mapped to a Mouse-like Joystick.</value>
+    <value>コントローラーの出力を、XinputゲームパッドまたはDS4パッドに変換します。ジャイロの出力はマウス形態のジョイスティックに変換します。</value>
   </data>
   <data name="GamepadGyroCameraName" xml:space="preserve">
-    <value>Gamepad with Mouse-like Joystick</value>
+    <value>ゲームパッド (マウス形態のジョイスティック付き)</value>
   </data>
   <data name="GamepadPresetDescription" xml:space="preserve">
-    <value>Maps the controller output to a standard gamepad</value>
+    <value>コントローラーの出力を標準ゲームパッドに変換します。</value>
   </data>
   <data name="GamepadPresetName" xml:space="preserve">
-    <value>Gamepad</value>
+    <value>ゲームパッド</value>
   </data>
   <data name="KBMGyroMouseDescription" xml:space="preserve">
-    <value>Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support. Gyro is mapped to a virtual Mouse.</value>
+    <value>コントローラーの出力を、仮想 KB+M コントロールに変換します。ゲームパッドをサポートしていないFPSゲームなどで有用です。ジャイロの出力は仮想マウスに変換します。</value>
   </data>
   <data name="KBMGyroMouseName" xml:space="preserve">
-    <value>KB+M Controls with Gyro Mouse</value>
+    <value>KB+M コントロール (ジャイロマウス付き)</value>
   </data>
   <data name="KBMPresetDescription" xml:space="preserve">
-    <value>Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support.</value>
+    <value>コントローラーの出力を、仮想 KB+M コントロールに変換します。ゲームパッドをサポートしていないFPSゲームなどで有用です。</value>
   </data>
   <data name="KBMPresetName" xml:space="preserve">
-    <value>KB+M Controls</value>
+    <value>KB+M コントロール</value>
   </data>
   <data name="MixedGyroMousePresetDescription" xml:space="preserve">
-    <value>Maps the buttons and axes to a standard gamepad. Maps the Gyro to a virtual mouse</value>
+    <value>ボタンと方向キーの出力を標準ゲームパッドに変換します。ジャイロの出力は仮想マウスに変換します。</value>
   </data>
   <data name="MixedGyroMousePresetName" xml:space="preserve">
-    <value>Gamepad with Gyro Mouse</value>
+    <value>ゲームパッド (ジャイロマウス付き)</value>
   </data>
   <data name="MixedPresetDescription" xml:space="preserve">
-    <value>Maps the controller output to mixed XInput gamepad + RS mouse.</value>
+    <value>コントローラーの出力を、XinputゲームパッドとRSマウスに変換します。</value>
   </data>
   <data name="MixedPresetName" xml:space="preserve">
-    <value>Gamepad with High Precision Camera</value>
+    <value>ゲームパッド (高精度カメラ付き)</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>説明</value>
   </data>
   <data name="PresetIntroText" xml:space="preserve">
-    <value>Do you want to use a preset option? Choosing No will cause the Profile Editor to use an empty Gamepad profile.</value>
+    <value>プリセットオプションを使用しますか? No を選択すると、空のゲームパッドプロファイルを使用してプロファイルエディタを開きます。</value>
   </data>
   <data name="Presets" xml:space="preserve">
-    <value>Presets</value>
+    <value>プリセット</value>
   </data>
   <data name="Changelog" xml:space="preserve">
-    <value>Changelog</value>
+    <value>更新履歴</value>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>Close</value>
+    <value>閉じる</value>
   </data>
   <data name="Profiles" xml:space="preserve">
-    <value>Profiles</value>
+    <value>プロファイル</value>
   </data>
   <data name="NoControllersConnected" xml:space="preserve">
-    <value>No Controllers Connected (Max {0})</value>
+    <value>コントローラーが接続されていません (最大 {0})</value>
   </data>
   <data name="FlickThreshold" xml:space="preserve">
-    <value>Flick Threshold</value>
+    <value>フリックのしきい値</value>
   </data>
   <data name="FlickTime" xml:space="preserve">
-    <value>Flick Time</value>
+    <value>フリックの時間</value>
   </data>
   <data name="MinAngleThreshold" xml:space="preserve">
-    <value>Min Angle Threshold</value>
+    <value>最小角度のしきい値</value>
   </data>
   <data name="RealWorldCalibration" xml:space="preserve">
     <value>Real World Calibration</value>
+  </data>
+  <data name="ViGEmPluginFailure" xml:space="preserve">
+      <value>ViGEm デバイスプラグインが失敗しました。おそらくViGEmBus内部の問題です。接続を終了します。問題が解決しない場合は、Windowsを再起動してください。警告: Windowsのシャットダウン時にブルースクリーンが発生する可能性があります。</value>
+  </data>
+  <data name="CRC32Fail" xml:space="preserve">
+    <value>ワイヤレスデバイスのデータ整合性チェックに失敗しました。デバイスを閉じます。</value>
+  </data>
+  <data name="FutureNetNotInstalled" xml:space="preserve">
+    <value>.NET 5 ランタイムが見つかりません。DS4Windowsの将来のビルドとの互換性を確保するために、.NET 5 ランタイムをダウンロードしてインストールしてください。このウィンドウを閉じると、.NET 5 ランタイムのダウンロードページに移動します。</value>
+  </data>
+  <data name="UpgradeNetCaption" xml:space="preserve">
+    <value>.NET ランタイムを更新してください</value>
+  </data>
+  <data name="HidHide" xml:space="preserve">
+    <value>HidHide</value>
+  </data>
+  <data name="HidHideConfigClient" xml:space="preserve">
+    <value>HidHide 設定クライアント</value>
+  </data>
+  <data name="ExclusiveAccess" xml:space="preserve">
+    <value>排他アクセス</value>
+  </data>
+  <data name="HidGuardianAccess" xml:space="preserve">
+    <value>HidGuardian アクセス</value>
+  </data>
+  <data name="HidHideAccess" xml:space="preserve">
+    <value>HidHide アクセス</value>
+  </data>
+  <data name="SharedAccess" xml:space="preserve">
+    <value>共有アクセス</value>
   </data>
 </root>

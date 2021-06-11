@@ -184,6 +184,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Resources.ja.resx">
+      <DependentUpon>Resources.resx</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.ru.resx">
       <DependentUpon>Resources.resx</DependentUpon>
     </EmbeddedResource>

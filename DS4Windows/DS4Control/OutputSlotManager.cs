@@ -46,11 +46,8 @@ namespace DS4Windows
 
         private int queuedTasks = 0;
         private ReaderWriterLockSlim queueLocker;
-        private Thread eventDispatchThread;
-        private Dispatcher eventDispatcher;
 
         public bool RunningQueue { get => queuedTasks > 0; }
-        public Dispatcher EventDispatcher { get => eventDispatcher; }
         public OutSlotDevice[] OutputSlots { get => outputSlots; }
 
         public delegate void SlotAssignedDelegate(OutputSlotManager sender,
@@ -74,27 +71,10 @@ namespace DS4Windows
             lastSlotIndex = outputSlots.Length > 0 ? outputSlots.Length - 1 : 0;
 
             queueLocker = new ReaderWriterLockSlim();
-
-            eventDispatchThread = new Thread(() =>
-            {
-                Dispatcher currentDis = Dispatcher.CurrentDispatcher;
-                eventDispatcher = currentDis;
-                Dispatcher.Run();
-            });
-
-            eventDispatchThread.IsBackground = true;
-            eventDispatchThread.Name = "OutputSlotManager Events";
-            eventDispatchThread.Priority = ThreadPriority.Normal;
-            eventDispatchThread.Start();
         }
 
         public void ShutDown()
         {
-            eventDispatcher.InvokeShutdown();
-            eventDispatcher = null;
-
-            eventDispatchThread.Join();
-            eventDispatchThread = null;
         }
 
         public void Stop(bool immediate = false)
@@ -145,7 +125,9 @@ namespace DS4Windows
 
         public void DeferredPlugin(OutputDevice outputDevice, int inIdx, OutputDevice[] outdevs, OutContType contType)
         {
-            Action tempAction = new Action(() =>
+            queueLocker.EnterWriteLock();
+            queuedTasks++;
+            //Action tempAction = new Action(() =>
             {
                 int slot = FindEmptySlot();
                 if (slot != -1)
@@ -171,28 +153,21 @@ namespace DS4Windows
                         outputSlots[slot].CurrentInputBound = OutSlotDevice.InputBound.Bound;
                     }
                     SlotAssigned?.Invoke(this, slot, outputSlots[slot]);
-
-                    Task.Delay(DELAY_TIME).Wait();
                 }
-            });
+            };
 
-            queueLocker.EnterWriteLock();
-            queuedTasks++;
+            queuedTasks--;
             queueLocker.ExitWriteLock();
-
-            eventDispatcher.BeginInvoke((Action)(() =>
-            {
-                tempAction.Invoke();
-                queueLocker.EnterWriteLock();
-                queuedTasks--;
-                queueLocker.ExitWriteLock();
-            }));
         }
 
         public void DeferredRemoval(OutputDevice outputDevice, int inIdx,
             OutputDevice[] outdevs, bool immediate = false)
         {
-            Action tempAction = new Action(() =>
+            _ = immediate;
+
+            queueLocker.EnterWriteLock();
+            queuedTasks++;
+
             {
                 if (revDeviceDict.TryGetValue(outputDevice, out int slot))
                 {
@@ -209,24 +184,15 @@ namespace DS4Windows
                     outputSlots[slot].DetachDevice();
                     SlotUnassigned?.Invoke(this, slot, outputSlots[slot]);
 
-                    if (!immediate)
-                    {
-                        Task.Delay(DELAY_TIME).Wait();
-                    }
+                    //if (!immediate)
+                    //{
+                    //    Task.Delay(DELAY_TIME).Wait();
+                    //}
                 }
-            });
+            };
 
-            queueLocker.EnterWriteLock();
-            queuedTasks++;
+            queuedTasks--;
             queueLocker.ExitWriteLock();
-
-            eventDispatcher.BeginInvoke((Action)(() =>
-            {
-                tempAction.Invoke();
-                queueLocker.EnterWriteLock();
-                queuedTasks--;
-                queueLocker.ExitWriteLock();
-            }));
         }
 
         public OutSlotDevice FindOpenSlot()
@@ -305,7 +271,10 @@ namespace DS4Windows
 
         public void UnplugRemainingControllers(bool immediate=false)
         {
-            Action tempAction = new Action(() =>
+            _ = immediate;
+
+            queueLocker.EnterWriteLock();
+            queuedTasks++;
             {
                 int slotIdx = 0;
                 foreach (OutSlotDevice device in outputSlots)
@@ -317,27 +286,18 @@ namespace DS4Windows
 
                         device.DetachDevice();
                         SlotUnassigned?.Invoke(this, slotIdx, outputSlots[slotIdx]);
-                        if (!immediate)
-                        {
-                            Task.Delay(DELAY_TIME).Wait();
-                        }
+                        //if (!immediate)
+                        //{
+                        //    Task.Delay(DELAY_TIME).Wait();
+                        //}
                     }
 
                     slotIdx++;
                 }
-            });
+            };
 
-            queueLocker.EnterWriteLock();
-            queuedTasks++;
+            queuedTasks--;
             queueLocker.ExitWriteLock();
-
-            eventDispatcher.BeginInvoke((Action)(() =>
-            {
-                tempAction.Invoke();
-                queueLocker.EnterWriteLock();
-                queuedTasks--;
-                queueLocker.ExitWriteLock();
-            }));
         }
     }
 }

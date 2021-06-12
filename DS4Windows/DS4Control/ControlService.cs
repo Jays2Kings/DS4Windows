@@ -928,7 +928,10 @@ namespace DS4Windows
         public void PluginOutDev(int index, DS4Device device)
         {
             OutContType contType = Global.OutContType[index];
-            OutSlotDevice slotDevice = outputslotMan.FindExistUnboundSlotType(contType);
+
+            OutSlotDevice slotDevice = null;
+            slotDevice = outputslotMan.FindExistUnboundSlotType(contType);
+
             if (useDInputOnly[index])
             {
                 bool success = false;
@@ -991,21 +994,14 @@ namespace DS4Windows
                             }
                         }
 
-                        outputslotMan.EventDispatcher.BeginInvoke((Action)(() =>
-                        {
-                            outputDevices[index] = tempXbox;
-                            slotDevice.CurrentType = contType;
-                        }));
+                        outputDevices[index] = tempXbox;
+                        slotDevice.CurrentType = contType;
                         success = true;
                     }
 
                     if (success)
                     {
-                        // Need to send Log output in EventDispatcher. Needed to make sure slotDevice.Index is correct
-                        outputslotMan.EventDispatcher.BeginInvoke((Action)(() =>
-                        {
-                            LogDebug($"Associate X360 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} slot #{slotDevice.Index + 1} for input {device.DisplayName} controller #{index + 1}");
-                        }));
+                        LogDebug($"Associate X360 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} slot #{slotDevice.Index + 1} for input {device.DisplayName} controller #{index + 1}");
                     }
 
                     //tempXbox.Connect();
@@ -1068,21 +1064,14 @@ namespace DS4Windows
                             }
                         }
 
-                        outputslotMan.EventDispatcher.BeginInvoke((Action)(() =>
-                        {
-                            outputDevices[index] = tempDS4;
-                            slotDevice.CurrentType = contType;
-                        }));
+                        outputDevices[index] = tempDS4;
+                        slotDevice.CurrentType = contType;
                         success = true;
                     }
 
                     if (success)
                     {
-                        // Need to send Log output in EventDispatcher. Needed to make sure slotDevice.Index is correct
-                        outputslotMan.EventDispatcher.BeginInvoke((Action)(() =>
-                        {
-                            LogDebug($"Associate DS4 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} slot #{slotDevice.Index + 1} for input {device.DisplayName} controller #{index + 1}");
-                        }));
+                        LogDebug($"Associate DS4 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} slot #{slotDevice.Index + 1} for input {device.DisplayName} controller #{index + 1}");
                     }
 
                     //DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);

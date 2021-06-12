@@ -1,9 +1,31 @@
 {
   "latest_version": "3.0.8",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 8},
-  "updated_at": "2021-06-06T03:50:47+0000",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 9},
+  "updated_at": "2021-06-12T04:47:57+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.0.9",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 9},
+      "base_header": "Version 3.0.9",
+      "release_date": "2021-06-12T04:47:57+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.9",
+          "log_text": ["* Fixed obtaining source index item for Special Action list",
+            "* Allow Touchpad Click as an output for Macros",
+            "* Delay log message for virtual device association",
+            "* Updated ViGEmPluginFailure message to make reference to PurgeOldXInput utility",
+            "* Added PurgeOldXInput utility to Tools folder. Might be useful for deleting invalid virtual Xbox 360 controllers",
+            "* Updated Japanese translation. Contribution by **toshixm**",
+            "* Updated Czech translation. Contribution by **MikeCZ23**"],
+          "editor": "ryochan7",
+          "editors_note": ["Burnout"],
+          "updated_at": "2021-06-12T04:47:57+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.0.8",
       "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 8},

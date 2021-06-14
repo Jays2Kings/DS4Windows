@@ -208,7 +208,7 @@
                             <Button x:Name="removeActionBtn" Content="{lex:Loc RemoveAction}" IsEnabled="{Binding ItemSelected}" Margin="5,0,0,0" Click="RemoveActionBtn_Click" />
                         </UniformGrid>
 
-                        <ListView x:Name="specialActionsLV" ItemsSource="{Binding ActionCol}" SelectedIndex="{Binding SpecialActionIndex}" DockPanel.Dock="Bottom" Margin="0,10,0,0">
+                        <ListView x:Name="specialActionsLV" ItemsSource="{Binding ActionCol}" SelectedIndex="{Binding SpecialActionIndex}" SelectedItem="{Binding CurrentSpecialActionItem,Mode=OneWayToSource}" DockPanel.Dock="Bottom" Margin="0,10,0,0">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="{lex:Loc Name}" Width="150">

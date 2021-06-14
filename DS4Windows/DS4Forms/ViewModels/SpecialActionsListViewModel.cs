@@ -31,6 +31,16 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public event EventHandler SpecialActionIndexChanged;
 
+        private SpecialActionItem currentSAItem;
+        public SpecialActionItem CurrentSpecialActionItem
+        {
+            get => currentSAItem;
+            set
+            {
+                currentSAItem = value;
+            }
+        }
+
         public bool ItemSelected { get => specialActionIndex >= 0; }
         public event EventHandler ItemSelectedChanged;
 

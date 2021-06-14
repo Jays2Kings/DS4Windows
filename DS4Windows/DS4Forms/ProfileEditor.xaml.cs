@@ -1195,9 +1195,11 @@ namespace DS4WinWPF.DS4Forms
         {
             if (specialActionsVM.SpecialActionIndex >= 0)
             {
-                int viewIndex = specialActionsVM.SpecialActionIndex;
-                int currentIndex = specialActionsVM.ActionCol[viewIndex].Index;
-                SpecialActionItem item = specialActionsVM.ActionCol[currentIndex];
+                SpecialActionItem item = specialActionsVM.CurrentSpecialActionItem;
+                int currentIndex = item.Index;
+                //int viewIndex = specialActionsVM.SpecialActionIndex;
+                //int currentIndex = specialActionsVM.ActionCol[viewIndex].Index;
+                //SpecialActionItem item = specialActionsVM.ActionCol[currentIndex];
                 baseSpeActPanel.Visibility = Visibility.Collapsed;
                 ProfileList profList = (Application.Current.MainWindow as MainWindow).ProfileListHolder;
                 SpecialActionEditor actEditor = new SpecialActionEditor(deviceNum, profList, item.SpecialAction);
@@ -1227,8 +1229,9 @@ namespace DS4WinWPF.DS4Forms
         {
             if (specialActionsVM.SpecialActionIndex >= 0)
             {
-                int currentIndex = specialActionsVM.ActionCol[specialActionsVM.SpecialActionIndex].Index;
-                SpecialActionItem item = specialActionsVM.ActionCol[currentIndex];
+                SpecialActionItem item = specialActionsVM.CurrentSpecialActionItem;
+                //int currentIndex = specialActionsVM.ActionCol[specialActionsVM.SpecialActionIndex].Index;
+                //SpecialActionItem item = specialActionsVM.ActionCol[currentIndex];
                 specialActionsVM.RemoveAction(item);
                 Global.CacheExtraProfileInfo(profileSettingsVM.Device);
             }

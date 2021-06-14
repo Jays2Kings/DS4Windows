@@ -470,4 +470,34 @@
     <value>Real World Calibration</value>
     <comment>Profiles tab&gt;Edit&gt;Axis Config&gt;Flick Stick</comment>
   </data>
+  <data name="ViGEmPluginFailure" xml:space="preserve">
+    <value>Подключение устройства ViGEm не удалось. Вероятно, внутренняя проблема ViGEmBus. Закрытие соединения. Если проблема не устранена, закройте DS4Windows, а затем запустите приложение PurgeOldXInput из папки Tools. Также может потребоваться перезагрузка Windows.</value>
+  </data>
+  <data name="CRC32Fail" xml:space="preserve">
+    <value>Сбой проверки целостности данных для беспроводного устройства. Закрытие устройства.</value>
+  </data>
+  <data name="FutureNetNotInstalled" xml:space="preserve">
+    <value>Среда выполнения .NET 5 не была обнаружена в вашей системе. Пожалуйста, загрузите и установите среду выполнения .NET 5, чтобы обеспечить совместимость с будущими сборками DS4Windows. После закрытия этого окна вы будете перенаправлены на страницу загрузки среды выполнения .NET 5.</value>
+  </data>
+  <data name="UpgradeNetCaption" xml:space="preserve">
+    <value>Пожалуйста, обновите среду выполнения .NET</value>
+  </data>
+  <data name="HidHide" xml:space="preserve">
+    <value>HidHide</value>
+  </data>
+  <data name="HidHideConfigClient" xml:space="preserve">
+    <value>Клиент конфигурации HidHide</value>
+  </data>
+  <data name="ExclusiveAccess" xml:space="preserve">
+    <value>Эксклюзивный доступ</value>
+  </data>
+  <data name="HidGuardianAccess" xml:space="preserve">
+    <value>HidGuardian доступ</value>
+  </data>
+  <data name="HidHideAccess" xml:space="preserve">
+    <value>HidHide доступ</value>
+  </data>
+  <data name="SharedAccess" xml:space="preserve">
+    <value>Общий доступ</value>
+  </data>
 </root>

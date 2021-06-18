@@ -861,6 +861,7 @@ Suspend support not enabled.", true);
             newProfListBtn.IsEnabled = true;
             editProfBtn.IsEnabled = true;
             deleteProfBtn.IsEnabled = true;
+            renameProfBtn.IsEnabled = true;
             dupProfBtn.IsEnabled = true;
             importProfBtn.IsEnabled = true;
             exportProfBtn.IsEnabled = true;
@@ -1738,6 +1739,31 @@ Suspend support not enabled.", true);
 
             optsWindow.Owner = this;
             optsWindow.Show();
+        }
+
+        private void RenameProfBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (profilesListBox.SelectedIndex >= 0)
+            {
+                int idx = profilesListBox.SelectedIndex;
+                ProfileEntity entity = profileListHolder.ProfileListCol[idx];
+                string filename = Path.Combine(Global.appdatapath,
+                    "Profiles", $"{entity.Name}.xml");
+
+                // Disallow renaming Default profile
+                if (entity.Name != "Default" &&
+                    File.Exists(filename))
+                {
+                    RenameProfileWindow renameWin = new RenameProfileWindow();
+                    renameWin.ChangeProfileName(entity.Name);
+                    bool? result = renameWin.ShowDialog();
+                    if (result.HasValue && result.Value)
+                    {
+                        entity.RenameProfile(renameWin.RenameProfileVM.ProfileName);
+                        trayIconVM.PopulateContextMenu();
+                    }
+                }
+            }
         }
     }
 

@@ -114,7 +114,7 @@
                                                           SelectionChanged="SelectProfCombo_SelectionChanged" KeyDown="SelectProfCombo_KeyDown">
                                                     <ComboBox.ItemTemplate>
                                                         <DataTemplate>
-                                                            <TextBlock Text="{Binding Name,Mode=OneTime,FallbackValue=''}" />
+                                                            <TextBlock Text="{Binding Name,Mode=OneWay,FallbackValue=''}" />
                                                         </DataTemplate>
                                                     </ComboBox.ItemTemplate>
                                                 </ComboBox>
@@ -184,6 +184,14 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="{Binding DeleteProfile, Source={StaticResource ImgLocPaths}}" />
                                     <TextBlock Text="{lex:Loc Delete}" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button x:Name="renameProfBtn" Margin="10,0,0,0" IsEnabled="False" Click="RenameProfBtn_Click">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding EditProfile, Source={StaticResource ImgLocPaths}}" />
+                                    <TextBlock Text="{lex:Loc RenameProfile}" />
                                 </StackPanel>
                             </Button.Content>
                         </Button>

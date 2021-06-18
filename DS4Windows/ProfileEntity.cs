@@ -51,5 +51,21 @@ namespace DS4WinWPF
         {
             ProfileSaved?.Invoke(this, EventArgs.Empty);
         }
+
+        public void RenameProfile(string newProfileName)
+        {
+            string oldFilePath = Path.Combine(DS4Windows.Global.appdatapath,
+                "Profiles", $"{name}.xml");
+
+            string newFilePath = Path.Combine(DS4Windows.Global.appdatapath,
+                "Profiles", $"{newProfileName}.xml");
+
+            if (File.Exists(oldFilePath) && !File.Exists(newFilePath))
+            {
+                File.Move(oldFilePath, newFilePath);
+                // Send NameChanged event so controls get updated with new name
+                Name = newProfileName;
+            }
+        }
     }
 }

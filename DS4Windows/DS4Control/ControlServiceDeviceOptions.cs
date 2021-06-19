@@ -13,8 +13,7 @@ namespace DS4Windows
         private DS4DeviceOptions dS4DeviceOpts = new DS4DeviceOptions();
         public DS4DeviceOptions DS4DeviceOpts { get => dS4DeviceOpts; }
 
-        private DualSenseDeviceOptions dualSenseOpts =
-            new DualSenseDeviceOptions();
+        private DualSenseDeviceOptions dualSenseOpts = new DualSenseDeviceOptions();
         public DualSenseDeviceOptions DualSenseOpts { get => dualSenseOpts; }
 
         private SwitchProDeviceOptions switchProDeviceOpts = new SwitchProDeviceOptions();
@@ -22,6 +21,16 @@ namespace DS4Windows
 
         private JoyConDeviceOptions joyConDeviceOpts = new JoyConDeviceOptions();
         public JoyConDeviceOptions JoyConDeviceOpts { get => joyConDeviceOpts; }
+
+        private bool verboseLogMessages;
+        public bool VerboseLogMessages { get => verboseLogMessages; set => verboseLogMessages = value; }
+
+        public ControlServiceDeviceOptions()
+        {
+            // If enabled then DS4Windows shows additional log messages when a gamepad is connected (may be useful to diagnose connection problems).
+            // This option is not persistent (ie. not saved into config files), so if enabled then it is reset back to FALSE when DS4Windows is restarted.
+            verboseLogMessages = false;
+        }
     }
 
     public abstract class ControllerOptionsStore

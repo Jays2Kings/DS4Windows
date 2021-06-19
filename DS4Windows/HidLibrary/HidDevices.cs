@@ -45,7 +45,7 @@ namespace DS4Windows
 
         public static IEnumerable<HidDevice> EnumerateDS4(VidPidInfo[] devInfo)
         {
-            //int iDebugDevCount = 0;
+            int iEnumeratedDevCount = 0;
             List<HidDevice> foundDevs = new List<HidDevice>();
             int devInfoLen = devInfo.Length;
             IEnumerable<DeviceInfo> temp = EnumerateDevices();
@@ -55,8 +55,7 @@ namespace DS4Windows
                 DeviceInfo x = devEnum.Current;
                 //DeviceInfo x = temp.ElementAt(i);               
                 HidDevice tempDev = new HidDevice(x.Path, x.Description, x.Parent);
-                //iDebugDevCount++;
-                //AppLogger.LogToGui($"DEBUG: HID#{iDebugDevCount} Path={x.Path}  Description={x.Description}  VID={tempDev.Attributes.VendorHexId}  PID={tempDev.Attributes.ProductHexId}  Usage=0x{tempDev.Capabilities.Usage.ToString("X")}  Version=0x{tempDev.Attributes.Version.ToString("X")}", false);
+                iEnumeratedDevCount++;
                 bool found = false;
                 for (int j = 0; !found && j < devInfoLen; j++)
                 {
@@ -71,6 +70,24 @@ namespace DS4Windows
                         foundDevs.Add(tempDev);
                     }
                 }
+
+                if (Global.DeviceOptions.VerboseLogMessages)
+                {
+                    if (found)
+                    {
+                        AppLogger.LogToGui($"HID#{iEnumeratedDevCount} CONNECTING to {x.Description}  VID={tempDev.Attributes.VendorHexId}  PID={tempDev.Attributes.ProductHexId}  Usage=0x{tempDev.Capabilities.Usage.ToString("X")}  Version=0x{tempDev.Attributes.Version.ToString("X")}  Path={x.Path}", false);
+                    }
+                    else
+                    {
+                        AppLogger.LogToGui($"HID#{iEnumeratedDevCount} Unknown device {x.Description}  VID={tempDev.Attributes.VendorHexId}  PID={tempDev.Attributes.ProductHexId}  Usage=0x{tempDev.Capabilities.Usage.ToString("X")}  Version=0x{tempDev.Attributes.Version.ToString("X")}  Path={x.Path}", false);
+                    }
+                }
+            }
+
+            if (Global.DeviceOptions.VerboseLogMessages && iEnumeratedDevCount > 0)
+            {
+                // This EnumerateDS4 method is called 3-4 times when a gamepad is connected. Print out "separator" log msg line between different enumeration loops to make the logfile easier to read
+                AppLogger.LogToGui($"-------------------------", false);
             }
 
             return foundDevs;

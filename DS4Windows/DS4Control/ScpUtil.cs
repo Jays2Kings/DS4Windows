@@ -418,8 +418,12 @@ namespace DS4Windows
         public const int TEST_PROFILE_ITEM_COUNT = MAX_DS4_CONTROLLER_COUNT + 1;
         public const int TEST_PROFILE_INDEX = TEST_PROFILE_ITEM_COUNT - 1;
         public const int OLD_XINPUT_CONTROLLER_COUNT = 4;
+
+        public static CultureInfo configFileDecimalCulture = new CultureInfo("en-US"); // Loading and Saving decimal values in configuration files should always use en-US decimal format (ie. dot char as decimal separator char, not comma char)
+
         protected static BackingStore m_Config = new BackingStore();
         protected static Int32 m_IdleTimeout = 600000;
+
         public static string exelocation = Process.GetCurrentProcess().MainModule.FileName;
         public static string exedirpath = Directory.GetParent(exelocation).FullName;
         public static string exeFileName = Path.GetFileName(exelocation);
@@ -6469,7 +6473,7 @@ namespace DS4Windows
                     else if (type == "DisconnectBT")
                     {
                         double doub;
-                        if (double.TryParse(details, out doub))
+                        if (double.TryParse(details, System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out doub))
                             actions.Add(new SpecialAction(name, controls, type, "", doub));
                         else
                             actions.Add(new SpecialAction(name, controls, type, ""));
@@ -6477,9 +6481,9 @@ namespace DS4Windows
                     else if (type == "BatteryCheck")
                     {
                         double doub;
-                        if (double.TryParse(details.Split('|')[0], out doub))
+                        if (double.TryParse(details.Split('|')[0], System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out doub))
                             actions.Add(new SpecialAction(name, controls, type, details, doub));
-                        else if (double.TryParse(details.Split(',')[0], out doub))
+                        else if (double.TryParse(details.Split(',')[0], System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out doub))
                             actions.Add(new SpecialAction(name, controls, type, details, doub));
                         else
                             actions.Add(new SpecialAction(name, controls, type, details));
@@ -6490,7 +6494,7 @@ namespace DS4Windows
                         if (x.ChildNodes[3] != null)
                         {
                             extras = x.ChildNodes[3].InnerText;
-                            if (double.TryParse(x.ChildNodes[4].InnerText, out doub))
+                            if (double.TryParse(x.ChildNodes[4].InnerText, System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out doub))
                                 actions.Add(new SpecialAction(name, controls, type, details, doub, extras));
                             else
                                 actions.Add(new SpecialAction(name, controls, type, details, 0, extras));
@@ -6507,7 +6511,7 @@ namespace DS4Windows
                     else if (type == "SASteeringWheelEmulationCalibrate")
                     {
                         double doub;
-                        if (double.TryParse(details, out doub))
+                        if (double.TryParse(details, System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out doub))
                             actions.Add(new SpecialAction(name, controls, type, "", doub));
                         else
                             actions.Add(new SpecialAction(name, controls, type, ""));

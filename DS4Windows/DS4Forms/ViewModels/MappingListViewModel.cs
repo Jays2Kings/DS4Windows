@@ -11,7 +11,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 {
     public class MappingListViewModel
     {
-        private int devIndex;
+        //private int devIndex;
         private ObservableCollection<MappedControl> mappings = new ObservableCollection<MappedControl>();
         public ObservableCollection<MappedControl> Mappings { get => mappings; }
 

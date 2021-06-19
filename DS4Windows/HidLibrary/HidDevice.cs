@@ -24,7 +24,7 @@ namespace DS4Windows
         private readonly HidDeviceAttributes _deviceAttributes;
 
         private readonly HidDeviceCapabilities _deviceCapabilities;
-        private bool _monitorDeviceEvents;
+        //private bool _monitorDeviceEvents;
         private string serial = null;
         private const string BLANK_SERIAL = "00:00:00:00:00:00";
 

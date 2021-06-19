@@ -343,7 +343,7 @@ namespace DS4Windows.InputDevices
             //short gyroPitch = 0, gyroPitch2 = 0, gyroPitch3 = 0;
             //short gyroRoll = 0, gyroRoll2 = 0, gyroRoll3 = 0;
             short tempShort = 0;
-            int tempAxis = 0;
+            //int tempAxis = 0;
             int tempAxisX = 0;
             int tempAxisY = 0;
 
@@ -369,14 +369,14 @@ namespace DS4Windows.InputDevices
                 ds4InactiveFrame = true;
                 idleInput = true;
                 bool syncWriteReport = conType != ConnectionType.BT;
-                bool forceWrite = false;
+                //bool forceWrite = false;
 
-                int maxBatteryValue = 0;
+                //int maxBatteryValue = 0;
                 int tempBattery = 0;
                 bool tempCharging = charging;
-                uint tempStamp = 0;
+                //uint tempStamp = 0;
                 double elapsedDeltaTime = 0.0;
-                uint tempDelta = 0;
+                //uint tempDelta = 0;
                 byte tempByte = 0;
                 long latencySum = 0;
 
@@ -691,7 +691,7 @@ namespace DS4Windows.InputDevices
                     Report?.Invoke(this, EventArgs.Empty);
                     WriteReport();
 
-                    forceWrite = false;
+                    //forceWrite = false;
 
                     if (!string.IsNullOrEmpty(currerror))
                         error = currerror;
@@ -791,7 +791,7 @@ namespace DS4Windows.InputDevices
         public void SetInitRumble()
         {
             bool result;
-            HidDevice.ReadStatus res;
+            //HidDevice.ReadStatus res;
             //byte[] tmpReport = new byte[64];
             byte[] rumble_data = new byte[8];
             rumble_data[0] = 0x0;

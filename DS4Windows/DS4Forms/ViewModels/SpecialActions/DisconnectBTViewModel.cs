@@ -10,17 +10,17 @@ namespace DS4WinWPF.DS4Forms.ViewModels.SpecialActions
 {
     public class DisconnectBTViewModel : NotifyDataErrorBase
     {
-        private int holdInterval;
-        public int HoldInterval { get => holdInterval; set => holdInterval = value; }
+        private double holdInterval;
+        public double HoldInterval { get => holdInterval; set => holdInterval = value; }
 
         public void LoadAction(SpecialAction action)
         {
-            holdInterval = (int)action.delayTime;
+            holdInterval = action.delayTime;
         }
 
         public void SaveAction(SpecialAction action, bool edit = false)
         {
-            Global.SaveAction(action.name, action.controls, 5, $"{holdInterval}", edit);
+            Global.SaveAction(action.name, action.controls, 5, $"{holdInterval.ToString("#.##", Global.configFileDecimalCulture)}", edit);
         }
 
         public override bool IsValid(SpecialAction action)

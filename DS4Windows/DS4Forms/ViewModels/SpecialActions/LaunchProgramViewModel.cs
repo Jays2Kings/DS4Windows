@@ -17,7 +17,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels.SpecialActions
     public class LaunchProgramViewModel : NotifyDataErrorBase
     {
         private string filepath;
-        private int delay;
+        private double delay;
         private string arguments;
 
         public string Filepath
@@ -31,7 +31,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels.SpecialActions
             }
         }
         public event EventHandler FilepathChanged;
-        public int Delay { get => delay; set => delay = value; }
+        public double Delay { get => delay; set => delay = value; }
         public string Arguments { get => arguments; set => arguments = value; }
 
         public ImageSource ProgramIcon
@@ -84,13 +84,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels.SpecialActions
         public void LoadAction(SpecialAction action)
         {
             filepath = action.details;
-            delay = (int)action.delayTime;
+            delay = action.delayTime;
             arguments = action.extra;
         }
 
         public void SaveAction(SpecialAction action, bool edit = false)
         {
-            Global.SaveAction(action.name, action.controls, 2, $"{filepath}?{delay}", edit, arguments);
+            Global.SaveAction(action.name, action.controls, 2, $"{filepath}?{delay.ToString("#.##", Global.configFileDecimalCulture)}", edit, arguments);
         }
 
         public override bool IsValid(SpecialAction action)

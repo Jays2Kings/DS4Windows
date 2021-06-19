@@ -10,17 +10,17 @@ namespace DS4WinWPF.DS4Forms.ViewModels.SpecialActions
 {
     public class SASteeringWheelViewModel : NotifyDataErrorBase
     {
-        private int delay;
-        public int Delay { get => delay; set => delay = value; }
+        private double delay;
+        public double Delay { get => delay; set => delay = value; }
 
         public void LoadAction(SpecialAction action)
         {
-            delay = (int)action.delayTime;
+            delay = action.delayTime;
         }
 
         public void SaveAction(SpecialAction action, bool edit = false)
         {
-            Global.SaveAction(action.name, action.controls, 8, delay.ToString(), edit);
+            Global.SaveAction(action.name, action.controls, 8, delay.ToString("#.##", Global.configFileDecimalCulture), edit);
         }
 
         public override bool IsValid(SpecialAction action)

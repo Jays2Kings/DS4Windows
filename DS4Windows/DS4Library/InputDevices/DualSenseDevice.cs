@@ -387,7 +387,7 @@ namespace DS4Windows.InputDevices
                 ds4InactiveFrame = true;
                 idleInput = true;
                 bool syncWriteReport = conType != ConnectionType.BT;
-                bool forceWrite = false;
+                //bool forceWrite = false;
 
                 int maxBatteryValue = 0;
                 int tempBattery = 0;
@@ -811,7 +811,7 @@ namespace DS4Windows.InputDevices
                     }
 
                     outputDirty = false;
-                    forceWrite = false;
+                    //forceWrite = false;
 
                     if (!string.IsNullOrEmpty(currerror))
                         error = currerror;

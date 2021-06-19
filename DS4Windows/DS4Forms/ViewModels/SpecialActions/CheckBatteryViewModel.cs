@@ -11,7 +11,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels.SpecialActions
 {
     public class CheckBatteryViewModel : NotifyDataErrorBase
     {
-        private int delay;
+        private double delay;
         private bool notification;
         private bool lightbar = true;
         private Color emptyColor
@@ -19,7 +19,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels.SpecialActions
         private Color fullColor =
             new Color() { A = 255, R = 0, G = 255, B = 0 };
 
-        public int Delay { get => delay; set => delay = value; }
+        public double Delay { get => delay; set => delay = value; }
         public bool Notification { get => notification; set => notification = value; }
         public bool Lightbar { get => lightbar; set => lightbar = value; }
         public Color EmptyColor
@@ -80,7 +80,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels.SpecialActions
         public void LoadAction(SpecialAction action)
         {
             string[] details = action.details.Split(',');
-            delay = (int)action.delayTime;
+            delay = action.delayTime;
             bool.TryParse(details[1], out notification);
             bool.TryParse(details[2], out lightbar);
             emptyColor = Color.FromArgb(255, byte.Parse(details[3]), byte.Parse(details[4]), byte.Parse(details[5]));
@@ -89,7 +89,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels.SpecialActions
 
         public void SaveAction(SpecialAction action, bool edit = false)
         {
-            string details = $"{delay}|{notification}|{lightbar}|{emptyColor.R}|{emptyColor.G}|{emptyColor.B}|" +
+            string details = $"{delay.ToString("#.##", Global.configFileDecimalCulture)}|{notification}|{lightbar}|{emptyColor.R}|{emptyColor.G}|{emptyColor.B}|" +
                 $"{fullColor.R}|{fullColor.G}|{fullColor.B}";
 
             Global.SaveAction(action.name, action.controls, 6, details, edit);

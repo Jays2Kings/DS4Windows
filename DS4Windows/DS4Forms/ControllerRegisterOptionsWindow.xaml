@@ -19,6 +19,10 @@
                 <CheckBox Content="JoyCon Controller Support" IsChecked="{Binding JoyConDeviceOpts.Enabled}" />
             </StackPanel>
 
+            <StackPanel DockPanel.Dock="Top" Margin="0,16,0,0">
+                <CheckBox Content="Enable verbose log" IsChecked="{Binding VerboseLogMessages}" ToolTip="Show additional log messages when a gamepad is connected"/>
+            </StackPanel>
+            
             <DockPanel DockPanel.Dock="Bottom" Margin="0,20,0,0">
                 <Label Content="Detected Controllers" ContentStringFormat="{}{0}:" DockPanel.Dock="Top" FontWeight="Bold" />
                 <ListBox x:Name="controllerListBox" ItemsSource="{Binding CurrentInputDevices}" SelectedIndex="{Binding ControllerSelectedIndex}"

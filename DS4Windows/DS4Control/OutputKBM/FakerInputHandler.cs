@@ -96,7 +96,7 @@ namespace DS4Windows.DS4Control
             //Console.WriteLine("RAW MOUSE {0} {1}", x, y);
             eventLock.EnterWriteLock();
 
-            mouseReport.ResetMousePos();
+            //mouseReport.ResetMousePos();
 
             mouseReport.MouseX = (short)(x < MOUSE_MIN ? MOUSE_MIN : (x > MOUSE_MAX) ? MOUSE_MAX : x);
             mouseReport.MouseY = (short)(y < MOUSE_MIN ? MOUSE_MIN : (y > MOUSE_MAX) ? MOUSE_MAX : y);
@@ -277,7 +277,7 @@ namespace DS4Windows.DS4Control
             MouseButton temp = (MouseButton)mouseButton;
             eventLock.EnterWriteLock();
 
-            mouseReport.ResetMousePos();
+            //mouseReport.ResetMousePos();
 
             if (!mouseReport.HeldButtons.Contains(temp))
             {
@@ -303,7 +303,7 @@ namespace DS4Windows.DS4Control
             MouseButton temp = (MouseButton)mouseButton;
             eventLock.EnterWriteLock();
 
-            mouseReport.ResetMousePos();
+            //mouseReport.ResetMousePos();
 
             if (!mouseReport.HeldButtons.Contains(temp))
             {
@@ -327,7 +327,7 @@ namespace DS4Windows.DS4Control
         public override void PerformMouseWheelEvent(int vertical, int horizontal)
         {
             eventLock.EnterWriteLock();
-            mouseReport.ResetMousePos();
+            //mouseReport.ResetMousePos();
             mouseReport.WheelPosition = (byte)vertical;
             mouseReport.HWheelPosition = (byte)horizontal;
             syncRelativeMouse = true;
@@ -357,7 +357,7 @@ namespace DS4Windows.DS4Control
             MouseButton tempButton = (MouseButton)mouseButton;
             if (!mouseReport.HeldButtons.Contains(tempButton))
             {
-                mouseReport.ResetMousePos();
+                //mouseReport.ResetMousePos();
                 mouseReport.ButtonDown(tempButton);
                 syncRelativeMouse = true;
             }
@@ -372,7 +372,7 @@ namespace DS4Windows.DS4Control
             MouseButton tempButton = (MouseButton)mouseButton;
             if (mouseReport.HeldButtons.Contains(tempButton))
             {
-                mouseReport.ResetMousePos();
+                //mouseReport.ResetMousePos();
                 mouseReport.ButtonUp(tempButton);
                 syncRelativeMouse = true;
             }
@@ -387,12 +387,14 @@ namespace DS4Windows.DS4Control
             if (syncRelativeMouse)
             {
                 fakerInput.UpdateRelativeMouse(mouseReport);
+                mouseReport.ResetMousePos();
                 syncRelativeMouse = false;
             }
 
             if (syncAbsoluteMouse)
             {
                 fakerInput.UpdateAbsoluteMouse(absoluteMouseReport);
+                absoluteMouseReport.Reset();
                 syncAbsoluteMouse = false;
             }
 

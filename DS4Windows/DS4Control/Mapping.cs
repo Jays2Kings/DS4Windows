@@ -355,6 +355,10 @@ namespace DS4Windows
         private static bool pressagain = false;
         private static int wheel = 0, keyshelddown = 0;
 
+        // Data needed to calculate Stick to Mouse Wheel conversion
+        private static double stickWheel = 0.0, stickWheelRemainder = 0.0;
+        private static bool stickWheelDownDir = false;
+
         //mapcustom
         public static bool[] pressedonce = new bool[2400], macrodone = new bool[40];
         static bool[] macroControl = new bool[26];
@@ -2977,9 +2981,19 @@ namespace DS4Windows
                                     if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                                     {
                                         if (isAnalog)
+                                        {
+                                            if (stickWheelDownDir)
+                                            {
+                                                stickWheelRemainder = 0.0;
+                                                stickWheelDownDir = !stickWheelDownDir;
+                                            }
+
                                             getMouseWheelMapping(device, dcs.control, cState, eState, tp, false);
+                                        }
                                         else
+                                        {
                                             deviceState.currentClicks.wUpCount++;
+                                        }
                                     }
 
                                     break;
@@ -2989,9 +3003,19 @@ namespace DS4Windows
                                     if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                                     {
                                         if (isAnalog)
+                                        {
+                                            if (!stickWheelDownDir)
+                                            {
+                                                stickWheelRemainder = 0.0;
+                                                stickWheelDownDir = !stickWheelDownDir;
+                                            }
+
                                             getMouseWheelMapping(device, dcs.control, cState, eState, tp, true);
+                                        }
                                         else
+                                        {
                                             deviceState.currentClicks.wDownCount++;
+                                        }
                                     }
 
                                     break;
@@ -4123,7 +4147,29 @@ namespace DS4Windows
             if (now >= oldnow + TimeSpan.FromMilliseconds(10) && !pressagain)
             {
                 oldnow = now;
-                outputKBMHandler.PerformMouseWheelEvent((int)(getByteMapping(device, control, cState, eState, tp) / 8.0f * (down ? -1 : 1)), 0);
+                byte value = getByteMapping(device, control, cState, eState, tp);
+                int dirMax = value >= 128 ? 127 : 128;
+                int dirValue = value - 128;
+                int wheelDir = down ? Global.outputKBMMapping.WHEEL_TICK_DOWN :
+                    Global.outputKBMMapping.WHEEL_TICK_UP;
+                double ratio = dirValue / (double)dirMax;
+
+                // Use 4 runs as a full mouse wheel tick
+                double currentWheel = (ratio / 4.0 * wheelDir);
+                stickWheel = currentWheel + stickWheelRemainder;
+                if (stickWheel >= 0.0 && stickWheel >= wheelDir)
+                {
+                    outputKBMHandler.PerformMouseWheelEvent((int)stickWheel, 0);
+                    stickWheel = 0;
+                }
+                else if (stickWheel < 0.0 && stickWheel <= wheelDir)
+                {
+                    outputKBMHandler.PerformMouseWheelEvent((int)stickWheel, 0);
+                    stickWheel = 0;
+                }
+
+                stickWheelRemainder = stickWheel - (int)stickWheel;
+                stickWheel = 0;
             }
         }
 

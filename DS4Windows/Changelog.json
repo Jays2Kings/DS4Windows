@@ -1,9 +1,34 @@
 {
-  "latest_version": "3.0.8",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 9},
-  "updated_at": "2021-06-12T04:47:57+0000",
+  "latest_version": "3.0.10",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 10},
+  "updated_at": "2021-06-22T16:13:13+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.0.10",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 10},
+      "base_header": "Version 3.0.10",
+      "release_date": "2021-06-22T16:13:13+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.10",
+          "log_text": ["* Removed virtual device plug/unplug delay",
+            "* Removed Dispatcher and thread from OutputSlotManager",
+            "* Another fix to hopefully sort out Special Action items properly",
+            "* Allow profiles to be renamed from within app using Profiles tab",
+            "* 'Hold for X secs' special actions now support decimal values. Contribution by **mika-n**",
+            "* DeviceOptions has a new 'Verbose log messages' option. Contribution by **mika-n**",
+            "* Fixed coordinate system for Stick to Mouse Wheel calculations",
+            "* Reset mouse position for FakerInput on Sync method. Fixes some mouse related actions conflicting with FakerInput output handler",
+            "* Updated Touchpad scroll support to use new coordinate system",
+            "* Updated Strings.ru.resx. Contribution by **shikulja**"],
+          "editor": "ryochan7",
+          "editors_note": [""],
+          "updated_at": "2021-06-22T16:13:13+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.0.9",
       "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 9},

@@ -32,26 +32,43 @@ namespace DS4Windows
             //mouse wheel 120 == 1 wheel click according to Windows API
             double lastMidX = (lastT0.hwX + lastT1.hwX) / 2d, lastMidY = (lastT0.hwY + lastT1.hwY) / 2d,
                currentMidX = (T0.hwX + T1.hwX) / 2d, currentMidY = (T0.hwY + T1.hwY) / 2d;
-            double coefficient = Global.ScrollSensitivity[deviceNumber];
+
+            // Express coefficient as a ratio
+            double coefficient = Global.ScrollSensitivity[deviceNumber] / 100.0;
+
             // Adjust for touch distance: "standard" distance is 960 pixels, i.e. half the width.  Scroll farther if fingers are farther apart, and vice versa, in linear proportion.
             double touchXDistance = T1.hwX - T0.hwX, touchYDistance = T1.hwY - T0.hwY, touchDistance = Math.Sqrt(touchXDistance * touchXDistance + touchYDistance * touchYDistance);
             coefficient *= touchDistance / 960.0;
 
             // Collect rounding errors instead of losing motion.
             double xMotion = coefficient * (currentMidX - lastMidX);
-            if ((xMotion > 0.0 &&horizontalRemainder > 0.0) || (xMotion < 0.0 &&horizontalRemainder < 0.0))
-                    xMotion += horizontalRemainder;
+            if ((xMotion > 0.0 && horizontalRemainder > 0.0) || (xMotion < 0.0 && horizontalRemainder < 0.0))
+            {
+                xMotion += horizontalRemainder;
+            }
+
             int xAction = (int)xMotion;
             horizontalRemainder = xMotion - xAction;
 
             double yMotion = coefficient * (lastMidY - currentMidY);
             if ((yMotion > 0.0 && verticalRemainder > 0.0) || (yMotion < 0.0 && verticalRemainder < 0.0))
-                    yMotion += verticalRemainder;
+            {
+                yMotion += verticalRemainder;
+            }
+
             int yAction = (int)yMotion;
             verticalRemainder = yMotion - yAction;
 
             if (yAction != 0 || xAction != 0)
+            {
+                yAction = yAction < 0 ? yAction * -1 * Global.outputKBMMapping.WHEEL_TICK_DOWN :
+                    yAction * Global.outputKBMMapping.WHEEL_TICK_UP;
+
+                xAction = xAction < 0 ? xAction * -1 * Global.outputKBMMapping.WHEEL_TICK_DOWN :
+                    xAction * Global.outputKBMMapping.WHEEL_TICK_UP;
+
                 Global.outputKBMHandler.PerformMouseWheelEvent(yAction, xAction);
+            }
         }
     }
 }

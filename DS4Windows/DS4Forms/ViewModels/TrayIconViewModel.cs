@@ -245,7 +245,10 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             MenuItem item = sender as MenuItem;
             int idx = Convert.ToInt32(item.Tag);
             ControllerHolder holder = controllerList[idx];
-            ProfileSelected?.Invoke(this, holder, item.Header.ToString());
+            // Un-escape underscores is MenuItem header. Header holds the profile name
+            string tempProfileName = Regex.Replace(item.Header.ToString(),
+                "_{2}", "_");
+            ProfileSelected?.Invoke(this, holder, tempProfileName);
         }
 
         private void DisconnectMenuItem_Click(object sender,

@@ -334,7 +334,7 @@
                                                     <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                     <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                 </Grid.RowDefinitions>
-                                                
+
                                                 <Label Content="Output Curve:" Grid.Row="0" Grid.Column="0" />
                                                 <ComboBox Grid.Row="0" Grid.Column="1" SelectedIndex="{Binding LSOutputCurveIndex}"
                                           Margin="{StaticResource spaceMargin}">
@@ -438,13 +438,13 @@
                                                 <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSMinAngleThreshold,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Maximum="180.0" Minimum="0.0" Increment="0.5"
                                                    Margin="{StaticResource spaceMargin}" />
                                             </DockPanel>
-                                            
+
                                         </Grid>
                                     </TabItem>
                                 </TabControl>
                             </StackPanel>
-                            
-                            
+
+
                         </GroupBox>
 
                         <GroupBox Header="RS">
@@ -641,8 +641,8 @@
                                     </TabItem>
                                 </TabControl>
                             </StackPanel>
-                            
-                            
+
+
                         </GroupBox>
 
                         <GroupBox Header="L2 &amp; R2">
@@ -1121,7 +1121,13 @@
                                 </StackPanel>
                             </StackPanel>
                         </TabItem>
-                        <TabItem Header="Passthru" Visibility="Collapsed" />
+                        <TabItem Header="Passthru" Visibility="Collapsed">
+                            <StackPanel>
+                                <TextBlock Foreground="Red">
+                                    Only works with ViGEmBus 1.17.333.0 and newer
+                                </TextBlock>
+                            </StackPanel>
+                        </TabItem>
                     </TabControl>
                 </StackPanel>
             </TabItem>
@@ -1625,6 +1631,10 @@
                         </StackPanel>
 
                         <StackPanel x:Name="passthruPanel" Visibility="Collapsed">
+                            <TextBlock Foreground="Red">
+                                Only works with ViGEmBus 1.17.333.0 and newer
+                            </TextBlock>
+
                             <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
                                 <Button x:Name="gyroCalBtn3" Content="Gyro Calibration" Width="100"  Click="GyroCalibration_Click" />
                             </StackPanel>

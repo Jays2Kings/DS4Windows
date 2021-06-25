@@ -4,6 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:LocalizeDictionary.DesignCulture=""
+        lex:ResxLocalizationProvider.DefaultAssembly="DS4Windows"
+        lex:ResxLocalizationProvider.DefaultDictionary="Strings"
         mc:Ignorable="d"
         Title="Controller Type Options" Height="450" Width="800"
         Style="{DynamicResource WindowStyle}" Closed="Window_Closed">
@@ -68,30 +72,45 @@
 
             <TabItem x:Name="switchProOptsTabItem" Header="Switch Pro" Visibility="Collapsed">
                 <StackPanel Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="4">
-                    <CheckBox Content="Enable Home LED" IsChecked="{Binding Options.EnableHomeLED, FallbackValue='False'}" />
+                    <TextBlock Foreground="#FFDE4343" FontWeight="Bold">
+                        <Run Text="*  -  " />
+                        <Run Text="{lex:Loc ChangeOnNewDeviceConn}" />
+                    </TextBlock>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                        <TextBlock Text="*" Foreground="Red" />
+                        <CheckBox Content="Enable Home LED" IsChecked="{Binding Options.EnableHomeLED, FallbackValue='False'}" Margin="8,0,0,0" />
+                    </StackPanel>
                 </StackPanel>
             </TabItem>
 
             <TabItem x:Name="joyConOptsTabItem" Header="JoyCon" Visibility="Collapsed">
                 <StackPanel Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="4">
-                    <TextBlock Text="Changes take effect on new device connection" Foreground="#FFDE4343" FontWeight="Bold" />
+                    <TextBlock Foreground="#FFDE4343" FontWeight="Bold">
+                        <Run Text="*  -  " />
+                        <Run Text="{lex:Loc ChangeOnNewDeviceConn}" />
+                    </TextBlock>
 
                     <GroupBox Header="JoyCon Global Options" Margin="0,8,0,0">
                         <StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                <TextBlock Text="*" Foreground="Red" Margin="0,0,8,0" VerticalAlignment="Center" />
                                 <Label Content="Link Mode" ContentStringFormat="{}{0}:" />
                                 <ComboBox ItemsSource="{Binding Path=LinkModes}" DisplayMemberPath="DisplayName" SelectedValuePath="ChoiceValue" SelectedValue="{Binding ParentOptions.LinkedMode}" Margin="8,0,0,0" />
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                <TextBlock Text="*" Foreground="Red" Margin="0,0,8,0" VerticalAlignment="Center" />
                                 <Label Content="Joined Gyro Provider" ContentStringFormat="{}{0}:" />
                                 <ComboBox ItemsSource="{Binding Path=JoinGyroOptions}" DisplayMemberPath="DisplayName" SelectedValuePath="ChoiceValue" SelectedValue="{Binding ParentOptions.JoinGyroProv}" Margin="8,0,0,0" />
                             </StackPanel>
                         </StackPanel>
                     </GroupBox>
 
-                    <CheckBox Content="Enable Home LED" IsChecked="{Binding Options.EnableHomeLED, FallbackValue='False'}"
-                              Margin="0,16,0,0" />
+                    <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                        <TextBlock Text="*" Foreground="Red" Margin="0,0,8,0" VerticalAlignment="Center" />
+                        <CheckBox Content="Enable Home LED" IsChecked="{Binding Options.EnableHomeLED, FallbackValue='False'}" />
+                    </StackPanel>
                 </StackPanel>
             </TabItem>
         </TabControl>

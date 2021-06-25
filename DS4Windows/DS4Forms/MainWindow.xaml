@@ -252,9 +252,6 @@
                         <WrapPanel.Resources>
                             <Thickness x:Key="spaceMargin" Left="4" Right="0" Bottom="8" Top="0" />
                         </WrapPanel.Resources>
-                        <CheckBox x:Name="hideDS4ContCk" Content="Hide DS4 Controller" x:Uid="hideDS4Checkbox"
-                              Margin="{StaticResource spaceMargin}" IsChecked="{Binding HideDS4Controller}" Click="HideDS4ContCk_Click" >
-                        </CheckBox>
                         <CheckBox x:Name="swipeTouchCk" Content="Swipe Touchpad To Switch Profiles" Margin="{StaticResource spaceMargin}"
                               IsChecked="{Binding SwipeTouchSwitchProfile}"
                               ToolTip="{lex:Loc Resources:TwoFingerSwipe}" Click="SwipeTouchCk_Click" />
@@ -329,10 +326,7 @@
                             <!--<TextBox Text="0" VerticalAlignment="Center" />-->
                             <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding CheckEvery}" MinWidth="30" Margin="8,0,0,0"
                                             ButtonSpinnerLocation="Right" Increment="1" Maximum="30" Minimum="0" />
-                            <ComboBox SelectedIndex="{Binding CheckEveryUnit,FallbackValue=1}" Margin="8,0,0,0" Foreground="{DynamicResource ForegroundColor}" Template="{DynamicResource ComboBoxControlTemplate1}">
-                                <ComboBox.ItemBindingGroup>
-                                    <BindingGroup/>
-                                </ComboBox.ItemBindingGroup>
+                            <ComboBox SelectedIndex="{Binding CheckEveryUnit,FallbackValue=1}" Margin="8,0,0,0" Foreground="{DynamicResource ForegroundColor}" MinWidth="60">
                                 <ComboBoxItem Content="Hours" />
                                 <ComboBoxItem Content="Days" />
                             </ComboBox>

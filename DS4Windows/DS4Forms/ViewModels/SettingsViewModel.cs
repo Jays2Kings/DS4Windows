@@ -15,14 +15,6 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 {
     public class SettingsViewModel
     {
-        // Re-Enable Ex Mode
-        public bool HideDS4Controller
-        {
-            get => DS4Windows.Global.UseExclusiveMode;
-            set => DS4Windows.Global.UseExclusiveMode = value;
-        }
-
-
         public bool SwipeTouchSwitchProfile { get => DS4Windows.Global.SwipeProfiles;
             set => DS4Windows.Global.SwipeProfiles = value; }
 

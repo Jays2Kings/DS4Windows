@@ -21,10 +21,6 @@
                     BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" ToolTip="YouTube">
                 <Image Source="/DS4Windows;component/Resources/social/youtube_social_icon_red.png" Height="32" />
             </Button>
-            <Button x:Name="bitchuteSocialBtn" Click="BitchuteSocialBtn_Click" Margin="4,0,0,0"
-                    BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" ToolTip="BitChute">
-                <Image Source="/DS4Windows;component/Resources/social/bitchute.png" Height="32" />
-            </Button>
             <Button x:Name="bittubeSocialBtn" Click="BittubeSocialBtn_Click"
                     BorderBrush="{x:Null}" Margin="4,0,0,0" Background="{x:Null}" Cursor="Hand" ToolTip="Bittube">
                 <Image Source="/DS4Windows;component/Resources/social/bittube.png" Height="32" />

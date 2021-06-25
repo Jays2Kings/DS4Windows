@@ -4152,23 +4152,22 @@ namespace DS4Windows
                 int dirValue = value - 128;
                 int wheelDir = down ? Global.outputKBMMapping.WHEEL_TICK_DOWN :
                     Global.outputKBMMapping.WHEEL_TICK_UP;
-                double ratio = dirValue / (double)dirMax;
+                double ratio = Math.Abs(dirValue / (double)dirMax);
 
                 // Use 4 runs as a full mouse wheel tick
-                double currentWheel = (ratio / 4.0 * wheelDir);
+                double currentWheel = ratio / 4.0;
                 stickWheel = currentWheel + stickWheelRemainder;
-                if (stickWheel >= 0.0 && stickWheel >= wheelDir)
+                if (stickWheel >= 1.0)
                 {
-                    outputKBMHandler.PerformMouseWheelEvent((int)stickWheel, 0);
-                    stickWheel = 0;
+                    int wheelTravel = (int)stickWheel * wheelDir;
+                    outputKBMHandler.PerformMouseWheelEvent(wheelTravel, 0);
+                    stickWheelRemainder = stickWheel - (int)stickWheel;
                 }
-                else if (stickWheel < 0.0 && stickWheel <= wheelDir)
+                else
                 {
-                    outputKBMHandler.PerformMouseWheelEvent((int)stickWheel, 0);
-                    stickWheel = 0;
+                    stickWheelRemainder = stickWheel;
                 }
 
-                stickWheelRemainder = stickWheel - (int)stickWheel;
                 stickWheel = 0;
             }
         }

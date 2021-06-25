@@ -47,7 +47,6 @@ namespace DS4WinWPF.DS4Forms
                     bool existingFile = renameProfileVM.ProfileFileExists();
                     if (existingFile)
                     {
-                        DialogResult = false;
                         e.Handled = true;
                         MessageBox.Show("Profile with name already exists. Please try again.");
                     }
@@ -59,7 +58,6 @@ namespace DS4WinWPF.DS4Forms
                 }
                 else
                 {
-                    DialogResult = false;
                     e.Handled = true;
                     MessageBox.Show("Invalid characters used in filename. Please change text.");
                 }

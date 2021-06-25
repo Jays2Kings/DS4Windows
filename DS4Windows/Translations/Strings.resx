@@ -472,7 +472,7 @@ Example: whyme_DS4Windows</value>
   <data name="DisableVirtualController" xml:space="preserve">
     <value>Disable virtual controller</value>
   </data>
-  <data name="DisableVirtualControllerTP" xml:space="preserve">
+  <data name="DisableVirtualControllerTip" xml:space="preserve">
     <value>Do not spawn/associate virtual controllers for connected controllers using this profile</value>
   </data>
   <data name="EmulatedController" xml:space="preserve">

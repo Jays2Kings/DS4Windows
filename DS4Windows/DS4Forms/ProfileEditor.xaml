@@ -1646,7 +1646,7 @@
                                 </ComboBox>
                             </StackPanel>
                             <CheckBox Content="{lex:Loc DisableVirtualController}" IsChecked="{Binding DInputOnly}"
-                                  ToolTip="{lex:Loc DisableVirtualControllerTP}" Checked="CheckBox_Checked" />
+                                  ToolTip="{lex:Loc DisableVirtualControllerTip}" />
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="{lex:Loc Rumble}" MinHeight="50" Margin="4,4,4,0" Padding="0,4,0,4">

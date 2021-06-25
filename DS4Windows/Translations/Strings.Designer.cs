@@ -205,6 +205,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Changes take effect on new device connection.
+        /// </summary>
+        public static string ChangeOnNewDeviceConn {
+            get {
+                return ResourceManager.GetString("ChangeOnNewDeviceConn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check For Update Now.
         /// </summary>
         public static string CheckUpdateNow {

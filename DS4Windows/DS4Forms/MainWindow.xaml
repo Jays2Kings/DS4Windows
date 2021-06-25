@@ -329,10 +329,7 @@
                             <!--<TextBox Text="0" VerticalAlignment="Center" />-->
                             <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding CheckEvery}" MinWidth="30" Margin="8,0,0,0"
                                             ButtonSpinnerLocation="Right" Increment="1" Maximum="30" Minimum="0" />
-                            <ComboBox SelectedIndex="{Binding CheckEveryUnit,FallbackValue=1}" Margin="8,0,0,0" Foreground="{DynamicResource ForegroundColor}" Template="{DynamicResource ComboBoxControlTemplate1}">
-                                <ComboBox.ItemBindingGroup>
-                                    <BindingGroup/>
-                                </ComboBox.ItemBindingGroup>
+                            <ComboBox SelectedIndex="{Binding CheckEveryUnit,FallbackValue=1}" Margin="8,0,0,0" Foreground="{DynamicResource ForegroundColor}" MinWidth="60">
                                 <ComboBoxItem Content="Hours" />
                                 <ComboBoxItem Content="Days" />
                             </ComboBox>

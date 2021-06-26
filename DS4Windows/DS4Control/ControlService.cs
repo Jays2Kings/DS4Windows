@@ -533,6 +533,25 @@ namespace DS4Windows
             return result;
         }
 
+        private List<DS4Controls> GetKnownExtraButtons(DS4Device dev)
+        {
+            List<DS4Controls> result = new List<DS4Controls>();
+            switch (dev.DeviceType)
+            {
+                case InputDevices.InputDeviceType.JoyConL:
+                case InputDevices.InputDeviceType.JoyConR:
+                    result.AddRange(new DS4Controls[] { DS4Controls.Capture, DS4Controls.SideL, DS4Controls.SideR });
+                    break;
+                case InputDevices.InputDeviceType.SwitchPro:
+                    result.AddRange(new DS4Controls[] { DS4Controls.Capture });
+                    break;
+                default:
+                    break;
+            }
+
+            return result;
+        }
+
         private void ChangeExclusiveStatus(DS4Device dev)
         {
             if (Global.hidHideInstalled)
@@ -1223,6 +1242,8 @@ namespace DS4Windows
 
                         DS4Controllers[i] = device;
                         device.DeviceSlotNumber = i;
+
+                        Global.RefreshExtrasButtons(i, GetKnownExtraButtons(device));
                         Global.LoadControllerConfigs(device);
                         device.LoadStoreSettings();
                         device.CheckControllerNumDeviceSettings(numControllers);
@@ -1659,6 +1680,8 @@ namespace DS4Windows
 
                             DS4Controllers[Index] = device;
                             device.DeviceSlotNumber = Index;
+
+                            Global.RefreshExtrasButtons(Index, GetKnownExtraButtons(device));
                             Global.LoadControllerConfigs(device);
                             device.LoadStoreSettings();
                             device.CheckControllerNumDeviceSettings(numControllers);
@@ -2088,22 +2111,14 @@ namespace DS4Windows
         private string[] tempStrings = new string[MAX_DS4_CONTROLLER_COUNT] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
 
         // Called every time a new input report has arrived
-        //protected virtual void On_Report(object sender, EventArgs e, int ind)
         protected virtual void On_Report(DS4Device device, EventArgs e, int ind)
         {
-            //DS4Device device = (DS4Device)sender;
-
             if (ind != -1)
             {
                 string devError = tempStrings[ind] = device.error;
                 if (!string.IsNullOrEmpty(devError))
                 {
                     LogDebug(devError);
-                    /*uiContext?.Post(new SendOrPostCallback(delegate (object state)
-                    {
-                        LogDebug(devError);
-                    }), null);
-                    */
                 }
 
                 if (inWarnMonitor[ind])
@@ -2113,21 +2128,11 @@ namespace DS4Windows
                     {
                         lag[ind] = true;
                         LagFlashWarning(device, ind, true);
-                        /*uiContext?.Post(new SendOrPostCallback(delegate (object state)
-                        {
-                            LagFlashWarning(ind, true);
-                        }), null);
-                        */
                     }
                     else if (lag[ind] && device.Latency < flashWhenLateAt)
                     {
                         lag[ind] = false;
                         LagFlashWarning(device, ind, false);
-                        /*uiContext?.Post(new SendOrPostCallback(delegate (object state)
-                        {
-                            LagFlashWarning(ind, false);
-                        }), null);
-                        */
                     }
                 }
                 else
@@ -2172,22 +2177,7 @@ namespace DS4Windows
                     }
 
                     device.firstReport = false;
-                    /*uiContext?.Post(new SendOrPostCallback(delegate (object state)
-                    {
-                        OnDeviceStatusChanged(this, ind);
-                    }), null);
-                    */
                 }
-                //else if (pState.Battery != cState.Battery || device.oldCharging != device.isCharging())
-                //{
-                //    byte tempBattery = currentBattery[ind] = cState.Battery;
-                //    bool tempCharging = charging[ind] = device.isCharging();
-                //    /*uiContext?.Post(new SendOrPostCallback(delegate (object state)
-                //    {
-                //        OnBatteryStatusChange(this, ind, tempBattery, tempCharging);
-                //    }), null);
-                //    */
-                //}
 
                 if (!device.PrimaryDevice)
                 {
@@ -2264,7 +2254,7 @@ namespace DS4Windows
                 // Output any synthetic events.
                 Mapping.Commit(ind);
 
-                // Update the GUI/whatever.
+                // Update the Lightbar color
                 DS4LightBar.updateLightBar(device, ind);
 
                 if (device.PerformStateMerge)

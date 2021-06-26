@@ -73,6 +73,15 @@
                         <CheckBox x:Name="muteTrigCk" Content="Mute" Tag="Mute" Click="ControlTriggerCheckBox_Click" />
                     </ListViewItem>
                     <ListViewItem>
+                        <CheckBox x:Name="captureTrigCk" Content="Capture" Tag="Capture" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="sideLTrigCk" Content="Side L" Tag="SideL" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="sideRTrigCk" Content="Side R" Tag="SideR" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
                         <CheckBox x:Name="l1TrigCk" Content="L1" Tag="L1" Click="ControlTriggerCheckBox_Click" />
                     </ListViewItem>
                     <ListViewItem>

@@ -10,7 +10,8 @@ namespace DS4Windows
         public bool DpadUp, DpadDown, DpadLeft, DpadRight;
         public bool L1, L2Btn, L3, R1, R2Btn, R3;
         public bool Share, Options, PS, Mute, Touch1, Touch2, TouchButton, TouchRight,
-            TouchLeft, Touch1Finger, Touch2Fingers, OutputTouchButton;
+            TouchLeft, Touch1Finger, Touch2Fingers, OutputTouchButton,
+            Capture, SideL, SideR;
         public byte Touch1Identifier, Touch2Identifier;
         public byte LX, RX, LY, RY, L2, R2;
         public byte FrameCounter; // 0, 1, 2...62, 63, 0....
@@ -97,6 +98,9 @@ namespace DS4Windows
             Options = state.Options;
             PS = state.PS;
             Mute = state.Mute;
+            Capture = state.Capture;
+            SideL = state.SideL;
+            SideR = state.SideR;
             Touch1 = state.Touch1;
             TouchRight = state.TouchRight;
             TouchLeft = state.TouchLeft;
@@ -160,6 +164,9 @@ namespace DS4Windows
             state.Options = Options;
             state.PS = PS;
             state.Mute = Mute;
+            state.Capture = Capture;
+            state.SideL = SideL;
+            state.SideR = SideR;
             state.Touch1 = Touch1;
             state.Touch1Identifier = Touch1Identifier;
             state.Touch2 = Touch2;

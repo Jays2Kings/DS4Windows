@@ -378,17 +378,22 @@ namespace DS4Windows
         public static DateTime[] oldnowKeyAct = new DateTime[Global.MAX_DS4_CONTROLLER_COUNT] { DateTime.MinValue,
             DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
 
-        private static DS4Controls[] shiftTriggerMapping = new DS4Controls[28] { DS4Controls.None, DS4Controls.Cross, DS4Controls.Circle, DS4Controls.Square,
+        private static DS4Controls[] shiftTriggerMapping = new DS4Controls[31]
+        {
+            DS4Controls.None, DS4Controls.Cross, DS4Controls.Circle, DS4Controls.Square,
             DS4Controls.Triangle, DS4Controls.Options, DS4Controls.Share, DS4Controls.DpadUp, DS4Controls.DpadDown,
             DS4Controls.DpadLeft, DS4Controls.DpadRight, DS4Controls.PS, DS4Controls.L1, DS4Controls.R1, DS4Controls.L2,
             DS4Controls.R2, DS4Controls.L3, DS4Controls.R3, DS4Controls.TouchLeft, DS4Controls.TouchUpper, DS4Controls.TouchMulti,
             DS4Controls.TouchRight, DS4Controls.GyroZNeg, DS4Controls.GyroZPos, DS4Controls.GyroXPos, DS4Controls.GyroXNeg,
-            DS4Controls.None, DS4Controls.Mute,
+            DS4Controls.None, DS4Controls.Mute, DS4Controls.Capture, DS4Controls.SideL, DS4Controls.SideR
         };
 
         // Button to index mapping used for macrodone array. Not even sure this
         // is needed. This was originally made to replace a switch test used in the DS4ControlToInt method.
-        private static int[] ds4ControlMapping = new int[39] { 0, // DS4Control.None
+        // DS4Controls -> Macro input map index
+        private static int[] ds4ControlMapping = new int[48]
+        {
+            0, // DS4Controls.None
             16, // DS4Controls.LXNeg
             20, // DS4Controls.LXPos
             17, // DS4Controls.LYNeg
@@ -426,7 +431,16 @@ namespace DS4Windows
             35, // DS4Controls.SwipeLeft
             36, // DS4Controls.SwipeRight
             37, // DS4Controls.SwipeUp
-            38  // DS4Controls.SwipeDown
+            38, // DS4Controls.SwipeDown
+            39, // DS4Controls.L2FullPull
+            40, // DS4Controls.R2FullPull
+            41, // DS4Controls.GyroSwipeLeft
+            42, // DS4Controls.GyroSwipeRight
+            43, // DS4Controls.GyroSwipeUp
+            44, // DS4Controls.GyroSwipeDown
+            45, // DS4Controls.Capture
+            46, // DS4Controls.SideL
+            47, // DS4Controls.SideR
         };
 
         // Define here to save some time processing.
@@ -701,7 +715,7 @@ namespace DS4Windows
         public static int DS4ControltoInt(DS4Controls ctrl)
         {
             int result = 0;
-            if (ctrl >= DS4Controls.None && ctrl <= DS4Controls.SwipeDown)
+            if (ctrl >= DS4Controls.None && ctrl <= DS4Controls.SideR)
             {
                 result = ds4ControlMapping[(int)ctrl];
             }
@@ -1919,7 +1933,7 @@ namespace DS4Windows
             {
                 result = false;
             }
-            else if (trigger < 28 && trigger != 26)
+            else if (trigger < 31 && trigger != 26)
             {
                 DS4Controls ds = shiftTriggerMapping[trigger];
                 result = getBoolMapping2(device, ds, cState, eState, tp, fieldMapping);
@@ -2005,9 +2019,9 @@ namespace DS4Windows
 
             cState.calculateStickAngles();
             DS4StateFieldMapping fieldMapping = fieldMappings[device];
-            fieldMapping.populateFieldMapping(cState, eState, tp);
+            fieldMapping.PopulateFieldMapping(cState, eState, tp);
             DS4StateFieldMapping outputfieldMapping = outputFieldMappings[device];
-            outputfieldMapping.populateFieldMapping(cState, eState, tp);
+            outputfieldMapping.PopulateFieldMapping(cState, eState, tp);
             //DS4StateFieldMapping fieldMapping = new DS4StateFieldMapping(cState, eState, tp);
             //DS4StateFieldMapping outputfieldMapping = new DS4StateFieldMapping(cState, eState, tp);
 
@@ -2025,6 +2039,7 @@ namespace DS4Windows
             //foreach (DS4ControlSettings dcs in getDS4CSettings(device))
             //for (int settingIndex = 0, arlen = tempSettingsList.Count; settingIndex < arlen; settingIndex++)
 
+            // Process LS
             ControlSettingsGroup controlSetGroup = GetControlSettingsGroup(device);
             StickOutputSetting stickSettings = Global.LSOutputSettings[device];
             if (stickSettings.mode == StickMode.Controls)
@@ -2061,6 +2076,7 @@ namespace DS4Windows
                 }
             }
 
+            // Process RS
             stickSettings = Global.RSOutputSettings[device];
             if (stickSettings.mode == StickMode.Controls)
             {
@@ -2096,6 +2112,7 @@ namespace DS4Windows
                 }
             }
 
+            // Process L2
             TriggerOutputSettings l2TriggerSettings = Global.L2OutputSettings[device];
             DS4ControlSettings dcsTemp = controlSetGroup.L2;
             if (l2TriggerSettings.twoStageMode == TwoStageTriggerMode.Disabled)
@@ -2162,6 +2179,7 @@ namespace DS4Windows
                 l2TwoStageData.previousActiveButtons = tempButtons;
             }
 
+            // Process R2
             TriggerOutputSettings r2TriggerSettings = Global.R2OutputSettings[device];
             dcsTemp = controlSetGroup.R2;
             if (r2TriggerSettings.twoStageMode == TwoStageTriggerMode.Disabled)
@@ -2228,7 +2246,17 @@ namespace DS4Windows
                 r2TwoStageData.previousActiveButtons = tempButtons;
             }
 
+            // Process Standard buttons
             for (var settingEnum = controlSetGroup.ControlButtons.GetEnumerator(); settingEnum.MoveNext();)
+            {
+                DS4ControlSettings dcs = settingEnum.Current;
+                ProcessControlSettingAction(dcs, device, cState, MappedState, eState,
+                    tp, fieldMapping, outputfieldMapping, deviceState, ref tempMouseDeltaX,
+                    ref tempMouseDeltaY, ctrl);
+            }
+
+            // Process Extra Device specific buttons
+            for (var settingEnum = controlSetGroup.ExtraDeviceButtons.GetEnumerator(); settingEnum.MoveNext();)
             {
                 DS4ControlSettings dcs = settingEnum.Current;
                 ProcessControlSettingAction(dcs, device, cState, MappedState, eState,
@@ -2351,7 +2379,7 @@ namespace DS4Windows
                 }
             }
 
-            outputfieldMapping.populateState(MappedState);
+            outputfieldMapping.PopulateState(MappedState);
 
             if (macroCount > 0)
             {
@@ -3628,7 +3656,7 @@ namespace DS4Windows
                                 if (previousFieldMapping == null)
                                 {
                                     previousFieldMapping = previousFieldMappings[device];
-                                    previousFieldMapping.populateFieldMapping(tempPrevState, eState, tp, true);
+                                    previousFieldMapping.PopulateFieldMapping(tempPrevState, eState, tp, true);
                                     //previousFieldMapping = new DS4StateFieldMapping(tempPrevState, eState, tp, true);
                                 }
 

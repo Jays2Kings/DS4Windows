@@ -64,6 +64,10 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             mappings.Add(new MappedControl(devIndex, DS4Controls.R2, "R2", devType));
             mappings.Add(new MappedControl(devIndex, DS4Controls.L3, "L3", devType));
             mappings.Add(new MappedControl(devIndex, DS4Controls.R3, "R3", devType));
+            mappings.Add(new MappedControl(devIndex, DS4Controls.Capture, "Capture", devType));
+            mappings.Add(new MappedControl(devIndex, DS4Controls.SideL, "Side L", devType));
+            mappings.Add(new MappedControl(devIndex, DS4Controls.SideR, "Side R", devType));
+
             mappings.Add(new MappedControl(devIndex, DS4Controls.TouchLeft, "Left Touch", devType));
             mappings.Add(new MappedControl(devIndex, DS4Controls.TouchRight, "Right Touch", devType));
             mappings.Add(new MappedControl(devIndex, DS4Controls.TouchMulti, "Multitouch", devType));
@@ -295,6 +299,10 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 case 24: return Properties.Resources.TiltLeft;
                 case 25: return Properties.Resources.TiltRight;
                 case 26: return "Finger on Touchpad";
+                case 27: return "Mute";
+                case 28: return "Capture";
+                case 29: return "Side L";
+                case 30: return "Side R";
                 default: return "";
             }
         }

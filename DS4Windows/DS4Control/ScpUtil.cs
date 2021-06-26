@@ -22,7 +22,7 @@ namespace DS4Windows
     [Flags]
     public enum DS4KeyType : byte { None = 0, ScanCode = 1, Toggle = 2, Unbound = 4, Macro = 8, HoldMacro = 16, RepeatMacro = 32 }; // Increment by exponents of 2*, starting at 2^0
     public enum Ds3PadId : byte { None = 0xFF, One = 0x00, Two = 0x01, Three = 0x02, Four = 0x03, All = 0x04 };
-    public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options, Mute, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown, L2FullPull, R2FullPull, GyroSwipeLeft, GyroSwipeRight, GyroSwipeUp, GyroSwipeDown };
+    public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options, Mute, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown, L2FullPull, R2FullPull, GyroSwipeLeft, GyroSwipeRight, GyroSwipeUp, GyroSwipeDown, Capture, SideL, SideR };
     public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, TouchpadClick, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, Unbound };
 
     public enum SASteeringWheelEmulationAxisType: byte { None = 0, LX, LY, RX, RY, L2R2, VJoy1X, VJoy1Y, VJoy1Z, VJoy2X, VJoy2Y, VJoy2Z };
@@ -214,6 +214,11 @@ namespace DS4Windows
         public List<DS4ControlSettings> ControlButtons =
             new List<DS4ControlSettings>();
 
+        public List<DS4ControlSettings> ExtraDeviceButtons =
+            new List<DS4ControlSettings>();
+
+        private List<DS4ControlSettings> settingsList;
+
         public ControlSettingsGroup(List<DS4ControlSettings> settingsList)
         {
             for (int i = (int)DS4Controls.LXNeg; i <= (int)DS4Controls.LYPos; i++)
@@ -246,6 +251,21 @@ namespace DS4Windows
             {
                 ControlButtons.Add(settingsList[i-1]);
             }
+
+            this.settingsList = settingsList;
+        }
+
+        public void EstablishExtraButtons(List<DS4Controls> buttonList)
+        {
+            foreach(DS4Controls control in buttonList)
+            {
+                ExtraDeviceButtons.Add(settingsList[(int)control - 1]);
+            }
+        }
+
+        public void ResetExtraButtons()
+        {
+            ExtraDeviceButtons.Clear();
         }
     }
 
@@ -556,6 +576,9 @@ namespace DS4Windows
             X360Controls.None, // DS4Controls.GyroSwipeRight
             X360Controls.None, // DS4Controls.GyroSwipeUp
             X360Controls.None, // DS4Controls.GyroSwipeDown
+            X360Controls.None, // DS4Controls.Capture
+            X360Controls.None, // DS4Controls.SideL
+            X360Controls.None, // DS4Controls.SideR
         };
 
         // Create mapping array at runtime
@@ -702,6 +725,9 @@ namespace DS4Windows
             [DS4Controls.Share] = "Share",
             [DS4Controls.Options] = "Options",
             [DS4Controls.Mute] = "Mute",
+            [DS4Controls.Capture] = "Capture",
+            [DS4Controls.SideL] = "Side L",
+            [DS4Controls.SideR] = "Side R",
             [DS4Controls.TouchLeft] = "Left Touch",
             [DS4Controls.TouchUpper] = "Upper Touch",
             [DS4Controls.TouchMulti] = "Multitouch",
@@ -2641,6 +2667,15 @@ namespace DS4Windows
                 {
                     setting.shiftAction.actionAlias = outputKBMMapping.GetRealEventKey(Convert.ToUInt32(setting.shiftAction.actionKey));
                 }
+            }
+        }
+
+        public static void RefreshExtrasButtons(int deviceNum, List<DS4Controls> devButtons)
+        {
+            m_Config.ds4controlSettings[deviceNum].ResetExtraButtons();
+            if (devButtons != null)
+            {
+                m_Config.ds4controlSettings[deviceNum].EstablishExtraButtons(devButtons);
             }
         }
     }
@@ -7952,6 +7987,9 @@ namespace DS4Windows
 
                 case "PS": return DS4Controls.PS;
                 case "Mute": return DS4Controls.Mute;
+                case "Capture": return DS4Controls.Capture;
+                case "SideL": return DS4Controls.SideL;
+                case "SideR": return DS4Controls.SideL;
                 case "Left Stick Left": return DS4Controls.LXNeg;
                 case "Left Stick Up": return DS4Controls.LYNeg;
                 case "Right Stick Left": return DS4Controls.RXNeg;

@@ -745,10 +745,54 @@
 
                                 <Label Content="Two Stage Mode:" Grid.Row="8" Grid.Column="0" />
                                 <ComboBox Grid.Row="8" Grid.Column="1" ItemsSource="{Binding Path=TwoStageModeChoices}"
-                                          DisplayMemberPath="DisplayName" SelectedValuePath="Mode" SelectedValue="{Binding L2TriggerMode}" Margin="{StaticResource spaceMargin}" />
+                                          DisplayMemberPath="DisplayName" SelectedValuePath="Mode" SelectedValue="{Binding L2TriggerMode}" Margin="{StaticResource spaceMargin}">
+                                    <ComboBox.ToolTip>
+                                        <TextBlock TextWrapping="Wrap">
+                                            <Bold>Disabled</Bold><LineBreak />
+                                            Disables use of Two Stage Triggers. Only bind one action to L2 or R2<LineBreak />
+                                            <LineBreak />
+                                            <Bold>Normal</Bold><LineBreak />
+                                            Normal (simple) Two Stage Trigger activation. Activates Soft Pull action when under maximum output. Activates Full Pull action as well when trigger reaches maximum value.<LineBreak />
+                                            <LineBreak />
+                                            <Bold>Exclusive</Bold><LineBreak />
+                                            Activates Soft Pull action when under maximum output. When trigger reaches maximum output, deactivate Soft Pull action and then activate Full Pull action<LineBreak />
+                                            <LineBreak />
+                                            <Bold>Hair Trigger</Bold><LineBreak />
+                                            Similar to Normal Two Stage Trigger mode with one difference. Activates Soft Pull action when under maximum output. Activates Full Pull action as well when trigger reaches maximum value. When the trigger is partially released from Full Pull, both Full Pull and Soft Pull actions deactivate. Activating Full Pull action will activate the Soft Pull again as well.<LineBreak />
+                                            <LineBreak />
+                                            <Bold>Hip Fire</Bold><LineBreak />
+                                            Takes the <Bold>Hip Fire Delay</Bold> time into account. The trigger will not activate an action until the time has expired. Once the time has expired, the current action for the trigger output will be determined. This mode allows skipping the activation of Soft Pull and only firing a Full Pull action.
+                                            <LineBreak />
+                                            <Bold>Hip Fire Exclusive</Bold><LineBreak />
+                                            Similar to Hip Fire mode. The main difference is only one action will ever be activated.<LineBreak />
+                                        </TextBlock>
+                                    </ComboBox.ToolTip>
+                                </ComboBox>
 
                                 <ComboBox Grid.Row="8" Grid.Column="2" ItemsSource="{Binding Path=TwoStageModeChoices}"
-                                          DisplayMemberPath="DisplayName" SelectedValuePath="Mode" SelectedValue="{Binding R2TriggerMode}" Margin="{StaticResource spaceMargin}" />
+                                          DisplayMemberPath="DisplayName" SelectedValuePath="Mode" SelectedValue="{Binding R2TriggerMode}" Margin="{StaticResource spaceMargin}">
+                                    <ComboBox.ToolTip>
+                                        <TextBlock TextWrapping="Wrap">
+                                            <Bold>Disabled</Bold><LineBreak />
+                                            Disables use of Two Stage Triggers. Only bind one action to L2 or R2<LineBreak />
+                                            <LineBreak />
+                                            <Bold>Normal</Bold><LineBreak />
+                                            Normal (simple) Two Stage Trigger activation. Activates Soft Pull action when under maximum output. Activates Full Pull action as well when trigger reaches maximum value.<LineBreak />
+                                            <LineBreak />
+                                            <Bold>Exclusive</Bold><LineBreak />
+                                            Activates Soft Pull action when under maximum output. When trigger reaches maximum output, deactivate Soft Pull action and then activate Full Pull action<LineBreak />
+                                            <LineBreak />
+                                            <Bold>Hair Trigger</Bold><LineBreak />
+                                            Similar to Normal Two Stage Trigger mode with one difference. Activates Soft Pull action when under maximum output. Activates Full Pull action as well when trigger reaches maximum value. When the trigger is partially released from Full Pull, both Full Pull and Soft Pull actions deactivate. Activating Full Pull action will activate the Soft Pull again as well.<LineBreak />
+                                            <LineBreak />
+                                            <Bold>Hip Fire</Bold><LineBreak />
+                                            Takes the <Bold>Hip Fire Delay</Bold> time into account. The trigger will not activate an action until the time has expired. Once the time has expired, the current action for the trigger output will be determined. This mode allows skipping the activation of Soft Pull and only firing a Full Pull action.
+                                            <LineBreak />
+                                            <Bold>Hip Fire Exclusive</Bold><LineBreak />
+                                            Similar to Hip Fire mode. The main difference is only one action will ever be activated.<LineBreak />
+                                        </TextBlock>
+                                    </ComboBox.ToolTip>
+                                </ComboBox>
 
                                 <Label Content="Full Pull Btn:" Grid.Row="9" Grid.Column="0" />
                                 <DockPanel Grid.Row="9" Grid.Column="1">
@@ -768,13 +812,25 @@
                                 <DockPanel Grid.Row="10" Grid.Column="1">
                                     <Label Content="ms" DockPanel.Dock="Right" />
                                     <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding L2HipFireTime}" MinWidth="50" Maximum="5000" Minimum="0" Increment="10"
-                                                   Margin="{StaticResource spaceMargin}" />
+                                                   Margin="{StaticResource spaceMargin}">
+                                        <xctk:IntegerUpDown.ToolTip>
+                                            <TextBlock TextWrapping="Wrap">
+                                                Time delay used with Two State Modes <Bold>Hire Fire</Bold> and <Bold>Hip Fire Exclusive</Bold>. The time delay before an action is first executed.
+                                            </TextBlock>
+                                        </xctk:IntegerUpDown.ToolTip>
+                                    </xctk:IntegerUpDown>
                                 </DockPanel>
 
                                 <DockPanel Grid.Row="10" Grid.Column="2">
                                     <Label Content="ms" DockPanel.Dock="Right" />
                                     <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding R2HipFireTime}" MinWidth="50" Maximum="5000" Minimum="0" Increment="10"
-                                                   Margin="{StaticResource spaceMargin}" />
+                                                   Margin="{StaticResource spaceMargin}">
+                                        <xctk:IntegerUpDown.ToolTip>
+                                            <TextBlock TextWrapping="Wrap">
+                                                Time delay used with Two State Modes <Bold>Hire Fire</Bold> and <Bold>Hip Fire Exclusive</Bold>. The time delay before an action is first executed.
+                                            </TextBlock>
+                                        </xctk:IntegerUpDown.ToolTip>
+                                    </xctk:IntegerUpDown>
                                 </DockPanel>
 
                                 <Label Content="Trigger Effect:" Grid.Row="11" Grid.Column="0" />

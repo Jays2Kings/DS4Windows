@@ -483,6 +483,7 @@ Example: whyme_DS4Windows</value>
   </data>
   <data name="VirtualControllerSettings" xml:space="preserve">
     <value>Virtual Controller Settings</value>
+  </data>
   <data name="ChangeOnNewDeviceConn" xml:space="preserve">
     <value>Changes take effect on new device connection</value>
   </data>

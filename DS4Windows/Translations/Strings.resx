@@ -469,6 +469,21 @@ Example: whyme_DS4Windows</value>
   <data name="RenameProfile" xml:space="preserve">
     <value>Rename</value>
   </data>
+  <data name="DisableVirtualController" xml:space="preserve">
+    <value>Disable virtual controller</value>
+  </data>
+  <data name="DisableVirtualControllerTip" xml:space="preserve">
+    <value>Do not spawn/associate virtual controllers for connected controllers using this profile (Applies on profile save)</value>
+  </data>
+  <data name="EmulatedController" xml:space="preserve">
+    <value>Emulated Controller</value>
+  </data>
+  <data name="OutContNotice" xml:space="preserve">
+    <value>Choose the type of output virtual controller (Applies on profile save)</value>
+  </data>
+  <data name="VirtualControllerSettings" xml:space="preserve">
+    <value>Virtual Controller Settings</value>
+  </data>
   <data name="ChangeOnNewDeviceConn" xml:space="preserve">
     <value>Changes take effect on new device connection</value>
   </data>

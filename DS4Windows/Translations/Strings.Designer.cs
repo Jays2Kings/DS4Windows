@@ -405,6 +405,24 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable virtual controller.
+        /// </summary>
+        public static string DisableVirtualController {
+            get {
+                return ResourceManager.GetString("DisableVirtualController", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not spawn/associate virtual controllers for connected controllers using this profile (Applies on profile save).
+        /// </summary>
+        public static string DisableVirtualControllerTip {
+            get {
+                return ResourceManager.GetString("DisableVirtualControllerTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Controller/Driver Setup.
         /// </summary>
         public static string DriverSetup {
@@ -437,6 +455,15 @@ namespace DS4WinWPF.Translations {
         public static string EditAction {
             get {
                 return ResourceManager.GetString("EditAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Emulated Controller.
+        /// </summary>
+        public static string EmulatedController {
+            get {
+                return ResourceManager.GetString("EmulatedController", resourceCulture);
             }
         }
         
@@ -802,6 +829,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose the type of output virtual controller (Applies on profile save).
+        /// </summary>
+        public static string OutContNotice {
+            get {
+                return ResourceManager.GetString("OutContNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Path.
         /// </summary>
         public static string Path {
@@ -1086,6 +1122,15 @@ namespace DS4WinWPF.Translations {
         public static string ViGEmPluginFailure {
             get {
                 return ResourceManager.GetString("ViGEmPluginFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Virtual Controller Settings.
+        /// </summary>
+        public static string VirtualControllerSettings {
+            get {
+                return ResourceManager.GetString("VirtualControllerSettings", resourceCulture);
             }
         }
         

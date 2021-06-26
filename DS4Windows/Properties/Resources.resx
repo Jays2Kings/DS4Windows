@@ -216,9 +216,6 @@
   <data name="DimByBattery" xml:space="preserve">
     <value>Dim by Battery %</value>
   </data>
-  <data name="DinputOnly" xml:space="preserve">
-    <value>Turn off X360 input and only use the DS4's native input, hide ds4 must be off (Wired Only)</value>
-  </data>
   <data name="DisconnectBT" xml:space="preserve">
     <value>Disconnect BT</value>
   </data>
@@ -606,9 +603,6 @@
   </data>
   <data name="XMLFiles" xml:space="preserve">
     <value>XML Files (*.xml)</value>
-  </data>
-  <data name="OutContNotice" xml:space="preserve">
-    <value>Choose the type of output virtual controller (Applies on profile save)</value>
   </data>
   <data name="EnableTouchToggle" xml:space="preserve">
     <value>Allow touchpad mouse function to get toggled with PS + Touchpad Click.</value>

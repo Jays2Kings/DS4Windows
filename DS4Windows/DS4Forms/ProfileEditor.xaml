@@ -12,6 +12,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="1000">
     <UserControl.Resources>
+        <xctk:InverseBoolConverter x:Key="InverseBoolConverter"/>
         <local:ControlIndexCheck x:Key="controlIndexCheck" />
     </UserControl.Resources>
     <DockPanel>
@@ -1645,6 +1646,20 @@
 
             <TabItem Header="Other">
                 <StackPanel>
+                    <GroupBox Header="{lex:Loc VirtualControllerSettings}" MinHeight="50" Margin="4,4,4,0" Padding="0,4,0,4">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <Label Content="{lex:Loc EmulatedController}" ToolTip="{lex:Loc OutContNotice}" />
+                                <ComboBox x:Name="outConTypeCombo" SelectedIndex="{Binding TempControllerIndex, FallbackValue=0}" IsEnabled="{Binding DInputOnly, Converter={StaticResource InverseBoolConverter}}" MinWidth="140"
+                                      ToolTip="{lex:Loc OutContNotice}">
+                                    <ComboBoxItem Content="Xbox 360"/>
+                                    <ComboBoxItem Content="DualShock 4"/>
+                                </ComboBox>
+                            </StackPanel>
+                            <CheckBox Content="{lex:Loc DisableVirtualController}" IsChecked="{Binding DInputOnly}"
+                                  ToolTip="{lex:Loc DisableVirtualControllerTip}" />
+                        </StackPanel>
+                    </GroupBox>
                     <GroupBox Header="{lex:Loc Rumble}" MinHeight="50" Margin="4,4,4,0" Padding="0,4,0,4">
                         <UniformGrid Rows="1" Columns="3">
                             <UniformGrid Columns="2" HorizontalAlignment="Left">
@@ -1723,8 +1738,6 @@
                             </Button.Background>
                         </Button>
                     </StackPanel>
-                    <CheckBox Content="Use DInput only" IsChecked="{Binding DInputOnly}"
-                              ToolTip="{lex:Loc Resources:DinputOnly}" Margin="0,6,0,0" />
                     <StackPanel Orientation="Horizontal" Height="30" Margin="0,6,0,0">
                         <CheckBox Content="Idle Disconnect" VerticalAlignment="Center" IsChecked="{Binding IdleDisconnectExists}" />
                         <xctk:IntegerUpDown x:Name="idleDisconnectUD" d:IsHidden="True" Value="{Binding IdleDisconnect,FallbackValue=5}"
@@ -1752,14 +1765,6 @@
                             <ComboBoxItem Content="71 Hz (14 ms)" />
                             <ComboBoxItem Content="66 Hz (15 ms)" />
                             <ComboBoxItem Content="62 Hz (16 ms)" />
-                        </ComboBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
-                        <Label Content="Emulated Controller" ToolTip="{lex:Loc Resources:OutContNotice}" />
-                        <ComboBox x:Name="outConTypeCombo" SelectedIndex="{Binding TempControllerIndex,FallbackValue=0}" MinWidth="140"
-                                  ToolTip="{lex:Loc Resources:OutContNotice}">
-                            <ComboBoxItem Content="Xbox 360"/>
-                            <ComboBoxItem Content="DualShock 4"/>
                         </ComboBox>
                     </StackPanel>
                 </StackPanel>

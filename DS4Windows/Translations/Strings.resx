@@ -496,4 +496,28 @@ Example: whyme_DS4Windows</value>
   <data name="StickMaxOutputTooltip" xml:space="preserve">
     <value>In some situations, it might be useful to limit the maximum value that is output by the output analog stick. Max Output allows throttling the final output value of the analog stick.</value>
   </data>
+  <data name="AntiDeadzoneTooltip" xml:space="preserve">
+    <value>An anti-deadzone acts as an offset for use with an axis to denote the minimum output value generated after an axis has left its assigned deadzone. This is mainly meant to help with mapping an axis to the assigned deadzone value used for an axis in a video game. For example, the typical assigned deadzone for XInput LS in a video game is around 8000 (25%). With no anti-deadzone assigned, an axis would have to move past the assigned deadzone in DS4Windows along with the game's assigned axis deadzone.</value>
+  </data>
+  <data name="StickInputCurveTooltip" xml:space="preserve">
+    <value>OLD OBSOLETE SETTING. Attempt to apply a curve based on raw input coordinates before any dead zone info is applied. Wonky</value>
+  </data>
+  <data name="TouchpadMinThresholdTooltip" xml:space="preserve">
+    <value>Minimum calculated output travel before a Mouse event is sent to the system</value>
+  </data>
+  <data name="TouchpadRotationTooltip" xml:space="preserve">
+    <value>Adjusts a touchpad swipe by a given rotation angle. Useful when a normal touchpad swipe is not a straight line across. Values allows range from -180 to 180. Default is 0.</value>
+  </data>
+  <data name="TouchpadSlideTooltip" xml:space="preserve">
+    <value>Sensitivity used to engage a multi-touch Mouse Wheel Scroll action</value>
+  </data>
+  <data name="TouchpadTapTooltip" xml:space="preserve">
+    <value>Activate Mouse Left click with a Touchpad Tap. Max time interval is set at (value * 2) ms.</value>
+  </data>
+  <data name="TouchpadTrackballEnableTooltip" xml:space="preserve">
+    <value>Adds momentum to a Touchpad swipe once a finger is lifted. Adds extra Mouse cursor travel than would be possible with the confined space on the Touchpad</value>
+  </data>
+  <data name="TouchpadTrackballFrictionTooltip" xml:space="preserve">
+    <value>Add friction to virtual Trackball. Decreased friction will increase final mouse cursor travel time</value>
+  </data>
 </root>

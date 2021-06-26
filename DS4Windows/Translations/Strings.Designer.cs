@@ -124,6 +124,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An anti-deadzone acts as an offset for use with an axis to denote the minimum output value generated after an axis has left its assigned deadzone. This is mainly meant to help with mapping an axis to the assigned deadzone value used for an axis in a video game. For example, the typical assigned deadzone for XInput LS in a video game is around 8000 (25%). With no anti-deadzone assigned, an axis would have to move past the assigned deadzone in DS4Windows along with the game&apos;s assigned axis deadzone..
+        /// </summary>
+        public static string AntiDeadzoneTooltip {
+            get {
+                return ResourceManager.GetString("AntiDeadzoneTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
         public static string Apply {
@@ -1072,6 +1081,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OLD OBSOLETE SETTING. Attempt to apply a curve based on raw input coordinates before any dead zone info is applied. Wonky.
+        /// </summary>
+        public static string StickInputCurveTooltip {
+            get {
+                return ResourceManager.GetString("StickInputCurveTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Always enforce max output setting. Useful for 100% Max Output and confining value to a circular output value.
         /// </summary>
         public static string StickMaxOutputForceTooltip {
@@ -1095,6 +1113,60 @@ namespace DS4WinWPF.Translations {
         public static string StopText {
             get {
                 return ResourceManager.GetString("StopText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum calculated output travel before a Mouse event is sent to the system.
+        /// </summary>
+        public static string TouchpadMinThresholdTooltip {
+            get {
+                return ResourceManager.GetString("TouchpadMinThresholdTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adjusts a touchpad swipe by a given rotation angle. Useful when a normal touchpad swipe is not a straight line across. Values allows range from -180 to 180. Default is 0..
+        /// </summary>
+        public static string TouchpadRotationTooltip {
+            get {
+                return ResourceManager.GetString("TouchpadRotationTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sensitivity used to engage a multi-touch Mouse Wheel Scroll action.
+        /// </summary>
+        public static string TouchpadSlideTooltip {
+            get {
+                return ResourceManager.GetString("TouchpadSlideTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activate Mouse Left click with a Touchpad Tap. Max time interval is set at (value * 2) ms..
+        /// </summary>
+        public static string TouchpadTapTooltip {
+            get {
+                return ResourceManager.GetString("TouchpadTapTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adds momentum to a Touchpad swipe once a finger is lifted. Adds extra Mouse cursor travel than would be possible with the confined space on the Touchpad.
+        /// </summary>
+        public static string TouchpadTrackballEnableTooltip {
+            get {
+                return ResourceManager.GetString("TouchpadTrackballEnableTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add friction to virtual Trackball. Decreased friction will increase final mouse cursor travel time.
+        /// </summary>
+        public static string TouchpadTrackballFrictionTooltip {
+            get {
+                return ResourceManager.GetString("TouchpadTrackballFrictionTooltip", resourceCulture);
             }
         }
         

@@ -298,7 +298,12 @@
 
                                                         <Label Content="Anti-dead Zone:" Grid.Row="2" Grid.Column="0" />
                                                         <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSAntiDeadZone}" FormatString="F2" MinWidth="50" Grid.Row="2" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
-                                                   Margin="{StaticResource spaceMargin}" />
+                                                            Margin="{StaticResource spaceMargin}">
+                                                            <xctk:DoubleUpDown.ToolTip>
+                                                                <TextBlock TextWrapping="Wrap" Text="{lex:Loc AntiDeadzoneTooltip}">
+                                                                </TextBlock>
+                                                            </xctk:DoubleUpDown.ToolTip>
+                                                        </xctk:DoubleUpDown>
 
                                                         <Label Content="Max Output:" Grid.Row="3" Grid.Column="0" />
                                                         <DockPanel Grid.Row="3" Grid.Column="1">
@@ -374,6 +379,7 @@
                                                 <Label Content="Curve (Input):" Grid.Row="3" Grid.Column="0" />
                                                 <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right">
                                                     <xctk:DoubleUpDown d:IsHidden="True" MinWidth="100" Value="{Binding LSCurve}" Minimum="0" Maximum="100"
+                                                       ToolTip="{lex:Loc StickInputCurveTooltip}"
                                                        Margin="{StaticResource spaceMargin}" />
                                                     <Label Content="%" />
                                                 </StackPanel>
@@ -511,7 +517,12 @@
 
                                                         <Label Content="Anti-dead Zone:" Grid.Row="2" Grid.Column="0" />
                                                         <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSAntiDeadZone}" FormatString="F2" MinWidth="50" Grid.Row="2" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
-                                                   Margin="{StaticResource spaceMargin}" />
+                                                            Margin="{StaticResource spaceMargin}">
+                                                            <xctk:DoubleUpDown.ToolTip>
+                                                                <TextBlock TextWrapping="Wrap" Text="{lex:Loc AntiDeadzoneTooltip}">
+                                                                </TextBlock>
+                                                            </xctk:DoubleUpDown.ToolTip>
+                                                        </xctk:DoubleUpDown>
 
                                                         <Label Content="Max Output:" Grid.Row="3" Grid.Column="0" />
                                                         <DockPanel Grid.Row="3" Grid.Column="1">
@@ -586,6 +597,7 @@
                                                 <Label Content="Curve (Input):" Grid.Row="3" Grid.Column="0" />
                                                 <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right">
                                                     <xctk:DoubleUpDown d:IsHidden="True" MinWidth="100" Value="{Binding RSCurve}" Minimum="0" Maximum="100"
+                                                       ToolTip="{lex:Loc StickInputCurveTooltip}"
                                                        Margin="{StaticResource spaceMargin}"/>
                                                     <Label Content="%" />
                                                 </StackPanel>
@@ -1083,16 +1095,20 @@
                                                           ToolTip="{lex:Loc Resources:Jitter}" />
 
                                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="{StaticResource spaceMargin}">
-                                        <CheckBox Content="{lex:Loc TouchTap}" IsChecked="{Binding TouchTapExists}" VerticalAlignment="Center" />
-                                        <xctk:IntegerUpDown Value="{Binding TouchTap}" d:IsHidden="True" MinWidth="80" Height="20" IsEnabled="{Binding TouchTapExists}" Margin="8,0,0,0" />
+                                        <CheckBox Content="{lex:Loc TouchTap}" IsChecked="{Binding TouchTapExists}" VerticalAlignment="Center" ToolTip="{lex:Loc TouchpadTapTooltip}" />
+                                        <xctk:IntegerUpDown Value="{Binding TouchTap}" d:IsHidden="True" MinWidth="80" Height="20" IsEnabled="{Binding TouchTapExists}"
+                                            ToolTip="{lex:Loc TouchpadTapTooltip}"
+                                            Margin="8,0,0,0" />
                                     </StackPanel>
 
                                     <CheckBox Content="Double Tap" Grid.Row="1" Grid.Column="1" IsChecked="{Binding TouchDoubleTap}" VerticalAlignment="Center"
                                                           ToolTip="{lex:Loc Resources:TapAndHold}" />
 
                                     <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Margin="{StaticResource spaceMargin}">
-                                        <CheckBox Content="{lex:Loc TouchScroll}" IsChecked="{Binding TouchScrollExists}" VerticalAlignment="Center" />
-                                        <xctk:IntegerUpDown Value="{Binding TouchScroll}" d:IsHidden="True" MinWidth="80" Height="20" IsEnabled="{Binding TouchScrollExists}" Margin="8,0,0,0" />
+                                        <CheckBox Content="{lex:Loc TouchScroll}" IsChecked="{Binding TouchScrollExists}" VerticalAlignment="Center" ToolTip="{lex:Loc TouchpadSlideTooltip}" />
+                                        <xctk:IntegerUpDown Value="{Binding TouchScroll}" d:IsHidden="True" MinWidth="80" Height="20" IsEnabled="{Binding TouchScrollExists}"
+                                                            ToolTip="{lex:Loc TouchpadSlideTooltip}"
+                                                            Margin="8,0,0,0" />
                                     </StackPanel>
 
                                     <CheckBox Content="Lower Right as RMB" Grid.Row="2" Grid.Column="1" IsChecked="{Binding LowerRightTouchRMB}" VerticalAlignment="Center"
@@ -1106,20 +1122,26 @@
 
                                 <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
                                     <Label Content="Rotation" ContentStringFormat="{}{0}:" />
-                                    <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="-180" Maximum="180" Increment="1" FormatString="F0" Value="{Binding TouchRelMouseRotation,FallbackValue='0'}" Margin="8,0,0,0" />
+                                    <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="-180" Maximum="180" Increment="1" FormatString="F0" Value="{Binding TouchRelMouseRotation,FallbackValue='0'}"
+                                                       ToolTip="{lex:Loc TouchpadRotationTooltip}"
+                                                       Margin="8,0,0,0" />
                                     <TextBlock Text="&#xb0;" FontSize="18" Margin="{StaticResource spaceMargin}" />
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
                                     <Label Content="Min Threshold" ContentStringFormat="{}{0}:" />
-                                    <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="1.0" Maximum="40.0" Increment="1.0" FormatString="F1" Value="{Binding TouchRelMouseMinThreshold,FallbackValue='1.0'}" Margin="8,0,0,0" />
+                                    <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="1.0" Maximum="40.0" Increment="1.0" FormatString="F1" Value="{Binding TouchRelMouseMinThreshold,FallbackValue='1.0'}"
+                                                       ToolTip="{lex:Loc TouchpadMinThresholdTooltip}"
+                                                       Margin="8,0,0,0" />
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal" Height="20" Margin="{StaticResource spaceMargin}">
-                                    <CheckBox Content="Trackball" IsChecked="{Binding TouchTrackball}" VerticalAlignment="Center" />
+                                    <CheckBox Content="Trackball" IsChecked="{Binding TouchTrackball}" VerticalAlignment="Center" ToolTip="{lex:Loc TouchpadTrackballEnableTooltip}" />
                                     <Label Content="Friction:" Padding="0" Margin="20,0,5,0" VerticalAlignment="Center"/>
                                     <xctk:DoubleUpDown x:Name="frictionUD" d:IsHidden="True" MinWidth="80" IsEnabled="{Binding TouchTrackball}" Minimum="0.1" Maximum="20.0"
-                                                               Value="{Binding TouchTrackballFriction,FallbackValue='10'}" ValueChanged="FrictionUD_ValueChanged" Margin="8,0,0,0" />
+                                                               Value="{Binding TouchTrackballFriction,FallbackValue='10'}" ValueChanged="FrictionUD_ValueChanged"
+                                                       ToolTip="{lex:Loc TouchpadTrackballFrictionTooltip}"
+                                                       Margin="8,0,0,0" />
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">

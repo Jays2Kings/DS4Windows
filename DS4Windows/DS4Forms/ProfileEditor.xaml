@@ -302,9 +302,14 @@
 
                                                         <Label Content="Max Output:" Grid.Row="3" Grid.Column="0" />
                                                         <DockPanel Grid.Row="3" Grid.Column="1">
-                                                            <CheckBox Content="Force" VerticalAlignment="Center" IsChecked="{Binding LSMaxOutputForce}" DockPanel.Dock="Right" Margin="8,0,0,0" />
+                                                            <CheckBox Content="Force" VerticalAlignment="Center" IsChecked="{Binding LSMaxOutputForce}" ToolTip="{lex:Loc StickMaxOutputForceTooltip}" DockPanel.Dock="Right" Margin="8,0,0,0" />
                                                             <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSMaxOutput}" FormatString="F2" MinWidth="50" Maximum="1.0" Minimum="0.0" Increment="0.1"
-                                                                Margin="{StaticResource spaceMargin}" DockPanel.Dock="Left" />
+                                                                Margin="{StaticResource spaceMargin}" DockPanel.Dock="Left">
+                                                                <xctk:DoubleUpDown.ToolTip>
+                                                                    <TextBlock TextWrapping="Wrap" Text="{lex:Loc StickMaxOutputTooltip}">
+                                                                    </TextBlock>
+                                                                </xctk:DoubleUpDown.ToolTip>
+                                                            </xctk:DoubleUpDown>
                                                         </DockPanel>
 
                                                         <Label Content="Vertical Scale:" Grid.Row="4" Grid.Column="0" />
@@ -386,7 +391,12 @@
                                                     <TextBlock Text="units" DockPanel.Dock="Right" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
                                                     <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding LSFuzz}"
                                                     Minimum="0" Maximum="100"
-                                                    Margin="{StaticResource spaceMargin}" />
+                                                    Margin="{StaticResource spaceMargin}">
+                                                        <xctk:IntegerUpDown.ToolTip>
+                                                            <TextBlock TextWrapping="Wrap" Text="{lex:Loc StickFuzzTooltip}">
+                                                            </TextBlock>
+                                                        </xctk:IntegerUpDown.ToolTip>
+                                                    </xctk:IntegerUpDown>
                                                 </DockPanel>
 
                                                 <Label Content="Anti Snapback:" Grid.Row="6" Grid.Column="0" />
@@ -505,9 +515,15 @@
 
                                                         <Label Content="Max Output:" Grid.Row="3" Grid.Column="0" />
                                                         <DockPanel Grid.Row="3" Grid.Column="1">
-                                                            <CheckBox Content="Force" IsChecked="{Binding RSMaxOutputForce}" VerticalAlignment="Center" DockPanel.Dock="Right" Margin="8,0,0,0" />
+                                                            <CheckBox Content="Force" IsChecked="{Binding RSMaxOutputForce}" VerticalAlignment="Center" DockPanel.Dock="Right" ToolTip="{lex:Loc StickMaxOutputForceTooltip}"
+                                                                      Margin="8,0,0,0" />
                                                             <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSMaxOutput}" FormatString="F2" MinWidth="50" Maximum="1.0" Minimum="0.0" Increment="0.1"
-                                                                Margin="{StaticResource spaceMargin}" DockPanel.Dock="Left" />
+                                                                Margin="{StaticResource spaceMargin}" DockPanel.Dock="Left">
+                                                                <xctk:DoubleUpDown.ToolTip>
+                                                                    <TextBlock TextWrapping="Wrap" Text="{lex:Loc StickMaxOutputTooltip}">
+                                                                    </TextBlock>
+                                                                </xctk:DoubleUpDown.ToolTip>
+                                                            </xctk:DoubleUpDown>
                                                         </DockPanel>
 
                                                         <Label Content="Vertical Scale:" Grid.Row="4" Grid.Column="0" />
@@ -587,7 +603,12 @@
                                                     <TextBlock Text="units" DockPanel.Dock="Right" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
                                                     <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding RSFuzz}"
                                                     Minimum="0" Maximum="100"
-                                                    Margin="{StaticResource spaceMargin}" />
+                                                    Margin="{StaticResource spaceMargin}">
+                                                        <xctk:IntegerUpDown.ToolTip>
+                                                            <TextBlock TextWrapping="Wrap" Text="{lex:Loc StickFuzzTooltip}">
+                                                            </TextBlock>
+                                                        </xctk:IntegerUpDown.ToolTip>
+                                                    </xctk:IntegerUpDown>
                                                 </DockPanel>
 
                                                 <Label Content="Anti Snapback:" Grid.Row="6" Grid.Column="0" />

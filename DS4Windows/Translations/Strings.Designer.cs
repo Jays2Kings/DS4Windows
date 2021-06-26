@@ -1063,6 +1063,33 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fuzz specifies the minimum number of units the analog stick moves before the output is registered as changed in the mapper. This setting can be useful for worn sticks that cannot maintain a constant position. The value is expressed in raw stick units..
+        /// </summary>
+        public static string StickFuzzTooltip {
+            get {
+                return ResourceManager.GetString("StickFuzzTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Always enforce max output setting. Useful for 100% Max Output and confining value to a circular output value.
+        /// </summary>
+        public static string StickMaxOutputForceTooltip {
+            get {
+                return ResourceManager.GetString("StickMaxOutputForceTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In some situations, it might be useful to limit the maximum value that is output by the output analog stick. Max Output allows throttling the final output value of the analog stick..
+        /// </summary>
+        public static string StickMaxOutputTooltip {
+            get {
+                return ResourceManager.GetString("StickMaxOutputTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stop.
         /// </summary>
         public static string StopText {

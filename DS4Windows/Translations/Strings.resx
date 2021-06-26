@@ -487,4 +487,13 @@ Example: whyme_DS4Windows</value>
   <data name="ChangeOnNewDeviceConn" xml:space="preserve">
     <value>Changes take effect on new device connection</value>
   </data>
+  <data name="StickFuzzTooltip" xml:space="preserve">
+    <value>Fuzz specifies the minimum number of units the analog stick moves before the output is registered as changed in the mapper. This setting can be useful for worn sticks that cannot maintain a constant position. The value is expressed in raw stick units.</value>
+  </data>
+  <data name="StickMaxOutputForceTooltip" xml:space="preserve">
+    <value>Always enforce max output setting. Useful for 100% Max Output and confining value to a circular output value</value>
+  </data>
+  <data name="StickMaxOutputTooltip" xml:space="preserve">
+    <value>In some situations, it might be useful to limit the maximum value that is output by the output analog stick. Max Output allows throttling the final output value of the analog stick.</value>
+  </data>
 </root>

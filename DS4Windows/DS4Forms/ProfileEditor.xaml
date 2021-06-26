@@ -1645,129 +1645,131 @@
             </TabItem>
 
             <TabItem Header="Other">
-                <StackPanel>
-                    <GroupBox Header="{lex:Loc VirtualControllerSettings}" MinHeight="50" Margin="4,4,4,0" Padding="0,4,0,4">
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                                <Label Content="{lex:Loc EmulatedController}" ToolTip="{lex:Loc OutContNotice}" />
-                                <ComboBox x:Name="outConTypeCombo" SelectedIndex="{Binding TempControllerIndex, FallbackValue=0}" IsEnabled="{Binding DInputOnly, Converter={StaticResource InverseBoolConverter}}" MinWidth="140"
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <GroupBox Header="{lex:Loc VirtualControllerSettings}" MinHeight="50" Margin="4,4,4,0" Padding="0,4,0,4">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                    <Label Content="{lex:Loc EmulatedController}" ToolTip="{lex:Loc OutContNotice}" />
+                                    <ComboBox x:Name="outConTypeCombo" SelectedIndex="{Binding TempControllerIndex, FallbackValue=0}" IsEnabled="{Binding DInputOnly, Converter={StaticResource InverseBoolConverter}}" MinWidth="140"
                                       ToolTip="{lex:Loc OutContNotice}">
-                                    <ComboBoxItem Content="Xbox 360"/>
-                                    <ComboBoxItem Content="DualShock 4"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <CheckBox Content="{lex:Loc DisableVirtualController}" IsChecked="{Binding DInputOnly}"
+                                        <ComboBoxItem Content="Xbox 360"/>
+                                        <ComboBoxItem Content="DualShock 4"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <CheckBox Content="{lex:Loc DisableVirtualController}" IsChecked="{Binding DInputOnly}"
                                   ToolTip="{lex:Loc DisableVirtualControllerTip}" />
-                        </StackPanel>
-                    </GroupBox>
-                    <GroupBox Header="{lex:Loc Rumble}" MinHeight="50" Margin="4,4,4,0" Padding="0,4,0,4">
-                        <UniformGrid Rows="1" Columns="3">
-                            <UniformGrid Columns="2" HorizontalAlignment="Left">
-                                <DockPanel>
-                                    <Label Content="%" DockPanel.Dock="Right" />
-                                    <xctk:IntegerUpDown x:Name="RumbleBoostIUD" d:IsHidden="True" Value="{Binding RumbleBoost}" Minimum="0" Maximum="200" Increment="10"
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="{lex:Loc Rumble}" MinHeight="50" Margin="4,4,4,0" Padding="0,4,0,4">
+                            <UniformGrid Rows="1" Columns="3">
+                                <UniformGrid Columns="2" HorizontalAlignment="Left">
+                                    <DockPanel>
+                                        <Label Content="%" DockPanel.Dock="Right" />
+                                        <xctk:IntegerUpDown x:Name="RumbleBoostIUD" d:IsHidden="True" Value="{Binding RumbleBoost}" Minimum="0" Maximum="200" Increment="10"
                                                        MinWidth="50" DockPanel.Dock="Left" />
-                                </DockPanel>
+                                    </DockPanel>
 
-                                <DockPanel>
-                                    <Label Content="{lex:Loc RumbleMaxSecs}" DockPanel.Dock="Right" />
-                                    <xctk:IntegerUpDown x:Name="RumbleAutostopTimeIUD" d:IsHidden="True" Value="{Binding RumbleAutostopTime}" Minimum="0" Maximum="3600" Increment="1" ToolTip="{lex:Loc RumbleMaxSecsTip}"
+                                    <DockPanel>
+                                        <Label Content="{lex:Loc RumbleMaxSecs}" DockPanel.Dock="Right" />
+                                        <xctk:IntegerUpDown x:Name="RumbleAutostopTimeIUD" d:IsHidden="True" Value="{Binding RumbleAutostopTime}" Minimum="0" Maximum="3600" Increment="1" ToolTip="{lex:Loc RumbleMaxSecsTip}"
                                                        MinWidth="50" DockPanel.Dock="Left"/>
-                                </DockPanel>
-                            </UniformGrid>
+                                    </DockPanel>
+                                </UniformGrid>
 
-                            <Button x:Name="heavyRumbleTestBtn" Content="Test Heavy" Margin="10,0,0,0" Click="HeavyRumbleTestBtn_Click" />
-                            <Button x:Name="lightRumbleTestBtn" Content="Test Light" Margin="10,0,0,0" Click="LightRumbleTestBtn_Click" />
-                        </UniformGrid>
-                    </GroupBox>
-                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                        <Label Content="Use Controller" ToolTip="{lex:Loc Resources:UseControllerForMapping}" />
-                        <xctk:IntegerUpDown x:Name="useControllerUD" d:IsHidden="True" Width="40" Margin="8,0,0,0"
+                                <Button x:Name="heavyRumbleTestBtn" Content="Test Heavy" Margin="10,0,0,0" Click="HeavyRumbleTestBtn_Click" />
+                                <Button x:Name="lightRumbleTestBtn" Content="Test Light" Margin="10,0,0,0" Click="LightRumbleTestBtn_Click" />
+                            </UniformGrid>
+                        </GroupBox>
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <Label Content="Use Controller" ToolTip="{lex:Loc Resources:UseControllerForMapping}" />
+                            <xctk:IntegerUpDown x:Name="useControllerUD" d:IsHidden="True" Width="40" Margin="8,0,0,0"
                                             Value="0" Minimum="0" Maximum="4" IsEnabled="False"
                                             ToolTip="{lex:Loc Resources:UseControllerForMapping}" />
-                        <CheckBox x:Name="useControllerReadoutCk" FlowDirection="RightToLeft" Content="for readout" VerticalAlignment="Center"
+                            <CheckBox x:Name="useControllerReadoutCk" FlowDirection="RightToLeft" Content="for readout" VerticalAlignment="Center"
                                   Margin="8,0,0,0" IsChecked="{Binding UseControllerReadout}"
                                   ToolTip="{lex:Loc Resources:UseControllerForMapping}" Click="UseControllerReadoutCk_Click">
-                            <CheckBox.Resources>
-                                <Style TargetType="{x:Type Path}">
-                                    <Setter Property="FlowDirection" Value="LeftToRight"/>
-                                </Style>
-                            </CheckBox.Resources>
-                        </CheckBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Height="40" Margin="0,4,0,0">
-                        <Label Content="Mouse Sensitivity" VerticalAlignment="Center" />
-                        <xctk:IntegerUpDown d:IsHidden="True" MinWidth="50" Height="20"
+                                <CheckBox.Resources>
+                                    <Style TargetType="{x:Type Path}">
+                                        <Setter Property="FlowDirection" Value="LeftToRight"/>
+                                    </Style>
+                                </CheckBox.Resources>
+                            </CheckBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Height="40" Margin="0,4,0,0">
+                            <Label Content="Mouse Sensitivity" VerticalAlignment="Center" />
+                            <xctk:IntegerUpDown d:IsHidden="True" MinWidth="50" Height="20"
                                             Value="{Binding ButtonMouseSensitivity,FallbackValue=25}"
                                             Minimum="0" Maximum="255" Increment="1" Margin="10,0,0,0" />
-                        <TextBlock Text="{Binding OutputMouseSpeed,Mode=OneWay,StringFormat='\{0} pps'}"
+                            <TextBlock Text="{Binding OutputMouseSpeed,Mode=OneWay,StringFormat='\{0} pps'}"
                                    MinWidth="50" VerticalAlignment="Center"  Margin="10,0,0,0" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Height="40">
-                        <Label Content="Mouse Vertical Scale" ContentStringFormat="{}{0}:" VerticalAlignment="Center" />
-                        <xctk:IntegerUpDown d:IsHidden="True" MinWidth="50" Height="20"
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Height="40">
+                            <Label Content="Mouse Vertical Scale" ContentStringFormat="{}{0}:" VerticalAlignment="Center" />
+                            <xctk:IntegerUpDown d:IsHidden="True" MinWidth="50" Height="20"
                             Value="{Binding ButtonMouseVerticalScale,FallbackValue='100'}"
                             Minimum="0" Maximum="500" Increment="10" Margin="10,0,0,0" />
-                        <Label Content="%" VerticalContentAlignment="Center" Margin="4,0,0,0" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Mouse Offset" VerticalAlignment="Center" />
-                        <xctk:DoubleUpDown d:IsHidden="True" MinWidth="50" FormatString="F3" DefaultValue="0" Minimum="0" Maximum="100"
+                            <Label Content="%" VerticalContentAlignment="Center" Margin="4,0,0,0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Mouse Offset" VerticalAlignment="Center" />
+                            <xctk:DoubleUpDown d:IsHidden="True" MinWidth="50" FormatString="F3" DefaultValue="0" Minimum="0" Maximum="100"
                                            Value="{Binding ButtonMouseOffset,FallbackValue=0,UpdateSourceTrigger=LostFocus}" />
-                        <Label Content="%"/>
-                        <TextBlock Text="{Binding MouseOffsetSpeed,Mode=OneWay,StringFormat='\{0:0.00} pps'}"
+                            <Label Content="%"/>
+                            <TextBlock Text="{Binding MouseOffsetSpeed,Mode=OneWay,StringFormat='\{0:0.00} pps'}"
                                    MinWidth="50" VerticalAlignment="Center" Margin="10,0,0,0" />
-                    </StackPanel>
-                    <CheckBox Content="Mouse Acceleration" IsChecked="{Binding MouseAcceleration}" Margin="0,6,0,0" />
-                    <CheckBox Content="Enable Touchpad Toggle" IsChecked="{Binding EnableTouchpadToggle}" Margin="0,6,0,0"
+                        </StackPanel>
+                        <CheckBox Content="Mouse Acceleration" IsChecked="{Binding MouseAcceleration}" Margin="0,6,0,0" />
+                        <CheckBox Content="Enable Touchpad Toggle" IsChecked="{Binding EnableTouchpadToggle}" Margin="0,6,0,0"
                               ToolTip="{lex:Loc Resources:EnableTouchToggle}" />
-                    <CheckBox Content="{lex:Loc EnableOutputDataToDS4}" IsChecked="{Binding EnableOutputDataToDS4}" Margin="0,6,0,0" ToolTip="{lex:Loc EnableOutputDataToDS4Tip}" />
-                    <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
-                        <CheckBox x:Name="launchProgCk" Content="Launch program with profile" IsChecked="{Binding LaunchProgramExists}" IsEnabled="{Binding LaunchProgramExists}" />
-                        <Button x:Name="launchProgBrowseBtn" Click="LaunchProgBrowseBtn_Click" Width="80" Height="30" Margin="20,0,0,0">
-                            <Button.Content>
-                                <PriorityBinding>
-                                    <Binding Path="LaunchProgramName" />
-                                    <lex:BLoc Key="Browse" />
-                                </PriorityBinding>
-                            </Button.Content>
-                        </Button>
-                        <Button x:Name="launchProgIconBtn" Width="20" Height="20" Margin="20,0,0,0" Focusable="False" >
-                            <Button.Background>
-                                <ImageBrush ImageSource="{Binding LaunchProgramIcon}" />
-                            </Button.Background>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Height="30" Margin="0,6,0,0">
-                        <CheckBox Content="Idle Disconnect" VerticalAlignment="Center" IsChecked="{Binding IdleDisconnectExists}" />
-                        <xctk:IntegerUpDown x:Name="idleDisconnectUD" d:IsHidden="True" Value="{Binding IdleDisconnect,FallbackValue=5}"
+                        <CheckBox Content="{lex:Loc EnableOutputDataToDS4}" IsChecked="{Binding EnableOutputDataToDS4}" Margin="0,6,0,0" ToolTip="{lex:Loc EnableOutputDataToDS4Tip}" />
+                        <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                            <CheckBox x:Name="launchProgCk" Content="Launch program with profile" IsChecked="{Binding LaunchProgramExists}" IsEnabled="{Binding LaunchProgramExists}" />
+                            <Button x:Name="launchProgBrowseBtn" Click="LaunchProgBrowseBtn_Click" Width="80" Height="30" Margin="20,0,0,0">
+                                <Button.Content>
+                                    <PriorityBinding>
+                                        <Binding Path="LaunchProgramName" />
+                                        <lex:BLoc Key="Browse" />
+                                    </PriorityBinding>
+                                </Button.Content>
+                            </Button>
+                            <Button x:Name="launchProgIconBtn" Width="20" Height="20" Margin="20,0,0,0" Focusable="False" >
+                                <Button.Background>
+                                    <ImageBrush ImageSource="{Binding LaunchProgramIcon}" />
+                                </Button.Background>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Height="30" Margin="0,6,0,0">
+                            <CheckBox Content="Idle Disconnect" VerticalAlignment="Center" IsChecked="{Binding IdleDisconnectExists}" />
+                            <xctk:IntegerUpDown x:Name="idleDisconnectUD" d:IsHidden="True" Value="{Binding IdleDisconnect,FallbackValue=5}"
                                             IsEnabled="{Binding IdleDisconnectExists}" MinWidth="50" Height="20" Minimum="0" Maximum="60" Margin="10,0,0,0" />
-                        <Label Content="mins" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
-                        <Label Content="BT Poll Rate" ToolTip="{lex:Loc Resources:BtPollRate}" />
-                        <ComboBox x:Name="btPollRateCombo" SelectedIndex="{Binding TempBTPollRateIndex,FallbackValue=4}" MinWidth="140"
+                            <Label Content="mins" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                            <Label Content="BT Poll Rate" ToolTip="{lex:Loc Resources:BtPollRate}" />
+                            <ComboBox x:Name="btPollRateCombo" SelectedIndex="{Binding TempBTPollRateIndex,FallbackValue=4}" MinWidth="140"
                                   ToolTip="{lex:Loc Resources:BtPollRate}">
-                            <ComboBoxItem Content="Max (1 ms)" />
-                            <ComboBoxItem Content="1000 Hz (1 ms)" />
-                            <ComboBoxItem Content="500 Hz (2 ms)" />
-                            <ComboBoxItem Content="333 Hz (3 ms)" />
-                            <ComboBoxItem Content="250 Hz (4 ms)" />
-                            <ComboBoxItem Content="200 Hz (5 ms)" />
-                            <ComboBoxItem Content="166 Hz (6 ms)" />
-                            <ComboBoxItem Content="142 Hz (7 ms)" />
-                            <ComboBoxItem Content="125 Hz (8 ms)" />
-                            <ComboBoxItem Content="111 Hz (9 ms)" />
-                            <ComboBoxItem Content="100 Hz (10 ms)" />
-                            <ComboBoxItem Content="90 Hz (11 ms)" />
-                            <ComboBoxItem Content="83 Hz (12 ms)" />
-                            <ComboBoxItem Content="76 Hz (13 ms)" />
-                            <ComboBoxItem Content="71 Hz (14 ms)" />
-                            <ComboBoxItem Content="66 Hz (15 ms)" />
-                            <ComboBoxItem Content="62 Hz (16 ms)" />
-                        </ComboBox>
+                                <ComboBoxItem Content="Max (1 ms)" />
+                                <ComboBoxItem Content="1000 Hz (1 ms)" />
+                                <ComboBoxItem Content="500 Hz (2 ms)" />
+                                <ComboBoxItem Content="333 Hz (3 ms)" />
+                                <ComboBoxItem Content="250 Hz (4 ms)" />
+                                <ComboBoxItem Content="200 Hz (5 ms)" />
+                                <ComboBoxItem Content="166 Hz (6 ms)" />
+                                <ComboBoxItem Content="142 Hz (7 ms)" />
+                                <ComboBoxItem Content="125 Hz (8 ms)" />
+                                <ComboBoxItem Content="111 Hz (9 ms)" />
+                                <ComboBoxItem Content="100 Hz (10 ms)" />
+                                <ComboBoxItem Content="90 Hz (11 ms)" />
+                                <ComboBoxItem Content="83 Hz (12 ms)" />
+                                <ComboBoxItem Content="76 Hz (13 ms)" />
+                                <ComboBoxItem Content="71 Hz (14 ms)" />
+                                <ComboBoxItem Content="66 Hz (15 ms)" />
+                                <ComboBoxItem Content="62 Hz (16 ms)" />
+                            </ComboBox>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
+                </ScrollViewer>
 
             </TabItem>
         </TabControl>

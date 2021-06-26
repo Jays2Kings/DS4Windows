@@ -347,6 +347,8 @@
                                                     <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                     <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                     <RowDefinition Style="{StaticResource gridRowHeight}" />
+                                                    <RowDefinition />
+                                                    <RowDefinition />
                                                 </Grid.RowDefinitions>
 
                                                 <Label Content="Output Curve:" Grid.Row="0" Grid.Column="0" />
@@ -421,6 +423,23 @@
                                                        Margin="{StaticResource spaceMargin}" />
                                                     <TextBlock Text="ms" DockPanel.Dock="Right" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
                                                 </StackPanel>
+
+                                                <Label Content="Outer Btn:" Grid.Row="8" Grid.Column="0" />
+                                                <DockPanel Grid.Row="8" Grid.Column="1">
+                                                    <Button Content="Outer Bind" MinWidth="40" Tag="{Binding LSOuterBind, Source={StaticResource controlIndexCheck}}"
+                                                            Click="StickOuterBindButton_Click"
+                                                            Margin="{StaticResource spaceMargin}" DockPanel.Dock="Top" />
+                                                    <Label x:Name="lsOuterBindLb" Content="{Binding MappingName,FallbackValue=Unassigned}"
+                                                        Margin="{StaticResource spaceMargin}" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+                                                </DockPanel>
+
+                                                <Label Content="Outer Btn Dead:" Grid.Row="9" Grid.Column="0" />
+                                                <DockPanel Grid.Row="9" Grid.Column="1">
+                                                    <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding LSOuterBindDead}"
+                                                       MinWidth="100" Minimum="0.0" Maximum="1.0" Increment="0.1"
+                                                       Margin="{StaticResource spaceMargin}" DockPanel.Dock="Top" />
+                                                    <CheckBox Content="Invert" IsChecked="{Binding LSOuterBindInvert}" DockPanel.Dock="Top" HorizontalAlignment="Right" />
+                                                </DockPanel>
                                             </Grid>
                                         </DockPanel>
                                     </TabItem>
@@ -458,7 +477,6 @@
                                                 <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSMinAngleThreshold,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Maximum="180.0" Minimum="0.0" Increment="0.5"
                                                    Margin="{StaticResource spaceMargin}" />
                                             </DockPanel>
-
                                         </Grid>
                                     </TabItem>
                                 </TabControl>
@@ -565,6 +583,8 @@
                                                     <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                     <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                     <RowDefinition Style="{StaticResource gridRowHeight}" />
+                                                    <RowDefinition />
+                                                    <RowDefinition />
                                                 </Grid.RowDefinitions>
 
                                                 <Label Content="Output Curve:" Grid.Row="0" Grid.Column="0" />
@@ -639,6 +659,23 @@
                                                        Margin="{StaticResource spaceMargin}" />
                                                     <TextBlock Text="ms" DockPanel.Dock="Right" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
                                                 </StackPanel>
+
+                                                <Label Content="Outer Btn:" Grid.Row="8" Grid.Column="0" />
+                                                <DockPanel Grid.Row="8" Grid.Column="1">
+                                                    <Button Content="Outer Bind" MinWidth="40" Tag="{Binding RSOuterBind, Source={StaticResource controlIndexCheck}}"
+                                                        Click="StickOuterBindButton_Click"
+                                                        Margin="{StaticResource spaceMargin}" DockPanel.Dock="Top" />
+                                                    <Label x:Name="rsOuterBindLb" Content="{Binding MappingName,FallbackValue=Unassigned}"
+                                                        Margin="{StaticResource spaceMargin}" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+                                                </DockPanel>
+
+                                                <Label Content="Outer Btn Dead:" Grid.Row="9" Grid.Column="0" />
+                                                <DockPanel Grid.Row="9" Grid.Column="1">
+                                                    <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding RSOuterBindDead}"
+                                                       MinWidth="100" Minimum="0.0" Maximum="1.0" Increment="0.1"
+                                                       Margin="{StaticResource spaceMargin}" DockPanel.Dock="Top" />
+                                                    <CheckBox Content="Invert" IsChecked="{Binding RSOuterBindInvert}" DockPanel.Dock="Top" HorizontalAlignment="Right" />
+                                                </DockPanel>
                                             </Grid>
                                         </DockPanel>
 

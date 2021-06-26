@@ -80,6 +80,7 @@ namespace DS4WinWPF.DS4Forms
             AssignTiltAssociation();
             AssignSwipeAssociation();
             AssignTriggerFullPullAssociation();
+            AssignStickOuterBindAssociation();
             AssignGyroSwipeAssociation();
 
             inputTimer = new NonFormTimer(100);
@@ -201,6 +202,12 @@ namespace DS4WinWPF.DS4Forms
         {
             l2FullPullLb.DataContext = mappingListVM.ControlMap[DS4Controls.L2FullPull];
             r2FullPullLb.DataContext = mappingListVM.ControlMap[DS4Controls.R2FullPull];
+        }
+
+        private void AssignStickOuterBindAssociation()
+        {
+            lsOuterBindLb.DataContext = mappingListVM.ControlMap[DS4Controls.LSOuter];
+            rsOuterBindLb.DataContext = mappingListVM.ControlMap[DS4Controls.RSOuter];
         }
 
         private void AssignGyroSwipeAssociation()
@@ -1541,6 +1548,25 @@ namespace DS4WinWPF.DS4Forms
 
             profileSettingsVM.UpdateGyroControlsTrig(menu, e.OriginalSource == alwaysOnItem);
         }
+
+        private void StickOuterBindButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            int tag = Convert.ToInt32(btn.Tag);
+            DS4Controls ds4control = (DS4Controls)tag;
+            if (ds4control == DS4Controls.None)
+            {
+                return;
+            }
+
+            //DS4ControlSettings setting = Global.getDS4CSetting(tag, ds4control);
+            MappedControl mpControl = mappingListVM.ControlMap[ds4control];
+            BindingWindow window = new BindingWindow(deviceNum, mpControl.Setting);
+            window.Owner = App.Current.MainWindow;
+            window.ShowDialog();
+            mpControl.UpdateMappingName();
+            Global.CacheProfileCustomsFlags(profileSettingsVM.Device);
+        }
     }
 
     public class ControlIndexCheck
@@ -1556,6 +1582,9 @@ namespace DS4WinWPF.DS4Forms
         public int SwipeRight { get => (int)DS4Controls.SwipeRight; }
         public int L2FullPull { get => (int)DS4Controls.L2FullPull; }
         public int R2FullPull { get => (int)DS4Controls.R2FullPull; }
+
+        public int LSOuterBind { get => (int)DS4Controls.LSOuter; }
+        public int RSOuterBind { get => (int)DS4Controls.RSOuter; }
 
         public int GyroSwipeLeft { get => (int)DS4Controls.GyroSwipeLeft; }
         public int GyroSwipeRight { get => (int)DS4Controls.GyroSwipeRight; }

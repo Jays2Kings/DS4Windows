@@ -22,7 +22,7 @@ namespace DS4Windows
     [Flags]
     public enum DS4KeyType : byte { None = 0, ScanCode = 1, Toggle = 2, Unbound = 4, Macro = 8, HoldMacro = 16, RepeatMacro = 32 }; // Increment by exponents of 2*, starting at 2^0
     public enum Ds3PadId : byte { None = 0xFF, One = 0x00, Two = 0x01, Three = 0x02, Four = 0x03, All = 0x04 };
-    public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options, Mute, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown, L2FullPull, R2FullPull, GyroSwipeLeft, GyroSwipeRight, GyroSwipeUp, GyroSwipeDown, Capture, SideL, SideR };
+    public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options, Mute, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown, L2FullPull, R2FullPull, GyroSwipeLeft, GyroSwipeRight, GyroSwipeUp, GyroSwipeDown, Capture, SideL, SideR, LSOuter, RSOuter };
     public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, TouchpadClick, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, Unbound };
 
     public enum SASteeringWheelEmulationAxisType: byte { None = 0, LX, LY, RX, RY, L2R2, VJoy1X, VJoy1Y, VJoy1Z, VJoy2X, VJoy2Y, VJoy2Z };
@@ -221,11 +221,13 @@ namespace DS4Windows
 
         public ControlSettingsGroup(List<DS4ControlSettings> settingsList)
         {
+            LS.Add(settingsList[(int)DS4Controls.LSOuter - 1]);
             for (int i = (int)DS4Controls.LXNeg; i <= (int)DS4Controls.LYPos; i++)
             {
                 LS.Add(settingsList[i-1]);
             }
 
+            LS.Add(settingsList[(int)DS4Controls.RSOuter - 1]);
             for (int i = (int)DS4Controls.RXNeg; i <= (int)DS4Controls.RYPos; i++)
             {
                 RS.Add(settingsList[i-1]);
@@ -579,6 +581,8 @@ namespace DS4Windows
             X360Controls.None, // DS4Controls.Capture
             X360Controls.None, // DS4Controls.SideL
             X360Controls.None, // DS4Controls.SideR
+            X360Controls.None, // DS4Controls.LSOuter
+            X360Controls.None, // DS4Controls.RSOuter
         };
 
         // Create mapping array at runtime
@@ -742,6 +746,8 @@ namespace DS4Windows
             [DS4Controls.SwipeDown] = "Swipe Down",
             [DS4Controls.L2FullPull] = "L2 Full Pull",
             [DS4Controls.R2FullPull] = "R2 Full Pull",
+            [DS4Controls.LSOuter] = "LS Outer",
+            [DS4Controls.RSOuter] = "RS Outer",
 
             [DS4Controls.GyroSwipeLeft] = "Gyro Swipe Left",
             [DS4Controls.GyroSwipeRight] = "Gyro Swipe Right",
@@ -3509,6 +3515,10 @@ namespace DS4Windows
                 XmlNode xmlRSRotation = m_Xdoc.CreateNode(XmlNodeType.Element, "RSRotation", null); xmlRSRotation.InnerText = Convert.ToInt32(RSRotation[device] * 180.0 / Math.PI).ToString(); rootElement.AppendChild(xmlRSRotation);
                 XmlNode xmlLSFuzz = m_Xdoc.CreateNode(XmlNodeType.Element, "LSFuzz", null); xmlLSFuzz.InnerText = lsModInfo[device].fuzz.ToString(); rootElement.AppendChild(xmlLSFuzz);
                 XmlNode xmlRSFuzz = m_Xdoc.CreateNode(XmlNodeType.Element, "RSFuzz", null); xmlRSFuzz.InnerText = rsModInfo[device].fuzz.ToString(); rootElement.AppendChild(xmlRSFuzz);
+                XmlNode xmlLSOuterBindDead = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOuterBindDead", null); xmlLSOuterBindDead.InnerText = Convert.ToInt32(lsModInfo[device].outerBindDeadZone).ToString(); rootElement.AppendChild(xmlLSOuterBindDead);
+                XmlNode xmlRSOuterBindDead = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOuterBindDead", null); xmlRSOuterBindDead.InnerText = Convert.ToInt32(rsModInfo[device].outerBindDeadZone).ToString(); rootElement.AppendChild(xmlRSOuterBindDead);
+                XmlNode xmlLSOuterBindInvert = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOuterBindInvert", null); xmlLSOuterBindInvert.InnerText = lsModInfo[device].outerBindInvert.ToString(); rootElement.AppendChild(xmlLSOuterBindInvert);
+                XmlNode xmlRSOuterBindInvert = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOuterBindInvert", null); xmlRSOuterBindInvert.InnerText = rsModInfo[device].outerBindInvert.ToString(); rootElement.AppendChild(xmlRSOuterBindInvert);
 
                 XmlNode xmlSXD = m_Xdoc.CreateNode(XmlNodeType.Element, "SXDeadZone", null); xmlSXD.InnerText = SXDeadzone[device].ToString(); rootElement.AppendChild(xmlSXD);
                 XmlNode xmlSZD = m_Xdoc.CreateNode(XmlNodeType.Element, "SZDeadZone", null); xmlSZD.InnerText = SZDeadzone[device].ToString(); rootElement.AppendChild(xmlSZD);
@@ -4522,6 +4532,48 @@ namespace DS4Windows
                     }
                 }
                 catch { rsModInfo[device].maxOutputForce = StickDeadZoneInfo.DEFAULT_MAXOUTPUT_FORCE; missingSetting = true; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSOuterBindDead");
+                    if (int.TryParse(Item?.InnerText ?? "", out int temp))
+                    {
+                        temp = Math.Min(Math.Max(temp, 0), 100);
+                        lsModInfo[device].outerBindDeadZone = temp;
+                    }
+                }
+                catch { lsModInfo[device].outerBindDeadZone = StickDeadZoneInfo.DEFAULT_OUTER_BIND_DEAD; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSOuterBindDead");
+                    if (int.TryParse(Item?.InnerText ?? "", out int temp))
+                    {
+                        temp = Math.Min(Math.Max(temp, 0), 100);
+                        rsModInfo[device].outerBindDeadZone = temp;
+                    }
+                }
+                catch { rsModInfo[device].outerBindDeadZone = StickDeadZoneInfo.DEFAULT_OUTER_BIND_DEAD; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSOuterBindInvert");
+                    if (bool.TryParse(Item?.InnerText ?? "", out bool temp))
+                    {
+                        lsModInfo[device].outerBindInvert = temp;
+                    }
+                }
+                catch { lsModInfo[device].outerBindInvert = StickDeadZoneInfo.DEFAULT_OUTER_BIND_INVERT; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSOuterBindInvert");
+                    if (bool.TryParse(Item?.InnerText ?? "", out bool temp))
+                    {
+                        rsModInfo[device].outerBindInvert = temp;
+                    }
+                }
+                catch { rsModInfo[device].outerBindInvert = StickDeadZoneInfo.DEFAULT_OUTER_BIND_INVERT; }
 
                 try
                 {

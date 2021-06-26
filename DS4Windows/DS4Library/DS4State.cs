@@ -25,6 +25,7 @@ namespace DS4Windows
         public double LYUnit;
         public double RXUnit;
         public double RYUnit;
+        public byte OutputLSOuter = 0, OutputRSOuter = 0;
         public double elapsedTime = 0.0;
         public ulong totalMicroSec = 0;
         public ushort ds4Timestamp = 0;
@@ -50,7 +51,9 @@ namespace DS4Windows
             Square = Triangle = Circle = Cross = false;
             DpadUp = DpadDown = DpadLeft = DpadRight = false;
             L1 = L2Btn = L3 = R1 = R2Btn = R3 = false;
-            Share = Options = PS = Mute = Touch1 = Touch2 = TouchButton = OutputTouchButton = TouchRight = TouchLeft = false;
+            Share = Options = PS = Mute = Touch1 = Touch2 = TouchButton =
+                OutputTouchButton = TouchRight = TouchLeft =
+                Capture = SideL = SideR = false;
             Touch1Finger = Touch2Fingers = false;
             LX = RX = LY = RY = 128;
             L2 = R2 = 0;
@@ -72,6 +75,7 @@ namespace DS4Windows
             TrackPadTouch0.IsActive = false;
             TrackPadTouch1.IsActive = false;
             SASteeringWheelEmulationUnit = 0;
+            OutputLSOuter = OutputRSOuter = 0;
         }
 
         public DS4State(DS4State state)
@@ -133,6 +137,8 @@ namespace DS4Windows
             TrackPadTouch0 = state.TrackPadTouch0;
             TrackPadTouch1 = state.TrackPadTouch1;
             SASteeringWheelEmulationUnit = state.SASteeringWheelEmulationUnit;
+            OutputLSOuter = state.OutputLSOuter;
+            OutputRSOuter = state.OutputRSOuter;
         }
 
         public DS4State Clone()
@@ -199,6 +205,8 @@ namespace DS4Windows
             state.TrackPadTouch0 = TrackPadTouch0;
             state.TrackPadTouch1 = TrackPadTouch1;
             state.SASteeringWheelEmulationUnit = SASteeringWheelEmulationUnit;
+            state.OutputLSOuter = OutputLSOuter;
+            state.OutputRSOuter = OutputRSOuter;
         }
 
         public void calculateStickAngles()

@@ -37,6 +37,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private MappedControl r2FullPullControl;
         public MappedControl R2FullPullControl { get => r2FullPullControl; }
 
+        private MappedControl lsOuterBindControl;
+        public MappedControl LsOuterBindControl { get => lsOuterBindControl; }
+
+        private MappedControl rsOuterBindControl;
+        public MappedControl RsOuterBindControl { get => rsOuterBindControl; }
+
         private MappedControl gyroSwipeLeftControl;
         private MappedControl gyroSwipeRightControl;
         private MappedControl gyroSwipeUpControl;
@@ -98,6 +104,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 controlMap.Add(mapped.Control, mapped);
             }
 
+            /*
+             * Establish data binding data for virtual button DS4ControlSettings instances
+             */
+            lsOuterBindControl = new MappedControl(devIndex, DS4Controls.LSOuter, "LS Outer", devType);
+            rsOuterBindControl = new MappedControl(devIndex, DS4Controls.RSOuter, "RS Outer", devType);
+
             l2FullPullControl = new MappedControl(devIndex, DS4Controls.L2FullPull, "L2 Full Pull", devType);
             r2FullPullControl = new MappedControl(devIndex, DS4Controls.R2FullPull, "R2 Full Pull", devType);
 
@@ -106,6 +118,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             gyroSwipeUpControl = new MappedControl(devIndex, DS4Controls.GyroSwipeUp, "Gyro Swipe Up", devType);
             gyroSwipeDownControl = new MappedControl(devIndex, DS4Controls.GyroSwipeDown, "Gyro Swipe Down", devType);
 
+            extraControls.Add(lsOuterBindControl);
+            extraControls.Add(rsOuterBindControl);
             extraControls.Add(l2FullPullControl);
             extraControls.Add(r2FullPullControl);
             extraControls.Add(gyroSwipeLeftControl);
@@ -113,6 +127,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             extraControls.Add(gyroSwipeUpControl);
             extraControls.Add(gyroSwipeDownControl);
 
+            controlMap.Add(DS4Controls.LSOuter, lsOuterBindControl);
+            controlMap.Add(DS4Controls.RSOuter, rsOuterBindControl);
             controlMap.Add(DS4Controls.L2FullPull, l2FullPullControl);
             controlMap.Add(DS4Controls.R2FullPull, r2FullPullControl);
             controlMap.Add(DS4Controls.GyroSwipeLeft, gyroSwipeLeftControl);

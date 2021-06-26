@@ -5,16 +5,16 @@ namespace DS4Windows
     {
         public enum ControlType: int { Unknown = 0, Button, AxisDir, Trigger, Touch, GyroDir, SwipeDir }
 
-        public bool[] buttons = new bool[(int)DS4Controls.SideR + 1];
-        public byte[] axisdirs = new byte[(int)DS4Controls.SideR + 1];
-        public byte[] triggers = new byte[(int)DS4Controls.SideR + 1];
-        public int[] gryodirs = new int[(int)DS4Controls.SideR + 1];
-        public byte[] swipedirs = new byte[(int)DS4Controls.SideR + 1];
-        public bool[] swipedirbools = new bool[(int)DS4Controls.SideR + 1];
+        public bool[] buttons = new bool[(int)DS4Controls.RSOuter + 1];
+        public byte[] axisdirs = new byte[(int)DS4Controls.RSOuter + 1];
+        public byte[] triggers = new byte[(int)DS4Controls.RSOuter + 1];
+        public int[] gryodirs = new int[(int)DS4Controls.RSOuter + 1];
+        public byte[] swipedirs = new byte[(int)DS4Controls.RSOuter + 1];
+        public bool[] swipedirbools = new bool[(int)DS4Controls.RSOuter + 1];
         public bool touchButton = false;
         public bool outputTouchButton = false;
 
-        public static ControlType[] mappedType = new ControlType[48]
+        public static ControlType[] mappedType = new ControlType[50]
         {
             ControlType.Unknown, // DS4Controls.None
             ControlType.AxisDir, // DS4Controls.LXNeg
@@ -64,6 +64,8 @@ namespace DS4Windows
             ControlType.Button, // DS4Controls.Capture
             ControlType.Button, // DS4Controls.SideL
             ControlType.Button, // DS4Controls.SideR
+            ControlType.Trigger, // DS4Controls.LSOuter
+            ControlType.Trigger, // DS4Controls.RSOuter
         };
 
         public DS4StateFieldMapping()
@@ -83,11 +85,13 @@ namespace DS4Windows
                 axisdirs[(int)DS4Controls.LXPos] = cState.LX;
                 axisdirs[(int)DS4Controls.LYNeg] = cState.LY;
                 axisdirs[(int)DS4Controls.LYPos] = cState.LY;
+                triggers[(int)DS4Controls.LSOuter] = cState.OutputLSOuter;
 
                 axisdirs[(int)DS4Controls.RXNeg] = cState.RX;
                 axisdirs[(int)DS4Controls.RXPos] = cState.RX;
                 axisdirs[(int)DS4Controls.RYNeg] = cState.RY;
                 axisdirs[(int)DS4Controls.RYPos] = cState.RY;
+                triggers[(int)DS4Controls.RSOuter] = cState.OutputRSOuter;
 
                 triggers[(int)DS4Controls.L2] = cState.L2;
                 triggers[(int)DS4Controls.R2] = cState.R2;
@@ -157,11 +161,13 @@ namespace DS4Windows
                 state.LX = axisdirs[(int)DS4Controls.LXPos];
                 state.LY = axisdirs[(int)DS4Controls.LYNeg];
                 state.LY = axisdirs[(int)DS4Controls.LYPos];
+                state.OutputLSOuter = triggers[(int)DS4Controls.LSOuter];
 
                 state.RX = axisdirs[(int)DS4Controls.RXNeg];
                 state.RX = axisdirs[(int)DS4Controls.RXPos];
                 state.RY = axisdirs[(int)DS4Controls.RYNeg];
                 state.RY = axisdirs[(int)DS4Controls.RYPos];
+                state.OutputRSOuter = triggers[(int)DS4Controls.RSOuter];
 
                 state.L2 = triggers[(int)DS4Controls.L2];
                 state.R2 = triggers[(int)DS4Controls.R2];

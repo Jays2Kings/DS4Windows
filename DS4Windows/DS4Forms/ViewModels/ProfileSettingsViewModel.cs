@@ -1112,6 +1112,30 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.RSAntiSnapbackInfo[device].timeout = value;
         }
 
+        public bool LSOuterBindInvert
+        {
+            get => Global.LSModInfo[device].outerBindInvert;
+            set => Global.LSModInfo[device].outerBindInvert = value;
+        }
+
+        public bool RSOuterBindInvert
+        {
+            get => Global.RSModInfo[device].outerBindInvert;
+            set => Global.RSModInfo[device].outerBindInvert = value;
+        }
+
+        public double LSOuterBindDead
+        {
+            get => Global.LSModInfo[device].outerBindDeadZone / 100.0;
+            set => Global.LSModInfo[device].outerBindDeadZone = value * 100.0;
+        }
+
+        public double RSOuterBindDead
+        {
+            get => Global.RSModInfo[device].outerBindDeadZone / 100.0;
+            set => Global.RSModInfo[device].outerBindDeadZone = value * 100.0;
+        }
+
         public int LSOutputIndex
         {
             get

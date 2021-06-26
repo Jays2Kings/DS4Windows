@@ -839,7 +839,7 @@ namespace DS4Windows
                 int lsMaxZone = lsMod.maxZone;
                 double lsMaxOutput = lsMod.maxOutput;
                 double lsVerticalScale = lsMod.verticalScale;
-                bool interpret = lsAntiDead > 0 || lsMaxZone != 100 || lsMaxOutput != 100.0 || lsVerticalScale != StickDeadZoneInfo.DEFAULT_VERTICAL_SCALE;
+                bool interpret = lsAntiDead > 0 || lsMaxZone != 100 || lsMaxOutput != 100.0 || lsMod.maxOutputForce || lsVerticalScale != StickDeadZoneInfo.DEFAULT_VERTICAL_SCALE;
 
                 if (lsDeadzone > 0 || interpret)
                 {
@@ -894,7 +894,7 @@ namespace DS4Windows
                             tempOutputY = Math.Min(Math.Max(tempOutputY * verticalScale, 0.0), 1.0);
                         }
 
-                        if (lsMaxOutput != 100.0)
+                        if (lsMaxOutput != 100.0 || lsMod.maxOutputForce)
                         {
                             double maxOutXRatio = Math.Abs(Math.Cos(r)) * maxOutRatio;
                             double maxOutYRatio = Math.Abs(Math.Sin(r)) * maxOutRatio;
@@ -1028,7 +1028,7 @@ namespace DS4Windows
                 int rsMaxZone = rsMod.maxZone;
                 double rsMaxOutput = rsMod.maxOutput;
                 double rsVerticalScale = rsMod.verticalScale;
-                bool interpret = rsAntiDead > 0 || rsMaxZone != 100 || rsMaxOutput != 100.0 || rsVerticalScale != StickDeadZoneInfo.DEFAULT_VERTICAL_SCALE;
+                bool interpret = rsAntiDead > 0 || rsMaxZone != 100 || rsMaxOutput != 100.0 || rsMod.maxOutputForce || rsVerticalScale != StickDeadZoneInfo.DEFAULT_VERTICAL_SCALE;
 
                 if (rsDeadzone > 0 || interpret)
                 {
@@ -1085,7 +1085,7 @@ namespace DS4Windows
                             tempOutputY = Math.Min(Math.Max(tempOutputY * verticalScale, 0.0), 1.0);
                         }
 
-                        if (rsMaxOutput != 100.0)
+                        if (rsMaxOutput != 100.0 || rsMod.maxOutputForce)
                         {
                             double maxOutXRatio = Math.Abs(Math.Cos(r)) * maxOutRatio;
                             double maxOutYRatio = Math.Abs(Math.Sin(r)) * maxOutRatio;

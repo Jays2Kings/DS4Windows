@@ -23,6 +23,7 @@ namespace DS4Windows
         public const int DEFAULT_ANTIDEADZONE = 20;
         public const int DEFAULT_MAXZONE = 100;
         public const double DEFAULT_MAXOUTPUT = 100.0;
+        public const bool DEFAULT_MAXOUTPUT_FORCE = false;
         public const int DEFAULT_FUZZ = 0;
         public const DeadZoneType DEFAULT_DEADZONE_TYPE = DeadZoneType.Radial;
         public const double DEFAULT_VERTICAL_SCALE = 100.0;
@@ -49,6 +50,7 @@ namespace DS4Windows
         public int antiDeadZone;
         public int maxZone = DEFAULT_MAXZONE;
         public double maxOutput = DEFAULT_MAXOUTPUT;
+        public bool maxOutputForce = DEFAULT_MAXOUTPUT_FORCE;
         public int fuzz = DEFAULT_FUZZ;
         public double verticalScale = DEFAULT_VERTICAL_SCALE;
         public DeadZoneType deadzoneType = DEFAULT_DEADZONE_TYPE;
@@ -61,6 +63,8 @@ namespace DS4Windows
             antiDeadZone = 0;
             maxZone = DEFAULT_MAXZONE;
             maxOutput = DEFAULT_MAXOUTPUT;
+            maxOutputForce = DEFAULT_MAXOUTPUT_FORCE;
+
             fuzz = DEFAULT_FUZZ;
             verticalScale = DEFAULT_VERTICAL_SCALE;
             deadzoneType = DEFAULT_DEADZONE_TYPE;

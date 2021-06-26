@@ -869,6 +869,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.LSModInfo[device].maxOutput = value * 100.0;
         }
 
+        public bool LSMaxOutputForce
+        {
+            get => Global.LSModInfo[device].maxOutputForce;
+            set => Global.LSModInfo[device].maxOutputForce = value;
+        }
+
         public double RSVerticalScale
         {
             get => Global.RSModInfo[device].verticalScale / 100.0;
@@ -879,6 +885,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             get => Global.RSModInfo[device].maxOutput / 100.0;
             set => Global.RSModInfo[device].maxOutput = value * 100.0;
+        }
+
+        public bool RSMaxOutputForce
+        {
+            get => Global.RSModInfo[device].maxOutputForce;
+            set => Global.RSModInfo[device].maxOutputForce = value;
         }
 
         public int LSDeadTypeIndex

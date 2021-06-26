@@ -12,6 +12,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="1000">
     <UserControl.Resources>
+        <xctk:InverseBoolConverter x:Key="InverseBoolConverter"/>
         <local:ControlIndexCheck x:Key="controlIndexCheck" />
     </UserControl.Resources>
     <DockPanel>
@@ -1649,7 +1650,7 @@
                         <StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                                 <Label Content="{lex:Loc EmulatedController}" ToolTip="{lex:Loc OutContNotice}" />
-                                <ComboBox x:Name="outConTypeCombo" SelectedIndex="{Binding TempControllerIndex, FallbackValue=0}" MinWidth="140"
+                                <ComboBox x:Name="outConTypeCombo" SelectedIndex="{Binding TempControllerIndex, FallbackValue=0}" IsEnabled="{Binding DInputOnly, Converter={StaticResource InverseBoolConverter}}" MinWidth="140"
                                       ToolTip="{lex:Loc OutContNotice}">
                                     <ComboBoxItem Content="Xbox 360"/>
                                     <ComboBoxItem Content="DualShock 4"/>

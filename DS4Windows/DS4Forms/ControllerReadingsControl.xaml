@@ -143,8 +143,8 @@
         </Grid>
         <Grid DockPanel.Dock="Top" Margin="8,40,8,8">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1.75*"/>
+                <ColumnDefinition Width="1.3*"/>
+                <ColumnDefinition Width="1.7*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" MinHeight="100" Grid.Column="0" RenderTransformOrigin="0,0" HorizontalAlignment="Center">
                 <StackPanel>
@@ -199,10 +199,26 @@
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
+
+                <StackPanel>
+                    <StackPanel Height="80">
+                        
+                    </StackPanel>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="TX: " Width="30" />
+                            <Label x:Name="touchXValLb" Content="" Width="50" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="TY: " Width="30" />
+                            <Label x:Name="touchYValLb" Content="" Width="50" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
             <Border Grid.Column="1" BorderThickness="1" BorderBrush="{DynamicResource ForegroundColor}">
-                <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
-                    <StackPanel Margin="0,0,10,0">
+                <StackPanel Orientation="Horizontal" Margin="6" HorizontalAlignment="Center">
+                    <StackPanel Margin="0,0,6,0">
                         <Label Content="{lex:Loc Gyro}" HorizontalAlignment="Center" Padding="0"/>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Yaw" Width="40" />

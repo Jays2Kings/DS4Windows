@@ -308,6 +308,9 @@ namespace DS4WinWPF.DS4Forms
                     accelYSlider.Value = exposeState.getAccelY();
                     accelZSlider.Value = exposeState.getAccelZ();
 
+                    touchXValLb.Content = baseState.TrackPadTouch0.X;
+                    touchYValLb.Content = baseState.TrackPadTouch0.Y;
+
                     double latency = ds.Latency;
                     int warnInterval = ds.getWarnInterval();
                     inputDelayLb.Content = string.Format(Properties.Resources.InputDelay,

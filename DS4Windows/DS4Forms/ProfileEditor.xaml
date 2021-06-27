@@ -831,10 +831,10 @@
                                             Similar to Normal Two Stage Trigger mode with one difference. Activates Soft Pull action when under maximum output. Activates Full Pull action as well when trigger reaches maximum value. When the trigger is partially released from Full Pull, both Full Pull and Soft Pull actions deactivate. Activating Full Pull action will activate the Soft Pull again as well.<LineBreak />
                                             <LineBreak />
                                             <Bold>Hip Fire</Bold><LineBreak />
-                                            Takes the <Bold>Hip Fire Delay</Bold> time into account. The trigger will not activate an action until the time has expired. Once the time has expired, the current action for the trigger output will be determined. This mode allows skipping the activation of Soft Pull and only firing a Full Pull action.
+                                            Takes the <Bold>Hip Fire Delay</Bold> time into account. The trigger will not activate an action until the time has expired. Once the time has expired, the current action for the trigger output will be determined. This mode allows skipping the activation of Soft Pull and only firing a Full Pull action.<LineBreak />
                                             <LineBreak />
                                             <Bold>Hip Fire Exclusive</Bold><LineBreak />
-                                            Similar to Hip Fire mode. The main difference is only one action will ever be activated.<LineBreak />
+                                            Similar to Hip Fire mode. The main difference is only one action will ever be activated.
                                         </TextBlock>
                                     </ComboBox.ToolTip>
                                 </ComboBox>
@@ -856,10 +856,10 @@
                                             Similar to Normal Two Stage Trigger mode with one difference. Activates Soft Pull action when under maximum output. Activates Full Pull action as well when trigger reaches maximum value. When the trigger is partially released from Full Pull, both Full Pull and Soft Pull actions deactivate. Activating Full Pull action will activate the Soft Pull again as well.<LineBreak />
                                             <LineBreak />
                                             <Bold>Hip Fire</Bold><LineBreak />
-                                            Takes the <Bold>Hip Fire Delay</Bold> time into account. The trigger will not activate an action until the time has expired. Once the time has expired, the current action for the trigger output will be determined. This mode allows skipping the activation of Soft Pull and only firing a Full Pull action.
+                                            Takes the <Bold>Hip Fire Delay</Bold> time into account. The trigger will not activate an action until the time has expired. Once the time has expired, the current action for the trigger output will be determined. This mode allows skipping the activation of Soft Pull and only firing a Full Pull action.<LineBreak />
                                             <LineBreak />
                                             <Bold>Hip Fire Exclusive</Bold><LineBreak />
-                                            Similar to Hip Fire mode. The main difference is only one action will ever be activated.<LineBreak />
+                                            Similar to Hip Fire mode. The main difference is only one action will ever be activated.
                                         </TextBlock>
                                     </ComboBox.ToolTip>
                                 </ComboBox>
@@ -912,7 +912,7 @@
                             </Grid>
                         </GroupBox>
 
-                        <GroupBox Header="SixAxis">
+                        <GroupBox Header="SixAxis (Accel)">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition></RowDefinition>

@@ -9,3 +9,4 @@
 * ~~Include PurgeOldXInput helper app~~
 * ~~Look into final DS4Updater check in DS4Updater app. Batch script seems to get launched even when the updater is already up to date~~
 * Bundle trimmed ManagedDevcon assembly with PurgeOldXInput. DIFxAPI causing false positivies in VirusTotal.
+* Determine output behavior for Outer Bind Button. Currently treated as a virtual trigger. Steam treats its version like a normal button (no analog)

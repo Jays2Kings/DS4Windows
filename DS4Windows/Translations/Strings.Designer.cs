@@ -1126,7 +1126,7 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Action to execute when stick travel reaches past a treshold. Invert casues the action to fire up until the threshold.
+        ///   Looks up a localized string similar to Action to execute when stick travel reaches past a treshold. Useful for mapping keys for Walk or Sprint actions. Invert casues the action to fire up until the threshold.
         /// </summary>
         public static string StickOuterBindTooltip {
             get {

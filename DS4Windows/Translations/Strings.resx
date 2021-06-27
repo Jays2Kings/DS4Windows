@@ -527,6 +527,6 @@ Example: whyme_DS4Windows</value>
     <value>Have outer bind fire before reaching a threshold. Action releases once the threshold has been exceeded</value>
   </data>
   <data name="StickOuterBindTooltip" xml:space="preserve">
-    <value>Action to execute when stick travel reaches past a treshold. Invert casues the action to fire up until the threshold</value>
+    <value>Action to execute when stick travel reaches past a treshold. Useful for mapping keys for Walk or Sprint actions. Invert casues the action to fire up until the threshold</value>
   </data>
 </root>

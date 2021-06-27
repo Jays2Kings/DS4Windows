@@ -520,4 +520,13 @@ Example: whyme_DS4Windows</value>
   <data name="TouchpadTrackballFrictionTooltip" xml:space="preserve">
     <value>Add friction to virtual Trackball. Decreased friction will increase final mouse cursor travel time</value>
   </data>
+  <data name="StickOuterBindDeadTooltip" xml:space="preserve">
+    <value>Threshold for when an action will fire</value>
+  </data>
+  <data name="StickOuterBindInvertTooltip" xml:space="preserve">
+    <value>Have outer bind fire before reaching a threshold. Action releases once the threshold has been exceeded</value>
+  </data>
+  <data name="StickOuterBindTooltip" xml:space="preserve">
+    <value>Action to execute when stick travel reaches past a treshold. Invert casues the action to fire up until the threshold</value>
+  </data>
 </root>

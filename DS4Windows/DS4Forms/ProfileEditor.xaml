@@ -428,7 +428,7 @@
                                                 <DockPanel Grid.Row="8" Grid.Column="1">
                                                     <Button Content="Outer Bind" MinWidth="40" Tag="{Binding LSOuterBind, Source={StaticResource controlIndexCheck}}"
                                                             Click="StickOuterBindButton_Click"
-                                                            Margin="{StaticResource spaceMargin}" DockPanel.Dock="Top" />
+                                                            Margin="{StaticResource spaceMargin}" ToolTip="{lex:Loc StickOuterBindTooltip}"  DockPanel.Dock="Top" />
                                                     <Label x:Name="lsOuterBindLb" Content="{Binding MappingName,FallbackValue=Unassigned}"
                                                         Margin="{StaticResource spaceMargin}" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
                                                 </DockPanel>
@@ -437,8 +437,8 @@
                                                 <DockPanel Grid.Row="9" Grid.Column="1">
                                                     <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding LSOuterBindDead}"
                                                        MinWidth="100" Minimum="0.0" Maximum="1.0" Increment="0.1"
-                                                       Margin="{StaticResource spaceMargin}" DockPanel.Dock="Top" />
-                                                    <CheckBox Content="Invert" IsChecked="{Binding LSOuterBindInvert}" DockPanel.Dock="Top" HorizontalAlignment="Right" />
+                                                       Margin="{StaticResource spaceMargin}" ToolTip="{lex:Loc StickOuterBindDeadTooltip}" DockPanel.Dock="Top" />
+                                                    <CheckBox Content="Invert" IsChecked="{Binding LSOuterBindInvert}" ToolTip="{lex:Loc StickOuterBindInvertTooltip}" DockPanel.Dock="Top" HorizontalAlignment="Right" />
                                                 </DockPanel>
                                             </Grid>
                                         </DockPanel>
@@ -664,7 +664,7 @@
                                                 <DockPanel Grid.Row="8" Grid.Column="1">
                                                     <Button Content="Outer Bind" MinWidth="40" Tag="{Binding RSOuterBind, Source={StaticResource controlIndexCheck}}"
                                                         Click="StickOuterBindButton_Click"
-                                                        Margin="{StaticResource spaceMargin}" DockPanel.Dock="Top" />
+                                                        Margin="{StaticResource spaceMargin}" ToolTip="{lex:Loc StickOuterBindTooltip}" DockPanel.Dock="Top" />
                                                     <Label x:Name="rsOuterBindLb" Content="{Binding MappingName,FallbackValue=Unassigned}"
                                                         Margin="{StaticResource spaceMargin}" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
                                                 </DockPanel>
@@ -673,8 +673,8 @@
                                                 <DockPanel Grid.Row="9" Grid.Column="1">
                                                     <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding RSOuterBindDead}"
                                                        MinWidth="100" Minimum="0.0" Maximum="1.0" Increment="0.1"
-                                                       Margin="{StaticResource spaceMargin}" DockPanel.Dock="Top" />
-                                                    <CheckBox Content="Invert" IsChecked="{Binding RSOuterBindInvert}" DockPanel.Dock="Top" HorizontalAlignment="Right" />
+                                                       Margin="{StaticResource spaceMargin}" ToolTip="{lex:Loc StickOuterBindDeadTooltip}"  DockPanel.Dock="Top" />
+                                                    <CheckBox Content="Invert" IsChecked="{Binding RSOuterBindInvert}" ToolTip="{lex:Loc StickOuterBindInvertTooltip}" DockPanel.Dock="Top" HorizontalAlignment="Right" />
                                                 </DockPanel>
                                             </Grid>
                                         </DockPanel>

@@ -1108,6 +1108,33 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Threshold for when an action will fire.
+        /// </summary>
+        public static string StickOuterBindDeadTooltip {
+            get {
+                return ResourceManager.GetString("StickOuterBindDeadTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Have outer bind fire before reaching a threshold. Action releases once the threshold has been exceeded.
+        /// </summary>
+        public static string StickOuterBindInvertTooltip {
+            get {
+                return ResourceManager.GetString("StickOuterBindInvertTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Action to execute when stick travel reaches past a treshold. Invert casues the action to fire up until the threshold.
+        /// </summary>
+        public static string StickOuterBindTooltip {
+            get {
+                return ResourceManager.GetString("StickOuterBindTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stop.
         /// </summary>
         public static string StopText {

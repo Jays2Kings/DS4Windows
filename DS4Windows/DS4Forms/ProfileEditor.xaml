@@ -390,8 +390,13 @@
                                                 <DockPanel Grid.Row="4" Grid.Column="1">
                                                     <TextBlock Text="&#xb0;" DockPanel.Dock="Right" FontSize="18" Margin="{StaticResource spaceMargin}" />
                                                     <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding LSRotation}"
-                                                    Minimum="-180" Maximum="180"
-                                                    Margin="{StaticResource spaceMargin}" />
+                                                        Minimum="-180" Maximum="180"
+                                                        Margin="{StaticResource spaceMargin}">
+                                                        <xctk:IntegerUpDown.ToolTip>
+                                                            <TextBlock TextWrapping="Wrap" Text="{lex:Loc StickRotationTooltip}">
+                                                            </TextBlock>
+                                                        </xctk:IntegerUpDown.ToolTip>
+                                                    </xctk:IntegerUpDown>
                                                 </DockPanel>
 
                                                 <Label Content="Fuzz:" Grid.Row="5" Grid.Column="0" />
@@ -626,8 +631,13 @@
                                                 <DockPanel Grid.Row="4" Grid.Column="1">
                                                     <TextBlock Text="&#xb0;" DockPanel.Dock="Right" FontSize="18" Margin="{StaticResource spaceMargin}" />
                                                     <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding RSRotation}"
-                                                    Minimum="-180" Maximum="180"
-                                                    Margin="{StaticResource spaceMargin}" />
+                                                        Minimum="-180" Maximum="180"
+                                                        Margin="{StaticResource spaceMargin}">
+                                                        <xctk:IntegerUpDown.ToolTip>
+                                                            <TextBlock TextWrapping="Wrap" Text="{lex:Loc StickRotationTooltip}">
+                                                            </TextBlock>
+                                                        </xctk:IntegerUpDown.ToolTip>
+                                                    </xctk:IntegerUpDown>
                                                 </DockPanel>
 
                                                 <Label Content="Fuzz:" Grid.Row="5" Grid.Column="0" />
@@ -1281,7 +1291,7 @@
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <Label Content="Output Mode" />
                             <ComboBox x:Name="gyroOutModeCombo" Width="160" SelectedIndex="{Binding GyroOutModeIndex, FallbackValue=0}" VerticalContentAlignment="Center" Margin="10,0,0,0">
-                                <ComboBoxItem Content="Controls" />
+                                <ComboBoxItem Content="Controls (Accel)" />
                                 <ComboBoxItem Content="Mouse" />
                                 <ComboBoxItem Content="Mouse Joystick" />
                                 <ComboBoxItem Content="Directional Swipe" />

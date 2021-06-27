@@ -8,3 +8,4 @@
 * Add absolute mouse options for various output types (Sticks and Touchpad)
 * ~~Include PurgeOldXInput helper app~~
 * ~~Look into final DS4Updater check in DS4Updater app. Batch script seems to get launched even when the updater is already up to date~~
+* Bundle trimmed ManagedDevcon assembly with PurgeOldXInput. DIFxAPI causing false positivies in VirusTotal.

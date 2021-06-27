@@ -258,30 +258,31 @@ namespace DS4WinWPF.DS4Forms
             hoverIndexes[r2ConBtn] = 15;
             hoverIndexes[l3ConBtn] = 16;
             hoverIndexes[r3ConBtn] = 17;
-            hoverIndexes[leftTouchConBtn] = 18;
-            hoverIndexes[rightTouchConBtn] = 19;
-            hoverIndexes[multiTouchConBtn] = 20;
-            hoverIndexes[topTouchConBtn] = 21;
 
-            hoverIndexes[lsuConBtn] = 22;
-            hoverIndexes[lsdConBtn] = 23;
-            hoverIndexes[lslConBtn] = 24;
-            hoverIndexes[lsrConBtn] = 25;
+            hoverIndexes[leftTouchConBtn] = 21;
+            hoverIndexes[rightTouchConBtn] = 22;
+            hoverIndexes[multiTouchConBtn] = 23;
+            hoverIndexes[topTouchConBtn] = 24;
 
-            hoverIndexes[rsuConBtn] = 26;
-            hoverIndexes[rsdConBtn] = 27;
-            hoverIndexes[rslConBtn] = 28;
-            hoverIndexes[rsrConBtn] = 29;
+            hoverIndexes[lsuConBtn] = 25;
+            hoverIndexes[lsdConBtn] = 26;
+            hoverIndexes[lslConBtn] = 27;
+            hoverIndexes[lsrConBtn] = 28;
 
-            hoverIndexes[gyroZNBtn] = 30;
-            hoverIndexes[gyroZPBtn] = 31;
-            hoverIndexes[gyroXNBtn] = 32;
-            hoverIndexes[gyroXPBtn] = 33;
+            hoverIndexes[rsuConBtn] = 29;
+            hoverIndexes[rsdConBtn] = 30;
+            hoverIndexes[rslConBtn] = 31;
+            hoverIndexes[rsrConBtn] = 32;
 
-            hoverIndexes[swipeUpBtn] = 34;
-            hoverIndexes[swipeDownBtn] = 35;
-            hoverIndexes[swipeLeftBtn] = 36;
-            hoverIndexes[swipeRightBtn] = 37;
+            hoverIndexes[gyroZNBtn] = 33;
+            hoverIndexes[gyroZPBtn] = 34;
+            hoverIndexes[gyroXNBtn] = 35;
+            hoverIndexes[gyroXPBtn] = 36;
+
+            hoverIndexes[swipeUpBtn] = 37;
+            hoverIndexes[swipeDownBtn] = 38;
+            hoverIndexes[swipeLeftBtn] = 39;
+            hoverIndexes[swipeRightBtn] = 40;
         }
 
         private void PopulateHoverLocations()

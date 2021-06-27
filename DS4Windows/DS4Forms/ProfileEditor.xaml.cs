@@ -259,10 +259,10 @@ namespace DS4WinWPF.DS4Forms
             hoverIndexes[l3ConBtn] = 16;
             hoverIndexes[r3ConBtn] = 17;
 
-            hoverIndexes[leftTouchConBtn] = 21;
-            hoverIndexes[rightTouchConBtn] = 22;
-            hoverIndexes[multiTouchConBtn] = 23;
-            hoverIndexes[topTouchConBtn] = 24;
+            hoverIndexes[leftTouchConBtn] = mappingListVM.ControlIndexMap[DS4Controls.TouchLeft]; // 21
+            hoverIndexes[rightTouchConBtn] = mappingListVM.ControlIndexMap[DS4Controls.TouchRight]; // 22
+            hoverIndexes[multiTouchConBtn] = mappingListVM.ControlIndexMap[DS4Controls.TouchMulti]; // 23
+            hoverIndexes[topTouchConBtn] = mappingListVM.ControlIndexMap[DS4Controls.TouchUpper]; // 24
 
             hoverIndexes[lsuConBtn] = 25;
             hoverIndexes[lsdConBtn] = 26;

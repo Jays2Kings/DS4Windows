@@ -28,8 +28,16 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public event EventHandler SelectedIndexChanged;
 
-        private Dictionary<DS4Controls, MappedControl> controlMap = new Dictionary<DS4Controls, MappedControl>();
+        private Dictionary<DS4Controls, MappedControl> controlMap =
+            new Dictionary<DS4Controls, MappedControl>();
         public Dictionary<DS4Controls, MappedControl> ControlMap { get => controlMap; }
+
+        /// <summary>
+        /// DS4Controls -> Int index map. Store approriate list index for a stored MappedControl instance
+        /// </summary>
+        private Dictionary<DS4Controls, int> controlIndexMap =
+            new Dictionary<DS4Controls, int>();
+        public Dictionary<DS4Controls, int> ControlIndexMap { get => controlIndexMap; }
 
         private MappedControl l2FullPullControl;
         public MappedControl L2FullPullControl { get => l2FullPullControl; }
@@ -99,9 +107,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             mappings.Add(new MappedControl(devIndex, DS4Controls.SwipeLeft, "Swipe Left", devType));
             mappings.Add(new MappedControl(devIndex, DS4Controls.SwipeRight, "Swipe Right", devType));
 
+            int controlIndex = 0;
             foreach (MappedControl mapped in mappings)
             {
                 controlMap.Add(mapped.Control, mapped);
+                controlIndexMap.Add(mapped.Control, controlIndex);
+                controlIndex++;
             }
 
             /*

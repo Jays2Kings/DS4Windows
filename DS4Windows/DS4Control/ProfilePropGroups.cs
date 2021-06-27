@@ -27,7 +27,7 @@ namespace DS4Windows
         public const int DEFAULT_FUZZ = 0;
         public const DeadZoneType DEFAULT_DEADZONE_TYPE = DeadZoneType.Radial;
         public const double DEFAULT_VERTICAL_SCALE = 100.0;
-        public const double DEFAULT_OUTER_BIND_DEAD = 80.0;
+        public const double DEFAULT_OUTER_BIND_DEAD = 75.0;
         public const bool DEFAULT_OUTER_BIND_INVERT = false;
 
         public class AxisDeadZoneInfo

@@ -488,7 +488,7 @@ Example: whyme_DS4Windows</value>
     <value>Changes take effect on new device connection</value>
   </data>
   <data name="StickFuzzTooltip" xml:space="preserve">
-    <value>Fuzz specifies the minimum number of units the analog stick moves before the output is registered as changed in the mapper. This setting can be useful for worn sticks that cannot maintain a constant position. The value is expressed in raw stick units.</value>
+    <value>Fuzz specifies the minimum number of units the analog stick moves, in active zone, before the output is registered as changed in the mapper. This setting can be useful for worn sticks that cannot maintain a constant position. The value is expressed in raw stick units.</value>
   </data>
   <data name="StickMaxOutputForceTooltip" xml:space="preserve">
     <value>Always enforce max output setting. Useful for 100% Max Output and confining value to a circular output value</value>
@@ -528,5 +528,8 @@ Example: whyme_DS4Windows</value>
   </data>
   <data name="StickOuterBindTooltip" xml:space="preserve">
     <value>Action to execute when stick travel reaches past a treshold. Useful for mapping keys for Walk or Sprint actions. Invert casues the action to fire up until the threshold</value>
+  </data>
+  <data name="SASteeringWheelFuzzTooltip" xml:space="preserve">
+    <value>Fuzz specifies the minimum number of device units, in active zone, that the Accel has to be rotated before the output is registered as changed in the mapper. The value is expressed in raw Accel units.</value>
   </data>
 </root>

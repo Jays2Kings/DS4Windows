@@ -1396,7 +1396,7 @@
                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                                         <Label Content="Fuzz:" />
                                         <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding SASteeringWheelFuzz}"
-                                                    Minimum="0" Maximum="100"
+                                                    Minimum="0" Maximum="100" ToolTip="{lex:Loc SASteeringWheelFuzzTooltip}"
                                                     Margin="{StaticResource spaceMargin}" />
                                         <TextBlock Text="units" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
                                     </StackPanel>

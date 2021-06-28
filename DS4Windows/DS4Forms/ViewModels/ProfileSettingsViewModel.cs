@@ -580,8 +580,16 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public bool DInputOnly
         {
             get => Global.DinputOnly[device];
-            set => Global.DinputOnly[device] = value;
+            set
+            {
+                bool temp = Global.DinputOnly[device];
+                if (temp == value) return;
+
+                Global.DinputOnly[device] = value;
+                DInputOnlyChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
+        public EventHandler DInputOnlyChanged;
 
         public bool IdleDisconnectExists
         {

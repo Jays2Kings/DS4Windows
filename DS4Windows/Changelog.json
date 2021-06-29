@@ -1,9 +1,42 @@
 {
-  "latest_version": "3.0.10",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 10},
-  "updated_at": "2021-06-22T16:13:13+0000",
+  "latest_version": "3.0.11",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 11},
+  "updated_at": "2021-06-29T23:15:01+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.0.11",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 11},
+      "base_header": "Version 3.0.11",
+      "release_date": "2021-06-29T23:15:01+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.11",
+          "log_text": ["* Group and move Virtual Controller options in Other tab. Contribution by **Kanuan**",
+            "* Fixed MODIFIER_ENHANCED value for FakerInput mapping",
+            "* Fixed Alt, Windows, and other modifier keys mapping for FakerInput",
+            "* Fixed Stick to Mouse Wheel routine for SendInput output",
+            "* Fixed tray menu profile selection for names with underscores",
+            "* Added many tooltip strings in Profile Editor",
+            "* Fixed RenameProfileWindow closing early due to early DialogResult assignment. Property calls Close on the Window",
+            "* Removed BitChute social link",
+            "* Fixed display of CheckEveryUnit combobox in Settings tab. Not sure when VS changed that portion of the XAML",
+            "* Removed obsolete 'Hide DS4 Controller' option again. Can't have options",
+            "* Added ScrollViewer to Other tab in Profile Editor. Enough controls in tab to justify it",
+            "* Added force option for LS and RS MaxOutput. Allow 100% forced circular max output for sticks",
+            "* Made Capture, SL, and SR buttons mappable",
+            "* Created Outer Button bindings for LS and RS. Allows extra distance action for the sticks like Walk or Sprint",
+            "* Display Touchpad X and Y in Controller Readings tab",
+            "* Increased HID report input buffer to 3 rather than 2. Not sure it will really matter",
+            "* Disabled broken DS4 feedback support **again**. Can't have semi-nice things. **Don't bring it up again until at least the next ViGEmBus driver update**",
+            "* Added change to not send Profile loaded message for secondary JoyCon in Joined mode"],
+          "editor": "ryochan7",
+          "editors_note": ["Done dealing with the average gamer (DSP)"],
+          "updated_at": "2021-06-29T23:15:01+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.0.10",
       "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 10},

@@ -2163,17 +2163,21 @@ namespace DS4Windows
 
                 if (device.firstReport && device.isSynced())
                 {
-                    if (File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[ind] + ".xml"))
+                    // Only send Log message when device is considered a primary device
+                    if (device.PrimaryDevice)
                     {
-                        string prolog = string.Format(DS4WinWPF.Properties.Resources.UsingProfile, (ind + 1).ToString(), ProfilePath[ind], $"{device.Battery}");
-                        LogDebug(prolog);
-                        AppLogger.LogToTray(prolog);
-                    }
-                    else
-                    {
-                        string prolog = string.Format(DS4WinWPF.Properties.Resources.NotUsingProfile, (ind + 1).ToString(), $"{device.Battery}");
-                        LogDebug(prolog);
-                        AppLogger.LogToTray(prolog);
+                        if (File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[ind] + ".xml"))
+                        {
+                            string prolog = string.Format(DS4WinWPF.Properties.Resources.UsingProfile, (ind + 1).ToString(), ProfilePath[ind], $"{device.Battery}");
+                            LogDebug(prolog);
+                            AppLogger.LogToTray(prolog);
+                        }
+                        else
+                        {
+                            string prolog = string.Format(DS4WinWPF.Properties.Resources.NotUsingProfile, (ind + 1).ToString(), $"{device.Battery}");
+                            LogDebug(prolog);
+                            AppLogger.LogToTray(prolog);
+                        }
                     }
 
                     device.firstReport = false;
@@ -2186,7 +2190,9 @@ namespace DS4Windows
                 }
 
                 if (getEnableTouchToggle(ind))
+                {
                     CheckForTouchToggle(ind, cState, pState);
+                }
 
                 cState = Mapping.SetCurveAndDeadzone(ind, cState, TempState[ind]);
 

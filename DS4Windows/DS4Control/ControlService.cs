@@ -814,81 +814,81 @@ namespace DS4Windows
                 tempXbox.cont.FeedbackReceived += p;
                 tempXbox.forceFeedbacksDict.Add(index, p);
             }
-            else if (contType == OutContType.DS4)
-            {
-                DS4OutDevice tempDS4 = outDevice as DS4OutDevice;
-                LightbarSettingInfo deviceLightbarSettingsInfo = Global.LightbarSettingsInfo[devIndex];
+            //else if (contType == OutContType.DS4)
+            //{
+            //    DS4OutDevice tempDS4 = outDevice as DS4OutDevice;
+            //    LightbarSettingInfo deviceLightbarSettingsInfo = Global.LightbarSettingsInfo[devIndex];
 
-                Nefarius.ViGEm.Client.Targets.DualShock4FeedbackReceivedEventHandler p = (sender, args) =>
-                {
-                    bool useRumble = false; bool useLight = false;
-                    byte largeMotor = args.LargeMotor;
-                    byte smallMotor = args.SmallMotor;
-                    //SetDevRumble(device, largeMotor, smallMotor, devIndex);
-                    DS4Color color = new DS4Color(args.LightbarColor.Red,
-                            args.LightbarColor.Green,
-                            args.LightbarColor.Blue);
+            //    Nefarius.ViGEm.Client.Targets.DualShock4FeedbackReceivedEventHandler p = (sender, args) =>
+            //    {
+            //        bool useRumble = false; bool useLight = false;
+            //        byte largeMotor = args.LargeMotor;
+            //        byte smallMotor = args.SmallMotor;
+            //        //SetDevRumble(device, largeMotor, smallMotor, devIndex);
+            //        DS4Color color = new DS4Color(args.LightbarColor.Red,
+            //                args.LightbarColor.Green,
+            //                args.LightbarColor.Blue);
 
-                    //Console.WriteLine("IN EVENT");
-                    //Console.WriteLine("Rumble ({0}, {1}) | Light ({2}, {3}, {4}) {5}",
-                    //    largeMotor, smallMotor, color.red, color.green, color.blue, DateTime.Now.ToString("hh:mm:ss.FFFF"));
+            //        //Console.WriteLine("IN EVENT");
+            //        //Console.WriteLine("Rumble ({0}, {1}) | Light ({2}, {3}, {4}) {5}",
+            //        //    largeMotor, smallMotor, color.red, color.green, color.blue, DateTime.Now.ToString("hh:mm:ss.FFFF"));
 
-                    if (largeMotor != 0 || smallMotor != 0)
-                    {
-                        useRumble = true;
-                    }
+            //        if (largeMotor != 0 || smallMotor != 0)
+            //        {
+            //            useRumble = true;
+            //        }
 
-                    // Let games to control lightbar only when the mode is Passthru (otherwise DS4Windows controls the light)
-                    if (deviceLightbarSettingsInfo.Mode == LightbarMode.Passthru && (color.red != 0 || color.green != 0 || color.blue != 0))
-                    {
-                        useLight = true;
-                    }
+            //        // Let games to control lightbar only when the mode is Passthru (otherwise DS4Windows controls the light)
+            //        if (deviceLightbarSettingsInfo.Mode == LightbarMode.Passthru && (color.red != 0 || color.green != 0 || color.blue != 0))
+            //        {
+            //            useLight = true;
+            //        }
 
-                    if (!useRumble && !useLight)
-                    {
-                        //Console.WriteLine("Fallback");
-                        if (device.LeftHeavySlowRumble != 0 || device.RightLightFastRumble != 0)
-                        {
-                            useRumble = true;
-                        }
-                        else if (deviceLightbarSettingsInfo.Mode == LightbarMode.Passthru &&
-                            (device.LightBarColor.red != 0 ||
-                            device.LightBarColor.green != 0 ||
-                            device.LightBarColor.blue != 0))
-                        {
-                            useLight = true;
-                        }
-                    }
+            //        if (!useRumble && !useLight)
+            //        {
+            //            //Console.WriteLine("Fallback");
+            //            if (device.LeftHeavySlowRumble != 0 || device.RightLightFastRumble != 0)
+            //            {
+            //                useRumble = true;
+            //            }
+            //            else if (deviceLightbarSettingsInfo.Mode == LightbarMode.Passthru &&
+            //                (device.LightBarColor.red != 0 ||
+            //                device.LightBarColor.green != 0 ||
+            //                device.LightBarColor.blue != 0))
+            //            {
+            //                useLight = true;
+            //            }
+            //        }
 
-                    if (useRumble)
-                    {
-                        //Console.WriteLine("Perform rumble");
-                        SetDevRumble(device, largeMotor, smallMotor, devIndex);
-                    }
+            //        if (useRumble)
+            //        {
+            //            //Console.WriteLine("Perform rumble");
+            //            SetDevRumble(device, largeMotor, smallMotor, devIndex);
+            //        }
 
-                    if (useLight)
-                    {
-                        //Console.WriteLine("Change lightbar color");
-                        /*DS4HapticState haptics = new DS4HapticState
-                        {
-                            LightBarColor = color,
-                        };
-                        device.SetHapticState(ref haptics);
-                        */
+            //        if (useLight)
+            //        {
+            //            //Console.WriteLine("Change lightbar color");
+            //            /*DS4HapticState haptics = new DS4HapticState
+            //            {
+            //                LightBarColor = color,
+            //            };
+            //            device.SetHapticState(ref haptics);
+            //            */
 
-                        DS4LightbarState lightState = new DS4LightbarState
-                        {
-                            LightBarColor = color,
-                        };
-                        device.SetLightbarState(ref lightState);
-                    }
+            //            DS4LightbarState lightState = new DS4LightbarState
+            //            {
+            //                LightBarColor = color,
+            //            };
+            //            device.SetLightbarState(ref lightState);
+            //        }
 
-                    //Console.WriteLine();
-                };
+            //        //Console.WriteLine();
+            //    };
 
-                tempDS4.cont.FeedbackReceived += p;
-                tempDS4.forceFeedbacksDict.Add(index, p);
-            }
+            //    tempDS4.cont.FeedbackReceived += p;
+            //    tempDS4.forceFeedbacksDict.Add(index, p);
+            //}
         }
 
         public void RemoveOutFeedback(OutContType contType, OutputDevice outDevice, int inIdx)
@@ -900,13 +900,13 @@ namespace DS4Windows
                 //tempXbox.cont.FeedbackReceived -= tempXbox.forceFeedbackCall;
                 //tempXbox.forceFeedbackCall = null;
             }
-            else if (contType == OutContType.DS4)
-            {
-                DS4OutDevice tempDS4 = outDevice as DS4OutDevice;
-                tempDS4.RemoveFeedback(inIdx);
-                //tempDS4.cont.FeedbackReceived -= tempDS4.forceFeedbackCall;
-                //tempDS4.forceFeedbackCall = null;
-            }
+            //else if (contType == OutContType.DS4)
+            //{
+            //    DS4OutDevice tempDS4 = outDevice as DS4OutDevice;
+            //    tempDS4.RemoveFeedback(inIdx);
+            //    //tempDS4.cont.FeedbackReceived -= tempDS4.forceFeedbackCall;
+            //    //tempDS4.forceFeedbackCall = null;
+            //}
         }
 
         public void AttachNewUnboundOutDev(OutContType contType)

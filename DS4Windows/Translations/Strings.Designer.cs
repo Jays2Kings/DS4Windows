@@ -1162,6 +1162,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Throttle low end of Touchpad movement. Reduces accidental mouse cursor movement when holding a mostly fixed position on the Touchpad.
+        /// </summary>
+        public static string TouchpadJitterCompTooltip {
+            get {
+                return ResourceManager.GetString("TouchpadJitterCompTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minimum calculated output travel before a Mouse event is sent to the system.
         /// </summary>
         public static string TouchpadMinThresholdTooltip {

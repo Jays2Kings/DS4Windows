@@ -535,4 +535,7 @@ Example: whyme_DS4Windows</value>
   <data name="StickRotationTooltip" xml:space="preserve">
     <value>The rotation setting is meant to help correct the orientation of an analog stick if your thumb is slightly shifted when moving an analog stick. For example, your thumb might be slightly shifted from center when the analog stick is moved fully north. My thumbs shift slightly to the right when moving an analog stick fully north due to the way my hands grip the DS4. The value used denotes the number of degrees used to adjust the final axis output value. Values allows range from -180 to 180. Default is 0.</value>
   </data>
+  <data name="TouchpadJitterCompTooltip" xml:space="preserve">
+    <value>Throttle low end of Touchpad movement. Reduces accidental mouse cursor movement when holding a mostly fixed position on the Touchpad</value>
+  </data>
 </root>

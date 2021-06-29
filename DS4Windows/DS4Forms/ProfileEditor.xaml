@@ -1139,7 +1139,7 @@
                                     </StackPanel>
 
                                     <CheckBox Content="Jitter Compensation" Grid.Row="0" Grid.Column="1" IsChecked="{Binding TouchJitter}" VerticalAlignment="Center"
-                                                          ToolTip="{lex:Loc Resources:Jitter}" />
+                                                          ToolTip="{lex:Loc TouchpadJitterCompTooltip}" />
 
                                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="{StaticResource spaceMargin}">
                                         <CheckBox Content="{lex:Loc TouchTap}" IsChecked="{Binding TouchTapExists}" VerticalAlignment="Center" ToolTip="{lex:Loc TouchpadTapTooltip}" />

@@ -2019,18 +2019,6 @@ namespace DS4Windows
             //return m_Config.r2Maxzone[index];
         }
 
-        public static int[] LSCurve => m_Config.lsCurve;
-        public static int getLSCurve(int index)
-        {
-            return m_Config.lsCurve[index];
-        }
-
-        public static int[] RSCurve => m_Config.rsCurve;
-        public static int getRSCurve(int index)
-        {
-            return m_Config.rsCurve[index];
-        }
-
         public static double[] LSRotation => m_Config.LSRotation;
         public static double getLSRotation(int index)
         {
@@ -2963,8 +2951,6 @@ namespace DS4Windows
         public int[] sASteeringWheelEmulationRange = new int[Global.TEST_PROFILE_ITEM_COUNT] { 360, 360, 360, 360, 360, 360, 360, 360, 360 };
         public int[][] touchDisInvertTriggers = new int[Global.TEST_PROFILE_ITEM_COUNT][] { new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 },
             new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 } };
-        public int[] lsCurve = new int[Global.TEST_PROFILE_ITEM_COUNT] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        public int[] rsCurve = new int[Global.TEST_PROFILE_ITEM_COUNT] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         public Boolean useExclusiveMode = false; // Re-enable Ex Mode
         public Int32 formWidth = 782;
         public Int32 formHeight = 550;
@@ -3627,8 +3613,6 @@ namespace DS4Windows
                 XmlNode xmlGyroSwipeDelayTime = m_Xdoc.CreateNode(XmlNodeType.Element, "DelayTime", null); xmlGyroSwipeDelayTime.InnerText = gyroSwipeInfo[device].delayTime.ToString(); xmlGyroSwipeSettingsElement.AppendChild(xmlGyroSwipeDelayTime);
                 rootElement.AppendChild(xmlGyroSwipeSettingsElement);
 
-                XmlNode xmlLSC = m_Xdoc.CreateNode(XmlNodeType.Element, "LSCurve", null); xmlLSC.InnerText = lsCurve[device].ToString(); rootElement.AppendChild(xmlLSC);
-                XmlNode xmlRSC = m_Xdoc.CreateNode(XmlNodeType.Element, "RSCurve", null); xmlRSC.InnerText = rsCurve[device].ToString(); rootElement.AppendChild(xmlRSC);
                 XmlNode xmlProfileActions = m_Xdoc.CreateNode(XmlNodeType.Element, "ProfileActions", null); xmlProfileActions.InnerText = string.Join("/", profileActions[device]); rootElement.AppendChild(xmlProfileActions);
                 XmlNode xmlBTPollRate = m_Xdoc.CreateNode(XmlNodeType.Element, "BTPollRate", null); xmlBTPollRate.InnerText = btPollRate[device].ToString(); rootElement.AppendChild(xmlBTPollRate);
 
@@ -5337,12 +5321,6 @@ namespace DS4Windows
                     SetGyroMouseToggle(device, false, control);
                     missingSetting = true;
                 }
-
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSCurve"); int.TryParse(Item.InnerText, out lsCurve[device]); }
-                catch { lsCurve[device] = 0; missingSetting = true; }
-
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSCurve"); int.TryParse(Item.InnerText, out rsCurve[device]); }
-                catch { rsCurve[device] = 0; missingSetting = true; }
 
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/BTPollRate");
@@ -7201,7 +7179,6 @@ namespace DS4Windows
             saWheelFuzzValues[device] = 0;
             wheelSmoothInfo[device].Reset();
             touchDisInvertTriggers[device] = new int[1] { -1 };
-            lsCurve[device] = rsCurve[device] = 0;
             gyroSensitivity[device] = 100;
             gyroSensVerticalScale[device] = 100;
             gyroInvert[device] = 0;

@@ -1025,18 +1025,6 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
 
-        public int LSCurve
-        {
-            get => Global.LSCurve[device];
-            set => Global.LSCurve[device] = value;
-        }
-
-        public int RSCurve
-        {
-            get => Global.RSCurve[device];
-            set => Global.RSCurve[device] = value;
-        }
-
         public double LSRotation
         {
             get => Global.LSRotation[device] * 180.0 / Math.PI;

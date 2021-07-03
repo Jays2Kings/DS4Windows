@@ -12,4 +12,4 @@
 * Determine output behavior for Outer Bind Button. Currently treated as a virtual trigger. Steam treats its version like a normal button (no analog)
 * ~~Test Steam Input Gyro vs Touchpad mouse action priority. (Tested. Output actions are added together. Do not want)~~
 * Add Button Wheel sensitivity setting of some kind
-* Add Max Output Force option for Gyro Mouse-like Joystick
+* ~~Add Max Output Force option for Gyro Mouse-like Joystick~~

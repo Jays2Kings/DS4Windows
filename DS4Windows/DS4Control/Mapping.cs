@@ -4166,12 +4166,11 @@ namespace DS4Windows
             if (now >= oldnow + TimeSpan.FromMilliseconds(10) && !pressagain)
             {
                 oldnow = now;
-                byte value = getByteMapping(device, control, cState, eState, tp);
-                int dirMax = value >= 128 ? 127 : 128;
-                int dirValue = value - 128;
+                byte value = getByteMapping2(device, control, cState, eState, tp, fieldMappings[device]);
                 int wheelDir = down ? Global.outputKBMMapping.WHEEL_TICK_DOWN :
                     Global.outputKBMMapping.WHEEL_TICK_UP;
-                double ratio = Math.Abs(dirValue / (double)dirMax);
+                double ratio = value / 255.0;
+                //Debug.WriteLine(value);
 
                 // Use 4 runs as a full mouse wheel tick
                 double currentWheel = ratio / 4.0;

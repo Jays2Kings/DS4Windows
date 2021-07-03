@@ -3007,7 +3007,7 @@ namespace DS4Windows
                                                 stickWheelDownDir = !stickWheelDownDir;
                                             }
 
-                                            GetMouseWheelMapping(device, dcs.control, cState, eState, tp, false);
+                                            GetMouseWheelMapping(device, dcs.control, cState, eState, tp, fieldMapping, false);
                                         }
                                         else
                                         {
@@ -3029,7 +3029,7 @@ namespace DS4Windows
                                                 stickWheelDownDir = !stickWheelDownDir;
                                             }
 
-                                            GetMouseWheelMapping(device, dcs.control, cState, eState, tp, true);
+                                            GetMouseWheelMapping(device, dcs.control, cState, eState, tp, fieldMapping, true);
                                         }
                                         else
                                         {
@@ -4160,13 +4160,13 @@ namespace DS4Windows
         }
 
         private static void GetMouseWheelMapping(int device, DS4Controls control, DS4State cState,
-            DS4StateExposed eState, Mouse tp, bool down)
+            DS4StateExposed eState, Mouse tp, DS4StateFieldMapping fieldMap, bool down)
         {
             DateTime now = DateTime.UtcNow;
             if (now >= oldnow + TimeSpan.FromMilliseconds(10) && !pressagain)
             {
                 oldnow = now;
-                byte value = GetByteMapping2(device, control, cState, eState, tp, fieldMappings[device]);
+                byte value = GetByteMapping2(device, control, cState, eState, tp, fieldMap);
                 int wheelDir = down ? Global.outputKBMMapping.WHEEL_TICK_DOWN :
                     Global.outputKBMMapping.WHEEL_TICK_UP;
                 double ratio = value / 255.0;

@@ -3007,7 +3007,7 @@ namespace DS4Windows
                                                 stickWheelDownDir = !stickWheelDownDir;
                                             }
 
-                                            getMouseWheelMapping(device, dcs.control, cState, eState, tp, false);
+                                            GetMouseWheelMapping(device, dcs.control, cState, eState, tp, false);
                                         }
                                         else
                                         {
@@ -3029,7 +3029,7 @@ namespace DS4Windows
                                                 stickWheelDownDir = !stickWheelDownDir;
                                             }
 
-                                            getMouseWheelMapping(device, dcs.control, cState, eState, tp, true);
+                                            GetMouseWheelMapping(device, dcs.control, cState, eState, tp, true);
                                         }
                                         else
                                         {
@@ -4159,7 +4159,7 @@ namespace DS4Windows
             }
         }
 
-        private static void getMouseWheelMapping(int device, DS4Controls control, DS4State cState,
+        private static void GetMouseWheelMapping(int device, DS4Controls control, DS4State cState,
             DS4StateExposed eState, Mouse tp, bool down)
         {
             DateTime now = DateTime.UtcNow;

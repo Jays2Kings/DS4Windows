@@ -360,7 +360,7 @@ namespace DS4Windows
         private static bool stickWheelDownDir = false;
 
         //mapcustom
-        public static bool[] pressedonce = new bool[2400], macrodone = new bool[40];
+        public static bool[] pressedonce = new bool[2400], macrodone = new bool[48];
         static bool[] macroControl = new bool[26];
         static uint macroCount = 0;
         static Dictionary<string, Task>[] macroTaskQueue = new Dictionary<string, Task>[Global.MAX_DS4_CONTROLLER_COUNT] { new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>() };

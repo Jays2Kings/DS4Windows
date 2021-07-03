@@ -2890,19 +2890,19 @@ namespace DS4Windows
                     ushort value = Convert.ToUInt16(action.actionKey);
                     if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                     {
-						SyntheticState.KeyPresses kp;
-						if (!deviceState.keyPresses.TryGetValue(value, out kp))
-						{
-							deviceState.keyPresses[value] = kp = new SyntheticState.KeyPresses();
-							deviceState.nativeKeyAlias[value] = (ushort)actionAlias;
-						}
+                        SyntheticState.KeyPresses kp;
+                        if (!deviceState.keyPresses.TryGetValue(value, out kp))
+                        {
+                            deviceState.keyPresses[value] = kp = new SyntheticState.KeyPresses();
+                            deviceState.nativeKeyAlias[value] = (ushort)actionAlias;
+                        }
 
-						if (keyType.HasFlag(DS4KeyType.ScanCode))
-							kp.current.scanCodeCount++;
-						else
-							kp.current.vkCount++;
+                        if (keyType.HasFlag(DS4KeyType.ScanCode))
+                            kp.current.scanCodeCount++;
+                        else
+                            kp.current.vkCount++;
 
-						if (keyType.HasFlag(DS4KeyType.Toggle))
+                        if (keyType.HasFlag(DS4KeyType.Toggle))
                         {
                             if (!pressedonce[value])
                             {

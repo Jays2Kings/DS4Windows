@@ -1159,6 +1159,8 @@ namespace DS4Windows
                 LogDebug($"Using output KB+M handler: {DS4Windows.Global.outputKBMHandler.GetFullDisplayName()}");
                 LogDebug($"Connection to ViGEmBus {Global.vigembusVersion} established");
 
+                DS4Devices.isExclusiveMode = getUseExclusiveMode(); //Re-enable Exclusive Mode
+
                 UpdateHidHiddenAttributes();
 
                 //uiContext = tempui as SynchronizationContext;

@@ -13,3 +13,4 @@
 * ~~Test Steam Input Gyro vs Touchpad mouse action priority. (Tested. Output actions are added together. Do not want)~~
 * Add Button Wheel sensitivity setting of some kind
 * ~~Add Max Output Force option for Gyro Mouse-like Joystick~~
+* Try to add some form of Action Set support. Really missing playing Mass Effect 1 and 2

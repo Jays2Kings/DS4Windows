@@ -255,6 +255,7 @@ namespace DS4Windows
                 flickAngleRemainder = DEFAULT_FLICK_ANGLE_REMAINDER;
             }
         }
+
         public static FlickStickMappingData[] flickMappingData = new FlickStickMappingData[Global.MAX_DS4_CONTROLLER_COUNT]
         {
             new FlickStickMappingData(), new FlickStickMappingData(), new FlickStickMappingData(),

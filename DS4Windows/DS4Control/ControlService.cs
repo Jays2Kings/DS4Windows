@@ -1326,6 +1326,7 @@ namespace DS4Windows
                             }
 
                             CheckProfileOptions(i, device, true);
+                            SetupInitialHookEvents(i, device);
                         }
 
                         int tempIdx = i;
@@ -1764,6 +1765,7 @@ namespace DS4Windows
                                 }
 
                                 CheckProfileOptions(Index, device);
+                                SetupInitialHookEvents(Index, device);
                             }
 
                             int tempIdx = Index;
@@ -1817,7 +1819,7 @@ namespace DS4Windows
             }
         }
 
-        private void CheckProfileOptions(int ind, DS4Device device, bool startUp=false)
+        public void CheckProfileOptions(int ind, DS4Device device, bool startUp=false)
         {
             device.ModifyFeatureSetFlag(VidPidFeatureSet.NoOutputData, !getEnableOutputDataToDS4(ind));
             if (!getEnableOutputDataToDS4(ind))
@@ -1827,44 +1829,21 @@ namespace DS4Windows
             device.setBTPollRate(getBTPollRate(ind));
             touchPad[ind].ResetTrackAccel(getTrackballFriction(ind));
             touchPad[ind].ResetToggleGyroModes();
-            if (!startUp)
-            {
-                CheckLauchProfileOption(ind, device);
-            }
 
-            // Set up filter for new input device
-            OneEuroFilter tempFilter = new OneEuroFilter(OneEuroFilterPair.DEFAULT_WHEEL_CUTOFF,
-                OneEuroFilterPair.DEFAULT_WHEEL_BETA);
-            Mapping.wheelFilters[ind] = tempFilter;
-
-            // Carry over initial profile wheel smoothing values to filter instances.
-            // Set up event hooks to keep values in sync
-            SteeringWheelSmoothingInfo wheelSmoothInfo = WheelSmoothInfo[ind];
-            wheelSmoothInfo.SetFilterAttrs(tempFilter);
-            wheelSmoothInfo.SetRefreshEvents(tempFilter);
-
-            ResetUdpSmoothingFilters(ind);
+            // Reset current flick stick progress from previous profile
             Mapping.flickMappingData[ind].Reset();
-            FlickStickSettings flickStickSettings = Global.LSOutputSettings[ind].outputSettings.flickSettings;
-            flickStickSettings.RemoveRefreshEvents();
-            flickStickSettings.SetRefreshEvents(Mapping.flickMappingData[ind].flickFilter);
-
-            flickStickSettings = Global.RSOutputSettings[ind].outputSettings.flickSettings;
-            flickStickSettings.RemoveRefreshEvents();
-            flickStickSettings.SetRefreshEvents(Mapping.flickMappingData[ind].flickFilter);
 
             device.PrepareTriggerEffect(InputDevices.TriggerId.LeftTrigger, Global.L2OutputSettings[ind].TriggerEffect);
             device.PrepareTriggerEffect(InputDevices.TriggerId.RightTrigger, Global.R2OutputSettings[ind].TriggerEffect);
 
-            int tempIdx = ind;
-            Global.L2OutputSettings[ind].TriggerEffectChanged += (sender, e) =>
+            device.RumbleAutostopTime = getRumbleAutostopTime(ind);
+            device.setRumble(0, 0);
+            device.LightBarColor = Global.getMainColor(ind);
+
+            if (!startUp)
             {
-                device.PrepareTriggerEffect(InputDevices.TriggerId.LeftTrigger, Global.L2OutputSettings[tempIdx].TriggerEffect);
-            };
-            Global.R2OutputSettings[ind].TriggerEffectChanged += (sender, e) =>
-            {
-                device.PrepareTriggerEffect(InputDevices.TriggerId.RightTrigger, Global.R2OutputSettings[tempIdx].TriggerEffect);
-            };
+                CheckLauchProfileOption(ind, device);
+            }
         }
 
         private void CheckLauchProfileOption(int ind, DS4Device device)
@@ -1905,6 +1884,43 @@ namespace DS4Windows
                     processTask.Start();
                 }
             }
+        }
+
+        private void SetupInitialHookEvents(int ind, DS4Device device)
+        {
+            ResetUdpSmoothingFilters(ind);
+
+            // Set up filter for new input device
+            OneEuroFilter tempFilter = new OneEuroFilter(OneEuroFilterPair.DEFAULT_WHEEL_CUTOFF,
+                OneEuroFilterPair.DEFAULT_WHEEL_BETA);
+            Mapping.wheelFilters[ind] = tempFilter;
+
+            // Carry over initial profile wheel smoothing values to filter instances.
+            // Set up event hooks to keep values in sync
+            SteeringWheelSmoothingInfo wheelSmoothInfo = WheelSmoothInfo[ind];
+            wheelSmoothInfo.SetFilterAttrs(tempFilter);
+            wheelSmoothInfo.SetRefreshEvents(tempFilter);
+
+            FlickStickSettings flickStickSettings = Global.LSOutputSettings[ind].outputSettings.flickSettings;
+            flickStickSettings.RemoveRefreshEvents();
+            flickStickSettings.SetRefreshEvents(Mapping.flickMappingData[ind].flickFilter);
+
+            flickStickSettings = Global.RSOutputSettings[ind].outputSettings.flickSettings;
+            flickStickSettings.RemoveRefreshEvents();
+            flickStickSettings.SetRefreshEvents(Mapping.flickMappingData[ind].flickFilter);
+
+            int tempIdx = ind;
+            Global.L2OutputSettings[ind].ResetEvents();
+            Global.L2OutputSettings[ind].TriggerEffectChanged += (sender, e) =>
+            {
+                device.PrepareTriggerEffect(InputDevices.TriggerId.LeftTrigger, Global.L2OutputSettings[tempIdx].TriggerEffect);
+            };
+
+            Global.R2OutputSettings[ind].ResetEvents();
+            Global.R2OutputSettings[ind].TriggerEffectChanged += (sender, e) =>
+            {
+                device.PrepareTriggerEffect(InputDevices.TriggerId.RightTrigger, Global.R2OutputSettings[tempIdx].TriggerEffect);
+            };
         }
 
         public void TouchPadOn(int ind, DS4Device device)

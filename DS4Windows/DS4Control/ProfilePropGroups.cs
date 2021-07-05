@@ -789,5 +789,11 @@ namespace DS4Windows
             TwoStageModeChanged?.Invoke(this, EventArgs.Empty);
             TriggerEffectChanged?.Invoke(this, EventArgs.Empty);
         }
+
+        public void ResetEvents()
+        {
+            TwoStageModeChanged = null;
+            TriggerEffectChanged = null;
+        }
     }
 }

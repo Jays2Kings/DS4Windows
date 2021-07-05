@@ -7824,8 +7824,8 @@ namespace DS4Windows
             {
                 tempDev.queueEvent(() =>
                 {
-                    tempDev.setIdleTimeout(idleDisconnectTimeout[device]);
-                    tempDev.setBTPollRate(btPollRate[device]);
+                    //tempDev.setIdleTimeout(idleDisconnectTimeout[device]);
+                    //tempDev.setBTPollRate(btPollRate[device]);
                     if (xinputStatus && tempDev.PrimaryDevice)
                     {
                         if (xinputPlug)
@@ -7849,12 +7849,13 @@ namespace DS4Windows
                         }
                     }
 
-                    tempDev.RumbleAutostopTime = rumbleAutostopTime[device];
-                    tempDev.setRumble(0, 0);
-                    tempDev.LightBarColor = Global.getMainColor(device);
+                    //tempDev.RumbleAutostopTime = rumbleAutostopTime[device];
+                    //tempDev.setRumble(0, 0);
+                    //tempDev.LightBarColor = Global.getMainColor(device);
+                    control.CheckProfileOptions(device, tempDev, true);
                 });
 
-                Program.rootHub.touchPad[device]?.ResetTrackAccel(trackballFriction[device]);
+                //Program.rootHub.touchPad[device]?.ResetTrackAccel(trackballFriction[device]);
             }
         }
     }

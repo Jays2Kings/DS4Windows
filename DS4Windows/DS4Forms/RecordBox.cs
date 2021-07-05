@@ -784,8 +784,7 @@ namespace DS4Windows
                     kbm.macrostag = macros;
                     kbm.macros = macronames;
                     kbm.lBMacroOn.Visible = true;
-                    if (cBStyle.SelectedIndex == 1)
-                        kbm.macrorepeat = true;
+                    kbm.macrorepeat = cBStyle.SelectedIndex == 1;
                     saved = true;
                     if (sender != kbm)
                         kbm.Close();
@@ -796,8 +795,7 @@ namespace DS4Windows
                     sA.macros = macronames;
                     sA.lbMacroRecorded.Text = string.Join(", ", macronames);
                     //kbm.lBMacroOn.Visible = true;
-                    if (cBStyle.SelectedIndex == 1)
-                        sA.macrorepeat = true;
+                    sA.macrorepeat = cBStyle.SelectedIndex == 1;
                     saved = true;
                     //if (sender != sA)
                     // sA.Close();

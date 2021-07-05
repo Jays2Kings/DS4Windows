@@ -10,7 +10,9 @@ namespace DS4Windows
     public class DS4Devices
     {
         private static Dictionary<string, DS4Device> Devices = new Dictionary<string, DS4Device>();
-        private static HashSet<String> DevicePaths = new HashSet<String>();
+        private static HashSet<string> DevicePaths = new HashSet<string>();
+        // Keep instance of opened exclusive mode devices not in use (Charging while using BT connection)
+        private static List<HidDevice> DisabledDevices = new List<HidDevice>();
         public static bool isExclusiveMode = false;
 
         private static string devicePathToInstanceId(string devicePath)
@@ -23,23 +25,34 @@ namespace DS4Windows
             {
                 deviceInstanceId = deviceInstanceId.Remove(deviceInstanceId.Length - 1);
             }
+
             return deviceInstanceId;
         }
 
-        //enumerates ds4 controllers in the system
+        // Enumerates ds4 controllers in the system
         public static void findControllers()
         {
             lock (Devices)
             {
                 int[] pid = { 0xBA0, 0x5C4, 0x09CC, 0x1000 };
-                IEnumerable<HidDevice> hDevices = HidDevices.Enumerate(0x054C, pid);
+                IEnumerable<HidDevice> hDevices = HidDevices.Enumerate(0x1532, pid);
                 // Sort Bluetooth first in case USB is also connected on the same controller.
                 hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) => { return DS4Device.HidConnectionType(d); });
 
-                foreach (HidDevice hDevice in hDevices)
+                List<HidDevice> tempList = hDevices.ToList();
+                purgeHiddenExclusiveDevices();
+                tempList.AddRange(DisabledDevices);
+                int devCount = tempList.Count();
+                string devicePlural = "device" + (devCount == 0 || devCount > 1 ? "s" : "");
+                //Log.LogToGui("Found " + devCount + " possible " + devicePlural + ". Examining " + devicePlural + ".", false);
+
+                for (int i = 0;  i < devCount; i++)
+                //foreach (HidDevice hDevice in hDevices)
                 {
+                    HidDevice hDevice = tempList[i];
                     if (DevicePaths.Contains(hDevice.DevicePath))
                         continue; // BT/USB endpoint already open once
+
                     if (!hDevice.IsOpen)
                     {
                         hDevice.OpenDevice(isExclusiveMode);
@@ -59,6 +72,7 @@ namespace DS4Windows
                                     startInfo.Verb = "runas";
                                     startInfo.Arguments = "re-enabledevice " + devicePathToInstanceId(hDevice.DevicePath);
                                     Process child = Process.Start(startInfo);
+
                                     if (!child.WaitForExit(5000))
                                     {
                                         child.Kill();
@@ -81,21 +95,34 @@ namespace DS4Windows
                         if (isExclusiveMode && !hDevice.IsOpen)
                             hDevice.OpenDevice(false);
                     }
+
                     if (hDevice.IsOpen)
                     {
-                        if (Devices.ContainsKey(hDevice.readSerial()))
-                            continue; // happens when the BT endpoint already is open and the USB is plugged into the same host
+                        string serial = hDevice.readSerial();
+                        bool validSerial = !serial.Equals(DS4Device.blankSerial);
+                        if (Devices.ContainsKey(serial))
+                        {
+                            // happens when the BT endpoint already is open and the USB is plugged into the same host
+                            if (isExclusiveMode && hDevice.IsExclusive &&
+                                !DisabledDevices.Contains(hDevice))
+                            {
+                                // Grab reference to exclusively opened HidDevice so device
+                                // stays hidden to other processes
+                                DisabledDevices.Add(hDevice);
+                                //DevicePaths.Add(hDevice.DevicePath);
+                            }
+
+                            continue;
+                        }
                         else
                         {
                             DS4Device ds4Device = new DS4Device(hDevice);
-                            ds4Device.Removal += On_Removal;
+                            //ds4Device.Removal += On_Removal;
                             Devices.Add(ds4Device.MacAddress, ds4Device);
                             DevicePaths.Add(hDevice.DevicePath);
-                            ds4Device.StartUpdate();
                         }
                     }
                 }
-                
             }
         }
 
@@ -115,7 +142,7 @@ namespace DS4Windows
             }
         }
         
-        //returns DS4 controllers that were found and are running
+        // Returns DS4 controllers that were found and are running
         public static IEnumerable<DS4Device> getDS4Controllers()
         {
             lock (Devices)
@@ -131,30 +158,98 @@ namespace DS4Windows
             lock (Devices)
             {
                 IEnumerable<DS4Device> devices = getDS4Controllers();
-                foreach (DS4Device device in devices)
+                //foreach (DS4Device device in devices)
+                for (int i = 0, devCount = devices.Count(); i < devCount; i++)
                 {
+                    DS4Device device = devices.ElementAt(i);
                     device.StopUpdate();
+                    //device.runRemoval();
                     device.HidDevice.CloseDevice();
                 }
+
                 Devices.Clear();
                 DevicePaths.Clear();
+                DisabledDevices.Clear();
             }
         }
 
-        //called when devices is diconnected, timed out or has input reading failure
+        // Called when devices is diconnected, timed out or has input reading failure
         public static void On_Removal(object sender, EventArgs e)
         {
             lock (Devices)
             {
                 DS4Device device = (DS4Device)sender;
-                device.HidDevice.CloseDevice();
-                Devices.Remove(device.MacAddress);
-                DevicePaths.Remove(device.HidDevice.DevicePath);
+                if (device != null)
+                {
+                    device.HidDevice.CloseDevice();
+                    Devices.Remove(device.MacAddress);
+                    DevicePaths.Remove(device.HidDevice.DevicePath);
+                    //purgeHiddenExclusiveDevices();
+                }
+            }
+        }
+
+        public static void UpdateSerial(object sender, EventArgs e)
+        {
+            lock (Devices)
+            {
+                DS4Device device = (DS4Device)sender;
+                if (device != null)
+                {
+                    string serial = device.getMacAddress();
+                    if (Devices.ContainsKey(serial))
+                    {
+                        Devices.Remove(serial);
+                        device.updateSerial();
+                        serial = device.getMacAddress();
+                        Devices.Add(serial, device);
+                    }
+                }
+            }
+        }
+
+        private static void purgeHiddenExclusiveDevices()
+        {
+            int disabledDevCount = DisabledDevices.Count;
+            if (disabledDevCount > 0)
+            {
+                List<HidDevice> disabledDevList = new List<HidDevice>();
+                for (int i = 0, arlen = disabledDevCount; i < arlen; i++)
+                {
+                    HidDevice tempDev = DisabledDevices.ElementAt(i);
+                    if (tempDev != null)
+                    {
+                        if (tempDev.IsOpen && tempDev.IsConnected)
+                        {
+                            disabledDevList.Add(tempDev);
+                        }
+                        else if (tempDev.IsOpen)
+                        {
+                            if (!tempDev.IsConnected)
+                            {
+                                try
+                                {
+                                    tempDev.CloseDevice();
+                                }
+                                catch { }
+                            }
+
+                            if (DevicePaths.Contains(tempDev.DevicePath))
+                            {
+                                DevicePaths.Remove(tempDev.DevicePath);
+                            }
+                        }
+                    }
+                }
+
+                DisabledDevices.Clear();
+                DisabledDevices.AddRange(disabledDevList);
             }
         }
 
         public static void reEnableDevice(string deviceInstanceId)
         {
+            Stopwatch sw = new Stopwatch();
             bool success;
             Guid hidGuid = new Guid();
             NativeMethods.HidD_GetHidGuid(ref hidGuid);
@@ -188,6 +283,16 @@ namespace DS4Windows
             {
                 throw new Exception("Error disabling device, error code = " + Marshal.GetLastWin32Error());
             }
+
+            sw.Start();
+            while (sw.ElapsedMilliseconds < 50)
+            {
+                // Use SpinWait to keep control of current thread. Using Sleep could potentially
+                // cause other events to get run out of order
+                System.Threading.Thread.SpinWait(100);
+            }
+            sw.Stop();
+
             propChangeParams.stateChange = NativeMethods.DICS_ENABLE;
             success = NativeMethods.SetupDiSetClassInstallParams(deviceInfoSet, ref deviceInfoData, ref propChangeParams, Marshal.SizeOf(propChangeParams));
             if (!success)

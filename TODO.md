@@ -11,6 +11,6 @@
 * ~~Bundle trimmed ManagedDevcon assembly with PurgeOldXInput. DIFxAPI causing false positivies in VirusTotal.~~
 * Determine output behavior for Outer Bind Button. Currently treated as a virtual trigger. Steam treats its version like a normal button (no analog)
 * ~~Test Steam Input Gyro vs Touchpad mouse action priority. (Tested. Output actions are added together. Do not want)~~
-* Add Button Wheel sensitivity setting of some kind
+* ~~Add Button Wheel sensitivity setting of some kind. (Forget it. Just increase the current time delta used)~~
 * ~~Add Max Output Force option for Gyro Mouse-like Joystick~~
 * Try to add some form of Action Set support. Really missing playing Mass Effect 1 and 2

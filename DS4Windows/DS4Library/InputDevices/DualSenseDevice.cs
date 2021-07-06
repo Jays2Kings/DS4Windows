@@ -70,7 +70,7 @@ namespace DS4Windows.InputDevices
                         break;
                     case TriggerEffects.FullClick:
                         triggerMotorMode = 0x02;
-                        triggerStartResistance = 0xA4;
+                        triggerStartResistance = 0x94;
                         triggerEffectForce = 0xB4;
                         triggerRangeForce = 0xFF;
                         triggerNearReleaseStrength = 0x00;

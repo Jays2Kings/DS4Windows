@@ -1,9 +1,25 @@
 {
-  "latest_version": "3.0.12",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 12},
-  "updated_at": "2021-07-06T21:04:03+0000",
+  "latest_version": "3.0.13",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 13},
+  "updated_at": "2021-07-07T20:16:18+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.0.13",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 13},
+      "base_header": "Version 3.0.13",
+      "release_date": "2021-07-07T20:16:18+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.13",
+          "log_text": ["* Another fix for EnhancedKey usage for FakerInput mapping"],
+          "editor": "ryochan7",
+          "editors_note": ["Fixes"],
+          "updated_at": "2021-07-07T20:16:18+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.0.12",
       "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 12},

@@ -147,26 +147,26 @@ namespace DS4Windows.DS4Control
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.BrowserBack),
                     (uint)EnhancedKey.WWWBack | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.SelectMedia),
-                    (ushort)EnhancedKey.MediaSelect | FakerInputHandler.MODIFIER_ENHANCED);
+                    (uint)EnhancedKey.MediaSelect | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.LaunchMail),
-                    (ushort)EnhancedKey.Mail | FakerInputHandler.MODIFIER_ENHANCED);
+                    (uint)EnhancedKey.Mail | FakerInputHandler.MODIFIER_ENHANCED);
 
                 // Map Multimedia Keys. Need to add a mask to separate modifier key values
                 // from normal keyboard keys.
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.MediaNextTrack),
-                    (ushort)EnhancedKey.ScanNextTrack | FakerInputHandler.MODIFIER_ENHANCED);
+                    (uint)EnhancedKey.ScanNextTrack | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.MediaPreviousTrack),
-                    (ushort)EnhancedKey.ScanPreviousTrack | FakerInputHandler.MODIFIER_ENHANCED);
+                    (uint)EnhancedKey.ScanPreviousTrack | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.MediaStop),
-                    (ushort)EnhancedKey.Stop | FakerInputHandler.MODIFIER_ENHANCED);
+                    (uint)EnhancedKey.Stop | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.MediaPlayPause),
-                    (ushort)EnhancedKey.PlayPause | FakerInputHandler.MODIFIER_ENHANCED);
+                    (uint)EnhancedKey.PlayPause | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.VolumeMute),
-                    (ushort)EnhancedKey.Mute | FakerInputHandler.MODIFIER_ENHANCED);
+                    (uint)EnhancedKey.Mute | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.VolumeUp),
-                    (ushort)EnhancedKey.VolumeUp | FakerInputHandler.MODIFIER_ENHANCED);
+                    (uint)EnhancedKey.VolumeUp | FakerInputHandler.MODIFIER_ENHANCED);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.VolumeDown),
-                    (ushort)EnhancedKey.VolumeDown | FakerInputHandler.MODIFIER_ENHANCED);
+                    (uint)EnhancedKey.VolumeDown | FakerInputHandler.MODIFIER_ENHANCED);
             }
         }
 

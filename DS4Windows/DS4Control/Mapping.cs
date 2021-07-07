@@ -35,7 +35,7 @@ namespace DS4Windows
                 public KeyPress previous, current;
             }
             public Dictionary<UInt16, KeyPresses> keyPresses = new Dictionary<UInt16, KeyPresses>();
-            public Dictionary<ushort, ushort> nativeKeyAlias = new Dictionary<ushort, ushort>();
+            public Dictionary<ushort, uint> nativeKeyAlias = new Dictionary<ushort, uint>();
 
             public void SaveToPrevious(bool performClear)
             {
@@ -594,7 +594,7 @@ namespace DS4Windows
                     globalState.keyPresses[kvpKey] = gkp;
                 }
 
-                ushort nativeKey = state.nativeKeyAlias[kvpKey];
+                uint nativeKey = state.nativeKeyAlias[kvpKey];
                 if (gkp.current.toggleCount != 0 && gkp.previous.toggleCount == 0 && gkp.current.toggle)
                 {
                     if (gkp.current.scanCodeCount != 0)
@@ -2895,7 +2895,7 @@ namespace DS4Windows
                         if (!deviceState.keyPresses.TryGetValue(value, out kp))
                         {
                             deviceState.keyPresses[value] = kp = new SyntheticState.KeyPresses();
-                            deviceState.nativeKeyAlias[value] = (ushort)actionAlias;
+                            deviceState.nativeKeyAlias[value] = actionAlias;
                         }
 
                         if (keyType.HasFlag(DS4KeyType.ScanCode))
@@ -3373,12 +3373,18 @@ namespace DS4Windows
                                         if (dcs.actionType != DS4ControlSettings.ActionType.Default)
                                         {
                                             if (dcs.actionType == DS4ControlSettings.ActionType.Key)
-                                                outputKBMHandler.PerformKeyRelease(ushort.Parse(dcs.action.ToString()));
+                                            {
+                                                uint tempKey = outputKBMMapping.GetRealEventKey((uint)dcs.action.actionKey);
+                                                outputKBMHandler.PerformKeyRelease(tempKey);
+                                            }
                                             else if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
                                             {
                                                 int[] keys = (int[])dcs.action.actionMacro;
                                                 for (int j = 0, keysLen = keys.Length; j < keysLen; j++)
-                                                    outputKBMHandler.PerformKeyRelease((ushort)keys[j]);
+                                                {
+                                                    uint tempKey = outputKBMMapping.GetRealEventKey((uint)keys[j]);
+                                                    outputKBMHandler.PerformKeyRelease(tempKey);
+                                                }
                                             }
                                         }
                                     }
@@ -3879,12 +3885,18 @@ namespace DS4Windows
                 if (dcs.actionType != DS4ControlSettings.ActionType.Default)
                 {
                     if (dcs.actionType == DS4ControlSettings.ActionType.Key)
-                        outputKBMHandler.PerformKeyRelease((ushort)dcs.action.actionKey);
+                    {
+                        uint tempKey = outputKBMMapping.GetRealEventKey((uint)dcs.action.actionKey);
+                        outputKBMHandler.PerformKeyRelease(tempKey);
+                    }
                     else if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
                     {
                         int[] keys = dcs.action.actionMacro;
                         for (int j = 0, keysLen = keys.Length; j < keysLen; j++)
-                            outputKBMHandler.PerformKeyRelease((ushort)keys[j]);
+                        {
+                            uint tempKey = outputKBMMapping.GetRealEventKey((uint)keys[j]);
+                            outputKBMHandler.PerformKeyRelease(tempKey);
+                        }
                     }
                 }
             }

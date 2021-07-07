@@ -12,7 +12,8 @@ namespace DS4Windows.DS4Control
         // Keys values are under 255
         public const int MODIFIER_MASK = 1 << 9;
         // Can only map to 31 keys with this approach. Underlying key value is a uint
-        public const uint MODIFIER_ENHANCED = uint.MaxValue;
+        // (1 << 31). cannot express as uint as bit-shift op converts to int
+        public const uint MODIFIER_ENHANCED = 2147483648;
 
         private const double ABSOLUTE_MOUSE_COOR_MAX = 32767.0;
 

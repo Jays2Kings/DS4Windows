@@ -60,6 +60,12 @@ namespace DS4Windows.DS4Control
                     mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.F1 + i), (ushort)((ushort)KeyboardKey.F1 + i));
                 }
 
+                // Map F13 - F24 keys
+                for (int i = 0; i <= KeyboardKey.F24 - KeyboardKey.F13; i++)
+                {
+                    mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.F13 + i), (ushort)((ushort)KeyboardKey.F13 + i));
+                }
+
                 // Map Numpad 1 - 9 keys
                 for (int i = 0; i <= KeyboardKey.Keypad9 - KeyboardKey.Keypad1; i++)
                 {

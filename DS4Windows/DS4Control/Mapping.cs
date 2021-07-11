@@ -560,7 +560,7 @@ namespace DS4Windows
             if (wheel != 0) //Continue mouse wheel movement
             {
                 DateTime now = DateTime.UtcNow;
-                if (now >= oldnow + TimeSpan.FromMilliseconds(200) && !pressagain)
+                if (now >= oldnow + TimeSpan.FromMilliseconds(150) && !pressagain)
                 {
                     oldnow = now;
                     outputKBMHandler.PerformMouseWheelEvent(wheel, 0);

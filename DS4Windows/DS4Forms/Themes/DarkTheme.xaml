@@ -1264,16 +1264,16 @@
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition />
+                            <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Border Grid.Column="1" BorderBrush="Transparent"
-                      BorderThickness="0,1,1,1">
-                            <ScrollContentPresenter CanContentScroll="{TemplateBinding CanContentScroll}" />
+
+                        <Border Grid.Column="0" BorderBrush="Transparent">
+                            <ScrollContentPresenter x:Name="ScrollContents"  CanContentScroll="{TemplateBinding CanContentScroll}" />
                         </Border>
 
                         <ScrollBar x:Name="PART_VerticalScrollBar"
@@ -1287,8 +1287,8 @@
 
                         <ScrollBar x:Name="PART_HorizontalScrollBar"
                              Orientation="Horizontal"
+                             Grid.Column="0"
                              Grid.Row="1"
-                             Grid.Column="1"
                              Value="{TemplateBinding HorizontalOffset}"
                              Maximum="{TemplateBinding ScrollableWidth}"
                              ViewportSize="{TemplateBinding ViewportWidth}"

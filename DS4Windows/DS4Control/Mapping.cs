@@ -885,20 +885,22 @@ namespace DS4Windows
 
                     if (hyp != 0.0)
                     {
-                        int maxValue = r >= 0.0 ? 127 : 128;
+                        int tempX = (int)(Math.Abs(Math.Cos(r)) * (dState.LX >= 128 ? 127 : 128));
+                        int tempY = (int)(Math.Abs(Math.Sin(r)) * (dState.LY >= 128 ? 127 : 128));
+                        double maxValue = Math.Sqrt((tempX * tempX) + (tempY * tempY));
                         double ratio = hyp / maxValue;
                         if (ratio > 1.0) ratio = 1.0;
-                        double currentValue = ratio * 255;
+                        double currentValue = ratio * 255.0;
                         double deadValue = lsMod.outerBindDeadZone * 0.01 * 255.0;
                         if (!lsMod.outerBindInvert && currentValue > deadValue)
                         {
-                            double outputRatio = (currentValue - deadValue) / (double)(maxValue - deadValue);
+                            double outputRatio = (currentValue - deadValue) / (double)(255.0 - deadValue);
                             dState.OutputLSOuter = (byte)(outputRatio * 255);
                         }
                         else if (lsMod.outerBindInvert && currentValue < deadValue)
                         {
                             double outputRatio = (deadValue - currentValue) / (double)deadValue;
-                            dState.OutputRSOuter = (byte)(outputRatio * 255);
+                            dState.OutputLSOuter = (byte)(outputRatio * 255);
                         }
                     }
                 }
@@ -1108,14 +1110,16 @@ namespace DS4Windows
 
                     if (hyp != 0.0)
                     {
-                        int maxValue = r >= 0.0 ? 127 : 128;
+                        int tempX = (int)(Math.Abs(Math.Cos(r)) * (dState.RX >= 128 ? 127 : 128));
+                        int tempY = (int)(Math.Abs(Math.Sin(r)) * (dState.RY >= 128 ? 127 : 128));
+                        double maxValue = Math.Sqrt((tempX * tempX) + (tempY * tempY));
                         double ratio = hyp / maxValue;
                         if (ratio > 1.0) ratio = 1.0;
                         double currentValue = ratio * 255;
                         double deadValue = rsMod.outerBindDeadZone * 0.01 * 255.0;
                         if (!rsMod.outerBindInvert && currentValue > deadValue)
                         {
-                            double outputRatio = (currentValue - deadValue) / (double)(maxValue - deadValue);
+                            double outputRatio = (currentValue - deadValue) / (double)(255.0 - deadValue);
                             dState.OutputRSOuter = (byte)(outputRatio * 255);
                         }
                         else if (rsMod.outerBindInvert && currentValue < deadValue)

@@ -938,12 +938,17 @@ namespace DS4Windows.InputDevices
             else
             {
                 leftStickXData.max = (ushort)((leftStickCalib[0] + leftStickCalib[2]) * STICK_AXIS_MAX_CUTOFF);
-                leftStickXData.mid = leftStickCalib[2];
                 leftStickXData.min = (ushort)((leftStickCalib[2] - leftStickCalib[4]) * STICK_AXIS_MIN_CUTOFF);
+                //leftStickXData.mid = leftStickCalib[2];
+                leftStickXData.mid = (ushort)((leftStickXData.max - leftStickXData.min) / 2.0 + leftStickXData.min);
 
                 leftStickYData.max = (ushort)((leftStickCalib[1] + leftStickCalib[3]) * STICK_AXIS_MAX_CUTOFF);
-                leftStickYData.mid = leftStickCalib[3];
                 leftStickYData.min = (ushort)((leftStickCalib[3] - leftStickCalib[5]) * STICK_AXIS_MIN_CUTOFF);
+                //leftStickYData.mid = leftStickCalib[3];
+                leftStickYData.mid = (ushort)((leftStickYData.max - leftStickYData.min) / 2.0 + leftStickYData.min);
+
+                //Debug.WriteLine("New: {0} | Old: {1}", leftStickXData.mid, leftStickCalib[2]);
+                //Debug.WriteLine("MAX: {0} | MIN: {1}", leftStickXData.max, leftStickXData.min);
                 //leftStickOffsetX = leftStickOffsetY = 140;
             }
 
@@ -995,12 +1000,14 @@ namespace DS4Windows.InputDevices
             else
             {
                 rightStickXData.max = (ushort)((rightStickCalib[2] + rightStickCalib[0]) * STICK_AXIS_MAX_CUTOFF);
-                rightStickXData.mid = rightStickCalib[2];
                 rightStickXData.min = (ushort)((rightStickCalib[2] - rightStickCalib[4]) * STICK_AXIS_MIN_CUTOFF);
+                //rightStickXData.mid = rightStickCalib[2];
+                rightStickXData.mid = (ushort)((rightStickXData.max - rightStickXData.min) / 2.0 + rightStickXData.min);
 
                 rightStickYData.max = (ushort)((rightStickCalib[3] + rightStickCalib[1]) * STICK_AXIS_MAX_CUTOFF);
-                rightStickYData.mid = rightStickCalib[3];
                 rightStickYData.min = (ushort)((rightStickCalib[3] - rightStickCalib[5]) * STICK_AXIS_MIN_CUTOFF);
+                //rightStickYData.mid = rightStickCalib[3];
+                rightStickYData.mid = (ushort)((rightStickYData.max - rightStickYData.min) / 2.0 + rightStickYData.min);
                 //rightStickOffsetX = rightStickOffsetY = 140;
             }
 

@@ -416,6 +416,7 @@ namespace DS4WinWPF.DS4Forms
                 scope.Connect();
             }
             catch (COMException) { }
+            catch (ManagementException) { }
 
             if (scope.IsConnected)
             {

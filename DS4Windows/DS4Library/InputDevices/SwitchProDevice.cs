@@ -643,11 +643,6 @@ namespace DS4Windows.InputDevices
 
         public void SetOperational()
         {
-            if (!hDevice.IsFileStreamOpen())
-            {
-                hDevice.OpenFileStream(InputReportLen);
-            }
-
             if (conType == ConnectionType.USB)
             {
                 RunUSBSetup();

@@ -1880,9 +1880,9 @@
                             <Label Content="mins" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
-                            <Label Content="BT Poll Rate" ToolTip="{lex:Loc Resources:BtPollRate}" />
+                            <Label Content="{lex:Loc DS4BTPollRate}" ContentStringFormat="{}{0}:" ToolTip="{lex:Loc Resources:BtPollRate}" />
                             <ComboBox x:Name="btPollRateCombo" SelectedIndex="{Binding TempBTPollRateIndex,FallbackValue=4}" MinWidth="140"
-                                  ToolTip="{lex:Loc Resources:BtPollRate}">
+                                  ToolTip="{lex:Loc Resources:BtPollRate}" Margin="8,0,0,0">
                                 <ComboBoxItem Content="Max (1 ms)" />
                                 <ComboBoxItem Content="1000 Hz (1 ms)" />
                                 <ComboBoxItem Content="500 Hz (2 ms)" />

@@ -538,4 +538,7 @@ Example: whyme_DS4Windows</value>
   <data name="TouchpadJitterCompTooltip" xml:space="preserve">
     <value>Throttle low end of Touchpad movement. Reduces accidental mouse cursor movement when holding a mostly fixed position on the Touchpad</value>
   </data>
+  <data name="DS4BTPollRate" xml:space="preserve">
+    <value>DS4 BT Poll Rate</value>
+  </data>
 </root>

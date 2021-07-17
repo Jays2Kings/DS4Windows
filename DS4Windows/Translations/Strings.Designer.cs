@@ -441,6 +441,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DS4 BT Poll Rate.
+        /// </summary>
+        public static string DS4BTPollRate {
+            get {
+                return ResourceManager.GetString("DS4BTPollRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duplicate.
         /// </summary>
         public static string Duplicate {

@@ -63,7 +63,10 @@ namespace DS4Windows
 
     public class ControlActionData
     {
+        // Store base mapping value. Uses Windows virtual key values as the base
+        // https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
         public int actionKey;
+
         // Alias to real value for current output KB+M event system.
         // Allows skipping a translation call every frame
         public uint actionAlias = 0;
@@ -81,15 +84,9 @@ namespace DS4Windows
         public enum ActionType : byte { Default, Key, Button, Macro };
         public ActionType actionType = ActionType.Default;
         public ControlActionData action = new ControlActionData();
-        // Alias to real value for current output KB+M event system.
-        // Allows skipping a translation call every frame
-        //public uint actionAlias = 0;
 
         public ActionType shiftActionType = ActionType.Default;
         public ControlActionData shiftAction = new ControlActionData();
-        // Alias to real value for current output KB+M event system.
-        // Allows skipping a translation call every frame
-        //public uint shiftActionAlias = 0;
         public int shiftTrigger = 0;
         public string shiftExtras = null;
         public DS4KeyType shiftKeyType = DS4KeyType.None;
@@ -2656,6 +2653,11 @@ namespace DS4Windows
             fakerInputVersion = FakerInputVersion();
         }
 
+        /// <summary>
+        /// Take Windows virtual key value and refresh action alias for currently used output KB+M system
+        /// </summary>
+        /// <param name="setting">Instance of edited DS4ControlSettings object</param>
+        /// <param name="shift">Flag to indicate if shift action is being modified</param>
         public static void RefreshActionAlias(DS4ControlSettings setting, bool shift)
         {
             if (!shift)

@@ -839,7 +839,13 @@ namespace DS4Windows
                         if (lsMaxOutput != 100.0 || lsMod.maxOutputForce)
                         {
                             double maxOutXRatio = Math.Abs(Math.Cos(r)) * maxOutRatio;
+                            // Expand output a bit
+                            maxOutXRatio = Math.Min(maxOutXRatio / 0.99, 1.0);
+
                             double maxOutYRatio = Math.Abs(Math.Sin(r)) * maxOutRatio;
+                            // Expand output a bit
+                            maxOutYRatio = Math.Min(maxOutYRatio / 0.99, 1.0);
+
                             tempOutputX = Math.Min(Math.Max(tempOutputX, 0.0), maxOutXRatio);
                             tempOutputY = Math.Min(Math.Max(tempOutputY, 0.0), maxOutYRatio);
                         }
@@ -931,6 +937,8 @@ namespace DS4Windows
 
                         if (xAxisDeadInfo.maxOutput != 100.0)
                         {
+                            // Expand output a bit
+                            maxOutRatio = Math.Min(maxOutRatio / 0.99, 1.0);
                             tempOutput = Math.Min(Math.Max(tempOutput, 0.0), maxOutRatio);
                         }
 
@@ -975,6 +983,8 @@ namespace DS4Windows
 
                         if (yAxisDeadInfo.maxOutput != 100.0)
                         {
+                            // Expand output a bit
+                            maxOutRatio = Math.Min(maxOutRatio / 0.99, 1.0);
                             tempOutput = Math.Min(Math.Max(tempOutput, 0.0), maxOutRatio);
                         }
 
@@ -1064,7 +1074,13 @@ namespace DS4Windows
                         if (rsMaxOutput != 100.0 || rsMod.maxOutputForce)
                         {
                             double maxOutXRatio = Math.Abs(Math.Cos(r)) * maxOutRatio;
+                            // Expand output a bit
+                            maxOutXRatio = Math.Min(maxOutXRatio / 0.99, 1.0);
+
                             double maxOutYRatio = Math.Abs(Math.Sin(r)) * maxOutRatio;
+                            // Expand output a bit
+                            maxOutYRatio = Math.Min(maxOutYRatio / 0.99, 1.0);
+
                             tempOutputX = Math.Min(Math.Max(tempOutputX, 0.0), maxOutXRatio);
                             tempOutputY = Math.Min(Math.Max(tempOutputY, 0.0), maxOutYRatio);
                         }
@@ -1156,6 +1172,8 @@ namespace DS4Windows
 
                         if (xAxisDeadInfo.maxOutput != 100.0)
                         {
+                            // Expand output a bit
+                            maxOutRatio = Math.Min(maxOutRatio / 0.99, 1.0);
                             tempOutput = Math.Min(Math.Max(tempOutput, 0.0), maxOutRatio);
                         }
 
@@ -1200,6 +1218,8 @@ namespace DS4Windows
 
                         if (yAxisDeadInfo.maxOutput != 100.0)
                         {
+                            // Expand output a bit
+                            maxOutRatio = Math.Min(maxOutRatio / 0.99, 1.0);
                             tempOutput = Math.Min(Math.Max(tempOutput, 0.0), maxOutRatio);
                         }
 

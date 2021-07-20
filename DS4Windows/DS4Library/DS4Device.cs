@@ -2108,7 +2108,7 @@ namespace DS4Windows
         }
 
         public virtual void PrepareTriggerEffect(InputDevices.TriggerId trigger,
-            InputDevices.TriggerEffects effect)
+            InputDevices.TriggerEffects effect, InputDevices.TriggerEffectSettings effectSettings)
         {
         }
 

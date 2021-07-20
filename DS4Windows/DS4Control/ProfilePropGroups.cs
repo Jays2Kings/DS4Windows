@@ -92,10 +92,63 @@ namespace DS4Windows
 
     public class TriggerDeadZoneZInfo
     {
-        public byte deadZone; // Trigger deadzone is expressed in axis units
+        // Trigger deadzone is expressed in axis units (bad old convention)
+        public byte deadZone;
+
+        public byte DeadZone
+        {
+            get => deadZone;
+            set
+            {
+                if (deadZone == value) return;
+                deadZone = value;
+                DeadZoneChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler DeadZoneChanged;
+
         public int antiDeadZone;
         public int maxZone = 100;
+        public int MaxZone
+        {
+            get => maxZone;
+            set
+            {
+                if (maxZone == value) return;
+                maxZone = value;
+                MaxZoneChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler MaxZoneChanged;
+
         public double maxOutput = 100.0;
+
+        public double MaxOutput
+        {
+            get => maxOutput;
+            set
+            {
+                if (maxOutput == value) return;
+                maxOutput = value;
+                MaxOutputChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler MaxOutputChanged;
+
+        public void Reset()
+        {
+            deadZone = 0;
+            antiDeadZone = 0;
+            MaxZone = 100;
+            MaxOutput = 100.0;
+        }
+
+        public void ResetEvents()
+        {
+            MaxZoneChanged = null;
+            MaxOutputChanged = null;
+            DeadZoneChanged = null;
+        }
     }
 
     public class GyroMouseInfo
@@ -779,6 +832,13 @@ namespace DS4Windows
             }
         }
         public event EventHandler TriggerEffectChanged;
+
+        public InputDevices.TriggerEffectSettings effectSettings =
+            new InputDevices.TriggerEffectSettings();
+        public ref InputDevices.TriggerEffectSettings TrigEffectSettings
+        {
+            get => ref effectSettings;
+        }
 
         public void ResetSettings()
         {

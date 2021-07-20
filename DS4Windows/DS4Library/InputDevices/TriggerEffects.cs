@@ -21,4 +21,10 @@ namespace DS4Windows.InputDevices
         Trigger1,
         RightTrigger = Trigger1,
     }
+
+    public struct TriggerEffectSettings
+    {
+        public byte maxValue;
+        public byte startValue;
+    }
 }

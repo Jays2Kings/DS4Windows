@@ -1318,14 +1318,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public double L2MaxZone
         {
-            get => Global.L2ModInfo[device].maxZone / 100.0;
-            set => Global.L2ModInfo[device].maxZone = (int)(value * 100.0);
+            get => Global.L2ModInfo[device].MaxZone / 100.0;
+            set => Global.L2ModInfo[device].MaxZone = (int)(value * 100.0);
         }
 
         public double R2MaxZone
         {
-            get => Global.R2ModInfo[device].maxZone / 100.0;
-            set => Global.R2ModInfo[device].maxZone = (int)(value * 100.0);
+            get => Global.R2ModInfo[device].MaxZone / 100.0;
+            set => Global.R2ModInfo[device].MaxZone = (int)(value * 100.0);
         }
 
         public double L2AntiDeadZone
@@ -1342,14 +1342,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public double L2MaxOutput
         {
-            get => Global.L2ModInfo[device].maxOutput / 100.0;
-            set => Global.L2ModInfo[device].maxOutput = value * 100.0;
+            get => Global.L2ModInfo[device].MaxOutput / 100.0;
+            set => Global.L2ModInfo[device].MaxOutput = value * 100.0;
         }
 
         public double R2MaxOutput
         {
-            get => Global.R2ModInfo[device].maxOutput / 100.0;
-            set => Global.R2ModInfo[device].maxOutput = value * 100.0;
+            get => Global.R2ModInfo[device].MaxOutput / 100.0;
+            set => Global.R2ModInfo[device].MaxOutput = value * 100.0;
         }
 
         public double L2Sens

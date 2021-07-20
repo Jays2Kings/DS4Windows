@@ -7122,10 +7122,12 @@ namespace DS4Windows
             lsModInfo[device].maxOutput = rsModInfo[device].maxOutput = 100.0;
             lsModInfo[device].fuzz = rsModInfo[device].fuzz = StickDeadZoneInfo.DEFAULT_FUZZ;
 
-            l2ModInfo[device].deadZone = r2ModInfo[device].deadZone = 0;
-            l2ModInfo[device].antiDeadZone = r2ModInfo[device].antiDeadZone = 0;
-            l2ModInfo[device].maxZone = r2ModInfo[device].maxZone = 100;
-            l2ModInfo[device].maxOutput = r2ModInfo[device].maxOutput = 100.0;
+            //l2ModInfo[device].deadZone = r2ModInfo[device].deadZone = 0;
+            //l2ModInfo[device].antiDeadZone = r2ModInfo[device].antiDeadZone = 0;
+            //l2ModInfo[device].maxZone = r2ModInfo[device].maxZone = 100;
+            //l2ModInfo[device].maxOutput = r2ModInfo[device].maxOutput = 100.0;
+            l2ModInfo[device].Reset();
+            r2ModInfo[device].Reset();
 
             LSRotation[device] = 0.0;
             RSRotation[device] = 0.0;

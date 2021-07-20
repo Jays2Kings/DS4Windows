@@ -196,6 +196,11 @@ namespace DS4Windows.InputDevices
 
         private SwitchProControllerOptions nativeOptionsStore;
 
+        /// <summary>
+        /// Flag to tell methods if device has been successfully initialized and opened
+        /// </summary>
+        private bool connectionOpened = false;
+
         public override event ReportHandler<EventArgs> Report = null;
         public override event EventHandler<EventArgs> Removal = null;
 
@@ -226,6 +231,13 @@ namespace DS4Windows.InputDevices
             DeviceSlotNumberChanged += (sender, e) => {
                 CalculateDeviceSlotMask();
             };
+
+            Removal += SwitchProDevice_Removal;
+        }
+
+        private void SwitchProDevice_Removal(object sender, EventArgs e)
+        {
+            connectionOpened = false;
         }
 
         public override void PostInit()
@@ -273,10 +285,25 @@ namespace DS4Windows.InputDevices
         public override void StartUpdate()
         {
             this.inputReportErrorCount = 0;
-            SetOperational();
 
-            if (ds4Input == null)
+            try
             {
+                SetOperational();
+            }
+            catch (System.IO.IOException)
+            {
+                AppLogger.LogToGui($"Controller {MacAddress} failed to initialize. Closing device", true);
+            }
+
+            if (!connectionOpened)
+            {
+                // Failed to open device. Tell app to consider device detached
+                isDisconnecting = true;
+                Removal?.Invoke(this, EventArgs.Empty);
+            }
+            else if (ds4Input == null)
+            {
+                // Device is open. Create Reader Input thread
                 ds4Input = new Thread(ReadInput);
                 ds4Input.IsBackground = true;
                 ds4Input.Priority = ThreadPriority.AboveNormal;
@@ -714,6 +741,8 @@ namespace DS4Windows.InputDevices
             //    Thread.Sleep(300);
             //    //SetInitRumble();
             //}
+
+            connectionOpened = true;
         }
 
         private void RunUSBSetup()
@@ -813,7 +842,7 @@ namespace DS4Windows.InputDevices
             hDevice.fileStream.Flush();
 
             byte[] tmpReport = null;
-            if (checkResponse)
+            if (result && checkResponse)
             {
                 tmpReport = new byte[INPUT_REPORT_LEN];
                 HidDevice.ReadStatus res;
@@ -1174,27 +1203,32 @@ namespace DS4Windows.InputDevices
         {
             bool result;
 
-            // Disable Gyro
-            byte[] tmpOffBuffer = new byte[] { 0x0 };
-            Subcommand(0x40, tmpOffBuffer, 1, checkResponse: true);
-
-            // Possibly disable rumble? Leave commented
-            tmpOffBuffer = new byte[] { 0x0 };
-            Subcommand(0x48, tmpOffBuffer, 1, checkResponse: true);
-
-            // Revert back to low power state
-            byte[] powerChoiceArray = new byte[] { 0x01 };
-            Subcommand(SwitchProSubCmd.SET_LOW_POWER_STATE, powerChoiceArray, 1, checkResponse: true);
-
-            if (conType == ConnectionType.USB)
+            if (connectionOpened)
             {
-                byte[] data = new byte[64];
-                data[0] = 0x80; data[1] = 0x05;
-                result = hDevice.WriteOutputReportViaControl(data);
+                // Disable Gyro
+                byte[] tmpOffBuffer = new byte[] { 0x0 };
+                Subcommand(0x40, tmpOffBuffer, 1, checkResponse: true);
 
-                data[0] = 0x80; data[1] = 0x06;
-                result = hDevice.WriteOutputReportViaControl(data);
+                // Possibly disable rumble? Leave commented
+                tmpOffBuffer = new byte[] { 0x0 };
+                Subcommand(0x48, tmpOffBuffer, 1, checkResponse: true);
+
+                // Revert back to low power state
+                byte[] powerChoiceArray = new byte[] { 0x01 };
+                Subcommand(SwitchProSubCmd.SET_LOW_POWER_STATE, powerChoiceArray, 1, checkResponse: true);
+
+                if (conType == ConnectionType.USB)
+                {
+                    byte[] data = new byte[64];
+                    data[0] = 0x80; data[1] = 0x05;
+                    result = hDevice.WriteOutputReportViaControl(data);
+
+                    data[0] = 0x80; data[1] = 0x06;
+                    result = hDevice.WriteOutputReportViaControl(data);
+                }
             }
+
+            connectionOpened = false;
         }
 
         public void WriteReport()
@@ -1219,7 +1253,7 @@ namespace DS4Windows.InputDevices
 
         public override bool IsAlive()
         {
-            return !isDisconnecting;
+            return !isDisconnecting && connectionOpened;
         }
 
         private void CalculateDeviceSlotMask()

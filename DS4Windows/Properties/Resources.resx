@@ -172,7 +172,7 @@
     <value>Close DS4Windows?</value>
   </data>
   <data name="CloseMinimize" xml:space="preserve">
-    <value>Close DS4Windows via the notification icon</value>
+    <value>Closing main window minimizes app. Quitting app will be done via the notification icon</value>
   </data>
   <data name="Color" xml:space="preserve">
     <value>Color</value>

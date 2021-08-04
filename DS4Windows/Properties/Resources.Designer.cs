@@ -232,7 +232,7 @@ namespace DS4WinWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Close DS4Windows via the notification icon.
+        ///   Looks up a localized string similar to Closing main window minimizes app. Quitting app will be done via the notification icon.
         /// </summary>
         public static string CloseMinimize {
             get {
@@ -363,15 +363,6 @@ namespace DS4WinWPF.Properties {
         public static string DimByBattery {
             get {
                 return ResourceManager.GetString("DimByBattery", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Turn off X360 input and only use the DS4&apos;s native input, hide ds4 must be off (Wired Only).
-        /// </summary>
-        public static string DinputOnly {
-            get {
-                return ResourceManager.GetString("DinputOnly", resourceCulture);
             }
         }
         
@@ -969,15 +960,6 @@ namespace DS4WinWPF.Properties {
         public static string OtherFileLocation {
             get {
                 return ResourceManager.GetString("OtherFileLocation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Choose the type of output virtual controller (Applies on profile save).
-        /// </summary>
-        public static string OutContNotice {
-            get {
-                return ResourceManager.GetString("OutContNotice", resourceCulture);
             }
         }
         

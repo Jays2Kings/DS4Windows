@@ -1,9 +1,34 @@
 {
-  "latest_version": "3.0.13",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 13},
-  "updated_at": "2021-07-07T20:16:18+0000",
+  "latest_version": "3.0.14",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 14},
+  "updated_at": "2021-08-04T01:48:11+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.0.14",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 14},
+      "base_header": "Version 3.0.14",
+      "release_date": "2021-08-04T01:48:11+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.14",
+          "log_text": ["* Updated FakerInputWrapper libraries for F13 - F24 key support",
+            "* Added F13 to F24 keys for FakerInput mapping",
+            "* Decreased button wheel delta. Increased button wheel sensitivity. Now uses 150 ms for time delta",
+            "* Updated FakerInputWrapper libraries. Fixes array bounds check for KeyboardReport",
+            "* Fixes for Stick Outer Btn bindings",
+            "* Added ManagementException catch for initial connection. Apparently it can be thrown in that call.",
+            "* Expanded max output limits for LS and RS",
+            "* Re-design dark theme and use theme colors in AutoProfiles. Contribution by **Sajidur78**",
+            "* Changed DualSense trigger Full Click resistance depending on profile settings",
+            "* Changes to better handle connection failure for Switch Pro and JoyCon devices"],
+          "editor": "ryochan7",
+          "editors_note": ["Need update"],
+          "updated_at": "2021-08-04T01:48:11+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.0.13",
       "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 13},

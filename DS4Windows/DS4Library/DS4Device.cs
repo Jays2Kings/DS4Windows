@@ -874,7 +874,9 @@ namespace DS4Windows
                 ds4Input.Start();
             }
             else
-                Console.WriteLine("Thread already running for DS4: " + Mac);
+            {
+                Debug.WriteLine("Thread already running for DS4: " + Mac);
+            }
         }
 
         public virtual void StopUpdate()

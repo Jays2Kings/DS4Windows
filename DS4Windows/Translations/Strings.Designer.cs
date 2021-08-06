@@ -450,6 +450,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Feature currently disabled in app due to driver issues. Hopefully issues get fixed in a future update..
+        /// </summary>
+        public static string DS4LightbarPassthruDisabled {
+            get {
+                return ResourceManager.GetString("DS4LightbarPassthruDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duplicate.
         /// </summary>
         public static string Duplicate {

@@ -993,94 +993,109 @@
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Mode:" />
-                        <ComboBox x:Name="lightbarModeCombo" Width="160" SelectedIndex="{Binding LightbarModeIndex, FallbackValue=0}"
+                        <ComboBox x:Name="lightbarModeCombo" Width="160" SelectedIndex="{Binding LightbarModeIndex, FallbackValue='0'}"
                                   VerticalContentAlignment="Center" Margin="10,0,0,0">
                             <ComboBoxItem Content="Normal" />
                             <ComboBoxItem Content="Passthru" />
                         </ComboBox>
                     </StackPanel>
-                    <StackPanel Visibility="{Binding DS4WinLightVisible,Mode=OneWay}">
-                        <StackPanel Orientation="Horizontal">
-                            <GroupBox x:Name="colorGB" Header="{lex:Loc Color}" Padding="4">
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="R" />
-                                        <Slider Value="{Binding MainColorR}" Minimum="0" Maximum="255" ToolTip="{Binding MainColorR}" MinWidth="100" Background="{Binding MainColorRString, FallbackValue=Red}"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="G" />
-                                        <Slider Value="{Binding MainColorG}" MinWidth="100" Minimum="0" Maximum="255" ToolTip="{Binding MainColorG}" Background="{Binding MainColorGString, FallbackValue=Lime}"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="B" />
-                                        <Slider Value="{Binding MainColorB}" MinWidth="100" Minimum="0" Maximum="255" ToolTip="{Binding MainColorB}" Background="{Binding MainColorBString, FallbackValue=Blue}"/>
-                                    </StackPanel>
+
+                    <TabControl SelectedIndex="{Binding LightbarModeIndex, FallbackValue='0'}" BorderBrush="{x:Null}" Margin="{StaticResource spaceMargin}">
+                        <TabItem Header="Normal" Visibility="Collapsed">
+
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <GroupBox x:Name="colorGB" Header="{lex:Loc Color}" Padding="4">
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="R" />
+                                                <Slider Value="{Binding MainColorR}" Minimum="0" Maximum="255" ToolTip="{Binding MainColorR}" MinWidth="100" Background="{Binding MainColorRString, FallbackValue=Red}"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="G" />
+                                                <Slider Value="{Binding MainColorG}" MinWidth="100" Minimum="0" Maximum="255" ToolTip="{Binding MainColorG}" Background="{Binding MainColorGString, FallbackValue=Lime}"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="B" />
+                                                <Slider Value="{Binding MainColorB}" MinWidth="100" Minimum="0" Maximum="255" ToolTip="{Binding MainColorB}" Background="{Binding MainColorBString, FallbackValue=Blue}"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </GroupBox>
+
+                                    <GroupBox x:Name="emptyColorGB" Header="Empty" Padding="4">
+                                        <StackPanel>
+
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="R" />
+                                                <Slider Value="{Binding LowColorR}" MinWidth="100" Minimum="0" Maximum="255" ToolTip="{Binding LowColorR}" Background="{Binding LowColorRString, FallbackValue=Red}"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="G" />
+                                                <Slider Value="{Binding LowColorG}" MinWidth="100" Minimum="0" Maximum="255" ToolTip="{Binding LowColorG}" Background="{Binding LowColorGString, FallbackValue=Lime}"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="B" />
+                                                <Slider Value="{Binding LowColorB}" MinWidth="100" Minimum="0" Maximum="255" ToolTip="{Binding LowColorB}" Background="{Binding LowColorBString, FallbackValue=Blue}"/>
+                                            </StackPanel>
+
+                                            <Button x:Name="lowColorBtn" Width="10" Height="10" Background="{Binding LowColor}" HorizontalAlignment="Right" Margin="0,6,0,0" Click="LowColorBtn_Click" />
+                                        </StackPanel>
+                                    </GroupBox>
                                 </StackPanel>
-                            </GroupBox>
-
-                            <GroupBox x:Name="emptyColorGB" Header="Empty" Padding="4">
-                                <StackPanel>
-
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="R" />
-                                        <Slider Value="{Binding LowColorR}" MinWidth="100" Minimum="0" Maximum="255" ToolTip="{Binding LowColorR}" Background="{Binding LowColorRString, FallbackValue=Red}"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="G" />
-                                        <Slider Value="{Binding LowColorG}" MinWidth="100" Minimum="0" Maximum="255" ToolTip="{Binding LowColorG}" Background="{Binding LowColorGString, FallbackValue=Lime}"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="B" />
-                                        <Slider Value="{Binding LowColorB}" MinWidth="100" Minimum="0" Maximum="255" ToolTip="{Binding LowColorB}" Background="{Binding LowColorBString, FallbackValue=Blue}"/>
-                                    </StackPanel>
-
-                                    <Button x:Name="lowColorBtn" Width="10" Height="10" Background="{Binding LowColor}" HorizontalAlignment="Right" Margin="0,6,0,0" Click="LowColorBtn_Click" />
-                                </StackPanel>
-                            </GroupBox>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                            <ComboBox x:Name="flashTypeCombo" SelectedIndex="{Binding FlashTypeIndex,FallbackValue=0}">
-                                <ComboBoxItem Content="Flash at"/>
-                                <ComboBoxItem Content="Pulse at"/>
-                            </ComboBox>
-                            <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding FlashAt,FallbackValue=0}" MinWidth="50"
+                                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                    <ComboBox x:Name="flashTypeCombo" SelectedIndex="{Binding FlashTypeIndex,FallbackValue=0}">
+                                        <ComboBoxItem Content="Flash at"/>
+                                        <ComboBoxItem Content="Pulse at"/>
+                                    </ComboBox>
+                                    <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding FlashAt,FallbackValue=0}" MinWidth="50"
                                             Minimum="-10" Maximum="100" Increment="10" />
-                            <Label Content="%" />
-                            <Button x:Name="flashColorBtn" Width="20" Height="20" Background="{Binding FlashColor,FallbackValue=Blue}"
+                                    <Label Content="%" />
+                                    <Button x:Name="flashColorBtn" Width="20" Height="20" Background="{Binding FlashColor,FallbackValue=Blue}"
                                 ToolTip="{lex:Loc Resources:FlashAtTip}" Click="FlashColorBtn_Click" />
-                        </StackPanel>
+                                </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                            <Label Content="While Charging:"/>
-                            <ComboBox Margin="8,0,0,0" SelectedIndex="{Binding ChargingType,FallbackValue=0}">
-                                <ComboBoxItem Content="Normal" />
-                                <ComboBoxItem Content="Pulse" />
-                                <ComboBoxItem Content="Rainbow" />
-                                <ComboBoxItem Content="Color" />
-                            </ComboBox>
-                            <Button x:Name="chargingColorBtn" Width="20" Height="20" Background="{Binding ChargingColor,FallbackValue=Blue}"
+                                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                    <Label Content="While Charging:"/>
+                                    <ComboBox Margin="8,0,0,0" SelectedIndex="{Binding ChargingType,FallbackValue=0}">
+                                        <ComboBoxItem Content="Normal" />
+                                        <ComboBoxItem Content="Pulse" />
+                                        <ComboBoxItem Content="Rainbow" />
+                                        <ComboBoxItem Content="Color" />
+                                    </ComboBox>
+                                    <Button x:Name="chargingColorBtn" Width="20" Height="20" Background="{Binding ChargingColor,FallbackValue=Blue}"
                                 Visibility="{Binding ChargingColorVisible}" Click="ChargingColorBtn_Click" Margin="20,0,0,0" />
-                        </StackPanel>
+                                </StackPanel>
 
-                        <CheckBox x:Name="colorByBatteryPerCk" Content="Color by Battery %" IsChecked="{Binding ColorBatteryPercent}"
+                                <CheckBox x:Name="colorByBatteryPerCk" Content="Color by Battery %" IsChecked="{Binding ColorBatteryPercent}"
                               ToolTip="{lex:Loc Resources:LightByBatteryTip}" Click="ColorByBatteryPerCk_Click" Margin="0,10,0,0" />
 
-                        <StackPanel Orientation="Horizontal" Height="60" Margin="0,10,0,0">
-                            <Button x:Name="rainbowBtn" Height="20" Width="20"
+                                <StackPanel Orientation="Horizontal" Height="60" Margin="0,10,0,0">
+                                    <Button x:Name="rainbowBtn" Height="20" Width="20"
                                 ToolTip="{lex:Loc Resources:AlwaysRainbow}" Click="RainbowBtn_Click">
-                                <Button.Content>
-                                    <Image Source="/DS4Windows;component/Resources/rainbow.png" />
-                                </Button.Content>
-                            </Button>
-                            <xctk:IntegerUpDown MinWidth="30" Height="30" Minimum="0" Maximum="60" Increment="1" Margin="8,0,0,0"
+                                        <Button.Content>
+                                            <Image Source="/DS4Windows;component/Resources/rainbow.png" />
+                                        </Button.Content>
+                                    </Button>
+                                    <xctk:IntegerUpDown MinWidth="30" Height="30" Minimum="0" Maximum="60" Increment="1" Margin="8,0,0,0"
                                             Value="{Binding Rainbow,FallbackValue=5}" IsEnabled="{Binding RainbowExists}" />
-                            <Label Content="secs/cycle" Padding="0" Margin="8,0,0,0" VerticalContentAlignment="Center" />
-                            <StackPanel Margin="8,0,0,0" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding MaxSatRainbow,FallbackValue=100,StringFormat=Max Sat. {0:N2}%}" Margin="0,0,0,5" />
-                                <Slider Value="{Binding MaxSatRainbow,FallbackValue=100}" Minimum="0" Maximum="100" Width="100" IsEnabled="{Binding RainbowExists}" />
+                                    <Label Content="secs/cycle" Padding="0" Margin="8,0,0,0" VerticalContentAlignment="Center" />
+                                    <StackPanel Margin="8,0,0,0" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding MaxSatRainbow,FallbackValue=100,StringFormat=Max Sat. {0:N2}%}" Margin="0,0,0,5" />
+                                        <Slider Value="{Binding MaxSatRainbow,FallbackValue=100}" Minimum="0" Maximum="100" Width="100" IsEnabled="{Binding RainbowExists}" />
+                                    </StackPanel>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </StackPanel>
+
+                        </TabItem>
+
+                        <TabItem Header="Passthru" Visibility="Collapsed">
+                            <StackPanel>
+                                <TextBlock Foreground="Red" Text="{lex:Loc DS4LightbarPassthruDisabled}" TextWrapping="Wrap">
+                                </TextBlock>
+                            </StackPanel>
+                        </TabItem>
+                    </TabControl>
+
                 </StackPanel>
             </TabItem>
 

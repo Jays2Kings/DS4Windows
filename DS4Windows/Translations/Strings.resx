@@ -541,4 +541,7 @@ Example: whyme_DS4Windows</value>
   <data name="DS4BTPollRate" xml:space="preserve">
     <value>DS4 BT Poll Rate</value>
   </data>
+  <data name="DS4LightbarPassthruDisabled" xml:space="preserve">
+    <value>Feature currently disabled in app due to driver issues. Hopefully issues get fixed in a future update.</value>
+  </data>
 </root>

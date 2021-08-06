@@ -1177,7 +1177,7 @@ namespace DS4Windows
                                 // If the incoming data packet does not have the native DS4 type or CRC-32 checks keep failing. Fail out and disconnect controller.
                                 if (this.inputReportErrorCount >= CRC32_NUM_ATTEMPTS)
                                 {
-                                    AppLogger.LogToGui(Mac.ToString() + " failed CRC-32 checks 10 times. Disconnecting", false);
+                                    AppLogger.LogToGui($"{Mac.ToString()} failed CRC-32 checks {CRC32_NUM_ATTEMPTS} times. Disconnecting", false);
 
                                     readWaitEv.Reset();
                                     sendOutputReport(true, true); // Kick Windows into noticing the disconnection.
@@ -1261,7 +1261,7 @@ namespace DS4Windows
 
                     // Not going to do featureSet check anymore
                     if (conType == ConnectionType.BT && btInputReport[0] != 0x11)
-                    //if (conType == ConnectionType.BT && btInputReport[0] != 0x11 && !this.featureSet.HasFlag(VidPidFeatureSet.OnlyInputData0x01))
+                    //if (conType == ConnectionType.BT && btInputReport[0] != 0x11 && (this.featureSet & VidPidFeatureSet.OnlyInputData0x01 != 0))
                     {
                         //Received incorrect report, skip it
                         continue;
@@ -1338,11 +1338,11 @@ namespace DS4Windows
                         }
 
                         cState.Battery = (byte)battery;
-                        //System.Diagnostics.Debug.WriteLine("CURRENT BATTERY: " + (inputReport[30] & 0x0f) + " | " + tempBattery + " | " + battery);
+                        //Debug.WriteLine("CURRENT BATTERY: " + (inputReport[30] & 0x0f) + " | " + tempBattery + " | " + battery);
                         if (tempByte != priorInputReport30)
                         {
                             priorInputReport30 = tempByte;
-                            //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> power subsystem octet: 0x" + inputReport[30].ToString("x02"));
+                            //Debug.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> power subsystem octet: 0x" + inputReport[30].ToString("x02"));
                         }
                     }
                     else
@@ -1450,6 +1450,8 @@ namespace DS4Windows
                     // Store Gyro and Accel values
                     //Array.Copy(inputReport, 13, gyro, 0, 6);
                     //Array.Copy(inputReport, 19, accel, 0, 6);
+
+                    // Store Gyro and Accel values. Use pointers here as it seems faster than using Array.Copy
                     fixed (byte* pbInput = &inputReport[13], pbGyro = gyro, pbAccel = accel)
                     {
                         for (int i = 0; i < 6; i++)
@@ -1471,9 +1473,12 @@ namespace DS4Windows
                     /* Debug output of incoming HID data:
                     if (cState.L2 == 0xff && cState.R2 == 0xff)
                     {
-                        Console.Write(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + ">");
+                        Debug.Write(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + ">");
                         for (int i = 0; i < inputReport.Length; i++)
-                            Console.Write(" " + inputReport[i].ToString("x2"));
+                        {
+                            Debug.Write(" " + inputReport[i].ToString("x2"));
+                        }
+
                         Console.WriteLine();
                     }
                     */

@@ -1078,6 +1078,7 @@ namespace DS4Windows
 
         protected const int BT_INPUT_REPORT_CRC32_POS = 74; //last 4 bytes of the 78-sized input report are crc32
         public const uint DefaultPolynomial = 0xedb88320u;
+        private const int CRC32_NUM_ATTEMPTS = 10;
         protected uint HamSeed = 2351727372;
 
         protected unsafe void performDs4Input()
@@ -1139,8 +1140,9 @@ namespace DS4Windows
                     readWaitEv.Set();
 
                     // Sony DS4 and compatible gamepads send data packets with 0x11 type code in BT mode. 
-                    // However, couple non-Sony gamepads behave like USB devices in BT mode also, so if OnlyInputData0x01 is set then BT specific crc32 checks are not calculated.
-                    if (conType == ConnectionType.BT && (this.featureSet & VidPidFeatureSet.OnlyInputData0x01) == 0)
+                    // Will no longer support any third party fake DS4 that does not behave according to official DS4 specs
+                    if (conType == ConnectionType.BT)
+                    //if (conType == ConnectionType.BT && !this.featureSet.HasFlag(VidPidFeatureSet.OnlyInputData0x01))
                     {
                         //HidDevice.ReadStatus res = hDevice.ReadFile(btInputReport);
                         //HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(btInputReport, READ_STREAM_TIMEOUT);
@@ -1172,15 +1174,19 @@ namespace DS4Windows
 
                                 cState.PacketCounter = pState.PacketCounter + 1; //still increase so we know there were lost packets
 
-                                // If the incoming data packet doesn't have the native DS4 type (0x11) in BT mode then the gamepad sends PC-friendly 0x01 data packets even in BT mode. Switch over to accept 0x01 data packets in BT mode.
-                                if (this.inputReportErrorCount >= 10)
+                                // If the incoming data packet does not have the native DS4 type or CRC-32 checks keep failing. Fail out and disconnect controller.
+                                if (this.inputReportErrorCount >= CRC32_NUM_ATTEMPTS)
                                 {
-                                    if (btInputReport[0] == 0x01)
-                                    {
-                                        this.inputReportErrorCount = 0;
-                                        this.ModifyFeatureSetFlag(VidPidFeatureSet.OnlyInputData0x01, true);
-                                        AppLogger.LogToGui(Mac.ToString() + " switching over to accept PC-friendly data packets in BT mode", false);
-                                    }
+                                    AppLogger.LogToGui(Mac.ToString() + " failed CRC-32 checks 10 times. Disconnecting", false);
+
+                                    readWaitEv.Reset();
+                                    sendOutputReport(true, true); // Kick Windows into noticing the disconnection.
+                                    StopOutputUpdate();
+                                    isDisconnecting = true;
+                                    Removal?.Invoke(this, EventArgs.Empty);
+
+                                    timeoutExecuted = true;
+                                    return;
                                 }
                                 else
                                     this.inputReportErrorCount++;

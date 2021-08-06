@@ -643,7 +643,7 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition MinWidth="{x:Static SystemParameters.VerticalScrollBarWidth}"/>
+                            <ColumnDefinition MinWidth="{x:Static SystemParameters.VerticalScrollBarWidth}" Width="0"/>
                         </Grid.ColumnDefinitions>
 
                         <ToggleButton Style="{StaticResource ComboBoxToggle}" BorderBrush="{TemplateBinding BorderBrush}"

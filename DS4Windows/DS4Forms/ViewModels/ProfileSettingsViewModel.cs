@@ -58,24 +58,6 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public event EventHandler LightbarModeIndexChanged;
 
-        public Visibility DS4WinLightVisible
-        {
-            get
-            {
-                Visibility temp = Visibility.Visible;
-                switch(Global.LightbarSettingsInfo[device].Mode)
-                {
-                    case LightbarMode.DS4Win:
-                        temp = Visibility.Visible; break;
-                    case LightbarMode.Passthru:
-                        temp = Visibility.Collapsed; break;
-                }
-
-                return temp;
-            }
-        }
-        public event EventHandler DS4WinLightVisibleChanged;
-
         public System.Windows.Media.Brush LightbarBrush
         {
             get
@@ -2498,11 +2480,6 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             {
                 OutputMouseSpeed = CalculateOutputMouseSpeed(ButtonMouseSensitivity);
                 MouseOffsetSpeed = RawButtonMouseOffset * OutputMouseSpeed;
-            };
-
-            LightbarModeIndexChanged += (sender, args) =>
-            {
-                DS4WinLightVisibleChanged?.Invoke(this, EventArgs.Empty);
             };
 
             GyroOutModeIndexChanged += CalcProfileFlags;

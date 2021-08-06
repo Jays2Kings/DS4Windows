@@ -1141,8 +1141,8 @@ namespace DS4Windows
 
                     // Sony DS4 and compatible gamepads send data packets with 0x11 type code in BT mode. 
                     // Will no longer support any third party fake DS4 that does not behave according to official DS4 specs
-                    if (conType == ConnectionType.BT)
-                    //if (conType == ConnectionType.BT && !this.featureSet.HasFlag(VidPidFeatureSet.OnlyInputData0x01))
+                    //if (conType == ConnectionType.BT)
+                    if (conType == ConnectionType.BT && (this.featureSet & VidPidFeatureSet.OnlyInputData0x01) == 0)
                     {
                         //HidDevice.ReadStatus res = hDevice.ReadFile(btInputReport);
                         //HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(btInputReport, READ_STREAM_TIMEOUT);
@@ -1189,13 +1189,17 @@ namespace DS4Windows
                                     return;
                                 }
                                 else
+                                {
                                     this.inputReportErrorCount++;
+                                }
 
                                 readWaitEv.Reset();
                                 continue;
                             }
                             else
+                            {
                                 this.inputReportErrorCount = 0;
+                            }
                         }
                         else
                         {
@@ -1260,8 +1264,7 @@ namespace DS4Windows
                     oldtime = curtime;
 
                     // Not going to do featureSet check anymore
-                    if (conType == ConnectionType.BT && btInputReport[0] != 0x11)
-                    //if (conType == ConnectionType.BT && btInputReport[0] != 0x11 && (this.featureSet & VidPidFeatureSet.OnlyInputData0x01 != 0))
+                    if (conType == ConnectionType.BT && btInputReport[0] != 0x11 && (this.featureSet & VidPidFeatureSet.OnlyInputData0x01) == 0)
                     {
                         //Received incorrect report, skip it
                         continue;

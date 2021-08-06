@@ -1259,7 +1259,9 @@ namespace DS4Windows
                     lastTimeElapsed = (long)lastTimeElapsedDouble;
                     oldtime = curtime;
 
-                    if (conType == ConnectionType.BT && btInputReport[0] != 0x11 && (this.featureSet & VidPidFeatureSet.OnlyInputData0x01) == 0)
+                    // Not going to do featureSet check anymore
+                    if (conType == ConnectionType.BT && btInputReport[0] != 0x11)
+                    //if (conType == ConnectionType.BT && btInputReport[0] != 0x11 && !this.featureSet.HasFlag(VidPidFeatureSet.OnlyInputData0x01))
                     {
                         //Received incorrect report, skip it
                         continue;

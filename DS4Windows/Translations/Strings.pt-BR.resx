@@ -184,7 +184,7 @@
     <value>Controles</value>
   </data>
   <data name="ControlPanel" xml:space="preserve">
-    <value>Painel de COntrole</value>
+    <value>Painel de Controle</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Deletar</value>
@@ -307,19 +307,19 @@
     <value>Apenas Avisos</value>
   </data>
   <data name="RumbleMaxSecs" xml:space="preserve">
-    <value>sec</value>
+    <value>seg</value>
   </data>
   <data name="RumbleMaxSecsTip" xml:space="preserve">
-    <value>Auto stop rumble in secs (0=auto stop disabled)</value>
+    <value>Parar vibração automaticamente em segundos (0=auto parar desabilitado)</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Window Title</value>
+    <value>Titulo da janela</value>
   </data>
   <data name="MoveUp" xml:space="preserve">
-    <value>Move Up</value>
+    <value>Mover acima</value>
   </data>
   <data name="MoveDown" xml:space="preserve">
-    <value>Move Down</value>
+    <value>Mover abaixo</value>
   </data>
   <data name="AutoProfPathTip" xml:space="preserve">
     <value>Process path. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*)</value>
@@ -328,29 +328,29 @@
     <value>Window title. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*)</value>
   </data>
   <data name="GamepadTest" xml:space="preserve">
-    <value>Gamepad Test</value>
+    <value>Testar controle</value>
   </data>
   <data name="EnableOutputDataToDS4" xml:space="preserve">
-    <value>Enable Output data to DS4</value>
+    <value>Habilitar saida de dados para o DS4</value>
   </data>
   <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
-    <value>Output lightbar and rumble data periodically to DS4 gamepad. Untick if the gamepad doesn't support data receiving.
-Changes to this option takes effect at the gamepad connection time.</value>
+    <value>Enviar dados da lightbar e de vibração periodicamente para o DS4. Desmarcar se o controle não suportar a recepção de dados.
+        Mudanças nessa opção são ativadas ao conectar ao controle.</value>
     <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
   </data>
   <data name="Apply" xml:space="preserve">
-    <value>Apply</value>
+    <value>Aplicar</value>
   </data>
   <data name="HidNinja" xml:space="preserve">
     <value>HidNinja</value>
   </data>
   <data name="CustomExeName" xml:space="preserve">
-    <value>Custom Exe Name</value>
+    <value>Nome Exe customizado.</value>
   </data>
   <data name="CustomExeNameInfo" xml:space="preserve">
-    <value>Some games implement a block that causes DS4 input to be ignored if a game detects either DS4Windows.exe or InputMapper.exe running at the time. A workaround to the block is to rename DS4Windows.exe so the check in the game fails. Specifying a custom exe name here allows DS4Updater to automatically update a custom copy of DS4Windows to the desired file name. Make sure to omit the extension.
+    <value>Alguns jogos implementam um bloco que faz com que a entrada DS4 seja ignorada se um jogo detectar DS4Windows.exe ou InputMapper.exe rodando no momento. Uma alternativa para o bloco é renomear DS4Windows.exe para que a verificação no jogo falhe. Especificar um nome de exe personalizado aqui permite que DS4Updater atualize automaticamente uma cópia personalizada de DS4Windows para o nome de arquivo desejado. Certifique-se de omitir a extensão.
 
-Example: whyme_DS4Windows</value>
+    Exemplo: whyme_DS4Windows</value>
   </data>
   <data name="XInputChecker" xml:space="preserve">
     <value>XInputChecker</value>
@@ -368,61 +368,61 @@ Example: whyme_DS4Windows</value>
     <value>Controller 8</value>
   </data>
   <data name="GamepadGyroCameraDescription" xml:space="preserve">
-    <value>Maps the controller output to a standard XInput gamepad or DS4 pad. Gyro is mapped to a Mouse-like Joystick.</value>
+    <value>Mapeia a saída do controlador para um gamepad padrão XInput ou DS4. O Gyro é mapeado para um Joystick parecido com um mouse.</value>
   </data>
   <data name="GamepadGyroCameraName" xml:space="preserve">
-    <value>Gamepad with Mouse-like Joystick</value>
+    <value>Gamepad com Joystick parecido com o mouse</value>
   </data>
   <data name="GamepadPresetDescription" xml:space="preserve">
-    <value>Maps the controller output to a standard gamepad</value>
+    <value>Mapeia a saída do controlador para um padrão gamepad</value>
   </data>
   <data name="GamepadPresetName" xml:space="preserve">
     <value>Gamepad</value>
   </data>
   <data name="KBMGyroMouseDescription" xml:space="preserve">
-    <value>Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support. Gyro is mapped to a virtual Mouse.</value>
+    <value>Mapeia a saída do controlador para controles Teclado+Mouse virtuais. Útil para jogar jogos FPS sem suporte de gamepad. O Gyro é mapeado para um mouse virtual.</value>
   </data>
   <data name="KBMGyroMouseName" xml:space="preserve">
-    <value>KB+M Controls with Gyro Mouse</value>
+    <value>Controles Teclado+Mouse com mouse Gyro</value>
   </data>
   <data name="KBMPresetDescription" xml:space="preserve">
-    <value>Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support.</value>
+    <value>Mapeia a saída do controlador para controles KB+M virtuais. Útil para jogar jogos FPS sem suporte de gamepad.</value>
   </data>
   <data name="KBMPresetName" xml:space="preserve">
-    <value>KB+M Controls</value>
+    <value>Controles Teclado e Mouse</value>
   </data>
   <data name="MixedGyroMousePresetDescription" xml:space="preserve">
-    <value>Maps the buttons and axes to a standard gamepad. Maps the Gyro to a virtual mouse</value>
+    <value>Mapeia os botões e os eixos para um padrão de jogo. Mapeia o Giro para um mouse virtual</value>
   </data>
   <data name="MixedGyroMousePresetName" xml:space="preserve">
-    <value>Gamepad with Gyro Mouse</value>
+    <value>Gamepad com mouse Gyro</value>
   </data>
   <data name="MixedPresetDescription" xml:space="preserve">
-    <value>Maps the controller output to mixed XInput gamepad + RS mouse.</value>
+    <value>Mapeia a saída do controlador para o gamepad misto XInput + mouse RS.</value>
   </data>
   <data name="MixedPresetName" xml:space="preserve">
-    <value>Gamepad with High Precision Camera</value>
+    <value>Gamepad com Câmera de Alta Precisão</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>Descrição</value>
   </data>
   <data name="PresetIntroText" xml:space="preserve">
-    <value>Do you want to use a preset option? Choosing No will cause the Profile Editor to use an empty Gamepad profile.</value>
+    <value>Você quer usar uma opção pré-definida? A escolha de Não fará com que o Editor de Perfil utilize um perfil Gamepad vazio.</value>
   </data>
   <data name="Presets" xml:space="preserve">
-    <value>Presets</value>
+    <value>Predefinições</value>
   </data>
   <data name="Changelog" xml:space="preserve">
-    <value>Changelog</value>
+    <value>Log de mudanças</value>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>Close</value>
+    <value>Fechar</value>
   </data>
   <data name="Profiles" xml:space="preserve">
-    <value>Profiles</value>
+    <value>Perfis</value>
   </data>
   <data name="NoControllersConnected" xml:space="preserve">
-    <value>No Controllers Connected (Max {0})</value>
+    <value>Nenhum controle conectado (Max {0})</value>
   </data>
   <data name="FlickThreshold" xml:space="preserve">
     <value>Flick Threshold</value>

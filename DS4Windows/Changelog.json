@@ -1,9 +1,31 @@
 {
-  "latest_version": "3.0.14",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 14},
-  "updated_at": "2021-08-04T01:48:11+0000",
+  "latest_version": "3.0.15",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 15},
+  "updated_at": "2021-08-07T17:34:17+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.0.15",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 15},
+      "base_header": "Version 3.0.15",
+      "release_date": "2021-08-07T17:34:17+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.15",
+          "log_text": ["* Changed ControllerListViewModel locking strategy for non-Sony DS4s that might fail the initial handshake",
+            "* Remove OnlyInputData0x01 hack for fake DS4 controllers (fake DS4 using Sony VID+PID combo)",
+            "* No longer provide support for knockoff fake DS4 controllers",
+            "* Changed Lightbar TabItem in Profile Editor to use embedded TabControl",
+            "* Added warning text for Lightbar Passthru mode stating the old feature is disabled",
+            "* Fixed combo box cutoff. Contribution by **Sajidur78**",
+            "* Updated Brazilian Portuguese translation pack. Contribution by **nelitow**"],
+          "editor": "ryochan7",
+          "editors_note": ["Tired of problems"],
+          "updated_at": "2021-08-07T17:34:17+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.0.14",
       "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 14},

@@ -27,6 +27,12 @@ namespace DS4Windows
         public fixed byte Report[63];
     }
 
+    /// <summary>
+    /// Used to set data for DS4 Extended output report. StructLayout
+    /// will be used to align data for a raw byte array of 63 bytes.
+    /// ViGEmBus will place report ID byte into the output so this data
+    /// will technically start with byte 1 of the final output report
+    /// </summary>
     [StructLayout(LayoutKind.Explicit, Size = 63)]
     unsafe struct DS4_REPORT_EX
     {

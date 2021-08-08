@@ -2266,6 +2266,7 @@ namespace DS4Windows
                     Mapping.MapCustom(ind, cState, tempMapState, ExposedState[ind], touchPad[ind], this);
 
                     // Copy current Touchpad and Gyro data
+                    // Might change to use new DS4State.CopyExtrasTo method
                     tempMapState.Motion = cState.Motion;
                     tempMapState.ds4Timestamp = cState.ds4Timestamp;
                     tempMapState.TrackPadTouch0 = cState.TrackPadTouch0;

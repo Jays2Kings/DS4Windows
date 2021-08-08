@@ -209,6 +209,20 @@ namespace DS4Windows
             state.OutputRSOuter = OutputRSOuter;
         }
 
+        /// <summary>
+        /// Only copy extra DS4State data that is not output directly tied
+        /// to the mapper routine. Gyro motion data, Touchpad touch data,
+        /// and timestamp data are copied
+        /// </summary>
+        /// <param name="state">State object to copy data to</param>
+        public void CopyExtrasTo(DS4State state)
+        {
+            state.Motion = Motion;
+            state.ds4Timestamp = ds4Timestamp;
+            state.TrackPadTouch0 = TrackPadTouch0;
+            state.TrackPadTouch1 = TrackPadTouch1;
+        }
+
         public void calculateStickAngles()
         {
             double lsangle = Math.Atan2(-(LY - 128), (LX - 128));

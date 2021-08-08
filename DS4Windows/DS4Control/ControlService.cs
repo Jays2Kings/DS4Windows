@@ -2267,6 +2267,7 @@ namespace DS4Windows
 
                     // Copy current Touchpad and Gyro data
                     tempMapState.Motion = cState.Motion;
+                    tempMapState.ds4Timestamp = cState.ds4Timestamp;
                     tempMapState.TrackPadTouch0 = cState.TrackPadTouch0;
                     tempMapState.TrackPadTouch1 = cState.TrackPadTouch1;
                     cState = tempMapState;

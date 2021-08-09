@@ -2269,6 +2269,7 @@ namespace DS4Windows
                     // Might change to use new DS4State.CopyExtrasTo method
                     tempMapState.Motion = cState.Motion;
                     tempMapState.ds4Timestamp = cState.ds4Timestamp;
+                    tempMapState.FrameCounter = cState.FrameCounter;
                     tempMapState.TouchPacketCounter = cState.TouchPacketCounter;
                     tempMapState.TrackPadTouch0 = cState.TrackPadTouch0;
                     tempMapState.TrackPadTouch1 = cState.TrackPadTouch1;

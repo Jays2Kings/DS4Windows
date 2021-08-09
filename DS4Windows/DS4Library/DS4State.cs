@@ -219,6 +219,7 @@ namespace DS4Windows
         {
             state.Motion = Motion;
             state.ds4Timestamp = ds4Timestamp;
+            state.FrameCounter = FrameCounter;
             state.TouchPacketCounter = TouchPacketCounter;
             state.TrackPadTouch0 = TrackPadTouch0;
             state.TrackPadTouch1 = TrackPadTouch1;

@@ -62,7 +62,8 @@ namespace DS4Windows
                 if (state.OutputTouchButton) tempSpecial |= DualShock4SpecialButton.Touchpad.Value;
 
                 outDS4Report.wButtons = tempButtons;
-                outDS4Report.bSpecial = (byte)tempSpecial;
+                // Frame counter is high 6 bits. Low 2 bits is for extra buttons (PS, TP Click)
+                outDS4Report.bSpecial = (byte)(tempSpecial | (state.FrameCounter << 2));
                 outDS4Report.wButtons |= tempDPad.Value;
             }
 

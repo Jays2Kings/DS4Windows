@@ -434,6 +434,8 @@ namespace DS4Windows.InputDevices
 
                     utcNow = DateTime.UtcNow; // timestamp with UTC in case system time zone changes
                     cState.PacketCounter = pState.PacketCounter + 1;
+                    // DS4 Frame Counter range is [0-127]
+                    cState.FrameCounter = (byte)(cState.PacketCounter % 128);
                     cState.ReportTimeStamp = utcNow;
 
                     cState.elapsedTime = combLatency;

@@ -1,9 +1,25 @@
 {
-  "latest_version": "3.0.15",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 15},
-  "updated_at": "2021-08-07T17:34:17+0000",
+  "latest_version": "3.0.16",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 16},
+  "updated_at": "2021-08-09T02:07:23+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.0.16",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 16},
+      "base_header": "Version 3.0.16",
+      "release_date": "2021-08-09T02:07:23+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.16",
+          "log_text": ["* Changed mapper to copy timestamp data from original input state object. Used for DS4 Gyro Passthru"],
+          "editor": "ryochan7",
+          "editors_note": ["Tired of everything"],
+          "updated_at": "2021-08-09T02:07:23+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.0.15",
       "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 15},

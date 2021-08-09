@@ -596,7 +596,6 @@ namespace DS4Windows.InputDevices
                     cState.TouchButton = (tempByte & 0x02) != 0;
                     cState.OutputTouchButton = cState.TouchButton;
                     cState.Mute = (tempByte & (1 << 2)) != 0;
-                    //cState.FrameCounter = (byte)(tempByte >> 2);
 
                     if ((this.featureSet & VidPidFeatureSet.NoBatteryReading) == 0)
                     {

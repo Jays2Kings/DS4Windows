@@ -578,7 +578,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             get => Global.IdleDisconnectTimeout[device] != 0;
             set
             {
-                Global.IdleDisconnectTimeout[device] = value ? 5 * 60 : 0;
+                // If enabling Idle Disconnect, set default time.
+                // Otherwise, set time to 0 to mean disabled
+                Global.IdleDisconnectTimeout[device] = value ?
+                    BackingStore.DEFAULT_ENABLE_IDLE_DISCONN_MINS * 60 : 0;
+
                 IdleDisconnectChanged?.Invoke(this, EventArgs.Empty);
                 IdleDisconnectExistsChanged?.Invoke(this, EventArgs.Empty);
             }

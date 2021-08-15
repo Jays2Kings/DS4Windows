@@ -2692,6 +2692,8 @@ namespace DS4Windows
     {
         public const double DEFAULT_UDP_SMOOTH_MINCUTOFF = 0.4;
         public const double DEFAULT_UDP_SMOOTH_BETA = 0.2;
+        // Use 15 minutes for default Idle Disconnect when initially enabling the option
+        public const int DEFAULT_ENABLE_IDLE_DISCONN_MINS = 15;
 
         public String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + "\\Profiles.xml";
         public String m_Actions = Global.appdatapath + "\\Actions.xml";
@@ -4199,7 +4201,14 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/touchToggle"); Boolean.TryParse(Item.InnerText, out enableTouchToggle[device]); }
                 catch { missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/idleDisconnectTimeout"); Int32.TryParse(Item.InnerText, out idleDisconnectTimeout[device]); }
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/idleDisconnectTimeout");
+                    if (int.TryParse(Item?.InnerText ?? "", out int temp))
+                    {
+                        idleDisconnectTimeout[device] = temp;
+                    }
+                }
                 catch { missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/outputDataToDS4"); Boolean.TryParse(Item.InnerText, out enableOutputDataToDS4[device]); }

@@ -951,14 +951,16 @@ namespace DS4Windows
             contType = OutContType.X360;
 
             OutSlotDevice slotDevice = null;
-            slotDevice = outputslotMan.FindExistUnboundSlotType(contType);
+            if (!getDInputOnly(index))
+            {
+                slotDevice = outputslotMan.FindExistUnboundSlotType(contType);
+            }
 
             if (useDInputOnly[index])
             {
                 bool success = false;
                 // Always attempt Xbox 360 controller emulation
-                if (true)
-                //if (contType == OutContType.X360)
+                if (contType == OutContType.X360)
                 {
                     activeOutDevType[index] = OutContType.X360;
 

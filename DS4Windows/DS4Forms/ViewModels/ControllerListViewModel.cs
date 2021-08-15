@@ -90,7 +90,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             // Engage write lock pre-maturely
             using (WriteLocker readLock = new WriteLocker(_colListLocker))
             {
-                if (!controllerDict.ContainsKey(index))
+                // Look if device exists. Also, check if disconnect might be occurring
+                if (!controllerDict.ContainsKey(index) && !device.IsRemoving)
                 {
                     CompositeDeviceModel temp = new CompositeDeviceModel(device,
                         index, Global.ProfilePath[index], profileListHolder);
@@ -136,8 +137,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     }
                     _colListLocker.ExitReadLock();
 
-
-                    if (!found)
+                    // Check for new device. Also, check if disconnect might be occurring
+                    if (!found && !currentDev.IsRemoving)
                     {
                         //int idx = controllerCol.Count;
                         _colListLocker.EnterWriteLock();

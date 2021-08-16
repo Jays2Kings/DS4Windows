@@ -16,7 +16,7 @@
           "log_text": ["* Added fake DS4 FrameCounter field for DualSense, Switch Pro and JoyCon devices",
             "* Increased default Idle Disconnect time to 15 min",
             "* Disabled DS4 controller emulation support. Can't have nice things",
-            "* Only perform output slot lookup in virtual plugin routine when emulating a controller",
+            "* Only perform output slot lookup in virtual device plugin routine when emulating a controller",
             "* Check for device removal status before adding device to main view list. Fixes initial Switch Pro disconnect on hotplug when controller battery is dead"],
           "editor": "ryochan7",
           "editors_note": ["Tired of this crap"],

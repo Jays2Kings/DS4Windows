@@ -1,9 +1,29 @@
 {
-  "latest_version": "3.0.16",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 16},
-  "updated_at": "2021-08-09T02:07:23+0000",
+  "latest_version": "3.0.17",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 17},
+  "updated_at": "2021-08-16T04:18:45+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.0.17",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 17},
+      "base_header": "Version 3.0.17",
+      "release_date": "2021-08-16T04:18:45+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.17",
+          "log_text": ["* Added fake DS4 FrameCounter field for DualSense, Switch Pro and JoyCon devices",
+            "* Increased default Idle Disconnect time to 15 min",
+            "* Disabled DS4 controller emulation support. Can't have nice things",
+            "* Only perform output slot lookup in virtual plugin routine when emulating a controller",
+            "* Check for device removal status before adding device to main view list. Fixes initial Switch Pro disconnect on hotplug when controller battery is dead"],
+          "editor": "ryochan7",
+          "editors_note": ["Tired of this crap"],
+          "updated_at": "2021-08-16T04:18:45+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.0.16",
       "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 16},

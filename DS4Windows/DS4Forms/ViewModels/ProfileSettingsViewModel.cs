@@ -2148,6 +2148,26 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.GyroMouseStickInf[device].maxZone = value;
         }
 
+        public int GyroMouseStickOutputStick
+        {
+            get => (int)Global.GyroMouseStickInf[device].outputStick;
+            set
+            {
+                Global.GyroMouseStickInf[device].outputStick =
+                    (GyroMouseStickInfo.OutputStick)value;
+            }
+        }
+
+        public int GyroMouseStickOutputAxes
+        {
+            get => (int)Global.GyroMouseStickInf[device].outputStickDir;
+            set
+            {
+                Global.GyroMouseStickInf[device].outputStickDir =
+                    (GyroMouseStickInfo.OutputStickAxes)value;
+            }
+        }
+
         public double GyroMouseStickAntiDeadX
         {
             get => Global.GyroMouseStickInf[device].antiDeadX * 100.0;

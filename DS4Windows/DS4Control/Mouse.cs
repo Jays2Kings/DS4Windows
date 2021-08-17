@@ -529,8 +529,19 @@ namespace DS4Windows
 
             byte axisXOut = (byte)(xNorm * maxDirX + 128.0);
             byte axisYOut = (byte)(yNorm * maxDirY + 128.0);
-            Mapping.gyroStickX[deviceNum] = axisXOut;
-            Mapping.gyroStickY[deviceNum] = axisYOut;
+
+            bool outputX = msinfo.OutputHorizontal();
+            bool outputY = msinfo.OutputVertical();
+
+            if (outputX)
+            {
+                Mapping.gyroStickX[deviceNum] = axisXOut;
+            }
+
+            if (outputY)
+            {
+                Mapping.gyroStickY[deviceNum] = axisYOut;
+            }
         }
 
         private void SixDirectionalSwipe(SixAxisEventArgs arg, GyroDirectionalSwipeInfo swipeInfo)

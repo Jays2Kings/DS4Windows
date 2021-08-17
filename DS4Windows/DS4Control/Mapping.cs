@@ -2280,7 +2280,8 @@ namespace DS4Windows
                     ref tempMouseDeltaY, ctrl);
             }
 
-            if (GyroOutputMode[device] == GyroOutMode.DirectionalSwipe)
+            GyroOutMode imuOutMode = Global.GetGyroOutMode(device);
+            if (imuOutMode == GyroOutMode.DirectionalSwipe)
             {
                 DS4ControlSettings gyroSwipeXDcs = null;
                 DS4ControlSettings gyroSwipeYDcs = null;
@@ -2432,27 +2433,68 @@ namespace DS4Windows
                 MappedState.SASteeringWheelEmulationUnit = Mapping.Scale360degreeGyroAxis(device, eState, ctrl);
             }
 
-            ref byte gyroTempX = ref gyroStickX[device];
-            if (gyroTempX != 128)
+            if (imuOutMode == GyroOutMode.MouseJoystick)
             {
-                if (MappedState.RX != 128)
-                    MappedState.RX = Math.Abs(gyroTempX - 128) > Math.Abs(MappedState.RX - 128) ?
-                        gyroTempX : MappedState.RX;
-                else
-                    MappedState.RX = gyroTempX;
-            }
+                GyroMouseStickInfo msinfo = Global.GetGyroMouseStickInfo(device);
+                if (msinfo.outputStick != GyroMouseStickInfo.OutputStick.None)
+                {
+                    ref byte gyroTempX = ref gyroStickX[device];
+                    if (msinfo.OutputHorizontal() && gyroTempX != 128)
+                    {
+                        byte outputStickXVal = msinfo.outputStick == GyroMouseStickInfo.OutputStick.RightStick ?
+                            MappedState.RX : MappedState.LX;
+                        byte tempAxisVal = 128;
 
-            ref byte gyroTempY = ref gyroStickY[device];
-            if (gyroTempY != 128)
-            {
-                if (MappedState.RY != 128)
-                    MappedState.RY = Math.Abs(gyroTempY - 128) > Math.Abs(MappedState.RY - 128) ?
-                        gyroTempY : MappedState.RY;
-                else
-                    MappedState.RY = gyroTempY;
-            }
+                        if (outputStickXVal != 128)
+                        {
+                            tempAxisVal = Math.Abs(gyroTempX - 128) > Math.Abs(outputStickXVal - 128) ?
+                                gyroTempX : outputStickXVal;
+                        }
+                        else
+                        {
+                            tempAxisVal = gyroTempX;
+                        }
 
-            gyroTempX = gyroTempY = 128;
+                        if (msinfo.outputStick ==
+                            GyroMouseStickInfo.OutputStick.RightStick)
+                        {
+                            MappedState.RX = tempAxisVal;
+                        }
+                        else if (msinfo.outputStick ==
+                            GyroMouseStickInfo.OutputStick.LeftStick)
+                        {
+                            MappedState.LX = tempAxisVal;
+                        }
+                    }
+
+                    ref byte gyroTempY = ref gyroStickY[device];
+                    if (msinfo.OutputVertical() && gyroTempY != 128)
+                    {
+                        byte outputStickYVal = msinfo.outputStick == GyroMouseStickInfo.OutputStick.RightStick ?
+                            MappedState.RY : MappedState.LY;
+                        byte tempAxisVal = 128;
+
+                        if (outputStickYVal != 128)
+                            tempAxisVal = Math.Abs(gyroTempY - 128) > Math.Abs(outputStickYVal - 128) ?
+                                gyroTempY : outputStickYVal;
+                        else
+                            tempAxisVal = gyroTempY;
+
+                        if (msinfo.outputStick ==
+                            GyroMouseStickInfo.OutputStick.RightStick)
+                        {
+                            MappedState.RY = tempAxisVal;
+                        }
+                        else if (msinfo.outputStick ==
+                            GyroMouseStickInfo.OutputStick.LeftStick)
+                        {
+                            MappedState.LY = tempAxisVal;
+                        }
+                    }
+
+                    gyroTempX = gyroTempY = 128;
+                }
+            }
 
             calculateFinalMouseMovement(ref tempMouseDeltaX, ref tempMouseDeltaY,
                 out mouseDeltaX, out mouseDeltaY);

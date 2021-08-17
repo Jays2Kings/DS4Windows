@@ -282,9 +282,26 @@ namespace DS4Windows
             WeightedAverage,
         }
 
+        public enum OutputStick : byte
+        {
+            None,
+            LeftStick,
+            RightStick,
+        }
+
+        public enum OutputStickAxes : byte
+        {
+            None,
+            XY,
+            X,
+            Y
+        }
+
         public const double DEFAULT_MINCUTOFF = 0.4;
         public const double DEFAULT_BETA = 0.7;
         public const string DEFAULT_SMOOTH_TECHNIQUE = "one-euro";
+        public const OutputStick DEFAULT_OUTPUT_STICK = OutputStick.RightStick;
+        public const OutputStickAxes DEFAULT_OUTPUT_STICK_AXES = OutputStickAxes.XY;
 
         public int deadZone;
         public int maxZone;
@@ -300,6 +317,8 @@ namespace DS4Windows
         public SmoothingMethod smoothingMethod;
         public double minCutoff = DEFAULT_MINCUTOFF;
         public double beta = DEFAULT_BETA;
+        public OutputStick outputStick = DEFAULT_OUTPUT_STICK;
+        public OutputStickAxes outputStickDir = DEFAULT_OUTPUT_STICK_AXES;
 
         public delegate void GyroMouseStickInfoEventHandler(GyroMouseStickInfo sender,
             EventArgs args);
@@ -335,6 +354,8 @@ namespace DS4Windows
             antiDeadX = 0.4; antiDeadY = 0.4;
             inverted = 0; vertScale = 100;
             maxOutputEnabled = false; maxOutput = 100.0;
+            outputStick = DEFAULT_OUTPUT_STICK;
+            outputStickDir = DEFAULT_OUTPUT_STICK_AXES;
 
             minCutoff = DEFAULT_MINCUTOFF;
             beta = DEFAULT_BETA;
@@ -407,6 +428,18 @@ namespace DS4Windows
         {
             BetaChanged = null;
             MinCutoffChanged = null;
+        }
+
+        public bool OutputHorizontal()
+        {
+            return outputStickDir == OutputStickAxes.XY ||
+                outputStickDir == OutputStickAxes.X;
+        }
+
+        public bool OutputVertical()
+        {
+            return outputStickDir == OutputStickAxes.XY ||
+                outputStickDir == OutputStickAxes.Y;
         }
     }
 

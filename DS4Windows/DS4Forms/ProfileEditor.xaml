@@ -1600,6 +1600,25 @@
                                                 Minimum="1" />
                             </StackPanel>
 
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <Label Content="Output Stick" />
+                                <ComboBox SelectedIndex="{Binding GyroMouseStickOutputStick}">
+                                    <ComboBoxItem Content="None" />
+                                    <ComboBoxItem Content="Left Stick" />
+                                    <ComboBoxItem Content="Right Stick" />
+                                </ComboBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                <Label Content="Output Axes" />
+                                <ComboBox SelectedIndex="{Binding GyroMouseStickOutputAxes}">
+                                    <ComboBoxItem Content="None" />
+                                    <ComboBoxItem Content="Horizontal and Vertical" />
+                                    <ComboBoxItem Content="Horizontal Only" />
+                                    <ComboBoxItem Content="Vertical Only" />
+                                </ComboBox>
+                            </StackPanel>
+
                             <StackPanel Orientation="Horizontal" Height="30" Margin="{StaticResource spaceMargin}">
                                 <Label Content="Minimum X" />
                                 <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickAntiDeadX}" MinWidth="60"

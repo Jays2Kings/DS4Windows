@@ -947,8 +947,6 @@ namespace DS4Windows
         public void PluginOutDev(int index, DS4Device device)
         {
             OutContType contType = Global.OutContType[index];
-            // Always attempt Xbox 360 controller emulation
-            contType = OutContType.X360;
 
             OutSlotDevice slotDevice = null;
             if (!getDInputOnly(index))
@@ -959,7 +957,6 @@ namespace DS4Windows
             if (useDInputOnly[index])
             {
                 bool success = false;
-                // Always attempt Xbox 360 controller emulation
                 if (contType == OutContType.X360)
                 {
                     activeOutDevType[index] = OutContType.X360;

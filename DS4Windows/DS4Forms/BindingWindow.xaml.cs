@@ -66,10 +66,10 @@ namespace DS4WinWPF.DS4Forms
             InitKeyBindings();
             InitInfoMaps();
 
-            //if (!bindingVM.Using360Mode)
-            //{
-            //    InitDS4Canvas();
-            //}
+            if (!bindingVM.Using360Mode)
+            {
+                InitDS4Canvas();
+            }
 
             bindingVM.ActionBinding = bindingVM.CurrentOutBind;
             if (expose == ExposeMode.Full)

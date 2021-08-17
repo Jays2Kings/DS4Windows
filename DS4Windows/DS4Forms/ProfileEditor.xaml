@@ -1830,7 +1830,7 @@
                     <StackPanel>
                         <GroupBox Header="{lex:Loc VirtualControllerSettings}" MinHeight="50" Margin="4,4,4,0" Padding="0,4,0,4">
                             <StackPanel>
-                                <StackPanel Orientation="Horizontal" Visibility="Collapsed" Margin="0,0,0,5">
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                                     <Label Content="{lex:Loc EmulatedController}" ToolTip="{lex:Loc OutContNotice}" />
                                     <ComboBox x:Name="outConTypeCombo" SelectedIndex="{Binding TempControllerIndex, FallbackValue=0}" IsEnabled="{Binding DInputOnly, Converter={StaticResource InverseBoolConverter}}" MinWidth="140"
                                       ToolTip="{lex:Loc OutContNotice}">

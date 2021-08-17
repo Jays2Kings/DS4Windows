@@ -1,9 +1,27 @@
 {
-  "latest_version": "3.0.17",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 17},
-  "updated_at": "2021-08-16T04:18:45+0000",
+  "latest_version": "3.0.18",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 18},
+  "updated_at": "2021-08-17T18:46:29+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.0.18",
+      "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 18},
+      "base_header": "Version 3.0.18",
+      "release_date": "2021-08-17T18:46:29+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.0.18",
+          "log_text": ["* Added output Stick and Axis options for Gyro Mouse Joystick",
+            "* Use TabControl to contain gyro output panels. Simplifies XAML",
+            "* Re-enabled DS4 emulation support"],
+          "editor": "ryochan7",
+          "editors_note": ["Can't have nice things like a functioning society"],
+          "updated_at": "2021-08-17T18:46:29+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.0.17",
       "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 17},

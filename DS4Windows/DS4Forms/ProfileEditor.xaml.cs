@@ -48,7 +48,6 @@ namespace DS4WinWPF.DS4Forms
         private Dictionary<Button, int> hoverIndexes = new Dictionary<Button, int>();
         private Dictionary<int, Button> reverseHoverIndexes = new Dictionary<int, Button>();
 
-        private StackPanel activeGyroModePanel;
         private bool keepsize;
         private bool controllerReadingsTabActive = false;
         public bool Keepsize { get => keepsize; }
@@ -65,8 +64,6 @@ namespace DS4WinWPF.DS4Forms
             profileSettingsVM = new ProfileSettingsViewModel(device);
             picBoxHover.Visibility = Visibility.Hidden;
             picBoxHover2.Visibility = Visibility.Hidden;
-
-            activeGyroModePanel = gyroControlsPanel;
 
             mappingListVM = new MappingListViewModel(deviceNum, profileSettingsVM.ContType);
             specialActionsVM = new SpecialActionsListViewModel(device);
@@ -101,33 +98,6 @@ namespace DS4WinWPF.DS4Forms
             profileSettingsVM.R2DeadZoneChanged += UpdateReadingsR2DeadZone;
             profileSettingsVM.SXDeadZoneChanged += UpdateReadingsSXDeadZone;
             profileSettingsVM.SZDeadZoneChanged += UpdateReadingsSZDeadZone;
-        }
-
-        private void SetupGyroPanel()
-        {
-            switch (profileSettingsVM.GyroOutModeIndex)
-            {
-                case 0:
-                    activeGyroModePanel = gyroControlsPanel; break;
-                case 1:
-                    activeGyroModePanel = gyroMousePanel; break;
-                case 2:
-                    activeGyroModePanel = gyroMouseJoystickPanel; break;
-                case 3:
-                    activeGyroModePanel = gyroDirSwipePanel; break;
-                case 4:
-                    activeGyroModePanel = passthruPanel; break;
-                default:
-                    activeGyroModePanel = gyroControlsPanel; break;
-            }
-
-            //activeGyroModePanel = gyroControlsPanel;
-            gyroControlsPanel.Visibility = Visibility.Collapsed;
-            gyroMousePanel.Visibility = Visibility.Collapsed;
-            gyroMouseJoystickPanel.Visibility = Visibility.Collapsed;
-            gyroDirSwipePanel.Visibility = Visibility.Collapsed;
-            passthruPanel.Visibility = Visibility.Collapsed;
-            activeGyroModePanel.Visibility = Visibility.Visible;
         }
 
         private void UpdateReadingsSZDeadZone(object sender, EventArgs e)
@@ -610,7 +580,6 @@ namespace DS4WinWPF.DS4Forms
             mappingListBox.DataContext = mappingListVM;
             specialActionsTab.DataContext = specialActionsVM;
             lightbarRect.DataContext = profileSettingsVM;
-            SetupGyroPanel();
 
             StickDeadZoneInfo lsMod = Global.LSModInfo[device];
             if (lsMod.deadzoneType == StickDeadZoneInfo.DeadZoneType.Radial)
@@ -680,7 +649,6 @@ namespace DS4WinWPF.DS4Forms
             mappingListBox.DataContext = mappingListVM;
             specialActionsTab.DataContext = specialActionsVM;
             lightbarRect.DataContext = profileSettingsVM;
-            SetupGyroPanel();
 
             conReadingsUserCon.LsDeadX = profileSettingsVM.LSDeadZone;
             conReadingsUserCon.RsDeadX = profileSettingsVM.RSDeadZone;
@@ -776,31 +744,6 @@ namespace DS4WinWPF.DS4Forms
             int idx = gyroOutModeCombo.SelectedIndex;
             if (idx >= 0)
             {
-                activeGyroModePanel.Visibility = Visibility.Collapsed;
-
-                if (idx == 0)
-                {
-                    activeGyroModePanel = gyroControlsPanel;
-                }
-                else if (idx == 1)
-                {
-                    activeGyroModePanel = gyroMousePanel;
-                }
-                else if (idx == 2)
-                {
-                    activeGyroModePanel = gyroMouseJoystickPanel;
-                }
-                else if (idx == 3)
-                {
-                    activeGyroModePanel = gyroDirSwipePanel;
-                }
-                else if (idx == 4)
-                {
-                    activeGyroModePanel = passthruPanel;
-                }
-
-                activeGyroModePanel.Visibility = Visibility.Visible;
-
                 if (deviceNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
                 {
                     App.rootHub.touchPad[deviceNum]?.ResetToggleGyroModes();

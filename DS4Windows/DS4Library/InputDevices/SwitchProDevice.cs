@@ -362,6 +362,11 @@ namespace DS4Windows.InputDevices
                 byte tempByte = 0;
                 long latencySum = 0;
 
+                long previousCheckTime = 0;
+                long deltaCheckElapsed;
+                double lastCheckElapsed;
+                double lastCheckTimeElapsed;
+
                 // Run continuous calibration on Gyro when starting input loop
                 sixAxis.ResetContinuousCalibration();
                 standbySw.Start();
@@ -410,14 +415,22 @@ namespace DS4Windows.InputDevices
                     testelapsed = curtime - oldtime;
                     lastTimeElapsedDouble = testelapsed * (1.0 / Stopwatch.Frequency) * 1000.0;
                     lastTimeElapsed = (long)lastTimeElapsedDouble;
-                    oldtime = curtime;
                     elapsedDeltaTime = lastTimeElapsedDouble * .001;
-                    combLatency += elapsedDeltaTime;
+                    combLatency = elapsedDeltaTime;
 
-                    if (elapsedDeltaTime <= 0.005)
+                    // Obtain stats for current poll time
+                    deltaCheckElapsed = curtime - previousCheckTime;
+                    lastCheckElapsed = deltaCheckElapsed * (1.0 / Stopwatch.Frequency) * 1000.0;
+                    lastCheckTimeElapsed = lastCheckElapsed * 0.001;
+                    previousCheckTime = curtime;
+
+                    // Check if most recent poll exceeded a certain duration. Avoids false poll state?
+                    if (lastCheckTimeElapsed <= 0.005)
                     {
                         continue;
                     }
+
+                    oldtime = curtime;
 
                     if (tempLatencyCount >= 20)
                     {
@@ -438,8 +451,8 @@ namespace DS4Windows.InputDevices
                     cState.FrameCounter = (byte)(cState.PacketCounter % 128);
                     cState.ReportTimeStamp = utcNow;
 
-                    cState.elapsedTime = combLatency;
-                    cState.totalMicroSec = pState.totalMicroSec + (uint)(combLatency * 1000000);
+                    cState.elapsedTime = elapsedDeltaTime;
+                    cState.totalMicroSec = pState.totalMicroSec + (uint)(elapsedDeltaTime * 1000000);
                     combLatency = 0.0;
 
                     if ((this.featureSet & VidPidFeatureSet.NoBatteryReading) == 0)
@@ -712,7 +725,7 @@ namespace DS4Windows.InputDevices
             Subcommand(0x40, imuEnable, 1, checkResponse: true);
 
             // Enable High Performance Gyro mode
-            byte[] gyroModeBuffer = new byte[] { 0x03, 0x00, 0x00, 0x01 };
+            byte[] gyroModeBuffer = new byte[] { 0x03, 0x00, 0x00, 0x00 };
             //Thread.Sleep(1000);
             Subcommand(0x41, gyroModeBuffer, 4, checkResponse: true);
 

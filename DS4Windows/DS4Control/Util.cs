@@ -256,5 +256,36 @@ namespace DS4Windows
                 Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ReleaseId", "").ToString();
             return releaseId;
         }
+
+        /// <summary>
+        /// DS4Windows and HidHideClient need to be on same drive. Assume default
+        /// install path. Don't care if someone has changed the install path.
+        /// Return found path or string.Empty if path not found. Good enough for me.
+        /// </summary>
+        /// <returns></returns>
+        public static string GetHidHideClientPath()
+        {
+            string result = string.Empty;
+            string driveLetter = Path.GetPathRoot(Global.exedirpath);
+            string[] testPaths = new string[]
+            {
+                Path.Combine(driveLetter, "Program Files",
+                    "Nefarius Software Solutions e.U", "HidHideClient", "HidHideClient.exe"),
+
+                Path.Combine(driveLetter, @"Program Files (x86)",
+                    "Nefarius Software Solutions e.U", "HidHideClient", "HidHideClient.exe"),
+            };
+
+            foreach(string testPath in testPaths)
+            {
+                if (File.Exists(testPath))
+                {
+                    result = testPath;
+                    break;
+                }
+            }
+
+            return result;
+        }
     }
 }

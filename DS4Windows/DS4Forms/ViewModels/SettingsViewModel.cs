@@ -297,8 +297,17 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             string oldvalue, string newvalue);
 
 
-        public bool HidHideInstalled { get => DS4Windows.Global.hidHideInstalled; }
-        public event EventHandler HidHideInstalledChanged;
+        public bool HidHideClientFound
+        {
+            get
+            {
+                bool result = DS4Windows.Global.hidHideInstalled &&
+                    !string.IsNullOrEmpty(DS4Windows.Util.GetHidHideClientPath());
+
+                return result;
+            }
+        }
+        public event EventHandler HidHideClientFoundChanged;
 
         public SettingsViewModel()
         {
@@ -532,7 +541,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public void DriverCheckRefresh()
         {
-            HidHideInstalledChanged?.Invoke(this, EventArgs.Empty);
+            HidHideClientFoundChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

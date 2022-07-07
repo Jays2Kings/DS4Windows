@@ -2695,7 +2695,7 @@ namespace DS4Windows
         public const double DEFAULT_UDP_SMOOTH_BETA = 0.2;
         // Use 15 minutes for default Idle Disconnect when initially enabling the option
         public const int DEFAULT_ENABLE_IDLE_DISCONN_MINS = 15;
-
+        private const double DEFAULT_SX_TILT_DEADZONE = 0.25;
         public String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + "\\Profiles.xml";
         public String m_Actions = Global.appdatapath + "\\Actions.xml";
         public string m_linkedProfiles = Global.appdatapath + "\\LinkedProfiles.xml";
@@ -2758,7 +2758,9 @@ namespace DS4Windows
         };
 
         public double[] LSRotation = new double[Global.TEST_PROFILE_ITEM_COUNT] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }, RSRotation = new double[Global.TEST_PROFILE_ITEM_COUNT] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
-        public double[] SXDeadzone = new double[Global.TEST_PROFILE_ITEM_COUNT] { 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25 }, SZDeadzone = new double[Global.TEST_PROFILE_ITEM_COUNT] { 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25 };
+        public double[] SXDeadzone = new double[Global.TEST_PROFILE_ITEM_COUNT] { DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE },
+            SZDeadzone = new double[Global.TEST_PROFILE_ITEM_COUNT] { DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE };
+
         public double[] SXMaxzone = new double[Global.TEST_PROFILE_ITEM_COUNT] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 },
             SZMaxzone = new double[Global.TEST_PROFILE_ITEM_COUNT] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 };
         public double[] SXAntiDeadzone = new double[Global.TEST_PROFILE_ITEM_COUNT] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
@@ -4763,10 +4765,19 @@ namespace DS4Windows
                     catch { }
                 }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXDeadZone"); double.TryParse(Item.InnerText, out SXDeadzone[device]); }
-                catch { SXDeadzone[device] = 0.02; missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SZDeadZone"); double.TryParse(Item.InnerText, out SZDeadzone[device]); }
-                catch { SZDeadzone[device] = 0.02; missingSetting = true; }
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXDeadZone");
+                    double.TryParse(Item.InnerText, out SXDeadzone[device]);
+                }
+                catch { SXDeadzone[device] = DEFAULT_SX_TILT_DEADZONE; missingSetting = true; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SZDeadZone");
+                    double.TryParse(Item.InnerText, out SZDeadzone[device]);
+                }
+                catch { SZDeadzone[device] = DEFAULT_SX_TILT_DEADZONE; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXMaxZone");
                     int temp = 0;
@@ -7163,7 +7174,7 @@ namespace DS4Windows
 
             LSRotation[device] = 0.0;
             RSRotation[device] = 0.0;
-            SXDeadzone[device] = SZDeadzone[device] = 0.25;
+            SXDeadzone[device] = SZDeadzone[device] = DEFAULT_SX_TILT_DEADZONE;
             SXMaxzone[device] = SZMaxzone[device] = 1.0;
             SXAntiDeadzone[device] = SZAntiDeadzone[device] = 0.0;
             l2Sens[device] = r2Sens[device] = 1;

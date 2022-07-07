@@ -387,8 +387,10 @@ namespace DS4Windows
         private const byte DEFAULT_BT_REPORT_TYPE = 0x15;
         private byte knownGoodBTOutputReportType = DEFAULT_BT_REPORT_TYPE;
 
-        private const byte DEFAULT_OUTPUT_FEATURES = 0xF7;
-        private const byte COPYCAT_OUTPUT_FEATURES = 0xF3; // Remove flash flag
+        //private const byte DEFAULT_OUTPUT_FEATURES = 0xF7;
+        private const byte DEFAULT_OUTPUT_FEATURES = 0x87;
+        //private const byte COPYCAT_OUTPUT_FEATURES = 0xF3;
+        private const byte COPYCAT_OUTPUT_FEATURES = 0x83;
         private byte outputFeaturesByte = DEFAULT_OUTPUT_FEATURES;
 
         protected bool useRumble = true;
@@ -647,7 +649,7 @@ namespace DS4Windows
 
         public virtual void PostInit()
         {
-            HidDevice hidDevice = hDevice;
+            //HidDevice hidDevice = hDevice;
             deviceType = InputDevices.InputDeviceType.DS4;
             gyroMouseSensSettings = new GyroMouseSens();
             optionsStore = nativeOptionsStore = new DS4ControllerOptions(deviceType);
@@ -661,35 +663,11 @@ namespace DS4Windows
                 if (conType == ConnectionType.USB)
                 {
                     warnInterval = WARN_INTERVAL_USB;
-                    HidDeviceAttributes tempAttr = hDevice.Attributes;
-                    if (tempAttr.VendorId == 0x054C && tempAttr.ProductId == 0x09CC)
-                    {
-                        audio = new DS4Audio(searchDeviceInstance: hidDevice.ParentPath);
-                        micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture,
-                            searchDeviceInstance: hidDevice.ParentPath);
-                    }
-                    else if (tempAttr.VendorId == DS4Devices.RAZER_VID &&
-                        tempAttr.ProductId == 0x1007)
-                    {
-                        audio = new DS4Audio(searchDeviceInstance: hidDevice.ParentPath);
-                        micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture,
-                            searchDeviceInstance: hidDevice.ParentPath);
-                    }
-                    else if (featureSet.HasFlag(VidPidFeatureSet.MonitorAudio))
-                    {
-                        audio = new DS4Audio(searchDeviceInstance: hidDevice.ParentPath);
-                        micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture,
-                            searchDeviceInstance: hidDevice.ParentPath);
-                    }
-
                     synced = true;
                 }
                 else
                 {
                     warnInterval = WARN_INTERVAL_BT;
-                    audio = new DS4Audio(searchDeviceInstance: hidDevice.ParentPath);
-                    micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture,
-                        searchDeviceInstance: hidDevice.ParentPath);
                     runCalib = synced = isValidSerial();
                 }
             }
@@ -723,7 +701,8 @@ namespace DS4Windows
             }
 
             if (conType == ConnectionType.BT &&
-                !featureSet.HasFlag(VidPidFeatureSet.NoOutputData) && !featureSet.HasFlag(VidPidFeatureSet.OnlyOutputData0x05))
+                !featureSet.HasFlag(VidPidFeatureSet.NoOutputData) &&
+                !featureSet.HasFlag(VidPidFeatureSet.OnlyOutputData0x05))
             {
                 CheckOutputReportTypes();
             }
@@ -1593,7 +1572,8 @@ namespace DS4Windows
                 outReportBuffer[1] = (byte)(0xC0 | btPollRate); // input report rate
                 outReportBuffer[2] = 0xA0;
 
-                // enable rumble (0x01), lightbar (0x02), flash (0x04). Default: 0xF7
+                // Headphone volume L (0x10), Headphone volume R (0x20), Mic volume (0x40), Speaker volume (0x80)
+                // enable rumble (0x01), lightbar (0x02), flash (0x04). Default: 0x87
                 outReportBuffer[3] = outputFeaturesByte;
                 outReportBuffer[4] = 0x04;
 
@@ -1622,7 +1602,8 @@ namespace DS4Windows
             else
             {
                 outReportBuffer[0] = 0x05;
-                // enable rumble (0x01), lightbar (0x02), flash (0x04). Default: 0xF7
+                // Headphone volume L (0x10), Headphone volume R (0x20), Mic volume (0x40), Speaker volume (0x80)
+                // enable rumble (0x01), lightbar (0x02), flash (0x04). Default: 0x87
                 outReportBuffer[1] = outputFeaturesByte;
                 outReportBuffer[2] = 0x04;
                 outReportBuffer[4] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast; // fast motor
@@ -1640,14 +1621,6 @@ namespace DS4Windows
                 }
 
                 haptime = haptime || change;
-                if (haptime && audio != null)
-                {
-                    // Headphone volume levels
-                    outReportBuffer[19] = outReportBuffer[20] =
-                        Convert.ToByte(audio.getVolume());
-                    // Microphone volume level
-                    outReportBuffer[21] = Convert.ToByte(micAudio.getVolume());
-                }
             }
         }
 

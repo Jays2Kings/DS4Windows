@@ -494,8 +494,8 @@ namespace DS4Windows
             {
                 double maxOutRatio = msinfo.maxOutput / 100.0;
                 // Expand output a bit. Likely not going to get a straight line with Gyro
-                double maxOutXRatio = Math.Min(normX / 0.99, 1.0) * maxOutRatio;
-                double maxOutYRatio = Math.Min(normY / 0.99, 1.0) * maxOutRatio;
+                double maxOutXRatio = Math.Min(normX / 0.95, 1.0) * maxOutRatio;
+                double maxOutYRatio = Math.Min(normY / 0.95, 1.0) * maxOutRatio;
 
                 xratio = Math.Min(Math.Max(xratio, 0.0), maxOutXRatio);
                 yratio = Math.Min(Math.Max(yratio, 0.0), maxOutYRatio);

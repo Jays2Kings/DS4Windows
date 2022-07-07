@@ -944,9 +944,9 @@
                                                    Margin="{StaticResource spaceMargin}" />
 
                                 <Label Content="Sensitivity:" Grid.Row="4" Grid.Column="0" />
-                                <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding SXSens}" MinWidth="50" Grid.Row="4" Grid.Column="1" Maximum="5.0" Minimum="0.1" Increment="0.1"
+                                <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding SXSens}" MinWidth="50" Grid.Row="4" Grid.Column="1" Maximum="5.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
-                                <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding SZSens}" MinWidth="50" Grid.Row="4" Grid.Column="2" Maximum="5.0" Minimum="0.1" Increment="0.1"
+                                <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding SZSens}" MinWidth="50" Grid.Row="4" Grid.Column="2" Maximum="5.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
                                 <Label Content="Output Curve:" Grid.Row="5" Grid.Column="0" />

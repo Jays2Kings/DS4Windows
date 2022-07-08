@@ -263,7 +263,15 @@ namespace DS4Windows
         {
             string attemptVirtualkbmHandler = cmdParser.VirtualkbmHandler;
             Global.InitOutputKBMHandler(attemptVirtualkbmHandler);
-            if (!Global.outputKBMHandler.Connect() &&
+
+            bool handlerConnected = false;
+            try
+            {
+                handlerConnected = Global.outputKBMHandler.Connect();
+            }
+            catch { }
+
+            if (!handlerConnected &&
                 attemptVirtualkbmHandler != VirtualKBMFactory.GetFallbackHandlerIdentifier())
             {
                 Global.outputKBMHandler = VirtualKBMFactory.GetFallbackHandler();

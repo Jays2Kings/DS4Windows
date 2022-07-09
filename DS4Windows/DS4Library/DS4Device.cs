@@ -558,9 +558,6 @@ namespace DS4Windows
             HidD_SetOutputReport,
         }
 
-        private BTOutputReportMethod btOutputMethod;
-        public BTOutputReportMethod BTOutputMethod { get => btOutputMethod; set => btOutputMethod = value; }
-
         protected InputDevices.InputDeviceType deviceType;
         public InputDevices.InputDeviceType DeviceType { get => deviceType; }
 
@@ -822,15 +819,6 @@ namespace DS4Windows
             {
                 if (conType == ConnectionType.BT)
                 {
-                    if (btOutputMethod == BTOutputReportMethod.HidD_SetOutputReport)
-                    {
-                        ds4Output = new Thread(performDs4Output);
-                        ds4Output.Priority = ThreadPriority.Normal;
-                        ds4Output.Name = "DS4 Output thread: " + Mac;
-                        ds4Output.IsBackground = true;
-                        ds4Output.Start();
-                    }
-
                     timeoutCheckThread = new Thread(TimeoutTestThread);
                     timeoutCheckThread.Priority = ThreadPriority.BelowNormal;
                     timeoutCheckThread.Name = "DS4 Timeout thread: " + Mac;
@@ -909,16 +897,8 @@ namespace DS4Windows
                 //if ((this.featureSet & VidPidFeatureSet.OnlyOutputData0x05) == 0)
                 //    return hDevice.WriteOutputReportViaControl(outputReport);
 
-                if (btOutputMethod == BTOutputReportMethod.WriteFile)
-                {
-                    // Use Interrupt endpoint for almost BT DS4 connected devices now
-                    return hDevice.WriteOutputReportViaInterrupt(outputBuffer, READ_STREAM_TIMEOUT);
-                }
-                else
-                {
-                    // Mainly needed for Windows 7 support
-                    return hDevice.WriteOutputReportViaControl(outputBuffer);
-                }
+                // Use Interrupt endpoint for BT DS4 connected devices now
+                return hDevice.WriteOutputReportViaInterrupt(outputBuffer, READ_STREAM_TIMEOUT);
             }
             else
             {
@@ -933,16 +913,8 @@ namespace DS4Windows
                 //if ((this.featureSet & VidPidFeatureSet.OnlyOutputData0x05) == 0)
                 //    return hDevice.WriteOutputReportViaControl(outputReport);
 
-                if (btOutputMethod == BTOutputReportMethod.WriteFile)
-                {
-                    // Use Interrupt endpoint for almost BT DS4 connected devices now
-                    return hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
-                }
-                else
-                {
-                    // Mainly needed for Windows 7 support
-                    return hDevice.WriteOutputReportViaControl(outputReport);
-                }
+                // Use Interrupt endpoint for almost BT DS4 connected devices now
+                return hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
             }
             else
             {
@@ -956,65 +928,6 @@ namespace DS4Windows
         private const int OUTPUT_MIN_COUNT_BT = 3;
         private byte[] outputBTCrc32Head = new byte[] { 0xA2 };
         protected readonly Stopwatch standbySw = new Stopwatch();
-        private unsafe void performDs4Output()
-        {
-            try
-            {
-                int lastError = 0;
-                bool result = false, currentRumble = false;
-                while (!exitOutputThread)
-                {
-                    if (currentRumble)
-                    {
-                        lock(outputReport)
-                        {
-                            result = writeOutput();
-                        }
-
-                        currentRumble = false;
-                        if (!result)
-                        {
-                            currentRumble = true;
-                            exitOutputThread = true;
-                            int thisError = Marshal.GetLastWin32Error();
-                            if (lastError != thisError)
-                            {
-                                Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered write failure: " + thisError);
-                                //Log.LogToGui(Mac.ToString() + " encountered write failure: " + thisError, true);
-                                lastError = thisError;
-                            }
-                        }
-                    }
-
-                    if (!currentRumble)
-                    {
-                        lastError = 0;
-                        lock (outReportBuffer)
-                        {
-                            Monitor.Wait(outReportBuffer);
-                            fixed (byte* byteR = outputReport, byteB = outReportBuffer)
-                            {
-                                for (int i = 0, arlen = BT_OUTPUT_CHANGE_LENGTH; i < arlen; i++)
-                                    byteR[i] = byteB[i];
-                            }
-                            //outReportBuffer.CopyTo(outputReport, 0);
-                            if (outputPendCount > 1)
-                                outputPendCount--;
-                            else if (outputPendCount == 1)
-                            {
-                                outputPendCount--;
-                                standbySw.Restart();
-                            }
-                            else
-                                standbySw.Restart();
-                        }
-
-                        currentRumble = true;
-                    }
-                }
-            }
-            catch (ThreadInterruptedException) { }
-        }
 
         /** Is the device alive and receiving valid sensor input reports? */
         public virtual bool IsAlive()
@@ -1075,9 +988,7 @@ namespace DS4Windows
                 timeoutEvent = false;
                 ds4InactiveFrame = true;
                 idleInput = true;
-                bool syncWriteReport = conType != ConnectionType.BT ||
-                    btOutputMethod == BTOutputReportMethod.WriteFile;
-                //bool syncWriteReport = true;
+                bool syncWriteReport = true;
                 bool forceWrite = false;
 
                 int maxBatteryValue = 0;
@@ -1652,12 +1563,6 @@ namespace DS4Windows
             //bool output = false, change = force;
             bool haptime = output || standbySw.ElapsedMilliseconds >= 4000L;
 
-            if (usingBT &&
-                btOutputMethod == BTOutputReportMethod.HidD_SetOutputReport)
-            {
-                Monitor.Enter(outReportBuffer);
-            }
-
             PrepareOutputReportInner(ref change, ref haptime);
 
             if (rumbleAutostopTimer.IsRunning)
@@ -1689,11 +1594,6 @@ namespace DS4Windows
 
                     if (usingBT)
                     {
-                        if (btOutputMethod == BTOutputReportMethod.HidD_SetOutputReport)
-                        {
-                            Monitor.Enter(outputReport);
-                        }
-
                         outReportBuffer.CopyTo(outputReport, 0);
 
                         if ((this.featureSet & VidPidFeatureSet.OnlyOutputData0x05) == 0)
@@ -1729,14 +1629,7 @@ namespace DS4Windows
                     }
                     catch { } // If it's dead already, don't worry about it.
 
-                    if (usingBT)
-                    {
-                        if (btOutputMethod == BTOutputReportMethod.HidD_SetOutputReport)
-                        {
-                            Monitor.Exit(outputReport);
-                        }
-                    }
-                    else
+                    if (!usingBT)
                     {
                         lock(outReportBuffer)
                         {
@@ -1760,12 +1653,6 @@ namespace DS4Windows
 
                     Monitor.Pulse(outReportBuffer);
                 }
-            }
-
-            if (usingBT &&
-                btOutputMethod == BTOutputReportMethod.HidD_SetOutputReport)
-            {
-                Monitor.Exit(outReportBuffer);
             }
 
             if (quitOutputThread)

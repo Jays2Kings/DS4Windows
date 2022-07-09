@@ -383,10 +383,7 @@ namespace DS4Windows
 
         public void PrepareDS4DeviceInit(DS4Device device)
         {
-            if (!Global.IsWin8OrGreater())
-            {
-                device.BTOutputMethod = DS4Device.BTOutputReportMethod.HidD_SetOutputReport;
-            }
+            // Does nothing now
         }
 
         public CheckVirtualInfo CheckForVirtualDevice(string deviceInstanceId)

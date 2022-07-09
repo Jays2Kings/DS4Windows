@@ -86,7 +86,7 @@ namespace DS4Windows
         public void ResetToggleGyroModes()
         {
             currentToggleGyroControls = false;
-            currentToggleGyroM = false;
+            currentToggleGyroMouse = false;
             currentToggleGyroStick = false;
 
             previousTriggerActivated = false;
@@ -133,7 +133,7 @@ namespace DS4Windows
         public MouseCursor Cursor => cursor;
 
         bool currentToggleGyroControls = false;
-        bool currentToggleGyroM = false;
+        bool currentToggleGyroMouse = false;
         bool currentToggleGyroStick = false;
 
         public virtual void sixaxisMoved(DS4SixAxis sender, SixAxisEventArgs arg)
@@ -172,11 +172,11 @@ namespace DS4Windows
                 {
                     if (triggeractivated && triggeractivated != previousTriggerActivated)
                     {
-                        currentToggleGyroStick = !currentToggleGyroStick;
+                        currentToggleGyroControls = !currentToggleGyroControls;
                     }
 
                     previousTriggerActivated = triggeractivated;
-                    triggeractivated = currentToggleGyroStick;
+                    triggeractivated = currentToggleGyroControls;
                 }
                 else
                 {
@@ -228,11 +228,11 @@ namespace DS4Windows
                 {
                     if (triggeractivated && triggeractivated != previousTriggerActivated)
                     {
-                        currentToggleGyroControls = !currentToggleGyroControls;
+                        currentToggleGyroMouse = !currentToggleGyroMouse;
                     }
 
                     previousTriggerActivated = triggeractivated;
-                    triggeractivated = currentToggleGyroControls;
+                    triggeractivated = currentToggleGyroMouse;
                 }
                 else
                 {
@@ -279,11 +279,11 @@ namespace DS4Windows
                 {
                     if (triggeractivated && triggeractivated != previousTriggerActivated)
                     {
-                        currentToggleGyroM = !currentToggleGyroM;
+                        currentToggleGyroStick = !currentToggleGyroStick;
                     }
 
                     previousTriggerActivated = triggeractivated;
-                    triggeractivated = currentToggleGyroM;
+                    triggeractivated = currentToggleGyroStick;
                 }
                 else
                 {

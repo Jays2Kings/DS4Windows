@@ -176,8 +176,8 @@ namespace DS4Windows
         internal const int READ_STREAM_TIMEOUT = 3000;
         // Isolated BT report can have latency as high as 15 ms
         // due to hardware.
-        internal const int WARN_INTERVAL_BT = 40;
-        internal const int WARN_INTERVAL_USB = 20;
+        internal const int WARN_INTERVAL_BT = 500;
+        internal const int WARN_INTERVAL_USB = 100;
         // Maximum values for battery level when no USB cable is connected
         // and when a USB cable is connected
         internal const int BATTERY_MAX = 8;

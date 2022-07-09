@@ -57,6 +57,12 @@ namespace Sensorit.Base
             var te = 1.0 / rate;
             return 1.0 / (1.0 + tau / te);
         }
+
+        public void Reset()
+        {
+            xFilt.Reset();
+            dxFilt.Reset();
+        }
     }
 
     public class LowpassFilter
@@ -88,6 +94,12 @@ namespace Sensorit.Base
             hatXPrev = hatX;
 
             return hatX;
+        }
+
+        public void Reset()
+        {
+            firstTime = true;
+            hatXPrev = 0.0;
         }
     }
 }

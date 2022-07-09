@@ -311,24 +311,6 @@ namespace DS4Windows
         private static extern uint SendInput(uint numberOfInputs, INPUT[] inputs, int sizeOfInputs);
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern ushort MapVirtualKey(uint uCode, uint uMapType);
-        [DllImport("user32.dll", SetLastError = true)]
-        static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
-
-        //Not used, just here
-        public static void DownKeys(ushort key)
-        {
-            keybd_event((byte)key, 0, (int)0, 0);
-        }
-
-        public static void PressKeys(ushort key)
-        {
-            keybd_event((byte)key, 0, (int)KEYEVENTF_EXTENDEDKEY, 0);
-        }
-
-        public static void ReleaseKeys(ushort key)
-        {
-            keybd_event((byte)key, 0, (int)KEYEVENTF_KEYUP, 0);
-        }
     }
 }
 

@@ -23,7 +23,7 @@
                     If this window reappears after installing, you may need to reboot your PC.
                 </TextBlock.Text>
             </TextBlock>
-            <Button x:Name="step2Btn" Content="Step 2: If on Windows 7, Install 360 Driver" Style="{StaticResource CommonMargin}" DockPanel.Dock="Top"
+            <Button x:Name="step2Btn" IsEnabled="False" Content="Step 2: If on Windows 7, Install 360 Driver" Style="{StaticResource CommonMargin}" DockPanel.Dock="Top"
                 Click="Step2Btn_Click" />
             <TextBlock TextAlignment="Center" DockPanel.Dock="Top">
                 <TextBlock.Text>

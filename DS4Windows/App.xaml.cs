@@ -445,12 +445,6 @@ namespace DS4WinWPF
         private void CreateControlService(ArgumentParser parser)
         {
             controlThread = new Thread(() => {
-
-                if (!DS4Windows.Global.IsWin8OrGreater())
-                {
-                    ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
-                }
-
                 rootHub = new DS4Windows.ControlService(parser);
 
                 DS4Windows.Program.rootHub = rootHub;
@@ -468,11 +462,6 @@ namespace DS4WinWPF
         private void CreateBaseThread()
         {
             controlThread = new Thread(() => {
-                if (!DS4Windows.Global.IsWin8OrGreater())
-                {
-                    ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
-                }
-
                 DS4Windows.Program.rootHub = rootHub;
                 requestClient = new HttpClient();
                 collectTimer = new Timer(GarbageTask, null, 30000, 30000);

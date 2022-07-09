@@ -88,22 +88,11 @@ namespace DS4WinWPF.DS4Forms
 
             tempInstFileName = DS4Windows.Global.exedirpath + $"\\{installFileName}.tmp";
 
-            // Disable Xbox 360 driver installer button if running on Windows 8 or greater.
-            // Driver comes pre-installed on a standard OS install
-            if (DS4Windows.Global.IsWin8OrGreater())
-            {
-                step2Btn.IsEnabled = false;
-            }
-
             // HidHide only works on Windows 10 x64
             if (!IsHidHideControlCompatible())
             {
                 step4HidHidePanel.IsEnabled = false;
             }
-
-            // Just leave panel disabled for now. Download link does not
-            // exist currently
-            //step5FakerInputPanel.IsEnabled = false;
         }
 
         private bool IsHidHideControlCompatible()

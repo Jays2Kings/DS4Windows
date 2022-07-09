@@ -100,7 +100,7 @@ namespace DS4Windows.DS4Control
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.Right), (ushort)KeyboardKey.RightArrow);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.OemOpenBrackets), (ushort)KeyboardKey.OpenBrace);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.OemCloseBrackets), (ushort)KeyboardKey.CloseBrace);
-                mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.OemBackslash), (ushort)KeyboardKey.Backslash);
+                mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.Oem5), (ushort)KeyboardKey.Backslash);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.OemSemicolon), (ushort)KeyboardKey.Semicolon);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.OemQuotes), (ushort)KeyboardKey.Quote);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.OemComma), (ushort)KeyboardKey.Comma);

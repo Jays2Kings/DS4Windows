@@ -13,7 +13,7 @@
         {
           "code": "en",
           "header": "Version 3.1.0",
-          "log_text": ["* Have project target .NET 6. Good performance jump. **Make sure to download the .NET 6 Runtime before updating.** [.NET 6 Runtime x64](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-6.0.6-windows-x64-binaries)",
+          "log_text": ["* Have project target .NET 6. Good performance jump. **Make sure to download the .NET 6 Runtime before updating.** [.NET 6 Runtime x64](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-6.0.6-windows-x64-installer)",
             "* Updated extra libs to target .NET 6",
             "* Remove the use of the DS4Audio monitor class for select devices. Use appropriate feature flags instead",
             "* Changed expanded output range for Gyro Mouse-like Joystick",

@@ -236,7 +236,7 @@ namespace DS4Windows.InputDevices
         {
             get
             {
-                int result = -1;
+                int result = DEFAULT_JOINT_SLOT_NUMBER;
                 if (jointDevice != null)
                 {
                     result = jointDevice.deviceSlotNumber;

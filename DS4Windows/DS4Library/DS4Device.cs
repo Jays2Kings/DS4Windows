@@ -564,7 +564,7 @@ namespace DS4Windows
         protected GyroMouseSens gyroMouseSensSettings;
         public virtual GyroMouseSens GyroMouseSensSettings { get => gyroMouseSensSettings; }
 
-        protected int deviceSlotNumber = -1;
+        protected int deviceSlotNumber = DEFAULT_JOINT_SLOT_NUMBER;
         public int DeviceSlotNumber
         {
             get => deviceSlotNumber;

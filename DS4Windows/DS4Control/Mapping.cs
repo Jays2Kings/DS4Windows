@@ -2504,6 +2504,71 @@ namespace DS4Windows
             }
         }
 
+        public static void TempMouseJoystick(int device, DS4State MappedState)
+        {
+            GyroOutMode imuOutMode = Global.GetGyroOutMode(device);
+            if (imuOutMode == GyroOutMode.MouseJoystick)
+            {
+                GyroMouseStickInfo msinfo = Global.GetGyroMouseStickInfo(device);
+                if (msinfo.outputStick != GyroMouseStickInfo.OutputStick.None)
+                {
+                    ref byte gyroTempX = ref gyroStickX[device];
+                    if (msinfo.OutputHorizontal() && gyroTempX != 128)
+                    {
+                        byte outputStickXVal = msinfo.outputStick == GyroMouseStickInfo.OutputStick.RightStick ?
+                            MappedState.RX : MappedState.LX;
+
+                        byte tempAxisVal = 128;
+
+                        if (outputStickXVal != 128)
+                        {
+                            tempAxisVal = Math.Abs(gyroTempX - 128) > Math.Abs(outputStickXVal - 128) ?
+                                gyroTempX : outputStickXVal;
+                        }
+                        else
+                        {
+                            tempAxisVal = gyroTempX;
+                        }
+
+                        if (msinfo.outputStick == GyroMouseStickInfo.OutputStick.RightStick)
+                        {
+                            MappedState.RX = tempAxisVal;
+                        }
+                        else if (msinfo.outputStick == GyroMouseStickInfo.OutputStick.LeftStick)
+                        {
+                            MappedState.LX = tempAxisVal;
+                        }
+                    }
+
+                    ref byte gyroTempY = ref gyroStickY[device];
+                    if (msinfo.OutputVertical() && gyroTempY != 128)
+                    {
+                        byte outputStickYVal = msinfo.outputStick == GyroMouseStickInfo.OutputStick.RightStick ?
+                        MappedState.RY : MappedState.LY;
+                        byte tempAxisVal = 128;
+
+                        if (outputStickYVal != 128)
+                            tempAxisVal = Math.Abs(gyroTempY - 128) > Math.Abs(outputStickYVal - 128) ?
+                                gyroTempY : outputStickYVal;
+                        else
+                            tempAxisVal = gyroTempY;
+
+                        if (msinfo.outputStick == GyroMouseStickInfo.OutputStick.RightStick)
+                        {
+                            MappedState.RY = tempAxisVal;
+                        }
+                        else if (msinfo.outputStick == GyroMouseStickInfo.OutputStick.LeftStick)
+                        {
+                            MappedState.LY = tempAxisVal;
+                        }
+                    }
+
+                    // Don't reset Mouse Joystick output coords here
+                    //gyroTempX = gyroTempY = 128;
+                }
+            }
+        }
+
         private static void ProcessTwoStageTrigger(int device, DS4State cState, byte triggerValue,
             ref DS4ControlSettings inputSoftPull, ref DS4ControlSettings inputFullPull, TriggerOutputSettings outputSettings,
             TwoStageTriggerMappingData twoStageData, out DS4ControlSettings outputSoftPull, out DS4ControlSettings outputFullPull)

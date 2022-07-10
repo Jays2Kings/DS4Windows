@@ -1,9 +1,36 @@
 {
-  "latest_version": "3.0.18",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 18},
-  "updated_at": "2021-08-17T18:46:29+0000",
+  "latest_version": "3.1.0",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 0},
+  "updated_at": "2022-07-10T02:13:52+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.1.0",
+      "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 0},
+      "base_header": "Version 3.1.0",
+      "release_date": "2022-07-10T02:13:52+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.1.0",
+          "log_text": ["* Have project target .NET 6. Good performance jump. **Make sure to download the .NET 6 Runtime before updating.** [.NET 6 Runtime x64](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-6.0.6-windows-x64-binaries)",
+            "* Updated extra libs to target .NET 6",
+            "* Remove the use of the DS4Audio monitor class for select devices. Use appropriate feature flags instead",
+            "* Changed expanded output range for Gyro Mouse-like Joystick",
+            "* Added additional checks for HidHideClient path",
+            "* Change gyro mode subcommand calls for Switch Pro and JoyCon",
+            "* Added try catch for initial outputKBMHandler connect call",
+            "* Changed Backslash OEM key alias for FakerInput mapping",
+            "* Corrected current gyro toggle flags. Could have impacted profile changes",
+            "* Raise default warning intervals used for controller readings control and lightbar flashing",
+            "* Removed several DS4 BT Windows 7 workarounds. Seriously, Win 7 support is done. 8.1 is almost EOL",
+            "* Fixed use of WIN64 compilation symbol for serial reading routine. VS probably stripped it with the .NET 5 migration"],
+          "editor": "ryochan7",
+          "editors_note": ["Going my own way with this. Likey short lived support"],
+          "updated_at": "2022-07-10T02:13:52+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.0.18",
       "version_number_info": {"majorPart": 3, "minorPart": 0, "buildPart": 18},

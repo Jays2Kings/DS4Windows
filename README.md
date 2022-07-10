@@ -19,7 +19,7 @@ website at [ds4windows.com](http://ds4windows.com).
 ## Requirements
 
 - Windows 10 or newer (Thanks Microsoft)
-- [Microsoft .NET 5.0 or higher](https://dotnet.microsoft.com/download/dotnet/5.0/runtime)
+- [Microsoft .NET 6.0 Runtime Desktop](https://dotnet.microsoft.com/en-us/download/dotnet/6.0/runtime)
 - Visual C++ 2015-2019 Redistributable. [x64](https://aka.ms/vs/16/release/vc_redist.x64.exe) or [x86](https://aka.ms/vs/16/release/vc_redist.x86.exe)
 - [ViGEmBus](https://vigem.org/) driver (DS4Windows will install it for you)
 - Microsoft 360 Driver (link inside DS4Windows, already installed by Windows if

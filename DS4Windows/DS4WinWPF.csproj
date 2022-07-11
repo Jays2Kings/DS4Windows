@@ -76,9 +76,9 @@
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf.NetCore" Version="1.0.18" />
     <PackageReference Include="MdXaml" Version="1.10.0" />
     <PackageReference Include="NLog" Version="4.7.9" />
-    <PackageReference Include="Ookii.Dialogs.Wpf" Version="3.1.0" />
+    <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
     <PackageReference Include="System.Management" Version="6.0.0" />
-    <PackageReference Include="TaskScheduler" Version="2.9.1" />
+    <PackageReference Include="TaskScheduler" Version="2.10.1" />
     <PackageReference Include="WPFLocalizeExtension" Version="3.8.0" />
 
     <Reference Include="Nefarius.ViGEm.Client">

@@ -387,6 +387,10 @@ namespace DS4Windows
                 localMsg = new byte[msgLen];
                 Array.Copy(recvBuffer, localMsg, msgLen);
             }
+            catch (SocketException)
+            {
+                ResetUDPConn();
+            }
             catch (Exception /*e*/) { }
 
             //Start another receive as soon as we copied the data
@@ -409,13 +413,22 @@ namespace DS4Windows
             }
             catch (SocketException /*ex*/)
             {
-                uint IOC_IN = 0x80000000;
-                uint IOC_VENDOR = 0x18000000;
-                uint SIO_UDP_CONNRESET = IOC_IN | IOC_VENDOR | 12;
-                udpSock.IOControl((int)SIO_UDP_CONNRESET, new byte[] { Convert.ToByte(false) }, null);
-
+                ResetUDPConn();
                 StartReceive();
             }
+        }
+
+        /// <summary>
+        /// Used to send CONNRESET ioControlCode to Socket used for UDP Server.
+        /// Frees Socket from potentially firing SocketException instances after a client
+        /// connection is terminated. Avoids memory leak
+        /// </summary>
+        private void ResetUDPConn()
+        {
+            uint IOC_IN = 0x80000000;
+            uint IOC_VENDOR = 0x18000000;
+            uint SIO_UDP_CONNRESET = IOC_IN | IOC_VENDOR | 12;
+            udpSock.IOControl((int)SIO_UDP_CONNRESET, new byte[] { Convert.ToByte(false) }, null);
         }
 
         public void Start(int port, string listenAddress = "")

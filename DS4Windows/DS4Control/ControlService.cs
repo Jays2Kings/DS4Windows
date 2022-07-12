@@ -85,8 +85,8 @@ namespace DS4Windows
 
         private byte[][] udpOutBuffers = new byte[UdpServer.NUMBER_SLOTS][]
         {
-            new byte[100], new byte[100],
-            new byte[100], new byte[100],
+            new byte[UdpServer.DATA_RSP_PACKET_LEN], new byte[UdpServer.DATA_RSP_PACKET_LEN],
+            new byte[UdpServer.DATA_RSP_PACKET_LEN], new byte[UdpServer.DATA_RSP_PACKET_LEN],
         };
 
         void GetPadDetailForIdx(int padIdx, ref DualShockPadMeta meta)

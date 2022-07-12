@@ -233,6 +233,7 @@ namespace DS4Windows
         };
 
         private const ushort MaxProtocolVersion = 1001;
+        public const int DATA_RSP_PACKET_LEN = 100;
 
         class ClientRequestTimes
         {
@@ -299,7 +300,7 @@ namespace DS4Windows
             return currIdx;
         }
 
-        private unsafe void BeginPacket2(ref PadDataRspPacket currentRsp, ushort reqProtocolVersion = MaxProtocolVersion)
+        private unsafe void BeginDataRspPacket(ref PadDataRspPacket currentRsp, ushort reqProtocolVersion = MaxProtocolVersion)
         {
             const int outputPacketLen = 100;
 
@@ -325,10 +326,10 @@ namespace DS4Windows
             Array.Copy(BitConverter.GetBytes((uint)crcCalc), 0, packetBuf, 8, 4);
         }
 
-        private unsafe void FinishPacket2(ref PadDataRspPacket currentRsp, byte[] packetBuf)
+        private unsafe void FinishDataRspPacket(ref PadDataRspPacket currentRsp, byte[] packetBuf)
         {
             currentRsp.crc = 0;
-            CopyBytes(ref currentRsp, packetBuf, 100);
+            CopyBytes(ref currentRsp, packetBuf, DATA_RSP_PACKET_LEN);
 
             //uint crcCalc = Crc32Algorithm.Compute(packetBuf);
             uint seed = Crc32Algorithm.DefaultSeed;
@@ -760,7 +761,7 @@ namespace DS4Windows
             return true;
         }
 
-        private bool ReportToBuffer2(DS4State hidReport, ref PadDataRspPacket currentRsp)
+        private bool ReportToBufferDataRsp(DS4State hidReport, ref PadDataRspPacket currentRsp)
         {
             unchecked
             {
@@ -944,7 +945,7 @@ namespace DS4Windows
                 //byte[] outputData = new byte[100];
                 //int outIdx = BeginPacket(outputData, 1001);
                 PadDataRspPacket currentRsp = new PadDataRspPacket();
-                BeginPacket2(ref currentRsp, 1001);
+                BeginDataRspPacket(ref currentRsp, 1001);
                 currentRsp.messageType = (uint)MessageType.DSUS_PadDataRsp;
 
                 currentRsp.padId = (byte)padMeta.PadId;
@@ -965,10 +966,10 @@ namespace DS4Windows
 
                 currentRsp.packetCounter = hidReport.PacketCounter;
 
-                if (!ReportToBuffer2(hidReport, ref currentRsp))
+                if (!ReportToBufferDataRsp(hidReport, ref currentRsp))
                     return;
                 else
-                    FinishPacket2(ref currentRsp, outputData);
+                    FinishDataRspPacket(ref currentRsp, outputData);
 
                 foreach (var cl in clientsList)
                 {

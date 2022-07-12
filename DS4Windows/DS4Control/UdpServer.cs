@@ -6,6 +6,7 @@ using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.ComponentModel;
 using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace DS4Windows
 {
@@ -62,6 +63,122 @@ namespace DS4Windows
         public PhysicalAddress PadMacAddress;
         public DsBattery BatteryStatus;
         public bool IsActive;
+    }
+
+    [StructLayout(LayoutKind.Explicit, Size = 100)]
+    unsafe struct PadDataRspPacket
+    {
+        // Header section
+        [FieldOffset(0)]
+        public fixed byte initCode[4];
+        [FieldOffset(4)]
+        public ushort protocolVersion;
+        [FieldOffset(6)]
+        public ushort messageLen;
+        [FieldOffset(8)]
+        public int crc;
+        [FieldOffset(12)]
+        public uint serverId;
+        [FieldOffset(16)]
+        public uint messageType;
+
+        // Pad meta section
+        [FieldOffset(20)]
+        public byte padId;
+        [FieldOffset(21)]
+        public byte padState;
+        [FieldOffset(22)]
+        public byte model;
+        [FieldOffset(23)]
+        public byte connectionType;
+        [FieldOffset(24)]
+        public fixed byte address[6];
+        [FieldOffset(30)]
+        public byte batteryStatus;
+        [FieldOffset(31)]
+        public byte isActive;
+        [FieldOffset(32)]
+        public uint packetCounter;
+
+        // Primary controls
+        [FieldOffset(36)]
+        public byte buttons1;
+        [FieldOffset(37)]
+        public byte buttons2;
+        [FieldOffset(38)]
+        public byte psButton;
+        [FieldOffset(39)]
+        public byte touchButton;
+        [FieldOffset(40)]
+        public byte lx;
+        [FieldOffset(41)]
+        public byte ly;
+        [FieldOffset(42)]
+        public byte rx;
+        [FieldOffset(43)]
+        public byte ry;
+        [FieldOffset(44)]
+        public byte dpadLeft;
+        [FieldOffset(45)]
+        public byte dpadDown;
+        [FieldOffset(46)]
+        public byte dpadRight;
+        [FieldOffset(47)]
+        public byte dpadUp;
+        [FieldOffset(48)]
+        public byte square;
+        [FieldOffset(49)]
+        public byte cross;
+        [FieldOffset(50)]
+        public byte circle;
+        [FieldOffset(51)]
+        public byte triangle;
+        [FieldOffset(52)]
+        public byte r1;
+        [FieldOffset(53)]
+        public byte l1;
+        [FieldOffset(54)]
+        public byte r2;
+        [FieldOffset(55)]
+        public byte l2;
+
+        // Touch 1
+        [FieldOffset(56)]
+        public byte touch1Active;
+        [FieldOffset(57)]
+        public byte touch1PacketId;
+        [FieldOffset(58)]
+        public ushort touch1X;
+        [FieldOffset(60)]
+        public ushort touch1Y;
+
+        // Touch 2
+        [FieldOffset(62)]
+        public byte touch2Active;
+        [FieldOffset(63)]
+        public byte touch2PacketId;
+        [FieldOffset(64)]
+        public ushort touch2X;
+        [FieldOffset(66)]
+        public ushort touch2Y;
+
+        // Accel
+        [FieldOffset(68)]
+        public ulong totalMicroSec;
+        [FieldOffset(76)]
+        public float accelXG;
+        [FieldOffset(80)]
+        public float accelYG;
+        [FieldOffset(84)]
+        public float accelZG;
+
+        // Gyro
+        [FieldOffset(88)]
+        public float angVelPitch;
+        [FieldOffset(92)]
+        public float angVelYaw;
+        [FieldOffset(96)]
+        public float angVelRoll;
     }
 
     class UdpServer
@@ -182,9 +299,36 @@ namespace DS4Windows
             return currIdx;
         }
 
+        private unsafe void BeginPacket2(ref PadDataRspPacket currentRsp, ushort reqProtocolVersion = MaxProtocolVersion)
+        {
+            const int outputPacketLen = 100;
+
+            currentRsp.initCode[0] = (byte)'D';
+            currentRsp.initCode[1] = (byte)'S';
+            currentRsp.initCode[2] = (byte)'U';
+            currentRsp.initCode[3] = (byte)'S';
+
+            currentRsp.protocolVersion = reqProtocolVersion;
+            currentRsp.messageLen = (ushort)outputPacketLen - 16;
+
+            currentRsp.crc = 0;
+            currentRsp.serverId = serverId;
+        }
+
         private void FinishPacket(byte[] packetBuf)
         {
             Array.Clear(packetBuf, 8, 4);
+
+            //uint crcCalc = Crc32Algorithm.Compute(packetBuf);
+            uint seed = Crc32Algorithm.DefaultSeed;
+            uint crcCalc = ~Crc32Algorithm.CalculateBasicHash(ref seed, ref packetBuf, 0, packetBuf.Length);
+            Array.Copy(BitConverter.GetBytes((uint)crcCalc), 0, packetBuf, 8, 4);
+        }
+
+        private unsafe void FinishPacket2(ref PadDataRspPacket currentRsp, byte[] packetBuf)
+        {
+            currentRsp.crc = 0;
+            CopyBytes(ref currentRsp, packetBuf, 100);
 
             //uint crcCalc = Crc32Algorithm.Compute(packetBuf);
             uint seed = Crc32Algorithm.DefaultSeed;
@@ -616,7 +760,122 @@ namespace DS4Windows
             return true;
         }
 
-        public void NewReportIncoming(ref DualShockPadMeta padMeta, DS4State hidReport, byte[] outputData)
+        private bool ReportToBuffer2(DS4State hidReport, ref PadDataRspPacket currentRsp)
+        {
+            unchecked
+            {
+                currentRsp.buttons1 = 0;
+                if (hidReport.DpadLeft) currentRsp.buttons1 |= 0x80;
+                if (hidReport.DpadDown) currentRsp.buttons1 |= 0x40;
+                if (hidReport.DpadRight) currentRsp.buttons1 |= 0x20;
+                if (hidReport.DpadUp) currentRsp.buttons1 |= 0x10;
+
+                if (hidReport.Options) currentRsp.buttons1 |= 0x08;
+                if (hidReport.R3) currentRsp.buttons1 |= 0x04;
+                if (hidReport.L3) currentRsp.buttons1 |= 0x02;
+                if (hidReport.Share) currentRsp.buttons1 |= 0x01;
+
+                currentRsp.buttons2 = 0;
+
+                if (hidReport.Square) currentRsp.buttons2 |= 0x80;
+                if (hidReport.Cross) currentRsp.buttons2 |= 0x40;
+                if (hidReport.Circle) currentRsp.buttons2  |= 0x20;
+                if (hidReport.Triangle) currentRsp.buttons2 |= 0x10;
+
+                if (hidReport.R1) currentRsp.buttons2 |= 0x08;
+                if (hidReport.L1) currentRsp.buttons2 |= 0x04;
+                if (hidReport.R2Btn) currentRsp.buttons2 |= 0x02;
+                if (hidReport.L2Btn) currentRsp.buttons2 |= 0x01;
+
+                currentRsp.psButton = (hidReport.PS) ? (byte)1 : (byte)0;
+                currentRsp.touchButton = (hidReport.TouchButton) ? (byte)1 : (byte)0;
+
+                //Left stick
+                currentRsp.lx = hidReport.LX;
+                currentRsp.ly = hidReport.LY;
+                currentRsp.ly = (byte)(255 - currentRsp.ly); //invert Y by convention
+
+                //Right stick
+                currentRsp.rx = hidReport.RX;
+                currentRsp.ry = hidReport.RY;
+                currentRsp.ry = (byte)(255 - currentRsp.ry); //invert Y by convention
+
+                //we don't have analog buttons on DS4 :(
+                currentRsp.dpadLeft = hidReport.DpadLeft ? (byte)0xFF : (byte)0x00;
+                currentRsp.dpadDown = hidReport.DpadDown ? (byte)0xFF : (byte)0x00;
+                currentRsp.dpadRight = hidReport.DpadRight ? (byte)0xFF : (byte)0x00;
+                currentRsp.dpadUp = hidReport.DpadUp ? (byte)0xFF : (byte)0x00;
+
+                currentRsp.square = hidReport.Square ? (byte)0xFF : (byte)0x00;
+                currentRsp.cross = hidReport.Cross ? (byte)0xFF : (byte)0x00;
+                currentRsp.circle = hidReport.Circle ? (byte)0xFF : (byte)0x00;
+                currentRsp.triangle = hidReport.Triangle ? (byte)0xFF : (byte)0x00;
+
+                currentRsp.r1 = hidReport.R1 ? (byte)0xFF : (byte)0x00;
+                currentRsp.l1 = hidReport.L1 ? (byte)0xFF : (byte)0x00;
+
+                currentRsp.r2 = hidReport.R2;
+                currentRsp.l2 = hidReport.L2;
+
+                //DS4 only: touchpad points
+                for (int i = 0; i < 2; i++)
+                {
+                    var tpad = (i == 0) ? hidReport.TrackPadTouch0 : hidReport.TrackPadTouch1;
+                    if (i == 0)
+                    {
+                        currentRsp.touch1Active = tpad.IsActive ? (byte)1 : (byte)0;
+                        currentRsp.touch1PacketId = (byte)tpad.Id;
+                        currentRsp.touch1X = (ushort)tpad.X;
+                        currentRsp.touch1Y = (ushort)tpad.Y;
+                    }
+                    else if (i == 1)
+                    {
+                        currentRsp.touch2Active = tpad.IsActive ? (byte)1 : (byte)0;
+                        currentRsp.touch2PacketId = (byte)tpad.Id;
+                        currentRsp.touch2X = (ushort)tpad.X;
+                        currentRsp.touch2Y = (ushort)tpad.Y;
+                    }
+                }
+
+                //motion timestamp
+                if (hidReport.Motion != null)
+                    currentRsp.totalMicroSec = hidReport.totalMicroSec;
+                else
+                    currentRsp.totalMicroSec = 0;
+
+                //accelerometer
+                if (hidReport.Motion != null)
+                {
+                    currentRsp.accelXG = (float)hidReport.Motion.accelXG;
+                    currentRsp.accelYG = (float)hidReport.Motion.accelYG;
+                    currentRsp.accelZG = (float)-hidReport.Motion.accelZG;
+                }
+                else
+                {
+                    currentRsp.accelXG = 0;
+                    currentRsp.accelYG = 0;
+                    currentRsp.accelZG = 0;
+                }
+
+                //gyroscope
+                if (hidReport.Motion != null)
+                {
+                    currentRsp.angVelPitch = (float)hidReport.Motion.angVelPitch;
+                    currentRsp.angVelYaw = (float)hidReport.Motion.angVelYaw;
+                    currentRsp.angVelRoll = (float)hidReport.Motion.angVelRoll;
+                }
+                else
+                {
+                    currentRsp.angVelPitch = 0;
+                    currentRsp.angVelYaw = 0;
+                    currentRsp.angVelRoll = 0;
+                }
+            }
+
+            return true;
+        }
+
+        public unsafe void NewReportIncoming(ref DualShockPadMeta padMeta, DS4State hidReport, byte[] outputData)
         {
             if (!running)
                 return;
@@ -683,33 +942,33 @@ namespace DS4Windows
             unchecked
             {
                 //byte[] outputData = new byte[100];
-                int outIdx = BeginPacket(outputData, 1001);
-                Array.Copy(BitConverter.GetBytes((uint)MessageType.DSUS_PadDataRsp), 0, outputData, outIdx, 4);
-                outIdx += 4;
+                //int outIdx = BeginPacket(outputData, 1001);
+                PadDataRspPacket currentRsp = new PadDataRspPacket();
+                BeginPacket2(ref currentRsp, 1001);
+                currentRsp.messageType = (uint)MessageType.DSUS_PadDataRsp;
 
-                outputData[outIdx++] = (byte)padMeta.PadId;
-                outputData[outIdx++] = (byte)padMeta.PadState;
-                outputData[outIdx++] = (byte)padMeta.Model;
-                outputData[outIdx++] = (byte)padMeta.ConnectionType;
+                currentRsp.padId = (byte)padMeta.PadId;
+                currentRsp.padState = (byte)padMeta.PadState;
+                currentRsp.model = (byte)padMeta.Model;
+                currentRsp.connectionType = (byte)padMeta.ConnectionType;
                 {
                     byte[] padMac = padMeta.PadMacAddress.GetAddressBytes();
-                    outputData[outIdx++] = padMac[0];
-                    outputData[outIdx++] = padMac[1];
-                    outputData[outIdx++] = padMac[2];
-                    outputData[outIdx++] = padMac[3];
-                    outputData[outIdx++] = padMac[4];
-                    outputData[outIdx++] = padMac[5];
+                    currentRsp.address[0] = padMac[0];
+                    currentRsp.address[1] = padMac[1];
+                    currentRsp.address[2] = padMac[2];
+                    currentRsp.address[3] = padMac[3];
+                    currentRsp.address[4] = padMac[4];
+                    currentRsp.address[5] = padMac[5];
                 }
-                outputData[outIdx++] = (byte)padMeta.BatteryStatus;
-                outputData[outIdx++] = padMeta.IsActive ? (byte)1 : (byte)0;
+                currentRsp.batteryStatus = (byte)padMeta.BatteryStatus;
+                currentRsp.isActive = padMeta.IsActive ? (byte)1 : (byte)0;
 
-                Array.Copy(BitConverter.GetBytes((uint)hidReport.PacketCounter), 0, outputData, outIdx, 4);
-                outIdx += 4;
+                currentRsp.packetCounter = hidReport.PacketCounter;
 
-                if (!ReportToBuffer(hidReport, outputData, ref outIdx))
+                if (!ReportToBuffer2(hidReport, ref currentRsp))
                     return;
                 else
-                    FinishPacket(outputData);
+                    FinishPacket2(ref currentRsp, outputData);
 
                 foreach (var cl in clientsList)
                 {
@@ -738,6 +997,13 @@ namespace DS4Windows
 
             clientsList.Clear();
             clientsList = null;
+        }
+    
+        private void CopyBytes(ref PadDataRspPacket outReport, byte[] outBuffer, int bufferLen)
+        {
+            GCHandle h = GCHandle.Alloc(outReport, GCHandleType.Pinned);
+            Marshal.Copy(h.AddrOfPinnedObject(), outBuffer, 0, bufferLen);
+            h.Free();
         }
     }
 }

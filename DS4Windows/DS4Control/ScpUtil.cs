@@ -2030,12 +2030,22 @@ namespace DS4Windows
         }
 
         public static double[] LSRotation => m_Config.LSRotation;
+        /// <summary>
+        /// Return profile LS Rotation setting (radians)
+        /// </summary>
+        /// <param name="index">Controller index</param>
+        /// <returns>LS Rotation setting expressed in radians</returns>
         public static double getLSRotation(int index)
         {
             return m_Config.LSRotation[index];
         }
 
         public static double[] RSRotation => m_Config.RSRotation;
+        /// <summary>
+        /// Return profile LS Rotation setting (radians)
+        /// </summary>
+        /// <param name="index">Controller index</param>
+        /// <returns>RS Rotation setting expressed in radians</returns>
         public static double getRSRotation(int index)
         {
             return m_Config.RSRotation[index];
@@ -2757,7 +2767,12 @@ namespace DS4Windows
             new TriggerDeadZoneZInfo(),
         };
 
-        public double[] LSRotation = new double[Global.TEST_PROFILE_ITEM_COUNT] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }, RSRotation = new double[Global.TEST_PROFILE_ITEM_COUNT] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
+        // Rotation angle expressed in radians
+        public double[] LSRotation = new double[Global.TEST_PROFILE_ITEM_COUNT] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
+
+        // Rotation angle expressed in radians
+        public double[] RSRotation = new double[Global.TEST_PROFILE_ITEM_COUNT] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
+
         public double[] SXDeadzone = new double[Global.TEST_PROFILE_ITEM_COUNT] { DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE },
             SZDeadzone = new double[Global.TEST_PROFILE_ITEM_COUNT] { DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE, DEFAULT_SX_TILT_DEADZONE };
 
@@ -3516,8 +3531,10 @@ namespace DS4Windows
                 XmlElement xmlRSAxialMaxOutputY = m_Xdoc.CreateElement("MaxOutputY"); xmlRSAxialMaxOutputY.InnerText = rsModInfo[device].yAxisDeadInfo.maxOutput.ToString(); xmlRSAxialDeadGroupEl.AppendChild(xmlRSAxialMaxOutputY);
                 rootElement.AppendChild(xmlRSAxialDeadGroupEl);
 
+                // Output rotation values to profile in degrees
                 XmlNode xmlLSRotation = m_Xdoc.CreateNode(XmlNodeType.Element, "LSRotation", null); xmlLSRotation.InnerText = Convert.ToInt32(LSRotation[device] * 180.0 / Math.PI).ToString(); rootElement.AppendChild(xmlLSRotation);
                 XmlNode xmlRSRotation = m_Xdoc.CreateNode(XmlNodeType.Element, "RSRotation", null); xmlRSRotation.InnerText = Convert.ToInt32(RSRotation[device] * 180.0 / Math.PI).ToString(); rootElement.AppendChild(xmlRSRotation);
+
                 XmlNode xmlLSFuzz = m_Xdoc.CreateNode(XmlNodeType.Element, "LSFuzz", null); xmlLSFuzz.InnerText = lsModInfo[device].fuzz.ToString(); rootElement.AppendChild(xmlLSFuzz);
                 XmlNode xmlRSFuzz = m_Xdoc.CreateNode(XmlNodeType.Element, "RSFuzz", null); xmlRSFuzz.InnerText = rsModInfo[device].fuzz.ToString(); rootElement.AppendChild(xmlRSFuzz);
                 XmlNode xmlLSOuterBindDead = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOuterBindDead", null); xmlLSOuterBindDead.InnerText = Convert.ToInt32(lsModInfo[device].outerBindDeadZone).ToString(); rootElement.AppendChild(xmlLSOuterBindDead);
@@ -4400,19 +4417,21 @@ namespace DS4Windows
 
                 try
                 {
-                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSRotation"); int temp = 0;
-                    int.TryParse(Item.InnerText, out temp);
-                    temp = Math.Min(Math.Max(temp, -180), 180);
-                    LSRotation[device] = temp * Math.PI / 180.0;
+                    // Take a rotation angle (degrees) and convert to radians
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSRotation"); int tempDegrees = 0;
+                    int.TryParse(Item.InnerText, out tempDegrees);
+                    tempDegrees = Math.Min(Math.Max(tempDegrees, -180), 180);
+                    LSRotation[device] = tempDegrees * Math.PI / 180.0;
                 }
                 catch { LSRotation[device] = 0.0; missingSetting = true; }
 
                 try
                 {
-                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSRotation"); int temp = 0;
-                    int.TryParse(Item.InnerText, out temp);
-                    temp = Math.Min(Math.Max(temp, -180), 180);
-                    RSRotation[device] = temp * Math.PI / 180.0;
+                    // Take a rotation angle (degrees) and convert to radians
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSRotation"); int tempDegrees = 0;
+                    int.TryParse(Item.InnerText, out tempDegrees);
+                    tempDegrees = Math.Min(Math.Max(tempDegrees, -180), 180);
+                    RSRotation[device] = tempDegrees * Math.PI / 180.0;
                 }
                 catch { RSRotation[device] = 0.0; missingSetting = true; }
 
@@ -7172,8 +7191,10 @@ namespace DS4Windows
             l2ModInfo[device].Reset();
             r2ModInfo[device].Reset();
 
+            // Rotation angles expressed in radians
             LSRotation[device] = 0.0;
             RSRotation[device] = 0.0;
+
             SXDeadzone[device] = SZDeadzone[device] = DEFAULT_SX_TILT_DEADZONE;
             SXMaxzone[device] = SZMaxzone[device] = 1.0;
             SXAntiDeadzone[device] = SZAntiDeadzone[device] = 0.0;

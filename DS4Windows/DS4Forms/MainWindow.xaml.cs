@@ -34,6 +34,9 @@ namespace DS4WinWPF.DS4Forms
         private const int DEFAULT_PROFILE_EDITOR_WIDTH = 1000;
         private const int DEFAULT_PROFILE_EDITOR_HEIGHT = 650;
 
+        private const int POWER_RESUME = 7;
+        private const int POWER_SUSPEND = 4;
+
         private MainWindowsViewModel mainWinVM;
         private StatusLogMsg lastLogMsg = new StatusLogMsg();
         private ProfileList profileListHolder = new ProfileList();
@@ -518,9 +521,6 @@ Suspend support not enabled.", true);
         {
             autoprofileChecker.AutoProfileDebugLogLevel = autoProfControl.AutoDebug == true ? 1 : 0;
         }
-
-        private const int POWER_RESUME = 7;
-        private const int POWER_SUSPEND = 4;
 
         private void PowerEventArrive(object sender, EventArrivedEventArgs e)
         {

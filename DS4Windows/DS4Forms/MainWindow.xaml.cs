@@ -84,6 +84,7 @@ namespace DS4WinWPF.DS4Forms
             controllerLV.DataContext = conLvViewModel;
             controllerLV.ItemsSource = conLvViewModel.ControllerCol;
             ChangeControllerPanel();
+
             // Sort device by input slot number
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(controllerLV.ItemsSource);
             view.SortDescriptions.Clear();
@@ -122,6 +123,7 @@ namespace DS4WinWPF.DS4Forms
 
             SetupEvents();
 
+            // Don't tie timers to main thread
             Thread timerThread = new Thread(() =>
             {
                 hotkeysTimer = new NonFormTimer();
@@ -135,6 +137,7 @@ namespace DS4WinWPF.DS4Forms
             timerThread.IsBackground = true;
             timerThread.Priority = ThreadPriority.Lowest;
             timerThread.Start();
+            // Wait for thread tasks to finish before continuing
             timerThread.Join();
         }
 
@@ -142,7 +145,7 @@ namespace DS4WinWPF.DS4Forms
         {
             Task tempTask = Task.Run(() =>
             {
-                CheckDrivers();
+                mainWinVM.CheckDrivers();
                 if (!parser.Stop)
                 {
                     Dispatcher.BeginInvoke((Action)(() =>
@@ -163,60 +166,13 @@ namespace DS4WinWPF.DS4Forms
                 int checkwhen = Global.CheckWhen;
                 if (checkwhen > 0 && DateTime.Now >= Global.LastChecked + TimeSpan.FromHours(checkwhen))
                 {
-                    DownloadUpstreamVersionInfo();
+                    mainWinVM.DownloadUpstreamVersionInfo();
                     Check_Version();
 
                     Global.LastChecked = DateTime.Now;
                 }
             });
             Util.LogAssistBackgroundTask(tempTask);
-        }
-
-        private void DownloadUpstreamVersionInfo()
-        {
-            // Sorry other devs, gonna have to find your own server
-            Uri url = new Uri("https://raw.githubusercontent.com/Ryochan7/DS4Windows/jay/DS4Windows/newest.txt");
-            string filename = Global.appdatapath + "\\version.txt";
-            bool success = false;
-            using (var downloadStream = new FileStream(filename, FileMode.Create))
-            {
-                Task<System.Net.Http.HttpResponseMessage> temp = App.requestClient.GetAsync(url.ToString(), downloadStream);
-                try
-                {
-                    temp.Wait();
-                    if (temp.Result.IsSuccessStatusCode) success = true;
-                }
-                catch (AggregateException) { }
-            }
-
-            if (!success && File.Exists(filename))
-            {
-                File.Delete(filename);
-            }
-        }
-
-        private string DownloadUpstreamUpdaterVersion()
-        {
-            string result = string.Empty;
-            // Sorry other devs, gonna have to find your own server
-            Uri url = new Uri("https://raw.githubusercontent.com/Ryochan7/DS4Updater/master/Updater2/newest.txt");
-            string filename = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "DS4Updater_version.txt");
-            bool readFile = false;
-            using (var downloadStream = new FileStream(filename, FileMode.Create))
-            {
-                Task<System.Net.Http.HttpResponseMessage> temp = App.requestClient.GetAsync(url.ToString(), downloadStream);
-                temp.Wait();
-
-                if (temp.Result.IsSuccessStatusCode) readFile = true;
-            }
-
-            if (readFile)
-            {
-                result = File.ReadAllText(filename).Trim();
-                File.Delete(filename);
-            }
-
-            return result;
         }
 
         private void Check_Version(bool showstatus = false)
@@ -251,7 +207,7 @@ namespace DS4WinWPF.DS4Forms
                 if (result == MessageBoxResult.Yes)
                 {
                     bool launch = true;
-                    launch = RunUpdaterCheck(launch, out string newUpdaterVersion);
+                    launch = mainWinVM.RunUpdaterCheck(launch, out string newUpdaterVersion);
 
                     if (launch)
                     {
@@ -315,43 +271,6 @@ namespace DS4WinWPF.DS4Forms
                     Dispatcher.Invoke(() => MessageBox.Show(Properties.Resources.UpToDate, "DS4Windows Updater"));
                 }
             }
-        }
-
-        private bool RunUpdaterCheck(bool launch, out string upstreamVersion)
-        {
-            string destPath = Path.Combine(Global.exedirpath, "DS4Updater.exe");
-            bool updaterExists = File.Exists(destPath);
-            upstreamVersion = DownloadUpstreamUpdaterVersion();
-            if (!updaterExists ||
-                (!string.IsNullOrEmpty(upstreamVersion) && FileVersionInfo.GetVersionInfo(destPath).FileVersion.CompareTo(upstreamVersion) != 0))
-            {
-                launch = false;
-                Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{upstreamVersion}/{mainWinVM.updaterExe}");
-                string filename = Path.Combine(Path.GetTempPath(), "DS4Updater.exe");
-                using (var downloadStream = new FileStream(filename, FileMode.Create))
-                {
-                    Task<System.Net.Http.HttpResponseMessage> temp =
-                        App.requestClient.GetAsync(url2.ToString(), downloadStream);
-                    temp.Wait();
-                    if (temp.Result.IsSuccessStatusCode) launch = true;
-                }
-
-                if (launch)
-                {
-                    if (Global.AdminNeeded())
-                    {
-                        int copyStatus = Util.ElevatedCopyUpdater(filename);
-                        if (copyStatus != 0) launch = false;
-                    }
-                    else
-                    {
-                        if (updaterExists) File.Delete(destPath);
-                        File.Move(filename, destPath);
-                    }
-                }
-            }
-
-            return launch;
         }
 
         private void TrayIconVM_RequestMinimize(object sender, EventArgs e)
@@ -1424,29 +1343,9 @@ Suspend support not enabled.", true);
         {
             Task.Run(() =>
             {
-                DownloadUpstreamVersionInfo();
+                mainWinVM.DownloadUpstreamVersionInfo();
                 Check_Version(true);
             });
-        }
-
-        private void CheckDrivers()
-        {
-            bool deriverinstalled = Global.IsViGEmBusInstalled();
-            if (!deriverinstalled || !Global.IsRunningSupportedViGEmBus())
-            {
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.FileName = $"{Global.exelocation}";
-                startInfo.Arguments = "-driverinstall";
-                startInfo.Verb = "runas";
-                startInfo.UseShellExecute = true;
-                try
-                {
-                    using (Process temp = Process.Start(startInfo))
-                    {
-                    }
-                }
-                catch { }
-            }
         }
 
         private void ImportProfBtn_Click(object sender, RoutedEventArgs e)

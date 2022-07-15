@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Diagnostics;
 using System.Windows.Threading;
-using Microsoft.Win32;
 using System.Linq;
 using System.Text;
 using Sensorit.Base;
@@ -61,7 +60,7 @@ namespace DS4Windows
         Thread eventDispatchThread;
         Dispatcher eventDispatcher;
         public bool suspending;
-        //SoundPlayer sp = new SoundPlayer();
+
         private UdpServer _udpServer;
         private OutputSlotManager outputslotMan;
 
@@ -167,7 +166,6 @@ namespace DS4Windows
             Crc32Algorithm.InitializeTable(DS4Device.DefaultPolynomial);
             InitOutputKBMHandler();
 
-            //sp.Stream = DS4WinWPF.Properties.Resources.EE;
             // Cause thread affinity to not be tied to main GUI thread
             tempBusThread = new Thread(() =>
             {
@@ -538,6 +536,13 @@ namespace DS4Windows
             return result;
         }
 
+        /// <summary>
+        /// Obtain extra mappable controls not on a DS4 that should be added
+        /// to the checked inputs list. Keeps Mapping class from having to check
+        /// extra Switch Pro and JoyCon buttons for DS4 controllers
+        /// </summary>
+        /// <param name="dev">Instance of input device</param>
+        /// <returns>List of extra controls to check in Mapping class</returns>
         private List<DS4Controls> GetKnownExtraButtons(DS4Device dev)
         {
             List<DS4Controls> result = new List<DS4Controls>();
@@ -2017,17 +2022,6 @@ namespace DS4Windows
             }
             else
                 return DS4WinWPF.Properties.Resources.NA;
-        }
-
-        public string getDS4Status(int index)
-        {
-            DS4Device d = DS4Controllers[index];
-            if (d != null)
-            {
-                return d.getConnectionType() + "";
-            }
-            else
-                return DS4WinWPF.Properties.Resources.NoneText;
         }
 
         protected void On_SerialChange(object sender, EventArgs e)

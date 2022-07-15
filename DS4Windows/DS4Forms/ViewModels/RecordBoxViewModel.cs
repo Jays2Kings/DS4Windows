@@ -353,7 +353,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     int macroValue = Global.macroDS4Values[dc];
                     ds4InputMap.TryGetValue((int)dc, out bool isdown);
                     keysdownMap.TryGetValue(macroValue, out bool outputExists);
-                    if (!isdown && Mapping.getBoolMapping(0, dc, cState, null, tp))
+                    if (!isdown && Mapping.GetBoolMappingExternal(0, dc, cState, null, tp))
                     {
                         MacroStep step = new MacroStep(macroValue, MacroParser.macroInputNames[macroValue],
                                 MacroStep.StepType.ActDown, MacroStep.StepOutput.Button);
@@ -364,7 +364,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                             keysdownMap.Add(macroValue, true);
                         }
                     }
-                    else if (isdown && !Mapping.getBoolMapping(0, dc, cState, null, tp))
+                    else if (isdown && !Mapping.GetBoolMappingExternal(0, dc, cState, null, tp))
                     {
                         MacroStep step = new MacroStep(macroValue, MacroParser.macroInputNames[macroValue],
                                 MacroStep.StepType.ActUp, MacroStep.StepOutput.Button);

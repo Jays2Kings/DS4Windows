@@ -223,7 +223,7 @@ namespace DS4WinWPF.DS4Forms
         {
             string version = Global.exeversion;
             string newversion = string.Empty;
-            string versionFilePath = Global.appdatapath + "\\version.txt";
+            string versionFilePath = Path.Combine(Global.appdatapath, "version.txt");
             ulong lastVersionNum = Global.LastVersionCheckedNum;
             //ulong lastVersion = Global.CompileVersionNumberFromString("2.1.1");
 
@@ -251,13 +251,13 @@ namespace DS4WinWPF.DS4Forms
                 if (result == MessageBoxResult.Yes)
                 {
                     bool launch = true;
-                    launch = RunUpdaterCheck(launch);
+                    launch = RunUpdaterCheck(launch, out string newUpdaterVersion);
 
                     if (launch)
                     {
                         using (Process p = new Process())
                         {
-                            p.StartInfo.FileName = System.IO.Path.Combine(Global.exedirpath, "DS4Updater.exe");
+                            p.StartInfo.FileName = Path.Combine(Global.exedirpath, "DS4Updater.exe");
                             bool isAdmin = Global.IsAdministrator();
                             List<string> argList = new List<string>();
                             argList.Add("-autolaunch");
@@ -292,21 +292,23 @@ namespace DS4WinWPF.DS4Forms
                         Dispatcher.Invoke(() =>
                         {
                             MessageBox.Show(Properties.Resources.PleaseDownloadUpdater);
-                            Util.StartProcessHelper($"https://github.com/Ryochan7/DS4Updater/releases/tag/v{version}/{mainWinVM.updaterExe}");
+                            if (!string.IsNullOrEmpty(newUpdaterVersion))
+                            {
+                                Util.StartProcessHelper($"https://github.com/Ryochan7/DS4Updater/releases/tag/v{newUpdaterVersion}/{mainWinVM.updaterExe}");
+                            }
                         });
-                        //Process.Start($"https://github.com/Ryochan7/DS4Updater/releases/download/v{version}/{mainWinVM.updaterExe}");
                     }
                 }
                 else
                 {
                     if (versionFileExists)
-                        File.Delete(Global.appdatapath + "\\version.txt");
+                        File.Delete(versionFilePath);
                 }
             }
             else
             {
                 if (versionFileExists)
-                    File.Delete(Global.appdatapath + "\\version.txt");
+                    File.Delete(versionFilePath);
 
                 if (showstatus)
                 {
@@ -315,17 +317,17 @@ namespace DS4WinWPF.DS4Forms
             }
         }
 
-        private bool RunUpdaterCheck(bool launch)
+        private bool RunUpdaterCheck(bool launch, out string upstreamVersion)
         {
-            string destPath = Global.exedirpath + "\\DS4Updater.exe";
+            string destPath = Path.Combine(Global.exedirpath, "DS4Updater.exe");
             bool updaterExists = File.Exists(destPath);
-            string version = DownloadUpstreamUpdaterVersion();
+            upstreamVersion = DownloadUpstreamUpdaterVersion();
             if (!updaterExists ||
-                (!string.IsNullOrEmpty(version) && FileVersionInfo.GetVersionInfo(destPath).FileVersion.CompareTo(version) != 0))
+                (!string.IsNullOrEmpty(upstreamVersion) && FileVersionInfo.GetVersionInfo(destPath).FileVersion.CompareTo(upstreamVersion) != 0))
             {
                 launch = false;
-                Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{version}/{mainWinVM.updaterExe}");
-                string filename = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "DS4Updater.exe");
+                Uri url2 = new Uri($"https://github.com/Ryochan7/DS4Updater/releases/download/v{upstreamVersion}/{mainWinVM.updaterExe}");
+                string filename = Path.Combine(Path.GetTempPath(), "DS4Updater.exe");
                 using (var downloadStream = new FileStream(filename, FileMode.Create))
                 {
                     Task<System.Net.Http.HttpResponseMessage> temp =

@@ -11,7 +11,6 @@ namespace DS4WinWPF
     {
         public static string lnkpath = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk";
         private static string taskBatPath = Path.Combine(DS4Windows.Global.exedirpath, "task.bat");
-        private const string net5SubKey = @"SOFTWARE\dotnet\Setup\InstalledVersions";
 
         public static bool HasStartProgEntry()
         {

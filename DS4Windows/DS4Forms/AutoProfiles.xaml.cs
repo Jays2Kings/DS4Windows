@@ -84,6 +84,7 @@ namespace DS4WinWPF.DS4Forms
 
             //autoProfilesGrid.DataContext = autoProfVM;
             outerEditControlsPanel.DataContext = autoProfVM;
+            editControlsPanel.DataContext = autoProfVM.SelectedItem;
             this.profileList = profileList;
 
             // Sort auto profile list by application file name

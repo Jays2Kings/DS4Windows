@@ -95,7 +95,7 @@ namespace DS4Windows
             meta.Model = DsModel.DS4;
 
             var d = DS4Controllers[padIdx];
-            if (d == null || !d.PrimaryDevice)
+            if (d == null)
             {
                 meta.PadMacAddress = null;
                 meta.PadState = DsState.Disconnected;
@@ -644,7 +644,7 @@ namespace DS4Windows
                     int tempIdx = i;
                     dev.queueEvent(() =>
                     {
-                        if (i < UdpServer.NUMBER_SLOTS && dev.PrimaryDevice)
+                        if (i < UdpServer.NUMBER_SLOTS)
                         {
                             PrepareDevUDPMotion(dev, tempIdx);
                         }
@@ -1348,7 +1348,7 @@ namespace DS4Windows
                             this.On_Report(sender, e, tempIdx);
                         };
 
-                        if (_udpServer != null && i < UdpServer.NUMBER_SLOTS && device.PrimaryDevice)
+                        if (_udpServer != null && i < UdpServer.NUMBER_SLOTS)
                         {
                             PrepareDevUDPMotion(device, tempIdx);
                         }
@@ -1787,7 +1787,7 @@ namespace DS4Windows
                                 this.On_Report(sender, e, tempIdx);
                             };
 
-                            if (_udpServer != null && Index < UdpServer.NUMBER_SLOTS && device.PrimaryDevice)
+                            if (_udpServer != null && Index < UdpServer.NUMBER_SLOTS)
                             {
                                 PrepareDevUDPMotion(device, tempIdx);
                             }
@@ -2207,11 +2207,12 @@ namespace DS4Windows
                     }
                 }
 
-                DS4State cState;
+                DS4State cState, tempControlState;
                 if (!device.PerformStateMerge)
                 {
                     cState = CurrentState[ind];
                     device.getRawCurrentState(cState);
+                    tempControlState = CurrentState[ind];
                 }
                 else
                 {
@@ -2219,6 +2220,7 @@ namespace DS4Windows
                     device.MergeStateData(cState);
                     // Need to copy state object info for use in UDP server
                     cState.CopyTo(CurrentState[ind]);
+                    tempControlState = CurrentState[ind];
                 }
 
                 DS4State pState = device.getPreviousStateRef();
@@ -2274,6 +2276,11 @@ namespace DS4Windows
                                 }
                             }
                         }
+                    }
+                    else if (!device.OutputMapGyro)
+                    {
+                        // Copy for use in UDP
+                        tempControlState.Motion = device.GetRawCurrentStateRef().Motion;
                     }
 
                     // Skip mapping routine if part of a joined device
@@ -2361,6 +2368,12 @@ namespace DS4Windows
                 if (device.PerformStateMerge)
                 {
                     device.PreserveMergedStateData();
+                }
+
+                if (!device.OutputMapGyro)
+                {
+                    // Copy for use in UDP
+                    tempControlState.Motion = device.GetRawCurrentStateRef().Motion;
                 }
             }
         }

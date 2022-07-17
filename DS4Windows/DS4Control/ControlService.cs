@@ -2370,7 +2370,7 @@ namespace DS4Windows
                     device.PreserveMergedStateData();
                 }
 
-                if (!device.OutputMapGyro)
+                if (device.PerformStateMerge && !device.OutputMapGyro)
                 {
                     // Copy for use in UDP
                     tempControlState.Motion = device.GetRawCurrentStateRef().Motion;

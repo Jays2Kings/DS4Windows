@@ -2942,7 +2942,7 @@ namespace DS4Windows
                     }
 
                     // erase default mappings for things that are remapped
-                    resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
+                    ResetToDefaultValue(dcs.control, MappedState, outputfieldMapping);
                 }
                 else if (actionType == DS4ControlSettings.ActionType.Key)
                 {
@@ -2976,7 +2976,7 @@ namespace DS4Windows
                         pressedonce[value] = false;
 
                     // erase default mappings for things that are remapped
-                    resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
+                    ResetToDefaultValue(dcs.control, MappedState, outputfieldMapping);
                 }
                 else if (actionType == DS4ControlSettings.ActionType.Button)
                 {
@@ -3169,7 +3169,7 @@ namespace DS4Windows
                     }
 
                     // erase default mappings for things that are remapped
-                    resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
+                    ResetToDefaultValue(dcs.control, MappedState, outputfieldMapping);
                 }
             }
             else
@@ -3343,7 +3343,7 @@ namespace DS4Windows
                             for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                             {
                                 DS4Controls dc = action.trigger[i];
-                                resetToDefaultValue2(dc, MappedState, outputfieldMapping);
+                                ResetToDefaultValue(dc, MappedState, outputfieldMapping);
                             }
 
                             if (action.typeID == SpecialAction.ActionTypeId.Program)
@@ -5103,7 +5103,7 @@ namespace DS4Windows
             return result;
         }
 
-        private static void resetToDefaultValue2(DS4Controls control, DS4State cState,
+        private static void ResetToDefaultValue(DS4Controls control, DS4State cState,
             DS4StateFieldMapping fieldMap)
         {
             int controlNum = (int)control;

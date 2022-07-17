@@ -89,7 +89,7 @@ dondrakon - Ukranian
                 </DockPanel>
             </TabItem>
             <TabItem Header="Extras">
-                <ScrollViewer>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="4">
                         <Border BorderThickness="1" CornerRadius="10" BorderBrush="{DynamicResource BorderColor}">
                             <StackPanel Margin="8">

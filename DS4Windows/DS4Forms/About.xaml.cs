@@ -80,6 +80,26 @@ namespace DS4WinWPF.DS4Forms
         {
             Util.StartProcessHelper("https://github.com/Ryochan7/DS4Windows");
         }
+
+        private void ViGEmBusLink_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessHelper("https://vigem.org/");
+        }
+
+        private void HidHideLink_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessHelper("https://vigem.org/projects/HidHide/");
+        }
+
+        private void Crc32Link_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessHelper("https://github.com/dariogriffo/Crc32");
+        }
+
+        private void OneEuroLink_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessHelper("http://cristal.univ-lille.fr/~casiez/1euro/");
+        }
     }
 
     public class AboutImgPathLocations

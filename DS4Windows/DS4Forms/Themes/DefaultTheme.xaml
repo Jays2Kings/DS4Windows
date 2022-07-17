@@ -5,7 +5,7 @@
     <SolidColorBrush x:Key="ForegroundColor" Color="{x:Static SystemColors.ActiveCaptionTextColor}" />
     <SolidColorBrush x:Key="SecondaryColor" Color="{x:Static SystemColors.ControlColor}"  />
     <SolidColorBrush x:Key="AccentColor" Color="#FF0066CC" />
-    <SolidColorBrush x:Key="BorderColor" Color="#FFDADADA" />
+    <SolidColorBrush x:Key="BorderColor" Color="#FFC8C8C8" />
     <SolidColorBrush x:Key="BackgroundColor" Color="{x:Static SystemColors.WindowColor}"/>
 
     <system:String x:Key="KeyImageImg">key-solid.png</system:String>

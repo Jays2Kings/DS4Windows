@@ -88,6 +88,80 @@ dondrakon - Ukranian
                     </TextBox>
                 </DockPanel>
             </TabItem>
+            <TabItem Header="Extras">
+                <ScrollViewer>
+                    <StackPanel Margin="4">
+                        <Border BorderThickness="1" CornerRadius="10" BorderBrush="{DynamicResource BorderColor}">
+                            <StackPanel Margin="8">
+                                <TextBlock Text="ViGEmBus" FontSize="18" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                    <TextBlock Text="Project URL:" />
+                                    <TextBlock Margin="8,0,0,0">
+                                    <Hyperlink x:Name="viGEmBusLink" Click="ViGEmBusLink_Click" Foreground="{DynamicResource AccentColor}">https://vigem.org/</Hyperlink>
+                                    </TextBlock>
+                                </StackPanel>
+                                <Expander Header="Description" Margin="0,8,0,0">
+                                    <Expander.Content>
+                                        <TextBlock TextWrapping="Wrap">
+                                            <TextBlock.Text>
+                                                Driver that provides virtual gamepad support system-wide. Used by many controller mapping applications. Written by nefarius
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </Expander.Content>
+                                </Expander>
+                            </StackPanel>
+                        </Border>
+
+                        <Border BorderThickness="1" CornerRadius="10" Margin="0,8,0,0" BorderBrush="{DynamicResource BorderColor}">
+                            <StackPanel Margin="8">
+                                <TextBlock Text="HidHide" FontSize="18" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                    <TextBlock Text="Project URL:" />
+                                    <TextBlock Margin="8,0,0,0">
+                                    <Hyperlink x:Name="hidHideLink" Click="HidHideLink_Click" Foreground="{DynamicResource AccentColor}">https://vigem.org/projects/HidHide/</Hyperlink>
+                                    </TextBlock>
+                                </StackPanel>
+                                <Expander Header="Description" Margin="0,8,0,0">
+                                    <Expander.Content>
+                                        <TextBlock TextWrapping="Wrap">
+                                            <TextBlock.Text>
+                                                Use HidHide to configure and hide any input controllers from other apps running on your system.
+                                                Some games require only one controller to be present or double input will cause problems in game. Written by nefarius.
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </Expander.Content>
+                                </Expander>
+                            </StackPanel>
+                        </Border>
+
+                        <Border BorderThickness="1" CornerRadius="10" Margin="0,8,0,0" BorderBrush="{DynamicResource BorderColor}">
+                            <StackPanel Margin="8">
+                                <TextBlock Text="CRC32" FontSize="18" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                    <TextBlock Text="Project URL:" />
+                                    <TextBlock Margin="8,0,0,0">
+                                    <Hyperlink x:Name="crc32Link" Click="Crc32Link_Click" Foreground="{DynamicResource AccentColor}">https://github.com/dariogriffo/Crc32</Hyperlink>
+                                    </TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <Border BorderThickness="1" CornerRadius="10" Margin="0,8,0,0" BorderBrush="{DynamicResource BorderColor}">
+                            <StackPanel Margin="8">
+                                <TextBlock Text="1&#x20ac; Filter" FontSize="18" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                    <TextBlock Text="Project URL:" />
+                                    <TextBlock Margin="8,0,0,0">
+                                    <Hyperlink x:Name="oneEuroLink" Click="OneEuroLink_Click" Foreground="{DynamicResource AccentColor}">http://cristal.univ-lille.fr/~casiez/1euro/</Hyperlink>
+                                    </TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+            </TabItem>
             <TabItem Header="Tip">
                 <StackPanel>
                     <TextBox Background="Transparent" BorderThickness="0" IsReadOnly="True" TextWrapping="Wrap"

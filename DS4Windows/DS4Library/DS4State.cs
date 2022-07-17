@@ -14,6 +14,7 @@ namespace DS4Windows
             Capture, SideL, SideR;
         public byte Touch1Identifier, Touch2Identifier;
         public byte LX, RX, LY, RY, L2, R2;
+        public byte L2Raw, R2Raw;
         public byte FrameCounter; // 0, 1, 2...62, 63, 0....
         public byte TouchPacketCounter; // we break these out automatically
         public byte Battery; // 0 for charging, 10/20/30/40/50/60/70/80/90/100 for percentage of full
@@ -57,6 +58,7 @@ namespace DS4Windows
             Touch1Finger = Touch2Fingers = false;
             LX = RX = LY = RY = 128;
             L2 = R2 = 0;
+            L2Raw = R2Raw = 0;
             FrameCounter = 255; // only actually has 6 bits, so this is a null indicator
             TouchPacketCounter = 255; // 8 bits, no great junk value
             Battery = 0;
@@ -92,10 +94,12 @@ namespace DS4Windows
             DpadRight = state.DpadRight;
             L1 = state.L1;
             L2 = state.L2;
+            L2Raw = state.L2Raw;
             L2Btn = state.L2Btn;
             L3 = state.L3;
             R1 = state.R1;
             R2 = state.R2;
+            R2Raw = state.R2Raw;
             R2Btn = state.R2Btn;
             R3 = state.R3;
             Share = state.Share;
@@ -160,10 +164,12 @@ namespace DS4Windows
             state.DpadRight = DpadRight;
             state.L1 = L1;
             state.L2 = L2;
+            state.L2Raw = L2Raw;
             state.L2Btn = L2Btn;
             state.L3 = L3;
             state.R1 = R1;
             state.R2 = R2;
+            state.R2Raw = R2Raw;
             state.R2Btn = R2Btn;
             state.R3 = R3;
             state.Share = Share;

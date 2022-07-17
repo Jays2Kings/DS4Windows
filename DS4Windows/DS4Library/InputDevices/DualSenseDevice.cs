@@ -554,6 +554,8 @@ namespace DS4Windows.InputDevices
                     cState.RY = inputReport[4 + reportOffset];
                     cState.L2 = inputReport[5 + reportOffset];
                     cState.R2 = inputReport[6 + reportOffset];
+                    cState.L2Raw = cState.L2;
+                    cState.R2Raw = cState.R2;
 
                     // DS4 Frame Counter range is [0-127]. DS version range is [0-255]. Convert
                     cState.FrameCounter = (byte)(inputReport[7 + reportOffset] % 128);

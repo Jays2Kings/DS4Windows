@@ -545,6 +545,7 @@ namespace DS4Windows.InputDevices
                         cState.L1 = (tempByte & 0x40) != 0;
                         cState.L2Btn = (tempByte & 0x80) != 0;
                         cState.L2 = (byte)(cState.L2Btn ? 255 : 0);
+                        cState.L2Raw = cState.L2;
                         cState.SideL = (tempByte & 0x20) != 0;
                         cState.SideR = (tempByte & 0x10) != 0;
 
@@ -574,6 +575,7 @@ namespace DS4Windows.InputDevices
                         cState.R1 = (tempByte & 0x40) != 0;
                         cState.R2Btn = (tempByte & 0x80) != 0;
                         cState.R2 = (byte)(cState.R2Btn ? 255 : 0);
+                        cState.R2Raw = cState.R2;
                         cState.SideL = (tempByte & 0x20) != 0;
                         cState.SideR = (tempByte & 0x10) != 0;
 
@@ -1440,6 +1442,7 @@ namespace DS4Windows.InputDevices
                     dState.LY = cState.LY;
                     dState.L1 = cState.L1;
                     dState.L2 = cState.L2;
+                    dState.L2Raw = cState.L2Raw;
                     dState.L3 = cState.L3;
                     dState.L2Btn = cState.L2Btn;
                     dState.DpadUp = cState.DpadUp;
@@ -1466,6 +1469,7 @@ namespace DS4Windows.InputDevices
                     dState.RY = cState.RY;
                     dState.R1 = cState.R1;
                     dState.R2 = cState.R2;
+                    dState.R2Raw = cState.R2Raw;
                     dState.R3 = cState.R3;
                     dState.R2Btn = cState.R2Btn;
                     dState.Cross = cState.Cross;

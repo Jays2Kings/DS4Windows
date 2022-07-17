@@ -490,6 +490,7 @@ namespace DS4Windows.InputDevices
                     cState.R1 = (tempByte & 0x40) != 0;
                     cState.R2Btn = (tempByte & 0x80) != 0;
                     cState.R2 = (byte)(cState.R2Btn ? 255 : 0);
+                    cState.R2Raw = cState.R2;
 
                     tempByte = inputReportBuffer[4];
                     cState.Share = (tempByte & 0x01) != 0;
@@ -507,6 +508,7 @@ namespace DS4Windows.InputDevices
                     cState.L1 = (tempByte & 0x40) != 0;
                     cState.L2Btn = (tempByte & 0x80) != 0;
                     cState.L2 = (byte)(cState.L2Btn ? 255 : 0);
+                    cState.L2Raw = cState.L2;
 
                     stick_raw[0] = inputReportBuffer[6];
                     stick_raw[1] = inputReportBuffer[7];

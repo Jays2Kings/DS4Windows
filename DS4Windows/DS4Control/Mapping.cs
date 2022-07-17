@@ -2068,7 +2068,7 @@ namespace DS4Windows
             {
                 DS4ControlSettings l2FullPull = controlSetGroup.L2FullPull;
                 TwoStageTriggerMappingData l2TwoStageData = l2TwoStageMappingData[device];
-                ProcessTwoStageTrigger(device, cState, cState.L2, ref dcsTemp, ref l2FullPull,
+                ProcessTwoStageTrigger(device, cState, cState.L2, cState.L2Raw, ref dcsTemp, ref l2FullPull,
                     l2TriggerSettings, l2TwoStageData, out DS4ControlSettings outputSoftPull, out DS4ControlSettings outputFullPull);
 
                 TwoStageTriggerMappingData.ActiveZoneButtons tempButtons = TwoStageTriggerMappingData.ActiveZoneButtons.None;
@@ -2135,7 +2135,7 @@ namespace DS4Windows
             {
                 DS4ControlSettings r2FullPull = controlSetGroup.R2FullPull;
                 TwoStageTriggerMappingData r2TwoStageData = r2TwoStageMappingData[device];
-                ProcessTwoStageTrigger(device, cState, cState.R2, ref dcsTemp, ref r2FullPull,
+                ProcessTwoStageTrigger(device, cState, cState.R2, cState.R2Raw, ref dcsTemp, ref r2FullPull,
                     r2TriggerSettings, r2TwoStageData, out DS4ControlSettings outputSoftPull, out DS4ControlSettings outputFullPull);
 
                 TwoStageTriggerMappingData.ActiveZoneButtons tempButtons = TwoStageTriggerMappingData.ActiveZoneButtons.None;
@@ -2496,7 +2496,7 @@ namespace DS4Windows
             }
         }
 
-        private static void ProcessTwoStageTrigger(int device, DS4State cState, byte triggerValue,
+        private static void ProcessTwoStageTrigger(int device, DS4State cState, byte triggerValue, byte triggerRawValue,
             ref DS4ControlSettings inputSoftPull, ref DS4ControlSettings inputFullPull, TriggerOutputSettings outputSettings,
             TwoStageTriggerMappingData twoStageData, out DS4ControlSettings outputSoftPull, out DS4ControlSettings outputFullPull)
         {
@@ -2507,14 +2507,14 @@ namespace DS4Windows
             switch (outputSettings.twoStageMode)
             {
                 case TwoStageTriggerMode.Normal:
-                    if (triggerValue == 255)
+                    if (triggerRawValue == 255)
                     {
                         dcsFullPull = inputFullPull;
                     }
 
                     break;
                 case TwoStageTriggerMode.ExclusiveButtons:
-                    if (triggerValue == 255)
+                    if (triggerRawValue == 255)
                     {
                         dcsFullPull = inputFullPull;
                         dcsTemp = null;
@@ -2540,7 +2540,7 @@ namespace DS4Windows
 
                     triggerData.actionStateMode = TwoStageTriggerMappingData.EngageButtonsMode.Both;
 
-                    if (triggerValue == 255)
+                    if (triggerRawValue == 255)
                     {
                         // Full pull now activates both. Soft pull action
                         // no longer engaged with threshold
@@ -2584,7 +2584,7 @@ namespace DS4Windows
                         {
                             triggerData.outputActive = true;
 
-                            if (triggerValue == 255)
+                            if (triggerRawValue == 255)
                             {
                                 dcsFullPull = inputFullPull;
                                 triggerData.fullPullActActive = true;
@@ -2601,7 +2601,7 @@ namespace DS4Windows
                     else if (triggerData.outputActive)
                     {
                         //DS4State pState = d.getPreviousStateRef();
-                        if (triggerValue == 255)
+                        if (triggerRawValue == 255)
                         {
                             dcsFullPull = inputFullPull;
                             triggerData.fullPullActActive = true;
@@ -2644,7 +2644,7 @@ namespace DS4Windows
                         {
                             triggerData.outputActive = true;
 
-                            if (triggerValue == 255)
+                            if (triggerRawValue == 255)
                             {
                                 dcsFullPull = inputFullPull;
                                 triggerData.fullPullActActive = true;
@@ -2663,7 +2663,7 @@ namespace DS4Windows
                     else if (triggerData.outputActive)
                     {
                         //DS4State pState = d.getPreviousStateRef();
-                        if (triggerValue == 255 &&
+                        if (triggerRawValue == 255 &&
                             triggerData.actionStateMode == TwoStageTriggerMappingData.EngageButtonsMode.FullPullOnly)
                         {
                             dcsFullPull = inputFullPull;

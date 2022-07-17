@@ -97,10 +97,10 @@ namespace DS4Windows
                 triggers[(int)DS4Controls.R2] = cState.R2;
 
                 buttons[(int)DS4Controls.L1] = cState.L1;
-                buttons[(int)DS4Controls.L2FullPull] = cState.L2 == 255;
+                buttons[(int)DS4Controls.L2FullPull] = cState.L2Raw == 255;
                 buttons[(int)DS4Controls.L3] = cState.L3;
                 buttons[(int)DS4Controls.R1] = cState.R1;
-                buttons[(int)DS4Controls.R2FullPull] = cState.R2 == 255;
+                buttons[(int)DS4Controls.R2FullPull] = cState.R2Raw == 255;
                 buttons[(int)DS4Controls.R3] = cState.R3;
 
                 buttons[(int)DS4Controls.Cross] = cState.Cross;

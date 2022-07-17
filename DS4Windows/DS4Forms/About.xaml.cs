@@ -100,6 +100,11 @@ namespace DS4WinWPF.DS4Forms
         {
             Util.StartProcessHelper("http://cristal.univ-lille.fr/~casiez/1euro/");
         }
+
+        private void FakerInputLink_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessHelper("https://github.com/Ryochan7/FakerInput/");
+        }
     }
 
     public class AboutImgPathLocations

@@ -136,6 +136,31 @@ dondrakon - Ukranian
 
                         <Border BorderThickness="1" CornerRadius="10" Margin="0,8,0,0" BorderBrush="{DynamicResource BorderColor}">
                             <StackPanel Margin="8">
+                                <TextBlock Text="FakerInput" FontSize="18" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                    <TextBlock Text="Project URL:" />
+                                    <TextBlock Margin="8,0,0,0">
+                                    <Hyperlink x:Name="fakerInputLink" Click="FakerInputLink_Click" Foreground="{DynamicResource AccentColor}">https://github.com/Ryochan7/FakerInput/</Hyperlink>
+                                    </TextBlock>
+                                </StackPanel>
+                                <Expander Header="Description" Margin="0,8,0,0">
+                                    <Expander.Content>
+                                        <TextBlock TextWrapping="Wrap">
+                                            <TextBlock.Text>
+                                                Use FakerInput driver to expose system-wide virtual keyboard, relative mouse, and absolute mouse.
+                                                Allows virtual KB+M events to be usable in some situations when SendInput fails.
+                                                Such situations are elevated process and games, UAC prompts, and anti-cheat systems that block SendInput events.
+                                                Use of FakerInput is necessary to allow DS4Windows to work with some games with anti-cheat protection
+                                                like Valorant.
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </Expander.Content>
+                                </Expander>
+                            </StackPanel>
+                        </Border>
+
+                        <Border BorderThickness="1" CornerRadius="10" Margin="0,8,0,0" BorderBrush="{DynamicResource BorderColor}">
+                            <StackPanel Margin="8">
                                 <TextBlock Text="CRC32" FontSize="18" FontWeight="Bold" />
                                 <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
                                     <TextBlock Text="Project URL:" />

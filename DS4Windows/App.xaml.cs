@@ -107,13 +107,14 @@ namespace DS4WinWPF
             try
             {
                 // another instance is already running if OpenExisting succeeds.
-                threadComEvent = EventWaitHandleAcl.OpenExisting(SingleAppComEventName,
+                EventWaitHandle tempComEvent = EventWaitHandleAcl.OpenExisting(SingleAppComEventName,
                     System.Security.AccessControl.EventWaitHandleRights.Synchronize |
                     System.Security.AccessControl.EventWaitHandleRights.Modify);
-                threadComEvent.Set();  // signal the other instance.
-                threadComEvent.Close();
-                Current.Shutdown();    // Quit temp instance
+                tempComEvent.Set();  // signal the other instance.
+                tempComEvent.Close();
+
                 runShutdown = false;
+                Current.Shutdown();    // Quit temp instance
                 return;
             }
             catch { /* don't care about errors */ }

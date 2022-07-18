@@ -143,6 +143,7 @@ namespace DS4WinWPF
                 MessageBox.Show($"Cannot create config folder structure in {DS4Windows.Global.appdatapath}. Exiting",
                     "DS4Windows", MessageBoxButton.OK, MessageBoxImage.Error);
                 Current.Shutdown(1);
+                return;
             }
 
             logHolder = new LoggerHolder(rootHub);

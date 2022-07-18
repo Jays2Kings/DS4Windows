@@ -16,7 +16,7 @@ namespace DS4Windows.DS4Control
         public const uint MODIFIER_ENHANCED = 2147483648;
 
         private const double ABSOLUTE_MOUSE_COOR_MAX = 32767.0;
-
+        private const int MAX_NORMAL_KEY_PRESSED = 6;
         private FakerInput fakerInput = null;
         private RelativeMouseReport mouseReport = new RelativeMouseReport();
         private AbsoluteMouseReport absoluteMouseReport = new AbsoluteMouseReport();
@@ -133,7 +133,7 @@ namespace DS4Windows.DS4Control
             if (key < MODIFIER_MASK)
             {
                 KeyboardKey temp = (KeyboardKey)key;
-                if (!pressedKeys.Contains(temp))
+                if (!pressedKeys.Contains(temp) && pressedKeys.Count <= MAX_NORMAL_KEY_PRESSED)
                 {
                     keyReport.KeyDown(temp);
                     pressedKeys.Add(temp);
@@ -172,7 +172,7 @@ namespace DS4Windows.DS4Control
             if (key < MODIFIER_MASK)
             {
                 KeyboardKey temp = (KeyboardKey)key;
-                if (!pressedKeys.Contains(temp))
+                if (!pressedKeys.Contains(temp) && pressedKeys.Count <= MAX_NORMAL_KEY_PRESSED)
                 {
                     keyReport.KeyDown(temp);
                     pressedKeys.Add(temp);

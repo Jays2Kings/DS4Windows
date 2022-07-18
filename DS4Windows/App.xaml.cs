@@ -37,9 +37,6 @@ namespace DS4WinWPF
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
         private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, ref COPYDATASTRUCT lParam);
 
-        [DllImport("kernel32", EntryPoint = "OpenEventW", SetLastError = true, CharSet = CharSet.Unicode)]
-        private static extern SafeWaitHandle OpenEvent(uint desiredAccess, bool inheritHandle, string name);
-
         [StructLayout(LayoutKind.Sequential)]
         public struct COPYDATASTRUCT
         {
@@ -76,17 +73,6 @@ namespace DS4WinWPF
 
         public event EventHandler ThemeChanged;
 
-        private static EventWaitHandle CreateAndReplaceHandle(SafeWaitHandle replacementHandle)
-        {
-            EventWaitHandle eventWaitHandle = new EventWaitHandle(default, default);
-
-            SafeWaitHandle old = eventWaitHandle.SafeWaitHandle;
-            eventWaitHandle.SafeWaitHandle = replacementHandle;
-            old.Dispose();
-
-            return eventWaitHandle;
-        }
-
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             runShutdown = true;
@@ -120,13 +106,10 @@ namespace DS4WinWPF
 
             try
             {
-                // https://github.com/dotnet/runtime/issues/2117
                 // another instance is already running if OpenExisting succeeds.
-                //threadComEvent = EventWaitHandle.OpenExisting(SingleAppComEventName,
-                //    System.Security.AccessControl.EventWaitHandleRights.Synchronize |
-                //    System.Security.AccessControl.EventWaitHandleRights.Modify);
-                // Use this for now
-                threadComEvent = CreateAndReplaceHandle(OpenEvent((uint)(System.Security.AccessControl.EventWaitHandleRights.Synchronize | System.Security.AccessControl.EventWaitHandleRights.Modify), false, SingleAppComEventName));
+                threadComEvent = EventWaitHandleAcl.OpenExisting(SingleAppComEventName,
+                    System.Security.AccessControl.EventWaitHandleRights.Synchronize |
+                    System.Security.AccessControl.EventWaitHandleRights.Modify);
                 threadComEvent.Set();  // signal the other instance.
                 threadComEvent.Close();
                 Current.Shutdown();    // Quit temp instance

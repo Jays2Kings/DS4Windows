@@ -697,7 +697,7 @@ namespace DS4Windows.InputDevices
                     cState.TrackPadTouch0.X = (short)(((ushort)(inputReport[35+reportOffset] & 0x0f) << 8) | (ushort)(inputReport[34+reportOffset]));
                     cState.TrackPadTouch0.Y = (short)(((ushort)(inputReport[36+reportOffset]) << 4) | ((ushort)(inputReport[35+reportOffset] & 0xf0) >> 4));
 
-                    cState.TrackPadTouch0.RawTrackingNum = inputReport[37+reportOffset];
+                    cState.TrackPadTouch1.RawTrackingNum = inputReport[37+reportOffset];
                     cState.TrackPadTouch1.Id = (byte)(inputReport[37+reportOffset] & 0x7f);
                     cState.TrackPadTouch1.IsActive = (inputReport[37+reportOffset] & 0x80) == 0;
                     cState.TrackPadTouch1.X = (short)(((ushort)(inputReport[39+reportOffset] & 0x0f) << 8) | (ushort)(inputReport[38+reportOffset]));
@@ -710,7 +710,8 @@ namespace DS4Windows.InputDevices
                         // don't seem to contain relevant data. ds4drv does not use them either.
                         int touchOffset = 0;
 
-                        cState.TouchPacketCounter = inputReport[-1 + TOUCHPAD_DATA_OFFSET + reportOffset + touchOffset];
+                        // TouchPacketCounter is at the end of the Touchpad payload with the DualSense
+                        cState.TouchPacketCounter = inputReport[8 + TOUCHPAD_DATA_OFFSET + reportOffset + touchOffset];
                         cState.Touch1 = (inputReport[0 + TOUCHPAD_DATA_OFFSET + reportOffset + touchOffset] >> 7) != 0 ? false : true; // finger 1 detected
                         cState.Touch1Identifier = (byte)(inputReport[0 + TOUCHPAD_DATA_OFFSET + reportOffset + touchOffset] & 0x7f);
                         cState.Touch2 = (inputReport[4 + TOUCHPAD_DATA_OFFSET + reportOffset + touchOffset] >> 7) != 0 ? false : true; // finger 2 detected

@@ -24,6 +24,7 @@
             "* Fixed initial data bindings for Auto Profile section",
             "* Have Full Pull Dual Stage triggers use raw input range rather than interpreted. Might have to change how Full Pull is handled later",
             "* Changed WelcomeDialog to use Windows temp folder while downloading rather than program folder. Would mainly affect when DS4Windows is run in a read-only folder (shouldn't be the case on a proper setup)",
+            "* Removed Mastodon and Minds social media links from About window. No longer support Mastodon as a whole. DS4Windows actually got banned from Minds",
             "* Added extra project links and notes to About window",
             "* Allow joined JoyCons to transmit unique Gyro data to UDP server. Mimics behavior of BetterJoy for two JoyCon controllers linked together",
             "* Changed HidHide download link to point to version 1.1.50.0. Approved release",

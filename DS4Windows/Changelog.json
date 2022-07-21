@@ -1,9 +1,41 @@
 {
-  "latest_version": "3.1.0",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 0},
-  "updated_at": "2022-07-10T02:13:52+0000",
+  "latest_version": "3.1.1",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 1},
+  "updated_at": "2022-07-21T10:36:14+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.1.1",
+      "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 1},
+      "base_header": "Version 3.1.1",
+      "release_date": "2022-07-21T10:36:14+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.1.1",
+          "log_text": ["* Changed gyro output mode output behavior for joined JoyCon. Run output early for Gyro Mouse and Gyro Mouse-like Joystick",
+            "* Updated many project dependency NuGet packages and DLL files",
+            "* Migrated project to use H.NotifyIcon.Wpf package",
+            "* Added extra CONNRESET IOControl call for ReceiveCallback method in UDP server. Avoids potential memory leak within UDP server in .NET 6. The call should have probably existed beforehand",
+            "* Switched main UDP message rsp to convert payload from a struct. Faster and simpler",
+            "* Added dependabot to GitHub actions. Contribution by **sitiom**",
+            "* Slightly tweaked Suspend and Resume power routines",
+            "* Fixed DS4Updater download URL redirect when automatic download fails",
+            "* Fixed initial data bindings for Auto Profile section",
+            "* Have Full Pull Dual Stage triggers use raw input range rather than interpreted. Might have to change how Full Pull is handled later",
+            "* Changed WelcomeDialog to use Windows temp folder while downloading rather than program folder. Would mainly affect when DS4Windows is run in a read-only folder (shouldn't be the case on a proper setup)",
+            "* Added extra project links and notes to About window",
+            "* Allow joined JoyCons to transmit unique Gyro data to UDP server. Mimics behavior of BetterJoy for two JoyCon controllers linked together",
+            "* Changed HidHide download link to point to version 1.1.50.0. Approved release",
+            "* Enforce 6 normal key maximum for fake virtual keyboard in FakerInput handler. Pretty sure some reports were from people abusing said limit",
+            "* Removed old .NET 5 workaround for single process instance checking. Use EventWaitHandleAcl.OpenExisting included with .NET 6. Contribution by **sitiom**",
+            "* Fixed touchpad counter reading with DualSense. Needed for Touchpad passthru for virtual DS4 Extended output to work. Contribution by **Kanuan**"],
+          "editor": "ryochan7",
+          "editors_note": ["JoyCon changes finally make my old Wiimote config obsolete"],
+          "updated_at": "2022-07-21T10:36:14+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.1.0",
       "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 0},

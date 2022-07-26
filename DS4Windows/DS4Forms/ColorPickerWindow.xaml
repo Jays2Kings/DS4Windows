@@ -9,6 +9,6 @@
         Title="ColorPickerWindow" Height="400" Width="300"
         Style="{DynamicResource WindowStyle}">
     <DockPanel>
-        <xctk:ColorCanvas x:Name="colorPicker" SelectedColorChanged="ColorPicker_SelectedColorChanged" Background="{DynamicResource BackgroundColor}" />
+        <xctk:ColorCanvas x:Name="colorPicker" SelectedColorChanged="ColorPicker_SelectedColorChanged" Background="{DynamicResource BackgroundColor}" UsingAlphaChannel="False" />
     </DockPanel>
 </Window>

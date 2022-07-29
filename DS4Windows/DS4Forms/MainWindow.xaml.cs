@@ -1270,6 +1270,19 @@ Suspend support not enabled.", true);
             hideDS4ContCk.IsEnabled = true;
             StartStopBtn.IsEnabled = true;
         }
+
+        private void UseOscServerCk_Click(object sender, RoutedEventArgs e)
+        {
+            bool status = useOscServerCk.IsChecked == true;
+            App.rootHub.ChangeOSCListenerStatus(status);
+        }
+
+        private void UseOscSenderCk_Click(object sender, RoutedEventArgs e)
+        {
+            bool status = useOscSenderCk.IsChecked == true;
+            App.rootHub.ChangeOSCSenderStatus(status);
+        }
+
         private async void UseUdpServerCk_Click(object sender, RoutedEventArgs e)
         {
             bool status = useUdpServerCk.IsChecked == true;

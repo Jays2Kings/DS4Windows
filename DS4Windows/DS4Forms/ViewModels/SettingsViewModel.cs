@@ -181,6 +181,40 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
         public event EventHandler CheckEveryUnitChanged;
+
+        public bool UseOSCServer
+        {
+            get => DS4Windows.Global.isUsingOSCServer();
+            set
+            {
+                if (DS4Windows.Global.isUsingOSCServer() == value) return;
+                DS4Windows.Global.setUsingOSCServer(value);
+                UseOSCServerChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler UseOSCServerChanged;
+        public int OscPort { get => DS4Windows.Global.getOSCServerPortNum(); set => DS4Windows.Global.setOSCServerPort(value); }
+
+        public bool UseOSCSender
+        {
+            get => DS4Windows.Global.isUsingOSCSender();
+            set
+            {
+                if (DS4Windows.Global.isUsingOSCSender() == value) return;
+                DS4Windows.Global.setUsingOSCSender(value);
+                UseOSCSenderChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler UseOSCSenderChanged;
+        public int OscSendPort { get => DS4Windows.Global.getOSCSenderPortNum(); set => DS4Windows.Global.setOSCSenderPort(value); }
+
+        public string OscSenderAddress
+        {
+            get => DS4Windows.Global.getOSCSenderAddress();
+            set => DS4Windows.Global.setOSCSenderAddress(value);
+        }
+
+
         public bool UseUDPServer
         {
             get => DS4Windows.Global.isUsingUDPServer();

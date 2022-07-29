@@ -1468,6 +1468,55 @@ namespace DS4Windows
             return m_Config.flashWhenLateAt;
         }
 
+        public static bool isUsingOSCServer()
+        {
+            return m_Config.useOSCServ;
+        }
+        public static void setUsingOSCServer(bool state)
+        {
+            m_Config.useOSCServ = state;
+        }
+
+        public static int getOSCServerPortNum()
+        {
+            return m_Config.oscServPort;
+        }
+
+        public static void setOSCServerPort(int value)
+        {
+            m_Config.oscServPort = value;
+        }
+
+        public static bool isUsingOSCSender()
+        {
+            return m_Config.useOSCSend;
+        }
+        public static void setUsingOSCSender(bool state)
+        {
+            m_Config.useOSCSend = state;
+        }
+
+        public static int getOSCSenderPortNum()
+        {
+            return m_Config.oscSendPort;
+        }
+
+        public static void setOSCSenderPort(int value)
+        {
+            m_Config.oscSendPort = value;
+        }
+
+        public static string getOSCSenderAddress()
+        {
+            return m_Config.oscSendAddress;
+        }
+        public static void setOSCSenderAddress(string value)
+        {
+            m_Config.oscSendAddress = value.Trim();
+        }
+
+
+
         public static bool isUsingUDPServer()
         {
             return m_Config.useUDPServ;
@@ -3023,6 +3072,11 @@ namespace DS4Windows
         public TrayIconChoice useIconChoice;
         public bool flashWhenLate = true;
         public int flashWhenLateAt = 500;
+        public bool useOSCServ = false;
+        public int oscServPort = 9000;
+        public bool useOSCSend = false;
+        public int oscSendPort = 9000;
+        public string oscSendAddress = "127.0.0.1";
         public bool useUDPServ = false;
         public int udpServPort = 26760;
         public string udpServListenAddress = "127.0.0.1"; // 127.0.0.1=IPAddress.Loopback (default), 0.0.0.0=IPAddress.Any as all interfaces, x.x.x.x = Specific ipv4 interface address or hostname
@@ -6137,6 +6191,18 @@ namespace DS4Windows
                     }
                     catch { missingSetting = true; useCurrentTheme = AppThemeChoice.Default; }
 
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/UseOSCServer"); Boolean.TryParse(Item.InnerText, out useOSCServ); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/OSCServerPort"); int temp; int.TryParse(Item.InnerText, out temp); oscServPort = Math.Min(Math.Max(temp, 1024), 65535); }
+                    catch { missingSetting = true; }
+
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/UseOSCSender"); Boolean.TryParse(Item.InnerText, out useOSCSend); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/OSCSenderPort"); int temp; int.TryParse(Item.InnerText, out temp); oscSendPort = Math.Min(Math.Max(temp, 1024), 65535); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/OSCSenderAddress"); oscSendAddress = Item.InnerText; }
+                    catch { missingSetting = true; }
+
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/UseUDPServer"); Boolean.TryParse(Item.InnerText, out useUDPServ); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/UDPServerPort"); int temp; int.TryParse(Item.InnerText, out temp); udpServPort = Math.Min(Math.Max(temp, 1024), 65535); }
@@ -6363,6 +6429,13 @@ namespace DS4Windows
             XmlNode xmlFlashWhenLateAt = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLateAt", null); xmlFlashWhenLateAt.InnerText = flashWhenLateAt.ToString(); rootElement.AppendChild(xmlFlashWhenLateAt);
             XmlNode xmlAppIconChoice = m_Xdoc.CreateNode(XmlNodeType.Element, "AppIcon", null); xmlAppIconChoice.InnerText = useIconChoice.ToString(); rootElement.AppendChild(xmlAppIconChoice);
             XmlNode xmlAppThemeChoice = m_Xdoc.CreateNode(XmlNodeType.Element, "AppTheme", null); xmlAppThemeChoice.InnerText = useCurrentTheme.ToString(); rootElement.AppendChild(xmlAppThemeChoice);
+            XmlNode xmlUseOSCServ = m_Xdoc.CreateNode(XmlNodeType.Element, "UseOSCServer", null); xmlUseOSCServ.InnerText = useOSCServ.ToString(); rootElement.AppendChild(xmlUseOSCServ);
+            XmlNode xmlOSCServPort = m_Xdoc.CreateNode(XmlNodeType.Element, "OSCServerPort", null); xmlOSCServPort.InnerText = oscServPort.ToString(); rootElement.AppendChild(xmlOSCServPort);
+
+            XmlNode xmlUseOSCSend = m_Xdoc.CreateNode(XmlNodeType.Element, "UseOSCSender", null); xmlUseOSCSend.InnerText = useOSCSend.ToString(); rootElement.AppendChild(xmlUseOSCSend);
+            XmlNode xmlOSCSendPort = m_Xdoc.CreateNode(XmlNodeType.Element, "OSCSenderPort", null); xmlOSCSendPort.InnerText = oscSendPort.ToString(); rootElement.AppendChild(xmlOSCSendPort);
+            XmlNode xmlOSCSendAddress = m_Xdoc.CreateNode(XmlNodeType.Element, "OSCSenderAddress", null); xmlOSCSendAddress.InnerText = oscSendAddress; rootElement.AppendChild(xmlOSCSendAddress);
+
             XmlNode xmlUseUDPServ = m_Xdoc.CreateNode(XmlNodeType.Element, "UseUDPServer", null); xmlUseUDPServ.InnerText = useUDPServ.ToString(); rootElement.AppendChild(xmlUseUDPServ);
             XmlNode xmlUDPServPort = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerPort", null); xmlUDPServPort.InnerText = udpServPort.ToString(); rootElement.AppendChild(xmlUDPServPort);
             XmlNode xmlUDPServListenAddress = m_Xdoc.CreateNode(XmlNodeType.Element, "UDPServerListenAddress", null); xmlUDPServListenAddress.InnerText = udpServListenAddress; rootElement.AppendChild(xmlUDPServListenAddress);

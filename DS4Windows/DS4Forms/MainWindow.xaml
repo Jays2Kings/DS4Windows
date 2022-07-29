@@ -334,6 +334,24 @@
                                 <ComboBoxItem Content="Days" />
                             </ComboBox>
                         </StackPanel>
+                        <GroupBox Header="OSC Server" Padding="0,10,0,0" Margin="{StaticResource spaceMargin}">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" MinHeight="20">
+                                    <CheckBox x:Name="useOscServerCk" Content="Enable OSC Server" IsChecked="{Binding UseOSCServer}" Click="UseOscServerCk_Click" />
+                                    <Label Content="Port" Padding="0" Margin="20,0,0,0" />
+                                    <xctk:IntegerUpDown d:IsHidden="False" x:Name="oscPortNum" IsEnabled="{Binding UseOSCServer}" MinWidth="20" Margin="8,0,0,0"
+                                            Value="{Binding OscPort, UpdateSourceTrigger=LostFocus,FallbackValue='9000'}" ButtonSpinnerLocation="Right" Increment="1" Maximum="65535" Minimum="0" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" MinHeight="20">
+                                    <CheckBox x:Name="useOscSenderCk" Content="Send Realtime Data" IsChecked="{Binding UseOSCSender}" Click="UseOscSenderCk_Click" />
+                                    <TextBox x:Name="oscSenderTxt" IsEnabled="{Binding UseOSCSender,Mode=OneWay}" Text="{Binding OscSenderAddress, UpdateSourceTrigger=LostFocus,FallbackValue='127.0.0.1'}"
+                                 Margin="8,0,0,0" />
+                                    <Label Content="Port" Padding="0" Margin="20,0,0,0" />
+                                    <xctk:IntegerUpDown d:IsHidden="False" x:Name="oscSendPort" IsEnabled="{Binding UseOSCSender}" MinWidth="20" Margin="8,0,0,0"
+                                            Value="{Binding OscSendPort, UpdateSourceTrigger=LostFocus,FallbackValue='9000'}" ButtonSpinnerLocation="Right" Increment="1" Maximum="65535" Minimum="0" />
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
                         <GroupBox Header="UDP Server" Padding="0,10,0,0" Margin="{StaticResource spaceMargin}">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" MinHeight="20">

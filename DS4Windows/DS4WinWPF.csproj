@@ -73,7 +73,7 @@
   <ItemGroup>
     <PackageReference Include="bloomtom.HttpProgress" Version="2.3.2" />
     <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="5.0.103" />
-    <PackageReference Include="H.NotifyIcon.Wpf" Version="2.0.53" />
+    <PackageReference Include="H.NotifyIcon.Wpf" Version="2.0.58" />
     <PackageReference Include="MdXaml" Version="1.15.0" />
     <PackageReference Include="NLog" Version="5.0.1" />
     <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />

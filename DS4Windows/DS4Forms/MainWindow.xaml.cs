@@ -22,6 +22,7 @@ using HttpProgress;
 using DS4WinWPF.DS4Forms.ViewModels;
 using DS4Windows;
 using DS4WinWPF.Translations;
+using H.NotifyIcon.Core;
 
 namespace DS4WinWPF.DS4Forms
 {
@@ -93,6 +94,7 @@ namespace DS4WinWPF.DS4Forms
 
             trayIconVM = new TrayIconViewModel(App.rootHub, profileListHolder);
             notifyIcon.DataContext = trayIconVM;
+            notifyIcon.CustomName = Global.exelocation;
 
             if (Global.StartMinimized || parser.Mini)
             {

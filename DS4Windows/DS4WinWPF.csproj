@@ -90,7 +90,7 @@
     </Reference>
 
     <Reference Include="SharpOSC">
-      <HintPath>libs\x64\SharpOSC\SharpOSC.dll</HintPath>
+      <HintPath>..\libs\$(Platform)\SharpOSC\SharpOSC.dll</HintPath>
     </Reference>
   </ItemGroup>
 

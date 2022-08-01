@@ -257,6 +257,17 @@ namespace DS4Windows
                 if (command[1] != "ds4windows") { return; }
 
                 int stateInd = Convert.ToInt32(command[2]);
+                if (command[3] == "battery")
+                {
+                    if (!isUsingOSCSender())
+                    {
+                        AppLogger.LogToGui("Battery level requested, but the OSC Sender isn't active. Turn it on in Settings.", false);
+                    }
+                    else
+                    {
+                        oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + stateInd + "/battery", oscState[stateInd].Battery));
+                    }
+                }
                 if (command[3] == "press")
                 {
                     int messageValue = Convert.ToInt32(messageReceived.Arguments[0]);
@@ -736,7 +747,6 @@ namespace DS4Windows
 
         public void ChangeOSCListenerStatus(bool state)
         {
-            AppLogger.LogToGui("OSC SET", false);
             if (state)
             {
                 oscListener = new UDPListener(Global.getOSCServerPortNum(), callback: oscCallback);
@@ -746,6 +756,7 @@ namespace DS4Windows
             else
             {
                 oscListener.Close();
+                oscListener = null;
                 AppLogger.LogToGui("OSC LISTENER STOPPED", false);
             }
         }
@@ -762,6 +773,7 @@ namespace DS4Windows
                 AppLogger.LogToGui("OSC SENDER STOPPED", false);
                 if(oscSender == null) { return; }
                 oscSender.Close();
+                oscSender = null;
             }
         }
 
@@ -1685,6 +1697,7 @@ namespace DS4Windows
                         //Global.activeOutDevType[i] = OutContType.None;
                         useDInputOnly[i] = true;
                         DS4Controllers[i] = null;
+                        oscState[i] = new DS4State();
                         touchPad[i] = null;
                         lag[i] = false;
                         inWarnMonitor[i] = false;
@@ -1696,6 +1709,16 @@ namespace DS4Windows
 
                 DS4Devices.stopControllers();
                 slotManager.ClearControllerList();
+
+                if(oscListener != null)
+                {
+                    ChangeOSCListenerStatus(false);
+                }
+
+                if(oscSender != null)
+                {
+                    ChangeOSCSenderStatus(false);
+                }
 
                 if (_udpServer != null)
                 {
@@ -2298,6 +2321,7 @@ namespace DS4Windows
                     device.IsRemoved = true;
                     device.Synced = false;
                     DS4Controllers[ind] = null;
+                    oscState[ind] = new DS4State();
                     //eventDispatcher.Invoke(() =>
                     //{
                         slotManager.RemoveController(device, ind);
@@ -2509,35 +2533,38 @@ namespace DS4Windows
                     tempMapState.TrackPadTouch0 = cState.TrackPadTouch0;
                     tempMapState.TrackPadTouch1 = cState.TrackPadTouch1;
 
-                    tempMapState.Cross |= oscMapState.Cross;
-                    tempMapState.Square |= oscMapState.Square;
-                    tempMapState.Circle |= oscMapState.Circle;
-                    tempMapState.Triangle |= oscMapState.Triangle;
-                    tempMapState.R1 |= oscMapState.R1;
-                    tempMapState.R2Btn |= oscMapState.R2Btn;
-                    if (oscMapState.R2Btn == true)
+                    if (isUsingOSCServer())
                     {
-                        tempMapState.R2 = 255;
-                    }
-                    tempMapState.R3 |= oscMapState.R3;
-                    tempMapState.L1 |= oscMapState.L1;
-                    tempMapState.L2Btn |= oscMapState.L2Btn;
-                    if (oscMapState.L2Btn == true)
-                    {
-                        tempMapState.L2 = 255;
-                    }
-                    tempMapState.L3 |= oscMapState.L3;
-                    tempMapState.DpadUp |= oscMapState.DpadUp;
-                    tempMapState.DpadLeft |= oscMapState.DpadLeft;
-                    tempMapState.DpadRight |= oscMapState.DpadRight;
-                    tempMapState.DpadDown |= oscMapState.DpadDown;
-                    tempMapState.Options |= oscMapState.Options;
-                    tempMapState.Share |= oscMapState.Share;
+                        tempMapState.Cross |= oscMapState.Cross;
+                        tempMapState.Square |= oscMapState.Square;
+                        tempMapState.Circle |= oscMapState.Circle;
+                        tempMapState.Triangle |= oscMapState.Triangle;
+                        tempMapState.R1 |= oscMapState.R1;
+                        tempMapState.R2Btn |= oscMapState.R2Btn;
+                        if (oscMapState.R2Btn == true)
+                        {
+                            tempMapState.R2 = 255;
+                        }
+                        tempMapState.R3 |= oscMapState.R3;
+                        tempMapState.L1 |= oscMapState.L1;
+                        tempMapState.L2Btn |= oscMapState.L2Btn;
+                        if (oscMapState.L2Btn == true)
+                        {
+                            tempMapState.L2 = 255;
+                        }
+                        tempMapState.L3 |= oscMapState.L3;
+                        tempMapState.DpadUp |= oscMapState.DpadUp;
+                        tempMapState.DpadLeft |= oscMapState.DpadLeft;
+                        tempMapState.DpadRight |= oscMapState.DpadRight;
+                        tempMapState.DpadDown |= oscMapState.DpadDown;
+                        tempMapState.Options |= oscMapState.Options;
+                        tempMapState.Share |= oscMapState.Share;
 
-                    tempMapState.LX = oscMapState.LX != 128 ? oscMapState.LX : tempMapState.LX;
-                    tempMapState.LY = oscMapState.LY != 128 ? oscMapState.LY : tempMapState.LY;
-                    tempMapState.RX = oscMapState.RX != 128 ? oscMapState.RX : tempMapState.RX;
-                    tempMapState.RY = oscMapState.RY != 128 ? oscMapState.RY : tempMapState.RY;
+                        tempMapState.LX = oscMapState.LX != 128 ? oscMapState.LX : tempMapState.LX;
+                        tempMapState.LY = oscMapState.LY != 128 ? oscMapState.LY : tempMapState.LY;
+                        tempMapState.RX = oscMapState.RX != 128 ? oscMapState.RX : tempMapState.RX;
+                        tempMapState.RY = oscMapState.RY != 128 ? oscMapState.RY : tempMapState.RY;
+                    }
 
                     cState = tempMapState;
                     

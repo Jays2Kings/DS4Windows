@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using HttpProgress;
 using DS4Windows;
+using System.Collections.Generic;
 
 namespace DS4WinWPF.DS4Forms.ViewModels
 {
@@ -126,6 +127,35 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 }
                 catch { }
             }
+        }
+
+        public bool LauchDS4Updater()
+        {
+            bool launch = false;
+            using (Process p = new Process())
+            {
+                p.StartInfo.FileName = Path.Combine(Global.exedirpath, "DS4Updater.exe");
+                bool isAdmin = Global.IsAdministrator();
+                List<string> argList = new List<string>();
+                argList.Add("-autolaunch");
+                if (!isAdmin)
+                {
+                    argList.Add("-user");
+                }
+
+                // Specify current exe to have DS4Updater launch
+                argList.Add("--launchExe");
+                argList.Add(Global.exeFileName);
+
+                p.StartInfo.Arguments = string.Join(" ", argList);
+                if (Global.AdminNeeded())
+                    p.StartInfo.Verb = "runas";
+
+                try { launch = p.Start(); }
+                catch (InvalidOperationException) { }
+            }
+
+            return launch;
         }
     }
 }

@@ -22,6 +22,7 @@ using HttpProgress;
 using DS4WinWPF.DS4Forms.ViewModels;
 using DS4Windows;
 using DS4WinWPF.Translations;
+using H.NotifyIcon.Core;
 
 namespace DS4WinWPF.DS4Forms
 {
@@ -93,6 +94,7 @@ namespace DS4WinWPF.DS4Forms
 
             trayIconVM = new TrayIconViewModel(App.rootHub, profileListHolder);
             notifyIcon.DataContext = trayIconVM;
+            notifyIcon.CustomName = Global.exelocation;
 
             if (Global.StartMinimized || parser.Mini)
             {
@@ -211,28 +213,7 @@ namespace DS4WinWPF.DS4Forms
 
                     if (launch)
                     {
-                        using (Process p = new Process())
-                        {
-                            p.StartInfo.FileName = Path.Combine(Global.exedirpath, "DS4Updater.exe");
-                            bool isAdmin = Global.IsAdministrator();
-                            List<string> argList = new List<string>();
-                            argList.Add("-autolaunch");
-                            if (!isAdmin)
-                            {
-                                argList.Add("-user");
-                            }
-
-                            // Specify current exe to have DS4Updater launch
-                            argList.Add("--launchExe");
-                            argList.Add(Global.exeFileName);
-
-                            p.StartInfo.Arguments = string.Join(" ", argList);
-                            if (Global.AdminNeeded())
-                                p.StartInfo.Verb = "runas";
-
-                            try { launch = p.Start(); }
-                            catch (InvalidOperationException) { }
-                        }
+                        launch = mainWinVM.LauchDS4Updater();
                     }
 
                     if (launch)

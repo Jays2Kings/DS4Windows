@@ -3075,7 +3075,7 @@ namespace DS4Windows
         public bool useOSCServ = false;
         public int oscServPort = 9000;
         public bool useOSCSend = false;
-        public int oscSendPort = 9000;
+        public int oscSendPort = 9001;
         public string oscSendAddress = "127.0.0.1";
         public bool useUDPServ = false;
         public int udpServPort = 26760;

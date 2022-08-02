@@ -88,6 +88,10 @@
     <Reference Include="FakerInputWrapper">
       <HintPath>..\libs\$(Platform)\FakerInputWrapper\FakerInputWrapper.dll</HintPath>
     </Reference>
+
+    <Reference Include="SharpOSC">
+      <HintPath>..\libs\$(Platform)\SharpOSC\SharpOSC.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

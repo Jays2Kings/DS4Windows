@@ -8,7 +8,6 @@ using System.Diagnostics;
 
 using System.Linq;
 using System.Drawing;
-using DS4Windows.DS4Library;
 
 namespace DS4Windows
 {
@@ -201,8 +200,6 @@ namespace DS4Windows
         protected readonly DS4SixAxis sixAxis = null;
         protected Thread ds4Input, ds4Output;
         protected int battery;
-        protected DS4Audio audio = null;
-        protected DS4Audio micAudio = null;
         public DateTime lastActive = DateTime.UtcNow;
         public DateTime firstActive = DateTime.UtcNow;
         protected bool charging;

@@ -183,8 +183,6 @@ namespace DS4Windows
         internal const int BATTERY_MAX_USB = 11;
         public const string BLANK_SERIAL = "00:00:00:00:00:00";
         public const byte SERIAL_FEATURE_ID = 18;
-        private const string SONYWA_AUDIO_SEARCHNAME = "DUALSHOCK®4 USB Wireless Adaptor";
-        private const string RAIJU_TE_AUDIO_SEARCHNAME = "Razer Raiju Tournament Edition Wired";
         protected HidDevice hDevice;
         protected string Mac;
         protected DS4State cState = new DS4State();

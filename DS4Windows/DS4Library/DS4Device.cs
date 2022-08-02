@@ -388,9 +388,9 @@ namespace DS4Windows
         private byte knownGoodBTOutputReportType = DEFAULT_BT_REPORT_TYPE;
 
         //private const byte DEFAULT_OUTPUT_FEATURES = 0xF7;
-        private const byte DEFAULT_OUTPUT_FEATURES = 0x87;
+        private const byte DEFAULT_OUTPUT_FEATURES = 0x07;
         //private const byte COPYCAT_OUTPUT_FEATURES = 0xF3;
-        private const byte COPYCAT_OUTPUT_FEATURES = 0x83;
+        private const byte COPYCAT_OUTPUT_FEATURES = 0x03;
         private byte outputFeaturesByte = DEFAULT_OUTPUT_FEATURES;
 
         protected bool useRumble = true;
@@ -1486,7 +1486,7 @@ namespace DS4Windows
                 outReportBuffer[2] = 0xA0;
 
                 // Headphone volume L (0x10), Headphone volume R (0x20), Mic volume (0x40), Speaker volume (0x80)
-                // enable rumble (0x01), lightbar (0x02), flash (0x04). Default: 0x87
+                // enable rumble (0x01), lightbar (0x02), flash (0x04). Default: 0x07
                 outReportBuffer[3] = outputFeaturesByte;
                 outReportBuffer[4] = 0x04;
 
@@ -1516,7 +1516,7 @@ namespace DS4Windows
             {
                 outReportBuffer[0] = 0x05;
                 // Headphone volume L (0x10), Headphone volume R (0x20), Mic volume (0x40), Speaker volume (0x80)
-                // enable rumble (0x01), lightbar (0x02), flash (0x04). Default: 0x87
+                // enable rumble (0x01), lightbar (0x02), flash (0x04). Default: 0x07
                 outReportBuffer[1] = outputFeaturesByte;
                 outReportBuffer[2] = 0x04;
                 outReportBuffer[4] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast; // fast motor

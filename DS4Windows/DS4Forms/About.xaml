@@ -183,6 +183,18 @@ dondrakon - Ukranian
                             </StackPanel>
                         </Border>
 
+                        <Border BorderThickness="1" CornerRadius="10" Margin="0,8,0,0" BorderBrush="{DynamicResource BorderColor}">
+                            <StackPanel Margin="8">
+                                <TextBlock Text="H.NotifyIcon" FontSize="18" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                    <TextBlock Text="Project URL:" />
+                                    <TextBlock Margin="8,0,0,0">
+                                    <Hyperlink x:Name="hNotifyIconLink" Click="HNotifyIconLink_Click" Foreground="{DynamicResource AccentColor}">https://github.com/HavenDV/H.NotifyIcon/</Hyperlink>
+                                    </TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
                     </StackPanel>
 
                 </ScrollViewer>

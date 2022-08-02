@@ -16,6 +16,7 @@ namespace DS4Windows
         public void Dispose()
         {
             _lockerInstance.ExitReadLock();
+            _lockerInstance = null;
         }
     }
 

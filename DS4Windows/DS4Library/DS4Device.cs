@@ -692,16 +692,19 @@ namespace DS4Windows
                 hDevice.OpenFileStream(outputReport.Length);
             }
 
-            if (conType == ConnectionType.BT &&
-                !featureSet.HasFlag(VidPidFeatureSet.NoOutputData) &&
-                !featureSet.HasFlag(VidPidFeatureSet.OnlyOutputData0x05))
-            {
-                CheckOutputReportTypes();
-            }
+            // Temporarily disable this check as it does not seem to help
+            // detect fake DS4 controllers
+            //if (conType == ConnectionType.BT &&
+            //    !featureSet.HasFlag(VidPidFeatureSet.NoOutputData) &&
+            //    !featureSet.HasFlag(VidPidFeatureSet.OnlyOutputData0x05))
+            //{
+            //    CheckOutputReportTypes();
+            //}
 
             sendOutputReport(true, true, false); // initialize the output report (don't force disconnect the gamepad on initialization even if writeData fails because some fake DS4 gamepads don't support writeData over BT)
         }
 
+        // TODO: Possibly remove method
         private void CheckOutputReportTypes()
         {
             // Use Tuple here for convenience

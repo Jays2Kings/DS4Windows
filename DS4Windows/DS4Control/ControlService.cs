@@ -8,12 +8,12 @@ using System.Windows.Threading;
 using System.Linq;
 using System.Text;
 using Sensorit.Base;
-using DS4WinWPF.DS4Control;
-using DS4Windows.DS4Control;
 using Nefarius.ViGEm.Client;
 using SharpOSC;
-using static DS4Windows.Global;
 using System.Runtime.CompilerServices;
+using static DS4Windows.Global;
+using DS4WinWPF.DS4Control;
+using DS4Windows.DS4Control;
 
 namespace DS4Windows
 {
@@ -1324,7 +1324,6 @@ namespace DS4Windows
 
                 UpdateHidHiddenAttributes();
 
-                //uiContext = tempui as SynchronizationContext;
                 if (showlog)
                 {
                     LogDebug(DS4WinWPF.Properties.Resources.SearchingController);
@@ -2256,8 +2255,8 @@ namespace DS4Windows
             }
         }
 
-        //Called when DS4 is disconnected or timed out
-        protected virtual void On_DS4Removal(object sender, EventArgs e)
+        // Called when DS4 is disconnected or timed out
+        protected void On_DS4Removal(object sender, EventArgs e)
         {
             DS4Device device = (DS4Device)sender;
             int ind = -1;
@@ -2357,7 +2356,7 @@ namespace DS4Windows
         private string[] tempStrings = new string[MAX_DS4_CONTROLLER_COUNT] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
 
         // Called every time a new input report has arrived
-        protected virtual void On_Report(DS4Device device, EventArgs e, int ind)
+        protected void On_Report(DS4Device device, EventArgs e, int ind)
         {
             if (ind != -1)
             {
@@ -2540,18 +2539,20 @@ namespace DS4Windows
 
                         case SASteeringWheelEmulationAxisType.VJoy1X:
                         case SASteeringWheelEmulationAxisType.VJoy2X:
-                            DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(cState.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_X);
+                            VJoyFeeder.vJoyFeeder.FeedAxisValue(cState.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, VJoyFeeder.HID_USAGES.HID_USAGE_X);
                             break;
 
                         case SASteeringWheelEmulationAxisType.VJoy1Y:
                         case SASteeringWheelEmulationAxisType.VJoy2Y:
-                            DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(cState.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_Y);
+                            VJoyFeeder.vJoyFeeder.FeedAxisValue(cState.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, VJoyFeeder.HID_USAGES.HID_USAGE_Y);
                             break;
 
                         case SASteeringWheelEmulationAxisType.VJoy1Z:
                         case SASteeringWheelEmulationAxisType.VJoy2Z:
-                            DS4Windows.VJoyFeeder.vJoyFeeder.FeedAxisValue(cState.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, DS4Windows.VJoyFeeder.HID_USAGES.HID_USAGE_Z);
+                            VJoyFeeder.vJoyFeeder.FeedAxisValue(cState.SASteeringWheelEmulationUnit, ((((uint)steeringWheelMappedAxis) - ((uint)SASteeringWheelEmulationAxisType.VJoy1X)) / 3) + 1, VJoyFeeder.HID_USAGES.HID_USAGE_Z);
                             break;
+
+                        default: break;
                     }
                 }
 
@@ -2650,7 +2651,7 @@ namespace DS4Windows
             CompareAndSendChangesToOSC(ind, tempMapState, cState);
         }
 
-        public void CompareAndSendChangesToOSC(int index, DS4State oldState, DS4State newState)
+        private void CompareAndSendChangesToOSC(int index, DS4State oldState, DS4State newState)
         {
             if(oldState.Square != newState.Square)
             {
@@ -2760,7 +2761,7 @@ namespace DS4Windows
             }*/
         }
 
-        public void LagFlashWarning(DS4Device device, int ind, bool on)
+        private void LagFlashWarning(DS4Device device, int ind, bool on)
         {
             if (on)
             {
@@ -2862,7 +2863,7 @@ namespace DS4Windows
         public Dispatcher EventDispatcher { get => eventDispatcher; }
         public OutputSlotManager OutputslotMan { get => outputslotMan; }
 
-        protected virtual void CheckForTouchToggle(int deviceID, DS4State cState, DS4State pState)
+        protected void CheckForTouchToggle(int deviceID, DS4State cState, DS4State pState)
         {
             if (!IsUsingTouchpadForControls(deviceID) && cState.Touch1 && pState.PS)
             {
@@ -2885,7 +2886,7 @@ namespace DS4Windows
                 touchreleased[deviceID] = true;
         }
 
-        public virtual void StartTPOff(int deviceID)
+        public void StartTPOff(int deviceID)
         {
             if (deviceID < CURRENT_DS4_CONTROLLER_LIMIT)
             {
@@ -2893,7 +2894,7 @@ namespace DS4Windows
             }
         }
 
-        public virtual string TouchpadSlide(int ind)
+        public string TouchpadSlide(int ind)
         {
             DS4State cState = CurrentState[ind];
             string slidedir = "none";
@@ -2920,7 +2921,7 @@ namespace DS4Windows
             return slidedir;
         }
 
-        public virtual void LogDebug(String Data, bool warning = false)
+        public void LogDebug(String Data, bool warning = false)
         {
             //Console.WriteLine(System.DateTime.Now.ToString("G") + "> " + Data);
             if (Debug != null)
@@ -2930,14 +2931,14 @@ namespace DS4Windows
             }
         }
 
-        public virtual void OnDebug(object sender, DebugEventArgs args)
+        public void OnDebug(object sender, DebugEventArgs args)
         {
             if (Debug != null)
                 Debug(this, args);
         }
 
         // sets the rumble adjusted with rumble boost. General use method
-        public virtual void setRumble(byte heavyMotor, byte lightMotor, int deviceNum)
+        public void setRumble(byte heavyMotor, byte lightMotor, int deviceNum)
         {
             if (deviceNum < CURRENT_DS4_CONTROLLER_LIMIT)
             {

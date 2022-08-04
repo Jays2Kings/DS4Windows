@@ -13,6 +13,7 @@ using DS4Windows.DS4Control;
 using Nefarius.ViGEm.Client;
 using SharpOSC;
 using static DS4Windows.Global;
+using System.Runtime.CompilerServices;
 
 namespace DS4Windows
 {
@@ -248,6 +249,14 @@ namespace DS4Windows
             Global.UDPServerSmoothingMincutoffChanged += ChangeUdpSmoothingAttrs;
             Global.UDPServerSmoothingBetaChanged += ChangeUdpSmoothingAttrs;
 
+            CreateOSCCallback();
+
+            //oscListener = new UDPListener(Global.getOSCServerPortNum(), callback: oscCallback);
+            //AppLogger.LogToGui("OSC LISTENER STARTED", false);
+        }
+
+        private void CreateOSCCallback()
+        {
             oscCallback = delegate (OscPacket packet)
             {
                 var messageReceived = (OscMessage)packet;
@@ -272,7 +281,7 @@ namespace DS4Windows
                 {
                     int messageValue = Convert.ToInt32(messageReceived.Arguments[0]);
                     bool buttonBool = messageValue == 1 ? true : false;
-                    AppLogger.LogToGui("OSC BUTTON PRESS " + command[4] + ": " + buttonBool, false);
+                    //AppLogger.LogToGui("OSC BUTTON PRESS " + command[4] + ": " + buttonBool, false);
 
                     switch (command[4])
                     {
@@ -326,31 +335,26 @@ namespace DS4Windows
                             break;
                     }
                 }
-                
-                if(command[3] == "stick")
+
+                if (command[3] == "stick")
                 {
                     //AppLogger.LogToGui("OSC STICK COMMAND " + messageReceived.Arguments[0].GetType(), false);
                     float xValue = Convert.ToSingle(messageReceived.Arguments[0]);
                     float yValue = Convert.ToSingle(messageReceived.Arguments[1]);
-                    AppLogger.LogToGui("OSC STICK " + xValue + ": " + yValue, false);
+                    //AppLogger.LogToGui("OSC STICK " + xValue + ": " + yValue, false);
                     if (command[4] == "left")
                     {
                         oscState[stateInd].LX = Convert.ToByte(xValue * 255);
                         oscState[stateInd].LY = Convert.ToByte(yValue * 255);
-                    }else if(command[4] == "right")
+                    }
+                    else if (command[4] == "right")
                     {
                         oscState[stateInd].RX = Convert.ToByte(xValue * 255);
                         oscState[stateInd].RY = Convert.ToByte(yValue * 255);
                     }
                 }
             };
-            
-            //oscListener = new UDPListener(Global.getOSCServerPortNum(), callback: oscCallback);
-            //AppLogger.LogToGui("OSC LISTENER STARTED", false);
         }
-
-
-
 
         public void RefreshOutputKBMHandler()
         {
@@ -2479,50 +2483,12 @@ namespace DS4Windows
                     DS4State tempMapState = MappedState[ind];
                     DS4State oscMapState = oscState[ind];
 
-                    
-
                     if (isUsingOSCSender())
                     {
-                        if (cState.Battery != oscMapState.Battery)
-                        {
-                            oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + ind + "/battery", Convert.ToInt32(cState.Battery)));
-                            oscMapState.Battery = cState.Battery;
-                        }
-                        cState.Cross |= oscMapState.Cross;
-                        cState.Square |= oscMapState.Square;
-                        cState.Circle |= oscMapState.Circle;
-                        cState.Triangle |= oscMapState.Triangle;
-                        cState.R1 |= oscMapState.R1;
-                        cState.R2Btn |= oscMapState.R2Btn;
-                        if (oscMapState.R2Btn == true)
-                        {
-                            cState.R2 = 255;
-                        }
-                        cState.R3 |= oscMapState.R3;
-                        cState.L1 |= oscMapState.L1;
-                        cState.L2Btn |= oscMapState.L2Btn;
-                        if (oscMapState.L2Btn == true)
-                        {
-                            cState.L2 = 255;
-                        }
-                        cState.L3 |= oscMapState.L3;
-                        cState.DpadUp |= oscMapState.DpadUp;
-                        cState.DpadLeft |= oscMapState.DpadLeft;
-                        cState.DpadRight |= oscMapState.DpadRight;
-                        cState.DpadDown |= oscMapState.DpadDown;
-                        cState.Options |= oscMapState.Options;
-                        cState.Share |= oscMapState.Share;
-
-                        cState.LX = oscMapState.LX != 128 ? oscMapState.LX : cState.LX;
-                        cState.LY = oscMapState.LY != 128 ? oscMapState.LY : cState.LY;
-                        cState.RX = oscMapState.RX != 128 ? oscMapState.RX : cState.RX;
-                        cState.RY = oscMapState.RY != 128 ? oscMapState.RY : cState.RY;
-                        //AppLogger.LogToGui("I HEARD SOMETHING " + pCState.Cross+" : "+tempMapState.Cross, false);
-                        CompareAndSendChangesToOSC(ind, tempMapState, cState);
+                        OSCPreMappingStep(ind, cState, tempMapState, oscMapState);
                     }
 
                     Mapping.MapCustom(ind, cState, tempMapState, ExposedState[ind], touchPad[ind], this);
-                    
 
                     // Copy current Touchpad and Gyro data
                     // Might change to use new DS4State.CopyExtrasTo method
@@ -2535,35 +2501,7 @@ namespace DS4Windows
 
                     if (isUsingOSCServer())
                     {
-                        tempMapState.Cross |= oscMapState.Cross;
-                        tempMapState.Square |= oscMapState.Square;
-                        tempMapState.Circle |= oscMapState.Circle;
-                        tempMapState.Triangle |= oscMapState.Triangle;
-                        tempMapState.R1 |= oscMapState.R1;
-                        tempMapState.R2Btn |= oscMapState.R2Btn;
-                        if (oscMapState.R2Btn == true)
-                        {
-                            tempMapState.R2 = 255;
-                        }
-                        tempMapState.R3 |= oscMapState.R3;
-                        tempMapState.L1 |= oscMapState.L1;
-                        tempMapState.L2Btn |= oscMapState.L2Btn;
-                        if (oscMapState.L2Btn == true)
-                        {
-                            tempMapState.L2 = 255;
-                        }
-                        tempMapState.L3 |= oscMapState.L3;
-                        tempMapState.DpadUp |= oscMapState.DpadUp;
-                        tempMapState.DpadLeft |= oscMapState.DpadLeft;
-                        tempMapState.DpadRight |= oscMapState.DpadRight;
-                        tempMapState.DpadDown |= oscMapState.DpadDown;
-                        tempMapState.Options |= oscMapState.Options;
-                        tempMapState.Share |= oscMapState.Share;
-
-                        tempMapState.LX = oscMapState.LX != 128 ? oscMapState.LX : tempMapState.LX;
-                        tempMapState.LY = oscMapState.LY != 128 ? oscMapState.LY : tempMapState.LY;
-                        tempMapState.RX = oscMapState.RX != 128 ? oscMapState.RX : tempMapState.RX;
-                        tempMapState.RY = oscMapState.RY != 128 ? oscMapState.RY : tempMapState.RY;
+                        OSCPostMappingStep(tempMapState, oscMapState);
                     }
 
                     cState = tempMapState;
@@ -2636,108 +2574,183 @@ namespace DS4Windows
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void OSCPostMappingStep(DS4State tempMapState, DS4State oscMapState)
+        {
+            tempMapState.Cross |= oscMapState.Cross;
+            tempMapState.Square |= oscMapState.Square;
+            tempMapState.Circle |= oscMapState.Circle;
+            tempMapState.Triangle |= oscMapState.Triangle;
+            tempMapState.R1 |= oscMapState.R1;
+            tempMapState.R2Btn |= oscMapState.R2Btn;
+            if (oscMapState.R2Btn == true)
+            {
+                tempMapState.R2 = 255;
+            }
+            tempMapState.R3 |= oscMapState.R3;
+            tempMapState.L1 |= oscMapState.L1;
+            tempMapState.L2Btn |= oscMapState.L2Btn;
+            if (oscMapState.L2Btn == true)
+            {
+                tempMapState.L2 = 255;
+            }
+            tempMapState.L3 |= oscMapState.L3;
+            tempMapState.DpadUp |= oscMapState.DpadUp;
+            tempMapState.DpadLeft |= oscMapState.DpadLeft;
+            tempMapState.DpadRight |= oscMapState.DpadRight;
+            tempMapState.DpadDown |= oscMapState.DpadDown;
+            tempMapState.Options |= oscMapState.Options;
+            tempMapState.Share |= oscMapState.Share;
+
+            tempMapState.LX = oscMapState.LX != 128 ? oscMapState.LX : tempMapState.LX;
+            tempMapState.LY = oscMapState.LY != 128 ? oscMapState.LY : tempMapState.LY;
+            tempMapState.RX = oscMapState.RX != 128 ? oscMapState.RX : tempMapState.RX;
+            tempMapState.RY = oscMapState.RY != 128 ? oscMapState.RY : tempMapState.RY;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private void OSCPreMappingStep(int ind, DS4State cState, DS4State tempMapState,
+            DS4State oscMapState)
+        {
+            if (cState.Battery != oscMapState.Battery)
+            {
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + ind + "/battery", Convert.ToInt32(cState.Battery)));
+                oscMapState.Battery = cState.Battery;
+            }
+            cState.Cross |= oscMapState.Cross;
+            cState.Square |= oscMapState.Square;
+            cState.Circle |= oscMapState.Circle;
+            cState.Triangle |= oscMapState.Triangle;
+            cState.R1 |= oscMapState.R1;
+            cState.R2Btn |= oscMapState.R2Btn;
+            if (oscMapState.R2Btn == true)
+            {
+                cState.R2 = 255;
+            }
+            cState.R3 |= oscMapState.R3;
+            cState.L1 |= oscMapState.L1;
+            cState.L2Btn |= oscMapState.L2Btn;
+            if (oscMapState.L2Btn == true)
+            {
+                cState.L2 = 255;
+            }
+            cState.L3 |= oscMapState.L3;
+            cState.DpadUp |= oscMapState.DpadUp;
+            cState.DpadLeft |= oscMapState.DpadLeft;
+            cState.DpadRight |= oscMapState.DpadRight;
+            cState.DpadDown |= oscMapState.DpadDown;
+            cState.Options |= oscMapState.Options;
+            cState.Share |= oscMapState.Share;
+
+            cState.LX = oscMapState.LX != 128 ? oscMapState.LX : cState.LX;
+            cState.LY = oscMapState.LY != 128 ? oscMapState.LY : cState.LY;
+            cState.RX = oscMapState.RX != 128 ? oscMapState.RX : cState.RX;
+            cState.RY = oscMapState.RY != 128 ? oscMapState.RY : cState.RY;
+            //AppLogger.LogToGui("I HEARD SOMETHING " + pCState.Cross+" : "+tempMapState.Cross, false);
+            CompareAndSendChangesToOSC(ind, tempMapState, cState);
+        }
+
         public void CompareAndSendChangesToOSC(int index, DS4State oldState, DS4State newState)
         {
-
             if(oldState.Square != newState.Square)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/square", newState.Square==true?1:0));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/square", newState.Square==true?1:0));
             }
 
             if (oldState.Triangle != newState.Triangle)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/triangle", newState.Triangle == true ? 1 : 0));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/triangle", newState.Triangle == true ? 1 : 0));
             }
 
             if (oldState.Circle != newState.Circle)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/circle", newState.Circle == true ? 1 : 0));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/circle", newState.Circle == true ? 1 : 0));
             }
 
             if (oldState.Cross != newState.Cross)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/cross", newState.Cross == true ? 1 : 0));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/cross", newState.Cross == true ? 1 : 0));
             }
 
             if (oldState.DpadUp != newState.DpadUp)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/dpadup", newState.DpadUp == true ? 1 : 0));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/dpadup", newState.DpadUp == true ? 1 : 0));
             }
 
             if (oldState.DpadDown != newState.DpadDown)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/dpaddown", newState.DpadDown == true ? 1 : 0));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/dpaddown", newState.DpadDown == true ? 1 : 0));
             }
 
             if (oldState.DpadLeft != newState.DpadLeft)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/dpadleft", newState.DpadLeft == true ? 1 : 0));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/dpadleft", newState.DpadLeft == true ? 1 : 0));
             }
 
             if (oldState.DpadRight != newState.DpadRight)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/dpadright", newState.DpadRight == true ? 1 : 0));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/dpadright", newState.DpadRight == true ? 1 : 0));
             }
 
             if (oldState.L1 != newState.L1)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/l1", newState.L1 == true ? 1 : 0));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/l1", newState.L1 == true ? 1 : 0));
             }
 
             if (oldState.L2 != newState.L2)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/l2", Convert.ToInt32(newState.L2)));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/l2", Convert.ToInt32(newState.L2)));
             }
 
             if (oldState.L3 != newState.L3)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/l3", newState.L3 == true ? 1 : 0));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/l3", newState.L3 == true ? 1 : 0));
             }
 
             if (oldState.R1 != newState.R1)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/r1", newState.R1 == true ? 1 : 0));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/r1", newState.R1 == true ? 1 : 0));
             }
 
             if (oldState.R2 != newState.R2)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/r2", Convert.ToInt32(newState.R2)));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/r2", Convert.ToInt32(newState.R2)));
             }
 
             if (oldState.R3 != newState.R3)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/r3", newState.R3 == true ? 1 : 0));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/r3", newState.R3 == true ? 1 : 0));
             }
 
             if (oldState.LX != newState.LX)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/lx", Convert.ToInt32(newState.LX)));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/lx", Convert.ToInt32(newState.LX)));
             }
             if (oldState.LY != newState.LY)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/ly", Convert.ToInt32(newState.LY)));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/ly", Convert.ToInt32(newState.LY)));
             }
             if (oldState.RX != newState.RX)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/rx", Convert.ToInt32(newState.RX)));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/rx", Convert.ToInt32(newState.RX)));
             }
             if (oldState.RY != newState.RY)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/ry", Convert.ToInt32(newState.RY)));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/ry", Convert.ToInt32(newState.RY)));
             }
 
             if (oldState.Options != newState.Options)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/options", newState.Options == true ? 1 : 0));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/options", newState.Options == true ? 1 : 0));
             }
             if (oldState.Share != newState.Share)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/share", newState.Share == true ? 1 : 0));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/share", newState.Share == true ? 1 : 0));
             }
 
             if (oldState.PS != newState.PS)
             {
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/ps", newState.PS == true ? 1 : 0));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/ps", newState.PS == true ? 1 : 0));
             }
             
             /*if (oldState.Battery != newState.Battery)

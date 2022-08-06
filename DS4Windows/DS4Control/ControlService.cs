@@ -10,7 +10,6 @@ using System.Text;
 using Sensorit.Base;
 using Nefarius.ViGEm.Client;
 using SharpOSC;
-using System.Runtime.CompilerServices;
 using static DS4Windows.Global;
 using DS4WinWPF.DS4Control;
 using DS4Windows.DS4Control;
@@ -2575,7 +2574,6 @@ namespace DS4Windows
             }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void OSCPostMappingStep(DS4State tempMapState, DS4State oscMapState)
         {
             tempMapState.Cross |= oscMapState.Cross;
@@ -2609,7 +2607,6 @@ namespace DS4Windows
             tempMapState.RY = oscMapState.RY != 128 ? oscMapState.RY : tempMapState.RY;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void OSCPreMappingStep(int ind, DS4State cState, DS4State tempMapState,
             DS4State oscMapState)
         {

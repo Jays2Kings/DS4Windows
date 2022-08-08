@@ -1,9 +1,36 @@
 {
-  "latest_version": "3.1.1",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 1},
-  "updated_at": "2022-07-21T10:36:14+0000",
+  "latest_version": "3.1.2",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 2},
+  "updated_at": "2022-08-08T02:21:08+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.1.2",
+      "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 2},
+      "base_header": "Version 3.1.2",
+      "release_date": "2022-08-08T02:21:08+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.1.2",
+          "log_text": ["* Hide alpha slider from color picker window",
+            "* Changed some translation files locations based on .NET 6 locale changes",
+            "* Added OSC Server and Sender. Contribution by **GreySole**",
+            "* Updated H.NotifyIcon package",
+            "* Use new H.NotifyIcon property for handling tray icon identifier",
+            "* Removed Speaker volume feature flag from DS4 output report",
+            "* Minor tweak for ReadLocker wrapper class",
+            "* Added H.NotifyIcon to About Extras tab",
+            "* Removed DS4Audio class from project",
+            "* Disabled failed fake DS4 detection. Does not really work for its purpose based on reports",
+            "* Fixed Rename Profile window to use app theme colors",
+            "* Slightly alter how loading a temp profile is performed"],
+          "editor": "ryochan7",
+          "editors_note": ["Biking now taking up a lot of my time"],
+          "updated_at": "2022-08-08T02:21:08+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.1.1",
       "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 1},

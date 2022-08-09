@@ -1316,7 +1316,7 @@ namespace DS4Windows
                 if (showlog)
                     LogDebug(DS4WinWPF.Properties.Resources.Starting);
 
-                LogDebug($"Using output KB+M handler: {DS4Windows.Global.outputKBMHandler.GetFullDisplayName()}");
+                LogDebug($"Using output KB+M handler: {Global.outputKBMHandler.GetFullDisplayName()}");
                 LogDebug($"Connection to ViGEmBus {Global.vigembusVersion} established");
 
                 DS4Devices.isExclusiveMode = getUseExclusiveMode(); //Re-enable Exclusive Mode
@@ -1361,29 +1361,15 @@ namespace DS4Windows
                     IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
                     int numControllers = new List<DS4Device>(devices).Count;
                     activeControllers = numControllers;
-                    //int ind = 0;
                     DS4LightBar.defaultLight = false;
-                    //foreach (DS4Device device in devices)
-                    //for (int i = 0, devCount = devices.Count(); i < devCount; i++)
                     int i = 0;
                     InputDevices.JoyConDevice tempPrimaryJoyDev = null;
-                    for (var devEnum = devices.GetEnumerator(); devEnum.MoveNext() && loopControllers; i++)
+                    for (var devEnum = devices.GetEnumerator();
+                        devEnum.MoveNext() && loopControllers; i++)
                     {
                         DS4Device device = devEnum.Current;
-                        if (showlog)
-                            LogDebug(DS4WinWPF.Properties.Resources.FoundController + " " + device.getMacAddress() + " (" + device.getConnectionType() + ") (" +
-                                device.DisplayName + ")");
 
-                        if (hidDeviceHidingEnabled && CheckAffected(device))
-                        {
-                            //device.CurrentExclusiveStatus = DS4Device.ExclusiveStatus.HidGuardAffected;
-                            ChangeExclusiveStatus(device);
-                        }
-
-                        Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
-                        task.Start();
-
-                        PrepareDS4DeviceSettingHooks(device);
+                        BeginPrepareConnectedInputController(device, showlog: true);
 
                         if (deviceOptions.JoyConDeviceOpts.LinkedMode == JoyConDeviceOptions.LinkMode.Joined)
                         {
@@ -1413,109 +1399,7 @@ namespace DS4Windows
 
                         DS4Controllers[i] = device;
                         device.DeviceSlotNumber = i;
-
-                        Global.RefreshExtrasButtons(i, GetKnownExtraButtons(device));
-                        Global.LoadControllerConfigs(device);
-                        device.LoadStoreSettings();
-                        device.CheckControllerNumDeviceSettings(numControllers);
-
-                        slotManager.AddController(device, i);
-                        if (isUsingOSCSender())
-                        {
-                            oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + i + "/plug", 1));
-                        }
-                        device.Removal += this.On_DS4Removal;
-                        device.Removal += DS4Devices.On_Removal;
-                        device.SyncChange += this.On_SyncChange;
-                        device.SyncChange += DS4Devices.UpdateSerial;
-                        device.SerialChange += this.On_SerialChange;
-                        device.ChargingChanged += CheckQuickCharge;
-
-                        touchPad[i] = new Mouse(i, device);
-                        bool profileLoaded = false;
-                        bool useAutoProfile = useTempProfile[i];
-                        if (!useAutoProfile)
-                        {
-                            if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
-                            {
-                                ProfilePath[i] = getLinkedProfile(device.getMacAddress());
-                                Global.linkedProfileCheck[i] = true;
-                            }
-                            else
-                            {
-                                ProfilePath[i] = OlderProfilePath[i];
-                                Global.linkedProfileCheck[i] = false;
-                            }
-
-                            profileLoaded = LoadProfile(i, false, this, false, false);
-                        }
-
-                        if (profileLoaded || useAutoProfile)
-                        {
-                            device.LightBarColor = getMainColor(i);
-
-                            if (!getDInputOnly(i) && device.isSynced())
-                            {
-                                if (device.PrimaryDevice)
-                                {
-                                    PluginOutDev(i, device);
-                                }
-                                else if (device.JointDeviceSlotNumber != DS4Device.DEFAULT_JOINT_SLOT_NUMBER)
-                                {
-                                    int otherIdx = device.JointDeviceSlotNumber;
-                                    OutputDevice tempOutDev = outputDevices[otherIdx];
-                                    if (tempOutDev != null)
-                                    {
-                                        OutContType tempConType = activeOutDevType[otherIdx];
-                                        EstablishOutFeedback(i, tempConType, tempOutDev, device);
-                                        outputDevices[i] = tempOutDev;
-                                        Global.activeOutDevType[i] = tempConType;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                useDInputOnly[i] = true;
-                                Global.activeOutDevType[i] = OutContType.None;
-                            }
-
-                            if (device.PrimaryDevice && device.OutputMapGyro)
-                            {
-                                TouchPadOn(i, device);
-                            }
-                            else if (device.JointDeviceSlotNumber != DS4Device.DEFAULT_JOINT_SLOT_NUMBER)
-                            {
-                                int otherIdx = device.JointDeviceSlotNumber;
-                                DS4Device tempDev = DS4Controllers[otherIdx];
-                                if (tempDev != null)
-                                {
-                                    int mappedIdx = tempDev.PrimaryDevice ? otherIdx : i;
-                                    DS4Device gyroDev = device.OutputMapGyro ? device : (tempDev.OutputMapGyro ? tempDev : null);
-                                    if (gyroDev != null)
-                                    {
-                                        TouchPadOn(mappedIdx, gyroDev);
-                                    }
-                                }
-                            }
-
-                            CheckProfileOptions(i, device, true);
-                            SetupInitialHookEvents(i, device);
-                        }
-
-                        int tempIdx = i;
-                        device.Report += (sender, e) =>
-                        {
-                            this.On_Report(sender, e, tempIdx);
-                        };
-
-                        if (_udpServer != null && i < UdpServer.NUMBER_SLOTS)
-                        {
-                            PrepareDevUDPMotion(device, tempIdx);
-                        }
-
-                        device.StartUpdate();
-                        //string filename = ProfilePath[ind];
-                        //ind++;
+                        PrepareConnectedInputControllerSettingEvents(numControllers, device, index: i);
 
                         if (i >= CURRENT_DS4_CONTROLLER_LIMIT) // out of Xinput devices!
                             break;
@@ -1542,7 +1426,7 @@ namespace DS4Windows
                     }
                     catch (System.Net.Sockets.SocketException ex)
                     {
-                        var errMsg = String.Format("Couldn't start UDP server on address {0}:{1}, outside applications won't be able to access pad data ({2})", UDP_SERVER_LISTEN_ADDRESS, UDP_SERVER_PORT, ex.SocketErrorCode);
+                        var errMsg = string.Format("Couldn't start UDP server on address {0}:{1}, outside applications won't be able to access pad data ({2})", UDP_SERVER_LISTEN_ADDRESS, UDP_SERVER_PORT, ex.SocketErrorCode);
 
                         LogDebug(errMsg, true);
                         AppLogger.LogToTray(errMsg, true, true);
@@ -1766,8 +1650,6 @@ namespace DS4Windows
                 IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
                 int numControllers = new List<DS4Device>(devices).Count;
                 activeControllers = numControllers;
-                //foreach (DS4Device device in devices)
-                //for (int i = 0, devlen = devices.Count(); i < devlen; i++)
                 InputDevices.JoyConDevice tempPrimaryJoyDev = null;
                 InputDevices.JoyConDevice tempSecondaryJoyDev = null;
 
@@ -1789,9 +1671,10 @@ namespace DS4Windows
                     if (device.isDisconnectingStatus())
                         continue;
 
-                    if (((Func<bool>)delegate
+                    // Use local method rather than Func
+                    bool checkAlreadyExists()
                     {
-                        for (Int32 Index = 0, arlength = DS4Controllers.Length; Index < arlength; Index++)
+                        for (int Index = 0, arlength = DS4Controllers.Length; Index < arlength; Index++)
                         {
                             if (DS4Controllers[Index] != null &&
                                 DS4Controllers[Index].getMacAddress() == device.getMacAddress())
@@ -1802,29 +1685,19 @@ namespace DS4Windows
                         }
 
                         return false;
-                    })())
+                    }
+
+                    if (checkAlreadyExists())
                     {
                         continue;
                     }
 
-                    for (Int32 Index = 0, arlength = DS4Controllers.Length; Index < arlength && Index < CURRENT_DS4_CONTROLLER_LIMIT; Index++)
+                    for (int Index = 0, arlength = DS4Controllers.Length;
+                        Index < arlength && Index < CURRENT_DS4_CONTROLLER_LIMIT; Index++)
                     {
                         if (DS4Controllers[Index] == null)
                         {
-                            //LogDebug(DS4WinWPF.Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
-                            LogDebug(DS4WinWPF.Properties.Resources.FoundController + " " + device.getMacAddress() + " (" + device.getConnectionType() + ") (" +
-                                device.DisplayName + ")");
-
-                            if (hidDeviceHidingEnabled && CheckAffected(device))
-                            {
-                                //device.CurrentExclusiveStatus = DS4Device.ExclusiveStatus.HidGuardAffected;
-                                ChangeExclusiveStatus(device);
-                            }
-
-                            Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
-                            task.Start();
-
-                            PrepareDS4DeviceSettingHooks(device);
+                            BeginPrepareConnectedInputController(device);
 
                             if (deviceOptions.JoyConDeviceOpts.LinkedMode == JoyConDeviceOptions.LinkMode.Joined)
                             {
@@ -1867,107 +1740,8 @@ namespace DS4Windows
 
                             DS4Controllers[Index] = device;
                             device.DeviceSlotNumber = Index;
+                            PrepareConnectedInputControllerSettingEvents(numControllers, device, Index);
 
-                            Global.RefreshExtrasButtons(Index, GetKnownExtraButtons(device));
-                            Global.LoadControllerConfigs(device);
-                            device.LoadStoreSettings();
-                            device.CheckControllerNumDeviceSettings(numControllers);
-
-                            slotManager.AddController(device, Index);
-                            if (isUsingOSCSender())
-                            {
-                                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + Index + "/plug", 1));
-                            }
-                            device.Removal += this.On_DS4Removal;
-                            device.Removal += DS4Devices.On_Removal;
-                            device.SyncChange += this.On_SyncChange;
-                            device.SyncChange += DS4Devices.UpdateSerial;
-                            device.SerialChange += this.On_SerialChange;
-                            device.ChargingChanged += CheckQuickCharge;
-
-                            touchPad[Index] = new Mouse(Index, device);
-                            bool profileLoaded = false;
-                            bool useAutoProfile = useTempProfile[Index];
-                            if (!useAutoProfile)
-                            {
-                                if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
-                                {
-                                    ProfilePath[Index] = getLinkedProfile(device.getMacAddress());
-                                    Global.linkedProfileCheck[Index] = true;
-                                }
-                                else
-                                {
-                                    ProfilePath[Index] = OlderProfilePath[Index];
-                                    Global.linkedProfileCheck[Index] = false;
-                                }
-
-                                profileLoaded = LoadProfile(Index, false, this, false, false);
-                            }
-
-                            if (profileLoaded || useAutoProfile)
-                            {
-                                device.LightBarColor = getMainColor(Index);
-
-                                if (!getDInputOnly(Index) && device.isSynced())
-                                {
-                                    if (device.PrimaryDevice)
-                                    {
-                                        PluginOutDev(Index, device);
-                                    }
-                                    else if (device.JointDeviceSlotNumber != DS4Device.DEFAULT_JOINT_SLOT_NUMBER)
-                                    {
-                                        int otherIdx = device.JointDeviceSlotNumber;
-                                        OutputDevice tempOutDev = outputDevices[otherIdx];
-                                        if (tempOutDev != null)
-                                        {
-                                            OutContType tempConType = activeOutDevType[otherIdx];
-                                            EstablishOutFeedback(Index, tempConType, tempOutDev, device);
-                                            outputDevices[Index] = tempOutDev;
-                                            Global.activeOutDevType[Index] = tempConType;
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    useDInputOnly[Index] = true;
-                                    Global.activeOutDevType[Index] = OutContType.None;
-                                }
-
-                                if (device.PrimaryDevice && device.OutputMapGyro)
-                                {
-                                    TouchPadOn(Index, device);
-                                }
-                                else if (device.JointDeviceSlotNumber != DS4Device.DEFAULT_JOINT_SLOT_NUMBER)
-                                {
-                                    int otherIdx = device.JointDeviceSlotNumber;
-                                    DS4Device tempDev = DS4Controllers[otherIdx];
-                                    if (tempDev != null)
-                                    {
-                                        int mappedIdx = tempDev.PrimaryDevice ? otherIdx : Index;
-                                        DS4Device gyroDev = device.OutputMapGyro ? device : (tempDev.OutputMapGyro ? tempDev : null);
-                                        if (gyroDev != null)
-                                        {
-                                            TouchPadOn(mappedIdx, gyroDev);
-                                        }
-                                    }
-                                }
-
-                                CheckProfileOptions(Index, device);
-                                SetupInitialHookEvents(Index, device);
-                            }
-
-                            int tempIdx = Index;
-                            device.Report += (sender, e) =>
-                            {
-                                this.On_Report(sender, e, tempIdx);
-                            };
-
-                            if (_udpServer != null && Index < UdpServer.NUMBER_SLOTS)
-                            {
-                                PrepareDevUDPMotion(device, tempIdx);
-                            }
-
-                            device.StartUpdate();
                             HotplugController?.Invoke(this, device, Index);
                             break;
                         }
@@ -1978,6 +1752,130 @@ namespace DS4Windows
             }
 
             return true;
+        }
+
+        private void PrepareConnectedInputControllerSettingEvents(int numControllers, DS4Device device, int index)
+        {
+            Global.RefreshExtrasButtons(index, GetKnownExtraButtons(device));
+            Global.LoadControllerConfigs(device);
+            device.LoadStoreSettings();
+            device.CheckControllerNumDeviceSettings(numControllers);
+
+            slotManager.AddController(device, index);
+            if (isUsingOSCSender())
+            {
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/plug", 1));
+            }
+            device.Removal += this.On_DS4Removal;
+            device.Removal += DS4Devices.On_Removal;
+            device.SyncChange += this.On_SyncChange;
+            device.SyncChange += DS4Devices.UpdateSerial;
+            device.SerialChange += this.On_SerialChange;
+            device.ChargingChanged += CheckQuickCharge;
+
+            touchPad[index] = new Mouse(index, device);
+            bool profileLoaded = false;
+            bool useAutoProfile = useTempProfile[index];
+            if (!useAutoProfile)
+            {
+                if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
+                {
+                    ProfilePath[index] = getLinkedProfile(device.getMacAddress());
+                    Global.linkedProfileCheck[index] = true;
+                }
+                else
+                {
+                    ProfilePath[index] = OlderProfilePath[index];
+                    Global.linkedProfileCheck[index] = false;
+                }
+
+                profileLoaded = LoadProfile(index, false, this, false, false);
+            }
+
+            if (profileLoaded || useAutoProfile)
+            {
+                device.LightBarColor = getMainColor(index);
+
+                if (!getDInputOnly(index) && device.isSynced())
+                {
+                    if (device.PrimaryDevice)
+                    {
+                        PluginOutDev(index, device);
+                    }
+                    else if (device.JointDeviceSlotNumber != DS4Device.DEFAULT_JOINT_SLOT_NUMBER)
+                    {
+                        int otherIdx = device.JointDeviceSlotNumber;
+                        OutputDevice tempOutDev = outputDevices[otherIdx];
+                        if (tempOutDev != null)
+                        {
+                            OutContType tempConType = activeOutDevType[otherIdx];
+                            EstablishOutFeedback(index, tempConType, tempOutDev, device);
+                            outputDevices[index] = tempOutDev;
+                            Global.activeOutDevType[index] = tempConType;
+                        }
+                    }
+                }
+                else
+                {
+                    useDInputOnly[index] = true;
+                    Global.activeOutDevType[index] = OutContType.None;
+                }
+
+                if (device.PrimaryDevice && device.OutputMapGyro)
+                {
+                    TouchPadOn(index, device);
+                }
+                else if (device.JointDeviceSlotNumber != DS4Device.DEFAULT_JOINT_SLOT_NUMBER)
+                {
+                    int otherIdx = device.JointDeviceSlotNumber;
+                    DS4Device tempDev = DS4Controllers[otherIdx];
+                    if (tempDev != null)
+                    {
+                        int mappedIdx = tempDev.PrimaryDevice ? otherIdx : index;
+                        DS4Device gyroDev = device.OutputMapGyro ? device : (tempDev.OutputMapGyro ? tempDev : null);
+                        if (gyroDev != null)
+                        {
+                            TouchPadOn(mappedIdx, gyroDev);
+                        }
+                    }
+                }
+
+                CheckProfileOptions(index, device);
+                SetupInitialHookEvents(index, device);
+            }
+
+            int tempIdx = index;
+            device.Report += (sender, e) =>
+            {
+                this.On_Report(sender, e, tempIdx);
+            };
+
+            if (_udpServer != null && index < UdpServer.NUMBER_SLOTS)
+            {
+                PrepareDevUDPMotion(device, tempIdx);
+            }
+
+            device.StartUpdate();
+        }
+
+        private void BeginPrepareConnectedInputController(DS4Device device, bool showlog = false)
+        {
+            if (showlog)
+            {
+                LogDebug(DS4WinWPF.Properties.Resources.FoundController + " " + device.getMacAddress() + " (" + device.getConnectionType() + ") (" +
+                                            device.DisplayName + ")");
+            }
+
+            if (hidDeviceHidingEnabled && CheckAffected(device))
+            {
+                //device.CurrentExclusiveStatus = DS4Device.ExclusiveStatus.HidGuardAffected;
+                ChangeExclusiveStatus(device);
+            }
+
+            //Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
+            //task.Start();
+
+            PrepareDS4DeviceSettingHooks(device);
         }
 
         public void ResetUdpSmoothingFilters(int idx)
@@ -2044,7 +1942,7 @@ namespace DS4Windows
             string programPath = LaunchProgram[ind];
             if (programPath != string.Empty)
             {
-                System.Diagnostics.Process[] localAll = System.Diagnostics.Process.GetProcesses();
+                Process[] localAll = Process.GetProcesses();
                 bool procFound = false;
                 for (int procInd = 0, procsLen = localAll.Length; !procFound && procInd < procsLen; procInd++)
                 {
@@ -2066,7 +1964,7 @@ namespace DS4Windows
                     Task processTask = new Task(() =>
                     {
                         Thread.Sleep(5000);
-                        System.Diagnostics.Process tempProcess = new System.Diagnostics.Process();
+                        Process tempProcess = new Process();
                         tempProcess.StartInfo.FileName = programPath;
                         tempProcess.StartInfo.WorkingDirectory = new FileInfo(programPath).Directory.ToString();
                         //tempProcess.StartInfo.UseShellExecute = false;
@@ -2412,7 +2310,7 @@ namespace DS4Windows
                     // Only send Log message when device is considered a primary device
                     if (device.PrimaryDevice)
                     {
-                        if (File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[ind] + ".xml"))
+                        if (File.Exists(Path.Combine(appdatapath, "Profiles", $"{ProfilePath[ind]}.xml")))
                         {
                             string prolog = string.Format(DS4WinWPF.Properties.Resources.UsingProfile, (ind + 1).ToString(), ProfilePath[ind], $"{device.Battery}");
                             LogDebug(prolog);

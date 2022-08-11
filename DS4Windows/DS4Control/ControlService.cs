@@ -1359,7 +1359,7 @@ namespace DS4Windows
                     });
 
                     IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
-                    int numControllers = new List<DS4Device>(devices).Count;
+                    int numControllers = devices.Count();
                     activeControllers = numControllers;
                     DS4LightBar.defaultLight = false;
                     int i = 0;
@@ -1648,7 +1648,7 @@ namespace DS4Windows
                 });
 
                 IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
-                int numControllers = new List<DS4Device>(devices).Count;
+                int numControllers = devices.Count();
                 activeControllers = numControllers;
                 InputDevices.JoyConDevice tempPrimaryJoyDev = null;
                 InputDevices.JoyConDevice tempSecondaryJoyDev = null;

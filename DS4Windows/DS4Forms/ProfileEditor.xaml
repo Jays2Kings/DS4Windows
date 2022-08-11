@@ -322,7 +322,7 @@
                                                    Margin="{StaticResource spaceMargin}" />
 
                                                         <Label Content="Sensitivity:" Grid.Row="5" Grid.Column="0" />
-                                                        <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding LSSens}" MinWidth="50" Grid.Row="5" Grid.Column="1" Maximum="5.0" Minimum="0.5" Increment="0.1"
+                                                        <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding LSSens}" MinWidth="50" Grid.Row="5" Grid.Column="1" Maximum="5.0" Minimum="0.1" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
                                                     </Grid>
@@ -556,7 +556,7 @@
                                                    Margin="{StaticResource spaceMargin}" />
 
                                                         <Label Content="Sensitivity:" Grid.Row="5" Grid.Column="0" />
-                                                        <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding RSSens}" MinWidth="50" Grid.Row="5" Grid.Column="1" Maximum="5.0" Minimum="0.5" Increment="0.1"
+                                                        <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding RSSens}" MinWidth="50" Grid.Row="5" Grid.Column="1" Maximum="5.0" Minimum="0.1" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
                                                     </Grid>
                                                 </TabItem>

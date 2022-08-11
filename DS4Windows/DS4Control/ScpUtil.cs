@@ -4889,17 +4889,18 @@ namespace DS4Windows
                     string[] s = Item.InnerText.Split('|');
                     if (s.Length == 1)
                         s = Item.InnerText.Split(',');
-                    if (!double.TryParse(s[0], out LSSens[device]) || LSSens[device] < .5f)
+
+                    if (!double.TryParse(s[0], out LSSens[device]) || LSSens[device] < 0.1)
                         LSSens[device] = 1;
-                    if (!double.TryParse(s[1], out RSSens[device]) || RSSens[device] < .5f)
+                    if (!double.TryParse(s[1], out RSSens[device]) || RSSens[device] < 0.1)
                         RSSens[device] = 1;
-                    if (!double.TryParse(s[2], out l2Sens[device]) || l2Sens[device] < .1f)
+                    if (!double.TryParse(s[2], out l2Sens[device]) || l2Sens[device] < 0.1)
                         l2Sens[device] = 1;
-                    if (!double.TryParse(s[3], out r2Sens[device]) || r2Sens[device] < .1f)
+                    if (!double.TryParse(s[3], out r2Sens[device]) || r2Sens[device] < 0.1)
                         r2Sens[device] = 1;
-                    if (!double.TryParse(s[4], out SXSens[device]) || SXSens[device] < .5f)
+                    if (!double.TryParse(s[4], out SXSens[device]) || SXSens[device] < 0.0)
                         SXSens[device] = 1;
-                    if (!double.TryParse(s[5], out SZSens[device]) || SZSens[device] < .5f)
+                    if (!double.TryParse(s[5], out SZSens[device]) || SZSens[device] < 0.0)
                         SZSens[device] = 1;
                 }
                 catch { missingSetting = true; }

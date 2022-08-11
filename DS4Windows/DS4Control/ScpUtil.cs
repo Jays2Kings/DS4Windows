@@ -4890,18 +4890,59 @@ namespace DS4Windows
                     if (s.Length == 1)
                         s = Item.InnerText.Split(',');
 
-                    if (!double.TryParse(s[0], out LSSens[device]) || LSSens[device] < 0.1)
+                    if (double.TryParse(s[0], out LSSens[device]))
+                    {
+                        LSSens[device] = Math.Clamp(LSSens[device], 0.1, 5.0);
+                    }
+                    else
+                    {
                         LSSens[device] = 1;
-                    if (!double.TryParse(s[1], out RSSens[device]) || RSSens[device] < 0.1)
+                    }
+
+                    if (double.TryParse(s[1], out RSSens[device]))
+                    {
+                        RSSens[device] = Math.Clamp(RSSens[device], 0.1, 5.0);
+                    }
+                    else
+                    {
                         RSSens[device] = 1;
-                    if (!double.TryParse(s[2], out l2Sens[device]) || l2Sens[device] < 0.1)
+                    }
+
+                    if (double.TryParse(s[2], out l2Sens[device]))
+                    {
+                        l2Sens[device] = Math.Clamp(l2Sens[device], 0.1, 10.0);
+                    }
+                    else
+                    {
                         l2Sens[device] = 1;
-                    if (!double.TryParse(s[3], out r2Sens[device]) || r2Sens[device] < 0.1)
+                    }
+
+                    if (double.TryParse(s[3], out r2Sens[device]))
+                    {
+                        r2Sens[device] = Math.Clamp(r2Sens[device], 0.1, 10.0);
+                    }
+                    else
+                    {
                         r2Sens[device] = 1;
-                    if (!double.TryParse(s[4], out SXSens[device]) || SXSens[device] < 0.0)
+                    }
+
+                    if (double.TryParse(s[4], out SXSens[device]))
+                    {
+                        SXSens[device] = Math.Clamp(SXSens[device], 0.0, 5.0);
+                    }
+                    else
+                    {
                         SXSens[device] = 1;
-                    if (!double.TryParse(s[5], out SZSens[device]) || SZSens[device] < 0.0)
+                    }
+
+                    if (double.TryParse(s[5], out SZSens[device]))
+                    {
+                        SZSens[device] = Math.Clamp(SZSens[device], 0.0, 5.0);
+                    }
+                    else
+                    {
                         SZSens[device] = 1;
+                    }
                 }
                 catch { missingSetting = true; }
 

@@ -93,6 +93,28 @@ namespace DS4WinWPF.DS4Forms
             view.Refresh();
 
             trayIconVM = new TrayIconViewModel(App.rootHub, profileListHolder);
+
+            // Remove TaskbarIcon from visual tree so Loaded and Unloaded events
+            // are not fired for TaskbarIcon instance. Ignores early Dispose calls
+            // when scaling changes or an RDP session is activated
+            var parent = VisualTreeHelper.GetParent(notifyIcon) as Panel;
+            if (parent != null)
+            {
+                parent.Children.Remove(notifyIcon);
+                // Since Loaded event will not get fired from Window, need to
+                // create the tray icon explicitly here
+                try
+                {
+                    // Loaded event handler has enablesEfficiencyMode default to false so
+                    // do the same here
+                    notifyIcon.ForceCreate(enablesEfficiencyMode: false);
+                }
+                catch (Exception)
+                {
+                    // Ignore exception
+                }
+            }
+
             notifyIcon.DataContext = trayIconVM;
             notifyIcon.CustomName = Global.exelocation;
 

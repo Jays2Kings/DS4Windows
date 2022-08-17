@@ -10,3 +10,6 @@ https://fontawesome.com/license
 
 1€ Filter (C# version):
 http://cristal.univ-lille.fr/~casiez/1euro/OneEuroFilter.cs
+
+vJoyInterfaceCS:
+https://github.com/shauleiz/vJoy/tree/master/apps/common/vJoyInterfaceCS

@@ -110,6 +110,11 @@ namespace DS4WinWPF.DS4Forms
         {
             Util.StartProcessHelper("https://github.com/HavenDV/H.NotifyIcon/");
         }
+
+        private void VJoyInterfaceLink_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessHelper("https://github.com/shauleiz/vJoy/tree/master/apps/common/vJoyInterfaceCS");
+        }
     }
 
     public class AboutImgPathLocations

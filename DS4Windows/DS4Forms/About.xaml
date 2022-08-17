@@ -195,6 +195,18 @@ dondrakon - Ukranian
                             </StackPanel>
                         </Border>
 
+                        <Border BorderThickness="1" CornerRadius="10" Margin="0,8,0,0" BorderBrush="{DynamicResource BorderColor}">
+                            <StackPanel Margin="8">
+                                <TextBlock Text="vJoyInterfaceCS" FontSize="18" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                    <TextBlock Text="Project URL:" />
+                                    <TextBlock Margin="8,0,0,0">
+                                    <Hyperlink x:Name="vjoyInterfaceLink" Click="VJoyInterfaceLink_Click" Foreground="{DynamicResource AccentColor}">https://github.com/shauleiz/vJoy/tree/master/apps/common/vJoyInterfaceCS</Hyperlink>
+                                    </TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
                     </StackPanel>
 
                 </ScrollViewer>

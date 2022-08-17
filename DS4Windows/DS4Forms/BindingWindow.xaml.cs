@@ -885,7 +885,7 @@ namespace DS4WinWPF.DS4Forms
                 bindingVM.ActionBinding.IsShift());
             box.Visibility = Visibility.Visible;
             mapBindingPanel.Visibility = Visibility.Collapsed;
-            extrasGB.IsEnabled = false;
+            extrasSidePanel.Visibility = Visibility.Collapsed;
             fullPanel.Children.Add(box);
             box.Cancel += (sender2, args) =>
             {
@@ -893,7 +893,7 @@ namespace DS4WinWPF.DS4Forms
                 fullPanel.Children.Remove(box);
                 box = null;
                 mapBindingPanel.Visibility = Visibility.Visible;
-                extrasGB.IsEnabled = true;
+                extrasSidePanel.Visibility = Visibility.Visible;
             };
 
             box.Save += (sender2, args) =>

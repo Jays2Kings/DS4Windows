@@ -17,7 +17,6 @@
             "* Changed minimum sensitivity for LS and RS",
             "* Updated H.NotifyIcon package to version 2.0.60",
             "* Implemented workaround for H.NotifyIcon disposing TaskbarIcon instance after display scaling and RDP sessions",
-            "* Use new H.NotifyIcon property for handling tray icon identifier",
             "* Updated NLog package to version 5.0.2",
             "* Small change to display of Binding window panels when bringing up macro recorder",
             "* Added credit notes for vJoyInterfaceCS",

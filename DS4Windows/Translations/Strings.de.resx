@@ -468,10 +468,10 @@ Beispiel: whyme_DS4Windows</value>
     <value>Profil umbenennen</value>
   </data>
   <data name="DisableVirtualController" xml:space="preserve">
-    <value>Virtülle Steuerung deaktivieren</value>
+    <value>Virtuelle Steuerung deaktivieren</value>
   </data>
   <data name="DisableVirtualControllerTip" xml:space="preserve">
-    <value>Virtülle Steuerungen für verbundene Controller, die dieses Profil verwenden, nicht erzeugen/verbinden (gilt nach Speichern des Profils)</value>
+    <value>Virtuelle Steuerungen für verbundene Controller, die dieses Profil verwenden, nicht erzeugen/verbinden (gilt nach Speichern des Profils)</value>
   </data>
   <data name="EmulatedController" xml:space="preserve">
     <value>Emulierter Controller</value>

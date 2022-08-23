@@ -465,7 +465,7 @@ Beispiel: whyme_DS4Windows</value>
     <value>Gemeinsamer Zugriff</value>
   </data>
   <data name="RenameProfile" xml:space="preserve">
-    <value>Profil umbennen</value>
+    <value>Profil umbenennen</value>
   </data>
   <data name="DisableVirtualController" xml:space="preserve">
     <value>Virtülle Steuerung deaktivieren</value>

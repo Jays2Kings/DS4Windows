@@ -346,7 +346,7 @@
     <value>Eigener EXE-Name</value>
   </data>
   <data name="CustomExeNameInfo" xml:space="preserve">
-    <value>Einige Spiele ignorieren DS4-Eingaben wenn sie erkennen, dass DS4Windows.exe oder InputMapper.exe läuft. Mit dem Umbennen von DS4Windows.exe schlägt die Überprüfung im Spiel fehl und die Sperre kann somit umgangen werden. Wird hier ein eigener EXE-Name angegeben, kann DS4Updater eine Kopie von DS4Windows mit dem eigenen Namen automatisch aktualisieren. Stelle sicher, dass die Dateiendung weggelassen wird.
+    <value>Einige Spiele ignorieren DS4-Eingaben wenn sie erkennen, dass DS4Windows.exe oder InputMapper.exe läuft. Mit dem Umbenennen von DS4Windows.exe schlägt die Überprüfung im Spiel fehl und die Sperre kann somit umgangen werden. Wird hier ein eigener EXE-Name angegeben, kann DS4Updater eine Kopie von DS4Windows mit dem eigenen Namen automatisch aktualisieren. Stelle sicher, dass die Dateiendung weggelassen wird.
 
 Beispiel: whyme_DS4Windows</value>
   </data>

@@ -94,6 +94,10 @@ namespace DS4WinWPF.DS4Forms
 
             trayIconVM = new TrayIconViewModel(App.rootHub, profileListHolder);
 
+            // Need to define before calling TaskbarIcon.ForceCreate
+            notifyIcon.DataContext = trayIconVM;
+            notifyIcon.CustomName = Global.exelocation;
+
             // Remove TaskbarIcon from visual tree so Loaded and Unloaded events
             // are not fired for TaskbarIcon instance. Ignores early Dispose calls
             // when scaling changes or an RDP session is activated
@@ -114,9 +118,6 @@ namespace DS4WinWPF.DS4Forms
                     // Ignore exception
                 }
             }
-
-            notifyIcon.DataContext = trayIconVM;
-            notifyIcon.CustomName = Global.exelocation;
 
             if (Global.StartMinimized || parser.Mini)
             {

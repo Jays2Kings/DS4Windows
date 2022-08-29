@@ -1,10 +1,11 @@
 ﻿using Nefarius.ViGEm.Client;
+using Nefarius.ViGEm.Client.Targets;
 using Nefarius.ViGEm.Client.Targets.DualShock4;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace DS4Windows
 {
@@ -12,9 +13,24 @@ namespace DS4Windows
     {
         private byte[] rawOutReportEx = new byte[63];
         private DS4_REPORT_EX outDS4Report;
+        private Thread awaitOutBuffThread;
+        public delegate void ReceivedOutBufferHandler(DS4OutDeviceExt sender,
+            byte[] reportData);
+
+        public event ReceivedOutBufferHandler ReceivedOutBuffer;
+
+        public Dictionary<int, ReceivedOutBufferHandler> outBufferFeedbacksDict =
+            new Dictionary<int, ReceivedOutBufferHandler>();
+        private CancellationTokenSource tokenSource;
 
         public DS4OutDeviceExt(ViGEmClient client) : base(client)
         {
+        }
+
+        public DS4OutDeviceExt(ViGEmClient client, bool useAwaitOutputBuffer) :
+            this(client)
+        {
+            canUseAwaitOutputBuffer = useAwaitOutputBuffer;
         }
 
         public override unsafe void ConvertandSendReport(DS4State state, int device)
@@ -183,6 +199,110 @@ namespace DS4Windows
             {
                 cont.SubmitRawReport(rawOutReportEx);
             }
+        }
+
+        public override void StartOutputBufferThread()
+        {
+            if (awaitOutBuffThread == null)
+            {
+                awaitOutBuffThread = new Thread(RunFetchAwaitBufferThread);
+                awaitOutBuffThread.Name = "Virtual DS4 Output Buffer Thread";
+                awaitOutBuffThread.Priority = ThreadPriority.Normal;
+                awaitOutBuffThread.IsBackground = true;
+                awaitOutBuffThread.Start();
+            }
+        }
+
+        private void RunFetchAwaitBufferThread()
+        {
+            tokenSource = new CancellationTokenSource();
+            CancellationToken ct = tokenSource.Token;
+
+            bool working = true;
+            while (working)
+            {
+                if (!ct.IsCancellationRequested)
+                {
+                    byte[] reportData = null;
+                    bool reportGrab = false;
+                    try
+                    {
+                        reportData = cont.AwaitRawOutputReport(100, out bool timedOut).ToArray();
+                        if (!timedOut)
+                        {
+                            reportGrab = true;
+                        }
+                    }
+                    catch (System.ComponentModel.Win32Exception)
+                    {
+                        working = false;
+                    }
+                    catch (Exception)
+                    {
+                        working = false;
+                    }
+
+                    if (!working)
+                    {
+                        break;
+                    }
+
+                    if (reportGrab)
+                    {
+                        ReceivedOutBuffer?.Invoke(this, reportData);
+                    }
+                }
+                else
+                {
+                    working = false;
+                }
+            }
+        }
+
+        public override void RemoveFeedbacks()
+        {
+            if (!canUseAwaitOutputBuffer)
+            {
+                base.RemoveFeedbacks();
+            }
+            else
+            {
+                foreach (KeyValuePair<int, ReceivedOutBufferHandler> pair in outBufferFeedbacksDict)
+                {
+                    ReceivedOutBuffer -= pair.Value;
+                }
+
+                outBufferFeedbacksDict.Clear();
+            }
+        }
+
+        public override void RemoveFeedback(int inIdx)
+        {
+            if (!canUseAwaitOutputBuffer)
+            {
+                base.RemoveFeedback(inIdx);
+            }
+            else
+            {
+                if (outBufferFeedbacksDict.TryGetValue(inIdx, out ReceivedOutBufferHandler handler))
+                {
+                    ReceivedOutBuffer -= handler;
+                    outBufferFeedbacksDict.Remove(inIdx);
+                }
+            }
+        }
+
+        public override void Disconnect()
+        {
+            // Flag CancellationTokenSource before performing Disconnect.
+            // More of a precaution than anything
+            tokenSource?.Cancel();
+            base.Disconnect();
+
+            // Call Interrupt on the thread although not going to check thread
+            // state
+            awaitOutBuffThread?.Interrupt();
+            //awaitOutBuffThread?.Join();
         }
     }
 }

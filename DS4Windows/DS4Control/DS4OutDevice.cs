@@ -11,12 +11,19 @@ namespace DS4Windows
 {
     abstract class DS4OutDevice : OutputDevice
     {
+        internal const byte RUMBLE_FEATURE_FLAG = 0x01;
+        internal const byte LIGHTBAR_FEATURE_FLAG = 0x02;
+        internal const byte FLASH_FEATURE_FLAG = 0x04;
+
         public const string devtype = "DS4";
 
         public IDualShock4Controller cont;
         //public DualShock4FeedbackReceivedEventHandler forceFeedbackCall;
         public Dictionary<int, DualShock4FeedbackReceivedEventHandler> forceFeedbacksDict =
             new Dictionary<int, DualShock4FeedbackReceivedEventHandler>();
+
+        protected bool canUseAwaitOutputBuffer = false;
+        public bool CanUseAwaitOutputBuffer => canUseAwaitOutputBuffer;
 
         public DS4OutDevice(ViGEmClient client)
         {
@@ -63,6 +70,10 @@ namespace DS4Windows
                 cont.FeedbackReceived -= handler;
                 forceFeedbacksDict.Remove(inIdx);
             }
+        }
+
+        public virtual void StartOutputBufferThread()
+        {
         }
     }
 }

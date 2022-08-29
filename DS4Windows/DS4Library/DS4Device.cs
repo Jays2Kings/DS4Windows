@@ -1898,6 +1898,11 @@ namespace DS4Windows
             currentHap.lightbarState = lightState;
         }
 
+        public ref DS4LightbarState GetLightbarStateRef()
+        {
+            return ref currentHap.lightbarState;
+        }
+
         public void SetRumbleState(ref DS4ForceFeedbackState rumbleState)
         {
             currentHap.rumbleState = rumbleState;

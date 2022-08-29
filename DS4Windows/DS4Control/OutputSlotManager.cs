@@ -175,7 +175,10 @@ namespace DS4Windows
                     outputDevices[slot] = null;
                     deviceDict.Remove(slot);
                     revDeviceDict.Remove(outputDevice);
+
+                    outputDevice.RemoveFeedbacks();
                     outputDevice.Disconnect();
+
                     if (inIdx != -1)
                     {
                         outdevs[inIdx] = null;

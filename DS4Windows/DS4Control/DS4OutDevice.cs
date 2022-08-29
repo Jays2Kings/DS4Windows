@@ -39,12 +39,8 @@ namespace DS4Windows
         }
         public override void Disconnect()
         {
-            foreach (KeyValuePair<int, DualShock4FeedbackReceivedEventHandler> pair in forceFeedbacksDict)
-            {
-                cont.FeedbackReceived -= pair.Value;
-            }
-
-            forceFeedbacksDict.Clear();
+            // Remove feedback handlers before Disconnect
+            RemoveFeedbacks();
 
             connected = false;
             cont.Disconnect();

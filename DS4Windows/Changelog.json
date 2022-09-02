@@ -1,9 +1,23 @@
 {
-  "latest_version": "3.1.3",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 3},
-  "updated_at": "2022-08-22T01:49:39+0000",
+  "latest_version": "3.1.4",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 4},
+  "updated_at": "2022-09-01T23:36:52+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.1.4",
+      "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 4},
+      "base_header": "Version 3.1.4",
+      "release_date": "2022-09-01T23:36:52+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.1.4",
+          "log_text": ["* Changed when CustomName is defined for TaskbarIcon. Fixes Custom Name Exe option with TaskbarIcon workaround"],
+          "updated_at": "2022-09-01T23:36:52+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.1.3",
       "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 3},

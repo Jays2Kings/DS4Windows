@@ -979,6 +979,64 @@ namespace DS4Windows
                 {
                     DS4OutDeviceExt.ReceivedOutBufferHandler processOutBuffAction = (DS4OutDeviceExt sender, byte[] reportData) =>
                     {
+                        /*
+                        //DS4OutputBufferData outputData = new DS4OutputBufferData();
+                        DS4OutputBufferData outputData =
+                            DS4OutDeviceExtras.ConvertOutputBufferArrayToStruct(reportData);
+
+                        bool useRumble = false; bool useLight = false;
+                        byte flashOn = 0; byte flashOff = 0;
+                        DS4Color? color = null;
+
+                        //Trace.WriteLine(string.Join(" ", reportData));
+
+                        if ((outputData.featureFlags & DS4OutDevice.RUMBLE_FEATURE_FLAG) != 0)
+                        {
+                            useRumble = true;
+                            device.setRumble(outputData.rightFastRumble, outputData.leftSlowRumble);
+                            //SetDevRumble(device, devour[4], devour[5], devIndex);
+                        }
+
+                        if ((outputData.featureFlags & DS4OutDevice.LIGHTBAR_FEATURE_FLAG) != 0)
+                        {
+                            useLight = true;
+                            color = new DS4Color(outputData.lightbarRedColor,
+                                outputData.lightbarGreenColor,
+                                outputData.lightbarBlueColor);
+                        }
+                        else
+                        {
+                            color = device.LightBarColor;
+                        }
+
+                        if ((outputData.featureFlags & DS4OutDevice.FLASH_FEATURE_FLAG) != 0)
+                        {
+                            useLight = true;
+                            flashOn = outputData.flashOnDuration;
+                            flashOff = outputData.flashOffDuration;
+                        }
+                        else
+                        {
+                            ref DS4LightbarState currentLight =
+                                ref device.GetLightbarStateRef();
+
+                            flashOn = currentLight.LightBarFlashDurationOn;
+                            flashOff = currentLight.LightBarFlashDurationOff;
+                        }
+
+                        if (useLight)
+                        {
+                            DS4LightbarState lightState = new DS4LightbarState
+                            {
+                                LightBarColor = (DS4Color)color,
+                                LightBarFlashDurationOn = flashOn,
+                                LightBarFlashDurationOff = flashOff,
+                            };
+                            device.SetLightbarState(ref lightState);
+                        }
+                        //*/
+
+                        //*
                         bool useRumble = false; bool useLight = false;
                         byte flashOn = 0; byte flashOff = 0;
                         DS4Color? color = null;
@@ -1026,6 +1084,8 @@ namespace DS4Windows
                             };
                             device.SetLightbarState(ref lightState);
                         }
+
+                        //*/
                     };
 
                     DS4OutDeviceExt tempDS4Ext = tempDS4 as DS4OutDeviceExt;

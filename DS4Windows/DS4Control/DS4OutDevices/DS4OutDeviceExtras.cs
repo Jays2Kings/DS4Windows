@@ -84,6 +84,38 @@ namespace DS4Windows
         public DS4_TOUCH sPreviousTouch2;
     }
 
+    /// <summary>
+    /// Example struct for converting output report buffer array returned
+    /// from IDualShock4Controller.AwaitRawOutputReport method to a struct.
+    /// Used for testing and documentation. Probably will not use tbh
+    /// </summary>
+    [StructLayout(LayoutKind.Explicit)]
+    struct DS4OutputBufferData
+    {
+        [FieldOffset(0)]
+        public byte reportID;
+        [FieldOffset(1)]
+        public byte featureFlags;
+        [FieldOffset(2)]
+        public byte padding1;
+        [FieldOffset(3)]
+        public byte padding2;
+        [FieldOffset(4)]
+        public byte rightFastRumble;
+        [FieldOffset(5)]
+        public byte leftSlowRumble;
+        [FieldOffset(6)]
+        public byte lightbarRedColor;
+        [FieldOffset(7)]
+        public byte lightbarGreenColor;
+        [FieldOffset(8)]
+        public byte lightbarBlueColor;
+        [FieldOffset(9)]
+        public byte flashOnDuration;
+        [FieldOffset(10)]
+        public byte flashOffDuration;
+    }
+
     internal static class DS4OutDeviceExtras
     {
         public static void CopyBytes(ref DS4_REPORT_EX outReport, byte[] outBuffer)
@@ -91,6 +123,23 @@ namespace DS4Windows
             GCHandle h = GCHandle.Alloc(outReport, GCHandleType.Pinned);
             Marshal.Copy(h.AddrOfPinnedObject(), outBuffer, 0, 63);
             h.Free();
+        }
+
+        // Mainly adding this as an example how to convert from a byte array
+        // to a struct. Probably will not use
+        public static DS4OutputBufferData ConvertOutputBufferArrayToStruct(byte[] rawOutputBuffer)
+        {
+            GCHandle pData = GCHandle.Alloc(rawOutputBuffer, GCHandleType.Pinned);
+            DS4OutputBufferData outputBufferData =
+                Marshal.PtrToStructure<DS4OutputBufferData>(pData.AddrOfPinnedObject());
+            pData.Free();
+            return outputBufferData;
+
+            //int size = Marshal.SizeOf<DS4OutputBufferData>();
+            //IntPtr ptr = Marshal.AllocHGlobal(size);
+            //Marshal.Copy(rawOutputBuffer, 0, ptr, size);
+            //Marshal.PtrToStructure<DS4OutputBufferData>(ptr, outputBufferData);
+            //Marshal.FreeHGlobal(ptr);
         }
     }
 }

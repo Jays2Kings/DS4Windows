@@ -19,11 +19,9 @@ website at [ds4windows.com](http://ds4windows.com).
 ## Requirements
 
 - Windows 10 or newer (Thanks Microsoft)
-- [Microsoft .NET 6.0 Runtime Desktop](https://dotnet.microsoft.com/en-us/download/dotnet/6.0/runtime)
+- Microsoft .NET 6.0 Runtime Desktop. [x64](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-6.0.8-windows-x64-installer) or [x86](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-6.0.8-windows-x86-installer)
 - Visual C++ 2015-2019 Redistributable. [x64](https://aka.ms/vs/16/release/vc_redist.x64.exe) or [x86](https://aka.ms/vs/16/release/vc_redist.x86.exe)
 - [ViGEmBus](https://vigem.org/) driver (DS4Windows will install it for you)
-- Microsoft 360 Driver (link inside DS4Windows, already installed by Windows if
-you've used a 360 controller before)
 - **Sony** DualShock 4 or other supported controller
 - Connection method:
   - Micro USB cable
@@ -32,7 +30,7 @@ you've used a 360 controller before)
 [adapter like this](https://www.newegg.com/Product/Product.aspx?Item=N82E16833166126)
 or built in pc). Only use of Microsoft BT stack is supported. CSR BT stack is
 confirmed to not work with the DS4 even though some CSR adapters work fine
-using Microsoft BT stack. Toshiba's adapters currently do not work. 
+using Microsoft BT stack. Toshiba's adapters currently do not work.
 *Disabling 'Enable output data' in the controller profile settings might help with latency issues, but will disable lightbar and rumble support.*
 - Disable **PlayStation Configuration Support** and
 **Xbox Configuration Support** options in Steam
@@ -41,10 +39,7 @@ using Microsoft BT stack. Toshiba's adapters currently do not work.
 
 [Twitter @ds4windows](https://twitter.com/ds4windows)  
 [YouTube](https://www.youtube.com/channel/UCIoUA_XLlCSZbvZGeg3Byeg)  
-[BitChute](https://www.bitchute.com/channel/uE2CbiV96u1k/)  
 [BitTube.tv](https://bittube.tv/profile/ds4windows)  
-[Mastodon @ds4windows@fosstodon.org](https://fosstodon.org/@ds4windows)  
-[Minds @ds4windows](https://www.minds.com/ds4windows/)
 
 ### Other
 
@@ -121,4 +116,3 @@ which to do so.
 **Bitcoin:** 1DnMJwjdd7JRfHJap2mmTmADYm38SzR2z9  
 **Litecoin:** La5mniW7SFMH2RhqDgUty3RwkBSYbjbnJ6  
 **Monero:** 49RvRMiMewaeez1Y2auxHmfMaAUYfhUpBem4ohzRJd9b5acPcxzh1icjnhZfjnYd1S7NQ57reQ7cP1swGre3rpfzUgJhEB7
-

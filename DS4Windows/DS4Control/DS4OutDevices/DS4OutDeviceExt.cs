@@ -235,6 +235,8 @@ namespace DS4Windows
                     }
                     catch (System.ComponentModel.Win32Exception)
                     {
+                        // Will typically fall here after closing connection to
+                        // ViGEmBus if file handle is still open
                         working = false;
                     }
                     catch (Exception)

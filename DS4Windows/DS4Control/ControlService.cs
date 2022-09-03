@@ -1037,54 +1037,56 @@ namespace DS4Windows
                         //*/
 
                         //*
-                        bool useRumble = false; bool useLight = false;
-                        byte flashOn = 0; byte flashOff = 0;
-                        DS4Color? color = null;
-                        if ((reportData[1] & DS4OutDevice.RUMBLE_FEATURE_FLAG) != 0)
+                        unchecked
                         {
-                            useRumble = true;
-                            device.setRumble(reportData[4], reportData[5]);
-                            //SetDevRumble(device, devour[4], devour[5], devIndex);
-                        }
-
-                        if ((reportData[1] & DS4OutDevice.LIGHTBAR_FEATURE_FLAG) != 0)
-                        {
-                            useLight = true;
-                            color = new DS4Color(reportData[6],
-                                reportData[7],
-                                reportData[8]);
-                        }
-                        else
-                        {
-                            color = device.LightBarColor;
-                        }
-
-                        if ((reportData[1] & DS4OutDevice.FLASH_FEATURE_FLAG) != 0)
-                        {
-                            useLight = true;
-                            flashOn = reportData[9];
-                            flashOff = reportData[10];
-                        }
-                        else
-                        {
-                            ref DS4LightbarState currentLight =
-                                ref device.GetLightbarStateRef();
-
-                            flashOn = currentLight.LightBarFlashDurationOn;
-                            flashOff = currentLight.LightBarFlashDurationOff;
-                        }
-
-                        if (useLight)
-                        {
-                            DS4LightbarState lightState = new DS4LightbarState
+                            bool useRumble = false; bool useLight = false;
+                            byte flashOn = 0; byte flashOff = 0;
+                            DS4Color? color = null;
+                            if ((reportData[1] & DS4OutDevice.RUMBLE_FEATURE_FLAG) != 0)
                             {
-                                LightBarColor = (DS4Color)color,
-                                LightBarFlashDurationOn = flashOn,
-                                LightBarFlashDurationOff = flashOff,
-                            };
-                            device.SetLightbarState(ref lightState);
-                        }
+                                useRumble = true;
+                                device.setRumble(reportData[4], reportData[5]);
+                                //SetDevRumble(device, devour[4], devour[5], devIndex);
+                            }
 
+                            if ((reportData[1] & DS4OutDevice.LIGHTBAR_FEATURE_FLAG) != 0)
+                            {
+                                useLight = true;
+                                color = new DS4Color(reportData[6],
+                                    reportData[7],
+                                    reportData[8]);
+                            }
+                            else
+                            {
+                                color = device.LightBarColor;
+                            }
+
+                            if ((reportData[1] & DS4OutDevice.FLASH_FEATURE_FLAG) != 0)
+                            {
+                                useLight = true;
+                                flashOn = reportData[9];
+                                flashOff = reportData[10];
+                            }
+                            else
+                            {
+                                ref DS4LightbarState currentLight =
+                                    ref device.GetLightbarStateRef();
+
+                                flashOn = currentLight.LightBarFlashDurationOn;
+                                flashOff = currentLight.LightBarFlashDurationOff;
+                            }
+
+                            if (useLight)
+                            {
+                                DS4LightbarState lightState = new DS4LightbarState
+                                {
+                                    LightBarColor = (DS4Color)color,
+                                    LightBarFlashDurationOn = flashOn,
+                                    LightBarFlashDurationOff = flashOff,
+                                };
+                                device.SetLightbarState(ref lightState);
+                            }
+                        }
                         //*/
                     };
 

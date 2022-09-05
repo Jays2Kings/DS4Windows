@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Threading;
 using DS4Windows.InputDevices;
+using Nefarius.Utilities.DeviceManagement.PnP;
 
 namespace DS4Windows
 {
@@ -106,7 +107,6 @@ namespace DS4Windows
         private static List<HidDevice> DisabledDevices = new List<HidDevice>();
         private static Stopwatch sw = new Stopwatch();
         public static event RequestElevationDelegate RequestElevation;
-        public static CheckVirtualDelegate checkVirtualFunc = null;
         public static PrepareInitDelegate PrepareDS4Init = null;
         public static PrepareInitDelegate PostDS4Init = null;
         public static CheckPendingDevice PreparePendingDevice = null;
@@ -162,46 +162,11 @@ namespace DS4Windows
             new VidPidInfo(0x7331, 0x0001, "DualShock 3 (DS4 Emulation)", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib | VidPidFeatureSet.VendorDefinedDevice), // Sony DualShock 3 using DsHidMini driver. DsHidMini uses vendor-defined HID device type when it's emulating DS3 using DS4 button layout
         };
 
-        public static string devicePathToInstanceId(string devicePath)
-        {
-            string deviceInstanceId = devicePath;
-            if (!string.IsNullOrEmpty(deviceInstanceId))
-            {
-                int searchIdx = deviceInstanceId.LastIndexOf("?\\");
-                if (searchIdx + 2 <= deviceInstanceId.Length)
-                {
-                    deviceInstanceId = deviceInstanceId.Remove(0, searchIdx + 2);
-                    deviceInstanceId = deviceInstanceId.Remove(deviceInstanceId.LastIndexOf('{'));
-                    deviceInstanceId = deviceInstanceId.Replace('#', '\\');
-                    if (deviceInstanceId.EndsWith("\\"))
-                    {
-                        deviceInstanceId = deviceInstanceId.Remove(deviceInstanceId.Length - 1);
-                    }
-                }
-                else
-                {
-                    deviceInstanceId = string.Empty;
-                }
-            }
-
-            return deviceInstanceId;
-        }
-
         private static bool IsRealDS4(HidDevice hDevice)
         {
-            // Assume true by default
-            bool result = true;
-            string deviceInstanceId = devicePathToInstanceId(hDevice.DevicePath);
-            if (!string.IsNullOrEmpty(deviceInstanceId))
-            {
-                CheckVirtualInfo info = checkVirtualFunc(deviceInstanceId);
-                result = string.IsNullOrEmpty(info.PropertyValue);
-            }
+            var device = PnPDevice.GetDeviceByInterfaceId(hDevice.DevicePath);
 
-            return result;
-            //string temp = Global.GetDeviceProperty(deviceInstanceId,
-            //    NativeMethods.DEVPKEY_Device_UINumber);
-            //return string.IsNullOrEmpty(temp);
+            return !device.IsVirtual();
         }
 
         // Enumerates ds4 controllers in the system
@@ -217,12 +182,9 @@ namespace DS4Windows
                     return PreparePendingDevice(d, metainfo);
                 });
 
-                if (checkVirtualFunc != null)
-                {
-                    hDevices = hDevices.Where(dev => IsRealDS4(dev)).Select(dev => dev);
-                }
+                hDevices = hDevices.Where(IsRealDS4).Select(dev => dev);
 
-                //hDevices = from dev in hDevices where IsRealDS4(dev) select dev;
+                    //hDevices = from dev in hDevices where IsRealDS4(dev) select dev;
                 // Sort Bluetooth first in case USB is also connected on the same controller.
                 hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) =>
                 {
@@ -270,7 +232,7 @@ namespace DS4Windows
                                 {
                                     // Tell the client to launch routine to re-enable a device
                                     RequestElevationArgs eleArgs = 
-                                        new RequestElevationArgs(devicePathToInstanceId(hDevice.DevicePath));
+                                        new RequestElevationArgs(PnPDevice.GetInstanceIdFromInterfaceId(hDevice.DevicePath));
                                     RequestElevation?.Invoke(eleArgs);
                                     if (eleArgs.StatusCode == RequestElevationArgs.STATUS_SUCCESS)
                                     {
@@ -279,7 +241,7 @@ namespace DS4Windows
                                 }
                                 else
                                 {
-                                    reEnableDevice(devicePathToInstanceId(hDevice.DevicePath));
+                                    reEnableDevice(PnPDevice.GetInstanceIdFromInterfaceId(hDevice.DevicePath));
                                     hDevice.OpenDevice(isExclusiveMode);
                                 }
                             }

@@ -53,7 +53,6 @@
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
-
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
@@ -118,7 +117,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Accel" xml:space="preserve">
-    <value>Achse</value>
+    <value>Beschleunigung</value>
   </data>
   <data name="Action" xml:space="preserve">
     <value>Aktion</value>
@@ -271,7 +270,7 @@
     <value>Speichern</value>
   </data>
   <data name="SaveProfile" xml:space="preserve">
-    <value>Speichern</value>
+    <value>Profil speichern</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Einstellungen</value>
@@ -335,7 +334,7 @@
   </data>
   <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
     <value>Licht- und Vibrationsdaten regelmäßig auf dem DS4-Controller ausgeben. Abwählen wenn der Controller keinen Datenempfang unterstützt. Änderungen dieser Option werden zum Zeitpunkt der Verbindung des Controllers wirksam.</value>
-    <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
+    <comment>Um einen Zeilenumbruch in einen String-Ressourcenwert im VisualStudio-Ressourceneditor einzugeben, drücken Sie Umschalt+Eingabe Taste.</comment>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Anwenden</value>
@@ -347,7 +346,7 @@
     <value>Eigener EXE-Name</value>
   </data>
   <data name="CustomExeNameInfo" xml:space="preserve">
-    <value>Einige Spiele ignorieren DS4-Eingaben wenn sie erkennen, dass DS4Windows.exe oder InputMapper.exe läuft. Mit dem Umbennen von DS4Windows.exe schlägt die Überprüfung im Spiel fehl und die Sperre kann somit umgangen werden. Wird hier ein eigener EXE-Name angegeben, kann DS4Updater eine Kopie von DS4Windows mit dem eigenen Namen automatisch aktualisieren. Stelle sicher, dass die Dateiendung weggelassen wird.
+    <value>Einige Spiele ignorieren DS4-Eingaben wenn sie erkennen, dass DS4Windows.exe oder InputMapper.exe läuft. Mit dem Umbenennen von DS4Windows.exe schlägt die Überprüfung im Spiel fehl und die Sperre kann somit umgangen werden. Wird hier ein eigener EXE-Name angegeben, kann DS4Updater eine Kopie von DS4Windows mit dem eigenen Namen automatisch aktualisieren. Stelle sicher, dass die Dateiendung weggelassen wird.
 
 Beispiel: whyme_DS4Windows</value>
   </data>
@@ -409,10 +408,10 @@ Beispiel: whyme_DS4Windows</value>
     <value>Preset-Option verweden? Bei der Auswahl von Nein wird der Profil-Editor ein leeres Gamepad-Profil laden.</value>
   </data>
   <data name="Presets" xml:space="preserve">
-    <value>Presets</value>
+    <value>Voreinstellungen</value>
   </data>
   <data name="Changelog" xml:space="preserve">
-    <value>Changelog</value>
+    <value>Änderungsprotokoll</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>Schließen</value>
@@ -434,5 +433,113 @@ Beispiel: whyme_DS4Windows</value>
   </data>
   <data name="RealWorldCalibration" xml:space="preserve">
     <value>Echtwelt-Kalibrierung</value>
+  </data>
+  <data name="ViGEmPluginFailure" xml:space="preserve">
+    <value>ViGEm Geräte Plugin fehlgeschlagen. Wahrscheinlich ein internes ViGEmBus-Problem. Verbindung getrennt. Wenn das Problem weiterhin besteht, schliessen Sie bitte DS4Windows und starten Sie Windows neu.</value>
+  </data>
+  <data name="CRC32Fail" xml:space="preserve">
+    <value>Datenintegritätsprüfungen für drahtloses Gerät fehlgeschlagen. Gerät getrennt.</value>
+  </data>
+  <data name="FutureNetNotInstalled" xml:space="preserve">
+    <value>.NET 5 Runtime wurde auf Ihrem System nicht erkannt. Bitte laden Sie .NET 5 Runtime herunter und installieren Sie es, um die Kompatibilität mit zukünftigen DS4Windows-Builds zu gewährleisten. Sie werden nach dem Schliessen dieses Fensters auf die Download-Seite für .NET 5 Runtime weitergeleitet.</value>
+  </data>
+  <data name="UpgradeNetCaption" xml:space="preserve">
+    <value>Bitte aktualisieren Sie .NET Runtime</value>
+  </data>
+  <data name="HidHide" xml:space="preserve">
+    <value>HidHide</value>
+  </data>
+  <data name="HidHideConfigClient" xml:space="preserve">
+    <value>HidHide-Konfigurations-Client</value>
+  </data>
+  <data name="ExclusiveAccess" xml:space="preserve">
+    <value>Exklusiver Zugriff</value>
+  </data>
+  <data name="HidGuardianAccess" xml:space="preserve">
+    <value>HidGuardian Zugriff</value>
+  </data>
+  <data name="HidHideAccess" xml:space="preserve">
+    <value>HidHide Zugriff</value>
+  </data>
+  <data name="SharedAccess" xml:space="preserve">
+    <value>Gemeinsamer Zugriff</value>
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Profil umbenennen</value>
+  </data>
+  <data name="DisableVirtualController" xml:space="preserve">
+    <value>Virtuelle Steuerung deaktivieren</value>
+  </data>
+  <data name="DisableVirtualControllerTip" xml:space="preserve">
+    <value>Virtuelle Steuerungen für verbundene Controller, die dieses Profil verwenden, nicht erzeugen/verbinden (gilt nach Speichern des Profils)</value>
+  </data>
+  <data name="EmulatedController" xml:space="preserve">
+    <value>Emulierter Controller</value>
+  </data>
+  <data name="OutContNotice" xml:space="preserve">
+    <value>Wählen Sie den Typ der virtuellen Ausgabesteuerung (gilt nach Speichern des Profils)</value>
+  </data>
+  <data name="VirtualControllerSettings" xml:space="preserve">
+    <value>Einstellungen der virtuellen Steuerung</value>
+  </data>
+  <data name="ChangeOnNewDeviceConn" xml:space="preserve">
+    <value>Änderungen werden bei neür Geräteverbindung wirksam</value>
+  </data>
+  <data name="StickFuzzTooltip" xml:space="preserve">
+    <value>Fuzz gibt die minimale Anzahl von Einheiten an, die der Analogknüppel in der aktiven Zone bewegt, bevor der Ausgang im Mapper als verändert registriert wird. Diese Einstellung kann für abgenutzte Knüppel nützlich sein, die keine konstante Position halten können. Der Wert wird in rohen Knüppeleinheiten angegeben.</value>
+  </data>
+  <data name="StickMaxOutputForceTooltip" xml:space="preserve">
+    <value>Erzwingt immer die Einstellung der maximalen Leistung. Nützlich für 100% Max Output und Begrenzung des Wertes auf einen kreisförmigen Ausgangswert</value>
+  </data>
+  <data name="StickMaxOutputTooltip" xml:space="preserve">
+    <value>In manchen Situationen kann es sinnvoll sein, den maximalen Wert zu begrenzen, der vom Analogknüppel ausgegeben wird. Max Output ermöglicht die Drosselung des endgültigen Ausgabewertes des Analogknüppels.</value>
+  </data>
+  <data name="AntiDeadzoneTooltip" xml:space="preserve">
+    <value>Eine Anti-Deadzone dient als Offset für die Verwendung mit einer Achse, um den minimalen Ausgangswert zu bezeichnen, der erzeugt wird, nachdem eine Achse ihre zugewiesene Deadzone verlassen hat. Dies soll hauptsächlich bei der Zuordnung einer Achse zum zugewiesenen Totzonenwert helfen, der für eine Achse in einem Videospiel verwendet wird. Zum Beispiel liegt die typische zugewiesene Totzone für XInput LS in einem Videospiel bei 8000 (25%). Wenn keine Antideadzone zugewiesen ist, müsste eine Achse die zugewiesene Deadzone in DS4Windows zusammen mit der zugewiesenen Achsen-Totzone des Spiels überschreiten.</value>
+  </data>
+  <data name="StickInputCurveTooltip" xml:space="preserve">
+    <value>ALTE, VERALTETE EINSTELLUNG. Es wird versucht, eine Kurve auf der Grundlage der rohen Eingabekoordinaten anzuwenden, bevor eine Totzoneninformation angewendet wird. Verrückt</value>
+  </data>
+  <data name="TouchpadMinThresholdTooltip" xml:space="preserve">
+    <value>Minimaler berechneter Ausgangsweg, bevor ein Mausereignis an das System gesendet wird</value>
+  </data>
+  <data name="TouchpadRotationTooltip" xml:space="preserve">
+    <value>Passt eine Touchpad-Wischbewegung um einen bestimmten Drehwinkel an. Nützlich, wenn eine normale Touchpad-Bewegung nicht eine gerade Linie ist. Erlaubte Werte reichen von -180 bis 180. Standardwert ist 0.</value>
+  </data>
+  <data name="TouchpadSlideTooltip" xml:space="preserve">
+    <value>Empfindlichkeit zum Aktivieren einer Multi-Touch-Mausrad-Bildlaufaktion</value>
+  </data>
+  <data name="TouchpadTapTooltip" xml:space="preserve">
+    <value>Aktivieren Sie den Linksklick der Maus mit einem Touchpad-Tipp. Das maximale Zeitintervall ist auf (Wert * 2) ms festgelegt.</value>
+  </data>
+  <data name="TouchpadTrackballEnableTooltip" xml:space="preserve">
+    <value>Erhöht den Schwung einer Touchpad-Bewegung, sobald der Finger angehoben wird. Ermöglicht eine größere Bewegung des Mauszeigers, als es bei dem begrenzten Platz auf dem Touchpad möglich wäre.</value>
+  </data>
+  <data name="TouchpadTrackballFrictionTooltip" xml:space="preserve">
+    <value>Fügen Sie dem virtuellen Trackball Reibung hinzu. Eine verringerte Reibung erhöht die endgültige Verfahrzeit des Mauszeigers.</value>
+  </data>
+  <data name="StickOuterBindDeadTooltip" xml:space="preserve">
+    <value>Schwellenwert, ab dem eine Aktion ausgelöst wird</value>
+  </data>
+  <data name="StickOuterBindInvertTooltip" xml:space="preserve">
+    <value>Die äußere Bindung muss vor Erreichen eines Schwellenwerts ausgelöst werden. Die Aktion wird ausgelöst, sobald der Schwellenwert überschritten wurde</value>
+  </data>
+  <data name="StickOuterBindTooltip" xml:space="preserve">
+    <value>Aktion, die ausgeführt werden soll, wenn der Steuerknüppel einen bestimmten Schwellenwert überschreitet. Nützlich für die Zuweisung von Tasten für die Aktionen Gehen oder Sprinten. Invertieren bewirkt, dass die Aktion bis zum Schwellenwert ausgelöst wird.</value>
+  </data>
+  <data name="SASteeringWheelFuzzTooltip" xml:space="preserve">
+    <value>Fuzz gibt die Mindestanzahl von Geräteeinheiten in der aktiven Zone an, um die der Achse gedreht werden muss, bevor der Ausgang im Mapper als geändert registriert wird. Der Wert wird in rohen Achse-Einheiten angegeben.</value>
+  </data>
+  <data name="StickRotationTooltip" xml:space="preserve">
+    <value>Die Rotationseinstellung soll helfen, die Ausrichtung eines Analogsticks zu korrigieren, wenn Ihr Daumen beim Bewegen eines Analogsticks leicht verschoben ist. Zum Beispiel könnte Ihr Daumen leicht aus der Mitte verschoben sein, wenn der Analogstick ganz nach Norden bewegt wird. Meine Daumen verschieben sich leicht nach rechts, wenn ich den Analog-Stick ganz nach Norden bewege, was an der Art liegt, wie meine Hände den DS4 halten. Der verwendete Wert gibt die Anzahl der Grad an, die zur Anpassung des endgültigen Achsenausgangswertes verwendet wird. Zulässige Werte reichen von -180 bis 180. Die Voreinstellung ist 0.</value>
+  </data>
+  <data name="TouchpadJitterCompTooltip" xml:space="preserve">
+    <value>Drosselt das untere Ende der Touchpad-Bewegung. Verringert die versehentliche Bewegung des Mauszeigers, wenn eine weitgehend feste Position auf dem Touchpad gehalten wird.</value>
+  </data>
+  <data name="DS4BTPollRate" xml:space="preserve">
+    <value>DS4 BT-Abrufrate</value>
+  </data>
+  <data name="DS4LightbarPassthruDisabled" xml:space="preserve">
+    <value>Die Funktion ist derzeit aufgrund von Treiberproblemen in der App deaktiviert. Hoffentlich werden die Probleme in einem zukünftigen Update behoben.</value>
   </data>
 </root>

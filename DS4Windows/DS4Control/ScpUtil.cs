@@ -2500,7 +2500,7 @@ namespace DS4Windows
         public static void LoadDefaultDS4MixedControlsProfile(int device, bool launchprogram, ControlService control,
             bool xinputChange = true, bool postLoad = true)
         {
-            m_Config.LoadDefaultMixedControlsProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.LoadDefaultDS4MixedControlsProfile(device, launchprogram, control, "", xinputChange, postLoad);
             m_Config.EstablishDefaultSpecialActions(device);
             m_Config.CacheExtraProfileInfo(device);
 

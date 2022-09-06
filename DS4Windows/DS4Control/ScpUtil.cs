@@ -5684,7 +5684,7 @@ namespace DS4Windows
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2HipFireTime");
                     if (int.TryParse(Item?.InnerText, out int temp))
                     {
-                        l2OutputSettings[device].hipFireMS = Math.Min(Math.Max(0, temp), 5000);
+                        l2OutputSettings[device].hipFireMS = Math.Clamp(temp, 0, 5000);
                     }
                 }
                 catch { }
@@ -5719,7 +5719,7 @@ namespace DS4Windows
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2HipFireTime");
                     if (int.TryParse(Item?.InnerText, out int temp))
                     {
-                        r2OutputSettings[device].hipFireMS = Math.Min(Math.Max(0, temp), 5000);
+                        r2OutputSettings[device].hipFireMS = Math.Clamp(temp, 0, 5000);
                     }
                 }
                 catch { }

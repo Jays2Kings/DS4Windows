@@ -96,7 +96,7 @@ namespace DS4WinWPF.DS4Control
             }
             else if (outputCont == OutputContChoice.DualShock4)
             {
-                DS4Windows.Global.LoadDefaultMixedControlsProfile(idx, false, App.rootHub, false);
+                DS4Windows.Global.LoadDefaultDS4MixedControlsProfile(idx, false, App.rootHub, false);
             }
         }
     }

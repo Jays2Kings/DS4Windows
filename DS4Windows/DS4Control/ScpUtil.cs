@@ -2500,7 +2500,7 @@ namespace DS4Windows
         public static void LoadDefaultDS4MixedControlsProfile(int device, bool launchprogram, ControlService control,
             bool xinputChange = true, bool postLoad = true)
         {
-            m_Config.LoadDefaultMixedControlsProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.LoadDefaultDS4MixedControlsProfile(device, launchprogram, control, "", xinputChange, postLoad);
             m_Config.EstablishDefaultSpecialActions(device);
             m_Config.CacheExtraProfileInfo(device);
 
@@ -3740,6 +3740,7 @@ namespace DS4Windows
                 XmlNode xmlLsFlickStickRWC = m_Xdoc.CreateNode(XmlNodeType.Element, "RealWorldCalibration", null); xmlLsFlickStickRWC.InnerText = lsOutputSettings[device].outputSettings.flickSettings.realWorldCalibration.ToString(); xmlLsFlickStickGroupElement.AppendChild(xmlLsFlickStickRWC);
                 XmlNode xmlLsFlickStickThreshold = m_Xdoc.CreateNode(XmlNodeType.Element, "FlickThreshold", null); xmlLsFlickStickThreshold.InnerText = lsOutputSettings[device].outputSettings.flickSettings.flickThreshold.ToString(); xmlLsFlickStickGroupElement.AppendChild(xmlLsFlickStickThreshold);
                 XmlNode xmlLsFlickStickTime = m_Xdoc.CreateNode(XmlNodeType.Element, "FlickTime", null); xmlLsFlickStickTime.InnerText = lsOutputSettings[device].outputSettings.flickSettings.flickTime.ToString(); xmlLsFlickStickGroupElement.AppendChild(xmlLsFlickStickTime);
+                XmlNode xmlLsMinAngleThreshold = m_Xdoc.CreateNode(XmlNodeType.Element, "MinAngleThreshold", null); xmlLsMinAngleThreshold.InnerText = lsOutputSettings[device].outputSettings.flickSettings.minAngleThreshold.ToString(); xmlLsFlickStickGroupElement.AppendChild(xmlLsMinAngleThreshold);
                 rootElement.AppendChild(xmlLsOutputSettingsElement);
 
                 XmlElement xmlRsOutputSettingsElement = m_Xdoc.CreateElement("RSOutputSettings");
@@ -3747,6 +3748,7 @@ namespace DS4Windows
                 XmlNode xmlRsFlickStickRWC = m_Xdoc.CreateNode(XmlNodeType.Element, "RealWorldCalibration", null); xmlRsFlickStickRWC.InnerText = rsOutputSettings[device].outputSettings.flickSettings.realWorldCalibration.ToString(); xmlRsFlickStickGroupElement.AppendChild(xmlRsFlickStickRWC);
                 XmlNode xmlRsFlickStickThreshold = m_Xdoc.CreateNode(XmlNodeType.Element, "FlickThreshold", null); xmlRsFlickStickThreshold.InnerText = rsOutputSettings[device].outputSettings.flickSettings.flickThreshold.ToString(); xmlRsFlickStickGroupElement.AppendChild(xmlRsFlickStickThreshold);
                 XmlNode xmlRsFlickStickTime = m_Xdoc.CreateNode(XmlNodeType.Element, "FlickTime", null); xmlRsFlickStickTime.InnerText = rsOutputSettings[device].outputSettings.flickSettings.flickTime.ToString(); xmlRsFlickStickGroupElement.AppendChild(xmlRsFlickStickTime);
+                XmlNode xmlRsMinAngleThreshold = m_Xdoc.CreateNode(XmlNodeType.Element, "MinAngleThreshold", null); xmlRsMinAngleThreshold.InnerText = rsOutputSettings[device].outputSettings.flickSettings.minAngleThreshold.ToString(); xmlRsFlickStickGroupElement.AppendChild(xmlRsMinAngleThreshold);
                 rootElement.AppendChild(xmlRsOutputSettingsElement);
 
                 XmlNode xmlL2OutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "L2OutputCurveMode", null); xmlL2OutputCurveMode.InnerText = axisOutputCurveString(getL2OutCurveMode(device)); rootElement.AppendChild(xmlL2OutputCurveMode);
@@ -3754,6 +3756,9 @@ namespace DS4Windows
 
                 XmlNode xmlL2TwoStageMode = m_Xdoc.CreateNode(XmlNodeType.Element, "L2TwoStageMode", null); xmlL2TwoStageMode.InnerText = l2OutputSettings[device].twoStageMode.ToString(); rootElement.AppendChild(xmlL2TwoStageMode);
                 XmlNode xmlR2TwoStageMode = m_Xdoc.CreateNode(XmlNodeType.Element, "R2TwoStageMode", null); xmlR2TwoStageMode.InnerText = r2OutputSettings[device].twoStageMode.ToString(); rootElement.AppendChild(xmlR2TwoStageMode);
+
+                XmlNode xmlL2HipFireTime = m_Xdoc.CreateNode(XmlNodeType.Element, "L2HipFireTime", null); xmlL2HipFireTime.InnerText = l2OutputSettings[device].hipFireMS.ToString(); rootElement.AppendChild(xmlL2HipFireTime);
+                XmlNode xmlR2HipFireTime = m_Xdoc.CreateNode(XmlNodeType.Element, "R2HipFireTime", null); xmlR2HipFireTime.InnerText = r2OutputSettings[device].hipFireMS.ToString(); rootElement.AppendChild(xmlR2HipFireTime);
 
                 XmlNode xmlL2TriggerEffect = m_Xdoc.CreateNode(XmlNodeType.Element, "L2TriggerEffect", null); xmlL2TriggerEffect.InnerText = l2OutputSettings[device].triggerEffect.ToString(); rootElement.AppendChild(xmlL2TriggerEffect);
                 XmlNode xmlR2TriggerEffect = m_Xdoc.CreateNode(XmlNodeType.Element, "R2TriggerEffect", null); xmlR2TriggerEffect.InnerText = r2OutputSettings[device].triggerEffect.ToString(); rootElement.AppendChild(xmlR2TriggerEffect);
@@ -5584,6 +5589,15 @@ namespace DS4Windows
                             lsOutputSettings[device].outputSettings.flickSettings.flickTime = temp;
                         }
                         catch { missingSetting = true; }
+
+                        try
+                        {
+                            Item = xmlFlickStickLSElement.SelectSingleNode("MinAngleThreshold");
+                            double.TryParse(Item.InnerText, out double temp);
+                            lsOutputSettings[device].outputSettings.flickSettings.minAngleThreshold = temp;
+                        }
+                        catch { missingSetting = true; }
+
                     }
                     else
                     {
@@ -5630,6 +5644,14 @@ namespace DS4Windows
                             rsOutputSettings[device].outputSettings.flickSettings.flickTime = temp;
                         }
                         catch { missingSetting = true; }
+
+                        try
+                        {
+                            Item = xmlFlickStickRSElement.SelectSingleNode("MinAngleThreshold");
+                            double.TryParse(Item.InnerText, out double temp);
+                            rsOutputSettings[device].outputSettings.flickSettings.minAngleThreshold = temp;
+                        }
+                        catch { missingSetting = true; }
                     }
                     else
                     {
@@ -5656,12 +5678,13 @@ namespace DS4Windows
                 }
                 catch { }
 
+
                 try
                 {
-                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2HipFireDelay");
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2HipFireTime");
                     if (int.TryParse(Item?.InnerText, out int temp))
                     {
-                        l2OutputSettings[device].hipFireMS = Math.Max(Math.Min(0, temp), 5000);
+                        l2OutputSettings[device].hipFireMS = Math.Min(Math.Max(0, temp), 5000);
                     }
                 }
                 catch { }
@@ -5693,10 +5716,10 @@ namespace DS4Windows
 
                 try
                 {
-                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2HipFireDelay");
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2HipFireTime");
                     if (int.TryParse(Item?.InnerText, out int temp))
                     {
-                        r2OutputSettings[device].hipFireMS = Math.Max(Math.Min(0, temp), 5000);
+                        r2OutputSettings[device].hipFireMS = Math.Min(Math.Max(0, temp), 5000);
                     }
                 }
                 catch { }

@@ -108,6 +108,8 @@ namespace DS4WinWPF
                         el.AppendChild(doc.CreateElement("Controller8")).InnerText = entity.ProfileNames[7];
                     }
                     el.AppendChild(doc.CreateElement("TurnOff")).InnerText = entity.Turnoff.ToString();
+                    
+                    App.rootHub.CheckHidHidePresence(entity.Path, entity.Turnoff);
 
                     Node.AppendChild(el);
                 }

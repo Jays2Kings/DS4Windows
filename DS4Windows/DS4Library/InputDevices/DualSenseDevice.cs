@@ -153,12 +153,12 @@ namespace DS4Windows.InputDevices
                     case HapticIntensity.Low:
                         hapticsIntensityByte = 0x05;
                         break;
-                    case HapticIntensity.High:
-                        hapticsIntensityByte = 0x00;
-                        break;
                     case HapticIntensity.Medium:
-                    default:
                         hapticsIntensityByte = 0x02;
+                        break;
+                    case HapticIntensity.High:
+                    default:
+                        hapticsIntensityByte = 0x00;
                         break;
                 }
             }

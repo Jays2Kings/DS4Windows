@@ -884,13 +884,15 @@ namespace DS4Windows.InputDevices
 
         public void PrepareRumbleData(byte[] buffer)
         {
+            // Using rumble frequency and amplitude values documented at
+            // https://github.com/dekuNukem/Nintendo_Switch_Reverse_Engineering/blob/master/rumble_data_table.md
             //Array.Copy(commandBuffHeader, 0, buffer, 2, SUBCOMMAND_HEADER_LEN);
             buffer[0] = 0x10;
             buffer[1] = frameCount;
             frameCount = (byte)(++frameCount & 0x0F);
 
-            ushort freq_data_high = 0x0001; // 320
-            byte freq_data_low = 0x40; // 160
+            ushort freq_data_high = 0x0001; // 320 Hz
+            byte freq_data_low = 0x60; // 320 Hz
             int idx = (int)(currentLeftAmpRatio * AMP_LIMIT_MAX);
             RumbleTableData entry = compiledRumbleTable[idx];
             byte amp_high = entry.high;
@@ -907,6 +909,9 @@ namespace DS4Windows.InputDevices
             //buffer[8] = 0x81; // 6
             //buffer[9] = 0x71; // 7
 
+            // Slightly different bit shifts as HF and LF are used as written
+            // in the frequency table rather than swapping bytes in advanced.
+            // Unconventional but it results in the same output
             buffer[2] = (byte)((freq_data_high >> 8) & 0xFF); // 0
             buffer[3] = (byte)((freq_data_high & 0xFF) + amp_high); // 1
             buffer[4] = (byte)(freq_data_low + (amp_low >> 8) & 0xFF); // 2
@@ -916,6 +921,10 @@ namespace DS4Windows.InputDevices
             entry = compiledRumbleTable[idx];
             amp_high = entry.high;
             amp_low = entry.low;
+
+            // Slightly different bit shifts as HF and LF are used as written
+            // in the frequency table rather than swapping bytes in advanced.
+            // Unconventional but it results in the same output
             buffer[6] = (byte)((freq_data_high >> 8) & 0xFF); // 4
             buffer[7] = (byte)((freq_data_high & 0xFF) + amp_high); // 5
             buffer[8] = (byte)(freq_data_low + (amp_low >> 8) & 0xFF); // 6

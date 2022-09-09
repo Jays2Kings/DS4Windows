@@ -866,6 +866,11 @@ namespace DS4Windows.InputDevices
             outputReport[1 + reportOffset] = useRumble ? (byte)0x0F : (byte)0x0C;
             outputReport[2 + reportOffset] = 0x15; // Toggle all LED lights. 0x01 | 0x04 | 0x10
 
+            // Set Lightbar to white
+            outputReport[45 + reportOffset] = 0xFF; 
+            outputReport[46 + reportOffset] = 0xFF;
+            outputReport[47 + reportOffset] = 0xFF;
+
             if (conType == ConnectionType.BT)
             {
                 outputReport[1] = OUTPUT_REPORT_ID_DATA;

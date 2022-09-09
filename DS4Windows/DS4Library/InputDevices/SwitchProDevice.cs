@@ -890,7 +890,7 @@ namespace DS4Windows.InputDevices
             frameCount = (byte)(++frameCount & 0x0F);
 
             ushort freq_data_high = 0x0001; // 320
-            byte freq_data_low = 0x40; // 160
+            byte freq_data_low = 0x60; // 320
             int idx = (int)(currentLeftAmpRatio * AMP_LIMIT_MAX);
             RumbleTableData entry = compiledRumbleTable[idx];
             byte amp_high = entry.high;

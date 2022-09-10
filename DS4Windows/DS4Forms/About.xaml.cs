@@ -12,8 +12,8 @@ namespace DS4WinWPF.DS4Forms
         {
             InitializeComponent();
 
-            string version = Global.exeversion;
-            headerLb.Content += version + ")";
+            string version = $"{Global.exeversion})";
+            headerLb.Content += version;
         }
 
         private void ChangeLogLink_Click(object sender, RoutedEventArgs e)
@@ -114,6 +114,11 @@ namespace DS4WinWPF.DS4Forms
         private void VJoyInterfaceLink_Click(object sender, RoutedEventArgs e)
         {
             Util.StartProcessHelper("https://github.com/shauleiz/vJoy/tree/master/apps/common/vJoyInterfaceCS");
+        }
+
+        private void DeviceManagementLink_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessHelper("https://github.com/nefarius/Nefarius.Utilities.DeviceManagement");
         }
     }
 

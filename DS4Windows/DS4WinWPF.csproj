@@ -76,6 +76,7 @@
     <PackageReference Include="H.NotifyIcon.Wpf" Version="2.0.64" />
     <PackageReference Include="MdXaml" Version="1.15.0" />
     <PackageReference Include="NLog" Version="5.0.4" />
+    <PackageReference Include="Nefarius.Utilities.DeviceManagement" Version="3.0.165-pre" />
     <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
     <PackageReference Include="System.Management" Version="6.0.0" />
     <PackageReference Include="TaskScheduler" Version="2.10.1" />

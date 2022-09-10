@@ -235,6 +235,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         AutoProfileEntity.NONE_STRING;
                 }
 
+                AddExeToHIDHideWhenSaving(item.Path, item.Filename, item.Turnoff);
+
                 item.MatchedAutoProfile = tempEntry;
                 autoProfileHolder.AutoProfileColl.Add(item.MatchedAutoProfile);
             }
@@ -279,11 +281,13 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     tempEntry.ProfileNames[7] = tempindex > 0 ? profileList.ProfileListCol[tempindex - 1].Name :
                         AutoProfileEntity.NONE_STRING;
                 }
+                AddExeToHIDHideWhenSaving(item.Path, item.Filename, item.Turnoff);
             }
         }
 
         public void RemoveAutoProfileEntry(ProgramItem item)
         {
+            AddExeToHIDHideWhenSaving(item.Path, item.Filename, false);// set to False, to remove the EXE from HIDHide
             autoProfileHolder.AutoProfileColl.Remove(item.MatchedAutoProfile);
             item.MatchedAutoProfile = null;
         }
@@ -391,6 +395,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 itemMoved = false;
 
             return itemMoved;
+        }
+        
+        private void AddExeToHIDHideWhenSaving(string exePath, string exeTitle, bool addExe)
+        {
+            if (exePath.Substring((exePath.Length) - 4, 4) == ".exe") //Filter out autoprofiles that do not lead to EXEs.
+            {
+                App.rootHub.CheckHidHidePresence(exePath, exeTitle, addExe);
+            }
         }
     }
 

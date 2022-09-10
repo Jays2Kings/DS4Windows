@@ -13,6 +13,7 @@ using SharpOSC;
 using static DS4Windows.Global;
 using DS4WinWPF.DS4Control;
 using DS4Windows.DS4Control;
+using Nefarius.Utilities.DeviceManagement.PnP;
 
 namespace DS4Windows
 {
@@ -239,7 +240,6 @@ namespace DS4Windows
             deviceOptions = Global.DeviceOptions;
 
             DS4Devices.RequestElevation += DS4Devices_RequestElevation;
-            DS4Devices.checkVirtualFunc = CheckForVirtualDevice;
             DS4Devices.PrepareDS4Init = PrepareDS4DeviceInit;
             DS4Devices.PostDS4Init = PostDS4DeviceInit;
             DS4Devices.PreparePendingDevice = CheckForSupportedDevice;
@@ -498,22 +498,8 @@ namespace DS4Windows
             // Does nothing now
         }
 
-        public CheckVirtualInfo CheckForVirtualDevice(string deviceInstanceId)
-        {
-            string temp = Global.GetDeviceProperty(deviceInstanceId,
-                NativeMethods.DEVPKEY_Device_UINumber);
-
-            CheckVirtualInfo info = new CheckVirtualInfo()
-            {
-                PropertyValue = temp,
-                DeviceInstanceId = deviceInstanceId,
-            };
-            return info;
-        }
-
         public void ShutDown()
         {
-            DS4Devices.checkVirtualFunc = null;
             outputslotMan.ShutDown();
             OutputSlotPersist.WriteConfig(outputslotMan);
 
@@ -648,7 +634,7 @@ namespace DS4Windows
             bool result = false;
             if (dev != null && hidDeviceHidingEnabled)
             {
-                string deviceInstanceId = DS4Devices.devicePathToInstanceId(dev.HidDevice.DevicePath);
+                string deviceInstanceId = PnPDevice.GetInstanceIdFromInterfaceId(dev.HidDevice.DevicePath);
                 if (Global.hidHideInstalled)
                 {
                     result = Global.CheckHidHideAffectedStatus(deviceInstanceId,

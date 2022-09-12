@@ -52,7 +52,9 @@ The Installation and Setup Guide can be found here: https://docs.ds4windows.app/
 
 ## User Guide
 After completing the initial setup of the required drivers and dependencies, you are greeted with the main DS4Windows tab, controllers.
+
 #### Controllers
+![Controller Tab](https://user-images.githubusercontent.com/32114370/189562818-8e2d5e0a-3c61-4eb0-a53c-caa731b120e4.png)
 
 #### Profiles
 

@@ -55,6 +55,7 @@ After completing the initial setup of the required drivers and dependencies, you
 
 #### Controllers
 ![Controller Tab](https://user-images.githubusercontent.com/32114370/189562818-8e2d5e0a-3c61-4eb0-a53c-caa731b120e4.png)
+Here all of the conected controllers are shown. Hovering your mouse over the controller's ID will display the input lag of the specificed controller.
 
 #### Profiles
 

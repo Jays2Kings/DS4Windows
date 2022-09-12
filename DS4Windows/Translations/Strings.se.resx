@@ -494,8 +494,7 @@ Exempel: whyme_DS4Windows</value>
     <value>Genomför alltid inställningen för maxeffekt. Användbar för 100 % Max Output och begränsar värdet till ett cirkulärt outputvärde</value>
   </data>
   <data name="StickMaxOutputTooltip" xml:space="preserve">
-    <value>
-I vissa situationer kan det vara användbart att begränsa det maximala värdet som matas ut av den analoga utgångsspaken. Max Output tillåter strypning av det slutliga utgångsvärdet för den analoga spaken.</value>
+    <value>I vissa situationer kan det vara användbart att begränsa det maximala värdet som matas ut av den analoga utgångsspaken. Max Output tillåter strypning av det slutliga utgångsvärdet för den analoga spaken.</value>
   </data>
   <data name="AntiDeadzoneTooltip" xml:space="preserve">
     <value>En anti-dödzon fungerar som en offset för användning med en axel för att beteckna det lägsta utgångsvärdet som genereras efter att en axel har lämnat sin tilldelade dödzon. Detta är främst tänkt att hjälpa till med att kartlägga en axel till det tilldelade dödzonsvärdet som används för en axel i ett videospel. Till exempel är den typiska tilldelade dödzonen för XInput LS i ett videospel runt 8000 (25%). Utan någon anti-dödzon tilldelad skulle en axel behöva flytta förbi den tilldelade dödzonen i DS4Windows tillsammans med spelets tilldelade dödzon.</value>

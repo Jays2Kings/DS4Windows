@@ -28,11 +28,11 @@ Note: The Website Is No Longer Working
   - Micro USB cable
   - [Sony Wireless Adapter](https://www.amazon.com/gp/product/B01KYVLKG2)
   - Bluetooth 4.0 (via an
-[adapter like this](https://www.newegg.com/Product/Product.aspx?Item=N82E16833166126)
-or built in pc). Only use of Microsoft BT stack is supported. CSR BT stack is
-confirmed to not work with the DS4 even though some CSR adapters work fine
-using Microsoft BT stack. Toshiba's adapters currently do not work.
-*Disabling 'Enable output data' in the controller profile settings might help with latency issues, but will disable lightbar and rumble support.*
+  [adapter like this](https://www.newegg.com/Product/Product.aspx?Item=N82E16833166126)
+  or built in pc). Only use of Microsoft BT stack is supported. CSR BT stack is
+  confirmed to not work with the DS4 even though some CSR adapters work fine
+  using Microsoft BT stack. Toshiba's adapters currently do not work.
+  *Disabling 'Enable output data' in the controller profile settings might help with latency issues, but will disable lightbar and rumble support.*
 - Disable **PlayStation Configuration Support** and
 **Xbox Configuration Support** options in Steam
 
@@ -45,6 +45,26 @@ using Microsoft BT stack. Toshiba's adapters currently do not work.
 ### Other
 
 [Backloggery](https://backloggery.com/ryochan7)
+
+## Installation Tutorial
+
+The Installation and Setup Guide can be found here: https://docs.ds4windows.app/guides/install-setup/
+
+## User Guide
+After completing the initial setup of the required drivers and dependencies, you are greeted with the main DS4Windows tab, controllers.
+#### Controllers
+
+#### Profiles
+
+#### Auto Profiles
+
+#### Output Slots
+
+#### Settings
+
+#### Log
+
+
 
 ## Device Detection Issue
 

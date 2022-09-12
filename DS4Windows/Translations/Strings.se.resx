@@ -380,13 +380,13 @@ Exempel: whyme_DS4Windows</value>
     <value>Gamepad</value>
   </data>
   <data name="KBMGyroMouseDescription" xml:space="preserve">
-    <value>Mappar styrenhetens utdata till virtuella KB+M-kontroller. Användbar för att spela FPS-spel utan stöd för gamepad. Gyro är mappad till en virtuell mus.</value>
+    <value>Mappar styrenhetens utdata till virtuella TB+M-kontroller. Användbar för att spela FPS-spel utan stöd för gamepad. Gyro är mappad till en virtuell mus.</value>
   </data>
   <data name="KBMGyroMouseName" xml:space="preserve">
-    <value>KB+M-kontroller med gyromus</value>
+    <value>TB+M-kontroller med gyromus</value>
   </data>
   <data name="KBMPresetDescription" xml:space="preserve">
-    <value>Mappar styrenhetens utdata till virtuella KB+M-kontroller. Användbar för att spela FPS-spel utan stöd för gamepad.</value>
+    <value>Mappar styrenhetens utdata till virtuella TB+M-kontroller. Användbar för att spela FPS-spel utan stöd för gamepad.</value>
   </data>
   <data name="KBMPresetName" xml:space="preserve">
     <value>TB+M-kontroller</value>

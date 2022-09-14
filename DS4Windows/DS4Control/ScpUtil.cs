@@ -13,9 +13,13 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.Diagnostics;
 using Sensorit.Base;
-using DS4Windows.DS4Control;
 using System.Windows.Input;
 using System.Runtime.InteropServices;
+using System.Xml.Serialization;
+using System.Management;
+using System.Text;
+using DS4Windows.DS4Control;
+using DS4WinWPF.DS4Control.DTOXml;
 
 namespace DS4Windows
 {
@@ -442,6 +446,7 @@ namespace DS4Windows
         public static CultureInfo configFileDecimalCulture = new CultureInfo("en-US"); // Loading and Saving decimal values in configuration files should always use en-US decimal format (ie. dot char as decimal separator char, not comma char)
 
         protected static BackingStore m_Config = new BackingStore();
+        public static BackingStore store => m_Config;
         protected static Int32 m_IdleTimeout = 600000;
 
         public static string exelocation = Process.GetCurrentProcess().MainModule.FileName;
@@ -2410,8 +2415,9 @@ namespace DS4Windows
             }
         }
 
+        //public static bool Load() => m_Config.Load();
         public static bool Load() => m_Config.Load();
-        
+
         public static bool LoadProfile(int device, bool launchprogram, ControlService control,
             bool xinputChange = true, bool postLoad = true)
         {
@@ -6134,6 +6140,65 @@ namespace DS4Windows
 
         public bool Load()
         {
+            bool loaded = true;
+            if (File.Exists(m_Profile))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(AppSettingsDTO));
+                using StreamReader sr = new StreamReader(m_Profile);
+                try
+                {
+                    AppSettingsDTO dto = serializer.Deserialize(sr) as AppSettingsDTO;
+                    dto.MapTo(this);
+
+                    using MemoryStream memoryStream = new MemoryStream();
+                    using XmlWriter xmlWriter = XmlWriter.Create(memoryStream,
+                        new XmlWriterSettings()
+                    {
+                        Encoding = Encoding.UTF8,
+                        Indent = true,
+                        NamespaceHandling = NamespaceHandling.OmitDuplicates,
+                    });
+
+                    //AppSettingsDTO dto2 = new AppSettingsDTO();
+                    //dto2.MapFrom(this);
+                    //serializer.Serialize(xmlWriter, dto2);
+                    //xmlWriter.Flush();
+                    //string testStr = Encoding.UTF8.GetString(memoryStream.ToArray());
+                    //Trace.WriteLine("TEST OUTPUT");
+                    //Trace.WriteLine(testStr);
+
+                    PostProcessLoad();
+                }
+                catch(InvalidOperationException e)
+                {
+                    loaded = false;
+                }
+            }
+            else
+            {
+                loaded = false;
+            }
+
+            if (loaded)
+            {
+                string custom_exe_name_path = Path.Combine(Global.exedirpath, Global.CUSTOM_EXE_CONFIG_FILENAME);
+                bool fakeExeFileExists = File.Exists(custom_exe_name_path);
+                if (fakeExeFileExists)
+                {
+                    string fake_exe_name = File.ReadAllText(custom_exe_name_path).Trim();
+                    bool valid = !(fake_exe_name.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0);
+                    if (valid)
+                    {
+                        fakeExeFileName = fake_exe_name;
+                    }
+                }
+            }
+
+            return loaded;
+        }
+
+        public bool LoadOld()
+        {
             bool Loaded = true;
             bool missingSetting = false;
 
@@ -6239,6 +6304,7 @@ namespace DS4Windows
                     {
                         missingSetting = true;
 
+                        // Backwards compatible code from when only two icons existed
                         try
                         {
                             Item = m_Xdoc.SelectSingleNode("/Profile/WhiteIcon");
@@ -6582,6 +6648,86 @@ namespace DS4Windows
             }
 
             return Saved;
+        }
+
+        public void PostProcessLoad()
+        {
+            // Check if any set profile names should be considered Distance profiles
+            for (int i = 0; i < Global.MAX_DS4_CONTROLLER_COUNT; i++)
+            {
+                if (profilePath[i].ToLower().Contains("distance"))
+                {
+                    distanceProfiles[i] = true;
+                }
+            }
+
+            // Compile shortcut version number if lastVersionChecked is populated
+            if (!string.IsNullOrEmpty(lastVersionChecked))
+            {
+                lastVersionCheckedNum = Global.CompileVersionNumberFromString(lastVersionChecked);
+                if (lastVersionCheckedNum == 0) lastVersionChecked = string.Empty;
+            }
+
+            oscServPort = Math.Clamp(oscServPort, 1024, 65535);
+            oscSendPort = Math.Clamp(oscSendPort, 1024, 65535);
+            udpServPort = Math.Clamp(udpServPort, 1024, 65535);
+
+            udpSmoothingMincutoff = Math.Clamp(udpSmoothingMincutoff, 0.00001, 100.0);
+            udpSmoothingBeta = Math.Clamp(udpSmoothingBeta, 0.0, 1.0);
+        }
+
+        public string UsedSavedProfileString(int index)
+        {
+            if (index < 0 && index > Global.MAX_DS4_CONTROLLER_COUNT)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            return !Global.linkedProfileCheck[index] ?
+                Global.ProfilePath[index] : Global.OlderProfilePath[index];
+        }
+
+        public static void ParseCustomLedString(string source, LightbarDS4WinInfo destination)
+        {
+            try
+            {
+                string[] ss = source.Split(':');
+                bool.TryParse(ss[0], out destination.useCustomLed);
+                DS4Color.TryParse(ss[1], ref destination.m_CustomLed);
+            }
+            catch
+            {
+                destination.useCustomLed = false;
+                destination.m_CustomLed = new DS4Color(Color.Blue);
+            }
+        }
+
+        public static string CompileCustomLedString(LightbarDS4WinInfo ledInfo)
+        {
+            string result = $"{ledInfo.useCustomLed}:{ledInfo.m_CustomLed.red},{ledInfo.m_CustomLed.green},{ledInfo.m_CustomLed.blue}";
+            return result;
+
+        }
+
+        public void PopulateLightbarDS4WinInfo(int index, LightbarDS4WinInfo source)
+        {
+            if (index < 0 && index > Global.MAX_DS4_CONTROLLER_COUNT)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            lightbarSettingInfo[index].ds4winSettings.useCustomLed = source.useCustomLed;
+            lightbarSettingInfo[index].ds4winSettings.m_CustomLed = source.m_CustomLed;
+        }
+
+        public LightbarDS4WinInfo ObtainLightbarDS4WinInfo(int index)
+        {
+            if (index < 0 && index > Global.MAX_DS4_CONTROLLER_COUNT)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            return lightbarSettingInfo[index].ds4winSettings;
         }
 
         private void CreateAction()

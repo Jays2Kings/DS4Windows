@@ -3044,8 +3044,12 @@ namespace DS4Windows
         public int[][] touchDisInvertTriggers = new int[Global.TEST_PROFILE_ITEM_COUNT][] { new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 },
             new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 } };
         public Boolean useExclusiveMode = false; // Re-enable Ex Mode
-        public Int32 formWidth = 782;
-        public Int32 formHeight = 550;
+
+        public const int DEFAULT_FORM_WIDTH = 782;
+        public int formWidth = DEFAULT_FORM_WIDTH;
+
+        public const int DEFAULT_FORM_HEIGHT = 550;
+        public int formHeight = DEFAULT_FORM_HEIGHT;
         public int formLocationX = 0;
         public int formLocationY = 0;
         public Boolean startMinimized = false;
@@ -3053,10 +3057,16 @@ namespace DS4Windows
         public DateTime lastChecked;
         public string lastVersionChecked = string.Empty;
         public ulong lastVersionCheckedNum;
-        public int CheckWhen = 24;
-        public int notifications = 2;
+
+        public const int DEFAULT_CHECK_WHEN = 24;
+        public int CheckWhen = DEFAULT_CHECK_WHEN;
+
+        public const int DEFAULT_NOTIFICATIONS = 2;
+        public int notifications = DEFAULT_NOTIFICATIONS;
         public bool disconnectBTAtStop = false;
-        public bool swipeProfiles = true;
+
+        public const bool DEFAULT_SWIPE_PROFILES = true;
+        public bool swipeProfiles = DEFAULT_SWIPE_PROFILES;
         public bool ds4Mapping = false;
         public bool quickCharge = false;
         public bool closeMini = false;
@@ -3079,17 +3089,33 @@ namespace DS4Windows
         public string useLang = "";
         public bool downloadLang = true;
         public TrayIconChoice useIconChoice;
-        public bool flashWhenLate = true;
-        public int flashWhenLateAt = 500;
+        public const bool DEFAULT_FLASH_WHEN_LATE = true;
+        public bool flashWhenLate = DEFAULT_FLASH_WHEN_LATE;
+
+        public const int DEFAULT_FLASH_WHEN_LATE_AT = 500;
+        public int flashWhenLateAt = DEFAULT_FLASH_WHEN_LATE_AT;
         public bool useOSCServ = false;
-        public int oscServPort = 9000;
+
+        public const int DEFAULT_OSC_SERV_PORT = 9000;
+        public int oscServPort = DEFAULT_OSC_SERV_PORT;
+
         public bool useOSCSend = false;
-        public int oscSendPort = 9001;
-        public string oscSendAddress = "127.0.0.1";
+
+        public const int DEFAULT_OSC_SEND_PORT = 9001;
+        public int oscSendPort = DEFAULT_OSC_SEND_PORT;
+
+        public const string DEFAULT_OSC_SEND_ADDRESS = "127.0.0.1";
+        public string oscSendAddress = DEFAULT_OSC_SEND_ADDRESS;
         public bool useUDPServ = false;
-        public int udpServPort = 26760;
-        public string udpServListenAddress = "127.0.0.1"; // 127.0.0.1=IPAddress.Loopback (default), 0.0.0.0=IPAddress.Any as all interfaces, x.x.x.x = Specific ipv4 interface address or hostname
+
+        public const int DEFAULT_UDP_SERV_PORT = 26760;
+        public int udpServPort = DEFAULT_UDP_SERV_PORT;
+
+        // 127.0.0.1=IPAddress.Loopback (default), 0.0.0.0=IPAddress.Any as all interfaces, x.x.x.x = Specific ipv4 interface address or hostname
+        public const string DEFAULT_UDP_SERV_LISTEN_ADDR = "127.0.0.1";
+        public string udpServListenAddress = DEFAULT_UDP_SERV_LISTEN_ADDR;
         public bool useUdpSmoothing;
+
         public double udpSmoothingMincutoff = DEFAULT_UDP_SMOOTH_MINCUTOFF;
         public double udpSmoothingBeta = DEFAULT_UDP_SMOOTH_BETA;
         public bool useCustomSteamFolder;
@@ -3140,7 +3166,8 @@ namespace DS4Windows
             OutContType.X360, OutContType.X360, OutContType.X360};
 
         // TRUE=AutoProfile reverts to default profile if current foreground process is unknown, FALSE=Leave existing profile active when a foreground proces is unknown (ie. no matching auto-profile rule)
-        public bool autoProfileRevertDefaultProfile = true;
+        public const bool DEFAULT_AUTO_PROFILE_REVERT_DEFAULT_PROFILE = true;
+        public bool autoProfileRevertDefaultProfile = DEFAULT_AUTO_PROFILE_REVERT_DEFAULT_PROFILE;
 
         bool tempBool = false;
 

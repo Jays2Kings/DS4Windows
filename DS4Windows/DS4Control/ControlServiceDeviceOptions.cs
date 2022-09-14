@@ -54,7 +54,8 @@ namespace DS4Windows
 
     public class DS4DeviceOptions
     {
-        private bool enabled = true;
+        public const bool DEFAULT_ENABLE = true;
+        private bool enabled = DEFAULT_ENABLE;
         public bool Enabled
         {
             get => enabled;

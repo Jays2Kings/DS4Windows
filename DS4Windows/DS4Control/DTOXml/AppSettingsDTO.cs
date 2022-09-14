@@ -78,10 +78,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
         }
 
         [XmlElement("formWidth")]
-        public int FormWidth { get; set; }
+        public int FormWidth { get; set; } = BackingStore.DEFAULT_FORM_WIDTH;
 
         [XmlElement("formHeight")]
-        public int FormHeight { get; set; }
+        public int FormHeight { get; set; } = BackingStore.DEFAULT_FORM_HEIGHT;
 
         private int _formLocationX;
         [XmlElement("formLocationX")]
@@ -206,18 +206,18 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public int CheckWhen
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_CHECK_WHEN;
 
         public string LastVersionChecked
         {
             get; set;
-        }
+        } = string.Empty;
 
         [XmlIgnore]
         public int Notifications
         {
             get; private set;
-        }
+        } = BackingStore.DEFAULT_NOTIFICATIONS;
 
         [XmlElement("Notifications")]
         public string NotificationsString
@@ -262,7 +262,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public bool SwipeProfiles
         {
             get; private set;
-        }
+        } = BackingStore.DEFAULT_SWIPE_PROFILES;
 
         [XmlElement("SwipeProfiles")]
         public string SwipeProfilesString
@@ -702,6 +702,8 @@ namespace DS4WinWPF.DS4Control.DTOXml
             LightbarInfo6 = new LightbarDS4WinInfo();
             LightbarInfo7 = new LightbarDS4WinInfo();
             LightbarInfo8 = new LightbarDS4WinInfo();
+
+
         }
 
         public void MapFrom(BackingStore source)
@@ -882,12 +884,12 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public double UdpSmoothMinCutoff
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_UDP_SMOOTH_MINCUTOFF;
 
         public double UdpSmoothBeta
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_UDP_SMOOTH_BETA;
     }
 
     public class InputDeviceOptions
@@ -937,6 +939,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
 
     public class DS4SupportSettingsGroup : BaseInputDeviceSettingsGroup
     {
+        public DS4SupportSettingsGroup(): base()
+        {
+            Enabled = DS4DeviceOptions.DEFAULT_ENABLE;
+        }
     }
 
     public class DualSenseSupportSettings : BaseInputDeviceSettingsGroup

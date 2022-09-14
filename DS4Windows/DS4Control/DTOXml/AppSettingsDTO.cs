@@ -225,9 +225,16 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get => Notifications.ToString();
             set
             {
-                if (bool.TryParse(value, out bool temp))
+                if (int.TryParse(value, out int tempNum))
                 {
-                    Notifications = temp ? 2 : 0;
+                    Notifications = tempNum;
+                }
+                else
+                {
+                    if (bool.TryParse(value, out bool temp))
+                    {
+                        Notifications = temp ? 2 : 0;
+                    }
                 }
             }
         }

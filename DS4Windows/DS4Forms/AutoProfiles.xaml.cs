@@ -312,6 +312,7 @@ namespace DS4WinWPF.DS4Forms
             if (autoProfVM.SelectedItem != null)
             {
                 editControlsPanel.DataContext = null;
+                autoProfVM.AddExeToHIDHideWhenSaving(autoProfVM.SelectedItem, false);
                 autoProfVM.RemoveAutoProfileEntry(autoProfVM.SelectedItem);
                 autoProfVM.AutoProfileHolder.Save(DS4Windows.Global.appdatapath + @"\Auto Profiles.xml");
                 autoProfVM.SelectedItem = null;
@@ -331,6 +332,7 @@ namespace DS4WinWPF.DS4Forms
                     autoProfVM.PersistAutoProfileEntry(autoProfVM.SelectedItem);
                 }
 
+                autoProfVM.AddExeToHIDHideWhenSaving(autoProfVM.SelectedItem, autoProfVM.SelectedItem.Turnoff);
                 autoProfVM.AutoProfileHolder.Save(DS4Windows.Global.appdatapath + @"\Auto Profiles.xml");
             }
         }

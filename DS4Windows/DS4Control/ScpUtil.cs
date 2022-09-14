@@ -6177,23 +6177,6 @@ namespace DS4Windows
                     AppSettingsDTO dto = serializer.Deserialize(sr) as AppSettingsDTO;
                     dto.MapTo(this);
 
-                    //using MemoryStream memoryStream = new MemoryStream();
-                    //using XmlWriter xmlWriter = XmlWriter.Create(memoryStream,
-                    //    new XmlWriterSettings()
-                    //{
-                    //    Encoding = Encoding.UTF8,
-                    //    Indent = true,
-                    //    NamespaceHandling = NamespaceHandling.OmitDuplicates,
-                    //});
-
-                    //AppSettingsDTO dto2 = new AppSettingsDTO();
-                    //dto2.MapFrom(this);
-                    //serializer.Serialize(xmlWriter, dto2);
-                    //xmlWriter.Flush();
-                    //string testStr = Encoding.UTF8.GetString(memoryStream.ToArray());
-                    //Trace.WriteLine("TEST OUTPUT");
-                    //Trace.WriteLine(testStr);
-
                     PostProcessLoad();
                 }
                 catch(InvalidOperationException e)
@@ -6529,6 +6512,70 @@ namespace DS4Windows
         }
 
         public bool Save()
+        {
+            bool saved = true;
+
+            string testStr = string.Empty;
+            XmlSerializer serializer = new XmlSerializer(typeof(AppSettingsDTO));
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                using XmlWriter xmlWriter = XmlWriter.Create(memoryStream,
+                    new XmlWriterSettings()
+                    {
+                        Encoding = Encoding.UTF8,
+                        Indent = true,
+                        NamespaceHandling = NamespaceHandling.OmitDuplicates,
+                    });
+
+                // Write header explicitly
+                xmlWriter.WriteStartDocument();
+                xmlWriter.WriteComment(string.Format(" Profile Configuration Data. {0} ", DateTime.Now));
+                xmlWriter.WriteComment(string.Format(" Made with DS4Windows version {0} ", Global.exeversion));
+                xmlWriter.WriteWhitespace("\r\n");
+                xmlWriter.WriteWhitespace("\r\n");
+
+                // Write root element and children
+                AppSettingsDTO dto = new AppSettingsDTO();
+                dto.MapFrom(this);
+                // Omit xmlns:xsi and xmlns:xsd from output
+                serializer.Serialize(xmlWriter, dto,
+                    new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty }));
+                xmlWriter.Flush();
+                xmlWriter.Close();
+
+                testStr = Encoding.UTF8.GetString(memoryStream.ToArray());
+                //Trace.WriteLine("TEST OUTPUT");
+                //Trace.WriteLine(testStr);
+            }
+
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(m_Profile, false))
+                {
+                    sw.Write(testStr);
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                saved = false;
+            }
+
+            bool adminNeeded = Global.AdminNeeded();
+            if (saved &&
+                (!adminNeeded || (adminNeeded && Global.IsAdministrator())))
+            {
+                string custom_exe_name_path = Path.Combine(Global.exedirpath, Global.CUSTOM_EXE_CONFIG_FILENAME);
+                bool fakeExeFileExists = File.Exists(custom_exe_name_path);
+                if (!string.IsNullOrEmpty(fakeExeFileName) || fakeExeFileExists)
+                {
+                    File.WriteAllText(custom_exe_name_path, fakeExeFileName);
+                }
+            }
+
+            return saved;
+        }
+
+        public bool SaveOld()
         {
             bool Saved = true;
 

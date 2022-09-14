@@ -13,33 +13,41 @@ namespace DS4WinWPF.DS4Control.DTOXml
     [XmlRoot("Profile")]
     public class AppSettingsDTO : IDTO<BackingStore>
     {
-        private XmlDocument tempDoc = new XmlDocument();
+        //private XmlDocument tempDoc = new XmlDocument();
 
-        [XmlAnyElement("ConfigDataComment")]
-        public XmlComment ConfigDataComment
-        {
-            get
-            {
-                return tempDoc.CreateComment(string.Format(" Profile Configuration Data. {0} ", DateTime.Now));
-            }
-            set { }
-        }
+        //[XmlAnyElement("ConfigDataComment")]
+        //public XmlComment ConfigDataComment
+        //{
+        //    get
+        //    {
+        //        return tempDoc.CreateComment(string.Format(" Profile Configuration Data. {0} ", DateTime.Now));
+        //    }
+        //    set { }
+        //}
 
-        [XmlAnyElement("WrittenWithComment")]
-        public XmlComment WrittenWithComment
-        {
-            get
-            {
-                return tempDoc.CreateComment(string.Format(" Made with DS4Windows version {0} ", Global.exeversion));
-            }
-            set { }
-        }
+        //[XmlAnyElement("WrittenWithComment")]
+        //public XmlComment WrittenWithComment
+        //{
+        //    get
+        //    {
+        //        return tempDoc.CreateComment(string.Format(" Made with DS4Windows version {0} ", Global.exeversion));
+        //    }
+        //    set { }
+        //}
 
         [XmlAttribute("app_version")]
-        public string AppVersion { get => Global.exeversion; }
+        public string AppVersion
+        {
+            get => Global.exeversion;
+            set { }
+        }
 
         [XmlAttribute("config_version")]
-        public string ConfigVersion { get => Global.APP_CONFIG_VERSION.ToString(); }
+        public string ConfigVersion
+        {
+            get => Global.APP_CONFIG_VERSION.ToString();
+            set { }
+        }
 
 
         [XmlElement("useExclusiveMode")]
@@ -99,7 +107,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _formLocationY = Math.Max(value, 0);
         }
 
-        [XmlElement("Controller1", IsNullable = false)]
+        [XmlElement("Controller1")]
         public string Controller1CurrentProfile
         {
             get; set;
@@ -109,7 +117,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             return !string.IsNullOrEmpty(Controller1CurrentProfile);
         }
 
-        [XmlElement("Controller2", IsNullable = false)]
+        [XmlElement("Controller2")]
         public string Controller2CurrentProfile
         {
             get; set;
@@ -147,7 +155,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public bool ShouldSerializeController5CurrentProfile()
         {
             return !string.IsNullOrEmpty(Controller5CurrentProfile) &&
-                Global.MAX_DS4_CONTROLLER_COUNT > 5;
+                Global.MAX_DS4_CONTROLLER_COUNT >= 5;
         }
 
         [XmlElement("Controller6")]
@@ -158,7 +166,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public bool ShouldSerializeController6CurrentProfile()
         {
             return !string.IsNullOrEmpty(Controller6CurrentProfile) &&
-                Global.MAX_DS4_CONTROLLER_COUNT > 6;
+                Global.MAX_DS4_CONTROLLER_COUNT >= 6;
         }
 
         [XmlElement("Controller7")]
@@ -169,7 +177,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public bool ShouldSerializeController7CurrentProfile()
         {
             return !string.IsNullOrEmpty(Controller7CurrentProfile) &&
-                Global.MAX_DS4_CONTROLLER_COUNT > 7;
+                Global.MAX_DS4_CONTROLLER_COUNT >= 7;
         }
 
         [XmlElement("Controller8")]
@@ -180,7 +188,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public bool ShouldSerializeController8CurrentProfile()
         {
             return !string.IsNullOrEmpty(Controller8CurrentProfile) &&
-                Global.MAX_DS4_CONTROLLER_COUNT > 8;
+                Global.MAX_DS4_CONTROLLER_COUNT >= 8;
         }
 
 
@@ -212,6 +220,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
         {
             get; set;
         } = string.Empty;
+        public bool ShouldSerializeLastVersionChecked()
+        {
+            return !string.IsNullOrEmpty(LastVersionChecked);
+        }
 
         [XmlIgnore]
         public int Notifications
@@ -617,7 +629,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         }
         public bool ShouldSerializeCustomLed5String()
         {
-            return Global.MAX_DS4_CONTROLLER_COUNT > 5;
+            return Global.MAX_DS4_CONTROLLER_COUNT >= 5;
         }
 
         [XmlIgnore]
@@ -637,7 +649,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         }
         public bool ShouldSerializeCustomLed6String()
         {
-            return Global.MAX_DS4_CONTROLLER_COUNT > 6;
+            return Global.MAX_DS4_CONTROLLER_COUNT >= 6;
         }
 
         [XmlIgnore]
@@ -677,7 +689,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         }
         public bool ShouldSerializeCustomLed8String()
         {
-            return Global.MAX_DS4_CONTROLLER_COUNT > 8;
+            return Global.MAX_DS4_CONTROLLER_COUNT >= 8;
         }
 
         public AppSettingsDTO()

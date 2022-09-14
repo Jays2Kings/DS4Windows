@@ -6177,14 +6177,14 @@ namespace DS4Windows
                     AppSettingsDTO dto = serializer.Deserialize(sr) as AppSettingsDTO;
                     dto.MapTo(this);
 
-                    using MemoryStream memoryStream = new MemoryStream();
-                    using XmlWriter xmlWriter = XmlWriter.Create(memoryStream,
-                        new XmlWriterSettings()
-                    {
-                        Encoding = Encoding.UTF8,
-                        Indent = true,
-                        NamespaceHandling = NamespaceHandling.OmitDuplicates,
-                    });
+                    //using MemoryStream memoryStream = new MemoryStream();
+                    //using XmlWriter xmlWriter = XmlWriter.Create(memoryStream,
+                    //    new XmlWriterSettings()
+                    //{
+                    //    Encoding = Encoding.UTF8,
+                    //    Indent = true,
+                    //    NamespaceHandling = NamespaceHandling.OmitDuplicates,
+                    //});
 
                     //AppSettingsDTO dto2 = new AppSettingsDTO();
                     //dto2.MapFrom(this);

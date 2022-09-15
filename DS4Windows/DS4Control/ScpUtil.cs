@@ -6517,14 +6517,13 @@ namespace DS4Windows
 
             string testStr = string.Empty;
             XmlSerializer serializer = new XmlSerializer(typeof(AppSettingsDTO));
-            using (MemoryStream memoryStream = new MemoryStream())
+            using (StringWriter strWriter = new StringWriter())
             {
-                using XmlWriter xmlWriter = XmlWriter.Create(memoryStream,
+                using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
                     new XmlWriterSettings()
                     {
                         Encoding = Encoding.UTF8,
                         Indent = true,
-                        NamespaceHandling = NamespaceHandling.OmitDuplicates,
                     });
 
                 // Write header explicitly
@@ -6543,7 +6542,7 @@ namespace DS4Windows
                 xmlWriter.Flush();
                 xmlWriter.Close();
 
-                testStr = Encoding.UTF8.GetString(memoryStream.ToArray());
+                testStr = strWriter.ToString();
                 //Trace.WriteLine("TEST OUTPUT");
                 //Trace.WriteLine(testStr);
             }

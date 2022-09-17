@@ -60,6 +60,9 @@ namespace DS4Windows
 
         public event EventHandler ViGEmFailure;
 
+        // First ViGEmBus version that has usable XInput slot grabbing
+        private static Version xinputSlotMinVersion = new Version("1.17.333.0");
+
         public OutputSlotManager()
         {
             outputSlots = new OutSlotDevice[ControlService.CURRENT_DS4_CONTROLLER_LIMIT];
@@ -92,10 +95,19 @@ namespace DS4Windows
         public OutputDevice AllocateController(OutContType contType, ViGEmClient client)
         {
             OutputDevice outputDevice = null;
-            switch(contType)
+            switch (contType)
             {
                 case OutContType.X360:
-                    outputDevice = new Xbox360OutDevice(client);
+                    if (xinputSlotMinVersion.CompareTo(Global.vigemBusVersionInfo) <= 0)
+                    {
+                        outputDevice = new Xbox360OutDevice(client,
+                            Xbox360OutDevice.X360Features.XInputSlotNum);
+                    }
+                    else
+                    {
+                        outputDevice = new Xbox360OutDevice(client);
+                    }
+
                     break;
                 case OutContType.DS4:
                     outputDevice = DS4OutDeviceFactory.CreateDS4Device(client, Global.vigemBusVersionInfo);

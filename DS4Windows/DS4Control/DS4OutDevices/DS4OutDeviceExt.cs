@@ -218,6 +218,9 @@ namespace DS4Windows
             tokenSource = new CancellationTokenSource();
             CancellationToken ct = tokenSource.Token;
 
+            // Add extra delay. Attempt to wait for ViGEmBus to be ready
+            Thread.Sleep(1000);
+
             bool working = true;
             while (working)
             {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Nefarius.ViGEm.Client;
 using Nefarius.ViGEm.Client.Targets;
@@ -11,23 +12,41 @@ namespace DS4Windows
 {
     public class Xbox360OutDevice : OutputDevice
     {
+        [Flags]
+        public enum X360Features : ushort
+        {
+            XInputSlotNum = 0x01
+        }
+
         //private const int inputResolution = 127 - (-128);
         //private const float reciprocalInputResolution = 1 / (float)inputResolution;
         private const float recipInputPosResolution = 1 / 127f;
         private const float recipInputNegResolution = 1 / 128f;
         private const int outputResolution = 32767 - (-32768);
         public const string devType = "X360";
-
+        private const int USER_INDEX_WAIT = 250;
         public IXbox360Controller cont;
         //public Xbox360FeedbackReceivedEventHandler forceFeedbackCall;
         // Input index, Xbox360FeedbackReceivedEventHandler instance
         public Dictionary<int, Xbox360FeedbackReceivedEventHandler> forceFeedbacksDict =
             new Dictionary<int, Xbox360FeedbackReceivedEventHandler>();
 
+        private int _xInputSlotNum = -1;
+        public int XinputSlotNum => _xInputSlotNum;
+
+        private X360Features _features;
+        public X360Features Features => _features;
+
         public Xbox360OutDevice(ViGEmClient client)
         {
             cont = client.CreateXbox360Controller();
             cont.AutoSubmitReport = false;
+        }
+
+        public Xbox360OutDevice(ViGEmClient client, X360Features features) :
+            this(client)
+        {
+            this._features = features;
         }
 
         public override void ConvertandSendReport(DS4State state, int device)
@@ -150,6 +169,13 @@ namespace DS4Windows
         {
             cont.Connect();
             connected = true;
+
+            if (_features.HasFlag(X360Features.XInputSlotNum))
+            {
+                // Need a delay here
+                Thread.Sleep(USER_INDEX_WAIT);
+                _xInputSlotNum = cont.UserIndex;
+            }
         }
         public override void Disconnect()
         {

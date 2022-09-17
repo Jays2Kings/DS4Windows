@@ -20,7 +20,7 @@ namespace DS4WinWPF.DS4Forms
         private const string InstallerDLX86 =
             "https://github.com/ViGEm/ViGEmBus/releases/download/setup-v1.17.333/ViGEmBusSetup_x86.msi";
 
-        private const string InstallerHidHideX64 = "https://github.com/ViGEm/HidHide/releases/download/v1.1.50.0/HidHideMSI.msi";
+        private const string InstallerHidHideX64 = "https://github.com/ViGEm/HidHide/releases/download/v1.2.98.0/HidHide_1.2.98_x64.exe";
         private const string InstallerFakerInputX64 = "https://github.com/Ryochan7/FakerInput/releases/download/v0.1.0/FakerInput_0.1.0_x64.msi";
         private const string InstallerFakerInputX86 = "https://github.com/Ryochan7/FakerInput/releases/download/v0.1.0/FakerInput_0.1.0_x86.msi";
 
@@ -29,7 +29,7 @@ namespace DS4WinWPF.DS4Forms
         private const string InstFileNameX86 = "ViGEmBusSetup_x86.msi";
         private string tempInstFileName;
 
-        private const string InstHidHideFileNameX64 = "HidHideMSI.msi";
+        private string InstHidHideFileNameX64 = Path.GetFileName(InstallerHidHideX64);
 
         private string installFakerInputDL = "";
         private string instFakerInputFileName = "";

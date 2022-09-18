@@ -551,7 +551,7 @@ namespace DS4Windows
             catch { }
         }
 
-        public void CheckHidHidePresence(string ExePath = "", bool AddExe = true) // Default value for D4W Startup
+        public void CheckHidHidePresence(string ExePath = "", string ExeName = "Autoprofile Exe", bool AddExe = true) // Default value for D4W Startup
         {
             if (Global.hidHideInstalled)
             {
@@ -564,7 +564,7 @@ namespace DS4Windows
                     }
                     // Catch Blank Values and initialize for Startup. Also catches empty Values.
                     // Also Catches Empty values in auto-profiler, and defaults to trying to re-add D4W. Will fail harmlessly later.
-                    if (ExePath == "") { ExePath = Global.exelocation; AddExe = true; } 
+                    if (ExePath == "") { ExePath = Global.exelocation; ExeName = "DS4Windows"; AddExe = true; } 
                     
                     List<string> dosPaths = hidHideDevice.GetWhitelist();
 
@@ -588,13 +588,13 @@ namespace DS4Windows
                     bool exists = dosPaths.Contains(realPath);
                     if (!exists && AddExe)
                     {
-                        LogDebug("Exe not found in HidHide whitelist. Adding Exe to list");
+                        LogDebug($"{ExeName} not found in HidHide whitelist. Adding to list");
                         dosPaths.Add(realPath);
                         hidHideDevice.SetWhitelist(dosPaths);
                     }
                     if (exists && !AddExe)
                     {
-                        LogDebug("Exe found in HidHide whitelist. Removing Exe from list");
+                        LogDebug($"{ExeName} found in HidHide whitelist. Removing from list");
                         dosPaths.Remove(realPath);
                         hidHideDevice.SetWhitelist(dosPaths);
                     }

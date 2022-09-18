@@ -392,6 +392,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
             return itemMoved;
         }
+        
+        public void AddExeToHIDHideWhenSaving(ProgramItem autoProf, bool addExe)
+        {
+            if (autoProf.Path.Substring((autoProf.Path.Length) - 4, 4) == ".exe") //Filter out autoprofiles that do not lead to EXEs.
+            {
+                App.rootHub.CheckHidHidePresence(autoProf.Path, autoProf.Filename, addExe);
+            }
+        }
     }
 
     public class ProgramItem

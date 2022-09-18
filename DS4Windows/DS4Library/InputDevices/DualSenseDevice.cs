@@ -153,12 +153,12 @@ namespace DS4Windows.InputDevices
                     case HapticIntensity.Low:
                         hapticsIntensityByte = 0x05;
                         break;
-                    case HapticIntensity.High:
-                        hapticsIntensityByte = 0x00;
-                        break;
                     case HapticIntensity.Medium:
-                    default:
                         hapticsIntensityByte = 0x02;
+                        break;
+                    case HapticIntensity.High:
+                    default:
+                        hapticsIntensityByte = 0x00;
                         break;
                 }
             }
@@ -994,10 +994,12 @@ namespace DS4Windows.InputDevices
                 // Volume of internal speaker (0-7; ties in with index 6. The PS5 default appears to be set a 4)
                 //outputReport[38] = 0x00;
 
-                /* Player LED section */
+                /* Player LED section (and improved rumble flag) */
                 // 0x01 Enabled LED brightness (value in index 43)
                 // 0x02 Uninterruptable blue LED pulse (action in index 42)
-                outputReport[39] = 0x02;
+                // 0x04 Enable improved rumble emulation (Requires 2.24 firmware or newer)
+                outputReport[39] = useRumble ? (byte)0x06 : (byte)0x02;
+
                 // 0x01 Slowly (2s?) fade to blue (scheduled to when the regular LED settings are active)
                 // 0x02 Slowly (2s?) fade out (scheduled after fade-in completion) with eventual switch back to configured LED color; only a fade-out can cancel the pulse (neither index 2, 0x08, nor turning this off will cancel it!)
                 outputReport[42] = 0x02;
@@ -1129,10 +1131,12 @@ namespace DS4Windows.InputDevices
                 // Volume of internal speaker (0-7; ties in with index 6. The PS5 default appears to be set a 4)
                 //outputReport[39] = 0x00;
 
-                /* Player LED section */
+                /* Player LED section (and improved rumble  flag) */
                 // 0x01 Enabled LED brightness (value in index 43)
                 // 0x02 Uninterruptable blue LED pulse (action in index 42)
-                outputReport[40] = 0x02;
+                // 0x04 Enable improved rumble emulation (Requires 2.24 firmware or newer)
+                outputReport[40] = useRumble ? (byte)0x06 : (byte)0x02; 
+
                 // 0x01 Slowly (2s?) fade to blue (scheduled to when the regular LED settings are active)
                 // 0x02 Slowly (2s?) fade out (scheduled after fade-in completion) with eventual switch back to configured LED color; only a fade-out can cancel the pulse (neither index 2, 0x08, nor turning this off will cancel it!)
                 outputReport[43] = 0x02;

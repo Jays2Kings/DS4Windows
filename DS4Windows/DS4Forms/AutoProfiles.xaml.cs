@@ -312,7 +312,7 @@ namespace DS4WinWPF.DS4Forms
             if (autoProfVM.SelectedItem != null)
             {
                 editControlsPanel.DataContext = null;
-                AddExeToHIDHideWhenSaving(autoProfVM.SelectedItem.Path, false);// set to False, to remove the EXE from HIDHide
+                autoProfVM.AddExeToHIDHideWhenSaving(autoProfVM.SelectedItem, false);
                 autoProfVM.RemoveAutoProfileEntry(autoProfVM.SelectedItem);
                 autoProfVM.AutoProfileHolder.Save(DS4Windows.Global.appdatapath + @"\Auto Profiles.xml");
                 autoProfVM.SelectedItem = null;
@@ -331,9 +331,8 @@ namespace DS4WinWPF.DS4Forms
                 {
                     autoProfVM.PersistAutoProfileEntry(autoProfVM.SelectedItem);
                 }
-                
-                AddExeToHIDHideWhenSaving(autoProfVM.SelectedItem.Path, autoProfVM.SelectedItem.Turnoff);
 
+                autoProfVM.AddExeToHIDHideWhenSaving(autoProfVM.SelectedItem, autoProfVM.SelectedItem.Turnoff);
                 autoProfVM.AutoProfileHolder.Save(DS4Windows.Global.appdatapath + @"\Auto Profiles.xml");
             }
         }
@@ -367,14 +366,6 @@ namespace DS4WinWPF.DS4Forms
             {
                 if(autoProfVM.MoveItemUpDown(autoProfVM.SelectedItem, ((sender as MenuItem).Name == "MoveUp") ? -1 : 1))
                     autoProfVM.AutoProfileHolder.Save(DS4Windows.Global.appdatapath + @"\Auto Profiles.xml");
-            }
-        }
-        
-        private void AddExeToHIDHideWhenSaving(string exePath, bool addExe)
-        {
-            if (exePath.Substring((exePath.Length)-4, 4) == ".exe") //Filter out autoprofiles that do not lead to EXEs.
-            {
-                App.rootHub.CheckHidHidePresence(exePath, addExe);
             }
         }
     }

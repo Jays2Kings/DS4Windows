@@ -1,0 +1,547 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Accel" xml:space="preserve">
+    <value>Accelerera</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Verka</value>
+  </data>
+  <data name="AddDirectory" xml:space="preserve">
+    <value>Lägg till direktiv</value>
+  </data>
+  <data name="AddPrograms" xml:space="preserve">
+    <value>Lägg till program</value>
+  </data>
+  <data name="AddStartMenuPrograms" xml:space="preserve">
+    <value>Lägg till start-meny program</value>
+  </data>
+  <data name="AddSteamGames" xml:space="preserve">
+    <value>Lägg till Steam spel</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Alla</value>
+  </data>
+  <data name="AutoProfiles" xml:space="preserve">
+    <value>Auto Profiler</value>
+  </data>
+  <data name="Battery" xml:space="preserve">
+    <value>Batteri</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Bläddra</value>
+  </data>
+  <data name="BrowseOtherPrograms" xml:space="preserve">
+    <value>Browse efter andra program</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="CheckUpdateNow" xml:space="preserve">
+    <value>Sök efter uppdateringar nu</value>
+  </data>
+  <data name="CheckUpdateStartup" xml:space="preserve">
+    <value>Sök efter uppdateringar när DS4Windows startar</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Rensa</value>
+  </data>
+  <data name="CloseMinimizes" xml:space="preserve">
+    <value>Stäng minimerar</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Färg</value>
+  </data>
+  <data name="Controller1Text" xml:space="preserve">
+    <value>Kontroll 1</value>
+  </data>
+  <data name="Controller2Text" xml:space="preserve">
+    <value>Kontroll 2</value>
+  </data>
+  <data name="Controller3Text" xml:space="preserve">
+    <value>Kontroll 3</value>
+  </data>
+  <data name="Controller4Text" xml:space="preserve">
+    <value>Kontroll 4</value>
+  </data>
+  <data name="Controllers" xml:space="preserve">
+    <value>Kontrollrar</value>
+  </data>
+  <data name="ControlPanel" xml:space="preserve">
+    <value>Kontrollpanelen</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Radera</value>
+  </data>
+  <data name="DriverSetup" xml:space="preserve">
+    <value>Kontroll/Drivrutin Setup</value>
+  </data>
+  <data name="Duplicate" xml:space="preserve">
+    <value>Dupplicera</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Redigera</value>
+  </data>
+  <data name="EditAction" xml:space="preserve">
+    <value>Redigera åtgärd</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Exportera</value>
+  </data>
+  <data name="Full" xml:space="preserve">
+    <value>Hela</value>
+  </data>
+  <data name="Gyro" xml:space="preserve">
+    <value>Gyro</value>
+  </data>
+  <data name="HideUnchecked" xml:space="preserve">
+    <value>Göm omarkerade</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importera</value>
+  </data>
+  <data name="LeftStick" xml:space="preserve">
+    <value>Vänster spak</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Logga</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Namn</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Ny</value>
+  </data>
+  <data name="NewAction" xml:space="preserve">
+    <value>Ny åtgärd</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Ny profil</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Ingen</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Sökväg</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="ProfileFolder" xml:space="preserve">
+    <value>Profile Mapp</value>
+  </data>
+  <data name="QuickCharge" xml:space="preserve">
+    <value>Snabbladdning</value>
+  </data>
+  <data name="RecordText" xml:space="preserve">
+    <value>Spela in</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Radera</value>
+  </data>
+  <data name="RemoveAction" xml:space="preserve">
+    <value>Radera åtgärd</value>
+  </data>
+  <data name="RightStick" xml:space="preserve">
+    <value>Höger spak</value>
+  </data>
+  <data name="Rumble" xml:space="preserve">
+    <value>Buller</value>
+  </data>
+  <data name="RunAtStartup" xml:space="preserve">
+    <value>Kör vid start</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Spara</value>
+  </data>
+  <data name="SaveProfile" xml:space="preserve">
+    <value>Spara</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Inställningar</value>
+  </data>
+  <data name="ShowNotifications" xml:space="preserve">
+    <value>Visa Notiser</value>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>Starta minimerad</value>
+  </data>
+  <data name="StartText" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="StopText" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="TouchScroll" xml:space="preserve">
+    <value>Skrolla</value>
+  </data>
+  <data name="TouchSlide" xml:space="preserve">
+    <value>Dra</value>
+  </data>
+  <data name="TouchTap" xml:space="preserve">
+    <value>Tryck</value>
+  </data>
+  <data name="Trigger" xml:space="preserve">
+    <value>Avtryckare</value>
+  </data>
+  <data name="WarningsOnly" xml:space="preserve">
+    <value>Endast varningar</value>
+  </data>
+  <data name="RumbleMaxSecs" xml:space="preserve">
+    <value>sek</value>
+  </data>
+  <data name="RumbleMaxSecsTip" xml:space="preserve">
+    <value>Stoppa automatiskt i sekunder (0=ingen autostop)</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Fönsternamn</value>
+  </data>
+  <data name="MoveUp" xml:space="preserve">
+    <value>Gå upp</value>
+  </data>
+  <data name="MoveDown" xml:space="preserve">
+    <value>Gå ner</value>
+  </data>
+  <data name="AutoProfPathTip" xml:space="preserve">
+    <value>Processväg. ^ABC = Matcha i början av strängen (^) | ABC$ = Matcha i slutet av strängen ($) | *ABC =Innehåller en sträng (*)</value>
+  </data>
+  <data name="AutoProfTitleTip" xml:space="preserve">
+    <value>Fönsternamn. ^ABC = Matcha i början av strängen (^) | ABC$ = Matcha i slutet av strängen ($) | *ABC =Innehåller en sträng (*)</value>
+  </data>
+  <data name="GamepadTest" xml:space="preserve">
+    <value>Gamepad Test</value>
+  </data>
+  <data name="EnableOutputDataToDS4" xml:space="preserve">
+    <value>Aktivera utdata till DS4</value>
+  </data>
+  <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
+    <value>Mata ut lightbar och rumble data med jämna mellanrum till DS4 gamepad. Avmarkera om spelplattan inte stöder datamottagning.
+Ändringar av det här alternativet träder i kraft vid anslutningstiden för gamepaden.</value>
+    <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Applicera</value>
+  </data>
+  <data name="HidNinja" xml:space="preserve">
+    <value>GömdNinja</value>
+  </data>
+  <data name="CustomExeName" xml:space="preserve">
+    <value>Anpassat Exe-namn</value>
+  </data>
+  <data name="CustomExeNameInfo" xml:space="preserve">
+    <value>Vissa spel implementerar ett block som gör att DS4-ingång ignoreras om ett spel upptäcker att antingen DS4Windows.exe eller InputMapper.exe körs vid tillfället. En lösning på blocket är att byta namn på DS4Windows.exe så att kontrollen i spelet misslyckas. Genom att ange ett anpassat exe-namn här kan DS4Updater automatiskt uppdatera en anpassad kopia av DS4Windows till önskat filnamn. Se till att utelämna tillägget.
+
+Exempel: whyme_DS4Windows</value>
+  </data>
+  <data name="XInputChecker" xml:space="preserve">
+    <value>XInputKontrollerare</value>
+  </data>
+  <data name="Controller5Text" xml:space="preserve">
+    <value>Kontroll 5</value>
+  </data>
+  <data name="Controller6Text" xml:space="preserve">
+    <value>Kontroll 6</value>
+  </data>
+  <data name="Controller7Text" xml:space="preserve">
+    <value>Kontroll 7</value>
+  </data>
+  <data name="Controller8Text" xml:space="preserve">
+    <value>Kontroll 8</value>
+  </data>
+  <data name="GamepadGyroCameraDescription" xml:space="preserve">
+    <value>Mappar kontrollutgången till en standard XInput-gamepad eller DS4-pad. Gyro är mappad till en musliknande joystick.</value>
+  </data>
+  <data name="GamepadGyroCameraName" xml:space="preserve">
+    <value>Gamepad med musliknande joystick</value>
+  </data>
+  <data name="GamepadPresetDescription" xml:space="preserve">
+    <value>Mappar handkontrollens utdata till en vanlig gamepad</value>
+  </data>
+  <data name="GamepadPresetName" xml:space="preserve">
+    <value>Gamepad</value>
+  </data>
+  <data name="KBMGyroMouseDescription" xml:space="preserve">
+    <value>Mappar styrenhetens utdata till virtuella TB+M-kontroller. Användbar för att spela FPS-spel utan stöd för gamepad. Gyro är mappad till en virtuell mus.</value>
+  </data>
+  <data name="KBMGyroMouseName" xml:space="preserve">
+    <value>TB+M-kontroller med gyromus</value>
+  </data>
+  <data name="KBMPresetDescription" xml:space="preserve">
+    <value>Mappar styrenhetens utdata till virtuella TB+M-kontroller. Användbar för att spela FPS-spel utan stöd för gamepad.</value>
+  </data>
+  <data name="KBMPresetName" xml:space="preserve">
+    <value>TB+M-kontroller</value>
+  </data>
+  <data name="MixedGyroMousePresetDescription" xml:space="preserve">
+    <value>Mappar knapparna och axlarna till en vanlig gamepad. Mappar Gyro till en virtuell mus</value>
+  </data>
+  <data name="MixedGyroMousePresetName" xml:space="preserve">
+    <value>Gamepad med Gyro Mouse</value>
+  </data>
+  <data name="MixedPresetDescription" xml:space="preserve">
+    <value>Mappar styrenhetens utdata till blandad XInput gamepad + RS-mus.</value>
+  </data>
+  <data name="MixedPresetName" xml:space="preserve">
+    <value>Gamepad med högprecisionskamera</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beskrivning</value>
+  </data>
+  <data name="PresetIntroText" xml:space="preserve">
+    <value>Vill du använda ett förinställt alternativ? Om du väljer Nej kommer profilredigeraren att använda en tom Gamepad-profil.</value>
+  </data>
+  <data name="Presets" xml:space="preserve">
+    <value>Förinställningar</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>Ändringslogg</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Stäng</value>
+  </data>
+  <data name="Profiles" xml:space="preserve">
+    <value>Profiler</value>
+  </data>
+  <data name="NoControllersConnected" xml:space="preserve">
+    <value>Inga anslutna kontroller (Max {0})</value>
+  </data>
+  <data name="FlickThreshold" xml:space="preserve">
+    <value>Snärtströskel</value>
+  </data>
+  <data name="FlickTime" xml:space="preserve">
+    <value>Snärttid</value>
+  </data>
+  <data name="MinAngleThreshold" xml:space="preserve">
+    <value>Min vinkeltröskel</value>
+  </data>
+  <data name="RealWorldCalibration" xml:space="preserve">
+    <value>Riktiga världen Kalibrering</value>
+  </data>
+  <data name="ViGEmPluginFailure" xml:space="preserve">
+    <value>ViGEm Device Plugin misslyckades. Troligtvis ett internt ViGEmBus-problem. Stängande anslutning. Om problemet kvarstår, stäng DS4Windows och starta sedan om Windows.</value>
+  </data>
+  <data name="CRC32Fail" xml:space="preserve">
+    <value>Dataintegritetskontroller misslyckades för trådlös enhet. Stängningsanordning.</value>
+  </data>
+  <data name="FutureNetNotInstalled" xml:space="preserve">
+    <value>.NET 5 Runtime upptäcktes inte på ditt system. Ladda ner och installera .NET 5 Runtime för att säkerställa kompatibilitet med framtida DS4Windows-versioner. Du kommer att omdirigeras till nedladdningssidan för .NET 5 Runtime när du stänger det här fönstret.</value>
+  </data>
+  <data name="UpgradeNetCaption" xml:space="preserve">
+    <value>Vänligen uppdatera .NET Runtime</value>
+  </data>
+  <data name="HidHide" xml:space="preserve">
+    <value>HidHide</value>
+  </data>
+  <data name="HidHideConfigClient" xml:space="preserve">
+    <value>HidHide konfigurationsklient</value>
+  </data>
+  <data name="ExclusiveAccess" xml:space="preserve">
+    <value>Exklusiv tillgång</value>
+  </data>
+  <data name="HidGuardianAccess" xml:space="preserve">
+    <value>HidGuardian Access</value>
+  </data>
+  <data name="HidHideAccess" xml:space="preserve">
+    <value>HidHide Access</value>
+  </data>
+  <data name="SharedAccess" xml:space="preserve">
+    <value>Delad åtkomst</value>
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Döp om</value>
+  </data>
+  <data name="DisableVirtualController" xml:space="preserve">
+    <value>Inaktivera virtuell kontroller</value>
+  </data>
+  <data name="DisableVirtualControllerTip" xml:space="preserve">
+    <value>Skapa/associera inte virtuella kontroller för anslutna kontroller som använder den här profilen (Gäller vid profilsparning)</value>
+  </data>
+  <data name="EmulatedController" xml:space="preserve">
+    <value>Emulerad Kontroll</value>
+  </data>
+  <data name="OutContNotice" xml:space="preserve">
+    <value>Välj typ av virtuell utdatakontroller (Gäller vid profilsparning)</value>
+  </data>
+  <data name="VirtualControllerSettings" xml:space="preserve">
+    <value>Inställningar för virtuell kontroll</value>
+  </data>
+  <data name="ChangeOnNewDeviceConn" xml:space="preserve">
+    <value>Ändringar träder i kraft vid ny enhetsanslutning</value>
+  </data>
+  <data name="StickFuzzTooltip" xml:space="preserve">
+    <value>Fuzz specificerar det minsta antalet enheter som den analoga spaken flyttar, i aktiv zon, innan utgången registreras som ändrad i mapparen. Denna inställning kan vara användbar för slitna spakar som inte kan bibehålla en konstant position. Värdet uttrycks i råspakenheter.</value>
+  </data>
+  <data name="StickMaxOutputForceTooltip" xml:space="preserve">
+    <value>Genomför alltid inställningen för maxeffekt. Användbar för 100 % Max Output och begränsar värdet till ett cirkulärt outputvärde</value>
+  </data>
+  <data name="StickMaxOutputTooltip" xml:space="preserve">
+    <value>I vissa situationer kan det vara användbart att begränsa det maximala värdet som matas ut av den analoga utgångsspaken. Max Output tillåter strypning av det slutliga utgångsvärdet för den analoga spaken.</value>
+  </data>
+  <data name="AntiDeadzoneTooltip" xml:space="preserve">
+    <value>En anti-dödzon fungerar som en offset för användning med en axel för att beteckna det lägsta utgångsvärdet som genereras efter att en axel har lämnat sin tilldelade dödzon. Detta är främst tänkt att hjälpa till med att kartlägga en axel till det tilldelade dödzonsvärdet som används för en axel i ett videospel. Till exempel är den typiska tilldelade dödzonen för XInput LS i ett videospel runt 8000 (25%). Utan någon anti-dödzon tilldelad skulle en axel behöva flytta förbi den tilldelade dödzonen i DS4Windows tillsammans med spelets tilldelade dödzon.</value>
+  </data>
+  <data name="StickInputCurveTooltip" xml:space="preserve">
+    <value>GAMMAL FÖRALDAD INSTÄLLNING. Försök att tillämpa en kurva baserad på råa indatakoordinater innan någon dödzonsinformation tillämpas. Ostadig</value>
+  </data>
+  <data name="TouchpadMinThresholdTooltip" xml:space="preserve">
+    <value>Minsta beräknade uteffekt innan en mushändelse skickas till systemet</value>
+  </data>
+  <data name="TouchpadRotationTooltip" xml:space="preserve">
+    <value>Justerar en pekplattas svepning med en given rotationsvinkel. Användbart när en vanlig pekplatta inte är en rak linje över. Värden tillåter intervall från -180 till 180. Standard är 0.</value>
+  </data>
+  <data name="TouchpadSlideTooltip" xml:space="preserve">
+    <value>Känslighet används för att aktivera en multi-touch mushjulsrullning</value>
+  </data>
+  <data name="TouchpadTapTooltip" xml:space="preserve">
+    <value>Aktivera musen Vänsterklicka med en pekplatta. Max tidsintervall är satt till (värde * 2) ms.</value>
+  </data>
+  <data name="TouchpadTrackballEnableTooltip" xml:space="preserve">
+    <value>Lägger fart på ett pekplattasvep när ett finger lyfts. Lägger till extra muspekarrörelse än vad som skulle vara möjligt med det begränsade utrymmet på pekplattan</value>
+  </data>
+  <data name="TouchpadTrackballFrictionTooltip" xml:space="preserve">
+    <value>Lägg till friktion till virtuell styrkula. Minskad friktion ökar den slutliga muspekarens restid</value>
+  </data>
+  <data name="StickOuterBindDeadTooltip" xml:space="preserve">
+    <value>Tröskel för när en åtgärd kommer att utlösas</value>
+  </data>
+  <data name="StickOuterBindInvertTooltip" xml:space="preserve">
+    <value>Ha yttre bindeld innan du når en tröskel. Åtgärden släpps när tröskeln har överskridits</value>
+  </data>
+  <data name="StickOuterBindTooltip" xml:space="preserve">
+    <value>Åtgärd som ska utföras när pinnrörelse når förbi en tröskel. Användbar för att kartlägga nycklar för Walk- eller Sprint-åtgärder. Invert får handlingen att skjuta upp till tröskeln</value>
+  </data>
+  <data name="SASteeringWheelFuzzTooltip" xml:space="preserve">
+    <value>Fuzz specificerar det minsta antalet enhetsenheter, i aktiv zon, som Accel måste roteras innan utgången registreras som ändrad i mapparen. Värdet uttrycks i råa Accel-enheter.</value>
+  </data>
+  <data name="StickRotationTooltip" xml:space="preserve">
+    <value>Rotationsinställningen är avsedd att hjälpa till att korrigera orienteringen av en analog sticka om din tumme förskjuts något när du flyttar en analog sticka. Till exempel kan din tumme vara något förskjuten från mitten när den analoga spaken förs helt norrut. Mina tummar förskjuts något åt ​​höger när jag flyttar en analog sticka helt norrut på grund av hur mina händer greppar DS4. Värdet som används anger antalet grader som används för att justera det slutliga axelutgångsvärdet. Värden tillåter intervall från -180 till 180. Standard är 0.</value>
+  </data>
+  <data name="TouchpadJitterCompTooltip" xml:space="preserve">
+    <value>Gasreglaget på den nedre delen av pekplattans rörelse. Minskar oavsiktlig muspekarrörelse när du håller en mestadels fast position på pekplattan</value>
+  </data>
+  <data name="DS4BTPollRate" xml:space="preserve">
+    <value>DS4 BT undersökningsfrekvens</value>
+  </data>
+  <data name="DS4LightbarPassthruDisabled" xml:space="preserve">
+    <value>Feature currently disabled in app due to driver issues. Hopefully issues get fixed in a future update.</value>
+  </data>
+</root>

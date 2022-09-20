@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Serialization;
 using DS4Windows.InputDevices;
+using DS4WinWPF.DS4Control.DTOXml;
 
 namespace DS4Windows
 {
@@ -71,6 +75,7 @@ namespace DS4Windows
 
     public class DS4ControllerOptions : ControllerOptionsStore
     {
+        public const string XML_ELEMENT_NAME = "DS4SupportSettings";
         private bool copyCatController;
         public bool IsCopyCat
         {
@@ -90,33 +95,62 @@ namespace DS4Windows
 
         public override void PersistSettings(XmlDocument xmlDoc, XmlNode node)
         {
-            XmlNode tempOptsNode = node.SelectSingleNode("DS4SupportSettings");
-            if (tempOptsNode == null)
+            string testStr = string.Empty;
+            XmlSerializer serializer = new XmlSerializer(typeof(DS4ControllerOptsDTO));
+
+            using (StringWriter strWriter = new StringWriter())
             {
-                tempOptsNode = xmlDoc.CreateElement("DS4SupportSettings");
-            }
-            else
-            {
-                tempOptsNode.RemoveAll();
+                using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
+                    new XmlWriterSettings()
+                    {
+                        Encoding = Encoding.UTF8,
+                        Indent = false,
+                        OmitXmlDeclaration = true, // only partial XML with no declaration
+                    });
+
+                // Write root element and children
+                DS4ControllerOptsDTO dto = new DS4ControllerOptsDTO();
+                dto.MapFrom(this);
+                // Omit xmlns:xsi and xmlns:xsd from output
+                serializer.Serialize(xmlWriter, dto,
+                    new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty }));
+                xmlWriter.Flush();
+                xmlWriter.Close();
+
+                testStr = strWriter.ToString();
+                //Trace.WriteLine("TEST OUTPUT");
+                //Trace.WriteLine(testStr);
             }
 
-            XmlNode tempRumbleNode = xmlDoc.CreateElement("Copycat");
-            tempRumbleNode.InnerText = copyCatController.ToString();
-            tempOptsNode.AppendChild(tempRumbleNode);
+            XmlNode tempDS4Node = xmlDoc.CreateDocumentFragment();
+            tempDS4Node.InnerXml = testStr;
 
+            XmlNode tempOptsNode = node.SelectSingleNode(XML_ELEMENT_NAME);
+            if (tempOptsNode != null)
+            {
+                node.RemoveChild(tempOptsNode);
+            }
+
+            tempOptsNode = tempDS4Node;
             node.AppendChild(tempOptsNode);
         }
 
         public override void LoadSettings(XmlDocument xmlDoc, XmlNode node)
         {
-            XmlNode baseNode = node.SelectSingleNode("DS4SupportSettings");
-            if (baseNode != null)
+            XmlSerializer serializer = new XmlSerializer(typeof(DS4ControllerOptsDTO));
+            XmlNode baseNode = node.SelectSingleNode(XML_ELEMENT_NAME);
+            if (baseNode == null)
+                return;
+
+            try
             {
-                XmlNode item = baseNode.SelectSingleNode("Copycat");
-                if (bool.TryParse(item?.InnerText ?? "", out bool temp))
-                {
-                    copyCatController = temp;
-                }
+                using var stringReader = new StringReader(baseNode.OuterXml);
+                using var xmlReader = XmlReader.Create(stringReader);
+                DS4ControllerOptsDTO dto = serializer.Deserialize(xmlReader) as DS4ControllerOptsDTO;
+                dto.MapTo(this);
+            }
+            catch (InvalidOperationException)
+            {
             }
         }
     }

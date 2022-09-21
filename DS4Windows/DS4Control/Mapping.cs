@@ -327,7 +327,7 @@ namespace DS4Windows
             new TwoStageTriggerMappingData(), new TwoStageTriggerMappingData(),
         };
 
-        class DeltaSettingsProcessor
+        public class DeltaSettingsProcessor
         {
             double previousPointerX = 0.0;
             //double accelHelperX = 0.0;
@@ -530,13 +530,13 @@ namespace DS4Windows
             }
         }
 
-        class DeltaSettingsProcessorGroup
+        public class DeltaSettingsProcessorGroup
         {
             public DeltaSettingsProcessor LSProcessor = new DeltaSettingsProcessor();
             public DeltaSettingsProcessor RSProcessor = new DeltaSettingsProcessor();
         }
 
-        static DeltaSettingsProcessorGroup[] deltaAccelProcessors = new DeltaSettingsProcessorGroup[Global.MAX_DS4_CONTROLLER_COUNT]
+        public static DeltaSettingsProcessorGroup[] deltaAccelProcessors = new DeltaSettingsProcessorGroup[Global.MAX_DS4_CONTROLLER_COUNT]
         {
             new DeltaSettingsProcessorGroup(), new DeltaSettingsProcessorGroup(), new DeltaSettingsProcessorGroup(),
             new DeltaSettingsProcessorGroup(), new DeltaSettingsProcessorGroup(), new DeltaSettingsProcessorGroup(),

@@ -4281,6 +4281,9 @@ namespace DS4Windows
                 // Make sure to reset currently set profile values before parsing
                 ResetProfile(device);
                 ResetMouseProperties(device, control);
+                // Reset some Mapping properties before attempting to load different
+                // profile
+                control.PreLoadReset(device);
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/touchToggle"); Boolean.TryParse(Item.InnerText, out enableTouchToggle[device]); }
                 catch { missingSetting = true; }

@@ -4578,7 +4578,16 @@ namespace DS4Windows
                     {
                         if (cState.LX < 128 - deadzoneL)
                         {
-                            double diff = -(cState.LX - 128 - deadzoneL) / (double)(0 - 128 - deadzoneL);
+                            double diff;
+                            if (!deltaAccelProcessorGroup.LSProcessor.useDeltaAccel)
+                            {
+                                diff = -(cState.LX - 128 - deadzoneL) / (double)(0 - 128 - deadzoneL);
+                            }
+                            else
+                            {
+                                diff = -deltaAccelProcessorGroup.LSProcessor.AccelOutXNorm;
+                            }
+
                             //tempMouseOffsetX = Math.Abs(Math.Cos(cState.LSAngleRad)) * MOUSESTICKOFFSET;
                             //tempMouseOffsetX = MOUSESTICKOFFSET;
                             tempMouseOffsetX = cState.LXUnit * mouseOffset;
@@ -4593,7 +4602,16 @@ namespace DS4Windows
                     {
                         if (cState.LX > 128 + deadzoneL)
                         {
-                            double diff = (cState.LX - 128 + deadzoneL) / (double)(255 - 128 + deadzoneL);
+                            double diff;
+                            if (!deltaAccelProcessorGroup.LSProcessor.useDeltaAccel)
+                            {
+                                diff = (cState.LX - 128 + deadzoneL) / (double)(255 - 128 + deadzoneL);
+                            }
+                            else
+                            {
+                                diff = deltaAccelProcessorGroup.LSProcessor.AccelOutXNorm;
+                            }
+
                             tempMouseOffsetX = cState.LXUnit * mouseOffset;
                             //tempMouseOffsetX = Math.Abs(Math.Cos(cState.LSAngleRad)) * MOUSESTICKOFFSET;
                             //tempMouseOffsetX = MOUSESTICKOFFSET;
@@ -4608,7 +4626,7 @@ namespace DS4Windows
                     {
                         if (cState.RX < 128 - deadzoneR)
                         {
-                            double diff = 0.0;
+                            double diff;
                             if (!deltaAccelProcessorGroup.RSProcessor.useDeltaAccel)
                             {
                                 diff = -(cState.RX - 128 - deadzoneR) / (double)(0 - 128 - deadzoneR);
@@ -4632,7 +4650,7 @@ namespace DS4Windows
                     {
                         if (cState.RX > 128 + deadzoneR)
                         {
-                            double diff = 0.0;
+                            double diff;
                             if (!deltaAccelProcessorGroup.RSProcessor.useDeltaAccel)
                             {
                                 diff = (cState.RX - 128 + deadzoneR) / (double)(255 - 128 + deadzoneR);
@@ -4656,7 +4674,16 @@ namespace DS4Windows
                     {
                         if (cState.LY < 128 - deadzoneL)
                         {
-                            double diff = -(cState.LY - 128 - deadzoneL) / (double)(0 - 128 - deadzoneL);
+                            double diff;
+                            if (!deltaAccelProcessorGroup.LSProcessor.useDeltaAccel)
+                            {
+                                diff = -(cState.LY - 128 - deadzoneL) / (double)(0 - 128 - deadzoneL);
+                            }
+                            else
+                            {
+                                diff = -deltaAccelProcessorGroup.LSProcessor.AccelOutYNorm;
+                            }
+
                             tempMouseOffsetY = cState.LYUnit * mouseOffset;
                             //tempMouseOffsetY = MOUSESTICKOFFSET;
                             //tempMouseOffsetY = Math.Abs(Math.Sin(cState.LSAngleRad)) * MOUSESTICKOFFSET;
@@ -4671,7 +4698,16 @@ namespace DS4Windows
                     {
                         if (cState.LY > 128 + deadzoneL)
                         {
-                            double diff = (cState.LY - 128 + deadzoneL) / (double)(255 - 128 + deadzoneL);
+                            double diff;
+                            if (!deltaAccelProcessorGroup.LSProcessor.useDeltaAccel)
+                            {
+                                diff = (cState.LY - 128 + deadzoneL) / (double)(255 - 128 + deadzoneL);
+                            }
+                            else
+                            {
+                                diff = deltaAccelProcessorGroup.LSProcessor.AccelOutYNorm;
+                            }
+
                             tempMouseOffsetY = cState.LYUnit * mouseOffset;
                             //tempMouseOffsetY = MOUSESTICKOFFSET;
                             //tempMouseOffsetY = Math.Abs(Math.Sin(cState.LSAngleRad)) * MOUSESTICKOFFSET;
@@ -4686,7 +4722,7 @@ namespace DS4Windows
                     {
                         if (cState.RY < 128 - deadzoneR)
                         {
-                            double diff = 0.0;
+                            double diff;
                             if (!deltaAccelProcessorGroup.RSProcessor.useDeltaAccel)
                             {
                                 diff = -(cState.RY - 128 - deadzoneR) / (double)(0 - 128 - deadzoneR);
@@ -4710,7 +4746,7 @@ namespace DS4Windows
                     {
                         if (cState.RY > 128 + deadzoneR)
                         {
-                            double diff = 0.0;
+                            double diff;
                             if (!deltaAccelProcessorGroup.RSProcessor.useDeltaAccel)
                             {
                                 diff = (cState.RY - 128 + deadzoneR) / (double)(255 - 128 + deadzoneR);

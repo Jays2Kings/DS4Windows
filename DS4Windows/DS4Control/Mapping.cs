@@ -9,9 +9,7 @@ using System.Diagnostics;
 using static DS4Windows.Global;
 using System.Drawing; // Point struct
 using Sensorit.Base;
-using System.Windows.Forms;
 using DS4WinWPF.DS4Control;
-using static System.Windows.Forms.AxHost;
 
 namespace DS4Windows
 {

@@ -2631,6 +2631,19 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             ButtonMouseOffsetChanged += ProfileSettingsViewModel_ButtonMouseOffsetChanged;
             GyroMouseSmoothMethodIndexChanged += ProfileSettingsViewModel_GyroMouseSmoothMethodIndexChanged;
             GyroMouseStickSmoothMethodIndexChanged += ProfileSettingsViewModel_GyroMouseStickSmoothMethodIndexChanged;
+
+            LSDeltaAccelEnabledChanged += ProfileSettingsViewModel_LSDeltaAccelEnabledChanged;
+            RSDeltaAccelEnabledChanged += ProfileSettingsViewModel_RSDeltaAccelEnabledChanged;
+        }
+
+        private void ProfileSettingsViewModel_LSDeltaAccelEnabledChanged(object sender, EventArgs e)
+        {
+            Mapping.deltaAccelProcessors[device].LSProcessor.Reset();
+        }
+
+        private void ProfileSettingsViewModel_RSDeltaAccelEnabledChanged(object sender, EventArgs e)
+        {
+            Mapping.deltaAccelProcessors[device].RSProcessor.Reset();
         }
 
         private void ProfileSettingsViewModel_GyroMouseStickSmoothMethodIndexChanged(object sender, EventArgs e)

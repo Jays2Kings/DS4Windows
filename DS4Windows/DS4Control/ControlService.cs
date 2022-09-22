@@ -1410,7 +1410,6 @@ namespace DS4Windows
                     {
                         //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Unbound;
                         outputslotMan.DeferredRemoval(dev, index, outputDevices, immediate);
-                        LogDebug($"Unplugging virtual {tempType} Controller");
                     }
                     else if (slotDevice.CurrentAttachedStatus == OutSlotDevice.AttachedStatus.Attached)
                     {

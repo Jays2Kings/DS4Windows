@@ -275,7 +275,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             get
             {
-                var xinputSlot = "Unkown";
+                var xinputSlot = "?";
                 if (outSlotDevice.CurrentType == OutContType.X360)
                 {
                     var tempX360 = outSlotDevice.OutputDevice as Xbox360OutDevice;

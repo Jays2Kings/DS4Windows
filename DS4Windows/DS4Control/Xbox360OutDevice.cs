@@ -181,7 +181,7 @@ namespace DS4Windows
             {
                 // Need a delay here
                 Thread.Sleep(USER_INDEX_WAIT);
-                _xInputSlotNum = cont.UserIndex;
+                XinputSlotNum = cont.UserIndex;
             }
         }
         public override void Disconnect()

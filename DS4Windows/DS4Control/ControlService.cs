@@ -1299,11 +1299,6 @@ namespace DS4Windows
                         success = true;
                     }
 
-                    if (success)
-                    {
-                        LogDebug($"Associate virtual X360 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} output slot #{slotDevice.Index + 1} for input {device.DisplayName} controller #{index + 1}");
-                    }
-
                     //tempXbox.Connect();
                     //LogDebug("X360 Controller #" + (index + 1) + " connected");
                 }
@@ -1368,11 +1363,6 @@ namespace DS4Windows
                         success = true;
                     }
 
-                    if (success)
-                    {
-                        LogDebug($"Associate virtual DS4 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} output slot #{slotDevice.Index + 1} for input {device.DisplayName} controller #{index + 1}");
-                    }
-
                     //DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
                     //DS4OutDevice tempDS4 = outputslotMan.AllocateController(OutContType.DS4, vigemTestClient)
                     //    as DS4OutDevice;
@@ -1384,6 +1374,7 @@ namespace DS4Windows
 
                 if (success)
                 {
+                    LogDebug($"Associated input controller #{index + 1} ({device.DisplayName}) to virtual {slotDevice.OutputDevice.GetDeviceType()} Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} output slot #{slotDevice.Index + 1}");
                     useDInputOnly[index] = false;
                 }
             }

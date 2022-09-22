@@ -1199,7 +1199,7 @@ namespace DS4Windows
             {
                 OutputDevice outDevice = EstablishOutDevice(-1, contType);
                 outputslotMan.DeferredPlugin(outDevice, -1, outputDevices, contType);
-                LogDebug($"Plugging virtual {contType} Controller");
+
             }
         }
 
@@ -1210,7 +1210,7 @@ namespace DS4Windows
             {
                 OutputDevice outDevice = EstablishOutDevice(-1, contType);
                 outputslotMan.DeferredPlugin(outDevice, -1, outputDevices, contType);
-                LogDebug($"Plugging virtual {contType} Controller");
+
             }
         }
 
@@ -1270,7 +1270,6 @@ namespace DS4Windows
                             outputslotMan.DeferredPlugin(tempXbox, index, outputDevices, contType);
                             //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
-                            LogDebug("Plugging in virtual X360 Controller");
                             success = true;
                         }
                         else

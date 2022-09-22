@@ -1336,7 +1336,6 @@ namespace DS4Windows
                             outputslotMan.DeferredPlugin(tempDS4, index, outputDevices, contType);
                             //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
-                            LogDebug("Plugging in virtual DS4 Controller");
                             success = true;
                         }
                         else

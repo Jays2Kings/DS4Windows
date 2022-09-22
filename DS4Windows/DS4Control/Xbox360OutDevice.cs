@@ -32,7 +32,14 @@ namespace DS4Windows
             new Dictionary<int, Xbox360FeedbackReceivedEventHandler>();
 
         private int _xInputSlotNum = -1;
-        public int XinputSlotNum => _xInputSlotNum;
+        public int XinputSlotNum
+        {
+            get => _xInputSlotNum;
+            set
+            {
+                if (value >= 0 && value < 16) _xInputSlotNum = value;
+            }
+        }
 
         private X360Features _features;
         public X360Features Features => _features;

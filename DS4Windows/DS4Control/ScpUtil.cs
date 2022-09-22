@@ -3599,6 +3599,24 @@ namespace DS4Windows
                 XmlNode xmlLSOuterBindInvert = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOuterBindInvert", null); xmlLSOuterBindInvert.InnerText = lsModInfo[device].outerBindInvert.ToString(); rootElement.AppendChild(xmlLSOuterBindInvert);
                 XmlNode xmlRSOuterBindInvert = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOuterBindInvert", null); xmlRSOuterBindInvert.InnerText = rsModInfo[device].outerBindInvert.ToString(); rootElement.AppendChild(xmlRSOuterBindInvert);
 
+                XmlElement xmlLSDeltaAccelGroupEl = m_Xdoc.CreateElement("LSDeltaAccelSettings");
+                XmlElement xmlLSDeltaEnabled = m_Xdoc.CreateElement("Enabled"); xmlLSDeltaEnabled.InnerText = lsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.enabled.ToString(); xmlLSDeltaAccelGroupEl.AppendChild(xmlLSDeltaEnabled);
+                XmlElement xmlLSDeltaMultiplier = m_Xdoc.CreateElement("Multiplier"); xmlLSDeltaMultiplier.InnerText = lsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.multiplier.ToString(); xmlLSDeltaAccelGroupEl.AppendChild(xmlLSDeltaMultiplier);
+                XmlElement xmlLSDeltaMaxTravel = m_Xdoc.CreateElement("MaxTravel"); xmlLSDeltaMaxTravel.InnerText = lsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.maxTravel.ToString(); xmlLSDeltaAccelGroupEl.AppendChild(xmlLSDeltaMaxTravel);
+                XmlElement xmlLSDeltaMinTravel = m_Xdoc.CreateElement("MinTravel"); xmlLSDeltaMinTravel.InnerText = lsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minTravel.ToString(); xmlLSDeltaAccelGroupEl.AppendChild(xmlLSDeltaMinTravel);
+                XmlElement xmlLSDeltaEasingDuration = m_Xdoc.CreateElement("EasingDuration"); xmlLSDeltaEasingDuration.InnerText = lsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.easingDuration.ToString(); xmlLSDeltaAccelGroupEl.AppendChild(xmlLSDeltaEasingDuration);
+                XmlElement xmlLSDeltaMinFactor = m_Xdoc.CreateElement("MinFactor"); xmlLSDeltaMinFactor.InnerText = lsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minfactor.ToString(); xmlLSDeltaAccelGroupEl.AppendChild(xmlLSDeltaMinFactor);
+                rootElement.AppendChild(xmlLSDeltaAccelGroupEl);
+
+                XmlElement xmlRSDeltaAccelGroupEl = m_Xdoc.CreateElement("RSDeltaAccelSettings");
+                XmlElement xmlRSDeltaEnabled = m_Xdoc.CreateElement("Enabled"); xmlRSDeltaEnabled.InnerText = rsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.enabled.ToString(); xmlRSDeltaAccelGroupEl.AppendChild(xmlRSDeltaEnabled);
+                XmlElement xmlRSDeltaMultiplier = m_Xdoc.CreateElement("Multiplier"); xmlRSDeltaMultiplier.InnerText = rsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.multiplier.ToString(); xmlRSDeltaAccelGroupEl.AppendChild(xmlRSDeltaMultiplier);
+                XmlElement xmlRSDeltaMaxTravel = m_Xdoc.CreateElement("MaxTravel"); xmlRSDeltaMaxTravel.InnerText = rsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.maxTravel.ToString(); xmlRSDeltaAccelGroupEl.AppendChild(xmlRSDeltaMaxTravel);
+                XmlElement xmlRSDeltaMinTravel = m_Xdoc.CreateElement("MinTravel"); xmlRSDeltaMinTravel.InnerText = rsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minTravel.ToString(); xmlRSDeltaAccelGroupEl.AppendChild(xmlRSDeltaMaxTravel);
+                XmlElement xmlRSDeltaEasingDuration = m_Xdoc.CreateElement("EasingDuration"); xmlRSDeltaEasingDuration.InnerText = rsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.easingDuration.ToString(); xmlRSDeltaAccelGroupEl.AppendChild(xmlRSDeltaEasingDuration);
+                XmlElement xmlRSDeltaMinFactor = m_Xdoc.CreateElement("MinFactor"); xmlRSDeltaMinFactor.InnerText = rsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minfactor.ToString(); xmlRSDeltaAccelGroupEl.AppendChild(xmlRSDeltaMinFactor);
+                rootElement.AppendChild(xmlRSDeltaAccelGroupEl);
+
                 XmlNode xmlSXD = m_Xdoc.CreateNode(XmlNodeType.Element, "SXDeadZone", null); xmlSXD.InnerText = SXDeadzone[device].ToString(); rootElement.AppendChild(xmlSXD);
                 XmlNode xmlSZD = m_Xdoc.CreateNode(XmlNodeType.Element, "SZDeadZone", null); xmlSZD.InnerText = SZDeadzone[device].ToString(); rootElement.AppendChild(xmlSZD);
 
@@ -4765,6 +4783,77 @@ namespace DS4Windows
                     catch { }
                 }
 
+                XmlNode lsDeltaAccelElement =
+                    m_Xdoc.SelectSingleNode($"/{rootname}/LSDeltaAccelSettings");
+                if (lsDeltaAccelElement != null)
+                {
+                    try
+                    {
+                        Item = lsDeltaAccelElement.SelectSingleNode("Enabled");
+                        if (bool.TryParse(Item.InnerText ?? "", out bool temp))
+                        {
+                            lsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.enabled
+                                = temp;
+                        }
+                    }
+                    catch {}
+
+                    try
+                    {
+                        Item = lsDeltaAccelElement.SelectSingleNode("Multiplier");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            lsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.multiplier =
+                                Math.Clamp(temp, 0.0, 10.0);
+                        }
+                    }
+                    catch {}
+
+                    try
+                    {
+                        Item = lsDeltaAccelElement.SelectSingleNode("MaxTravel");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            lsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.maxTravel =
+                                Math.Clamp(temp, 0.0, 1.0);
+                        }
+                    }
+                    catch {}
+
+                    try
+                    {
+                        Item = lsDeltaAccelElement.SelectSingleNode("MinTravel");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            lsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minTravel =
+                                Math.Clamp(temp, 0.0, 1.0);
+                        }
+                    }
+                    catch {}
+
+                    try
+                    {
+                        Item = lsDeltaAccelElement.SelectSingleNode("EasingDuration");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            lsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.easingDuration =
+                                Math.Clamp(temp, 0.0, 600.0);
+                        }
+                    }
+                    catch {}
+
+                    try
+                    {
+                        Item = lsDeltaAccelElement.SelectSingleNode("MinFactor");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            lsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minfactor =
+                                Math.Clamp(temp, 1.0, 10.0);
+                        }
+                    }
+                    catch {}
+                }
+
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSDeadZoneType");
@@ -4845,6 +4934,77 @@ namespace DS4Windows
                         Item = rsAxialDeadElement.SelectSingleNode("MaxOutputY");
                         double.TryParse(Item.InnerText, out double temp);
                         rsModInfo[device].yAxisDeadInfo.maxOutput = Math.Min(Math.Max(temp, 0.0), 100.0);
+                    }
+                    catch { }
+                }
+
+                XmlNode rsDeltaAccelElement =
+                    m_Xdoc.SelectSingleNode($"/{rootname}/RSDeltaAccelSettings");
+                if (lsDeltaAccelElement != null)
+                {
+                    try
+                    {
+                        Item = rsDeltaAccelElement.SelectSingleNode("Enabled");
+                        if (bool.TryParse(Item.InnerText ?? "", out bool temp))
+                        {
+                            rsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.enabled
+                                = temp;
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = rsDeltaAccelElement.SelectSingleNode("Multiplier");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            rsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.multiplier =
+                                Math.Clamp(temp, 0.0, 10.0);
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = rsDeltaAccelElement.SelectSingleNode("MaxTravel");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            rsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.maxTravel =
+                                Math.Clamp(temp, 0.0, 1.0);
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = rsDeltaAccelElement.SelectSingleNode("MinTravel");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            rsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minTravel =
+                                Math.Clamp(temp, 0.0, 1.0);
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = rsDeltaAccelElement.SelectSingleNode("EasingDuration");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            rsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.easingDuration =
+                                Math.Clamp(temp, 0.0, 600.0);
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = rsDeltaAccelElement.SelectSingleNode("MinFactor");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            rsOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minfactor =
+                                Math.Clamp(temp, 1.0, 10.0);
+                        }
                     }
                     catch { }
                 }

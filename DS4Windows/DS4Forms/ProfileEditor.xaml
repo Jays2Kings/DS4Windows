@@ -333,7 +333,7 @@
                                                 </TabItem>
                                             </TabControl>
 
-                                            <Grid>
+                                            <Grid DockPanel.Dock="Top">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition/>
                                                     <ColumnDefinition/>
@@ -437,6 +437,61 @@
                                                     <CheckBox Content="Invert" IsChecked="{Binding LSOuterBindInvert}" ToolTip="{lex:Loc StickOuterBindInvertTooltip}" DockPanel.Dock="Top" HorizontalAlignment="Right" />
                                                 </DockPanel>
                                             </Grid>
+
+                                            <GroupBox Header="Delta Acceleration" DockPanel.Dock="Top">
+                                                <StackPanel Orientation="Vertical">
+                                                    <DockPanel LastChildFill="False">
+                                                        <Label Content="Enabled:" DockPanel.Dock="Left" />
+                                                        <CheckBox IsChecked="{Binding LSDeltaAccelEnabled}" Margin="{StaticResource spaceMargin}" DockPanel.Dock="Right" />
+                                                    </DockPanel>
+
+                                                    <Expander IsExpanded="{Binding LSDeltaAccelEnabled,Mode=OneTime}" Header="Settings">
+                                                        <Grid IsEnabled="{Binding LSDeltaAccelEnabled}">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition />
+                                                                <ColumnDefinition />
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition />
+                                                                <RowDefinition />
+                                                                <RowDefinition />
+                                                                <RowDefinition />
+                                                                <RowDefinition />
+                                                            </Grid.RowDefinitions>
+
+                                                            <Label Content="Multiplier:" Grid.Row="0" Grid.Column="0" />
+                                                            <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding LSDeltaMultiplier}"
+                                                            MinWidth="100" Minimum="0.0" Maximum="10.0" Increment="0.1"
+                                                            Margin="{StaticResource spaceMargin}" Grid.Row="0" Grid.Column="1" />
+
+                                                            <Label Content="Max Travel:" Grid.Row="1" Grid.Column="0" />
+                                                            <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding LSDeltaMaxTravel}"
+                                                            MinWidth="100" Minimum="0.0" Maximum="1.0" Increment="0.05"
+                                                            Margin="{StaticResource spaceMargin}" Grid.Row="1" Grid.Column="1" />
+
+                                                            <Label Content="Min Travel:" Grid.Row="2" Grid.Column="0" />
+                                                            <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding LSDeltaMinTravel}"
+                                                            MinWidth="100" Minimum="0.0" Maximum="1.0" Increment="0.05"
+                                                            Margin="{StaticResource spaceMargin}" Grid.Row="2" Grid.Column="1" />
+
+                                                            <Label Content="Easing Duration:" Grid.Row="3" Grid.Column="0" />
+                                                            <DockPanel Grid.Row="3" Grid.Column="1">
+                                                                <TextBlock Text="sec" DockPanel.Dock="Right" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
+                                                                <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding LSDeltaEasingDuration}"
+                                                            MinWidth="100" Minimum="0.0" Maximum="600.0" Increment="0.1"
+                                                            Margin="{StaticResource spaceMargin}" />
+                                                            </DockPanel>
+
+                                                            <Label Content="Min Factor:" Grid.Row="4" Grid.Column="0" />
+                                                            <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding LSDeltaMinFactor}"
+                                                            MinWidth="100" Minimum="1.0" Maximum="10.0" Increment="0.1"
+                                                            Margin="{StaticResource spaceMargin}" Grid.Row="4" Grid.Column="1" />
+                                                        </Grid>
+                                                    </Expander>
+
+                                                </StackPanel>
+                                            </GroupBox>
                                         </DockPanel>
                                     </TabItem>
                                     <TabItem Header="FlickStick" Visibility="Collapsed">
@@ -496,7 +551,7 @@
                                 <TabControl SelectedIndex="{Binding RSOutputIndex,Mode=OneWay,FallbackValue='0'}" BorderBrush="{x:Null}">
                                     <TabItem Header="None"  Visibility="Collapsed" />
                                     <TabItem Header="Controls" Visibility="Collapsed">
-                                        <DockPanel>
+                                        <DockPanel LastChildFill="False">
                                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                                                 <Label Content="Dead Zone Type" />
                                                 <ComboBox MinWidth="160" SelectedIndex="{Binding RSDeadTypeIndex,FallbackValue='0'}" VerticalContentAlignment="Center" Margin="10,0,0,0">
@@ -565,7 +620,7 @@
                                                 </TabItem>
                                             </TabControl>
 
-                                            <Grid>
+                                            <Grid DockPanel.Dock="Top">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition/>
                                                     <ColumnDefinition/>
@@ -669,6 +724,60 @@
                                                     <CheckBox Content="Invert" IsChecked="{Binding RSOuterBindInvert}" ToolTip="{lex:Loc StickOuterBindInvertTooltip}" DockPanel.Dock="Top" HorizontalAlignment="Right" />
                                                 </DockPanel>
                                             </Grid>
+
+                                            <GroupBox Header="Delta Acceleration" DockPanel.Dock="Top">
+                                                <StackPanel Orientation="Vertical">
+                                                    <DockPanel LastChildFill="False">
+                                                        <Label Content="Enabled:" DockPanel.Dock="Left" />
+                                                        <CheckBox IsChecked="{Binding RSDeltaAccelEnabled}" Margin="{StaticResource spaceMargin}" DockPanel.Dock="Right" />
+                                                    </DockPanel>
+
+                                                    <Expander IsExpanded="{Binding RSDeltaAccelEnabled,Mode=OneTime}" Header="Settings">
+                                                        <Grid IsEnabled="{Binding RSDeltaAccelEnabled}">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition />
+                                                                <ColumnDefinition />
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition />
+                                                                <RowDefinition />
+                                                                <RowDefinition />
+                                                                <RowDefinition />
+                                                                <RowDefinition />
+                                                            </Grid.RowDefinitions>
+
+                                                            <Label Content="Multiplier:" Grid.Row="0" Grid.Column="0" />
+                                                            <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding RSDeltaMultiplier}"
+                                                            MinWidth="100" Minimum="0.0" Maximum="10.0" Increment="0.1"
+                                                            Margin="{StaticResource spaceMargin}" Grid.Row="0" Grid.Column="1" />
+
+                                                            <Label Content="Max Travel:" Grid.Row="1" Grid.Column="0" />
+                                                            <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding RSDeltaMaxTravel}"
+                                                            MinWidth="100" Minimum="0.0" Maximum="1.0" Increment="0.05"
+                                                            Margin="{StaticResource spaceMargin}" Grid.Row="1" Grid.Column="1" />
+
+                                                            <Label Content="Min Travel:" Grid.Row="2" Grid.Column="0" />
+                                                            <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding RSDeltaMinTravel}"
+                                                            MinWidth="100" Minimum="0.0" Maximum="1.0" Increment="0.05"
+                                                            Margin="{StaticResource spaceMargin}" Grid.Row="2" Grid.Column="1" />
+
+                                                            <Label Content="Easing Duration:" Grid.Row="3" Grid.Column="0" />
+                                                            <DockPanel Grid.Row="3" Grid.Column="1">
+                                                                <TextBlock Text="sec" DockPanel.Dock="Right" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
+                                                                <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding RSDeltaEasingDuration}"
+                                                            MinWidth="100" Minimum="0.0" Maximum="600.0" Increment="0.1"
+                                                            Margin="{StaticResource spaceMargin}" />
+                                                            </DockPanel>
+
+                                                            <Label Content="Min Factor:" Grid.Row="4" Grid.Column="0" />
+                                                            <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding RSDeltaMinFactor}"
+                                                            MinWidth="100" Minimum="1.0" Maximum="10.0" Increment="0.1"
+                                                            Margin="{StaticResource spaceMargin}" Grid.Row="4" Grid.Column="1" />
+                                                        </Grid>
+                                                    </Expander>
+                                                </StackPanel>
+                                            </GroupBox>
                                         </DockPanel>
 
                                     </TabItem>

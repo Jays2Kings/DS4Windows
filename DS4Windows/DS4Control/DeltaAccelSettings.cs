@@ -8,7 +8,9 @@ namespace DS4WinWPF.DS4Control
 {
     public class DeltaAccelSettings
     {
-        public bool enabled = true;
+        public const bool ENABLED_DEFAULT = false;
+
+        public bool enabled = ENABLED_DEFAULT;
         public double multiplier = 4.0;
         public double maxTravel = 0.2;
         public double minTravel = 0.01;
@@ -67,7 +69,7 @@ namespace DS4WinWPF.DS4Control
 
         public void Reset()
         {
-            enabled = true;
+            enabled = ENABLED_DEFAULT;
             multiplier = 4.0;
             maxTravel = 0.2;
             minTravel = 0.01;

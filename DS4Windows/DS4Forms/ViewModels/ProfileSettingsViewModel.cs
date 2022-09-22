@@ -1118,6 +1118,124 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.RSModInfo[device].outerBindDeadZone = value * 100.0;
         }
 
+        public bool LSDeltaAccelEnabled
+        {
+            get => Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.enabled;
+            set
+            {
+                bool temp = Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.enabled;
+                if (temp == value) return;
+
+                Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.enabled = value;
+                LSDeltaAccelEnabledChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler LSDeltaAccelEnabledChanged;
+
+        public double LSDeltaMultiplier
+        {
+            get => Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.multiplier;
+            set
+            {
+                Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.multiplier = value;
+            }
+        }
+
+        public double LSDeltaMaxTravel
+        {
+            get => Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.maxTravel;
+            set
+            {
+                Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.maxTravel = value;
+            }
+        }
+
+        public double LSDeltaMinTravel
+        {
+            get => Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minTravel;
+            set
+            {
+                Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minTravel = value;
+            }
+        }
+
+        public double LSDeltaEasingDuration
+        {
+            get => Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.easingDuration;
+            set
+            {
+                Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.easingDuration = value;
+            }
+        }
+
+        public double LSDeltaMinFactor
+        {
+            get => Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minfactor;
+            set
+            {
+                Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minfactor = value;
+            }
+        }
+
+        public bool RSDeltaAccelEnabled
+        {
+            get => Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.enabled;
+            set
+            {
+                bool temp = Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.enabled;
+                if (temp == value) return;
+
+                Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.enabled = value;
+                RSDeltaAccelEnabledChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler RSDeltaAccelEnabledChanged;
+
+        public double RSDeltaMultiplier
+        {
+            get => Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.multiplier;
+            set
+            {
+                Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.multiplier = value;
+            }
+        }
+
+        public double RSDeltaMaxTravel
+        {
+            get => Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.maxTravel;
+            set
+            {
+                Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.maxTravel = value;
+            }
+        }
+
+        public double RSDeltaMinTravel
+        {
+            get => Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minTravel;
+            set
+            {
+                Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minTravel = value;
+            }
+        }
+
+        public double RSDeltaEasingDuration
+        {
+            get => Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.easingDuration;
+            set
+            {
+                Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.easingDuration = value;
+            }
+        }
+
+        public double RSDeltaMinFactor
+        {
+            get => Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minfactor;
+            set
+            {
+                Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minfactor = value;
+            }
+        }
+
         public int LSOutputIndex
         {
             get

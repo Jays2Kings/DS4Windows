@@ -1970,12 +1970,6 @@ namespace DS4Windows
 
         private void BeginPrepareConnectedInputController(DS4Device device, bool showlog = false)
         {
-            if (showlog)
-            {
-                LogDebug(DS4WinWPF.Properties.Resources.FoundController + " " + device.getMacAddress() + " (" + device.getConnectionType() + ") (" +
-                                            device.DisplayName + ")");
-            }
-
             if (hidDeviceHidingEnabled && CheckAffected(device))
             {
                 //device.CurrentExclusiveStatus = DS4Device.ExclusiveStatus.HidGuardAffected;

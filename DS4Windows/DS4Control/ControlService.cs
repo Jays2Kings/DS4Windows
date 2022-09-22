@@ -1199,7 +1199,6 @@ namespace DS4Windows
             {
                 OutputDevice outDevice = EstablishOutDevice(-1, contType);
                 outputslotMan.DeferredPlugin(outDevice, -1, outputDevices, contType);
-
             }
         }
 
@@ -1210,7 +1209,6 @@ namespace DS4Windows
             {
                 OutputDevice outDevice = EstablishOutDevice(-1, contType);
                 outputslotMan.DeferredPlugin(outDevice, -1, outputDevices, contType);
-
             }
         }
 
@@ -1304,7 +1302,7 @@ namespace DS4Windows
 
                     if (success)
                     {
-                        LogDebug($"Associate X360 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} slot #{slotDevice.Index + 1} for input {device.DisplayName} controller #{index + 1}");
+                        LogDebug($"Associate virtual X360 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} output slot #{slotDevice.Index + 1} for input {device.DisplayName} controller #{index + 1}");
                     }
 
                     //tempXbox.Connect();
@@ -1374,7 +1372,7 @@ namespace DS4Windows
 
                     if (success)
                     {
-                        LogDebug($"Associate DS4 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} slot #{slotDevice.Index + 1} for input {device.DisplayName} controller #{index + 1}");
+                        LogDebug($"Associate virtual DS4 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} output slot #{slotDevice.Index + 1} for input {device.DisplayName} controller #{index + 1}");
                     }
 
                     //DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
@@ -1403,7 +1401,7 @@ namespace DS4Windows
                 if (dev != null && slotDevice != null)
                 {
                     string tempType = dev.GetDeviceType();
-                    LogDebug($"Disassociate {tempType} Controller from{(slotDevice.CurrentReserveStatus == OutSlotDevice.ReserveStatus.Permanent ? " permanent" : "")} slot #{slotDevice.Index+1} for input {device.DisplayName} controller #{index + 1}", false);
+                    LogDebug($"Disassociate {tempType} Controller from{(slotDevice.CurrentReserveStatus == OutSlotDevice.ReserveStatus.Permanent ? " permanent" : "")} output slot #{slotDevice.Index+1} for input {device.DisplayName} controller #{index + 1}", false);
 
                     OutContType currentType = activeOutDevType[index];
                     outputDevices[index] = null;

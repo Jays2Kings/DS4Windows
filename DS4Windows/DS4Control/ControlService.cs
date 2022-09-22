@@ -1220,7 +1220,6 @@ namespace DS4Windows
                 string tempType = dev.GetDeviceType();
                 slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Unbound;
                 outputslotMan.DeferredRemoval(dev, -1, outputDevices, false);
-                LogDebug($"Unplugging virtual {tempType} Controller");
             }
         }
 

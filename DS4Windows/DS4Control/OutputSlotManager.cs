@@ -208,6 +208,7 @@ namespace DS4Windows
 
                     outputSlots[slot].DetachDevice();
                     SlotUnassigned?.Invoke(this, slot, outputSlots[slot]);
+                    AppLogger.LogToGui($"Unplugging virtual {outputDevice.GetDeviceType()} Controller from output slot #{slot + 1}",false);
 
                     //if (!immediate)
                     //{

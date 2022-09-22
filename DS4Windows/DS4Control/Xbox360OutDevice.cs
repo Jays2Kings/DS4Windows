@@ -31,7 +31,8 @@ namespace DS4Windows
         public Dictionary<int, Xbox360FeedbackReceivedEventHandler> forceFeedbacksDict =
             new Dictionary<int, Xbox360FeedbackReceivedEventHandler>();
 
-        private int _xInputSlotNum = -1;
+        private const int XINPUT_SLOT_NUM_DEFAULT = -1;
+        private int _xInputSlotNum = XINPUT_SLOT_NUM_DEFAULT;
         public int XinputSlotNum
         {
             get => _xInputSlotNum;
@@ -181,7 +182,17 @@ namespace DS4Windows
             {
                 // Need a delay here
                 Thread.Sleep(USER_INDEX_WAIT);
-                XinputSlotNum = cont.UserIndex;
+                try
+                {
+                    XinputSlotNum = cont.UserIndex;
+                }
+                catch (Exception)
+                {
+                    // Failed to grab xinput slot number. Set default
+                    // slot number and remove feature flag
+                    _xInputSlotNum = XINPUT_SLOT_NUM_DEFAULT;
+                    _features -= X360Features.XInputSlotNum;
+                }
             }
         }
         public override void Disconnect()

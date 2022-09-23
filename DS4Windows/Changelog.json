@@ -1,9 +1,59 @@
 {
-  "latest_version": "3.1.4",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 4},
-  "updated_at": "2022-09-01T23:36:52+0000",
+  "latest_version": "3.1.6",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 6},
+  "updated_at": "2022-09-23T01:54:08+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.1.6",
+      "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 6},
+      "base_header": "Version 3.1.6",
+      "release_date": "2022-09-23T01:54:08+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.1.6",
+          "log_text": ["* Updated DS4Windows.deps.json file",
+            "* Made sure to bundle latest Lang assembly folder"],
+          "updated_at": "2022-09-23T01:54:08+0000"
+        }
+      ]
+    },
+    {
+      "version_str": "3.1.5",
+      "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 5},
+      "base_header": "Version 3.1.5",
+      "release_date": "2022-09-22T21:04:32+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.1.5",
+          "log_text": ["* Updated German translation. Contribution by **h1nnak**",
+            "* Added Razer Raion Fightpad PS4 to known devices. Contribution by **Ygor Vaz**",
+            "* Updated NLog package to version 5.0.4",
+            "* Updated H.NotifyIcon.Wpf package to version 2.0.64",
+            "* Updated bundled ViGEm.NET libraries",
+            "* Fixed wrong UI binding used for RSAntiSnapback. Contribution by **Kanuan**",
+            "* Fixed Hip Fire Delay settings not saving. Contribution by **Kanuan**",
+            "* Fixed preset option using wrong preset. Contribution by **Kanuan**",
+            "* Fixed Flick Stick Min Angle settings not saving. Contribution by **Kanuan**",
+            "* Set DualSense's Lightbar to white when stopping DS4Windows. Contribution by **Kanuan**",
+            "* Added AutoProfile target EXE to Hidhide. Contribution by **Yohoki**",
+            "* Added Auto-Profile Target to HidHide's Whitelist. Contribution by **Yohoki**",
+            "* Fixed LF byte for rumble frequency with Switch Pro and JoyCon",
+            "* Added reference to Nefarius.Utilities.DeviceManagement package. Contribution by **nefarius**",
+            "* Hardened virtual device check using Nefarius.Utilities.DeviceManagement package. New check detects and skips reWASD created virtual DS4 controllers. Contribution by **nefarius**",
+            "* Updated Driver Installer window to link to HidHide 1.2.98",
+            "* Display XInput slot num in output slots panel",
+            "* Added Filename to LogDebug when adding/removing EXE entry for HIDHide's whitelist. Contribution by **Yohoki**",
+            "* Updated README file with updated instructions and pictures. Contribution by **dpearson2699**",
+            "* Activated Improved Rumble Emulation for DualSense controllers using newer firmware. Set DualSense's default rumble strength level to High. Contribution by **Ygor Vaz**",
+            "* Increased max amplitude for Switch Pro rumble. Increases max rumble output",
+            "* Added initial support for updated ViGEmBus DS4 full output payload (rumble + lightbar) support. Requires latest pre-release ViGEmBus driver (AwaitRawOutputReport calls) to work."],
+          "updated_at": "2022-09-22T21:04:32+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.1.4",
       "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 4},

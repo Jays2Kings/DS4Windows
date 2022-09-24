@@ -9,6 +9,7 @@ using System.Diagnostics;
 using static DS4Windows.Global;
 using System.Drawing; // Point struct
 using Sensorit.Base;
+using DS4WinWPF.DS4Control;
 
 namespace DS4Windows
 {
@@ -324,6 +325,222 @@ namespace DS4Windows
             new TwoStageTriggerMappingData(), new TwoStageTriggerMappingData(), new TwoStageTriggerMappingData(),
             new TwoStageTriggerMappingData(), new TwoStageTriggerMappingData(), new TwoStageTriggerMappingData(),
             new TwoStageTriggerMappingData(), new TwoStageTriggerMappingData(),
+        };
+
+        public class DeltaSettingsProcessor
+        {
+            double previousPointerX = 0.0;
+            //double accelHelperX = 0.0;
+            //double accelTravelX = 0.0;
+            //Stopwatch deltaEasingTimeX = new Stopwatch();
+
+            double previousPointerY = 0.0;
+            //double accelHelperY = 0.0;
+            //double accelTravelY = 0.0;
+            //Stopwatch deltaEasingTimeY = new Stopwatch();
+
+            double previousPointerRadial = 0.0;
+            double accelCurrentMultiRadial = 0.0;
+            double accelEasingMultiRadial = 0.0;
+            double accelTravelRadial = 0.0;
+            Stopwatch deltaEasingTimeRadial = new Stopwatch();
+            double totalTravelRadial = 0.0;
+
+            public bool useDeltaAccel = false;
+            public double AccelOutXNorm = 0.0;
+            public double AccelOutYNorm = 0.0;
+
+            public void Process(int device, double axisDirX, double axisDirY,
+                double axisRawDirX, double axisRawDirY,
+                double maxXDir, double maxYDir,
+                DeltaAccelSettings mouseDeltaSettings)
+            {
+                //DeltaAccelSettings mouseDeltaSettings = stickSettings.outputSettings.controlSettings.deltaAccelSettings;
+                // Calculate delta acceleration slope and offset.
+                bool testDeltaAccel = useDeltaAccel = mouseDeltaSettings.enabled;
+                double testAccelMulti = mouseDeltaSettings.multiplier;
+                double testAccelMaxTravel = mouseDeltaSettings.maxTravel;
+                double testAccelMinTravel = mouseDeltaSettings.minTravel;
+                double testAccelEasingDuration = mouseDeltaSettings.easingDuration;
+                double minfactor = Math.Max(1.0, mouseDeltaSettings.minfactor); // default 1.0
+                double minTravelStop = Math.Max(0.1, testAccelMinTravel);
+
+                double accelSlope = (testAccelMulti - minfactor) / (testAccelMaxTravel - testAccelMinTravel);
+                double accelOffset = minfactor - (accelSlope * testAccelMinTravel);
+
+                double outXNorm = (axisDirX) / maxXDir, outYNorm = (axisDirY) / maxYDir;
+                AccelOutXNorm = outXNorm; AccelOutYNorm = outYNorm;
+                double rawXNorm = (axisRawDirX) / maxXDir, rawYNorm = (axisRawDirY) / maxYDir;
+                double absX = Math.Abs(outXNorm);
+                double absY = Math.Abs(outYNorm);
+
+                double hyp = Math.Sqrt((rawXNorm * rawXNorm) + (rawYNorm * rawYNorm));
+
+                if (testDeltaAccel)
+                {
+                    //Trace.WriteLine("DELTA CHECK");
+                    //double tempCheckTravel = !inDuration ? testAccelMinTravel : testAccelMinTravel;
+                    if (hyp > 0.0 &&
+                        Math.Abs(hyp - previousPointerRadial) >= testAccelMinTravel &&
+                        (hyp - previousPointerRadial >= 0.0))
+                    {
+                        double tempTravel = Math.Abs(hyp - previousPointerRadial);
+                        double tempDist = tempTravel;
+
+                        if (totalTravelRadial == 0.0)
+                        {
+                            totalTravelRadial = tempTravel;
+                            accelEasingMultiRadial = (accelSlope * tempDist + accelOffset);
+                        }
+                        else
+                        {
+                            totalTravelRadial += tempDist;
+                            double tempEasingDist = totalTravelRadial;
+                            //tempDist = tempEasingDist;
+                            //tempTravel = tempDist;
+                            accelEasingMultiRadial = (accelSlope * tempEasingDist + accelOffset);
+                        }
+
+                        accelCurrentMultiRadial = (accelSlope * tempDist + accelOffset);
+                        outXNorm = outXNorm * accelCurrentMultiRadial;
+                        outYNorm = outYNorm * accelCurrentMultiRadial;
+                        accelTravelRadial = tempTravel;
+
+                        deltaEasingTimeRadial.Restart();
+                        //currentTime = Stopwatch.GetTimestamp();
+                        //previousTime = currentTime;
+
+                        previousPointerRadial = hyp;
+                        previousPointerX = rawXNorm;
+                        previousPointerY = rawYNorm;
+
+                        //Trace.WriteLine($"WTF {hyp} {accelTravelRadial} {accelCurrentMultiRadial} {accelEasingMultiRadial}");
+                    }
+                    else if (hyp > 0.0 && accelCurrentMultiRadial > 0.0 &&
+                        Math.Abs(previousPointerRadial - hyp) < minTravelStop &&
+                        !(
+                        (previousPointerX >= 0.0) != (rawXNorm >= 0.0) &&
+                        (previousPointerY >= 0.0) != (rawYNorm >= 0.0))
+                        )
+                    {
+                        //Trace.WriteLine("STAY ZONE");
+                        //inDuration = true;
+
+                        double timeElapsed = deltaEasingTimeRadial.ElapsedMilliseconds;
+                        //currentTime = Stopwatch.GetTimestamp();
+                        //double timeElapsed = (currentTime - previousTime) * (1.0 / Stopwatch.Frequency) * 1000.0;
+                        double elapsedDiff = 1.0;
+                        double tempAccel = accelCurrentMultiRadial;
+                        double tempTravel = accelTravelRadial;
+
+                        if (hyp - previousPointerRadial <= 0.0)
+                        {
+                            double tempmix2 = Math.Abs(hyp - previousPointerRadial);
+                            tempmix2 = Math.Min(tempmix2, minTravelStop);
+                            double tempmixslope = (testAccelMinTravel - tempTravel) / minTravelStop;
+                            double tempshitintercept = tempTravel;
+                            double finalmanham = (tempmixslope * tempmix2 + tempshitintercept);
+
+                            tempTravel = finalmanham;
+                            tempAccel = (accelSlope * (tempTravel) + accelOffset);
+                        }
+
+                        double elapsedDuration = testAccelEasingDuration * (accelEasingMultiRadial / testAccelMulti);
+                        //Trace.WriteLine($"TIME ELAPSED: {timeElapsed} {tempAccel} {elapsedDuration}");
+                        if (elapsedDuration > 0.0 && (timeElapsed * 0.001) < elapsedDuration)
+                        {
+                            elapsedDiff = ((timeElapsed * 0.001) / elapsedDuration);
+                            elapsedDiff = (1.0 - tempAccel) * (elapsedDiff * elapsedDiff * elapsedDiff) + tempAccel;
+                            outXNorm = elapsedDiff * outXNorm;
+                            outYNorm = elapsedDiff * outYNorm;
+
+                            //Trace.WriteLine($"CONITNUING {elapsedDiff}");
+                        }
+                        else
+                        {
+                            // Easing time has ended. Reset values.
+                            previousPointerRadial = hyp;
+                            accelCurrentMultiRadial = 0.0;
+                            accelTravelRadial = 0.0;
+                            deltaEasingTimeRadial.Reset();
+                            accelEasingMultiRadial = 0.0;
+                            totalTravelRadial = 0.0;
+                            //previousTime = currentTime;
+                            previousPointerX = rawXNorm;
+                            previousPointerY = rawYNorm;
+                            //inDuration = false;
+
+                            //Trace.WriteLine($"DURATION ENDED");
+                        }
+                    }
+                    else
+                    {
+                        //Trace.WriteLine("NEW RESET");
+                        previousPointerRadial = hyp;
+                        accelCurrentMultiRadial = 0.0;
+                        accelTravelRadial = 0.0;
+                        accelEasingMultiRadial = 0.0;
+                        totalTravelRadial = 0.0;
+                        deltaEasingTimeRadial.Reset();
+                        //currentTime = Stopwatch.GetTimestamp();
+                        //previousTime = currentTime;
+                        previousPointerX = rawXNorm;
+                        previousPointerY = rawYNorm;
+                        //inDuration = false;
+                    }
+                }
+                else
+                {
+                    previousPointerRadial = hyp;
+                    previousPointerX = rawXNorm;
+                    previousPointerY = rawYNorm;
+                    accelCurrentMultiRadial = 0.0;
+                    accelTravelRadial = 0.0;
+                    accelEasingMultiRadial = 0.0;
+                    totalTravelRadial = 0.0;
+                    //inDuration = false;
+                    //currentTime = Stopwatch.GetTimestamp();
+                    //previousTime = currentTime;
+                    //if (deltaEasingTimeRadial.IsRunning)
+                    {
+                        deltaEasingTimeRadial.Reset();
+                    }
+                }
+
+                AccelOutXNorm = outXNorm; AccelOutYNorm = outYNorm;
+                //Trace.WriteLine($"X: {AccelOutXNorm} | Y: {AccelOutYNorm}");
+            }
+
+            public void Reset()
+            {
+                useDeltaAccel = false;
+                AccelOutXNorm = AccelOutYNorm = 0.0;
+
+                previousPointerRadial = 0.0;
+                previousPointerX = 0.0;
+                previousPointerY = 0.0;
+                accelCurrentMultiRadial = 0.0;
+                accelTravelRadial = 0.0;
+                accelEasingMultiRadial = 0.0;
+                totalTravelRadial = 0.0;
+                //inDuration = false;
+                //currentTime = Stopwatch.GetTimestamp();
+                //previousTime = currentTime;
+                deltaEasingTimeRadial.Reset();
+            }
+        }
+
+        public class DeltaSettingsProcessorGroup
+        {
+            public DeltaSettingsProcessor LSProcessor = new DeltaSettingsProcessor();
+            public DeltaSettingsProcessor RSProcessor = new DeltaSettingsProcessor();
+        }
+
+        public static DeltaSettingsProcessorGroup[] deltaAccelProcessors = new DeltaSettingsProcessorGroup[Global.MAX_DS4_CONTROLLER_COUNT]
+        {
+            new DeltaSettingsProcessorGroup(), new DeltaSettingsProcessorGroup(), new DeltaSettingsProcessorGroup(),
+            new DeltaSettingsProcessorGroup(), new DeltaSettingsProcessorGroup(), new DeltaSettingsProcessorGroup(),
+            new DeltaSettingsProcessorGroup(), new DeltaSettingsProcessorGroup(),
         };
 
         static ReaderWriterLockSlim syncStateLock = new ReaderWriterLockSlim();
@@ -1951,6 +2168,28 @@ namespace DS4Windows
         /// </summary>
         static DS4Controls[] held = new DS4Controls[Global.MAX_DS4_CONTROLLER_COUNT];
 
+        /*static double previousPointerX = 0.0;
+        //double accelHelperX = 0.0;
+        //double accelTravelX = 0.0;
+        //Stopwatch deltaEasingTimeX = new Stopwatch();
+
+        static double previousPointerY = 0.0;
+        //double accelHelperY = 0.0;
+        //double accelTravelY = 0.0;
+        //Stopwatch deltaEasingTimeY = new Stopwatch();
+
+        static double previousPointerRadial = 0.0;
+        static double accelCurrentMultiRadial = 0.0;
+        static double accelEasingMultiRadial = 0.0;
+        static double accelTravelRadial = 0.0;
+        static Stopwatch deltaEasingTimeRadial = new Stopwatch();
+        static double totalTravelRadial = 0.0;
+
+        static double tempOutXNorm = 0.0;
+        static double tempOutYNorm = 0.0;
+        static bool usingDeltaAccel = false;
+        */
+
         public static void MapCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState,
             Mouse tp, ControlService ctrl)
         {
@@ -2023,6 +2262,27 @@ namespace DS4Windows
             stickSettings = Global.RSOutputSettings[device];
             if (stickSettings.mode == StickMode.Controls)
             {
+                if (stickSettings.outputSettings.controlSettings.deltaAccelSettings.enabled)
+                {
+                    DS4Device d = ctrl.DS4Controllers[device];
+                    DS4State cRawState = d.getCurrentStateRef();
+                    cRawState.calculateStickAngles();
+
+                    double maxXValue = cState.RX >= 128.0 ? 255.0 : 0.0;
+                    double maxYValue = cState.RY >= 128.0 ? 255.0 : 0.0;
+                    double maxXDir = maxXValue - 128.0;
+                    double maxYDir = maxYValue - 128.0;
+                    double axisDirX = cState.RX - 128.0;
+                    double axisDirY = cState.RY - 128.0;
+                    double axisRawDirX = cRawState.RX - 128.0;
+                    double axisRawDirY = cRawState.RY - 128.0;
+
+                    deltaAccelProcessors[device].RSProcessor.Process(device, axisDirX, axisDirY,
+                        axisRawDirX, axisRawDirY,
+                        maxXDir, maxYDir,
+                        stickSettings.outputSettings.controlSettings.deltaAccelSettings);
+                }
+
                 for (var settingEnum = controlSetGroup.RS.GetEnumerator(); settingEnum.MoveNext();)
                 {
                     DS4ControlSettings dcs = settingEnum.Current;
@@ -4273,6 +4533,7 @@ namespace DS4Windows
 
             double value = 0.0;
             ButtonMouseInfo buttonMouseInfo = ButtonMouseInfos[device];
+            DeltaSettingsProcessorGroup deltaAccelProcessorGroup = deltaAccelProcessors[device];
             int speed = buttonMouseInfo.activeButtonSensitivity;
             const double root = 1.002;
             const double divide = 10000d;
@@ -4315,7 +4576,16 @@ namespace DS4Windows
                     {
                         if (cState.LX < 128 - deadzoneL)
                         {
-                            double diff = -(cState.LX - 128 - deadzoneL) / (double)(0 - 128 - deadzoneL);
+                            double diff;
+                            if (!deltaAccelProcessorGroup.LSProcessor.useDeltaAccel)
+                            {
+                                diff = -(cState.LX - 128 - deadzoneL) / (double)(0 - 128 - deadzoneL);
+                            }
+                            else
+                            {
+                                diff = -deltaAccelProcessorGroup.LSProcessor.AccelOutXNorm;
+                            }
+
                             //tempMouseOffsetX = Math.Abs(Math.Cos(cState.LSAngleRad)) * MOUSESTICKOFFSET;
                             //tempMouseOffsetX = MOUSESTICKOFFSET;
                             tempMouseOffsetX = cState.LXUnit * mouseOffset;
@@ -4330,7 +4600,16 @@ namespace DS4Windows
                     {
                         if (cState.LX > 128 + deadzoneL)
                         {
-                            double diff = (cState.LX - 128 + deadzoneL) / (double)(255 - 128 + deadzoneL);
+                            double diff;
+                            if (!deltaAccelProcessorGroup.LSProcessor.useDeltaAccel)
+                            {
+                                diff = (cState.LX - 128 + deadzoneL) / (double)(255 - 128 + deadzoneL);
+                            }
+                            else
+                            {
+                                diff = deltaAccelProcessorGroup.LSProcessor.AccelOutXNorm;
+                            }
+
                             tempMouseOffsetX = cState.LXUnit * mouseOffset;
                             //tempMouseOffsetX = Math.Abs(Math.Cos(cState.LSAngleRad)) * MOUSESTICKOFFSET;
                             //tempMouseOffsetX = MOUSESTICKOFFSET;
@@ -4345,7 +4624,16 @@ namespace DS4Windows
                     {
                         if (cState.RX < 128 - deadzoneR)
                         {
-                            double diff = -(cState.RX - 128 - deadzoneR) / (double)(0 - 128 - deadzoneR);
+                            double diff;
+                            if (!deltaAccelProcessorGroup.RSProcessor.useDeltaAccel)
+                            {
+                                diff = -(cState.RX - 128 - deadzoneR) / (double)(0 - 128 - deadzoneR);
+                            }
+                            else
+                            {
+                                diff = -deltaAccelProcessorGroup.RSProcessor.AccelOutXNorm;
+                            }
+
                             tempMouseOffsetX = cState.RXUnit * mouseOffset;
                             //tempMouseOffsetX = MOUSESTICKOFFSET;
                             //tempMouseOffsetX = Math.Abs(Math.Cos(cState.RSAngleRad)) * MOUSESTICKOFFSET;
@@ -4360,7 +4648,16 @@ namespace DS4Windows
                     {
                         if (cState.RX > 128 + deadzoneR)
                         {
-                            double diff = (cState.RX - 128 + deadzoneR) / (double)(255 - 128 + deadzoneR);
+                            double diff;
+                            if (!deltaAccelProcessorGroup.RSProcessor.useDeltaAccel)
+                            {
+                                diff = (cState.RX - 128 + deadzoneR) / (double)(255 - 128 + deadzoneR);
+                            }
+                            else
+                            {
+                                diff = deltaAccelProcessorGroup.RSProcessor.AccelOutXNorm;
+                            }
+
                             tempMouseOffsetX = cState.RXUnit * mouseOffset;
                             //tempMouseOffsetX = MOUSESTICKOFFSET;
                             //tempMouseOffsetX = Math.Abs(Math.Cos(cState.RSAngleRad)) * MOUSESTICKOFFSET;
@@ -4375,7 +4672,16 @@ namespace DS4Windows
                     {
                         if (cState.LY < 128 - deadzoneL)
                         {
-                            double diff = -(cState.LY - 128 - deadzoneL) / (double)(0 - 128 - deadzoneL);
+                            double diff;
+                            if (!deltaAccelProcessorGroup.LSProcessor.useDeltaAccel)
+                            {
+                                diff = -(cState.LY - 128 - deadzoneL) / (double)(0 - 128 - deadzoneL);
+                            }
+                            else
+                            {
+                                diff = -deltaAccelProcessorGroup.LSProcessor.AccelOutYNorm;
+                            }
+
                             tempMouseOffsetY = cState.LYUnit * mouseOffset;
                             //tempMouseOffsetY = MOUSESTICKOFFSET;
                             //tempMouseOffsetY = Math.Abs(Math.Sin(cState.LSAngleRad)) * MOUSESTICKOFFSET;
@@ -4390,7 +4696,16 @@ namespace DS4Windows
                     {
                         if (cState.LY > 128 + deadzoneL)
                         {
-                            double diff = (cState.LY - 128 + deadzoneL) / (double)(255 - 128 + deadzoneL);
+                            double diff;
+                            if (!deltaAccelProcessorGroup.LSProcessor.useDeltaAccel)
+                            {
+                                diff = (cState.LY - 128 + deadzoneL) / (double)(255 - 128 + deadzoneL);
+                            }
+                            else
+                            {
+                                diff = deltaAccelProcessorGroup.LSProcessor.AccelOutYNorm;
+                            }
+
                             tempMouseOffsetY = cState.LYUnit * mouseOffset;
                             //tempMouseOffsetY = MOUSESTICKOFFSET;
                             //tempMouseOffsetY = Math.Abs(Math.Sin(cState.LSAngleRad)) * MOUSESTICKOFFSET;
@@ -4405,7 +4720,16 @@ namespace DS4Windows
                     {
                         if (cState.RY < 128 - deadzoneR)
                         {
-                            double diff = -(cState.RY - 128 - deadzoneR) / (double)(0 - 128 - deadzoneR);
+                            double diff;
+                            if (!deltaAccelProcessorGroup.RSProcessor.useDeltaAccel)
+                            {
+                                diff = -(cState.RY - 128 - deadzoneR) / (double)(0 - 128 - deadzoneR);
+                            }
+                            else
+                            {
+                                diff = -deltaAccelProcessorGroup.RSProcessor.AccelOutYNorm;
+                            }
+
                             tempMouseOffsetY = cState.RYUnit * mouseOffset;
                             //tempMouseOffsetY = MOUSESTICKOFFSET;
                             //tempMouseOffsetY = Math.Abs(Math.Sin(cState.RSAngleRad)) * MOUSESTICKOFFSET;
@@ -4420,7 +4744,16 @@ namespace DS4Windows
                     {
                         if (cState.RY > 128 + deadzoneR)
                         {
-                            double diff = (cState.RY - 128 + deadzoneR) / (double)(255 - 128 + deadzoneR);
+                            double diff;
+                            if (!deltaAccelProcessorGroup.RSProcessor.useDeltaAccel)
+                            {
+                                diff = (cState.RY - 128 + deadzoneR) / (double)(255 - 128 + deadzoneR);
+                            }
+                            else
+                            {
+                                diff = deltaAccelProcessorGroup.RSProcessor.AccelOutYNorm;
+                            }
+
                             tempMouseOffsetY = cState.RYUnit * mouseOffset;
                             //tempMouseOffsetY = MOUSESTICKOFFSET;
                             //tempMouseOffsetY = Math.Abs(Math.Sin(cState.RSAngleRad)) * MOUSESTICKOFFSET;

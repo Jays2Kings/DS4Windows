@@ -9,7 +9,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
     [XmlRoot("Programs")]
     public class AutoProfilesDTO : IDTO<AutoProfileHolder>
     {
-        [XmlElement("Program")]
+        [XmlElement("Program")] // Use XmlElement here to skip container element
         public List<AutoProfileEntrySerializer> programEntries;
 
         public AutoProfilesDTO()

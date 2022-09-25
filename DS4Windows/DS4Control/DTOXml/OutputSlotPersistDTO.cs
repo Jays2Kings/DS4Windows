@@ -59,6 +59,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
 
                 if (tempDev != null)
                 {
+                    tempDev.CurrentReserveStatus = OutSlotDevice.ReserveStatus.Permanent;
                     tempDev.PermanentType = tempSlot.DeviceType;
                 }
             }

@@ -4,7 +4,6 @@ using System.Windows.Documents;
 using System.Xml;
 using System.Xml.Serialization;
 using DS4Windows;
-using NLog;
 
 namespace DS4WinWPF.DS4Control.DTOXml
 {

@@ -37,6 +37,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
                     temp.Controller5 = entity.ProfileNames[4];
                     temp.Controller6 = entity.ProfileNames[5];
                     temp.Controller7 = entity.ProfileNames[6];
+                    temp.Controller8 = entity.ProfileNames[7];
                 }
 
                 programEntries.Add(temp);
@@ -112,25 +113,40 @@ namespace DS4WinWPF.DS4Control.DTOXml
         {
             get; set;
         } = string.Empty;
+        public bool ShouldSerializeController5()
+        {
+            return Global.MAX_DS4_CONTROLLER_COUNT >= 5;
+        }
 
         [XmlElement("Controller6")]
         public string Controller6
         {
             get; set;
         } = string.Empty;
+        public bool ShouldSerializeController6()
+        {
+            return Global.MAX_DS4_CONTROLLER_COUNT >= 6;
+        }
 
         [XmlElement("Controller7")]
         public string Controller7
         {
             get; set;
         } = string.Empty;
+        public bool ShouldSerializeController7()
+        {
+            return Global.MAX_DS4_CONTROLLER_COUNT >= 7;
+        }
 
         [XmlElement("Controller8")]
         public string Controller8
         {
             get; set;
         } = string.Empty;
-
+        public bool ShouldSerializeController8()
+        {
+            return Global.MAX_DS4_CONTROLLER_COUNT >= 8;
+        }
 
         [XmlElement("TurnOff")]
         public string TurnOffString

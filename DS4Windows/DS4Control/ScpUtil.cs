@@ -2311,6 +2311,13 @@ namespace DS4Windows
             string details, bool edit, string extras = "")
         {
             m_Config.SaveAction(name, controls, mode, details, edit, extras);
+            //m_Config.SaveActions();
+            Mapping.actionDone.Add(new Mapping.ActionState());
+        }
+
+        public static void SaveActions()
+        {
+            m_Config.SaveActions();
             Mapping.actionDone.Add(new Mapping.ActionState());
         }
 
@@ -6990,6 +6997,57 @@ namespace DS4Windows
             xmlDoc.AppendChild(Node);
         }
 
+        public bool SaveActions()
+        {
+            bool saved = true;
+
+            string output_path = m_Profile;
+            string testStr = string.Empty;
+            XmlSerializer serializer = new XmlSerializer(typeof(ActionsDTO));
+            using (StringWriter strWriter = new StringWriter())
+            {
+                using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
+                    new XmlWriterSettings()
+                    {
+                        Encoding = Encoding.UTF8,
+                        Indent = true,
+                    });
+
+                // Write header explicitly
+                //xmlWriter.WriteStartDocument();
+                xmlWriter.WriteComment(String.Format(" Special Actions Configuration Data. {0} ", DateTime.Now));
+                xmlWriter.WriteWhitespace("\r\n");
+                xmlWriter.WriteWhitespace("\r\n");
+
+                // Write root element and children
+                ActionsDTO dto = new ActionsDTO();
+                dto.MapFrom(this);
+                // Omit xmlns:xsi and xmlns:xsd from output
+                serializer.Serialize(xmlWriter, dto,
+                    new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty }));
+                xmlWriter.Flush();
+                xmlWriter.Close();
+
+                testStr = strWriter.ToString();
+                //Trace.WriteLine("TEST OUTPUT");
+                //Trace.WriteLine(testStr);
+            }
+
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(output_path, false))
+                {
+                    sw.Write(testStr);
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                saved = false;
+            }
+
+            return saved;
+        }
+
         public bool SaveAction(string name, string controls, int mode, string details, bool edit, string extras = "")
         {
             bool saved = true;
@@ -7081,119 +7139,151 @@ namespace DS4Windows
 
         public void RemoveAction(string name)
         {
-            m_Xdoc.Load(m_Actions);
-            XmlNode Node = m_Xdoc.SelectSingleNode("Actions");
-            XmlNode Item = m_Xdoc.SelectSingleNode("/Actions/Action[@Name=\"" + name + "\"]");
-            if (Item != null)
-                Node.RemoveChild(Item);
+            int tempIndex = actions.FindIndex(item => item.name == name);
+            if (tempIndex != -1)
+            {
+                actions.RemoveAt(tempIndex);
+            }
 
-            m_Xdoc.AppendChild(Node);
-            m_Xdoc.Save(m_Actions);
-            LoadActions();
+            SaveActions();
+
+            //m_Xdoc.Load(m_Actions);
+            //XmlNode Node = m_Xdoc.SelectSingleNode("Actions");
+            //XmlNode Item = m_Xdoc.SelectSingleNode("/Actions/Action[@Name=\"" + name + "\"]");
+            //if (Item != null)
+            //    Node.RemoveChild(Item);
+
+            //m_Xdoc.AppendChild(Node);
+            //m_Xdoc.Save(m_Actions);
+            //LoadActions();
         }
 
         public bool LoadActions()
         {
             bool saved = true;
-            if (!File.Exists(Global.appdatapath + "\\Actions.xml"))
+
+            actions.Clear();
+
+            //string configFile = Path.Combine(Global.appdatapath, "Actions.xml");
+            if (!File.Exists(m_Actions))
             {
-                SaveAction("Disconnect Controller", "PS/Options", 5, "0", false);
-                saved = false;
+                actions.Add(new SpecialAction("Disconnect Controller", "PS/Options", "DisconnectBT", "0"));
+                saved = SaveActions();
+                return saved;
             }
 
+            XmlSerializer serializer = new XmlSerializer(typeof(ActionsDTO));
+            using StreamReader sr = new StreamReader(m_Actions);
             try
             {
-                actions.Clear();
-                XmlDocument doc = new XmlDocument();
-                doc.Load(Global.appdatapath + "\\Actions.xml");
-                XmlNodeList actionslist = doc.SelectNodes("Actions/Action");
-                string name, controls, type, details, extras, extras2;
-                Mapping.actionDone.Clear();
-                foreach (XmlNode x in actionslist)
-                {
-                    name = x.Attributes["Name"].Value;
-                    controls = x.ChildNodes[0].InnerText;
-                    type = x.ChildNodes[1].InnerText;
-                    details = x.ChildNodes[2].InnerText;
-                    Mapping.actionDone.Add(new Mapping.ActionState());
-                    if (type == "Profile")
-                    {
-                        extras = x.ChildNodes[3].InnerText;
-                        actions.Add(new SpecialAction(name, controls, type, details, 0, extras));
-                    }
-                    else if (type == "Macro")
-                    {
-                        if (x.ChildNodes[3] != null) extras = x.ChildNodes[3].InnerText;
-                        else extras = string.Empty;
-                        actions.Add(new SpecialAction(name, controls, type, details, 0, extras));
-                    }
-                    else if (type == "Key")
-                    {
-                        if (x.ChildNodes[3] != null)
-                        {
-                            extras = x.ChildNodes[3].InnerText;
-                            extras2 = x.ChildNodes[4].InnerText;
-                        }
-                        else
-                        {
-                            extras = string.Empty;
-                            extras2 = string.Empty;
-                        }
-                        if (!string.IsNullOrEmpty(extras))
-                            actions.Add(new SpecialAction(name, controls, type, details, 0, extras2 + '\n' + extras));
-                        else
-                            actions.Add(new SpecialAction(name, controls, type, details));
-                    }
-                    else if (type == "DisconnectBT")
-                    {
-                        double doub;
-                        if (double.TryParse(details, System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out doub))
-                            actions.Add(new SpecialAction(name, controls, type, "", doub));
-                        else
-                            actions.Add(new SpecialAction(name, controls, type, ""));
-                    }
-                    else if (type == "BatteryCheck")
-                    {
-                        double doub;
-                        if (double.TryParse(details.Split('|')[0], System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out doub))
-                            actions.Add(new SpecialAction(name, controls, type, details, doub));
-                        else if (double.TryParse(details.Split(',')[0], System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out doub))
-                            actions.Add(new SpecialAction(name, controls, type, details, doub));
-                        else
-                            actions.Add(new SpecialAction(name, controls, type, details));
-                    }
-                    else if (type == "Program")
-                    {
-                        double doub;
-                        if (x.ChildNodes[3] != null)
-                        {
-                            extras = x.ChildNodes[3].InnerText;
-                            if (double.TryParse(x.ChildNodes[4].InnerText, System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out doub))
-                                actions.Add(new SpecialAction(name, controls, type, details, doub, extras));
-                            else
-                                actions.Add(new SpecialAction(name, controls, type, details, 0, extras));
-                        }
-                        else
-                        {
-                            actions.Add(new SpecialAction(name, controls, type, details));
-                        }
-                    }
-                    else if (type == "XboxGameDVR" || type == "MultiAction")
-                    {
-                        actions.Add(new SpecialAction(name, controls, type, details));
-                    }
-                    else if (type == "SASteeringWheelEmulationCalibrate")
-                    {
-                        double doub;
-                        if (double.TryParse(details, System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out doub))
-                            actions.Add(new SpecialAction(name, controls, type, "", doub));
-                        else
-                            actions.Add(new SpecialAction(name, controls, type, ""));
-                    }
-                }
+                ActionsDTO dto = serializer.Deserialize(sr) as ActionsDTO;
+                dto.MapTo(this);
             }
-            catch { saved = false; }
+            catch (InvalidOperationException) { }
+            catch (XmlException) { }
+
             return saved;
+
+            //bool saved = true;
+            //if (!File.Exists(Global.appdatapath + "\\Actions.xml"))
+            //{
+            //    SaveAction("Disconnect Controller", "PS/Options", 5, "0", false);
+            //    saved = false;
+            //}
+
+            //try
+            //{
+            //    actions.Clear();
+            //    XmlDocument doc = new XmlDocument();
+            //    doc.Load(Global.appdatapath + "\\Actions.xml");
+            //    XmlNodeList actionslist = doc.SelectNodes("Actions/Action");
+            //    string name, controls, type, details, extras, extras2;
+            //    Mapping.actionDone.Clear();
+            //    foreach (XmlNode x in actionslist)
+            //    {
+            //        name = x.Attributes["Name"].Value;
+            //        controls = x.ChildNodes[0].InnerText;
+            //        type = x.ChildNodes[1].InnerText;
+            //        details = x.ChildNodes[2].InnerText;
+            //        Mapping.actionDone.Add(new Mapping.ActionState());
+            //        if (type == "Profile")
+            //        {
+            //            extras = x.ChildNodes[3].InnerText;
+            //            actions.Add(new SpecialAction(name, controls, type, details, 0, extras));
+            //        }
+            //        else if (type == "Macro")
+            //        {
+            //            if (x.ChildNodes[3] != null) extras = x.ChildNodes[3].InnerText;
+            //            else extras = string.Empty;
+            //            actions.Add(new SpecialAction(name, controls, type, details, 0, extras));
+            //        }
+            //        else if (type == "Key")
+            //        {
+            //            if (x.ChildNodes[3] != null)
+            //            {
+            //                extras = x.ChildNodes[3].InnerText;
+            //                extras2 = x.ChildNodes[4].InnerText;
+            //            }
+            //            else
+            //            {
+            //                extras = string.Empty;
+            //                extras2 = string.Empty;
+            //            }
+            //            if (!string.IsNullOrEmpty(extras))
+            //                actions.Add(new SpecialAction(name, controls, type, details, 0, extras2 + '\n' + extras));
+            //            else
+            //                actions.Add(new SpecialAction(name, controls, type, details));
+            //        }
+            //        else if (type == "DisconnectBT")
+            //        {
+            //            double doub;
+            //            if (double.TryParse(details, System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out doub))
+            //                actions.Add(new SpecialAction(name, controls, type, "", doub));
+            //            else
+            //                actions.Add(new SpecialAction(name, controls, type, ""));
+            //        }
+            //        else if (type == "BatteryCheck")
+            //        {
+            //            double doub;
+            //            if (double.TryParse(details.Split('|')[0], System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out doub))
+            //                actions.Add(new SpecialAction(name, controls, type, details, doub));
+            //            else if (double.TryParse(details.Split(',')[0], System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out doub))
+            //                actions.Add(new SpecialAction(name, controls, type, details, doub));
+            //            else
+            //                actions.Add(new SpecialAction(name, controls, type, details));
+            //        }
+            //        else if (type == "Program")
+            //        {
+            //            double doub;
+            //            if (x.ChildNodes[3] != null)
+            //            {
+            //                extras = x.ChildNodes[3].InnerText;
+            //                if (double.TryParse(x.ChildNodes[4].InnerText, System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out doub))
+            //                    actions.Add(new SpecialAction(name, controls, type, details, doub, extras));
+            //                else
+            //                    actions.Add(new SpecialAction(name, controls, type, details, 0, extras));
+            //            }
+            //            else
+            //            {
+            //                actions.Add(new SpecialAction(name, controls, type, details));
+            //            }
+            //        }
+            //        else if (type == "XboxGameDVR" || type == "MultiAction")
+            //        {
+            //            actions.Add(new SpecialAction(name, controls, type, details));
+            //        }
+            //        else if (type == "SASteeringWheelEmulationCalibrate")
+            //        {
+            //            double doub;
+            //            if (double.TryParse(details, System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out doub))
+            //                actions.Add(new SpecialAction(name, controls, type, "", doub));
+            //            else
+            //                actions.Add(new SpecialAction(name, controls, type, ""));
+            //        }
+            //    }
+            //}
+            //catch { saved = false; }
+            //return saved;
         }
 
         public bool createLinkedProfiles()

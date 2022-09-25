@@ -46,43 +46,6 @@ namespace DS4WinWPF
             }
             catch (InvalidOperationException) {}
             catch (XmlException) {}
-
-            //try
-            //{
-            //    XmlDocument doc = new XmlDocument();
-
-            //    if (!File.Exists(DS4Windows.Global.appdatapath + "\\Auto Profiles.xml"))
-            //        return;
-
-            //    doc.Load(DS4Windows.Global.appdatapath + "\\Auto Profiles.xml");
-            //    XmlNodeList programslist = doc.SelectNodes("Programs/Program");
-            //    foreach (XmlNode x in programslist)
-            //    {
-            //        string path = x.Attributes["path"]?.Value ?? string.Empty;
-            //        string title = x.Attributes["title"]?.Value ?? string.Empty;
-            //        AutoProfileEntity autoprof = new AutoProfileEntity(path, title);
-
-            //        XmlNode item;
-            //        for (int i = 0; i < ControlService.CURRENT_DS4_CONTROLLER_LIMIT; i++)
-            //        {
-            //            item = x.SelectSingleNode($"Controller{i+1}");
-            //            if (item != null)
-            //            {
-            //                autoprof.ProfileNames[i] = item.InnerText;
-            //            }
-            //        }
-
-            //        item = x.SelectSingleNode($"TurnOff");
-            //        if (item != null && bool.TryParse(item.InnerText, out bool turnoff))
-            //        {
-            //            autoprof.Turnoff = turnoff;
-            //        }
-
-            //        autoProfileColl.Add(autoprof);
-            //        //autoProfileDict.Add(path, autoprof);
-            //    }
-            //}
-            //catch (Exception) { }
         }
 
         public bool Save(string m_Profile)
@@ -102,7 +65,7 @@ namespace DS4WinWPF
                     });
 
                 // Write header explicitly
-                xmlWriter.WriteStartDocument();
+                //xmlWriter.WriteStartDocument();
                 xmlWriter.WriteComment(string.Format(" Auto-Profile Configuration Data. {0} ", DateTime.Now));
                 xmlWriter.WriteWhitespace("\r\n");
                 xmlWriter.WriteWhitespace("\r\n");
@@ -134,52 +97,6 @@ namespace DS4WinWPF
             }
 
             return saved;
-
-            //XmlDocument doc = new XmlDocument();
-            //XmlNode Node;
-            //bool saved = true;
-            //try
-            //{
-            //    Node = doc.CreateXmlDeclaration("1.0", "utf-8", string.Empty);
-            //    doc.AppendChild(Node);
-
-            //    Node = doc.CreateComment(string.Format(" Auto-Profile Configuration Data. {0} ", DateTime.Now));
-            //    doc.AppendChild(Node);
-
-            //    Node = doc.CreateWhitespace("\r\n");
-            //    doc.AppendChild(Node);
-
-            //    Node = doc.CreateNode(XmlNodeType.Element, "Programs", "");
-            //    doc.AppendChild(Node);
-            //    foreach (AutoProfileEntity entity in autoProfileColl)
-            //    {
-            //        XmlElement el = doc.CreateElement("Program");
-            //        el.SetAttribute("path", entity.Path);
-            //        if (!string.IsNullOrEmpty(entity.Title))
-            //        {
-            //            el.SetAttribute("title", entity.Title);
-            //        }
-
-            //        el.AppendChild(doc.CreateElement("Controller1")).InnerText = entity.ProfileNames[0];
-            //        el.AppendChild(doc.CreateElement("Controller2")).InnerText = entity.ProfileNames[1];
-            //        el.AppendChild(doc.CreateElement("Controller3")).InnerText = entity.ProfileNames[2];
-            //        el.AppendChild(doc.CreateElement("Controller4")).InnerText = entity.ProfileNames[3];
-            //        if (ControlService.USING_MAX_CONTROLLERS)
-            //        {
-            //            el.AppendChild(doc.CreateElement("Controller5")).InnerText = entity.ProfileNames[4];
-            //            el.AppendChild(doc.CreateElement("Controller6")).InnerText = entity.ProfileNames[5];
-            //            el.AppendChild(doc.CreateElement("Controller7")).InnerText = entity.ProfileNames[6];
-            //            el.AppendChild(doc.CreateElement("Controller8")).InnerText = entity.ProfileNames[7];
-            //        }
-            //        el.AppendChild(doc.CreateElement("TurnOff")).InnerText = entity.Turnoff.ToString();
-
-            //        Node.AppendChild(el);
-            //    }
-
-            //    doc.Save(m_Profile);
-            //}
-            //catch (Exception) { saved = false; }
-            //return saved;
         }
 
         public void Remove(AutoProfileEntity item)

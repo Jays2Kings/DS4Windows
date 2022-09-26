@@ -2310,20 +2310,25 @@ namespace DS4Windows
         public static void SaveAction(string name, string controls, int mode,
             string details, bool edit, string extras = "")
         {
-            m_Config.SaveAction(name, controls, mode, details, edit, extras);
+            m_Config.SaveActionNew(name, controls, mode, details, edit, extras);
+            //m_Config.SaveAction(name, controls, mode, details, edit, extras);
             //m_Config.SaveActions();
+            Mapping.actionDone.Clear();
             Mapping.actionDone.Add(new Mapping.ActionState());
         }
 
         public static void SaveActions()
         {
             m_Config.SaveActions();
+            Mapping.actionDone.Clear();
             Mapping.actionDone.Add(new Mapping.ActionState());
         }
 
         public static void RemoveAction(string name)
         {
             m_Config.RemoveAction(name);
+            Mapping.actionDone.Clear();
+            Mapping.actionDone.Add(new Mapping.ActionState());
         }
 
         public static bool LoadActions() => m_Config.LoadActions();
@@ -7048,6 +7053,59 @@ namespace DS4Windows
             return saved;
         }
 
+        public void SaveActionNew(string name, string controls, int mode, string details, bool edit, string extras = "")
+        {
+            SpecialAction tempAction = null;
+
+            switch (mode)
+            {
+                case 1:
+                    tempAction = new SpecialAction(name, controls, "Macro", details, extras: extras);
+                    break;
+                case 2:
+                    string[] tempDetails = details.Split("?");
+                    tempAction = new SpecialAction(name, controls, "Program", tempDetails[0],
+                        delay: Convert.ToDouble(tempDetails[1]), extras: extras);
+                    break;
+                case 3:
+                    tempAction = new SpecialAction(name, controls, "Profile", details, extras: extras);
+                    break;
+                case 4:
+                    tempAction = new SpecialAction(name, controls, "Key", details, extras: extras);
+                    break;
+                case 5:
+                    tempAction = new SpecialAction(name, controls, "DisconnectBT", details);
+                    break;
+                case 6:
+                    tempAction = new SpecialAction(name, controls, "BatteryCheck", details);
+                    break;
+                case 7:
+                    tempAction = new SpecialAction(name, controls, "MultiAction", details);
+                    break;
+                case 8:
+                    tempAction = new SpecialAction(name, controls, "SASteeringWheelEmulationCalibrate",
+                        details);
+                    break;
+                default:
+                    break;
+            }
+
+            if (edit)
+            {
+                int tempIndex = actions.FindIndex(item => item.name == name);
+                if (tempIndex != -1 && tempAction != null)
+                {
+                    actions[tempIndex] = tempAction;
+                }
+            }
+            else if (tempAction != null)
+            {
+                actions.Add(tempAction);
+            }
+
+            SaveActions();
+        }
+
         public bool SaveAction(string name, string controls, int mode, string details, bool edit, string extras = "")
         {
             bool saved = true;
@@ -7163,6 +7221,7 @@ namespace DS4Windows
             bool saved = true;
 
             actions.Clear();
+            Mapping.actionDone.Clear();
 
             //string configFile = Path.Combine(Global.appdatapath, "Actions.xml");
             if (!File.Exists(m_Actions))

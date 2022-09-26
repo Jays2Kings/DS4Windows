@@ -2775,7 +2775,7 @@ namespace DS4Windows
         public const double DEFAULT_UDP_SMOOTH_BETA = 0.2;
         // Use 15 minutes for default Idle Disconnect when initially enabling the option
         public const int DEFAULT_ENABLE_IDLE_DISCONN_MINS = 15;
-        private const double DEFAULT_SX_TILT_DEADZONE = 0.25;
+        public const double DEFAULT_SX_TILT_DEADZONE = 0.25;
         public String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + "\\Profiles.xml";
         public String m_Actions = Global.appdatapath + "\\Actions.xml";
         public string m_linkedProfiles = Global.appdatapath + "\\LinkedProfiles.xml";
@@ -3334,7 +3334,7 @@ namespace DS4Windows
             return stickOutputCurveId(name);
         }
 
-        private bool SaTriggerCondValue(string text)
+        public static bool SaTriggerCondValue(string text)
         {
             bool result = true;
             switch (text)
@@ -3347,7 +3347,7 @@ namespace DS4Windows
             return result;
         }
 
-        private string SaTriggerCondString(bool value)
+        public static string SaTriggerCondString(bool value)
         {
             string result = value ? "and" : "or";
             return result;

@@ -46,7 +46,7 @@ namespace DS4WinWPF.DS4Control
             string output_path = Path.Combine(Global.appdatapath, CONFIG_FILENAME);
             string testStr = string.Empty;
             XmlSerializer serializer = new XmlSerializer(typeof(OutputSlotPersistDTO));
-            using (StringWriter strWriter = new StringWriter())
+            using (Utf8StringWriter strWriter = new Utf8StringWriter())
             {
                 using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
                     new XmlWriterSettings()

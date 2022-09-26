@@ -98,7 +98,7 @@ namespace DS4Windows
             string testStr = string.Empty;
             XmlSerializer serializer = new XmlSerializer(typeof(DS4ControllerOptsDTO));
 
-            using (StringWriter strWriter = new StringWriter())
+            using (Utf8StringWriter strWriter = new Utf8StringWriter())
             {
                 using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
                     new XmlWriterSettings()
@@ -252,7 +252,7 @@ namespace DS4Windows
             string testStr = string.Empty;
             XmlSerializer serializer = new XmlSerializer(typeof(DualSenseControllerOptsDTO));
 
-            using (StringWriter strWriter = new StringWriter())
+            using (Utf8StringWriter strWriter = new Utf8StringWriter())
             {
                 using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
                     new XmlWriterSettings()
@@ -351,7 +351,7 @@ namespace DS4Windows
             string testStr = string.Empty;
             XmlSerializer serializer = new XmlSerializer(typeof(SwitchProControllerOptsDTO));
 
-            using (StringWriter strWriter = new StringWriter())
+            using (Utf8StringWriter strWriter = new Utf8StringWriter())
             {
                 using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
                     new XmlWriterSettings()
@@ -485,7 +485,7 @@ namespace DS4Windows
             string testStr = string.Empty;
             XmlSerializer serializer = new XmlSerializer(typeof(JoyConControllerOptsDTO));
 
-            using (StringWriter strWriter = new StringWriter())
+            using (Utf8StringWriter strWriter = new Utf8StringWriter())
             {
                 using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
                     new XmlWriterSettings()

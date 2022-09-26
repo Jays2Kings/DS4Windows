@@ -6692,7 +6692,7 @@ namespace DS4Windows
 
             string testStr = string.Empty;
             XmlSerializer serializer = new XmlSerializer(typeof(AppSettingsDTO));
-            using (StringWriter strWriter = new StringWriter())
+            using (Utf8StringWriter strWriter = new Utf8StringWriter())
             {
                 using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
                     new XmlWriterSettings()
@@ -7009,7 +7009,7 @@ namespace DS4Windows
             string output_path = m_Profile;
             string testStr = string.Empty;
             XmlSerializer serializer = new XmlSerializer(typeof(ActionsDTO));
-            using (StringWriter strWriter = new StringWriter())
+            using (Utf8StringWriter strWriter = new Utf8StringWriter())
             {
                 using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
                     new XmlWriterSettings()
@@ -7352,7 +7352,7 @@ namespace DS4Windows
             string output_path = m_linkedProfiles;
             string testStr = string.Empty;
             XmlSerializer serializer = new XmlSerializer(typeof(LinkedProfilesDTO));
-            using (StringWriter strWriter = new StringWriter())
+            using (Utf8StringWriter strWriter = new Utf8StringWriter())
             {
                 using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
                     new XmlWriterSettings()
@@ -7480,7 +7480,7 @@ namespace DS4Windows
             {
                 string testStr = string.Empty;
                 XmlSerializer serializer = new XmlSerializer(typeof(LinkedProfilesDTO));
-                using (StringWriter strWriter = new StringWriter())
+                using (Utf8StringWriter strWriter = new Utf8StringWriter())
                 {
                     using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
                         new XmlWriterSettings()
@@ -7491,6 +7491,7 @@ namespace DS4Windows
 
                     // Write header explicitly
                     //xmlWriter.WriteStartDocument();
+                    //xmlWriter.WriteProcessingInstruction("xml", "version=\"1.0\" encoding=\"utf-8\"");
                     xmlWriter.WriteComment(string.Format(" Mac Address and Profile Linking Data. {0} ", DateTime.Now));
                     xmlWriter.WriteWhitespace("\r\n");
                     xmlWriter.WriteWhitespace("\r\n");

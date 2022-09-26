@@ -55,7 +55,7 @@ namespace DS4WinWPF
             string output_path = m_Profile;
             string testStr = string.Empty;
             XmlSerializer serializer = new XmlSerializer(typeof(AutoProfilesDTO));
-            using (StringWriter strWriter = new StringWriter())
+            using (Utf8StringWriter strWriter = new Utf8StringWriter())
             {
                 using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
                     new XmlWriterSettings()

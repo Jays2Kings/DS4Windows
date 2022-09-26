@@ -50,8 +50,12 @@ namespace DS4WinWPF.DS4Control.DTOXml
             tempDoc.Load(reader);
 
             XmlNode node = tempDoc.SelectSingleNode("/LinkedControllers");
-            XmlNodeList links = node.ChildNodes;
+            if (node == null)
+            {
+                return;
+            }
 
+            XmlNodeList links = node.ChildNodes;
             for (int i = 0, listLen = links.Count; i < listLen; i++)
             {
                 XmlNode current = links[i];

@@ -7348,25 +7348,73 @@ namespace DS4Windows
         public bool createLinkedProfiles()
         {
             bool saved = true;
-            XmlDocument m_Xdoc = new XmlDocument();
-            XmlNode Node;
 
-            Node = m_Xdoc.CreateXmlDeclaration("1.0", "utf-8", string.Empty);
-            m_Xdoc.AppendChild(Node);
+            string output_path = m_linkedProfiles;
+            string testStr = string.Empty;
+            XmlSerializer serializer = new XmlSerializer(typeof(LinkedProfilesDTO));
+            using (StringWriter strWriter = new StringWriter())
+            {
+                using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
+                    new XmlWriterSettings()
+                    {
+                        Encoding = Encoding.UTF8,
+                        Indent = true,
+                    });
 
-            Node = m_Xdoc.CreateComment(string.Format(" Mac Address and Profile Linking Data. {0} ", DateTime.Now));
-            m_Xdoc.AppendChild(Node);
+                // Write header explicitly
+                //xmlWriter.WriteStartDocument();
+                xmlWriter.WriteComment(string.Format(" Mac Address and Profile Linking Data. {0} ", DateTime.Now));
+                xmlWriter.WriteWhitespace("\r\n");
+                xmlWriter.WriteWhitespace("\r\n");
 
-            Node = m_Xdoc.CreateWhitespace("\r\n");
-            m_Xdoc.AppendChild(Node);
+                // Write root element and children
+                LinkedProfilesDTO dto = new LinkedProfilesDTO();
+                dto.MapFrom(this);
+                // Omit xmlns:xsi and xmlns:xsd from output
+                serializer.Serialize(xmlWriter, dto,
+                    new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty }));
+                xmlWriter.Flush();
+                xmlWriter.Close();
 
-            Node = m_Xdoc.CreateNode(XmlNodeType.Element, "LinkedControllers", "");
-            m_Xdoc.AppendChild(Node);
+                testStr = strWriter.ToString();
+                //Trace.WriteLine("TEST OUTPUT");
+                //Trace.WriteLine(testStr);
+            }
 
-            try { m_Xdoc.Save(m_linkedProfiles); }
-            catch (UnauthorizedAccessException) { AppLogger.LogToGui("Unauthorized Access - Save failed to path: " + m_linkedProfiles, false); saved = false; }
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(output_path, false))
+                {
+                    sw.Write(testStr);
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                saved = false;
+            }
 
             return saved;
+
+            //bool saved = true;
+            //XmlDocument m_Xdoc = new XmlDocument();
+            //XmlNode Node;
+
+            //Node = m_Xdoc.CreateXmlDeclaration("1.0", "utf-8", string.Empty);
+            //m_Xdoc.AppendChild(Node);
+
+            //Node = m_Xdoc.CreateComment(string.Format(" Mac Address and Profile Linking Data. {0} ", DateTime.Now));
+            //m_Xdoc.AppendChild(Node);
+
+            //Node = m_Xdoc.CreateWhitespace("\r\n");
+            //m_Xdoc.AppendChild(Node);
+
+            //Node = m_Xdoc.CreateNode(XmlNodeType.Element, "LinkedControllers", "");
+            //m_Xdoc.AppendChild(Node);
+
+            //try { m_Xdoc.Save(m_linkedProfiles); }
+            //catch (UnauthorizedAccessException) { AppLogger.LogToGui("Unauthorized Access - Save failed to path: " + m_linkedProfiles, false); saved = false; }
+
+            //return saved;
         }
 
         public bool LoadLinkedProfiles()
@@ -7374,24 +7422,15 @@ namespace DS4Windows
             bool loaded = true;
             if (File.Exists(m_linkedProfiles))
             {
-                XmlDocument linkedXdoc = new XmlDocument();
-                XmlNode Node;
-                linkedXdoc.Load(m_linkedProfiles);
-                linkedProfiles.Clear();
-
+                XmlSerializer serializer = new XmlSerializer(typeof(LinkedProfilesDTO));
+                using StreamReader sr = new StreamReader(m_linkedProfiles);
                 try
                 {
-                    Node = linkedXdoc.SelectSingleNode("/LinkedControllers");
-                    XmlNodeList links = Node.ChildNodes;
-                    for (int i = 0, listLen = links.Count; i < listLen; i++)
-                    {
-                        XmlNode current = links[i];
-                        string serial = current.Name.Replace("MAC", string.Empty);
-                        string profile = current.InnerText;
-                        linkedProfiles[serial] = profile;
-                    }
+                    LinkedProfilesDTO dto = serializer.Deserialize(sr) as LinkedProfilesDTO;
+                    dto.MapTo(this);
                 }
-                catch { loaded = false; }
+                catch (InvalidOperationException) { }
+                catch (XmlException) { }
             }
             else
             {
@@ -7400,50 +7439,135 @@ namespace DS4Windows
             }
 
             return loaded;
+
+            //bool loaded = true;
+            //if (File.Exists(m_linkedProfiles))
+            //{
+            //    XmlDocument linkedXdoc = new XmlDocument();
+            //    XmlNode Node;
+            //    linkedXdoc.Load(m_linkedProfiles);
+            //    linkedProfiles.Clear();
+
+            //    try
+            //    {
+            //        Node = linkedXdoc.SelectSingleNode("/LinkedControllers");
+            //        XmlNodeList links = Node.ChildNodes;
+            //        for (int i = 0, listLen = links.Count; i < listLen; i++)
+            //        {
+            //            XmlNode current = links[i];
+            //            string serial = current.Name.Replace("MAC", string.Empty);
+            //            string profile = current.InnerText;
+            //            linkedProfiles[serial] = profile;
+            //        }
+            //    }
+            //    catch { loaded = false; }
+            //}
+            //else
+            //{
+            //    AppLogger.LogToGui("LinkedProfiles.xml can't be found.", false);
+            //    loaded = false;
+            //}
+
+            //return loaded;
         }
 
         public bool SaveLinkedProfiles()
         {
             bool saved = true;
+
+            string output_path = m_linkedProfiles;
             if (File.Exists(m_linkedProfiles))
             {
-                XmlDocument linkedXdoc = new XmlDocument();
-                XmlNode Node;
-
-                Node = linkedXdoc.CreateXmlDeclaration("1.0", "utf-8", string.Empty);
-                linkedXdoc.AppendChild(Node);
-
-                Node = linkedXdoc.CreateComment(string.Format(" Mac Address and Profile Linking Data. {0} ", DateTime.Now));
-                linkedXdoc.AppendChild(Node);
-
-                Node = linkedXdoc.CreateWhitespace("\r\n");
-                linkedXdoc.AppendChild(Node);
-
-                Node = linkedXdoc.CreateNode(XmlNodeType.Element, "LinkedControllers", "");
-                linkedXdoc.AppendChild(Node);
-
-                Dictionary<string, string>.KeyCollection serials = linkedProfiles.Keys;
-                //for (int i = 0, itemCount = linkedProfiles.Count; i < itemCount; i++)
-                for (var serialEnum = serials.GetEnumerator(); serialEnum.MoveNext();)
+                string testStr = string.Empty;
+                XmlSerializer serializer = new XmlSerializer(typeof(LinkedProfilesDTO));
+                using (StringWriter strWriter = new StringWriter())
                 {
-                    //string serial = serials.ElementAt(i);
-                    string serial = serialEnum.Current;
-                    string profile = linkedProfiles[serial];
-                    XmlElement link = linkedXdoc.CreateElement("MAC" + serial);
-                    link.InnerText = profile;
-                    Node.AppendChild(link);
+                    using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
+                        new XmlWriterSettings()
+                        {
+                            Encoding = Encoding.UTF8,
+                            Indent = true,
+                        });
+
+                    // Write header explicitly
+                    //xmlWriter.WriteStartDocument();
+                    xmlWriter.WriteComment(string.Format(" Mac Address and Profile Linking Data. {0} ", DateTime.Now));
+                    xmlWriter.WriteWhitespace("\r\n");
+                    xmlWriter.WriteWhitespace("\r\n");
+
+                    // Write root element and children
+                    LinkedProfilesDTO dto = new LinkedProfilesDTO();
+                    dto.MapFrom(this);
+                    // Omit xmlns:xsi and xmlns:xsd from output
+                    serializer.Serialize(xmlWriter, dto,
+                        new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty }));
+                    xmlWriter.Flush();
+                    xmlWriter.Close();
+
+                    testStr = strWriter.ToString();
+                    //Trace.WriteLine("TEST OUTPUT");
+                    //Trace.WriteLine(testStr);
                 }
 
-                try { linkedXdoc.Save(m_linkedProfiles); }
-                catch (UnauthorizedAccessException) { AppLogger.LogToGui("Unauthorized Access - Save failed to path: " + m_linkedProfiles, false); saved = false; }
+                try
+                {
+                    using (StreamWriter sw = new StreamWriter(output_path, false))
+                    {
+                        sw.Write(testStr);
+                    }
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    saved = false;
+                }
             }
             else
             {
                 saved = createLinkedProfiles();
-                saved = saved && SaveLinkedProfiles();
             }
 
             return saved;
+
+            //bool saved = true;
+            //if (File.Exists(m_linkedProfiles))
+            //{
+            //    XmlDocument linkedXdoc = new XmlDocument();
+            //    XmlNode Node;
+
+            //    Node = linkedXdoc.CreateXmlDeclaration("1.0", "utf-8", string.Empty);
+            //    linkedXdoc.AppendChild(Node);
+
+            //    Node = linkedXdoc.CreateComment(string.Format(" Mac Address and Profile Linking Data. {0} ", DateTime.Now));
+            //    linkedXdoc.AppendChild(Node);
+
+            //    Node = linkedXdoc.CreateWhitespace("\r\n");
+            //    linkedXdoc.AppendChild(Node);
+
+            //    Node = linkedXdoc.CreateNode(XmlNodeType.Element, "LinkedControllers", "");
+            //    linkedXdoc.AppendChild(Node);
+
+            //    Dictionary<string, string>.KeyCollection serials = linkedProfiles.Keys;
+            //    //for (int i = 0, itemCount = linkedProfiles.Count; i < itemCount; i++)
+            //    for (var serialEnum = serials.GetEnumerator(); serialEnum.MoveNext();)
+            //    {
+            //        //string serial = serials.ElementAt(i);
+            //        string serial = serialEnum.Current;
+            //        string profile = linkedProfiles[serial];
+            //        XmlElement link = linkedXdoc.CreateElement("MAC" + serial);
+            //        link.InnerText = profile;
+            //        Node.AppendChild(link);
+            //    }
+
+            //    try { linkedXdoc.Save(m_linkedProfiles); }
+            //    catch (UnauthorizedAccessException) { AppLogger.LogToGui("Unauthorized Access - Save failed to path: " + m_linkedProfiles, false); saved = false; }
+            //}
+            //else
+            //{
+            //    saved = createLinkedProfiles();
+            //    saved = saved && SaveLinkedProfiles();
+            //}
+
+            //return saved;
         }
 
         public bool createControllerConfigs()

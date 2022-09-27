@@ -4358,7 +4358,6 @@ namespace DS4Windows
 
                 // Run migrations
                 {
-                    XmlNode Item;
                     XmlDocument migrationDoc = new XmlDocument();
 
                     ProfileMigration tmpMigration = new ProfileMigration(profilepath);
@@ -4451,12 +4450,32 @@ namespace DS4Windows
                 {
                     PostLoadSnippet(device, control, xinputStatus, xinputPlug);
                 }
+
+                // Migration was performed. Save new XML schema in file
+                if (migratePerformed)
+                {
+                    string proName = Path.GetFileName(profilepath);
+                    SaveProfile(device, proName);
+                }
             }
             else
             {
                 loaded = false;
                 ResetProfile(device);
                 ResetMouseProperties(device, control);
+
+                // Reset some Mapping properties
+                control.PreLoadReset(device);
+
+                profileActions[device].Clear();
+                foreach (DS4ControlSettings dcs in ds4settings[device])
+                    dcs.Reset();
+
+                containsCustomAction[device] = false;
+                containsCustomExtras[device] = false;
+                profileActionCount[device] = profileActions[device].Count;
+                profileActionDict[device].Clear();
+                profileActionIndexDict[device].Clear();
 
                 // Unplug existing output device if requested profile does not exist
                 OutputDevice tempOutDev = device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT ?

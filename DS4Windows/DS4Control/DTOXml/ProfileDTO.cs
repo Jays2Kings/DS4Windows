@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing.Printing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Schema;
 using System.Xml.Serialization;
 using DS4Windows;
 
@@ -65,24 +63,34 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
+        private DS4Color _ledColor = new DS4Color();
         [XmlElement("Color")]
         public string ColorString
         {
             get; set;
         }
 
+        /// <summary>
+        /// Older capatibility property
+        /// </summary>
         [XmlElement("Red")]
         public string RedColorString
         {
             get; set;
         }
 
+        /// <summary>
+        /// Older capatibility property
+        /// </summary>
         [XmlElement("Green")]
         public string GreenColorString
         {
             get; set;
         }
 
+        /// <summary>
+        /// Older capatibility property
+        /// </summary>
         [XmlElement("Blue")]
         public string BlueColorString
         {
@@ -132,55 +140,75 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
+        private DS4Color _lowColor = new DS4Color();
         [XmlElement("LowColor")]
         public string LowColorString
         {
             get; set;
         }
 
+        /// <summary>
+        /// Older capatibility property
+        /// </summary>
         [XmlElement("LowRed")]
         public string LowRedColorString
         {
             get; set;
         }
 
+        /// <summary>
+        /// Older capatibility property
+        /// </summary>
         [XmlElement("LowGreen")]
         public string LowGreenColorString
         {
             get; set;
         }
 
+        /// <summary>
+        /// Older capatibility property
+        /// </summary>
         [XmlElement("LowBlue")]
         public string LowBlueColorString
         {
             get; set;
         }
 
-
+        private DS4Color _chargingColor = new DS4Color();
         [XmlElement("ChargingColor")]
         public string ChargingColorString
         {
             get; set;
         }
 
+        /// <summary>
+        /// Older capatibility property
+        /// </summary>
         [XmlElement("ChargingRed")]
         public string ChargingRedString
         {
             get; set;
         }
 
+        /// <summary>
+        /// Older capatibility property
+        /// </summary>
         [XmlElement("ChargingGreen")]
         public string ChargingGreenString
         {
             get; set;
         }
 
+        /// <summary>
+        /// Older capatibility property
+        /// </summary>
         [XmlElement("ChargingBlue")]
         public string ChargingBlueString
         {
             get; set;
         }
 
+        private DS4Color _flashColor = new DS4Color();
         [XmlElement("FlashColor")]
         public string FlashColorString
         {
@@ -601,6 +629,9 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _szAntiDeadZone = Math.Clamp(value * 0.01, 0.0, 1.0);
         }
 
+        /// <summary>
+        /// Older capatibility property
+        /// </summary>
         [XmlElement("Sensitivity")]
         public string Sensitivity
         {
@@ -621,6 +652,9 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _mouseAcceleration = XmlDataUtilities.StrToBool(value);
         }
 
+        /// <summary>
+        /// WTF. Some local var?
+        /// </summary>
         [XmlElement("ShiftModifier")]
         public int ShiftModifier
         {
@@ -855,11 +889,24 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
-        private int[] _touchDisInvTriggers;
+        private int[] _touchDisInvTriggers = new int[1] { -1 };
         [XmlElement("TouchDisInvTriggers")]
-        public string TouchDisInvTriggers
+        public string TouchDisInvTriggersString
         {
-            get; set;
+            get => string.Join(",", _touchDisInvTriggers);
+            set
+            {
+                string[] triggers = value.Split(',');
+                int temp = -1;
+                List<int> tempIntList = new List<int>();
+                for (int i = 0, arlen = triggers.Length; i < arlen; i++)
+                {
+                    if (int.TryParse(triggers[i], out temp))
+                        tempIntList.Add(temp);
+                }
+
+                _touchDisInvTriggers = tempIntList.ToArray();
+            }
         }
 
         private int _gyroSensitivity = 100;
@@ -978,20 +1025,20 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _squareStickRoundness = value;
         }
 
-        private double _squareRStickRoundness = 5.0;
-        [XmlElement("SquareRStickRoundness")]
-        public double SquareRStickRoundness
-        {
-            get => _squareRStickRoundness;
-            set => _squareRStickRoundness = value;
-        }
-
         private bool _rsSquareStick;
         [XmlElement("RSSquareStick")]
         public string RSSquareStickString
         {
             get => _rsSquareStick.ToString();
             set => _rsSquareStick = XmlDataUtilities.StrToBool(value);
+        }
+
+        private double _squareRStickRoundness = 5.0;
+        [XmlElement("SquareRStickRoundness")]
+        public double SquareRStickRoundness
+        {
+            get => _squareRStickRoundness;
+            set => _squareRStickRoundness = value;
         }
 
         private bool _lsAntiSnapback = StickAntiSnapbackInfo.DEFAULT_ENABLED;
@@ -1043,13 +1090,13 @@ namespace DS4WinWPF.DS4Control.DTOXml
         }
 
         [XmlElement("LSOutputMode")]
-        public StickOutputSetting LSOutputMode
+        public StickMode LSOutputMode
         {
             get; set;
         }
 
         [XmlElement("RSOutputMode")]
-        public StickOutputSetting RSOutputMode
+        public StickMode RSOutputMode
         {
             get; set;
         }
@@ -1197,7 +1244,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         }
 
         [XmlElement("TouchpadAbsMouseSettings")]
-        public TouchpadAbsMouseSettings TouchpadAbsMouseSettings
+        public TouchpadAbsMouseSettingsSerialize TouchpadAbsMouseSettings
         {
             get; set;
         }
@@ -1208,8 +1255,30 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
-        public ProfileDTO()
+        [XmlElement("ProfileActions")]
+        public string ProfileActions
         {
+            get; set;
+        }
+
+        [XmlElement("Control")]
+        public DS4ControlAssignementSerializer Control
+        {
+            get; set;
+        }
+
+        [XmlElement("ShiftControl")]
+        public DS4ControlAssignementSerializer ShiftControl
+        {
+            get; set;
+        }
+
+        private int deviceIndex;
+
+        public ProfileDTO(int deviceIndex)
+        {
+            this.deviceIndex = deviceIndex;
+
             LSAxialDeadOptions = new StickAxialDeadOptionsSerializer();
             LSDeltaAccelSettings = new StickDeltaAccelSettings();
             RSAxialDeadOptions = new StickAxialDeadOptionsSerializer();
@@ -1222,23 +1291,895 @@ namespace DS4WinWPF.DS4Control.DTOXml
             GyroSwipeSettings = new GyroSwipeSettings();
             GyroMouseSmoothingSettings = new GyroMouseSmoothingSettings();
             LSOutputSettings = new StickModeOutputSettings();
-            TouchpadAbsMouseSettings = new TouchpadAbsMouseSettings();
+            TouchpadAbsMouseSettings = new TouchpadAbsMouseSettingsSerialize();
+            Control = new DS4ControlAssignementSerializer();
+            ShiftControl = new DS4ControlAssignementSerializer();
         }
 
         public void MapFrom(BackingStore source)
         {
-            throw new NotImplementedException();
+            LightbarSettingInfo lightbarSettings = source.lightbarSettingInfo[deviceIndex];
+            LightbarDS4WinInfo lightInfo = lightbarSettings.ds4winSettings;
+
+            TouchToggle = source.enableTouchToggle[deviceIndex];
+            IdleDisconnect = source.idleDisconnectTimeout[deviceIndex];
+            OutputDataToDS4 = source.enableOutputDataToDS4[deviceIndex];
+            LightbarMode = source.lightbarSettingInfo[deviceIndex].mode;
+            ColorString = $"{lightInfo.m_Led.red},${lightInfo.m_Led.green},${lightInfo.m_Led.blue}";
+            _ledColor = new DS4Color(lightInfo.m_Led.red, lightInfo.m_Led.green, lightInfo.m_Led.blue);
+            RumbleBoost = source.rumble[deviceIndex];
+            RumbleAutostopTime = source.rumbleAutostopTime[deviceIndex];
+            LedAsBatteryIndicator = lightInfo.ledAsBattery;
+            FlashType = lightInfo.flashType;
+            FlashBatteryAt = lightInfo.flashAt;
+            TouchSensitivity = source.touchSensitivity[deviceIndex];
+            _lowColor = new DS4Color(lightInfo.m_LowLed.red, lightInfo.m_LowLed.green, lightInfo.m_LowLed.blue);
+            LowColorString = $"{lightInfo.m_LowLed.red},{lightInfo.m_LowLed.green},{lightInfo.m_LowLed.blue}";
+
+            _chargingColor = new DS4Color(lightInfo.m_ChargingLed.red, lightInfo.m_ChargingLed.green, lightInfo.m_ChargingLed.blue);
+            ChargingColorString = $"{lightInfo.m_ChargingLed.red},{lightInfo.m_ChargingLed.green},{lightInfo.m_ChargingLed.blue}";
+
+            _flashColor = new DS4Color(lightInfo.m_FlashLed.red, lightInfo.m_FlashLed.green, lightInfo.m_FlashLed.blue);
+            FlashColorString = $"{lightInfo.m_FlashLed.red},{lightInfo.m_FlashLed.green},{lightInfo.m_FlashLed.blue}";
+
+            TouchpadJitterCompensation = source.touchpadJitterCompensation[deviceIndex];
+            LowerRCOn = source.lowerRCOn[deviceIndex];
+            TapSensitivity = source.tapSensitivity[deviceIndex];
+            DoubleTap = source.doubleTap[deviceIndex];
+            ScrollSensitivity = source.scrollSensitivity[deviceIndex];
+            TouchpadInvert = source.touchpadInvert[deviceIndex];
+            TouchpadClickPassthru = source.touchClickPassthru[deviceIndex];
+            LeftTriggerMiddle = source.l2ModInfo[deviceIndex].deadZone;
+            RightTriggerMiddle = source.r2ModInfo[deviceIndex].deadZone;
+            L2AntiDeadZone = source.l2ModInfo[deviceIndex].antiDeadZone;
+            R2AntiDeadZone = source.r2ModInfo[deviceIndex].antiDeadZone;
+            L2MaxZone = source.l2ModInfo[deviceIndex].maxZone;
+            R2MaxZone = source.r2ModInfo[deviceIndex].maxZone;
+            L2MaxOutput = source.l2ModInfo[deviceIndex].maxOutput;
+            R2MaxOutput = source.r2ModInfo[deviceIndex].maxOutput;
+            LSRotation = source.LSRotation[deviceIndex];
+            RSRotation = source.RSRotation[deviceIndex];
+            LSFuzz = source.lsModInfo[deviceIndex].fuzz;
+            RSFuzz = source.rsModInfo[deviceIndex].fuzz;
+            ButtonMouseSensitivity = source.buttonMouseInfos[deviceIndex].buttonSensitivity;
+            ButtonMouseOffset = source.buttonMouseInfos[deviceIndex].mouseVelocityOffset;
+            ButtonMouseVerticalScale = source.buttonMouseInfos[deviceIndex].buttonVerticalScale;
+            Rainbow = lightInfo.rainbow;
+            MaxSatRainbow = lightInfo.maxRainbowSat;
+            LSDeadZone = source.lsModInfo[deviceIndex].deadZone;
+            RSDeadZone = source.rsModInfo[deviceIndex].deadZone;
+            LSAntiDeadZone = source.lsModInfo[deviceIndex].antiDeadZone;
+            RSAntiDeadZone = source.rsModInfo[deviceIndex].antiDeadZone;
+            LSMaxZone = source.lsModInfo[deviceIndex].maxZone;
+            RSMaxZone = source.rsModInfo[deviceIndex].maxZone;
+            LSVerticalScale = source.lsModInfo[deviceIndex].verticalScale;
+            LSMaxOutput = source.lsModInfo[deviceIndex].maxOutput;
+            _lsMaxOutputForce = source.lsModInfo[deviceIndex].maxOutputForce;
+
+            RSVerticalScale = source.rsModInfo[deviceIndex].verticalScale;
+            RSMaxOutput = source.rsModInfo[deviceIndex].maxOutput;
+            _rsMaxOutputForce = source.rsModInfo[deviceIndex].maxOutputForce;
+
+            _lSOuterBindDead = source.lsModInfo[deviceIndex].outerBindDeadZone;
+            _rSOuterBindDead = source.rsModInfo[deviceIndex].outerBindDeadZone;
+
+            _lSOuterBindInvert = source.lsModInfo[deviceIndex].outerBindInvert;
+            _rSOuterBindInvert = source.rsModInfo[deviceIndex].outerBindInvert;
+
+            LSDeadZoneType = source.lsModInfo[deviceIndex].deadzoneType;
+            LSAxialDeadOptions = new StickAxialDeadOptionsSerializer()
+            {
+                DeadZoneX = source.lsModInfo[deviceIndex].xAxisDeadInfo.deadZone,
+                DeadZoneY = source.lsModInfo[deviceIndex].yAxisDeadInfo.deadZone,
+                MaxZoneX = source.lsModInfo[deviceIndex].xAxisDeadInfo.maxZone,
+                MaxZoneY = source.lsModInfo[deviceIndex].yAxisDeadInfo.maxZone,
+                AntiDeadZoneX = source.lsModInfo[deviceIndex].xAxisDeadInfo.antiDeadZone,
+                AntiDeadZoneY = source.lsModInfo[deviceIndex].yAxisDeadInfo.antiDeadZone,
+                MaxOutputX = source.lsModInfo[deviceIndex].xAxisDeadInfo.maxOutput,
+                MaxOutputY = source.lsModInfo[deviceIndex].yAxisDeadInfo.maxOutput,
+            };
+            LSDeltaAccelSettings = new StickDeltaAccelSettings()
+            {
+                Enabled = source.lsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.enabled,
+                Multiplier = source.lsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.multiplier,
+                MaxTravel = source.lsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.maxTravel,
+                MinTravel = source.lsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.minTravel,
+                EasingDuration = source.lsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.easingDuration,
+                MinFactor = source.lsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.minfactor,
+            };
+
+            RSDeadZoneType = source.rsModInfo[deviceIndex].deadzoneType;
+            RSAxialDeadOptions = new StickAxialDeadOptionsSerializer()
+            {
+                DeadZoneX = source.rsModInfo[deviceIndex].xAxisDeadInfo.deadZone,
+                DeadZoneY = source.rsModInfo[deviceIndex].yAxisDeadInfo.deadZone,
+                MaxZoneX = source.rsModInfo[deviceIndex].xAxisDeadInfo.maxZone,
+                MaxZoneY = source.rsModInfo[deviceIndex].yAxisDeadInfo.maxZone,
+                AntiDeadZoneX = source.rsModInfo[deviceIndex].xAxisDeadInfo.antiDeadZone,
+                AntiDeadZoneY = source.rsModInfo[deviceIndex].yAxisDeadInfo.antiDeadZone,
+                MaxOutputX = source.rsModInfo[deviceIndex].xAxisDeadInfo.maxOutput,
+                MaxOutputY = source.rsModInfo[deviceIndex].yAxisDeadInfo.maxOutput,
+            };
+            RSDeltaAccelSettings = new StickDeltaAccelSettings()
+            {
+                Enabled = source.rsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.enabled,
+                Multiplier = source.rsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.multiplier,
+                MaxTravel = source.rsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.maxTravel,
+                MinTravel = source.rsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.minTravel,
+                EasingDuration = source.rsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.easingDuration,
+                MinFactor = source.rsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.minfactor,
+            };
+
+            SXDeadZone = source.SXDeadzone[deviceIndex];
+            SZDeadZone = source.SZDeadzone[deviceIndex];
+            SXMaxZone = source.SXMaxzone[deviceIndex];
+            SZMaxZone = source.SZMaxzone[deviceIndex];
+            SXAntiDeadZone = source.SXAntiDeadzone[deviceIndex];
+            SZAntiDeadZone = source.SZAntiDeadzone[deviceIndex];
+
+            ChargingType = lightInfo.chargingType;
+            _mouseAcceleration = source.buttonMouseInfos[deviceIndex].mouseAccel;
+            //ShiftModifier = source.
+            LaunchProgram = source.launchProgram[deviceIndex];
+            _dinputOnly = source.dinputOnly[deviceIndex];
+            _startTouchpadOff = source.startTouchpadOff[deviceIndex];
+            _useTPforControls = source.touchOutMode[deviceIndex] == TouchpadOutMode.Controls;
+            _useSAforMouse = source.gyroOutMode[deviceIndex] == GyroOutMode.Mouse;
+            SATriggers = source.sATriggers[deviceIndex];
+            _sATriggerCond = source.sATriggerCond[deviceIndex];
+            SASteeringWheelEmulationAxis = source.sASteeringWheelEmulationAxis[deviceIndex];
+            SASteeringWheelEmulationRange = source.sASteeringWheelEmulationRange[deviceIndex];
+            SASteeringWheelSmoothingOptions = new SASteeringWheelSmoothingOptions()
+            {
+                SASteeringWheelUseSmoothing = source.wheelSmoothInfo[deviceIndex].enabled,
+                SASteeringWheelSmoothMinCutoff = source.wheelSmoothInfo[deviceIndex].MinCutoff,
+                SASteeringWheelSmoothBeta = source.wheelSmoothInfo[deviceIndex].Beta,
+            };
+
+            SASteeringWheelFuzz = source.saWheelFuzzValues[deviceIndex];
+            GyroOutputMode = source.gyroOutMode[deviceIndex];
+            GyroControlsSettings = new GyroControlsSettings()
+            {
+                Triggers = source.gyroControlsInf[deviceIndex].triggers,
+                TriggerCond = source.gyroControlsInf[deviceIndex].triggerCond,
+                TriggerTurns = source.gyroControlsInf[deviceIndex].triggerTurns,
+                Toggle = source.gyroControlsInf[deviceIndex].triggerToggle,
+            };
+
+            _gyroMouseStickTriggers = source.sAMouseStickTriggers[deviceIndex];
+            _gyroMouseStickTriggerCond = source.sAMouseStickTriggerCond[deviceIndex];
+            _gyroMouseStickTriggerTurns = source.gyroMouseStickTriggerTurns[deviceIndex];
+            GyroMouseStickHAxis = source.gyroMouseStickHorizontalAxis[deviceIndex];
+            GyroMouseStickDeadZone = source.gyroMStickInfo[deviceIndex].deadZone;
+            GyroMouseStickMaxZone = source.gyroMStickInfo[deviceIndex].maxZone;
+            GyroMouseStickOutputStick = source.gyroMStickInfo[deviceIndex].outputStick;
+            GyroMouseStickOutputStickAxes = source.gyroMStickInfo[deviceIndex].outputStickDir;
+            GyroMouseStickAntiDeadX = source.gyroMStickInfo[deviceIndex].antiDeadX;
+            GyroMouseStickAntiDeadY = source.gyroMStickInfo[deviceIndex].antiDeadY;
+            GyroMouseStickInvert = source.gyroMStickInfo[deviceIndex].inverted;
+            _gyroMouseStickToggle = source.gyroMouseStickToggle[deviceIndex];
+            GyroMouseStickMaxOutput = source.gyroMStickInfo[deviceIndex].maxOutput;
+            _gyroMouseStickMaxOutputEnabled = source.gyroMStickInfo[deviceIndex].maxOutputEnabled;
+            GyroMouseStickVerticalScale = source.gyroMStickInfo[deviceIndex].vertScale;
+            GyroMouseStickSmoothingSettings = new GyroMouseStickSmoothingSettings()
+            {
+                UseSmoothing = source.gyroMStickInfo[deviceIndex].useSmoothing,
+                SmoothingMethod = source.gyroMStickInfo[deviceIndex].SmoothMethodIdentifier(),
+                SmoothingWeight = source.gyroMStickInfo[deviceIndex].smoothWeight,
+                SmoothingMinCutoff = source.gyroMStickInfo[deviceIndex].minCutoff,
+                SmoothingBeta = source.gyroMStickInfo[deviceIndex].beta,
+            };
+            GyroSwipeSettings = new GyroSwipeSettings()
+            {
+                DeadZoneX = source.gyroSwipeInfo[deviceIndex].deadzoneX,
+                DeadZoneY = source.gyroSwipeInfo[deviceIndex].deadzoneY,
+                Triggers = source.gyroSwipeInfo[deviceIndex].triggers,
+                TriggerCond = source.gyroSwipeInfo[deviceIndex].triggerCond,
+                TriggerTurns = source.gyroSwipeInfo[deviceIndex].triggerTurns,
+                XAxis = source.gyroSwipeInfo[deviceIndex].xAxis,
+                DelayTime = source.gyroSwipeInfo[deviceIndex].delayTime,
+            };
+            TouchpadOutputMode = source.touchOutMode[deviceIndex];
+            _touchDisInvTriggers = source.touchDisInvertTriggers[deviceIndex];
+            GyroSensitivity = source.gyroSensitivity[deviceIndex];
+            GyroSensVerticalScale = source.gyroSensVerticalScale[deviceIndex];
+            GyroInvert = source.gyroInvert[deviceIndex];
+            _gyroTriggerTurns = source.gyroTriggerTurns[deviceIndex];
+            GyroMouseSmoothingSettings = new GyroMouseSmoothingSettings()
+            {
+                UseSmoothing = source.gyroMouseInfo[deviceIndex].enableSmoothing,
+                SmoothingMethod = source.gyroMouseInfo[deviceIndex].SmoothMethodIdentifier(),
+                SmoothingWeight = source.gyroMouseInfo[deviceIndex].smoothingWeight,
+                SmoothingMinCutoff = source.gyroMouseInfo[deviceIndex].minCutoff,
+                SmoothingBeta = source.gyroMouseInfo[deviceIndex].beta,
+            };
+            GyroMouseHAxis = source.gyroMouseHorizontalAxis[deviceIndex];
+            GyroMouseDeadZone = source.gyroMouseDZ[deviceIndex];
+            GyroMouseMinThreshold = source.gyroMouseInfo[deviceIndex].minThreshold;
+            _gyroMouseToggle = source.gyroMouseToggle[deviceIndex];
+            _bTPollRate = source.btPollRate[deviceIndex];
+
+            LSOutputCurveCustom = source.lsOutBezierCurveObj[deviceIndex].CustomDefinition;
+            LSOutputCurveMode = source.stickOutputCurveString(source.getLsOutCurveMode(deviceIndex));
+            RSOutputCurveCustom = source.rsOutBezierCurveObj[deviceIndex].CustomDefinition;
+            RSOutputCurveMode = source.stickOutputCurveString(source.getRsOutCurveMode(deviceIndex));
+            _lsSquareStick = source.squStickInfo[deviceIndex].lsMode;
+            SquareStickRoundness = source.squStickInfo[deviceIndex].lsRoundness;
+            _rsSquareStick = source.squStickInfo[deviceIndex].rsMode;
+            SquareRStickRoundness = source.squStickInfo[deviceIndex].rsRoundness;
+            _lsAntiSnapback = source.lsAntiSnapbackInfo[deviceIndex].enabled;
+            _rsAntiSnapback = source.rsAntiSnapbackInfo[deviceIndex].enabled;
+            LSAntiSnapbackDelta = source.lsAntiSnapbackInfo[deviceIndex].delta;
+            RSAntiSnapbackDelta = source.rsAntiSnapbackInfo[deviceIndex].delta;
+            LSAntiSnapbackTimeout = source.lsAntiSnapbackInfo[deviceIndex].timeout;
+            RSAntiSnapbackTimeout = source.rsAntiSnapbackInfo[deviceIndex].timeout;
+            LSOutputMode = source.lsOutputSettings[deviceIndex].mode;
+            RSOutputMode = source.rsOutputSettings[deviceIndex].mode;
+            LSOutputSettings = new StickModeOutputSettings()
+            {
+                FlickStickSettings = new FlickStickSettings()
+                {
+                    RealWorldCalibration = source.lsOutputSettings[deviceIndex].outputSettings.flickSettings.realWorldCalibration,
+                    FlickThreshold = source.lsOutputSettings[deviceIndex].outputSettings.flickSettings.flickThreshold,
+                    FlickTime = source.lsOutputSettings[deviceIndex].outputSettings.flickSettings.flickTime,
+                    MinAngleThreshold = source.lsOutputSettings[deviceIndex].outputSettings.flickSettings.minAngleThreshold,
+                },
+            };
+            RSOutputSettings = new StickModeOutputSettings()
+            {
+                FlickStickSettings = new FlickStickSettings()
+                {
+                    RealWorldCalibration = source.rsOutputSettings[deviceIndex].outputSettings.flickSettings.realWorldCalibration,
+                    FlickThreshold = source.rsOutputSettings[deviceIndex].outputSettings.flickSettings.flickThreshold,
+                    FlickTime = source.rsOutputSettings[deviceIndex].outputSettings.flickSettings.flickTime,
+                    MinAngleThreshold = source.rsOutputSettings[deviceIndex].outputSettings.flickSettings.minAngleThreshold,
+                },
+            };
+
+            L2OutputCurveCustom = source.l2OutBezierCurveObj[deviceIndex].CustomDefinition;
+            L2OutputCurveMode = source.stickOutputCurveString(source.getL2OutCurveMode(deviceIndex));
+            L2TwoStageMode = source.l2OutputSettings[deviceIndex].twoStageMode;
+            L2HipFireTime = source.l2OutputSettings[deviceIndex].hipFireMS;
+            L2TriggerEffect = source.l2OutputSettings[deviceIndex].triggerEffect;
+
+            R2OutputCurveCustom = source.r2OutBezierCurveObj[deviceIndex].CustomDefinition;
+            R2OutputCurveMode = source.stickOutputCurveString(source.getR2OutCurveMode(deviceIndex));
+            R2TwoStageMode = source.r2OutputSettings[deviceIndex].twoStageMode;
+            R2HipFireTime = source.r2OutputSettings[deviceIndex].hipFireMS;
+            R2TriggerEffect = source.r2OutputSettings[deviceIndex].triggerEffect;
+
+            SXOutputCurveCustom = source.sxOutBezierCurveObj[deviceIndex].CustomDefinition;
+            SXOutputCurveMode = source.stickOutputCurveString(source.getSXOutCurveMode(deviceIndex));
+            SZOutputCurveCustom = source.szOutBezierCurveObj[deviceIndex].CustomDefinition;
+            SZOutputCurveMode = source.stickOutputCurveString(source.getSZOutCurveMode(deviceIndex));
+            _trackballMode = source.trackballMode[deviceIndex];
+            TrackballFriction = source.trackballFriction[deviceIndex];
+            TouchRelMouseRotation = source.touchpadRelMouse[deviceIndex].rotation;
+            TouchRelMouseMinThreshold = source.touchpadRelMouse[deviceIndex].minThreshold;
+            TouchpadAbsMouseSettings = new TouchpadAbsMouseSettingsSerialize()
+            {
+                MaxZoneX = source.touchpadAbsMouse[deviceIndex].maxZoneX,
+                MaxZoneY = source.touchpadAbsMouse[deviceIndex].maxZoneY,
+                SnapToCenter = source.touchpadAbsMouse[deviceIndex].snapToCenter,
+            };
+
+            OutputContDevice = source.outputDevType[deviceIndex];
+            ProfileActions = string.Join("/", source.profileActions[deviceIndex]);
+            Control = new DS4ControlAssignementSerializer();
+            ShiftControl = new DS4ControlAssignementSerializer();
+
+            DS4ControlButtonAssignmentSerializer buttonSerializer = new DS4ControlButtonAssignmentSerializer();
+            DS4ControlKeyAssignmentSerializer keySerializer = new DS4ControlKeyAssignmentSerializer();
+            DS4ControlKeyTypeAssignmentSerializer keyTypeSerializer = new DS4ControlKeyTypeAssignmentSerializer();
+            DS4ControlMacroAssignmentSerializer macroSerializer = new DS4ControlMacroAssignmentSerializer();
+
+            DS4ControlButtonAssignmentSerializer shiftButtonSerializer = new DS4ControlButtonAssignmentSerializer();
+            DS4ControlKeyAssignmentSerializer shiftKeySerializer = new DS4ControlKeyAssignmentSerializer();
+            DS4ControlKeyTypeAssignmentSerializer shiftKeyTypeSerializer = new DS4ControlKeyTypeAssignmentSerializer();
+            DS4ControlMacroAssignmentSerializer shiftMacroSerializer = new DS4ControlMacroAssignmentSerializer();
+
+            foreach (DS4ControlSettings dcs in source.ds4settings[deviceIndex])
+            {
+                if (dcs.actionType != DS4ControlSettings.ActionType.Default)
+                {
+                    DS4KeyType[] tempArray = (DS4KeyType[])Enum.GetValues(typeof(DS4KeyType));
+                    for (int i = 0; i < tempArray.Length; i++)
+                    {
+                        DS4KeyType testFlag = tempArray[i];
+                        if (dcs.keyType.HasFlag(testFlag))
+                        {
+                            keyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, testFlag);
+                        }
+                    }
+
+                    if (dcs.actionType == DS4ControlSettings.ActionType.Button)
+                    {
+                        if (dcs.action.actionBtn == X360Controls.Unbound &&
+                            !dcs.keyType.HasFlag(DS4KeyType.Unbound))
+                        {
+                            keyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, DS4KeyType.Unbound);
+                        }
+
+                        buttonSerializer.CustomMapButtons.Add(dcs.control, dcs.action.actionBtn);
+                    }
+                    else if (dcs.actionType == DS4ControlSettings.ActionType.Key)
+                    {
+                        keySerializer.CustomMapKeys.Add(dcs.control, (ushort)dcs.action.actionKey);
+                    }
+                    else if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
+                    {
+                        macroSerializer.CustomMapMacros.Add(dcs.control,
+                            string.Join("/", dcs.action.actionMacro));
+                    }
+                }
+
+                if (dcs.shiftActionType != DS4ControlSettings.ActionType.Default && dcs.shiftTrigger > 0)
+                {
+                    DS4KeyType[] tempArray = (DS4KeyType[])Enum.GetValues(typeof(DS4KeyType));
+                    for (int i = 0; i < tempArray.Length; i++)
+                    {
+                        DS4KeyType testFlag = tempArray[i];
+                        if (dcs.shiftKeyType.HasFlag(testFlag))
+                        {
+                            shiftKeyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, testFlag);
+                        }
+                    }
+
+                    if (dcs.shiftActionType == DS4ControlSettings.ActionType.Button)
+                    {
+                        if (dcs.shiftAction.actionBtn == X360Controls.Unbound &&
+                            !dcs.shiftKeyType.HasFlag(DS4KeyType.Unbound))
+                        {
+                            shiftKeyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, DS4KeyType.Unbound);
+                        }
+
+                        shiftButtonSerializer.CustomMapButtons.Add(dcs.control, dcs.action.actionBtn);
+                    }
+                    else if (dcs.shiftActionType == DS4ControlSettings.ActionType.Key)
+                    {
+                        shiftKeySerializer.CustomMapKeys.Add(dcs.control, (ushort)dcs.action.actionKey);
+                    }
+                    else if (dcs.shiftActionType == DS4ControlSettings.ActionType.Macro)
+                    {
+                        shiftMacroSerializer.CustomMapMacros.Add(dcs.control,
+                            string.Join("/", dcs.action.actionMacro));
+                    }
+                }
+            }
+
+            if (buttonSerializer.CustomMapButtons.Count > 0)
+            {
+                Control.Button = buttonSerializer;
+            }
+
+            if (keySerializer.CustomMapKeys.Count > 0)
+            {
+                Control.Key = keySerializer;
+            }
+
+            if (keyTypeSerializer.CustomMapKeyTypes.Count > 0)
+            {
+                Control.KeyType = keyTypeSerializer;
+            }
+
+            if (macroSerializer.CustomMapMacros.Count > 0)
+            {
+                Control.Macro = macroSerializer;
+            }
+
+
+            if (shiftButtonSerializer.CustomMapButtons.Count > 0)
+            {
+                ShiftControl.Button = shiftButtonSerializer;
+            }
+
+            if (shiftKeySerializer.CustomMapKeys.Count > 0)
+            {
+                ShiftControl.Key = shiftKeySerializer;
+            }
+
+            if (shiftKeyTypeSerializer.CustomMapKeyTypes.Count > 0)
+            {
+                ShiftControl.KeyType = shiftKeyTypeSerializer;
+            }
+
+            if (shiftMacroSerializer.CustomMapMacros.Count > 0)
+            {
+                ShiftControl.Macro = shiftMacroSerializer;
+            }
         }
 
         public void MapTo(BackingStore destination)
         {
             PostProcessXml();
 
-            throw new NotImplementedException();
+            LightbarSettingInfo lightbarSettings = destination.lightbarSettingInfo[deviceIndex];
+            LightbarDS4WinInfo lightInfo = lightbarSettings.ds4winSettings;
+
+            destination.enableTouchToggle[deviceIndex] = TouchToggle;
+            destination.idleDisconnectTimeout[deviceIndex] = IdleDisconnect;
+            destination.enableOutputDataToDS4[deviceIndex] = OutputDataToDS4;
+            destination.lightbarSettingInfo[deviceIndex].mode = LightbarMode;
+
+            destination.rumble[deviceIndex] = RumbleBoost;
+            destination.rumbleAutostopTime[deviceIndex] = RumbleAutostopTime;
+            lightInfo.ledAsBattery = LedAsBatteryIndicator;
+            lightInfo.flashType = FlashType;
+            lightInfo.flashAt = FlashBatteryAt;
+            destination.touchSensitivity[deviceIndex] = TouchSensitivity;
+
+            destination.touchpadJitterCompensation[deviceIndex] = TouchpadJitterCompensation;
+            destination.lowerRCOn[deviceIndex] = LowerRCOn;
+            destination.tapSensitivity[deviceIndex] = TapSensitivity;
+            destination.doubleTap[deviceIndex] = DoubleTap;
+            destination.scrollSensitivity[deviceIndex] = ScrollSensitivity;
+            destination.touchpadInvert[deviceIndex] = TouchpadInvert;
+            destination.touchClickPassthru[deviceIndex] = TouchpadClickPassthru;
+            destination.l2ModInfo[deviceIndex].deadZone = LeftTriggerMiddle;
+            destination.r2ModInfo[deviceIndex].deadZone = RightTriggerMiddle;
+            destination.l2ModInfo[deviceIndex].antiDeadZone = L2AntiDeadZone;
+            destination.r2ModInfo[deviceIndex].antiDeadZone = R2AntiDeadZone;
+            destination.l2ModInfo[deviceIndex].maxZone = L2MaxZone;
+            destination.r2ModInfo[deviceIndex].maxZone = R2MaxZone;
+            destination.l2ModInfo[deviceIndex].maxOutput = L2MaxOutput;
+            destination.r2ModInfo[deviceIndex].maxOutput = R2MaxOutput;
+            destination.LSRotation[deviceIndex] = LSRotation;
+            destination.RSRotation[deviceIndex] = RSRotation;
+            destination.lsModInfo[deviceIndex].fuzz = LSFuzz;
+            destination.rsModInfo[deviceIndex].fuzz = RSFuzz;
+            destination.buttonMouseInfos[deviceIndex].buttonSensitivity = ButtonMouseSensitivity;
+            destination.buttonMouseInfos[deviceIndex].mouseVelocityOffset = ButtonMouseOffset;
+            destination.buttonMouseInfos[deviceIndex].buttonVerticalScale = ButtonMouseVerticalScale;
+            lightInfo.rainbow = Rainbow;
+            lightInfo.maxRainbowSat = MaxSatRainbow;
+            destination.lsModInfo[deviceIndex].deadZone = LSDeadZone;
+            destination.rsModInfo[deviceIndex].deadZone = RSDeadZone;
+            destination.lsModInfo[deviceIndex].antiDeadZone = LSAntiDeadZone;
+            destination.rsModInfo[deviceIndex].antiDeadZone = RSAntiDeadZone;
+            destination.lsModInfo[deviceIndex].maxZone = LSMaxZone;
+            destination.rsModInfo[deviceIndex].maxZone = RSMaxZone;
+            destination.lsModInfo[deviceIndex].verticalScale = LSVerticalScale;
+            destination.lsModInfo[deviceIndex].maxOutput = LSMaxOutput;
+            destination.lsModInfo[deviceIndex].maxOutputForce = _lsMaxOutputForce;
+
+            destination.rsModInfo[deviceIndex].verticalScale = RSVerticalScale;
+            destination.rsModInfo[deviceIndex].maxOutput = RSMaxOutput;
+            destination.rsModInfo[deviceIndex].maxOutputForce = _rsMaxOutputForce;
+
+            destination.lsModInfo[deviceIndex].outerBindDeadZone = _lSOuterBindDead;
+            destination.rsModInfo[deviceIndex].outerBindDeadZone = _rSOuterBindDead;
+
+            destination.lsModInfo[deviceIndex].outerBindInvert = _lSOuterBindInvert;
+            destination.rsModInfo[deviceIndex].outerBindInvert = _rSOuterBindInvert;
+
+            destination.lsModInfo[deviceIndex].deadzoneType = LSDeadZoneType;
+
+            if (LSAxialDeadOptions != null)
+            {
+                destination.lsModInfo[deviceIndex].xAxisDeadInfo.deadZone = LSAxialDeadOptions.DeadZoneX;
+                destination.lsModInfo[deviceIndex].yAxisDeadInfo.deadZone = LSAxialDeadOptions.DeadZoneY;
+                destination.lsModInfo[deviceIndex].xAxisDeadInfo.maxZone = LSAxialDeadOptions.MaxZoneX;
+                destination.lsModInfo[deviceIndex].yAxisDeadInfo.maxZone = LSAxialDeadOptions.MaxZoneY;
+                destination.lsModInfo[deviceIndex].xAxisDeadInfo.antiDeadZone = LSAxialDeadOptions.AntiDeadZoneX;
+                destination.lsModInfo[deviceIndex].yAxisDeadInfo.antiDeadZone = LSAxialDeadOptions.AntiDeadZoneY;
+                destination.lsModInfo[deviceIndex].xAxisDeadInfo.maxOutput = LSAxialDeadOptions.MaxOutputX;
+                destination.lsModInfo[deviceIndex].yAxisDeadInfo.maxOutput = LSAxialDeadOptions.MaxOutputY;
+            }
+
+            if (LSDeltaAccelSettings != null)
+            {
+                destination.lsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.enabled = LSDeltaAccelSettings.Enabled;
+                destination.lsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.multiplier = LSDeltaAccelSettings.Multiplier;
+                destination.lsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.maxTravel = LSDeltaAccelSettings.MaxTravel;
+                destination.lsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.minTravel = LSDeltaAccelSettings.MinTravel;
+                destination.lsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.easingDuration = LSDeltaAccelSettings.EasingDuration;
+                destination.lsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.minfactor = LSDeltaAccelSettings.MinFactor;
+            }
+
+            destination.rsModInfo[deviceIndex].deadzoneType = RSDeadZoneType;
+            if (RSAxialDeadOptions != null)
+            {
+                destination.rsModInfo[deviceIndex].xAxisDeadInfo.deadZone = RSAxialDeadOptions.DeadZoneX;
+                destination.rsModInfo[deviceIndex].yAxisDeadInfo.deadZone = RSAxialDeadOptions.DeadZoneY;
+                destination.rsModInfo[deviceIndex].xAxisDeadInfo.maxZone = RSAxialDeadOptions.MaxZoneX;
+                destination.rsModInfo[deviceIndex].yAxisDeadInfo.maxZone = RSAxialDeadOptions.MaxZoneY;
+                destination.rsModInfo[deviceIndex].xAxisDeadInfo.antiDeadZone = RSAxialDeadOptions.AntiDeadZoneX;
+                destination.rsModInfo[deviceIndex].yAxisDeadInfo.antiDeadZone = RSAxialDeadOptions.AntiDeadZoneY;
+                destination.rsModInfo[deviceIndex].xAxisDeadInfo.maxOutput = RSAxialDeadOptions.MaxOutputX;
+                destination.rsModInfo[deviceIndex].yAxisDeadInfo.maxOutput = RSAxialDeadOptions.MaxOutputY;
+            }
+
+            if (RSDeltaAccelSettings != null)
+            {
+                destination.rsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.enabled = RSDeltaAccelSettings.Enabled;
+                destination.rsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.multiplier = RSDeltaAccelSettings.Multiplier;
+                destination.rsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.maxTravel = RSDeltaAccelSettings.MaxTravel;
+                destination.rsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.minTravel = RSDeltaAccelSettings.MinTravel;
+                destination.rsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.easingDuration = RSDeltaAccelSettings.EasingDuration;
+                destination.rsOutputSettings[deviceIndex].outputSettings.controlSettings.deltaAccelSettings.minfactor = RSDeltaAccelSettings.MinFactor;
+            }
+
+            destination.SXDeadzone[deviceIndex] = SXDeadZone;
+            destination.SZDeadzone[deviceIndex] = SZDeadZone;
+            destination.SXMaxzone[deviceIndex] = SXMaxZone;
+            destination.SZMaxzone[deviceIndex] = SZMaxZone;
+            destination.SXAntiDeadzone[deviceIndex] = SXAntiDeadZone;
+            destination.SZAntiDeadzone[deviceIndex] = SZAntiDeadZone;
+
+            lightInfo.chargingType = ChargingType;
+            destination.buttonMouseInfos[deviceIndex].mouseAccel = _mouseAcceleration;
+            //destination. = ShiftModifier 
+            destination.launchProgram[deviceIndex] = LaunchProgram;
+            destination.dinputOnly[deviceIndex] = _dinputOnly;
+            destination.startTouchpadOff[deviceIndex] = _startTouchpadOff;
+            destination.sATriggers[deviceIndex] = SATriggers;
+            destination.sATriggerCond[deviceIndex] = _sATriggerCond;
+            destination.sASteeringWheelEmulationAxis[deviceIndex] = SASteeringWheelEmulationAxis;
+            destination.sASteeringWheelEmulationRange[deviceIndex] = SASteeringWheelEmulationRange;
+
+            if (SASteeringWheelSmoothingOptions != null)
+            {
+                destination.wheelSmoothInfo[deviceIndex].enabled = SASteeringWheelSmoothingOptions.SASteeringWheelUseSmoothing;
+                destination.wheelSmoothInfo[deviceIndex].MinCutoff = SASteeringWheelSmoothingOptions.SASteeringWheelSmoothMinCutoff;
+                destination.wheelSmoothInfo[deviceIndex].Beta = SASteeringWheelSmoothingOptions.SASteeringWheelSmoothBeta;
+            }
+
+            destination.saWheelFuzzValues[deviceIndex] = SASteeringWheelFuzz;
+            destination.gyroOutMode[deviceIndex] = GyroOutputMode;
+
+            if (GyroControlsSettings != null)
+            {
+                destination.gyroControlsInf[deviceIndex].triggers = GyroControlsSettings.Triggers;
+                destination.gyroControlsInf[deviceIndex].triggerCond = GyroControlsSettings.TriggerCond;
+                destination.gyroControlsInf[deviceIndex].triggerTurns = GyroControlsSettings.TriggerTurns;
+                destination.gyroControlsInf[deviceIndex].triggerToggle = GyroControlsSettings.Toggle;
+            }
+
+            destination.sAMouseStickTriggers[deviceIndex] = _gyroMouseStickTriggers;
+            destination.sAMouseStickTriggerCond[deviceIndex] = _gyroMouseStickTriggerCond;
+            destination.gyroMouseStickTriggerTurns[deviceIndex] = _gyroMouseStickTriggerTurns;
+            destination.gyroMouseStickHorizontalAxis[deviceIndex] = GyroMouseStickHAxis;
+            destination.gyroMStickInfo[deviceIndex].deadZone = GyroMouseStickDeadZone;
+            destination.gyroMStickInfo[deviceIndex].maxZone = GyroMouseStickMaxZone;
+            destination.gyroMStickInfo[deviceIndex].outputStick = GyroMouseStickOutputStick;
+            destination.gyroMStickInfo[deviceIndex].outputStickDir = GyroMouseStickOutputStickAxes;
+            destination.gyroMStickInfo[deviceIndex].antiDeadX = GyroMouseStickAntiDeadX;
+            destination.gyroMStickInfo[deviceIndex].antiDeadY = GyroMouseStickAntiDeadY;
+            destination.gyroMStickInfo[deviceIndex].inverted = GyroMouseStickInvert;
+            destination.gyroMouseStickToggle[deviceIndex] = _gyroMouseStickToggle;
+            destination.gyroMStickInfo[deviceIndex].maxOutput = GyroMouseStickMaxOutput;
+            destination.gyroMStickInfo[deviceIndex].maxOutputEnabled = _gyroMouseStickMaxOutputEnabled;
+            destination.gyroMStickInfo[deviceIndex].vertScale = GyroMouseStickVerticalScale;
+
+            if (GyroMouseStickSmoothingSettings != null)
+            {
+                destination.gyroMStickInfo[deviceIndex].useSmoothing = GyroMouseStickSmoothingSettings.UseSmoothing;
+                destination.gyroMStickInfo[deviceIndex].smoothingMethod = GyroMouseStickInfo.SmoothingMethodParse(GyroMouseStickSmoothingSettings.SmoothingMethod);
+                destination.gyroMStickInfo[deviceIndex].smoothWeight = GyroMouseStickSmoothingSettings.SmoothingWeight;
+                destination.gyroMStickInfo[deviceIndex].minCutoff = GyroMouseStickSmoothingSettings.SmoothingMinCutoff;
+                destination.gyroMStickInfo[deviceIndex].beta = GyroMouseStickSmoothingSettings.SmoothingBeta;
+            }
+
+            if (GyroSwipeSettings != null)
+            {
+                destination.gyroSwipeInfo[deviceIndex].deadzoneX = GyroSwipeSettings.DeadZoneX;
+                destination.gyroSwipeInfo[deviceIndex].deadzoneY = GyroSwipeSettings.DeadZoneY;
+                destination.gyroSwipeInfo[deviceIndex].triggers = GyroSwipeSettings.Triggers;
+                destination.gyroSwipeInfo[deviceIndex].triggerCond = GyroSwipeSettings.TriggerCond;
+                destination.gyroSwipeInfo[deviceIndex].triggerTurns = GyroSwipeSettings.TriggerTurns;
+                destination.gyroSwipeInfo[deviceIndex].xAxis = GyroSwipeSettings.XAxis;
+                destination.gyroSwipeInfo[deviceIndex].delayTime = GyroSwipeSettings.DelayTime;
+            }
+
+            destination.touchOutMode[deviceIndex] = TouchpadOutputMode;
+            destination.touchDisInvertTriggers[deviceIndex] = _touchDisInvTriggers;
+            destination.gyroSensitivity[deviceIndex] = GyroSensitivity;
+            destination.gyroSensVerticalScale[deviceIndex] = GyroSensVerticalScale;
+            destination.gyroInvert[deviceIndex] = GyroInvert;
+            destination.gyroTriggerTurns[deviceIndex] = _gyroTriggerTurns;
+
+            if (GyroMouseSmoothingSettings != null)
+            {
+                destination.gyroMouseInfo[deviceIndex].enableSmoothing = GyroMouseSmoothingSettings.UseSmoothing;
+                destination.gyroMouseInfo[deviceIndex].smoothingMethod = GyroMouseInfo.SmoothingMethodParse(GyroMouseSmoothingSettings.SmoothingMethod);
+                destination.gyroMouseInfo[deviceIndex].smoothingWeight = GyroMouseSmoothingSettings.SmoothingWeight;
+                destination.gyroMouseInfo[deviceIndex].minCutoff = GyroMouseSmoothingSettings.SmoothingMinCutoff;
+                destination.gyroMouseInfo[deviceIndex].beta = GyroMouseSmoothingSettings.SmoothingBeta;
+            }
+
+            destination.gyroMouseHorizontalAxis[deviceIndex] = GyroMouseHAxis;
+            destination.gyroMouseDZ[deviceIndex] = GyroMouseDeadZone;
+            destination.gyroMouseInfo[deviceIndex].minThreshold = GyroMouseMinThreshold;
+            destination.gyroMouseToggle[deviceIndex] = _gyroMouseToggle;
+            destination.btPollRate[deviceIndex] = _bTPollRate;
+
+            destination.lsOutBezierCurveObj[deviceIndex].CustomDefinition = LSOutputCurveCustom;
+            destination.setLsOutCurveMode(deviceIndex, destination.stickOutputCurveId(LSOutputCurveMode));
+            destination.rsOutBezierCurveObj[deviceIndex].CustomDefinition = RSOutputCurveCustom;
+            destination.setRsOutCurveMode(deviceIndex, destination.stickOutputCurveId(RSOutputCurveMode));
+            destination.squStickInfo[deviceIndex].lsMode = _lsSquareStick;
+            destination.squStickInfo[deviceIndex].lsRoundness = SquareStickRoundness;
+            destination.squStickInfo[deviceIndex].rsMode = _rsSquareStick;
+            destination.squStickInfo[deviceIndex].rsRoundness = SquareRStickRoundness;
+            destination.lsAntiSnapbackInfo[deviceIndex].enabled = _lsAntiSnapback;
+            destination.rsAntiSnapbackInfo[deviceIndex].enabled = _rsAntiSnapback;
+            destination.lsAntiSnapbackInfo[deviceIndex].delta = LSAntiSnapbackDelta;
+            destination.rsAntiSnapbackInfo[deviceIndex].delta = RSAntiSnapbackDelta;
+            destination.lsAntiSnapbackInfo[deviceIndex].timeout = LSAntiSnapbackTimeout;
+            destination.rsAntiSnapbackInfo[deviceIndex].timeout = RSAntiSnapbackTimeout;
+            destination.lsOutputSettings[deviceIndex].mode = LSOutputMode;
+            destination.rsOutputSettings[deviceIndex].mode = RSOutputMode;
+
+            if (LSOutputSettings != null)
+            {
+                if (LSOutputSettings.FlickStickSettings != null)
+                {
+                    destination.lsOutputSettings[deviceIndex].outputSettings.flickSettings.realWorldCalibration = LSOutputSettings.FlickStickSettings.RealWorldCalibration;
+                    destination.lsOutputSettings[deviceIndex].outputSettings.flickSettings.flickThreshold = LSOutputSettings.FlickStickSettings.FlickThreshold;
+                    destination.lsOutputSettings[deviceIndex].outputSettings.flickSettings.flickTime = LSOutputSettings.FlickStickSettings.FlickTime;
+                    destination.lsOutputSettings[deviceIndex].outputSettings.flickSettings.minAngleThreshold = LSOutputSettings.FlickStickSettings.MinAngleThreshold;
+                }
+            }
+
+            if (RSOutputSettings != null)
+            {
+                if (RSOutputSettings.FlickStickSettings != null)
+                {
+                    destination.rsOutputSettings[deviceIndex].outputSettings.flickSettings.realWorldCalibration = RSOutputSettings.FlickStickSettings.RealWorldCalibration;
+                    destination.rsOutputSettings[deviceIndex].outputSettings.flickSettings.flickThreshold = RSOutputSettings.FlickStickSettings.FlickThreshold;
+                    destination.rsOutputSettings[deviceIndex].outputSettings.flickSettings.flickTime = RSOutputSettings.FlickStickSettings.FlickTime;
+                    destination.rsOutputSettings[deviceIndex].outputSettings.flickSettings.minAngleThreshold = RSOutputSettings.FlickStickSettings.MinAngleThreshold;
+                }
+            }
+
+            destination.l2OutBezierCurveObj[deviceIndex].CustomDefinition = L2OutputCurveCustom;
+            destination.setL2OutCurveMode(deviceIndex, destination.stickOutputCurveId(L2OutputCurveMode));
+            destination.l2OutputSettings[deviceIndex].twoStageMode = L2TwoStageMode;
+            destination.l2OutputSettings[deviceIndex].hipFireMS = L2HipFireTime;
+            destination.l2OutputSettings[deviceIndex].triggerEffect = L2TriggerEffect;
+
+            destination.r2OutBezierCurveObj[deviceIndex].CustomDefinition = R2OutputCurveCustom;
+            destination.setR2OutCurveMode(deviceIndex, destination.stickOutputCurveId(R2OutputCurveMode));
+            destination.r2OutputSettings[deviceIndex].twoStageMode = R2TwoStageMode;
+            destination.r2OutputSettings[deviceIndex].hipFireMS = R2HipFireTime;
+            destination.r2OutputSettings[deviceIndex].triggerEffect = R2TriggerEffect;
+
+            destination.sxOutBezierCurveObj[deviceIndex].CustomDefinition = SXOutputCurveCustom;
+            destination.setSXOutCurveMode(deviceIndex, destination.stickOutputCurveId(SXOutputCurveMode));
+            destination.szOutBezierCurveObj[deviceIndex].CustomDefinition = SZOutputCurveCustom;
+            destination.setSZOutCurveMode(deviceIndex, destination.stickOutputCurveId(SZOutputCurveMode));
+            destination.trackballMode[deviceIndex] = _trackballMode;
+            destination.trackballFriction[deviceIndex] = TrackballFriction;
+            destination.touchpadRelMouse[deviceIndex].rotation = TouchRelMouseRotation;
+            destination.touchpadRelMouse[deviceIndex].minThreshold = TouchRelMouseMinThreshold;
+
+            if (TouchpadAbsMouseSettings != null)
+            {
+                destination.touchpadAbsMouse[deviceIndex].maxZoneX = TouchpadAbsMouseSettings.MaxZoneX;
+                destination.touchpadAbsMouse[deviceIndex].maxZoneY = TouchpadAbsMouseSettings.MaxZoneY;
+                destination.touchpadAbsMouse[deviceIndex].snapToCenter = TouchpadAbsMouseSettings.SnapToCenter;
+            }
+
+            if (Control != null)
+            {
+                if (Control.Button != null && Control.Button.CustomMapButtons.Count > 0)
+                {
+                    foreach(KeyValuePair<DS4Controls, X360Controls> pair in Control.Button.CustomMapButtons)
+                    {
+                        destination.UpdateDS4CSetting(deviceIndex,
+                            pair.Key.ToString(), false, pair.Value, "", DS4KeyType.None, 0);
+                    }
+                }
+
+                if (Control.Key != null && Control.Key.CustomMapKeys.Count > 0)
+                {
+                    foreach(KeyValuePair<DS4Controls, ushort> pair in Control.Key.CustomMapKeys)
+                    {
+                        destination.UpdateDS4CSetting(deviceIndex,
+                            pair.Key.ToString(), false, pair.Value, "", DS4KeyType.None, 0);
+                    }
+                }
+
+                if (Control.Macro != null && Control.Macro.CustomMapMacros.Count > 0)
+                {
+                    foreach (KeyValuePair<DS4Controls, string> pair in Control.Macro.CustomMapMacros)
+                    {
+                        string[] skeys;
+                        int[] keys;
+                        if (!string.IsNullOrEmpty(pair.Value))
+                        {
+                            skeys = pair.Value.Split('/');
+                            keys = new int[skeys.Length];
+                        }
+                        else
+                        {
+                            skeys = new string[0];
+                            keys = new int[0];
+                        }
+
+                        for (int i = 0, keylen = keys.Length; i < keylen; i++)
+                            keys[i] = int.Parse(skeys[i]);
+
+                        destination.UpdateDS4CSetting(deviceIndex,
+                            pair.Key.ToString(), false, keys, "", DS4KeyType.None, 0);
+                    }
+                }
+
+                if (Control.Extras != null && Control.Extras.CustomMapExtras.Count > 0)
+                {
+                    foreach (KeyValuePair<DS4Controls, string> pair in Control.Extras.CustomMapExtras)
+                    {
+                        destination.UpdateDS4CExtra(deviceIndex,
+                            pair.Key.ToString(), false, pair.Value);
+                    }
+                }
+
+                if (Control.KeyType != null && Control.KeyType.CustomMapKeyTypes.Count > 0)
+                {
+                    foreach (KeyValuePair<DS4Controls, DS4KeyType> pair in Control.KeyType.CustomMapKeyTypes)
+                    {
+                        destination.UpdateDS4CKeyType(deviceIndex, pair.Key.ToString(), false, pair.Value);
+                    }
+                }
+            }
+
+            if (ShiftControl != null)
+            {
+                if (ShiftControl.Button != null && ShiftControl.Button.CustomMapButtons.Count > 0)
+                {
+                    foreach (KeyValuePair<DS4Controls, X360Controls> pair in ShiftControl.Button.CustomMapButtons)
+                    {
+                        destination.UpdateDS4CSetting(deviceIndex,
+                            pair.Key.ToString(), true, pair.Value, "", DS4KeyType.None, ShiftControl.Button.Trigger);
+                    }
+                }
+
+                if (ShiftControl.Key != null && ShiftControl.Key.CustomMapKeys.Count > 0)
+                {
+                    foreach (KeyValuePair<DS4Controls, ushort> pair in ShiftControl.Key.CustomMapKeys)
+                    {
+                        destination.UpdateDS4CSetting(deviceIndex,
+                            pair.Key.ToString(), true, pair.Value, "", DS4KeyType.None, ShiftControl.Key.Trigger);
+                    }
+                }
+
+                if (ShiftControl.Macro != null && ShiftControl.Macro.CustomMapMacros.Count > 0)
+                {
+                    foreach (KeyValuePair<DS4Controls, string> pair in ShiftControl.Macro.CustomMapMacros)
+                    {
+                        string[] skeys;
+                        int[] keys;
+                        if (!string.IsNullOrEmpty(pair.Value))
+                        {
+                            skeys = pair.Value.Split('/');
+                            keys = new int[skeys.Length];
+                        }
+                        else
+                        {
+                            skeys = new string[0];
+                            keys = new int[0];
+                        }
+
+                        for (int i = 0, keylen = keys.Length; i < keylen; i++)
+                            keys[i] = int.Parse(skeys[i]);
+
+                        destination.UpdateDS4CSetting(deviceIndex,
+                            pair.Key.ToString(), true, keys, "", DS4KeyType.None, ShiftControl.Macro.Trigger);
+                    }
+                }
+
+                if (ShiftControl.Extras != null && ShiftControl.Extras.CustomMapExtras.Count > 0)
+                {
+                    foreach (KeyValuePair<DS4Controls, string> pair in ShiftControl.Extras.CustomMapExtras)
+                    {
+                        destination.UpdateDS4CExtra(deviceIndex,
+                            pair.Key.ToString(), false, pair.Value);
+                    }
+                }
+
+                if (ShiftControl.KeyType != null && ShiftControl.KeyType.CustomMapKeyTypes.Count > 0)
+                {
+                    foreach (KeyValuePair<DS4Controls, DS4KeyType> pair in ShiftControl.KeyType.CustomMapKeyTypes)
+                    {
+                        destination.UpdateDS4CKeyType(deviceIndex, pair.Key.ToString(), true, pair.Value);
+                    }
+                }
+            }
         }
 
         public void PostProcessXml()
         {
+            if (!string.IsNullOrEmpty(ColorString))
+            {
+                string[] tempColors = ColorString.Split(',');
+                if (tempColors.Length == 3)
+                {
+                    _ledColor = new DS4Color(byte.Parse(tempColors[0]),
+                        byte.Parse(tempColors[1]), byte.Parse(tempColors[2]));
+                }
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(RedColorString))
+                {
+                    byte.TryParse(RedColorString, out _ledColor.red);
+                }
+
+                if (!string.IsNullOrEmpty(GreenColorString))
+                {
+                    byte.TryParse(RedColorString, out _ledColor.green);
+                }
+
+                if (!string.IsNullOrEmpty(BlueColorString))
+                {
+                    byte.TryParse(RedColorString, out _ledColor.blue);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(LowColorString))
+            {
+                string[] tempColors = LowColorString.Split(',');
+                if (tempColors.Length == 3)
+                {
+                    _lowColor = new DS4Color(byte.Parse(tempColors[0]),
+                        byte.Parse(tempColors[1]), byte.Parse(tempColors[2]));
+                }
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(LowRedColorString))
+                {
+                    byte.TryParse(LowRedColorString, out _lowColor.red);
+                }
+
+                if (!string.IsNullOrEmpty(LowGreenColorString))
+                {
+                    byte.TryParse(LowGreenColorString, out _lowColor.green);
+                }
+
+                if (!string.IsNullOrEmpty(LowBlueColorString))
+                {
+                    byte.TryParse(LowBlueColorString, out _lowColor.blue);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(ChargingColorString))
+            {
+                string[] tempColors = ChargingColorString.Split(',');
+                if (tempColors.Length == 3)
+                {
+                    _chargingColor = new DS4Color(byte.Parse(tempColors[0]),
+                        byte.Parse(tempColors[1]), byte.Parse(tempColors[2]));
+                }
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(ChargingRedString))
+                {
+                    byte.TryParse(ChargingRedString, out _chargingColor.red);
+                }
+
+                if (!string.IsNullOrEmpty(ChargingGreenString))
+                {
+                    byte.TryParse(ChargingGreenString, out _chargingColor.green);
+                }
+
+                if (!string.IsNullOrEmpty(ChargingBlueString))
+                {
+                    byte.TryParse(ChargingBlueString, out _chargingColor.blue);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(FlashColorString))
+            {
+                string[] tempColors = FlashColorString.Split(',');
+                if (tempColors.Length == 3)
+                {
+                    _flashColor = new DS4Color(byte.Parse(tempColors[0]),
+                        byte.Parse(tempColors[1]), byte.Parse(tempColors[2]));
+                }
+            }
+
             //LowColor
             //ChargingColor
             //Sensitivity
@@ -1332,6 +2273,12 @@ namespace DS4WinWPF.DS4Control.DTOXml
     public class StickDeltaAccelSettings
     {
         private bool _enabled;
+        [XmlIgnore]
+        public bool Enabled
+        {
+            get => _enabled;
+            set => _enabled = value;
+        }
         [XmlElement("Enabled")]
         public string EnabledString
         {
@@ -1383,6 +2330,13 @@ namespace DS4WinWPF.DS4Control.DTOXml
     public class SASteeringWheelSmoothingOptions
     {
         private bool _sASteeringWheelUseSmoothing;
+        [XmlIgnore]
+        public bool SASteeringWheelUseSmoothing
+        {
+            get => _sASteeringWheelUseSmoothing;
+            set => _sASteeringWheelUseSmoothing = value;
+        }
+
         [XmlElement("SASteeringWheelUseSmoothing")]
         public string SASteeringWheelUseSmoothingString
         {
@@ -1416,6 +2370,13 @@ namespace DS4WinWPF.DS4Control.DTOXml
         }
 
         private bool _triggerCond;
+        [XmlIgnore]
+        public bool TriggerCond
+        {
+            get => _triggerCond;
+            set => _triggerCond = value;
+        }
+
         [XmlElement("TriggerCond")]
         public string TriggerCondString
         {
@@ -1424,6 +2385,12 @@ namespace DS4WinWPF.DS4Control.DTOXml
         }
 
         private bool _triggerTurns;
+        [XmlIgnore]
+        public bool TriggerTurns
+        {
+            get => _triggerTurns;
+            set => _triggerTurns = value;
+        }
         [XmlElement("TriggerTurns")]
         public string TriggerTurnsString
         {
@@ -1432,6 +2399,13 @@ namespace DS4WinWPF.DS4Control.DTOXml
         }
 
         private bool _toggle;
+        [XmlIgnore]
+        public bool Toggle
+        {
+            get => _toggle;
+            set => _toggle = value;
+        }
+
         [XmlElement("Toggle")]
         public string ToggleString
         {
@@ -1443,6 +2417,13 @@ namespace DS4WinWPF.DS4Control.DTOXml
     public class GyroMouseStickSmoothingSettings
     {
         protected bool _useSmoothing;
+        [XmlIgnore]
+        public bool UseSmoothing
+        {
+            get => _useSmoothing;
+            set => _useSmoothing = value;
+        }
+
         [XmlElement("UseSmoothing")]
         public string UseSmoothingString
         {
@@ -1508,6 +2489,13 @@ namespace DS4WinWPF.DS4Control.DTOXml
         }
 
         private bool _triggerCond;
+        [XmlIgnore]
+        public bool TriggerCond
+        {
+            get => _triggerCond;
+            set => _triggerCond = value;
+        }
+
         [XmlElement("TriggerCond")]
         public string TriggerCondString
         {
@@ -1516,6 +2504,12 @@ namespace DS4WinWPF.DS4Control.DTOXml
         }
 
         private bool _triggerTurns;
+        [XmlIgnore]
+        public bool TriggerTurns
+        {
+            get => _triggerTurns;
+            set => _triggerTurns = value;
+        }
         [XmlElement("TriggerTurns")]
         public string TriggerTurnsString
         {
@@ -1596,11 +2590,398 @@ namespace DS4WinWPF.DS4Control.DTOXml
         }
 
         private bool _snapToCenter = TouchpadAbsMouseSettings.DEFAULT_SNAP_CENTER;
+        [XmlIgnore]
+        public bool SnapToCenter
+        {
+            get => _snapToCenter;
+            set => _snapToCenter = value;
+        }
+
         [XmlElement("SnapToCenter")]
         public string SnapToCenterString
         {
             get => _snapToCenter.ToString();
             set => _snapToCenter = XmlDataUtilities.StrToBool(value);
+        }
+    }
+
+    public class DS4ControlAssignementSerializer
+    {
+        [XmlElement("Button")]
+        public DS4ControlButtonAssignmentSerializer Button
+        {
+            get; set;
+        }
+        public bool ShouldSerializeButton()
+        {
+            return Button != null && Button.CustomMapButtons.Count > 0;
+        }
+
+        [XmlElement("Key")]
+        public DS4ControlKeyAssignmentSerializer Key
+        {
+            get; set;
+        }
+        public bool ShouldSerializeKey()
+        {
+            return Key != null && Key.CustomMapKeys.Count > 0;
+        }
+
+        [XmlElement("Macro")]
+        public DS4ControlMacroAssignmentSerializer Macro
+        {
+            get; set;
+        }
+        public bool ShouldSerializeMacro()
+        {
+            return Macro != null && Macro.CustomMapMacros.Count > 0;
+        }
+
+        [XmlElement("Extras")]
+        public DS4ControlExtrasAssignmentSerializer Extras
+        {
+            get; set;
+        }
+        public bool ShouldSerializeExtras()
+        {
+            return Extras != null && Extras.CustomMapExtras.Count > 0;
+        }
+
+        [XmlElement("KeyType")]
+        public DS4ControlKeyTypeAssignmentSerializer KeyType
+        {
+            get; set;
+        }
+        public bool ShouldSerializeKeyType()
+        {
+            return KeyType != null && KeyType.CustomMapKeyTypes.Count > 0;
+        }
+
+        public DS4ControlAssignementSerializer()
+        {
+        }
+    }
+
+    public class DS4ControlAssignmentSerializerBase
+    {
+        protected int _trigger = -1;
+        [XmlAttribute("Trigger")]
+        public int Trigger
+        {
+            get => _trigger;
+            set => _trigger = value;
+        }
+        public bool ShouldSerializeTrigger()
+        {
+            return _trigger != -1;
+        }
+    }
+
+    public class DS4ControlButtonAssignmentSerializer : DS4ControlAssignmentSerializerBase, IXmlSerializable
+    {
+        private Dictionary<DS4Controls, X360Controls> customMapButtons
+            = new Dictionary<DS4Controls, X360Controls>();
+        [XmlIgnore]
+        public Dictionary<DS4Controls, X360Controls> CustomMapButtons => customMapButtons;
+
+        public XmlSchema GetSchema()
+        {
+            return null;
+        }
+
+        public void ReadXml(XmlReader reader)
+        {
+            XmlDocument tempDoc = new XmlDocument();
+            tempDoc.Load(reader.ReadSubtree());
+            XmlNode parentNode = tempDoc.ParentNode;
+            if (parentNode != null)
+            {
+                foreach (XmlNode item in parentNode.ChildNodes)
+                {
+                    if (item.Attributes["Trigger"] != null)
+                    {
+                        int.TryParse(item.Attributes["Trigger"].Value, out int shiftT);
+                        _trigger = shiftT;
+                    }
+
+                    if (Enum.TryParse(item.Name, out DS4Controls currentControl))
+                    {
+                        //UpdateDS4CSetting(device, item.Name, false, getX360ControlsByName(item.InnerText), "", DS4KeyType.None, 0);
+                        customMapButtons.Add(Global.getDS4ControlsByName(item.Name),
+                            Global.getX360ControlsByName(item.InnerText));
+                    }
+                }
+            }
+        }
+
+        public void WriteXml(XmlWriter writer)
+        {
+            foreach(KeyValuePair<DS4Controls, X360Controls> pair in customMapButtons)
+            {
+                writer.WriteStartElement(pair.Key.ToString());
+                if (_trigger != -1)
+                {
+                    writer.WriteAttributeString("Trigger", _trigger.ToString());
+                }
+
+                writer.WriteValue(Global.getX360ControlString(pair.Value));
+                writer.WriteEndElement();
+            }
+        }
+    }
+
+    public class DS4ControlKeyAssignmentSerializer : DS4ControlAssignmentSerializerBase, IXmlSerializable
+    {
+        private Dictionary<DS4Controls, ushort> customMapKeys
+            = new Dictionary<DS4Controls, ushort>();
+        [XmlIgnore]
+        public Dictionary<DS4Controls, ushort> CustomMapKeys => customMapKeys;
+
+        public XmlSchema GetSchema()
+        {
+            return null;
+        }
+
+        public void ReadXml(XmlReader reader)
+        {
+            XmlDocument tempDoc = new XmlDocument();
+            tempDoc.Load(reader.ReadSubtree());
+            XmlNode parentNode = tempDoc.ParentNode;
+            if (parentNode != null)
+            {
+                foreach (XmlNode item in parentNode.ChildNodes)
+                {
+                    if (item.Attributes["Trigger"] != null)
+                    {
+                        int.TryParse(item.Attributes["Trigger"].Value, out int shiftT);
+                        _trigger = shiftT;
+                    }
+
+                    if (ushort.TryParse(item.InnerText, out ushort wvk) &&
+                        Enum.TryParse(item.Name, out DS4Controls currentControl))
+                    {
+                        //UpdateDS4CSetting(device, item.Name, false, wvk, "", DS4KeyType.None, 0);
+                        customMapKeys.Add(Global.getDS4ControlsByName(item.Name), wvk);
+                    }
+                }
+            }
+        }
+
+        public void WriteXml(XmlWriter writer)
+        {
+            foreach (KeyValuePair<DS4Controls, UInt16> pair in customMapKeys)
+            {
+                writer.WriteStartElement(pair.Key.ToString());
+                if (_trigger != -1)
+                {
+                    writer.WriteAttributeString("Trigger", _trigger.ToString());
+                }
+
+                writer.WriteValue(pair.Value.ToString());
+                writer.WriteEndElement();
+            }
+        }
+    }
+
+    public class DS4ControlMacroAssignmentSerializer : DS4ControlAssignmentSerializerBase, IXmlSerializable
+    {
+        private Dictionary<DS4Controls, string> customMapMacros
+            = new Dictionary<DS4Controls, string>();
+        [XmlIgnore]
+        public Dictionary<DS4Controls, string> CustomMapMacros => customMapMacros;
+
+        public XmlSchema GetSchema()
+        {
+            return null;
+        }
+
+        public void ReadXml(XmlReader reader)
+        {
+            XmlDocument tempDoc = new XmlDocument();
+            tempDoc.Load(reader.ReadSubtree());
+            XmlNode parentNode = tempDoc.ParentNode;
+            if (parentNode != null)
+            {
+                foreach (XmlNode item in parentNode.ChildNodes)
+                {
+                    if (item.Attributes["Trigger"] != null)
+                    {
+                        int.TryParse(item.Attributes["Trigger"].Value, out int shiftT);
+                        _trigger = shiftT;
+                    }
+
+                    customMapMacros.Add(Global.getDS4ControlsByName(item.Name), item.InnerText);
+                    //string[] skeys;
+                    //int[] keys;
+                    //if (!string.IsNullOrEmpty(item.InnerText))
+                    //{
+                    //    skeys = item.InnerText.Split('/');
+                    //    keys = new int[skeys.Length];
+                    //}
+                    //else
+                    //{
+                    //    skeys = new string[0];
+                    //    keys = new int[0];
+                    //}
+
+                    //for (int i = 0, keylen = keys.Length; i < keylen; i++)
+                    //    keys[i] = int.Parse(skeys[i]);
+
+                    //if (Enum.TryParse(item.Name, out DS4Controls currentControl))
+                    //{
+                    //    UpdateDS4CSetting(device, item.Name, false, keys, "", DS4KeyType.None, 0);
+                    //}
+                }
+            }
+        }
+
+        public void WriteXml(XmlWriter writer)
+        {
+            foreach (KeyValuePair<DS4Controls, string> pair in customMapMacros)
+            {
+                writer.WriteStartElement(pair.Key.ToString());
+                if (_trigger != -1)
+                {
+                    writer.WriteAttributeString("Trigger", _trigger.ToString());
+                }
+
+                writer.WriteValue(pair.Value.ToString());
+                writer.WriteEndElement();
+            }
+        }
+    }
+
+    public class DS4ControlKeyTypeAssignmentSerializer : DS4ControlAssignmentSerializerBase, IXmlSerializable
+    {
+        private Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes
+            = new Dictionary<DS4Controls, DS4KeyType>();
+        [XmlIgnore]
+        public Dictionary<DS4Controls, DS4KeyType> CustomMapKeyTypes => customMapKeyTypes;
+
+        public XmlSchema GetSchema()
+        {
+            return null;
+        }
+
+        public void ReadXml(XmlReader reader)
+        {
+            XmlDocument tempDoc = new XmlDocument();
+            tempDoc.Load(reader.ReadSubtree());
+            XmlNode parentNode = tempDoc.ParentNode;
+            if (parentNode != null)
+            {
+                foreach (XmlNode item in parentNode.ChildNodes)
+                {
+                    if (item != null)
+                    {
+                        DS4KeyType keyType = DS4KeyType.None;
+                        string[] ds4KeyNames = Enum.GetNames(typeof(DS4KeyType));
+                        foreach(string keyName in ds4KeyNames)
+                        {
+                            if (item.InnerText.Contains(keyName) &&
+                                Enum.TryParse(keyName, out DS4KeyType tempKey))
+                            {
+                                keyType |= tempKey;
+                            }
+                        }
+
+                        if (item.Attributes["Trigger"] != null)
+                        {
+                            int.TryParse(item.Attributes["Trigger"].Value, out int shiftT);
+                            _trigger = shiftT;
+                        }
+
+                        if (keyType != DS4KeyType.None &&
+                            Enum.TryParse(item.Name, out DS4Controls currentControl))
+                        {
+                            //UpdateDS4CKeyType(device, item.Name, false, keyType);
+                            customMapKeyTypes.Add(Global.getDS4ControlsByName(item.Name), keyType);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void WriteXml(XmlWriter writer)
+        {
+            foreach (KeyValuePair<DS4Controls, DS4KeyType> pair in customMapKeyTypes)
+            {
+                string tempKey = string.Empty;
+                DS4KeyType[] tempArray = (DS4KeyType[])Enum.GetValues(typeof(DS4KeyType));
+                for (int i = 0; i < tempArray.Length; i++)
+                {
+                    DS4KeyType testFlag = tempArray[i];
+                    if (pair.Value.HasFlag(testFlag))
+                    {
+                        tempKey += testFlag;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(tempKey))
+                {
+                    writer.WriteStartElement(pair.Key.ToString());
+                    if (_trigger != -1)
+                    {
+                        writer.WriteAttributeString("Trigger", _trigger.ToString());
+                    }
+
+                    writer.WriteValue(tempKey);
+                    writer.WriteEndElement();
+                }
+            }
+        }
+    }
+
+    public class DS4ControlExtrasAssignmentSerializer : DS4ControlAssignmentSerializerBase, IXmlSerializable
+    {
+        private Dictionary<DS4Controls, string> customMapExtras
+            = new Dictionary<DS4Controls, string>();
+        [XmlIgnore]
+        public Dictionary<DS4Controls, string> CustomMapExtras => customMapExtras;
+
+        public XmlSchema GetSchema()
+        {
+            return null;
+        }
+
+        public void ReadXml(XmlReader reader)
+        {
+            XmlDocument tempDoc = new XmlDocument();
+            tempDoc.Load(reader.ReadSubtree());
+            XmlNode parentNode = tempDoc.ParentNode;
+            if (parentNode != null)
+            {
+                foreach (XmlNode item in parentNode.ChildNodes)
+                {
+                    if (item.Attributes["Trigger"] != null)
+                    {
+                        int.TryParse(item.Attributes["Trigger"].Value, out int shiftT);
+                        _trigger = shiftT;
+                    }
+
+                    if (item.InnerText != string.Empty &&
+                        Enum.TryParse(item.Name, out DS4Controls currentControl))
+                    {
+                        //UpdateDS4CExtra(device, item.Name, false, item.InnerText);
+                        customMapExtras.Add(Global.getDS4ControlsByName(item.Name), item.InnerText);
+                    }
+                }
+            }
+        }
+
+        public void WriteXml(XmlWriter writer)
+        {
+            foreach (KeyValuePair<DS4Controls, string> pair in customMapExtras)
+            {
+                writer.WriteStartElement(pair.Key.ToString());
+                if (_trigger != -1)
+                {
+                    writer.WriteAttributeString("Trigger", _trigger.ToString());
+                }
+
+                writer.WriteValue(pair.Value.ToString());
+                writer.WriteEndElement();
+            }
         }
     }
 }

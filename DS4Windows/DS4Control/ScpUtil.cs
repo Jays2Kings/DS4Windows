@@ -3288,7 +3288,7 @@ namespace DS4Windows
             return -1;
         }
 
-        private string stickOutputCurveString(int id)
+        public string stickOutputCurveString(int id)
         {
             string result = "linear";
             switch (id)
@@ -3306,7 +3306,7 @@ namespace DS4Windows
             return result;
         }
 
-        private int stickOutputCurveId(string name)
+        public int stickOutputCurveId(string name)
         {
             int id = 0;
             switch (name)
@@ -7748,7 +7748,7 @@ namespace DS4Windows
             }
         }
 
-        private void UpdateDS4CKeyType(int deviceNum, string buttonName, bool shift, DS4KeyType keyType)
+        public void UpdateDS4CKeyType(int deviceNum, string buttonName, bool shift, DS4KeyType keyType)
         {
             DS4Controls dc;
             if (buttonName.StartsWith("bn"))

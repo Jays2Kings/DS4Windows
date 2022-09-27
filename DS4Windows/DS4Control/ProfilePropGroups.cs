@@ -224,19 +224,26 @@ namespace DS4Windows
         public void DetermineSmoothMethod(string identier)
         {
             ResetSmoothingMethods();
+            smoothingMethod = SmoothingMethodParse(identier);
+        }
 
-            switch (identier)
+        public static SmoothingMethod SmoothingMethodParse(string identifier)
+        {
+            SmoothingMethod result = SmoothingMethod.None;
+            switch (identifier)
             {
                 case "weighted-average":
-                    smoothingMethod = SmoothingMethod.WeightedAverage;
+                    result = SmoothingMethod.WeightedAverage;
                     break;
                 case "one-euro":
-                    smoothingMethod = SmoothingMethod.OneEuro;
+                    result = SmoothingMethod.OneEuro;
                     break;
                 default:
-                    smoothingMethod = SmoothingMethod.None;
+                    result = SmoothingMethod.None;
                     break;
             }
+
+            return result;
         }
 
         public string SmoothMethodIdentifier()
@@ -379,19 +386,26 @@ namespace DS4Windows
         public void DetermineSmoothMethod(string identier)
         {
             ResetSmoothingMethods();
+            smoothingMethod = SmoothingMethodParse(identier);
+        }
 
-            switch (identier)
+        public static SmoothingMethod SmoothingMethodParse(string identifier)
+        {
+            SmoothingMethod result = SmoothingMethod.None;
+            switch (identifier)
             {
                 case "weighted-average":
-                    smoothingMethod = SmoothingMethod.WeightedAverage;
+                    result = SmoothingMethod.WeightedAverage;
                     break;
                 case "one-euro":
-                    smoothingMethod = SmoothingMethod.OneEuro;
+                    result = SmoothingMethod.OneEuro;
                     break;
                 default:
-                    smoothingMethod = SmoothingMethod.None;
+                    result = SmoothingMethod.None;
                     break;
             }
+
+            return result;
         }
 
         public string SmoothMethodIdentifier()

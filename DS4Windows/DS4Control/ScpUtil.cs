@@ -2433,6 +2433,7 @@ namespace DS4Windows
         public static bool LoadProfile(int device, bool launchprogram, ControlService control,
             bool xinputChange = true, bool postLoad = true)
         {
+            //m_Config.LoadProfileNew(device, launchprogram, control, "", xinputChange, postLoad);
             bool result = m_Config.LoadProfile(device, launchprogram, control, "", xinputChange, postLoad);
             tempprofilename[device] = string.Empty;
             useTempProfile[device] = false;
@@ -2444,6 +2445,7 @@ namespace DS4Windows
         public static bool LoadTempProfile(int device, string name, bool launchprogram,
             ControlService control, bool xinputChange = true)
         {
+            //m_Config.LoadProfileNew(device, launchprogram, control, Path.Combine(appdatapath, "Profiles", $"{name}.xml"));
             bool result = m_Config.LoadProfile(device, launchprogram, control, Path.Combine(appdatapath, "Profiles", $"{name}.xml"));
             if (result)
             {
@@ -2582,6 +2584,7 @@ namespace DS4Windows
 
         public static void SaveProfile(int device, string proName)
         {
+            //m_Config.SaveProfileNew(device, proName);
             m_Config.SaveProfile(device, proName);
         }
 
@@ -3518,6 +3521,64 @@ namespace DS4Windows
             return Saved;
         }
 
+        public bool SaveProfileNew(int device, string proName)
+        {
+            bool saved = true;
+            if (proName.EndsWith(Global.XML_EXTENSION))
+            {
+                proName = proName.Remove(proName.LastIndexOf(Global.XML_EXTENSION));
+            }
+
+            string path = Path.Combine(Global.appdatapath, "Profiles",
+                $"{proName}{Global.XML_EXTENSION}");
+            string testStr = string.Empty;
+            XmlSerializer serializer = new XmlSerializer(typeof(ProfileDTO));
+            using (Utf8StringWriter strWriter = new Utf8StringWriter())
+            {
+                using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
+                    new XmlWriterSettings()
+                    {
+                        Encoding = Encoding.UTF8,
+                        Indent = true,
+                    });
+
+                // Write header explicitly
+                //xmlWriter.WriteStartDocument();
+                xmlWriter.WriteComment(string.Format(" DS4Windows Configuration Data. {0} ", DateTime.Now));
+                xmlWriter.WriteComment(string.Format(" Made with DS4Windows version {0} ", Global.exeversion));
+                xmlWriter.WriteWhitespace("\r\n");
+                xmlWriter.WriteWhitespace("\r\n");
+
+                // Write root element and children
+                ProfileDTO dto = new ProfileDTO();
+                dto.DeviceIndex = device;
+                dto.MapFrom(this);
+                // Omit xmlns:xsi and xmlns:xsd from output
+                serializer.Serialize(xmlWriter, dto,
+                    new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty }));
+                xmlWriter.Flush();
+                xmlWriter.Close();
+
+                testStr = strWriter.ToString();
+                //Trace.WriteLine("TEST OUTPUT");
+                //Trace.WriteLine(testStr);
+            }
+
+            //try
+            //{
+            //    using (StreamWriter sw = new StreamWriter(path, false))
+            //    {
+            //        sw.Write(testStr);
+            //    }
+            //}
+            //catch (UnauthorizedAccessException)
+            //{
+            //    saved = false;
+            //}
+
+            return saved;
+        }
+
         public bool SaveProfile(int device, string proName)
         {
             bool Saved = true;
@@ -4276,6 +4337,146 @@ namespace DS4Windows
             }
 
             return "Unbound";
+        }
+
+        public bool LoadProfileNew(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true, bool postLoad = true)
+        {
+            bool loaded = true;
+
+            bool migratePerformed = false;
+            string profilepath;
+            if (propath == "")
+                profilepath = Path.Combine(Global.appdatapath, "Profiles",
+                    $"{profilePath[device]}.xml");
+            else
+                profilepath = propath;
+
+            if (File.Exists(profilepath))
+            {
+                string profileXml = string.Empty;
+
+                // Run migrations
+                {
+                    XmlNode Item;
+                    XmlDocument migrationDoc = new XmlDocument();
+
+                    ProfileMigration tmpMigration = new ProfileMigration(profilepath);
+                    if (tmpMigration.RequiresMigration())
+                    {
+                        tmpMigration.Migrate();
+                        //migrationDoc.Load(tmpMigration.ProfileReader);
+                        profileXml = tmpMigration.ProfileReader.ReadOuterXml();
+                        migratePerformed = true;
+                    }
+                    else if (tmpMigration.ProfileReader != null)
+                    {
+                        profileXml = tmpMigration.ProfileReader.ReadOuterXml();
+                        //migrationDoc.Load(tmpMigration.ProfileReader);
+                        //migrationDoc.Load(profilepath);
+                    }
+                    else
+                    {
+                        loaded = false;
+                    }
+                }
+
+                if (device < Global.MAX_DS4_CONTROLLER_COUNT)
+                {
+                    DS4LightBar.forcelight[device] = false;
+                    DS4LightBar.forcedFlash[device] = 0;
+                }
+
+                OutContType oldContType = Global.activeOutDevType[device];
+                LightbarSettingInfo lightbarSettings = lightbarSettingInfo[device];
+                LightbarDS4WinInfo lightInfo = lightbarSettings.ds4winSettings;
+
+                bool xinputPlug = false;
+                bool xinputStatus = false;
+
+                // Make sure to reset currently set profile values before parsing
+                ResetProfile(device);
+                ResetMouseProperties(device, control);
+                // Reset some Mapping properties before attempting to load different
+                // profile
+                control.PreLoadReset(device);
+
+                profileActions[device].Clear();
+                foreach (DS4ControlSettings dcs in ds4settings[device])
+                    dcs.Reset();
+
+                //XmlReader xmlReader = XmlReader.Create()
+                XmlSerializer serializer = new XmlSerializer(typeof(ProfileDTO));
+                using StringReader sr = new StringReader(profileXml);
+                try
+                {
+                    ProfileDTO dto = serializer.Deserialize(sr) as ProfileDTO;
+                    dto.DeviceIndex = device;
+                    dto.MapTo(this);
+                }
+                catch (InvalidOperationException) { loaded = false; }
+                catch (XmlException) { loaded = false; }
+
+                if (!loaded)
+                {
+                    return loaded;
+                }
+
+                containsCustomAction[device] = false;
+                containsCustomExtras[device] = false;
+                profileActionCount[device] = profileActions[device].Count;
+                profileActionDict[device].Clear();
+                profileActionIndexDict[device].Clear();
+                foreach (string actionname in profileActions[device])
+                {
+                    profileActionDict[device][actionname] = Global.GetAction(actionname);
+                    profileActionIndexDict[device][actionname] = Global.GetActionIndexOf(actionname);
+                }
+
+                // Only change xinput devices under certain conditions. Avoid
+                // performing this upon program startup before loading devices.
+                if (xinputChange && device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+                {
+                    CheckOldDevicestatus(device, control, oldContType,
+                        out xinputPlug, out xinputStatus);
+                }
+
+                CacheProfileCustomsFlags(device);
+                buttonMouseInfos[device].activeButtonSensitivity =
+                    buttonMouseInfos[device].buttonSensitivity;
+
+                // If a device exists, make sure to transfer relevant profile device
+                // options to device instance
+                if (postLoad && device < Global.MAX_DS4_CONTROLLER_COUNT)
+                {
+                    PostLoadSnippet(device, control, xinputStatus, xinputPlug);
+                }
+            }
+            else
+            {
+                loaded = false;
+                ResetProfile(device);
+                ResetMouseProperties(device, control);
+
+                // Unplug existing output device if requested profile does not exist
+                OutputDevice tempOutDev = device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT ?
+                    control.outputDevices[device] : null;
+                if (tempOutDev != null)
+                {
+                    tempOutDev = null;
+                    //Global.activeOutDevType[device] = OutContType.None;
+                    DS4Device tempDev = control.DS4Controllers[device];
+                    if (tempDev != null)
+                    {
+                        tempDev.queueEvent(() =>
+                        {
+                            control.UnplugOutDev(device, tempDev);
+                        });
+                    }
+                }
+            }
+
+            return loaded;
         }
 
         public bool LoadProfile(int device, bool launchprogram, ControlService control,

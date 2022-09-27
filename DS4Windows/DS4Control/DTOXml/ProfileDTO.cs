@@ -57,12 +57,6 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => OutputDataToDS4 = XmlDataUtilities.StrToBool(value);
         }
 
-        [XmlElement("LightbarMode")]
-        public LightbarMode LightbarMode
-        {
-            get; set;
-        }
-
         private DS4Color _ledColor = new DS4Color();
         [XmlElement("Color")]
         public string ColorString
@@ -105,6 +99,12 @@ namespace DS4WinWPF.DS4Control.DTOXml
 
         [XmlElement("RumbleAutostopTime")]
         public int RumbleAutostopTime
+        {
+            get; set;
+        }
+
+        [XmlElement("LightbarMode")]
+        public LightbarMode LightbarMode
         {
             get; set;
         }
@@ -266,6 +266,18 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
+        [XmlElement("LeftTriggerMiddle")]
+        public byte LeftTriggerMiddle
+        {
+            get; set;
+        }
+
+        [XmlElement("RightTriggerMiddle")]
+        public byte RightTriggerMiddle
+        {
+            get; set;
+        }
+
         private int _touchpadInvert;
         [XmlElement("TouchpadInvert")]
         public int TouchpadInvert
@@ -285,18 +297,6 @@ namespace DS4WinWPF.DS4Control.DTOXml
         {
             get => TouchpadClickPassthru.ToString();
             set => TouchpadClickPassthru = XmlDataUtilities.StrToBool(value);
-        }
-
-        [XmlElement("LeftTriggerMiddle")]
-        public byte LeftTriggerMiddle
-        {
-            get; set;
-        }
-
-        [XmlElement("RightTriggerMiddle")]
-        public byte RightTriggerMiddle
-        {
-            get; set;
         }
 
         [XmlElement("L2AntiDeadZone")]
@@ -343,46 +343,6 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _r2MaxOutput = Math.Clamp(value, 0.0, 100.0);
         }
 
-        private double _lSRotation;
-        [XmlElement("LSRotation")]
-        public double LSRotation
-        {
-            get => _lSRotation;
-            set
-            {
-                double tempDegrees = Math.Clamp(value, -180.0, 180.0);
-                _lSRotation = tempDegrees * Math.PI / 180.0;
-            }
-        }
-
-        private double _rSRotation;
-        [XmlElement("RSRotation")]
-        public double RSRotation
-        {
-            get => _rSRotation;
-            set
-            {
-                double tempDegrees = Math.Clamp(value, -180.0, 180.0);
-                _rSRotation = tempDegrees * Math.PI / 180.0;
-            }
-        }
-
-        private int _lSFuzz;
-        [XmlElement("LSFuzz")]
-        public int LSFuzz
-        {
-            get => _lSFuzz;
-            set => _lSFuzz = Math.Clamp(value, 0, 100);
-        }
-
-        private int _rSFuzz;
-        [XmlElement("RSFuzz")]
-        public int RSFuzz
-        {
-            get => _rSFuzz;
-            set => _rSFuzz = Math.Clamp(value, 0, 100);
-        }
-
         [XmlElement("ButtonMouseSensitivity")]
         public int ButtonMouseSensitivity
         {
@@ -395,14 +355,6 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
-        private double _buttonMouseVerticalScale;
-        [XmlElement("ButtonMouseVerticalScale")]
-        public double ButtonMouseVerticalScale
-        {
-            get => _buttonMouseVerticalScale;
-            set => _buttonMouseVerticalScale = Math.Clamp(value, 0.0, 500.0) * 0.01;
-        }
-
         [XmlElement("Rainbow")]
         public double Rainbow
         {
@@ -413,7 +365,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         [XmlElement("MaxSatRainbow")]
         public double MaxSatRainbow
         {
-            get => _maxSatRainbow;
+            get => _maxSatRainbow * 100.0;
             set => _maxSatRainbow = Math.Clamp(value, 0.0, 100.0) / 100.0;
         }
 
@@ -473,28 +425,20 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _lSVerticalScale = Math.Clamp(value, 0.0, 100.0);
         }
 
-        private double _lSMaxOutput = 100.0;
-        [XmlElement("LSMaxOutput")]
-        public double LSMaxOutput
-        {
-            get => _lSMaxOutput;
-            set => _lSMaxOutput = Math.Clamp(value, 0.0, 100.0);
-        }
-
-        private bool _lsMaxOutputForce = StickDeadZoneInfo.DEFAULT_MAXOUTPUT_FORCE;
-        [XmlElement("LSMaxOutputForce")]
-        public string LSMaxOutputForceString
-        {
-            get => _lsMaxOutputForce.ToString();
-            set => _lsMaxOutputForce = XmlDataUtilities.StrToBool(value);
-        }
-
         private double _rSVerticalScale = StickDeadZoneInfo.DEFAULT_VERTICAL_SCALE;
         [XmlElement("RSVerticalScale")]
         public double RSVerticalScale
         {
             get => _rSVerticalScale;
             set => _rSVerticalScale = Math.Clamp(value, 0.0, 100.0);
+        }
+
+        private double _lSMaxOutput = 100.0;
+        [XmlElement("LSMaxOutput")]
+        public double LSMaxOutput
+        {
+            get => _lSMaxOutput;
+            set => _lSMaxOutput = Math.Clamp(value, 0.0, 100.0);
         }
 
         private double _rSMaxOutput = 100.0;
@@ -505,12 +449,85 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _rSMaxOutput = Math.Clamp(value, 0.0, 100.0);
         }
 
+        private bool _lsMaxOutputForce = StickDeadZoneInfo.DEFAULT_MAXOUTPUT_FORCE;
+        [XmlElement("LSMaxOutputForce")]
+        public string LSMaxOutputForceString
+        {
+            get => _lsMaxOutputForce.ToString();
+            set => _lsMaxOutputForce = XmlDataUtilities.StrToBool(value);
+        }
+
         private bool _rsMaxOutputForce = StickDeadZoneInfo.DEFAULT_MAXOUTPUT_FORCE;
         [XmlElement("RSMaxOutputForce")]
         public string RSMaxOutputForceString
         {
             get => _rsMaxOutputForce.ToString();
             set => _rsMaxOutputForce = XmlDataUtilities.StrToBool(value);
+        }
+
+        [XmlElement("LSDeadZoneType")]
+        public StickDeadZoneInfo.DeadZoneType LSDeadZoneType
+        {
+            get; set;
+        }
+
+        [XmlElement("RSDeadZoneType")]
+        public StickDeadZoneInfo.DeadZoneType RSDeadZoneType
+        {
+            get; set;
+        }
+
+        [XmlElement("LSAxialDeadOptions")]
+        public StickAxialDeadOptionsSerializer LSAxialDeadOptions
+        {
+            get; set;
+        }
+
+        [XmlElement("RSAxialDeadOptions")]
+        public StickAxialDeadOptionsSerializer RSAxialDeadOptions
+        {
+            get; set;
+        }
+
+
+        private double _lSRotation;
+        [XmlElement("LSRotation")]
+        public double LSRotation
+        {
+            get => _lSRotation;
+            set
+            {
+                double tempDegrees = Math.Clamp(value, -180.0, 180.0);
+                _lSRotation = tempDegrees * Math.PI / 180.0;
+            }
+        }
+
+        private double _rSRotation;
+        [XmlElement("RSRotation")]
+        public double RSRotation
+        {
+            get => _rSRotation;
+            set
+            {
+                double tempDegrees = Math.Clamp(value, -180.0, 180.0);
+                _rSRotation = tempDegrees * Math.PI / 180.0;
+            }
+        }
+
+        private int _lSFuzz;
+        [XmlElement("LSFuzz")]
+        public int LSFuzz
+        {
+            get => _lSFuzz;
+            set => _lSFuzz = Math.Clamp(value, 0, 100);
+        }
+
+        private int _rSFuzz;
+        [XmlElement("RSFuzz")]
+        public int RSFuzz
+        {
+            get => _rSFuzz;
+            set => _rSFuzz = Math.Clamp(value, 0, 100);
         }
 
         private double _lSOuterBindDead = StickDeadZoneInfo.DEFAULT_OUTER_BIND_DEAD;
@@ -545,32 +562,8 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _rSOuterBindInvert = XmlDataUtilities.StrToBool(value);
         }
 
-        [XmlElement("LSDeadZoneType")]
-        public StickDeadZoneInfo.DeadZoneType LSDeadZoneType
-        {
-            get; set;
-        }
-
-        [XmlElement("LSAxialDeadOptions")]
-        public StickAxialDeadOptionsSerializer LSAxialDeadOptions
-        {
-            get; set;
-        }
-
         [XmlElement("LSDeltaAccelSettings")]
         public StickDeltaAccelSettings LSDeltaAccelSettings
-        {
-            get; set;
-        }
-
-        [XmlElement("RSDeadZoneType")]
-        public StickDeadZoneInfo.DeadZoneType RSDeadZoneType
-        {
-            get; set;
-        }
-
-        [XmlElement("RSAxialDeadOptions")]
-        public StickAxialDeadOptionsSerializer RSAxialDeadOptions
         {
             get; set;
         }
@@ -601,7 +594,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         [XmlElement("SXMaxZone")]
         public double SXMaxZone
         {
-            get => _sxMaxZone;
+            get => _sxMaxZone * 100.0;
             set => _sxMaxZone = Math.Clamp(value * 0.01, 0.0, 1.0);
         }
 
@@ -609,7 +602,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         [XmlElement("SZMaxZone")]
         public double SZMaxZone
         {
-            get => _szMaxZone;
+            get => _szMaxZone * 100.0;
             set => _szMaxZone = Math.Clamp(value * 0.01, 0.0, 1.0);
         }
 
@@ -617,7 +610,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         [XmlElement("SXAntiDeadZone")]
         public double SXAntiDeadZone
         {
-            get => _sxAntiDeadZone;
+            get => _sxAntiDeadZone * 100.0;
             set => _sxAntiDeadZone = Math.Clamp(value * 0.01, 0.0, 1.0);
         }
 
@@ -625,7 +618,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         [XmlElement("SZAntiDeadZone")]
         public double SZAntiDeadZone
         {
-            get => _szAntiDeadZone;
+            get => _szAntiDeadZone * 100.0;
             set => _szAntiDeadZone = Math.Clamp(value * 0.01, 0.0, 1.0);
         }
 
@@ -652,6 +645,14 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _mouseAcceleration = XmlDataUtilities.StrToBool(value);
         }
 
+        private double _buttonMouseVerticalScale;
+        [XmlElement("ButtonMouseVerticalScale")]
+        public double ButtonMouseVerticalScale
+        {
+            get => _buttonMouseVerticalScale * 100.0;
+            set => _buttonMouseVerticalScale = Math.Clamp(value, 0.0, 500.0) * 0.01;
+        }
+
         /// <summary>
         /// WTF. Some local var?
         /// </summary>
@@ -659,6 +660,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public int ShiftModifier
         {
             get; set;
+        } = -1;
+        public bool ShouldSerializeShiftModifier()
+        {
+            return ShiftModifier != -1;
         }
 
         [XmlElement("LaunchProgram")]
@@ -690,6 +695,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get => _useTPforControls.ToString();
             set => _useTPforControls = XmlDataUtilities.StrToBool(value);
         }
+        public bool ShouldSerializeUseTPforControlsString()
+        {
+            return false;
+        }
 
         private bool _useSAforMouse;
         [XmlElement("UseSAforMouse")]
@@ -697,6 +706,16 @@ namespace DS4WinWPF.DS4Control.DTOXml
         {
             get => _useSAforMouse.ToString();
             set => _useSAforMouse = XmlDataUtilities.StrToBool(value);
+        }
+        public bool ShouldSerializeUseSAforMouseString()
+        {
+            return false;
+        }
+
+        [XmlElement("TouchpadOutputMode")]
+        public TouchpadOutMode TouchpadOutputMode
+        {
+            get; set;
         }
 
         [XmlElement("SATriggers")]
@@ -729,12 +748,6 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _sASteeringWheelEmulationRange = value;
         }
 
-        [XmlElement("SASteeringWheelSmoothingOptions")]
-        public SASteeringWheelSmoothingOptions SASteeringWheelSmoothingOptions
-        {
-            get; set;
-        }
-
         private int _sASteeringWheelFuzz = 0;
         [XmlElement("SASteeringWheelFuzz")]
         public int SASteeringWheelFuzz
@@ -743,10 +756,60 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _sASteeringWheelFuzz = Math.Clamp(value, 0, 100);
         }
 
-        [XmlElement("GyroOutputMode")]
-        public GyroOutMode GyroOutputMode
+        [XmlElement("SASteeringWheelSmoothingOptions")]
+        public SASteeringWheelSmoothingOptions SASteeringWheelSmoothingOptions
         {
             get; set;
+        }
+
+        private int[] _touchDisInvTriggers = new int[1] { -1 };
+        [XmlElement("TouchDisInvTriggers")]
+        public string TouchDisInvTriggersString
+        {
+            get => string.Join(",", _touchDisInvTriggers);
+            set
+            {
+                string[] triggers = value.Split(',');
+                int temp = -1;
+                List<int> tempIntList = new List<int>();
+                for (int i = 0, arlen = triggers.Length; i < arlen; i++)
+                {
+                    if (int.TryParse(triggers[i], out temp))
+                        tempIntList.Add(temp);
+                }
+
+                _touchDisInvTriggers = tempIntList.ToArray();
+            }
+        }
+
+        private int _gyroSensitivity = 100;
+        [XmlElement("GyroSensitivity")]
+        public int GyroSensitivity
+        {
+            get => _gyroSensitivity;
+            set => _gyroSensitivity = value;
+        }
+
+        private int _gyroSensVerticalScale = 100;
+        [XmlElement("GyroSensVerticalScale")]
+        public int GyroSensVerticalScale
+        {
+            get => _gyroSensVerticalScale;
+            set => _gyroSensVerticalScale = value;
+        }
+
+        [XmlElement("GyroInvert")]
+        public int GyroInvert
+        {
+            get; set;
+        }
+
+        private bool _gyroTriggerTurns;
+        [XmlElement("GyroTriggerTurns")]
+        public string GyroTriggerTurnsString
+        {
+            get => _gyroTriggerTurns.ToString();
+            set => _gyroTriggerTurns = XmlDataUtilities.StrToBool(value);
         }
 
         [XmlElement("GyroControlsSettings")]
@@ -754,6 +817,51 @@ namespace DS4WinWPF.DS4Control.DTOXml
         {
             get; set;
         }
+
+        [XmlElement("GyroMouseSmoothingSettings")]
+        public GyroMouseSmoothingSettings GyroMouseSmoothingSettings
+        {
+            get; set;
+        }
+
+        private int _gyroMouseHAxis;
+        [XmlElement("GyroMouseHAxis")]
+        public int GyroMouseHAxis
+        {
+            get => _gyroMouseHAxis;
+            set => _gyroMouseHAxis = Math.Clamp(value, 0, 1);
+        }
+
+        private int _gyroMouseDeadZone = MouseCursor.GYRO_MOUSE_DEADZONE;
+        [XmlElement("GyroMouseDeadZone")]
+        public int GyroMouseDeadZone
+        {
+            get => _gyroMouseDeadZone;
+            set => _gyroMouseDeadZone = value;
+        }
+
+        private double _gyroMouseMinThreshold = GyroMouseInfo.DEFAULT_MIN_THRESHOLD;
+        [XmlElement("GyroMouseMinThreshold")]
+        public double GyroMouseMinThreshold
+        {
+            get => _gyroMouseMinThreshold;
+            set => _gyroMouseMinThreshold = Math.Clamp(value, 1.0, 40.0);
+        }
+
+        private bool _gyroMouseToggle;
+        [XmlElement("GyroMouseToggle")]
+        public string GyroMouseToggleString
+        {
+            get => _gyroMouseToggle.ToString();
+            set => _gyroMouseToggle = XmlDataUtilities.StrToBool(value);
+        }
+
+        [XmlElement("GyroOutputMode")]
+        public GyroOutMode GyroOutputMode
+        {
+            get; set;
+        }
+
 
         private string _gyroMouseStickTriggers = "-1";
         [XmlElement("GyroMouseStickTriggers")]
@@ -778,6 +886,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get => _gyroMouseStickTriggerTurns.ToString();
             set => _gyroMouseStickTriggerTurns = XmlDataUtilities.StrToBool(value);
         }
+
 
         private int _gyroMouseStickHAxis;
         [XmlElement("GyroMouseStickHAxis")]
@@ -883,100 +992,6 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
-        [XmlElement("TouchpadOutputMode")]
-        public TouchpadOutMode TouchpadOutputMode
-        {
-            get; set;
-        }
-
-        private int[] _touchDisInvTriggers = new int[1] { -1 };
-        [XmlElement("TouchDisInvTriggers")]
-        public string TouchDisInvTriggersString
-        {
-            get => string.Join(",", _touchDisInvTriggers);
-            set
-            {
-                string[] triggers = value.Split(',');
-                int temp = -1;
-                List<int> tempIntList = new List<int>();
-                for (int i = 0, arlen = triggers.Length; i < arlen; i++)
-                {
-                    if (int.TryParse(triggers[i], out temp))
-                        tempIntList.Add(temp);
-                }
-
-                _touchDisInvTriggers = tempIntList.ToArray();
-            }
-        }
-
-        private int _gyroSensitivity = 100;
-        [XmlElement("GyroSensitivity")]
-        public int GyroSensitivity
-        {
-            get => _gyroSensitivity;
-            set => _gyroSensitivity = value;
-        }
-
-        private int _gyroSensVerticalScale = 100;
-        [XmlElement("GyroSensVerticalScale")]
-        public int GyroSensVerticalScale
-        {
-            get => _gyroSensVerticalScale;
-            set => _gyroSensVerticalScale = value;
-        }
-
-        [XmlElement("GyroInvert")]
-        public int GyroInvert
-        {
-            get; set;
-        }
-
-        private bool _gyroTriggerTurns;
-        [XmlElement("GyroTriggerTurns")]
-        public string GyroTriggerTurnsString
-        {
-            get => _gyroTriggerTurns.ToString();
-            set => _gyroTriggerTurns = XmlDataUtilities.StrToBool(value);
-        }
-
-        [XmlElement("GyroMouseSmoothingSettings")]
-        public GyroMouseSmoothingSettings GyroMouseSmoothingSettings
-        {
-            get; set;
-        }
-
-        private int _gyroMouseHAxis;
-        [XmlElement("GyroMouseHAxis")]
-        public int GyroMouseHAxis
-        {
-            get => _gyroMouseHAxis;
-            set => _gyroMouseHAxis = Math.Clamp(value, 0, 1);
-        }
-
-        private int _gyroMouseDeadZone = MouseCursor.GYRO_MOUSE_DEADZONE;
-        [XmlElement("GyroMouseDeadZone")]
-        public int GyroMouseDeadZone
-        {
-            get => _gyroMouseDeadZone;
-            set => _gyroMouseDeadZone = value;
-        }
-
-        private double _gyroMouseMinThreshold = GyroMouseInfo.DEFAULT_MIN_THRESHOLD;
-        [XmlElement("GyroMouseMinThreshold")]
-        public double GyroMouseMinThreshold
-        {
-            get => _gyroMouseMinThreshold;
-            set => _gyroMouseMinThreshold = Math.Clamp(value, 1.0, 40.0);
-        }
-
-        private bool _gyroMouseToggle;
-        [XmlElement("GyroMouseToggle")]
-        public string GyroMouseToggleString
-        {
-            get => _gyroMouseToggle.ToString();
-            set => _gyroMouseToggle = XmlDataUtilities.StrToBool(value);
-        }
-
         private int _bTPollRate = 4;
         [XmlElement("BTPollRate")]
         public int BTPollRateString
@@ -985,26 +1000,26 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _bTPollRate = Math.Clamp(value, 1, 16);
         }
 
-        [XmlElement("LSOutputCurveCustom")]
-        public string LSOutputCurveCustom
-        {
-            get; set;
-        }
-
         [XmlElement("LSOutputCurveMode")]
         public string LSOutputCurveMode
         {
             get; set;
         }
 
-        [XmlElement("RSOutputCurveCustom")]
-        public string RSOutputCurveCustom
+        [XmlElement("LSOutputCurveCustom")]
+        public string LSOutputCurveCustom
         {
             get; set;
         }
 
         [XmlElement("RSOutputCurveMode")]
         public string RSOutputCurveMode
+        {
+            get; set;
+        }
+
+        [XmlElement("RSOutputCurveCustom")]
+        public string RSOutputCurveCustom
         {
             get; set;
         }
@@ -1017,20 +1032,20 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _lsSquareStick = XmlDataUtilities.StrToBool(value);
         }
 
-        private double _squareStickRoundness = 5.0;
-        [XmlElement("SquareStickRoundness")]
-        public double SquareStickRoundness
-        {
-            get => _squareStickRoundness;
-            set => _squareStickRoundness = value;
-        }
-
         private bool _rsSquareStick;
         [XmlElement("RSSquareStick")]
         public string RSSquareStickString
         {
             get => _rsSquareStick.ToString();
             set => _rsSquareStick = XmlDataUtilities.StrToBool(value);
+        }
+
+        private double _squareStickRoundness = 5.0;
+        [XmlElement("SquareStickRoundness")]
+        public double SquareStickRoundness
+        {
+            get => _squareStickRoundness;
+            set => _squareStickRoundness = value;
         }
 
         private double _squareRStickRoundness = 5.0;
@@ -1113,20 +1128,26 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
-        [XmlElement("L2OutputCurveCustom")]
-        public string L2OutputCurveCustom
-        {
-            get; set;
-        }
-
         [XmlElement("L2OutputCurveMode")]
         public string L2OutputCurveMode
         {
             get; set;
         }
 
+        [XmlElement("L2OutputCurveCustom")]
+        public string L2OutputCurveCustom
+        {
+            get; set;
+        }
+
         [XmlElement("L2TwoStageMode")]
         public TwoStageTriggerMode L2TwoStageMode
+        {
+            get; set;
+        }
+
+        [XmlElement("R2TwoStageMode")]
+        public TwoStageTriggerMode R2TwoStageMode
         {
             get; set;
         }
@@ -1139,15 +1160,22 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _l2HipFireTime = Math.Clamp(value, 0, 5000);
         }
 
+        private int _r2HipFireTime;
+        [XmlElement("R2HipFireTime")]
+        public int R2HipFireTime
+        {
+            get => _r2HipFireTime;
+            set => _r2HipFireTime = Math.Clamp(value, 0, 5000);
+        }
+
         [XmlElement("L2TriggerEffect")]
         public DS4Windows.InputDevices.TriggerEffects L2TriggerEffect
         {
             get; set;
         }
 
-
-        [XmlElement("R2OutputCurveCustom")]
-        public string R2OutputCurveCustom
+        [XmlElement("R2TriggerEffect")]
+        public DS4Windows.InputDevices.TriggerEffects R2TriggerEffect
         {
             get; set;
         }
@@ -1158,22 +1186,14 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
-        [XmlElement("R2TwoStageMode")]
-        public TwoStageTriggerMode R2TwoStageMode
+        [XmlElement("R2OutputCurveCustom")]
+        public string R2OutputCurveCustom
         {
             get; set;
         }
 
-        private int _r2HipFireTime;
-        [XmlElement("R2HipFireTime")]
-        public int R2HipFireTime
-        {
-            get => _r2HipFireTime;
-            set => _r2HipFireTime = Math.Clamp(value, 0, 5000);
-        }
-
-        [XmlElement("R2TriggerEffect")]
-        public DS4Windows.InputDevices.TriggerEffects R2TriggerEffect
+        [XmlElement("SXOutputCurveMode")]
+        public string SXOutputCurveMode
         {
             get; set;
         }
@@ -1185,20 +1205,14 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
-        [XmlElement("SXOutputCurveMode")]
-        public string SXOutputCurveMode
+        [XmlElement("SZOutputCurveMode")]
+        public string SZOutputCurveMode
         {
             get; set;
         }
 
         [XmlElement("SZOutputCurveCustom")]
         public string SZOutputCurveCustom
-        {
-            get; set;
-        }
-
-        [XmlElement("SZOutputCurveMode")]
-        public string SZOutputCurveMode
         {
             get; set;
         }
@@ -1273,12 +1287,16 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
-        private int deviceIndex;
-
-        public ProfileDTO(int deviceIndex)
+        private int deviceIndex = -1;
+        [XmlIgnore]
+        public int DeviceIndex
         {
-            this.deviceIndex = deviceIndex;
+            get => deviceIndex;
+            set => deviceIndex = value;
+        }
 
+        public ProfileDTO()
+        {
             LSAxialDeadOptions = new StickAxialDeadOptionsSerializer();
             LSDeltaAccelSettings = new StickDeltaAccelSettings();
             RSAxialDeadOptions = new StickAxialDeadOptionsSerializer();
@@ -1298,6 +1316,11 @@ namespace DS4WinWPF.DS4Control.DTOXml
 
         public void MapFrom(BackingStore source)
         {
+            if (deviceIndex == -1)
+            {
+                throw new ArgumentOutOfRangeException("Device Index must be set");
+            }
+
             LightbarSettingInfo lightbarSettings = source.lightbarSettingInfo[deviceIndex];
             LightbarDS4WinInfo lightInfo = lightbarSettings.ds4winSettings;
 
@@ -1305,7 +1328,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             IdleDisconnect = source.idleDisconnectTimeout[deviceIndex];
             OutputDataToDS4 = source.enableOutputDataToDS4[deviceIndex];
             LightbarMode = source.lightbarSettingInfo[deviceIndex].mode;
-            ColorString = $"{lightInfo.m_Led.red},${lightInfo.m_Led.green},${lightInfo.m_Led.blue}";
+            ColorString = $"{lightInfo.m_Led.red},{lightInfo.m_Led.green},{lightInfo.m_Led.blue}";
             _ledColor = new DS4Color(lightInfo.m_Led.red, lightInfo.m_Led.green, lightInfo.m_Led.blue);
             RumbleBoost = source.rumble[deviceIndex];
             RumbleAutostopTime = source.rumbleAutostopTime[deviceIndex];
@@ -1343,9 +1366,9 @@ namespace DS4WinWPF.DS4Control.DTOXml
             RSFuzz = source.rsModInfo[deviceIndex].fuzz;
             ButtonMouseSensitivity = source.buttonMouseInfos[deviceIndex].buttonSensitivity;
             ButtonMouseOffset = source.buttonMouseInfos[deviceIndex].mouseVelocityOffset;
-            ButtonMouseVerticalScale = source.buttonMouseInfos[deviceIndex].buttonVerticalScale;
+            _buttonMouseVerticalScale = source.buttonMouseInfos[deviceIndex].buttonVerticalScale;
             Rainbow = lightInfo.rainbow;
-            MaxSatRainbow = lightInfo.maxRainbowSat;
+            MaxSatRainbow = lightInfo.maxRainbowSat * 100.0;
             LSDeadZone = source.lsModInfo[deviceIndex].deadZone;
             RSDeadZone = source.rsModInfo[deviceIndex].deadZone;
             LSAntiDeadZone = source.lsModInfo[deviceIndex].antiDeadZone;
@@ -1412,10 +1435,12 @@ namespace DS4WinWPF.DS4Control.DTOXml
 
             SXDeadZone = source.SXDeadzone[deviceIndex];
             SZDeadZone = source.SZDeadzone[deviceIndex];
-            SXMaxZone = source.SXMaxzone[deviceIndex];
-            SZMaxZone = source.SZMaxzone[deviceIndex];
-            SXAntiDeadZone = source.SXAntiDeadzone[deviceIndex];
-            SZAntiDeadZone = source.SZAntiDeadzone[deviceIndex];
+            _sxMaxZone = source.SXMaxzone[deviceIndex];
+            _szMaxZone = source.SZMaxzone[deviceIndex];
+            _sxAntiDeadZone = source.SXAntiDeadzone[deviceIndex];
+            _szAntiDeadZone = source.SZAntiDeadzone[deviceIndex];
+
+            Sensitivity = $"{source.LSSens[deviceIndex]}|{source.RSSens[deviceIndex]}|{source.l2Sens[deviceIndex]}|{source.r2Sens[deviceIndex]}|{source.SXSens[deviceIndex]}|{source.SZSens[deviceIndex]}";
 
             ChargingType = lightInfo.chargingType;
             _mouseAcceleration = source.buttonMouseInfos[deviceIndex].mouseAccel;
@@ -1465,7 +1490,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             {
                 UseSmoothing = source.gyroMStickInfo[deviceIndex].useSmoothing,
                 SmoothingMethod = source.gyroMStickInfo[deviceIndex].SmoothMethodIdentifier(),
-                SmoothingWeight = source.gyroMStickInfo[deviceIndex].smoothWeight,
+                SmoothingWeightRaw = source.gyroMStickInfo[deviceIndex].smoothWeight,
                 SmoothingMinCutoff = source.gyroMStickInfo[deviceIndex].minCutoff,
                 SmoothingBeta = source.gyroMStickInfo[deviceIndex].beta,
             };
@@ -1489,7 +1514,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             {
                 UseSmoothing = source.gyroMouseInfo[deviceIndex].enableSmoothing,
                 SmoothingMethod = source.gyroMouseInfo[deviceIndex].SmoothMethodIdentifier(),
-                SmoothingWeight = source.gyroMouseInfo[deviceIndex].smoothingWeight,
+                SmoothingWeightRaw = source.gyroMouseInfo[deviceIndex].smoothingWeight,
                 SmoothingMinCutoff = source.gyroMouseInfo[deviceIndex].minCutoff,
                 SmoothingBeta = source.gyroMouseInfo[deviceIndex].beta,
             };
@@ -1572,24 +1597,21 @@ namespace DS4WinWPF.DS4Control.DTOXml
             DS4ControlKeyAssignmentSerializer keySerializer = new DS4ControlKeyAssignmentSerializer();
             DS4ControlKeyTypeAssignmentSerializer keyTypeSerializer = new DS4ControlKeyTypeAssignmentSerializer();
             DS4ControlMacroAssignmentSerializer macroSerializer = new DS4ControlMacroAssignmentSerializer();
+            DS4ControlExtrasAssignmentSerializer extrasSerializer = new DS4ControlExtrasAssignmentSerializer();
 
             DS4ControlButtonAssignmentSerializer shiftButtonSerializer = new DS4ControlButtonAssignmentSerializer();
             DS4ControlKeyAssignmentSerializer shiftKeySerializer = new DS4ControlKeyAssignmentSerializer();
             DS4ControlKeyTypeAssignmentSerializer shiftKeyTypeSerializer = new DS4ControlKeyTypeAssignmentSerializer();
             DS4ControlMacroAssignmentSerializer shiftMacroSerializer = new DS4ControlMacroAssignmentSerializer();
+            DS4ControlExtrasAssignmentSerializer shiftExtrasSerializer = new DS4ControlExtrasAssignmentSerializer();
 
             foreach (DS4ControlSettings dcs in source.ds4settings[deviceIndex])
             {
                 if (dcs.actionType != DS4ControlSettings.ActionType.Default)
                 {
-                    DS4KeyType[] tempArray = (DS4KeyType[])Enum.GetValues(typeof(DS4KeyType));
-                    for (int i = 0; i < tempArray.Length; i++)
+                    if (dcs.keyType != DS4KeyType.None)
                     {
-                        DS4KeyType testFlag = tempArray[i];
-                        if (dcs.keyType.HasFlag(testFlag))
-                        {
-                            keyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, testFlag);
-                        }
+                        keyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, dcs.keyType);
                     }
 
                     if (dcs.actionType == DS4ControlSettings.ActionType.Button)
@@ -1611,6 +1633,24 @@ namespace DS4WinWPF.DS4Control.DTOXml
                         macroSerializer.CustomMapMacros.Add(dcs.control,
                             string.Join("/", dcs.action.actionMacro));
                     }
+                }
+
+                bool hasExtrasValue = false;
+                if (!string.IsNullOrEmpty(dcs.extras))
+                {
+                    foreach (string s in dcs.extras.Split(','))
+                    {
+                        if (s != "0")
+                        {
+                            hasExtrasValue = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (hasExtrasValue)
+                {
+                    extrasSerializer.CustomMapExtras.Add(dcs.control, dcs.extras);
                 }
 
                 if (dcs.shiftActionType != DS4ControlSettings.ActionType.Default && dcs.shiftTrigger > 0)
@@ -1645,6 +1685,19 @@ namespace DS4WinWPF.DS4Control.DTOXml
                             string.Join("/", dcs.action.actionMacro));
                     }
                 }
+
+                hasExtrasValue = false;
+                if (!string.IsNullOrEmpty(dcs.shiftExtras))
+                {
+                    foreach (string s in dcs.shiftExtras.Split(','))
+                    {
+                        if (s != "0")
+                        {
+                            hasExtrasValue = true;
+                            break;
+                        }
+                    }
+                }
             }
 
             if (buttonSerializer.CustomMapButtons.Count > 0)
@@ -1667,6 +1720,11 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 Control.Macro = macroSerializer;
             }
 
+            if (extrasSerializer.CustomMapExtras.Count > 0)
+            {
+                Control.Extras = extrasSerializer;
+            }
+
 
             if (shiftButtonSerializer.CustomMapButtons.Count > 0)
             {
@@ -1687,10 +1745,20 @@ namespace DS4WinWPF.DS4Control.DTOXml
             {
                 ShiftControl.Macro = shiftMacroSerializer;
             }
+
+            if (shiftExtrasSerializer.CustomMapExtras.Count > 0)
+            {
+                ShiftControl.Extras = shiftExtrasSerializer;
+            }
         }
 
         public void MapTo(BackingStore destination)
         {
+            if (deviceIndex == -1)
+            {
+                throw new ArgumentOutOfRangeException("Device Index must be set");
+            }
+
             PostProcessXml();
 
             LightbarSettingInfo lightbarSettings = destination.lightbarSettingInfo[deviceIndex];
@@ -1729,7 +1797,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             destination.rsModInfo[deviceIndex].fuzz = RSFuzz;
             destination.buttonMouseInfos[deviceIndex].buttonSensitivity = ButtonMouseSensitivity;
             destination.buttonMouseInfos[deviceIndex].mouseVelocityOffset = ButtonMouseOffset;
-            destination.buttonMouseInfos[deviceIndex].buttonVerticalScale = ButtonMouseVerticalScale;
+            destination.buttonMouseInfos[deviceIndex].buttonVerticalScale = _buttonMouseVerticalScale;
             lightInfo.rainbow = Rainbow;
             lightInfo.maxRainbowSat = MaxSatRainbow;
             destination.lsModInfo[deviceIndex].deadZone = LSDeadZone;
@@ -1801,10 +1869,75 @@ namespace DS4WinWPF.DS4Control.DTOXml
 
             destination.SXDeadzone[deviceIndex] = SXDeadZone;
             destination.SZDeadzone[deviceIndex] = SZDeadZone;
-            destination.SXMaxzone[deviceIndex] = SXMaxZone;
-            destination.SZMaxzone[deviceIndex] = SZMaxZone;
-            destination.SXAntiDeadzone[deviceIndex] = SXAntiDeadZone;
-            destination.SZAntiDeadzone[deviceIndex] = SZAntiDeadZone;
+            destination.SXMaxzone[deviceIndex] = _sxMaxZone;
+            destination.SZMaxzone[deviceIndex] = _szMaxZone;
+            destination.SXAntiDeadzone[deviceIndex] = _sxAntiDeadZone;
+            destination.SZAntiDeadzone[deviceIndex] = _szAntiDeadZone;
+
+            if (!string.IsNullOrEmpty(Sensitivity))
+            {
+                string[] s = Sensitivity.Split('|');
+                if (s.Length == 1)
+                    s = Sensitivity.Split(',');
+
+                try
+                {
+                    if (double.TryParse(s[0], out double temp))
+                    {
+                        destination.LSSens[deviceIndex] = Math.Clamp(temp, 0.1, 5.0);
+                    }
+                    else
+                    {
+                        destination.LSSens[deviceIndex] = 1.0;
+                    }
+
+                    if (double.TryParse(s[1], out double tempRSSens))
+                    {
+                        destination.RSSens[deviceIndex] = Math.Clamp(tempRSSens, 0.1, 5.0);
+                    }
+                    else
+                    {
+                        destination.RSSens[deviceIndex] = 1.0;
+                    }
+
+                    if (double.TryParse(s[2], out double tempL2Sens))
+                    {
+                        destination.l2Sens[deviceIndex] = Math.Clamp(tempL2Sens, 0.1, 10.0);
+                    }
+                    else
+                    {
+                        destination.l2Sens[deviceIndex] = 1.0;
+                    }
+
+                    if (double.TryParse(s[3], out double tempR2Sens))
+                    {
+                        destination.r2Sens[deviceIndex] = Math.Clamp(tempR2Sens, 0.1, 10.0);
+                    }
+                    else
+                    {
+                        destination.r2Sens[deviceIndex] = 1.0;
+                    }
+
+                    if (double.TryParse(s[4], out double tempSXSens))
+                    {
+                        destination.SXSens[deviceIndex] = Math.Clamp(tempSXSens, 0.0, 5.0);
+                    }
+                    else
+                    {
+                        destination.SXSens[deviceIndex] = 1.0;
+                    }
+
+                    if (double.TryParse(s[5], out double tempSZSens))
+                    {
+                        destination.SZSens[deviceIndex] = Math.Clamp(tempSZSens, 0.0, 5.0);
+                    }
+                    else
+                    {
+                        destination.SZSens[deviceIndex] = 1.0;
+                    }
+                }
+                catch {}
+            }
 
             lightInfo.chargingType = ChargingType;
             destination.buttonMouseInfos[deviceIndex].mouseAccel = _mouseAcceleration;
@@ -1855,7 +1988,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             {
                 destination.gyroMStickInfo[deviceIndex].useSmoothing = GyroMouseStickSmoothingSettings.UseSmoothing;
                 destination.gyroMStickInfo[deviceIndex].smoothingMethod = GyroMouseStickInfo.SmoothingMethodParse(GyroMouseStickSmoothingSettings.SmoothingMethod);
-                destination.gyroMStickInfo[deviceIndex].smoothWeight = GyroMouseStickSmoothingSettings.SmoothingWeight;
+                destination.gyroMStickInfo[deviceIndex].smoothWeight = GyroMouseStickSmoothingSettings.SmoothingWeightRaw;
                 destination.gyroMStickInfo[deviceIndex].minCutoff = GyroMouseStickSmoothingSettings.SmoothingMinCutoff;
                 destination.gyroMStickInfo[deviceIndex].beta = GyroMouseStickSmoothingSettings.SmoothingBeta;
             }
@@ -1882,7 +2015,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             {
                 destination.gyroMouseInfo[deviceIndex].enableSmoothing = GyroMouseSmoothingSettings.UseSmoothing;
                 destination.gyroMouseInfo[deviceIndex].smoothingMethod = GyroMouseInfo.SmoothingMethodParse(GyroMouseSmoothingSettings.SmoothingMethod);
-                destination.gyroMouseInfo[deviceIndex].smoothingWeight = GyroMouseSmoothingSettings.SmoothingWeight;
+                destination.gyroMouseInfo[deviceIndex].smoothingWeight = GyroMouseSmoothingSettings.SmoothingWeightRaw;
                 destination.gyroMouseInfo[deviceIndex].minCutoff = GyroMouseSmoothingSettings.SmoothingMinCutoff;
                 destination.gyroMouseInfo[deviceIndex].beta = GyroMouseSmoothingSettings.SmoothingBeta;
             }
@@ -2440,10 +2573,17 @@ namespace DS4WinWPF.DS4Control.DTOXml
         }
 
         protected double _smoothingWeight = 0.5;
+        [XmlIgnore]
+        public double SmoothingWeightRaw
+        {
+            get => _smoothingWeight;
+            set => _smoothingWeight = value;
+        }
+
         [XmlElement("SmoothingWeight")]
         public double SmoothingWeight
         {
-            get => _smoothingWeight;
+            get => _smoothingWeight * 100.0;
             set => _smoothingWeight = Math.Clamp(value * 0.01, 0.0, 1.0);
         }
 
@@ -2911,7 +3051,8 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 for (int i = 0; i < tempArray.Length; i++)
                 {
                     DS4KeyType testFlag = tempArray[i];
-                    if (pair.Value.HasFlag(testFlag))
+                    if (testFlag != DS4KeyType.None &&
+                        pair.Value.HasFlag(testFlag))
                     {
                         tempKey += testFlag;
                     }

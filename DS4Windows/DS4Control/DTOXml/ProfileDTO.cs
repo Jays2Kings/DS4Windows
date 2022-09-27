@@ -1769,6 +1769,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             destination.idleDisconnectTimeout[deviceIndex] = IdleDisconnect;
             destination.enableOutputDataToDS4[deviceIndex] = OutputDataToDS4;
             destination.lightbarSettingInfo[deviceIndex].mode = LightbarMode;
+            lightInfo.m_Led = _ledColor;
 
             destination.rumble[deviceIndex] = RumbleBoost;
             destination.rumbleAutostopTime[deviceIndex] = RumbleAutostopTime;
@@ -1776,6 +1777,9 @@ namespace DS4WinWPF.DS4Control.DTOXml
             lightInfo.flashType = FlashType;
             lightInfo.flashAt = FlashBatteryAt;
             destination.touchSensitivity[deviceIndex] = TouchSensitivity;
+            lightInfo.m_LowLed = _lowColor;
+            lightInfo.m_ChargingLed = _chargingColor;
+            lightInfo.m_FlashLed = _flashColor;
 
             destination.touchpadJitterCompensation[deviceIndex] = TouchpadJitterCompensation;
             destination.lowerRCOn[deviceIndex] = LowerRCOn;

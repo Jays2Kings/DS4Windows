@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
@@ -2832,8 +2833,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public void ReadXml(XmlReader reader)
         {
             XmlDocument tempDoc = new XmlDocument();
-            tempDoc.Load(reader.ReadSubtree());
-            XmlNode parentNode = tempDoc.ParentNode;
+            string tempXml = reader.ReadOuterXml();
+            XmlReader tempXmlReader = XmlReader.Create(new StringReader(tempXml));
+            tempDoc.Load(tempXmlReader);
+            XmlNode parentNode = tempDoc.SelectSingleNode("Button");
             if (parentNode != null)
             {
                 foreach (XmlNode item in parentNode.ChildNodes)
@@ -2885,8 +2888,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public void ReadXml(XmlReader reader)
         {
             XmlDocument tempDoc = new XmlDocument();
-            tempDoc.Load(reader.ReadSubtree());
-            XmlNode parentNode = tempDoc.ParentNode;
+            string tempXml = reader.ReadOuterXml();
+            XmlReader tempXmlReader = XmlReader.Create(new StringReader(tempXml));
+            tempDoc.Load(tempXmlReader);
+            XmlNode parentNode = tempDoc.SelectSingleNode("Key");
             if (parentNode != null)
             {
                 foreach (XmlNode item in parentNode.ChildNodes)
@@ -2938,8 +2943,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public void ReadXml(XmlReader reader)
         {
             XmlDocument tempDoc = new XmlDocument();
-            tempDoc.Load(reader.ReadSubtree());
-            XmlNode parentNode = tempDoc.ParentNode;
+            string tempXml = reader.ReadOuterXml();
+            XmlReader tempXmlReader = XmlReader.Create(new StringReader(tempXml));
+            tempDoc.Load(tempXmlReader);
+            XmlNode parentNode = tempDoc.SelectSingleNode("Macro");
             if (parentNode != null)
             {
                 foreach (XmlNode item in parentNode.ChildNodes)
@@ -3006,8 +3013,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public void ReadXml(XmlReader reader)
         {
             XmlDocument tempDoc = new XmlDocument();
-            tempDoc.Load(reader.ReadSubtree());
-            XmlNode parentNode = tempDoc.ParentNode;
+            string tempXml = reader.ReadOuterXml();
+            XmlReader tempXmlReader = XmlReader.Create(new StringReader(tempXml));
+            tempDoc.Load(tempXmlReader);
+            XmlNode parentNode = tempDoc.SelectSingleNode("KeyType");
             if (parentNode != null)
             {
                 foreach (XmlNode item in parentNode.ChildNodes)
@@ -3088,8 +3097,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public void ReadXml(XmlReader reader)
         {
             XmlDocument tempDoc = new XmlDocument();
-            tempDoc.Load(reader.ReadSubtree());
-            XmlNode parentNode = tempDoc.ParentNode;
+            string tempXml = reader.ReadOuterXml();
+            XmlReader tempXmlReader = XmlReader.Create(new StringReader(tempXml));
+            tempDoc.Load(tempXmlReader);
+            XmlNode parentNode = tempDoc.SelectSingleNode("Extras");
             if (parentNode != null)
             {
                 foreach (XmlNode item in parentNode.ChildNodes)

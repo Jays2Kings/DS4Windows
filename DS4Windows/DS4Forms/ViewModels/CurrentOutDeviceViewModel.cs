@@ -271,18 +271,17 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
 
 
-        public int XInputSlotNum
+        public string XInputSlotNum
         {
             get
             {
-                int result = -1;
+                var xinputSlot = "?";
                 if (outSlotDevice.CurrentType == OutContType.X360)
                 {
-                    result = (outSlotDevice.OutputDevice as Xbox360OutDevice).XinputSlotNum;
-                    result = result >= 0 ? result + 1 : result;
+                    var tempX360 = outSlotDevice.OutputDevice as Xbox360OutDevice;
+                    if (tempX360.XinputSlotNum >= 0) xinputSlot = $"{tempX360.XinputSlotNum + 1}";
                 }
-
-                return result;
+                return xinputSlot;
             }
 
         }

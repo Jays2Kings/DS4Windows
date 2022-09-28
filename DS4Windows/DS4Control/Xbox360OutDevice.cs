@@ -32,13 +32,14 @@ namespace DS4Windows
             new Dictionary<int, Xbox360FeedbackReceivedEventHandler>();
 
         private const int XINPUT_SLOT_NUM_DEFAULT = -1;
+        private const int MAX_XINPUT_SLOT_NUM = 8;
         private int _xInputSlotNum = XINPUT_SLOT_NUM_DEFAULT;
         public int XinputSlotNum
         {
             get => _xInputSlotNum;
             set
             {
-                if (value >= 0 && value < 16) _xInputSlotNum = value;
+                if (value >= 0 && value < MAX_XINPUT_SLOT_NUM) _xInputSlotNum = value;
             }
         }
 

@@ -4444,6 +4444,62 @@ namespace DS4Windows
                 buttonMouseInfos[device].activeButtonSensitivity =
                     buttonMouseInfos[device].buttonSensitivity;
 
+                // Check if profile sets a program to launch on loading
+                if (launchprogram && launchProgram[device] != string.Empty)
+                {
+                    string programPath = launchProgram[device];
+                    Process[] localAll = Process.GetProcesses();
+                    bool procFound = false;
+                    for (int procInd = 0, procsLen = localAll.Length; !procFound && procInd < procsLen; procInd++)
+                    {
+                        try
+                        {
+                            string temp = localAll[procInd].MainModule.FileName;
+                            if (temp == programPath)
+                            {
+                                procFound = true;
+                            }
+                        }
+                        // Ignore any process for which this information
+                        // is not exposed
+                        catch { }
+                    }
+
+                    if (!procFound)
+                    {
+                        Task processTask = new Task(() =>
+                        {
+                            Thread.Sleep(5000);
+                            using Process tempProcess = new Process();
+                            tempProcess.StartInfo.FileName = programPath;
+                            tempProcess.StartInfo.WorkingDirectory = new FileInfo(programPath).Directory.ToString();
+                            //tempProcess.StartInfo.UseShellExecute = false;
+                            try { tempProcess.Start(); }
+                            catch { }
+                        });
+
+                        processTask.Start();
+                    }
+                }
+
+                // Check if Touchpad should be switched off
+                if (startTouchpadOff[device] == true) control.StartTPOff(device);
+
+                {
+                    bool tempToggle = gyroControlsInf[device].triggerToggle;
+                    SetGyroControlsToggle(device, tempToggle, control);
+                }
+
+                {
+                    bool tempToggle = gyroMouseStickToggle[device];
+                    SetGyroMouseStickToggle(device, tempToggle, control);
+                }
+
+                {
+                    int tempDZ = gyroMouseDZ[device];
+                    SetGyroMouseDZ(device, tempDZ, control);
+                }
+
                 // If a device exists, make sure to transfer relevant profile device
                 // options to device instance
                 if (postLoad && device < Global.MAX_DS4_CONTROLLER_COUNT)

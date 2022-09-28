@@ -689,24 +689,34 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _startTouchpadOff = XmlDataUtilities.StrToBool(value);
         }
 
+        private bool _hasUseTPforControls;
         private bool _useTPforControls = false;
         [XmlElement("UseTPforControls")]
         public string UseTPforControlsString
         {
             get => _useTPforControls.ToString();
-            set => _useTPforControls = XmlDataUtilities.StrToBool(value);
+            set
+            {
+                _useTPforControls = XmlDataUtilities.StrToBool(value);
+                _hasUseTPforControls = true;
+            }
         }
         public bool ShouldSerializeUseTPforControlsString()
         {
             return false;
         }
 
+        private bool _hasSAforMouse;
         private bool _useSAforMouse;
         [XmlElement("UseSAforMouse")]
         public string UseSAforMouseString
         {
             get => _useSAforMouse.ToString();
-            set => _useSAforMouse = XmlDataUtilities.StrToBool(value);
+            set
+            {
+                _useSAforMouse = XmlDataUtilities.StrToBool(value);
+                _hasSAforMouse = true;
+            }
         }
         public bool ShouldSerializeUseSAforMouseString()
         {
@@ -1963,7 +1973,15 @@ namespace DS4WinWPF.DS4Control.DTOXml
             }
 
             destination.saWheelFuzzValues[deviceIndex] = SASteeringWheelFuzz;
-            destination.gyroOutMode[deviceIndex] = GyroOutputMode;
+            if (_hasSAforMouse)
+            {
+                destination.gyroOutMode[deviceIndex] =
+                    _useSAforMouse ? GyroOutMode.Mouse : GyroOutMode.Controls;
+            }
+            else
+            {
+                destination.gyroOutMode[deviceIndex] = GyroOutputMode;
+            }
 
             if (GyroControlsSettings != null)
             {
@@ -2009,7 +2027,16 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 destination.gyroSwipeInfo[deviceIndex].delayTime = GyroSwipeSettings.DelayTime;
             }
 
-            destination.touchOutMode[deviceIndex] = TouchpadOutputMode;
+            if (_hasUseTPforControls)
+            {
+                destination.touchOutMode[deviceIndex] =
+                    _useTPforControls ? TouchpadOutMode.Controls : TouchpadOutMode.Mouse;
+            }
+            else
+            {
+                destination.touchOutMode[deviceIndex] = TouchpadOutputMode;
+            }
+
             destination.touchDisInvertTriggers[deviceIndex] = _touchDisInvTriggers;
             destination.gyroSensitivity[deviceIndex] = GyroSensitivity;
             destination.gyroSensVerticalScale[deviceIndex] = GyroSensVerticalScale;
@@ -2318,26 +2345,26 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 }
             }
 
-            //LowColor
-            //ChargingColor
-            //Sensitivity
-            //LaunchProgram
-            //StartTouchpadOff
-            //UseTPforControls
-            //GyroOutputMode
-            //GyroControlsSettings/Toggle
-            //GyroMouseStickToggle
-            //GyroMouseStickSmoothingSettings/SmoothingMethod
-            //TouchpadOutputMode
-            //TouchDisInvTriggers
-            //GyroMouseDeadZone
-            //LSOutputCurveMode
-            //RSOutputCurveMode
-            //L2OutputCurveMode
-            //R2OutputCurveMode
-            //SXOutputCurveMode
-            //SZOutputCurveMode
-            //OutputContDevice
+            //LowColor +Done
+            //ChargingColor +Done
+            //Sensitivity +Done
+            //LaunchProgram +Done
+            //StartTouchpadOff +Done
+            //UseTPforControls +Done
+            //GyroOutputMode +Done
+            //GyroControlsSettings/Toggle +Done
+            //GyroMouseStickToggle + Done
+            //GyroMouseStickSmoothingSettings/SmoothingMethod +Done
+            //TouchpadOutputMode +Done
+            //TouchDisInvTriggers +Done
+            //GyroMouseDeadZone +Done
+            //LSOutputCurveMode +Done
+            //RSOutputCurveMode +Done
+            //L2OutputCurveMode +Done
+            //R2OutputCurveMode +Done
+            //SXOutputCurveMode +Done
+            //SZOutputCurveMode +Done
+            //OutputContDevice +Done
         }
     }
 

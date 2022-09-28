@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -322,6 +322,7 @@ namespace DS4Windows
                                 DevicePaths.Add(hDevice.DevicePath);
                                 deviceSerials.Add(serial);
                                 serialDevices.Add(serial, ds4Device);
+                                AppLogger.LogToGui($"{DS4WinWPF.Properties.Resources.FoundController} {ds4Device.getMacAddress()} ({ds4Device.getConnectionType()}) ({ds4Device.DisplayName}).",false);
                             }
                         }
                     }

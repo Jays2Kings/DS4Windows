@@ -2125,6 +2125,20 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 destination.touchpadAbsMouse[deviceIndex].snapToCenter = TouchpadAbsMouseSettings.SnapToCenter;
             }
 
+            destination.outputDevType[deviceIndex] = OutputContDevice;
+            if (!string.IsNullOrEmpty(ProfileActions))
+            {
+                string[] actionNames = ProfileActions.Split('/');
+                for (int actIndex = 0, actLen = actionNames.Length; actIndex < actLen; actIndex++)
+                {
+                    string tempActionName = actionNames[actIndex];
+                    if (!destination.profileActions[deviceIndex].Contains(tempActionName))
+                    {
+                        destination.profileActions[deviceIndex].Add(tempActionName);
+                    }
+                }
+            }
+
             if (Control != null)
             {
                 if (Control.Button != null && Control.Button.CustomMapButtons.Count > 0)

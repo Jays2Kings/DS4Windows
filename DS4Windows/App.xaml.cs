@@ -19,6 +19,7 @@ using NLog;
 using System.Windows.Media;
 using System.Net;
 using Microsoft.Win32.SafeHandles;
+using DS4Windows.DS4Control;
 
 namespace DS4WinWPF
 {
@@ -202,7 +203,14 @@ namespace DS4WinWPF
             CreateIPCClassNameMMF(source.Handle);
 
             window.CheckMinStatus();
-            rootHub.LogDebug($"Running as {(DS4Windows.Global.IsAdministrator() ? "Admin" : "User. Some applications may block controller inputs. (Windows UAC Conflictions)")}");
+
+            bool runningAsAdmin = DS4Windows.Global.IsAdministrator();
+            rootHub.LogDebug($"Running as {(runningAsAdmin ? "Admin" : "User")}");
+            if (DS4Windows.Global.outputKBMHandler.GetIdentifier() != FakerInputHandler.IDENTIFIER && !runningAsAdmin)
+            {
+                string helpURL = @"https://docs.ds4windows.app/troubleshooting/kb-mouse-issues/#windows-not-responding-to-ds4ws-kb-m-commands-in-some-situations";
+                rootHub.LogDebug($"Some applications may block controller inputs. (Windows UAC Conflictions). Please go to {helpURL} for more information and workarounds.");
+            }
 
             if (DS4Windows.Global.hidHideInstalled)
             {

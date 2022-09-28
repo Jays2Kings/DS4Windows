@@ -1379,7 +1379,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             ButtonMouseOffset = source.buttonMouseInfos[deviceIndex].mouseVelocityOffset;
             _buttonMouseVerticalScale = source.buttonMouseInfos[deviceIndex].buttonVerticalScale;
             Rainbow = lightInfo.rainbow;
-            MaxSatRainbow = lightInfo.maxRainbowSat * 100.0;
+            _maxSatRainbow = lightInfo.maxRainbowSat;
             LSDeadZone = source.lsModInfo[deviceIndex].deadZone;
             RSDeadZone = source.rsModInfo[deviceIndex].deadZone;
             LSAntiDeadZone = source.lsModInfo[deviceIndex].antiDeadZone;
@@ -1814,7 +1814,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             destination.buttonMouseInfos[deviceIndex].mouseVelocityOffset = ButtonMouseOffset;
             destination.buttonMouseInfos[deviceIndex].buttonVerticalScale = _buttonMouseVerticalScale;
             lightInfo.rainbow = Rainbow;
-            lightInfo.maxRainbowSat = MaxSatRainbow;
+            lightInfo.maxRainbowSat = _maxSatRainbow;
             destination.lsModInfo[deviceIndex].deadZone = LSDeadZone;
             destination.rsModInfo[deviceIndex].deadZone = RSDeadZone;
             destination.lsModInfo[deviceIndex].antiDeadZone = LSAntiDeadZone;

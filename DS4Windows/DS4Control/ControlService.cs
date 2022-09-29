@@ -1199,7 +1199,6 @@ namespace DS4Windows
             {
                 OutputDevice outDevice = EstablishOutDevice(-1, contType);
                 outputslotMan.DeferredPlugin(outDevice, -1, outputDevices, contType);
-                LogDebug($"Plugging virtual {contType} Controller");
             }
         }
 
@@ -1210,7 +1209,6 @@ namespace DS4Windows
             {
                 OutputDevice outDevice = EstablishOutDevice(-1, contType);
                 outputslotMan.DeferredPlugin(outDevice, -1, outputDevices, contType);
-                LogDebug($"Plugging virtual {contType} Controller");
             }
         }
 
@@ -1222,7 +1220,6 @@ namespace DS4Windows
                 string tempType = dev.GetDeviceType();
                 slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Unbound;
                 outputslotMan.DeferredRemoval(dev, -1, outputDevices, false);
-                LogDebug($"Unplugging virtual {tempType} Controller");
             }
         }
 
@@ -1270,7 +1267,6 @@ namespace DS4Windows
                             outputslotMan.DeferredPlugin(tempXbox, index, outputDevices, contType);
                             //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
-                            LogDebug("Plugging in virtual X360 Controller");
                             success = true;
                         }
                         else
@@ -1301,11 +1297,6 @@ namespace DS4Windows
                         outputDevices[index] = tempXbox;
                         slotDevice.CurrentType = contType;
                         success = true;
-                    }
-
-                    if (success)
-                    {
-                        LogDebug($"Associate X360 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} slot #{slotDevice.Index + 1} for input {device.DisplayName} controller #{index + 1}");
                     }
 
                     //tempXbox.Connect();
@@ -1340,7 +1331,6 @@ namespace DS4Windows
                             outputslotMan.DeferredPlugin(tempDS4, index, outputDevices, contType);
                             //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
-                            LogDebug("Plugging in virtual DS4 Controller");
                             success = true;
                         }
                         else
@@ -1373,11 +1363,6 @@ namespace DS4Windows
                         success = true;
                     }
 
-                    if (success)
-                    {
-                        LogDebug($"Associate DS4 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} slot #{slotDevice.Index + 1} for input {device.DisplayName} controller #{index + 1}");
-                    }
-
                     //DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
                     //DS4OutDevice tempDS4 = outputslotMan.AllocateController(OutContType.DS4, vigemTestClient)
                     //    as DS4OutDevice;
@@ -1389,6 +1374,7 @@ namespace DS4Windows
 
                 if (success)
                 {
+                    LogDebug($"Associated input controller #{index + 1} ({device.DisplayName}) to virtual {slotDevice.OutputDevice.GetDeviceType()} Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} output slot #{slotDevice.Index + 1}");
                     useDInputOnly[index] = false;
                 }
             }
@@ -1404,7 +1390,7 @@ namespace DS4Windows
                 if (dev != null && slotDevice != null)
                 {
                     string tempType = dev.GetDeviceType();
-                    LogDebug($"Disassociate {tempType} Controller from{(slotDevice.CurrentReserveStatus == OutSlotDevice.ReserveStatus.Permanent ? " permanent" : "")} slot #{slotDevice.Index+1} for input {device.DisplayName} controller #{index + 1}", false);
+                    LogDebug($"Disassociated virtual {tempType} Controller in{(slotDevice.CurrentReserveStatus == OutSlotDevice.ReserveStatus.Permanent ? " permanent" : "")} output slot #{slotDevice.Index+1} from input controller #{index + 1} ({device.DisplayName})", false);
 
                     OutContType currentType = activeOutDevType[index];
                     outputDevices[index] = null;
@@ -1414,7 +1400,6 @@ namespace DS4Windows
                     {
                         //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Unbound;
                         outputslotMan.DeferredRemoval(dev, index, outputDevices, immediate);
-                        LogDebug($"Unplugging virtual {tempType} Controller");
                     }
                     else if (slotDevice.CurrentAttachedStatus == OutSlotDevice.AttachedStatus.Attached)
                     {
@@ -1986,12 +1971,6 @@ namespace DS4Windows
 
         private void BeginPrepareConnectedInputController(DS4Device device, bool showlog = false)
         {
-            if (showlog)
-            {
-                LogDebug(DS4WinWPF.Properties.Resources.FoundController + " " + device.getMacAddress() + " (" + device.getConnectionType() + ") (" +
-                                            device.DisplayName + ")");
-            }
-
             if (hidDeviceHidingEnabled && CheckAffected(device))
             {
                 //device.CurrentExclusiveStatus = DS4Device.ExclusiveStatus.HidGuardAffected;

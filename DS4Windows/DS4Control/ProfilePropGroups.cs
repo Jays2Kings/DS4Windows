@@ -310,6 +310,7 @@ namespace DS4Windows
         public const string DEFAULT_SMOOTH_TECHNIQUE = "one-euro";
         public const OutputStick DEFAULT_OUTPUT_STICK = OutputStick.RightStick;
         public const OutputStickAxes DEFAULT_OUTPUT_STICK_AXES = OutputStickAxes.XY;
+        public const double SMOOTHING_WEIGHT_DEFAULT = 0.5;
 
         public int deadZone;
         public int maxZone;
@@ -321,7 +322,7 @@ namespace DS4Windows
         // Flags representing invert axis choices
         public uint inverted;
         public bool useSmoothing;
-        public double smoothWeight;
+        public double smoothWeight = SMOOTHING_WEIGHT_DEFAULT;
         public SmoothingMethod smoothingMethod;
         public double minCutoff = DEFAULT_MINCUTOFF;
         public double beta = DEFAULT_BETA;
@@ -369,7 +370,7 @@ namespace DS4Windows
             beta = DEFAULT_BETA;
             smoothingMethod = SmoothingMethod.None;
             useSmoothing = false;
-            smoothWeight = 0.5;
+            smoothWeight = SMOOTHING_WEIGHT_DEFAULT;
         }
 
         public void ResetSmoothing()

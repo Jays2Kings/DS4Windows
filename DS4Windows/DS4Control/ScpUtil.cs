@@ -2584,8 +2584,8 @@ namespace DS4Windows
 
         public static void SaveProfile(int device, string proName)
         {
-            //m_Config.SaveProfileNew(device, proName);
-            m_Config.SaveProfile(device, proName);
+            m_Config.SaveProfileNew(device, proName);
+            //m_Config.SaveProfile(device, proName);
         }
 
         public static void SaveAsNewProfile(int device, string propath)
@@ -3517,7 +3517,8 @@ namespace DS4Windows
         {
             bool Saved = true;
             ResetProfile(device);
-            Saved = SaveProfile(device, proName);
+            //Saved = SaveProfile(device, proName);
+            Saved = SaveProfileNew(device, proName);
             return Saved;
         }
 
@@ -3564,22 +3565,22 @@ namespace DS4Windows
                 //Trace.WriteLine(testStr);
             }
 
-            //try
-            //{
-            //    using (StreamWriter sw = new StreamWriter(path, false))
-            //    {
-            //        sw.Write(testStr);
-            //    }
-            //}
-            //catch (UnauthorizedAccessException)
-            //{
-            //    saved = false;
-            //}
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(path, false))
+                {
+                    sw.Write(testStr);
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                saved = false;
+            }
 
             return saved;
         }
 
-        public bool SaveProfile(int device, string proName)
+        public bool SaveProfileOld(int device, string proName)
         {
             bool Saved = true;
             //string path = Global.appdatapath + @"\Profiles\" + Path.GetFileNameWithoutExtension(proName) + ".xml";
@@ -4511,7 +4512,7 @@ namespace DS4Windows
                 if (migratePerformed)
                 {
                     string proName = Path.GetFileName(profilepath);
-                    SaveProfile(device, proName);
+                    SaveProfileNew(device, proName);
                 }
             }
             else
@@ -6580,7 +6581,7 @@ namespace DS4Windows
             if ((missingSetting || migratePerformed) && Loaded)// && buttons != null)
             {
                 string proName = Path.GetFileName(profilepath);
-                SaveProfile(device, proName);
+                SaveProfileOld(device, proName);
             }
 
             if (Loaded)

@@ -495,7 +495,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         [XmlElement("LSRotation")]
         public double LSRotation
         {
-            get => _lSRotation;
+            get => _lSRotation * 180.0 / Math.PI;
             set
             {
                 double tempDegrees = Math.Clamp(value, -180.0, 180.0);
@@ -507,7 +507,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         [XmlElement("RSRotation")]
         public double RSRotation
         {
-            get => _rSRotation;
+            get => _rSRotation * 180.0 / Math.PI;
             set
             {
                 double tempDegrees = Math.Clamp(value, -180.0, 180.0);
@@ -1371,8 +1371,8 @@ namespace DS4WinWPF.DS4Control.DTOXml
             R2MaxZone = source.r2ModInfo[deviceIndex].maxZone;
             L2MaxOutput = source.l2ModInfo[deviceIndex].maxOutput;
             R2MaxOutput = source.r2ModInfo[deviceIndex].maxOutput;
-            LSRotation = source.LSRotation[deviceIndex];
-            RSRotation = source.RSRotation[deviceIndex];
+            _lSRotation = source.LSRotation[deviceIndex];
+            _rSRotation = source.RSRotation[deviceIndex];
             LSFuzz = source.lsModInfo[deviceIndex].fuzz;
             RSFuzz = source.rsModInfo[deviceIndex].fuzz;
             ButtonMouseSensitivity = source.buttonMouseInfos[deviceIndex].buttonSensitivity;
@@ -1806,8 +1806,8 @@ namespace DS4WinWPF.DS4Control.DTOXml
             destination.r2ModInfo[deviceIndex].maxZone = R2MaxZone;
             destination.l2ModInfo[deviceIndex].maxOutput = L2MaxOutput;
             destination.r2ModInfo[deviceIndex].maxOutput = R2MaxOutput;
-            destination.LSRotation[deviceIndex] = LSRotation;
-            destination.RSRotation[deviceIndex] = RSRotation;
+            destination.LSRotation[deviceIndex] = _lSRotation;
+            destination.RSRotation[deviceIndex] = _rSRotation;
             destination.lsModInfo[deviceIndex].fuzz = LSFuzz;
             destination.rsModInfo[deviceIndex].fuzz = RSFuzz;
             destination.buttonMouseInfos[deviceIndex].buttonSensitivity = ButtonMouseSensitivity;
@@ -2465,7 +2465,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _enabled = XmlDataUtilities.StrToBool(value);
         }
 
-        private double _multiplier;
+        private double _multiplier = DeltaAccelSettings.MULTIPLIER_DEFAULT;
         [XmlElement("Multiplier")]
         public double Multiplier
         {
@@ -2473,7 +2473,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _multiplier = Math.Clamp(value, 0.0, 10.0);
         }
 
-        private double _maxTravel;
+        private double _maxTravel = DeltaAccelSettings.MAX_TRAVEL_DEFAULT;
         [XmlElement("MaxTravel")]
         public double MaxTravel
         {
@@ -2481,7 +2481,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _maxTravel = Math.Clamp(value, 0.0, 1.0);
         }
 
-        private double _minTravel;
+        private double _minTravel = DeltaAccelSettings.MIN_TRAVEL_DEFAULT;
         [XmlElement("MinTravel")]
         public double MinTravel
         {
@@ -2489,7 +2489,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _minTravel = Math.Clamp(value, 0.0, 1.0);
         }
 
-        private double _easingDuration;
+        private double _easingDuration = DeltaAccelSettings.EASING_DURATION_DEFAULT;
         [XmlElement("EasingDuration")]
         public double EasingDuration
         {
@@ -2497,7 +2497,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _easingDuration = Math.Clamp(value, 0.0, 600.0);
         }
 
-        private double _minFactor = 1.0;
+        private double _minFactor = DeltaAccelSettings.MINFACTOR_DEFAULT;
         [XmlElement("MinFactor")]
         public double MinFactor
         {
@@ -2610,7 +2610,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _useSmoothing = XmlDataUtilities.StrToBool(value);
         }
 
-        protected string _smoothingMethod;
+        protected string _smoothingMethod = GyroMouseStickInfo.DEFAULT_SMOOTH_TECHNIQUE;
         [XmlElement("SmoothingMethod")]
         public string SmoothingMethod
         {
@@ -2618,7 +2618,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _smoothingMethod = value;
         }
 
-        protected double _smoothingWeight = 0.5;
+        protected double _smoothingWeight = GyroMouseStickInfo.SMOOTHING_WEIGHT_DEFAULT;
         [XmlIgnore]
         public double SmoothingWeightRaw
         {

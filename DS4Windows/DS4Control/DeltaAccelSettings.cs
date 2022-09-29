@@ -10,12 +10,16 @@ namespace DS4WinWPF.DS4Control
     {
         public const bool ENABLED_DEFAULT = false;
         public const double MINFACTOR_DEFAULT = 1.0;
+        public const double MULTIPLIER_DEFAULT = 4.0;
+        public const double MAX_TRAVEL_DEFAULT = 0.2;
+        public const double MIN_TRAVEL_DEFAULT = 0.01;
+        public const double EASING_DURATION_DEFAULT = 0.2;
 
         public bool enabled = ENABLED_DEFAULT;
-        public double multiplier = 4.0;
-        public double maxTravel = 0.2;
-        public double minTravel = 0.01;
-        public double easingDuration = 0.2;
+        public double multiplier = MULTIPLIER_DEFAULT;
+        public double maxTravel = MAX_TRAVEL_DEFAULT;
+        public double minTravel = MIN_TRAVEL_DEFAULT;
+        public double easingDuration = EASING_DURATION_DEFAULT;
         public double minfactor = MINFACTOR_DEFAULT;
 
         public bool Enabled
@@ -71,10 +75,10 @@ namespace DS4WinWPF.DS4Control
         public void Reset()
         {
             enabled = ENABLED_DEFAULT;
-            multiplier = 4.0;
-            maxTravel = 0.2;
-            minTravel = 0.01;
-            easingDuration = 0.2;
+            multiplier = MULTIPLIER_DEFAULT;
+            maxTravel = MAX_TRAVEL_DEFAULT;
+            minTravel = MIN_TRAVEL_DEFAULT;
+            easingDuration = EASING_DURATION_DEFAULT;
             minfactor = MINFACTOR_DEFAULT;
         }
     }

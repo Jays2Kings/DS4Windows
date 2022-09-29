@@ -166,7 +166,19 @@ namespace DS4Windows
         {
             var device = PnPDevice.GetDeviceByInterfaceId(hDevice.DevicePath);
 
-            return !device.IsVirtual();
+            return !device.IsVirtual(pDevice =>
+            {
+                var hardwareIds = pDevice.GetProperty<string[]>(DevicePropertyKey.Device_HardwareIds).ToList();
+
+                // hardware IDs of root hubs/controllers that emit supported virtual devices as sources
+                var excludedIds = new[]
+                {
+                    @"ROOT\HIDGAMEMAP", // reWASD
+                    @"ROOT\VHUSB3HC", // VirtualHere
+                };
+
+                return hardwareIds.Any(id => excludedIds.Contains(id.ToUpper()));
+            });
         }
 
         // Enumerates ds4 controllers in the system

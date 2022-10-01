@@ -16,6 +16,7 @@ using Sensorit.Base;
 using DS4Windows.DS4Control;
 using System.Windows.Input;
 using System.Runtime.InteropServices;
+using static DS4Windows.Mouse;
 
 namespace DS4Windows
 {
@@ -1922,6 +1923,7 @@ namespace DS4Windows
 
         public static bool[] LowerRCOn => m_Config.lowerRCOn;
         public static bool[] TouchClickPassthru => m_Config.touchClickPassthru;
+        public static TouchButtonActivationMode[] TouchpadButtonMode => m_Config.touchpadButtonMode;
         public static bool[] TouchpadJitterCompensation => m_Config.touchpadJitterCompensation;
         public static bool getTouchpadJitterCompensation(int index)
         {
@@ -3121,11 +3123,16 @@ namespace DS4Windows
         public bool[] trackballMode = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
         public double[] trackballFriction = new double[Global.TEST_PROFILE_ITEM_COUNT] { 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0 };
 
-
         public TouchpadAbsMouseSettings[] touchpadAbsMouse = new TouchpadAbsMouseSettings[Global.TEST_PROFILE_ITEM_COUNT] { new TouchpadAbsMouseSettings(), new TouchpadAbsMouseSettings(), new TouchpadAbsMouseSettings(),
             new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings() };
         public TouchpadRelMouseSettings[] touchpadRelMouse = new TouchpadRelMouseSettings[Global.TEST_PROFILE_ITEM_COUNT] { new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(),
             new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings(), new TouchpadRelMouseSettings() };
+
+        public TouchButtonActivationMode[] touchpadButtonMode = new TouchButtonActivationMode[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            new TouchButtonActivationMode(), new TouchButtonActivationMode(), new TouchButtonActivationMode(), new TouchButtonActivationMode(),
+            new TouchButtonActivationMode(), new TouchButtonActivationMode(), new TouchButtonActivationMode(), new TouchButtonActivationMode(), new TouchButtonActivationMode(),
+        };
 
         // Used to hold the controller type desired in a profile
         public OutContType[] outputDevType = new OutContType[Global.TEST_PROFILE_ITEM_COUNT] { OutContType.X360,
@@ -3802,6 +3809,7 @@ namespace DS4Windows
                 XmlElement xmlTouchAbsMouseSnapCenter = m_Xdoc.CreateElement("SnapToCenter"); xmlTouchAbsMouseSnapCenter.InnerText = touchpadAbsMouse[device].snapToCenter.ToString(); xmlTouchAbsMouseGroupEl.AppendChild(xmlTouchAbsMouseSnapCenter);
                 rootElement.AppendChild(xmlTouchAbsMouseGroupEl);
 
+                XmlNode xmlTouchButtonMode = m_Xdoc.CreateNode(XmlNodeType.Element, "TouchpadButtonMode", null); xmlTouchButtonMode.InnerText = touchpadButtonMode[device].ToString(); rootElement.AppendChild(xmlTouchButtonMode);
                 XmlNode xmlOutContDevice = m_Xdoc.CreateNode(XmlNodeType.Element, "OutputContDevice", null); xmlOutContDevice.InnerText = OutContDeviceString(outputDevType[device]); rootElement.AppendChild(xmlOutContDevice);
 
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
@@ -5968,6 +5976,16 @@ namespace DS4Windows
                     missingSetting = true;
                 }
 
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode($"/{rootname}/TouchpadButtonMode");
+                    if (Enum.TryParse(Item?.InnerText ?? "", out TouchButtonActivationMode tempMode))
+                    {
+                        touchpadButtonMode[device] = tempMode;
+                    }
+                }
+                catch { touchpadButtonMode[device] = TouchButtonActivationMode.Click; missingSetting = true; }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/OutputContDevice"); outputDevType[device] = OutContDeviceId(Item.InnerText); }
                 catch { outputDevType[device] = OutContType.X360; missingSetting = true; }
 
@@ -7592,6 +7610,7 @@ namespace DS4Windows
             trackballFriction[device] = 10.0;
             touchpadAbsMouse[device].Reset();
             touchpadRelMouse[device].Reset();
+            touchpadButtonMode[device] = TouchButtonActivationMode.Click;
             outputDevType[device] = OutContType.X360;
             ds4Mapping = false;
         }

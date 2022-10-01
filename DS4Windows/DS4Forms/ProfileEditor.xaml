@@ -1208,7 +1208,7 @@
                 </StackPanel>
             </TabItem>
 
-            <TabItem Header="Touchpad">
+            <TabItem Header="Touchpad" Height="22" VerticalAlignment="Top">
                 <TabItem.Resources>
                     <Thickness x:Key="spaceMargin" Bottom="8" />
                 </TabItem.Resources>
@@ -1338,6 +1338,8 @@
                                     </Button>
                                 </StackPanel>
 
+                                <ContentControl x:Name="touchContentControl1" MinWidth="400" HorizontalAlignment="Left" />
+                                <!--<local:TouchButtonUserControl x:Name="touchBtnControl1" MinWidth="400" />-->
                             </StackPanel>
                         </TabItem>
 
@@ -1361,7 +1363,10 @@
                                 </StackPanel>
 
                                 <CheckBox Content="Passthru Click Action (DS4 mode)" IsChecked="{Binding TouchpadClickPassthru}" VerticalAlignment="Center"
-                                                          Margin="5,8,0,0" />
+                                                          Margin="5,8,0,10" />
+
+                                <ContentControl x:Name="touchContentControl2" MinWidth="400" HorizontalAlignment="Left" Margin="5,8,0,0" />
+                                <!--<local:TouchButtonUserControl x:Name="touchBtnControl2" MinWidth="400" Margin="0,8,0,0" />-->
                             </StackPanel>
                         </TabItem>
                         <TabItem Header="Absolute Mouse" Visibility="Collapsed">
@@ -1378,6 +1383,11 @@
                                     <Label Content="Snap To Center on Release:" />
                                     <CheckBox IsChecked="{Binding TouchAbsMouseSnapCenter}" VerticalAlignment="Center" Margin="8,0,0,0" />
                                 </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                    <ContentControl x:Name="touchContentControl3" MinWidth="400" HorizontalAlignment="Left" Margin="5,0,0,0" />
+                                </StackPanel>
+                                <!--<local:TouchButtonUserControl x:Name="touchBtnControl3" MinWidth="400" Margin="0,8,0,0" />-->
                             </StackPanel>
                         </TabItem>
                         <TabItem Header="Passthru" Visibility="Collapsed">
@@ -1386,6 +1396,7 @@
                                     Only works with ViGEmBus 1.17.333.0 and newer
                                 </TextBlock>
                             </StackPanel>
+
                         </TabItem>
                     </TabControl>
                 </StackPanel>

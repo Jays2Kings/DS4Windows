@@ -63,6 +63,19 @@ namespace DS4Windows
 
         public GyroSwipeData gyroSwipe;
 
+        public enum TouchButtonActivationMode : ushort
+        {
+            Click,
+            Touch,
+        }
+
+        //private TouchButtonActivationMode touchButtonMode = TouchButtonActivationMode.Touch;
+        //public TouchButtonActivationMode TouchButtonMode
+        //{
+        //    get => touchButtonMode;
+        //    set => touchButtonMode = value;
+        //}
+
         public Mouse(int deviceID, DS4Device d)
         {
             deviceNum = deviceID;
@@ -738,6 +751,7 @@ namespace DS4Windows
                     slideleft = true;
             }
 
+            TouchButtonCheckProcess(arg);
             synthesizeMouseButtons();
         }
 
@@ -773,6 +787,7 @@ namespace DS4Windows
             }
 
             s = dev.getCurrentStateRef();
+            TouchButtonCheckProcess(arg);
             synthesizeMouseButtons();
         }
 
@@ -904,6 +919,7 @@ namespace DS4Windows
                 }
             }
 
+            TouchButtonCheckProcess(arg);
             synthesizeMouseButtons();
         }
 
@@ -983,10 +999,51 @@ namespace DS4Windows
             }
 
             if (s.Touch1Finger || s.TouchButton)
+            {
                 synthesizeMouseButtons();
+            }
         }
 
         public bool dragging, dragging2;
+
+        private void TouchButtonCheckProcess(TouchpadEventArgs arg)
+        {
+            bool activateTouchButton = false;
+            TouchButtonActivationMode touchButtonMode = Global.TouchpadButtonMode[deviceNum];
+            //TouchButtonActivationMode touchButtonMode = TouchButtonActivationMode.Touch;
+            if (touchButtonMode == TouchButtonActivationMode.Click &&
+                arg.touchButtonPressed)
+            {
+                activateTouchButton = true;
+            }
+            else if (touchButtonMode == TouchButtonActivationMode.Touch)
+            {
+                if (arg.touchActive || arg.touchButtonPressed)
+                {
+                    activateTouchButton = true;
+                }
+                else
+                {
+                    upperDown = leftDown = rightDown = multiDown = false;
+                }
+            }
+
+            if (activateTouchButton)
+            {
+                // Top region of Touchpad was clicked. Out of range of Touchpad sensors
+                if (!arg.touchActive && arg.touchButtonPressed)
+                    upperDown = true;
+                else if (arg.touches.Length > 1)
+                    multiDown = true;
+                else
+                {
+                    if (isLeft(arg.touches[0]))
+                        leftDown = true;
+                    else if (isRight(arg.touches[0]))
+                        rightDown = true;
+                }
+            }
+        }
 
         private void synthesizeMouseButtons()
         {
@@ -1065,7 +1122,10 @@ namespace DS4Windows
             upperDown = leftDown = rightDown = multiDown = false;
             s = dev.getCurrentStateRef();
             if (s.Touch1 || s.Touch2)
+            {
+                TouchButtonCheckProcess(arg);
                 synthesizeMouseButtons();
+            }
         }
 
         public virtual void touchButtonDown(DS4Touchpad sender, TouchpadEventArgs arg)
@@ -1086,6 +1146,7 @@ namespace DS4Windows
             }
 
             s = dev.getCurrentStateRef();
+            TouchButtonCheckProcess(arg);
             synthesizeMouseButtons();
         }
 

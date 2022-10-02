@@ -6,6 +6,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 using DS4Windows;
+using static DS4Windows.Mouse;
 
 namespace DS4WinWPF.DS4Control.DTOXml
 {
@@ -1274,6 +1275,12 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
+        [XmlElement("TouchpadButtonMode")]
+        public TouchButtonActivationMode TouchpadButtonMode
+        {
+            get; set;
+        }
+
         [XmlElement("OutputContDevice")]
         public OutContType OutputContDevice
         {
@@ -1598,6 +1605,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 MaxZoneY = source.touchpadAbsMouse[deviceIndex].maxZoneY,
                 SnapToCenter = source.touchpadAbsMouse[deviceIndex].snapToCenter,
             };
+            TouchpadButtonMode = source.touchpadButtonMode[deviceIndex];
 
             OutputContDevice = source.outputDevType[deviceIndex];
             ProfileActions = string.Join("/", source.profileActions[deviceIndex]);
@@ -2124,6 +2132,8 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 destination.touchpadAbsMouse[deviceIndex].maxZoneY = TouchpadAbsMouseSettings.MaxZoneY;
                 destination.touchpadAbsMouse[deviceIndex].snapToCenter = TouchpadAbsMouseSettings.SnapToCenter;
             }
+
+            destination.touchpadButtonMode[deviceIndex] = TouchpadButtonMode;
 
             destination.outputDevType[deviceIndex] = OutputContDevice;
             if (!string.IsNullOrEmpty(ProfileActions))

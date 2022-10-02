@@ -22,6 +22,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             new EnumChoiceSelection<TouchButtonActivationMode>("Click", TouchButtonActivationMode.Click),
             new EnumChoiceSelection<TouchButtonActivationMode>("Touch", TouchButtonActivationMode.Touch),
+            new EnumChoiceSelection<TouchButtonActivationMode>("Release", TouchButtonActivationMode.Release),
         };
         public EnumChoiceSelection<TouchButtonActivationMode>[] TouchButtonModes => touchButtonModes;
 

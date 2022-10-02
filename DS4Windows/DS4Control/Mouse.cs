@@ -67,7 +67,25 @@ namespace DS4Windows
         {
             Click,
             Touch,
+            Release,
         }
+
+        private enum TouchButtonModeCandidate : ushort
+        {
+            None,
+            Left,
+            Right,
+            Multi,
+            Upper,
+        }
+
+        private TouchButtonModeCandidate touchButtonCurrentCandidate;
+
+        private bool wasTouched; // Needed to know when to check for Release activation
+        private bool wasTouchButtonClicked = false; // Needed for Upper Touch on Release
+        //private bool wasMultiButtonEngaged = false; // Needed for MultiTouch on Release
+        private bool releaseButtonActive; // Flag to now if Release button mode is active
+        private DateTime onReleaseTime; // Time Release button mode was first activated
 
         //private TouchButtonActivationMode touchButtonMode = TouchButtonActivationMode.Touch;
         //public TouchButtonActivationMode TouchButtonMode
@@ -751,6 +769,11 @@ namespace DS4Windows
                     slideleft = true;
             }
 
+            //if (arg.touches.Length > 1)
+            //{
+            //    wasMultiButtonEngaged = true;
+            //}
+
             TouchButtonCheckProcess(arg);
             synthesizeMouseButtons();
         }
@@ -786,6 +809,13 @@ namespace DS4Windows
                     secondtouchbegin = true;
             }
 
+            wasTouched = false;
+            wasTouchButtonClicked = false;
+            releaseButtonActive = false;
+            touchButtonCurrentCandidate = TouchButtonModeCandidate.None;
+            //wasMultiButtonEngaged = false;
+            TouchButtonUpFlags();
+
             s = dev.getCurrentStateRef();
             TouchButtonCheckProcess(arg);
             synthesizeMouseButtons();
@@ -794,6 +824,7 @@ namespace DS4Windows
         public virtual void touchesEnded(DS4Touchpad sender, TouchpadEventArgs arg)
         {
             s = dev.getCurrentStateRef();
+            wasTouched = true;
             slideright = slideleft = false;
             swipeUp = swipeDown = swipeLeft = swipeRight = false;
             swipeUpB = swipeDownB = swipeLeftB = swipeRightB = 0;
@@ -936,6 +967,10 @@ namespace DS4Windows
         public virtual void touchUnchanged(DS4Touchpad sender, EventArgs unused)
         {
             s = dev.getCurrentStateRef();
+            if (s.Touch1Finger)
+            {
+                wasTouched = false;
+            }
 
             if (trackballActive)
             {
@@ -998,10 +1033,30 @@ namespace DS4Windows
                 }
             }
 
-            if (s.Touch1Finger || s.TouchButton)
+            bool releaseButtonChanged = false;
+            if (releaseButtonActive)
+            {
+                DateTime current = DateTime.UtcNow;
+                // Set keydown time to 100 ms for now
+                if (current < (onReleaseTime + TimeSpan.FromMilliseconds(100.0)))
+                {
+                    releaseButtonActive = false;
+                    releaseButtonChanged = true;
+                    TouchButtonUpFlags();
+                }
+            }
+
+            if (s.Touch1Finger || s.TouchButton ||
+                releaseButtonActive || releaseButtonChanged)
             {
                 synthesizeMouseButtons();
             }
+        }
+
+        private void TouchButtonUpFlags()
+        {
+            upperDown = leftDown = rightDown = multiDown = false;
+            touchButtonCurrentCandidate = TouchButtonModeCandidate.None;
         }
 
         public bool dragging, dragging2;
@@ -1010,16 +1065,56 @@ namespace DS4Windows
         {
             bool activateTouchButton = false;
             TouchButtonActivationMode touchButtonMode = Global.TouchpadButtonMode[deviceNum];
-            //TouchButtonActivationMode touchButtonMode = TouchButtonActivationMode.Touch;
+            //TouchButtonActivationMode touchButtonMode = TouchButtonActivationMode.Release;
             if (touchButtonMode == TouchButtonActivationMode.Click &&
                 arg.touchButtonPressed)
             {
+                if (arg.touches == null)
+                {
+                    touchButtonCurrentCandidate = TouchButtonModeCandidate.Upper;
+                }
+                else if (arg.touches.Length > 1)
+                {
+                    touchButtonCurrentCandidate = TouchButtonModeCandidate.Multi;
+                }
+                else
+                {
+                    if (isLeft(arg.touches[0]))
+                    {
+                        touchButtonCurrentCandidate = TouchButtonModeCandidate.Left;
+                    }
+                    else if (isRight(arg.touches[0]))
+                    {
+                        touchButtonCurrentCandidate = TouchButtonModeCandidate.Right;
+                    }
+                }
+
                 activateTouchButton = true;
             }
             else if (touchButtonMode == TouchButtonActivationMode.Touch)
             {
                 if (arg.touchActive || arg.touchButtonPressed)
                 {
+                    if (arg.touches == null)
+                    {
+                        touchButtonCurrentCandidate = TouchButtonModeCandidate.Upper;
+                    }
+                    else if (arg.touches.Length > 1)
+                    {
+                        touchButtonCurrentCandidate = TouchButtonModeCandidate.Multi;
+                    }
+                    else
+                    {
+                        if (isLeft(arg.touches[0]))
+                        {
+                            touchButtonCurrentCandidate = TouchButtonModeCandidate.Left;
+                        }
+                        else if (isRight(arg.touches[0]))
+                        {
+                            touchButtonCurrentCandidate = TouchButtonModeCandidate.Right;
+                        }
+                    }
+
                     activateTouchButton = true;
                 }
                 else
@@ -1027,20 +1122,65 @@ namespace DS4Windows
                     upperDown = leftDown = rightDown = multiDown = false;
                 }
             }
+            else if (touchButtonMode == TouchButtonActivationMode.Release)
+            {
+                if (touchButtonCurrentCandidate == TouchButtonModeCandidate.None)
+                {
+                    // Top region of Touchpad was clicked. Out of range of Touchpad sensors
+                    if (!arg.touchActive && !arg.touchButtonPressed && wasTouchButtonClicked)
+                    {
+                        touchButtonCurrentCandidate = TouchButtonModeCandidate.Upper;
+                    }
+                    else if (arg.touchActive)
+                    {
+                        if (arg.touches.Length > 1)
+                        {
+                            touchButtonCurrentCandidate = TouchButtonModeCandidate.Multi;
+                        }
+                    }
+                    else if (!arg.touchActive && arg.touches != null)
+                    {
+                        if (isLeft(arg.touches[0]))
+                        {
+                            touchButtonCurrentCandidate = TouchButtonModeCandidate.Left;
+                        }
+                        else if (isRight(arg.touches[0]))
+                        {
+                            touchButtonCurrentCandidate = TouchButtonModeCandidate.Right;
+                        }
+                    }
+                }
+
+                if (touchButtonCurrentCandidate != TouchButtonModeCandidate.None)
+                {
+                    if ((wasTouched && !arg.touchActive) ||
+                        (wasTouchButtonClicked && !arg.touchButtonPressed && !arg.touchActive))
+                    {
+                        activateTouchButton = true;
+                        releaseButtonActive = true;
+                        onReleaseTime = DateTime.UtcNow;
+                    }
+                }
+            }
 
             if (activateTouchButton)
             {
-                // Top region of Touchpad was clicked. Out of range of Touchpad sensors
-                if (!arg.touchActive && arg.touchButtonPressed)
-                    upperDown = true;
-                else if (arg.touches.Length > 1)
-                    multiDown = true;
-                else
+                switch(touchButtonCurrentCandidate)
                 {
-                    if (isLeft(arg.touches[0]))
+                    case TouchButtonModeCandidate.Left:
                         leftDown = true;
-                    else if (isRight(arg.touches[0]))
+                        break;
+                    case TouchButtonModeCandidate.Right:
                         rightDown = true;
+                        break;
+                    case TouchButtonModeCandidate.Multi:
+                        multiDown = true;
+                        break;
+                    case TouchButtonModeCandidate.Upper:
+                        upperDown = true;
+                        break;
+                    default:
+                        break;
                 }
             }
         }
@@ -1120,8 +1260,12 @@ namespace DS4Windows
         {
             pushed = DS4Controls.None;
             upperDown = leftDown = rightDown = multiDown = false;
+            wasTouchButtonClicked = true;
+
             s = dev.getCurrentStateRef();
-            if (s.Touch1 || s.Touch2)
+            TouchButtonActivationMode touchButtonMode = Global.TouchpadButtonMode[deviceNum];
+            if (s.Touch1 || s.Touch2 ||
+                touchButtonMode == TouchButtonActivationMode.Release)
             {
                 TouchButtonCheckProcess(arg);
                 synthesizeMouseButtons();
@@ -1130,21 +1274,36 @@ namespace DS4Windows
 
         public virtual void touchButtonDown(DS4Touchpad sender, TouchpadEventArgs arg)
         {
-            if (arg.touches == null)
-                upperDown = true;
-            else if (arg.touches.Length > 1)
-                multiDown = true;
-            else
+            if (arg.touches != null &&
+                arg.touches.Length == 1 &&
+                (Global.LowerRCOn[deviceNum] && arg.touches[0].hwX > (1920 * 3) / 4 && arg.touches[0].hwY > (960 * 3) / 4))
             {
-                if ((Global.LowerRCOn[deviceNum] && arg.touches[0].hwX > (1920 * 3) / 4 && arg.touches[0].hwY > (960 * 3) / 4))
-                    Mapping.MapClick(deviceNum, Mapping.Click.Right);
-
-                if (isLeft(arg.touches[0]))
-                    leftDown = true;
-                else if (isRight(arg.touches[0]))
-                    rightDown = true;
+                Mapping.MapClick(deviceNum, Mapping.Click.Right);
+            }
+            else if (arg.touches == null)
+            {
+                if (touchButtonCurrentCandidate != TouchButtonModeCandidate.None)
+                {
+                    touchButtonCurrentCandidate = TouchButtonModeCandidate.None;
+                }
             }
 
+            //if (arg.touches == null)
+            //    upperDown = true;
+            //else if (arg.touches.Length > 1)
+            //    multiDown = true;
+            //else
+            //{
+            //    if ((Global.LowerRCOn[deviceNum] && arg.touches[0].hwX > (1920 * 3) / 4 && arg.touches[0].hwY > (960 * 3) / 4))
+            //        Mapping.MapClick(deviceNum, Mapping.Click.Right);
+
+            //    if (isLeft(arg.touches[0]))
+            //        leftDown = true;
+            //    else if (isRight(arg.touches[0]))
+            //        rightDown = true;
+            //}
+
+            wasTouchButtonClicked = false;
             s = dev.getCurrentStateRef();
             TouchButtonCheckProcess(arg);
             synthesizeMouseButtons();

@@ -1153,7 +1153,17 @@ namespace DS4Windows
 
                 if (touchButtonCurrentCandidate != TouchButtonModeCandidate.None)
                 {
-                    if ((wasTouched && !arg.touchActive) ||
+                    if (touchButtonCurrentCandidate == TouchButtonModeCandidate.Multi)
+                    {
+                        // Check that no finger is touching Touchpad
+                        if (wasTouched && !arg.touchActive)
+                        {
+                            activateTouchButton = true;
+                            releaseButtonActive = true;
+                            onReleaseTime = DateTime.UtcNow;
+                        }
+                    }
+                    else if ((wasTouched && !arg.touchActive) ||
                         (wasTouchButtonClicked && !arg.touchButtonPressed && !arg.touchActive))
                     {
                         activateTouchButton = true;

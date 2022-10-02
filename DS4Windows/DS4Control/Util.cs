@@ -274,6 +274,12 @@ namespace DS4Windows
 
                 Path.Combine(driveLetter, @"Program Files (x86)",
                     "Nefarius Software Solutions e.U", "HidHideClient", "HidHideClient.exe"),
+
+                Path.Combine(driveLetter, @"Program Files",
+                    "Nefarius Software Solutions", "HidHide", "x64", "HidHideClient.exe"),
+
+                Path.Combine(driveLetter, @"Program Files",
+                    "Nefarius Software Solutions", "HidHide", "x86", "HidHideClient.exe"),
             };
 
             foreach(string testPath in testPaths)

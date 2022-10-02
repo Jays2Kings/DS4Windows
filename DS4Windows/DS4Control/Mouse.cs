@@ -83,16 +83,8 @@ namespace DS4Windows
 
         private bool wasTouched; // Needed to know when to check for Release activation
         private bool wasTouchButtonClicked = false; // Needed for Upper Touch on Release
-        //private bool wasMultiButtonEngaged = false; // Needed for MultiTouch on Release
         private bool releaseButtonActive; // Flag to now if Release button mode is active
         private DateTime onReleaseTime; // Time Release button mode was first activated
-
-        //private TouchButtonActivationMode touchButtonMode = TouchButtonActivationMode.Touch;
-        //public TouchButtonActivationMode TouchButtonMode
-        //{
-        //    get => touchButtonMode;
-        //    set => touchButtonMode = value;
-        //}
 
         public Mouse(int deviceID, DS4Device d)
         {
@@ -769,11 +761,6 @@ namespace DS4Windows
                     slideleft = true;
             }
 
-            //if (arg.touches.Length > 1)
-            //{
-            //    wasMultiButtonEngaged = true;
-            //}
-
             TouchButtonCheckProcess(arg);
             synthesizeMouseButtons();
         }
@@ -813,7 +800,6 @@ namespace DS4Windows
             wasTouchButtonClicked = false;
             releaseButtonActive = false;
             touchButtonCurrentCandidate = TouchButtonModeCandidate.None;
-            //wasMultiButtonEngaged = false;
             TouchButtonUpFlags();
 
             s = dev.getCurrentStateRef();
@@ -1297,21 +1283,6 @@ namespace DS4Windows
                     touchButtonCurrentCandidate = TouchButtonModeCandidate.None;
                 }
             }
-
-            //if (arg.touches == null)
-            //    upperDown = true;
-            //else if (arg.touches.Length > 1)
-            //    multiDown = true;
-            //else
-            //{
-            //    if ((Global.LowerRCOn[deviceNum] && arg.touches[0].hwX > (1920 * 3) / 4 && arg.touches[0].hwY > (960 * 3) / 4))
-            //        Mapping.MapClick(deviceNum, Mapping.Click.Right);
-
-            //    if (isLeft(arg.touches[0]))
-            //        leftDown = true;
-            //    else if (isRight(arg.touches[0]))
-            //        rightDown = true;
-            //}
 
             wasTouchButtonClicked = false;
             s = dev.getCurrentStateRef();

@@ -307,7 +307,7 @@
     <value>التحذيرات فقط</value>
   </data>
   <data name="RumbleMaxSecs" xml:space="preserve">
-    <valeu>الحد الأقصى للإهتزاز في الثانية</value>
+    <value>الحد الأقصى للإهتزاز في الثانية</value>
   </data>
   <data name="RumbleMaxSecsTip" xml:space="preserve">
     <value>إيقاف الإهتزاز بشكل تلقائي خلال ث (0= الإيقاف التلقائي معطل)</value>

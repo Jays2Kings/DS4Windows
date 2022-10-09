@@ -120,6 +120,9 @@ namespace DS4WinWPF
             }
             catch { /* don't care about errors */ }
 
+            // Allow sleep time durations less than 16 ms
+            DS4Windows.Util.timeBeginPeriod(1);
+
             // Retrieve info about installed ViGEmBus device if found
             DS4Windows.Global.RefreshViGEmBusInfo();
 
@@ -695,6 +698,9 @@ namespace DS4WinWPF
                 {
                     DS4Windows.Global.Save();
                 }
+
+                // Reset timer
+                DS4Windows.Util.timeEndPeriod(1);
 
                 exitComThread = true;
                 if (threadComEvent != null)

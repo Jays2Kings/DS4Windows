@@ -161,6 +161,7 @@ namespace DS4Windows
             new VidPidInfo(0x7545, 0x1122, "Gioteck VX4", InputDeviceType.DS4), // Gioteck VX4 (no real lightbar, only some RGB leds)
             new VidPidInfo(0x7331, 0x0001, "DualShock 3 (DS4 Emulation)", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib | VidPidFeatureSet.VendorDefinedDevice), // Sony DualShock 3 using DsHidMini driver. DsHidMini uses vendor-defined HID device type when it's emulating DS3 using DS4 button layout
             new VidPidInfo(0x20D6, 0x792A, "PowerA FUSION Wired Fightpad for PS4", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib), // No lightbar, gyro, or sticks
+            new VidPidInfo(0x044F, 0xD00E, "Thrustmaster eSwap Pro", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib | VidPidFeatureSet.NoBatteryReading), // Thrustmaster eSwap Pro (wired only. No lightbar or gyro)
         };
 
         private static bool IsRealDS4(HidDevice hDevice)

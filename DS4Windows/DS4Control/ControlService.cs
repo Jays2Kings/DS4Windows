@@ -1034,6 +1034,10 @@ namespace DS4Windows
                         //*
                         unchecked
                         {
+                            //Trace.WriteLine($"INDEX: {devIndex}");
+                            //Trace.WriteLine(string.Join(" ", reportData));
+                            //Trace.WriteLine("");
+
                             bool useRumble = false; bool useLight = false;
                             byte flashOn = 0; byte flashOff = 0;
                             DS4Color? color = null;

@@ -160,13 +160,27 @@ namespace DS4Windows
             new VidPidInfo(NINTENDO_VENDOR_ID, JOYCON_R_PRODUCT_ID, "JoyCon (R)", InputDeviceType.JoyConR, VidPidFeatureSet.DefaultDS4, checkConnection: JoyConDevice.DetermineConnectionType),
             new VidPidInfo(0x7545, 0x1122, "Gioteck VX4", InputDeviceType.DS4), // Gioteck VX4 (no real lightbar, only some RGB leds)
             new VidPidInfo(0x7331, 0x0001, "DualShock 3 (DS4 Emulation)", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib | VidPidFeatureSet.VendorDefinedDevice), // Sony DualShock 3 using DsHidMini driver. DsHidMini uses vendor-defined HID device type when it's emulating DS3 using DS4 button layout
+            new VidPidInfo(0x20D6, 0x792A, "PowerA FUSION Wired Fightpad for PS4", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib), // No lightbar, gyro, or sticks
+            new VidPidInfo(0x044F, 0xD00E, "Thrustmaster eSwap Pro", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib | VidPidFeatureSet.NoBatteryReading), // Thrustmaster eSwap Pro (wired only. No lightbar or gyro)
         };
 
         private static bool IsRealDS4(HidDevice hDevice)
         {
             var device = PnPDevice.GetDeviceByInterfaceId(hDevice.DevicePath);
 
-            return !device.IsVirtual();
+            return !device.IsVirtual(pDevice =>
+            {
+                var hardwareIds = pDevice.GetProperty<string[]>(DevicePropertyKey.Device_HardwareIds).ToList();
+
+                // hardware IDs of root hubs/controllers that emit supported virtual devices as sources
+                var excludedIds = new[]
+                {
+                    @"ROOT\HIDGAMEMAP", // reWASD
+                    @"ROOT\VHUSB3HC", // VirtualHere
+                };
+
+                return hardwareIds.Any(id => excludedIds.Contains(id.ToUpper()));
+            });
         }
 
         // Enumerates ds4 controllers in the system

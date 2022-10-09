@@ -16,17 +16,17 @@ namespace DS4WinWPF.DS4Forms
         private const string InstallerDL1_16 =
             "https://github.com/ViGEm/ViGEmBus/releases/download/setup-v1.16.116/ViGEmBus_Setup_1.16.116.exe";
         private const string InstallerDLX64 =
-            "https://github.com/ViGEm/ViGEmBus/releases/download/setup-v1.17.333/ViGEmBusSetup_x64.msi";
+            "https://github.com/ViGEm/ViGEmBus/releases/download/v1.21.442.0/ViGEmBus_1.21.442_x64_x86_arm64.exe";
         private const string InstallerDLX86 =
-            "https://github.com/ViGEm/ViGEmBus/releases/download/setup-v1.17.333/ViGEmBusSetup_x86.msi";
+            "https://github.com/ViGEm/ViGEmBus/releases/download/v1.21.442.0/ViGEmBus_1.21.442_x64_x86_arm64.exe";
 
         private const string InstallerHidHideX64 = "https://github.com/ViGEm/HidHide/releases/download/v1.2.98.0/HidHide_1.2.98_x64.exe";
         private const string InstallerFakerInputX64 = "https://github.com/Ryochan7/FakerInput/releases/download/v0.1.0/FakerInput_0.1.0_x64.msi";
         private const string InstallerFakerInputX86 = "https://github.com/Ryochan7/FakerInput/releases/download/v0.1.0/FakerInput_0.1.0_x86.msi";
 
         private const string InstFileName1_16 = "ViGEmBus_Setup_1.16.116.exe";
-        private const string InstFileNameX64 = "ViGEmBusSetup_x64.msi";
-        private const string InstFileNameX86 = "ViGEmBusSetup_x86.msi";
+        private string InstFileNameX64 = Path.GetFileName(InstallerDLX64);
+        private string InstFileNameX86 = Path.GetFileName(InstallerDLX86);
         private string tempInstFileName;
 
         private string InstHidHideFileNameX64 = Path.GetFileName(InstallerHidHideX64);
@@ -36,7 +36,7 @@ namespace DS4WinWPF.DS4Forms
 
         // Default to latest known ViGEmBus installer
         private string installDL = InstallerDLX64;
-        private string installFileName = InstFileNameX64;
+        private string installFileName;
 
         Process monitorProc;
         NonFormTimer monitorTimer;
@@ -51,6 +51,9 @@ namespace DS4WinWPF.DS4Forms
             }
 
             InitializeComponent();
+
+            // Establish default before system checks
+            installFileName = InstFileNameX64;
 
             // Run checks for compatible version of ViGEmBus
             if (!DS4Windows.Global.IsWin10OrGreater())
@@ -88,7 +91,7 @@ namespace DS4WinWPF.DS4Forms
 
             tempInstFileName = Path.Combine(Path.GetTempPath(), $"{installFileName}.tmp");
 
-            // HidHide only works on Windows 10 x64
+            // HidHide requires Windows 10 (or later) x64
             if (!IsHidHideControlCompatible())
             {
                 step4HidHidePanel.IsEnabled = false;
@@ -97,7 +100,7 @@ namespace DS4WinWPF.DS4Forms
 
         private bool IsHidHideControlCompatible()
         {
-            // HidHide only works on Windows 10 x64
+            // HidHide requires Windows 10 (or later) x64
             return DS4Windows.Global.IsWin10OrGreater() &&
                 Environment.Is64BitOperatingSystem;
         }

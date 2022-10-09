@@ -212,7 +212,7 @@ namespace DS4Windows
                 Dispatcher.Run();
             });
             eventDispatchThread.IsBackground = true;
-            eventDispatchThread.Priority = ThreadPriority.Normal;
+            eventDispatchThread.Priority = ThreadPriority.BelowNormal;
             eventDispatchThread.Name = "ControlService Events";
             eventDispatchThread.Start();
 

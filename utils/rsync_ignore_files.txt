@@ -26,3 +26,4 @@ Profiles
 custom_exe_name.txt
 task.bat
 *.un~
+*_DS4Win.exe

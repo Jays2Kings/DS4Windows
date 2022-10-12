@@ -1,9 +1,37 @@
 {
-  "latest_version": "3.1.6",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 6},
-  "updated_at": "2022-09-23T01:54:08+0000",
+  "latest_version": "3.1.7",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 7},
+  "updated_at": "2022-10-12T15:14:40+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.1.7",
+      "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 7},
+      "base_header": "Version 3.1.7",
+      "release_date": "2022-10-12T15:14:40+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.1.7",
+          "log_text": ["* Added stick delta accleration options for LS and RS",
+            "* Added extra UAC Warning to Log when using SendInput event generator. Contribution by **Yohoki**",
+            "* Changed URL parser for link generation in LogMessageDisplay window",
+            "* Changed XInput output slot display routine. Contribution by **Ygor**",
+            "* Added Touchpad virtual button activation mode options. Adds ability for activation on Touchpad Touch and Touchpad Release",
+            "* Added newer possible HidHide locations to HidHide client search routine",
+            "* Updated some NuGet packages. H.NotifyIcon.Wpf, MdXaml, Nefarius.Utilities.DeviceManagement",
+            "* Updated linked ViGEmBus version to 1.21.442.0. Now listed as a stable release",
+            "* Lowered eventDispatcherThread priority to BelowNormal; Event loop primarily used for hotplug and output device plugin and removal",
+            "* Added PowerA FUSION Wired Fightpad for PS4 to known device list. Contribution by **Ygov**",
+            "* Added Thrustmaster eSwap Pro to known device list. Contribution by **SakifX9**",
+            "* Arabic language translation updated. Contribution by **Ahmed**",
+            "* Added reWASD and VirtualHere to new exclusion filter for virtual device check. Contribution by **Nefarius**",
+            "* Changed duration for multimedia timer in app. Not really used now but it would allow sleep times less than 16 ms in app",
+            "* Unfortunately had to disable virtual DS4 feedback support again. Routine only worked reliabily with one controller"],
+          "updated_at": "2022-10-12T15:14:40+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.1.6",
       "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 6},

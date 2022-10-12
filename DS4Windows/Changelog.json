@@ -13,7 +13,7 @@
         {
           "code": "en",
           "header": "Version 3.1.7",
-          "log_text": ["* Added stick delta accleration options for LS and RS",
+          "log_text": ["* Added stick delta acceleration options for LS and RS",
             "* Added extra UAC Warning to Log when using SendInput event generator. Contribution by **Yohoki**",
             "* Changed URL parser for link generation in LogMessageDisplay window",
             "* Changed XInput output slot display routine. Contribution by **Ygor**",
@@ -27,7 +27,7 @@
             "* Arabic language translation updated. Contribution by **Ahmed**",
             "* Added reWASD and VirtualHere to new exclusion filter for virtual device check. Contribution by **Nefarius**",
             "* Changed duration for multimedia timer in app. Not really used now but it would allow sleep times less than 16 ms in app",
-            "* Unfortunately had to disable virtual DS4 feedback support again. Routine only worked reliabily with one controller"],
+            "* Unfortunately had to disable virtual DS4 feedback support again. Routine only worked reliably with one controller"],
           "updated_at": "2022-10-12T15:14:40+0000"
         }
       ]

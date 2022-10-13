@@ -38,6 +38,9 @@ namespace DS4WinWPF
                     string app = DS4Windows.Global.exelocation;
                     lnk.TargetPath = DS4Windows.Global.exelocation;
                     lnk.Arguments = "-m";
+                    // Need to add the DS4Windows directory as cwd or
+                    // language assemblies cannot be discovered
+                    lnk.WorkingDirectory = DS4Windows.Global.exedirpath;
 
                     //lnk.TargetPath = Assembly.GetExecutingAssembly().Location;
                     //lnk.Arguments = "-m";

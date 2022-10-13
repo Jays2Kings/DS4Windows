@@ -30,6 +30,14 @@
             <ListView x:Name="currentOutDevLV" ItemsSource="{Binding SlotDeviceEntries}" SelectedIndex="{Binding SelectedIndex,Mode=OneWayToSource}" DockPanel.Dock="Top">
                 <ListView.View>
                     <GridView>
+                        <GridViewColumn Width="60" Header="Input #">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding InputSlotNum}" />
+                                    <!--<CheckBox IsChecked="{Binding BoundInput,Mode=OneWay}" IsEnabled="False" />-->
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                         <GridViewColumn Width="200" Header="Current">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>

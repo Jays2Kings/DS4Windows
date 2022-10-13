@@ -168,7 +168,7 @@ namespace DS4Windows
                     outputDevices[slot] = outputDevice;
                     deviceDict.Add(slot, outputDevice);
                     revDeviceDict.Add(outputDevice, slot);
-                    outputSlots[slot].AttachedDevice(outputDevice, contType);
+                    outputSlots[slot].AttachedDevice(outputDevice, contType, inIdx);
                     if (inIdx != -1)
                     {
                         outdevs[inIdx] = outputDevice;

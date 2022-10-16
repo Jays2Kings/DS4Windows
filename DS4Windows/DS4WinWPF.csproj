@@ -77,7 +77,7 @@
     <PackageReference Include="MdXaml" Version="1.16.0" />
     <PackageReference Include="NLog" Version="5.0.4" />
     <PackageReference Include="Nefarius.Utilities.DeviceManagement" Version="3.2.184" />
-    <PackageReference Include="Nefarius.ViGEm.Client" Version="1.21.223" />
+    <PackageReference Include="Nefarius.ViGEm.Client" Version="1.21.229" />
     <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
     <PackageReference Include="System.Management" Version="6.0.0" />
     <PackageReference Include="TaskScheduler" Version="2.10.1" />

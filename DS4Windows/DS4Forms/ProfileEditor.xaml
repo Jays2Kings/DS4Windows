@@ -1443,6 +1443,14 @@
                                     </StackPanel>
 
                                     <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <Label Content="Rotation" ContentStringFormat="{}{0}:" />
+                                        <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="-180" Maximum="180" Increment="1" FormatString="F0" Value="{Binding TouchMouseStickRotation,FallbackValue='0'}"
+                                                       ToolTip="{lex:Loc TouchpadRotationTooltip}"
+                                                       Margin="8,0,0,0" />
+                                        <TextBlock Text="&#xb0;" FontSize="18" Margin="{StaticResource spaceMargin}" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
                                         <CheckBox Content="Invert X" IsChecked="{Binding TouchMouseStickInvertX}"/>
                                         <CheckBox Content="Invert Y" Margin="10,0,0,0" IsChecked="{Binding TouchMouseStickInvertY}" />
                                     </StackPanel>

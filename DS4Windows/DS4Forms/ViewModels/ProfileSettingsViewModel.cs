@@ -2117,6 +2117,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public event EventHandler TouchMouseStickTrackballFrictionChanged;
 
+        public double TouchMouseStickRotation
+        {
+            get => Global.TouchMouseStickInf[device].rotationRad * 180.0 / Math.PI;
+            set => Global.TouchMouseStickInf[device].rotationRad = value * Math.PI / 180.0;
+        }
+
         public bool GyroMouseTurns
         {
             get => Global.GyroTriggerTurns[device];

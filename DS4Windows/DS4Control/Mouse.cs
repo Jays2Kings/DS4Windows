@@ -764,6 +764,15 @@ namespace DS4Windows
 
             //GyroMouseStickInfo msinfo = Global.GetGyroMouseStickInfo(deviceNum);
             TouchMouseStickInfo msinfo = Global.GetTouchMouseStickInfo(deviceNum);
+            if (msinfo.rotationRad != TouchMouseStickInfo.ANG_RAD_DEFAULT)
+            {
+                //double rotation = 5.0 * Math.PI / 180.0;
+                double rotation = msinfo.rotationRad;
+                double sinAngle = Math.Sin(rotation), cosAngle = Math.Cos(rotation);
+                int tempX = deltaX, tempY = deltaY;
+                deltaX = (int)Global.Clamp(-DS4Touchpad.RESOLUTION_X_MAX, tempX * cosAngle - tempY * sinAngle, DS4Touchpad.RESOLUTION_X_MAX);
+                deltaY = (int)Global.Clamp(-DS4Touchpad.RESOLUTION_Y_MAX, tempX * sinAngle + tempY * cosAngle, DS4Touchpad.RESOLUTION_Y_MAX);
+            }
 
             //double tempDouble = s.elapsedTime * 250.0; // Base default speed on 4 ms
             //double tempDouble = 1.0;

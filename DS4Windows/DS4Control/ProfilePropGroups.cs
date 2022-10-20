@@ -753,6 +753,8 @@ namespace DS4Windows
         public const double TRACKBALL_FRICTION_DEFAULT = 10.0;
         public const int TRACKBALL_INIT_FICTION = 10;
         public const StickOutCurve.Curve OUTPUT_CURVE_DEFAULT = StickOutCurve.Curve.Linear;
+        public const double ANG_DEGREE_DEFAULT = 0.0;
+        public const double ANG_RAD_DEFAULT = ANG_DEGREE_DEFAULT * Math.PI / 180.0;
 
         public int deadZone;
         public int maxZone = MAX_ZONE_DEFAULT;
@@ -773,6 +775,7 @@ namespace DS4Windows
         public double trackballFriction = TRACKBALL_FRICTION_DEFAULT;
         //public double trackballAccel = 0.0;
         public StickOutCurve.Curve outputCurve;
+        public double rotationRad = ANG_RAD_DEFAULT;
 
         public delegate void TouchMouseStickInfoEventHandler(TouchMouseStickInfo sender,
             EventArgs args);
@@ -829,6 +832,7 @@ namespace DS4Windows
             trackballFriction = TRACKBALL_FRICTION_DEFAULT;
             //trackballAccel = TRACKBALL_RADIUS * trackballFriction / TRACKBALL_INERTIA;
             outputCurve = OUTPUT_CURVE_DEFAULT;
+            rotationRad = ANG_RAD_DEFAULT;
 
             minCutoff = DEFAULT_MINCUTOFF;
             beta = DEFAULT_BETA;

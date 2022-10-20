@@ -1276,7 +1276,7 @@ namespace DS4Windows
                                 }
                             }
 
-                            outputslotMan.DeferredPlugin(tempXbox, index, device.DisplayName, outputDevices, contType);
+                            outputslotMan.DeferredPlugin(tempXbox, index, $"{device.DisplayName} [{device.MacAddress}]", outputDevices, contType);
                             //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
                             success = true;
@@ -1342,7 +1342,7 @@ namespace DS4Windows
                             }
 #endif
 
-                            outputslotMan.DeferredPlugin(tempDS4, index, device.DisplayName, outputDevices, contType);
+                            outputslotMan.DeferredPlugin(tempDS4, index, $"{device.DisplayName} [{device.MacAddress}]", outputDevices, contType);
                             //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
                             success = true;

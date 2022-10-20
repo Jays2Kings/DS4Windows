@@ -21,6 +21,7 @@ using System.Text;
 using DS4Windows.DS4Control;
 using DS4WinWPF.DS4Control.DTOXml;
 using static DS4Windows.Mouse;
+using DS4Windows.StickModifiers;
 
 namespace DS4Windows
 {
@@ -48,6 +49,7 @@ namespace DS4Windows
         None,
         Mouse,
         Controls,
+        MouseJoystick,
         AbsoluteMouse,
         Passthru,
     }
@@ -416,8 +418,20 @@ namespace DS4Windows
         public const double DEFAULT_WHEEL_CUTOFF = 0.1;
         public const double DEFAULT_WHEEL_BETA = 0.1;
 
-        public OneEuroFilter axis1Filter = new OneEuroFilter(minCutoff: DEFAULT_WHEEL_CUTOFF, beta: DEFAULT_WHEEL_BETA);
-        public OneEuroFilter axis2Filter = new OneEuroFilter(minCutoff: DEFAULT_WHEEL_CUTOFF, beta: DEFAULT_WHEEL_BETA);
+        public OneEuroFilter axis1Filter;
+        public OneEuroFilter axis2Filter;
+
+        public OneEuroFilterPair()
+        {
+            axis1Filter = new OneEuroFilter(minCutoff: DEFAULT_WHEEL_CUTOFF, beta: DEFAULT_WHEEL_BETA);
+            axis2Filter = new OneEuroFilter(minCutoff: DEFAULT_WHEEL_CUTOFF, beta: DEFAULT_WHEEL_BETA);
+        }
+
+        public OneEuroFilterPair(double minCutoff, double beta)
+        {
+            axis1Filter = new OneEuroFilter(minCutoff: minCutoff, beta: beta);
+            axis2Filter = new OneEuroFilter(minCutoff: minCutoff, beta: beta);
+        }
     }
 
     public class OneEuroFilter3D
@@ -2245,6 +2259,24 @@ namespace DS4Windows
             return m_Config.trackballFriction[index];
         }
 
+        //public static bool[] TouchStickTrackballMode => m_Config.touchStickTrackballMode;
+        //public static bool GetTouchStickTrackballMode(int index)
+        //{
+        //    return m_Config.touchStickTrackballMode[index];
+        //}
+
+        //public static double[] TouchStickTrackballFriction => m_Config.touchStickTrackballFriction;
+        //public static double GetTouchStickTrackballFriction(int index)
+        //{
+        //    return m_Config.touchStickTrackballFriction[index];
+        //}
+
+        public static TouchMouseStickInfo[] TouchMouseStickInf => m_Config.touchMStickInfo;
+        public static TouchMouseStickInfo GetTouchMouseStickInfo(int device)
+        {
+            return m_Config.touchMStickInfo[device];
+        }
+
         public static TouchpadAbsMouseSettings[] TouchAbsMouse => m_Config.touchpadAbsMouse;
         public static TouchpadRelMouseSettings[] TouchRelMouse => m_Config.touchpadRelMouse;
 
@@ -3169,6 +3201,18 @@ namespace DS4Windows
 
         public bool[] trackballMode = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
         public double[] trackballFriction = new double[Global.TEST_PROFILE_ITEM_COUNT] { 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0 };
+        //public bool[] touchStickTrackballMode = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
+        //public double[] touchStickTrackballFriction = new double[Global.TEST_PROFILE_ITEM_COUNT] { 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0 };
+
+        public TouchMouseStickInfo[] touchMStickInfo = new TouchMouseStickInfo[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            new TouchMouseStickInfo(),
+            new TouchMouseStickInfo(),
+            new TouchMouseStickInfo(), new TouchMouseStickInfo(),
+            new TouchMouseStickInfo(), new TouchMouseStickInfo(),
+            new TouchMouseStickInfo(), new TouchMouseStickInfo(),
+            new TouchMouseStickInfo(),
+        };
 
         public TouchpadAbsMouseSettings[] touchpadAbsMouse = new TouchpadAbsMouseSettings[Global.TEST_PROFILE_ITEM_COUNT] { new TouchpadAbsMouseSettings(), new TouchpadAbsMouseSettings(), new TouchpadAbsMouseSettings(),
             new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings(),new TouchpadAbsMouseSettings() };
@@ -3915,6 +3959,31 @@ namespace DS4Windows
                 XmlElement xmlTouchAbsMouseMaxZoneY = m_Xdoc.CreateElement("MaxZoneY"); xmlTouchAbsMouseMaxZoneY.InnerText = touchpadAbsMouse[device].maxZoneY.ToString(); xmlTouchAbsMouseGroupEl.AppendChild(xmlTouchAbsMouseMaxZoneY);
                 XmlElement xmlTouchAbsMouseSnapCenter = m_Xdoc.CreateElement("SnapToCenter"); xmlTouchAbsMouseSnapCenter.InnerText = touchpadAbsMouse[device].snapToCenter.ToString(); xmlTouchAbsMouseGroupEl.AppendChild(xmlTouchAbsMouseSnapCenter);
                 rootElement.AppendChild(xmlTouchAbsMouseGroupEl);
+
+                // Isolate as a group. More readable for this???
+                //if (false)
+                {
+                    XmlElement xmlTouchMouseStickGroupEl = m_Xdoc.CreateElement("TouchpadMouseStick");
+                    XmlElement xmlTouchMouseStickDeadZone = m_Xdoc.CreateElement("DeadZone"); xmlTouchMouseStickDeadZone.InnerText = touchMStickInfo[device].deadZone.ToString(); xmlTouchMouseStickGroupEl.AppendChild(xmlTouchMouseStickDeadZone);
+                    XmlElement xmlTouchMouseStickMaxZone = m_Xdoc.CreateElement("MaxZone"); xmlTouchMouseStickMaxZone.InnerText = touchMStickInfo[device].maxZone.ToString(); xmlTouchMouseStickGroupEl.AppendChild(xmlTouchMouseStickMaxZone);
+                    XmlElement xmlTouchMouseStickOutStick = m_Xdoc.CreateElement("OutputStick"); xmlTouchMouseStickOutStick.InnerText = touchMStickInfo[device].outputStick.ToString(); xmlTouchMouseStickGroupEl.AppendChild(xmlTouchMouseStickOutStick);
+                    XmlElement xmlTouchMouseStickOutStickAxes = m_Xdoc.CreateElement("OutputStick"); xmlTouchMouseStickOutStickAxes.InnerText = touchMStickInfo[device].outputStickDir.ToString(); xmlTouchMouseStickGroupEl.AppendChild(xmlTouchMouseStickOutStickAxes);
+                    XmlElement xmlTouchMouseStickAntiDeadX = m_Xdoc.CreateElement("AntiDeadX"); xmlTouchMouseStickAntiDeadX.InnerText = touchMStickInfo[device].antiDeadX.ToString(); xmlTouchMouseStickGroupEl.AppendChild(xmlTouchMouseStickAntiDeadX);
+                    XmlElement xmlTouchMouseStickAntiDeadY = m_Xdoc.CreateElement("AntiDeadY"); xmlTouchMouseStickAntiDeadY.InnerText = touchMStickInfo[device].antiDeadY.ToString(); xmlTouchMouseStickGroupEl.AppendChild(xmlTouchMouseStickAntiDeadY);
+                    XmlElement xmlTouchMouseStickInvert = m_Xdoc.CreateElement("Invert"); xmlTouchMouseStickInvert.InnerText = touchMStickInfo[device].inverted.ToString(); xmlTouchMouseStickGroupEl.AppendChild(xmlTouchMouseStickInvert);
+                    XmlElement xmlTouchMouseStickMaxOutput = m_Xdoc.CreateElement("MaxOutput"); xmlTouchMouseStickMaxOutput.InnerText = touchMStickInfo[device].maxOutput.ToString(); xmlTouchMouseStickGroupEl.AppendChild(xmlTouchMouseStickMaxOutput);
+                    XmlElement xmlTouchMouseStickMaxOutputEnabled = m_Xdoc.CreateElement("MaxOutputEnabled"); xmlTouchMouseStickMaxOutputEnabled.InnerText = touchMStickInfo[device].maxOutputEnabled.ToString(); xmlTouchMouseStickGroupEl.AppendChild(xmlTouchMouseStickMaxOutputEnabled);
+                    XmlElement xmlTouchMouseStickVerticalScale = m_Xdoc.CreateElement("VerticalScale"); xmlTouchMouseStickVerticalScale.InnerText = touchMStickInfo[device].vertScale.ToString(); xmlTouchMouseStickGroupEl.AppendChild(xmlTouchMouseStickVerticalScale);
+                    XmlElement xmlTouchMouseStickOutputCurve = m_Xdoc.CreateElement("OutputCurve"); xmlTouchMouseStickOutputCurve.InnerText = touchMStickInfo[device].outputCurve.ToString(); xmlTouchMouseStickGroupEl.AppendChild(xmlTouchMouseStickOutputCurve);
+                    XmlElement xmlTouchMouseStickRotation = m_Xdoc.CreateElement("Rotation"); xmlTouchMouseStickRotation.InnerText = Convert.ToInt32(touchMStickInfo[device].rotationRad * 180.0 / Math.PI).ToString(); xmlTouchMouseStickGroupEl.AppendChild(xmlTouchMouseStickRotation);
+
+                    XmlElement xmlTouchMouseStickSmoothSettingsEl = m_Xdoc.CreateElement("SmoothingSettings");
+                    XmlElement xmlTouchMouseStickSmoothMethod = m_Xdoc.CreateElement("SmoothingMethod"); xmlTouchMouseStickSmoothMethod.InnerText = touchMStickInfo[device].smoothingMethod.ToString(); xmlTouchMouseStickSmoothSettingsEl.AppendChild(xmlTouchMouseStickSmoothMethod);
+                    XmlElement xmlTouchMouseStickSmoothMinCutoff = m_Xdoc.CreateElement("SmoothingMinCutoff"); xmlTouchMouseStickSmoothMinCutoff.InnerText = touchMStickInfo[device].minCutoff.ToString(); xmlTouchMouseStickSmoothSettingsEl.AppendChild(xmlTouchMouseStickSmoothMinCutoff);
+                    XmlElement xmlTouchMouseStickSmoothBeta = m_Xdoc.CreateElement("SmoothingBeta"); xmlTouchMouseStickSmoothBeta.InnerText = touchMStickInfo[device].beta.ToString(); xmlTouchMouseStickSmoothSettingsEl.AppendChild(xmlTouchMouseStickSmoothBeta);
+                    xmlTouchMouseStickGroupEl.AppendChild(xmlTouchMouseStickSmoothSettingsEl);
+                    rootElement.AppendChild(xmlTouchMouseStickGroupEl);
+                }
 
                 XmlNode xmlTouchButtonMode = m_Xdoc.CreateNode(XmlNodeType.Element, "TouchpadButtonMode", null); xmlTouchButtonMode.InnerText = touchpadButtonMode[device].ToString(); rootElement.AppendChild(xmlTouchButtonMode);
                 XmlNode xmlOutContDevice = m_Xdoc.CreateNode(XmlNodeType.Element, "OutputContDevice", null); xmlOutContDevice.InnerText = OutContDeviceString(outputDevType[device]); rootElement.AppendChild(xmlOutContDevice);
@@ -6298,6 +6367,198 @@ namespace DS4Windows
                     missingSetting = true;
                 }
 
+
+                bool touchMStickGroup = false;
+                XmlNode xmlTouchMStickSmoothingElement =
+                    m_Xdoc.SelectSingleNode("/" + rootname + "/TouchpadMouseStick");
+                touchMStickGroup = xmlTouchMStickSmoothingElement != null;
+
+                if (touchMStickGroup && xmlTouchMStickSmoothingElement.HasChildNodes)
+                {
+                    //try
+                    //{
+                    //    Item = xmlGyroMStickSmoothingElement.SelectSingleNode("UseSmoothing");
+                    //    if (bool.TryParse(Item?.InnerText ?? "", out bool tempSmoothing))
+                    //    {
+                    //        gyroMStickInfo[device].useSmoothing = tempSmoothing;
+                    //    }
+                    //}
+                    //catch { }
+
+                    try
+                    {
+                        Item = xmlTouchMStickSmoothingElement.SelectSingleNode("DeadZone");
+                        if (int.TryParse(Item?.InnerText ?? "", out int temp))
+                        {
+                            touchMStickInfo[device].deadZone = temp;
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = xmlTouchMStickSmoothingElement.SelectSingleNode("MaxZone");
+                        if (int.TryParse(Item?.InnerText ?? "", out int temp))
+                        {
+                            touchMStickInfo[device].maxZone = Math.Max(temp, 1);
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = xmlTouchMStickSmoothingElement.SelectSingleNode("OutputStick");
+                        if (Enum.TryParse(Item?.InnerText ?? "",
+                            out TouchMouseStickInfo.OutputStick temp))
+                        {
+                            touchMStickInfo[device].outputStick = temp;
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = xmlTouchMStickSmoothingElement.SelectSingleNode("OutputStickAxes");
+                        if (Enum.TryParse(Item?.InnerText ?? "",
+                            out TouchMouseStickInfo.OutputStickAxes temp))
+                        {
+                            touchMStickInfo[device].outputStickDir = temp;
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = xmlTouchMStickSmoothingElement.SelectSingleNode("AntiDeadX");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            touchMStickInfo[device].antiDeadX = temp;
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = xmlTouchMStickSmoothingElement.SelectSingleNode("AntiDeadY");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            touchMStickInfo[device].antiDeadY = temp;
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = xmlTouchMStickSmoothingElement.SelectSingleNode("Invert");
+                        if (uint.TryParse(Item?.InnerText ?? "",
+                            out uint temp))
+                        {
+                            touchMStickInfo[device].inverted = temp;
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = xmlTouchMStickSmoothingElement.SelectSingleNode("MaxOutput");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            touchMStickInfo[device].maxOutput = Math.Clamp(temp, 0.0, 100.0);
+                        }
+                    }
+                    catch {  }
+
+                    try
+                    {
+                        Item = xmlTouchMStickSmoothingElement.SelectSingleNode("MaxOutputEnabled");
+                        if (bool.TryParse(Item?.InnerText ?? "", out bool temp))
+                        {
+                            touchMStickInfo[device].maxOutputEnabled = temp;
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = xmlTouchMStickSmoothingElement.SelectSingleNode("VerticalScale");
+                        if (int.TryParse(Item?.InnerText ?? "", out int temp))
+                        {
+                            touchMStickInfo[device].vertScale = temp;
+                        }
+                    }
+                    catch {}
+
+                    try
+                    {
+                        Item = xmlTouchMStickSmoothingElement.SelectSingleNode("OutputCurve");
+                        if (Enum.TryParse(Item?.InnerText ?? "", out StickOutCurve.Curve temp))
+                        {
+                            touchMStickInfo[device].outputCurve = temp;
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = xmlTouchMStickSmoothingElement.SelectSingleNode("Rotation");
+                        if (int.TryParse(Item?.InnerText ?? "", out int temp))
+                        {
+                            temp = Math.Clamp(temp, -180, 180);
+                            touchMStickInfo[device].rotationRad = temp * Math.PI / 180.0;
+                        }
+                    }
+                    catch { }
+
+
+                    bool stickSmoothingGroup = false;
+                    XmlNode xmlStickSmoothingElement =
+                        xmlTouchMStickSmoothingElement.SelectSingleNode("SmoothingSettings");
+                    stickSmoothingGroup = xmlStickSmoothingElement != null;
+
+                    if (stickSmoothingGroup && xmlStickSmoothingElement.HasChildNodes)
+                    {
+                        //try
+                        //{
+                        //    Item = xmlGyroMStickSmoothingElement.SelectSingleNode("UseSmoothing");
+                        //    bool.TryParse(Item.InnerText, out bool tempSmoothing);
+                        //    gyroMStickInfo[device].useSmoothing = tempSmoothing;
+                        //}
+                        //catch { gyroMStickInfo[device].useSmoothing = false; missingSetting = true; }
+
+                        try
+                        {
+                            Item = xmlTouchMStickSmoothingElement.SelectSingleNode("SmoothingMethod");
+                            if (Enum.TryParse(Item?.InnerText ?? "",
+                                out TouchMouseStickInfo.SmoothingMethod temp))
+                            {
+                                touchMStickInfo[device].smoothingMethod = temp;
+                            }
+                        }
+                        catch { }
+
+                        try
+                        {
+                            Item = xmlTouchMStickSmoothingElement.SelectSingleNode("SmoothingMinCutoff");
+                            if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                            {
+                                touchMStickInfo[device].minCutoff = Math.Clamp(temp, 0.0, 100.0);
+                            }
+                        }
+                        catch { }
+
+                        try
+                        {
+                            Item = xmlTouchMStickSmoothingElement.SelectSingleNode("SmoothingBeta");
+                            if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                            {
+                                touchMStickInfo[device].beta = Math.Clamp(temp, 0.0, 1.0);
+                            }
+                        }
+                        catch { }
+                    }
+                }
+
+
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode($"/{rootname}/TouchpadButtonMode");
@@ -8380,6 +8641,7 @@ namespace DS4Windows
             trackballFriction[device] = 10.0;
             touchpadAbsMouse[device].Reset();
             touchpadRelMouse[device].Reset();
+            touchMStickInfo[device].Reset();
             touchpadButtonMode[device] = TouchButtonActivationMode.Click;
             outputDevType[device] = OutContType.X360;
             ds4Mapping = false;

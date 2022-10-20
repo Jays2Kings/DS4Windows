@@ -1213,193 +1213,306 @@
                     <Thickness x:Key="spaceMargin" Bottom="8" />
                 </TabItem.Resources>
 
-                <StackPanel Margin="4">
-                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                        <Label Content="Output Mode" />
-                        <ComboBox x:Name="touchpadOutModeCombo" Width="160" SelectedIndex="{Binding TouchpadOutputIndex, FallbackValue='0'}" VerticalContentAlignment="Center" Margin="10,0,0,0">
-                            <ComboBoxItem Content="Mouse" />
-                            <ComboBoxItem Content="Controls" />
-                            <ComboBoxItem Content="Absolute Mouse" />
-                            <ComboBoxItem Content="Passthru" />
-                        </ComboBox>
-                    </StackPanel>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="4">
+                        <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                            <Label Content="Output Mode" />
+                            <ComboBox x:Name="touchpadOutModeCombo" Width="160" SelectedIndex="{Binding TouchpadOutputIndex, FallbackValue='0'}" VerticalContentAlignment="Center" Margin="10,0,0,0">
+                                <ComboBoxItem Content="Mouse" />
+                                <ComboBoxItem Content="Controls" />
+                                <ComboBoxItem Content="Mouse Joystick" />
+                                <ComboBoxItem Content="Absolute Mouse" />
+                                <ComboBoxItem Content="Passthru" />
+                            </ComboBox>
+                        </StackPanel>
 
-                    <TabControl x:Name="touchOutputTabControl" SelectedIndex="{Binding TouchpadOutputIndex, FallbackValue='0'}" BorderBrush="{x:Null}" Margin="{StaticResource spaceMargin}">
-                        <TabItem Header="Mouse" Visibility="Collapsed">
-                            <StackPanel>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
+                        <TabControl x:Name="touchOutputTabControl" SelectedIndex="{Binding TouchpadOutputIndex, FallbackValue='0'}" BorderBrush="{x:Null}" Margin="{StaticResource spaceMargin}">
+                            <TabItem Header="Mouse" Visibility="Collapsed">
+                                <StackPanel>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
 
-                                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="{StaticResource spaceMargin}">
-                                        <CheckBox Content="{lex:Loc TouchSlide}" IsChecked="{Binding TouchSenExists}" VerticalAlignment="Center" />
-                                        <xctk:IntegerUpDown d:IsHidden="True" MinWidth="80" Height="20" Maximum="500" Value="{Binding TouchSens}" IsEnabled="{Binding TouchSenExists}" Margin="8,0,0,0" />
-                                    </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="{StaticResource spaceMargin}">
+                                            <CheckBox Content="{lex:Loc TouchSlide}" IsChecked="{Binding TouchSenExists}" VerticalAlignment="Center" />
+                                            <xctk:IntegerUpDown d:IsHidden="True" MinWidth="80" Height="20" Maximum="500" Value="{Binding TouchSens}" IsEnabled="{Binding TouchSenExists}" Margin="8,0,0,0" />
+                                        </StackPanel>
 
-                                    <CheckBox Content="Jitter Compensation" Grid.Row="0" Grid.Column="1" IsChecked="{Binding TouchJitter}" VerticalAlignment="Center"
+                                        <CheckBox Content="Jitter Compensation" Grid.Row="0" Grid.Column="1" IsChecked="{Binding TouchJitter}" VerticalAlignment="Center"
                                                           ToolTip="{lex:Loc TouchpadJitterCompTooltip}" />
 
-                                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="{StaticResource spaceMargin}">
-                                        <CheckBox Content="{lex:Loc TouchTap}" IsChecked="{Binding TouchTapExists}" VerticalAlignment="Center" ToolTip="{lex:Loc TouchpadTapTooltip}" />
-                                        <xctk:IntegerUpDown Value="{Binding TouchTap}" d:IsHidden="True" MinWidth="80" Height="20" IsEnabled="{Binding TouchTapExists}"
+                                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="{StaticResource spaceMargin}">
+                                            <CheckBox Content="{lex:Loc TouchTap}" IsChecked="{Binding TouchTapExists}" VerticalAlignment="Center" ToolTip="{lex:Loc TouchpadTapTooltip}" />
+                                            <xctk:IntegerUpDown Value="{Binding TouchTap}" d:IsHidden="True" MinWidth="80" Height="20" IsEnabled="{Binding TouchTapExists}"
                                             ToolTip="{lex:Loc TouchpadTapTooltip}"
                                             Margin="8,0,0,0" />
-                                    </StackPanel>
+                                        </StackPanel>
 
-                                    <CheckBox Content="Double Tap" Grid.Row="1" Grid.Column="1" IsChecked="{Binding TouchDoubleTap}" VerticalAlignment="Center"
+                                        <CheckBox Content="Double Tap" Grid.Row="1" Grid.Column="1" IsChecked="{Binding TouchDoubleTap}" VerticalAlignment="Center"
                                                           ToolTip="{lex:Loc Resources:TapAndHold}" />
 
-                                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Margin="{StaticResource spaceMargin}">
-                                        <CheckBox Content="{lex:Loc TouchScroll}" IsChecked="{Binding TouchScrollExists}" VerticalAlignment="Center" ToolTip="{lex:Loc TouchpadSlideTooltip}" />
-                                        <xctk:IntegerUpDown Value="{Binding TouchScroll}" d:IsHidden="True" MinWidth="80" Height="20" IsEnabled="{Binding TouchScrollExists}"
+                                        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Margin="{StaticResource spaceMargin}">
+                                            <CheckBox Content="{lex:Loc TouchScroll}" IsChecked="{Binding TouchScrollExists}" VerticalAlignment="Center" ToolTip="{lex:Loc TouchpadSlideTooltip}" />
+                                            <xctk:IntegerUpDown Value="{Binding TouchScroll}" d:IsHidden="True" MinWidth="80" Height="20" IsEnabled="{Binding TouchScrollExists}"
                                                             ToolTip="{lex:Loc TouchpadSlideTooltip}"
                                                             Margin="8,0,0,0" />
-                                    </StackPanel>
+                                        </StackPanel>
 
-                                    <CheckBox Content="Lower Right as RMB" Grid.Row="2" Grid.Column="1" IsChecked="{Binding LowerRightTouchRMB}" VerticalAlignment="Center"
+                                        <CheckBox Content="Lower Right as RMB" Grid.Row="2" Grid.Column="1" IsChecked="{Binding LowerRightTouchRMB}" VerticalAlignment="Center"
                                                           ToolTip="{lex:Loc Resources:BestUsedRightSide}" />
 
-                                    <CheckBox Content="Passthru Click Action (DS4 mode)" Grid.Row="3" Grid.Column="0" IsChecked="{Binding TouchpadClickPassthru}" VerticalAlignment="Center" />
-                                </Grid>
+                                        <CheckBox Content="Passthru Click Action (DS4 mode)" Grid.Row="3" Grid.Column="0" IsChecked="{Binding TouchpadClickPassthru}" VerticalAlignment="Center" />
+                                    </Grid>
 
-                                <CheckBox Content="Start with Slide/Scroll Off" IsChecked="{Binding StartTouchpadOff}" VerticalAlignment="Center"
+                                    <CheckBox Content="Start with Slide/Scroll Off" IsChecked="{Binding StartTouchpadOff}" VerticalAlignment="Center"
                                                     ToolTip="{lex:Loc Resources:TouchpadOffTip}" Margin="0,10,0,0" />
 
-                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                                    <Label Content="Rotation" ContentStringFormat="{}{0}:" />
-                                    <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="-180" Maximum="180" Increment="1" FormatString="F0" Value="{Binding TouchRelMouseRotation,FallbackValue='0'}"
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <Label Content="Rotation" ContentStringFormat="{}{0}:" />
+                                        <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="-180" Maximum="180" Increment="1" FormatString="F0" Value="{Binding TouchRelMouseRotation,FallbackValue='0'}"
                                                        ToolTip="{lex:Loc TouchpadRotationTooltip}"
                                                        Margin="8,0,0,0" />
-                                    <TextBlock Text="&#xb0;" FontSize="18" Margin="{StaticResource spaceMargin}" />
-                                </StackPanel>
+                                        <TextBlock Text="&#xb0;" FontSize="18" Margin="{StaticResource spaceMargin}" />
+                                    </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                                    <Label Content="Min Threshold" ContentStringFormat="{}{0}:" />
-                                    <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="1.0" Maximum="40.0" Increment="1.0" FormatString="F1" Value="{Binding TouchRelMouseMinThreshold,FallbackValue='1.0'}"
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <Label Content="Min Threshold" ContentStringFormat="{}{0}:" />
+                                        <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="1.0" Maximum="40.0" Increment="1.0" FormatString="F1" Value="{Binding TouchRelMouseMinThreshold,FallbackValue='1.0'}"
                                                        ToolTip="{lex:Loc TouchpadMinThresholdTooltip}"
                                                        Margin="8,0,0,0" />
-                                </StackPanel>
+                                    </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Height="20" Margin="{StaticResource spaceMargin}">
-                                    <CheckBox Content="Trackball" IsChecked="{Binding TouchTrackball}" VerticalAlignment="Center" ToolTip="{lex:Loc TouchpadTrackballEnableTooltip}" />
-                                    <Label Content="Friction:" Padding="0" Margin="20,0,5,0" VerticalAlignment="Center"/>
-                                    <xctk:DoubleUpDown x:Name="frictionUD" d:IsHidden="True" MinWidth="80" IsEnabled="{Binding TouchTrackball}" Minimum="0.1" Maximum="20.0"
+                                    <StackPanel Orientation="Horizontal" Height="20" Margin="{StaticResource spaceMargin}">
+                                        <CheckBox Content="Trackball" IsChecked="{Binding TouchTrackball}" VerticalAlignment="Center" ToolTip="{lex:Loc TouchpadTrackballEnableTooltip}" />
+                                        <Label Content="Friction:" Padding="0" Margin="20,0,5,0" VerticalAlignment="Center"/>
+                                        <xctk:DoubleUpDown x:Name="frictionUD" d:IsHidden="True" MinWidth="80" IsEnabled="{Binding TouchTrackball}" Minimum="0.1" Maximum="20.0"
                                                                Value="{Binding TouchTrackballFriction,FallbackValue='10'}" ValueChanged="FrictionUD_ValueChanged"
                                                        ToolTip="{lex:Loc TouchpadTrackballFrictionTooltip}"
                                                        Margin="8,0,0,0" />
-                                </StackPanel>
+                                    </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                                    <Label Content="Invert" Padding="0" HorizontalAlignment="Center" />
-                                    <ComboBox MinWidth="160" SelectedIndex="{Binding TouchInvertIndex}" Margin="20,0,0,0">
-                                        <ComboBoxItem Content="None" />
-                                        <ComboBoxItem Content="X" />
-                                        <ComboBoxItem Content="Y" />
-                                        <ComboBoxItem Content="X+Y" />
-                                    </ComboBox>
-                                </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <Label Content="Invert" Padding="0" HorizontalAlignment="Center" />
+                                        <ComboBox MinWidth="160" SelectedIndex="{Binding TouchInvertIndex}" Margin="20,0,0,0">
+                                            <ComboBoxItem Content="None" />
+                                            <ComboBoxItem Content="X" />
+                                            <ComboBoxItem Content="Y" />
+                                            <ComboBoxItem Content="X+Y" />
+                                        </ComboBox>
+                                    </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                                    <Label Content="Disable Invert" Padding="0" HorizontalAlignment="Center" />
-                                    <Button x:Name="touchDisInvertBtn" MinWidth="160"  Height="22" Content="{Binding TouchDisInvertString,FallbackValue=None}" Click="TouchDisInvertBtn_Click" Margin="20,0,0,0">
-                                        <Button.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Cross" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="Circle" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="Square" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="Triangle" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="L1" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="L2" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="R1" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="R2" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="Up" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="Down" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="Left" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="Right" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="L3" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="R3" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="Options" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="Share" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="PS" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="Touchpad Click" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                                <MenuItem Header="Mute" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
-                                            </ContextMenu>
-                                        </Button.ContextMenu>
-                                    </Button>
-                                </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <Label Content="Disable Invert" Padding="0" HorizontalAlignment="Center" />
+                                        <Button x:Name="touchDisInvertBtn" MinWidth="160"  Height="22" Content="{Binding TouchDisInvertString,FallbackValue=None}" Click="TouchDisInvertBtn_Click" Margin="20,0,0,0">
+                                            <Button.ContextMenu>
+                                                <ContextMenu>
+                                                    <MenuItem Header="Cross" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Circle" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Square" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Triangle" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="L1" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="L2" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="R1" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="R2" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Up" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Down" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Left" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Right" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="L3" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="R3" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Options" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Share" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="PS" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Touchpad Click" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Mute" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                </ContextMenu>
+                                            </Button.ContextMenu>
+                                        </Button>
+                                    </StackPanel>
 
-                                <ContentControl x:Name="touchContentControl1" MinWidth="400" HorizontalAlignment="Left" />
-                                <!--<local:TouchButtonUserControl x:Name="touchBtnControl1" MinWidth="400" />-->
-                            </StackPanel>
-                        </TabItem>
+                                    <ContentControl x:Name="touchContentControl1" MinWidth="400" HorizontalAlignment="Left" />
+                                    <!--<local:TouchButtonUserControl x:Name="touchBtnControl1" MinWidth="400" />-->
+                                </StackPanel>
+                            </TabItem>
 
-                        <TabItem Header="Controls" Visibility="Collapsed">
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
-                                    <Button x:Name="swipeUpBtn" Content="Swipe Up" MinWidth="100" Tag="{Binding SwipeUp, Source={StaticResource controlIndexCheck}}" Click="SwipeControlsButton_Click" />
-                                    <Label x:Name="swipeUpLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="5,8,0,0">
-                                    <Button x:Name="swipeDownBtn" Content="Swipe Down" MinWidth="100" Tag="{Binding SwipeDown, Source={StaticResource controlIndexCheck}}" Click="SwipeControlsButton_Click" />
-                                    <Label x:Name="swipeDownLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="5,8,0,0">
-                                    <Button x:Name="swipeLeftBtn" Content="Swipe Left" MinWidth="100" Tag="{Binding SwipeLeft, Source={StaticResource controlIndexCheck}}" Click="SwipeControlsButton_Click" />
-                                    <Label x:Name="swipeLeftLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="5,8,0,10">
-                                    <Button x:Name="swipeRightBtn" Content="Swipe Right" MinWidth="100" Tag="{Binding SwipeRight, Source={StaticResource controlIndexCheck}}" Click="SwipeControlsButton_Click" />
-                                    <Label x:Name="swipeRightLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
-                                </StackPanel>
+                            <TabItem Header="Controls" Visibility="Collapsed">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                                        <Button x:Name="swipeUpBtn" Content="Swipe Up" MinWidth="100" Tag="{Binding SwipeUp, Source={StaticResource controlIndexCheck}}" Click="SwipeControlsButton_Click" />
+                                        <Label x:Name="swipeUpLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="5,8,0,0">
+                                        <Button x:Name="swipeDownBtn" Content="Swipe Down" MinWidth="100" Tag="{Binding SwipeDown, Source={StaticResource controlIndexCheck}}" Click="SwipeControlsButton_Click" />
+                                        <Label x:Name="swipeDownLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="5,8,0,0">
+                                        <Button x:Name="swipeLeftBtn" Content="Swipe Left" MinWidth="100" Tag="{Binding SwipeLeft, Source={StaticResource controlIndexCheck}}" Click="SwipeControlsButton_Click" />
+                                        <Label x:Name="swipeLeftLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="5,8,0,10">
+                                        <Button x:Name="swipeRightBtn" Content="Swipe Right" MinWidth="100" Tag="{Binding SwipeRight, Source={StaticResource controlIndexCheck}}" Click="SwipeControlsButton_Click" />
+                                        <Label x:Name="swipeRightLb" Content="{Binding MappingName,FallbackValue=Unassigned}"  Margin="10,0,0,0"/>
+                                    </StackPanel>
 
-                                <CheckBox Content="Passthru Click Action (DS4 mode)" IsChecked="{Binding TouchpadClickPassthru}" VerticalAlignment="Center"
+                                    <CheckBox Content="Passthru Click Action (DS4 mode)" IsChecked="{Binding TouchpadClickPassthru}" VerticalAlignment="Center"
                                                           Margin="5,8,0,10" />
 
-                                <ContentControl x:Name="touchContentControl2" MinWidth="400" HorizontalAlignment="Left" Margin="5,8,0,0" />
-                                <!--<local:TouchButtonUserControl x:Name="touchBtnControl2" MinWidth="400" Margin="0,8,0,0" />-->
-                            </StackPanel>
-                        </TabItem>
-                        <TabItem Header="Absolute Mouse" Visibility="Collapsed">
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                                    <Label Content="Max Zone X:" />
-                                    <xctk:IntegerUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="0" Maximum="100" Value="{Binding TouchAbsMouseMaxZoneX}" Margin="8,0,0,0" />
+                                    <ContentControl x:Name="touchContentControl2" MinWidth="400" HorizontalAlignment="Left" Margin="5,8,0,0" />
+                                    <!--<local:TouchButtonUserControl x:Name="touchBtnControl2" MinWidth="400" Margin="0,8,0,0" />-->
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                                    <Label Content="Max Zone Y:" />
-                                    <xctk:IntegerUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="0" Maximum="100" Value="{Binding TouchAbsMouseMaxZoneY}" Margin="8,0,0,0" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                                    <Label Content="Snap To Center on Release:" />
-                                    <CheckBox IsChecked="{Binding TouchAbsMouseSnapCenter}" VerticalAlignment="Center" Margin="8,0,0,0" />
-                                </StackPanel>
+                            </TabItem>
 
-                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                                    <ContentControl x:Name="touchContentControl3" MinWidth="400" HorizontalAlignment="Left" Margin="5,0,0,0" />
+                            <TabItem Header="Mouse Joystick" Visibility="Collapsed">
+                                <StackPanel x:Name="touchMouseJoystickPanel">
+
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <Label Content="Dead Zone" />
+                                        <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding TouchMouseStickDeadZone}" MinWidth="60" />
+                                        <Label Content="Max Zone" Margin="8,0,0,0" />
+                                        <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding TouchMouseStickMaxZone}" MinWidth="60"
+                                                Minimum="1" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <Label Content="Output Stick" />
+                                        <ComboBox SelectedIndex="{Binding TouchMouseStickOutputStick}">
+                                            <ComboBoxItem Content="None" />
+                                            <ComboBoxItem Content="Left Stick" />
+                                            <ComboBoxItem Content="Right Stick" />
+                                        </ComboBox>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <Label Content="Output Axes" />
+                                        <ComboBox SelectedIndex="{Binding TouchMouseStickOutputAxes}">
+                                            <ComboBoxItem Content="None" />
+                                            <ComboBoxItem Content="Horizontal and Vertical" />
+                                            <ComboBoxItem Content="Horizontal Only" />
+                                            <ComboBoxItem Content="Vertical Only" />
+                                        </ComboBox>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Height="30" Margin="{StaticResource spaceMargin}">
+                                        <Label Content="Minimum X" />
+                                        <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding TouchMouseStickAntiDeadX}" MinWidth="60"
+                                               FormatString="F0" Minimum="0.0" Maximum="100.0" Increment="10.0" />
+                                        <Label Content="%" />
+
+                                        <Label Content="Minimum Y" Margin="8,0,0,0" />
+                                        <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding TouchMouseStickAntiDeadY}" MinWidth="60"
+                                               FormatString="F0" Minimum="0.0" Maximum="100.0" Increment="10.0" />
+                                        <Label Content="%" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <Label Content="Vertical Scale" />
+                                        <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding TouchMouseStickVertScale}" MinWidth="60"
+                                                Minimum="0" Maximum="400" Increment="10" />
+                                        <Label Content="%" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Height="20" Margin="{StaticResource spaceMargin}">
+                                        <CheckBox Content="Trackball" IsChecked="{Binding TouchMouseStickTrackball}" VerticalAlignment="Center" ToolTip="{lex:Loc TouchpadTrackballEnableTooltip}" />
+                                        <Label Content="Friction:" Padding="0" Margin="20,0,5,0" VerticalAlignment="Center"/>
+                                        <xctk:DoubleUpDown x:Name="touchStickFrictionUD" d:IsHidden="True" MinWidth="80" IsEnabled="{Binding TouchMouseStickTrackball}" Minimum="0.1" Maximum="20.0"
+                                                               Value="{Binding TouchMouseStickTrackballFriction,FallbackValue='10'}"
+                                                       ToolTip="{lex:Loc TouchpadTrackballFrictionTooltip}"
+                                                       Margin="8,0,0,0" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <CheckBox Content="Max Output" IsChecked="{Binding TouchMouseStickMaxOutputEnabled,FallbackValue=False}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <xctk:DoubleUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding TouchMouseStickMaxOutput}" IsEnabled="{Binding TouchMouseStickMaxOutputEnabled,FallbackValue=False}"
+                                               FormatString="F0" MinWidth="60" Maximum="100.0" Minimum="0.0" Increment="10.0" />
+                                        <Label Content="%" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <Label Content="Output Curve" ContentStringFormat="{}{0}:" />
+                                        <ComboBox ItemsSource="{Binding Path=TouchMouseStickOutputCurveOptions}" DisplayMemberPath="DisplayName" SelectedValuePath="ChoiceValue" SelectedValue="{Binding TouchMouseStickOutputCurve}" Margin="8,0,0,0" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <Label Content="Rotation" ContentStringFormat="{}{0}:" />
+                                        <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="-180" Maximum="180" Increment="1" FormatString="F0" Value="{Binding TouchMouseStickRotation,FallbackValue='0'}"
+                                                       ToolTip="{lex:Loc TouchpadRotationTooltip}"
+                                                       Margin="8,0,0,0" />
+                                        <TextBlock Text="&#xb0;" FontSize="18" Margin="{StaticResource spaceMargin}" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <CheckBox Content="Invert X" IsChecked="{Binding TouchMouseStickInvertX}"/>
+                                        <CheckBox Content="Invert Y" Margin="10,0,0,0" IsChecked="{Binding TouchMouseStickInvertY}" />
+                                    </StackPanel>
+
+                                    <CheckBox Content="Smoothing" IsChecked="{Binding TouchMouseStickSmooth}" Margin="{StaticResource spaceMargin}" />
+                                    <GroupBox Header="Smoothing Options" IsEnabled="{Binding TouchMouseStickSmooth, FallbackValue='False'}" Margin="{StaticResource spaceMargin}" Padding="2">
+                                        <StackPanel>
+                                            <StackPanel x:Name="touchMouseStickOneEuroPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label Content="1&#x20ac; MinCutoff" />
+                                                    <xctk:DoubleUpDown d:IsHidden="True" FormatString="F5" Value="{Binding TouchMouseStickOneEuroMinCutoff,FallbackValue='1.0',UpdateSourceTrigger=LostFocus}"
+                                                           Minimum="0.00001" Maximum="100.0" Increment="0.1" MinWidth="60" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
+                                                    <Label Content="1&#x20ac; Beta" />
+                                                    <xctk:DoubleUpDown d:IsHidden="True" FormatString="F5" Value="{Binding TouchMouseStickOneEuroBeta,FallbackValue='0.0',UpdateSourceTrigger=LostFocus}"
+                                                           Minimum="0.0" Maximum="1.0" Increment="0.1" MinWidth="60" />
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                        </StackPanel>
+                                    </GroupBox>
+
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <ContentControl x:Name="touchContentControl4" MinWidth="400" HorizontalAlignment="Left" Margin="5,0,0,0" />
+                                    </StackPanel>
                                 </StackPanel>
-                                <!--<local:TouchButtonUserControl x:Name="touchBtnControl3" MinWidth="400" Margin="0,8,0,0" />-->
-                            </StackPanel>
-                        </TabItem>
-                        <TabItem Header="Passthru" Visibility="Collapsed">
-                            <StackPanel>
-                                <TextBlock Foreground="Red">
+                            </TabItem>
+
+                            <TabItem Header="Absolute Mouse" Visibility="Collapsed">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <Label Content="Max Zone X:" />
+                                        <xctk:IntegerUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="0" Maximum="100" Value="{Binding TouchAbsMouseMaxZoneX}" Margin="8,0,0,0" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <Label Content="Max Zone Y:" />
+                                        <xctk:IntegerUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="0" Maximum="100" Value="{Binding TouchAbsMouseMaxZoneY}" Margin="8,0,0,0" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <Label Content="Snap To Center on Release:" />
+                                        <CheckBox IsChecked="{Binding TouchAbsMouseSnapCenter}" VerticalAlignment="Center" Margin="8,0,0,0" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                        <ContentControl x:Name="touchContentControl3" MinWidth="400" HorizontalAlignment="Left" Margin="5,0,0,0" />
+                                    </StackPanel>
+                                    <!--<local:TouchButtonUserControl x:Name="touchBtnControl3" MinWidth="400" Margin="0,8,0,0" />-->
+                                </StackPanel>
+                            </TabItem>
+                            <TabItem Header="Passthru" Visibility="Collapsed">
+                                <StackPanel>
+                                    <TextBlock Foreground="Red">
                                     Only works with ViGEmBus 1.17.333.0 and newer
-                                </TextBlock>
-                            </StackPanel>
+                                    </TextBlock>
+                                </StackPanel>
 
-                        </TabItem>
-                    </TabControl>
-                </StackPanel>
+                            </TabItem>
+                        </TabControl>
+                    </StackPanel>
+                </ScrollViewer>
+                
             </TabItem>
 
             <TabItem Header="Gyro">
@@ -1801,12 +1914,12 @@
                                             <StackPanel x:Name="gyroMouseStickOneEuroPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding GyroMouseStickOneEuroPanelVisibility,FallbackValue='Visible'}">
                                                 <StackPanel Orientation="Horizontal">
                                                     <Label Content="1&#x20ac; MinCutoff" />
-                                                    <xctk:DoubleUpDown d:IsHidden="True" FormatString="F5" Value="{Binding GyroMouseStickOneEuroMinCutoff,FallbackValue=1.0,UpdateSourceTrigger=LostFocus}"
+                                                    <xctk:DoubleUpDown d:IsHidden="True" FormatString="F5" Value="{Binding GyroMouseStickOneEuroMinCutoff,FallbackValue='1.0',UpdateSourceTrigger=LostFocus}"
                                                            Minimum="0.00001" Maximum="100.0" Increment="0.1" MinWidth="60" />
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
                                                     <Label Content="1&#x20ac; Beta" />
-                                                    <xctk:DoubleUpDown d:IsHidden="True" FormatString="F5" Value="{Binding GyroMouseStickOneEuroBeta,FallbackValue=0.0,UpdateSourceTrigger=LostFocus}"
+                                                    <xctk:DoubleUpDown d:IsHidden="True" FormatString="F5" Value="{Binding GyroMouseStickOneEuroBeta,FallbackValue='0.0',UpdateSourceTrigger=LostFocus}"
                                                            Minimum="0.0" Maximum="1.0" Increment="0.1" MinWidth="60" />
                                                 </StackPanel>
                                             </StackPanel>

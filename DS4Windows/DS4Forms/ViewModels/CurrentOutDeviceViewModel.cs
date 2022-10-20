@@ -289,6 +289,36 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public event EventHandler DisplayXInputSlotNumChanged;
         public event EventHandler XInputSlotNumChanged;
 
+        public string InputSlotNum
+        {
+            get
+            {
+                string result = "";
+                if (outSlotDevice.InputIndex != OutSlotDevice.INPUT_INDEX_DEFAULT)
+                {
+                    result = $"{outSlotDevice.InputIndex+1}";
+                }
+
+                return result;
+            }
+        }
+
+        public event EventHandler InputSlotNumChanged;
+
+        public string InputSlotDisplayString
+        {
+            get
+            {
+                string result = "";
+                if (outSlotDevice.InputIndex != OutSlotDevice.INPUT_INDEX_DEFAULT)
+                {
+                    result = $"{outSlotDevice.InputIndex + 1} ({outSlotDevice.InputDisplayString})";
+                }
+                return result;
+            }
+        }
+        public event EventHandler InputSlotDisplayStringChanged;
+
         public SlotDeviceEntry(OutSlotDevice outSlotDevice, int idx)
         {
             this.outSlotDevice = outSlotDevice;
@@ -421,6 +451,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             BoundInputChanged?.Invoke(this, EventArgs.Empty);
             XInputSlotNumChanged?.Invoke(this, EventArgs.Empty);
             DisplayXInputSlotNumChanged?.Invoke(this, EventArgs.Empty);
+            InputSlotDisplayStringChanged?.Invoke(this, EventArgs.Empty);
             Dirty = false;
         }
 

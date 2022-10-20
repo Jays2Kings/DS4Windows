@@ -178,6 +178,24 @@ namespace DS4Windows
             }
         }
 
+        public class PostMapStickData
+        {
+            public bool dirty;
+            public byte LX = 128;
+            public byte LY = 128;
+            public byte RX = 128;
+            public byte RY = 128;
+
+            public void Reset()
+            {
+                dirty = false;
+                LX = 128;
+                LY = 128;
+                RX = 128;
+                RY = 128;
+            }
+        }
+
         public static Queue<DS4TimedStickAxisValue>[][] stickValueHistory = new Queue<DS4TimedStickAxisValue>[Global.TEST_PROFILE_ITEM_COUNT][]
         {
             new Queue<DS4TimedStickAxisValue>[2] { new Queue<DS4TimedStickAxisValue>(), new Queue<DS4TimedStickAxisValue>() },
@@ -200,6 +218,14 @@ namespace DS4Windows
 
         public static byte[] gyroStickX = new byte[Global.MAX_DS4_CONTROLLER_COUNT] { 128, 128, 128, 128, 128, 128, 128, 128 };
         public static byte[] gyroStickY = new byte[Global.MAX_DS4_CONTROLLER_COUNT] { 128, 128, 128, 128, 128, 128, 128, 128 };
+        //public static byte[] touchStickX = new byte[Global.MAX_DS4_CONTROLLER_COUNT] { 128, 128, 128, 128, 128, 128, 128, 128 };
+        //public static byte[] touchStickY = new byte[Global.MAX_DS4_CONTROLLER_COUNT] { 128, 128, 128, 128, 128, 128, 128, 128 };
+        public static PostMapStickData[] mapStickActionData = new PostMapStickData[Global.MAX_DS4_CONTROLLER_COUNT]
+        {
+            new PostMapStickData(), new PostMapStickData(), new PostMapStickData(),
+            new PostMapStickData(), new PostMapStickData(), new PostMapStickData(),
+            new PostMapStickData(), new PostMapStickData()
+        };
 
         // [<Device>][<AxisId>]. LX = 0, LY = 1, RX = 2, RY = 3
         public static byte[][] lastStickAxisValues = new byte[Global.TEST_PROFILE_ITEM_COUNT][]
@@ -2620,68 +2646,166 @@ namespace DS4Windows
                 MappedState.SASteeringWheelEmulationUnit = Mapping.Scale360degreeGyroAxis(device, eState, ctrl);
             }
 
-            if (imuOutMode == GyroOutMode.MouseJoystick)
+            PostMapStickData mapStickData = mapStickActionData[device];
+            if (mapStickData.dirty)
             {
-                GyroMouseStickInfo msinfo = Global.GetGyroMouseStickInfo(device);
-                if (msinfo.outputStick != GyroMouseStickInfo.OutputStick.None)
+                if (mapStickData.LX != 128 &&
+                    Math.Abs(mapStickData.LX - 128) > Math.Abs(MappedState.LX - 128))
                 {
-                    ref byte gyroTempX = ref gyroStickX[device];
-                    if (msinfo.OutputHorizontal() && gyroTempX != 128)
-                    {
-                        byte outputStickXVal = msinfo.outputStick == GyroMouseStickInfo.OutputStick.RightStick ?
-                            MappedState.RX : MappedState.LX;
-                        byte tempAxisVal = 128;
-
-                        if (outputStickXVal != 128)
-                        {
-                            tempAxisVal = Math.Abs(gyroTempX - 128) > Math.Abs(outputStickXVal - 128) ?
-                                gyroTempX : outputStickXVal;
-                        }
-                        else
-                        {
-                            tempAxisVal = gyroTempX;
-                        }
-
-                        if (msinfo.outputStick ==
-                            GyroMouseStickInfo.OutputStick.RightStick)
-                        {
-                            MappedState.RX = tempAxisVal;
-                        }
-                        else if (msinfo.outputStick ==
-                            GyroMouseStickInfo.OutputStick.LeftStick)
-                        {
-                            MappedState.LX = tempAxisVal;
-                        }
-                    }
-
-                    ref byte gyroTempY = ref gyroStickY[device];
-                    if (msinfo.OutputVertical() && gyroTempY != 128)
-                    {
-                        byte outputStickYVal = msinfo.outputStick == GyroMouseStickInfo.OutputStick.RightStick ?
-                            MappedState.RY : MappedState.LY;
-                        byte tempAxisVal = 128;
-
-                        if (outputStickYVal != 128)
-                            tempAxisVal = Math.Abs(gyroTempY - 128) > Math.Abs(outputStickYVal - 128) ?
-                                gyroTempY : outputStickYVal;
-                        else
-                            tempAxisVal = gyroTempY;
-
-                        if (msinfo.outputStick ==
-                            GyroMouseStickInfo.OutputStick.RightStick)
-                        {
-                            MappedState.RY = tempAxisVal;
-                        }
-                        else if (msinfo.outputStick ==
-                            GyroMouseStickInfo.OutputStick.LeftStick)
-                        {
-                            MappedState.LY = tempAxisVal;
-                        }
-                    }
-
-                    gyroTempX = gyroTempY = 128;
+                    MappedState.LX = mapStickData.LX;
                 }
+
+                if (mapStickData.LY != 128 &&
+                    Math.Abs(mapStickData.LY - 128) > Math.Abs(MappedState.LY - 128))
+                {
+                    MappedState.LY = mapStickData.LY;
+                }
+
+                if (mapStickData.RX != 128 &&
+                    Math.Abs(mapStickData.RX - 128) > Math.Abs(MappedState.RX - 128))
+                {
+                    MappedState.RX = mapStickData.RX;
+                }
+
+                if (mapStickData.RY != 128 &&
+                    Math.Abs(mapStickData.RY - 128) > Math.Abs(MappedState.RY - 128))
+                {
+                    MappedState.RY = mapStickData.RY;
+                }
+
+                mapStickData.Reset();
+                mapStickData.dirty = false;
             }
+
+            //if (imuOutMode == GyroOutMode.MouseJoystick)
+            //{
+            //    GyroMouseStickInfo msinfo = Global.GetGyroMouseStickInfo(device);
+            //    if (msinfo.outputStick != GyroMouseStickInfo.OutputStick.None)
+            //    {
+            //        ref byte gyroTempX = ref gyroStickX[device];
+            //        if (msinfo.OutputHorizontal() && gyroTempX != 128)
+            //        {
+            //            byte outputStickXVal = msinfo.outputStick == GyroMouseStickInfo.OutputStick.RightStick ?
+            //                MappedState.RX : MappedState.LX;
+            //            byte tempAxisVal = 128;
+
+            //            if (outputStickXVal != 128)
+            //            {
+            //                tempAxisVal = Math.Abs(gyroTempX - 128) > Math.Abs(outputStickXVal - 128) ?
+            //                    gyroTempX : outputStickXVal;
+            //            }
+            //            else
+            //            {
+            //                tempAxisVal = gyroTempX;
+            //            }
+
+            //            if (msinfo.outputStick ==
+            //                GyroMouseStickInfo.OutputStick.RightStick)
+            //            {
+            //                MappedState.RX = tempAxisVal;
+            //            }
+            //            else if (msinfo.outputStick ==
+            //                GyroMouseStickInfo.OutputStick.LeftStick)
+            //            {
+            //                MappedState.LX = tempAxisVal;
+            //            }
+            //        }
+
+            //        ref byte gyroTempY = ref gyroStickY[device];
+            //        if (msinfo.OutputVertical() && gyroTempY != 128)
+            //        {
+            //            byte outputStickYVal = msinfo.outputStick == GyroMouseStickInfo.OutputStick.RightStick ?
+            //                MappedState.RY : MappedState.LY;
+            //            byte tempAxisVal = 128;
+
+            //            if (outputStickYVal != 128)
+            //                tempAxisVal = Math.Abs(gyroTempY - 128) > Math.Abs(outputStickYVal - 128) ?
+            //                    gyroTempY : outputStickYVal;
+            //            else
+            //                tempAxisVal = gyroTempY;
+
+            //            if (msinfo.outputStick ==
+            //                GyroMouseStickInfo.OutputStick.RightStick)
+            //            {
+            //                MappedState.RY = tempAxisVal;
+            //            }
+            //            else if (msinfo.outputStick ==
+            //                GyroMouseStickInfo.OutputStick.LeftStick)
+            //            {
+            //                MappedState.LY = tempAxisVal;
+            //            }
+            //        }
+
+            //        gyroTempX = gyroTempY = 128;
+            //    }
+            //}
+
+            //TouchpadOutMode tempMode = Global.TouchOutMode[device];
+            //if (tempMode == TouchpadOutMode.MouseJoystick)
+            //{
+            //    TouchMouseStickInfo msinfo = Global.GetTouchMouseStickInfo(device);
+            //    if (msinfo.outputStick != TouchMouseStickInfo.OutputStick.None)
+            //    {
+            //        ref byte touchTempX = ref touchStickX[device];
+            //        if (msinfo.OutputHorizontal() && touchTempX != 128)
+            //        //if (touchTempX != 128)
+            //        {
+            //            byte outputStickXVal = msinfo.outputStick == TouchMouseStickInfo.OutputStick.RightStick ?
+            //                MappedState.RX : MappedState.LX;
+            //            byte tempAxisVal = 128;
+
+            //            if (outputStickXVal != 128)
+            //            {
+            //                tempAxisVal = Math.Abs(touchTempX - 128) > Math.Abs(outputStickXVal - 128) ?
+            //                    touchTempX : outputStickXVal;
+            //            }
+            //            else
+            //            {
+            //                tempAxisVal = touchTempX;
+            //            }
+
+            //            if (msinfo.outputStick ==
+            //                TouchMouseStickInfo.OutputStick.RightStick)
+            //            {
+            //                MappedState.RX = tempAxisVal;
+            //            }
+            //            else if (msinfo.outputStick ==
+            //                TouchMouseStickInfo.OutputStick.LeftStick)
+            //            {
+            //                MappedState.LX = tempAxisVal;
+            //            }
+            //        }
+
+            //        ref byte touchTempY = ref touchStickY[device];
+            //        if (msinfo.OutputVertical() && touchTempY != 128)
+            //        //if (touchTempY != 128)
+            //        {
+            //            byte outputStickYVal = msinfo.outputStick == TouchMouseStickInfo.OutputStick.RightStick ?
+            //                MappedState.RY : MappedState.LY;
+            //            //byte outputStickYVal = MappedState.RY;
+            //            byte tempAxisVal = 128;
+
+            //            if (outputStickYVal != 128)
+            //                tempAxisVal = Math.Abs(touchTempY - 128) > Math.Abs(outputStickYVal - 128) ?
+            //                    touchTempY : outputStickYVal;
+            //            else
+            //                tempAxisVal = touchTempY;
+
+            //            if (msinfo.outputStick ==
+            //                TouchMouseStickInfo.OutputStick.RightStick)
+            //            {
+            //                MappedState.RY = tempAxisVal;
+            //            }
+            //            else if (msinfo.outputStick ==
+            //                TouchMouseStickInfo.OutputStick.LeftStick)
+            //            {
+            //                MappedState.LY = tempAxisVal;
+            //            }
+            //        }
+
+            //        touchTempX = touchTempY = 128;
+            //    }
+            //}
 
             calculateFinalMouseMovement(ref tempMouseDeltaX, ref tempMouseDeltaY,
                 out mouseDeltaX, out mouseDeltaY);
@@ -2699,6 +2823,7 @@ namespace DS4Windows
                 GyroMouseStickInfo msinfo = Global.GetGyroMouseStickInfo(device);
                 if (msinfo.outputStick != GyroMouseStickInfo.OutputStick.None)
                 {
+                    PostMapStickData mapStickData = mapStickActionData[device];
                     ref byte gyroTempX = ref gyroStickX[device];
                     if (msinfo.OutputHorizontal() && gyroTempX != 128)
                     {
@@ -2720,10 +2845,14 @@ namespace DS4Windows
                         if (msinfo.outputStick == GyroMouseStickInfo.OutputStick.RightStick)
                         {
                             MappedState.RX = tempAxisVal;
+                            mapStickData.RX = tempAxisVal;
+                            mapStickData.dirty = true;
                         }
                         else if (msinfo.outputStick == GyroMouseStickInfo.OutputStick.LeftStick)
                         {
                             MappedState.LX = tempAxisVal;
+                            mapStickData.LX = tempAxisVal;
+                            mapStickData.dirty = true;
                         }
                     }
 
@@ -2743,10 +2872,14 @@ namespace DS4Windows
                         if (msinfo.outputStick == GyroMouseStickInfo.OutputStick.RightStick)
                         {
                             MappedState.RY = tempAxisVal;
+                            mapStickData.RY = tempAxisVal;
+                            mapStickData.dirty = true;
                         }
                         else if (msinfo.outputStick == GyroMouseStickInfo.OutputStick.LeftStick)
                         {
                             MappedState.LY = tempAxisVal;
+                            mapStickData.LX = tempAxisVal;
+                            mapStickData.dirty = true;
                         }
                     }
 

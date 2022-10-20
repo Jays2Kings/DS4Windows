@@ -27,6 +27,7 @@ namespace DS4WinWPF.DS4Control
             Bound = 1,
         }
 
+        public const int INPUT_INDEX_DEFAULT = -1;
         private AttachedStatus attachedStatus;
         private OutputDevice outputDevice;
         private ReserveStatus reserveStatus;
@@ -35,6 +36,20 @@ namespace DS4WinWPF.DS4Control
         private OutContType currentType;
         private int index;
         public int Index => index;
+
+        private int inputIndex = INPUT_INDEX_DEFAULT;
+        public int InputIndex
+        {
+            get => inputIndex;
+            set => inputIndex = value;
+        }
+
+        private string inputDisplayString = string.Empty;
+        public string InputDisplayString
+        {
+            get => inputDisplayString;
+            set => inputDisplayString = value;
+        }
 
         /// <summary>
         /// Connection status of virtual output controller
@@ -118,11 +133,13 @@ namespace DS4WinWPF.DS4Control
             }
         }
 
-        public void AttachedDevice(OutputDevice outputDevice, OutContType contType)
+        public void AttachedDevice(OutputDevice outputDevice, OutContType contType, int inIdx, string inDisplayString)
         {
             this.outputDevice = outputDevice;
             attachedStatus = AttachedStatus.Attached;
             currentType = contType;
+            inputIndex = inIdx;
+            inputDisplayString = inDisplayString;
             //desiredType = contType;
         }
 
@@ -138,6 +155,9 @@ namespace DS4WinWPF.DS4Control
                 {
                     PermanentType = OutContType.None;
                 }
+
+                inputIndex = INPUT_INDEX_DEFAULT;
+                inputDisplayString = string.Empty;
             }
         }
 

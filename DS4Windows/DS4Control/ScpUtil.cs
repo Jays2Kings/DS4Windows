@@ -6050,7 +6050,7 @@ namespace DS4Windows
                     m_Xdoc.SelectSingleNode("/" + rootname + "/TouchpadMouseStick");
                 touchMStickGroup = xmlTouchMStickSmoothingElement != null;
 
-                if (touchMStickGroup)
+                if (touchMStickGroup && xmlTouchMStickSmoothingElement.HasChildNodes)
                 {
                     //try
                     //{
@@ -6181,7 +6181,7 @@ namespace DS4Windows
                         xmlTouchMStickSmoothingElement.SelectSingleNode("SmoothingSettings");
                     stickSmoothingGroup = xmlStickSmoothingElement != null;
 
-                    if (stickSmoothingGroup)
+                    if (stickSmoothingGroup && xmlStickSmoothingElement.HasChildNodes)
                     {
                         //try
                         //{
@@ -6205,7 +6205,7 @@ namespace DS4Windows
                         try
                         {
                             Item = xmlTouchMStickSmoothingElement.SelectSingleNode("SmoothingMinCutoff");
-                            if (double.TryParse(Item.InnerText, out double temp))
+                            if (double.TryParse(Item?.InnerText ?? "", out double temp))
                             {
                                 touchMStickInfo[device].minCutoff = Math.Clamp(temp, 0.0, 100.0);
                             }
@@ -6215,7 +6215,7 @@ namespace DS4Windows
                         try
                         {
                             Item = xmlTouchMStickSmoothingElement.SelectSingleNode("SmoothingBeta");
-                            if (double.TryParse(Item.InnerText, out double temp))
+                            if (double.TryParse(Item?.InnerText ?? "", out double temp))
                             {
                                 touchMStickInfo[device].beta = Math.Clamp(temp, 0.0, 1.0);
                             }

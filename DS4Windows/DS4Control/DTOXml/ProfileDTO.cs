@@ -6,6 +6,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 using DS4Windows;
+using DS4Windows.StickModifiers;
 using static DS4Windows.Mouse;
 
 namespace DS4WinWPF.DS4Control.DTOXml
@@ -1275,6 +1276,12 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
+        [XmlElement("TouchpadMouseStick")]
+        public TouchpadMouseStickSerializer TouchpadMouseStickSettings
+        {
+            get; set;
+        }
+
         [XmlElement("TouchpadButtonMode")]
         public TouchButtonActivationMode TouchpadButtonMode
         {
@@ -1605,6 +1612,29 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 MaxZoneY = source.touchpadAbsMouse[deviceIndex].maxZoneY,
                 SnapToCenter = source.touchpadAbsMouse[deviceIndex].snapToCenter,
             };
+
+            TouchpadMouseStickSettings = new TouchpadMouseStickSerializer()
+            {
+                DeadZone = source.touchMStickInfo[deviceIndex].deadZone,
+                MaxZone = source.touchMStickInfo[deviceIndex].maxZone,
+                OutputStick = source.touchMStickInfo[deviceIndex].outputStick,
+                OutputStickAxes = source.touchMStickInfo[deviceIndex].outputStickDir,
+                AntiDeadX = source.touchMStickInfo[deviceIndex].antiDeadX,
+                AntiDeadY = source.touchMStickInfo[deviceIndex].antiDeadY,
+                Invert = source.touchMStickInfo[deviceIndex].inverted,
+                MaxOutput = source.touchMStickInfo[deviceIndex].maxOutput,
+                MaxOutputEnabled = source.touchMStickInfo[deviceIndex].maxOutputEnabled,
+                VerticalScale = source.touchMStickInfo[deviceIndex].vertScale,
+                OutputCurve = source.touchMStickInfo[deviceIndex].outputCurve,
+                RotationRad = source.touchMStickInfo[deviceIndex].rotationRad,
+                SmoothingSettings = new TouchpadMouseStickSerializer.SmoothingGroupSerializer()
+                {
+                    SmoothingMethod = source.touchMStickInfo[deviceIndex].smoothingMethod,
+                    SmoothingMinCutoff = source.touchMStickInfo[deviceIndex].minCutoff,
+                    SmoothingBeta = source.touchMStickInfo[deviceIndex].beta,
+                },
+            };
+
             TouchpadButtonMode = source.touchpadButtonMode[deviceIndex];
 
             OutputContDevice = source.outputDevType[deviceIndex];
@@ -1959,7 +1989,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
                         destination.SZSens[deviceIndex] = 1.0;
                     }
                 }
-                catch {}
+                catch { }
             }
 
             lightInfo.chargingType = ChargingType;
@@ -2131,6 +2161,31 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 destination.touchpadAbsMouse[deviceIndex].maxZoneX = TouchpadAbsMouseSettings.MaxZoneX;
                 destination.touchpadAbsMouse[deviceIndex].maxZoneY = TouchpadAbsMouseSettings.MaxZoneY;
                 destination.touchpadAbsMouse[deviceIndex].snapToCenter = TouchpadAbsMouseSettings.SnapToCenter;
+            }
+
+            if (TouchpadMouseStickSettings != null)
+            {
+                destination.touchMStickInfo[deviceIndex].deadZone = TouchpadMouseStickSettings.DeadZone;
+                destination.touchMStickInfo[deviceIndex].maxZone = TouchpadMouseStickSettings.MaxZone;
+                destination.touchMStickInfo[deviceIndex].outputStick = TouchpadMouseStickSettings.OutputStick;
+                destination.touchMStickInfo[deviceIndex].outputStickDir = TouchpadMouseStickSettings.OutputStickAxes;
+                destination.touchMStickInfo[deviceIndex].antiDeadX = TouchpadMouseStickSettings.AntiDeadX;
+                destination.touchMStickInfo[deviceIndex].antiDeadY = TouchpadMouseStickSettings.AntiDeadY;
+                destination.touchMStickInfo[deviceIndex].inverted = TouchpadMouseStickSettings.Invert;
+                destination.touchMStickInfo[deviceIndex].maxOutput = TouchpadMouseStickSettings.MaxOutput;
+                destination.touchMStickInfo[deviceIndex].maxOutputEnabled = TouchpadMouseStickSettings.MaxOutputEnabled;
+                destination.touchMStickInfo[deviceIndex].vertScale = TouchpadMouseStickSettings.VerticalScale;
+                destination.touchMStickInfo[deviceIndex].outputCurve = TouchpadMouseStickSettings.OutputCurve;
+                destination.touchMStickInfo[deviceIndex].rotationRad = TouchpadMouseStickSettings.RotationRad;
+                if (TouchpadMouseStickSettings.SmoothingSettings != null)
+                {
+                    TouchpadMouseStickSerializer.SmoothingGroupSerializer tempSmoothSettings =
+                        TouchpadMouseStickSettings.SmoothingSettings;
+
+                    destination.touchMStickInfo[deviceIndex].smoothingMethod = tempSmoothSettings.SmoothingMethod;
+                    destination.touchMStickInfo[deviceIndex].minCutoff = tempSmoothSettings.SmoothingMinCutoff;
+                    destination.touchMStickInfo[deviceIndex].beta = tempSmoothSettings.SmoothingBeta;
+                }
             }
 
             destination.touchpadButtonMode[deviceIndex] = TouchpadButtonMode;
@@ -2389,6 +2444,20 @@ namespace DS4WinWPF.DS4Control.DTOXml
             //SXOutputCurveMode +Done
             //SZOutputCurveMode +Done
             //OutputContDevice +Done
+        }
+
+        public static XmlAttributeOverrides GetAttributeOverrides()
+        {
+            XmlAttributeOverrides xmlOverrides = new XmlAttributeOverrides();
+
+            XmlAttributes xmlAttribs = new XmlAttributes();
+            xmlAttribs.XmlType = new XmlTypeAttribute("TouchMouseStickInfo.OutputStick");
+            xmlOverrides.Add(typeof(TouchMouseStickInfo.OutputStick), xmlAttribs);
+
+            xmlAttribs = new XmlAttributes();
+            xmlAttribs.XmlType = new XmlTypeAttribute("TouchMouseStickInfo.OutputStickAxes");
+            xmlOverrides.Add(typeof(TouchMouseStickInfo.OutputStickAxes), xmlAttribs);
+            return xmlOverrides;
         }
     }
 
@@ -2798,6 +2867,154 @@ namespace DS4WinWPF.DS4Control.DTOXml
         {
             get => _snapToCenter.ToString();
             set => _snapToCenter = XmlDataUtilities.StrToBool(value);
+        }
+    }
+
+    public class TouchpadMouseStickSerializer
+    {
+        public class SmoothingGroupSerializer
+        {
+            private TouchMouseStickInfo.SmoothingMethod _smoothMethod =
+                TouchMouseStickInfo.SmoothingMethod.None;
+            [XmlElement("SmoothingMethod")]
+            public TouchMouseStickInfo.SmoothingMethod SmoothingMethod
+            {
+                get => _smoothMethod;
+                set => _smoothMethod = value;
+            }
+
+            private double _smoothingMinCutoff =
+                TouchMouseStickInfo.DEFAULT_MINCUTOFF;
+            [XmlElement("SmoothingMinCutoff")]
+            public double SmoothingMinCutoff
+            {
+                get => _smoothingMinCutoff;
+                set => _smoothingMinCutoff = value;
+            }
+
+            private double _smoothingBeta =
+                TouchMouseStickInfo.DEFAULT_BETA;
+            [XmlElement("SmoothingBeta")]
+            public double SmoothingBeta
+            {
+                get => _smoothingBeta;
+                set => _smoothingBeta = value;
+            }
+        }
+
+        private int _deadZone = 0;
+        [XmlElement("DeadZone")]
+        public int DeadZone
+        {
+            get => _deadZone;
+            set => _deadZone = value;
+        }
+
+        private int _maxZone = TouchMouseStickInfo.MAX_ZONE_DEFAULT;
+        [XmlElement("MaxZone")]
+        public int MaxZone
+        {
+            get => _maxZone;
+            set => _maxZone = value;
+        }
+
+        private TouchMouseStickInfo.OutputStick _outputStick =
+            TouchMouseStickInfo.DEFAULT_OUTPUT_STICK;
+        [XmlElement("OutputStick")]
+        public TouchMouseStickInfo.OutputStick OutputStick
+        {
+            get => _outputStick;
+            set => _outputStick = value;
+        }
+
+        private TouchMouseStickInfo.OutputStickAxes _outputStickAxes =
+            TouchMouseStickInfo.DEFAULT_OUTPUT_STICK_AXES;
+        [XmlElement("OutputStickAxes")]
+        public TouchMouseStickInfo.OutputStickAxes OutputStickAxes
+        {
+            get => _outputStickAxes;
+            set => _outputStickAxes = value;
+        }
+
+        private double _antiDeadZoneX = TouchMouseStickInfo.ANTI_DEADZONE_DEFAULT;
+        [XmlElement("AntiDeadX")]
+        public double AntiDeadX
+        {
+            get => _antiDeadZoneX;
+            set => _antiDeadZoneX = value;
+        }
+
+        private double _antiDeadZoneY = TouchMouseStickInfo.ANTI_DEADZONE_DEFAULT;
+        [XmlElement("AntiDeadY")]
+        public double AntiDeadY
+        {
+            get => _antiDeadZoneY;
+            set => _antiDeadZoneY = value;
+        }
+
+        private uint _invert;
+        [XmlElement("Invert")]
+        public uint Invert
+        {
+            get => _invert;
+            set => _invert = value;
+        }
+
+        private double _maxOutput = TouchMouseStickInfo.MAX_ZONE_DEFAULT;
+        [XmlElement("MaxOutput")]
+        public double MaxOutput
+        {
+            get => _maxOutput;
+            set => _maxOutput = value;
+        }
+
+        private bool _maxOutputEnabled;
+        [XmlElement("MaxOutputEnabled")]
+        public bool MaxOutputEnabled
+        {
+            get => _maxOutputEnabled;
+            set => _maxOutputEnabled = value;
+        }
+
+        private int _verticalScale = 100;
+        [XmlElement("VerticalScale")]
+        public int VerticalScale
+        {
+            get => _verticalScale;
+            set => _verticalScale = value;
+        }
+
+        private StickOutCurve.Curve _outputCurve = TouchMouseStickInfo.OUTPUT_CURVE_DEFAULT;
+        [XmlElement("OutputCurve")]
+        public StickOutCurve.Curve OutputCurve
+        {
+            get => _outputCurve;
+            set => _outputCurve = value;
+        }
+
+        private double _rotationRad = TouchMouseStickInfo.ANG_RAD_DEFAULT;
+        [XmlElement("Rotation")]
+        public int Rotation
+        {
+            get => (int)(_rotationRad / 180 * Math.PI);
+            set => _rotationRad = value * Math.PI / 180.0;
+        }
+
+        [XmlIgnore]
+        public double RotationRad
+        {
+            get => _rotationRad;
+            set => _rotationRad = value;
+        }
+
+        [XmlElement("SmoothingSettings")]
+        public SmoothingGroupSerializer SmoothingSettings
+        {
+            get; set;
+        }
+        public bool ShouldSerializeSmoothingSettings()
+        {
+            return SmoothingSettings != null;
         }
     }
 

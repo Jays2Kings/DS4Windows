@@ -81,7 +81,7 @@ namespace DS4Windows.DS4Control
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.Multiply), (ushort)KeyboardKey.KeypadMultiply);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.Subtract), (ushort)KeyboardKey.KeypadSubtract);
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.Add), (ushort)KeyboardKey.KeypadAdd);
-                mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.Separator), (ushort)KeyboardKey.KeypadDecimal);
+                mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.Decimal), (ushort)KeyboardKey.KeypadDecimal);
                 //mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.Return), (ushort)KeyboardKey.KeypadEnter);
 
                 mappingPairs.Add((ushort)KeyInterop.VirtualKeyFromKey(Key.Escape), (ushort)KeyboardKey.Escape);

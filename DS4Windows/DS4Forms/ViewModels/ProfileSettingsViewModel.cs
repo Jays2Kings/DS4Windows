@@ -2818,32 +2818,50 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         private void ProfileSettingsViewModel_TouchMouseStickTrackballFrictionChanged(object sender, EventArgs e)
         {
-            App.rootHub.touchPad[device]?.ResetTouchStickAccel(TouchMouseStickTrackballFriction);
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                App.rootHub.touchPad[device]?.ResetTouchStickAccel(TouchMouseStickTrackballFriction);
+            }
         }
 
         private void ProfileSettingsViewModel_GyroOutModeIndexChanging(object sender, EventArgs e)
         {
-            App.rootHub.touchPad[device]?.Reset();
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                App.rootHub.touchPad[device]?.Reset();
+            }
         }
 
         private void ProfileSettingsViewModel_TouchpadOutputIndexChanging(object sender, EventArgs e)
         {
-            App.rootHub.touchPad[device]?.Reset();
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                App.rootHub.touchPad[device]?.Reset();
+            }
         }
 
         private void ProfileSettingsViewModel_TouchpadOutputIndexChanged(object sender, EventArgs e)
         {
-            App.rootHub.touchPad[device]?.PostSetup();
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                App.rootHub.touchPad[device]?.PostSetup();
+            }
         }
 
         private void ProfileSettingsViewModel_LSDeltaAccelEnabledChanged(object sender, EventArgs e)
         {
-            Mapping.deltaAccelProcessors[device].LSProcessor.Reset();
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                Mapping.deltaAccelProcessors[device].LSProcessor.Reset();
+            }
         }
 
         private void ProfileSettingsViewModel_RSDeltaAccelEnabledChanged(object sender, EventArgs e)
         {
-            Mapping.deltaAccelProcessors[device].RSProcessor.Reset();
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                Mapping.deltaAccelProcessors[device].RSProcessor.Reset();
+            }
         }
 
         private void ProfileSettingsViewModel_GyroMouseStickSmoothMethodIndexChanged(object sender, EventArgs e)

@@ -702,12 +702,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
                 GyroOutMode current = Global.GyroOutputMode[device];
                 if (temp == current) return;
-                GyroOutModeIndexChanging?.Invoke(this, EventArgs.Empty);
+                //GyroOutModeIndexChanging?.Invoke(this, EventArgs.Empty);
+                GyroOutModeIndexChanging?.Invoke(this, current, temp);
                 Global.GyroOutputMode[device] = temp;
                 GyroOutModeIndexChanged?.Invoke(this, EventArgs.Empty);
             }
         }
-        public event EventHandler GyroOutModeIndexChanging;
+        //public event EventHandler GyroOutModeIndexChanging;
+        public event PropertyChangingHandler<GyroOutMode> GyroOutModeIndexChanging;
         public event EventHandler GyroOutModeIndexChanged;
 
         public OutContType ContType
@@ -1751,12 +1753,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
                 TouchpadOutMode current = Global.TouchOutMode[device];
                 if (temp == current) return;
-                TouchpadOutputIndexChanging?.Invoke(this, EventArgs.Empty);
+                //TouchpadOutputIndexChanging?.Invoke(this, EventArgs.Empty);
+                TouchpadOutputIndexChanging?.Invoke(this, current, temp);
                 Global.TouchOutMode[device] = temp;
                 TouchpadOutputIndexChanged?.Invoke(this, EventArgs.Empty);
             }
         }
-        public event EventHandler TouchpadOutputIndexChanging;
+        //public event EventHandler TouchpadOutputIndexChanging;
+        public event PropertyChangingHandler<TouchpadOutMode> TouchpadOutputIndexChanging;
         public event EventHandler TouchpadOutputIndexChanged;
 
         public bool TouchSenExists
@@ -2818,32 +2822,50 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         private void ProfileSettingsViewModel_TouchMouseStickTrackballFrictionChanged(object sender, EventArgs e)
         {
-            App.rootHub.touchPad[device]?.ResetTouchStickAccel(TouchMouseStickTrackballFriction);
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                App.rootHub.touchPad[device]?.ResetTouchStickAccel(TouchMouseStickTrackballFriction);
+            }
         }
 
-        private void ProfileSettingsViewModel_GyroOutModeIndexChanging(object sender, EventArgs e)
+        private void ProfileSettingsViewModel_GyroOutModeIndexChanging(object sender, GyroOutMode oldValue, GyroOutMode newValue)
         {
-            App.rootHub.touchPad[device]?.Reset();
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                App.rootHub.touchPad[device]?.Reset();
+            }
         }
 
-        private void ProfileSettingsViewModel_TouchpadOutputIndexChanging(object sender, EventArgs e)
+        private void ProfileSettingsViewModel_TouchpadOutputIndexChanging(object sender, TouchpadOutMode oldValue, TouchpadOutMode newValue)
         {
-            App.rootHub.touchPad[device]?.Reset();
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                App.rootHub.touchPad[device]?.Reset();
+            }
         }
 
         private void ProfileSettingsViewModel_TouchpadOutputIndexChanged(object sender, EventArgs e)
         {
-            App.rootHub.touchPad[device]?.PostSetup();
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                App.rootHub.touchPad[device]?.PostSetup();
+            }
         }
 
         private void ProfileSettingsViewModel_LSDeltaAccelEnabledChanged(object sender, EventArgs e)
         {
-            Mapping.deltaAccelProcessors[device].LSProcessor.Reset();
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                Mapping.deltaAccelProcessors[device].LSProcessor.Reset();
+            }
         }
 
         private void ProfileSettingsViewModel_RSDeltaAccelEnabledChanged(object sender, EventArgs e)
         {
-            Mapping.deltaAccelProcessors[device].RSProcessor.Reset();
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                Mapping.deltaAccelProcessors[device].RSProcessor.Reset();
+            }
         }
 
         private void ProfileSettingsViewModel_GyroMouseStickSmoothMethodIndexChanged(object sender, EventArgs e)

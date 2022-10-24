@@ -19,7 +19,7 @@
             "* Implementation of Touch Mouse Joystick",
             "* Fixed log message generation when virtual pad plugin fails",
             "* Abstract post action stick axis state changing for use with Mouse Joystick routines",
-            "* Display some input device information in OUtput Slots section",
+            "* Display some input device information in Output Slots section",
             "* Added some device number checks in ProfileSettingsVM. Avoids test index",
             "* Fixed Keypad Decimal mapping for FakerInput",
             "* Fixes for virtual DS4 output feedback support from ViGEm project. Contribution by **Nefarius**",

@@ -1,9 +1,25 @@
 {
-  "latest_version": "3.1.8",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 8},
-  "updated_at": "2022-10-24T21:05:14+0000",
+  "latest_version": "3.1.9",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 9},
+  "updated_at": "	2022-10-25T21:39:41+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.1.9",
+      "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 9},
+      "base_header": "Version 3.1.9",
+      "release_date": "2022-10-25T21:39:41+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.1.9",
+          "log_text": ["* Updated ViGEm.NET libraries. Includes check for IOCTL_DS4_AWAIT_OUTPUT_AVAILABLE status. Contribution by **Nefarius**",
+            "* Added check that AwaitBufferThread has reached inner loop before attempting to Interrupt thread",
+            "* Fixed Gyro Mouse Joystick output for vertical axes"],
+          "updated_at": "2022-10-25T21:39:41+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.1.8",
       "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 8},

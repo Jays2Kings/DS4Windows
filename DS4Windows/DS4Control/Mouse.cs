@@ -649,13 +649,13 @@ namespace DS4Windows
                 if (msinfo.outputStick == GyroMouseStickInfo.OutputStick.LeftStick &&
                     Math.Abs(axisYOut - 128) > Math.Abs(tempMapStickData.LY - 128))
                 {
-                    tempMapStickData.LX = axisYOut;
+                    tempMapStickData.LY = axisYOut;
                     tempMapStickData.dirty = true;
                 }
                 else if (msinfo.outputStick == GyroMouseStickInfo.OutputStick.RightStick &&
                     Math.Abs(axisYOut - 128) > Math.Abs(tempMapStickData.RY - 128))
                 {
-                    tempMapStickData.RX = axisYOut;
+                    tempMapStickData.RY = axisYOut;
                     tempMapStickData.dirty = true;
                 }
 

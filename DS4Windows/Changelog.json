@@ -14,7 +14,8 @@
           "code": "en",
           "header": "Version 3.1.9",
           "log_text": ["* Updated ViGEm.NET libraries. Includes check for IOCTL_DS4_AWAIT_OUTPUT_AVAILABLE status. Contribution by **Nefarius**",
-            "* Added check that AwaitBufferThread has reached inner loop before attemtping to Interrupt thread"],
+            "* Added check that AwaitBufferThread has reached inner loop before attempting to Interrupt thread",
+            "* Fixed Gyro Mouse Joystick output for vertical axes"],
           "updated_at": "2022-10-25T21:39:41+0000"
         }
       ]

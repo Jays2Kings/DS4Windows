@@ -2878,7 +2878,7 @@ namespace DS4Windows
                         else if (msinfo.outputStick == GyroMouseStickInfo.OutputStick.LeftStick)
                         {
                             MappedState.LY = tempAxisVal;
-                            mapStickData.LX = tempAxisVal;
+                            mapStickData.LY = tempAxisVal;
                             mapStickData.dirty = true;
                         }
                     }

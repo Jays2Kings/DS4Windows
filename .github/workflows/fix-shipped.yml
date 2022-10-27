@@ -19,5 +19,5 @@ jobs:
             This issues' topic has been resolved and an update has been published. 
             Please check out the Releases page for a new version.
           close-issue: true
-          lock-issue: true
+          lock-issue: false
           issue-lock-reason: 'off-topic'

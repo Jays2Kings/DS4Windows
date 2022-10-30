@@ -2195,7 +2195,7 @@ namespace DS4Windows
             Mapping.deltaAccelProcessors[ind].RSProcessor.Reset();
 
             // Reset some elements of current Mouse instance
-            touchPad[ind].Reset();
+            touchPad[ind]?.Reset();
         }
 
         public void TouchPadOn(int ind, DS4Device device)

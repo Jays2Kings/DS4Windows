@@ -259,13 +259,22 @@ namespace DS4Windows
                 double lxUnit = Math.Cos(angleRad);
                 double lyUnit = Math.Sin(angleRad);
                 double deadRadius = absMouseInfo.antiRadius;
-                double midX = ((absMouseInfo.maxX - absMouseInfo.minX) / 2.0) + absMouseInfo.minX;
-                double midY = ((absMouseInfo.maxY - absMouseInfo.minY) / 2.0) + absMouseInfo.minY;
-                //Trace.WriteLine($"MIDY: {midY}");
-                double tempx = lxUnit >= 0.0 ? ((absMouseInfo.maxX - midX) * (Math.Abs(lxUnit) * deadRadius) + midX) :
-                    ((absMouseInfo.minX - midX) * (Math.Abs(lxUnit) * deadRadius) + midX);
-                double tempy = lyUnit >= 0.0 ? ((absMouseInfo.minY - midY) * (Math.Abs(lyUnit) * deadRadius) + midY) :
-                    ((absMouseInfo.maxY - midY) * (Math.Abs(lyUnit) * deadRadius) + midY);
+
+                //double midX = ((absMouseInfo.maxX - absMouseInfo.minX) / 2.0) + absMouseInfo.minX;
+                //double midY = ((absMouseInfo.maxY - absMouseInfo.minY) / 2.0) + absMouseInfo.minY;
+                ////Trace.WriteLine($"MIDY: {midY}");
+                //double tempx = lxUnit >= 0.0 ? ((absMouseInfo.maxX - midX) * (Math.Abs(lxUnit) * deadRadius) + midX) :
+                //    ((absMouseInfo.minX - midX) * (Math.Abs(lxUnit) * deadRadius) + midX);
+                //double tempy = lyUnit >= 0.0 ? ((absMouseInfo.minY - midY) * (Math.Abs(lyUnit) * deadRadius) + midY) :
+                //    ((absMouseInfo.maxY - midY) * (Math.Abs(lyUnit) * deadRadius) + midY);
+
+                double xdiff = lxUnit * deadRadius;
+                double ydiff = lyUnit * deadRadius;
+                double tempx = (absMouseInfo.width / 2.0) * xdiff + absMouseInfo.xcenter;
+                double tempy = (absMouseInfo.height / 2.0) * ydiff + absMouseInfo.ycenter;
+
+                tempx = Math.Clamp(tempx, 0.0, 1.0);
+                tempy = Math.Clamp(tempy, 0.0, 1.0);
 
                 releaseX = tempx;
                 releaseY = tempy;
@@ -2907,6 +2916,8 @@ namespace DS4Windows
             {
                 if (absMouseOut.Dirty)
                 {
+                    absMouseOut.x = Math.Clamp(absMouseOut.x, 0.0, 1.0);
+                    absMouseOut.y = Math.Clamp(absMouseOut.y, 0.0, 1.0);
                     outputKBMHandler.MoveAbsoluteMouse(absMouseOut.x, absMouseOut.y);
                 }
                 else if (absMouseOut.previousDirty)
@@ -4827,17 +4838,36 @@ namespace DS4Windows
             double minOut = 0.5;
             double midOut = 0.5;
             double maxFullOut = 0.5;
+            double widthMid = 0.0;
+            double heightMid = 0.0;
+            double outputMid = 0.0;
+            double dirCenter = 0.0;
             if (!vertical)
             {
-                maxFullOut = positive ? buttonAbsMouseInfo.maxX : buttonAbsMouseInfo.minX;
-                minOut = buttonAbsMouseInfo.minX;
-                midOut = ((buttonAbsMouseInfo.maxX - minOut) / 2.0) + minOut;
+                widthMid = buttonAbsMouseInfo.width / 2.0;
+                outputMid = widthMid;
+                dirCenter = buttonAbsMouseInfo.xcenter;
+
+                maxFullOut = positive ? dirCenter + widthMid: dirCenter - widthMid;
+                minOut = positive ? dirCenter - widthMid : dirCenter + widthMid;
+                midOut = dirCenter;
+                //maxFullOut = positive ? buttonAbsMouseInfo.maxX : buttonAbsMouseInfo.minX;
+                //minOut = buttonAbsMouseInfo.minX;
+                //midOut = ((buttonAbsMouseInfo.maxX - minOut) / 2.0) + minOut;
             }
             else
             {
-                maxFullOut = positive ? buttonAbsMouseInfo.maxY : buttonAbsMouseInfo.minY;
-                minOut = buttonAbsMouseInfo.minY;
-                midOut = ((buttonAbsMouseInfo.maxY - minOut) / 2.0) + minOut;
+                heightMid = buttonAbsMouseInfo.height / 2.0;
+                outputMid = heightMid;
+                dirCenter = buttonAbsMouseInfo.ycenter;
+
+                maxFullOut = positive ? dirCenter + heightMid: dirCenter - heightMid;
+                minOut = positive ? dirCenter - heightMid: dirCenter + heightMid;
+                midOut = dirCenter;
+
+                //maxFullOut = positive ? buttonAbsMouseInfo.maxY : buttonAbsMouseInfo.minY;
+                //minOut = buttonAbsMouseInfo.minY;
+                //midOut = ((buttonAbsMouseInfo.maxY - minOut) / 2.0) + minOut;
             }
 
             result = midOut;
@@ -4860,6 +4890,7 @@ namespace DS4Windows
 
                                 //Trace.WriteLine($"LXUNIT: {cState.LXUnit}");
                                 result = (maxFullOut - midOut) * diff + midOut;
+                                //result = outputMid * (diff * -1.0) + buttonAbsMouseInfo.xcenter;
                                 transformed = true;
                             }
                             //else if (cState.LX == 128)
@@ -4886,6 +4917,7 @@ namespace DS4Windows
 
                                 //Trace.WriteLine($"LXUNIT: {cState.LXUnit}");
                                 result = (maxFullOut - midOut) * diff + midOut;
+                                //result = outputMid * diff + buttonAbsMouseInfo.xcenter;
                                 transformed = true;
                             }
                             //else if (cState.LX == 128)
@@ -4910,6 +4942,7 @@ namespace DS4Windows
                                 }
 
                                 result = (maxFullOut - midOut) * diff + midOut;
+                                //result = outputMid * (diff * -1.0) + buttonAbsMouseInfo.ycenter;
                                 //Trace.WriteLine($"RES: {result} | MAXFULL: {maxFullOut} | DIFF: {diff}");
                                 transformed = true;
                             }
@@ -4935,6 +4968,7 @@ namespace DS4Windows
                                 }
 
                                 result = (maxFullOut - midOut) * diff + midOut;
+                                //result = outputMid * diff + buttonAbsMouseInfo.ycenter;
                                 transformed = true;
                             }
                             //else
@@ -4953,7 +4987,7 @@ namespace DS4Windows
                         {
                             if (cState.RX < 128)
                             {
-                                double diff = (cState.RX - 128.0) / 127.0;
+                                double diff = -(cState.RX - 128.0) / 127.0;
                                 if (calculateRadiusAnti)
                                 {
                                     double anti = buttonAbsMouseInfo.antiRadius * cState.RXUnit;
@@ -4961,6 +4995,7 @@ namespace DS4Windows
                                 }
 
                                 result = (maxFullOut - midOut) * diff + midOut;
+                                //result = outputMid * (diff * -1.0) + buttonAbsMouseInfo.xcenter;
                                 transformed = true;
                             }
                         }
@@ -4978,6 +5013,7 @@ namespace DS4Windows
                                 }
 
                                 result = (maxFullOut - midOut) * diff + midOut;
+                                //result = outputMid * diff + buttonAbsMouseInfo.xcenter;
                                 transformed = true;
                             }
                         }
@@ -4987,7 +5023,7 @@ namespace DS4Windows
                         {
                             if (cState.RY < 128)
                             {
-                                double diff = (cState.RY - 128.0) / 127.0;
+                                double diff = -(cState.RY - 128.0) / 127.0;
                                 if (calculateRadiusAnti)
                                 {
                                     double anti = buttonAbsMouseInfo.antiRadius * cState.RYUnit;
@@ -4995,6 +5031,7 @@ namespace DS4Windows
                                 }
 
                                 result = (maxFullOut - midOut) * diff + midOut;
+                                //result = outputMid * (diff * -1.0) + buttonAbsMouseInfo.ycenter;
                                 transformed = true;
                             }
                         }
@@ -5012,6 +5049,7 @@ namespace DS4Windows
                                 }
 
                                 result = (maxFullOut - midOut) * diff + midOut;
+                                //result = outputMid * diff + buttonAbsMouseInfo.ycenter;
                                 transformed = true;
                             }
                         }
@@ -5024,27 +5062,33 @@ namespace DS4Windows
             else if (controlType == DS4StateFieldMapping.ControlType.Button)
             {
                 bool active = fieldMapping.buttons[controlNum];
-                double lowOut = midOut;
+                double lowOut = 0.0;
                 if (calculateRadiusAnti)
                 {
                     lowOut = (maxFullOut - midOut) * buttonAbsMouseInfo.antiRadius + midOut;
+                    //lowOut = outputMid * buttonAbsMouseInfo.antiRadius + dirCenter;
+                    //lowOut = buttonAbsMouseInfo.antiRadius;
                 }
 
                 result = active ? maxFullOut : lowOut;
+                //double diff = active ? (positive ? 1.0 : -1.0) :
+                //    (positive ? lowOut : -lowOut);
+
+                //result = outputMid * diff + dirCenter;
                 transformed = active;
             }
             else if (controlType == DS4StateFieldMapping.ControlType.Trigger)
             {
                 byte trigger = fieldMapping.triggers[controlNum];
                 double diff = trigger / 255.0;
-                double fullOutput = maxFullOut;
+                //double fullOutput = maxFullOut;
                 if (calculateRadiusAnti)
                 {
                     double anti = buttonAbsMouseInfo.antiRadius;
                     diff = (1.0 - anti) * diff + anti;
                 }
 
-                result = (fullOutput - minOut) * diff + minOut;
+                result = outputMid * (positive ? diff : -diff) + dirCenter;
                 transformed = trigger > 0;
             }
             else if (controlType == DS4StateFieldMapping.ControlType.GyroDir)
@@ -5064,6 +5108,7 @@ namespace DS4Windows
                             }
 
                             result = (fullOutput - midOut) * diff + midOut;
+                            //result = outputMid * diff + buttonAbsMouseInfo.xcenter;
                             transformed = gyroX > 0;
                         }
 
@@ -5079,6 +5124,7 @@ namespace DS4Windows
                             }
 
                             result = (fullOutput - midOut) * diff + midOut;
+                            //result = outputMid * -diff + buttonAbsMouseInfo.xcenter;
                             transformed = -gyroX > 0;
                         }
 
@@ -5093,6 +5139,7 @@ namespace DS4Windows
                                 diff = (1.0 - anti) * diff + anti;
                             }
                             result = (fullOutput - midOut) * diff + midOut;
+                            //result = outputMid * diff + buttonAbsMouseInfo.ycenter;
                             transformed = gyroZ > 0;
                         }
 
@@ -5108,6 +5155,7 @@ namespace DS4Windows
                             }
 
                             result = (fullOutput - midOut) * diff + midOut;
+                            //result = outputMid * -diff + buttonAbsMouseInfo.ycenter;
                             transformed = -gyroZ > 0;
                         }
 

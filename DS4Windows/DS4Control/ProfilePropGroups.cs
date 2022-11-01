@@ -559,12 +559,22 @@ namespace DS4Windows
 
     public class ButtonAbsMouseInfo
     {
+        public const double WIDTH_DEFAULT = 1.0;
+        public const double HEIGHT_DEFAULT = 1.0;
+        public const double XCENTER_DEFAULT = 0.5;
+        public const double YCENTER_DEFAULT = 0.5;
+
         public const double MIN_X_DEFAULT = 0.0;
         public const double MAX_X_DEFAULT = 1.0;
         public const double MIN_Y_DEFAULT = 0.0;
         public const double MAX_Y_DEFAULT = 1.0;
-        public const bool SNAP_CENTER_DEFAULT = false;
+        public const bool SNAP_CENTER_DEFAULT = true;
         public const double ANTI_RADIUS_DEFAULT = 0.0;
+
+        public double width = WIDTH_DEFAULT;
+        public double height = HEIGHT_DEFAULT;
+        public double xcenter = XCENTER_DEFAULT;
+        public double ycenter = YCENTER_DEFAULT;
 
         public double minX = MIN_X_DEFAULT;
         public double maxX = MAX_X_DEFAULT;
@@ -623,6 +633,11 @@ namespace DS4Windows
 
         public void Reset()
         {
+            width = WIDTH_DEFAULT;
+            height = HEIGHT_DEFAULT;
+            xcenter = XCENTER_DEFAULT;
+            ycenter = YCENTER_DEFAULT;
+
             minX = MIN_X_DEFAULT;
             maxX = MAX_X_DEFAULT;
             minY = MIN_Y_DEFAULT;

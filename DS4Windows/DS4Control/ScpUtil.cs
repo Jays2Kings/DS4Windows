@@ -3898,10 +3898,14 @@ namespace DS4Windows
                 //if (false)
                 {
                     XmlElement xmlBtnAbsMouseEl = m_Xdoc.CreateElement("AbsMouseRegionSettings");
-                    XmlElement xmlBtnAbsMouseMinX = m_Xdoc.CreateElement("MinAbsX"); xmlBtnAbsMouseMinX.InnerText = buttonAbsMouseInfos[device].minX.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMinX);
-                    XmlElement xmlBtnAbsMouseMinY = m_Xdoc.CreateElement("MinAbsY"); xmlBtnAbsMouseMinY.InnerText = buttonAbsMouseInfos[device].minY.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMinY);
-                    XmlElement xmlBtnAbsMouseMaxX = m_Xdoc.CreateElement("MaxAbsX"); xmlBtnAbsMouseMaxX.InnerText = buttonAbsMouseInfos[device].maxX.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMaxX);
-                    XmlElement xmlBtnAbsMouseMaxY = m_Xdoc.CreateElement("MaxAbsY"); xmlBtnAbsMouseMaxY.InnerText = buttonAbsMouseInfos[device].maxY.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMaxY);
+                    XmlElement xmlBtnAbsMouseWidth = m_Xdoc.CreateElement("AbsWidth"); xmlBtnAbsMouseWidth.InnerText = buttonAbsMouseInfos[device].width.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseWidth);
+                    XmlElement xmlBtnAbsMouseHeight = m_Xdoc.CreateElement("AbsHeight"); xmlBtnAbsMouseHeight.InnerText = buttonAbsMouseInfos[device].height.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseHeight);
+                    XmlElement xmlBtnAbsMouseXCenter = m_Xdoc.CreateElement("AbsXCenter"); xmlBtnAbsMouseXCenter.InnerText = buttonAbsMouseInfos[device].xcenter.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseXCenter);
+                    XmlElement xmlBtnAbsMouseYCenter = m_Xdoc.CreateElement("AbsYCenter"); xmlBtnAbsMouseYCenter.InnerText = buttonAbsMouseInfos[device].ycenter.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseYCenter);
+                    //XmlElement xmlBtnAbsMouseMinX = m_Xdoc.CreateElement("MinAbsX"); xmlBtnAbsMouseMinX.InnerText = buttonAbsMouseInfos[device].minX.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMinX);
+                    //XmlElement xmlBtnAbsMouseMinY = m_Xdoc.CreateElement("MinAbsY"); xmlBtnAbsMouseMinY.InnerText = buttonAbsMouseInfos[device].minY.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMinY);
+                    //XmlElement xmlBtnAbsMouseMaxX = m_Xdoc.CreateElement("MaxAbsX"); xmlBtnAbsMouseMaxX.InnerText = buttonAbsMouseInfos[device].maxX.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMaxX);
+                    //XmlElement xmlBtnAbsMouseMaxY = m_Xdoc.CreateElement("MaxAbsY"); xmlBtnAbsMouseMaxY.InnerText = buttonAbsMouseInfos[device].maxY.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMaxY);
                     XmlElement xmlBtnAbsMouseAntiRadius = m_Xdoc.CreateElement("AntiRadius"); xmlBtnAbsMouseAntiRadius.InnerText = buttonAbsMouseInfos[device].antiRadius.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseAntiRadius);
                     XmlElement xmlBtnAbsMouseSnapCenter = m_Xdoc.CreateElement("SnapToCenter"); xmlBtnAbsMouseSnapCenter.InnerText = buttonAbsMouseInfos[device].snapToCenter.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseSnapCenter);
 
@@ -6283,40 +6287,40 @@ namespace DS4Windows
                 {
                     try
                     {
-                        Item = xmlAbsMouseElement.SelectSingleNode("MinAbsX");
+                        Item = xmlAbsMouseElement.SelectSingleNode("AbsWidth");
                         if (double.TryParse(Item?.InnerText ?? "", out double temp))
                         {
-                            buttonAbsMouseInfos[device].MinX = Math.Clamp(temp, 0.0, 1.0);
+                            buttonAbsMouseInfos[device].width = Math.Clamp(temp, 0.0, 1.0);
                         }
                     }
                     catch { }
 
                     try
                     {
-                        Item = xmlAbsMouseElement.SelectSingleNode("MinAbsY");
+                        Item = xmlAbsMouseElement.SelectSingleNode("AbsHeight");
                         if (double.TryParse(Item?.InnerText ?? "", out double temp))
                         {
-                            buttonAbsMouseInfos[device].MinY = Math.Clamp(temp, 0.0, 1.0);
+                            buttonAbsMouseInfos[device].height = Math.Clamp(temp, 0.0, 1.0);
                         }
                     }
                     catch { }
 
                     try
                     {
-                        Item = xmlAbsMouseElement.SelectSingleNode("MaxAbsX");
+                        Item = xmlAbsMouseElement.SelectSingleNode("AbsXCenter");
                         if (double.TryParse(Item?.InnerText ?? "", out double temp))
                         {
-                            buttonAbsMouseInfos[device].MaxX = Math.Clamp(temp, 0.0, 1.0);
+                            buttonAbsMouseInfos[device].xcenter = Math.Clamp(temp, 0.0, 1.0);
                         }
                     }
                     catch { }
 
                     try
                     {
-                        Item = xmlAbsMouseElement.SelectSingleNode("MaxAbsY");
+                        Item = xmlAbsMouseElement.SelectSingleNode("AbsYCenter");
                         if (double.TryParse(Item?.InnerText ?? "", out double temp))
                         {
-                            buttonAbsMouseInfos[device].MaxY = Math.Clamp(temp, 0.0, 1.0);
+                            buttonAbsMouseInfos[device].ycenter = Math.Clamp(temp, 0.0, 1.0);
                         }
                     }
                     catch { }

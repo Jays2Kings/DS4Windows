@@ -549,6 +549,54 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public event EventHandler MaxAbsYChanged;
 
+        public double AbsWidth
+        {
+            get => Global.ButtonAbsMouseInfos[device].width;
+            set
+            {
+                ButtonAbsMouseInfo tempAbsInfo = Global.ButtonAbsMouseInfos[device];
+                if (value == tempAbsInfo.width) return;
+
+                tempAbsInfo.width = value;
+            }
+        }
+
+        public double AbsHeight
+        {
+            get => Global.ButtonAbsMouseInfos[device].height;
+            set
+            {
+                ButtonAbsMouseInfo tempAbsInfo = Global.ButtonAbsMouseInfos[device];
+                if (value == tempAbsInfo.height) return;
+
+                tempAbsInfo.height = value;
+            }
+        }
+
+        public double AbsXCenter
+        {
+            get => Global.ButtonAbsMouseInfos[device].xcenter;
+            set
+            {
+                ButtonAbsMouseInfo tempAbsInfo = Global.ButtonAbsMouseInfos[device];
+                if (value == tempAbsInfo.xcenter) return;
+
+                tempAbsInfo.xcenter = value;
+            }
+        }
+
+        public double AbsYCenter
+        {
+            get => Global.ButtonAbsMouseInfos[device].ycenter;
+            set
+            {
+                ButtonAbsMouseInfo tempAbsInfo = Global.ButtonAbsMouseInfos[device];
+                if (value == tempAbsInfo.ycenter) return;
+
+                tempAbsInfo.ycenter = value;
+            }
+        }
+
         public bool AbsSnapCenter
         {
             get => Global.ButtonAbsMouseInfos[device].snapToCenter;

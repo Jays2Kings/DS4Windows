@@ -493,6 +493,86 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.ButtonMouseInfos[device].mouseAccel = value;
         }
 
+        public double MinAbsX
+        {
+            get => Global.ButtonAbsMouseInfos[device].minX;
+            set
+            {
+                ButtonAbsMouseInfo tempAbsInfo = Global.ButtonAbsMouseInfos[device];
+                if (value == tempAbsInfo.minX) return;
+
+                tempAbsInfo.MinX = value;
+                MinAbsXChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler MinAbsXChanged;
+
+        public double MinAbsY
+        {
+            get => Global.ButtonAbsMouseInfos[device].minY;
+            set
+            {
+                ButtonAbsMouseInfo tempAbsInfo = Global.ButtonAbsMouseInfos[device];
+                if (value == tempAbsInfo.minY) return;
+
+                tempAbsInfo.MinY = value;
+                MinAbsYChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler MinAbsYChanged;
+
+        public double MaxAbsX
+        {
+            get => Global.ButtonAbsMouseInfos[device].maxX;
+            set
+            {
+                ButtonAbsMouseInfo tempAbsInfo = Global.ButtonAbsMouseInfos[device];
+                if (value == tempAbsInfo.maxX) return;
+
+                tempAbsInfo.MaxX = value;
+                MaxAbsXChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler MaxAbsXChanged;
+
+        public double MaxAbsY
+        {
+            get => Global.ButtonAbsMouseInfos[device].maxY;
+            set
+            {
+                ButtonAbsMouseInfo tempAbsInfo = Global.ButtonAbsMouseInfos[device];
+                if (value == tempAbsInfo.maxY) return;
+
+                tempAbsInfo.MaxY = value;
+                MaxAbsYChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler MaxAbsYChanged;
+
+        public bool AbsSnapCenter
+        {
+            get => Global.ButtonAbsMouseInfos[device].snapToCenter;
+            set
+            {
+                ButtonAbsMouseInfo tempAbsInfo = Global.ButtonAbsMouseInfos[device];
+                if (value == tempAbsInfo.snapToCenter) return;
+
+                tempAbsInfo.snapToCenter = value;
+            }
+        }
+
+        public double AbsReleaseRadius
+        {
+            get => Global.ButtonAbsMouseInfos[device].releaseRadius;
+            set
+            {
+                ButtonAbsMouseInfo tempAbsInfo = Global.ButtonAbsMouseInfos[device];
+                if (tempAbsInfo.releaseRadius == value) return;
+
+                tempAbsInfo.releaseRadius = value;
+            }
+        }
+
         public bool EnableTouchpadToggle
         {
             get => Global.EnableTouchToggle[device];

@@ -2194,6 +2194,9 @@ namespace DS4Windows
             Mapping.deltaAccelProcessors[ind].LSProcessor.Reset();
             Mapping.deltaAccelProcessors[ind].RSProcessor.Reset();
 
+            // Reset absolute mouse state data
+            Mapping.absMouseOutputState[ind].Reset();
+
             // Reset some elements of current Mouse instance
             touchPad[ind]?.Reset();
         }

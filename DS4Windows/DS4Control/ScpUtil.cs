@@ -25,7 +25,7 @@ namespace DS4Windows
     public enum DS4KeyType : byte { None = 0, ScanCode = 1, Toggle = 2, Unbound = 4, Macro = 8, HoldMacro = 16, RepeatMacro = 32 }; // Increment by exponents of 2*, starting at 2^0
     public enum Ds3PadId : byte { None = 0xFF, One = 0x00, Two = 0x01, Three = 0x02, Four = 0x03, All = 0x04 };
     public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options, Mute, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown, L2FullPull, R2FullPull, GyroSwipeLeft, GyroSwipeRight, GyroSwipeUp, GyroSwipeDown, Capture, SideL, SideR, LSOuter, RSOuter };
-    public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, TouchpadClick, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, Unbound };
+    public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, TouchpadClick, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, AbsMouseUp, AbsMouseDown, AbsMouseLeft, AbsMouseRight, Unbound };
 
     public enum SASteeringWheelEmulationAxisType: byte { None = 0, LX, LY, RX, RY, L2R2, VJoy1X, VJoy1Y, VJoy1Z, VJoy2X, VJoy2Y, VJoy2Z };
     public enum OutContType : uint { None = 0, X360, DS4 }
@@ -653,6 +653,10 @@ namespace DS4Windows
             [X360Controls.MouseDown] = "Mouse Down",
             [X360Controls.MouseLeft] = "Mouse Left",
             [X360Controls.MouseRight] = "Mouse Right",
+            [X360Controls.AbsMouseUp] = "Abs Mouse Up",
+            [X360Controls.AbsMouseDown] = "Abs Mouse Down",
+            [X360Controls.AbsMouseLeft] = "Abs Mouse Left",
+            [X360Controls.AbsMouseRight] = "Abs Mouse Right",
             [X360Controls.Unbound] = "Unbound",
             [X360Controls.None] = "Unassigned",
         };
@@ -696,6 +700,10 @@ namespace DS4Windows
             [X360Controls.MouseDown] = "Mouse Down",
             [X360Controls.MouseLeft] = "Mouse Left",
             [X360Controls.MouseRight] = "Mouse Right",
+            [X360Controls.AbsMouseUp] = "Abs Mouse Up",
+            [X360Controls.AbsMouseDown] = "Abs Mouse Down",
+            [X360Controls.AbsMouseLeft] = "Abs Mouse Left",
+            [X360Controls.AbsMouseRight] = "Abs Mouse Right",
             [X360Controls.Unbound] = "Unbound",
         };
 
@@ -1644,6 +1652,7 @@ namespace DS4Windows
 
         // controller/profile specfic values
         public static ButtonMouseInfo[] ButtonMouseInfos => m_Config.buttonMouseInfos;
+        public static ButtonAbsMouseInfo[] ButtonAbsMouseInfos => m_Config.buttonAbsMouseInfos;
 
         public static byte[] RumbleBoost => m_Config.rumble;
         public static byte getRumbleBoost(int index)
@@ -2806,6 +2815,13 @@ namespace DS4Windows
             new ButtonMouseInfo(), new ButtonMouseInfo(), new ButtonMouseInfo(),
         };
 
+        public ButtonAbsMouseInfo[] buttonAbsMouseInfos = new ButtonAbsMouseInfo[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            new ButtonAbsMouseInfo(), new ButtonAbsMouseInfo(), new ButtonAbsMouseInfo(),
+            new ButtonAbsMouseInfo(), new ButtonAbsMouseInfo(), new ButtonAbsMouseInfo(),
+            new ButtonAbsMouseInfo(), new ButtonAbsMouseInfo(), new ButtonAbsMouseInfo(),
+        };
+
         public bool[] enableTouchToggle = new bool[Global.TEST_PROFILE_ITEM_COUNT] { true, true, true, true, true, true, true, true, true };
         public int[] idleDisconnectTimeout = new int[Global.TEST_PROFILE_ITEM_COUNT] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         public bool[] enableOutputDataToDS4 = new bool[Global.TEST_PROFILE_ITEM_COUNT] { true, true, true, true, true, true, true, true, true };
@@ -3878,6 +3894,20 @@ namespace DS4Windows
                     rootElement.AppendChild(xmlTouchMouseStickGroupEl);
                 }
 
+                // Isolate as a group. More readable for this???
+                //if (false)
+                {
+                    XmlElement xmlBtnAbsMouseEl = m_Xdoc.CreateElement("AbsMouseRegionSettings");
+                    XmlElement xmlBtnAbsMouseMinX = m_Xdoc.CreateElement("MinAbsX"); xmlBtnAbsMouseMinX.InnerText = buttonAbsMouseInfos[device].minX.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMinX);
+                    XmlElement xmlBtnAbsMouseMinY = m_Xdoc.CreateElement("MinAbsY"); xmlBtnAbsMouseMinY.InnerText = buttonAbsMouseInfos[device].minY.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMinY);
+                    XmlElement xmlBtnAbsMouseMaxX = m_Xdoc.CreateElement("MaxAbsX"); xmlBtnAbsMouseMaxX.InnerText = buttonAbsMouseInfos[device].maxX.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMaxX);
+                    XmlElement xmlBtnAbsMouseMaxY = m_Xdoc.CreateElement("MaxAbsY"); xmlBtnAbsMouseMaxY.InnerText = buttonAbsMouseInfos[device].maxY.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMaxY);
+                    XmlElement xmlBtnAbsMouseReleaseRadius = m_Xdoc.CreateElement("ReleaseRadius"); xmlBtnAbsMouseReleaseRadius.InnerText = buttonAbsMouseInfos[device].releaseRadius.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseReleaseRadius);
+                    XmlElement xmlBtnAbsMouseSnapCenter = m_Xdoc.CreateElement("SnapToCenter"); xmlBtnAbsMouseSnapCenter.InnerText = buttonAbsMouseInfos[device].snapToCenter.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseSnapCenter);
+
+                    rootElement.AppendChild(xmlBtnAbsMouseEl);
+                }
+
                 XmlNode xmlTouchButtonMode = m_Xdoc.CreateNode(XmlNodeType.Element, "TouchpadButtonMode", null); xmlTouchButtonMode.InnerText = touchpadButtonMode[device].ToString(); rootElement.AppendChild(xmlTouchButtonMode);
                 XmlNode xmlOutContDevice = m_Xdoc.CreateNode(XmlNodeType.Element, "OutputContDevice", null); xmlOutContDevice.InnerText = OutContDeviceString(outputDevType[device]); rootElement.AppendChild(xmlOutContDevice);
 
@@ -4253,6 +4283,10 @@ namespace DS4Windows
                 case "Mouse Down": return X360Controls.MouseDown;
                 case "Mouse Left": return X360Controls.MouseLeft;
                 case "Mouse Right": return X360Controls.MouseRight;
+                case "Abs Mouse Up": return X360Controls.AbsMouseUp;
+                case "Abs Mouse Down": return X360Controls.AbsMouseDown;
+                case "Abs Mouse Left": return X360Controls.AbsMouseLeft;
+                case "Abs Mouse Right": return X360Controls.AbsMouseRight;
                 case "Unbound": return X360Controls.Unbound;
             }
 
@@ -4304,6 +4338,10 @@ namespace DS4Windows
                 case X360Controls.MouseDown: return "Mouse Down";
                 case X360Controls.MouseLeft: return "Mouse Left";
                 case X360Controls.MouseRight: return "Mouse Right";
+                case X360Controls.AbsMouseUp: return "Abs Mouse Up";
+                case X360Controls.AbsMouseDown: return "Abs Mouse Down";
+                case X360Controls.AbsMouseLeft: return "Abs Mouse Left";
+                case X360Controls.AbsMouseRight: return "Abs Mouse Right";
                 case X360Controls.Unbound: return "Unbound";
             }
 
@@ -6237,6 +6275,73 @@ namespace DS4Windows
                 }
 
 
+                bool absMouseGroup = false;
+                XmlNode xmlAbsMouseElement =
+                    m_Xdoc.SelectSingleNode($"/{rootname}/AbsMouseRegionSettings");
+                absMouseGroup = xmlAbsMouseElement != null;
+                if (absMouseGroup && xmlAbsMouseElement.HasChildNodes)
+                {
+                    try
+                    {
+                        Item = xmlAbsMouseElement.SelectSingleNode("MinAbsX");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            buttonAbsMouseInfos[device].MinX = Math.Clamp(temp, 0.0, 1.0);
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = xmlAbsMouseElement.SelectSingleNode("MinAbsY");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            buttonAbsMouseInfos[device].MinY = Math.Clamp(temp, 0.0, 1.0);
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = xmlAbsMouseElement.SelectSingleNode("MaxAbsX");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            buttonAbsMouseInfos[device].MaxX = Math.Clamp(temp, 0.0, 1.0);
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = xmlAbsMouseElement.SelectSingleNode("MaxAbsY");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            buttonAbsMouseInfos[device].MaxY = Math.Clamp(temp, 0.0, 1.0);
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = xmlAbsMouseElement.SelectSingleNode("ReleaseRadius");
+                        if (double.TryParse(Item?.InnerText ?? "", out double temp))
+                        {
+                            buttonAbsMouseInfos[device].releaseRadius = Math.Clamp(temp, 0.0, 1.0);
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        Item = xmlAbsMouseElement.SelectSingleNode("SnapToCenter");
+                        if (bool.TryParse(Item?.InnerText ?? "", out bool temp))
+                        {
+                            buttonAbsMouseInfos[device].snapToCenter = temp;
+                        }
+                    }
+                    catch { }
+                }
+
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode($"/{rootname}/TouchpadButtonMode");
@@ -7746,6 +7851,7 @@ namespace DS4Windows
         private void ResetProfile(int device)
         {
             buttonMouseInfos[device].Reset();
+            buttonAbsMouseInfos[device].Reset();
             gyroControlsInf[device].Reset();
 
             enableTouchToggle[device] = true;

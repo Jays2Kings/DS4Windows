@@ -572,6 +572,36 @@ namespace DS4Windows
         }
     }
 
+    public class ButtonAbsMouseInfo
+    {
+        public const double WIDTH_DEFAULT = 1.0;
+        public const double HEIGHT_DEFAULT = 1.0;
+        public const double XCENTER_DEFAULT = 0.5;
+        public const double YCENTER_DEFAULT = 0.5;
+
+        public const bool SNAP_CENTER_DEFAULT = true;
+        public const double ANTI_RADIUS_DEFAULT = 0.0;
+
+        public double width = WIDTH_DEFAULT;
+        public double height = HEIGHT_DEFAULT;
+        public double xcenter = XCENTER_DEFAULT;
+        public double ycenter = YCENTER_DEFAULT;
+
+        public bool snapToCenter = SNAP_CENTER_DEFAULT;
+        public double antiRadius = ANTI_RADIUS_DEFAULT;
+
+        public void Reset()
+        {
+            width = WIDTH_DEFAULT;
+            height = HEIGHT_DEFAULT;
+            xcenter = XCENTER_DEFAULT;
+            ycenter = YCENTER_DEFAULT;
+
+            snapToCenter = SNAP_CENTER_DEFAULT;
+            antiRadius = ANTI_RADIUS_DEFAULT;
+        }
+    }
+
     public enum LightbarMode : uint
     {
         None,

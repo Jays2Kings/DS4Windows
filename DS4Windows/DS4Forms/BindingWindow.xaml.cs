@@ -389,6 +389,23 @@ namespace DS4WinWPF.DS4Forms
             associatedBindings.Add(mouseWheelDBtn,
                 new BindAssociation() { outputType = BindAssociation.OutType.Button, control = DS4Windows.X360Controls.WDOWN });
             mouseWheelDBtn.Click += OutputButtonBtn_Click;
+
+
+            associatedBindings.Add(absMouseUpBindBtn,
+                new BindAssociation() { outputType = BindAssociation.OutType.Button, control = DS4Windows.X360Controls.AbsMouseUp });
+            absMouseUpBindBtn.Click += OutputButtonBtn_Click;
+
+            associatedBindings.Add(absMouseDownBindBtn,
+                new BindAssociation() { outputType = BindAssociation.OutType.Button, control = DS4Windows.X360Controls.AbsMouseDown });
+            absMouseDownBindBtn.Click += OutputButtonBtn_Click;
+
+            associatedBindings.Add(absMouseLeftBindBtn,
+                new BindAssociation() { outputType = BindAssociation.OutType.Button, control = DS4Windows.X360Controls.AbsMouseLeft });
+            absMouseLeftBindBtn.Click += OutputButtonBtn_Click;
+
+            associatedBindings.Add(absMouseRightBindBtn,
+                new BindAssociation() { outputType = BindAssociation.OutType.Button, control = DS4Windows.X360Controls.AbsMouseRight });
+            absMouseRightBindBtn.Click += OutputButtonBtn_Click;
         }
 
         private void InitKeyBindings()

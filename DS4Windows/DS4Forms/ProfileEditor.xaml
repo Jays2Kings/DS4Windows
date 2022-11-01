@@ -2182,6 +2182,59 @@
                                 <ComboBoxItem Content="62 Hz (16 ms)" />
                             </ComboBox>
                         </StackPanel>
+
+                        <GroupBox Header="Absolute Mouse Options" Margin="0,8,0,0">
+                            <StackPanel Orientation="Vertical">
+                                <Expander IsExpanded="False" Header="Settings">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+
+                                        <Label Content="Width:" Grid.Row="0" Grid.Column="0" />
+                                        <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding AbsWidth}"
+                                            MinWidth="100" Minimum="0.0" Maximum="1.0" Increment="0.05"
+                                            Margin="{StaticResource spaceMargin}" Grid.Row="0" Grid.Column="1" />
+
+                                        <Label Content="Height:" Grid.Row="1" Grid.Column="0" />
+                                        <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding AbsHeight}"
+                                            MinWidth="100" Minimum="0.0" Maximum="1.0" Increment="0.05"
+                                            Margin="{StaticResource spaceMargin}" Grid.Row="1" Grid.Column="1" />
+
+                                        <Label Content="X Center:" Grid.Row="2" Grid.Column="0" />
+                                        <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding AbsXCenter}"
+                                            MinWidth="100" Minimum="0.0" Maximum="1.0" Increment="0.05"
+                                            Margin="{StaticResource spaceMargin}" Grid.Row="2" Grid.Column="1" />
+
+                                        <Label Content="Y Center:" Grid.Row="3" Grid.Column="0" />
+                                        <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding AbsYCenter}"
+                                            MinWidth="100" Minimum="0.0" Maximum="1.0" Increment="0.05"
+                                            Margin="{StaticResource spaceMargin}" Grid.Row="3" Grid.Column="1" />
+
+                                        <Label Content="Anti Radius:" Grid.Row="4" Grid.Column="0" />
+                                        <DockPanel Grid.Row="4" Grid.Column="1">
+                                            <TextBlock Text="%" DockPanel.Dock="Right" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
+                                            <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding AbsAntiRadius}"
+                                                MinWidth="100" Minimum="0.0" Maximum="1.0" Increment="0.05"
+                                                Margin="{StaticResource spaceMargin}" />
+                                        </DockPanel>
+
+                                        <Label Content="Snap To Center:" Grid.Row="5" Grid.Column="0" />
+                                        <CheckBox IsChecked="{Binding AbsSnapCenter}" MinWidth="50" Grid.Row="5" Grid.Column="1" />
+                                    </Grid>
+                                </Expander>
+                            </StackPanel>
+                        </GroupBox>
                     </StackPanel>
                 </ScrollViewer>
 

@@ -2221,10 +2221,10 @@
                                             MinWidth="100" Minimum="0.0" Maximum="1.0" Increment="0.05"
                                             Margin="{StaticResource spaceMargin}" Grid.Row="3" Grid.Column="1" />
 
-                                        <Label Content="Release Radius:" Grid.Row="4" Grid.Column="0" />
+                                        <Label Content="Anti Radius:" Grid.Row="4" Grid.Column="0" />
                                         <DockPanel Grid.Row="4" Grid.Column="1">
                                             <TextBlock Text="%" DockPanel.Dock="Right" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
-                                            <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding AbsReleaseRadius}"
+                                            <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding AbsAntiRadius}"
                                                 MinWidth="100" Minimum="0.0" Maximum="1.0" Increment="0.05"
                                                 Margin="{StaticResource spaceMargin}" />
                                         </DockPanel>

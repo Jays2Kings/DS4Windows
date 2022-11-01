@@ -561,15 +561,15 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
 
-        public double AbsReleaseRadius
+        public double AbsAntiRadius
         {
-            get => Global.ButtonAbsMouseInfos[device].releaseRadius;
+            get => Global.ButtonAbsMouseInfos[device].antiRadius;
             set
             {
                 ButtonAbsMouseInfo tempAbsInfo = Global.ButtonAbsMouseInfos[device];
-                if (tempAbsInfo.releaseRadius == value) return;
+                if (tempAbsInfo.antiRadius == value) return;
 
-                tempAbsInfo.releaseRadius = value;
+                tempAbsInfo.antiRadius = value;
             }
         }
 

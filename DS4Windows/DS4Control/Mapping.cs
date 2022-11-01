@@ -258,7 +258,7 @@ namespace DS4Windows
             {
                 double lxUnit = Math.Cos(angleRad);
                 double lyUnit = Math.Sin(angleRad);
-                double deadRadius = absMouseInfo.releaseRadius;
+                double deadRadius = absMouseInfo.antiRadius;
                 double midX = ((absMouseInfo.maxX - absMouseInfo.minX) / 2.0) + absMouseInfo.minX;
                 double midY = ((absMouseInfo.maxY - absMouseInfo.minY) / 2.0) + absMouseInfo.minY;
                 //Trace.WriteLine($"MIDY: {midY}");
@@ -4823,7 +4823,7 @@ namespace DS4Windows
             bool positive = outputControl == X360Controls.AbsMouseDown || outputControl == X360Controls.AbsMouseRight;
             bool vertical = outputControl == X360Controls.AbsMouseUp || outputControl == X360Controls.AbsMouseDown;
             ButtonAbsMouseInfo buttonAbsMouseInfo = ButtonAbsMouseInfos[device];
-            bool calculateRadiusAnti = buttonAbsMouseInfo.releaseRadius != 0.0;
+            bool calculateRadiusAnti = buttonAbsMouseInfo.antiRadius != 0.0;
             double minOut = 0.5;
             double midOut = 0.5;
             double maxFullOut = 0.5;
@@ -4854,7 +4854,7 @@ namespace DS4Windows
                                 double diff = -(cState.LX - 128.0) / 127.0;
                                 if (calculateRadiusAnti)
                                 {
-                                    double anti = buttonAbsMouseInfo.releaseRadius * cState.LXUnit;
+                                    double anti = buttonAbsMouseInfo.antiRadius * cState.LXUnit;
                                     diff = (1.0 - anti) * diff + anti;
                                 }
 
@@ -4879,7 +4879,7 @@ namespace DS4Windows
                                 double diff = (cState.LX - 128.0) / 128.0;
                                 if (calculateRadiusAnti)
                                 {
-                                    double anti = buttonAbsMouseInfo.releaseRadius * cState.LXUnit;
+                                    double anti = buttonAbsMouseInfo.antiRadius * cState.LXUnit;
                                     diff = (1.0 - anti) * diff + anti;
                                     //Trace.WriteLine($"ANTI: {anti} | DIFF : {diff}");
                                 }
@@ -4905,7 +4905,7 @@ namespace DS4Windows
                                 double diff = -(cState.LY - 128.0) / 127.0;
                                 if (calculateRadiusAnti)
                                 {
-                                    double anti = buttonAbsMouseInfo.releaseRadius * cState.LYUnit;
+                                    double anti = buttonAbsMouseInfo.antiRadius * cState.LYUnit;
                                     diff = (1.0 - anti) * diff + anti;
                                 }
 
@@ -4930,7 +4930,7 @@ namespace DS4Windows
                                 double diff = (cState.LY - 128.0) / 128.0;
                                 if (calculateRadiusAnti)
                                 {
-                                    double anti = buttonAbsMouseInfo.releaseRadius * cState.LYUnit;
+                                    double anti = buttonAbsMouseInfo.antiRadius * cState.LYUnit;
                                     diff = (1.0 - anti) * diff + anti;
                                 }
 
@@ -4956,7 +4956,7 @@ namespace DS4Windows
                                 double diff = (cState.RX - 128.0) / 127.0;
                                 if (calculateRadiusAnti)
                                 {
-                                    double anti = buttonAbsMouseInfo.releaseRadius * cState.RXUnit;
+                                    double anti = buttonAbsMouseInfo.antiRadius * cState.RXUnit;
                                     diff = (1.0 - anti) * diff + anti;
                                 }
 
@@ -4973,7 +4973,7 @@ namespace DS4Windows
                                 double diff = (cState.RX - 128.0) / 128.0;
                                 if (calculateRadiusAnti)
                                 {
-                                    double anti = buttonAbsMouseInfo.releaseRadius * cState.RXUnit;
+                                    double anti = buttonAbsMouseInfo.antiRadius * cState.RXUnit;
                                     diff = (1.0 - anti) * diff + anti;
                                 }
 
@@ -4990,7 +4990,7 @@ namespace DS4Windows
                                 double diff = (cState.RY - 128.0) / 127.0;
                                 if (calculateRadiusAnti)
                                 {
-                                    double anti = buttonAbsMouseInfo.releaseRadius * cState.RYUnit;
+                                    double anti = buttonAbsMouseInfo.antiRadius * cState.RYUnit;
                                     diff = (1.0 - anti) * diff + anti;
                                 }
 
@@ -5007,7 +5007,7 @@ namespace DS4Windows
                                 double diff = (cState.RY - 128.0) / 128.0;
                                 if (calculateRadiusAnti)
                                 {
-                                    double anti = buttonAbsMouseInfo.releaseRadius * cState.RYUnit;
+                                    double anti = buttonAbsMouseInfo.antiRadius * cState.RYUnit;
                                     diff = (1.0 - anti) * diff + anti;
                                 }
 
@@ -5027,7 +5027,7 @@ namespace DS4Windows
                 double lowOut = midOut;
                 if (calculateRadiusAnti)
                 {
-                    lowOut = (maxFullOut - midOut) * buttonAbsMouseInfo.releaseRadius + midOut;
+                    lowOut = (maxFullOut - midOut) * buttonAbsMouseInfo.antiRadius + midOut;
                 }
 
                 result = active ? maxFullOut : lowOut;
@@ -5040,7 +5040,7 @@ namespace DS4Windows
                 double fullOutput = maxFullOut;
                 if (calculateRadiusAnti)
                 {
-                    double anti = buttonAbsMouseInfo.releaseRadius;
+                    double anti = buttonAbsMouseInfo.antiRadius;
                     diff = (1.0 - anti) * diff + anti;
                 }
 
@@ -5059,7 +5059,7 @@ namespace DS4Windows
                             double diff = gyroX / 128.0;
                             if (calculateRadiusAnti)
                             {
-                                double anti = buttonAbsMouseInfo.releaseRadius;
+                                double anti = buttonAbsMouseInfo.antiRadius;
                                 diff = (1.0 - anti) * diff + anti;
                             }
 
@@ -5074,7 +5074,7 @@ namespace DS4Windows
                             double diff = -gyroX / 128.0;
                             if (calculateRadiusAnti)
                             {
-                                double anti = buttonAbsMouseInfo.releaseRadius;
+                                double anti = buttonAbsMouseInfo.antiRadius;
                                 diff = (1.0 - anti) * diff + anti;
                             }
 
@@ -5089,7 +5089,7 @@ namespace DS4Windows
                             double diff = gyroZ / 128.0;
                             if (calculateRadiusAnti)
                             {
-                                double anti = buttonAbsMouseInfo.releaseRadius;
+                                double anti = buttonAbsMouseInfo.antiRadius;
                                 diff = (1.0 - anti) * diff + anti;
                             }
                             result = (fullOutput - midOut) * diff + midOut;
@@ -5103,7 +5103,7 @@ namespace DS4Windows
                             double diff = -gyroZ / 128.0;
                             if (calculateRadiusAnti)
                             {
-                                double anti = buttonAbsMouseInfo.releaseRadius;
+                                double anti = buttonAbsMouseInfo.antiRadius;
                                 diff = (1.0 - anti) * diff + anti;
                             }
 

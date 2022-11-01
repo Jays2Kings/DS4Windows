@@ -564,14 +564,14 @@ namespace DS4Windows
         public const double MIN_Y_DEFAULT = 0.0;
         public const double MAX_Y_DEFAULT = 1.0;
         public const bool SNAP_CENTER_DEFAULT = false;
-        public const double RELEASE_RADIUS_DEFAULT = 0.0;
+        public const double ANTI_RADIUS_DEFAULT = 0.0;
 
         public double minX = MIN_X_DEFAULT;
         public double maxX = MAX_X_DEFAULT;
         public double minY = MIN_Y_DEFAULT;
         public double maxY = MAX_Y_DEFAULT;
         public bool snapToCenter = SNAP_CENTER_DEFAULT;
-        public double releaseRadius = RELEASE_RADIUS_DEFAULT;
+        public double antiRadius = ANTI_RADIUS_DEFAULT;
 
         public double MinX
         {
@@ -628,7 +628,7 @@ namespace DS4Windows
             minY = MIN_Y_DEFAULT;
             maxY = MAX_Y_DEFAULT;
             snapToCenter = SNAP_CENTER_DEFAULT;
-            releaseRadius = RELEASE_RADIUS_DEFAULT;
+            antiRadius = ANTI_RADIUS_DEFAULT;
         }
     }
 

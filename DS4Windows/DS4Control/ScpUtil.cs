@@ -3902,7 +3902,7 @@ namespace DS4Windows
                     XmlElement xmlBtnAbsMouseMinY = m_Xdoc.CreateElement("MinAbsY"); xmlBtnAbsMouseMinY.InnerText = buttonAbsMouseInfos[device].minY.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMinY);
                     XmlElement xmlBtnAbsMouseMaxX = m_Xdoc.CreateElement("MaxAbsX"); xmlBtnAbsMouseMaxX.InnerText = buttonAbsMouseInfos[device].maxX.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMaxX);
                     XmlElement xmlBtnAbsMouseMaxY = m_Xdoc.CreateElement("MaxAbsY"); xmlBtnAbsMouseMaxY.InnerText = buttonAbsMouseInfos[device].maxY.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMaxY);
-                    XmlElement xmlBtnAbsMouseReleaseRadius = m_Xdoc.CreateElement("ReleaseRadius"); xmlBtnAbsMouseReleaseRadius.InnerText = buttonAbsMouseInfos[device].releaseRadius.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseReleaseRadius);
+                    XmlElement xmlBtnAbsMouseAntiRadius = m_Xdoc.CreateElement("AntiRadius"); xmlBtnAbsMouseAntiRadius.InnerText = buttonAbsMouseInfos[device].antiRadius.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseAntiRadius);
                     XmlElement xmlBtnAbsMouseSnapCenter = m_Xdoc.CreateElement("SnapToCenter"); xmlBtnAbsMouseSnapCenter.InnerText = buttonAbsMouseInfos[device].snapToCenter.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseSnapCenter);
 
                     rootElement.AppendChild(xmlBtnAbsMouseEl);
@@ -6323,10 +6323,10 @@ namespace DS4Windows
 
                     try
                     {
-                        Item = xmlAbsMouseElement.SelectSingleNode("ReleaseRadius");
+                        Item = xmlAbsMouseElement.SelectSingleNode("AntiRadius");
                         if (double.TryParse(Item?.InnerText ?? "", out double temp))
                         {
-                            buttonAbsMouseInfos[device].releaseRadius = Math.Clamp(temp, 0.0, 1.0);
+                            buttonAbsMouseInfos[device].antiRadius = Math.Clamp(temp, 0.0, 1.0);
                         }
                     }
                     catch { }

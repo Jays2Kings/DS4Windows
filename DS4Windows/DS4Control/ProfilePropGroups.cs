@@ -564,10 +564,6 @@ namespace DS4Windows
         public const double XCENTER_DEFAULT = 0.5;
         public const double YCENTER_DEFAULT = 0.5;
 
-        public const double MIN_X_DEFAULT = 0.0;
-        public const double MAX_X_DEFAULT = 1.0;
-        public const double MIN_Y_DEFAULT = 0.0;
-        public const double MAX_Y_DEFAULT = 1.0;
         public const bool SNAP_CENTER_DEFAULT = true;
         public const double ANTI_RADIUS_DEFAULT = 0.0;
 
@@ -576,60 +572,8 @@ namespace DS4Windows
         public double xcenter = XCENTER_DEFAULT;
         public double ycenter = YCENTER_DEFAULT;
 
-        public double minX = MIN_X_DEFAULT;
-        public double maxX = MAX_X_DEFAULT;
-        public double minY = MIN_Y_DEFAULT;
-        public double maxY = MAX_Y_DEFAULT;
         public bool snapToCenter = SNAP_CENTER_DEFAULT;
         public double antiRadius = ANTI_RADIUS_DEFAULT;
-
-        public double MinX
-        {
-            get => minX;
-            set
-            {
-                if (value <= maxX)
-                {
-                    minX = value;
-                }
-            }
-        }
-
-        public double MaxX
-        {
-            get => maxX;
-            set
-            {
-                if (value >= minX)
-                {
-                    maxX = value;
-                }
-            }
-        }
-
-        public double MinY
-        {
-            get => minY;
-            set
-            {
-                if (value <= maxY)
-                {
-                    minY = value;
-                }
-            }
-        }
-
-        public double MaxY
-        {
-            get => maxY;
-            set
-            {
-                if (value >= minY)
-                {
-                    maxY = value;
-                }
-            }
-        }
 
         public void Reset()
         {
@@ -638,10 +582,6 @@ namespace DS4Windows
             xcenter = XCENTER_DEFAULT;
             ycenter = YCENTER_DEFAULT;
 
-            minX = MIN_X_DEFAULT;
-            maxX = MAX_X_DEFAULT;
-            minY = MIN_Y_DEFAULT;
-            maxY = MAX_Y_DEFAULT;
             snapToCenter = SNAP_CENTER_DEFAULT;
             antiRadius = ANTI_RADIUS_DEFAULT;
         }

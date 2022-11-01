@@ -3902,10 +3902,6 @@ namespace DS4Windows
                     XmlElement xmlBtnAbsMouseHeight = m_Xdoc.CreateElement("AbsHeight"); xmlBtnAbsMouseHeight.InnerText = buttonAbsMouseInfos[device].height.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseHeight);
                     XmlElement xmlBtnAbsMouseXCenter = m_Xdoc.CreateElement("AbsXCenter"); xmlBtnAbsMouseXCenter.InnerText = buttonAbsMouseInfos[device].xcenter.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseXCenter);
                     XmlElement xmlBtnAbsMouseYCenter = m_Xdoc.CreateElement("AbsYCenter"); xmlBtnAbsMouseYCenter.InnerText = buttonAbsMouseInfos[device].ycenter.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseYCenter);
-                    //XmlElement xmlBtnAbsMouseMinX = m_Xdoc.CreateElement("MinAbsX"); xmlBtnAbsMouseMinX.InnerText = buttonAbsMouseInfos[device].minX.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMinX);
-                    //XmlElement xmlBtnAbsMouseMinY = m_Xdoc.CreateElement("MinAbsY"); xmlBtnAbsMouseMinY.InnerText = buttonAbsMouseInfos[device].minY.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMinY);
-                    //XmlElement xmlBtnAbsMouseMaxX = m_Xdoc.CreateElement("MaxAbsX"); xmlBtnAbsMouseMaxX.InnerText = buttonAbsMouseInfos[device].maxX.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMaxX);
-                    //XmlElement xmlBtnAbsMouseMaxY = m_Xdoc.CreateElement("MaxAbsY"); xmlBtnAbsMouseMaxY.InnerText = buttonAbsMouseInfos[device].maxY.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseMaxY);
                     XmlElement xmlBtnAbsMouseAntiRadius = m_Xdoc.CreateElement("AntiRadius"); xmlBtnAbsMouseAntiRadius.InnerText = buttonAbsMouseInfos[device].antiRadius.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseAntiRadius);
                     XmlElement xmlBtnAbsMouseSnapCenter = m_Xdoc.CreateElement("SnapToCenter"); xmlBtnAbsMouseSnapCenter.InnerText = buttonAbsMouseInfos[device].snapToCenter.ToString(); xmlBtnAbsMouseEl.AppendChild(xmlBtnAbsMouseSnapCenter);
 

@@ -1288,6 +1288,12 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
+        [XmlElement("AbsMouseRegionSettings")]
+        public AbsMouseRegionSettingsSerializer AbsMouseRegionSettings
+        {
+            get; set;
+        }
+
         [XmlElement("OutputContDevice")]
         public OutContType OutputContDevice
         {
@@ -1335,6 +1341,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             GyroMouseSmoothingSettings = new GyroMouseSmoothingSettings();
             LSOutputSettings = new StickModeOutputSettings();
             TouchpadAbsMouseSettings = new TouchpadAbsMouseSettingsSerialize();
+            AbsMouseRegionSettings = new AbsMouseRegionSettingsSerializer();
             Control = new DS4ControlAssignementSerializer();
             ShiftControl = new DS4ControlAssignementSerializer();
         }
@@ -1636,6 +1643,16 @@ namespace DS4WinWPF.DS4Control.DTOXml
             };
 
             TouchpadButtonMode = source.touchpadButtonMode[deviceIndex];
+
+            AbsMouseRegionSettings = new AbsMouseRegionSettingsSerializer()
+            {
+                AbsWidth = source.buttonAbsMouseInfos[deviceIndex].width,
+                AbsHeight = source.buttonAbsMouseInfos[deviceIndex].height,
+                AbsXCenter = source.buttonAbsMouseInfos[deviceIndex].xcenter,
+                AbsYCenter = source.buttonAbsMouseInfos[deviceIndex].ycenter,
+                AntiRadius = source.buttonAbsMouseInfos[deviceIndex].antiRadius,
+                SnapToCenter = source.buttonAbsMouseInfos[deviceIndex].snapToCenter,
+            };
 
             OutputContDevice = source.outputDevType[deviceIndex];
             ProfileActions = string.Join("/", source.profileActions[deviceIndex]);
@@ -2189,6 +2206,17 @@ namespace DS4WinWPF.DS4Control.DTOXml
             }
 
             destination.touchpadButtonMode[deviceIndex] = TouchpadButtonMode;
+
+            if (AbsMouseRegionSettings != null)
+            {
+                destination.buttonAbsMouseInfos[deviceIndex].width = AbsMouseRegionSettings.AbsWidth;
+                destination.buttonAbsMouseInfos[deviceIndex].height = AbsMouseRegionSettings.AbsHeight;
+                destination.buttonAbsMouseInfos[deviceIndex].xcenter = AbsMouseRegionSettings.AbsXCenter;
+                destination.buttonAbsMouseInfos[deviceIndex].ycenter = AbsMouseRegionSettings.AbsYCenter;
+                destination.buttonAbsMouseInfos[deviceIndex].antiRadius = AbsMouseRegionSettings.AntiRadius;
+                destination.buttonAbsMouseInfos[deviceIndex].snapToCenter = AbsMouseRegionSettings.SnapToCenter;
+            };
+
 
             destination.outputDevType[deviceIndex] = OutputContDevice;
             if (!string.IsNullOrEmpty(ProfileActions))
@@ -3015,6 +3043,64 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public bool ShouldSerializeSmoothingSettings()
         {
             return SmoothingSettings != null;
+        }
+    }
+
+    public class AbsMouseRegionSettingsSerializer
+    {
+        private double _absWidth = ButtonAbsMouseInfo.WIDTH_DEFAULT;
+        [XmlElement("AbsWidth")]
+        public double AbsWidth
+        {
+            get => _absWidth;
+            set => _absWidth = Math.Clamp(value, 0.0, 1.0);
+        }
+
+        private double _absHeight = ButtonAbsMouseInfo.HEIGHT_DEFAULT;
+        [XmlElement("AbsHeight")]
+        public double AbsHeight
+        {
+            get => _absHeight;
+            set => _absHeight = Math.Clamp(value, 0.0, 1.0);
+        }
+
+        private double _absXCenter = ButtonAbsMouseInfo.XCENTER_DEFAULT;
+        [XmlElement("AbsXCenter")]
+        public double AbsXCenter
+        {
+            get => _absXCenter;
+            set => _absXCenter = Math.Clamp(value, 0.0, 1.0);
+        }
+
+        private double _absYCenter = ButtonAbsMouseInfo.YCENTER_DEFAULT;
+        [XmlElement("AbsYCenter")]
+        public double AbsYCenter
+        {
+            get => _absYCenter;
+            set => _absYCenter = Math.Clamp(value, 0.0, 1.0);
+        }
+
+        private double _antiRadius = ButtonAbsMouseInfo.ANTI_RADIUS_DEFAULT;
+        [XmlElement("AntiRadius")]
+        public double AntiRadius
+        {
+            get => _antiRadius;
+            set => _antiRadius = Math.Clamp(value, 0.0, 1.0);
+        }
+
+        private bool _snapToCenter = ButtonAbsMouseInfo.SNAP_CENTER_DEFAULT;
+        [XmlIgnore]
+        public bool SnapToCenter
+        {
+            get => _snapToCenter;
+            set => _snapToCenter = value;
+        }
+
+        [XmlElement("SnapToCenter")]
+        public string SnapToCenterString
+        {
+            get => _snapToCenter.ToString();
+            set => _snapToCenter = XmlDataUtilities.StrToBool(value);
         }
     }
 

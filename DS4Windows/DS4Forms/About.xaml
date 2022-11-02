@@ -242,6 +242,9 @@ Monero: 49RvRMiMewaeez1Y2auxHmfMaAUYfhUpBem4ohzRJd9b5acPcxzh1icjnhZfjnYd1S7NQ57r
                         <Hyperlink x:Name="paypalLink" Click="PaypalLink_Click" Foreground="{DynamicResource AccentColor}">Tip via Paypal</Hyperlink>
                     </TextBlock>
                     <TextBlock>
+                        <Hyperlink x:Name="buyCoffeeLink" Click="BuyCoffeeLink_Click" Foreground="{DynamicResource AccentColor}">Tip via BuyMeACoffee</Hyperlink>
+                    </TextBlock>
+                    <TextBlock>
                         <Hyperlink x:Name="patreonLink" Click="PatreonLink_Click" Foreground="{DynamicResource AccentColor}">Patreon</Hyperlink>
                     </TextBlock>
                     <TextBlock>

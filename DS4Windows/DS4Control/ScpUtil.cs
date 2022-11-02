@@ -6599,6 +6599,16 @@ namespace DS4Windows
                 }
 
 
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode($"/{rootname}/TouchpadButtonMode");
+                    if (Enum.TryParse(Item?.InnerText ?? "", out TouchButtonActivationMode tempMode))
+                    {
+                        touchpadButtonMode[device] = tempMode;
+                    }
+                }
+                catch { touchpadButtonMode[device] = TouchButtonActivationMode.Click; missingSetting = true; }
+
                 bool absMouseGroup = false;
                 XmlNode xmlAbsMouseElement =
                     m_Xdoc.SelectSingleNode($"/{rootname}/AbsMouseRegionSettings");
@@ -6665,16 +6675,6 @@ namespace DS4Windows
                     }
                     catch { }
                 }
-
-                try
-                {
-                    Item = m_Xdoc.SelectSingleNode($"/{rootname}/TouchpadButtonMode");
-                    if (Enum.TryParse(Item?.InnerText ?? "", out TouchButtonActivationMode tempMode))
-                    {
-                        touchpadButtonMode[device] = tempMode;
-                    }
-                }
-                catch { touchpadButtonMode[device] = TouchButtonActivationMode.Click; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/OutputContDevice"); outputDevType[device] = OutContDeviceId(Item.InnerText); }
                 catch { outputDevType[device] = OutContType.X360; missingSetting = true; }

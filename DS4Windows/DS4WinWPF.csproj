@@ -97,7 +97,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\social\bittube.png" />
 	<Resource Include="Resources\social\GitHub-Mark-Light-64px.png" />
     <Resource Include="Resources\social\GitHub-Mark-64px.png" />
     <Resource Include="Resources\social\twitter_logo_initial.png" />

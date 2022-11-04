@@ -317,6 +317,14 @@ namespace DS4Windows
             double absX = (currentX * mX - bX) / (double)DS4Touchpad.RESOLUTION_X_MAX;
             double absY = (currentY * mY - bY) / (double)DS4Touchpad.RESOLUTION_Y_MAX;
             //InputMethods.MoveAbsoluteMouse(absX, absY);
+
+            if (!Global.absUseAllMonitors)
+            {
+                Global.TranslateCoorToAbsDisplay(absX, absY, out absX, out absY);
+            }
+
+            absX = Math.Clamp(absX, 0.0, 1.0);
+            absY = Math.Clamp(absY, 0.0, 1.0);
             Global.outputKBMHandler.MoveAbsoluteMouse(absX, absY);
         }
 

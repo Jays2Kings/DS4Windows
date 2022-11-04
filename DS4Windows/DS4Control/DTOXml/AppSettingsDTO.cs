@@ -543,6 +543,12 @@ namespace DS4WinWPF.DS4Control.DTOXml
             }
         }
 
+        [XmlElement("AbsRegionDisplay")]
+        public string AbsRegionDisplay
+        {
+            get; private set;
+        }
+
         public InputDeviceOptions DeviceOptions
         {
             get; set;
@@ -692,12 +698,6 @@ namespace DS4WinWPF.DS4Control.DTOXml
             return Global.MAX_DS4_CONTROLLER_COUNT >= 8;
         }
 
-        [XmlElement("AbsRegionDisplay")]
-        public string AbsRegionDisplay
-        {
-            get; private set;
-        }
-
         public AppSettingsDTO()
         {
             UDPServerSmoothingOptions = new UDPSrvSmoothingOptionsGroup();
@@ -720,8 +720,6 @@ namespace DS4WinWPF.DS4Control.DTOXml
             LightbarInfo6 = new LightbarDS4WinInfo();
             LightbarInfo7 = new LightbarDS4WinInfo();
             LightbarInfo8 = new LightbarDS4WinInfo();
-
-
         }
 
         public void MapFrom(BackingStore source)
@@ -772,6 +770,8 @@ namespace DS4WinWPF.DS4Control.DTOXml
             UseCustomSteamFolder = source.useCustomSteamFolder;
             CustomSteamFolder = source.customSteamFolder;
             AutoProfileRevertDefaultProfile = source.autoProfileRevertDefaultProfile;
+            AbsRegionDisplay = source.absDisplayEDID;
+
             DeviceOptions = new InputDeviceOptions()
             {
                 DS4SupportSettings = new DS4SupportSettingsGroup()
@@ -807,8 +807,6 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 tempInstance.useCustomLed = lightbarDS4Win.useCustomLed;
                 tempInstance.m_CustomLed = lightbarDS4Win.m_CustomLed;
             }
-
-            AbsRegionDisplay = source.absDisplayEDID;
         }
 
         public void MapTo(BackingStore destination)
@@ -865,6 +863,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             destination.deviceOptions.JoyConDeviceOpts.Enabled = DeviceOptions.JoyConSupportSettings.Enabled;
             destination.deviceOptions.JoyConDeviceOpts.LinkedMode = DeviceOptions.JoyConSupportSettings.LinkMode;
             destination.deviceOptions.JoyConDeviceOpts.JoinGyroProv = DeviceOptions.JoyConSupportSettings.JoinedGyroProvider;
+            destination.absDisplayEDID = AbsRegionDisplay;
 
             LightbarDS4WinInfo[] tempLightArray = new LightbarDS4WinInfo[]
             {
@@ -877,8 +876,6 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 LightbarDS4WinInfo tempInstance = tempLightArray[i];
                 destination.PopulateLightbarDS4WinInfo(i, tempInstance);
             }
-
-            destination.absDisplayEDID = AbsRegionDisplay;
         }
     }
 

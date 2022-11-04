@@ -255,7 +255,7 @@ namespace DS4Windows
 
             CreateOSCCallback();
 
-            //SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
+            SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
             //oscListener = new UDPListener(Global.getOSCServerPortNum(), callback: oscCallback);
             //AppLogger.LogToGui("OSC LISTENER STARTED", false);
         }

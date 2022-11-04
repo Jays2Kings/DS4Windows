@@ -2917,24 +2917,24 @@ namespace DS4Windows
                 if (absMouseOut.Dirty)
                 {
                     double outX = 0.0, outY = 0.0;
-                    outX = absMouseOut.x;
-                    outY = absMouseOut.y;
-                    //if (absUseAllMonitors)
-                    //{
-                    //    outX = absMouseOut.x;
-                    //    outY = absMouseOut.y;
-                    //}
-                    //else
-                    //{
-                    //    outX = absMouseOut.x;
-                    //    outY = absMouseOut.y;
+                    //outX = absMouseOut.x;
+                    //outY = absMouseOut.y;
+                    if (absUseAllMonitors)
+                    {
+                        outX = absMouseOut.x;
+                        outY = absMouseOut.y;
+                    }
+                    else
+                    {
+                        outX = absMouseOut.x;
+                        outY = absMouseOut.y;
 
-                    //    double tempX = 0.0, tempY = 0.0;
-                    //    //Global.TranslateCoorToAbsDisplay(absMouseOut.x, absMouseOut.y,
-                    //    //    out outX, out outY);
-                    //    Global.TranslateCoorToAbsDisplay(absMouseOut.x, absMouseOut.y,
-                    //        out tempX, out tempY);
-                    //}
+                        double tempX = 0.0, tempY = 0.0;
+                        //Global.TranslateCoorToAbsDisplay(absMouseOut.x, absMouseOut.y,
+                        //    out outX, out outY);
+                        Global.TranslateCoorToAbsDisplay(absMouseOut.x, absMouseOut.y,
+                            out tempX, out tempY);
+                    }
 
                     outX = Math.Clamp(outX, 0.0, 1.0);
                     outY = Math.Clamp(outY, 0.0, 1.0);
@@ -2948,11 +2948,11 @@ namespace DS4Windows
                         absMouseOut.CalculateDeadCoords(buttonAbsMouseInfo, out double releaseX,
                             out double releaseY);
 
-                        //if (!Global.absUseAllMonitors)
-                        //{
-                        //    Global.TranslateCoorToAbsDisplay(releaseX, releaseY,
-                        //        out releaseX, out releaseY);
-                        //}
+                        if (!Global.absUseAllMonitors)
+                        {
+                            Global.TranslateCoorToAbsDisplay(releaseX, releaseY,
+                                out releaseX, out releaseY);
+                        }
 
                         outputKBMHandler.MoveAbsoluteMouse(releaseX, releaseY);
                     }

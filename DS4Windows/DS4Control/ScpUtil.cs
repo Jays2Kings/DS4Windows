@@ -20,6 +20,7 @@ using static DS4Windows.Mouse;
 using DS4Windows.StickModifiers;
 using System.Windows;
 using static DS4Windows.Util;
+using WpfScreenHelper;
 
 namespace DS4Windows
 {
@@ -536,8 +537,8 @@ namespace DS4Windows
         public static bool fakerInputInstalled = IsFakerInputInstalled();
         public const string BLANK_FAKERINPUT_VERSION = "0.0.0.0";
         public static string fakerInputVersion = FakerInputVersion();
-        public static Rect absDisplayBounds = new Rect(800, 0, 1024, 768);
-        public static Rect fullDesktopBounds = new Rect(0, 0, 3840, 2160);
+        public static Rect absDisplayBounds = new Rect(0, 0, 2, 2);
+        public static Rect fullDesktopBounds = new Rect(0, 0, 2, 2);
         public static bool absUseAllMonitors = false;
 
         public static VirtualKBMBase outputKBMHandler = null;
@@ -1653,6 +1654,12 @@ namespace DS4Windows
                     m_Config.fakeExeFileName = value;
                 }
             }
+        }
+
+        public static string AbsoluteDisplayEDID
+        {
+            get => m_Config.absDisplayEDID;
+            set => m_Config.absDisplayEDID = value;
         }
 
         // controller/profile specfic values
@@ -2822,20 +2829,34 @@ namespace DS4Windows
         public static void PrepareAbsMonitorBounds(string edid)
         {
             bool foundMonitor = false;
+            DISPLAY_DEVICE display = new DISPLAY_DEVICE();
             if (!absUseAllMonitors && !string.IsNullOrEmpty(edid))
             {
-                foundMonitor = FindMonitorByEDID(edid, out DISPLAY_DEVICE display);
+                foundMonitor = FindMonitorByEDID(edid, out display);
             }
 
             if (foundMonitor && !absUseAllMonitors)
             {
                 // Grab resolution of monitor and full desktop range.
                 // Establish abs region bounds
+                fullDesktopBounds = SystemInformation.VirtualScreen;
+                List<Screen> tempScreens = Screen.AllScreens.ToList();
+                foreach(Screen tempScreen in tempScreens)
+                {
+                    if (tempScreen.DeviceName == display.DeviceName)
+                    {
+                        absDisplayBounds = tempScreen.Bounds;
+                        break;
+                    }
+                }
             }
             else
             {
                 // Grab resolution of full desktop range.
                 // Establish abs region bounds
+                absUseAllMonitors = true;
+                fullDesktopBounds = SystemInformation.VirtualScreen;
+                absDisplayBounds = fullDesktopBounds;
             }
         }
 
@@ -2869,6 +2890,34 @@ namespace DS4Windows
 
             display = foundMonitor ? d : new DISPLAY_DEVICE();
             return foundMonitor;
+        }
+
+        public static IEnumerable<DISPLAY_DEVICE> GrabCurrentMonitors()
+        {
+            List<DISPLAY_DEVICE> result = new List<DISPLAY_DEVICE>();
+
+            DISPLAY_DEVICE d = new DISPLAY_DEVICE();
+            d.cb = Marshal.SizeOf(d);
+            try
+            {
+                for (uint id = 0;
+                    EnumDisplayDevicesW(null, id, ref d, 0); id++)
+                {
+                    if (d.StateFlags.HasFlag(DisplayDeviceStateFlags.AttachedToDesktop))
+                    {
+                        EnumDisplayDevicesW(d.DeviceName, id, ref d,
+                            EDD_GET_DEVICE_INTERFACE_NAME);
+                        result.Add(d);
+                    }
+
+                    d.cb = Marshal.SizeOf(d);
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return result;
         }
     }
 
@@ -3218,7 +3267,7 @@ namespace DS4Windows
         public string customSteamFolder;
         public AppThemeChoice useCurrentTheme;
         public string fakeExeFileName = string.Empty;
-        public static string absDisplayEDID = string.Empty;
+        public string absDisplayEDID = string.Empty;
 
         public ControlServiceDeviceOptions deviceOptions =
             new ControlServiceDeviceOptions();
@@ -7197,6 +7246,13 @@ namespace DS4Windows
             }
 
             m_Xdoc.AppendChild(rootElement);
+
+            if (!string.IsNullOrEmpty(absDisplayEDID))
+            {
+                XmlElement xmlAbsMonitorEDID = m_Xdoc.CreateElement("AbsRegionDisplay", null);
+                xmlAbsMonitorEDID.InnerText = absDisplayEDID;
+                rootElement.AppendChild(xmlAbsMonitorEDID);
+            }
 
             try
             {

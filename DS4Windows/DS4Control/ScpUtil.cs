@@ -7157,6 +7157,8 @@ namespace DS4Windows
 
             if (loaded)
             {
+                //Global.PrepareAbsMonitorBounds(absDisplayEDID);
+
                 string custom_exe_name_path = Path.Combine(Global.exedirpath, Global.CUSTOM_EXE_CONFIG_FILENAME);
                 bool fakeExeFileExists = File.Exists(custom_exe_name_path);
                 if (fakeExeFileExists)

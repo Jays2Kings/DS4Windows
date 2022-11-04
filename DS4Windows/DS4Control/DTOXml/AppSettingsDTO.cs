@@ -692,6 +692,12 @@ namespace DS4WinWPF.DS4Control.DTOXml
             return Global.MAX_DS4_CONTROLLER_COUNT >= 8;
         }
 
+        [XmlElement("AbsRegionDisplay")]
+        public string AbsRegionDisplay
+        {
+            get; private set;
+        }
+
         public AppSettingsDTO()
         {
             UDPServerSmoothingOptions = new UDPSrvSmoothingOptionsGroup();
@@ -801,6 +807,8 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 tempInstance.useCustomLed = lightbarDS4Win.useCustomLed;
                 tempInstance.m_CustomLed = lightbarDS4Win.m_CustomLed;
             }
+
+            AbsRegionDisplay = source.absDisplayEDID;
         }
 
         public void MapTo(BackingStore destination)
@@ -869,6 +877,8 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 LightbarDS4WinInfo tempInstance = tempLightArray[i];
                 destination.PopulateLightbarDS4WinInfo(i, tempInstance);
             }
+
+            destination.absDisplayEDID = AbsRegionDisplay;
         }
     }
 

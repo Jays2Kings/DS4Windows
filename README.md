@@ -40,7 +40,6 @@ Note: The Website Is No Longer Working
 
 [Twitter @ds4windows](https://twitter.com/ds4windows)  
 [YouTube](https://www.youtube.com/channel/UCIoUA_XLlCSZbvZGeg3Byeg)  
-[BitTube.tv](https://bittube.tv/profile/ds4windows)  
 
 ### Other
 
@@ -185,6 +184,7 @@ rejected if no reasonable solution can be found to incorporate code changes.
 If you would like to send some coin my way, here are some means by
 which to do so.
 
+**Buy Me A Coffee:** https://buymeacoffee.com/ryochan7
 **PayPal:** https://paypal.me/ryochan7  
 **Patreon:** https://patreon.com/user?u=501036  
 **SubscribeStar:** https://subscribestar.com/ryochan7

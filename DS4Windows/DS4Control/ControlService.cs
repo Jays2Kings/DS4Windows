@@ -15,6 +15,9 @@ using DS4WinWPF.DS4Control;
 using DS4Windows.DS4Control;
 using Nefarius.ViGEm.Client.Targets.DualShock4;
 using Nefarius.Utilities.DeviceManagement.PnP;
+using static DS4Windows.Util;
+using System.Runtime.InteropServices;
+using Microsoft.Win32;
 
 namespace DS4Windows
 {
@@ -252,8 +255,14 @@ namespace DS4Windows
 
             CreateOSCCallback();
 
+            SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
             //oscListener = new UDPListener(Global.getOSCServerPortNum(), callback: oscCallback);
             //AppLogger.LogToGui("OSC LISTENER STARTED", false);
+        }
+
+        private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
+        {
+            Global.PrepareAbsMonitorBounds(string.Empty);
         }
 
         //private void OutputslotMan_SlotAssigned(OutputSlotManager sender, int slotNum, OutSlotDevice outSlotDev)

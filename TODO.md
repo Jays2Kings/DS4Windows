@@ -1,6 +1,6 @@
 # TODO
 
-* Add hooks to keep track of active display monitors for Absolute Mouse
+* ~~Add hooks to keep track of active display monitors for Absolute Mouse~~
 * ~~Figure out desired options for Absolute Mouse support~~
 * ~~Add absolute mouse options for various output types (Sticks and Touchpad)~~
 * Add more localization ready strings

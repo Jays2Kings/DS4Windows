@@ -6993,6 +6993,13 @@ namespace DS4Windows
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/AutoProfileRevertDefaultProfile"); Boolean.TryParse(Item.InnerText, out autoProfileRevertDefaultProfile); }
                     catch { missingSetting = true; }
 
+                    try
+                    {
+                        Item = m_Xdoc.SelectSingleNode("/Profile/AbsRegionDisplay");
+                        absDisplayEDID = Item?.InnerText ?? string.Empty;
+                    }
+                    catch { }
+
 
                     XmlNode xmlDeviceOptions = m_Xdoc.SelectSingleNode("/Profile/DeviceOptions");
                     if (xmlDeviceOptions != null)
@@ -7085,13 +7092,6 @@ namespace DS4Windows
                         }
                         catch { lightbarSettingInfo[i].ds4winSettings.useCustomLed = false; lightbarSettingInfo[i].ds4winSettings.m_CustomLed = new DS4Color(Color.Blue); missingSetting = true; }
                     }
-
-                    try
-                    {
-                        Item = m_Xdoc.SelectSingleNode("/Profile/AbsRegionDisplay");
-                        absDisplayEDID = Item?.InnerText ?? string.Empty;
-                    }
-                    catch { }
                 }
             }
             catch { }
@@ -7101,7 +7101,7 @@ namespace DS4Windows
 
             if (Loaded)
             {
-                //Global.PrepareAbsMonitorBounds(absDisplayEDID);
+                Global.PrepareAbsMonitorBounds(absDisplayEDID);
 
                 string custom_exe_name_path = Path.Combine(Global.exedirpath, Global.CUSTOM_EXE_CONFIG_FILENAME);
                 bool fakeExeFileExists = File.Exists(custom_exe_name_path);

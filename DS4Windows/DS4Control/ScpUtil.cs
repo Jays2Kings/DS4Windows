@@ -18,6 +18,7 @@ using System.Windows.Input;
 using System.Runtime.InteropServices;
 using static DS4Windows.Mouse;
 using DS4Windows.StickModifiers;
+using System.Windows;
 
 namespace DS4Windows
 {
@@ -534,6 +535,10 @@ namespace DS4Windows
         public static bool fakerInputInstalled = IsFakerInputInstalled();
         public const string BLANK_FAKERINPUT_VERSION = "0.0.0.0";
         public static string fakerInputVersion = FakerInputVersion();
+        public static Rect testBounds = new Rect(800, 0, 1024, 768);
+        public static Rect fullDesktopBounds = new Rect(0, 0, 3840, 2160);
+        public static bool absUseAllMonitors = false;
+        public static string absDisplayEDID = string.Empty;
 
         public static VirtualKBMBase outputKBMHandler = null;
         public static VirtualKBMMapping outputKBMMapping = null;
@@ -2791,6 +2796,27 @@ namespace DS4Windows
             {
                 m_Config.ds4controlSettings[deviceNum].EstablishExtraButtons(devButtons);
             }
+        }
+
+        public static void TranslateCoorToAbsDisplay(double inX, double inY,
+            out double outX, out double outY)
+        {
+            //outX = outY = 0.0;
+            //int topLeftX = (int)testBounds.Left;
+            //double testLeft = 0.0;
+            //double testRight = 0.0;
+            //double testTop = 0.0;
+            //double testBottom = 0.0;
+
+            double widthRatio = (testBounds.Left + testBounds.Right) / fullDesktopBounds.Width;
+            double heightRatio = (testBounds.Top + testBounds.Bottom) / fullDesktopBounds.Height;
+            double bX = testBounds.Left / fullDesktopBounds.Width;
+            double bY = testBounds.Top / fullDesktopBounds.Height;
+
+            outX = widthRatio * inX + bX;
+            outY = heightRatio * inY + bY;
+            //outX = (testBounds.TopRight.X - testBounds.TopLeft.X) * inX + testBounds.TopLeft.X;
+            //outY = (testBounds.BottomRight.Y - testBounds.TopLeft.Y) * inY + testBounds.TopLeft.Y;
         }
     }
 

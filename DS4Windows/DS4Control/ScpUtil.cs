@@ -539,7 +539,6 @@ namespace DS4Windows
         public static Rect absDisplayBounds = new Rect(800, 0, 1024, 768);
         public static Rect fullDesktopBounds = new Rect(0, 0, 3840, 2160);
         public static bool absUseAllMonitors = false;
-        public static string absDisplayEDID = string.Empty;
 
         public static VirtualKBMBase outputKBMHandler = null;
         public static VirtualKBMMapping outputKBMMapping = null;
@@ -3219,6 +3218,7 @@ namespace DS4Windows
         public string customSteamFolder;
         public AppThemeChoice useCurrentTheme;
         public string fakeExeFileName = string.Empty;
+        public static string absDisplayEDID = string.Empty;
 
         public ControlServiceDeviceOptions deviceOptions =
             new ControlServiceDeviceOptions();
@@ -7036,6 +7036,13 @@ namespace DS4Windows
                         }
                         catch { lightbarSettingInfo[i].ds4winSettings.useCustomLed = false; lightbarSettingInfo[i].ds4winSettings.m_CustomLed = new DS4Color(Color.Blue); missingSetting = true; }
                     }
+
+                    try
+                    {
+                        Item = m_Xdoc.SelectSingleNode("/Profile/AbsRegionDisplay");
+                        absDisplayEDID = Item?.InnerText ?? string.Empty;
+                    }
+                    catch { }
                 }
             }
             catch { }
@@ -7045,6 +7052,8 @@ namespace DS4Windows
 
             if (Loaded)
             {
+                //Global.PrepareAbsMonitorBounds(absDisplayEDID);
+
                 string custom_exe_name_path = Path.Combine(Global.exedirpath, Global.CUSTOM_EXE_CONFIG_FILENAME);
                 bool fakeExeFileExists = File.Exists(custom_exe_name_path);
                 if (fakeExeFileExists)

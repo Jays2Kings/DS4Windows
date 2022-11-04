@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 using static DS4Windows.Mouse;
 using DS4Windows.StickModifiers;
 using System.Windows;
+using static DS4Windows.Util;
 
 namespace DS4Windows
 {
@@ -535,7 +536,7 @@ namespace DS4Windows
         public static bool fakerInputInstalled = IsFakerInputInstalled();
         public const string BLANK_FAKERINPUT_VERSION = "0.0.0.0";
         public static string fakerInputVersion = FakerInputVersion();
-        public static Rect testBounds = new Rect(800, 0, 1024, 768);
+        public static Rect absDisplayBounds = new Rect(800, 0, 1024, 768);
         public static Rect fullDesktopBounds = new Rect(0, 0, 3840, 2160);
         public static bool absUseAllMonitors = false;
         public static string absDisplayEDID = string.Empty;
@@ -2802,21 +2803,73 @@ namespace DS4Windows
             out double outX, out double outY)
         {
             //outX = outY = 0.0;
-            //int topLeftX = (int)testBounds.Left;
+            //int topLeftX = (int)absDisplayBounds.Left;
             //double testLeft = 0.0;
             //double testRight = 0.0;
             //double testTop = 0.0;
             //double testBottom = 0.0;
 
-            double widthRatio = (testBounds.Left + testBounds.Right) / fullDesktopBounds.Width;
-            double heightRatio = (testBounds.Top + testBounds.Bottom) / fullDesktopBounds.Height;
-            double bX = testBounds.Left / fullDesktopBounds.Width;
-            double bY = testBounds.Top / fullDesktopBounds.Height;
+            double widthRatio = (absDisplayBounds.Left + absDisplayBounds.Right) / fullDesktopBounds.Width;
+            double heightRatio = (absDisplayBounds.Top + absDisplayBounds.Bottom) / fullDesktopBounds.Height;
+            double bX = absDisplayBounds.Left / fullDesktopBounds.Width;
+            double bY = absDisplayBounds.Top / fullDesktopBounds.Height;
 
             outX = widthRatio * inX + bX;
             outY = heightRatio * inY + bY;
-            //outX = (testBounds.TopRight.X - testBounds.TopLeft.X) * inX + testBounds.TopLeft.X;
-            //outY = (testBounds.BottomRight.Y - testBounds.TopLeft.Y) * inY + testBounds.TopLeft.Y;
+            //outX = (absDisplayBounds.TopRight.X - absDisplayBounds.TopLeft.X) * inX + absDisplayBounds.TopLeft.X;
+            //outY = (absDisplayBounds.BottomRight.Y - absDisplayBounds.TopLeft.Y) * inY + absDisplayBounds.TopLeft.Y;
+        }
+
+        public static void PrepareAbsMonitorBounds(string edid)
+        {
+            bool foundMonitor = false;
+            if (!absUseAllMonitors && !string.IsNullOrEmpty(edid))
+            {
+                foundMonitor = FindMonitorByEDID(edid, out DISPLAY_DEVICE display);
+            }
+
+            if (foundMonitor && !absUseAllMonitors)
+            {
+                // Grab resolution of monitor and full desktop range.
+                // Establish abs region bounds
+            }
+            else
+            {
+                // Grab resolution of full desktop range.
+                // Establish abs region bounds
+            }
+        }
+
+        public static bool FindMonitorByEDID(string edid, out DISPLAY_DEVICE display)
+        {
+            DISPLAY_DEVICE d = new DISPLAY_DEVICE();
+            d.cb = Marshal.SizeOf(d);
+            bool foundMonitor = false;
+            try
+            {
+                for (uint id = 0;
+                    EnumDisplayDevicesW(null, id, ref d, 0); id++)
+                {
+                    if (d.StateFlags.HasFlag(DisplayDeviceStateFlags.AttachedToDesktop))
+                    {
+                        EnumDisplayDevicesW(d.DeviceName, id, ref d,
+                            EDD_GET_DEVICE_INTERFACE_NAME);
+                        if (d.DeviceID == edid)
+                        {
+                            foundMonitor = true;
+                            break;
+                        }
+                    }
+
+                    d.cb = Marshal.SizeOf(d);
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            display = foundMonitor ? d : new DISPLAY_DEVICE();
+            return foundMonitor;
         }
     }
 

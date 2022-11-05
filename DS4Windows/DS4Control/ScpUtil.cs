@@ -539,7 +539,9 @@ namespace DS4Windows
         public static string fakerInputVersion = FakerInputVersion();
         public static Rect absDisplayBounds = new Rect(0, 0, 2, 2);
         public static Rect fullDesktopBounds = new Rect(0, 0, 2, 2);
-        public static bool absUseAllMonitors = false;
+        //public static Rect absDisplayBounds = new Rect(800, 0, 1024, 768);
+        //public static Rect fullDesktopBounds = new Rect(0, 0, 3840, 2160);
+        public static bool absUseAllMonitors = true;
 
         public static VirtualKBMBase outputKBMHandler = null;
         public static VirtualKBMMapping outputKBMMapping = null;
@@ -2830,15 +2832,16 @@ namespace DS4Windows
         {
             bool foundMonitor = false;
             DISPLAY_DEVICE display = new DISPLAY_DEVICE();
-            if (!absUseAllMonitors && !string.IsNullOrEmpty(edid))
+            if (!string.IsNullOrEmpty(edid))
             {
                 foundMonitor = FindMonitorByEDID(edid, out display);
             }
 
-            if (foundMonitor && !absUseAllMonitors)
+            if (foundMonitor)
             {
                 // Grab resolution of monitor and full desktop range.
                 // Establish abs region bounds
+                absUseAllMonitors = false;
                 fullDesktopBounds = SystemInformation.VirtualScreen;
                 List<Screen> tempScreens = Screen.AllScreens.ToList();
                 foreach(Screen tempScreen in tempScreens)

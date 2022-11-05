@@ -2923,6 +2923,11 @@ namespace DS4Windows
                     {
                         outX = absMouseOut.x;
                         outY = absMouseOut.y;
+
+                        //double tempX = 0.0, tempY = 0.0;
+                        //Global.TranslateCoorToAbsDisplay(outX, outY,
+                        //    out tempX, out tempY);
+                        //Trace.WriteLine($"INX: {outX} | INY: {outY} | OUTX: {tempX} | OUTY: {tempY}");
                     }
                     else
                     {

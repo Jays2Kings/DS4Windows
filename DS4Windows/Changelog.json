@@ -16,7 +16,7 @@
           "log_text": ["* Added Mouse instance null check when performing PreLoadReset before profile loading",
             "* Added absolute mouse output support for bindable controls",
             "* Removed references to old BitTube channel",
-            "*  Added WpfScreenHelper NuGet package to dependencies",
+            "* Added WpfScreenHelper NuGet package to dependencies",
             "* Use absolute mouse region display coordinate translation for Touchpad abs mouse",
             "* Removed App references to MemoryMappedViewAccessor objects for cmd interface. Create as needed. Snappier app as a result"],
           "updated_at": "2022-11-07T02:41:13+0000"

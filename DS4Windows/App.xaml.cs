@@ -60,10 +60,7 @@ namespace DS4WinWPF
         private static LoggerHolder logHolder;
 
         private MemoryMappedFile ipcClassNameMMF = null; // MemoryMappedFile for inter-process communication used to hold className of DS4Form window
-        private MemoryMappedViewAccessor ipcClassNameMMA = null;
-
         private MemoryMappedFile ipcResultDataMMF = null; // MemoryMappedFile for inter-process communication used to exchange string result data between cmdline client process and the background running DS4Windows app
-        private MemoryMappedViewAccessor ipcResultDataMMA = null;
 
         private static Dictionary<DS4Windows.AppThemeChoice, string> themeLocs = new
             Dictionary<DS4Windows.AppThemeChoice, string>()
@@ -418,9 +415,7 @@ namespace DS4WinWPF
                     finally
                     {
                         // Release the result MMF file in the client process before releasing the mtx and letting other client process to proceed with the same MMF file
-                        if (ipcResultDataMMA != null) ipcResultDataMMA.Dispose();
                         if (ipcResultDataMMF != null) ipcResultDataMMF.Dispose();
-                        ipcResultDataMMA = null;
                         ipcResultDataMMF = null;
 
                         // If this was "Query.xxx" cmdline client call then release the inter-process mutex and let other concurrent clients to proceed (if there are anyone waiting for the MMF result file)
@@ -507,7 +502,7 @@ namespace DS4WinWPF
 
         public void CreateIPCClassNameMMF(IntPtr hWnd)
         {
-            if (ipcClassNameMMA != null) return; // Already holding a handle to MMF file. No need to re-write the data
+            if (ipcClassNameMMF != null) return; // Already holding a handle to MMF file. No need to re-write the data
 
             try
             {
@@ -517,8 +512,9 @@ namespace DS4WinWPF
                     byte[] buffer = ASCIIEncoding.ASCII.GetBytes(wndClassNameStr.ToString());
 
                     ipcClassNameMMF = MemoryMappedFile.CreateNew("DS4Windows_IPCClassName.dat", 128);
-                    ipcClassNameMMA = ipcClassNameMMF.CreateViewAccessor(0, buffer.Length);
-                    ipcClassNameMMA.WriteArray(0, buffer, 0, buffer.Length);
+                    MemoryMappedViewAccessor ipcClassNameMMA_Now = ipcClassNameMMF.CreateViewAccessor(0, buffer.Length);
+                    ipcClassNameMMA_Now.WriteArray(0, buffer, 0, buffer.Length);
+                    ipcClassNameMMA_Now?.Dispose();
                     // The MMF file is alive as long this process holds the file handle open
                 }
             }
@@ -558,12 +554,11 @@ namespace DS4WinWPF
         {
             // Cmdline client process calls this to create the MMF file used in inter-process-communications. The background DS4Windows process 
             // uses WriteIPCResultDataMMF method to write a command result and the client process reads the result from the same MMF file.
-            if (ipcResultDataMMA != null) return; // Already holding a handle to MMF file. No need to re-write the data
+            if (ipcResultDataMMF != null) return; // Already holding a handle to MMF file. No need to re-write the data
 
             try
             {
                 ipcResultDataMMF = MemoryMappedFile.CreateNew("DS4Windows_IPCResultData.dat", 256);
-                ipcResultDataMMA = ipcResultDataMMF.CreateViewAccessor(0, 256);
                 // The MMF file is alive as long this process holds the file handle open
             }
             catch (Exception)
@@ -574,7 +569,7 @@ namespace DS4WinWPF
 
         private string WaitAndReadIPCResultDataMMF(EventWaitHandle ipcNotifyEvent)
         {
-            if (ipcResultDataMMA != null)
+            if (ipcResultDataMMF != null)
             {
                 // Wait until the inter-process-communication (IPC) result data is available and read the result
                 try
@@ -584,6 +579,7 @@ namespace DS4WinWPF
                     {
                         int strNullCharIdx;
                         byte[] buffer = new byte[256];
+                        MemoryMappedViewAccessor ipcResultDataMMA = ipcClassNameMMF.CreateViewAccessor(0, buffer.Length);
                         ipcResultDataMMA.ReadArray(0, buffer, 0, buffer.Length);
                         strNullCharIdx = Array.FindIndex(buffer, byteVal => byteVal == 0);
                         return ASCIIEncoding.ASCII.GetString(buffer, 0, (strNullCharIdx <= 1 ? 1 : strNullCharIdx));
@@ -711,7 +707,6 @@ namespace DS4WinWPF
                     threadComEvent.Close();
                 }
 
-                if (ipcClassNameMMA != null) ipcClassNameMMA.Dispose();
                 if (ipcClassNameMMF != null) ipcClassNameMMF.Dispose();
 
                 LogManager.Flush();

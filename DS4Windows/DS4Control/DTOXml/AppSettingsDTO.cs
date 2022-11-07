@@ -856,6 +856,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             destination.useCustomSteamFolder = UseCustomSteamFolder;
             destination.customSteamFolder = CustomSteamFolder;
             destination.autoProfileRevertDefaultProfile = AutoProfileRevertDefaultProfile;
+            destination.absDisplayEDID = AbsRegionDisplay;
 
             destination.deviceOptions.DS4DeviceOpts.Enabled = DeviceOptions.DS4SupportSettings.Enabled;
             destination.deviceOptions.DualSenseOpts.Enabled = DeviceOptions.DualSenseSupportSettings.Enabled;
@@ -863,7 +864,6 @@ namespace DS4WinWPF.DS4Control.DTOXml
             destination.deviceOptions.JoyConDeviceOpts.Enabled = DeviceOptions.JoyConSupportSettings.Enabled;
             destination.deviceOptions.JoyConDeviceOpts.LinkedMode = DeviceOptions.JoyConSupportSettings.LinkMode;
             destination.deviceOptions.JoyConDeviceOpts.JoinGyroProv = DeviceOptions.JoyConSupportSettings.JoinedGyroProvider;
-            destination.absDisplayEDID = AbsRegionDisplay;
 
             LightbarDS4WinInfo[] tempLightArray = new LightbarDS4WinInfo[]
             {

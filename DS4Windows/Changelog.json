@@ -1,9 +1,28 @@
 {
-  "latest_version": "3.1.9",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 9},
-  "updated_at": "	2022-10-25T21:39:41+0000",
+  "latest_version": "3.1.10",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 10},
+  "updated_at": "2022-11-07T02:41:13+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.1.10",
+      "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 10},
+      "base_header": "Version 3.1.10",
+      "release_date": "2022-11-07T02:41:13+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.1.10",
+          "log_text": ["* Added Mouse instance null check when performing PreLoadReset before profile loading",
+            "* Added absolute mouse output support for bindable controls",
+            "* Removed references to old BitTube channel",
+            "*  Added WpfScreenHelper NuGet package to dependencies",
+            "* Use absolute mouse region display coordinate translation for Touchpad abs mouse",
+            "* Removed App references to MemoryMappedViewAccessor objects for cmd interface. Create as needed. Snappier app as a result"],
+          "updated_at": "2022-11-07T02:41:13+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.1.9",
       "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 9},

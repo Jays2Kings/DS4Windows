@@ -550,6 +550,9 @@ namespace DS4Windows
         public const int APP_CONFIG_VERSION = 2;
         public const string ASSEMBLY_RESOURCE_PREFIX = "pack://application:,,,/DS4Windows;";
         public const string RESOURCES_PREFIX = "/DS4Windows;component/Resources";
+        // Need to add additional probing path in code starting with .NET 6.
+        public const string PROBING_PATH = "Lang";
+        public const string LANGUAGE_ASSEMBLY_NAME = "DS4Windows.resources.dll";
         public const string CUSTOM_EXE_CONFIG_FILENAME = "custom_exe_name.txt";
         public const string XML_EXTENSION = ".xml";
 

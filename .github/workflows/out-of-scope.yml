@@ -1,0 +1,23 @@
+name: 'Out-of-scope Issue'
+
+on:
+  issues:
+    types: [labeled, unlabeled, reopened]
+
+permissions:
+  issues: write
+
+jobs:
+  action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dessant/support-requests@v2
+        with:
+          github-token: ${{ github.token }}
+          support-label: 'out-of-scope'
+          issue-comment: >
+            :wave: @{issue-author}, unfortunately this topic is out of scope 
+            of the projects' overall goals and will not be worked on.
+          close-issue: true
+          lock-issue: true
+          issue-lock-reason: 'off-topic'

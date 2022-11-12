@@ -379,8 +379,9 @@ namespace DS4Windows
             return featureSet;
         }
 
-        private const byte DEFAULT_BT_REPORT_TYPE = 0x15;
+        private const byte DEFAULT_BT_REPORT_TYPE = 0x11;
         private byte knownGoodBTOutputReportType = DEFAULT_BT_REPORT_TYPE;
+        private int btOutputPayloadLen = BT_OUTPUT_REPORT_LENGTH;
 
         //private const byte DEFAULT_OUTPUT_FEATURES = 0xF7;
         private const byte DEFAULT_OUTPUT_FEATURES = 0x07;
@@ -673,12 +674,18 @@ namespace DS4Windows
                     // Default DS4 logic while writing data to gamepad
                     outputReport = new byte[BT_OUTPUT_REPORT_LENGTH];
                     outReportBuffer = new byte[BT_OUTPUT_REPORT_LENGTH];
+
+                    // Buffer len and output report payload len will differ
+                    btOutputPayloadLen = BT_OUTPUT_REPORT_0x11_LENGTH;
                 }
                 else
                 {
                     // Use the gamepad specific output buffer size (but minimum of 15 bytes to avoid out-of-index errors in this app)
                     outputReport = new byte[hDevice.Capabilities.OutputReportByteLength <= 15 ? 15 : hDevice.Capabilities.OutputReportByteLength];
                     outReportBuffer = new byte[hDevice.Capabilities.OutputReportByteLength <= 15 ? 15 : hDevice.Capabilities.OutputReportByteLength];
+
+                    // Use custom buffer len
+                    btOutputPayloadLen = outputReport.Length;
                 }
                 warnInterval = WARN_INTERVAL_BT;
                 synced = isValidSerial();
@@ -1481,7 +1488,7 @@ namespace DS4Windows
                 //outReportBuffer[0] = 0x15;
                 //outReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
                 outReportBuffer[1] = (byte)(0xC0 | btPollRate); // input report rate
-                outReportBuffer[2] = 0xA0;
+                //outReportBuffer[2] = 0xA0;
 
                 // Headphone volume L (0x10), Headphone volume R (0x20), Mic volume (0x40), Speaker volume (0x80)
                 // enable rumble (0x01), lightbar (0x02), flash (0x04). Default: 0x07
@@ -1599,7 +1606,8 @@ namespace DS4Windows
                         if ((this.featureSet & VidPidFeatureSet.OnlyOutputData0x05) == 0)
                         {
                             // Need to calculate and populate CRC-32 data so controller will accept the report
-                            int len = outputReport.Length;
+                            //int len = outputReport.Length;
+                            int len = btOutputPayloadLen;
                             uint calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);
                             calcCrc32 = ~Crc32Algorithm.CalculateBasicHash(ref calcCrc32, ref outputReport, 0, len - 4);
                             outputReport[len - 4] = (byte)calcCrc32;

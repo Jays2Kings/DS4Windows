@@ -2142,6 +2142,28 @@ namespace DS4Windows
             return m_Config.btPollRate[index];
         }
 
+        // Start of DualSense specific profile settings
+        //
+        public static DualSenseDevice.RumbleEmulationMode[] DualSenseRumbleEmulationMode
+        {
+            get => m_Config.dualSenseRumbleEmulationMode;
+            set => m_Config.dualSenseRumbleEmulationMode= value;
+        }
+
+        public static bool[] UseGenericRumbleStrRescaleForDualSenses
+        {
+            get => m_Config.useGenericRumbleRescaleForDualSenses;
+            set => m_Config.useGenericRumbleRescaleForDualSenses = value;
+        }
+
+        public static byte[] DualSenseHapticPowerLevel
+        {
+            get => m_Config.dualSenseHapticPowerLevel;
+            set => m_Config.dualSenseHapticPowerLevel = value;
+        }
+        //
+        // End of DualSense specific profile settings
+
         public static SquareStickInfo[] SquStickInfo => m_Config.squStickInfo;
         public static SquareStickInfo GetSquareStickInfo(int device)
         {

@@ -16,6 +16,7 @@ using Sensorit.Base;
 using DS4Windows.DS4Control;
 using System.Windows.Input;
 using System.Runtime.InteropServices;
+using DS4Windows.InputDevices;
 
 namespace DS4Windows
 {

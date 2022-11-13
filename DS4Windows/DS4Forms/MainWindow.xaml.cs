@@ -130,8 +130,8 @@ namespace DS4WinWPF.DS4Forms
                 uacImg.Visibility = Visibility.Collapsed;
             }
 
-            this.Width = Global.FormWidth;
-            this.Height = Global.FormHeight;
+            this.Width = Math.Clamp(Global.FormWidth, 0, Global.fullDesktopBounds.Width);
+            this.Height = Math.Clamp(Global.FormHeight, 0, Global.fullDesktopBounds.Height);
             WindowStartupLocation = WindowStartupLocation.Manual;
             Left = Global.FormLocationX;
             Top = Global.FormLocationY;

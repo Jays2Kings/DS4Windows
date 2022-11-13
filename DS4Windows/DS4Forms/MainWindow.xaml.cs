@@ -130,11 +130,14 @@ namespace DS4WinWPF.DS4Forms
                 uacImg.Visibility = Visibility.Collapsed;
             }
 
+            // Check display width bounds on startup
             this.Width = Math.Clamp(Global.FormWidth, 0, Global.fullDesktopBounds.Width);
             this.Height = Math.Clamp(Global.FormHeight, 0, Global.fullDesktopBounds.Height);
+
+            // Check if requested window location exists on startup
             WindowStartupLocation = WindowStartupLocation.Manual;
-            Left = Global.FormLocationX;
-            Top = Global.FormLocationY;
+            Left = Math.Clamp(Global.FormLocationX, 0, Global.fullDesktopBounds.Right);
+            Top = Math.Clamp(Global.FormLocationY, 0, Global.fullDesktopBounds.Bottom);
             noContLb.Content = string.Format(Strings.NoControllersConnected,
                 ControlService.CURRENT_DS4_CONTROLLER_LIMIT);
 

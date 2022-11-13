@@ -2399,6 +2399,43 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             get => presetMenuUtil;
         }
 
+        public int DualSenseRumbleEmulationPerIndex
+        {
+            get
+            {
+                switch(Global.DualSenseRumbleEmulationMode[device])
+                {
+                    case DualSenseDevice.RumbleEmulationMode.Disabled: return 2;
+                    case DualSenseDevice.RumbleEmulationMode.Legacy: return 1;
+                    case DualSenseDevice.RumbleEmulationMode.Accurate: return 0;
+                    default: return 0;
+                }
+            }
+            set
+            {
+                DualSenseDevice.RumbleEmulationMode temp;
+                switch(value)
+                {
+                    case 2: temp = DualSenseDevice.RumbleEmulationMode.Disabled; break;
+                    case 1: temp = DualSenseDevice.RumbleEmulationMode.Legacy; break;
+                    case 0: temp = DualSenseDevice.RumbleEmulationMode.Accurate; break;
+                    default: temp = DualSenseDevice.RumbleEmulationMode.Accurate; break;
+                }
+                Global.DualSenseRumbleEmulationMode[device] = temp;
+            }
+        }
+
+        public int DualSenseHapticPowerLevelPerIndex
+        {
+            get => Global.DualSenseHapticPowerLevel[device];
+            set => Global.DualSenseHapticPowerLevel[device] = (byte)value;
+        }
+
+        public bool EnableGenericRumbleStrRescaleForDualSenseDevices
+        {
+            get => Global.UseGenericRumbleStrRescaleForDualSenses[device];
+            set => Global.UseGenericRumbleStrRescaleForDualSenses[device] = value;
+        }
 
         public ProfileSettingsViewModel(int device)
         {

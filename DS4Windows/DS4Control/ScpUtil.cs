@@ -1633,6 +1633,14 @@ namespace DS4Windows
         public static byte[] RumbleBoost => m_Config.rumble;
         public static byte getRumbleBoost(int index)
         {
+            if (Program.rootHub.DS4Controllers[index] is DualSenseDevice)
+            {
+                if (!UseGenericRumbleStrRescaleForDualSenses[index])
+                {
+                    return 100;
+                }
+
+            }
             return m_Config.rumble[index];
         }
 

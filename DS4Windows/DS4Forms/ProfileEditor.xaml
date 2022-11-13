@@ -1843,6 +1843,7 @@
                             </StackPanel>
                         </GroupBox>
                         <GroupBox Header="{lex:Loc Rumble}" MinHeight="50" Margin="4,4,4,0" Padding="0,4,0,4">
+                            <StackPanel>
                             <UniformGrid Rows="1" Columns="3">
                                 <UniformGrid Columns="2" HorizontalAlignment="Left">
                                     <DockPanel>

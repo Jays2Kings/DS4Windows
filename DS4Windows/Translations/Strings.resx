@@ -544,4 +544,56 @@ Example: whyme_DS4Windows</value>
   <data name="DS4LightbarPassthruDisabled" xml:space="preserve">
     <value>Feature currently disabled in app due to driver issues. Hopefully issues get fixed in a future update.</value>
   </data>
+  <data name="DualSRumbleForceGenericRescale" xml:space="preserve">
+    <value>Force usage of both % strength levels (General and DualSense specifc)</value>
+  </data>
+  <data name="DualSRumbleModeDisabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="DualSRumbleModeAccurate" xml:space="preserve">
+    <value>Accurate</value>
+  </data>
+  <data name="DualSRumbleModeLegacy" xml:space="preserve">
+    <value>Legacy</value>
+  </data>
+  <data name="DualSRumbleModeNPowerLevelTxt" xml:space="preserve">
+    <value>Rumble mode and strength level:</value>
+  </data>
+  <data name="DualSRumbleModePassthru" xml:space="preserve">
+    <value>Passthru</value>
+  </data>
+  <data name="DualSRumbleSpecificSettings" xml:space="preserve">
+    <value>DualSense specific rumble settings</value>
+  </data>
+  <data name="DualSRumbleForceGenericRescale_Tip" xml:space="preserve">
+    <value>Recommended to be left DISABLED.
+
+- Disabled: rumble will be rescaled natively by the controller accordingly to the defined power level (better quality)
+
+- Enabled: both DS4Windows generic rumble rescale and DualSense's native control will be active</value>
+  </data>
+  <data name="DualSRumbleModes_Tip" xml:space="preserve">
+    <value>Accurate Mode (recommended):
+- Better replicates the DualShock 4/Xbox 360 controller rumble feeling
+- More accurately executes game's intended rumble effects
+- Rumble has more depth. Within the same power level there is a greater difference between min and max in-game rumble activation,
+varying from real low up to the max strength of the defined power level
+
+Legacy Mode:
+- Overral stronger, but lacks depth
+- Has a "sharper" feeling
+- The min and max activation in-game will be, respectively, only slightly below and slight above the chosen power level strength
+
+Disabled:
+- Fully disables rumble</value>
+  </data>
+  <data name="DualSRumblePowerLevel_Tip" xml:space="preserve">
+    <value>DualSense's native rumble Power Level rescaler.
+
+- When in Accurate Mode, rumble's [ min // max ] will be [ 1% /// Chosen Power Level ]
+    - Example (62%): [ min = 1% /// max = 62% ]
+
+- When in Legacy Mode, rumble's [min /// max ] will be roughly [ Power Level - 12% /// Power Level + 12% ]
+    - Example (62%): [ min = 50% /// max = 74% ]</value>
+  </data>
 </root>

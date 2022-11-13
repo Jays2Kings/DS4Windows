@@ -2914,6 +2914,21 @@ namespace DS4Windows
 
         public int[] saWheelFuzzValues = new int[Global.TEST_PROFILE_ITEM_COUNT];
 
+
+        // Start of DualSense specific profile options
+        //  
+        public DualSenseDevice.RumbleEmulationMode[] dualSenseRumbleEmulationMode = new DualSenseDevice.RumbleEmulationMode[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            0,0,0,0,0,0,0,0,0
+        };
+        public bool[] useGenericRumbleRescaleForDualSenses = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
+        public byte[] dualSenseHapticPowerLevel = new byte[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            0,0,0,0,0,0,0,0,0
+        };
+        //
+        // End of DualSense specific profile options
+
         private void setOutBezierCurveObjArrayItem(BezierCurve[] bezierCurveArray, int device, int curveOptionValue, BezierCurve.AxisType axisType)
         {
             // Set bezier curve obj of axis. 0=Linear (no curve mapping), 1-5=Pre-defined curves, 6=User supplied custom curve string value of a profile (comma separated list of 4 decimal numbers)

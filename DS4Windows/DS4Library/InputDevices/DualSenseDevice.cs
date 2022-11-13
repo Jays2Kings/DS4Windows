@@ -1396,18 +1396,6 @@ namespace DS4Windows.InputDevices
         {
             if (nativeOptionsStore != null)
             {
-                nativeOptionsStore.EnableRumbleChanged += (sender, e) =>
-                {
-                    UseRumble = nativeOptionsStore.EnableRumble;
-                    queueEvent(() => { outputDirty = true; });
-                };
-                /*
-                nativeOptionsStore.HapticIntensityChanged += (sender, e) =>
-                {
-                    HapticChoice = nativeOptionsStore.HapticIntensity;
-                    queueEvent(() => { outputDirty = true; });
-                };
-                */
                 nativeOptionsStore.MuteLedModeChanged += (sender, e) =>
                 {
                     PrepareMuteLEDByte();
@@ -1426,8 +1414,6 @@ namespace DS4Windows.InputDevices
         {
             if (nativeOptionsStore != null)
             {
-                UseRumble = nativeOptionsStore.EnableRumble;
-                // HapticChoice = nativeOptionsStore.HapticIntensity;
                 PrepareMuteLEDByte();
                 PreparePlayerLEDBarByte();
             }

@@ -196,14 +196,6 @@ namespace DS4Windows
                 tempOptsNode.RemoveAll();
             }
 
-            XmlNode tempRumbleNode = xmlDoc.CreateElement("EnableRumble");
-            tempRumbleNode.InnerText = enableRumble.ToString();
-            tempOptsNode.AppendChild(tempRumbleNode);
-
-            XmlNode tempRumbleStrengthNode = xmlDoc.CreateElement("RumbleStrength");
-            tempRumbleStrengthNode.InnerText = hapticIntensity.ToString();
-            tempOptsNode.AppendChild(tempRumbleStrengthNode);
-
             XmlNode tempLedMode = xmlDoc.CreateElement("LEDBarMode");
             tempLedMode.InnerText = ledMode.ToString();
             tempOptsNode.AppendChild(tempLedMode);

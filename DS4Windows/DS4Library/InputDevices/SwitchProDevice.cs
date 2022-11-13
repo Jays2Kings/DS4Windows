@@ -691,7 +691,7 @@ namespace DS4Windows.InputDevices
             if (conType == ConnectionType.USB)
             {
                 RunUSBSetup();
-                Thread.Sleep(300);
+                Thread.Sleep(1000);
             }
 
             //Thread.Sleep(1000);

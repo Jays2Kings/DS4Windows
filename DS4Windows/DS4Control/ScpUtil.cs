@@ -5726,6 +5726,7 @@ namespace DS4Windows
                             dualSenseHapticPowerLevel[device] = temp;
                         }
                         catch { missingSetting = true; }
+
                     }
                     else
                     {
@@ -5736,6 +5737,8 @@ namespace DS4Windows
                 {
                     missingSetting = true;
                 }
+                //
+                // End of DualSense specific profile load 
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2OutputCurveCustom"); l2OutBezierCurveObj[device].CustomDefinition = Item.InnerText; }
                 catch { missingSetting = true; }

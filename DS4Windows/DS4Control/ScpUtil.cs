@@ -5689,6 +5689,54 @@ namespace DS4Windows
                     missingSetting = true;
                 }
 
+
+                // Start of DualSense specific profile load 
+                //
+                XmlNode xmlDualSenseControllerSettingsElement =
+                    m_Xdoc.SelectSingleNode("/" + rootname + "/DualSenseControllerSettings");
+                bool dSControllerSettingsGroup = xmlDualSenseControllerSettingsElement != null;
+                if (dSControllerSettingsGroup)
+                {
+                    XmlNode xmlDSRumbleGroupElement =
+                        xmlDualSenseControllerSettingsElement.SelectSingleNode("RumbleSettings");
+                    bool dSRumbleGroup = xmlDSRumbleGroupElement != null;
+
+                    if (dSRumbleGroup)
+                    {
+                        try
+                        {
+                            Item = xmlDSRumbleGroupElement.SelectSingleNode("EmulationMode");
+                            DualSenseDevice.RumbleEmulationMode.TryParse(Item.InnerText, out DualSenseDevice.RumbleEmulationMode temp);
+                            dualSenseRumbleEmulationMode[device] = temp;
+                        }
+                        catch { missingSetting = true; }
+
+                        try
+                        {
+                            Item = xmlDSRumbleGroupElement.SelectSingleNode("EnableGenericRumbleRescale");
+                            bool.TryParse(Item.InnerText, out bool temp);
+                            useGenericRumbleRescaleForDualSenses[device] = temp;
+                        }
+                        catch { missingSetting = true; }
+
+                        try
+                        {
+                            Item = xmlDSRumbleGroupElement.SelectSingleNode("HapticPowerLevel");
+                            byte.TryParse(Item.InnerText, out byte temp);
+                            dualSenseHapticPowerLevel[device] = temp;
+                        }
+                        catch { missingSetting = true; }
+                    }
+                    else
+                    {
+                        missingSetting = true;
+                    }
+                }
+                else
+                {
+                    missingSetting = true;
+                }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2OutputCurveCustom"); l2OutBezierCurveObj[device].CustomDefinition = Item.InnerText; }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2OutputCurveMode"); setL2OutCurveMode(device, axisOutputCurveId(Item.InnerText)); }

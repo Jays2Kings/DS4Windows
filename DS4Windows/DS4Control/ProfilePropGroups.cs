@@ -1,4 +1,6 @@
 ﻿using System;
+using DS4Windows.StickModifiers;
+using DS4WinWPF.DS4Control;
 using Sensorit.Base;
 
 namespace DS4Windows
@@ -555,6 +557,36 @@ namespace DS4Windows
         }
     }
 
+    public class ButtonAbsMouseInfo
+    {
+        public const double WIDTH_DEFAULT = 1.0;
+        public const double HEIGHT_DEFAULT = 1.0;
+        public const double XCENTER_DEFAULT = 0.5;
+        public const double YCENTER_DEFAULT = 0.5;
+
+        public const bool SNAP_CENTER_DEFAULT = true;
+        public const double ANTI_RADIUS_DEFAULT = 0.0;
+
+        public double width = WIDTH_DEFAULT;
+        public double height = HEIGHT_DEFAULT;
+        public double xcenter = XCENTER_DEFAULT;
+        public double ycenter = YCENTER_DEFAULT;
+
+        public bool snapToCenter = SNAP_CENTER_DEFAULT;
+        public double antiRadius = ANTI_RADIUS_DEFAULT;
+
+        public void Reset()
+        {
+            width = WIDTH_DEFAULT;
+            height = HEIGHT_DEFAULT;
+            xcenter = XCENTER_DEFAULT;
+            ycenter = YCENTER_DEFAULT;
+
+            snapToCenter = SNAP_CENTER_DEFAULT;
+            antiRadius = ANTI_RADIUS_DEFAULT;
+        }
+    }
+
     public enum LightbarMode : uint
     {
         None,
@@ -707,6 +739,211 @@ namespace DS4Windows
         }
     }
 
+    public class TouchMouseStickInfo
+    {
+        public enum SmoothingMethod : byte
+        {
+            None,
+            OneEuro,
+        }
+
+        public enum OutputStick : byte
+        {
+            None,
+            LeftStick,
+            RightStick,
+        }
+
+        public enum OutputStickAxes : byte
+        {
+            None,
+            XY,
+            X,
+            Y
+        }
+
+        //public enum OutputCurve : ushort
+        //{
+        //    Linear,
+        //    EnhancedPrecision,
+        //    Quadratic,
+        //    Cubic,
+        //    EaseoutQuad,
+        //    EaseoutCubic,
+        //}
+
+        public const double DEFAULT_MINCUTOFF = 0.8;
+        public const double DEFAULT_BETA = 0.7;
+        //public const string DEFAULT_SMOOTH_TECHNIQUE = "one-euro";
+        public const OutputStick DEFAULT_OUTPUT_STICK = OutputStick.RightStick;
+        public const OutputStickAxes DEFAULT_OUTPUT_STICK_AXES = OutputStickAxes.XY;
+        public const int MAX_ZONE_DEFAULT = 8;
+        public const double ANTI_DEADZONE_DEFAULT = 0.40;
+        public const bool TRACKBALL_MODE_DEFAULT = true;
+        public const double TRACKBALL_FRICTION_DEFAULT = 10.0;
+        public const int TRACKBALL_INIT_FICTION = 10;
+        public const StickOutCurve.Curve OUTPUT_CURVE_DEFAULT = StickOutCurve.Curve.Linear;
+        public const double ANG_DEGREE_DEFAULT = 0.0;
+        public const double ANG_RAD_DEFAULT = ANG_DEGREE_DEFAULT * Math.PI / 180.0;
+
+        public int deadZone;
+        public int maxZone = MAX_ZONE_DEFAULT;
+        public double antiDeadX = ANTI_DEADZONE_DEFAULT;
+        public double antiDeadY = ANTI_DEADZONE_DEFAULT;
+        public int vertScale;
+        public bool maxOutputEnabled;
+        public double maxOutput = 100.0;
+        // Flags representing invert axis choices
+        public uint inverted;
+        //public bool useSmoothing;
+        public SmoothingMethod smoothingMethod;
+        public double minCutoff = DEFAULT_MINCUTOFF;
+        public double beta = DEFAULT_BETA;
+        public OutputStick outputStick = DEFAULT_OUTPUT_STICK;
+        public OutputStickAxes outputStickDir = DEFAULT_OUTPUT_STICK_AXES;
+        public bool trackballMode = TRACKBALL_MODE_DEFAULT;
+        public double trackballFriction = TRACKBALL_FRICTION_DEFAULT;
+        //public double trackballAccel = 0.0;
+        public StickOutCurve.Curve outputCurve;
+        public double rotationRad = ANG_RAD_DEFAULT;
+
+        public delegate void TouchMouseStickInfoEventHandler(TouchMouseStickInfo sender,
+            EventArgs args);
+
+        public double MinCutoff
+        {
+            get => minCutoff;
+            set
+            {
+                if (minCutoff == value) return;
+                minCutoff = value;
+                MinCutoffChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event TouchMouseStickInfoEventHandler MinCutoffChanged;
+
+        public double Beta
+        {
+            get => beta;
+            set
+            {
+                if (beta == value) return;
+                beta = value;
+                BetaChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event TouchMouseStickInfoEventHandler BetaChanged;
+
+        public bool UseSmoothing
+        {
+            get => smoothingMethod != SmoothingMethod.None;
+            set
+            {
+                if (value)
+                {
+                    smoothingMethod = SmoothingMethod.OneEuro;
+                }
+                else
+                {
+                    smoothingMethod = SmoothingMethod.None;
+                }
+            }
+        }
+
+        public void Reset()
+        {
+            deadZone = 0; maxZone = MAX_ZONE_DEFAULT;
+            antiDeadX = ANTI_DEADZONE_DEFAULT; antiDeadY = ANTI_DEADZONE_DEFAULT;
+            inverted = 0; vertScale = 100;
+            maxOutputEnabled = false; maxOutput = 100.0;
+            outputStick = DEFAULT_OUTPUT_STICK;
+            outputStickDir = DEFAULT_OUTPUT_STICK_AXES;
+            trackballMode = TRACKBALL_MODE_DEFAULT;
+            trackballFriction = TRACKBALL_FRICTION_DEFAULT;
+            //trackballAccel = TRACKBALL_RADIUS * trackballFriction / TRACKBALL_INERTIA;
+            outputCurve = OUTPUT_CURVE_DEFAULT;
+            rotationRad = ANG_RAD_DEFAULT;
+
+            minCutoff = DEFAULT_MINCUTOFF;
+            beta = DEFAULT_BETA;
+            smoothingMethod = SmoothingMethod.None;
+            //useSmoothing = false;
+            RemoveRefreshEvents();
+        }
+
+        public void ResetSmoothing()
+        {
+            //useSmoothing = false;
+            ResetSmoothingMethods();
+        }
+
+        public void ResetSmoothingMethods()
+        {
+            smoothingMethod = SmoothingMethod.None;
+        }
+
+        //public void DetermineSmoothMethod(string identier)
+        //{
+        //    ResetSmoothingMethods();
+
+        //    switch (identier)
+        //    {
+        //        case "one-euro":
+        //            smoothingMethod = SmoothingMethod.OneEuro;
+        //            break;
+        //        default:
+        //            smoothingMethod = SmoothingMethod.None;
+        //            break;
+        //    }
+        //}
+
+        //public string SmoothMethodIdentifier()
+        //{
+        //    string result = "none";
+        //    switch (smoothingMethod)
+        //    {
+        //        case SmoothingMethod.OneEuro:
+        //            result = "one-euro";
+        //            break;
+        //        default:
+        //            break;
+        //    }
+
+        //    return result;
+        //}
+
+        public void SetRefreshEvents(OneEuroFilter euroFilter)
+        {
+            BetaChanged += (sender, args) =>
+            {
+                euroFilter.Beta = beta;
+            };
+
+            MinCutoffChanged += (sender, args) =>
+            {
+                euroFilter.MinCutoff = minCutoff;
+            };
+        }
+
+        public void RemoveRefreshEvents()
+        {
+            BetaChanged = null;
+            MinCutoffChanged = null;
+        }
+
+        public bool OutputHorizontal()
+        {
+            return outputStickDir == OutputStickAxes.XY ||
+                outputStickDir == OutputStickAxes.X;
+        }
+
+        public bool OutputVertical()
+        {
+            return outputStickDir == OutputStickAxes.XY ||
+                outputStickDir == OutputStickAxes.Y;
+        }
+    }
+
     public enum StickMode : uint
     {
         None,
@@ -808,8 +1045,11 @@ namespace DS4Windows
 
     public class StickControlSettings
     {
+        public DeltaAccelSettings deltaAccelSettings = new DeltaAccelSettings();
+
         public void Reset()
         {
+            deltaAccelSettings.Reset();
         }
     }
 

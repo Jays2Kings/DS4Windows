@@ -15,6 +15,9 @@ using DS4WinWPF.DS4Control;
 using DS4Windows.DS4Control;
 using Nefarius.ViGEm.Client.Targets.DualShock4;
 using Nefarius.Utilities.DeviceManagement.PnP;
+using static DS4Windows.Util;
+using System.Runtime.InteropServices;
+using Microsoft.Win32;
 
 namespace DS4Windows
 {
@@ -212,7 +215,7 @@ namespace DS4Windows
                 Dispatcher.Run();
             });
             eventDispatchThread.IsBackground = true;
-            eventDispatchThread.Priority = ThreadPriority.Normal;
+            eventDispatchThread.Priority = ThreadPriority.BelowNormal;
             eventDispatchThread.Name = "ControlService Events";
             eventDispatchThread.Start();
 
@@ -238,6 +241,7 @@ namespace DS4Windows
             }
 
             outputslotMan = new OutputSlotManager();
+            //outputslotMan.SlotAssigned += OutputslotMan_SlotAssigned;
             deviceOptions = Global.DeviceOptions;
 
             DS4Devices.RequestElevation += DS4Devices_RequestElevation;
@@ -251,9 +255,20 @@ namespace DS4Windows
 
             CreateOSCCallback();
 
+            SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
             //oscListener = new UDPListener(Global.getOSCServerPortNum(), callback: oscCallback);
             //AppLogger.LogToGui("OSC LISTENER STARTED", false);
         }
+
+        private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
+        {
+            Global.PrepareAbsMonitorBounds(string.Empty);
+        }
+
+        //private void OutputslotMan_SlotAssigned(OutputSlotManager sender, int slotNum, OutSlotDevice outSlotDev)
+        //{
+        //    LogDebug($"Associated input controller #{outSlotDev.InputIndex + 1} ({outSlotDev.InputDisplayString}) to virtual {outSlotDev.OutputDevice.GetDeviceType()} Controller in{(outSlotDev.PermanentType != OutContType.None ? " permanent" : "")} output slot #{outSlotDev.Index + 1}");
+        //}
 
         private void CreateOSCCallback()
         {
@@ -914,7 +929,7 @@ namespace DS4Windows
                     OutSlotDevice.ReserveStatus.Permanent)
                 {
                     OutputDevice outDevice = EstablishOutDevice(0, slotDevice.PermanentType);
-                    outputslotMan.DeferredPlugin(outDevice, -1, outputDevices, slotDevice.PermanentType);
+                    outputslotMan.DeferredPlugin(outDevice, -1, "", outputDevices, slotDevice.PermanentType);
                 }
             }
             /*OutSlotDevice slotDevice =
@@ -1034,6 +1049,10 @@ namespace DS4Windows
                         //*
                         unchecked
                         {
+                            //Trace.WriteLine($"INDEX: {devIndex}");
+                            //Trace.WriteLine(string.Join(" ", reportData));
+                            //Trace.WriteLine("");
+
                             bool useRumble = false; bool useLight = false;
                             byte flashOn = 0; byte flashOff = 0;
                             DS4Color? color = null;
@@ -1198,8 +1217,7 @@ namespace DS4Windows
                 slotDevice.CurrentAttachedStatus == OutSlotDevice.AttachedStatus.UnAttached)
             {
                 OutputDevice outDevice = EstablishOutDevice(-1, contType);
-                outputslotMan.DeferredPlugin(outDevice, -1, outputDevices, contType);
-                LogDebug($"Plugging virtual {contType} Controller");
+                outputslotMan.DeferredPlugin(outDevice, -1, "", outputDevices, contType);
             }
         }
 
@@ -1209,8 +1227,7 @@ namespace DS4Windows
                 slotDevice.CurrentInputBound == OutSlotDevice.InputBound.Unbound)
             {
                 OutputDevice outDevice = EstablishOutDevice(-1, contType);
-                outputslotMan.DeferredPlugin(outDevice, -1, outputDevices, contType);
-                LogDebug($"Plugging virtual {contType} Controller");
+                outputslotMan.DeferredPlugin(outDevice, -1, "", outputDevices, contType);
             }
         }
 
@@ -1222,7 +1239,6 @@ namespace DS4Windows
                 string tempType = dev.GetDeviceType();
                 slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Unbound;
                 outputslotMan.DeferredRemoval(dev, -1, outputDevices, false);
-                LogDebug($"Unplugging virtual {tempType} Controller");
             }
         }
 
@@ -1267,10 +1283,9 @@ namespace DS4Windows
                                 }
                             }
 
-                            outputslotMan.DeferredPlugin(tempXbox, index, outputDevices, contType);
+                            outputslotMan.DeferredPlugin(tempXbox, index, $"{device.DisplayName} [{device.MacAddress}]", outputDevices, contType);
                             //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
-                            LogDebug("Plugging in virtual X360 Controller");
                             success = true;
                         }
                         else
@@ -1303,11 +1318,6 @@ namespace DS4Windows
                         success = true;
                     }
 
-                    if (success)
-                    {
-                        LogDebug($"Associate X360 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} slot #{slotDevice.Index + 1} for input {device.DisplayName} controller #{index + 1}");
-                    }
-
                     //tempXbox.Connect();
                     //LogDebug("X360 Controller #" + (index + 1) + " connected");
                 }
@@ -1337,10 +1347,9 @@ namespace DS4Windows
                                 }
                             }
 
-                            outputslotMan.DeferredPlugin(tempDS4, index, outputDevices, contType);
+                            outputslotMan.DeferredPlugin(tempDS4, index, $"{device.DisplayName} [{device.MacAddress}]", outputDevices, contType);
                             //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Bound;
 
-                            LogDebug("Plugging in virtual DS4 Controller");
                             success = true;
                         }
                         else
@@ -1373,11 +1382,6 @@ namespace DS4Windows
                         success = true;
                     }
 
-                    if (success)
-                    {
-                        LogDebug($"Associate DS4 Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} slot #{slotDevice.Index + 1} for input {device.DisplayName} controller #{index + 1}");
-                    }
-
                     //DS4OutDevice tempDS4 = new DS4OutDevice(vigemTestClient);
                     //DS4OutDevice tempDS4 = outputslotMan.AllocateController(OutContType.DS4, vigemTestClient)
                     //    as DS4OutDevice;
@@ -1387,8 +1391,10 @@ namespace DS4Windows
                     //LogDebug("DS4 Controller #" + (index + 1) + " connected");
                 }
 
-                if (success)
+                // Need to check for possible ViGEmBus failure here
+                if (success && slotDevice.OutputDevice != null)
                 {
+                    LogDebug($"Associated input controller #{index + 1} ({device.DisplayName}) to virtual {slotDevice.OutputDevice.GetDeviceType()} Controller in{(slotDevice.PermanentType != OutContType.None ? " permanent" : "")} output slot #{slotDevice.Index + 1}");
                     useDInputOnly[index] = false;
                 }
             }
@@ -1404,7 +1410,7 @@ namespace DS4Windows
                 if (dev != null && slotDevice != null)
                 {
                     string tempType = dev.GetDeviceType();
-                    LogDebug($"Disassociate {tempType} Controller from{(slotDevice.CurrentReserveStatus == OutSlotDevice.ReserveStatus.Permanent ? " permanent" : "")} slot #{slotDevice.Index+1} for input {device.DisplayName} controller #{index + 1}", false);
+                    LogDebug($"Disassociated virtual {tempType} Controller in{(slotDevice.CurrentReserveStatus == OutSlotDevice.ReserveStatus.Permanent ? " permanent" : "")} output slot #{slotDevice.Index+1} from input controller #{index + 1} ({device.DisplayName})", false);
 
                     OutContType currentType = activeOutDevType[index];
                     outputDevices[index] = null;
@@ -1414,7 +1420,6 @@ namespace DS4Windows
                     {
                         //slotDevice.CurrentInputBound = OutSlotDevice.InputBound.Unbound;
                         outputslotMan.DeferredRemoval(dev, index, outputDevices, immediate);
-                        LogDebug($"Unplugging virtual {tempType} Controller");
                     }
                     else if (slotDevice.CurrentAttachedStatus == OutSlotDevice.AttachedStatus.Attached)
                     {
@@ -1914,6 +1919,7 @@ namespace DS4Windows
                     Global.linkedProfileCheck[index] = false;
                 }
 
+                // Now attempt to load requested profile and settings
                 profileLoaded = LoadProfile(index, false, this, false, false);
             }
 
@@ -1985,12 +1991,6 @@ namespace DS4Windows
 
         private void BeginPrepareConnectedInputController(DS4Device device, bool showlog = false)
         {
-            if (showlog)
-            {
-                LogDebug(DS4WinWPF.Properties.Resources.FoundController + " " + device.getMacAddress() + " (" + device.getConnectionType() + ") (" +
-                                            device.DisplayName + ")");
-            }
-
             if (hidDeviceHidingEnabled && CheckAffected(device))
             {
                 //device.CurrentExclusiveStatus = DS4Device.ExclusiveStatus.HidGuardAffected;
@@ -2038,11 +2038,12 @@ namespace DS4Windows
 
             device.setIdleTimeout(getIdleDisconnectTimeout(ind));
             device.setBTPollRate(getBTPollRate(ind));
+
             touchPad[ind].ResetTrackAccel(getTrackballFriction(ind));
             touchPad[ind].ResetToggleGyroModes();
 
-            // Reset current flick stick progress from previous profile
-            Mapping.flickMappingData[ind].Reset();
+            //Global.TouchOutMode[ind] = TouchpadOutMode.MouseJoystick;
+            touchPad[ind].PostSetup();
 
             Global.L2OutputSettings[ind].TrigEffectSettings.maxValue = (byte)(Math.Max(Global.L2ModInfo[ind].maxOutput, Global.L2ModInfo[ind].maxZone) / 100.0 * 255);
             Global.R2OutputSettings[ind].TrigEffectSettings.maxValue = (byte)(Math.Max(Global.R2ModInfo[ind].maxOutput, Global.R2ModInfo[ind].maxZone) / 100.0 * 255);
@@ -2200,6 +2201,37 @@ namespace DS4Windows
             };
         }
 
+        /// <summary>
+        /// Perform Mapping property resetting as needed before loading profile settings
+        /// </summary>
+        /// <param name="device">Input device instance</param>
+        public void PreLoadReset(int ind)
+        {
+            //DS4Device inputDevice = DS4Controllers[ind];
+            //if (inputDevice == null)
+            //{
+            //    return;
+            //}
+            // Skip running for test profile with no mapping data
+            if (ind >= Global.TEST_PROFILE_INDEX)
+            {
+                return;
+            }
+
+            // Reset current flick stick progress from previous profile
+            Mapping.flickMappingData[ind].Reset();
+
+            // Reset delta accel processors for sticks
+            Mapping.deltaAccelProcessors[ind].LSProcessor.Reset();
+            Mapping.deltaAccelProcessors[ind].RSProcessor.Reset();
+
+            // Reset absolute mouse state data
+            Mapping.absMouseOutputState[ind].Reset();
+
+            // Reset some elements of current Mouse instance
+            touchPad[ind]?.Reset();
+        }
+
         public void TouchPadOn(int ind, DS4Device device)
         {
             Mouse tPad = touchPad[ind];
@@ -2289,7 +2321,7 @@ namespace DS4Windows
                     if (!getDInputOnly(ind))
                     {
                         touchPad[ind].ReplaceOneEuroFilterPair();
-                        touchPad[ind].ReplaceOneEuroFilterPair();
+                        //touchPad[ind].ReplaceOneEuroFilterPair();
 
                         touchPad[ind].Cursor.ReplaceOneEuroFilterPair();
                         touchPad[ind].Cursor.SetupLateOneEuroFilters();

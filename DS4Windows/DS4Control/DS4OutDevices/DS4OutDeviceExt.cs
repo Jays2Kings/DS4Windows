@@ -14,6 +14,7 @@ namespace DS4Windows
         private byte[] rawOutReportEx = new byte[63];
         private DS4_REPORT_EX outDS4Report;
         private Thread awaitOutBuffThread;
+        private bool awaitThreadLoopRunning;
         public delegate void ReceivedOutBufferHandler(DS4OutDeviceExt sender,
             byte[] reportData);
 
@@ -215,6 +216,7 @@ namespace DS4Windows
 
         private void RunFetchAwaitBufferThread()
         {
+            awaitThreadLoopRunning = false;
             tokenSource = new CancellationTokenSource();
             CancellationToken ct = tokenSource.Token;
 
@@ -222,6 +224,7 @@ namespace DS4Windows
             Thread.Sleep(1000);
 
             bool working = true;
+            awaitThreadLoopRunning = true;
             while (working)
             {
                 if (!ct.IsCancellationRequested)
@@ -262,6 +265,8 @@ namespace DS4Windows
                     working = false;
                 }
             }
+
+            awaitThreadLoopRunning = false;
         }
 
         public override void RemoveFeedbacks()
@@ -304,10 +309,20 @@ namespace DS4Windows
             tokenSource?.Cancel();
             base.Disconnect();
 
-            // Call Interrupt on the thread although not going to check thread
-            // state
-            awaitOutBuffThread?.Interrupt();
-            //awaitOutBuffThread?.Join();
+            // Check if thread loop has started. If true, call Interrupt on the thread.
+            // Might be overkill but try anyway
+            if (awaitThreadLoopRunning)
+            {
+                if (awaitOutBuffThread != null)
+                {
+                    if (!awaitOutBuffThread.ThreadState.HasFlag(ThreadState.WaitSleepJoin))
+                    {
+                        awaitOutBuffThread.Interrupt();
+                    }
+
+                    awaitOutBuffThread.Join();
+                }
+            }
         }
     }
 }

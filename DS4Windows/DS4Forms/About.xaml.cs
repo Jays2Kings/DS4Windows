@@ -66,11 +66,6 @@ namespace DS4WinWPF.DS4Forms
             Util.StartProcessHelper("https://www.youtube.com/channel/UCIoUA_XLlCSZbvZGeg3Byeg");
         }
 
-        private void BittubeSocialBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Util.StartProcessHelper("https://bittube.tv/profile/ds4windows");
-        }
-
         private void TwitterSocialBtn_Click(object sender, RoutedEventArgs e)
         {
             Util.StartProcessHelper("https://twitter.com/ds4windows");
@@ -119,6 +114,16 @@ namespace DS4WinWPF.DS4Forms
         private void DeviceManagementLink_Click(object sender, RoutedEventArgs e)
         {
             Util.StartProcessHelper("https://github.com/nefarius/Nefarius.Utilities.DeviceManagement");
+        }
+
+        private void BuyCoffeeLink_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessHelper("https://buymeacoffee.com/ryochan7");
+        }
+
+        private void PoastSocialBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessHelper("https://poa.st/@DS4Windows");
         }
     }
 

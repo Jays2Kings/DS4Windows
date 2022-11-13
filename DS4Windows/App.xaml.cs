@@ -19,6 +19,7 @@ using NLog;
 using System.Windows.Media;
 using System.Net;
 using Microsoft.Win32.SafeHandles;
+using DS4Windows.DS4Control;
 
 namespace DS4WinWPF
 {
@@ -59,10 +60,7 @@ namespace DS4WinWPF
         private static LoggerHolder logHolder;
 
         private MemoryMappedFile ipcClassNameMMF = null; // MemoryMappedFile for inter-process communication used to hold className of DS4Form window
-        private MemoryMappedViewAccessor ipcClassNameMMA = null;
-
         private MemoryMappedFile ipcResultDataMMF = null; // MemoryMappedFile for inter-process communication used to exchange string result data between cmdline client process and the background running DS4Windows app
-        private MemoryMappedViewAccessor ipcResultDataMMA = null;
 
         private static Dictionary<DS4Windows.AppThemeChoice, string> themeLocs = new
             Dictionary<DS4Windows.AppThemeChoice, string>()
@@ -72,6 +70,9 @@ namespace DS4WinWPF
         };
 
         public event EventHandler ThemeChanged;
+
+        private Dictionary<string, System.Reflection.Assembly> langAssemblies =
+            new Dictionary<string, System.Reflection.Assembly>();
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
@@ -118,6 +119,9 @@ namespace DS4WinWPF
                 return;
             }
             catch { /* don't care about errors */ }
+
+            // Allow sleep time durations less than 16 ms
+            DS4Windows.Util.timeBeginPeriod(1);
 
             // Retrieve info about installed ViGEmBus device if found
             DS4Windows.Global.RefreshViGEmBusInfo();
@@ -187,6 +191,12 @@ namespace DS4WinWPF
                 DS4Windows.Global.CreateStdActions();
             }
 
+            // Discover and load possible Lang assemblies
+            PrepareLangAssemblies();
+            // Add hook to have .NET find the Lang assemblies. Loading will be performed
+            // during MainWindow.InitializeComponent
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+            // Have app use selected culture
             SetUICulture(DS4Windows.Global.UseLang);
             DS4Windows.AppThemeChoice themeChoice = DS4Windows.Global.UseCurrentTheme;
             if (themeChoice != DS4Windows.AppThemeChoice.Default)
@@ -198,11 +208,23 @@ namespace DS4WinWPF
             DS4Forms.MainWindow window = new DS4Forms.MainWindow(parser);
             MainWindow = window;
             window.Show();
+
+            // Remove hook for custom assembly loading. Needed or app performance drops
+            AppDomain.CurrentDomain.AssemblyResolve -= CurrentDomain_AssemblyResolve;
+
+            // Set up hooks for IPC command calls
             HwndSource source = PresentationSource.FromVisual(window) as HwndSource;
             CreateIPCClassNameMMF(source.Handle);
 
             window.CheckMinStatus();
-            rootHub.LogDebug($"Running as {(DS4Windows.Global.IsAdministrator() ? "Admin" : "User")}");
+
+            bool runningAsAdmin = DS4Windows.Global.IsAdministrator();
+            rootHub.LogDebug($"Running as {(runningAsAdmin ? "Admin" : "User")}");
+            if (DS4Windows.Global.outputKBMHandler.GetIdentifier() != FakerInputHandler.IDENTIFIER && !runningAsAdmin)
+            {
+                string helpURL = @"https://docs.ds4windows.app/troubleshooting/kb-mouse-issues/#windows-not-responding-to-ds4ws-kb-m-commands-in-some-situations";
+                rootHub.LogDebug($"Some applications may block controller inputs. (Windows UAC Conflictions). Please go to {helpURL} for more information and workarounds.");
+            }
 
             if (DS4Windows.Global.hidHideInstalled)
             {
@@ -211,6 +233,48 @@ namespace DS4WinWPF
 
             rootHub.LoadPermanentSlotsConfig();
             window.LateChecks(parser);
+        }
+
+        private void PrepareLangAssemblies()
+        {
+            List<string> lookupPaths = DS4Windows.Global.PROBING_PATH.Split(';')
+                .Select(path => Path.Combine(DS4Windows.Global.exedirpath, path))
+                .Where(path => path != DS4Windows.Global.exedirpath)
+                .ToList();
+            //lookupPaths.Insert(0, DS4Windows.Global.exedirpath);
+
+            List<string> langPackList = CultureInfo.GetCultures(CultureTypes.AllCultures)
+                .Where(c => IsLanguageAssemblyAvailable(lookupPaths, c))
+                .Select(c => LanguageAssemblyPath(lookupPaths, c))
+                .ToList();
+
+            foreach(string path in langPackList)
+            {
+                System.Reflection.Assembly tempAss = System.Reflection.Assembly.LoadFile(path);
+                langAssemblies.Add(tempAss.FullName, tempAss);
+            }
+        }
+
+        private bool IsLanguageAssemblyAvailable(List<string> lookupPaths, CultureInfo culture)
+        {
+            return lookupPaths.Select(path => Path.Combine(path, culture.Name,
+                DS4Windows.Global.LANGUAGE_ASSEMBLY_NAME))
+                .Where(path => File.Exists(path))
+                .Count() > 0;
+        }
+
+        private string LanguageAssemblyPath(List<string> lookupPaths, CultureInfo culture)
+        {
+            return lookupPaths.Select(path => Path.Combine(path, culture.Name,
+                DS4Windows.Global.LANGUAGE_ASSEMBLY_NAME))
+                .Where(path => File.Exists(path)).First();
+        }
+
+        private System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            System.Reflection.Assembly res;
+            langAssemblies.TryGetValue(args.Name, out res);
+            return res;
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -407,9 +471,7 @@ namespace DS4WinWPF
                     finally
                     {
                         // Release the result MMF file in the client process before releasing the mtx and letting other client process to proceed with the same MMF file
-                        if (ipcResultDataMMA != null) ipcResultDataMMA.Dispose();
                         if (ipcResultDataMMF != null) ipcResultDataMMF.Dispose();
-                        ipcResultDataMMA = null;
                         ipcResultDataMMF = null;
 
                         // If this was "Query.xxx" cmdline client call then release the inter-process mutex and let other concurrent clients to proceed (if there are anyone waiting for the MMF result file)
@@ -496,7 +558,7 @@ namespace DS4WinWPF
 
         public void CreateIPCClassNameMMF(IntPtr hWnd)
         {
-            if (ipcClassNameMMA != null) return; // Already holding a handle to MMF file. No need to re-write the data
+            if (ipcClassNameMMF != null) return; // Already holding a handle to MMF file. No need to re-write the data
 
             try
             {
@@ -506,8 +568,9 @@ namespace DS4WinWPF
                     byte[] buffer = ASCIIEncoding.ASCII.GetBytes(wndClassNameStr.ToString());
 
                     ipcClassNameMMF = MemoryMappedFile.CreateNew("DS4Windows_IPCClassName.dat", 128);
-                    ipcClassNameMMA = ipcClassNameMMF.CreateViewAccessor(0, buffer.Length);
-                    ipcClassNameMMA.WriteArray(0, buffer, 0, buffer.Length);
+                    MemoryMappedViewAccessor ipcClassNameMMA_Now = ipcClassNameMMF.CreateViewAccessor(0, buffer.Length);
+                    ipcClassNameMMA_Now.WriteArray(0, buffer, 0, buffer.Length);
+                    ipcClassNameMMA_Now?.Dispose();
                     // The MMF file is alive as long this process holds the file handle open
                 }
             }
@@ -547,12 +610,11 @@ namespace DS4WinWPF
         {
             // Cmdline client process calls this to create the MMF file used in inter-process-communications. The background DS4Windows process 
             // uses WriteIPCResultDataMMF method to write a command result and the client process reads the result from the same MMF file.
-            if (ipcResultDataMMA != null) return; // Already holding a handle to MMF file. No need to re-write the data
+            if (ipcResultDataMMF != null) return; // Already holding a handle to MMF file. No need to re-write the data
 
             try
             {
                 ipcResultDataMMF = MemoryMappedFile.CreateNew("DS4Windows_IPCResultData.dat", 256);
-                ipcResultDataMMA = ipcResultDataMMF.CreateViewAccessor(0, 256);
                 // The MMF file is alive as long this process holds the file handle open
             }
             catch (Exception)
@@ -563,7 +625,7 @@ namespace DS4WinWPF
 
         private string WaitAndReadIPCResultDataMMF(EventWaitHandle ipcNotifyEvent)
         {
-            if (ipcResultDataMMA != null)
+            if (ipcResultDataMMF != null)
             {
                 // Wait until the inter-process-communication (IPC) result data is available and read the result
                 try
@@ -573,6 +635,7 @@ namespace DS4WinWPF
                     {
                         int strNullCharIdx;
                         byte[] buffer = new byte[256];
+                        MemoryMappedViewAccessor ipcResultDataMMA = ipcClassNameMMF.CreateViewAccessor(0, buffer.Length);
                         ipcResultDataMMA.ReadArray(0, buffer, 0, buffer.Length);
                         strNullCharIdx = Array.FindIndex(buffer, byteVal => byteVal == 0);
                         return ASCIIEncoding.ASCII.GetString(buffer, 0, (strNullCharIdx <= 1 ? 1 : strNullCharIdx));
@@ -688,6 +751,9 @@ namespace DS4WinWPF
                     DS4Windows.Global.Save();
                 }
 
+                // Reset timer
+                DS4Windows.Util.timeEndPeriod(1);
+
                 exitComThread = true;
                 if (threadComEvent != null)
                 {
@@ -697,7 +763,6 @@ namespace DS4WinWPF
                     threadComEvent.Close();
                 }
 
-                if (ipcClassNameMMA != null) ipcClassNameMMA.Dispose();
                 if (ipcClassNameMMF != null) ipcClassNameMMF.Dispose();
 
                 LogManager.Flush();

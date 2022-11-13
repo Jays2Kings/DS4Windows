@@ -135,10 +135,11 @@ namespace DS4Windows
             return result;
         }
 
-        public void DeferredPlugin(OutputDevice outputDevice, int inIdx, OutputDevice[] outdevs, OutContType contType)
+        public void DeferredPlugin(OutputDevice outputDevice, int inIdx, string inDisplayString,
+            OutputDevice[] outdevs, OutContType contType)
         {
             queueLocker.EnterWriteLock();
-            queuedTasks++;
+            //queuedTasks++;
             //Action tempAction = new Action(() =>
             {
                 int slot = FindEmptySlot();
@@ -151,14 +152,25 @@ namespace DS4Windows
                     catch (Win32Exception)
                     {
                         // Leave task immediately if connect call failed
+                        //queuedTasks--;
                         ViGEmFailure?.Invoke(this, EventArgs.Empty);
                         return;
+                    }
+
+                    if (contType == OutContType.X360)
+                    {
+                        var tempXbox = outputDevice as Xbox360OutDevice;
+                        AppLogger.LogToGui($"Plugging in virtual X360 controller (XInput slot #{(tempXbox.XinputSlotNum < 0 ? "?" : tempXbox.XinputSlotNum + 1 )}) in output slot #{slot + 1}", false);
+                    }
+                    else
+                    {
+                        AppLogger.LogToGui($"Plugging in virtual {contType} Controller in output slot #{slot + 1}",false);
                     }
 
                     outputDevices[slot] = outputDevice;
                     deviceDict.Add(slot, outputDevice);
                     revDeviceDict.Add(outputDevice, slot);
-                    outputSlots[slot].AttachedDevice(outputDevice, contType);
+                    outputSlots[slot].AttachedDevice(outputDevice, contType, inIdx, inDisplayString);
                     if (inIdx != -1)
                     {
                         outdevs[inIdx] = outputDevice;
@@ -168,7 +180,7 @@ namespace DS4Windows
                 }
             };
 
-            queuedTasks--;
+            //queuedTasks--;
             queueLocker.ExitWriteLock();
         }
 
@@ -178,7 +190,7 @@ namespace DS4Windows
             _ = immediate;
 
             queueLocker.EnterWriteLock();
-            queuedTasks++;
+            //queuedTasks++;
 
             {
                 if (revDeviceDict.TryGetValue(outputDevice, out int slot))
@@ -198,6 +210,7 @@ namespace DS4Windows
 
                     outputSlots[slot].DetachDevice();
                     SlotUnassigned?.Invoke(this, slot, outputSlots[slot]);
+                    AppLogger.LogToGui($"Unplugging virtual {outputDevice.GetDeviceType()} Controller from output slot #{slot + 1}",false);
 
                     //if (!immediate)
                     //{
@@ -206,7 +219,7 @@ namespace DS4Windows
                 }
             };
 
-            queuedTasks--;
+            //queuedTasks--;
             queueLocker.ExitWriteLock();
         }
 
@@ -289,7 +302,7 @@ namespace DS4Windows
             _ = immediate;
 
             queueLocker.EnterWriteLock();
-            queuedTasks++;
+            //queuedTasks++;
             {
                 int slotIdx = 0;
                 foreach (OutSlotDevice device in outputSlots)
@@ -311,7 +324,7 @@ namespace DS4Windows
                 }
             };
 
-            queuedTasks--;
+            //queuedTasks--;
             queueLocker.ExitWriteLock();
         }
     }

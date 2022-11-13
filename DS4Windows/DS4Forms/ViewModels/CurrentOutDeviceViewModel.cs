@@ -271,24 +271,53 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
 
 
-        public int XInputSlotNum
+        public string XInputSlotNum
         {
             get
             {
-                int result = -1;
+                var xinputSlot = "?";
                 if (outSlotDevice.CurrentType == OutContType.X360)
                 {
-                    result = (outSlotDevice.OutputDevice as Xbox360OutDevice).XinputSlotNum;
-                    result = result >= 0 ? result + 1 : result;
+                    var tempX360 = outSlotDevice.OutputDevice as Xbox360OutDevice;
+                    if (tempX360.XinputSlotNum >= 0) xinputSlot = $"{tempX360.XinputSlotNum + 1}";
                 }
-
-                return result;
+                return xinputSlot;
             }
 
         }
 
         public event EventHandler DisplayXInputSlotNumChanged;
         public event EventHandler XInputSlotNumChanged;
+
+        public string InputSlotNum
+        {
+            get
+            {
+                string result = "";
+                if (outSlotDevice.InputIndex != OutSlotDevice.INPUT_INDEX_DEFAULT)
+                {
+                    result = $"{outSlotDevice.InputIndex+1}";
+                }
+
+                return result;
+            }
+        }
+
+        public event EventHandler InputSlotNumChanged;
+
+        public string InputSlotDisplayString
+        {
+            get
+            {
+                string result = "";
+                if (outSlotDevice.InputIndex != OutSlotDevice.INPUT_INDEX_DEFAULT)
+                {
+                    result = $"{outSlotDevice.InputIndex + 1} ({outSlotDevice.InputDisplayString})";
+                }
+                return result;
+            }
+        }
+        public event EventHandler InputSlotDisplayStringChanged;
 
         public SlotDeviceEntry(OutSlotDevice outSlotDevice, int idx)
         {
@@ -422,6 +451,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             BoundInputChanged?.Invoke(this, EventArgs.Empty);
             XInputSlotNumChanged?.Invoke(this, EventArgs.Empty);
             DisplayXInputSlotNumChanged?.Invoke(this, EventArgs.Empty);
+            InputSlotDisplayStringChanged?.Invoke(this, EventArgs.Empty);
             Dirty = false;
         }
 

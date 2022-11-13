@@ -1,9 +1,97 @@
 {
-  "latest_version": "3.1.6",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 6},
-  "updated_at": "2022-09-23T01:54:08+0000",
+  "latest_version": "3.1.10",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 10},
+  "updated_at": "2022-11-07T02:41:13+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.1.10",
+      "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 10},
+      "base_header": "Version 3.1.10",
+      "release_date": "2022-11-07T02:41:13+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.1.10",
+          "log_text": ["* Added Mouse instance null check when performing PreLoadReset before profile loading",
+            "* Added absolute mouse output support for bindable controls",
+            "* Removed references to old BitTube channel",
+            "* Added WpfScreenHelper NuGet package to dependencies",
+            "* Use absolute mouse region display coordinate translation for Touchpad abs mouse",
+            "* Removed App references to MemoryMappedViewAccessor objects for cmd interface. Create as needed. Snappier app as a result"],
+          "updated_at": "2022-11-07T02:41:13+0000"
+        }
+      ]
+    },
+    {
+      "version_str": "3.1.9",
+      "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 9},
+      "base_header": "Version 3.1.9",
+      "release_date": "2022-10-25T21:39:41+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.1.9",
+          "log_text": ["* Updated ViGEm.NET libraries. Includes check for IOCTL_DS4_AWAIT_OUTPUT_AVAILABLE status. Contribution by **Nefarius**",
+            "* Added check that AwaitBufferThread has reached inner loop before attempting to Interrupt thread",
+            "* Fixed Gyro Mouse Joystick output for vertical axes"],
+          "updated_at": "2022-10-25T21:39:41+0000"
+        }
+      ]
+    },
+    {
+      "version_str": "3.1.8",
+      "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 8},
+      "base_header": "Version 3.1.8",
+      "release_date": "2022-10-24T21:05:14+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.1.8",
+          "log_text": ["* Added working directory info for startup lnk file",
+            "* Display input slot number in Output Slots tab",
+            "* Force update TooltipText in GUI thread",
+            "* Implementation of Touch Mouse Joystick",
+            "* Fixed log message generation when virtual pad plugin fails",
+            "* Abstract post action stick axis state changing for use with Mouse Joystick routines",
+            "* Display some input device information in Output Slots section",
+            "* Added some device number checks in ProfileSettingsVM. Avoids test index",
+            "* Fixed Keypad Decimal mapping for FakerInput",
+            "* Fixes for virtual DS4 output feedback support from ViGEm project. Contribution by **Nefarius**",
+            "* Updated ViGEmClient and ViGEm.NET libraries. Contribution by **Nefarius**",
+            "* Virtual DS4 output feedback support re-enabled. Contribution by **Nefarius**"],
+          "updated_at": "2022-10-24T21:05:14+0000"
+        }
+      ]
+    },
+    {
+      "version_str": "3.1.7",
+      "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 7},
+      "base_header": "Version 3.1.7",
+      "release_date": "2022-10-12T15:14:40+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.1.7",
+          "log_text": ["* Added stick delta acceleration options for LS and RS",
+            "* Added extra UAC Warning to Log when using SendInput event generator. Contribution by **Yohoki**",
+            "* Changed URL parser for link generation in LogMessageDisplay window",
+            "* Changed XInput output slot display routine. Contribution by **Ygor**",
+            "* Added Touchpad virtual button activation mode options. Adds ability for activation on Touchpad Touch and Touchpad Release",
+            "* Added newer possible HidHide locations to HidHide client search routine",
+            "* Updated some NuGet packages. H.NotifyIcon.Wpf, MdXaml, Nefarius.Utilities.DeviceManagement",
+            "* Updated linked ViGEmBus version to 1.21.442.0. Now listed as a stable release",
+            "* Lowered eventDispatcherThread priority to BelowNormal; Event loop primarily used for hotplug and output device plugin and removal",
+            "* Added PowerA FUSION Wired Fightpad for PS4 to known device list. Contribution by **Ygov**",
+            "* Added Thrustmaster eSwap Pro to known device list. Contribution by **SakifX9**",
+            "* Arabic language translation updated. Contribution by **Ahmed**",
+            "* Added reWASD and VirtualHere to new exclusion filter for virtual device check. Contribution by **Nefarius**",
+            "* Changed duration for multimedia timer in app. Not really used now but it would allow sleep times less than 16 ms in app",
+            "* Unfortunately had to disable virtual DS4 feedback support again. Routine only worked reliably with one controller"],
+          "updated_at": "2022-10-12T15:14:40+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.1.6",
       "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 6},

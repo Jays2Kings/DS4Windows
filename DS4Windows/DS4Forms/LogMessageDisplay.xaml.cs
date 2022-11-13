@@ -20,7 +20,7 @@ namespace DS4WinWPF.DS4Forms
 
         public LogMessageDisplay(string message) : this()
         {
-            Regex urlReg = new Regex(@"http(s)?://([\w-]+.)+[\w-]+(/[\w- ./?%&=])?");
+            Regex urlReg = new Regex(@"http(s)?://([\w-]+.+[/]){1}([#&?][\w-]+)?");
             message = urlReg.Replace(message, "[$0]($0)");
 
             MarkdownEngine engine = new MarkdownEngine();

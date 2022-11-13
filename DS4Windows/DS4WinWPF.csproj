@@ -15,9 +15,9 @@
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <EnableNETAnalyzers>false</EnableNETAnalyzers>
     <ServerGarbageCollection>true</ServerGarbageCollection>
-    <AssemblyVersion>3.1.6</AssemblyVersion>
-    <FileVersion>3.1.6</FileVersion>
-    <Version>3.1.6</Version>
+    <AssemblyVersion>3.1.10</AssemblyVersion>
+    <FileVersion>3.1.10</FileVersion>
+    <Version>3.1.10</Version>
     <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
     <Copyright>Copyright © Scarlet.Crush Productions 2012, 2013; InhexSTER, HecticSeptic, electrobrains 2013, 2014; Jays2Kings 2013, 2014, 2015, 2016; Ryochan7 2017-2022</Copyright>
@@ -73,19 +73,17 @@
   <ItemGroup>
     <PackageReference Include="bloomtom.HttpProgress" Version="2.3.2" />
     <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="5.0.103" />
-    <PackageReference Include="H.NotifyIcon.Wpf" Version="2.0.64" />
-    <PackageReference Include="MdXaml" Version="1.15.0" />
+    <PackageReference Include="H.NotifyIcon.Wpf" Version="2.0.68" />
+    <PackageReference Include="MdXaml" Version="1.16.0" />
     <PackageReference Include="NLog" Version="5.0.4" />
-    <PackageReference Include="Nefarius.Utilities.DeviceManagement" Version="3.0.165-pre" />
+    <PackageReference Include="Nefarius.Utilities.DeviceManagement" Version="3.2.184" />
+    <!--<PackageReference Include="Nefarius.ViGEm.Client" Version="1.21.230" />-->
     <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
     <PackageReference Include="System.Management" Version="6.0.0" />
     <PackageReference Include="TaskScheduler" Version="2.10.1" />
     <PackageReference Include="WPFLocalizeExtension" Version="3.9.4" />
-
-    <Reference Include="Nefarius.ViGEm.Client">
-      <HintPath>..\libs\$(Platform)\Nefarius.ViGEm.Client\Nefarius.ViGEm.Client.dll</HintPath>
-    </Reference>
-
+    <PackageReference Include="WpfScreenHelper" Version="2.1.0" />
+    
     <Reference Include="FakerInputWrapper">
       <HintPath>..\libs\$(Platform)\FakerInputWrapper\FakerInputWrapper.dll</HintPath>
     </Reference>
@@ -93,12 +91,16 @@
     <Reference Include="SharpOSC">
       <HintPath>..\libs\$(Platform)\SharpOSC\SharpOSC.dll</HintPath>
     </Reference>
+
+    <Reference Include="Nefarius.ViGEm.Client">
+      <HintPath>..\libs\$(Platform)\Nefarius.ViGEm.Client\Nefarius.ViGEm.Client.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\social\bittube.png" />
 	<Resource Include="Resources\social\GitHub-Mark-Light-64px.png" />
     <Resource Include="Resources\social\GitHub-Mark-64px.png" />
+    <Resource Include="Resources\social\poast_icon.png" />
     <Resource Include="Resources\social\twitter_logo_initial.png" />
     <Resource Include="Resources\social\youtube_social_icon_red.png" />
 

@@ -32,8 +32,16 @@ namespace DS4Windows
             new Dictionary<int, Xbox360FeedbackReceivedEventHandler>();
 
         private const int XINPUT_SLOT_NUM_DEFAULT = -1;
+        private const int MAX_XINPUT_SLOT_NUM = 8;
         private int _xInputSlotNum = XINPUT_SLOT_NUM_DEFAULT;
-        public int XinputSlotNum => _xInputSlotNum;
+        public int XinputSlotNum
+        {
+            get => _xInputSlotNum;
+            set
+            {
+                if (value >= 0 && value < MAX_XINPUT_SLOT_NUM) _xInputSlotNum = value;
+            }
+        }
 
         private X360Features _features;
         public X360Features Features => _features;
@@ -175,10 +183,9 @@ namespace DS4Windows
             {
                 // Need a delay here
                 Thread.Sleep(USER_INDEX_WAIT);
-
                 try
                 {
-                    _xInputSlotNum = cont.UserIndex;
+                    XinputSlotNum = cont.UserIndex;
                 }
                 catch (Exception)
                 {

@@ -193,7 +193,7 @@
     <value>يد التحكم\إعداد برنامج التشغيل</value>
   </data>
   <data name="Duplicate" xml:space="preserve">
-    <value>تكرار</value>
+    <value>نسخ</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>تعديل</value>
@@ -271,7 +271,7 @@
     <value>حفظ</value>
   </data>
   <data name="SaveProfile" xml:space="preserve">
-    <value>حفظ</value>
+    <value>حفظ ملف اتعريف</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>الإعدادات</value>
@@ -307,7 +307,7 @@
     <value>التحذيرات فقط</value>
   </data>
   <data name="RumbleMaxSecs" xml:space="preserve">
-    <value>ث</value>
+    <value>الحد الأقصى للإهتزاز في الثانية</value>
   </data>
   <data name="RumbleMaxSecsTip" xml:space="preserve">
     <value>إيقاف الإهتزاز بشكل تلقائي خلال ث (0= الإيقاف التلقائي معطل)</value>

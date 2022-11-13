@@ -55,6 +55,9 @@ namespace DS4WinWPF.DS4Forms
 
         private NonFormTimer inputTimer;
 
+        private TouchButtonUserControl touchButtonUC;
+        private ContentControl activeTouchButtonDisplayControl;
+
         public ProfileEditor(int device)
         {
             InitializeComponent();
@@ -67,6 +70,9 @@ namespace DS4WinWPF.DS4Forms
 
             mappingListVM = new MappingListViewModel(deviceNum, profileSettingsVM.ContType);
             specialActionsVM = new SpecialActionsListViewModel(device);
+
+            touchButtonUC = new TouchButtonUserControl(device);
+            TouchpadButtonControlDisplaySetup();
 
             RemoveHoverBtnText();
             PopulateHoverImages();
@@ -98,6 +104,54 @@ namespace DS4WinWPF.DS4Forms
             profileSettingsVM.R2DeadZoneChanged += UpdateReadingsR2DeadZone;
             profileSettingsVM.SXDeadZoneChanged += UpdateReadingsSXDeadZone;
             profileSettingsVM.SZDeadZoneChanged += UpdateReadingsSZDeadZone;
+            profileSettingsVM.TouchpadOutputIndexChanged += TouchpadOutputDisplayChange;
+        }
+
+        /// <summary>
+        /// Place touchpad button mode options UserControl in active Touchpad TabItem.
+        /// Applicable TabItem control needs to contain a ContentControl
+        /// </summary>
+        private void TouchpadButtonControlDisplaySetup()
+        {
+            ResetTouchContentControls();
+
+            switch (profileSettingsVM.TouchpadOutputIndex)
+            {
+                case 1:
+                    touchContentControl2.Content = touchButtonUC;
+                    activeTouchButtonDisplayControl = touchContentControl2;
+                    break;
+                case 2:
+                    touchContentControl4.Content = touchButtonUC;
+                    activeTouchButtonDisplayControl = touchContentControl4;
+                    break;
+                case 3:
+                    touchContentControl3.Content = touchButtonUC;
+                    activeTouchButtonDisplayControl = touchContentControl3;
+                    break;
+                case 4:
+                    break;
+
+                case 0:
+                default:
+                    touchContentControl1.Content = touchButtonUC;
+                    activeTouchButtonDisplayControl = touchContentControl1;
+                    break;
+            }
+        }
+
+        private void ResetTouchContentControls()
+        {
+            if (activeTouchButtonDisplayControl != null)
+            {
+                activeTouchButtonDisplayControl.Content = null;
+                activeTouchButtonDisplayControl = null;
+            }
+        }
+
+        private void TouchpadOutputDisplayChange(object sender, EventArgs e)
+        {
+            TouchpadButtonControlDisplaySetup();
         }
 
         private void UpdateReadingsSZDeadZone(object sender, EventArgs e)

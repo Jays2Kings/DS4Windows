@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using DS4Windows;
+using DS4Windows.StickModifiers;
+using DS4WinWPF.DS4Forms.ViewModels.Util;
 using DS4Windows.InputDevices;
 
 namespace DS4WinWPF.DS4Forms.ViewModels
@@ -492,6 +494,78 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.ButtonMouseInfos[device].mouseAccel = value;
         }
 
+        public double AbsWidth
+        {
+            get => Global.ButtonAbsMouseInfos[device].width;
+            set
+            {
+                ButtonAbsMouseInfo tempAbsInfo = Global.ButtonAbsMouseInfos[device];
+                if (value == tempAbsInfo.width) return;
+
+                tempAbsInfo.width = value;
+            }
+        }
+
+        public double AbsHeight
+        {
+            get => Global.ButtonAbsMouseInfos[device].height;
+            set
+            {
+                ButtonAbsMouseInfo tempAbsInfo = Global.ButtonAbsMouseInfos[device];
+                if (value == tempAbsInfo.height) return;
+
+                tempAbsInfo.height = value;
+            }
+        }
+
+        public double AbsXCenter
+        {
+            get => Global.ButtonAbsMouseInfos[device].xcenter;
+            set
+            {
+                ButtonAbsMouseInfo tempAbsInfo = Global.ButtonAbsMouseInfos[device];
+                if (value == tempAbsInfo.xcenter) return;
+
+                tempAbsInfo.xcenter = value;
+            }
+        }
+
+        public double AbsYCenter
+        {
+            get => Global.ButtonAbsMouseInfos[device].ycenter;
+            set
+            {
+                ButtonAbsMouseInfo tempAbsInfo = Global.ButtonAbsMouseInfos[device];
+                if (value == tempAbsInfo.ycenter) return;
+
+                tempAbsInfo.ycenter = value;
+            }
+        }
+
+        public bool AbsSnapCenter
+        {
+            get => Global.ButtonAbsMouseInfos[device].snapToCenter;
+            set
+            {
+                ButtonAbsMouseInfo tempAbsInfo = Global.ButtonAbsMouseInfos[device];
+                if (value == tempAbsInfo.snapToCenter) return;
+
+                tempAbsInfo.snapToCenter = value;
+            }
+        }
+
+        public double AbsAntiRadius
+        {
+            get => Global.ButtonAbsMouseInfos[device].antiRadius;
+            set
+            {
+                ButtonAbsMouseInfo tempAbsInfo = Global.ButtonAbsMouseInfos[device];
+                if (tempAbsInfo.antiRadius == value) return;
+
+                tempAbsInfo.antiRadius = value;
+            }
+        }
+
         public bool EnableTouchpadToggle
         {
             get => Global.EnableTouchToggle[device];
@@ -701,10 +775,14 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
                 GyroOutMode current = Global.GyroOutputMode[device];
                 if (temp == current) return;
+                //GyroOutModeIndexChanging?.Invoke(this, EventArgs.Empty);
+                GyroOutModeIndexChanging?.Invoke(this, current, temp);
                 Global.GyroOutputMode[device] = temp;
                 GyroOutModeIndexChanged?.Invoke(this, EventArgs.Empty);
             }
         }
+        //public event EventHandler GyroOutModeIndexChanging;
+        public event PropertyChangingHandler<GyroOutMode> GyroOutModeIndexChanging;
         public event EventHandler GyroOutModeIndexChanged;
 
         public OutContType ContType
@@ -1117,6 +1195,124 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             get => Global.RSModInfo[device].outerBindDeadZone / 100.0;
             set => Global.RSModInfo[device].outerBindDeadZone = value * 100.0;
+        }
+
+        public bool LSDeltaAccelEnabled
+        {
+            get => Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.enabled;
+            set
+            {
+                bool temp = Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.enabled;
+                if (temp == value) return;
+
+                Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.enabled = value;
+                LSDeltaAccelEnabledChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler LSDeltaAccelEnabledChanged;
+
+        public double LSDeltaMultiplier
+        {
+            get => Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.multiplier;
+            set
+            {
+                Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.multiplier = value;
+            }
+        }
+
+        public double LSDeltaMaxTravel
+        {
+            get => Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.maxTravel;
+            set
+            {
+                Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.maxTravel = value;
+            }
+        }
+
+        public double LSDeltaMinTravel
+        {
+            get => Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minTravel;
+            set
+            {
+                Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minTravel = value;
+            }
+        }
+
+        public double LSDeltaEasingDuration
+        {
+            get => Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.easingDuration;
+            set
+            {
+                Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.easingDuration = value;
+            }
+        }
+
+        public double LSDeltaMinFactor
+        {
+            get => Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minfactor;
+            set
+            {
+                Global.LSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minfactor = value;
+            }
+        }
+
+        public bool RSDeltaAccelEnabled
+        {
+            get => Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.enabled;
+            set
+            {
+                bool temp = Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.enabled;
+                if (temp == value) return;
+
+                Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.enabled = value;
+                RSDeltaAccelEnabledChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler RSDeltaAccelEnabledChanged;
+
+        public double RSDeltaMultiplier
+        {
+            get => Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.multiplier;
+            set
+            {
+                Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.multiplier = value;
+            }
+        }
+
+        public double RSDeltaMaxTravel
+        {
+            get => Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.maxTravel;
+            set
+            {
+                Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.maxTravel = value;
+            }
+        }
+
+        public double RSDeltaMinTravel
+        {
+            get => Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minTravel;
+            set
+            {
+                Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minTravel = value;
+            }
+        }
+
+        public double RSDeltaEasingDuration
+        {
+            get => Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.easingDuration;
+            set
+            {
+                Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.easingDuration = value;
+            }
+        }
+
+        public double RSDeltaMinFactor
+        {
+            get => Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minfactor;
+            set
+            {
+                Global.RSOutputSettings[device].outputSettings.controlSettings.deltaAccelSettings.minfactor = value;
+            }
         }
 
         public int LSOutputIndex
@@ -1601,10 +1797,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                         index = 0; break;
                     case TouchpadOutMode.Controls:
                         index = 1; break;
-                    case TouchpadOutMode.AbsoluteMouse:
+                    case TouchpadOutMode.MouseJoystick:
                         index = 2; break;
-                    case TouchpadOutMode.Passthru:
+                    case TouchpadOutMode.AbsoluteMouse:
                         index = 3; break;
+                    case TouchpadOutMode.Passthru:
+                        index = 4; break;
                     default: break;
                 }
                 return index;
@@ -1618,18 +1816,24 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     case 1:
                         temp = TouchpadOutMode.Controls; break;
                     case 2:
-                        temp = TouchpadOutMode.AbsoluteMouse; break;
+                        temp = TouchpadOutMode.MouseJoystick; break;
                     case 3:
+                        temp = TouchpadOutMode.AbsoluteMouse; break;
+                    case 4:
                         temp = TouchpadOutMode.Passthru; break;
                     default: break;
                 }
 
                 TouchpadOutMode current = Global.TouchOutMode[device];
                 if (temp == current) return;
+                //TouchpadOutputIndexChanging?.Invoke(this, EventArgs.Empty);
+                TouchpadOutputIndexChanging?.Invoke(this, current, temp);
                 Global.TouchOutMode[device] = temp;
                 TouchpadOutputIndexChanged?.Invoke(this, EventArgs.Empty);
             }
         }
+        //public event EventHandler TouchpadOutputIndexChanging;
+        public event PropertyChangingHandler<TouchpadOutMode> TouchpadOutputIndexChanging;
         public event EventHandler TouchpadOutputIndexChanged;
 
         public bool TouchSenExists
@@ -1828,6 +2032,172 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 if (temp == value) return;
                 Global.TouchAbsMouse[device].snapToCenter = value;
             }
+        }
+
+
+        public int TouchMouseStickDeadZone
+        {
+            get => Global.TouchMouseStickInf[device].deadZone;
+            set => Global.TouchMouseStickInf[device].deadZone = value;
+        }
+
+        public int TouchMouseStickMaxZone
+        {
+            get => Global.TouchMouseStickInf[device].maxZone;
+            set => Global.TouchMouseStickInf[device].maxZone = value;
+        }
+
+        public int TouchMouseStickOutputStick
+        {
+            get => (int)Global.TouchMouseStickInf[device].outputStick;
+            set
+            {
+                Global.TouchMouseStickInf[device].outputStick =
+                    (TouchMouseStickInfo.OutputStick)value;
+            }
+        }
+
+        public int TouchMouseStickOutputAxes
+        {
+            get => (int)Global.TouchMouseStickInf[device].outputStickDir;
+            set
+            {
+                Global.TouchMouseStickInf[device].outputStickDir =
+                    (TouchMouseStickInfo.OutputStickAxes)value;
+            }
+        }
+
+        public double TouchMouseStickAntiDeadX
+        {
+            get => Global.TouchMouseStickInf[device].antiDeadX * 100.0;
+            set => Global.TouchMouseStickInf[device].antiDeadX = value * 0.01;
+        }
+
+        public double TouchMouseStickAntiDeadY
+        {
+            get => Global.TouchMouseStickInf[device].antiDeadY * 100.0;
+            set => Global.TouchMouseStickInf[device].antiDeadY = value * 0.01;
+        }
+
+        public int TouchMouseStickVertScale
+        {
+            get => Global.TouchMouseStickInf[device].vertScale;
+            set => Global.TouchMouseStickInf[device].vertScale = value;
+        }
+
+        public bool TouchMouseStickMaxOutputEnabled
+        {
+            get => Global.TouchMouseStickInf[device].maxOutputEnabled;
+            set
+            {
+                bool temp = Global.TouchMouseStickInf[device].maxOutputEnabled;
+                if (temp == value) return;
+                Global.TouchMouseStickInf[device].maxOutputEnabled = value;
+                TouchMouseStickMaxOutputChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler TouchMouseStickMaxOutputChanged;
+
+        public double TouchMouseStickMaxOutput
+        {
+            get => Global.TouchMouseStickInf[device].maxOutput;
+            set => Global.TouchMouseStickInf[device].maxOutput = value;
+        }
+
+        public bool TouchMouseStickInvertX
+        {
+            get => (Global.TouchMouseStickInf[device].inverted & 1) == 1;
+            set
+            {
+                if (value)
+                {
+                    Global.TouchMouseStickInf[device].inverted |= 1;
+                }
+                else
+                {
+                    uint temp = Global.TouchMouseStickInf[device].inverted;
+                    Global.TouchMouseStickInf[device].inverted = (uint)(temp & ~1);
+                }
+            }
+        }
+
+        public bool TouchMouseStickInvertY
+        {
+            get => (Global.TouchMouseStickInf[device].inverted & 2) == 2;
+            set
+            {
+                if (value)
+                {
+                    Global.TouchMouseStickInf[device].inverted |= 2;
+                }
+                else
+                {
+                    uint temp = Global.TouchMouseStickInf[device].inverted;
+                    Global.TouchMouseStickInf[device].inverted = (uint)(temp & ~2);
+                }
+            }
+        }
+
+        public bool TouchMouseStickSmooth
+        {
+            get => Global.TouchMouseStickInf[device].UseSmoothing;
+            set => Global.TouchMouseStickInf[device].UseSmoothing = value;
+        }
+
+        public double TouchMouseStickOneEuroMinCutoff
+        {
+            get => Global.TouchMouseStickInf[device].MinCutoff;
+            set => Global.TouchMouseStickInf[device].MinCutoff = value;
+        }
+
+        public double TouchMouseStickOneEuroBeta
+        {
+            get => Global.TouchMouseStickInf[device].Beta;
+            set => Global.TouchMouseStickInf[device].Beta = value;
+        }
+
+        private List<EnumChoiceSelection<StickOutCurve.Curve>> touchMStickOutputCurveOptions =
+            new List<EnumChoiceSelection<StickOutCurve.Curve>>
+            {
+                new EnumChoiceSelection<StickOutCurve.Curve>("Linear", StickOutCurve.Curve.Linear),
+                new EnumChoiceSelection<StickOutCurve.Curve>("Easeout Quad", StickOutCurve.Curve.EaseoutQuad),
+                new EnumChoiceSelection<StickOutCurve.Curve>("Easeout Cubic", StickOutCurve.Curve.EaseoutCubic),
+                new EnumChoiceSelection<StickOutCurve.Curve>("Enhanced Precision", StickOutCurve.Curve.EnhancedPrecision),
+                new EnumChoiceSelection<StickOutCurve.Curve>("Quadratic", StickOutCurve.Curve.Quadratic),
+                new EnumChoiceSelection<StickOutCurve.Curve>("Cubic", StickOutCurve.Curve.Cubic),
+            };
+
+        public List<EnumChoiceSelection<StickOutCurve.Curve>> TouchMouseStickOutputCurveOptions => touchMStickOutputCurveOptions;
+
+        public StickOutCurve.Curve TouchMouseStickOutputCurve
+        {
+            get => Global.TouchMouseStickInf[device].outputCurve;
+            set => Global.TouchMouseStickInf[device].outputCurve = value;
+        }
+
+        public bool TouchMouseStickTrackball
+        {
+            get => Global.TouchMouseStickInf[device].trackballMode;
+            set => Global.TouchMouseStickInf[device].trackballMode = value;
+        }
+
+        public double TouchMouseStickTrackballFriction
+        {
+            get => Global.TouchMouseStickInf[device].trackballFriction;
+            set
+            {
+                double temp = Global.TouchMouseStickInf[device].trackballFriction;
+                if (temp == value) return;
+                Global.TouchMouseStickInf[device].trackballFriction = value;
+                TouchMouseStickTrackballFrictionChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler TouchMouseStickTrackballFrictionChanged;
+
+        public double TouchMouseStickRotation
+        {
+            get => Global.TouchMouseStickInf[device].rotationRad * 180.0 / Math.PI;
+            set => Global.TouchMouseStickInf[device].rotationRad = value * Math.PI / 180.0;
         }
 
         public bool GyroMouseTurns
@@ -2545,12 +2915,67 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             };
 
             GyroOutModeIndexChanged += CalcProfileFlags;
+            GyroOutModeIndexChanging += ProfileSettingsViewModel_GyroOutModeIndexChanging;
             SASteeringWheelEmulationAxisIndexChanged += CalcProfileFlags;
             LSOutputIndexChanged += CalcProfileFlags;
             RSOutputIndexChanged += CalcProfileFlags;
             ButtonMouseOffsetChanged += ProfileSettingsViewModel_ButtonMouseOffsetChanged;
             GyroMouseSmoothMethodIndexChanged += ProfileSettingsViewModel_GyroMouseSmoothMethodIndexChanged;
             GyroMouseStickSmoothMethodIndexChanged += ProfileSettingsViewModel_GyroMouseStickSmoothMethodIndexChanged;
+
+            LSDeltaAccelEnabledChanged += ProfileSettingsViewModel_LSDeltaAccelEnabledChanged;
+            RSDeltaAccelEnabledChanged += ProfileSettingsViewModel_RSDeltaAccelEnabledChanged;
+            TouchpadOutputIndexChanging += ProfileSettingsViewModel_TouchpadOutputIndexChanging;
+            TouchpadOutputIndexChanged += ProfileSettingsViewModel_TouchpadOutputIndexChanged;
+            TouchMouseStickTrackballFrictionChanged += ProfileSettingsViewModel_TouchMouseStickTrackballFrictionChanged;
+        }
+
+        private void ProfileSettingsViewModel_TouchMouseStickTrackballFrictionChanged(object sender, EventArgs e)
+        {
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                App.rootHub.touchPad[device]?.ResetTouchStickAccel(TouchMouseStickTrackballFriction);
+            }
+        }
+
+        private void ProfileSettingsViewModel_GyroOutModeIndexChanging(object sender, GyroOutMode oldValue, GyroOutMode newValue)
+        {
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                App.rootHub.touchPad[device]?.Reset();
+            }
+        }
+
+        private void ProfileSettingsViewModel_TouchpadOutputIndexChanging(object sender, TouchpadOutMode oldValue, TouchpadOutMode newValue)
+        {
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                App.rootHub.touchPad[device]?.Reset();
+            }
+        }
+
+        private void ProfileSettingsViewModel_TouchpadOutputIndexChanged(object sender, EventArgs e)
+        {
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                App.rootHub.touchPad[device]?.PostSetup();
+            }
+        }
+
+        private void ProfileSettingsViewModel_LSDeltaAccelEnabledChanged(object sender, EventArgs e)
+        {
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                Mapping.deltaAccelProcessors[device].LSProcessor.Reset();
+            }
+        }
+
+        private void ProfileSettingsViewModel_RSDeltaAccelEnabledChanged(object sender, EventArgs e)
+        {
+            if (device < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
+            {
+                Mapping.deltaAccelProcessors[device].RSProcessor.Reset();
+            }
         }
 
         private void ProfileSettingsViewModel_GyroMouseStickSmoothMethodIndexChanged(object sender, EventArgs e)

@@ -167,46 +167,12 @@ namespace DS4Windows
             //return meta;
         }
 
-        private object busThrLck = new object();
-        private bool busThrRunning = false;
-        private Queue<Action> busEvtQueue = new Queue<Action>();
-        private object busEvtQueueLock = new object();
         public ControlService(DS4WinWPF.ArgumentParser cmdParser)
         {
             this.cmdParser = cmdParser;
 
             Crc32Algorithm.InitializeTable(DS4Device.DefaultPolynomial);
             InitOutputKBMHandler();
-
-            // Cause thread affinity to not be tied to main GUI thread
-            //tempBusThread = new Thread(() =>
-            //{
-            //    //_udpServer = new UdpServer(GetPadDetailForIdx);
-            //    busThrRunning = true;
-
-            //    while (busThrRunning)
-            //    {
-            //        lock (busEvtQueueLock)
-            //        {
-            //            Action tempAct = null;
-            //            for (int actInd = 0, actLen = busEvtQueue.Count; actInd < actLen; actInd++)
-            //            {
-            //                tempAct = busEvtQueue.Dequeue();
-            //                tempAct.Invoke();
-            //            }
-            //        }
-
-            //        lock (busThrLck)
-            //            Monitor.Wait(busThrLck);
-            //    }
-            //});
-            //tempBusThread.Priority = ThreadPriority.BelowNormal;
-            //tempBusThread.IsBackground = true;
-            //tempBusThread.Start();
-            //while (_udpServer == null)
-            //{
-            //    Thread.SpinWait(500);
-            //}
 
             eventDispatchThread = new Thread(() =>
             {
@@ -701,14 +667,6 @@ namespace DS4Windows
             {
                 temp?.Invoke();
             });
-
-            //lock (busEvtQueueLock)
-            //{
-            //    busEvtQueue.Enqueue(temp);
-            //}
-
-            //lock (busThrLck)
-            //    Monitor.Pulse(busThrLck);
         }
 
         public void ChangeUDPStatus(bool state, bool openPort=true)

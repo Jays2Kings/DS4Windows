@@ -179,30 +179,30 @@ namespace DS4Windows
             InitOutputKBMHandler();
 
             // Cause thread affinity to not be tied to main GUI thread
-            tempBusThread = new Thread(() =>
-            {
-                //_udpServer = new UdpServer(GetPadDetailForIdx);
-                busThrRunning = true;
+            //tempBusThread = new Thread(() =>
+            //{
+            //    //_udpServer = new UdpServer(GetPadDetailForIdx);
+            //    busThrRunning = true;
 
-                while (busThrRunning)
-                {
-                    lock (busEvtQueueLock)
-                    {
-                        Action tempAct = null;
-                        for (int actInd = 0, actLen = busEvtQueue.Count; actInd < actLen; actInd++)
-                        {
-                            tempAct = busEvtQueue.Dequeue();
-                            tempAct.Invoke();
-                        }
-                    }
+            //    while (busThrRunning)
+            //    {
+            //        lock (busEvtQueueLock)
+            //        {
+            //            Action tempAct = null;
+            //            for (int actInd = 0, actLen = busEvtQueue.Count; actInd < actLen; actInd++)
+            //            {
+            //                tempAct = busEvtQueue.Dequeue();
+            //                tempAct.Invoke();
+            //            }
+            //        }
 
-                    lock (busThrLck)
-                        Monitor.Wait(busThrLck);
-                }
-            });
-            tempBusThread.Priority = ThreadPriority.Normal;
-            tempBusThread.IsBackground = true;
-            tempBusThread.Start();
+            //        lock (busThrLck)
+            //            Monitor.Wait(busThrLck);
+            //    }
+            //});
+            //tempBusThread.Priority = ThreadPriority.BelowNormal;
+            //tempBusThread.IsBackground = true;
+            //tempBusThread.Start();
             //while (_udpServer == null)
             //{
             //    Thread.SpinWait(500);
@@ -697,13 +697,18 @@ namespace DS4Windows
 
         private void TestQueueBus(Action temp)
         {
-            lock (busEvtQueueLock)
+            eventDispatcher.BeginInvoke(() =>
             {
-                busEvtQueue.Enqueue(temp);
-            }
+                temp?.Invoke();
+            });
 
-            lock (busThrLck)
-                Monitor.Pulse(busThrLck);
+            //lock (busEvtQueueLock)
+            //{
+            //    busEvtQueue.Enqueue(temp);
+            //}
+
+            //lock (busThrLck)
+            //    Monitor.Pulse(busThrLck);
         }
 
         public void ChangeUDPStatus(bool state, bool openPort=true)

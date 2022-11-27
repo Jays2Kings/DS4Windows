@@ -131,16 +131,16 @@ namespace DS4WinWPF.DS4Forms
             }
 
             // Check display width bounds on startup
-            this.Width = Math.Clamp(Global.FormWidth, 0, Global.fullDesktopBounds.Width);
-            this.Height = Math.Clamp(Global.FormHeight, 0, Global.fullDesktopBounds.Height);
+            this.Width = Global.FormWidth = (int)Math.Clamp(Global.FormWidth, 0, Global.fullDesktopBounds.Width);
+            this.Height = Global.FormHeight = (int)Math.Clamp(Global.FormHeight, 0, Global.fullDesktopBounds.Height);
             // Keep possible example that does not rely on WpfScreenHelper
             //this.Width = Math.Clamp(Global.FormWidth, 0, SystemParameters.VirtualScreenWidth);
             //this.Height = Math.Clamp(Global.FormHeight, 0, SystemParameters.VirtualScreenHeight);
 
             // Check if requested window location exists on startup
             WindowStartupLocation = WindowStartupLocation.Manual;
-            Left = Math.Clamp(Global.FormLocationX, 0, Global.fullDesktopBounds.Right);
-            Top = Math.Clamp(Global.FormLocationY, 0, Global.fullDesktopBounds.Bottom);
+            Left = Global.FormLocationX = (int)Math.Clamp(Global.FormLocationX, 0, Global.fullDesktopBounds.Right);
+            Top = Global.FormLocationY = (int)Math.Clamp(Global.FormLocationY, 0, Global.fullDesktopBounds.Bottom);
             // Keep possible example that does not rely on WpfScreenHelper
             //Left = Math.Clamp(Global.FormLocationX, 0, SystemParameters.VirtualScreenLeft);
             //Top = Math.Clamp(Global.FormLocationY, 0, SystemParameters.VirtualScreenHeight);

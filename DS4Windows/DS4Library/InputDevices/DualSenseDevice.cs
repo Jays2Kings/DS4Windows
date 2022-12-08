@@ -117,7 +117,7 @@ namespace DS4Windows.InputDevices
             Passthru,
         }
    
-        public enum HapticPowerLevelFriendlyName : byte
+        public enum HapticPowerLevelFriendlyName : ushort
         {
             Str100 = 0,
             Str87 = 1,

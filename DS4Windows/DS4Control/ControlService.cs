@@ -242,6 +242,12 @@ namespace DS4Windows
             {
                 var messageReceived = (OscMessage)packet;
 
+                // If typecase fails, exit
+                if (messageReceived == null)
+                {
+                    return;
+                }
+
                 var command = messageReceived.Address.Split("/");
                 //AppLogger.LogToGui("I HEARD SOMETHING " + messageReceived.Address, false);
                 if (command[1] != "ds4windows") { return; }

@@ -2076,6 +2076,7 @@
                             </StackPanel>
                         </GroupBox>
                         <GroupBox Header="{lex:Loc Rumble}" MinHeight="50" Margin="4,4,4,0" Padding="0,4,0,4">
+                            <StackPanel>
                             <UniformGrid Rows="1" Columns="3">
                                 <UniformGrid Columns="2" HorizontalAlignment="Left">
                                     <DockPanel>
@@ -2094,6 +2095,40 @@
                                 <Button x:Name="heavyRumbleTestBtn" Content="Test Heavy" Margin="10,0,0,0" Click="HeavyRumbleTestBtn_Click" />
                                 <Button x:Name="lightRumbleTestBtn" Content="Test Light" Margin="10,0,0,0" Click="LightRumbleTestBtn_Click" />
                             </UniformGrid>
+                                <GroupBox Header="{lex:Loc DualSRumbleSpecificSettings}" Margin="0,12,0,0" Padding="2,4">
+
+
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+
+                                            <Label Content="{lex:Loc DualSRumbleModeNPowerLevelTxt}" Margin="0,0,0,0"/>
+
+                                            <ComboBox x:Name="dualSRumbleEmuMode" SelectedIndex="{Binding DualSenseRumbleEmulationPerIndex, FallbackValue=0}" MinWidth="40" ToolTip="{lex:Loc DualSRumbleModes_Tip}" Margin="0,0,0,0" Width="100">
+                                                <ComboBoxItem Content="{lex:Loc DualSRumbleModeAccurate}"   />
+                                                <ComboBoxItem Content="{lex:Loc DualSRumbleModeLegacy}" />
+                                                <ComboBoxItem Content="{lex:Loc DualSRumbleModeDisabled}" />
+                                            </ComboBox>
+
+                                            <ComboBox SelectedIndex="{Binding DualSenseHapticPowerLevelPerIndex, FallbackValue=0}" MinWidth="40" ToolTip="{lex:Loc DualSRumblePowerLevel_Tip}" Margin="4,0,0,0" Width="58">
+                                                <ComboBoxItem Content="100%" />
+                                                <ComboBoxItem Content="87%" />
+                                                <ComboBoxItem Content="75%" />
+                                                <ComboBoxItem Content="62%" />
+                                                <ComboBoxItem Content="50%" />
+                                                <ComboBoxItem Content="37%" />
+                                                <ComboBoxItem Content="25%" />
+                                                <ComboBoxItem Content="12%" />
+                                            </ComboBox>
+
+                                        </StackPanel>
+
+                                        <CheckBox x:Name="dualSForceGenRumbleRescale" IsChecked="{Binding EnableGenericRumbleStrRescaleForDualSenseDevices}" Content="{lex:Loc DualSRumbleForceGenericRescale}" ToolTip="{lex:Loc DualSRumbleForceGenericRescale_Tip}" Margin="3,8,0,0" HorizontalAlignment="Left" />
+
+                                    </StackPanel>
+
+                                </GroupBox>
+
+                            </StackPanel>
                         </GroupBox>
                         <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
                             <Label Content="Use Controller" ToolTip="{lex:Loc Resources:UseControllerForMapping}" />

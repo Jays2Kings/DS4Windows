@@ -153,32 +153,6 @@ namespace DS4Windows
             Pulse
         }
 
-        private bool enableRumble = true;
-        public bool EnableRumble
-        {
-            get => enableRumble;
-            set
-            {
-                if (enableRumble == value) return;
-                enableRumble = value;
-                EnableRumbleChanged?.Invoke(this, EventArgs.Empty);
-            }
-        }
-        public event EventHandler EnableRumbleChanged;
-
-        private DualSenseDevice.HapticIntensity hapticIntensity = DualSenseDevice.HapticIntensity.Medium;
-        public DualSenseDevice.HapticIntensity HapticIntensity
-        {
-            get => hapticIntensity;
-            set
-            {
-                if (hapticIntensity == value) return;
-                hapticIntensity = value;
-                HapticIntensityChanged?.Invoke(this, EventArgs.Empty);
-            }
-        }
-        public event EventHandler HapticIntensityChanged;
-
         private LEDBarMode ledMode = LEDBarMode.MultipleControllers;
         public LEDBarMode LedMode
         {
@@ -222,14 +196,6 @@ namespace DS4Windows
                 tempOptsNode.RemoveAll();
             }
 
-            XmlNode tempRumbleNode = xmlDoc.CreateElement("EnableRumble");
-            tempRumbleNode.InnerText = enableRumble.ToString();
-            tempOptsNode.AppendChild(tempRumbleNode);
-
-            XmlNode tempRumbleStrengthNode = xmlDoc.CreateElement("RumbleStrength");
-            tempRumbleStrengthNode.InnerText = hapticIntensity.ToString();
-            tempOptsNode.AppendChild(tempRumbleStrengthNode);
-
             XmlNode tempLedMode = xmlDoc.CreateElement("LEDBarMode");
             tempLedMode.InnerText = ledMode.ToString();
             tempOptsNode.AppendChild(tempLedMode);
@@ -246,19 +212,6 @@ namespace DS4Windows
             XmlNode baseNode = node.SelectSingleNode("DualSenseSupportSettings");
             if (baseNode != null)
             {
-                XmlNode item = baseNode.SelectSingleNode("EnableRumble");
-                if (bool.TryParse(item?.InnerText ?? "", out bool temp))
-                {
-                    enableRumble = temp;
-                }
-
-                XmlNode itemStrength = baseNode.SelectSingleNode("RumbleStrength");
-                if (Enum.TryParse(itemStrength?.InnerText ?? "",
-                    out DualSenseDevice.HapticIntensity tempHap))
-                {
-                    hapticIntensity = tempHap;
-                }
-
                 XmlNode itemLedMode = baseNode.SelectSingleNode("LEDBarMode");
                 if (Enum.TryParse(itemLedMode?.InnerText ?? "",
                     out LEDBarMode tempLED))

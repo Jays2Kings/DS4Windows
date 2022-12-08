@@ -2020,6 +2020,28 @@ namespace DS4Windows
             device.setRumble(0, 0);
             device.LightBarColor = Global.getMainColor(ind);
 
+            // DualSense specific profile settings
+            if (device is InputDevices.DualSenseDevice dualsense)
+            {
+                switch (DualSenseRumbleEmulationMode[ind])
+                {
+                    case InputDevices.DualSenseDevice.RumbleEmulationMode.Disabled:
+                        dualsense.UseRumble = false;
+                        dualsense.UseAccurateRumble = false;
+                        break;
+                    case InputDevices.DualSenseDevice.RumbleEmulationMode.Legacy:
+                        dualsense.UseRumble = true;
+                        dualsense.UseAccurateRumble = false;
+                        break;
+                    case InputDevices.DualSenseDevice.RumbleEmulationMode.Accurate:
+                    default:
+                        dualsense.UseRumble = true;
+                        dualsense.UseAccurateRumble = true;
+                        break;
+                }
+                dualsense.HapticPowerLevel = DualSenseHapticPowerLevel[ind];
+            }
+
             if (!startUp)
             {
                 CheckLauchProfileOption(ind, device);

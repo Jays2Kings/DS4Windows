@@ -459,6 +459,115 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Force usage of both % strength levels (General and DualSense specifc).
+        /// </summary>
+        public static string DualSRumbleForceGenericRescale {
+            get {
+                return ResourceManager.GetString("DualSRumbleForceGenericRescale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recommended to be left DISABLED.
+        ///
+        ///- Disabled: rumble will be rescaled natively by the controller accordingly to the defined power level (better quality)
+        ///
+        ///- Enabled: both DS4Windows generic rumble rescale and DualSense&apos;s native control will be active.
+        /// </summary>
+        public static string DualSRumbleForceGenericRescale_Tip {
+            get {
+                return ResourceManager.GetString("DualSRumbleForceGenericRescale_Tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accurate.
+        /// </summary>
+        public static string DualSRumbleModeAccurate {
+            get {
+                return ResourceManager.GetString("DualSRumbleModeAccurate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disabled.
+        /// </summary>
+        public static string DualSRumbleModeDisabled {
+            get {
+                return ResourceManager.GetString("DualSRumbleModeDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legacy.
+        /// </summary>
+        public static string DualSRumbleModeLegacy {
+            get {
+                return ResourceManager.GetString("DualSRumbleModeLegacy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rumble mode and strength level:.
+        /// </summary>
+        public static string DualSRumbleModeNPowerLevelTxt {
+            get {
+                return ResourceManager.GetString("DualSRumbleModeNPowerLevelTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passthru.
+        /// </summary>
+        public static string DualSRumbleModePassthru {
+            get {
+                return ResourceManager.GetString("DualSRumbleModePassthru", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accurate Mode (recommended):
+        ///- Better replicates the DualShock 4/Xbox 360 controller rumble feeling
+        ///- More accurately executes game&apos;s intended rumble effects
+        ///- Rumble has more depth. Within the same power level there is a greater difference between min and max in-game rumble activation,
+        ///varying from real low up to the max strength of the defined power level
+        ///
+        ///Legacy Mode:
+        ///- Overral stronger, but lacks depth
+        ///- Has a &quot;sharper&quot; feeling
+        ///- The min and max activation in-game will be, respectively, only sl [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string DualSRumbleModes_Tip {
+            get {
+                return ResourceManager.GetString("DualSRumbleModes_Tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DualSense&apos;s native rumble Power Level rescaler.
+        ///
+        ///- When in Accurate Mode, rumble&apos;s [ min // max ] will be [ 1% /// Chosen Power Level ]
+        ///    - Example (62%): [ min = 1% /// max = 62% ]
+        ///
+        ///- When in Legacy Mode, rumble&apos;s [min /// max ] will be roughly [ Power Level - 12% /// Power Level + 12% ]
+        ///    - Example (62%): [ min = 50% /// max = 74% ].
+        /// </summary>
+        public static string DualSRumblePowerLevel_Tip {
+            get {
+                return ResourceManager.GetString("DualSRumblePowerLevel_Tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DualSense specific rumble settings.
+        /// </summary>
+        public static string DualSRumbleSpecificSettings {
+            get {
+                return ResourceManager.GetString("DualSRumbleSpecificSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duplicate.
         /// </summary>
         public static string Duplicate {

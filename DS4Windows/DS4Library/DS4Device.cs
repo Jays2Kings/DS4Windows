@@ -389,9 +389,6 @@ namespace DS4Windows
         private const byte COPYCAT_OUTPUT_FEATURES = 0x03;
         private byte outputFeaturesByte = DEFAULT_OUTPUT_FEATURES;
 
-        protected bool useRumble = true;
-        public bool UseRumble { get => useRumble; set => useRumble = value; }
-
         public int Battery => battery;
         public delegate void BatteryUpdateHandler(object sender, EventArgs e);
         public virtual event EventHandler BatteryChanged;

@@ -109,13 +109,26 @@ namespace DS4Windows.InputDevices
             }
         }
 
-        public enum HapticIntensity : uint
+        public enum RumbleEmulationMode
         {
-            Low,
-            Medium,
-            High,
+            Accurate,
+            Legacy,
+            Disabled,
+            Passthru,
         }
-
+   
+        public enum HapticPowerLevelFriendlyName : ushort
+        {
+            Str100 = 0,
+            Str87 = 1,
+            Str75 = 2,
+            Str62 = 3,
+            Str50 = 4,
+            Str37 = 5,
+            Str25 = 6,
+            Str12 = 7,
+        }
+        
         private const int BT_REPORT_OFFSET = 2;
         private InputReportDataBytes dataBytes;
         protected new const int BT_OUTPUT_REPORT_LENGTH = 78;
@@ -144,25 +157,19 @@ namespace DS4Windows.InputDevices
 
         private byte activePlayerLEDMask = 0x00;
 
-        private byte hapticsIntensityByte = 0x02;
-        public HapticIntensity HapticChoice {
-            set
-            {
-                switch (value)
-                {
-                    case HapticIntensity.Low:
-                        hapticsIntensityByte = 0x05;
-                        break;
-                    case HapticIntensity.Medium:
-                        hapticsIntensityByte = 0x02;
-                        break;
-                    case HapticIntensity.High:
-                    default:
-                        hapticsIntensityByte = 0x00;
-                        break;
-                }
-            }
+        private byte hapticPowerLevel = (byte)HapticPowerLevelFriendlyName.Str100;
+        public byte HapticPowerLevel
+        {
+            get => hapticPowerLevel;
+            set => hapticPowerLevel = value;
         }
+
+        protected bool useRumble = true;
+        public bool UseRumble { get => useRumble; set => useRumble = value; }
+
+        // Accurate rumble emulation mode requires 2.24 firmware or newer. On official hardware it takes priority over normal/legacy rumble
+        protected bool useAccurateRumble = true; 
+        public bool UseAccurateRumble { get => useAccurateRumble; set => useAccurateRumble = value; }
 
         private TriggerEffectData l2EffectData;
         private TriggerEffectData r2EffectData;
@@ -933,7 +940,7 @@ namespace DS4Windows.InputDevices
                 // 0x40 Adjust overall motor/effect power, 0x80 ???
                 outputReport[2] = 0x55; // 0x04 | 0x01 | 0x10 | 0x40
 
-                if (useRumble)
+                if (useRumble || useAccurateRumble)
                 {
                     // Right? High Freq Motor
                     outputReport[3] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast;
@@ -990,7 +997,7 @@ namespace DS4Windows.InputDevices
                 outputReport[31] = l2EffectData.triggerActuationFrequency; // effect actuation frequency in Hz (requires supplement modes 4 and 20)
 
                 // (lower nibble: main motor; upper nibble trigger effects) 0x00 to 0x07 - reduce overall power of the respective motors/effects by 12.5% per increment (this does not affect the regular trigger motor settings, just the automatically repeating trigger effects)
-                outputReport[37] = hapticsIntensityByte;
+                outputReport[37] = hapticPowerLevel;
                 // Volume of internal speaker (0-7; ties in with index 6. The PS5 default appears to be set a 4)
                 //outputReport[38] = 0x00;
 
@@ -998,7 +1005,7 @@ namespace DS4Windows.InputDevices
                 // 0x01 Enabled LED brightness (value in index 43)
                 // 0x02 Uninterruptable blue LED pulse (action in index 42)
                 // 0x04 Enable improved rumble emulation (Requires 2.24 firmware or newer)
-                outputReport[39] = useRumble ? (byte)0x06 : (byte)0x02;
+                outputReport[39] = useAccurateRumble ? (byte)0x06 : (byte)0x02;
 
                 // 0x01 Slowly (2s?) fade to blue (scheduled to when the regular LED settings are active)
                 // 0x02 Slowly (2s?) fade out (scheduled after fade-in completion) with eventual switch back to configured LED color; only a fade-out can cancel the pulse (neither index 2, 0x08, nor turning this off will cancel it!)
@@ -1070,7 +1077,7 @@ namespace DS4Windows.InputDevices
                 // 0x40 Adjust overall motor/effect power, 0x80 ???
                 outputReport[3] = 0x55; // 0x04 | 0x01 | 0x10 | 0x40
 
-                if (useRumble)
+                if (useRumble || useAccurateRumble)
                 {
                     // Right? High Freq Motor
                     outputReport[4] = currentHap.rumbleState.RumbleMotorStrengthRightLightFast;
@@ -1127,7 +1134,7 @@ namespace DS4Windows.InputDevices
                 outputReport[32] = l2EffectData.triggerActuationFrequency; // effect actuation frequency in Hz (requires supplement modes 4 and 20)
 
                 // (lower nibble: main motor; upper nibble trigger effects) 0x00 to 0x07 - reduce overall power of the respective motors/effects by 12.5% per increment (this does not affect the regular trigger motor settings, just the automatically repeating trigger effects)
-                outputReport[38] = hapticsIntensityByte;
+                outputReport[38] = hapticPowerLevel;
                 // Volume of internal speaker (0-7; ties in with index 6. The PS5 default appears to be set a 4)
                 //outputReport[39] = 0x00;
 
@@ -1135,7 +1142,7 @@ namespace DS4Windows.InputDevices
                 // 0x01 Enabled LED brightness (value in index 43)
                 // 0x02 Uninterruptable blue LED pulse (action in index 42)
                 // 0x04 Enable improved rumble emulation (Requires 2.24 firmware or newer)
-                outputReport[40] = useRumble ? (byte)0x06 : (byte)0x02; 
+                outputReport[40] = useAccurateRumble ? (byte)0x06 : (byte)0x02; 
 
                 // 0x01 Slowly (2s?) fade to blue (scheduled to when the regular LED settings are active)
                 // 0x02 Slowly (2s?) fade out (scheduled after fade-in completion) with eventual switch back to configured LED color; only a fade-out can cancel the pulse (neither index 2, 0x08, nor turning this off will cancel it!)
@@ -1389,17 +1396,6 @@ namespace DS4Windows.InputDevices
         {
             if (nativeOptionsStore != null)
             {
-                nativeOptionsStore.EnableRumbleChanged += (sender, e) =>
-                {
-                    UseRumble = nativeOptionsStore.EnableRumble;
-                    queueEvent(() => { outputDirty = true; });
-                };
-                nativeOptionsStore.HapticIntensityChanged += (sender, e) =>
-                {
-                    HapticChoice = nativeOptionsStore.HapticIntensity;
-                    queueEvent(() => { outputDirty = true; });
-                };
-
                 nativeOptionsStore.MuteLedModeChanged += (sender, e) =>
                 {
                     PrepareMuteLEDByte();
@@ -1418,8 +1414,6 @@ namespace DS4Windows.InputDevices
         {
             if (nativeOptionsStore != null)
             {
-                UseRumble = nativeOptionsStore.EnableRumble;
-                HapticChoice = nativeOptionsStore.HapticIntensity;
                 PrepareMuteLEDByte();
                 PreparePlayerLEDBarByte();
             }

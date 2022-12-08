@@ -21,6 +21,7 @@ using DS4Windows.StickModifiers;
 using System.Windows;
 using static DS4Windows.Util;
 using WpfScreenHelper;
+using DS4Windows.InputDevices;
 
 namespace DS4Windows
 {
@@ -1674,6 +1675,14 @@ namespace DS4Windows
         public static byte[] RumbleBoost => m_Config.rumble;
         public static byte getRumbleBoost(int index)
         {
+            if (Program.rootHub.DS4Controllers[index] is DualSenseDevice)
+            {
+                if (!UseGenericRumbleStrRescaleForDualSenses[index])
+                {
+                    return 100;
+                }
+
+            }
             return m_Config.rumble[index];
         }
 
@@ -2183,6 +2192,28 @@ namespace DS4Windows
         {
             return m_Config.btPollRate[index];
         }
+
+        // Start of DualSense specific profile settings
+        //
+        public static DualSenseDevice.RumbleEmulationMode[] DualSenseRumbleEmulationMode
+        {
+            get => m_Config.dualSenseRumbleEmulationMode;
+            set => m_Config.dualSenseRumbleEmulationMode= value;
+        }
+
+        public static bool[] UseGenericRumbleStrRescaleForDualSenses
+        {
+            get => m_Config.useGenericRumbleRescaleForDualSenses;
+            set => m_Config.useGenericRumbleRescaleForDualSenses = value;
+        }
+
+        public static byte[] DualSenseHapticPowerLevel
+        {
+            get => m_Config.dualSenseHapticPowerLevel;
+            set => m_Config.dualSenseHapticPowerLevel = value;
+        }
+        //
+        // End of DualSense specific profile settings
 
         public static SquareStickInfo[] SquStickInfo => m_Config.squStickInfo;
         public static SquareStickInfo GetSquareStickInfo(int device)
@@ -3096,6 +3127,21 @@ namespace DS4Windows
         };
 
         public int[] saWheelFuzzValues = new int[Global.TEST_PROFILE_ITEM_COUNT];
+
+
+        // Start of DualSense specific profile options
+        //  
+        public DualSenseDevice.RumbleEmulationMode[] dualSenseRumbleEmulationMode = new DualSenseDevice.RumbleEmulationMode[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            0,0,0,0,0,0,0,0,0
+        };
+        public bool[] useGenericRumbleRescaleForDualSenses = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
+        public byte[] dualSenseHapticPowerLevel = new byte[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            0,0,0,0,0,0,0,0,0
+        };
+        //
+        // End of DualSense specific profile options
 
         private void setOutBezierCurveObjArrayItem(BezierCurve[] bezierCurveArray, int device, int curveOptionValue, BezierCurve.AxisType axisType)
         {
@@ -4043,6 +4089,17 @@ namespace DS4Windows
                 }
 
                 XmlNode xmlTouchButtonMode = m_Xdoc.CreateNode(XmlNodeType.Element, "TouchpadButtonMode", null); xmlTouchButtonMode.InnerText = touchpadButtonMode[device].ToString(); rootElement.AppendChild(xmlTouchButtonMode);
+                // Start of DualSense specific settings
+                // xmlDSRumbleGroupElement.AppendChild();
+                XmlElement xmlDualSenseControllerSettingsElement = m_Xdoc.CreateElement("DualSenseControllerSettings");
+                XmlElement xmlDSRumbleGroupElement = m_Xdoc.CreateElement("RumbleSettings"); xmlDualSenseControllerSettingsElement.AppendChild(xmlDSRumbleGroupElement);
+                XmlNode xmlDSREmulationModeElement = m_Xdoc.CreateNode(XmlNodeType.Element, "EmulationMode", null); xmlDSREmulationModeElement.InnerText = dualSenseRumbleEmulationMode[device].ToString(); xmlDSRumbleGroupElement.AppendChild(xmlDSREmulationModeElement);
+                XmlNode xmlDSREnableGenericRumbleRescaleElement = m_Xdoc.CreateNode(XmlNodeType.Element, "EnableGenericRumbleRescale", null); xmlDSREnableGenericRumbleRescaleElement.InnerText = useGenericRumbleRescaleForDualSenses[device].ToString(); xmlDSRumbleGroupElement.AppendChild(xmlDSREnableGenericRumbleRescaleElement);
+                XmlNode xmlDSRHapticPowerLevelElement = m_Xdoc.CreateNode(XmlNodeType.Element, "HapticPowerLevel", null); xmlDSRHapticPowerLevelElement.InnerText = dualSenseHapticPowerLevel[device].ToString(); xmlDSRumbleGroupElement.AppendChild(xmlDSRHapticPowerLevelElement);
+                rootElement.AppendChild(xmlDualSenseControllerSettingsElement);
+                //
+                // End of DualSense specific settings
+
                 XmlNode xmlOutContDevice = m_Xdoc.CreateNode(XmlNodeType.Element, "OutputContDevice", null); xmlOutContDevice.InnerText = OutContDeviceString(outputDevType[device]); rootElement.AppendChild(xmlOutContDevice);
 
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
@@ -6074,6 +6131,57 @@ namespace DS4Windows
                 {
                     missingSetting = true;
                 }
+
+
+                // Start of DualSense specific profile load 
+                //
+                XmlNode xmlDualSenseControllerSettingsElement =
+                    m_Xdoc.SelectSingleNode("/" + rootname + "/DualSenseControllerSettings");
+                bool dSControllerSettingsGroup = xmlDualSenseControllerSettingsElement != null;
+                if (dSControllerSettingsGroup)
+                {
+                    XmlNode xmlDSRumbleGroupElement =
+                        xmlDualSenseControllerSettingsElement.SelectSingleNode("RumbleSettings");
+                    bool dSRumbleGroup = xmlDSRumbleGroupElement != null;
+
+                    if (dSRumbleGroup)
+                    {
+                        try
+                        {
+                            Item = xmlDSRumbleGroupElement.SelectSingleNode("EmulationMode");
+                            DualSenseDevice.RumbleEmulationMode.TryParse(Item.InnerText, out DualSenseDevice.RumbleEmulationMode temp);
+                            dualSenseRumbleEmulationMode[device] = temp;
+                        }
+                        catch { missingSetting = true; }
+
+                        try
+                        {
+                            Item = xmlDSRumbleGroupElement.SelectSingleNode("EnableGenericRumbleRescale");
+                            bool.TryParse(Item.InnerText, out bool temp);
+                            useGenericRumbleRescaleForDualSenses[device] = temp;
+                        }
+                        catch { missingSetting = true; }
+
+                        try
+                        {
+                            Item = xmlDSRumbleGroupElement.SelectSingleNode("HapticPowerLevel");
+                            byte.TryParse(Item.InnerText, out byte temp);
+                            dualSenseHapticPowerLevel[device] = temp;
+                        }
+                        catch { missingSetting = true; }
+
+                    }
+                    else
+                    {
+                        missingSetting = true;
+                    }
+                }
+                else
+                {
+                    missingSetting = true;
+                }
+                //
+                // End of DualSense specific profile load 
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2OutputCurveCustom"); l2OutBezierCurveObj[device].CustomDefinition = Item.InnerText; }
                 catch { missingSetting = true; }

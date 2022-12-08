@@ -53,11 +53,6 @@
             
             <TabItem x:Name="dualSenseOptsTabItem" Header="DualSense" Visibility="Collapsed">
                 <StackPanel Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="4">
-                    <CheckBox Content="Enable Rumble Emulation" IsChecked="{Binding Options.EnableRumble, FallbackValue='False'}" />
-                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0" IsEnabled="{Binding Options.EnableRumble}">
-                        <Label Content="Rumble Strength" ContentStringFormat="{}{0}:" />
-                        <ComboBox ItemsSource="{Binding Path=DSHapticOptions}" DisplayMemberPath="DisplayName" SelectedValuePath="ChoiceValue" SelectedValue="{Binding Options.HapticIntensity}" Margin="8,0,0,0" />
-                    </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
                         <Label Content="Player LED Mode" ContentStringFormat="{}{0}:" />
                         <ComboBox ItemsSource="{Binding Path=DsLEDModes}" DisplayMemberPath="DisplayName" SelectedValuePath="ChoiceValue" SelectedValue="{Binding Options.LedMode}" Margin="8,0,0,0" />

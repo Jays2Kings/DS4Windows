@@ -1563,9 +1563,8 @@ namespace DS4Windows
             }
 
             //bool output = outputPendCount > 0, change = force;
-            bool output = outputPendCount > 0, change = force;
-            //bool output = false, change = force;
-            bool haptime = output || standbySw.ElapsedMilliseconds >= 4000L;
+            bool change = force;
+            bool haptime = force || standbySw.ElapsedMilliseconds >= 4000L;
 
             PrepareOutputReportInner(ref change, ref haptime);
 
@@ -1578,19 +1577,11 @@ namespace DS4Windows
 
             if (synchronous)
             {
-                if (output || haptime)
+                if (haptime)
                 {
                     if (change)
                     {
-                        outputPendCount = OUTPUT_MIN_COUNT_BT;
                         standbySw.Reset();
-                    }
-                    else if (outputPendCount > 1)
-                        outputPendCount--;
-                    else if (outputPendCount == 1)
-                    {
-                        outputPendCount--;
-                        standbySw.Restart();
                     }
                     else
                         standbySw.Restart();
@@ -1648,11 +1639,10 @@ namespace DS4Windows
                 //for (int i = 0, arlen = outputReport.Length; !change && i < arlen; i++)
                 //    change = outputReport[i] != outReportBuffer[i];
 
-                if (output || haptime)
+                if (haptime)
                 {
                     if (change)
                     {
-                        outputPendCount = OUTPUT_MIN_COUNT_BT;
                         standbySw.Reset();
                     }
 

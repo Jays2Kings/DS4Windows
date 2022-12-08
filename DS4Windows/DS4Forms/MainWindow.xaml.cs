@@ -1208,9 +1208,11 @@ Suspend support not enabled.", true);
             inHotPlug = true;
 
             bool loopHotplug = false;
+
             lock (hotplugCounterLock)
             {
                 loopHotplug = hotplugCounter > 0;
+                hotplugCounter = 0;
             }
 
             Program.rootHub.UpdateHidHiddenAttributes();
@@ -1218,10 +1220,11 @@ Suspend support not enabled.", true);
             {
                 Thread.Sleep(HOTPLUG_CHECK_DELAY);
                 Program.rootHub.HotPlug();
+
                 lock (hotplugCounterLock)
                 {
-                    hotplugCounter--;
                     loopHotplug = hotplugCounter > 0;
+                    hotplugCounter = 0;
                 }
             }
 

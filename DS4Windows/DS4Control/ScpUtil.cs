@@ -231,7 +231,7 @@ namespace DS4Windows
                 LS.Add(settingsList[i-1]);
             }
 
-            LS.Add(settingsList[(int)DS4Controls.RSOuter - 1]);
+            RS.Add(settingsList[(int)DS4Controls.RSOuter - 1]);
             for (int i = (int)DS4Controls.RXNeg; i <= (int)DS4Controls.RYPos; i++)
             {
                 RS.Add(settingsList[i-1]);
@@ -9052,7 +9052,7 @@ namespace DS4Windows
                 case "Mute": return DS4Controls.Mute;
                 case "Capture": return DS4Controls.Capture;
                 case "SideL": return DS4Controls.SideL;
-                case "SideR": return DS4Controls.SideL;
+                case "SideR": return DS4Controls.SideR;
                 case "Left Stick Left": return DS4Controls.LXNeg;
                 case "Left Stick Up": return DS4Controls.LYNeg;
                 case "Right Stick Left": return DS4Controls.RXNeg;

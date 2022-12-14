@@ -6,6 +6,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 using DS4Windows;
+using DS4Windows.InputDevices;
 using DS4Windows.StickModifiers;
 using static DS4Windows.Mouse;
 
@@ -1141,6 +1142,12 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
+        [XmlElement("DualSenseControllerSettings")]
+        public DualSenseControllerSettings DualSenseControllerSettings
+        {
+            get; set;
+        }
+
         [XmlElement("L2OutputCurveMode")]
         public string L2OutputCurveMode
         {
@@ -1340,6 +1347,8 @@ namespace DS4WinWPF.DS4Control.DTOXml
             GyroSwipeSettings = new GyroSwipeSettings();
             GyroMouseSmoothingSettings = new GyroMouseSmoothingSettings();
             LSOutputSettings = new StickModeOutputSettings();
+            RSOutputSettings = new StickModeOutputSettings();
+            DualSenseControllerSettings = new DualSenseControllerSettings();
             TouchpadAbsMouseSettings = new TouchpadAbsMouseSettingsSerialize();
             AbsMouseRegionSettings = new AbsMouseRegionSettingsSerializer();
             Control = new DS4ControlAssignementSerializer();
@@ -1591,6 +1600,16 @@ namespace DS4WinWPF.DS4Control.DTOXml
                     FlickTime = source.rsOutputSettings[deviceIndex].outputSettings.flickSettings.flickTime,
                     MinAngleThreshold = source.rsOutputSettings[deviceIndex].outputSettings.flickSettings.minAngleThreshold,
                 },
+            };
+
+            DualSenseControllerSettings = new DualSenseControllerSettings()
+            {
+                RumbleSettingsGroup = new DualSenseControllerSettings.RumbleSettings()
+                {
+                    EmulationMode = source.dualSenseRumbleEmulationMode[deviceIndex],
+                    EnableGenericRumbleRescale = source.useGenericRumbleRescaleForDualSenses[deviceIndex],
+                    HapticPowerLevel = source.dualSenseHapticPowerLevel[deviceIndex],
+                }
             };
 
             L2OutputCurveCustom = source.l2OutBezierCurveObj[deviceIndex].CustomDefinition;
@@ -2149,6 +2168,16 @@ namespace DS4WinWPF.DS4Control.DTOXml
                     destination.rsOutputSettings[deviceIndex].outputSettings.flickSettings.flickThreshold = RSOutputSettings.FlickStickSettings.FlickThreshold;
                     destination.rsOutputSettings[deviceIndex].outputSettings.flickSettings.flickTime = RSOutputSettings.FlickStickSettings.FlickTime;
                     destination.rsOutputSettings[deviceIndex].outputSettings.flickSettings.minAngleThreshold = RSOutputSettings.FlickStickSettings.MinAngleThreshold;
+                }
+            }
+
+            if (DualSenseControllerSettings != null)
+            {
+                if (DualSenseControllerSettings.RumbleSettingsGroup != null)
+                {
+                    destination.dualSenseRumbleEmulationMode[deviceIndex] = DualSenseControllerSettings.RumbleSettingsGroup.EmulationMode;
+                    destination.useGenericRumbleRescaleForDualSenses[deviceIndex] = DualSenseControllerSettings.RumbleSettingsGroup.EnableGenericRumbleRescale;
+                    destination.dualSenseHapticPowerLevel[deviceIndex] = DualSenseControllerSettings.RumbleSettingsGroup.HapticPowerLevel;
                 }
             }
 
@@ -2861,6 +2890,50 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public double MinAngleThreshold
         {
             get; set;
+        }
+    }
+
+    public class DualSenseControllerSettings
+    {
+        public class RumbleSettings
+        {
+            [XmlElement("EmulationMode")]
+            public DualSenseDevice.RumbleEmulationMode EmulationMode
+            {
+                get; set;
+            }
+
+            private bool _enableGenericRumbleRescale;
+            [XmlIgnore]
+            public bool EnableGenericRumbleRescale
+            {
+                get => _enableGenericRumbleRescale;
+                set => _enableGenericRumbleRescale = value;
+            }
+
+            [XmlElement("EnableGenericRumbleRescale")]
+            public string EnableGenericRumbleRescaleString
+            {
+                get => _enableGenericRumbleRescale.ToString();
+                set => _enableGenericRumbleRescale = XmlDataUtilities.StrToBool(value);
+            }
+
+            [XmlElement("HapticPowerLevel")]
+            public byte HapticPowerLevel
+            {
+                get; set;
+            }
+        }
+
+        [XmlElement("RumbleSettings")]
+        public RumbleSettings RumbleSettingsGroup
+        {
+            get; set;
+        }
+
+        public DualSenseControllerSettings()
+        {
+            RumbleSettingsGroup = new RumbleSettings();
         }
     }
 

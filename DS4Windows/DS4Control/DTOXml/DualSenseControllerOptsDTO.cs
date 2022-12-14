@@ -10,27 +10,6 @@ namespace DS4WinWPF.DS4Control.DTOXml
     [XmlRoot(DualSenseControllerOptions.XML_ELEMENT_NAME)]
     public class DualSenseControllerOptsDTO : IDTO<DualSenseControllerOptions>
     {
-        [XmlElement("EnableRumble")]
-        public string EnableRumbleString
-        {
-            get => EnableRumble.ToString();
-            set
-            {
-                EnableRumble = XmlDataUtilities.StrToBool(value);
-            }
-        }
-
-        [XmlIgnore]
-        public bool EnableRumble
-        {
-            get; set;
-        }
-
-        public DualSenseDevice.HapticIntensity RumbleStrength
-        {
-            get; set;
-        }
-
         [XmlElement("LEDBarMode")]
         public LEDBarMode LEDMode
         {
@@ -45,16 +24,12 @@ namespace DS4WinWPF.DS4Control.DTOXml
 
         public void MapFrom(DualSenseControllerOptions source)
         {
-            EnableRumble = source.EnableRumble;
-            RumbleStrength = source.HapticIntensity;
             LEDMode = source.LedMode;
             MuteLedMode = source.MuteLedMode;
         }
 
         public void MapTo(DualSenseControllerOptions destination)
         {
-            destination.EnableRumble = EnableRumble;
-            destination.HapticIntensity = RumbleStrength;
             destination.LedMode = LEDMode;
             destination.MuteLedMode = MuteLedMode;
         }

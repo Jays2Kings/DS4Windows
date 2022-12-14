@@ -16,13 +16,6 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private List<LangPackItem> langPackList;
         private const string invariantCultureTextValue = "No (English UI)";
 
-        // If probing path has been changed in App.config, add the same string here.
-        private const string probingPath = "Lang";
-
-        // Filter language assembly file names in order to ont include irrelevant assemblies to the combo box.
-        private const string languageAssemblyName = "DS4Windows.resources.dll";
-        //private const string languageAssemblyName = "DS4WinWPF.resources.dll";
-
         private int selectedIndex;
 
         public List<LangPackItem> LangPackList { get => langPackList; }
@@ -87,7 +80,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             // Find the location where application installed.
             string exeLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            List<string> lookupPaths = probingPath.Split(';')
+            List<string> lookupPaths = Global.PROBING_PATH.Split(';')
                 .Select(path => Path.Combine(exeLocation, path))
                 .Where(path => path != exeLocation)
                 .ToList();
@@ -103,7 +96,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         private bool IsLanguageAssemblyAvailable(List<string> lookupPaths, CultureInfo culture)
         {
-            return lookupPaths.Select(path => Path.Combine(path, culture.Name, languageAssemblyName))
+            return lookupPaths.Select(path => Path.Combine(path, culture.Name,
+                Global.LANGUAGE_ASSEMBLY_NAME))
                 .Where(path => File.Exists(path))
                 .Count() > 0;
         }

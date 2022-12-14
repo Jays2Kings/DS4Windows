@@ -1,9 +1,52 @@
 {
-  "latest_version": "3.1.9",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 9},
-  "updated_at": "	2022-10-25T21:39:41+0000",
+  "latest_version": "3.1.11",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 11},
+  "updated_at": "2022-11-27T05:34:04+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.1.11",
+      "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 11},
+      "base_header": "Version 3.1.11",
+      "release_date": "2022-11-27T05:34:04+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.1.11",
+          "log_text": ["* Fixed loading of language assemblies from Lang folder",
+            "* Update Traditional Chinese assembly. Contribution by **syaoran**",
+            "* Fixed snap to center Y axis coordinate for control abs mouse",
+            "* Tweaks to DS4 BT output support. Revert back to using output report 0x11",
+            "* Take payload length into account besides just array length. Strip 0xA0 data magic byte from output packet",
+            "* Added workflows for issue moderation automation. Contribution by **nefarius**",
+            "* Check current virtual desktop display bounds when restoring window position on startup",
+            "* Added Poast social link in About window",
+            "* Tweaked Switch Pro init routine. Increased initial USB delay, tweaked modeswitch command",
+            "* Removed use of old ControlService busThread. Utilize Dispatcher",
+            "* Fixed rsync ignore rules for default translation assemblies"],
+          "updated_at": "2022-11-27T05:34:04+0000"
+        }
+      ]
+    },
+    {
+      "version_str": "3.1.10",
+      "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 10},
+      "base_header": "Version 3.1.10",
+      "release_date": "2022-11-07T02:41:13+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.1.10",
+          "log_text": ["* Added Mouse instance null check when performing PreLoadReset before profile loading",
+            "* Added absolute mouse output support for bindable controls",
+            "* Removed references to old BitTube channel",
+            "* Added WpfScreenHelper NuGet package to dependencies",
+            "* Use absolute mouse region display coordinate translation for Touchpad abs mouse",
+            "* Removed App references to MemoryMappedViewAccessor objects for cmd interface. Create as needed. Snappier app as a result"],
+          "updated_at": "2022-11-07T02:41:13+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.1.9",
       "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 9},

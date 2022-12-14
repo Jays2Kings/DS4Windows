@@ -40,6 +40,7 @@ Note: The Website Is No Longer Working
 
 [Twitter @ds4windows](https://twitter.com/ds4windows)  
 [YouTube](https://www.youtube.com/channel/UCIoUA_XLlCSZbvZGeg3Byeg)  
+[Poast](https://poa.st/@DS4Windows)  
 
 ### Other
 
@@ -65,7 +66,13 @@ The Link Profile/ID checkbox allows you to link a specified profile to a certain
 
 ![Profile Tab Screenshot](https://user-images.githubusercontent.com/32114370/189564567-f73805f8-e16a-4a0a-a7ca-619509b10b56.png)
 
-The **Profiles** tab displays all the profiles created. Profiles can be used to assign different settings for your controller for different circumstances. Along with creating new profiles, editing, renaming, deleting, and renaming, you can also import other profiles, and export your's for sharing with friends. When creating a new profile, it is recommended to use a preset option. For the output method, if using a DS4, choose DualShock 4. If you're using a Xbox, Switch Pro, or another standard contoller, it is recommended to choose Xbox 360.
+The **Profiles** tab displays all the profiles created. Profiles can be used to assign different settings for your controller for different circumstances. Along with creating new profiles, editing, renaming, deleting, and renaming, you can also import other profiles, and export your's for sharing with friends. When creating a new profile, it is recommended to use a preset option. For the output method, it must be chosen accordingly to what you want Windows to recognize the controller as.
+
+For Example:
+
+- You have a Pro Controller and want to use PS Remote Play with gyro? You need to choose DualShock 4 Output and adjust the profile for Gyro passthrough
+- You have any of the supported controllers and want to play Celest, which only supports XInput devices? Set the Output to Xbox 360
+- You have a fake DS4 controller that is not recognized as an official one, but want to play Witcher 3 with lightbar support and PS glyphs/icons? Then choose DualShock 4 Output and adjust for lightbar passthrough
 
 ![Output Controller Prompt Screenshot](https://user-images.githubusercontent.com/32114370/189565494-3bd6b11f-7298-4180-824e-7cde49daebb7.png)
 

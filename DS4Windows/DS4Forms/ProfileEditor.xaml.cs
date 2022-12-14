@@ -961,9 +961,19 @@ namespace DS4WinWPF.DS4Forms
                     bool rumbleActive = profileSettingsVM.HeavyRumbleActive;
                     if (!rumbleActive)
                     {
+                        var rumbleBoost = profileSettingsVM.RumbleBoost;
+
+                        // Check if device is DualSense and adjust/update accordingly
+                        if (d is DS4Windows.InputDevices.DualSenseDevice dualsense)
+                        {
+                            UpdateDualSenseRumble(dualsense);
+                            if (!profileSettingsVM.EnableGenericRumbleStrRescaleForDualSenseDevices)
+                                rumbleBoost = 100;
+                        }
+
                         profileSettingsVM.HeavyRumbleActive = true;
                         d.setRumble(d.RightLightFastRumble,
-                            (byte)Math.Min(255, 255 * profileSettingsVM.RumbleBoost / 100));
+                            (byte)Math.Min(255, 255 * rumbleBoost / 100));
                         heavyRumbleTestBtn.Content = Properties.Resources.StopHText;
                     }
                     else
@@ -982,13 +992,24 @@ namespace DS4WinWPF.DS4Forms
             if (deviceNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT)
             {
                 DS4Device d = App.rootHub.DS4Controllers[deviceNum];
+
                 if (d != null)
                 {
                     bool rumbleActive = profileSettingsVM.LightRumbleActive;
                     if (!rumbleActive)
                     {
+                        var rumbleBoost = profileSettingsVM.RumbleBoost;
+
+                        // Check if device is DualSense and adjust/update accordingly
+                        if (d is DS4Windows.InputDevices.DualSenseDevice dualsense)
+                        {
+                            UpdateDualSenseRumble(dualsense);
+                            if (!profileSettingsVM.EnableGenericRumbleStrRescaleForDualSenseDevices)
+                                rumbleBoost = 100;
+                        }
+
                         profileSettingsVM.LightRumbleActive = true;
-                        d.setRumble((byte)Math.Min(255, 255 * profileSettingsVM.RumbleBoost / 100),
+                        d.setRumble((byte)Math.Min(255, 255 * rumbleBoost / 100),
                             d.LeftHeavySlowRumble);
                         lightRumbleTestBtn.Content = Properties.Resources.StopLText;
                     }
@@ -1000,6 +1021,27 @@ namespace DS4WinWPF.DS4Forms
                     }
                 }
             }
+        }
+
+        private void UpdateDualSenseRumble(DS4Windows.InputDevices.DualSenseDevice dualsense)
+        {
+                switch ((DS4Windows.InputDevices.DualSenseDevice.RumbleEmulationMode)profileSettingsVM.DualSenseRumbleEmulationPerIndex)
+                {
+                    case DS4Windows.InputDevices.DualSenseDevice.RumbleEmulationMode.Disabled:
+                        dualsense.UseRumble = false;
+                        dualsense.UseAccurateRumble = false;
+                        break;
+                    case DS4Windows.InputDevices.DualSenseDevice.RumbleEmulationMode.Legacy:
+                        dualsense.UseRumble = true;
+                        dualsense.UseAccurateRumble = false;
+                        break;
+                    case DS4Windows.InputDevices.DualSenseDevice.RumbleEmulationMode.Accurate:
+                    default:
+                        dualsense.UseRumble = true;
+                        dualsense.UseAccurateRumble = true;
+                        break;
+                }
+                dualsense.HapticPowerLevel = (byte)profileSettingsVM.DualSenseHapticPowerLevelPerIndex;
         }
 
         private void CustomEditorBtn_Click(object sender, RoutedEventArgs e)

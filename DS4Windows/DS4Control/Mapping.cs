@@ -269,7 +269,7 @@ namespace DS4Windows
                 //    ((absMouseInfo.maxY - midY) * (Math.Abs(lyUnit) * deadRadius) + midY);
 
                 double xdiff = lxUnit * deadRadius;
-                double ydiff = lyUnit * deadRadius;
+                double ydiff = -lyUnit * deadRadius; // Make down past ycenter be positive
                 double tempx = (absMouseInfo.width / 2.0) * xdiff + absMouseInfo.xcenter;
                 double tempy = (absMouseInfo.height / 2.0) * ydiff + absMouseInfo.ycenter;
 

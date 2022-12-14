@@ -431,15 +431,123 @@ Maps the controller output to mixed XInput gamepad + RS mouse.</value>
     <value>未連接控制器 (最大 {0})</value>
   </data>
   <data name="FlickThreshold" xml:space="preserve">
-    <value>Flick Threshold</value>
+    <value>輕彈閾值</value>
   </data>
   <data name="FlickTime" xml:space="preserve">
-    <value>Flick Time</value>
+    <value>輕彈時間</value>
   </data>
   <data name="MinAngleThreshold" xml:space="preserve">
-    <value>Min Angle Threshold</value>
+    <value>最小角度閾值</value>
   </data>
   <data name="RealWorldCalibration" xml:space="preserve">
-    <value>Real World Calibration</value>
+    <value>現實世界的校準</value>
+  </data>
+  <data name="ViGEmPluginFailure" xml:space="preserve">
+    <value>ViGEm 裝置插件失敗。可能是 ViGEmBus 的內部問題。關閉連接。如果問題仍然存在，請關閉 DS4Windows，然後重新啟動 Windows。</value>
+  </data>
+  <data name="CRC32Fail" xml:space="preserve">
+    <value>無線設備的數據完整性檢查失敗。 關閉設備。</value>
+  </data>
+  <data name="FutureNetNotInstalled" xml:space="preserve">
+    <value>.NET 5 Runtime 未在您的系統上檢測到。 請下載並安裝 .NET 5 Runtime，以確保與未來 DS4Windows 構建的兼容性。 關閉此窗口後，您將重定向到 .NET 5 Runtime 下載頁面。</value>
+  </data>
+  <data name="UpgradeNetCaption" xml:space="preserve">
+    <value>請更新 .NET Runtime</value>
+  </data>
+  <data name="HidHide" xml:space="preserve">
+    <value>HidHide</value>
+  </data>
+  <data name="HidHideConfigClient" xml:space="preserve">
+    <value>HidHide 配置客戶端</value>
+  </data>
+  <data name="ExclusiveAccess" xml:space="preserve">
+    <value>獨佔訪問</value>
+  </data>
+  <data name="HidGuardianAccess" xml:space="preserve">
+    <value>HidGuardian 訪問</value>
+  </data>
+  <data name="HidHideAccess" xml:space="preserve">
+    <value>HidHide 訪問</value>
+  </data>
+  <data name="SharedAccess" xml:space="preserve">
+    <value>共享訪問</value>
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>重新命名</value>
+  </data>
+  <data name="DisableVirtualController" xml:space="preserve">
+    <value>停用虛擬控制器</value>
+  </data>
+  <data name="DisableVirtualControllerTip" xml:space="preserve">
+    <value>請勿使用此配置文件為連接控制器產生相關的虛擬控制器（適用於配置文件保存）</value>
+  </data>
+  <data name="EmulatedController" xml:space="preserve">
+    <value>模擬控制器</value>
+  </data>
+  <data name="OutContNotice" xml:space="preserve">
+    <value>選擇輸出虛擬控制器的類型（適用於配置文件保存）</value>
+  </data>
+  <data name="VirtualControllerSettings" xml:space="preserve">
+    <value>虛擬控制器設置</value>
+  </data>
+  <data name="ChangeOnNewDeviceConn" xml:space="preserve">
+    <value>更改在新的裝置連接時生效</value>
+  </data>
+  <data name="StickFuzzTooltip" xml:space="preserve">
+    <value>Fuzz（模糊）指定在映射器中將輸出註冊為更改的輸出之前，類比搖桿移動的最小單位數量。 此設置對於無法保持恆定位置的磨損的搖桿可能很有用。 該值以原始搖桿單位表示。</value>
+  </data>
+  <data name="StickMaxOutputForceTooltip" xml:space="preserve">
+    <value>始終強制執行最大輸出設置。 對於100％最大輸出和將值限制在圓形輸出值中有用</value>
+  </data>
+  <data name="StickMaxOutputTooltip" xml:space="preserve">
+    <value>在某些情況下，限制輸出類比搖桿輸出的最大值可能很有用。 最大輸出允許限制類比搖桿的最終輸出值。</value>
+  </data>
+  <data name="AntiDeadzoneTooltip" xml:space="preserve">
+    <value>反死區作為一個偏移量用於一個軸，表示一個軸離開其指定死區後產生的最小輸出值。這主要是為了幫助將一個軸對應到視訊遊戲中的軸的指定死區值。例如，視訊遊戲中XInput LS的典型指定死區是8000左右（25%）。在沒有指定反死區的情況下，一個軸將不得不隨著遊戲中指定的軸死區移動到DS4Windows中的指定死區。</value>
+  </data>
+  <data name="StickInputCurveTooltip" xml:space="preserve">
+    <value>舊的過時設置。 在應用任何死區信息之前，嘗試根據原始輸入坐標應用曲線。</value>
+  </data>
+  <data name="TouchpadMinThresholdTooltip" xml:space="preserve">
+    <value>滑鼠事件被傳送到系統之前的最小計算輸出行程</value>
+  </data>
+  <data name="TouchpadRotationTooltip" xml:space="preserve">
+    <value>通過給定的旋轉角度調整觸摸板滑動。 當正常的觸摸板滑動不是直線時很有用。 值允許範圍為-180到180。默認值為0。</value>
+  </data>
+  <data name="TouchpadSlideTooltip" xml:space="preserve">
+    <value>用於從事多點觸控的滑鼠滾輪滾動動作的靈敏度</value>
+  </data>
+  <data name="TouchpadTapTooltip" xml:space="preserve">
+    <value>用觸摸板點擊觸發滑鼠左鍵單擊。 最大時間間隔設置為（值 * 2）毫秒。</value>
+  </data>
+  <data name="TouchpadTrackballEnableTooltip" xml:space="preserve">
+    <value>一旦手指抬起，就為觸摸板上的滑動增加動力。增加滑鼠游標的移動，而不是在觸摸板上的有限空間裡。</value>
+  </data>
+  <data name="TouchpadTrackballFrictionTooltip" xml:space="preserve">
+    <value>給虛擬軌跡球增加摩擦力。減少摩擦力將增加滑鼠指針的最終移動時間。</value>
+  </data>
+  <data name="StickOuterBindDeadTooltip" xml:space="preserve">
+    <value>一個動作何時啟動的閾值</value>
+  </data>
+  <data name="StickOuterBindInvertTooltip" xml:space="preserve">
+    <value>在達到閾值之前，讓外部的束縛開火。一旦超過閾值，就釋放行動</value>
+  </data>
+  <data name="StickOuterBindTooltip" xml:space="preserve">
+    <value>當搖桿行程超過一個臨界點時執行的動作。對於對應行走或衝刺動作的按鍵很有用。顛倒的情況下，動作會一直持續到閾值。</value>
+  </data>
+  <data name="SASteeringWheelFuzzTooltip" xml:space="preserve">
+    <value>Fuzz（模糊）指定了裝置單位的最小數量，在活動區，在輸出被註冊為映射器中的變化之前，Accel必須被旋轉。該值以原始Accel單位表示。</value>
+  </data>
+  <data name="StickRotationTooltip" xml:space="preserve">
+    <value>旋轉設定是為了幫助糾正類比搖桿的方向，如果你的拇指在移動類比搖桿時略有偏移。例如，當類比搖桿完全向北移動時，你的拇指可能會從中心稍微偏移。由於我的手握住DS4的方式，當類比搖桿完全向北移動時，我的拇指會稍微向右移動。使用的數值表示用於調整最終軸輸出值的度數。允許的數值範圍是-180到180。預設值為0。</value>
+  </data>
+  <data name="TouchpadJitterCompTooltip" xml:space="preserve">
+    <value>節制觸控板的低端移動。當在觸摸板上保持一個基本固定的位置時，減少意外的滑鼠指針移動。</value>
+  </data>
+  <data name="DS4BTPollRate" xml:space="preserve">
+    <value>DS4 藍牙輪詢頻率</value>
+  </data>
+  <data name="DS4LightbarPassthruDisabled" xml:space="preserve">
+    <value>由於驅動問題，該功能目前在應用程式中停用。希望這些問題在未來的更新中得到解決。</value>
   </data>
 </root>

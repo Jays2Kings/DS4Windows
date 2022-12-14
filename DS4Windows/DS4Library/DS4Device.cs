@@ -379,17 +379,15 @@ namespace DS4Windows
             return featureSet;
         }
 
-        private const byte DEFAULT_BT_REPORT_TYPE = 0x15;
+        private const byte DEFAULT_BT_REPORT_TYPE = 0x11;
         private byte knownGoodBTOutputReportType = DEFAULT_BT_REPORT_TYPE;
+        private int btOutputPayloadLen = BT_OUTPUT_REPORT_LENGTH;
 
         //private const byte DEFAULT_OUTPUT_FEATURES = 0xF7;
         private const byte DEFAULT_OUTPUT_FEATURES = 0x07;
         //private const byte COPYCAT_OUTPUT_FEATURES = 0xF3;
         private const byte COPYCAT_OUTPUT_FEATURES = 0x03;
         private byte outputFeaturesByte = DEFAULT_OUTPUT_FEATURES;
-
-        protected bool useRumble = true;
-        public bool UseRumble { get => useRumble; set => useRumble = value; }
 
         public int Battery => battery;
         public delegate void BatteryUpdateHandler(object sender, EventArgs e);
@@ -673,12 +671,18 @@ namespace DS4Windows
                     // Default DS4 logic while writing data to gamepad
                     outputReport = new byte[BT_OUTPUT_REPORT_LENGTH];
                     outReportBuffer = new byte[BT_OUTPUT_REPORT_LENGTH];
+
+                    // Buffer len and output report payload len will differ
+                    btOutputPayloadLen = BT_OUTPUT_REPORT_0x11_LENGTH;
                 }
                 else
                 {
                     // Use the gamepad specific output buffer size (but minimum of 15 bytes to avoid out-of-index errors in this app)
                     outputReport = new byte[hDevice.Capabilities.OutputReportByteLength <= 15 ? 15 : hDevice.Capabilities.OutputReportByteLength];
                     outReportBuffer = new byte[hDevice.Capabilities.OutputReportByteLength <= 15 ? 15 : hDevice.Capabilities.OutputReportByteLength];
+
+                    // Use custom buffer len
+                    btOutputPayloadLen = outputReport.Length;
                 }
                 warnInterval = WARN_INTERVAL_BT;
                 synced = isValidSerial();
@@ -1481,7 +1485,7 @@ namespace DS4Windows
                 //outReportBuffer[0] = 0x15;
                 //outReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
                 outReportBuffer[1] = (byte)(0xC0 | btPollRate); // input report rate
-                outReportBuffer[2] = 0xA0;
+                //outReportBuffer[2] = 0xA0;
 
                 // Headphone volume L (0x10), Headphone volume R (0x20), Mic volume (0x40), Speaker volume (0x80)
                 // enable rumble (0x01), lightbar (0x02), flash (0x04). Default: 0x07
@@ -1559,9 +1563,8 @@ namespace DS4Windows
             }
 
             //bool output = outputPendCount > 0, change = force;
-            bool output = outputPendCount > 0, change = force;
-            //bool output = false, change = force;
-            bool haptime = output || standbySw.ElapsedMilliseconds >= 4000L;
+            bool change = force;
+            bool haptime = force || standbySw.ElapsedMilliseconds >= 4000L;
 
             PrepareOutputReportInner(ref change, ref haptime);
 
@@ -1574,19 +1577,11 @@ namespace DS4Windows
 
             if (synchronous)
             {
-                if (output || haptime)
+                if (haptime)
                 {
                     if (change)
                     {
-                        outputPendCount = OUTPUT_MIN_COUNT_BT;
                         standbySw.Reset();
-                    }
-                    else if (outputPendCount > 1)
-                        outputPendCount--;
-                    else if (outputPendCount == 1)
-                    {
-                        outputPendCount--;
-                        standbySw.Restart();
                     }
                     else
                         standbySw.Restart();
@@ -1599,7 +1594,8 @@ namespace DS4Windows
                         if ((this.featureSet & VidPidFeatureSet.OnlyOutputData0x05) == 0)
                         {
                             // Need to calculate and populate CRC-32 data so controller will accept the report
-                            int len = outputReport.Length;
+                            //int len = outputReport.Length;
+                            int len = btOutputPayloadLen;
                             uint calcCrc32 = ~Crc32Algorithm.Compute(outputBTCrc32Head);
                             calcCrc32 = ~Crc32Algorithm.CalculateBasicHash(ref calcCrc32, ref outputReport, 0, len - 4);
                             outputReport[len - 4] = (byte)calcCrc32;
@@ -1643,11 +1639,10 @@ namespace DS4Windows
                 //for (int i = 0, arlen = outputReport.Length; !change && i < arlen; i++)
                 //    change = outputReport[i] != outReportBuffer[i];
 
-                if (output || haptime)
+                if (haptime)
                 {
                     if (change)
                     {
-                        outputPendCount = OUTPUT_MIN_COUNT_BT;
                         standbySw.Reset();
                     }
 

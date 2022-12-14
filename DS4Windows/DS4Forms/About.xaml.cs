@@ -120,6 +120,11 @@ namespace DS4WinWPF.DS4Forms
         {
             Util.StartProcessHelper("https://buymeacoffee.com/ryochan7");
         }
+
+        private void PoastSocialBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessHelper("https://poa.st/@DS4Windows");
+        }
     }
 
     public class AboutImgPathLocations

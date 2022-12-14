@@ -190,32 +190,6 @@ namespace DS4Windows
             Pulse
         }
 
-        private bool enableRumble = true;
-        public bool EnableRumble
-        {
-            get => enableRumble;
-            set
-            {
-                if (enableRumble == value) return;
-                enableRumble = value;
-                EnableRumbleChanged?.Invoke(this, EventArgs.Empty);
-            }
-        }
-        public event EventHandler EnableRumbleChanged;
-
-        private DualSenseDevice.HapticIntensity hapticIntensity = DualSenseDevice.HapticIntensity.Medium;
-        public DualSenseDevice.HapticIntensity HapticIntensity
-        {
-            get => hapticIntensity;
-            set
-            {
-                if (hapticIntensity == value) return;
-                hapticIntensity = value;
-                HapticIntensityChanged?.Invoke(this, EventArgs.Empty);
-            }
-        }
-        public event EventHandler HapticIntensityChanged;
-
         private LEDBarMode ledMode = LEDBarMode.MultipleControllers;
         public LEDBarMode LedMode
         {

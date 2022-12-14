@@ -71,6 +71,9 @@ namespace DS4WinWPF
 
         public event EventHandler ThemeChanged;
 
+        private Dictionary<string, System.Reflection.Assembly> langAssemblies =
+            new Dictionary<string, System.Reflection.Assembly>();
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             runShutdown = true;
@@ -188,6 +191,12 @@ namespace DS4WinWPF
                 DS4Windows.Global.CreateStdActions();
             }
 
+            // Discover and load possible Lang assemblies
+            //PrepareLangAssemblies();
+            // Add hook to have .NET find the Lang assemblies. Loading will be performed
+            // during MainWindow.InitializeComponent
+            //AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+            // Have app use selected culture
             SetUICulture(DS4Windows.Global.UseLang);
             DS4Windows.AppThemeChoice themeChoice = DS4Windows.Global.UseCurrentTheme;
             if (themeChoice != DS4Windows.AppThemeChoice.Default)
@@ -199,6 +208,11 @@ namespace DS4WinWPF
             DS4Forms.MainWindow window = new DS4Forms.MainWindow(parser);
             MainWindow = window;
             window.Show();
+
+            // Remove hook for custom assembly loading. Needed or app performance drops
+            //AppDomain.CurrentDomain.AssemblyResolve -= CurrentDomain_AssemblyResolve;
+
+            // Set up hooks for IPC command calls
             HwndSource source = PresentationSource.FromVisual(window) as HwndSource;
             CreateIPCClassNameMMF(source.Handle);
 
@@ -219,6 +233,48 @@ namespace DS4WinWPF
 
             rootHub.LoadPermanentSlotsConfig();
             window.LateChecks(parser);
+        }
+
+        private void PrepareLangAssemblies()
+        {
+            List<string> lookupPaths = DS4Windows.Global.PROBING_PATH.Split(';')
+                .Select(path => Path.Combine(DS4Windows.Global.exedirpath, path))
+                .Where(path => path != DS4Windows.Global.exedirpath)
+                .ToList();
+            //lookupPaths.Insert(0, DS4Windows.Global.exedirpath);
+
+            List<string> langPackList = CultureInfo.GetCultures(CultureTypes.AllCultures)
+                .Where(c => IsLanguageAssemblyAvailable(lookupPaths, c))
+                .Select(c => LanguageAssemblyPath(lookupPaths, c))
+                .ToList();
+
+            foreach(string path in langPackList)
+            {
+                System.Reflection.Assembly tempAss = System.Reflection.Assembly.LoadFile(path);
+                langAssemblies.Add(tempAss.FullName, tempAss);
+            }
+        }
+
+        private bool IsLanguageAssemblyAvailable(List<string> lookupPaths, CultureInfo culture)
+        {
+            return lookupPaths.Select(path => Path.Combine(path, culture.Name,
+                DS4Windows.Global.LANGUAGE_ASSEMBLY_NAME))
+                .Where(path => File.Exists(path))
+                .Count() > 0;
+        }
+
+        private string LanguageAssemblyPath(List<string> lookupPaths, CultureInfo culture)
+        {
+            return lookupPaths.Select(path => Path.Combine(path, culture.Name,
+                DS4Windows.Global.LANGUAGE_ASSEMBLY_NAME))
+                .Where(path => File.Exists(path)).First();
+        }
+
+        private System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            System.Reflection.Assembly res;
+            langAssemblies.TryGetValue(args.Name, out res);
+            return res;
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

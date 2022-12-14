@@ -167,46 +167,12 @@ namespace DS4Windows
             //return meta;
         }
 
-        private object busThrLck = new object();
-        private bool busThrRunning = false;
-        private Queue<Action> busEvtQueue = new Queue<Action>();
-        private object busEvtQueueLock = new object();
         public ControlService(DS4WinWPF.ArgumentParser cmdParser)
         {
             this.cmdParser = cmdParser;
 
             Crc32Algorithm.InitializeTable(DS4Device.DefaultPolynomial);
             InitOutputKBMHandler();
-
-            // Cause thread affinity to not be tied to main GUI thread
-            tempBusThread = new Thread(() =>
-            {
-                //_udpServer = new UdpServer(GetPadDetailForIdx);
-                busThrRunning = true;
-
-                while (busThrRunning)
-                {
-                    lock (busEvtQueueLock)
-                    {
-                        Action tempAct = null;
-                        for (int actInd = 0, actLen = busEvtQueue.Count; actInd < actLen; actInd++)
-                        {
-                            tempAct = busEvtQueue.Dequeue();
-                            tempAct.Invoke();
-                        }
-                    }
-
-                    lock (busThrLck)
-                        Monitor.Wait(busThrLck);
-                }
-            });
-            tempBusThread.Priority = ThreadPriority.Normal;
-            tempBusThread.IsBackground = true;
-            tempBusThread.Start();
-            //while (_udpServer == null)
-            //{
-            //    Thread.SpinWait(500);
-            //}
 
             eventDispatchThread = new Thread(() =>
             {
@@ -275,6 +241,12 @@ namespace DS4Windows
             oscCallback = delegate (OscPacket packet)
             {
                 var messageReceived = (OscMessage)packet;
+
+                // If typecase fails, exit
+                if (messageReceived == null)
+                {
+                    return;
+                }
 
                 var command = messageReceived.Address.Split("/");
                 //AppLogger.LogToGui("I HEARD SOMETHING " + messageReceived.Address, false);
@@ -697,13 +669,10 @@ namespace DS4Windows
 
         private void TestQueueBus(Action temp)
         {
-            lock (busEvtQueueLock)
+            eventDispatcher.BeginInvoke(() =>
             {
-                busEvtQueue.Enqueue(temp);
-            }
-
-            lock (busThrLck)
-                Monitor.Pulse(busThrLck);
+                temp?.Invoke();
+            });
         }
 
         public void ChangeUDPStatus(bool state, bool openPort=true)
@@ -2056,6 +2025,28 @@ namespace DS4Windows
             device.RumbleAutostopTime = getRumbleAutostopTime(ind);
             device.setRumble(0, 0);
             device.LightBarColor = Global.getMainColor(ind);
+
+            // DualSense specific profile settings
+            if (device is InputDevices.DualSenseDevice dualsense)
+            {
+                switch (DualSenseRumbleEmulationMode[ind])
+                {
+                    case InputDevices.DualSenseDevice.RumbleEmulationMode.Disabled:
+                        dualsense.UseRumble = false;
+                        dualsense.UseAccurateRumble = false;
+                        break;
+                    case InputDevices.DualSenseDevice.RumbleEmulationMode.Legacy:
+                        dualsense.UseRumble = true;
+                        dualsense.UseAccurateRumble = false;
+                        break;
+                    case InputDevices.DualSenseDevice.RumbleEmulationMode.Accurate:
+                    default:
+                        dualsense.UseRumble = true;
+                        dualsense.UseAccurateRumble = true;
+                        break;
+                }
+                dualsense.HapticPowerLevel = DualSenseHapticPowerLevel[ind];
+            }
 
             if (!startUp)
             {

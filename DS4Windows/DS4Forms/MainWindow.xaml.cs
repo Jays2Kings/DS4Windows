@@ -130,11 +130,20 @@ namespace DS4WinWPF.DS4Forms
                 uacImg.Visibility = Visibility.Collapsed;
             }
 
-            this.Width = Global.FormWidth;
-            this.Height = Global.FormHeight;
+            // Check display width bounds on startup
+            this.Width = Global.FormWidth = (int)Math.Clamp(Global.FormWidth, 0, Global.fullDesktopBounds.Width);
+            this.Height = Global.FormHeight = (int)Math.Clamp(Global.FormHeight, 0, Global.fullDesktopBounds.Height);
+            // Keep possible example that does not rely on WpfScreenHelper
+            //this.Width = Math.Clamp(Global.FormWidth, 0, SystemParameters.VirtualScreenWidth);
+            //this.Height = Math.Clamp(Global.FormHeight, 0, SystemParameters.VirtualScreenHeight);
+
+            // Check if requested window location exists on startup
             WindowStartupLocation = WindowStartupLocation.Manual;
-            Left = Global.FormLocationX;
-            Top = Global.FormLocationY;
+            Left = Global.FormLocationX = (int)Math.Clamp(Global.FormLocationX, 0, Global.fullDesktopBounds.Right);
+            Top = Global.FormLocationY = (int)Math.Clamp(Global.FormLocationY, 0, Global.fullDesktopBounds.Bottom);
+            // Keep possible example that does not rely on WpfScreenHelper
+            //Left = Math.Clamp(Global.FormLocationX, 0, SystemParameters.VirtualScreenLeft);
+            //Top = Math.Clamp(Global.FormLocationY, 0, SystemParameters.VirtualScreenHeight);
             noContLb.Content = string.Format(Strings.NoControllersConnected,
                 ControlService.CURRENT_DS4_CONTROLLER_LIMIT);
 
@@ -1199,9 +1208,11 @@ Suspend support not enabled.", true);
             inHotPlug = true;
 
             bool loopHotplug = false;
+
             lock (hotplugCounterLock)
             {
                 loopHotplug = hotplugCounter > 0;
+                hotplugCounter = 0;
             }
 
             Program.rootHub.UpdateHidHiddenAttributes();
@@ -1209,10 +1220,11 @@ Suspend support not enabled.", true);
             {
                 Thread.Sleep(HOTPLUG_CHECK_DELAY);
                 Program.rootHub.HotPlug();
+
                 lock (hotplugCounterLock)
                 {
-                    hotplugCounter--;
                     loopHotplug = hotplugCounter > 0;
+                    hotplugCounter = 0;
                 }
             }
 

@@ -3070,11 +3070,18 @@ namespace DS4WinWPF.DS4Control.DTOXml
         }
 
         private bool _maxOutputEnabled;
-        [XmlElement("MaxOutputEnabled")]
+        [XmlIgnore]
         public bool MaxOutputEnabled
         {
             get => _maxOutputEnabled;
             set => _maxOutputEnabled = value;
+        }
+
+        [XmlElement("MaxOutputEnabled")]
+        public string MaxOutputEnabledString
+        {
+            get => _maxOutputEnabled.ToString();
+            set => _maxOutputEnabled = XmlDataUtilities.StrToBool(value);
         }
 
         private int _verticalScale = 100;

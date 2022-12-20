@@ -1,9 +1,29 @@
 {
-  "latest_version": "3.1.11",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 11},
-  "updated_at": "2022-11-27T05:34:04+0000",
+  "latest_version": "3.1.12",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 12},
+  "updated_at": "2022-12-20T17:21:17+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.1.12",
+      "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 12},
+      "base_header": "Version 3.1.12",
+      "release_date": "2022-12-20T17:21:17+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.1.12",
+          "log_text": ["* Updated NuGet packages. H.NotifyIcon.Wpf, MdXaml, NLog, System.Management",
+            "* Moved some DualSense rumble settings into Profiles. Contribution by **Kanuan**",
+            "* Ignore invalid OscPacket that might come through",
+            "* Changed counter use for Hotplug routine",
+            "* Removed old DS4 BT output counter workaround. Was only needed when using the Control endpoint",
+            "* Fixed RS outer binding",
+            "* Fixed bad copy pasta for SideR control value in special actions"],
+          "updated_at": "2022-12-20T17:21:17+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.1.11",
       "version_number_info": {"majorPart": 3, "minorPart": 1, "buildPart": 11},

@@ -3822,6 +3822,7 @@ namespace DS4Windows
             }
             catch (UnauthorizedAccessException)
             {
+                AppLogger.LogToGui("Unauthorized Access - Save failed to path: " + path, false);
                 saved = false;
             }
 
@@ -4722,8 +4723,16 @@ namespace DS4Windows
                     dto.DeviceIndex = device;
                     dto.MapTo(this);
                 }
-                catch (InvalidOperationException) { loaded = false; }
-                catch (XmlException) { loaded = false; }
+                catch (InvalidOperationException e)
+                {
+                    AppLogger.LogToGui($"Failed to load {profilepath}. {e.InnerException.Message}", false);
+                    loaded = false;
+                }
+                catch (XmlException e)
+                {
+                    AppLogger.LogToGui($"Failed to load {profilepath}. Invalid XML. {e.InnerException.Message}", false);
+                    loaded = false;
+                }
 
                 if (!loaded)
                 {
@@ -7261,6 +7270,7 @@ namespace DS4Windows
                 }
                 catch(InvalidOperationException e)
                 {
+                    AppLogger.LogToGui("Failed to load Profiles.xml.", false);
                     loaded = false;
                 }
             }
@@ -7647,6 +7657,7 @@ namespace DS4Windows
             }
             catch (UnauthorizedAccessException)
             {
+                AppLogger.LogToGui("Unauthorized Access - Save failed to path: " + m_Profile, false);
                 saved = false;
             }
 
@@ -8313,6 +8324,7 @@ namespace DS4Windows
             }
             catch (UnauthorizedAccessException)
             {
+                AppLogger.LogToGui("Unauthorized Access - Save failed to path: " + m_linkedProfiles, false);
                 saved = false;
             }
 
@@ -8352,8 +8364,14 @@ namespace DS4Windows
                     LinkedProfilesDTO dto = serializer.Deserialize(sr) as LinkedProfilesDTO;
                     dto.MapTo(this);
                 }
-                catch (InvalidOperationException) { }
-                catch (XmlException) { }
+                catch (InvalidOperationException e)
+                {
+                    AppLogger.LogToGui($"LinkedProfiles.xml contains invalid data. Could not be read. {e.InnerException.Message}", false);
+                }
+                catch (XmlException e)
+                {
+                    AppLogger.LogToGui($"LinkedProfiles.xml could not be read. Invalid XML syntax. {e.InnerException.Message}", false);
+                }
             }
             else
             {
@@ -8442,6 +8460,7 @@ namespace DS4Windows
                 }
                 catch (UnauthorizedAccessException)
                 {
+                    AppLogger.LogToGui("Unauthorized Access - Save failed to path: " + m_linkedProfiles, false);
                     saved = false;
                 }
             }

@@ -813,7 +813,7 @@ namespace DS4Windows.InputDevices
             //Thread.Sleep(1000);
             EnableFastPollRate();
             SetInitRumble();
-            Thread.Sleep(500);
+            //Thread.Sleep(500);
             CalibrationData();
 
             Console.WriteLine("FINISHED");

@@ -743,10 +743,10 @@ namespace DS4Windows.InputDevices
             EnableFastPollRate();
 
             // USB Connections seem to need a delay after switching input modes
-            if (conType == ConnectionType.USB)
-            {
-                Thread.Sleep(1000);
-            }
+            //if (conType == ConnectionType.USB)
+            //{
+            //    Thread.Sleep(1000);
+            //}
 
             SetInitRumble();
             //Thread.Sleep(1000);

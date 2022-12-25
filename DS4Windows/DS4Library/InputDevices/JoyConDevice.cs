@@ -385,7 +385,7 @@ namespace DS4Windows.InputDevices
 
             byte[] cmdBuffer = new byte[64];
             HidDevice.ReadStatus res = hDevice.ReadWithFileStream(cmdBuffer, 100);
-            while (!(cmdBuffer[0] == 0x81))
+            while (!(cmdBuffer[0] == 0x81 && cmdBuffer[1] == 0x01))
             {
                 if (cmdBuffer[0] != 0x81)
                 {
@@ -439,7 +439,7 @@ namespace DS4Windows.InputDevices
 
             byte[] cmdBuffer = new byte[64];
             HidDevice.ReadStatus res = hDevice.ReadWithFileStream(cmdBuffer, 100);
-            while (!(cmdBuffer[0] == 0x81 && cmdBuffer[3] != 0x00))
+            while (!(cmdBuffer[0] == 0x81 && cmdBuffer[1] == 0x01 && cmdBuffer[3] != 0x00))
             {
                 if (cmdBuffer[0] != 0x81)
                 {
@@ -685,16 +685,34 @@ namespace DS4Windows.InputDevices
                             //Console.WriteLine("Got unexpected input report id 0x{0:X2}. Try again",
                             //    inputReportBuffer[0]);
 
-                            readWaitEv.Reset();
-                            inputReportErrorCount++;
-                            if (inputReportErrorCount > 10)
+                            if (conType == ConnectionType.BT)
                             {
-                                exitInputThread = true;
-                                isDisconnecting = true;
-                                Removal?.Invoke(this, EventArgs.Empty);
-                            }
+                                readWaitEv.Reset();
+                                inputReportErrorCount++;
+                                if (inputReportErrorCount > 10)
+                                {
+                                    exitInputThread = true;
+                                    isDisconnecting = true;
+                                    Removal?.Invoke(this, EventArgs.Empty);
+                                }
 
-                            continue;
+                                continue;
+                            }
+                            else if (conType == ConnectionType.USB)
+                            {
+                                if (inputReportBuffer[0] == 0x81 &&
+                                    inputReportBuffer[1] == 0x01 &&
+                                    inputReportBuffer[2] == 0x03)
+                                {
+                                    // 0x03 in byte 2 seems to be a Disconnect status
+                                    readWaitEv.Reset();
+                                    exitInputThread = true;
+                                    isDisconnecting = true;
+                                    Removal?.Invoke(this, EventArgs.Empty);
+                                }
+
+                                continue;
+                            }
                         }
                     }
                     else

@@ -860,7 +860,10 @@ namespace DS4Windows
                     exitInputThread = true;
                     //ds4Input.Interrupt();
                     if (!abortInputThread)
+                    {
+                        hDevice.CancelIO();
                         ds4Input.Join();
+                    }
                 }
                 catch (Exception e)
                 {

@@ -395,10 +395,10 @@ namespace DS4Windows.InputDevices
 
                 Array.Clear(cmdBuffer);
                 res = hDevice.ReadWithFileStream(cmdBuffer, 100);
-                Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[3]}");
+                //Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[3]}");
             }
 
-            Trace.WriteLine($"OUT {cmdBuffer[0]} | {cmdBuffer[3]}");
+            //Trace.WriteLine($"OUT {cmdBuffer[0]} | {cmdBuffer[3]}");
             if (cmdBuffer[3] == 0x01)
             {
                 serial = $"{cmdBuffer[9]:X2}:{cmdBuffer[8]:X2}:{cmdBuffer[7]:X2}:{cmdBuffer[6]:X2}:{cmdBuffer[5]:X2}:{cmdBuffer[4]:X2}";
@@ -449,10 +449,10 @@ namespace DS4Windows.InputDevices
 
                 Array.Clear(cmdBuffer);
                 res = hDevice.ReadWithFileStream(cmdBuffer, 100);
-                Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[3]}");
+                //Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[3]}");
             }
 
-            Trace.WriteLine($"OUT {cmdBuffer[0]} | {cmdBuffer[3]}");
+            //Trace.WriteLine($"OUT {cmdBuffer[0]} | {cmdBuffer[3]}");
             if (cmdBuffer[3] == 0x01)
             {
                 sideType = JoyConSide.Left;
@@ -543,10 +543,10 @@ namespace DS4Windows.InputDevices
 
                 Array.Clear(cmdBuffer);
                 res = hDevice.ReadWithFileStream(cmdBuffer, 100);
-                Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[1]}");
+                //Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[1]}");
             }
 
-            Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[1]}");
+            //Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[1]}");
         }
 
         private void WaitForReportResponse(byte reportId, byte command, byte[] commandBuf, bool repeatPacket = true)
@@ -563,10 +563,10 @@ namespace DS4Windows.InputDevices
 
                 Array.Clear(cmdBuffer);
                 res = hDevice.ReadWithFileStream(cmdBuffer, 100);
-                Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[1]}");
+                //Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[1]}");
             }
 
-            Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[1]}");
+            //Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[1]}");
         }
 
         public static ConnectionType DetermineConnectionType(HidDevice hDevice)
@@ -1066,7 +1066,7 @@ namespace DS4Windows.InputDevices
 
             //Thread.Sleep(400);
 
-            Trace.WriteLine($"{sideType}");
+            //Trace.WriteLine($"{sideType}");
             if (sideType == JoyConSide.Right && enableHomeLED)
             {
                 // Turn on Home light (Solid)

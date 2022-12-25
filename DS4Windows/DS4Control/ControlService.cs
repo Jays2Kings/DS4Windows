@@ -1489,8 +1489,14 @@ namespace DS4Windows
                                     tempPrimaryJoyDev.JointState = currentJoyDev.JointState;
 
                                     InputDevices.JoyConDevice parentJoy = tempPrimaryJoyDev;
-                                    tempPrimaryJoyDev.Removal += (sender, args) => { currentJoyDev.JointDevice = null; };
-                                    currentJoyDev.Removal += (sender, args) => { parentJoy.JointDevice = null; };
+                                    tempPrimaryJoyDev.Removal += (sender, args) =>
+                                    {
+                                        currentJoyDev.JointDevice = null;
+                                    };
+                                    currentJoyDev.Removal += (sender, args) =>
+                                    {
+                                        parentJoy.JointDevice = null;
+                                    };
 
                                     tempPrimaryJoyDev = null;
                                 }
@@ -1814,8 +1820,14 @@ namespace DS4Windows
                                         tempSecondaryJoyDev.JointState = currentJoyDev.JointState;
 
                                         InputDevices.JoyConDevice secondaryJoy = tempSecondaryJoyDev;
-                                        secondaryJoy.Removal += (sender, args) => { currentJoyDev.JointDevice = null; };
-                                        currentJoyDev.Removal += (sender, args) => { secondaryJoy.JointDevice = null; };
+                                        secondaryJoy.Removal += (sender, args) =>
+                                        {
+                                            currentJoyDev.JointDevice = null;
+                                        };
+                                        currentJoyDev.Removal += (sender, args) =>
+                                        {
+                                            secondaryJoy.JointDevice = null;
+                                        };
 
                                         tempSecondaryJoyDev = null;
                                         tempPrimaryJoyDev = null;
@@ -1830,8 +1842,14 @@ namespace DS4Windows
                                         tempPrimaryJoyDev.JointState = currentJoyDev.JointState;
 
                                         InputDevices.JoyConDevice parentJoy = tempPrimaryJoyDev;
-                                        tempPrimaryJoyDev.Removal += (sender, args) => { currentJoyDev.JointDevice = null; };
-                                        currentJoyDev.Removal += (sender, args) => { parentJoy.JointDevice = null; };
+                                        tempPrimaryJoyDev.Removal += (sender, args) =>
+                                        {
+                                            currentJoyDev.JointDevice = null;
+                                        };
+                                        currentJoyDev.Removal += (sender, args) =>
+                                        {
+                                            parentJoy.JointDevice = null;
+                                        };
 
                                         tempPrimaryJoyDev = null;
                                     }

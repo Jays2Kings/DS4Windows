@@ -279,6 +279,8 @@ namespace DS4Windows.InputDevices
         private void JoyConDevice_Removal(object sender, EventArgs e)
         {
             connectionOpened = false;
+            DS4State tempState = getCurrentStateRef();
+            new DS4State().CopyTo(tempState);
         }
 
         private JoyConSide DetermineBTSideType()

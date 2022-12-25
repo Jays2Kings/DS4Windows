@@ -4809,6 +4809,11 @@ namespace DS4Windows
                 }
 
                 {
+                    bool tempToggle = gyroMouseToggle[device];
+                    SetGyroMouseToggle(device, tempToggle, control);
+                }
+
+                {
                     bool tempToggle = gyroMouseStickToggle[device];
                     SetGyroMouseStickToggle(device, tempToggle, control);
                 }

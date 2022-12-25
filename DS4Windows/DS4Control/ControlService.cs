@@ -472,6 +472,7 @@ namespace DS4Windows
                     break;
                 case InputDevices.InputDeviceType.JoyConL:
                 case InputDevices.InputDeviceType.JoyConR:
+                case InputDevices.InputDeviceType.JoyConGrip:
                     result = deviceOptions.JoyConDeviceOpts.Enabled;
                     break;
                 default:

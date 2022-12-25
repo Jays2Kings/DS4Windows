@@ -620,7 +620,6 @@ namespace DS4Windows
             displayName = disName;
             this.featureSet = featureSet;
 
-            conType = HidConnectionType(hDevice);
             exclusiveStatus = ExclusiveStatus.Shared;
             if (hidDevice.IsExclusive)
             {
@@ -630,7 +629,6 @@ namespace DS4Windows
             if (this.FeatureSet != VidPidFeatureSet.DefaultDS4)
                 AppLogger.LogToGui($"The gamepad {displayName} ({conType}) uses custom feature set ({this.FeatureSet.ToString("F")})", false);
 
-            Mac = hDevice.ReadSerial(SerialReportID);
             runCalib = (this.featureSet & VidPidFeatureSet.NoGyroCalib) == 0;
 
             touchpad = new DS4Touchpad();
@@ -639,6 +637,9 @@ namespace DS4Windows
 
         public virtual void PostInit()
         {
+            conType = HidConnectionType(hDevice);
+            Mac = hDevice.ReadSerial(SerialReportID);
+
             //HidDevice hidDevice = hDevice;
             deviceType = InputDevices.InputDeviceType.DS4;
             gyroMouseSensSettings = new GyroMouseSens();

@@ -183,9 +183,13 @@ namespace DS4Windows.InputDevices
         public double currentLeftAmpRatio;
         public double currentRightAmpRatio;
 
-        public const int INPUT_REPORT_LEN = 362;
-        public const int OUTPUT_REPORT_LEN = 49;
-        public const int RUMBLE_REPORT_LEN = 64;
+        public const int INPUT_REPORT_LEN_BT = 362;
+        public const int OUTPUT_REPORT_LEN_BT = 49;
+        public const int RUMBLE_REPORT_LEN_BT = 49;
+
+        public const int INPUT_REPORT_LEN_USB = 64;
+        public const int OUTPUT_REPORT_LEN_USB = 64;
+        public const int RUMBLE_REPORT_LEN_USB = 64;
 
         // Converts raw gyro input value to dps. Equal to (4588/65535)
         private const float GYRO_IN_DEG_SEC_FACTOR = 0.070f;
@@ -194,10 +198,13 @@ namespace DS4Windows.InputDevices
         private byte[] inputReportBuffer;
         private byte[] outputReportBuffer;
         private byte[] rumbleReportBuffer;
+        private int inputReportLen;
+        private int outputReportLen;
+        private int rumbleReportLen;
 
-        public int InputReportLen { get => INPUT_REPORT_LEN; }
-        public int OutputReportLen { get => OUTPUT_REPORT_LEN; }
-        public int RumbleReportLen { get => RUMBLE_REPORT_LEN; }
+        public int InputReportLen { get => inputReportLen; }
+        public int OutputReportLen { get => outputReportLen; }
+        public int RumbleReportLen { get => rumbleReportLen; }
 
         private ushort[] leftStickCalib = new ushort[6];
         private ushort leftStickOffsetX = 0;
@@ -274,7 +281,7 @@ namespace DS4Windows.InputDevices
             connectionOpened = false;
         }
 
-        private JoyConSide DetermineSideType()
+        private JoyConSide DetermineBTSideType()
         {
             JoyConSide result = JoyConSide.None;
             int productId = hDevice.Attributes.ProductId;
@@ -292,36 +299,284 @@ namespace DS4Windows.InputDevices
 
         public override void PostInit()
         {
-            sideType = DetermineSideType();
-            if (sideType == JoyConSide.Left)
-            {
-                deviceType = InputDeviceType.JoyConL;
-            }
-            else if (sideType == JoyConSide.Right)
-            {
-                deviceType = InputDeviceType.JoyConR;
-            }
+            //sideType = DetermineSideType();
+            //if (sideType == JoyConSide.Left)
+            //{
+            //    deviceType = InputDeviceType.JoyConL;
+            //}
+            //else if (sideType == JoyConSide.Right)
+            //{
+            //    deviceType = InputDeviceType.JoyConR;
+            //}
 
-            conType = ConnectionType.BT;
+            conType = DetermineConnectionType(hDevice);
             warnInterval = WARN_INTERVAL_BT;
 
             gyroMouseSensSettings = new GyroMouseSens();
             optionsStore = nativeOptionsStore = new JoyConControllerOptions(deviceType);
             SetupOptionsEvents();
 
-            inputReportBuffer = new byte[INPUT_REPORT_LEN];
-            outputReportBuffer = new byte[OUTPUT_REPORT_LEN];
-            rumbleReportBuffer = new byte[RUMBLE_REPORT_LEN];
+            if (conType == ConnectionType.BT)
+            {
+                inputReportBuffer = new byte[INPUT_REPORT_LEN_BT];
+                outputReportBuffer = new byte[OUTPUT_REPORT_LEN_BT];
+                rumbleReportBuffer = new byte[RUMBLE_REPORT_LEN_BT];
+
+                inputReportLen = INPUT_REPORT_LEN_BT;
+                outputReportLen = OUTPUT_REPORT_LEN_BT;
+                rumbleReportLen = RUMBLE_REPORT_LEN_BT;
+            }
+            else if (conType == ConnectionType.USB)
+            {
+                inputReportBuffer = new byte[INPUT_REPORT_LEN_USB];
+                outputReportBuffer = new byte[OUTPUT_REPORT_LEN_USB];
+                rumbleReportBuffer = new byte[RUMBLE_REPORT_LEN_USB];
+
+                inputReportLen = INPUT_REPORT_LEN_USB;
+                outputReportLen = OUTPUT_REPORT_LEN_USB;
+                rumbleReportLen = RUMBLE_REPORT_LEN_USB;
+            }
 
             if (!hDevice.IsFileStreamOpen())
             {
                 hDevice.OpenFileStream(inputReportBuffer.Length);
             }
+
+            //NativeMethods.HidD_SetNumInputBuffers(hDevice.safeReadHandle.DangerousGetHandle(), 20);
+
+            //Thread.Sleep(500);
+
+            if (conType == ConnectionType.BT)
+            {
+                Mac = hDevice.ReadSerial(SERIAL_FEATURE_ID);
+
+                sideType = DetermineBTSideType();
+                if (sideType == JoyConSide.Left)
+                {
+                    deviceType = InputDeviceType.JoyConL;
+                }
+                else if (sideType == JoyConSide.Right)
+                {
+                    deviceType = InputDeviceType.JoyConR;
+                }
+            }
+            else if (conType == ConnectionType.USB)
+            {
+                // Run handshake sequence for JoyCon docked to Charging Grip.
+                // Routine will retrieve and set the Mac serial during the sequence
+                RunUSBSetup();
+            }
+        }
+
+        public static string ReadUSBSerial(HidDevice hDevice)
+        {
+            if (!hDevice.IsFileStreamOpen())
+            {
+                hDevice.OpenFileStream(INPUT_REPORT_LEN_USB);
+            }
+
+            string serial = DS4Device.BLANK_SERIAL;
+            byte[] data = new byte[64];
+            data[0] = 0x80; data[1] = 0x01;
+            //result = hidDevice.WriteAsyncOutputReportViaInterrupt(data);
+            bool result = hDevice.WriteOutputReportViaInterrupt(data, 0);
+            hDevice.fileStream.Flush();
+            //Thread.Sleep(1000);
+
+            byte[] cmdBuffer = new byte[64];
+            HidDevice.ReadStatus res = hDevice.ReadWithFileStream(cmdBuffer, 100);
+            while (!(cmdBuffer[0] == 0x81))
+            {
+                if (cmdBuffer[0] != 0x81)
+                {
+                    result = hDevice.WriteOutputReportViaInterrupt(data, 0);
+                    hDevice.fileStream.Flush();
+                }
+
+                Array.Clear(cmdBuffer);
+                res = hDevice.ReadWithFileStream(cmdBuffer, 100);
+                Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[3]}");
+            }
+
+            Trace.WriteLine($"OUT {cmdBuffer[0]} | {cmdBuffer[3]}");
+            if (cmdBuffer[3] == 0x01)
+            {
+                serial = $"{cmdBuffer[9]:X2}:{cmdBuffer[8]:X2}:{cmdBuffer[7]:X2}:{cmdBuffer[6]:X2}:{cmdBuffer[5]:X2}:{cmdBuffer[4]:X2}";
+            }
+            else if (cmdBuffer[3] == 0x02)
+            {
+                serial = $"{cmdBuffer[9]:X2}:{cmdBuffer[8]:X2}:{cmdBuffer[7]:X2}:{cmdBuffer[6]:X2}:{cmdBuffer[5]:X2}:{cmdBuffer[4]:X2}";
+            }
+
+            return serial;
+        }
+
+        private void RunUSBSetup()
+        {
+            bool result;
+
+            // Set device to normal power state
+            //byte[] powerChoiceArray2 = new byte[] { 0x00 };
+            //Subcommand(SwitchProSubCmd.SET_LOW_POWER_STATE, powerChoiceArray2, 1, checkResponse: true);
+
+            //byte[] tmpReport = new byte[INPUT_REPORT_LEN];
+
+            //byte[] modeSwitchCommand = new byte[] { 0x3F };
+            //Subcommand(0x03, modeSwitchCommand, 1, checkResponse: true);
+            //Thread.Sleep(1000);
+
+            //{
+            //    byte[] ackCommand1 = new byte[1] { 0x00 };
+            //    Subcommand(0x33, ackCommand1, 1, true);
+            //}
+
+            byte[] data = new byte[64];
+            data[0] = 0x80; data[1] = 0x01;
+            //result = hidDevice.WriteAsyncOutputReportViaInterrupt(data);
+            result = hDevice.WriteOutputReportViaInterrupt(data, 0);
+            hDevice.fileStream.Flush();
+            //Thread.Sleep(1000);
+
+            byte[] cmdBuffer = new byte[64];
+            HidDevice.ReadStatus res = hDevice.ReadWithFileStream(cmdBuffer, 100);
+            while (!(cmdBuffer[0] == 0x81 && cmdBuffer[3] != 0x00))
+            {
+                if (cmdBuffer[0] != 0x81)
+                {
+                    result = hDevice.WriteOutputReportViaInterrupt(data, 0);
+                    hDevice.fileStream.Flush();
+                }
+
+                Array.Clear(cmdBuffer);
+                res = hDevice.ReadWithFileStream(cmdBuffer, 100);
+                Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[3]}");
+            }
+
+            Trace.WriteLine($"OUT {cmdBuffer[0]} | {cmdBuffer[3]}");
+            if (cmdBuffer[3] == 0x01)
+            {
+                sideType = JoyConSide.Left;
+                deviceType = InputDeviceType.JoyConL;
+                displayName = "JoyCon (L)";
+                Mac = $"{cmdBuffer[9]:X2}:{cmdBuffer[8]:X2}:{cmdBuffer[7]:X2}:{cmdBuffer[6]:X2}:{cmdBuffer[5]:X2}:{cmdBuffer[4]:X2}";
+            }
+            else if (cmdBuffer[3] == 0x02)
+            {
+                sideType = JoyConSide.Right;
+                deviceType = InputDeviceType.JoyConR;
+                displayName = "JoyCon (R)";
+                Mac = $"{cmdBuffer[9]:X2}:{cmdBuffer[8]:X2}:{cmdBuffer[7]:X2}:{cmdBuffer[6]:X2}:{cmdBuffer[5]:X2}:{cmdBuffer[4]:X2}";
+            }
+
+            //{
+            //    byte[] ackCommand1 = new byte[1] { 0x00 };
+            //    Subcommand(0x33, ackCommand1, 1, true);
+            //}
+
+            //hDevice.fileStream.Flush();
+            //Thread.Sleep(1000);
+
+            //Array.Clear(tmpReport, 0 , 64);
+            //res = hidDevice.ReadWithFileStream(tmpReport);
+            //Console.WriteLine("TEST BYTE: {0}", tmpReport[2]);
+
+            data[0] = 0x80; data[1] = 0x02; // USB Pairing
+            //result = hidDevice.WriteOutputReportViaControl(data);
+            //Thread.Sleep(2000);
+            //Thread.Sleep(1000);
+            result = hDevice.WriteOutputReportViaInterrupt(data, 0);
+            hDevice.fileStream.Flush();
+            //Thread.Sleep(1000);
+            WaitForReportResponse(0x81, 0x02, data, true);
+
+            /*data[0] = 0x80; data[1] = 0x03; // 3Mbit baud rate
+            //result = hidDevice.WriteAsyncOutputReportViaInterrupt(data);
+            result = hDevice.WriteOutputReportViaInterrupt(data, 0);
+            //Thread.Sleep(1000);
+            hDevice.fileStream.Flush();
+            WaitForReportResponse(0x81, 0x03);
+            */
+
+            //Thread.Sleep(1000);
+            TestBaudChangeResponse();
+
+            data[0] = 0x80; data[1] = 0x02; // Handshake at new baud rate
+            result = hDevice.WriteOutputReportViaInterrupt(data, 0);
+            //Thread.Sleep(1000);
+            //result = hidDevice.WriteOutputReportViaInterrupt(command, 500);
+            //Thread.Sleep(2000);
+            hDevice.fileStream.Flush();
+            //Thread.Sleep(1000);
+            WaitForReportResponse(0x81, 0x02, data, true);
+
+            data[0] = 0x80; data[1] = 0x4; // Prevent HID timeout
+            result = hDevice.WriteOutputReportViaInterrupt(data, 0);
+            hDevice.fileStream.Flush();
+            //result = hidDevice.WriteOutputReportViaInterrupt(command, 500);
+            //WaitForReportResponse(0x81, 0x04, data);
+
+            //Thread.Sleep(1000);
+
+            //byte[] ackCommand = new byte[1] { 0x00 };
+            //Subcommand(0x33, ackCommand, 1, true);
+
+            EnableFastPollRate();
+            //EnableFastPollRate();
+        }
+
+        private void TestBaudChangeResponse()
+        {
+            byte[] data = new byte[64];
+            data[0] = 0x80; data[1] = 0x03; // 3Mbit baud rate
+            bool result = hDevice.WriteOutputReportViaInterrupt(data, 100);
+            hDevice.fileStream.Flush();
+
+            //return;
+
+            byte[] cmdBuffer = new byte[64];
+            HidDevice.ReadStatus res = hDevice.ReadWithFileStream(cmdBuffer, 100);
+            while (!(cmdBuffer[0] == 0x81 && cmdBuffer[1] == 0x03))
+            {
+                result = hDevice.WriteOutputReportViaInterrupt(data, 0);
+                hDevice.fileStream.Flush();
+                //Thread.Sleep(20);
+
+                Array.Clear(cmdBuffer);
+                res = hDevice.ReadWithFileStream(cmdBuffer, 100);
+                Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[1]}");
+            }
+
+            Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[1]}");
+        }
+
+        private void WaitForReportResponse(byte reportId, byte command, byte[] commandBuf, bool repeatPacket = true)
+        {
+            byte[] cmdBuffer = new byte[64];
+            HidDevice.ReadStatus res = hDevice.ReadWithFileStream(cmdBuffer, 100);
+            while (!(cmdBuffer[0] == reportId && cmdBuffer[1] == command))
+            {
+                if (repeatPacket)
+                {
+                    bool result = hDevice.WriteOutputReportViaInterrupt(commandBuf, 100);
+                    hDevice.fileStream.Flush();
+                }
+
+                Array.Clear(cmdBuffer);
+                res = hDevice.ReadWithFileStream(cmdBuffer, 100);
+                Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[1]}");
+            }
+
+            Trace.WriteLine($"{cmdBuffer[0]} | {cmdBuffer[1]}");
         }
 
         public static ConnectionType DetermineConnectionType(HidDevice hDevice)
         {
             ConnectionType result = ConnectionType.BT;
+            if (hDevice.Capabilities.InputReportByteLength == 64)
+            {
+                result = ConnectionType.USB;
+            }
+
             return result;
         }
 
@@ -766,10 +1021,52 @@ namespace DS4Windows.InputDevices
 
         private void SetOperational()
         {
-            // Set device to normal power state
+            //RunUSBSetup();
+
+            byte[] data = new byte[64];
+            //data[0] = 0x80; data[1] = 0x01;
+            ////result = hidDevice.WriteAsyncOutputReportViaInterrupt(data);
+            //bool result = hDevice.WriteOutputReportViaInterrupt(data, 0);
+            //hDevice.fileStream.Flush();
+
+            //byte[] cmdBuffer = new byte[64];
+            //HidDevice.ReadStatus res = hDevice.ReadWithFileStream(cmdBuffer, 0);
+            //while (cmdBuffer[0] != 0x81)
+            //{
+            //    res = hDevice.ReadWithFileStream(cmdBuffer, 0);
+            //}
+
+            //if (cmdBuffer[3] == 0x01)
+            //{
+            //    sideType = JoyConSide.Left;
+            //    deviceType = InputDeviceType.JoyConL;
+            //}
+            //else if (cmdBuffer[3] == 0x02)
+            //{
+            //    sideType = JoyConSide.Right;
+            //    deviceType = InputDeviceType.JoyConR;
+            //}
+
+            //byte[] data = new byte[64];
+            //data[0] = 0x80; data[1] = 0x01;
+            //result = hidDevice.WriteAsyncOutputReportViaInterrupt(data);
+            //bool result = hDevice.WriteOutputReportViaInterrupt(data, 0);
+            //hDevice.fileStream.Flush();
+
+            //byte[] tmpBuffer = new byte[64];
+            //HidDevice.ReadStatus res = hDevice.ReadWithFileStream(tmpBuffer);
+            //while (tmpBuffer[0] != 0x81)
+            //{
+            //    res = hDevice.ReadWithFileStream(tmpBuffer);
+            //}
+
+            // Revert back to low power state
             byte[] powerChoiceArray = new byte[] { 0x00 };
             Subcommand(SwitchProSubCmd.SET_LOW_POWER_STATE, powerChoiceArray, 1, checkResponse: true);
 
+            //Thread.Sleep(400);
+
+            Trace.WriteLine($"{sideType}");
             if (sideType == JoyConSide.Right && enableHomeLED)
             {
                 // Turn on Home light (Solid)
@@ -811,7 +1108,13 @@ namespace DS4Windows.InputDevices
             }
 
             //Thread.Sleep(1000);
-            EnableFastPollRate();
+
+            if (conType == ConnectionType.BT)
+            {
+                // Routine runs earlier for a JoyCon docked to the Charging Grip
+                EnableFastPollRate();
+            }
+
             SetInitRumble();
             //Thread.Sleep(500);
             CalibrationData();
@@ -851,7 +1154,7 @@ namespace DS4Windows.InputDevices
                 rumble_data[4 + i] = rumble_data[i];
             }
 
-            byte[] tmpRumble = new byte[RUMBLE_REPORT_LEN];
+            byte[] tmpRumble = new byte[rumbleReportLen];
             Array.Copy(rumble_data, 0, tmpRumble, 2, rumble_data.Length);
             tmpRumble[0] = 0x10;
             tmpRumble[1] = frameCount;
@@ -882,7 +1185,7 @@ namespace DS4Windows.InputDevices
             byte[] tmpReport = null;
             if (result && checkResponse)
             {
-                tmpReport = new byte[INPUT_REPORT_LEN];
+                tmpReport = new byte[inputReportLen];
                 HidDevice.ReadStatus res;
                 res = hDevice.ReadWithFileStream(tmpReport, SUBCOMMAND_RESPONSE_TIMEOUT);
                 int tries = 1;

@@ -248,6 +248,7 @@ namespace DS4Windows.InputDevices
             conType = DetermineConnectionType(hDevice);
             optionsStore = nativeOptionsStore = new SwitchProControllerOptions(deviceType);
             SetupOptionsEvents();
+            Mac = hDevice.ReadSerial(SerialReportID);
 
             if (conType == ConnectionType.BT)
             {

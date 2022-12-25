@@ -206,6 +206,7 @@ namespace DS4Windows.InputDevices
             SetupOptionsEvents();
 
             conType = DetermineConnectionType(hDevice);
+            Mac = hDevice.ReadSerial(SerialReportID);
 
             if (conType == ConnectionType.USB)
             {

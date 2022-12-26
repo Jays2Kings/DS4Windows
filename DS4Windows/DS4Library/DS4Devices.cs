@@ -119,6 +119,7 @@ namespace DS4Windows
         internal const int SWITCH_PRO_PRODUCT_ID = 0x2009;
         internal const int JOYCON_L_PRODUCT_ID = 0x2006;
         internal const int JOYCON_R_PRODUCT_ID = 0x2007;
+        internal const int JOYCON_CHARGING_GRIP_PRODUCT_ID = 0x200E;
 
         // https://support.steampowered.com/kb_article.php?ref=5199-TOKV-4426&l=english web site has a list of other PS4 compatible device VID/PID values and brand names. 
         // However, not all those are guaranteed to work with DS4Windows app so support is added case by case when users of DS4Windows app tests non-official DS4 gamepads.
@@ -158,7 +159,7 @@ namespace DS4Windows
             new VidPidInfo(NINTENDO_VENDOR_ID, SWITCH_PRO_PRODUCT_ID, "Switch Pro", InputDeviceType.SwitchPro, VidPidFeatureSet.DefaultDS4, checkConnection: SwitchProDevice.DetermineConnectionType),
             new VidPidInfo(NINTENDO_VENDOR_ID, JOYCON_L_PRODUCT_ID, "JoyCon (L)", InputDeviceType.JoyConL, VidPidFeatureSet.DefaultDS4, checkConnection: JoyConDevice.DetermineConnectionType),
             new VidPidInfo(NINTENDO_VENDOR_ID, JOYCON_R_PRODUCT_ID, "JoyCon (R)", InputDeviceType.JoyConR, VidPidFeatureSet.DefaultDS4, checkConnection: JoyConDevice.DetermineConnectionType),
-            new VidPidInfo(NINTENDO_VENDOR_ID, 0x200E, "JoyCon (Grip)", InputDeviceType.JoyConGrip, VidPidFeatureSet.DefaultDS4, checkConnection: JoyConDevice.DetermineConnectionType),
+            new VidPidInfo(NINTENDO_VENDOR_ID, JOYCON_CHARGING_GRIP_PRODUCT_ID, "JoyCon (Grip)", InputDeviceType.JoyConGrip, VidPidFeatureSet.DefaultDS4, checkConnection: JoyConDevice.DetermineConnectionType),
             new VidPidInfo(0x7545, 0x1122, "Gioteck VX4", InputDeviceType.DS4), // Gioteck VX4 (no real lightbar, only some RGB leds)
             new VidPidInfo(0x7331, 0x0001, "DualShock 3 (DS4 Emulation)", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib | VidPidFeatureSet.VendorDefinedDevice), // Sony DualShock 3 using DsHidMini driver. DsHidMini uses vendor-defined HID device type when it's emulating DS3 using DS4 button layout
             new VidPidInfo(0x20D6, 0x792A, "PowerA FUSION Wired Fightpad for PS4", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib), // No lightbar, gyro, or sticks

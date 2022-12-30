@@ -75,11 +75,14 @@ namespace DS4Windows
                         DateTime now = DateTime.UtcNow;
                         if (now >= oldnow[deviceNum] + TimeSpan.FromMilliseconds(10)) //update by the millisecond that way it's a smooth transtion
                         {
+                            int diffMs = now.Subtract(oldnow[deviceNum]).Milliseconds;
                             oldnow[deviceNum] = now;
                             if (device.isCharging())
-                                counters[deviceNum] -= 1.5 * 3 / rainbow;
+                                //counters[deviceNum] -= 1.5 * 3 / rainbow;
+                                counters[deviceNum] -= 360.0 * (diffMs / 1000.0 / rainbow);
                             else
-                                counters[deviceNum] += 1.5 * 3 / rainbow;
+                                //counters[deviceNum] += 1.5 * 3 / rainbow;
+                                counters[deviceNum] += 360.0 * (diffMs / 1000.0 / rainbow);
                         }
 
                         if (counters[deviceNum] < 0)

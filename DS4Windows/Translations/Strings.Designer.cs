@@ -1271,7 +1271,9 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The rotation setting is meant to help correct the orientation of an analog stick if your thumb is slightly shifted when moving an analog stick. For example, your thumb might be slightly shifted from center when the analog stick is moved fully north. My thumbs shift slightly to the right when moving an analog stick fully north due to the way my hands grip the DS4. The value used denotes the number of degrees used to adjust the final axis output value. Values allows range from -180 to 180. Default is 0..
+        ///   Looks up a localized string similar to + = Clockwise. - = Counter-clockwise.
+        ///
+        ///The rotation setting is meant to help correct the orientation of an analog stick if your thumb is slightly shifted when moving an analog stick. For example, your thumb might be slightly shifted from center when the analog stick is moved fully north. My thumbs shift slightly to the right when moving an analog stick fully north due to the way my hands grip the DS4. The value used denotes the number of degrees used to adjust the final axis output value. Values allows ra [rest of string was truncated]&quot;;.
         /// </summary>
         public static string StickRotationTooltip {
             get {

@@ -1335,6 +1335,8 @@
                                                     <MenuItem Header="PS" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
                                                     <MenuItem Header="Touchpad Click" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
                                                     <MenuItem Header="Mute" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Side L" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Side R" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
                                                 </ContextMenu>
                                             </Button.ContextMenu>
                                         </Button>
@@ -1578,6 +1580,8 @@
                                                     <MenuItem Header="PS" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
                                                     <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
                                                     <MenuItem Header="Mute" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                                    <MenuItem Header="Side L" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                                    <MenuItem Header="Side R" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
                                                     <MenuItem Header="Always On" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
                                                 </ContextMenu>
                                             </Button.ContextMenu>

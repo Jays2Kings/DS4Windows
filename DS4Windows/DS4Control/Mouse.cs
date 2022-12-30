@@ -1072,6 +1072,8 @@ namespace DS4Windows
                 case 18: return s.PS;
                 case 19: return s.TouchButton;
                 case 20: return s.Mute;
+                case 21: return s.SideL;
+                case 22: return s.SideR;
                 default: break;
             }
 

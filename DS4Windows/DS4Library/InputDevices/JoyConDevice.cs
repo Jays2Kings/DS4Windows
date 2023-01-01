@@ -315,8 +315,6 @@ namespace DS4Windows.InputDevices
             warnInterval = WARN_INTERVAL_BT;
 
             gyroMouseSensSettings = new GyroMouseSens();
-            optionsStore = nativeOptionsStore = new JoyConControllerOptions(deviceType);
-            SetupOptionsEvents();
 
             if (conType == ConnectionType.BT)
             {
@@ -368,6 +366,9 @@ namespace DS4Windows.InputDevices
                 // Routine will retrieve and set the Mac serial during the sequence
                 RunUSBSetup();
             }
+
+            optionsStore = nativeOptionsStore = new JoyConControllerOptions(deviceType);
+            SetupOptionsEvents();
         }
 
         public static string ReadUSBSerial(HidDevice hDevice)

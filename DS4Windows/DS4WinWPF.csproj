@@ -76,7 +76,7 @@
     <PackageReference Include="H.NotifyIcon.Wpf" Version="2.0.74" />
     <PackageReference Include="MdXaml" Version="1.16.2" />
     <PackageReference Include="NLog" Version="5.1.1" />
-    <PackageReference Include="Nefarius.Utilities.DeviceManagement" Version="3.2.184" />
+    <!--<PackageReference Include="Nefarius.Utilities.DeviceManagement" Version="3.2.184" />-->
     <!--<PackageReference Include="Nefarius.ViGEm.Client" Version="1.21.230" />-->
     <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
     <PackageReference Include="System.Management" Version="7.0.0" />
@@ -94,6 +94,10 @@
 
     <Reference Include="Nefarius.ViGEm.Client">
       <HintPath>..\libs\$(Platform)\Nefarius.ViGEm.Client\Nefarius.ViGEm.Client.dll</HintPath>
+    </Reference>
+
+    <Reference Include="Nefarius.Utilities.DeviceManagement">
+      <HintPath>..\libs\AnyCPU\Nefarius.Utilities.DeviceManagement.dll</HintPath>
     </Reference>
   </ItemGroup>
 

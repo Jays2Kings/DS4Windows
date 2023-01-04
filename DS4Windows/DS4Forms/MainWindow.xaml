@@ -261,12 +261,12 @@
                         <CheckBox x:Name="runAtStartCk" Content="{lex:Loc RunAtStartup}" Margin="{StaticResource spaceMargin}"
                               IsChecked="{Binding RunAtStartup}"
                               ToolTip="{lex:Loc Resources:RunAtStartup}" Click="RunAtStartCk_Click" />
-                        <GroupBox x:Name="runAsGroupBox" Header="Run As" BorderThickness="2" Visibility="{Binding ShowRunStartPanel}"
+                        <GroupBox x:Name="runAsGroupBox" Header="{lex:Loc RunAs}" BorderThickness="2" Visibility="{Binding ShowRunStartPanel}"
                               Margin="{StaticResource spaceMargin}">
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel>
-                                    <RadioButton Content="Program" GroupName="RunAsOpt" Margin="{StaticResource spaceMargin}" IsChecked="{Binding RunStartProg}" />
-                                    <RadioButton Content="Task" GroupName="RunAsOpt" Margin="{StaticResource spaceMargin}"
+                                    <RadioButton Content="{lex:Loc Program}" GroupName="RunAsOpt" Margin="{StaticResource spaceMargin}" IsChecked="{Binding RunStartProg}" />
+                                    <RadioButton Content="{lex:Loc Task}" GroupName="RunAsOpt" Margin="{StaticResource spaceMargin}"
                                                  IsChecked="{Binding RunStartTask}" IsEnabled="{Binding CanWriteTask}" />
                                 </StackPanel>
                                 <Image x:Name="uacImg" Source="{Binding UACSource, Mode=OneTime}" Width="30" Height="30"

@@ -614,6 +614,15 @@
   <data name="Hours" xml:space="preserve">
     <value>Часов</value>
   </data>
+  <data name="Program" xml:space="preserve">
+    <value>Программу</value>
+  </data>
+  <data name="RunAs" xml:space="preserve">
+    <value>Запускать как</value>
+  </data>
+  <data name="Task" xml:space="preserve">
+    <value>Задачу</value>
+  </data>
   <data name="UseCustomSteamFolder" xml:space="preserve">
     <value>Использовать кастомную папку Steam</value>
   </data>

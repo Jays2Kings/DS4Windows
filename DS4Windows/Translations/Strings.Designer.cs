@@ -1307,6 +1307,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Program.
+        /// </summary>
+        public static string Program {
+            get {
+                return ResourceManager.GetString("Program", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quick Charge.
         /// </summary>
         public static string QuickCharge {
@@ -1402,6 +1411,15 @@ namespace DS4WinWPF.Translations {
         public static string RumbleMaxSecsTip {
             get {
                 return ResourceManager.GetString("RumbleMaxSecsTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run As.
+        /// </summary>
+        public static string RunAs {
+            get {
+                return ResourceManager.GetString("RunAs", resourceCulture);
             }
         }
         
@@ -1593,6 +1611,15 @@ namespace DS4WinWPF.Translations {
         public static string SwipeTouchpadToSwitchProfiles {
             get {
                 return ResourceManager.GetString("SwipeTouchpadToSwitchProfiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task.
+        /// </summary>
+        public static string Task {
+            get {
+                return ResourceManager.GetString("Task", resourceCulture);
             }
         }
         

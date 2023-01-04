@@ -36,7 +36,7 @@
                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
                     <Button x:Name="aboutBtn" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF3881D8"
                             Style="{StaticResource NoBGHoverBtn}" Click="AboutBtn_Click">
-                        <TextBlock Text="Hotkeys/About" TextDecorations="Underline" Foreground="{DynamicResource AccentColor}" Cursor="Hand" x:Uid="hotkeysText" />
+                        <TextBlock Text="{lex:Loc HotkeysAbout}" TextDecorations="Underline" Foreground="{DynamicResource AccentColor}" Cursor="Hand" x:Uid="hotkeysText" />
                     </Button>
                     <Button x:Name="StartStopBtn" Content="{lex:Loc StartText}" Margin="10,0,4,0" Click="StartStopBtn_Click" Width="60" Height="20" Foreground="{DynamicResource ForegroundColor}" />
                 </StackPanel>
@@ -241,7 +241,7 @@
 
                 </local:AutoProfiles>
             </TabItem>
-            <TabItem Header="Output Slots" IsEnabled="{Binding FullTabsEnabled,Mode=OneWay}">
+            <TabItem Header="{lex:Loc OutputSlots}" IsEnabled="{Binding FullTabsEnabled,Mode=OneWay}">
                 <local:OutputSlotManagerControl x:Name="slotManControl">
 
                 </local:OutputSlotManagerControl>
@@ -252,10 +252,10 @@
                         <WrapPanel.Resources>
                             <Thickness x:Key="spaceMargin" Left="4" Right="0" Bottom="8" Top="0" />
                         </WrapPanel.Resources>
-                        <CheckBox x:Name="hideDS4ContCk" Content="Hide DS4 Controller" x:Uid="hideDS4Checkbox"
+                        <CheckBox x:Name="hideDS4ContCk" Content="{lex:Loc HideDS4Controller}" x:Uid="hideDS4Checkbox"
                               Margin="{StaticResource spaceMargin}" IsChecked="{Binding HideDS4Controller}" Click="HideDS4ContCk_Click" >
                         </CheckBox>
-                        <CheckBox x:Name="swipeTouchCk" Content="Swipe Touchpad To Switch Profiles" Margin="{StaticResource spaceMargin}"
+                        <CheckBox x:Name="swipeTouchCk" Content="{lex:Loc SwipeTouchpadToSwitchProfiles}" Margin="{StaticResource spaceMargin}"
                               IsChecked="{Binding SwipeTouchSwitchProfile}"
                               ToolTip="{lex:Loc Resources:TwoFingerSwipe}" Click="SwipeTouchCk_Click" />
                         <CheckBox x:Name="runAtStartCk" Content="{lex:Loc RunAtStartup}" Margin="{StaticResource spaceMargin}"
@@ -281,10 +281,10 @@
                                 <ComboBoxItem Content="{lex:Loc All}" />
                             </ComboBox>
                         </StackPanel>
-                        <CheckBox Content="Disconnect from BT when Stopping" Margin="{StaticResource spaceMargin}"
+                        <CheckBox Content="{lex:Loc DisconnectFromBtWhenStopping}" Margin="{StaticResource spaceMargin}"
                               IsChecked="{Binding DisconnectBTStop}" />
                         <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <CheckBox Content="Flash Lightbar at High Latency" VerticalAlignment="Center"
+                            <CheckBox Content="{lex:Loc FlashLightbarAtHighLatency}" VerticalAlignment="Center"
                                   IsChecked="{Binding FlashHighLatency}" />
                             <StackPanel Orientation="Horizontal" Margin="8,0,0,0"
                                     IsEnabled="{Binding FlashHighLatency,FallbackValue='False'}">
@@ -295,8 +295,8 @@
                         </StackPanel>
                         <CheckBox Content="{lex:Loc StartMinimized}" Margin="{StaticResource spaceMargin}"
                               IsChecked="{Binding StartMinimize}" />
-                        <CheckBox Content="Minimize to Taskbar"
-                                  ToolTip="Minimize to Taskbar instead of System Tray"
+                        <CheckBox Content="{lex:Loc MinimizeToTaskbar}"
+                                  ToolTip="{lex:Loc MinimizeToTaskbarTip}"
                                   IsChecked="{Binding MinimizeToTaskbar}" Margin="{StaticResource spaceMargin}" />
                         <CheckBox Content="{lex:Loc CloseMinimizes}" Margin="{StaticResource spaceMargin}"
                               IsChecked="{Binding CloseMinimizes}"
@@ -305,19 +305,19 @@
                               IsChecked="{Binding QuickCharge}"
                               ToolTip="{lex:Loc Resources:QuickCharge}" />
                         <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <Label Content="Icon Choice:" />
+                            <Label Content="{lex:Loc IconChoice}" ContentStringFormat="{}{0}:"/>
                             <ComboBox x:Name="useIconChoiceCom" SelectedIndex="{Binding IconChoiceIndex,FallbackValue='0'}" Margin="10,0,0,0">
-                                <ComboBoxItem>Default</ComboBoxItem>
-                                <ComboBoxItem>Colored</ComboBoxItem>
-                                <ComboBoxItem>White</ComboBoxItem>
-                                <ComboBoxItem>Black</ComboBoxItem>
+                                <ComboBoxItem Content="{lex:Loc Default}"/>
+                                <ComboBoxItem Content="{lex:Loc Colored}"/>
+                                <ComboBoxItem Content="{lex:Loc White}"/>
+                                <ComboBoxItem Content="{lex:Loc Black}"/>
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <Label Content="App Theme:" />
+                            <Label Content="{lex:Loc AppTheme}" ContentStringFormat="{}{0}:"/>
                             <ComboBox x:Name="appThemeCom" SelectedIndex="{Binding AppChoiceIndex,FallbackValue='0'}" Margin="10,0,0,0">
-                                <ComboBoxItem>Default</ComboBoxItem>
-                                <ComboBoxItem>Dark</ComboBoxItem>
+                                <ComboBoxItem Content="{lex:Loc Default}"/>
+                                <ComboBoxItem Content="{lex:Loc Dark}"/>
                             </ComboBox>
                         </StackPanel>
 
@@ -325,13 +325,13 @@
                               IsChecked="{Binding CheckForUpdates}" />
                         <StackPanel x:Name="checkEveryOptionsStack" Orientation="Horizontal" Margin="{StaticResource spaceMargin}"
                                 IsEnabled="{Binding CheckForUpdates}">
-                            <Label Content="Check every " />
+                            <Label Content="{lex:Loc CheckEvery}" />
                             <!--<TextBox Text="0" VerticalAlignment="Center" />-->
                             <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding CheckEvery}" MinWidth="30" Margin="8,0,0,0"
                                             ButtonSpinnerLocation="Right" Increment="1" Maximum="30" Minimum="0" />
                             <ComboBox SelectedIndex="{Binding CheckEveryUnit,FallbackValue=1}" Margin="8,0,0,0" Foreground="{DynamicResource ForegroundColor}" MinWidth="60">
-                                <ComboBoxItem Content="Hours" />
-                                <ComboBoxItem Content="Days" />
+                                <ComboBoxItem Content="{lex:Loc Hours}" />
+                                <ComboBoxItem Content="{lex:Loc Days}" />
                             </ComboBox>
                         </StackPanel>
                         <GroupBox Header="OSC Server" Padding="0,10,0,0" Margin="{StaticResource spaceMargin}">
@@ -389,7 +389,7 @@
                     -->
                         <local:LanguagePackControl Margin="{StaticResource spaceMargin}" />
                         <StackPanel Margin="{StaticResource spaceMargin}">
-                            <CheckBox x:Name="customSteamCk" Content="Use custom Steam Folder" Margin="{StaticResource spaceMargin}"
+                            <CheckBox x:Name="customSteamCk" Content="{lex:Loc UseCustomSteamFolder}" Margin="{StaticResource spaceMargin}"
                                   IsChecked="{Binding UseCustomSteamFolder}" />
                             <TextBox x:Name="customSteamTxt" Text="{Binding CustomSteamFolder, UpdateSourceTrigger=LostFocus}"
                                  IsEnabled="{Binding UseCustomSteamFolder}" />
@@ -410,7 +410,7 @@
                             </ComboBox>
                         </StackPanel>
 
-                        <GroupBox Header="Utils" BorderThickness="2" Margin="{StaticResource spaceMargin}"
+                        <GroupBox Header="{lex:Loc Utils}" BorderThickness="2" Margin="{StaticResource spaceMargin}"
                               Padding="8" HorizontalAlignment="Left">
                             <WrapPanel HorizontalAlignment="Left" Orientation="Vertical">
                                 <Button x:Name="profFolderBtn" BorderThickness="0" Margin="0,0,4,4" Background="{x:Null}" BorderBrush="{x:Null}"
@@ -450,7 +450,7 @@
                             </WrapPanel>
                         </GroupBox>
 
-                        <Button x:Name="deviceOptionSettingsBtn" MaxWidth="100" HorizontalAlignment="Left" Content="Device Options" Click="DeviceOptionSettingsBtn_Click" />
+                        <Button x:Name="deviceOptionSettingsBtn" MaxWidth="140" HorizontalAlignment="Left" Content="{lex:Loc DeviceOptions}" Click="DeviceOptionSettingsBtn_Click" />
                     </WrapPanel>
                 </ScrollViewer>
 
@@ -458,7 +458,7 @@
             <TabItem Header="{lex:Loc Log}">
                 <DockPanel>
                     <DockPanel Height="20" DockPanel.Dock="Bottom" Margin="4,8">
-                        <Button x:Name="exportLogBtn" Content="Export" HorizontalAlignment="Left" Padding="20,1" Click="ExportLogBtn_Click" />
+                        <Button x:Name="exportLogBtn" Content="{lex:Loc Export}" HorizontalAlignment="Left" Padding="20,1" Click="ExportLogBtn_Click" />
                         <Button x:Name="clearLogBtn" Content="{lex:Loc Clear}" DockPanel.Dock="Right" Padding="20,1" Margin="100,0,0,0" Click="ClearLogBtn_Click" />
                     </DockPanel>
                     <ListView x:Name="logListView" DockPanel.Dock="Top" ItemsSource="{Binding LogItems}" MouseDoubleClick="LogListView_MouseDoubleClick" Margin="0">

@@ -17,18 +17,18 @@
     <DockPanel x:Name="devOptionsDockPanel" Margin="4">
         <DockPanel>
             <StackPanel DockPanel.Dock="Top">
-                <CheckBox Content="DS4 Controller Support" IsChecked="{Binding DS4DeviceOpts.Enabled}" />
-                <CheckBox Content="DualSense Controller Support" IsChecked="{Binding DSDeviceOpts.Enabled}" />
-                <CheckBox Content="Switch Pro Controller Support" IsChecked="{Binding SwitchProDeviceOpts.Enabled}" />
-                <CheckBox Content="JoyCon Controller Support" IsChecked="{Binding JoyConDeviceOpts.Enabled}" />
+                <CheckBox Content="{lex:Loc ControllerSupportDS4}" IsChecked="{Binding DS4DeviceOpts.Enabled}" />
+                <CheckBox Content="{lex:Loc ControllerSupportDualSense}" IsChecked="{Binding DSDeviceOpts.Enabled}" />
+                <CheckBox Content="{lex:Loc ControllerSupportSwitchPro}" IsChecked="{Binding SwitchProDeviceOpts.Enabled}" />
+                <CheckBox Content="{lex:Loc ControllerSupportJoyCon}" IsChecked="{Binding JoyConDeviceOpts.Enabled}" />
             </StackPanel>
 
             <StackPanel DockPanel.Dock="Top" Margin="0,16,0,0">
-                <CheckBox Content="Enable verbose log" IsChecked="{Binding VerboseLogMessages}" ToolTip="Show additional log messages when a gamepad is connected"/>
+                <CheckBox Content="{lex:Loc EnableVerboseLog}" IsChecked="{Binding VerboseLogMessages}" ToolTip="{lex:Loc EnableVerboseLogTip}"/>
             </StackPanel>
             
             <DockPanel DockPanel.Dock="Bottom" Margin="0,20,0,0">
-                <Label Content="Detected Controllers" ContentStringFormat="{}{0}:" DockPanel.Dock="Top" FontWeight="Bold" />
+                <Label Content="{lex:Loc DetectedControllers}" ContentStringFormat="{}{0}:" DockPanel.Dock="Top" FontWeight="Bold" />
                 <ListBox x:Name="controllerListBox" ItemsSource="{Binding CurrentInputDevices}" SelectedIndex="{Binding ControllerSelectedIndex}"
                       Margin="0,8,0,0">
                     <ListBox.ItemTemplate>
@@ -47,7 +47,7 @@
 
             <TabItem x:Name="ds4OptsTabItem" Header="DS4" Visibility="Collapsed">
                 <StackPanel Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="4">
-                    <CheckBox Content="Copycat" IsChecked="{Binding Options.IsCopyCat, FallbackValue='False'}" ToolTip="Change some flags used for a non-Sony DS4 controller. It might fix rumble and lightbar support for some third party DS4 clones" />
+                    <CheckBox Content="{lex:Loc Copycat}" IsChecked="{Binding Options.IsCopyCat, FallbackValue='False'}" ToolTip="{lex:Loc CopycatTip}" />
                 </StackPanel>
             </TabItem>
             

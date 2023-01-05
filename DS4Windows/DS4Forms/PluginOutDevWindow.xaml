@@ -4,11 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
         mc:Ignorable="d"
         Title="PluginOutDevWindow" Height="200" Width="400"
         Style="{DynamicResource WindowStyle}">
     <DockPanel LastChildFill="False">
-        <TextBlock Text="Device type" DockPanel.Dock="Top" />
+        <TextBlock Text="{lex:Loc DeviceType}" DockPanel.Dock="Top" />
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Height="40" HorizontalAlignment="Right">
             <Button x:Name="acceptBtn" Content="Accept" Click="AcceptBtn_Click" />
             <Button x:Name="cancelBtn" Content="Cancel" Click="CancelBtn_Click" Margin="20,0,0,0" />
@@ -20,8 +21,8 @@
         </ComboBox>
 
         <ComboBox x:Name="reserveTypeCombo" SelectedIndex="0" DockPanel.Dock="Top">
-            <ComboBoxItem Content="Dynamic" Tag="0" />
-            <ComboBoxItem Content="Permanent" Tag="1" />
+            <ComboBoxItem Content="{lex:Loc Dynamic}" Tag="0" />
+            <ComboBoxItem Content="{lex:Loc Permanent}" Tag="1" />
         </ComboBox>
     </DockPanel>
 </Window>

@@ -70,6 +70,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accept.
+        /// </summary>
+        public static string Accept {
+            get {
+                return ResourceManager.GetString("Accept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Action.
         /// </summary>
         public static string Action {
@@ -142,6 +151,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to App Theme.
+        /// </summary>
+        public static string AppTheme {
+            get {
+                return ResourceManager.GetString("AppTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto Profiles.
         /// </summary>
         public static string AutoProfiles {
@@ -174,6 +192,15 @@ namespace DS4WinWPF.Translations {
         public static string Battery {
             get {
                 return ResourceManager.GetString("Battery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Black.
+        /// </summary>
+        public static string Black {
+            get {
+                return ResourceManager.GetString("Black", resourceCulture);
             }
         }
         
@@ -219,6 +246,15 @@ namespace DS4WinWPF.Translations {
         public static string ChangeOnNewDeviceConn {
             get {
                 return ResourceManager.GetString("ChangeOnNewDeviceConn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check every.
+        /// </summary>
+        public static string CheckEvery {
+            get {
+                return ResourceManager.GetString("CheckEvery", resourceCulture);
             }
         }
         
@@ -273,6 +309,15 @@ namespace DS4WinWPF.Translations {
         public static string Color {
             get {
                 return ResourceManager.GetString("Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Colored.
+        /// </summary>
+        public static string Colored {
+            get {
+                return ResourceManager.GetString("Colored", resourceCulture);
             }
         }
         
@@ -358,11 +403,65 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DS4 Controller Support.
+        /// </summary>
+        public static string ControllerSupportDS4 {
+            get {
+                return ResourceManager.GetString("ControllerSupportDS4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DualSense Controller Support.
+        /// </summary>
+        public static string ControllerSupportDualSense {
+            get {
+                return ResourceManager.GetString("ControllerSupportDualSense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JoyCon Controller Support.
+        /// </summary>
+        public static string ControllerSupportJoyCon {
+            get {
+                return ResourceManager.GetString("ControllerSupportJoyCon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch Pro Controller Support.
+        /// </summary>
+        public static string ControllerSupportSwitchPro {
+            get {
+                return ResourceManager.GetString("ControllerSupportSwitchPro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Control Panel.
         /// </summary>
         public static string ControlPanel {
             get {
                 return ResourceManager.GetString("ControlPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copycat.
+        /// </summary>
+        public static string Copycat {
+            get {
+                return ResourceManager.GetString("Copycat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change some flags used for a non-Sony DS4 controller. It might fix rumble and lightbar support for some third party DS4 clones.
+        /// </summary>
+        public static string CopycatTip {
+            get {
+                return ResourceManager.GetString("CopycatTip", resourceCulture);
             }
         }
         
@@ -396,6 +495,33 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        public static string Dark {
+            get {
+                return ResourceManager.GetString("Dark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Days.
+        /// </summary>
+        public static string Days {
+            get {
+                return ResourceManager.GetString("Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string Default {
+            get {
+                return ResourceManager.GetString("Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {
@@ -414,6 +540,33 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Detected Controllers.
+        /// </summary>
+        public static string DetectedControllers {
+            get {
+                return ResourceManager.GetString("DetectedControllers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device Options.
+        /// </summary>
+        public static string DeviceOptions {
+            get {
+                return ResourceManager.GetString("DeviceOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device type.
+        /// </summary>
+        public static string DeviceType {
+            get {
+                return ResourceManager.GetString("DeviceType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disable virtual controller.
         /// </summary>
         public static string DisableVirtualController {
@@ -428,6 +581,15 @@ namespace DS4WinWPF.Translations {
         public static string DisableVirtualControllerTip {
             get {
                 return ResourceManager.GetString("DisableVirtualControllerTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disconnect from BT when Stopping.
+        /// </summary>
+        public static string DisconnectFromBtWhenStopping {
+            get {
+                return ResourceManager.GetString("DisconnectFromBtWhenStopping", resourceCulture);
             }
         }
         
@@ -577,6 +739,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dynamic.
+        /// </summary>
+        public static string Dynamic {
+            get {
+                return ResourceManager.GetString("Dynamic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string Edit {
@@ -623,6 +794,24 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable verbose log.
+        /// </summary>
+        public static string EnableVerboseLog {
+            get {
+                return ResourceManager.GetString("EnableVerboseLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show additional log messages when a gamepad is connected.
+        /// </summary>
+        public static string EnableVerboseLogTip {
+            get {
+                return ResourceManager.GetString("EnableVerboseLogTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exclusive Access.
         /// </summary>
         public static string ExclusiveAccess {
@@ -637,6 +826,15 @@ namespace DS4WinWPF.Translations {
         public static string Export {
             get {
                 return ResourceManager.GetString("Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flash Lightbar at High Latency.
+        /// </summary>
+        public static string FlashLightbarAtHighLatency {
+            get {
+                return ResourceManager.GetString("FlashLightbarAtHighLatency", resourceCulture);
             }
         }
         
@@ -731,6 +929,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide DS4 Controller.
+        /// </summary>
+        public static string HideDS4Controller {
+            get {
+                return ResourceManager.GetString("HideDS4Controller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hide Unchecked.
         /// </summary>
         public static string HideUnchecked {
@@ -781,6 +988,33 @@ namespace DS4WinWPF.Translations {
         public static string HidNinja {
             get {
                 return ResourceManager.GetString("HidNinja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hotkeys/About.
+        /// </summary>
+        public static string HotkeysAbout {
+            get {
+                return ResourceManager.GetString("HotkeysAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hours.
+        /// </summary>
+        public static string Hours {
+            get {
+                return ResourceManager.GetString("Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Icon Choice.
+        /// </summary>
+        public static string IconChoice {
+            get {
+                return ResourceManager.GetString("IconChoice", resourceCulture);
             }
         }
         
@@ -853,6 +1087,24 @@ namespace DS4WinWPF.Translations {
         public static string MinAngleThreshold {
             get {
                 return ResourceManager.GetString("MinAngleThreshold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimize to Taskbar.
+        /// </summary>
+        public static string MinimizeToTaskbar {
+            get {
+                return ResourceManager.GetString("MinimizeToTaskbar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimize to Taskbar instead of System Tray.
+        /// </summary>
+        public static string MinimizeToTaskbarTip {
+            get {
+                return ResourceManager.GetString("MinimizeToTaskbarTip", resourceCulture);
             }
         }
         
@@ -974,11 +1226,38 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Output Slots.
+        /// </summary>
+        public static string OutputSlots {
+            get {
+                return ResourceManager.GetString("OutputSlots", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Path.
         /// </summary>
         public static string Path {
             get {
                 return ResourceManager.GetString("Path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permanent.
+        /// </summary>
+        public static string Permanent {
+            get {
+                return ResourceManager.GetString("Permanent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plug.
+        /// </summary>
+        public static string Plug {
+            get {
+                return ResourceManager.GetString("Plug", resourceCulture);
             }
         }
         
@@ -1024,6 +1303,15 @@ namespace DS4WinWPF.Translations {
         public static string Profiles {
             get {
                 return ResourceManager.GetString("Profiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Program.
+        /// </summary>
+        public static string Program {
+            get {
+                return ResourceManager.GetString("Program", resourceCulture);
             }
         }
         
@@ -1082,6 +1370,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Revert to default profile on unknown.
+        /// </summary>
+        public static string RevertToDefaultProfileOnUnknown {
+            get {
+                return ResourceManager.GetString("RevertToDefaultProfileOnUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Right Stick.
         /// </summary>
         public static string RightStick {
@@ -1114,6 +1411,15 @@ namespace DS4WinWPF.Translations {
         public static string RumbleMaxSecsTip {
             get {
                 return ResourceManager.GetString("RumbleMaxSecsTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run As.
+        /// </summary>
+        public static string RunAs {
+            get {
+                return ResourceManager.GetString("RunAs", resourceCulture);
             }
         }
         
@@ -1168,6 +1474,15 @@ namespace DS4WinWPF.Translations {
         public static string SharedAccess {
             get {
                 return ResourceManager.GetString("SharedAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show auto-profile debug messages.
+        /// </summary>
+        public static string ShowAutoProfileDebugMessages {
+            get {
+                return ResourceManager.GetString("ShowAutoProfileDebugMessages", resourceCulture);
             }
         }
         
@@ -1291,6 +1606,24 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Swipe Touchpad To Switch Profiles.
+        /// </summary>
+        public static string SwipeTouchpadToSwitchProfiles {
+            get {
+                return ResourceManager.GetString("SwipeTouchpadToSwitchProfiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task.
+        /// </summary>
+        public static string Task {
+            get {
+                return ResourceManager.GetString("Task", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Throttle low end of Touchpad movement. Reduces accidental mouse cursor movement when holding a mostly fixed position on the Touchpad.
         /// </summary>
         public static string TouchpadJitterCompTooltip {
@@ -1390,11 +1723,47 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Turn Off DS4Windows Temporarily.
+        /// </summary>
+        public static string TurnOffDS4WindowsTemporarily {
+            get {
+                return ResourceManager.GetString("TurnOffDS4WindowsTemporarily", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unplug.
+        /// </summary>
+        public static string Unplug {
+            get {
+                return ResourceManager.GetString("Unplug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please update .NET Runtime.
         /// </summary>
         public static string UpgradeNetCaption {
             get {
                 return ResourceManager.GetString("UpgradeNetCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use custom Steam Folder.
+        /// </summary>
+        public static string UseCustomSteamFolder {
+            get {
+                return ResourceManager.GetString("UseCustomSteamFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utils.
+        /// </summary>
+        public static string Utils {
+            get {
+                return ResourceManager.GetString("Utils", resourceCulture);
             }
         }
         
@@ -1422,6 +1791,15 @@ namespace DS4WinWPF.Translations {
         public static string WarningsOnly {
             get {
                 return ResourceManager.GetString("WarningsOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White.
+        /// </summary>
+        public static string White {
+            get {
+                return ResourceManager.GetString("White", resourceCulture);
             }
         }
         

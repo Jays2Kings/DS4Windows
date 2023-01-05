@@ -211,7 +211,7 @@
     <value>Гироскоп</value>
   </data>
   <data name="HideUnchecked" xml:space="preserve">
-    <value>Скрыть не выбранные</value>
+    <value>Скрыть невыбранные</value>
   </data>
   <data name="Import" xml:space="preserve">
     <value>Импорт</value>
@@ -313,7 +313,7 @@
     <value>Авто-остановка в секундах (0=отключена)</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Window Title</value>
+    <value>Заголовок окна</value>
   </data>
   <data name="MoveUp" xml:space="preserve">
     <value>Move Up</value>
@@ -499,5 +499,134 @@
   </data>
   <data name="SharedAccess" xml:space="preserve">
     <value>Общий доступ</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Принять</value>
+  </data>
+  <data name="Black" xml:space="preserve">
+    <value>Черная</value>
+  </data>
+  <data name="Colored" xml:space="preserve">
+    <value>Цветная</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>По умолчанию</value>
+  </data>
+  <data name="DeviceType" xml:space="preserve">
+    <value>Тип устройства</value>
+  </data>
+  <data name="DisconnectFromBtWhenStopping" xml:space="preserve">
+    <value>Отключать устройства от BT при остановке</value>
+  </data>
+  <data name="Dynamic" xml:space="preserve">
+    <value>Динамический</value>
+  </data>
+  <data name="FlashLightbarAtHighLatency" xml:space="preserve">
+    <value>Мигать индикатором при высокой задержке</value>
+  </data>
+  <data name="HideDS4Controller" xml:space="preserve">
+    <value>Скрыть DS4 Контроллер</value>
+  </data>
+  <data name="HotkeysAbout" xml:space="preserve">
+    <value>Горячие клавиши/О программе</value>
+  </data>
+  <data name="IconChoice" xml:space="preserve">
+    <value>Выбор иконки</value>
+  </data>
+  <data name="MinimizeToTaskbar" xml:space="preserve">
+    <value>Сворачивать в панель задач</value>
+  </data>
+  <data name="MinimizeToTaskbarTip" xml:space="preserve">
+    <value>Сворачивать в панель задач вместо системного трея</value>
+  </data>
+  <data name="OutputSlots" xml:space="preserve">
+    <value>Виртуальные Слоты</value>
+  </data>
+  <data name="Permanent" xml:space="preserve">
+    <value>Постоянный</value>
+  </data>
+  <data name="Plug" xml:space="preserve">
+    <value>Подключить</value>
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Переименовать</value>
+  </data>
+  <data name="RevertToDefaultProfileOnUnknown" xml:space="preserve">
+    <value>Вернуть профиль по умолчанию на неизвестном</value>
+  </data>
+  <data name="ShowAutoProfileDebugMessages" xml:space="preserve">
+    <value>Показывать отладочные сообщения авто-профиля</value>
+  </data>
+  <data name="SwipeTouchpadToSwitchProfiles" xml:space="preserve">
+    <value>Проведите по тачпаду, чтобы переключить профиль</value>
+  </data>
+  <data name="TurnOffDS4WindowsTemporarily" xml:space="preserve">
+    <value>Временно выключить DS4Windows</value>
+  </data>
+  <data name="Unplug" xml:space="preserve">
+    <value>Отключить</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>Белая</value>
+  </data>
+  <data name="AppTheme" xml:space="preserve">
+    <value>Тема приложения</value>
+  </data>
+  <data name="CheckEvery" xml:space="preserve">
+    <value>Проверять каждые</value>
+  </data>
+  <data name="ControllerSupportDS4" xml:space="preserve">
+    <value>Поддержка контроллера DS4</value>
+  </data>
+  <data name="ControllerSupportDualSense" xml:space="preserve">
+    <value>Поддержка контроллера DualSense</value>
+  </data>
+  <data name="ControllerSupportJoyCon" xml:space="preserve">
+    <value>Поддержка контроллера JoyCon</value>
+  </data>
+  <data name="ControllerSupportSwitchPro" xml:space="preserve">
+    <value>Поддержка контроллера Switch Pro</value>
+  </data>
+  <data name="Copycat" xml:space="preserve">
+    <value>Имитатор</value>
+  </data>
+  <data name="CopycatTip" xml:space="preserve">
+    <value>Измените некоторые флаги, используемые для контроллера DS4, отличного от Sony. Это может исправить поддержку вибрации и световой панели для некоторых сторонних клонов DS4.</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Темная</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Дней</value>
+  </data>
+  <data name="DetectedControllers" xml:space="preserve">
+    <value>Обнаруженные контроллеры</value>
+  </data>
+  <data name="DeviceOptions" xml:space="preserve">
+    <value>Параметры устройства</value>
+  </data>
+  <data name="EnableVerboseLog" xml:space="preserve">
+    <value>Включить подробный журнал</value>
+  </data>
+  <data name="EnableVerboseLogTip" xml:space="preserve">
+    <value>Показывать дополнительные сообщения журнала при подключении геймпада</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>Часов</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>Программу</value>
+  </data>
+  <data name="RunAs" xml:space="preserve">
+    <value>Запускать как</value>
+  </data>
+  <data name="Task" xml:space="preserve">
+    <value>Задачу</value>
+  </data>
+  <data name="UseCustomSteamFolder" xml:space="preserve">
+    <value>Использовать кастомную папку Steam</value>
+  </data>
+  <data name="Utils" xml:space="preserve">
+    <value>Утилиты</value>
   </data>
 </root>

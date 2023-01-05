@@ -598,4 +598,130 @@ Disabled:
 - When in Legacy Mode, rumble's [min /// max ] will be roughly [ Power Level - 12% /// Power Level + 12% ]
     - Example (62%): [ min = 50% /// max = 74% ]</value>
   </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="Black" xml:space="preserve">
+    <value>Black</value>
+  </data>
+  <data name="Colored" xml:space="preserve">
+    <value>Colored</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="DeviceType" xml:space="preserve">
+    <value>Device type</value>
+  </data>
+  <data name="DisconnectFromBtWhenStopping" xml:space="preserve">
+    <value>Disconnect from BT when Stopping</value>
+  </data>
+  <data name="Dynamic" xml:space="preserve">
+    <value>Dynamic</value>
+  </data>
+  <data name="FlashLightbarAtHighLatency" xml:space="preserve">
+    <value>Flash Lightbar at High Latency</value>
+  </data>
+  <data name="HideDS4Controller" xml:space="preserve">
+    <value>Hide DS4 Controller</value>
+  </data>
+  <data name="HotkeysAbout" xml:space="preserve">
+    <value>Hotkeys/About</value>
+  </data>
+  <data name="IconChoice" xml:space="preserve">
+    <value>Icon Choice</value>
+  </data>
+  <data name="MinimizeToTaskbar" xml:space="preserve">
+    <value>Minimize to Taskbar</value>
+  </data>
+  <data name="MinimizeToTaskbarTip" xml:space="preserve">
+    <value>Minimize to Taskbar instead of System Tray</value>
+  </data>
+  <data name="OutputSlots" xml:space="preserve">
+    <value>Output Slots</value>
+  </data>
+  <data name="Permanent" xml:space="preserve">
+    <value>Permanent</value>
+  </data>
+  <data name="Plug" xml:space="preserve">
+    <value>Plug</value>
+  </data>
+  <data name="RevertToDefaultProfileOnUnknown" xml:space="preserve">
+    <value>Revert to default profile on unknown</value>
+  </data>
+  <data name="ShowAutoProfileDebugMessages" xml:space="preserve">
+    <value>Show auto-profile debug messages</value>
+  </data>
+  <data name="SwipeTouchpadToSwitchProfiles" xml:space="preserve">
+    <value>Swipe Touchpad To Switch Profiles</value>
+  </data>
+  <data name="TurnOffDS4WindowsTemporarily" xml:space="preserve">
+    <value>Turn Off DS4Windows Temporarily</value>
+  </data>
+  <data name="Unplug" xml:space="preserve">
+    <value>Unplug</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>White</value>
+  </data>
+  <data name="AppTheme" xml:space="preserve">
+    <value>App Theme</value>
+  </data>
+  <data name="CheckEvery" xml:space="preserve">
+    <value>Check every</value>
+  </data>
+  <data name="ControllerSupportDS4" xml:space="preserve">
+    <value>DS4 Controller Support</value>
+  </data>
+  <data name="ControllerSupportDualSense" xml:space="preserve">
+    <value>DualSense Controller Support</value>
+  </data>
+  <data name="ControllerSupportJoyCon" xml:space="preserve">
+    <value>JoyCon Controller Support</value>
+  </data>
+  <data name="ControllerSupportSwitchPro" xml:space="preserve">
+    <value>Switch Pro Controller Support</value>
+  </data>
+  <data name="Copycat" xml:space="preserve">
+    <value>Copycat</value>
+  </data>
+  <data name="CopycatTip" xml:space="preserve">
+    <value>Change some flags used for a non-Sony DS4 controller. It might fix rumble and lightbar support for some third party DS4 clones</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="DetectedControllers" xml:space="preserve">
+    <value>Detected Controllers</value>
+  </data>
+  <data name="DeviceOptions" xml:space="preserve">
+    <value>Device Options</value>
+  </data>
+  <data name="EnableVerboseLog" xml:space="preserve">
+    <value>Enable verbose log</value>
+  </data>
+  <data name="EnableVerboseLogTip" xml:space="preserve">
+    <value>Show additional log messages when a gamepad is connected</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>Hours</value>
+  </data>
+  <data name="UseCustomSteamFolder" xml:space="preserve">
+    <value>Use custom Steam Folder</value>
+  </data>
+  <data name="Utils" xml:space="preserve">
+    <value>Utils</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="RunAs" xml:space="preserve">
+    <value>Run As</value>
+  </data>
+  <data name="Task" xml:space="preserve">
+    <value>Task</value>
+  </data>
 </root>

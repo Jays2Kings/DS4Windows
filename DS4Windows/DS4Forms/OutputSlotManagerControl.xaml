@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="800">
     <UserControl.Resources>
@@ -11,19 +12,19 @@
     </UserControl.Resources>
     <DockPanel Margin="4,8">
         <StackPanel x:Name="plugDevStackPanel" Orientation="Horizontal" DockPanel.Dock="Bottom" Height="30" Margin="0,20,0,0">
-            <Button x:Name="pluginBtn" MinWidth="60" Content="Plug" IsEnabled="{Binding PluginEnabled}" Click="PluginBtn_Click" />
-            <Button x:Name="unplugBtn" MinWidth="60" Content="Unplug" IsEnabled="{Binding UnpluginEnabled}" Click="UnplugBtn_Click" Margin="30,0,0,0" />
+            <Button x:Name="pluginBtn" MinWidth="60" Content="{lex:Loc Plug}" IsEnabled="{Binding PluginEnabled}" Click="PluginBtn_Click" />
+            <Button x:Name="unplugBtn" MinWidth="60" Content="{lex:Loc Unplug}" IsEnabled="{Binding UnpluginEnabled}" Click="UnplugBtn_Click" Margin="30,0,0,0" />
         </StackPanel>
 
         <DockPanel>
             <StackPanel x:Name="sideStackPanel" Orientation="Vertical" Width="100" DockPanel.Dock="Right" Visibility="{Binding SidePanelVisibility}" Margin="10,0,10,0">
                 <StackPanel x:Name="outSlotStackPanel">
                     <ComboBox x:Name="reserveCombo" SelectedIndex="{Binding ReserveChoice,FallbackValue=0}">
-                        <ComboBoxItem Tag="0" Content="Dynamic" />
-                        <ComboBoxItem Tag="1" Content="Permanent" />
+                        <ComboBoxItem Tag="0" Content="{lex:Loc Dynamic}" />
+                        <ComboBoxItem Tag="1" Content="{lex:Loc Permanent}" />
                     </ComboBox>
 
-                    <Button x:Name="slotChangeAcceptBtn" Content="Accept" IsEnabled="{Binding Dirty,FallbackValue=False}"
+                    <Button x:Name="slotChangeAcceptBtn" Content="{lex:Loc Accept}" IsEnabled="{Binding Dirty,FallbackValue=False}"
                             Click="SlotChangeAcceptBtn_Click" Margin="0,8,0,0" />
                 </StackPanel>
             </StackPanel>

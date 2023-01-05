@@ -33,7 +33,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 if (tooltipText == temp) return;
                 tooltipText = temp;
                 //Trace.WriteLine(tooltipText);
-                TooltipTextChanged?.Invoke(this, EventArgs.Empty);
+                try
+                {
+                    TooltipTextChanged?.Invoke(this, EventArgs.Empty);
+                }
+                catch (InvalidOperationException) { }
             }
         }
         public event EventHandler TooltipTextChanged;

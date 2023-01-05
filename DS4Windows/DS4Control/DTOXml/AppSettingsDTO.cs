@@ -327,10 +327,11 @@ namespace DS4WinWPF.DS4Control.DTOXml
             }
         }
 
+        // Default UseLang to empty string. Not null
         public string UseLang
         {
             get; set;
-        }
+        } = "";
 
         [XmlIgnore]
         public bool DownloadLang

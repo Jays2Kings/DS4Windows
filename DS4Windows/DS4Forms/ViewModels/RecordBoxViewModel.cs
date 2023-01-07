@@ -309,7 +309,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 step.ActType == MacroStep.StepType.ActDown &&
                 step.OutputType == MacroStep.StepOutput.Key)
             {
-                MacroStep waitstep = new MacroStep(50, $"Wait 50ms",
+                // 300 + WaitTime (ms)
+                MacroStep waitstep = new MacroStep(MacroStep.WAIT_OFFSET + 50, $"Wait 50ms",
                     MacroStep.StepType.Wait, MacroStep.StepOutput.None);
                 item = new MacroStepItem(waitstep);
                 if (appendIndex == -1)

@@ -168,6 +168,8 @@ namespace DS4Windows
 
     public class MacroStep
     {
+        public const int WAIT_OFFSET = 300;
+
         public enum StepType : uint
         {
             ActDown,

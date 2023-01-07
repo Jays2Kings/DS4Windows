@@ -1,9 +1,26 @@
 {
-  "latest_version": "3.2.0",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 0},
-  "updated_at": "2023-01-05T19:58:58+0000",
+  "latest_version": "3.2.1",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 1},
+  "updated_at": "2023-01-07T05:53:15+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.2.1",
+      "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 1},
+      "base_header": "Version 3.2.1",
+      "release_date": "2023-01-07T05:53:15+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.2.1",
+          "log_text": ["* Fixed wait period offset for automatic added wait times in macro editor",
+            "* Fixed serializing of Special Actions",
+            "* Fixed saving of Special Actions to Actions.xml",
+            "* Fixed delay time usage for some Special Action types"],
+          "updated_at": "2023-01-07T05:53:15+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.2.0",
       "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 0},

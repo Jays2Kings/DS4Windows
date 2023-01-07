@@ -303,7 +303,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
 
             // If recording and not using delays already, check action type
-            // and insert small wait period on Kye ActDown. Needed
+            // and insert small wait period on Key ActDown. Needed
             // for some apps so events are not skipped in an event queue
             if (recording && !recordDelays &&
                 step.ActType == MacroStep.StepType.ActDown &&

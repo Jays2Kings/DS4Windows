@@ -8003,8 +8003,10 @@ namespace DS4Windows
                     break;
                 case 2:
                     string[] tempDetails = details.Split("?");
+                    //double doub = 0.0;
+                    //double.TryParse(tempDetails[1], out doub);
                     tempAction = new SpecialAction(name, controls, "Program", tempDetails[0],
-                        delay: Convert.ToDouble(tempDetails[1]), extras: extras);
+                        delay: delayTime, extras: extras);
                     break;
                 case 3:
                     tempAction = new SpecialAction(name, controls, "Profile", details, extras: extras);

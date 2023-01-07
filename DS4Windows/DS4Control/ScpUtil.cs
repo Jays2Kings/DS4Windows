@@ -2399,9 +2399,9 @@ namespace DS4Windows
         }
 
         public static void SaveAction(string name, string controls, int mode,
-            string details, bool edit, string extras = "")
+            string details, bool edit, double delayTime = 0.0, string extras = "")
         {
-            m_Config.SaveActionNew(name, controls, mode, details, edit, extras);
+            m_Config.SaveActionNew(name, controls, mode, details, edit, delayTime, extras);
             //m_Config.SaveAction(name, controls, mode, details, edit, extras);
             //m_Config.SaveActions();
             Mapping.actionDone.Clear();
@@ -7945,7 +7945,7 @@ namespace DS4Windows
         {
             bool saved = true;
 
-            string output_path = m_Profile;
+            string output_path = m_Actions;
             string testStr = string.Empty;
             XmlSerializer serializer = new XmlSerializer(typeof(ActionsDTO));
             using (Utf8StringWriter strWriter = new Utf8StringWriter())
@@ -7992,7 +7992,7 @@ namespace DS4Windows
             return saved;
         }
 
-        public void SaveActionNew(string name, string controls, int mode, string details, bool edit, string extras = "")
+        public void SaveActionNew(string name, string controls, int mode, string details, bool edit, double delayTime = 0.0, string extras = "")
         {
             SpecialAction tempAction = null;
 
@@ -8013,17 +8013,17 @@ namespace DS4Windows
                     tempAction = new SpecialAction(name, controls, "Key", details, extras: extras);
                     break;
                 case 5:
-                    tempAction = new SpecialAction(name, controls, "DisconnectBT", details);
+                    tempAction = new SpecialAction(name, controls, "DisconnectBT", details, delayTime);
                     break;
                 case 6:
-                    tempAction = new SpecialAction(name, controls, "BatteryCheck", details);
+                    tempAction = new SpecialAction(name, controls, "BatteryCheck", details, delayTime);
                     break;
                 case 7:
                     tempAction = new SpecialAction(name, controls, "MultiAction", details);
                     break;
                 case 8:
                     tempAction = new SpecialAction(name, controls, "SASteeringWheelEmulationCalibrate",
-                        details);
+                        details, delayTime);
                     break;
                 default:
                     break;
@@ -9770,6 +9770,7 @@ namespace DS4Windows
             else if (type == "DisconnectBT")
             {
                 typeID = ActionTypeId.DisconnectBT;
+                this.details = details;
             }
             else if (type == "BatteryCheck")
             {

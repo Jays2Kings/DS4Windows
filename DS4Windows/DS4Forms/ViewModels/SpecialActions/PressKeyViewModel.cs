@@ -115,7 +115,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels.SpecialActions
 
             Global.SaveAction(action.name, action.controls, 4,
                 $"{value}{(keyType.HasFlag(DS4KeyType.ScanCode) ? " Scan Code" : "")}", edit,
-                !string.IsNullOrEmpty(uaction) ? $"{uaction}\n{action.ucontrols}" : "");
+                extras: !string.IsNullOrEmpty(uaction) ? $"{uaction}\n{action.ucontrols}" : "");
         }
 
         public override bool IsValid(SpecialAction action)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
 using DS4Windows;
@@ -25,17 +26,23 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 switch(action.typeID)
                 {
                     case SpecialAction.ActionTypeId.Macro:
+                        actionSerializer.Name = action.name;
+                        actionSerializer.Trigger = action.controls;
                         actionSerializer.TypeString = action.type;
                         actionSerializer.Details = action.details;
                         actionSerializer.Extras = action.extra;
                         break;
                     case SpecialAction.ActionTypeId.Program:
+                        actionSerializer.Name = action.name;
+                        actionSerializer.Trigger = action.controls;
                         actionSerializer.TypeString = action.type;
                         actionSerializer.Details = action.details;
                         actionSerializer.Arguments = action.extra;
                         actionSerializer.Delay = action.delayTime;
                         break;
                     case SpecialAction.ActionTypeId.Profile:
+                        actionSerializer.Name = action.name;
+                        actionSerializer.Trigger = action.controls;
                         actionSerializer.TypeString = action.type;
                         actionSerializer.Details = action.details;
                         actionSerializer.UnloadTrigger = action.extra;
@@ -43,6 +50,8 @@ namespace DS4WinWPF.DS4Control.DTOXml
 
                     case SpecialAction.ActionTypeId.Key:
                         string[] exts = action.extra.Split('\n');
+                        actionSerializer.Name = action.name;
+                        actionSerializer.Trigger = action.controls;
                         actionSerializer.TypeString = action.type;
                         actionSerializer.Details = action.details;
                         actionSerializer.UnloadStyle = exts[0];
@@ -53,8 +62,18 @@ namespace DS4WinWPF.DS4Control.DTOXml
                     case SpecialAction.ActionTypeId.BatteryCheck:
                     case SpecialAction.ActionTypeId.MultiAction:
                     case SpecialAction.ActionTypeId.SASteeringWheelEmulationCalibrate:
+                        actionSerializer.Name = action.name;
+                        actionSerializer.Trigger = action.controls;
                         actionSerializer.TypeString = action.type;
-                        actionSerializer.Details = action.details;
+                        if (action.typeID == SpecialAction.ActionTypeId.BatteryCheck)
+                        {
+                            actionSerializer.Details = string.Join("|", action.details.Split(","));
+                        }
+                        else
+                        {
+                            actionSerializer.Details = action.details;
+                        }
+
                         break;
                     case SpecialAction.ActionTypeId.None:
                     default:
@@ -100,10 +119,33 @@ namespace DS4WinWPF.DS4Control.DTOXml
 
                         break;
                     case "DisconnectBT":
+                        {
+                            double delayTime = actionSerializer.Delay;
+                            string details = actionSerializer.Details;
+                            double.TryParse(details, System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out delayTime);
+
+                            tempAction = new SpecialAction(actionSerializer.Name,
+                                actionSerializer.Trigger, actionSerializer.TypeString,
+                                details, delayTime);
+                        }
+
+                        break;
                     case "BatteryCheck":
-                        tempAction = new SpecialAction(actionSerializer.Name,
-                            actionSerializer.Trigger, actionSerializer.TypeString,
-                            "", actionSerializer.Delay);
+                        {
+                            double delayTime = actionSerializer.Delay;
+                            string details = actionSerializer.Details;
+                            if (double.TryParse(details.Split('|')[0], System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out delayTime))
+                            {
+                            }
+                            else if (double.TryParse(details.Split(',')[0], System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out delayTime))
+                            {
+                            }
+
+                            tempAction = new SpecialAction(actionSerializer.Name,
+                                actionSerializer.Trigger, actionSerializer.TypeString,
+                                details, delayTime);
+                        }
+
                         break;
 
                     case "MultiAction":

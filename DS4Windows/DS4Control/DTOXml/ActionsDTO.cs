@@ -49,13 +49,17 @@ namespace DS4WinWPF.DS4Control.DTOXml
                         break;
 
                     case SpecialAction.ActionTypeId.Key:
-                        string[] exts = action.extra.Split('\n');
                         actionSerializer.Name = action.name;
                         actionSerializer.Trigger = action.controls;
                         actionSerializer.TypeString = action.type;
                         actionSerializer.Details = action.details;
-                        actionSerializer.UnloadStyle = exts[0];
-                        actionSerializer.UnloadTrigger = exts[1];
+                        if (!string.IsNullOrEmpty(action.extra))
+                        {
+                            string[] exts = action.extra.Split('\n');
+                            actionSerializer.UnloadStyle = exts[0];
+                            actionSerializer.UnloadTrigger = exts[1];
+                        }
+
                         break;
 
                     case SpecialAction.ActionTypeId.DisconnectBT:

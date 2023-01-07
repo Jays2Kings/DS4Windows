@@ -9751,6 +9751,8 @@ namespace DS4Windows
             else if (type == "Macro")
             {
                 typeID = ActionTypeId.Macro;
+                this.details = details;
+
                 string[] macs = details.Split('/');
                 foreach (string s in macs)
                 {

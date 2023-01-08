@@ -1759,15 +1759,18 @@ namespace DS4WinWPF.DS4Control.DTOXml
                         }
 
                         shiftButtonSerializer.CustomMapButtons.Add(dcs.control, dcs.action.actionBtn);
+                        shiftButtonSerializer.Trigger = dcs.shiftTrigger;
                     }
                     else if (dcs.shiftActionType == DS4ControlSettings.ActionType.Key)
                     {
                         shiftKeySerializer.CustomMapKeys.Add(dcs.control, (ushort)dcs.action.actionKey);
+                        shiftKeySerializer.Trigger = dcs.shiftTrigger;
                     }
                     else if (dcs.shiftActionType == DS4ControlSettings.ActionType.Macro)
                     {
                         shiftMacroSerializer.CustomMapMacros.Add(dcs.control,
                             string.Join("/", dcs.action.actionMacro));
+                        shiftMacroSerializer.Trigger = dcs.shiftTrigger;
                     }
                 }
 
@@ -2326,7 +2329,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
 
             if (ShiftControl != null)
             {
-                if (ShiftControl.Button != null && ShiftControl.Button.CustomMapButtons.Count > 0)
+                if (ShiftControl.Button != null && ShiftControl.Button.CustomMapButtons.Count > 0 && ShiftControl.Button.Trigger > 0)
                 {
                     foreach (KeyValuePair<DS4Controls, X360Controls> pair in ShiftControl.Button.CustomMapButtons)
                     {
@@ -2335,7 +2338,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
                     }
                 }
 
-                if (ShiftControl.Key != null && ShiftControl.Key.CustomMapKeys.Count > 0)
+                if (ShiftControl.Key != null && ShiftControl.Key.CustomMapKeys.Count > 0 && ShiftControl.Key.Trigger > 0)
                 {
                     foreach (KeyValuePair<DS4Controls, ushort> pair in ShiftControl.Key.CustomMapKeys)
                     {
@@ -2344,7 +2347,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
                     }
                 }
 
-                if (ShiftControl.Macro != null && ShiftControl.Macro.CustomMapMacros.Count > 0)
+                if (ShiftControl.Macro != null && ShiftControl.Macro.CustomMapMacros.Count > 0 && ShiftControl.Macro.Trigger > 0)
                 {
                     foreach (KeyValuePair<DS4Controls, string> pair in ShiftControl.Macro.CustomMapMacros)
                     {

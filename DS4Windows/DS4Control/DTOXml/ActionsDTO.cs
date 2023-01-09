@@ -105,10 +105,15 @@ namespace DS4WinWPF.DS4Control.DTOXml
                             actionSerializer.Details, 0, actionSerializer.Extras);
                         break;
                     case "Program":
-                        tempAction = new SpecialAction(actionSerializer.Name,
-                            actionSerializer.Trigger, actionSerializer.TypeString,
-                            actionSerializer.Details, actionSerializer.Delay,
-                            actionSerializer.Extras);
+                        {
+                            string extras = actionSerializer.Arguments;
+                            tempAction = new SpecialAction(actionSerializer.Name,
+                                actionSerializer.Trigger, actionSerializer.TypeString,
+                                actionSerializer.Details, actionSerializer.Delay,
+                                extras
+                            );
+                        }
+
                         break;
                     case "Profile":
                         tempAction = new SpecialAction(actionSerializer.Name,

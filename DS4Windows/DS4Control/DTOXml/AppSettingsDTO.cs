@@ -356,7 +356,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public bool FlashWhenLate
         {
             get; private set;
-        }
+        } = BackingStore.DEFAULT_FLASH_WHEN_LATE;
 
         [XmlElement("FlashWhenLate")]
         public string FlashWhenLateString
@@ -374,7 +374,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public int FlashWhenLateAt
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_FLASH_WHEN_LATE_AT;
 
         [XmlIgnore]
         public TrayIconChoice AppIcon
@@ -436,7 +436,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public int OSCServerPort
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_OSC_SERV_PORT;
 
         [XmlIgnore]
         public bool UseOSCSender
@@ -460,12 +460,12 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public int OSCSenderPort
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_OSC_SEND_PORT;
 
         public string OSCSenderAddress
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_OSC_SEND_ADDRESS;
 
         [XmlIgnore]
         public bool UseUDPServer
@@ -489,12 +489,12 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public int UDPServerPort
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_UDP_SERV_PORT;
 
         public string UDPServerListenAddress
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_UDP_SERV_LISTEN_ADDR;
 
         public UDPSrvSmoothingOptionsGroup UDPServerSmoothingOptions
         {

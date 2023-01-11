@@ -548,7 +548,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public string AbsRegionDisplay
         {
             get; set;
-        }
+        } = string.Empty;
 
         public InputDeviceOptions DeviceOptions
         {

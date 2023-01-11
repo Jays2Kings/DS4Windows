@@ -865,7 +865,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
             destination.useCustomSteamFolder = UseCustomSteamFolder;
             destination.customSteamFolder = CustomSteamFolder;
             destination.autoProfileRevertDefaultProfile = AutoProfileRevertDefaultProfile;
-            destination.absDisplayEDID = AbsRegionDisplay;
+            if (!string.IsNullOrEmpty(AbsRegionDisplay))
+            {
+                destination.absDisplayEDID = AbsRegionDisplay;
+            }
 
             destination.deviceOptions.DS4DeviceOpts.Enabled = DeviceOptions.DS4SupportSettings.Enabled;
             destination.deviceOptions.DualSenseOpts.Enabled = DeviceOptions.DualSenseSupportSettings.Enabled;

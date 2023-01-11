@@ -523,13 +523,13 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public string CustomSteamFolder
         {
             get; set;
-        }
+        } = string.Empty;
 
         [XmlIgnore]
         public bool AutoProfileRevertDefaultProfile
         {
             get; private set;
-        }
+        } = BackingStore.DEFAULT_AUTO_PROFILE_REVERT_DEFAULT_PROFILE;
 
         [XmlElement("AutoProfileRevertDefaultProfile")]
         public string AutoProfileRevertDefaultProfileString
@@ -845,11 +845,19 @@ namespace DS4WinWPF.DS4Control.DTOXml
             destination.oscServPort = OSCServerPort;
             destination.useOSCSend = UseOSCSender;
             destination.oscSendPort = OSCSenderPort;
-            destination.oscSendAddress = OSCSenderAddress;
+            if (!string.IsNullOrEmpty(OSCSenderAddress))
+            {
+                destination.oscSendAddress = OSCSenderAddress;
+            }
+
             destination.useUDPServ = UseUDPServer;
             destination.udpServPort = UDPServerPort;
 
-            destination.udpServListenAddress = UDPServerListenAddress;
+            if (!string.IsNullOrEmpty(UDPServerListenAddress))
+            {
+                destination.udpServListenAddress = UDPServerListenAddress;
+            }
+
             destination.useUdpSmoothing = UDPServerSmoothingOptions.UseSmoothing;
             destination.udpSmoothingMincutoff = UDPServerSmoothingOptions.UdpSmoothMinCutoff;
             destination.udpSmoothingBeta = UDPServerSmoothingOptions.UdpSmoothBeta;

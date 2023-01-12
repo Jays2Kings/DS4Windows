@@ -1704,7 +1704,17 @@ namespace DS4WinWPF.DS4Control.DTOXml
                         if (dcs.action.actionBtn == X360Controls.Unbound &&
                             !dcs.keyType.HasFlag(DS4KeyType.Unbound))
                         {
-                            keyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, DS4KeyType.Unbound);
+                            DS4KeyType tempFlags = DS4KeyType.Unbound;
+                            if (keyTypeSerializer.CustomMapKeyTypes.ContainsKey(dcs.control))
+                            {
+                                tempFlags = keyTypeSerializer.CustomMapKeyTypes[dcs.control];
+                                tempFlags |= DS4KeyType.Unbound;
+                                keyTypeSerializer.CustomMapKeyTypes[dcs.control] = tempFlags;
+                            }
+                            else
+                            {
+                                keyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, tempFlags);
+                            }
                         }
 
                         buttonSerializer.CustomMapButtons.Add(dcs.control, dcs.action.actionBtn);
@@ -1755,22 +1765,32 @@ namespace DS4WinWPF.DS4Control.DTOXml
                         if (dcs.shiftAction.actionBtn == X360Controls.Unbound &&
                             !dcs.shiftKeyType.HasFlag(DS4KeyType.Unbound))
                         {
-                            shiftKeyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, DS4KeyType.Unbound);
+                            DS4KeyType tempFlags = DS4KeyType.Unbound;
+                            if (shiftKeyTypeSerializer.CustomMapKeyTypes.ContainsKey(dcs.control))
+                            {
+                                tempFlags = shiftKeyTypeSerializer.CustomMapKeyTypes[dcs.control];
+                                tempFlags |= DS4KeyType.Unbound;
+                                shiftKeyTypeSerializer.CustomMapKeyTypes[dcs.control] = tempFlags;
+                            }
+                            else
+                            {
+                                shiftKeyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, tempFlags);
+                            }
                         }
 
-                        shiftButtonSerializer.CustomMapButtons.Add(dcs.control, dcs.action.actionBtn);
-                        shiftButtonSerializer.Trigger = dcs.shiftTrigger;
+                        shiftButtonSerializer.CustomMapButtons.Add(dcs.control, dcs.shiftAction.actionBtn);
+                        shiftButtonSerializer.ShiftTriggers.TryAdd(dcs.control, dcs.shiftTrigger);
                     }
                     else if (dcs.shiftActionType == DS4ControlSettings.ActionType.Key)
                     {
-                        shiftKeySerializer.CustomMapKeys.Add(dcs.control, (ushort)dcs.action.actionKey);
-                        shiftKeySerializer.Trigger = dcs.shiftTrigger;
+                        shiftKeySerializer.CustomMapKeys.Add(dcs.control, (ushort)dcs.shiftAction.actionKey);
+                        shiftKeySerializer.ShiftTriggers.TryAdd(dcs.control, dcs.shiftTrigger);
                     }
                     else if (dcs.shiftActionType == DS4ControlSettings.ActionType.Macro)
                     {
                         shiftMacroSerializer.CustomMapMacros.Add(dcs.control,
-                            string.Join("/", dcs.action.actionMacro));
-                        shiftMacroSerializer.Trigger = dcs.shiftTrigger;
+                            string.Join("/", dcs.shiftAction.actionMacro));
+                        shiftMacroSerializer.ShiftTriggers.TryAdd(dcs.control, dcs.shiftTrigger);
                     }
                 }
 
@@ -2329,25 +2349,33 @@ namespace DS4WinWPF.DS4Control.DTOXml
 
             if (ShiftControl != null)
             {
-                if (ShiftControl.Button != null && ShiftControl.Button.CustomMapButtons.Count > 0 && ShiftControl.Button.Trigger > 0)
+                if (ShiftControl.Button != null && ShiftControl.Button.CustomMapButtons.Count > 0)
                 {
                     foreach (KeyValuePair<DS4Controls, X360Controls> pair in ShiftControl.Button.CustomMapButtons)
                     {
-                        destination.UpdateDS4CSetting(deviceIndex,
-                            pair.Key.ToString(), true, pair.Value, "", DS4KeyType.None, ShiftControl.Button.Trigger);
+                        if (ShiftControl.Button.ShiftTriggers.TryGetValue(pair.Key, out int shiftT) &&
+                            shiftT > 0)
+                        {
+                            destination.UpdateDS4CSetting(deviceIndex,
+                                pair.Key.ToString(), true, pair.Value, "", DS4KeyType.None, shiftT);
+                        }
                     }
                 }
 
-                if (ShiftControl.Key != null && ShiftControl.Key.CustomMapKeys.Count > 0 && ShiftControl.Key.Trigger > 0)
+                if (ShiftControl.Key != null && ShiftControl.Key.CustomMapKeys.Count > 0)
                 {
                     foreach (KeyValuePair<DS4Controls, ushort> pair in ShiftControl.Key.CustomMapKeys)
                     {
-                        destination.UpdateDS4CSetting(deviceIndex,
-                            pair.Key.ToString(), true, pair.Value, "", DS4KeyType.None, ShiftControl.Key.Trigger);
+                        if (ShiftControl.Key.ShiftTriggers.TryGetValue(pair.Key, out int shiftT) &&
+                            shiftT > 0)
+                        {
+                            destination.UpdateDS4CSetting(deviceIndex,
+                                pair.Key.ToString(), true, pair.Value, "", DS4KeyType.None, shiftT);
+                        }
                     }
                 }
 
-                if (ShiftControl.Macro != null && ShiftControl.Macro.CustomMapMacros.Count > 0 && ShiftControl.Macro.Trigger > 0)
+                if (ShiftControl.Macro != null && ShiftControl.Macro.CustomMapMacros.Count > 0)
                 {
                     foreach (KeyValuePair<DS4Controls, string> pair in ShiftControl.Macro.CustomMapMacros)
                     {
@@ -2367,8 +2395,12 @@ namespace DS4WinWPF.DS4Control.DTOXml
                         for (int i = 0, keylen = keys.Length; i < keylen; i++)
                             keys[i] = int.Parse(skeys[i]);
 
-                        destination.UpdateDS4CSetting(deviceIndex,
-                            pair.Key.ToString(), true, keys, "", DS4KeyType.None, ShiftControl.Macro.Trigger);
+                        if (ShiftControl.Macro.ShiftTriggers.TryGetValue(pair.Key, out int shiftT) &&
+                            shiftT > 0)
+                        {
+                            destination.UpdateDS4CSetting(deviceIndex,
+                                pair.Key.ToString(), true, keys, "", DS4KeyType.None, shiftT);
+                        }
                     }
                 }
 
@@ -3246,17 +3278,21 @@ namespace DS4WinWPF.DS4Control.DTOXml
 
     public class DS4ControlAssignmentSerializerBase
     {
-        protected int _trigger = -1;
-        [XmlAttribute("Trigger")]
-        public int Trigger
-        {
-            get => _trigger;
-            set => _trigger = value;
-        }
-        public bool ShouldSerializeTrigger()
-        {
-            return _trigger != -1;
-        }
+        protected Dictionary<DS4Controls, int> shiftTriggers =
+            new Dictionary<DS4Controls, int>();
+        public Dictionary<DS4Controls, int> ShiftTriggers => shiftTriggers;
+
+        //protected int _trigger = -1;
+        //[XmlAttribute("Trigger")]
+        //public int Trigger
+        //{
+        //    get => _trigger;
+        //    set => _trigger = value;
+        //}
+        //public bool ShouldSerializeTrigger()
+        //{
+        //    return _trigger != -1;
+        //}
     }
 
     public class DS4ControlButtonAssignmentSerializer : DS4ControlAssignmentSerializerBase, IXmlSerializable
@@ -3282,14 +3318,14 @@ namespace DS4WinWPF.DS4Control.DTOXml
             {
                 foreach (XmlNode item in parentNode.ChildNodes)
                 {
-                    if (item.Attributes["Trigger"] != null)
-                    {
-                        int.TryParse(item.Attributes["Trigger"].Value, out int shiftT);
-                        _trigger = shiftT;
-                    }
-
                     if (Enum.TryParse(item.Name, out DS4Controls currentControl))
                     {
+                        if (item.Attributes["Trigger"] != null)
+                        {
+                            int.TryParse(item.Attributes["Trigger"].Value, out int shiftT);
+                            shiftTriggers.TryAdd(currentControl, shiftT);
+                        }
+
                         //UpdateDS4CSetting(device, item.Name, false, getX360ControlsByName(item.InnerText), "", DS4KeyType.None, 0);
                         customMapButtons.Add(Global.getDS4ControlsByName(item.Name),
                             Global.getX360ControlsByName(item.InnerText));
@@ -3303,9 +3339,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
             foreach(KeyValuePair<DS4Controls, X360Controls> pair in customMapButtons)
             {
                 writer.WriteStartElement(pair.Key.ToString());
-                if (_trigger != -1)
+                if (shiftTriggers.TryGetValue(pair.Key, out int shiftTrigger) &&
+                    shiftTrigger > 0)
                 {
-                    writer.WriteAttributeString("Trigger", _trigger.ToString());
+                    writer.WriteAttributeString("Trigger", shiftTrigger.ToString());
                 }
 
                 writer.WriteValue(Global.getX360ControlString(pair.Value));
@@ -3337,15 +3374,15 @@ namespace DS4WinWPF.DS4Control.DTOXml
             {
                 foreach (XmlNode item in parentNode.ChildNodes)
                 {
-                    if (item.Attributes["Trigger"] != null)
-                    {
-                        int.TryParse(item.Attributes["Trigger"].Value, out int shiftT);
-                        _trigger = shiftT;
-                    }
-
                     if (ushort.TryParse(item.InnerText, out ushort wvk) &&
                         Enum.TryParse(item.Name, out DS4Controls currentControl))
                     {
+                        if (item.Attributes["Trigger"] != null)
+                        {
+                            int.TryParse(item.Attributes["Trigger"].Value, out int shiftT);
+                            shiftTriggers.TryAdd(currentControl, shiftT);
+                        }
+
                         //UpdateDS4CSetting(device, item.Name, false, wvk, "", DS4KeyType.None, 0);
                         customMapKeys.Add(Global.getDS4ControlsByName(item.Name), wvk);
                     }
@@ -3358,9 +3395,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
             foreach (KeyValuePair<DS4Controls, UInt16> pair in customMapKeys)
             {
                 writer.WriteStartElement(pair.Key.ToString());
-                if (_trigger != -1)
+                if (shiftTriggers.TryGetValue(pair.Key, out int shiftTrigger) &&
+                    shiftTrigger > 0)
                 {
-                    writer.WriteAttributeString("Trigger", _trigger.ToString());
+                    writer.WriteAttributeString("Trigger", shiftTrigger.ToString());
                 }
 
                 writer.WriteValue(pair.Value.ToString());
@@ -3392,13 +3430,17 @@ namespace DS4WinWPF.DS4Control.DTOXml
             {
                 foreach (XmlNode item in parentNode.ChildNodes)
                 {
-                    if (item.Attributes["Trigger"] != null)
+                    if (Enum.TryParse(item.Name, out DS4Controls currentControl))
                     {
-                        int.TryParse(item.Attributes["Trigger"].Value, out int shiftT);
-                        _trigger = shiftT;
+                        if (item.Attributes["Trigger"] != null)
+                        {
+                            int.TryParse(item.Attributes["Trigger"].Value, out int shiftT);
+                            shiftTriggers.TryAdd(currentControl, shiftT);
+                        }
+
+                        customMapMacros.Add(Global.getDS4ControlsByName(item.Name), item.InnerText);
                     }
 
-                    customMapMacros.Add(Global.getDS4ControlsByName(item.Name), item.InnerText);
                     //string[] skeys;
                     //int[] keys;
                     //if (!string.IsNullOrEmpty(item.InnerText))
@@ -3428,9 +3470,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
             foreach (KeyValuePair<DS4Controls, string> pair in customMapMacros)
             {
                 writer.WriteStartElement(pair.Key.ToString());
-                if (_trigger != -1)
+                if (shiftTriggers.TryGetValue(pair.Key, out int shiftTrigger) &&
+                    shiftTrigger > 0)
                 {
-                    writer.WriteAttributeString("Trigger", _trigger.ToString());
+                    writer.WriteAttributeString("Trigger", shiftTrigger.ToString());
                 }
 
                 writer.WriteValue(pair.Value.ToString());
@@ -3475,15 +3518,16 @@ namespace DS4WinWPF.DS4Control.DTOXml
                             }
                         }
 
-                        if (item.Attributes["Trigger"] != null)
-                        {
-                            int.TryParse(item.Attributes["Trigger"].Value, out int shiftT);
-                            _trigger = shiftT;
-                        }
-
                         if (keyType != DS4KeyType.None &&
                             Enum.TryParse(item.Name, out DS4Controls currentControl))
                         {
+
+                            if (item.Attributes["Trigger"] != null)
+                            {
+                                int.TryParse(item.Attributes["Trigger"].Value, out int shiftT);
+                                shiftTriggers.TryAdd(currentControl, shiftT);
+                            }
+
                             //UpdateDS4CKeyType(device, item.Name, false, keyType);
                             customMapKeyTypes.Add(Global.getDS4ControlsByName(item.Name), keyType);
                         }
@@ -3511,9 +3555,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 if (!string.IsNullOrEmpty(tempKey))
                 {
                     writer.WriteStartElement(pair.Key.ToString());
-                    if (_trigger != -1)
+                    if (shiftTriggers.TryGetValue(pair.Key, out int shiftTrigger) &&
+                        shiftTrigger > 0)
                     {
-                        writer.WriteAttributeString("Trigger", _trigger.ToString());
+                        writer.WriteAttributeString("Trigger", shiftTrigger.ToString());
                     }
 
                     writer.WriteValue(tempKey);
@@ -3546,15 +3591,15 @@ namespace DS4WinWPF.DS4Control.DTOXml
             {
                 foreach (XmlNode item in parentNode.ChildNodes)
                 {
-                    if (item.Attributes["Trigger"] != null)
-                    {
-                        int.TryParse(item.Attributes["Trigger"].Value, out int shiftT);
-                        _trigger = shiftT;
-                    }
-
                     if (item.InnerText != string.Empty &&
                         Enum.TryParse(item.Name, out DS4Controls currentControl))
                     {
+                        if (item.Attributes["Trigger"] != null)
+                        {
+                            int.TryParse(item.Attributes["Trigger"].Value, out int shiftT);
+                            shiftTriggers.TryAdd(currentControl, shiftT);
+                        }
+
                         //UpdateDS4CExtra(device, item.Name, false, item.InnerText);
                         customMapExtras.Add(Global.getDS4ControlsByName(item.Name), item.InnerText);
                     }
@@ -3567,9 +3612,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
             foreach (KeyValuePair<DS4Controls, string> pair in customMapExtras)
             {
                 writer.WriteStartElement(pair.Key.ToString());
-                if (_trigger != -1)
+                if (shiftTriggers.TryGetValue(pair.Key, out int shiftTrigger) &&
+                    shiftTrigger > 0)
                 {
-                    writer.WriteAttributeString("Trigger", _trigger.ToString());
+                    writer.WriteAttributeString("Trigger", shiftTrigger.ToString());
                 }
 
                 writer.WriteValue(pair.Value.ToString());

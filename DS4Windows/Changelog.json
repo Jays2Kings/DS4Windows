@@ -1,9 +1,23 @@
 {
-  "latest_version": "3.2.5",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 5},
-  "updated_at": "2023-01-12T05:44:27+0000",
+  "latest_version": "3.2.6",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 6},
+  "updated_at": "2023-01-13T05:36:12+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.2.6",
+      "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 6},
+      "base_header": "Version 3.2.6",
+      "release_date": "2023-01-13T05:36:12+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.2.6",
+          "log_text": ["* Fixed key type and trigger assignments for shift actions. Fixed bindings for shift button and macro actions"],
+          "updated_at": "2023-01-13T05:36:12+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.2.5",
       "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 5},

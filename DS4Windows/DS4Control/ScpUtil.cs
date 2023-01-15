@@ -9725,11 +9725,23 @@ namespace DS4Windows
                     extra = extras;
                     string[] exts = extras.Split('\n');
                     pressRelease = exts[0] == "Release";
+                    HashSet<string> knownUnloadStyles = new HashSet<string>()
+                    {
+                        "Press", "Release",
+                    };
+
+                    if (!string.IsNullOrEmpty(exts[0]) &&
+                        knownUnloadStyles.Contains(exts[0]))
+                    {
+                        keyType |= DS4KeyType.Toggle;
+                    }
+
                     this.ucontrols = exts[1];
                     string[] uctrls = exts[1].Split('/');
                     foreach (string s in uctrls)
                         uTrigger.Add(getDS4ControlsByName(s));
                 }
+
                 if (details.Contains("Scan Code"))
                     keyType |= DS4KeyType.ScanCode;
             }

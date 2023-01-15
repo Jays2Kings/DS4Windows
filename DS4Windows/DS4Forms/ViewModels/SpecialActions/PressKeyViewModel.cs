@@ -55,11 +55,6 @@ namespace DS4WinWPF.DS4Forms.ViewModels.SpecialActions
         public void LoadAction(SpecialAction action)
         {
             keyType = action.keyType;
-            if (!string.IsNullOrEmpty(action.ucontrols))
-            {
-                keyType |= DS4KeyType.Toggle;
-            }
-
             int.TryParse(action.details, out value);
 
             if (action.pressRelease)

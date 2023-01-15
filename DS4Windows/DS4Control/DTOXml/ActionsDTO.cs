@@ -116,15 +116,21 @@ namespace DS4WinWPF.DS4Control.DTOXml
 
                         break;
                     case "Profile":
-                        tempAction = new SpecialAction(actionSerializer.Name,
-                            actionSerializer.Trigger, actionSerializer.TypeString,
-                            actionSerializer.Details, 0, actionSerializer.Extras);
+                        {
+                            string extras = actionSerializer.UnloadTrigger;
+                            tempAction = new SpecialAction(actionSerializer.Name,
+                                actionSerializer.Trigger, actionSerializer.TypeString,
+                                actionSerializer.Details, 0, extras);
+                        }
+
                         break;
                     case "Key":
-                        string tempExtras = $"{actionSerializer.UnloadStyle}\n{actionSerializer.UnloadTrigger}";
-                        tempAction = new SpecialAction(actionSerializer.Name,
-                            actionSerializer.Trigger, actionSerializer.TypeString,
-                            actionSerializer.Details, 0, tempExtras);
+                        {
+                            string tempExtras = $"{actionSerializer.UnloadStyle}\n{actionSerializer.UnloadTrigger}";
+                            tempAction = new SpecialAction(actionSerializer.Name,
+                                actionSerializer.Trigger, actionSerializer.TypeString,
+                                actionSerializer.Details, 0, tempExtras);
+                        }
 
                         break;
                     case "DisconnectBT":

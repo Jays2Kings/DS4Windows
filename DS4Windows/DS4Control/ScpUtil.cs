@@ -9722,6 +9722,7 @@ namespace DS4Windows
                 this.details = details.Split(' ')[0];
                 if (!string.IsNullOrEmpty(extras))
                 {
+                    extra = extras;
                     string[] exts = extras.Split('\n');
                     pressRelease = exts[0] == "Release";
                     this.ucontrols = exts[1];

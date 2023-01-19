@@ -13,7 +13,7 @@
         {
           "code": "en",
           "header": "Version 3.2.7",
-          "log_text": ["Fixed loading of Unload Trigger for Load Profile special action",
+          "log_text": ["* Fixed loading of Unload Trigger for Load Profile special action",
             "* Fixed model for Press Key special action regarding Toggle status",
             "* Changed Press Key special action keyType to reflect Toggle status. Was broken before version 3.2"],
           "updated_at": "2023-01-19T05:18:21+0000"

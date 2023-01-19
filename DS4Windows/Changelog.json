@@ -1,9 +1,25 @@
 {
-  "latest_version": "3.2.6",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 6},
-  "updated_at": "2023-01-13T05:36:12+0000",
+  "latest_version": "3.2.7",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 7},
+  "updated_at": "2023-01-19T05:18:21+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.2.7",
+      "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 7},
+      "base_header": "Version 3.2.7",
+      "release_date": "2023-01-19T05:18:21+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.2.7",
+          "log_text": ["Fixed loading of Unload Trigger for Load Profile special action",
+            "* Fixed model for Press Key special action regarding Toggle status",
+            "* Changed Press Key special action keyType to reflect Toggle status. Was broken before version 3.2"],
+          "updated_at": "2023-01-19T05:18:21+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.2.6",
       "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 6},

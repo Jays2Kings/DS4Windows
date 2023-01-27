@@ -106,7 +106,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     break;
                 case SpecialAction.ActionTypeId.Key:
                     displayName = KeyInterop.KeyFromVirtualKey(int.Parse(action.details)).ToString() +
-                         (action.uTrigger.Count > 0 ? " (Toggle)" : "");
+                         (action.keyType.HasFlag(DS4KeyType.Toggle) ? " (Toggle)" : "");
                     break;
                 case SpecialAction.ActionTypeId.BatteryCheck:
                     displayName = Properties.Resources.CheckBattery;

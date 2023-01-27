@@ -126,7 +126,13 @@ namespace DS4WinWPF.DS4Control.DTOXml
                         break;
                     case "Key":
                         {
-                            string tempExtras = $"{actionSerializer.UnloadStyle}\n{actionSerializer.UnloadTrigger}";
+                            string tempExtras = string.Empty;
+                            if (!string.IsNullOrEmpty(actionSerializer.UnloadStyle) ||
+                                !string.IsNullOrEmpty(actionSerializer.UnloadTrigger))
+                            {
+                                tempExtras = $"{actionSerializer.UnloadStyle}\n{actionSerializer.UnloadTrigger}";
+                            }
+
                             tempAction = new SpecialAction(actionSerializer.Name,
                                 actionSerializer.Trigger, actionSerializer.TypeString,
                                 actionSerializer.Details, 0, tempExtras);

@@ -9736,10 +9736,13 @@ namespace DS4Windows
                         keyType |= DS4KeyType.Toggle;
                     }
 
-                    this.ucontrols = exts[1];
-                    string[] uctrls = exts[1].Split('/');
-                    foreach (string s in uctrls)
-                        uTrigger.Add(getDS4ControlsByName(s));
+                    if (!string.IsNullOrEmpty(exts[1]))
+                    {
+                        this.ucontrols = exts[1];
+                        string[] uctrls = exts[1].Split('/');
+                        foreach (string s in uctrls)
+                            uTrigger.Add(getDS4ControlsByName(s));
+                    }
                 }
 
                 if (details.Contains("Scan Code"))

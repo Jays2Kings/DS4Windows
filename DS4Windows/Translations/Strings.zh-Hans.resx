@@ -130,7 +130,7 @@
     <value>添加程序</value>
   </data>
   <data name="AddStartMenuPrograms" xml:space="preserve">
-    <value>添加开始菜单程序</value>
+    <value添加开始菜单中的所有程序</value>
   </data>
   <data name="AddSteamGames" xml:space="preserve">
     <value>添加Steam游戏</value>
@@ -169,28 +169,28 @@
     <value>颜色</value>
   </data>
   <data name="Controller1Text" xml:space="preserve">
-    <value>手柄1</value>
+    <value>手柄 1</value>
   </data>
   <data name="Controller2Text" xml:space="preserve">
-    <value>手柄2</value>
+    <value>手柄 2</value>
   </data>
   <data name="Controller3Text" xml:space="preserve">
-    <value>手柄3</value>
+    <value>手柄 3</value>
   </data>
   <data name="Controller4Text" xml:space="preserve">
-    <value>手柄4</value>
+    <value>手柄 4</value>
   </data>
   <data name="Controllers" xml:space="preserve">
-    <value>手柄</value>
+    <value>Controllers</value>
   </data>
   <data name="ControlPanel" xml:space="preserve">
-    <value>控制面板</value>
+    <value>手柄</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>删除</value>
   </data>
   <data name="DriverSetup" xml:space="preserve">
-    <value>驱动安装</value>
+    <value>手柄/驱动安装</value>
   </data>
   <data name="Duplicate" xml:space="preserve">
     <value>复制</value>
@@ -208,7 +208,7 @@
     <value>全部</value>
   </data>
   <data name="Gyro" xml:space="preserve">
-    <value>陀螺仪</value>
+    <value>体感</value>
   </data>
   <data name="HideUnchecked" xml:space="preserve">
     <value>隐藏未选中</value>
@@ -298,10 +298,10 @@
     <value>滑动</value>
   </data>
   <data name="TouchTap" xml:space="preserve">
-    <value>轻触</value>
+    <value>滑动</value>
   </data>
   <data name="Trigger" xml:space="preserve">
-    <value>触发</value>
+    <value>滑动</value>
   </data>
   <data name="WarningsOnly" xml:space="preserve">
     <value>仅警告</value>
@@ -325,7 +325,7 @@
     <value>进程路径. ^ABC = 匹配字符串头 (^) | ABC$ = 匹配字符串尾 ($) | *ABC =包含字符串 (*)</value>
   </data>
   <data name="AutoProfTitleTip" xml:space="preserve">
-    <value>窗口标题. ^ABC = 匹配字符串头 (^) | ABC$ = 匹配字符串尾 ($) | *ABC =包含字符串 (*)</value>
+    <value>>窗口标题. ^ABC = 匹配字符串头 (^) | ABC$ = 匹配字符串尾 ($) | *ABC =包含字符串 (*)</value>
   </data>
   <data name="GamepadTest" xml:space="preserve">
     <value>手柄测试(GamepadTest)</value>
@@ -335,63 +335,63 @@
   </data>
   <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
     <value>定期向DS4发送灯条和振动数据。若手柄不支持接收该数据则取消选中。设定变更在手柄连接时生效</value>
-    <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
+    <comment>若要在 Visual Studio 资源编辑器中换行，请按下 Shift+Enter</comment>
   </data>
   <data name="Apply" xml:space="preserve">
-    <value>Apply</value>
+    <value>应用</value>
   </data>
   <data name="HidNinja" xml:space="preserve">
     <value>HidNinja</value>
   </data>
   <data name="CustomExeName" xml:space="preserve">
-    <value>Custom Exe Name</value>
+    <value>自定义可执行文件名称</value>
   </data>
   <data name="CustomExeNameInfo" xml:space="preserve">
-    <value>Some games implement a block that causes DS4 input to be ignored if a game detects either DS4Windows.exe or InputMapper.exe running at the time. A workaround to the block is to rename DS4Windows.exe so the check in the game fails. Specifying a custom exe name here allows DS4Updater to automatically update a custom copy of DS4Windows to the desired file name. Make sure to omit the extension.
+    <value>一些游戏如果测到DS4Windows.exe 或 InputMapper.exe 正在运行，则会忽略 DS4 的输入。对于这些游戏，解决方法是将 DS4Windows.exe 重命名，以规避检测。在这样自定义可执行文件的名称，以允许 DS4Updater 自动更新已被重命名的DS4Windows。请不要输入扩展名（即 .exe)。
 
-Example: whyme_DS4Windows</value>
+名称示例: whyme_DS4Windows</value>
   </data>
   <data name="XInputChecker" xml:space="preserve">
-    <value>XInputChecker</value>
+    <value>XInput 检查器</value>
   </data>
   <data name="Controller5Text" xml:space="preserve">
-    <value>Controller 5</value>
+    <value>手柄 5</value>
   </data>
   <data name="Controller6Text" xml:space="preserve">
-    <value>Controller 6</value>
+    <value>手柄 6</value>
   </data>
   <data name="Controller7Text" xml:space="preserve">
-    <value>Controller 7</value>
+    <value>手柄 7</value>
   </data>
   <data name="Controller8Text" xml:space="preserve">
-    <value>Controller 8</value>
+    <value>手柄 8</value>
   </data>
   <data name="GamepadGyroCameraDescription" xml:space="preserve">
-    <value>Maps the controller output to a standard XInput gamepad or DS4 pad. Gyro is mapped to a Mouse-like Joystick.</value>
+    <value>将手柄映射为标准的 Xinput 手柄或 DS4 手柄。体感将被映射为类似鼠标的摇杆(相对值输入摇杆）(Mouse-like Joystick)。</value>
   </data>
   <data name="GamepadGyroCameraName" xml:space="preserve">
-    <value>Gamepad with Mouse-like Joystick</value>
+    <value>含有类鼠标的摇杆(相对值输入摇杆）(Mouse-like Joystick)的手柄</value>
   </data>
   <data name="GamepadPresetDescription" xml:space="preserve">
-    <value>Maps the controller output to a standard gamepad</value>
+    <value>将手柄映射为标准手柄</value>
   </data>
   <data name="GamepadPresetName" xml:space="preserve">
-    <value>Gamepad</value>
+    <value>手柄</value>
   </data>
   <data name="KBMGyroMouseDescription" xml:space="preserve">
-    <value>Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support. Gyro is mapped to a virtual Mouse.</value>
+    <value>将手柄映射为虚拟键盘和鼠标。在游玩无手柄支持的 FPS 游戏时很有用。体感将被映射为虚拟鼠标。</value>
   </data>
   <data name="KBMGyroMouseName" xml:space="preserve">
-    <value>KB+M Controls with Gyro Mouse</value>
+    <value>带有体感控制鼠标虚拟键盘和鼠标</value>
   </data>
   <data name="KBMPresetDescription" xml:space="preserve">
-    <value>Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support.</value>
+    <value>将手柄映射为虚拟键盘和鼠标。在游玩无手柄支持的 FPS 游戏时很有用。</value>
   </data>
   <data name="KBMPresetName" xml:space="preserve">
-    <value>KB+M Controls</value>
+    <value>虚拟键盘和鼠标</value>
   </data>
   <data name="MixedGyroMousePresetDescription" xml:space="preserve">
-    <value>Maps the buttons and axes to a standard gamepad. Maps the Gyro to a virtual mouse</value>
+    <value>将按钮和手柄轴映射为标准手柄。将体感映射为虚拟鼠标</value>
   </data>
   <data name="MixedGyroMousePresetName" xml:space="preserve">
     <value>Gamepad with Gyro Mouse</value>
@@ -434,5 +434,293 @@ Example: whyme_DS4Windows</value>
   </data>
   <data name="RealWorldCalibration" xml:space="preserve">
     <value>Real World Calibration</value>
+  </data>
+  <data name="ViGEmPluginFailure" xml:space="preserve">
+    <value>ViGEm Device Plugin Failed. Likely an internal ViGEmBus problem. Closing connection. If the issue persists, please close DS4Windows and then reboot Windows.</value>
+  </data>
+  <data name="CRC32Fail" xml:space="preserve">
+    <value>Data integrity checks failed for wireless device. Closing device.</value>
+  </data>
+  <data name="FutureNetNotInstalled" xml:space="preserve">
+    <value>.NET 5 Runtime was not detected on your system. Please download and install .NET 5 Runtime to ensure compatibility with future DS4Windows builds. You will be redirected to the .NET 5 Runtime download page upon closing this window.</value>
+  </data>
+  <data name="UpgradeNetCaption" xml:space="preserve">
+    <value>Please update .NET Runtime</value>
+  </data>
+  <data name="HidHide" xml:space="preserve">
+    <value>HidHide</value>
+  </data>
+  <data name="HidHideConfigClient" xml:space="preserve">
+    <value>HidHide Configuration Client</value>
+  </data>
+  <data name="ExclusiveAccess" xml:space="preserve">
+    <value>Exclusive Access</value>
+  </data>
+  <data name="HidGuardianAccess" xml:space="preserve">
+    <value>HidGuardian Access</value>
+  </data>
+  <data name="HidHideAccess" xml:space="preserve">
+    <value>HidHide Access</value>
+  </data>
+  <data name="SharedAccess" xml:space="preserve">
+    <value>Shared Access</value>
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="DisableVirtualController" xml:space="preserve">
+    <value>Disable virtual controller</value>
+  </data>
+  <data name="DisableVirtualControllerTip" xml:space="preserve">
+    <value>Do not spawn/associate virtual controllers for connected controllers using this profile (Applies on profile save)</value>
+  </data>
+  <data name="EmulatedController" xml:space="preserve">
+    <value>Emulated Controller</value>
+  </data>
+  <data name="OutContNotice" xml:space="preserve">
+    <value>Choose the type of output virtual controller (Applies on profile save)</value>
+  </data>
+  <data name="VirtualControllerSettings" xml:space="preserve">
+    <value>Virtual Controller Settings</value>
+  </data>
+  <data name="ChangeOnNewDeviceConn" xml:space="preserve">
+    <value>Changes take effect on new device connection</value>
+  </data>
+  <data name="StickFuzzTooltip" xml:space="preserve">
+    <value>Fuzz specifies the minimum number of units the analog stick moves, in active zone, before the output is registered as changed in the mapper. This setting can be useful for worn sticks that cannot maintain a constant position. The value is expressed in raw stick units.</value>
+  </data>
+  <data name="StickMaxOutputForceTooltip" xml:space="preserve">
+    <value>Always enforce max output setting. Useful for 100% Max Output and confining value to a circular output value</value>
+  </data>
+  <data name="StickMaxOutputTooltip" xml:space="preserve">
+    <value>In some situations, it might be useful to limit the maximum value that is output by the output analog stick. Max Output allows throttling the final output value of the analog stick.</value>
+  </data>
+  <data name="AntiDeadzoneTooltip" xml:space="preserve">
+    <value>An anti-deadzone acts as an offset for use with an axis to denote the minimum output value generated after an axis has left its assigned deadzone. This is mainly meant to help with mapping an axis to the assigned deadzone value used for an axis in a video game. For example, the typical assigned deadzone for XInput LS in a video game is around 8000 (25%). With no anti-deadzone assigned, an axis would have to move past the assigned deadzone in DS4Windows along with the game's assigned axis deadzone.</value>
+  </data>
+  <data name="StickInputCurveTooltip" xml:space="preserve">
+    <value>OLD OBSOLETE SETTING. Attempt to apply a curve based on raw input coordinates before any dead zone info is applied. Wonky</value>
+  </data>
+  <data name="TouchpadMinThresholdTooltip" xml:space="preserve">
+    <value>Minimum calculated output travel before a Mouse event is sent to the system</value>
+  </data>
+  <data name="TouchpadRotationTooltip" xml:space="preserve">
+    <value>Adjusts a touchpad swipe by a given rotation angle. Useful when a normal touchpad swipe is not a straight line across. Values allows range from -180 to 180. Default is 0.</value>
+  </data>
+  <data name="TouchpadSlideTooltip" xml:space="preserve">
+    <value>Sensitivity used to engage a multi-touch Mouse Wheel Scroll action</value>
+  </data>
+  <data name="TouchpadTapTooltip" xml:space="preserve">
+    <value>Activate Mouse Left click with a Touchpad Tap. Max time interval is set at (value * 2) ms.</value>
+  </data>
+  <data name="TouchpadTrackballEnableTooltip" xml:space="preserve">
+    <value>Adds momentum to a Touchpad swipe once a finger is lifted. Adds extra Mouse cursor travel than would be possible with the confined space on the Touchpad</value>
+  </data>
+  <data name="TouchpadTrackballFrictionTooltip" xml:space="preserve">
+    <value>Add friction to virtual Trackball. Decreased friction will increase final mouse cursor travel time</value>
+  </data>
+  <data name="StickOuterBindDeadTooltip" xml:space="preserve">
+    <value>Threshold for when an action will fire</value>
+  </data>
+  <data name="StickOuterBindInvertTooltip" xml:space="preserve">
+    <value>Have outer bind fire before reaching a threshold. Action releases once the threshold has been exceeded</value>
+  </data>
+  <data name="StickOuterBindTooltip" xml:space="preserve">
+    <value>Action to execute when stick travel reaches past a treshold. Useful for mapping keys for Walk or Sprint actions. Invert casues the action to fire up until the threshold</value>
+  </data>
+  <data name="SASteeringWheelFuzzTooltip" xml:space="preserve">
+    <value>Fuzz specifies the minimum number of device units, in active zone, that the Accel has to be rotated before the output is registered as changed in the mapper. The value is expressed in raw Accel units.</value>
+  </data>
+  <data name="StickRotationTooltip" xml:space="preserve">
+    <value>+ = Clockwise. - = Counter-clockwise.
+
+The rotation setting is meant to help correct the orientation of an analog stick if your thumb is slightly shifted when moving an analog stick. For example, your thumb might be slightly shifted from center when the analog stick is moved fully north. My thumbs shift slightly to the right when moving an analog stick fully north due to the way my hands grip the DS4. The value used denotes the number of degrees used to adjust the final axis output value. Values allows range from -180 to 180. Default is 0.</value>
+  </data>
+  <data name="TouchpadJitterCompTooltip" xml:space="preserve">
+    <value>Throttle low end of Touchpad movement. Reduces accidental mouse cursor movement when holding a mostly fixed position on the Touchpad</value>
+  </data>
+  <data name="DS4BTPollRate" xml:space="preserve">
+    <value>DS4 BT Poll Rate</value>
+  </data>
+  <data name="DS4LightbarPassthruDisabled" xml:space="preserve">
+    <value>Feature currently disabled in app due to driver issues. Hopefully issues get fixed in a future update.</value>
+  </data>
+  <data name="DualSRumbleForceGenericRescale" xml:space="preserve">
+    <value>Force usage of both % strength levels (General and DualSense specifc)</value>
+  </data>
+  <data name="DualSRumbleModeDisabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="DualSRumbleModeAccurate" xml:space="preserve">
+    <value>Accurate</value>
+  </data>
+  <data name="DualSRumbleModeLegacy" xml:space="preserve">
+    <value>Legacy</value>
+  </data>
+  <data name="DualSRumbleModeNPowerLevelTxt" xml:space="preserve">
+    <value>Rumble mode and strength level:</value>
+  </data>
+  <data name="DualSRumbleModePassthru" xml:space="preserve">
+    <value>Passthru</value>
+  </data>
+  <data name="DualSRumbleSpecificSettings" xml:space="preserve">
+    <value>DualSense specific rumble settings</value>
+  </data>
+  <data name="DualSRumbleForceGenericRescale_Tip" xml:space="preserve">
+    <value>Recommended to be left DISABLED.
+
+- Disabled: rumble will be rescaled natively by the controller accordingly to the defined power level (better quality)
+
+- Enabled: both DS4Windows generic rumble rescale and DualSense's native control will be active</value>
+  </data>
+  <data name="DualSRumbleModes_Tip" xml:space="preserve">
+    <value>Accurate Mode (recommended):
+- Better replicates the DualShock 4/Xbox 360 controller rumble feeling
+- More accurately executes game's intended rumble effects
+- Rumble has more depth. Within the same power level there is a greater difference between min and max in-game rumble activation,
+varying from real low up to the max strength of the defined power level
+
+Legacy Mode:
+- Overral stronger, but lacks depth
+- Has a "sharper" feeling
+- The min and max activation in-game will be, respectively, only slightly below and slight above the chosen power level strength
+
+Disabled:
+- Fully disables rumble</value>
+  </data>
+  <data name="DualSRumblePowerLevel_Tip" xml:space="preserve">
+    <value>DualSense's native rumble Power Level rescaler.
+
+- When in Accurate Mode, rumble's [ min // max ] will be [ 1% /// Chosen Power Level ]
+    - Example (62%): [ min = 1% /// max = 62% ]
+
+- When in Legacy Mode, rumble's [min /// max ] will be roughly [ Power Level - 12% /// Power Level + 12% ]
+    - Example (62%): [ min = 50% /// max = 74% ]</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="Black" xml:space="preserve">
+    <value>Black</value>
+  </data>
+  <data name="Colored" xml:space="preserve">
+    <value>Colored</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="DeviceType" xml:space="preserve">
+    <value>Device type</value>
+  </data>
+  <data name="DisconnectFromBtWhenStopping" xml:space="preserve">
+    <value>Disconnect from BT when Stopping</value>
+  </data>
+  <data name="Dynamic" xml:space="preserve">
+    <value>Dynamic</value>
+  </data>
+  <data name="FlashLightbarAtHighLatency" xml:space="preserve">
+    <value>Flash Lightbar at High Latency</value>
+  </data>
+  <data name="HideDS4Controller" xml:space="preserve">
+    <value>Hide DS4 Controller</value>
+  </data>
+  <data name="HotkeysAbout" xml:space="preserve">
+    <value>Hotkeys/About</value>
+  </data>
+  <data name="IconChoice" xml:space="preserve">
+    <value>Icon Choice</value>
+  </data>
+  <data name="MinimizeToTaskbar" xml:space="preserve">
+    <value>Minimize to Taskbar</value>
+  </data>
+  <data name="MinimizeToTaskbarTip" xml:space="preserve">
+    <value>Minimize to Taskbar instead of System Tray</value>
+  </data>
+  <data name="OutputSlots" xml:space="preserve">
+    <value>Output Slots</value>
+  </data>
+  <data name="Permanent" xml:space="preserve">
+    <value>Permanent</value>
+  </data>
+  <data name="Plug" xml:space="preserve">
+    <value>Plug</value>
+  </data>
+  <data name="RevertToDefaultProfileOnUnknown" xml:space="preserve">
+    <value>Revert to default profile on unknown</value>
+  </data>
+  <data name="ShowAutoProfileDebugMessages" xml:space="preserve">
+    <value>Show auto-profile debug messages</value>
+  </data>
+  <data name="SwipeTouchpadToSwitchProfiles" xml:space="preserve">
+    <value>Swipe Touchpad To Switch Profiles</value>
+  </data>
+  <data name="TurnOffDS4WindowsTemporarily" xml:space="preserve">
+    <value>Turn Off DS4Windows Temporarily</value>
+  </data>
+  <data name="Unplug" xml:space="preserve">
+    <value>Unplug</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>White</value>
+  </data>
+  <data name="AppTheme" xml:space="preserve">
+    <value>App Theme</value>
+  </data>
+  <data name="CheckEvery" xml:space="preserve">
+    <value>Check every</value>
+  </data>
+  <data name="ControllerSupportDS4" xml:space="preserve">
+    <value>DS4 Controller Support</value>
+  </data>
+  <data name="ControllerSupportDualSense" xml:space="preserve">
+    <value>DualSense Controller Support</value>
+  </data>
+  <data name="ControllerSupportJoyCon" xml:space="preserve">
+    <value>JoyCon Controller Support</value>
+  </data>
+  <data name="ControllerSupportSwitchPro" xml:space="preserve">
+    <value>Switch Pro Controller Support</value>
+  </data>
+  <data name="Copycat" xml:space="preserve">
+    <value>Copycat</value>
+  </data>
+  <data name="CopycatTip" xml:space="preserve">
+    <value>Change some flags used for a non-Sony DS4 controller. It might fix rumble and lightbar support for some third party DS4 clones</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="DetectedControllers" xml:space="preserve">
+    <value>Detected Controllers</value>
+  </data>
+  <data name="DeviceOptions" xml:space="preserve">
+    <value>Device Options</value>
+  </data>
+  <data name="EnableVerboseLog" xml:space="preserve">
+    <value>Enable verbose log</value>
+  </data>
+  <data name="EnableVerboseLogTip" xml:space="preserve">
+    <value>Show additional log messages when a gamepad is connected</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>Hours</value>
+  </data>
+  <data name="UseCustomSteamFolder" xml:space="preserve">
+    <value>Use custom Steam Folder</value>
+  </data>
+  <data name="Utils" xml:space="preserve">
+    <value>Utils</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="RunAs" xml:space="preserve">
+    <value>Run As</value>
+  </data>
+  <data name="Task" xml:space="preserve">
+    <value>Task</value>
   </data>
 </root>

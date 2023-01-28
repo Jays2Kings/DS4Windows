@@ -57,17 +57,25 @@ namespace DS4Windows
         {
             get
             {
-                CultureInfo usDataFormatCulture = CultureInfo.CreateSpecificCulture("en-US");
-                return ($"{mX1.ToString("G", usDataFormatCulture)}, {mY1.ToString("G", usDataFormatCulture)}, {mX2.ToString("G", usDataFormatCulture)}, {mY2.ToString("G", usDataFormatCulture)}");
+                //CultureInfo usDataFormatCulture = CultureInfo.CreateSpecificCulture("en-US");
+                return $"{mX1.ToString("G")}, {mY1.ToString("G")}, {mX2.ToString("G")}, {mY2.ToString("G")}";
             }
             set
             {
                 // Set bezier curve defintion from a string value (4 comma separated decimals). If any of the string values are invalid then set curve as linear "zero" curve.
-                // The input string is expected to be always in "en-US" data format (ie. period as decimal separator and comma as list separator) and the string value should not have thousand separator chars
-                string[] bezierDef = value.Split(new Char[] { ',' }, 4);
-                CultureInfo usDataFormatCulture = CultureInfo.CreateSpecificCulture("en-US");
-                if (bezierDef.Length < 4 || !Double.TryParse(bezierDef[0], NumberStyles.Float, usDataFormatCulture, out mX1) || !Double.TryParse(bezierDef[1], NumberStyles.Float, usDataFormatCulture, out mY1) || !Double.TryParse(bezierDef[2], NumberStyles.Float, usDataFormatCulture, out mX2) || !Double.TryParse(bezierDef[3], NumberStyles.Float, usDataFormatCulture, out mY2) )
-                    mX1 = mY1 = mX2 = mY2 = 0;
+                // Original assumption was values were in "en-US" data format (ie. period as decimal separator and comma as list separator).
+                // Attempt to not enforce that anymore. Do very basic parsing and rely on double.TryParse to handle confirming values are valid
+                var bezierMatch = System.Text.RegularExpressions.Regex.Match(value,
+                    @"(.{4}),\s?(.{4}),\s?(.{4}),\s?(.{4})");
+                if (bezierMatch.Success)
+                {
+                    //var bezierDef = value.Split(new Char[] { ',' }, 4);
+                    //CultureInfo usDataFormatCulture = CultureInfo.CreateSpecificCulture("en-US");
+                    if (bezierMatch.Groups.Count < 5 || !double.TryParse(bezierMatch.Groups[1].Value, out mX1) ||
+                        !double.TryParse(bezierMatch.Groups[2].Value, out mY1) || !double.TryParse(bezierMatch.Groups[3].Value, out mX2) ||
+                        !double.TryParse(bezierMatch.Groups[4].Value, out mY2))
+                        mX1 = mY1 = mX2 = mY2 = 0;
+                }
             }
         }
 

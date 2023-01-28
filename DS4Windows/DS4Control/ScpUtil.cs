@@ -9776,16 +9776,22 @@ namespace DS4Windows
                     if (int.TryParse(s, out v))
                         macro.Add(v);
                 }
-                if (extras.Contains("Scan Code"))
-                    keyType |= DS4KeyType.ScanCode;
-                if (extras.Contains("RunOnRelease"))
-                    pressRelease = true;
-                if (extras.Contains("Sync"))
-                    synchronized = true;
-                if (extras.Contains("KeepKeyState"))
-                    keepKeyState = true;
-                if (extras.Contains("Repeat"))
-                    keyType |= DS4KeyType.RepeatMacro;
+
+                if (extras != string.Empty)
+                {
+                    extra = extras;
+
+                    if (extras.Contains("Scan Code"))
+                        keyType |= DS4KeyType.ScanCode;
+                    if (extras.Contains("RunOnRelease"))
+                        pressRelease = true;
+                    if (extras.Contains("Sync"))
+                        synchronized = true;
+                    if (extras.Contains("KeepKeyState"))
+                        keepKeyState = true;
+                    if (extras.Contains("Repeat"))
+                        keyType |= DS4KeyType.RepeatMacro;
+                }
             }
             else if (type == "DisconnectBT")
             {

@@ -1756,7 +1756,19 @@ namespace DS4WinWPF.DS4Control.DTOXml
                         DS4KeyType testFlag = tempArray[i];
                         if (dcs.shiftKeyType.HasFlag(testFlag))
                         {
-                            shiftKeyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, testFlag);
+                            // Check for existing DS4KeyType flags for current control
+                            if (shiftKeyTypeSerializer.CustomMapKeyTypes.ContainsKey(dcs.control))
+                            {
+                                DS4KeyType tempFlags = DS4KeyType.None;
+                                tempFlags = shiftKeyTypeSerializer.CustomMapKeyTypes[dcs.control];
+                                tempFlags |= testFlag;
+                                shiftKeyTypeSerializer.CustomMapKeyTypes[dcs.control] = tempFlags;
+
+                            }
+                            else
+                            {
+                                shiftKeyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, testFlag);
+                            }
                         }
                     }
 

@@ -310,9 +310,12 @@ namespace DS4WinWPF.DS4Forms
                 if (!IsActive && (Global.Notifications == 2 ||
                     (Global.Notifications == 1 && e.Warning)))
                 {
-                    notifyIcon.ShowNotification(TrayIconViewModel.ballonTitle,
-                        e.Data, !e.Warning ? H.NotifyIcon.Core.NotificationIcon.Info :
-                        H.NotifyIcon.Core.NotificationIcon.Warning);
+                    if (notifyIcon.IsCreated)
+                    {
+                        notifyIcon.ShowNotification(TrayIconViewModel.ballonTitle,
+                            e.Data, !e.Warning ? H.NotifyIcon.Core.NotificationIcon.Info :
+                            H.NotifyIcon.Core.NotificationIcon.Warning);
+                    }
                 }
             }));
         }

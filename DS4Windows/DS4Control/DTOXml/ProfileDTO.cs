@@ -1750,14 +1750,9 @@ namespace DS4WinWPF.DS4Control.DTOXml
 
                 if (dcs.shiftActionType != DS4ControlSettings.ActionType.Default && dcs.shiftTrigger > 0)
                 {
-                    DS4KeyType[] tempArray = (DS4KeyType[])Enum.GetValues(typeof(DS4KeyType));
-                    for (int i = 0; i < tempArray.Length; i++)
+                    if (dcs.shiftKeyType != DS4KeyType.None)
                     {
-                        DS4KeyType testFlag = tempArray[i];
-                        if (dcs.shiftKeyType.HasFlag(testFlag))
-                        {
-                            shiftKeyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, testFlag);
-                        }
+                        shiftKeyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, dcs.shiftKeyType);
                     }
 
                     if (dcs.shiftActionType == DS4ControlSettings.ActionType.Button)

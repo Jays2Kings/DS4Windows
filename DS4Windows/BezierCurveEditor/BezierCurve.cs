@@ -66,7 +66,7 @@ namespace DS4Windows
                 // Original assumption was values were in "en-US" data format (ie. period as decimal separator and comma as list separator).
                 // Attempt to not enforce that anymore. Do very basic parsing and rely on double.TryParse to handle confirming values are valid
                 var bezierMatch = System.Text.RegularExpressions.Regex.Match(value,
-                    @"(.{4}),\s?(.{4}),\s?(.{4}),\s?(.{4})");
+                    @"(.{3,9}),\s?(.{3,9}),\s?(.{3,9}),\s?(.{3,9})");
                 if (bezierMatch.Success)
                 {
                     //var bezierDef = value.Split(new Char[] { ',' }, 4);

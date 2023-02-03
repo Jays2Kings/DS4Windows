@@ -890,7 +890,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public string GyroMouseStickTriggerCondString
         {
             get => BackingStore.SaTriggerCondString(_gyroMouseStickTriggerCond);
-            set => BackingStore.SaTriggerCondValue(value);
+            set => _gyroMouseStickTriggerCond = BackingStore.SaTriggerCondValue(value);
         }
 
         private bool _gyroMouseStickTriggerTurns = true;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading;
 using FakerInputWrapper;
 
@@ -48,7 +49,18 @@ namespace DS4Windows.DS4Control
         public override bool Disconnect()
         {
             Release();
-            fakerInput.Disconnect();
+            // Add small delay before trying to perform disconnect. Precaution from
+            // test mapper
+            Thread.Sleep(100);
+            try
+            {
+                fakerInput.Disconnect();
+            }
+            catch (SEHException)
+            {
+                // Ignore
+            }
+
             return !fakerInput.IsConnected();
         }
 

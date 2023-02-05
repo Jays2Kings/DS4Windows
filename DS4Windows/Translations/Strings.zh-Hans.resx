@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,79 +26,79 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -119,320 +119,770 @@
   </resheader>
   <data name="Accel" xml:space="preserve">
     <value>加速度</value>
+    <comment/>
   </data>
   <data name="Action" xml:space="preserve">
     <value>动作</value>
+    <comment/>
   </data>
   <data name="AddDirectory" xml:space="preserve">
     <value>添加目录</value>
+    <comment/>
   </data>
   <data name="AddPrograms" xml:space="preserve">
     <value>添加程序</value>
-  </data>
-  <data name="AddStartMenuPrograms" xml:space="preserve">
-    <value>添加开始菜单程序</value>
+    <comment/>
   </data>
   <data name="AddSteamGames" xml:space="preserve">
     <value>添加Steam游戏</value>
+    <comment/>
   </data>
   <data name="All" xml:space="preserve">
     <value>全部</value>
+    <comment/>
   </data>
   <data name="AutoProfiles" xml:space="preserve">
     <value>自动配置</value>
+    <comment/>
   </data>
   <data name="Battery" xml:space="preserve">
     <value>电量</value>
+    <comment/>
   </data>
   <data name="Browse" xml:space="preserve">
     <value>浏览</value>
+    <comment/>
   </data>
   <data name="BrowseOtherPrograms" xml:space="preserve">
     <value>浏览其他程序</value>
+    <comment/>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
+    <comment/>
   </data>
   <data name="CheckUpdateNow" xml:space="preserve">
     <value>立即检查更新</value>
+    <comment/>
   </data>
   <data name="CheckUpdateStartup" xml:space="preserve">
     <value>程序启动时检查更新</value>
+    <comment/>
   </data>
   <data name="Clear" xml:space="preserve">
     <value>清除</value>
+    <comment/>
   </data>
   <data name="CloseMinimizes" xml:space="preserve">
     <value>关闭时最小化</value>
+    <comment/>
   </data>
   <data name="Color" xml:space="preserve">
     <value>颜色</value>
+    <comment/>
   </data>
   <data name="Controller1Text" xml:space="preserve">
-    <value>手柄1</value>
+    <value>手柄 1</value>
+    <comment/>
   </data>
   <data name="Controller2Text" xml:space="preserve">
-    <value>手柄2</value>
+    <value>手柄 2</value>
+    <comment/>
   </data>
   <data name="Controller3Text" xml:space="preserve">
-    <value>手柄3</value>
+    <value>手柄 3</value>
+    <comment/>
   </data>
   <data name="Controller4Text" xml:space="preserve">
-    <value>手柄4</value>
+    <value>手柄 4</value>
+    <comment/>
   </data>
   <data name="Controllers" xml:space="preserve">
-    <value>手柄</value>
+    <value>Controllers</value>
+    <comment/>
   </data>
   <data name="ControlPanel" xml:space="preserve">
-    <value>控制面板</value>
+    <value>手柄</value>
+    <comment/>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>删除</value>
+    <comment/>
   </data>
   <data name="DriverSetup" xml:space="preserve">
-    <value>驱动安装</value>
+    <value>手柄/驱动安装</value>
+    <comment/>
   </data>
   <data name="Duplicate" xml:space="preserve">
     <value>复制</value>
+    <comment/>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>编辑</value>
+    <comment/>
   </data>
   <data name="EditAction" xml:space="preserve">
     <value>编辑动作</value>
+    <comment/>
   </data>
   <data name="Export" xml:space="preserve">
     <value>导出</value>
+    <comment/>
   </data>
   <data name="Full" xml:space="preserve">
     <value>全部</value>
+    <comment/>
   </data>
   <data name="Gyro" xml:space="preserve">
-    <value>陀螺仪</value>
+    <value>体感</value>
+    <comment/>
   </data>
   <data name="HideUnchecked" xml:space="preserve">
     <value>隐藏未选中</value>
+    <comment/>
   </data>
   <data name="Import" xml:space="preserve">
     <value>导入</value>
+    <comment/>
   </data>
   <data name="LeftStick" xml:space="preserve">
     <value>左摇杆</value>
+    <comment/>
   </data>
   <data name="Log" xml:space="preserve">
     <value>日志</value>
+    <comment/>
   </data>
   <data name="Name" xml:space="preserve">
     <value>名称</value>
+    <comment/>
   </data>
   <data name="New" xml:space="preserve">
     <value>新建</value>
+    <comment/>
   </data>
   <data name="NewAction" xml:space="preserve">
     <value>新建动作</value>
+    <comment/>
   </data>
   <data name="NewProfile" xml:space="preserve">
     <value>新建配置</value>
+    <comment/>
   </data>
   <data name="None" xml:space="preserve">
     <value>无</value>
+    <comment/>
   </data>
   <data name="Path" xml:space="preserve">
     <value>路径</value>
+    <comment/>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>配置文件</value>
+    <comment/>
   </data>
   <data name="ProfileFolder" xml:space="preserve">
     <value>配置文件夹</value>
+    <comment/>
   </data>
   <data name="QuickCharge" xml:space="preserve">
     <value>快速充电</value>
+    <comment/>
   </data>
   <data name="RecordText" xml:space="preserve">
     <value>录制</value>
+    <comment/>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>移除</value>
+    <comment/>
   </data>
   <data name="RemoveAction" xml:space="preserve">
     <value>删除动作</value>
+    <comment/>
   </data>
   <data name="RightStick" xml:space="preserve">
     <value>右摇杆</value>
+    <comment/>
   </data>
   <data name="Rumble" xml:space="preserve">
     <value>振动</value>
+    <comment/>
   </data>
   <data name="RunAtStartup" xml:space="preserve">
     <value>开机自动启动</value>
+    <comment/>
   </data>
   <data name="Save" xml:space="preserve">
     <value>保存</value>
+    <comment/>
   </data>
   <data name="SaveProfile" xml:space="preserve">
     <value>保存配置</value>
+    <comment/>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>设置</value>
+    <comment/>
   </data>
   <data name="ShowNotifications" xml:space="preserve">
     <value>显示通知</value>
+    <comment/>
   </data>
   <data name="StartMinimized" xml:space="preserve">
     <value>启动时最小化</value>
+    <comment/>
   </data>
   <data name="StartText" xml:space="preserve">
     <value>开始</value>
+    <comment/>
   </data>
   <data name="Status" xml:space="preserve">
     <value>状态</value>
+    <comment/>
   </data>
   <data name="StopText" xml:space="preserve">
     <value>停止</value>
+    <comment/>
   </data>
   <data name="TouchScroll" xml:space="preserve">
     <value>滚动</value>
+    <comment/>
   </data>
   <data name="TouchSlide" xml:space="preserve">
     <value>滑动</value>
+    <comment/>
   </data>
   <data name="TouchTap" xml:space="preserve">
-    <value>轻触</value>
+    <value>滑动</value>
+    <comment/>
   </data>
   <data name="Trigger" xml:space="preserve">
-    <value>触发</value>
+    <value>滑动</value>
+    <comment/>
   </data>
   <data name="WarningsOnly" xml:space="preserve">
     <value>仅警告</value>
+    <comment/>
   </data>
   <data name="RumbleMaxSecs" xml:space="preserve">
     <value>秒</value>
+    <comment/>
   </data>
   <data name="RumbleMaxSecsTip" xml:space="preserve">
     <value>振动自动停止时间，单位为秒 (0则不自动停止)</value>
+    <comment/>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>窗口标题</value>
+    <comment/>
   </data>
   <data name="MoveUp" xml:space="preserve">
     <value>上移</value>
+    <comment/>
   </data>
   <data name="MoveDown" xml:space="preserve">
     <value>下移</value>
+    <comment/>
   </data>
   <data name="AutoProfPathTip" xml:space="preserve">
     <value>进程路径. ^ABC = 匹配字符串头 (^) | ABC$ = 匹配字符串尾 ($) | *ABC =包含字符串 (*)</value>
+    <comment/>
   </data>
   <data name="AutoProfTitleTip" xml:space="preserve">
-    <value>窗口标题. ^ABC = 匹配字符串头 (^) | ABC$ = 匹配字符串尾 ($) | *ABC =包含字符串 (*)</value>
+    <value>&gt;窗口标题. ^ABC = 匹配字符串头 (^) | ABC$ = 匹配字符串尾 ($) | *ABC =包含字符串 (*)</value>
+    <comment/>
   </data>
   <data name="GamepadTest" xml:space="preserve">
     <value>手柄测试(GamepadTest)</value>
+    <comment/>
   </data>
   <data name="EnableOutputDataToDS4" xml:space="preserve">
     <value>启用向DS4发送数据</value>
+    <comment/>
   </data>
   <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
     <value>定期向DS4发送灯条和振动数据。若手柄不支持接收该数据则取消选中。设定变更在手柄连接时生效</value>
-    <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
+    <comment>若要在 Visual Studio 资源编辑器中换行，请按下 Shift+Enter</comment>
   </data>
   <data name="Apply" xml:space="preserve">
-    <value>Apply</value>
+    <value>应用</value>
+    <comment/>
   </data>
   <data name="HidNinja" xml:space="preserve">
     <value>HidNinja</value>
+    <comment/>
   </data>
   <data name="CustomExeName" xml:space="preserve">
-    <value>Custom Exe Name</value>
+    <value>自定义可执行文件名称</value>
+    <comment/>
   </data>
   <data name="CustomExeNameInfo" xml:space="preserve">
-    <value>Some games implement a block that causes DS4 input to be ignored if a game detects either DS4Windows.exe or InputMapper.exe running at the time. A workaround to the block is to rename DS4Windows.exe so the check in the game fails. Specifying a custom exe name here allows DS4Updater to automatically update a custom copy of DS4Windows to the desired file name. Make sure to omit the extension.
-
-Example: whyme_DS4Windows</value>
+    <value>一些游戏如果测到DS4Windows.exe 或 InputMapper.exe 正在运行，则会忽略 DS4 的输入。对于这些游戏，解决方法是将 DS4Windows.exe 重命名，以规避检测。在这样自定义可执行文件的名称，以允许 DS4Updater 自动更新已被重命名的DS4Windows。请不要输入扩展名（即 .exe)。名称示例: whyme_DS4Windows</value>
+    <comment/>
   </data>
   <data name="XInputChecker" xml:space="preserve">
-    <value>XInputChecker</value>
+    <value>XInput 检查器</value>
+    <comment/>
   </data>
   <data name="Controller5Text" xml:space="preserve">
-    <value>Controller 5</value>
+    <value>手柄 5</value>
+    <comment/>
   </data>
   <data name="Controller6Text" xml:space="preserve">
-    <value>Controller 6</value>
+    <value>手柄 6</value>
+    <comment/>
   </data>
   <data name="Controller7Text" xml:space="preserve">
-    <value>Controller 7</value>
+    <value>手柄 7</value>
+    <comment/>
   </data>
   <data name="Controller8Text" xml:space="preserve">
-    <value>Controller 8</value>
+    <value>手柄 8</value>
+    <comment/>
   </data>
   <data name="GamepadGyroCameraDescription" xml:space="preserve">
-    <value>Maps the controller output to a standard XInput gamepad or DS4 pad. Gyro is mapped to a Mouse-like Joystick.</value>
+    <value>将手柄映射为标准的 Xinput 手柄或 DS4 手柄。体感将被映射为类似鼠标的摇杆(相对值输入摇杆）(Mouse-like Joystick)。</value>
+    <comment/>
   </data>
   <data name="GamepadGyroCameraName" xml:space="preserve">
-    <value>Gamepad with Mouse-like Joystick</value>
+    <value>含有类鼠标的摇杆(相对值输入摇杆）(Mouse-like Joystick)的手柄</value>
+    <comment/>
   </data>
   <data name="GamepadPresetDescription" xml:space="preserve">
-    <value>Maps the controller output to a standard gamepad</value>
+    <value>将手柄映射为标准手柄</value>
+    <comment/>
   </data>
   <data name="GamepadPresetName" xml:space="preserve">
-    <value>Gamepad</value>
+    <value>手柄</value>
+    <comment/>
   </data>
   <data name="KBMGyroMouseDescription" xml:space="preserve">
-    <value>Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support. Gyro is mapped to a virtual Mouse.</value>
+    <value>将手柄映射为虚拟键盘和鼠标。在游玩无手柄支持的 FPS 游戏时很有用。体感将被映射为虚拟鼠标。</value>
+    <comment/>
   </data>
   <data name="KBMGyroMouseName" xml:space="preserve">
-    <value>KB+M Controls with Gyro Mouse</value>
+    <value>带有体感控制鼠标虚拟键盘和鼠标</value>
+    <comment/>
   </data>
   <data name="KBMPresetDescription" xml:space="preserve">
-    <value>Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support.</value>
+    <value>将手柄映射为虚拟键盘和鼠标。在游玩无手柄支持的 FPS 游戏时很有用。</value>
+    <comment/>
   </data>
   <data name="KBMPresetName" xml:space="preserve">
-    <value>KB+M Controls</value>
+    <value>虚拟键盘和鼠标</value>
+    <comment/>
   </data>
   <data name="MixedGyroMousePresetDescription" xml:space="preserve">
-    <value>Maps the buttons and axes to a standard gamepad. Maps the Gyro to a virtual mouse</value>
+    <value>将按钮和手柄轴映射为标准手柄。将体感映射为虚拟鼠标</value>
+    <comment/>
   </data>
   <data name="MixedGyroMousePresetName" xml:space="preserve">
-    <value>Gamepad with Gyro Mouse</value>
+    <value>带有体感控制鼠标的手柄</value>
+    <comment/>
   </data>
   <data name="MixedPresetDescription" xml:space="preserve">
-    <value>Maps the controller output to mixed XInput gamepad + RS mouse.</value>
+    <value>将手柄映射为Xinput手柄和 RS 鼠标</value>
+    <comment/>
   </data>
   <data name="MixedPresetName" xml:space="preserve">
-    <value>Gamepad with High Precision Camera</value>
+    <value>带有高精度相机的摇杆</value>
+    <comment/>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>描述</value>
+    <comment/>
   </data>
   <data name="PresetIntroText" xml:space="preserve">
-    <value>Do you want to use a preset option? Choosing No will cause the Profile Editor to use an empty Gamepad profile.</value>
+    <value>是否使用预设选项？如不使用，配置编辑器将会使用空配置文件</value>
+    <comment/>
   </data>
   <data name="Presets" xml:space="preserve">
-    <value>Presets</value>
+    <value>预设</value>
+    <comment/>
   </data>
   <data name="Changelog" xml:space="preserve">
-    <value>Changelog</value>
+    <value>更新日志</value>
+    <comment/>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>Close</value>
+    <value>关闭</value>
+    <comment/>
   </data>
   <data name="Profiles" xml:space="preserve">
-    <value>Profiles</value>
+    <value>配置文件</value>
+    <comment/>
   </data>
   <data name="NoControllersConnected" xml:space="preserve">
-    <value>No Controllers Connected (Max {0})</value>
+    <value>未连接手柄 (最多 {0} 个)</value>
+    <comment/>
   </data>
   <data name="FlickThreshold" xml:space="preserve">
-    <value>Flick Threshold</value>
+    <value>轻点阈值</value>
+    <comment/>
   </data>
   <data name="FlickTime" xml:space="preserve">
-    <value>Flick Time</value>
+    <value>轻点时间</value>
+    <comment/>
   </data>
   <data name="MinAngleThreshold" xml:space="preserve">
-    <value>Min Angle Threshold</value>
+    <value>最小角度阈值</value>
+    <comment/>
   </data>
   <data name="RealWorldCalibration" xml:space="preserve">
-    <value>Real World Calibration</value>
+    <value>真实世界校准</value>
+    <comment/>
+  </data>
+  <data name="ViGEmPluginFailure" xml:space="preserve">
+    <value>ViGEm 设备插入失败。可能由于 ViGEm 发生了内部错误。正在断开连接。如果问题仍然存在，请关闭 DS4Windows并重启 Windows。</value>
+    <comment/>
+  </data>
+  <data name="CRC32Fail" xml:space="preserve">
+    <value>无线手柄数据完整性检查失败。正在关闭手柄。</value>
+    <comment/>
+  </data>
+  <data name="FutureNetNotInstalled" xml:space="preserve">
+    <value>未检测到 .NET 5 运行时。请下载并安装 .NET 5 运行时，以确保与未来的 DS4Windows 版本兼容。关闭此窗口后，您将被重定向到 .NET 5 运行时下载页。</value>
+    <comment/>
+  </data>
+  <data name="UpgradeNetCaption" xml:space="preserve">
+    <value>请更新 .NET 运行时</value>
+    <comment/>
+  </data>
+  <data name="HidHide" xml:space="preserve">
+    <value>HidHide</value>
+    <comment/>
+  </data>
+  <data name="HidHideConfigClient" xml:space="preserve">
+    <value>HidHide 配置客户端</value>
+    <comment/>
+  </data>
+  <data name="ExclusiveAccess" xml:space="preserve">
+    <value>独占访问</value>
+    <comment/>
+  </data>
+  <data name="HidGuardianAccess" xml:space="preserve">
+    <value>隐藏守护者(HidGuardian)访问</value>
+    <comment/>
+  </data>
+  <data name="HidHideAccess" xml:space="preserve">
+    <value>HidHide 访问</value>
+    <comment/>
+  </data>
+  <data name="SharedAccess" xml:space="preserve">
+    <value>共享访问</value>
+    <comment/>
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>重命名</value>
+    <comment/>
+  </data>
+  <data name="DisableVirtualController" xml:space="preserve">
+    <value>禁用虚拟手柄</value>
+    <comment/>
+  </data>
+  <data name="DisableVirtualControllerTip" xml:space="preserve">
+    <value>不要为已连接并使用此配置文件的手柄 生成/绑定 虚拟手柄（在配置文件保存时应用）</value>
+    <comment/>
+  </data>
+  <data name="EmulatedController" xml:space="preserve">
+    <value>仿真控制器</value>
+    <comment/>
+  </data>
+  <data name="OutContNotice" xml:space="preserve">
+    <value>选择输出虚拟手柄类型（在配置文件保存时应用）</value>
+    <comment/>
+  </data>
+  <data name="VirtualControllerSettings" xml:space="preserve">
+    <value>虚拟手柄设置</value>
+    <comment/>
+  </data>
+  <data name="ChangeOnNewDeviceConn" xml:space="preserve">
+    <value>更改将在新设备连接时生效</value>
+    <comment/>
+  </data>
+  <data name="StickFuzzTooltip" xml:space="preserve">
+    <value>Fuzz specifies the minimum number of units the analog stick moves, in active zone, before the output is registered as changed in the mapper. This setting can be useful for worn sticks that cannot maintain a constant position. The value is expressed in raw stick units.</value>
+    <comment/>
+  </data>
+  <data name="StickMaxOutputForceTooltip" xml:space="preserve">
+    <value>Always enforce max output setting. Useful for 100% Max Output and confining value to a circular output value</value>
+    <comment/>
+  </data>
+  <data name="StickMaxOutputTooltip" xml:space="preserve">
+    <value>In some situations, it might be useful to limit the maximum value that is output by the output analog stick. Max Output allows throttling the final output value of the analog stick.</value>
+    <comment/>
+  </data>
+  <data name="AntiDeadzoneTooltip" xml:space="preserve">
+    <value>An anti-deadzone acts as an offset for use with an axis to denote the minimum output value generated after an axis has left its assigned deadzone. This is mainly meant to help with mapping an axis to the assigned deadzone value used for an axis in a video game. For example, the typical assigned deadzone for XInput LS in a video game is around 8000 (25%). With no anti-deadzone assigned, an axis would have to move past the assigned deadzone in DS4Windows along with the game's assigned axis deadzone.</value>
+    <comment/>
+  </data>
+  <data name="StickInputCurveTooltip" xml:space="preserve">
+    <value>OLD OBSOLETE SETTING. Attempt to apply a curve based on raw input coordinates before any dead zone info is applied. Wonky</value>
+    <comment/>
+  </data>
+  <data name="TouchpadMinThresholdTooltip" xml:space="preserve">
+    <value>Minimum calculated output travel before a Mouse event is sent to the system</value>
+    <comment/>
+  </data>
+  <data name="TouchpadRotationTooltip" xml:space="preserve">
+    <value>Adjusts a touchpad swipe by a given rotation angle. Useful when a normal touchpad swipe is not a straight line across. Values allows range from -180 to 180. Default is 0.</value>
+    <comment/>
+  </data>
+  <data name="TouchpadSlideTooltip" xml:space="preserve">
+    <value>Sensitivity used to engage a multi-touch Mouse Wheel Scroll action</value>
+    <comment/>
+  </data>
+  <data name="TouchpadTapTooltip" xml:space="preserve">
+    <value>Activate Mouse Left click with a Touchpad Tap. Max time interval is set at (value * 2) ms.</value>
+    <comment/>
+  </data>
+  <data name="TouchpadTrackballEnableTooltip" xml:space="preserve">
+    <value>Adds momentum to a Touchpad swipe once a finger is lifted. Adds extra Mouse cursor travel than would be possible with the confined space on the Touchpad</value>
+    <comment/>
+  </data>
+  <data name="TouchpadTrackballFrictionTooltip" xml:space="preserve">
+    <value>Add friction to virtual Trackball. Decreased friction will increase final mouse cursor travel time</value>
+    <comment/>
+  </data>
+  <data name="StickOuterBindDeadTooltip" xml:space="preserve">
+    <value>操作触发阈值</value>
+    <comment/>
+  </data>
+  <data name="StickOuterBindInvertTooltip" xml:space="preserve">
+    <value>Have outer bind fire before reaching a threshold. Action releases once the threshold has been exceeded</value>
+    <comment/>
+  </data>
+  <data name="StickOuterBindTooltip" xml:space="preserve">
+    <value>Action to execute when stick travel reaches past a treshold. Useful for mapping keys for Walk or Sprint actions. Invert casues the action to fire up until the threshold</value>
+    <comment/>
+  </data>
+  <data name="SASteeringWheelFuzzTooltip" xml:space="preserve">
+    <value>Fuzz specifies the minimum number of device units, in active zone, that the Accel has to be rotated before the output is registered as changed in the mapper. The value is expressed in raw Accel units.</value>
+    <comment/>
+  </data>
+  <data name="StickRotationTooltip" xml:space="preserve">
+    <value>+ = Clockwise. - = Counter-clockwise.The rotation setting is meant to help correct the orientation of an analog stick if your thumb is slightly shifted when moving an analog stick. For example, your thumb might be slightly shifted from center when the analog stick is moved fully north. My thumbs shift slightly to the right when moving an analog stick fully north due to the way my hands grip the DS4. The value used denotes the number of degrees used to adjust the final axis output value. Values allows range from -180 to 180. Default is 0.</value>
+    <comment/>
+  </data>
+  <data name="TouchpadJitterCompTooltip" xml:space="preserve">
+    <value>Throttle low end of Touchpad movement. Reduces accidental mouse cursor movement when holding a mostly fixed position on the Touchpad</value>
+    <comment/>
+  </data>
+  <data name="DS4BTPollRate" xml:space="preserve">
+    <value>DS4 蓝牙轮询速率</value>
+    <comment/>
+  </data>
+  <data name="DS4LightbarPassthruDisabled" xml:space="preserve">
+    <value>由于驱动程序问题，本功能当前被禁用。希望问题会在将来更新中解决。</value>
+    <comment/>
+  </data>
+  <data name="DualSRumbleForceGenericRescale" xml:space="preserve">
+    <value>强制使用两种震动力度（普通和 DualSense 控制器特定力度）</value>
+    <comment/>
+  </data>
+  <data name="DualSRumbleModeDisabled" xml:space="preserve">
+    <value>已禁用</value>
+    <comment/>
+  </data>
+  <data name="DualSRumbleModeAccurate" xml:space="preserve">
+    <value>精度</value>
+    <comment/>
+  </data>
+  <data name="DualSRumbleModeLegacy" xml:space="preserve">
+    <value>传统</value>
+    <comment/>
+  </data>
+  <data name="DualSRumbleModeNPowerLevelTxt" xml:space="preserve">
+    <value>震动模式和震动强度：</value>
+    <comment/>
+  </data>
+  <data name="DualSRumbleModePassthru" xml:space="preserve">
+    <value>直通</value>
+    <comment/>
+  </data>
+  <data name="DualSRumbleSpecificSettings" xml:space="preserve">
+    <value>DualSense 控制器特定震动设置</value>
+    <comment/>
+  </data>
+  <data name="DualSRumbleForceGenericRescale_Tip" xml:space="preserve">
+    <value>Recommended to be left DISABLED.- Disabled: rumble will be rescaled natively by the controller accordingly to the defined power level (better quality)- Enabled: both DS4Windows generic rumble rescale and DualSense's native control will be active</value>
+    <comment/>
+  </data>
+  <data name="DualSRumbleModes_Tip" xml:space="preserve">
+    <value>Accurate Mode (recommended):- Better replicates the DualShock 4/Xbox 360 controller rumble feeling- More accurately executes game's intended rumble effects- Rumble has more depth. Within the same power level there is a greater difference between min and max in-game rumble activation,varying from real low up to the max strength of the defined power levelLegacy Mode:- Overral stronger, but lacks depth- Has a "sharper" feeling- The min and max activation in-game will be, respectively, only slightly below and slight above the chosen power level strengthDisabled:- Fully disables rumble</value>
+    <comment/>
+  </data>
+  <data name="DualSRumblePowerLevel_Tip" xml:space="preserve">
+    <value>DualSense's native rumble Power Level rescaler.- When in Accurate Mode, rumble's [ min // max ] will be [ 1% /// Chosen Power Level ]    - Example (62%): [ min = 1% /// max = 62% ]- When in Legacy Mode, rumble's [min /// max ] will be roughly [ Power Level - 12% /// Power Level + 12% ]    - Example (62%): [ min = 50% /// max = 74% ]</value>
+    <comment/>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>接受</value>
+    <comment/>
+  </data>
+  <data name="Black" xml:space="preserve">
+    <value>黑色</value>
+    <comment/>
+  </data>
+  <data name="Colored" xml:space="preserve">
+    <value>彩色</value>
+    <comment/>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>默认</value>
+    <comment/>
+  </data>
+  <data name="DeviceType" xml:space="preserve">
+    <value>设备类型</value>
+    <comment/>
+  </data>
+  <data name="DisconnectFromBtWhenStopping" xml:space="preserve">
+    <value>停止时断开蓝牙连接</value>
+    <comment/>
+  </data>
+  <data name="Dynamic" xml:space="preserve">
+    <value>动态</value>
+    <comment/>
+  </data>
+  <data name="FlashLightbarAtHighLatency" xml:space="preserve">
+    <value>高延迟时使灯条闪动</value>
+    <comment/>
+  </data>
+  <data name="HideDS4Controller" xml:space="preserve">
+    <value>隐藏 DS4 控制器</value>
+    <comment/>
+  </data>
+  <data name="HotkeysAbout" xml:space="preserve">
+    <value>热键（快捷键）和关于</value>
+    <comment/>
+  </data>
+  <data name="IconChoice" xml:space="preserve">
+    <value>图标选择</value>
+    <comment/>
+  </data>
+  <data name="MinimizeToTaskbar" xml:space="preserve">
+    <value>最小化到任务栏</value>
+    <comment/>
+  </data>
+  <data name="MinimizeToTaskbarTip" xml:space="preserve">
+    <value>最小化到任务栏而非系统托盘</value>
+    <comment/>
+  </data>
+  <data name="OutputSlots" xml:space="preserve">
+    <value>输出插槽</value>
+    <comment/>
+  </data>
+  <data name="Permanent" xml:space="preserve">
+    <value>永久</value>
+    <comment/>
+  </data>
+  <data name="Plug" xml:space="preserve">
+    <value>插入</value>
+    <comment/>
+  </data>
+  <data name="RevertToDefaultProfileOnUnknown" xml:space="preserve">
+    <value>遇到未知的应用时回滚到默认配置文件</value>
+    <comment/>
+  </data>
+  <data name="ShowAutoProfileDebugMessages" xml:space="preserve">
+    <value>显示自动配置文件切换的调试消息</value>
+    <comment/>
+  </data>
+  <data name="SwipeTouchpadToSwitchProfiles" xml:space="preserve">
+    <value>滑动触摸板来切换配置文件</value>
+    <comment/>
+  </data>
+  <data name="TurnOffDS4WindowsTemporarily" xml:space="preserve">
+    <value>临时关闭 DS4Windows</value>
+    <comment/>
+  </data>
+  <data name="Unplug" xml:space="preserve">
+    <value>拔出</value>
+    <comment/>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>亮色</value>
+    <comment/>
+  </data>
+  <data name="AppTheme" xml:space="preserve">
+    <value>应用主题</value>
+    <comment/>
+  </data>
+  <data name="CheckEvery" xml:space="preserve">
+    <value>每日检查</value>
+    <comment/>
+  </data>
+  <data name="ControllerSupportDS4" xml:space="preserve">
+    <value>DS4 手柄支持</value>
+    <comment/>
+  </data>
+  <data name="ControllerSupportDualSense" xml:space="preserve">
+    <value>DualSense 手柄支持</value>
+    <comment/>
+  </data>
+  <data name="ControllerSupportJoyCon" xml:space="preserve">
+    <value>JoyCon 手柄支持</value>
+    <comment/>
+  </data>
+  <data name="ControllerSupportSwitchPro" xml:space="preserve">
+    <value>Switch Pro 手柄支持</value>
+    <comment/>
+  </data>
+  <data name="Copycat" xml:space="preserve">
+    <value>模仿（Copycat）</value>
+    <comment/>
+  </data>
+  <data name="CopycatTip" xml:space="preserve">
+    <value>更改一些标志以适配第三方 DS4 手柄。可能修复对第三方 DS4 手柄的震动和灯光支持</value>
+    <comment/>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>暗色</value>
+    <comment/>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>天</value>
+    <comment/>
+  </data>
+  <data name="DetectedControllers" xml:space="preserve">
+    <value>检测到的手柄</value>
+    <comment/>
+  </data>
+  <data name="DeviceOptions" xml:space="preserve">
+    <value>设备选项</value>
+    <comment/>
+  </data>
+  <data name="EnableVerboseLog" xml:space="preserve">
+    <value>启用详细（Verbose）日志</value>
+    <comment/>
+  </data>
+  <data name="EnableVerboseLogTip" xml:space="preserve">
+    <value>连接手柄时显示更多日志信息</value>
+    <comment/>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>小时</value>
+    <comment/>
+  </data>
+  <data name="UseCustomSteamFolder" xml:space="preserve">
+    <value>使用自定义Steam库文件夹</value>
+    <comment/>
+  </data>
+  <data name="Utils" xml:space="preserve">
+    <value>实用工具</value>
+    <comment/>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>程序</value>
+    <comment/>
+  </data>
+  <data name="RunAs" xml:space="preserve">
+    <value>以一下身份运行：</value>
+    <comment/>
+  </data>
+  <data name="Task" xml:space="preserve">
+    <value>任务</value>
+    <comment/>
   </data>
 </root>

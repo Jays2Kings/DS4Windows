@@ -1,9 +1,34 @@
 {
-  "latest_version": "3.2.7",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 7},
-  "updated_at": "2023-01-19T05:18:21+0000",
+  "latest_version": "3.2.8",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 8},
+  "updated_at": "2023-02-05T20:31:36+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.2.8",
+      "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 8},
+      "base_header": "Version 3.2.8",
+      "release_date": "2023-02-05T20:31:36+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.2.8",
+          "log_text": ["* Corrected list display of Press Key special action regarding Toggle status",
+            "* No longer enforce en-US values for Custom Bezier curve string",
+            "* Fixed saving of options for Macro special action. Model problem",
+            "* Check tray icon has been created before trying to show notification",
+            "* Fixed DS4KeyType check for shift modifier when multiple flags are used",
+            "* Ignore None KeyType flag for shift modifier",
+            "* Simplify shift modifier key type saving",
+            "* Fixed loading of Gyro Mouse Joystick trigger eval condition",
+            "* Added extra precautions when disconnecting from FakerInput",
+            "* Adding initial DualSense Edge support. Contribution by **dezerving**",
+            "* Updated zh-cn translatation. Contribution by **jyc001**",
+            "* Grab firmware info for DualSense controller"],
+          "updated_at": "2023-02-05T20:31:36+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.2.7",
       "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 7},

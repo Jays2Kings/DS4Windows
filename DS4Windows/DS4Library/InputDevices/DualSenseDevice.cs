@@ -145,6 +145,7 @@ namespace DS4Windows.InputDevices
         private new const byte USB_OUTPUT_CHANGE_LENGTH = 48;
         private const int OUTPUT_MIN_COUNT_BT = 20;
         private const byte LED_PLAYER_BAR_TOGGLE = 0x10;
+        private const int FEATURE_FIRMWARE_INFO_ID = 0x20;
         private bool timeStampInit = false;
         private uint timeStampPrevious = 0;
         private uint deltaTimeCurrent = 0;
@@ -175,6 +176,9 @@ namespace DS4Windows.InputDevices
         private TriggerEffectData r2EffectData;
 
         private byte muteLEDByte = 0x00;
+        private int hwVersion;
+        private int fwVersion;
+        private int updateVersion;
 
         private DualSenseControllerOptions nativeOptionsStore;
         public DualSenseControllerOptions NativeOptionsStore { get => nativeOptionsStore; }
@@ -235,6 +239,44 @@ namespace DS4Windows.InputDevices
             if (runCalib)
                 RefreshCalibration();
 
+            // Attempt to grab hardware, firmware, and update version
+            // data from DualSense controller. Referenced hid-playstation Linux
+            // driver
+            byte[] firmwareInfoData = new byte[64];
+            firmwareInfoData[0] = FEATURE_FIRMWARE_INFO_ID;
+            bool featureFirmRead = false;
+            if (conType == ConnectionType.BT)
+            {
+                featureFirmRead = ReadBTFeatureReport(firmwareInfoData, 64);
+            }
+            else
+            {
+                featureFirmRead = hDevice.readFeatureData(firmwareInfoData);
+            }
+
+            if (featureFirmRead)
+            {
+                hwVersion = firmwareInfoData[24] |
+                    firmwareInfoData[25] << 8 |
+                    firmwareInfoData[26] << 16 |
+                    firmwareInfoData[27] << 24;
+
+                fwVersion = firmwareInfoData[28] |
+                    firmwareInfoData[29] << 8 |
+                    firmwareInfoData[30] << 16 |
+                    firmwareInfoData[31] << 24;
+
+                updateVersion = firmwareInfoData[44] | firmwareInfoData[45] << 8;
+
+                // Accurate rumble defaults to true. Made device default to false if
+                // grabbed update version is too old
+                int versionCheckAccurate = DSFeatureVersion(2, 21);
+                if (updateVersion < versionCheckAccurate)
+                {
+                    useAccurateRumble = false;
+                }
+            }
+
             if (!hDevice.IsFileStreamOpen())
             {
                 hDevice.OpenFileStream(outputReport.Length);
@@ -246,6 +288,42 @@ namespace DS4Windows.InputDevices
             {
                 SendInitialBTOutputReport();
             }
+        }
+
+        private bool ReadBTFeatureReport(byte[] buffer, int size)
+        {
+            bool result = true;
+            bool found = false;
+            int crc32Pos = size - 4;
+            for (int tries = 0; !found && tries < 5; tries++)
+            {
+                hDevice.readFeatureData(buffer);
+                uint recvCrc32 = buffer[crc32Pos] |
+                                (uint)(buffer[crc32Pos + 1] << 8) |
+                                (uint)(buffer[crc32Pos + 2] << 16) |
+                                (uint)(buffer[crc32Pos + 3] << 24);
+
+                uint calcCrc32 = ~Crc32Algorithm.Compute(new byte[] { 0xA3 });
+                calcCrc32 = ~Crc32Algorithm.CalculateBasicHash(ref calcCrc32, ref buffer, 0, crc32Pos);
+                bool validCrc = recvCrc32 == calcCrc32;
+                if (!validCrc && tries >= 5)
+                {
+                    AppLogger.LogToGui("Feature report read failure", true);
+                    continue;
+                }
+                else if (validCrc)
+                {
+                    found = true;
+                }
+            }
+
+            result = found;
+            return result;
+        }
+
+        private int DSFeatureVersion(int major, int minor)
+        {
+            return ((major & 0xFF) << 8 | (minor & 0xFF));
         }
 
         public static ConnectionType DetermineConnectionType(HidDevice hidDevice)

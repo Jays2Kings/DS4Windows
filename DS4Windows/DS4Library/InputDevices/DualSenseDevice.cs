@@ -176,9 +176,9 @@ namespace DS4Windows.InputDevices
         private TriggerEffectData r2EffectData;
 
         private byte muteLEDByte = 0x00;
-        private int hwVersion;
-        private int fwVersion;
-        private int updateVersion;
+        private uint hwVersion;
+        private uint fwVersion;
+        private uint updateVersion;
 
         private DualSenseControllerOptions nativeOptionsStore;
         public DualSenseControllerOptions NativeOptionsStore { get => nativeOptionsStore; }
@@ -257,16 +257,16 @@ namespace DS4Windows.InputDevices
             if (featureFirmRead)
             {
                 hwVersion = firmwareInfoData[24] |
-                    firmwareInfoData[25] << 8 |
-                    firmwareInfoData[26] << 16 |
-                    firmwareInfoData[27] << 24;
+                    (uint)(firmwareInfoData[25] << 8) |
+                    (uint)(firmwareInfoData[26] << 16) |
+                    (uint)(firmwareInfoData[27] << 24);
 
                 fwVersion = firmwareInfoData[28] |
-                    firmwareInfoData[29] << 8 |
-                    firmwareInfoData[30] << 16 |
-                    firmwareInfoData[31] << 24;
+                    (uint)(firmwareInfoData[29] << 8) |
+                    (uint)(firmwareInfoData[30] << 16) |
+                    (uint)(firmwareInfoData[31] << 24);
 
-                updateVersion = firmwareInfoData[44] | firmwareInfoData[45] << 8;
+                updateVersion = firmwareInfoData[44] | (uint)(firmwareInfoData[45] << 8);
 
                 // Accurate rumble defaults to true. Made device default to false if
                 // grabbed update version is too old

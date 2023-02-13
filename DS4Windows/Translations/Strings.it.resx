@@ -133,7 +133,7 @@
     <value>Aggiungi Programmi</value>
   </data>
   <data name="AddStartMenuPrograms" xml:space="preserve">
-    <value>Aggiungi al Menu Start</value>
+    <value>Aggiungi Programmi Del Menu Start</value>
   </data>
   <data name="AddSteamGames" xml:space="preserve">
     <value>Aggiungi Giochi Steam</value>
@@ -154,7 +154,7 @@
     <value>Sfoglia per Altri Programmi</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancella</value>
+    <value>Annulla</value>
   </data>
   <data name="CheckUpdateNow" xml:space="preserve">
     <value>Controlla Aggiornamenti Ora</value>
@@ -214,7 +214,7 @@
     <value>Gyro</value>
   </data>
   <data name="HideUnchecked" xml:space="preserve">
-    <value>Nascondi Non-spuntato</value>
+    <value>Nascondi I Profili on Attivi</value>
   </data>
   <data name="Import" xml:space="preserve">
     <value>Importa</value>
@@ -250,10 +250,10 @@
     <value>Cartella del Profilo</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
-    <value>Carica Rapida</value>
+    <value>Ricarica Rapida</value>
   </data>
   <data name="RecordText" xml:space="preserve">
-    <value>Memorizza</value>
+    <value>Registra Macro</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Rimuovi</value>
@@ -268,7 +268,7 @@
     <value>Vibrazione</value>
   </data>
   <data name="RunAtStartup" xml:space="preserve">
-    <value>Lancia all'Avvio</value>
+    <value>Lancia l'app all'Avvio di Windows</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Salva</value>
@@ -292,7 +292,7 @@
     <value>Stato</value>
   </data>
   <data name="StopText" xml:space="preserve">
-    <value>Ferma</value>
+    <value>Arresta</value>
   </data>
   <data name="TouchScroll" xml:space="preserve">
     <value>Scorri</value>
@@ -313,36 +313,36 @@
     <value>sec</value>
   </data>
   <data name="RumbleMaxSecsTip" xml:space="preserve">
-    <value>Auto stop rumble in secs (0=auto stop disabled)</value>
+    <value>Ferma il test della vibrazione in secondi (0=auto stop disabled)</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Window Title</value>
+    <value>Barra del titolo</value>
   </data>
   <data name="MoveUp" xml:space="preserve">
-    <value>Move Up</value>
+    <value>Sposta Su</value>
   </data>
   <data name="MoveDown" xml:space="preserve">
-    <value>Move Down</value>
+    <value>Sposta Giù</value>
   </data>
   <data name="AutoProfPathTip" xml:space="preserve">
-    <value>Process path. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*)</value>
+    <value>Percorso del processo. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*)</value>
   </data>
   <data name="AutoProfTitleTip" xml:space="preserve">
-    <value>Window title. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*)</value>
+    <value>Barra del titolo. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*)</value>
   </data>
   <data name="GamepadTest" xml:space="preserve">
     <value>Gamepad Test</value>
   </data>
   <data name="EnableOutputDataToDS4" xml:space="preserve">
-    <value>Enable Output data to DS4</value>
+    <value>Abilita L'output dei dati sul DS4</value>
   </data>
   <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
-    <value>Output lightbar and rumble data periodically to DS4 gamepad. Untick if the gamepad doesn't support data receiving.
-Changes to this option takes effect at the gamepad connection time.</value>
+    <value>Trasmetti periodicamente i dati della barra luminosa e della vibrazione al gamepad DS4. Deseleziona se il gamepad non supporta la ricezione dei dati.
+Le modifiche a questa opzione hanno effetto al momento della connessione del gamepad.</value>
     <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
   </data>
   <data name="Apply" xml:space="preserve">
-    <value>Apply</value>
+    <value>Applica</value>
   </data>
   <data name="HidNinja" xml:space="preserve">
     <value>HidNinja</value>
@@ -407,25 +407,25 @@ Example: whyme_DS4Windows</value>
     <value>Gamepad with High Precision Camera</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>Descrizione</value>
   </data>
   <data name="PresetIntroText" xml:space="preserve">
-    <value>Do you want to use a preset option? Choosing No will cause the Profile Editor to use an empty Gamepad profile.</value>
+    <value>Vuoi utilizzare un preset? Scegliendo "No", verrà utilizzato un profilo standard.</value>
   </data>
   <data name="Presets" xml:space="preserve">
-    <value>Presets</value>
+    <value>Preset</value>
   </data>
   <data name="Changelog" xml:space="preserve">
     <value>Changelog</value>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>Close</value>
+    <value>Chiudi</value>
   </data>
   <data name="Profiles" xml:space="preserve">
-    <value>Profiles</value>
+    <value>Profili</value>
   </data>
   <data name="NoControllersConnected" xml:space="preserve">
-    <value>No Controllers Connected (Max {0})</value>
+    <value>Nessun Controller Connesso (Max {0})</value>
   </data>
   <data name="FlickThreshold" xml:space="preserve">
     <value>Flick Threshold</value>
@@ -438,5 +438,293 @@ Example: whyme_DS4Windows</value>
   </data>
   <data name="RealWorldCalibration" xml:space="preserve">
     <value>Real World Calibration</value>
+  </data>
+  <data name="ViGEmPluginFailure" xml:space="preserve">
+    <value>ViGEm Device Plugin Failed. Likely an internal ViGEmBus problem. Closing connection. If the issue persists, please close DS4Windows and then reboot Windows.</value>
+  </data>
+  <data name="CRC32Fail" xml:space="preserve">
+    <value>Data integrity checks failed for wireless device. Closing device.</value>
+  </data>
+  <data name="FutureNetNotInstalled" xml:space="preserve">
+    <value>.NET 5 Runtime was not detected on your system. Please download and install .NET 5 Runtime to ensure compatibility with future DS4Windows builds. You will be redirected to the .NET 5 Runtime download page upon closing this window.</value>
+  </data>
+  <data name="UpgradeNetCaption" xml:space="preserve">
+    <value>Please update .NET Runtime</value>
+  </data>
+  <data name="HidHide" xml:space="preserve">
+    <value>HidHide</value>
+  </data>
+  <data name="HidHideConfigClient" xml:space="preserve">
+    <value>HidHide Configuration Client</value>
+  </data>
+  <data name="ExclusiveAccess" xml:space="preserve">
+    <value>Exclusive Access</value>
+  </data>
+  <data name="HidGuardianAccess" xml:space="preserve">
+    <value>HidGuardian Access</value>
+  </data>
+  <data name="HidHideAccess" xml:space="preserve">
+    <value>HidHide Access</value>
+  </data>
+  <data name="SharedAccess" xml:space="preserve">
+    <value>Shared Access</value>
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Rinomina</value>
+  </data>
+  <data name="DisableVirtualController" xml:space="preserve">
+    <value>Disabilita Controller Virtuale</value>
+  </data>
+  <data name="DisableVirtualControllerTip" xml:space="preserve">
+    <value>Non generare/associare i controller virtuali per i controller connessi utilizzando questo profilo (La modifica verrà applicata al salvataggio del profilo)</value>
+  </data>
+  <data name="EmulatedController" xml:space="preserve">
+    <value>Controller Emulato</value>
+  </data>
+  <data name="OutContNotice" xml:space="preserve">
+    <value>Scegli il tipo di controller da emulare (La modifica verrà applicata al salvataggio del profilo)</value>
+  </data>
+  <data name="VirtualControllerSettings" xml:space="preserve">
+    <value>Opzioni Controller Virtuali</value>
+  </data>
+  <data name="ChangeOnNewDeviceConn" xml:space="preserve">
+    <value>Le modifiche avranno effetto sulla nuova connessione del dispositivo</value>
+  </data>
+  <data name="StickFuzzTooltip" xml:space="preserve">
+    <value>Fuzz specifica il valore minimo, in unità, per la registrazione del movimento della levetta analogica nel mapper. Questa opzione può essere utile per gli analogici usurati che non riescono a mantenere una posizione fissa. Questo valore viene espresso in unità grezze.</value>
+  </data>
+  <data name="StickMaxOutputForceTooltip" xml:space="preserve">
+    <value>Always enforce max output setting. Useful for 100% Max Output and confining value to a circular output value</value>
+  </data>
+  <data name="StickMaxOutputTooltip" xml:space="preserve">
+    <value>In some situations, it might be useful to limit the maximum value that is output by the output analog stick. Max Output allows throttling the final output value of the analog stick.</value>
+  </data>
+  <data name="AntiDeadzoneTooltip" xml:space="preserve">
+    <value>An anti-deadzone acts as an offset for use with an axis to denote the minimum output value generated after an axis has left its assigned deadzone. This is mainly meant to help with mapping an axis to the assigned deadzone value used for an axis in a video game. For example, the typical assigned deadzone for XInput LS in a video game is around 8000 (25%). With no anti-deadzone assigned, an axis would have to move past the assigned deadzone in DS4Windows along with the game's assigned axis deadzone.</value>
+  </data>
+  <data name="StickInputCurveTooltip" xml:space="preserve">
+    <value>OLD OBSOLETE SETTING. Attempt to apply a curve based on raw input coordinates before any dead zone info is applied. Wonky</value>
+  </data>
+  <data name="TouchpadMinThresholdTooltip" xml:space="preserve">
+    <value>Minimum calculated output travel before a Mouse event is sent to the system</value>
+  </data>
+  <data name="TouchpadRotationTooltip" xml:space="preserve">
+    <value>Adjusts a touchpad swipe by a given rotation angle. Useful when a normal touchpad swipe is not a straight line across. Values allows range from -180 to 180. Default is 0.</value>
+  </data>
+  <data name="TouchpadSlideTooltip" xml:space="preserve">
+    <value>Sensitivity used to engage a multi-touch Mouse Wheel Scroll action</value>
+  </data>
+  <data name="TouchpadTapTooltip" xml:space="preserve">
+    <value>Activate Mouse Left click with a Touchpad Tap. Max time interval is set at (value * 2) ms.</value>
+  </data>
+  <data name="TouchpadTrackballEnableTooltip" xml:space="preserve">
+    <value>Adds momentum to a Touchpad swipe once a finger is lifted. Adds extra Mouse cursor travel than would be possible with the confined space on the Touchpad</value>
+  </data>
+  <data name="TouchpadTrackballFrictionTooltip" xml:space="preserve">
+    <value>Add friction to virtual Trackball. Decreased friction will increase final mouse cursor travel time</value>
+  </data>
+  <data name="StickOuterBindDeadTooltip" xml:space="preserve">
+    <value>Threshold for when an action will fire</value>
+  </data>
+  <data name="StickOuterBindInvertTooltip" xml:space="preserve">
+    <value>Have outer bind fire before reaching a threshold. Action releases once the threshold has been exceeded</value>
+  </data>
+  <data name="StickOuterBindTooltip" xml:space="preserve">
+    <value>Action to execute when stick travel reaches past a treshold. Useful for mapping keys for Walk or Sprint actions. Invert casues the action to fire up until the threshold</value>
+  </data>
+  <data name="SASteeringWheelFuzzTooltip" xml:space="preserve">
+    <value>Fuzz specifies the minimum number of device units, in active zone, that the Accel has to be rotated before the output is registered as changed in the mapper. The value is expressed in raw Accel units.</value>
+  </data>
+  <data name="StickRotationTooltip" xml:space="preserve">
+    <value>+ = Clockwise. - = Counter-clockwise.
+
+The rotation setting is meant to help correct the orientation of an analog stick if your thumb is slightly shifted when moving an analog stick. For example, your thumb might be slightly shifted from center when the analog stick is moved fully north. My thumbs shift slightly to the right when moving an analog stick fully north due to the way my hands grip the DS4. The value used denotes the number of degrees used to adjust the final axis output value. Values allows range from -180 to 180. Default is 0.</value>
+  </data>
+  <data name="TouchpadJitterCompTooltip" xml:space="preserve">
+    <value>Throttle low end of Touchpad movement. Reduces accidental mouse cursor movement when holding a mostly fixed position on the Touchpad</value>
+  </data>
+  <data name="DS4BTPollRate" xml:space="preserve">
+    <value>DS4 BT Poll Rate</value>
+  </data>
+  <data name="DS4LightbarPassthruDisabled" xml:space="preserve">
+    <value>Funzionalità disabilitata al momento a causa di problemi con il driver. Si spera che i problemi vengano risolti in un aggiornamento futuro.</value>
+  </data>
+  <data name="DualSRumbleForceGenericRescale" xml:space="preserve">
+    <value>Forza l'uso di entrambi i valori di vibrazione % (Opzione specifica per controller Generici e DualSense)</value>
+  </data>
+  <data name="DualSRumbleModeDisabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="DualSRumbleModeAccurate" xml:space="preserve">
+    <value>Accurate</value>
+  </data>
+  <data name="DualSRumbleModeLegacy" xml:space="preserve">
+    <value>Legacy</value>
+  </data>
+  <data name="DualSRumbleModeNPowerLevelTxt" xml:space="preserve">
+    <value>Modalità vibrazione e livello:</value>
+  </data>
+  <data name="DualSRumbleModePassthru" xml:space="preserve">
+    <value>Passthru</value>
+  </data>
+  <data name="DualSRumbleSpecificSettings" xml:space="preserve">
+    <value>Impostazioni di vibrazione specifiche per DualSense</value>
+  </data>
+  <data name="DualSRumbleForceGenericRescale_Tip" xml:space="preserve">
+    <value>Recommended to be left DISABLED.
+
+- Disabled: rumble will be rescaled natively by the controller accordingly to the defined power level (better quality)
+
+- Enabled: both DS4Windows generic rumble rescale and DualSense's native control will be active</value>
+  </data>
+  <data name="DualSRumbleModes_Tip" xml:space="preserve">
+    <value>Accurate Mode (recommended):
+- Better replicates the DualShock 4/Xbox 360 controller rumble feeling
+- More accurately executes game's intended rumble effects
+- Rumble has more depth. Within the same power level there is a greater difference between min and max in-game rumble activation,
+varying from real low up to the max strength of the defined power level
+
+Legacy Mode:
+- Overral stronger, but lacks depth
+- Has a "sharper" feeling
+- The min and max activation in-game will be, respectively, only slightly below and slight above the chosen power level strength
+
+Disabled:
+- Fully disables rumble</value>
+  </data>
+  <data name="DualSRumblePowerLevel_Tip" xml:space="preserve">
+    <value>DualSense's native rumble Power Level rescaler.
+
+- When in Accurate Mode, rumble's [ min // max ] will be [ 1% /// Chosen Power Level ]
+    - Example (62%): [ min = 1% /// max = 62% ]
+
+- When in Legacy Mode, rumble's [min /// max ] will be roughly [ Power Level - 12% /// Power Level + 12% ]
+    - Example (62%): [ min = 50% /// max = 74% ]</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accetta</value>
+  </data>
+  <data name="Black" xml:space="preserve">
+    <value>Nero</value>
+  </data>
+  <data name="Colored" xml:space="preserve">
+    <value>Colorato</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="DeviceType" xml:space="preserve">
+    <value>Device type</value>
+  </data>
+  <data name="DisconnectFromBtWhenStopping" xml:space="preserve">
+    <value>Disconnetti dal BT dopo aver premuto "Arresta"</value>
+  </data>
+  <data name="Dynamic" xml:space="preserve">
+    <value>Dinamico</value>
+  </data>
+  <data name="FlashLightbarAtHighLatency" xml:space="preserve">
+    <value>Lampeggia se la Latenza è Alta</value>
+  </data>
+  <data name="HideDS4Controller" xml:space="preserve">
+    <value>Nascondi il controller DS4</value>
+  </data>
+  <data name="HotkeysAbout" xml:space="preserve">
+    <value>Tasti di Scelta Rapida/Informazioni</value>
+  </data>
+  <data name="IconChoice" xml:space="preserve">
+    <value>Scegli l'Icona</value>
+  </data>
+  <data name="MinimizeToTaskbar" xml:space="preserve">
+    <value>Riduci a icona sulla barra delle applicazioni</value>
+  </data>
+  <data name="MinimizeToTaskbarTip" xml:space="preserve">
+    <value>Riduci a icona sulla barra delle applicazioni invece dell'area di notifica</value>
+  </data>
+  <data name="OutputSlots" xml:space="preserve">
+    <value>Output Slots</value>
+  </data>
+  <data name="Permanent" xml:space="preserve">
+    <value>Permanente</value>
+  </data>
+  <data name="Plug" xml:space="preserve">
+    <value>Plug</value>
+  </data>
+  <data name="RevertToDefaultProfileOnUnknown" xml:space="preserve">
+    <value>Ripristina il profilo predefinito se nessun processo è riconosciuto</value>
+  </data>
+  <data name="ShowAutoProfileDebugMessages" xml:space="preserve">
+    <value>Mostra i messaggi di debug del profilo automatico</value>
+  </data>
+  <data name="SwipeTouchpadToSwitchProfiles" xml:space="preserve">
+    <value>Scorri sul Touchpad per Cambiare Profilo</value>
+  </data>
+  <data name="TurnOffDS4WindowsTemporarily" xml:space="preserve">
+    <value>Disattiva temporanaemente DS4Windows</value>
+  </data>
+  <data name="Unplug" xml:space="preserve">
+    <value>Unplug</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>Bianco</value>
+  </data>
+  <data name="AppTheme" xml:space="preserve">
+    <value>Tema App</value>
+  </data>
+  <data name="CheckEvery" xml:space="preserve">
+    <value>Controlla ogni</value>
+  </data>
+  <data name="ControllerSupportDS4" xml:space="preserve">
+    <value>DS4 Controller Support</value>
+  </data>
+  <data name="ControllerSupportDualSense" xml:space="preserve">
+    <value>DualSense Controller Support</value>
+  </data>
+  <data name="ControllerSupportJoyCon" xml:space="preserve">
+    <value>JoyCon Controller Support</value>
+  </data>
+  <data name="ControllerSupportSwitchPro" xml:space="preserve">
+    <value>Switch Pro Controller Support</value>
+  </data>
+  <data name="Copycat" xml:space="preserve">
+    <value>Copycat</value>
+  </data>
+  <data name="CopycatTip" xml:space="preserve">
+    <value>Change some flags used for a non-Sony DS4 controller. It might fix rumble and lightbar support for some third party DS4 clones</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Scuro</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Giorni</value>
+  </data>
+  <data name="DetectedControllers" xml:space="preserve">
+    <value>Controller Rilevati</value>
+  </data>
+  <data name="DeviceOptions" xml:space="preserve">
+    <value>Opzioni Dispositivo</value>
+  </data>
+  <data name="EnableVerboseLog" xml:space="preserve">
+    <value>Abilita Registro Dettagliato</value>
+  </data>
+  <data name="EnableVerboseLogTip" xml:space="preserve">
+    <value>Mostra messaggi più dettagliati nel registro quando un gamepad è connesso</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>Ore</value>
+  </data>
+  <data name="UseCustomSteamFolder" xml:space="preserve">
+    <value>Seleziona la Cartella di Steam Personalizzata</value>
+  </data>
+  <data name="Utils" xml:space="preserve">
+    <value>Utils</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="RunAs" xml:space="preserve">
+    <value>Run As</value>
+  </data>
+  <data name="Task" xml:space="preserve">
+    <value>Task</value>
   </data>
 </root>

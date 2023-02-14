@@ -906,6 +906,7 @@ namespace DS4Windows.InputDevices
                     }
 
                     outputDirty = false;
+                    currentHap.dirty = false;
                     //forceWrite = false;
 
                     if (!string.IsNullOrEmpty(currerror))
@@ -914,6 +915,7 @@ namespace DS4Windows.InputDevices
                         error = string.Empty;
 
                     cState.CopyTo(pState);
+                    previousHapticState = currentHap;
 
                     if (hasInputEvts)
                     {
@@ -1100,8 +1102,9 @@ namespace DS4Windows.InputDevices
                 outputReport[46] = currentHap.lightbarState.LightBarColor.green;
                 outputReport[47] = currentHap.lightbarState.LightBarColor.blue;
 
-                if (!previousHapticState.Equals(currentHap))
+                if (currentHap.dirty || !previousHapticState.Equals(currentHap))
                 {
+                    Trace.WriteLine($"CHANGING {r2EffectData.triggerMotorMode}");
                     change = true;
                 }
                 /*fixed (byte* bytePrevBuff = outputReport, byteTmpBuff = outReportBuffer)
@@ -1237,7 +1240,7 @@ namespace DS4Windows.InputDevices
                 outputReport[47] = currentHap.lightbarState.LightBarColor.green;
                 outputReport[48] = currentHap.lightbarState.LightBarColor.blue;
 
-                change = !previousHapticState.Equals(currentHap);
+                change = currentHap.dirty || !previousHapticState.Equals(currentHap);
 
                 // Need to calculate and populate CRC32 data so controller will accept the report
                 uint calcCrc32 = 0;
@@ -1423,6 +1426,7 @@ namespace DS4Windows.InputDevices
             queueEvent(() =>
             {
                 outputDirty = true;
+                currentHap.dirty = true;
                 PrepareOutReport();
             });
         }

@@ -1104,7 +1104,6 @@ namespace DS4Windows.InputDevices
 
                 if (currentHap.dirty || !previousHapticState.Equals(currentHap))
                 {
-                    Trace.WriteLine($"CHANGING {r2EffectData.triggerMotorMode}");
                     change = true;
                 }
                 /*fixed (byte* bytePrevBuff = outputReport, byteTmpBuff = outReportBuffer)

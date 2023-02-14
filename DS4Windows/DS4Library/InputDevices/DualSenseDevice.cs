@@ -902,6 +902,7 @@ namespace DS4Windows.InputDevices
                     if (outputDirty)
                     {
                         WriteReport();
+                        currentHap.dirty = false;
                         previousHapticState = currentHap;
                     }
 
@@ -915,7 +916,6 @@ namespace DS4Windows.InputDevices
                         error = string.Empty;
 
                     cState.CopyTo(pState);
-                    previousHapticState = currentHap;
 
                     if (hasInputEvts)
                     {

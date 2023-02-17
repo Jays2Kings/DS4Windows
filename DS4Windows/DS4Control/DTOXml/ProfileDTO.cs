@@ -426,7 +426,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public double LSVerticalScale
         {
             get => _lSVerticalScale;
-            set => _lSVerticalScale = Math.Clamp(value, 0.0, 200.0);
+            set => _lSVerticalScale = Math.Clamp(value, 0.0, 400.0);
         }
 
         private double _rSVerticalScale = StickDeadZoneInfo.DEFAULT_VERTICAL_SCALE;
@@ -434,7 +434,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public double RSVerticalScale
         {
             get => _rSVerticalScale;
-            set => _rSVerticalScale = Math.Clamp(value, 0.0, 200.0);
+            set => _rSVerticalScale = Math.Clamp(value, 0.0, 400.0);
         }
 
         private double _lSMaxOutput = 100.0;

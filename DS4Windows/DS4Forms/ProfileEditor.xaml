@@ -318,7 +318,7 @@
                                                         </DockPanel>
 
                                                         <Label Content="Vertical Scale:" Grid.Row="4" Grid.Column="0" />
-                                                        <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSVerticalScale}" FormatString="F2" MinWidth="50" Grid.Row="4" Grid.Column="1" Maximum="2.0" Minimum="0.0" Increment="0.1"
+                                                        <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSVerticalScale}" FormatString="F2" MinWidth="50" Grid.Row="4" Grid.Column="1" Maximum="4.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
                                                         <Label Content="Sensitivity:" Grid.Row="5" Grid.Column="0" />
@@ -607,7 +607,7 @@
                                                         </DockPanel>
 
                                                         <Label Content="Vertical Scale:" Grid.Row="4" Grid.Column="0" />
-                                                        <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSVerticalScale}" FormatString="F2" MinWidth="50" Grid.Row="4" Grid.Column="1" Maximum="2.0" Minimum="0.0" Increment="0.1"
+                                                        <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSVerticalScale}" FormatString="F2" MinWidth="50" Grid.Row="4" Grid.Column="1" Maximum="4.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
                                                         <Label Content="Sensitivity:" Grid.Row="5" Grid.Column="0" />

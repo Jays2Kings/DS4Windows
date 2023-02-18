@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using DS4Windows;
 using NLog;
 using NLog.Targets.Wrappers;
 
@@ -12,6 +14,7 @@ namespace DS4WinWPF
     {
         private Logger logger;// = LogManager.GetCurrentClassLogger();
         public Logger Logger { get => logger; }
+        private ReaderWriterLockSlim logLock = new ReaderWriterLockSlim();
 
         public LoggerHolder(DS4Windows.ControlService service)
         {
@@ -36,6 +39,7 @@ namespace DS4WinWPF
                 return;
             }
 
+            using WriteLocker locker = new WriteLocker(logLock);
             if (!e.Warning)
             {
                 logger.Info(e.Data);

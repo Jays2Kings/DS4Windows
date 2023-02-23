@@ -32,7 +32,7 @@ namespace DS4Windows
     [Flags]
     public enum DS4KeyType : byte { None = 0, ScanCode = 1, Toggle = 2, Unbound = 4, Macro = 8, HoldMacro = 16, RepeatMacro = 32 }; // Increment by exponents of 2*, starting at 2^0
     public enum Ds3PadId : byte { None = 0xFF, One = 0x00, Two = 0x01, Three = 0x02, Four = 0x03, All = 0x04 };
-    public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options, Mute, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown, L2FullPull, R2FullPull, GyroSwipeLeft, GyroSwipeRight, GyroSwipeUp, GyroSwipeDown, Capture, SideL, SideR, LSOuter, RSOuter };
+    public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options, Mute, FnL, FnR, BLP, BRP, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown, L2FullPull, R2FullPull, GyroSwipeLeft, GyroSwipeRight, GyroSwipeUp, GyroSwipeDown, Capture, SideL, SideR, LSOuter, RSOuter };
     public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, TouchpadClick, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, AbsMouseUp, AbsMouseDown, AbsMouseLeft, AbsMouseRight, Unbound };
 
     public enum SASteeringWheelEmulationAxisType: byte { None = 0, LX, LY, RX, RY, L2R2, VJoy1X, VJoy1Y, VJoy1Z, VJoy2X, VJoy2Y, VJoy2Z };
@@ -594,6 +594,10 @@ namespace DS4Windows
             X360Controls.Back, // DS4Controls.Share
             X360Controls.Start, // DS4Controls.Options
             X360Controls.None, // DS4Controls.Mute
+            X360Controls.None, // DS4Controls.FnL
+            X360Controls.None, // DS4Controls.FnR
+            X360Controls.None, // DS4Controls.BLP
+            X360Controls.None, // DS4Controls.BRP
             X360Controls.None, // DS4Controls.GyroXPos
             X360Controls.None, // DS4Controls.GyroXNeg
             X360Controls.None, // DS4Controls.GyroZPos
@@ -767,6 +771,10 @@ namespace DS4Windows
             [DS4Controls.Share] = "Share",
             [DS4Controls.Options] = "Options",
             [DS4Controls.Mute] = "Mute",
+            [DS4Controls.FnL] = "Function Left",
+            [DS4Controls.FnR] = "Function Right",
+            [DS4Controls.BLP] = "Bottom Left Paddle",
+            [DS4Controls.BRP] = "Bottom Right Paddle",
             [DS4Controls.Capture] = "Capture",
             [DS4Controls.SideL] = "Side L",
             [DS4Controls.SideR] = "Side R",
@@ -9875,6 +9883,10 @@ namespace DS4Windows
 
                 case "PS": return DS4Controls.PS;
                 case "Mute": return DS4Controls.Mute;
+                case "Function Left": return DS4Controls.FnL;
+                case "Function Right": return DS4Controls.FnR;
+                case "Bottom Left Paddle": return DS4Controls.BLP;
+                case "Bottom Right Paddle": return DS4Controls.BRP;
                 case "Capture": return DS4Controls.Capture;
                 case "SideL": return DS4Controls.SideL;
                 case "SideR": return DS4Controls.SideR;

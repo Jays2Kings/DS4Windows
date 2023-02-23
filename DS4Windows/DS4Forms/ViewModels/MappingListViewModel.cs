@@ -107,6 +107,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             mappings.Add(new MappedControl(devIndex, DS4Controls.SwipeLeft, "Swipe Left", devType));
             mappings.Add(new MappedControl(devIndex, DS4Controls.SwipeRight, "Swipe Right", devType));
 
+            mappings.Add(new MappedControl(devIndex, DS4Controls.FnL, "Function Left", devType));
+            mappings.Add(new MappedControl(devIndex, DS4Controls.FnR, "Function Right", devType));
+            mappings.Add(new MappedControl(devIndex, DS4Controls.BLP, "Bottom Left Paddle", devType));
+            mappings.Add(new MappedControl(devIndex, DS4Controls.BRP, "Bottom Right Paddle", devType));
+            
             int controlIndex = 0;
             foreach (MappedControl mapped in mappings)
             {
@@ -330,6 +335,10 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 case 28: return "Capture";
                 case 29: return "Side L";
                 case 30: return "Side R";
+                case 31: return "Function Left";
+                case 32: return "Function Right";
+                case 33: return "Bottom Left Paddle";
+                case 43: return "Bottom Right Paddle";
                 default: return "";
             }
         }

@@ -257,16 +257,18 @@ namespace DS4Windows
             ControlButtons.Add(settingsList[(int)DS4Controls.R1-1]);
             ControlButtons.Add(settingsList[(int)DS4Controls.R3-1]);
 
-            for (int i = (int)DS4Controls.Square; i <= (int)DS4Controls.SwipeDown; i++)
+            // Populate basic buttons used for mapping before DualSense Edge extra
+            // buttons in DS4Controls enum
+            for (int i = (int)DS4Controls.Square; i <= (int)DS4Controls.Mute; i++)
             {
                 ControlButtons.Add(settingsList[i-1]);
             }
 
-            // Instead of moving button values in DS4Controls enum, currently just remove
-            // entries after the fact
-            for (int i = (int)DS4Controls.FnL; i <= (int)DS4Controls.BRP; i++)
+            // Populate basic buttons used for mapping after DualSense Edge extra
+            // buttons in DS4Controls enum
+            for (int i = (int)DS4Controls.GyroXPos; i <= (int)DS4Controls.SwipeDown; i++)
             {
-                ControlButtons.Remove(settingsList[i-1]);
+                ControlButtons.Add(settingsList[i-1]);
             }
 
             this.settingsList = settingsList;

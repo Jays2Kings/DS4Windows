@@ -646,6 +646,11 @@ namespace DS4Windows
             List<DS4Controls> result = new List<DS4Controls>();
             switch (dev.DeviceType)
             {
+                case InputDevices.InputDeviceType.DualSense:
+                    // Added extra DualSense Edge buttons as extra in the mapper. Keeps checking non-existent button on normal DualSense.
+                    // Likley add some flag in DualSenseDevice to denote sub-type to skip this for normal DualSense
+                    result.AddRange(new DS4Controls[] { DS4Controls.FnL, DS4Controls.FnR, DS4Controls.BLP, DS4Controls.BRP });
+                    break;
                 case InputDevices.InputDeviceType.JoyConL:
                 case InputDevices.InputDeviceType.JoyConR:
                     result.AddRange(new DS4Controls[] { DS4Controls.Capture, DS4Controls.SideL, DS4Controls.SideR });

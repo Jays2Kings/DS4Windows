@@ -262,6 +262,13 @@ namespace DS4Windows
                 ControlButtons.Add(settingsList[i-1]);
             }
 
+            // Instead of moving button values in DS4Controls enum, currently just remove
+            // entries after the fact
+            for (int i = (int)DS4Controls.FnL; i <= (int)DS4Controls.BRP; i++)
+            {
+                ControlButtons.Remove(settingsList[i-1]);
+            }
+
             this.settingsList = settingsList;
         }
 

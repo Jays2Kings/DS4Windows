@@ -14,7 +14,7 @@ namespace DS4Windows
         public bool touchButton = false;
         public bool outputTouchButton = false;
 
-        public static ControlType[] mappedType = new ControlType[50]
+        public static ControlType[] mappedType = new ControlType[54]
         {
             ControlType.Unknown, // DS4Controls.None
             ControlType.AxisDir, // DS4Controls.LXNeg
@@ -47,6 +47,10 @@ namespace DS4Windows
             ControlType.Button, // DS4Controls.Share
             ControlType.Button, // DS4Controls.Options
             ControlType.Button, // DS4Controls.Mute
+            ControlType.Button, // DS4Controls.FnL
+            ControlType.Button, // DS4Controls.FnR
+            ControlType.Button, // DS4Controls.BLP
+            ControlType.Button, // DS4Controls.BRP
             ControlType.GyroDir, // DS4Controls.GyroXPos
             ControlType.GyroDir, // DS4Controls.GyroXNeg
             ControlType.GyroDir, // DS4Controls.GyroZPos
@@ -111,6 +115,10 @@ namespace DS4Windows
                 buttons[(int)DS4Controls.Options] = cState.Options;
                 buttons[(int)DS4Controls.Share] = cState.Share;
                 buttons[(int)DS4Controls.Mute] = cState.Mute;
+                buttons[(int)DS4Controls.FnL] = cState.FnL;
+                buttons[(int)DS4Controls.FnR] = cState.FnR;
+                buttons[(int)DS4Controls.BLP] = cState.BLP;
+                buttons[(int)DS4Controls.BRP] = cState.BRP;
                 buttons[(int)DS4Controls.Capture] = cState.Capture;
                 buttons[(int)DS4Controls.SideL] = cState.SideL;
                 buttons[(int)DS4Controls.SideR] = cState.SideR;
@@ -185,6 +193,10 @@ namespace DS4Windows
                 state.Options = buttons[(int)DS4Controls.Options];
                 state.Share = buttons[(int)DS4Controls.Share];
                 state.Mute = buttons[(int)DS4Controls.Mute];
+                state.FnL = buttons[(int)DS4Controls.FnL];
+                state.FnR = buttons[(int)DS4Controls.FnR];
+                state.BLP = buttons[(int)DS4Controls.BLP];
+                state.BRP = buttons[(int)DS4Controls.BRP];
                 state.Capture = buttons[(int)DS4Controls.Capture];
                 state.SideL = buttons[(int)DS4Controls.SideL];
                 state.SideR = buttons[(int)DS4Controls.SideR];

@@ -141,6 +141,10 @@
                         <Button Content="Options" x:Name="optionsConBtn" Canvas.Left="291" Canvas.Top="63" Width="16" Height="24" Style="{StaticResource NoBGHoverBtn}" Click="HoverConBtn_Click" MouseEnter="ContBtn_MouseEnter" MouseLeave="ContBtn_MouseLeave" />
                         <Button Content="Guide" x:Name="guideConBtn" Canvas.Left="211" Canvas.Top="144" Width="20" Height="20" Style="{StaticResource NoBGHoverBtn}" Click="HoverConBtn_Click" MouseEnter="ContBtn_MouseEnter" MouseLeave="ContBtn_MouseLeave" />
                         <Button Content="Mute" x:Name="muteConBtn" Canvas.Left="0" Canvas.Top="0" Width="0" Height="0" Style="{StaticResource NoBGHoverBtn}" Visibility="Collapsed" />
+                        <Button Content="Function Left" x:Name="fnlConBtn" Canvas.Left="0" Canvas.Top="0" Width="0" Height="0" Style="{StaticResource NoBGHoverBtn}" Visibility="Collapsed" />
+                        <Button Content="Function Right" x:Name="fnrConBtn" Canvas.Left="0" Canvas.Top="0" Width="0" Height="0" Style="{StaticResource NoBGHoverBtn}" Visibility="Collapsed" />
+                        <Button Content="Bottom Left Paddle" x:Name="blpConBtn" Canvas.Left="0" Canvas.Top="0" Width="0" Height="0" Style="{StaticResource NoBGHoverBtn}" Visibility="Collapsed" />
+                        <Button Content="Bottom Right Paddle" x:Name="brpConBtn" Canvas.Left="0" Canvas.Top="0" Width="0" Height="0" Style="{StaticResource NoBGHoverBtn}" Visibility="Collapsed" />
 
                         <Button Content="Left Touch" x:Name="leftTouchConBtn" Canvas.Left="158" Canvas.Top="69" Width="37" Height="51" Style="{StaticResource NoBGHoverBtn}" Click="HoverConBtn_Click" MouseEnter="ContBtn_MouseEnter" MouseLeave="ContBtn_MouseLeave" />
                         <Button Content="Multi Touch" x:Name="multiTouchConBtn" Canvas.Left="199" Canvas.Top="74" Width="41" Height="45" Style="{StaticResource NoBGHoverBtn}" Click="HoverConBtn_Click" MouseEnter="ContBtn_MouseEnter" MouseLeave="ContBtn_MouseLeave" />
@@ -1337,6 +1341,10 @@
                                                     <MenuItem Header="Mute" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
                                                     <MenuItem Header="Side L" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
                                                     <MenuItem Header="Side R" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Function Left" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Function Right" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Bottom Left Paddle" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <MenuItem Header="Bottom Right Paddle" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
                                                 </ContextMenu>
                                             </Button.ContextMenu>
                                         </Button>
@@ -1582,6 +1590,10 @@
                                                     <MenuItem Header="Mute" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
                                                     <MenuItem Header="Side L" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
                                                     <MenuItem Header="Side R" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                                    <MenuItem Header="Function Left" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                                    <MenuItem Header="Function Right" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                                    <MenuItem Header="Bottom Left Paddle" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                                    <MenuItem Header="Bottom Right Paddle" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
                                                     <MenuItem Header="Always On" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
                                                 </ContextMenu>
                                             </Button.ContextMenu>

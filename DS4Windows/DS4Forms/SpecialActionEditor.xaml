@@ -105,6 +105,25 @@
                     <ListViewItem>
                         <CheckBox x:Name="r3TrigCk" Content="R3" Tag="R3" Click="ControlTriggerCheckBox_Click" />
                     </ListViewItem>
+
+                    <!-- START Extra buttons for DualSense Edge controller -->
+                    <ListViewItem>
+                        <CheckBox x:Name="fnLTrigCk" Content="Function L" Tag="Function Left" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+
+                    <ListViewItem>
+                        <CheckBox x:Name="fnRTrigCk" Content="Function R" Tag="Function Right" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+
+                    <ListViewItem>
+                        <CheckBox x:Name="bLPTrigCk" Content="Paddle L" Tag="Bottom Left Paddle" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+
+                    <ListViewItem>
+                        <CheckBox x:Name="bRPTrigCk" Content="Paddle R" Tag="Bottom Right Paddle" Click="ControlTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <!-- END Extra buttons for DualSense Edge controller -->
+
                     <ListViewItem>
                         <CheckBox x:Name="leftTouchTrigCk" Content="Left Touch" Tag="Left Touch" Click="ControlTriggerCheckBox_Click" />
                     </ListViewItem>
@@ -241,6 +260,22 @@
                     <ListViewItem>
                         <CheckBox x:Name="unloadR3TrigCk" Content="R3" Tag="R3" Click="ControlUnloadTriggerCheckBox_Click" />
                     </ListViewItem>
+
+                    <!-- START Extra buttons for DualSense Edge controller -->
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadfnLTrigCk" Content="Function L" Tag="Function Left" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadfnRTrigCk" Content="Function R" Tag="Function Right" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadbLPTrigCk" Content="Paddle L" Tag="Bottom Left Paddle" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <CheckBox x:Name="unloadbRPTrigCk" Content="Paddle R" Tag="Bottom Right Paddle" Click="ControlUnloadTriggerCheckBox_Click" />
+                    </ListViewItem>
+                    <!-- END Extra buttons for DualSense Edge controller -->
+
                     <ListViewItem>
                         <CheckBox x:Name="unloadLeftTouchTrigCk" Content="Left Touch" Tag="Left Touch" Click="ControlUnloadTriggerCheckBox_Click" />
                     </ListViewItem>

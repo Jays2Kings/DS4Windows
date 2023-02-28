@@ -1074,6 +1074,10 @@ namespace DS4Windows
                 case 20: return s.Mute;
                 case 21: return s.SideL;
                 case 22: return s.SideR;
+                case 23: return s.FnL;
+                case 24: return s.FnR;
+                case 25: return s.BLP;
+                case 26: return s.BRP;
                 default: break;
             }
 

@@ -1341,10 +1341,13 @@
                                                     <MenuItem Header="Mute" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
                                                     <MenuItem Header="Side L" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
                                                     <MenuItem Header="Side R" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+
+                                                    <!-- START Extra buttons for DualSense Edge controller -->
                                                     <MenuItem Header="Function Left" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
                                                     <MenuItem Header="Function Right" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
                                                     <MenuItem Header="Bottom Left Paddle" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
                                                     <MenuItem Header="Bottom Right Paddle" IsCheckable="True" Click="TouchDisInvertMenuItem_Click" />
+                                                    <!-- END Extra buttons for DualSense Edge controller -->
                                                 </ContextMenu>
                                             </Button.ContextMenu>
                                         </Button>
@@ -1590,10 +1593,13 @@
                                                     <MenuItem Header="Mute" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
                                                     <MenuItem Header="Side L" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
                                                     <MenuItem Header="Side R" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+
+                                                    <!-- START Extra buttons for DualSense Edge controller -->
                                                     <MenuItem Header="Function Left" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
                                                     <MenuItem Header="Function Right" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
                                                     <MenuItem Header="Bottom Left Paddle" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
                                                     <MenuItem Header="Bottom Right Paddle" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
+                                                    <!-- END Extra buttons for DualSense Edge controller -->
                                                     <MenuItem Header="Always On" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
                                                 </ContextMenu>
                                             </Button.ContextMenu>
@@ -1706,6 +1712,8 @@
                                                     <MenuItem Header="Right" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                                     <MenuItem Header="L3" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                                     <MenuItem Header="R3" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                                    <MenuItem Header="Side L" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                                    <MenuItem Header="Side R" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                                     <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                                     <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                                     <MenuItem Header="Options" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
@@ -1713,6 +1721,14 @@
                                                     <MenuItem Header="PS" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                                     <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                                     <MenuItem Header="Mute" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+
+                                                    <!-- START Extra buttons for DualSense Edge controller -->
+                                                    <MenuItem Header="Function Left" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                                    <MenuItem Header="Function Right" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                                    <MenuItem Header="Bottom Left Paddle" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                                    <MenuItem Header="Bottom Right Paddle" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                                    <!-- END Extra buttons for DualSense Edge controller -->
+
                                                     <MenuItem Header="Always On" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                                 </ContextMenu>
                                             </Button.ContextMenu>
@@ -1835,6 +1851,14 @@
                                                     <MenuItem Header="PS" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                                     <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                                     <MenuItem Header="Mute" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+
+                                                    <!-- START Extra buttons for DualSense Edge controller -->
+                                                    <MenuItem Header="Function Left" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                                    <MenuItem Header="Function Right" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                                    <MenuItem Header="Bottom Left Paddle" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                                    <MenuItem Header="Bottom Right Paddle" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                                    <!-- END Extra buttons for DualSense Edge controller -->
+
                                                     <MenuItem Header="Always On" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                                 </ContextMenu>
                                             </Button.ContextMenu>
@@ -2003,6 +2027,14 @@
                                                     <MenuItem Header="PS" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
                                                     <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
                                                     <MenuItem Header="Mute" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+
+                                                    <!-- START Extra buttons for DualSense Edge controller -->
+                                                    <MenuItem Header="Function Left" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                                    <MenuItem Header="Function Right" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                                    <MenuItem Header="Bottom Left Paddle" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                                    <MenuItem Header="Bottom Right Paddle" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                                    <!-- END Extra buttons for DualSense Edge controller -->
+
                                                     <MenuItem Header="Always On" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
                                                 </ContextMenu>
                                             </Button.ContextMenu>
@@ -2112,7 +2144,6 @@
                                 <Button x:Name="lightRumbleTestBtn" Content="Test Light" Margin="10,0,0,0" Click="LightRumbleTestBtn_Click" />
                             </UniformGrid>
                                 <GroupBox Header="{lex:Loc DualSRumbleSpecificSettings}" Margin="0,12,0,0" Padding="2,4">
-
 
                                     <StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="0,4,0,0">

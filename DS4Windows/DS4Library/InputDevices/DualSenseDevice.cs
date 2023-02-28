@@ -128,6 +128,12 @@ namespace DS4Windows.InputDevices
             Str25 = 6,
             Str12 = 7,
         }
+
+        public enum DeviceSubType : ushort
+        {
+            DualSense,
+            DSEdge,
+        }
         
         private const int BT_REPORT_OFFSET = 2;
         private InputReportDataBytes dataBytes;
@@ -179,6 +185,8 @@ namespace DS4Windows.InputDevices
         private uint hwVersion;
         private uint fwVersion;
         private uint updateVersion;
+        private DeviceSubType subType = DeviceSubType.DualSense;
+        public DeviceSubType SubType => subType;
 
         private DualSenseControllerOptions nativeOptionsStore;
         public DualSenseControllerOptions NativeOptionsStore { get => nativeOptionsStore; }
@@ -205,6 +213,8 @@ namespace DS4Windows.InputDevices
         {
             HidDevice hidDevice = hDevice;
             deviceType = InputDeviceType.DualSense;
+            DetermineSubType(hidDevice);
+
             gyroMouseSensSettings = new GyroMouseSensDualSense();
             optionsStore = nativeOptionsStore = new DualSenseControllerOptions(deviceType);
             SetupOptionsEvents();
@@ -324,6 +334,16 @@ namespace DS4Windows.InputDevices
         private int DSFeatureVersion(int major, int minor)
         {
             return ((major & 0xFF) << 8 | (minor & 0xFF));
+        }
+
+        private void DetermineSubType(HidDevice hidDevice)
+        {
+            subType = DeviceSubType.DualSense;
+            if (hidDevice.Attributes.VendorId == DS4Devices.SONY_VID &&
+                hidDevice.Attributes.ProductId == 0x0DF2)
+            {
+                subType = DeviceSubType.DSEdge;
+            }
         }
 
         public static ConnectionType DetermineConnectionType(HidDevice hidDevice)

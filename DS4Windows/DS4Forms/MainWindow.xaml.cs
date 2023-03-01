@@ -368,6 +368,7 @@ namespace DS4WinWPF.DS4Forms
                     managementEvWatcher.Start();
                 }
                 catch (ManagementException) { wmiConnected = false; }
+                catch (COMException) { wmiConnected = false; }
             }
 
             if (!wmiConnected)

@@ -86,7 +86,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             minimizeItem.Click += MinimizeMenuItem_Click;
             openProgramItem = new MenuItem() { Header = "Open Program Folder" };
             openProgramItem.Click += OpenProgramFolderItem_Click;
-            closeItem = new MenuItem() { Header = "Exit (Middle Mouse)" }; ;
+            closeItem = new MenuItem() { Header = "Exit" };
             closeItem.Click += ExitMenuItem_Click;
 
             PopulateControllerList();

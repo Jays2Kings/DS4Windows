@@ -190,6 +190,11 @@ namespace DS4Windows.InputDevices
                             // Full Charge flag found
                             tempBattery = 100;
                         }
+                        else if (tempCharging)
+                        {
+                            // fake it to 50%
+                            tempBattery = battery < 50 ? 50 : battery;
+                        }
                         else
                         {
                             // Partial charge

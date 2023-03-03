@@ -253,7 +253,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         {
             get
             {
-                return Delay.ToString();
+                return Delay.ToString(Global.configFileDecimalCulture);
             }
             set
             {

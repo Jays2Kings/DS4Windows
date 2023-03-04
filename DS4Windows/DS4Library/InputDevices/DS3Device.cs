@@ -200,7 +200,24 @@ namespace DS4Windows.InputDevices
                         else
                         {
                             // Partial charge
-                            tempBattery = Math.Min(tempBattery, 100);
+                            switch(tempByte)
+                            {
+                                case 0x01:
+                                    tempBattery = 10;
+                                    break;
+                                case 0x02:
+                                    tempBattery = 25;
+                                    break;
+                                case 0x03:
+                                    tempBattery = 50;
+                                    break;
+                                case 0x04:
+                                    tempBattery = 75;
+                                    break;
+                                case 0x05:
+                                    tempBattery = 100;
+                                    break;
+                            }
                         }
 
                         if (tempBattery != battery)

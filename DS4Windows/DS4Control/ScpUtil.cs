@@ -8176,7 +8176,7 @@ namespace DS4Windows
 
         public bool LoadActions()
         {
-            bool saved = true;
+            bool loaded = true;
 
             actions.Clear();
             Mapping.actionDone.Clear();
@@ -8185,8 +8185,8 @@ namespace DS4Windows
             if (!File.Exists(m_Actions))
             {
                 actions.Add(new SpecialAction("Disconnect Controller", "PS/Options", "DisconnectBT", "0"));
-                saved = SaveActions();
-                return saved;
+                loaded = SaveActions();
+                return loaded;
             }
 
             XmlSerializer serializer = new XmlSerializer(typeof(ActionsDTO));
@@ -8196,10 +8196,18 @@ namespace DS4Windows
                 ActionsDTO dto = serializer.Deserialize(sr) as ActionsDTO;
                 dto.MapTo(this);
             }
-            catch (InvalidOperationException) { }
-            catch (XmlException) { }
+            catch (InvalidOperationException e)
+            {
+                AppLogger.LogToGui($"Actions.xml contains invalid data. Could not be read. {e.InnerException.Message}", false);
+                loaded = false;
+            }
+            catch (XmlException e)
+            {
+                AppLogger.LogToGui($"Actions.xml could not be read. Invalid XML syntax. {e.InnerException.Message}", false);
+                loaded = false;
+            }
 
-            return saved;
+            return loaded;
 
             //bool saved = true;
             //if (!File.Exists(Global.appdatapath + "\\Actions.xml"))

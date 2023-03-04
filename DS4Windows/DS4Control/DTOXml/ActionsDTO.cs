@@ -238,12 +238,33 @@ namespace DS4WinWPF.DS4Control.DTOXml
             return TypeString == "Program" && !string.IsNullOrEmpty(Arguments);
         }
 
-        [XmlElement("Delay")]
+        [XmlIgnore]
         public double Delay
         {
             get; set;
         }
-        public bool ShouldSerializeDelay()
+        //public bool ShouldSerializeDelay()
+        //{
+        //    return TypeString == "Program";
+        //}
+
+        [XmlElement("Delay")]
+        public string DelayString
+        {
+            get
+            {
+                return Delay.ToString(Global.configFileDecimalCulture);
+            }
+            set
+            {
+                double delayTime = 0.0;
+                if (double.TryParse(value, System.Globalization.NumberStyles.Float, Global.configFileDecimalCulture, out delayTime))
+                {
+                    Delay = delayTime;
+                }
+            }
+        }
+        public bool ShouldSerializeDelayString()
         {
             return TypeString == "Program";
         }

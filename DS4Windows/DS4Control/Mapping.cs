@@ -6564,7 +6564,9 @@ namespace DS4Windows
                 {
                     double currentRate = 1.0 / currentDeviceState.elapsedTime; // Need to express poll time in Hz
                     OneEuroFilter wheelFilter = wheelFilters[device];
-                    result = (int)(wheelFilter.Filter(result, currentRate));
+                    result = (int)(wheelFilter.Filter(result * 1.0005, currentRate));
+                    // Perform clamp again
+                    result = Mapping.ClampInt(maxRangeLeft, result, maxRangeRight);
                 }
 
                 // Debug log output of SA sensor values
@@ -6601,9 +6603,22 @@ namespace DS4Windows
 
                         if (sxAntiDead > 0)
                         {
-                            sxAntiDead *= (outputAxisMax - outputAxisZero);
-                            if (result < 0) return (((result - maxRangeLeft) * (outputAxisZero - Convert.ToInt32(sxAntiDead) - (outputAxisMin))) / (0 - maxRangeLeft)) + (outputAxisMin);
-                            else return (((result - 0) * (outputAxisMax - (outputAxisZero + Convert.ToInt32(sxAntiDead)))) / (maxRangeRight - 0)) + (outputAxisZero + Convert.ToInt32(sxAntiDead));
+                            sxAntiDead *= ((result < 0 ? outputAxisMin : outputAxisMax) - outputAxisZero);
+                            int outputResult = 0;
+                            if (result < 0)
+                            {
+                                //(((result - maxRangeLeft) * (outputAxisZero - Convert.ToInt32(sxAntiDead) - (outputAxisMin))) / (0 - maxRangeLeft)) + (outputAxisMin);
+                                outputResult = (int)((outputAxisMin - (int)sxAntiDead) * ((result - 0) / (double)(maxRangeLeft - 0)) + (int)sxAntiDead);
+                            }
+                            else
+                            {
+                                //(((result - 0) * (outputAxisMax - (outputAxisZero + Convert.ToInt32(sxAntiDead)))) / (maxRangeRight - 0)) + (outputAxisZero + Convert.ToInt32(sxAntiDead));
+                                outputResult = (int)((outputAxisMax - (int)sxAntiDead) * ((result - 0) / (double)(maxRangeRight - 0)) + (int)sxAntiDead);
+                            }
+
+                            return outputResult;
+                            //if (result < 0) return (((result - maxRangeLeft) * (outputAxisZero - Convert.ToInt32(sxAntiDead) - (outputAxisMin))) / (0 - maxRangeLeft)) + (outputAxisMin);
+                            //else return (((result - 0) * (outputAxisMax - (outputAxisZero + Convert.ToInt32(sxAntiDead)))) / (maxRangeRight - 0)) + (outputAxisZero + Convert.ToInt32(sxAntiDead));
                         }
                         else
                         {

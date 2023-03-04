@@ -113,6 +113,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             int result = 0;
             switch (currentStore.DeviceType)
             {
+                case DS4Windows.InputDevices.InputDeviceType.DS3:
                 case DS4Windows.InputDevices.InputDeviceType.DS4:
                     result = 1;
                     break;
@@ -140,6 +141,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
             switch (currentStore.DeviceType)
             {
+                case DS4Windows.InputDevices.InputDeviceType.DS3:
                 case DS4Windows.InputDevices.InputDeviceType.DS4:
                     dataContextObject = new DS4ControllerOptionsWrapper(CurrentDS4Options, serviceDeviceOpts.DS4DeviceOpts);
                     break;

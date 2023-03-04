@@ -165,6 +165,7 @@ namespace DS4Windows
             new VidPidInfo(0x7331, 0x0001, "DualShock 3 (DS4 Emulation)", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib | VidPidFeatureSet.VendorDefinedDevice), // Sony DualShock 3 using DsHidMini driver. DsHidMini uses vendor-defined HID device type when it's emulating DS3 using DS4 button layout
             new VidPidInfo(0x20D6, 0x792A, "PowerA FUSION Wired Fightpad for PS4", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib), // No lightbar, gyro, or sticks
             new VidPidInfo(0x044F, 0xD00E, "Thrustmaster eSwap Pro", InputDeviceType.DS4, VidPidFeatureSet.NoGyroCalib | VidPidFeatureSet.NoBatteryReading), // Thrustmaster eSwap Pro (wired only. No lightbar or gyro)
+            new VidPidInfo(0x054C, 0x0268, "DualShock 3 (SXS)", InputDeviceType.DS3), // Sony DualShock 3 using DsHidMini driver (SXS) or Sony Sixaxis driver
         };
 
         private static bool IsRealDS4(HidDevice hDevice)
@@ -279,7 +280,8 @@ namespace DS4Windows
                             serial = hDevice.ReadSerial(DualSenseDevice.SERIAL_FEATURE_ID);
                         }
                         else if (metainfo.inputDevType == InputDeviceType.DS4 &&
-                            metainfo.checkConnection(hDevice) == ConnectionType.SONYWA)
+                            metainfo.checkConnection(hDevice) == ConnectionType.SONYWA ||
+                            metainfo.inputDevType == InputDeviceType.DS3)
                         {
                             serial = hDevice.GenerateFakeHwSerial();
                         }

@@ -461,6 +461,7 @@ namespace DS4Windows
             bool result = false;
             switch (metaInfo.inputDevType)
             {
+                case InputDevices.InputDeviceType.DS3:
                 case InputDevices.InputDeviceType.DS4:
                     result = deviceOptions.DS4DeviceOpts.Enabled;
                     break;

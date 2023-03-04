@@ -27,7 +27,7 @@ namespace DS4Windows.InputDevices
 
         public override void PostInit()
         {
-            conType = ConnectionType.USB;
+            conType = hDevice.ParentPath.StartsWith("BTHPS3BUS\\") ? ConnectionType.BT : ConnectionType.USB;
             Mac = hDevice.GenerateFakeHwSerial();
             deviceType = InputDeviceType.DS3;
             gyroMouseSensSettings = new GyroMouseSens();
@@ -40,6 +40,21 @@ namespace DS4Windows.InputDevices
             {
                 hDevice.OpenFileStream(outputReport.Length);
             }
+        }
+
+        public override bool DisconnectBT(bool callRemoval = false)
+        {
+            return false; // we using fake address
+        }
+
+        public override bool DisconnectDongle(bool remove = false)
+        {
+            return false; // we using fake address
+        }
+
+        public override bool DisconnectWireless(bool callRemoval = false)
+        {
+            return false; // we using fake address
         }
 
         public override bool IsAlive()

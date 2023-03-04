@@ -165,6 +165,8 @@ namespace DS4Windows.InputDevices
                     cState.Square = ((featureReport[3 + reportOffset] & 0x80) > 0) && featureReport[25 + reportOffset] > 0;
                     cState.PS = (featureReport[4 + reportOffset] & 0x01) > 0;
 
+                    cState.L2Btn = cState.L2 > 0;
+                    cState.R2Btn = cState.R2 > 0;
                     cState.L2Raw = cState.L2;
                     cState.R2Raw = cState.R2;
 

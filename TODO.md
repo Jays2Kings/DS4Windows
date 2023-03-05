@@ -1,5 +1,6 @@
 # TODO
 
+* Change stick coordinate clamping for JoyCon. Make initial center offset on first input?
 * Expose extra SL and SR buttons for JoyCon Joined mode. Keep using normal SL and SR for Split mode
 * ~~Add hooks to keep track of active display monitors for Absolute Mouse~~
 * ~~Figure out desired options for Absolute Mouse support~~

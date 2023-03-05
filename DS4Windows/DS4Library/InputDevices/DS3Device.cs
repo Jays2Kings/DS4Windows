@@ -239,6 +239,7 @@ namespace DS4Windows.InputDevices
                         {
                             battery = tempBattery;
                             BatteryChanged?.Invoke(this, EventArgs.Empty);
+                            outputDirty = true;
                         }
 
                         cState.Battery = (byte)battery;

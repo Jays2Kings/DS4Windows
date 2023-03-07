@@ -23,10 +23,11 @@
             "* Added subtype property for DualSenseDevice class",
             "* Added COMException catching when adding hook for power events",
             "* Removed message regarding Middle Mouse closing app in tray menu. Windows 11 no longer supports this at least right now",
-            "* dded DualShock 3 support using DsHidMini driver (SXS) or Sony Sixaxis driver. Contribution by **SunnyQeen**",
+            "* Added DualShock 3 support using DsHidMini driver (SXS) or Sony Sixaxis driver. Contribution by **SunnyQeen**",
             "* Added logging when reading of Actions.xml fails",
             "* Changed processing of Delay tags for Actions.xml. Fixes some cases where recent DS4Windows no longer reads Special Action files from older versions",
-            "* Fixed outer bounds when using smoothing for 360 Gyro Steering. Fixed anti-dead zone interpretation for stick output. Applies to Xbox 360 and DS4 output (not VJoy)",
+            "* Fixed outer bounds when using smoothing for 360 Gyro Steering.",
+            "* Fixed anti-dead zone interpretation for stick output. Applies to Xbox 360 and DS4 output (not VJoy)",
             "* Added Playmax PS4 controller. Contribution by **nzgamer41**"],
           "updated_at": "2023-03-07T16:16:55+0000"
         }

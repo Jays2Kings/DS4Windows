@@ -193,6 +193,7 @@ which to do so.
 
 **Buy Me A Coffee:** https://buymeacoffee.com/ryochan7
 **PayPal:** https://paypal.me/ryochan7  
+**Cash App:** https://cash.app/$ryochan7  
 **Patreon:** https://patreon.com/user?u=501036  
 **SubscribeStar:** https://subscribestar.com/ryochan7
 

@@ -42,6 +42,13 @@ namespace DS4Windows.InputDevices
             }
         }
 
+        public static ConnectionType DetermineConnectionType(HidDevice hidDevice)
+        {
+            ConnectionType result = hidDevice.ParentPath.StartsWith("BTHPS3BUS\\") ?
+                ConnectionType.BT : ConnectionType.USB;
+            return result;
+        }
+
         public override bool DisconnectBT(bool callRemoval = false)
         {
             return false; // we using fake address

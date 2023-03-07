@@ -158,7 +158,7 @@ namespace DS4Windows
         public double GetWeight(int expectedMs)
         {
             if (expectedMs == 0) return 0;
-            return Math.Min(1.0, DurationMs / expectedMs);
+            return Math.Min(1.0, 1.0 * DurationMs / expectedMs);
         }
     }
 

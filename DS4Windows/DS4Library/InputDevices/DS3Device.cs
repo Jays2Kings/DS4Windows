@@ -27,7 +27,7 @@ namespace DS4Windows.InputDevices
 
         public override void PostInit()
         {
-            conType = ConnectionType.USB;
+            conType = hDevice.ParentPath.StartsWith("BTHPS3BUS\\") ? ConnectionType.BT : ConnectionType.USB;
             Mac = hDevice.GenerateFakeHwSerial();
             deviceType = InputDeviceType.DS3;
             gyroMouseSensSettings = new GyroMouseSens();
@@ -40,6 +40,21 @@ namespace DS4Windows.InputDevices
             {
                 hDevice.OpenFileStream(outputReport.Length);
             }
+        }
+
+        public override bool DisconnectBT(bool callRemoval = false)
+        {
+            return false; // we using fake address
+        }
+
+        public override bool DisconnectDongle(bool remove = false)
+        {
+            return false; // we using fake address
+        }
+
+        public override bool DisconnectWireless(bool callRemoval = false)
+        {
+            return false; // we using fake address
         }
 
         public override bool IsAlive()
@@ -200,13 +215,31 @@ namespace DS4Windows.InputDevices
                         else
                         {
                             // Partial charge
-                            tempBattery = Math.Min(tempBattery, 100);
+                            switch(tempByte)
+                            {
+                                case 0x01:
+                                    tempBattery = 10;
+                                    break;
+                                case 0x02:
+                                    tempBattery = 25;
+                                    break;
+                                case 0x03:
+                                    tempBattery = 50;
+                                    break;
+                                case 0x04:
+                                    tempBattery = 75;
+                                    break;
+                                case 0x05:
+                                    tempBattery = 100;
+                                    break;
+                            }
                         }
 
                         if (tempBattery != battery)
                         {
                             battery = tempBattery;
                             BatteryChanged?.Invoke(this, EventArgs.Empty);
+                            outputDirty = true;
                         }
 
                         cState.Battery = (byte)battery;

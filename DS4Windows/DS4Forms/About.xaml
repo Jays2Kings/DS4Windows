@@ -246,6 +246,9 @@ Monero: 49RvRMiMewaeez1Y2auxHmfMaAUYfhUpBem4ohzRJd9b5acPcxzh1icjnhZfjnYd1S7NQ57r
                         <Hyperlink x:Name="buyCoffeeLink" Click="BuyCoffeeLink_Click" Foreground="{DynamicResource AccentColor}">Tip via BuyMeACoffee</Hyperlink>
                     </TextBlock>
                     <TextBlock>
+                        <Hyperlink x:Name="cashAppLink" Click="CashAppLink_Click" Foreground="{DynamicResource AccentColor}">Tip via Cash App</Hyperlink>
+                    </TextBlock>
+                    <TextBlock>
                         <Hyperlink x:Name="patreonLink" Click="PatreonLink_Click" Foreground="{DynamicResource AccentColor}">Patreon</Hyperlink>
                     </TextBlock>
                     <TextBlock>

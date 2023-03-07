@@ -125,6 +125,11 @@ namespace DS4WinWPF.DS4Forms
         {
             Util.StartProcessHelper("https://poa.st/@DS4Windows");
         }
+
+        private void CashAppLink_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessHelper("https://cash.app/$ryochan7");
+        }
     }
 
     public class AboutImgPathLocations

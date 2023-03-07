@@ -27,7 +27,7 @@
             "* Added logging when reading of Actions.xml fails",
             "* Changed processing of Delay tags for Actions.xml. Fixes some cases where recent DS4Windows no longer reads Special Action files from older versions",
             "* Fixed outer bounds when using smoothing for 360 Gyro Steering.",
-            "* Fixed anti-dead zone interpretation for stick output. Applies to Xbox 360 and DS4 output (not VJoy)",
+            "* Fixed anti-dead zone interpretation for 360 Gyro Steering stick output. Applies to Xbox 360 and DS4 output (not VJoy)",
             "* Added Playmax PS4 controller. Contribution by **nzgamer41**"],
           "updated_at": "2023-03-07T16:16:55+0000"
         }

@@ -27,7 +27,7 @@ namespace DS4Windows.InputDevices
 
         public override void PostInit()
         {
-            conType = hDevice.ParentPath.StartsWith("BTHPS3BUS\\") ? ConnectionType.BT : ConnectionType.USB;
+            conType = DetermineConnectionType(hDevice);
             Mac = hDevice.GenerateFakeHwSerial();
             deviceType = InputDeviceType.DS3;
             gyroMouseSensSettings = new GyroMouseSens();

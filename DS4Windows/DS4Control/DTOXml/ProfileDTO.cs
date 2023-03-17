@@ -870,6 +870,14 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _gyroMouseToggle = XmlDataUtilities.StrToBool(value);
         }
 
+        private bool _gyroMouseJitterCompensation = GyroMouseInfo.JITTER_COMPENSATION_DEFAULT;
+        [XmlElement("GyroMouseJitterCompensation")]
+        public string GyroMouseJitterCompensation
+        {
+            get => _gyroMouseJitterCompensation.ToString();
+            set => _gyroMouseJitterCompensation = XmlDataUtilities.StrToBool(value);
+        }
+
         [XmlElement("GyroOutputMode")]
         public GyroOutMode GyroOutputMode
         {
@@ -1562,6 +1570,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             GyroMouseHAxis = source.gyroMouseHorizontalAxis[deviceIndex];
             GyroMouseDeadZone = source.gyroMouseDZ[deviceIndex];
             GyroMouseMinThreshold = source.gyroMouseInfo[deviceIndex].minThreshold;
+            _gyroMouseJitterCompensation = source.gyroMouseInfo[deviceIndex].jitterCompensation;
             _gyroMouseToggle = source.gyroMouseToggle[deviceIndex];
             _bTPollRate = source.btPollRate[deviceIndex];
 
@@ -2147,6 +2156,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             destination.gyroMouseHorizontalAxis[deviceIndex] = GyroMouseHAxis;
             destination.gyroMouseDZ[deviceIndex] = GyroMouseDeadZone;
             destination.gyroMouseInfo[deviceIndex].minThreshold = GyroMouseMinThreshold;
+            destination.gyroMouseInfo[deviceIndex].jitterCompensation = _gyroMouseJitterCompensation;
             destination.gyroMouseToggle[deviceIndex] = _gyroMouseToggle;
             destination.btPollRate[deviceIndex] = _bTPollRate;
 

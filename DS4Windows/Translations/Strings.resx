@@ -724,4 +724,7 @@ Disabled:
   <data name="Task" xml:space="preserve">
     <value>Task</value>
   </data>
+  <data name="GyroTriggerJitterCompensationTooltip" xml:space="preserve">
+    <value>Add additional throttling at low end of curve to account for device shaking</value>
+  </data>
 </root>

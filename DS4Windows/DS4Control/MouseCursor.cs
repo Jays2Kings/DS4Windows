@@ -125,6 +125,25 @@ namespace DS4Windows
             double yMotion = deltaY != 0 ? (coefficient * verticalScale) * (deltaY * tempDouble)
                 + (normY * (offset * signY)) : 0;
 
+            if (tempInfo.jitterCompensation)
+            {
+                // Possibly expose threshold later
+                const double threshold = 0.30;
+                const float thresholdF = (float)threshold;
+
+                double absX = Math.Abs(xMotion);
+                if (absX <= normX * threshold)
+                {
+                    xMotion = signX * Math.Pow(absX / thresholdF, 1.408) * threshold;
+                }
+
+                double absY = Math.Abs(yMotion);
+                if (absY <= normY * threshold)
+                {
+                    yMotion = signY * Math.Pow(absY / thresholdF, 1.408) * threshold;
+                }
+            }
+
             int xAction = 0;
             if (xMotion != 0.0)
             {

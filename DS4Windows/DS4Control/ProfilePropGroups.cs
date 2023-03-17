@@ -166,14 +166,17 @@ namespace DS4Windows
         public const double DEFAULT_BETA = 0.7;
         public const string DEFAULT_SMOOTH_TECHNIQUE = "one-euro";
         public const double DEFAULT_MIN_THRESHOLD = 1.0;
+        public const bool JITTER_COMPENSATION_DEFAULT = true;
 
         public bool enableSmoothing = false;
         public double smoothingWeight = 0.5;
         public SmoothingMethod smoothingMethod;
 
+
         public double minCutoff = DEFAULT_MINCUTOFF;
         public double beta = DEFAULT_BETA;
         public double minThreshold = DEFAULT_MIN_THRESHOLD;
+        public bool jitterCompensation = JITTER_COMPENSATION_DEFAULT;
 
         public delegate void GyroMouseInfoEventHandler(GyroMouseInfo sender, EventArgs args);
 
@@ -201,6 +204,16 @@ namespace DS4Windows
         }
         public event GyroMouseInfoEventHandler BetaChanged;
 
+        public bool JitterCompensation
+        {
+            get => jitterCompensation;
+            set
+            {
+                if (jitterCompensation == value) return;
+                jitterCompensation = value;
+            }
+        }
+
         public void Reset()
         {
             minCutoff = DEFAULT_MINCUTOFF;
@@ -209,6 +222,7 @@ namespace DS4Windows
             smoothingMethod = SmoothingMethod.None;
             smoothingWeight = 0.5;
             minThreshold = DEFAULT_MIN_THRESHOLD;
+            jitterCompensation = JITTER_COMPENSATION_DEFAULT;
         }
 
         public void ResetSmoothing()

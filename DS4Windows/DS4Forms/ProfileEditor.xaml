@@ -1780,6 +1780,9 @@
                                                 Value="{Binding GyroMouseDeadZone}" Minimum="0" Maximum="1000" />
                                     </StackPanel>
 
+                                    <CheckBox Content="Jitter Compensation" Margin="{StaticResource spaceMargin}"
+                                        IsChecked="{Binding GyroMouseJitterCompensation}" ToolTip="{lex:Loc GyroTriggerJitterCompensationTooltip}" />
+
                                     <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
                                         <Label Content="Min Threshold" ContentStringFormat="{}{0}:" />
                                         <xctk:DoubleUpDown d:IsHidden="True" MinWidth="80" Height="20" Minimum="1.0" Maximum="40.0" Increment="1.0" FormatString="F1" Value="{Binding GyroMouseMinThreshold,FallbackValue='1.0'}" Margin="8,0,0,0" />

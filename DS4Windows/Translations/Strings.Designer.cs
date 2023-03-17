@@ -929,6 +929,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add additional throttling at low end of curve to account for device shaking.
+        /// </summary>
+        public static string GyroTriggerJitterCompensationTooltip {
+            get {
+                return ResourceManager.GetString("GyroTriggerJitterCompensationTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hide DS4 Controller.
         /// </summary>
         public static string HideDS4Controller {

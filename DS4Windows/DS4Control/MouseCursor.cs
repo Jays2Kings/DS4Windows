@@ -128,7 +128,7 @@ namespace DS4Windows
             if (tempInfo.jitterCompensation)
             {
                 // Possibly expose threshold later
-                const double threshold = 0.30;
+                const double threshold = 0.26;
                 const float thresholdF = (float)threshold;
 
                 double absX = Math.Abs(xMotion);

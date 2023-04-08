@@ -172,7 +172,6 @@ namespace DS4Windows
             this.cmdParser = cmdParser;
 
             Crc32Algorithm.InitializeTable(DS4Device.DefaultPolynomial);
-            InitOutputKBMHandler();
 
             eventDispatchThread = new Thread(() =>
             {
@@ -492,8 +491,6 @@ namespace DS4Windows
         {
             outputslotMan.ShutDown();
             OutputSlotPersist.WriteConfig(outputslotMan);
-
-            outputKBMHandler.Disconnect();
 
             eventDispatcher.InvokeShutdown();
             eventDispatcher = null;
@@ -1427,8 +1424,18 @@ namespace DS4Windows
             if (vigemTestClient != null)
             //if (x360Bus.Open() && x360Bus.Start())
             {
+                // Initialize output KBM handler at start of ControlService
+                InitOutputKBMHandler();
+
                 if (showlog)
                     LogDebug(DS4WinWPF.Properties.Resources.Starting);
+
+                bool runningAsAdmin = Global.IsAdministrator();
+                if (Global.outputKBMHandler.GetIdentifier() != FakerInputHandler.IDENTIFIER && !runningAsAdmin)
+                {
+                    string helpURL = @"https://docs.ds4windows.app/troubleshooting/kb-mouse-issues/#windows-not-responding-to-ds4ws-kb-m-commands-in-some-situations";
+                    LogDebug($"Some applications may block controller inputs. (Windows UAC Conflictions). Please go to {helpURL} for more information and workarounds.");
+                }
 
                 LogDebug($"Using output KB+M handler: {Global.outputKBMHandler.GetFullDisplayName()}");
                 LogDebug($"Connection to ViGEmBus {Global.vigembusVersion} established");
@@ -1746,6 +1753,10 @@ namespace DS4Windows
                 }
 
                 StopViGEm();
+
+                // Disconnect from KBM system when stopping ControlService
+                LogDebug($"Closing connection to output handler {outputKBMHandler.GetDisplayName()}");
+                outputKBMHandler.Disconnect();
                 inServiceTask = false;
                 activeControllers = 0;
             }

@@ -1538,10 +1538,18 @@ namespace DS4Windows
         {
             return m_Config.oscServPort;
         }
-
         public static void setOSCServerPort(int value)
         {
             m_Config.oscServPort = value;
+        }
+
+        public static bool isInterpretingOscMonitoring()
+        {
+            return m_Config.interpretingOscMonitoring;
+        }
+        public static void setInterpretingOscMonitoring(bool state)
+        {
+            m_Config.interpretingOscMonitoring = state;
         }
 
         public static bool isUsingOSCSender()
@@ -3359,6 +3367,8 @@ namespace DS4Windows
 
         public const int DEFAULT_OSC_SERV_PORT = 9000;
         public int oscServPort = DEFAULT_OSC_SERV_PORT;
+
+        public bool interpretingOscMonitoring = false;
 
         public bool useOSCSend = false;
 
@@ -7453,6 +7463,8 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/OSCServerPort"); int temp; int.TryParse(Item.InnerText, out temp); oscServPort = Math.Min(Math.Max(temp, 1024), 65535); }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/InterpretingOscMonitoring"); Boolean.TryParse(Item.InnerText, out interpretingOscMonitoring); }
+                    catch { missingSetting = true; }
 
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/UseOSCSender"); Boolean.TryParse(Item.InnerText, out useOSCSend); }
                     catch { missingSetting = true; }
@@ -7762,6 +7774,7 @@ namespace DS4Windows
             XmlNode xmlAppThemeChoice = m_Xdoc.CreateNode(XmlNodeType.Element, "AppTheme", null); xmlAppThemeChoice.InnerText = useCurrentTheme.ToString(); rootElement.AppendChild(xmlAppThemeChoice);
             XmlNode xmlUseOSCServ = m_Xdoc.CreateNode(XmlNodeType.Element, "UseOSCServer", null); xmlUseOSCServ.InnerText = useOSCServ.ToString(); rootElement.AppendChild(xmlUseOSCServ);
             XmlNode xmlOSCServPort = m_Xdoc.CreateNode(XmlNodeType.Element, "OSCServerPort", null); xmlOSCServPort.InnerText = oscServPort.ToString(); rootElement.AppendChild(xmlOSCServPort);
+            XmlNode xmlInterpretingOscMonitoring = m_Xdoc.CreateNode(XmlNodeType.Element, "InterpretingOscMonitoring", null); xmlInterpretingOscMonitoring.InnerText = interpretingOscMonitoring.ToString(); rootElement.AppendChild(xmlInterpretingOscMonitoring);
 
             XmlNode xmlUseOSCSend = m_Xdoc.CreateNode(XmlNodeType.Element, "UseOSCSender", null); xmlUseOSCSend.InnerText = useOSCSend.ToString(); rootElement.AppendChild(xmlUseOSCSend);
             XmlNode xmlOSCSendPort = m_Xdoc.CreateNode(XmlNodeType.Element, "OSCSenderPort", null); xmlOSCSendPort.InnerText = oscSendPort.ToString(); rootElement.AppendChild(xmlOSCSendPort);

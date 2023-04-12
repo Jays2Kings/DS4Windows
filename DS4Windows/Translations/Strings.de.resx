@@ -342,6 +342,18 @@
   <data name="HidNinja" xml:space="preserve">
     <value>HidNinja</value>
   </data>
+  <data name="OscServerHeading" xml:space="preserve">
+    <value>Externe OSC Steuerung &amp; Überwachung</value>
+  </data>
+  <data name="EnableOscServer" xml:space="preserve">
+    <value>Aktiviere Steuerungsserver</value>
+  </data>
+  <data name="EnableInterpretingOscMonitoring" xml:space="preserve">
+    <value>Interpretiere Überwachungsnachrichten</value>
+  </data>
+    <data name="EnableOscSender" xml:space="preserve">
+    <value>Aktiviere Überwachungsservice</value>
+  </data>
   <data name="CustomExeName" xml:space="preserve">
     <value>Eigener EXE-Name</value>
   </data>

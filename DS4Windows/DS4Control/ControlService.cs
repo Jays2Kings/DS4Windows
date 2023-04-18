@@ -236,109 +236,186 @@ namespace DS4Windows
         //    LogDebug($"Associated input controller #{outSlotDev.InputIndex + 1} ({outSlotDev.InputDisplayString}) to virtual {outSlotDev.OutputDevice.GetDeviceType()} Controller in{(outSlotDev.PermanentType != OutContType.None ? " permanent" : "")} output slot #{outSlotDev.Index + 1}");
         //}
 
+        private string[] MapMonitoringOscMessageToCommand(string[] command) {
+
+            // Overwrite "monitor" with the controller Id
+            command[2] = command[3];
+
+            switch(command[4])
+            {
+                case "battery":
+                    command[3] = "battery";
+                    break;
+                case "rx":
+                case "ry":
+                case "lx":
+                case "ly":
+                    command[3] = "stick";
+                    break;
+                default:
+                    command[3] = "press";
+                    break;
+            }
+
+            return command;
+        }
+
         private void CreateOSCCallback()
         {
             oscCallback = delegate (OscPacket packet)
             {
-                var messageReceived = (OscMessage)packet;
+                try {
+                    var messageReceived = (OscMessage)packet;
 
-                // If typecase fails, exit
-                if (messageReceived == null)
-                {
-                    return;
-                }
+                    // If typecase fails, exit
+                    if (messageReceived == null)
+                    {
+                        return;
+                    }
 
-                var command = messageReceived.Address.Split("/");
-                //AppLogger.LogToGui("I HEARD SOMETHING " + messageReceived.Address, false);
-                if (command[1] != "ds4windows") { return; }
+                    string[] command = messageReceived.Address.Split("/");
+                    
+                    if (command[1] != "ds4windows")
+                    {
+                        return;
+                    }
 
-                int stateInd = Convert.ToInt32(command[2]);
-                if (command[3] == "battery")
-                {
-                    if (!isUsingOSCSender())
+                    if (command[2] == "monitor")
                     {
-                        AppLogger.LogToGui("Battery level requested, but the OSC Sender isn't active. Turn it on in Settings.", false);
+                        if (Global.isInterpretingOscMonitoring())
+                        {
+                            command = MapMonitoringOscMessageToCommand(command);
+                        }
+                        else {
+                            return;
+                        }
                     }
-                    else
-                    {
-                        oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + stateInd + "/battery", oscState[stateInd].Battery));
-                    }
-                }
-                if (command[3] == "press")
-                {
-                    int messageValue = Convert.ToInt32(messageReceived.Arguments[0]);
-                    bool buttonBool = messageValue == 1 ? true : false;
-                    //AppLogger.LogToGui("OSC BUTTON PRESS " + command[4] + ": " + buttonBool, false);
 
-                    switch (command[4])
-                    {
-                        case "cross":
-                            oscState[stateInd].Cross = buttonBool;
-                            break;
-                        case "square":
-                            oscState[stateInd].Square = buttonBool;
-                            break;
-                        case "circle":
-                            oscState[stateInd].Circle = buttonBool;
-                            break;
-                        case "triangle":
-                            oscState[stateInd].Triangle = buttonBool;
-                            break;
-                        case "r1":
-                            oscState[stateInd].R1 = buttonBool;
-                            break;
-                        case "r2":
-                            oscState[stateInd].R2Btn = buttonBool;
-                            break;
-                        case "r3":
-                            oscState[stateInd].R3 = buttonBool;
-                            break;
-                        case "l1":
-                            oscState[stateInd].L1 = buttonBool;
-                            break;
-                        case "l2":
-                            oscState[stateInd].L2Btn = buttonBool;
-                            break;
-                        case "l3":
-                            oscState[stateInd].L3 = buttonBool;
-                            break;
-                        case "dup":
-                            oscState[stateInd].DpadUp = buttonBool;
-                            break;
-                        case "ddown":
-                            oscState[stateInd].DpadDown = buttonBool;
-                            break;
-                        case "dleft":
-                            oscState[stateInd].DpadLeft = buttonBool;
-                            break;
-                        case "dright":
-                            oscState[stateInd].DpadRight = buttonBool;
-                            break;
-                        case "options":
-                            oscState[stateInd].Options = buttonBool;
-                            break;
-                        case "share":
-                            oscState[stateInd].Share = buttonBool;
-                            break;
-                    }
-                }
+                    int stateInd = -1;
 
-                if (command[3] == "stick")
-                {
-                    //AppLogger.LogToGui("OSC STICK COMMAND " + messageReceived.Arguments[0].GetType(), false);
-                    float xValue = Convert.ToSingle(messageReceived.Arguments[0]);
-                    float yValue = Convert.ToSingle(messageReceived.Arguments[1]);
-                    //AppLogger.LogToGui("OSC STICK " + xValue + ": " + yValue, false);
-                    if (command[4] == "left")
+                    try {
+                        stateInd = Convert.ToInt32(command[2]);
+                    } catch (Exception e) {}
+
+                    if (stateInd == -1)
                     {
-                        oscState[stateInd].LX = Convert.ToByte(xValue * 255);
-                        oscState[stateInd].LY = Convert.ToByte(yValue * 255);
+                        AppLogger.LogToGui("Received malformed OSC address: " + messageReceived.Address, false);
+
+                        return;
                     }
-                    else if (command[4] == "right")
+                    
+                    if (command[3] == "battery")
                     {
-                        oscState[stateInd].RX = Convert.ToByte(xValue * 255);
-                        oscState[stateInd].RY = Convert.ToByte(yValue * 255);
+                        if (!isUsingOSCSender())
+                        {
+                            AppLogger.LogToGui("Battery level requested, but the OSC Sender isn't active. Turn it on in Settings.", false);
+                        }
+                        else
+                        {
+                            oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + stateInd + "/battery", oscState[stateInd].Battery));
+                        }
+                        return;
                     }
+
+                    if (command[3] == "press")
+                    {
+                        int messageValue = Convert.ToInt32(messageReceived.Arguments[0]);
+                        bool buttonBool = messageValue == 1 ? true : false;
+
+                        switch (command[4])
+                        {
+                            case "cross":
+                                oscState[stateInd].Cross = buttonBool;
+                                break;
+                            case "square":
+                                oscState[stateInd].Square = buttonBool;
+                                break;
+                            case "circle":
+                                oscState[stateInd].Circle = buttonBool;
+                                break;
+                            case "triangle":
+                                oscState[stateInd].Triangle = buttonBool;
+                                break;
+                            case "r1":
+                                oscState[stateInd].R1 = buttonBool;
+                                break;
+                            case "r2":
+                                oscState[stateInd].R2Btn = buttonBool;
+                                break;
+                            case "r3":
+                                oscState[stateInd].R3 = buttonBool;
+                                break;
+                            case "l1":
+                                oscState[stateInd].L1 = buttonBool;
+                                break;
+                            case "l2":
+                                oscState[stateInd].L2Btn = buttonBool;
+                                break;
+                            case "l3":
+                                oscState[stateInd].L3 = buttonBool;
+                                break;
+                            case "dpadup":
+                            case "dup":
+                                oscState[stateInd].DpadUp = buttonBool;
+                                break;
+                            case "dpaddown":
+                            case "ddown":
+                                oscState[stateInd].DpadDown = buttonBool;
+                                break;
+                            case "dpadleft":
+                            case "dleft":
+                                oscState[stateInd].DpadLeft = buttonBool;
+                                break;
+                            case "dpadright":
+                            case "dright":
+                                oscState[stateInd].DpadRight = buttonBool;
+                                break;
+                            case "options":
+                                oscState[stateInd].Options = buttonBool;
+                                break;
+                            case "share":
+                                oscState[stateInd].Share = buttonBool;
+                                break;
+                        }
+                    }
+
+                    if (command[3] == "stick" && messageReceived.Arguments.Count == 1)
+                    {
+                        switch (command[4])
+                        {
+                            case "lx":
+                                oscState[stateInd].LX = Convert.ToByte(Convert.ToSingle(messageReceived.Arguments[0]));
+                                break;
+                            case "ly":
+                                oscState[stateInd].LY = Convert.ToByte(Convert.ToSingle(messageReceived.Arguments[0]));
+                                break;
+                            case "rx":                              
+                                oscState[stateInd].RX = Convert.ToByte(Convert.ToSingle(messageReceived.Arguments[0]));
+                                break;
+                            case "ry":                             
+                                oscState[stateInd].RY = Convert.ToByte(Convert.ToSingle(messageReceived.Arguments[0]));
+                                break;
+                        }
+                    }
+
+                    if (command[3] == "stick" && messageReceived.Arguments.Count == 2)
+                    {
+                        float xValue = Convert.ToSingle(messageReceived.Arguments[0]);
+                        float yValue = Convert.ToSingle(messageReceived.Arguments[1]);
+
+                        if (command[4] == "left")
+                        {
+                            oscState[stateInd].LX = Convert.ToByte(xValue * 255);
+                            oscState[stateInd].LY = Convert.ToByte(yValue * 255);
+                        }
+                        else if (command[4] == "right")
+                        {
+                            oscState[stateInd].RX = Convert.ToByte(xValue * 255);
+                            oscState[stateInd].RY = Convert.ToByte(yValue * 255);
+                        }
+                    }
+                } catch(Exception e) {
+                    AppLogger.LogToGui("Error Receiving OSC Message: " + e.Message, false, true);
                 }
             };
         }
@@ -2731,7 +2808,7 @@ namespace DS4Windows
         {
             if(oldState.Square != newState.Square)
             {
-                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/square", newState.Square==true?1:0));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/square", newState.Square == true ? 1 : 0));
             }
 
             if (oldState.Triangle != newState.Triangle)
@@ -2830,11 +2907,11 @@ namespace DS4Windows
                 oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/ps", newState.PS == true ? 1 : 0));
             }
             
-            /*if (oldState.Battery != newState.Battery)
-            {
-                AppLogger.LogToGui("BATTERY " + oldState.Battery + " : " + newState.Battery, false);
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/battery", Convert.ToInt32(newState.Battery)));
-            }*/
+            // if (oldState.Battery != newState.Battery)
+            // {
+            //     AppLogger.LogToGui("BATTERY " + oldState.Battery + " : " + newState.Battery, false);
+            //     oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/battery", Convert.ToInt32(newState.Battery)));
+            // }
         }
 
         private void LagFlashWarning(DS4Device device, int ind, bool on)

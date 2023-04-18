@@ -245,6 +245,10 @@ namespace DS4Windows
                 case "battery":
                     command[3] = "battery";
                     break;
+                case "l2":
+                case "r2":
+                    command[3] = "trigger";
+                    break;
                 case "rx":
                 case "ry":
                 case "lx":
@@ -338,7 +342,7 @@ namespace DS4Windows
                             case "r1":
                                 oscState[stateInd].R1 = buttonBool;
                                 break;
-                            case "r2":
+                            case "r2btn":
                                 oscState[stateInd].R2Btn = buttonBool;
                                 break;
                             case "r3":
@@ -347,7 +351,7 @@ namespace DS4Windows
                             case "l1":
                                 oscState[stateInd].L1 = buttonBool;
                                 break;
-                            case "l2":
+                            case "l2btn":
                                 oscState[stateInd].L2Btn = buttonBool;
                                 break;
                             case "l3":
@@ -411,6 +415,19 @@ namespace DS4Windows
                         {
                             oscState[stateInd].RX = Convert.ToByte(xValue * 255);
                             oscState[stateInd].RY = Convert.ToByte(yValue * 255);
+                        }
+                    }
+
+                    if (command[3] == "trigger")
+                    {
+                        switch (command[4])
+                        {
+                            case "r2":
+                                oscState[stateInd].R2 = Convert.ToByte(Convert.ToSingle(messageReceived.Arguments[0]));
+                                break;
+                            case "l2":
+                                oscState[stateInd].L2 = Convert.ToByte(Convert.ToSingle(messageReceived.Arguments[0]));
+                                break;
                         }
                     }
                 } catch(Exception e) {
@@ -2749,17 +2766,9 @@ namespace DS4Windows
             tempMapState.Triangle |= oscMapState.Triangle;
             tempMapState.R1 |= oscMapState.R1;
             tempMapState.R2Btn |= oscMapState.R2Btn;
-            if (oscMapState.R2Btn == true)
-            {
-                tempMapState.R2 = 255;
-            }
             tempMapState.R3 |= oscMapState.R3;
             tempMapState.L1 |= oscMapState.L1;
             tempMapState.L2Btn |= oscMapState.L2Btn;
-            if (oscMapState.L2Btn == true)
-            {
-                tempMapState.L2 = 255;
-            }
             tempMapState.L3 |= oscMapState.L3;
             tempMapState.DpadUp |= oscMapState.DpadUp;
             tempMapState.DpadLeft |= oscMapState.DpadLeft;
@@ -2770,8 +2779,10 @@ namespace DS4Windows
 
             tempMapState.LX = oscMapState.LX != 128 ? oscMapState.LX : tempMapState.LX;
             tempMapState.LY = oscMapState.LY != 128 ? oscMapState.LY : tempMapState.LY;
+            tempMapState.L2 = oscMapState.L2 != 0 ? oscMapState.L2 : tempMapState.L2;
             tempMapState.RX = oscMapState.RX != 128 ? oscMapState.RX : tempMapState.RX;
             tempMapState.RY = oscMapState.RY != 128 ? oscMapState.RY : tempMapState.RY;
+            tempMapState.R2 = oscMapState.R2 != 0 ? oscMapState.R2 : tempMapState.R2;
         }
 
         private void OSCPreMappingStep(int ind, DS4State cState, DS4State tempMapState,
@@ -2788,17 +2799,9 @@ namespace DS4Windows
             cState.Triangle |= oscMapState.Triangle;
             cState.R1 |= oscMapState.R1;
             cState.R2Btn |= oscMapState.R2Btn;
-            if (oscMapState.R2Btn == true)
-            {
-                cState.R2 = 255;
-            }
             cState.R3 |= oscMapState.R3;
             cState.L1 |= oscMapState.L1;
             cState.L2Btn |= oscMapState.L2Btn;
-            if (oscMapState.L2Btn == true)
-            {
-                cState.L2 = 255;
-            }
             cState.L3 |= oscMapState.L3;
             cState.DpadUp |= oscMapState.DpadUp;
             cState.DpadLeft |= oscMapState.DpadLeft;
@@ -2809,8 +2812,10 @@ namespace DS4Windows
 
             cState.LX = oscMapState.LX != 128 ? oscMapState.LX : cState.LX;
             cState.LY = oscMapState.LY != 128 ? oscMapState.LY : cState.LY;
+            cState.L2 = oscMapState.L2 != 0 ? oscMapState.L2 : cState.L2;
             cState.RX = oscMapState.RX != 128 ? oscMapState.RX : cState.RX;
             cState.RY = oscMapState.RY != 128 ? oscMapState.RY : cState.RY;
+            cState.R2 = oscMapState.R2 != 0 ? oscMapState.R2 : cState.R2;
             //AppLogger.LogToGui("I HEARD SOMETHING " + pCState.Cross+" : "+tempMapState.Cross, false);
             CompareAndSendChangesToOSC(ind, tempMapState, cState);
         }

@@ -1364,7 +1364,6 @@ Suspend support not enabled.", true);
                     temp.WaitForExit();
                     Global.RefreshHidHideInfo();
                     Global.RefreshFakerInputInfo();
-                    Program.rootHub.RefreshOutputKBMHandler();
 
                     settingsWrapVM.DriverCheckRefresh();
                 }

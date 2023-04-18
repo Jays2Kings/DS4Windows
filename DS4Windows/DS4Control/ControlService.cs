@@ -289,7 +289,8 @@ namespace DS4Windows
                         {
                             command = MapMonitoringOscMessageToCommand(command);
                         }
-                        else {
+                        else
+                        {
                             return;
                         }
                     }
@@ -342,8 +343,8 @@ namespace DS4Windows
                             case "r1":
                                 oscState[stateInd].R1 = buttonBool;
                                 break;
-                            case "r2btn":
-                                oscState[stateInd].R2Btn = buttonBool;
+                            case "r2":
+                                oscState[stateInd].R2 = Convert.ToByte(buttonBool ? 255 : 0);
                                 break;
                             case "r3":
                                 oscState[stateInd].R3 = buttonBool;
@@ -351,8 +352,8 @@ namespace DS4Windows
                             case "l1":
                                 oscState[stateInd].L1 = buttonBool;
                                 break;
-                            case "l2btn":
-                                oscState[stateInd].L2Btn = buttonBool;
+                            case "l2":
+                                oscState[stateInd].L2 = Convert.ToByte(buttonBool ? 255 : 0);
                                 break;
                             case "l3":
                                 oscState[stateInd].L3 = buttonBool;
@@ -2765,10 +2766,8 @@ namespace DS4Windows
             tempMapState.Circle |= oscMapState.Circle;
             tempMapState.Triangle |= oscMapState.Triangle;
             tempMapState.R1 |= oscMapState.R1;
-            tempMapState.R2Btn |= oscMapState.R2Btn;
             tempMapState.R3 |= oscMapState.R3;
             tempMapState.L1 |= oscMapState.L1;
-            tempMapState.L2Btn |= oscMapState.L2Btn;
             tempMapState.L3 |= oscMapState.L3;
             tempMapState.DpadUp |= oscMapState.DpadUp;
             tempMapState.DpadLeft |= oscMapState.DpadLeft;
@@ -2798,10 +2797,8 @@ namespace DS4Windows
             cState.Circle |= oscMapState.Circle;
             cState.Triangle |= oscMapState.Triangle;
             cState.R1 |= oscMapState.R1;
-            cState.R2Btn |= oscMapState.R2Btn;
             cState.R3 |= oscMapState.R3;
             cState.L1 |= oscMapState.L1;
-            cState.L2Btn |= oscMapState.L2Btn;
             cState.L3 |= oscMapState.L3;
             cState.DpadUp |= oscMapState.DpadUp;
             cState.DpadLeft |= oscMapState.DpadLeft;
@@ -2816,12 +2813,13 @@ namespace DS4Windows
             cState.RX = oscMapState.RX != 128 ? oscMapState.RX : cState.RX;
             cState.RY = oscMapState.RY != 128 ? oscMapState.RY : cState.RY;
             cState.R2 = oscMapState.R2 != 0 ? oscMapState.R2 : cState.R2;
-            //AppLogger.LogToGui("I HEARD SOMETHING " + pCState.Cross+" : "+tempMapState.Cross, false);
+            
             CompareAndSendChangesToOSC(ind, tempMapState, cState);
         }
 
         private void CompareAndSendChangesToOSC(int index, DS4State oldState, DS4State newState)
         {
+            // Buttons 
             if(oldState.Square != newState.Square)
             {
                 oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/square", newState.Square == true ? 1 : 0));
@@ -2867,11 +2865,6 @@ namespace DS4Windows
                 oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/l1", newState.L1 == true ? 1 : 0));
             }
 
-            if (oldState.L2 != newState.L2)
-            {
-                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/l2", Convert.ToInt32(newState.L2)));
-            }
-
             if (oldState.L3 != newState.L3)
             {
                 oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/l3", newState.L3 == true ? 1 : 0));
@@ -2882,37 +2875,16 @@ namespace DS4Windows
                 oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/r1", newState.R1 == true ? 1 : 0));
             }
 
-            if (oldState.R2 != newState.R2)
-            {
-                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/r2", Convert.ToInt32(newState.R2)));
-            }
-
             if (oldState.R3 != newState.R3)
             {
                 oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/r3", newState.R3 == true ? 1 : 0));
-            }
-
-            if (oldState.LX != newState.LX)
-            {
-                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/lx", Convert.ToInt32(newState.LX)));
-            }
-            if (oldState.LY != newState.LY)
-            {
-                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/ly", Convert.ToInt32(newState.LY)));
-            }
-            if (oldState.RX != newState.RX)
-            {
-                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/rx", Convert.ToInt32(newState.RX)));
-            }
-            if (oldState.RY != newState.RY)
-            {
-                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/ry", Convert.ToInt32(newState.RY)));
             }
 
             if (oldState.Options != newState.Options)
             {
                 oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/options", newState.Options == true ? 1 : 0));
             }
+
             if (oldState.Share != newState.Share)
             {
                 oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/share", newState.Share == true ? 1 : 0));
@@ -2922,7 +2894,39 @@ namespace DS4Windows
             {
                 oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/ps", newState.PS == true ? 1 : 0));
             }
-            
+
+            // Sticks
+            if (oldState.LX != newState.LX)
+            {
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/lx", Convert.ToInt32(newState.LX)));
+            }
+
+            if (oldState.LY != newState.LY)
+            {
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/ly", Convert.ToInt32(newState.LY)));
+            }
+
+            if (oldState.RX != newState.RX)
+            {
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/rx", Convert.ToInt32(newState.RX)));
+            }
+
+            if (oldState.RY != newState.RY)
+            {
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/ry", Convert.ToInt32(newState.RY)));
+            }
+
+            // Triggers
+            if (oldState.L2 != newState.L2)
+            {
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/l2", Convert.ToInt32(newState.L2)));
+            }
+
+            if (oldState.R2 != newState.R2)
+            {
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/r2", Convert.ToInt32(newState.R2)));
+            }
+
             // if (oldState.Battery != newState.Battery)
             // {
             //     AppLogger.LogToGui("BATTERY " + oldState.Battery + " : " + newState.Battery, false);

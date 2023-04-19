@@ -312,9 +312,16 @@ namespace DS4WinWPF.DS4Forms
                 {
                     if (notifyIcon.IsCreated)
                     {
-                        notifyIcon.ShowNotification(TrayIconViewModel.ballonTitle,
+                        try
+                        {
+                            notifyIcon.ShowNotification(TrayIconViewModel.ballonTitle,
                             e.Data, !e.Warning ? H.NotifyIcon.Core.NotificationIcon.Info :
                             H.NotifyIcon.Core.NotificationIcon.Warning);
+                        }
+                        catch (System.InvalidOperationException)
+                        {
+                            // Ignore
+                        }
                     }
                 }
             }));
@@ -474,13 +481,20 @@ Suspend support not enabled.", true);
                         if (wasrunning)
                         {
                             wasrunning = false;
-                            //Thread.Sleep(16000);
                             Dispatcher.Invoke(() =>
                             {
                                 StartStopBtn.IsEnabled = false;
                             });
 
-                            App.rootHub.Start();
+                            //Program.rootHub.LogDebug($"{Thread.CurrentThread.ManagedThreadId}");
+
+                            //Thread.Sleep(60000);
+                            //App.rootHub.Start();
+
+                            Task.Delay(120000).ContinueWith(t =>
+                            {
+                                App.rootHub.Start();
+                            });
                         }
                     }
 

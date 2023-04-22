@@ -507,10 +507,10 @@ Suspend support not enabled.", true);
 
                         if (App.rootHub.running)
                         {
-                            Dispatcher.Invoke(() =>
-                            {
-                                StartStopBtn.IsEnabled = false;
-                            });
+                            //Dispatcher.Invoke(() =>
+                            //{
+                            //    StartStopBtn.IsEnabled = false;
+                            //});
 
                             App.rootHub.Stop(immediateUnplug: true);
                             wasrunning = true;

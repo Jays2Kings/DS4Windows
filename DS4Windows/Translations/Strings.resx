@@ -727,4 +727,7 @@ Disabled:
   <data name="GyroTriggerJitterCompensationTooltip" xml:space="preserve">
     <value>Add additional throttling at low end of curve to account for device shaking</value>
   </data>
+  <data name="WakeupFromSuspend" xml:space="preserve">
+    <value>Waking Up From Suspend</value>
+  </data>
 </root>

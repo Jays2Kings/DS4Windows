@@ -1795,6 +1795,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Waking Up From Suspend.
+        /// </summary>
+        public static string WakeupFromSuspend {
+            get {
+                return ResourceManager.GetString("WakeupFromSuspend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Warnings only.
         /// </summary>
         public static string WarningsOnly {

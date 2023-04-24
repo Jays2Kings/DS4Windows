@@ -486,6 +486,7 @@ Suspend support not enabled.", true);
                                 StartStopBtn.IsEnabled = false;
                             });
 
+                            Program.rootHub.LogDebug(DS4WinWPF.Translations.Strings.WakeupFromSuspend);
                             //Program.rootHub.LogDebug($"{Thread.CurrentThread.ManagedThreadId}");
 
                             //Thread.Sleep(60000);

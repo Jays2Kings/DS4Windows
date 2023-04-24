@@ -444,6 +444,25 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; private set;
         }
 
+        [XmlIgnore]
+        public bool InterpretingOscMonitoring
+        {
+            get; private set;
+        }
+
+        [XmlElement("InterpretingOscMonitoring")]
+        public string InterpretingOscMonitoringString
+        {
+            get => InterpretingOscMonitoring.ToString();
+            set
+            {
+                if (bool.TryParse(value, out bool temp))
+                {
+                    InterpretingOscMonitoring = temp;
+                }
+            }
+        }
+
         [XmlElement("UseOSCSender")]
         public string UseOSCSenderString
         {
@@ -756,6 +775,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             AppTheme = source.useCurrentTheme;
             UseOSCServer = source.useOSCServ;
             OSCServerPort = source.oscServPort;
+            InterpretingOscMonitoring = source.interpretingOscMonitoring;
             UseOSCSender = source.useOSCSend;
             OSCSenderPort = source.oscSendPort;
             OSCSenderAddress = source.oscSendAddress;
@@ -843,6 +863,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             destination.useCurrentTheme = AppTheme;
             destination.useOSCServ = UseOSCServer;
             destination.oscServPort = OSCServerPort;
+            destination.interpretingOscMonitoring = InterpretingOscMonitoring;
             destination.useOSCSend = UseOSCSender;
             destination.oscSendPort = OSCSenderPort;
             if (!string.IsNullOrEmpty(OSCSenderAddress))

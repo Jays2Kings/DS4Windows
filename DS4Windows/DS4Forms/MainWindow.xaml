@@ -334,19 +334,22 @@
                                 <ComboBoxItem Content="{lex:Loc Days}" />
                             </ComboBox>
                         </StackPanel>
-                        <GroupBox Header="OSC Server" Padding="0,10,0,0" Margin="{StaticResource spaceMargin}">
+                        <GroupBox Header="{lex:Loc OscServerHeading}" Padding="0,10,0,0" Margin="{StaticResource spaceMargin}">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" MinHeight="20">
-                                    <CheckBox x:Name="useOscServerCk" Content="Enable OSC Server" IsChecked="{Binding UseOSCServer}" Click="UseOscServerCk_Click" />
-                                    <Label Content="Port" Padding="0" Margin="20,0,0,0" />
+                                    <CheckBox x:Name="useOscServerCk" Content="{lex:Loc EnableOscServer}" IsChecked="{Binding UseOSCServer}" Click="UseOscServerCk_Click" VerticalAlignment="Center" />
+                                    <Label Content="Port" Padding="0" VerticalAlignment="Center" Margin="20,0,0,0" />
                                     <xctk:IntegerUpDown d:IsHidden="False" x:Name="oscPortNum" IsEnabled="{Binding UseOSCServer}" MinWidth="20" Margin="8,0,0,0"
-                                            Value="{Binding OscPort, UpdateSourceTrigger=LostFocus,FallbackValue='9000'}" ButtonSpinnerLocation="Right" Increment="1" Maximum="65535" Minimum="0" />
+                                        Value="{Binding OscPort, UpdateSourceTrigger=LostFocus,FallbackValue='9000'}" ButtonSpinnerLocation="Right" Increment="1" Maximum="65535" Minimum="0" />
                                 </StackPanel>
+
+                                <CheckBox x:Name="interpretingOscMonitoringCk" Content="{lex:Loc EnableInterpretingOscMonitoring}" Margin="0,4,0,10" IsChecked="{Binding InterpretingOscMonitoring}" IsEnabled="{Binding UseOSCServer}" />
+                                
                                 <StackPanel Orientation="Horizontal" MinHeight="20">
-                                    <CheckBox x:Name="useOscSenderCk" Content="Send Realtime Data" IsChecked="{Binding UseOSCSender}" Click="UseOscSenderCk_Click" />
+                                    <CheckBox x:Name="useOscSenderCk" Content="{lex:Loc EnableOscSender}" IsChecked="{Binding UseOSCSender}" Click="UseOscSenderCk_Click" VerticalAlignment="Center" />
                                     <TextBox x:Name="oscSenderTxt" IsEnabled="{Binding UseOSCSender,Mode=OneWay}" Text="{Binding OscSenderAddress, UpdateSourceTrigger=LostFocus,FallbackValue='127.0.0.1'}"
                                  Margin="8,0,0,0" />
-                                    <Label Content="Port" Padding="0" Margin="20,0,0,0" />
+                                    <Label Content="Port" Padding="0" Margin="20,0,0,0" VerticalAlignment="Center"/>
                                     <xctk:IntegerUpDown d:IsHidden="False" x:Name="oscSendPort" IsEnabled="{Binding UseOSCSender}" MinWidth="20" Margin="8,0,0,0"
                                             Value="{Binding OscSendPort, UpdateSourceTrigger=LostFocus,FallbackValue='9000'}" ButtonSpinnerLocation="Right" Increment="1" Maximum="65535" Minimum="0" />
                                 </StackPanel>
@@ -355,10 +358,10 @@
                         <GroupBox Header="UDP Server" Padding="0,10,0,0" Margin="{StaticResource spaceMargin}">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" MinHeight="20">
-                                    <CheckBox x:Name="useUdpServerCk" Content="Enable Server" IsChecked="{Binding UseUDPServer}" Click="UseUdpServerCk_Click" />
+                                    <CheckBox x:Name="useUdpServerCk" Content="Enable Server" IsChecked="{Binding UseUDPServer}" Click="UseUdpServerCk_Click" VerticalAlignment="Center" />
                                     <TextBox x:Name="udpServerTxt" IsEnabled="{Binding UseUDPServer,Mode=OneWay}" Text="{Binding UdpIpAddress, UpdateSourceTrigger=LostFocus,FallbackValue='127.0.0.1'}"
                                  Margin="8,0,0,0" />
-                                    <Label Content="Port" Padding="0" Margin="20,0,0,0" />
+                                    <Label Content="Port" Padding="0" Margin="20,0,0,0" VerticalAlignment="Center" />
                                     <!--<TextBox x:Name="updPortNum" IsEnabled="{Binding UseUDPServer}" Text="{Binding UdpPort, UpdateSourceTrigger=LostFocus,FallbackValue='26760'}" />-->
                                     <xctk:IntegerUpDown d:IsHidden="True" x:Name="updPortNum" IsEnabled="{Binding UseUDPServer}" MinWidth="20" Margin="8,0,0,0"
                                             Value="{Binding UdpPort, UpdateSourceTrigger=LostFocus,FallbackValue='26760'}" ButtonSpinnerLocation="Right" Increment="1" Maximum="65535" Minimum="0" />
@@ -450,7 +453,7 @@
                             </WrapPanel>
                         </GroupBox>
 
-                        <Button x:Name="deviceOptionSettingsBtn" MaxWidth="140" HorizontalAlignment="Left" Content="{lex:Loc DeviceOptions}" Click="DeviceOptionSettingsBtn_Click" />
+                        <Button x:Name="deviceOptionSettingsBtn" MaxWidth="140" HorizontalAlignment="Center" Content="{lex:Loc DeviceOptions}" Click="DeviceOptionSettingsBtn_Click" />
                     </WrapPanel>
                 </ScrollViewer>
 

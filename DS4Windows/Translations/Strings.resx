@@ -670,6 +670,18 @@ Disabled:
   <data name="CheckEvery" xml:space="preserve">
     <value>Check every</value>
   </data>
+  <data name="OscServerHeading" xml:space="preserve">
+    <value>External OSC Control &amp; Monitoring</value>
+  </data>
+  <data name="EnableOscServer" xml:space="preserve">
+    <value>Enable Control Server</value>
+  </data>
+  <data name="EnableInterpretingOscMonitoring" xml:space="preserve">
+    <value>Interpret Monitoring Messages</value>
+  </data>
+    <data name="EnableOscSender" xml:space="preserve">
+    <value>Enable Monitoring Service</value>
+  </data>
   <data name="ControllerSupportDS4" xml:space="preserve">
     <value>DS4 Controller Support</value>
   </data>

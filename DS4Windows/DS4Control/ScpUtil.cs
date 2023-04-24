@@ -8592,7 +8592,7 @@ namespace DS4Windows
                     if (Int32.TryParse(node["wheel90DegPointRight"]?.InnerText.Split(',')[0] ?? "", out intValue)) device.wheel90DegPointRight.X = intValue;
                     if (Int32.TryParse(node["wheel90DegPointRight"]?.InnerText.Split(',')[1] ?? "", out intValue)) device.wheel90DegPointRight.Y = intValue;
 
-                    device.optionsStore.LoadSettings(xmlDoc, node);
+                    device.optionsStore?.LoadSettings(xmlDoc, node);
 
                     loaded = true;
                 }
@@ -8654,7 +8654,7 @@ namespace DS4Windows
                     node.AppendChild(wheel90DegPointRightEl);
                 }
 
-                device.optionsStore.PersistSettings(xmlDoc, node);
+                device.optionsStore?.PersistSettings(xmlDoc, node);
 
                 // Remove old elements
                 xmlDoc.RemoveAll();

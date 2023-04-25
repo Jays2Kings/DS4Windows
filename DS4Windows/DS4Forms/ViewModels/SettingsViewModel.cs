@@ -197,6 +197,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public event EventHandler UseOSCServerChanged;
         public int OscPort { get => DS4Windows.Global.getOSCServerPortNum(); set => DS4Windows.Global.setOSCServerPort(value); }
+        
+        public bool InterpretingOscMonitoring { get => DS4Windows.Global.isInterpretingOscMonitoring(); set => DS4Windows.Global.setInterpretingOscMonitoring(value); }
 
         public bool UseOSCSender
         {

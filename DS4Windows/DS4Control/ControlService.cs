@@ -235,6 +235,34 @@ namespace DS4Windows
         //    LogDebug($"Associated input controller #{outSlotDev.InputIndex + 1} ({outSlotDev.InputDisplayString}) to virtual {outSlotDev.OutputDevice.GetDeviceType()} Controller in{(outSlotDev.PermanentType != OutContType.None ? " permanent" : "")} output slot #{outSlotDev.Index + 1}");
         //}
 
+        private string[] MapMonitoringOscMessageToCommand(string[] command) {
+
+            // Overwrite "monitor" with the controller Id
+            command[2] = command[3];
+
+            switch(command[4])
+            {
+                case "battery":
+                    command[3] = "battery";
+                    break;
+                case "l2":
+                case "r2":
+                    command[3] = "trigger";
+                    break;
+                case "rx":
+                case "ry":
+                case "lx":
+                case "ly":
+                    command[3] = "stick";
+                    break;
+                default:
+                    command[3] = "press";
+                    break;
+            }
+
+            return command;
+        }
+
         private void CreateOSCCallback()
         {
             oscCallback = delegate (OscPacket packet)
@@ -247,11 +275,50 @@ namespace DS4Windows
                     return;
                 }
 
-                var command = messageReceived.Address.Split("/");
-                //AppLogger.LogToGui("I HEARD SOMETHING " + messageReceived.Address, false);
-                if (command[1] != "ds4windows") { return; }
+                string[] command = null;
+                try
+                {
+                    command = messageReceived.Address.Split("/");
+                }
+                catch (Exception e)
+                {
+                    AppLogger.LogToGui("Error Receiving OSC Message: " + e.Message, false, true);
+                }
 
-                int stateInd = Convert.ToInt32(command[2]);
+                if (command == null)
+                {
+                    return;
+                }
+
+                if (command[1] != "ds4windows")
+                {
+                    return;
+                }
+
+                if (command[2] == "monitor")
+                {
+                    if (Global.isInterpretingOscMonitoring())
+                    {
+                        command = MapMonitoringOscMessageToCommand(command);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+
+                int stateInd = -1;
+                if (!int.TryParse(command[2], out stateInd))
+                {
+                    stateInd = -1;
+                }
+
+                if (stateInd == -1)
+                {
+                    AppLogger.LogToGui("Received malformed OSC address: " + messageReceived.Address, false);
+                    return;
+                }
+                    
                 if (command[3] == "battery")
                 {
                     if (!isUsingOSCSender())
@@ -262,12 +329,12 @@ namespace DS4Windows
                     {
                         oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + stateInd + "/battery", oscState[stateInd].Battery));
                     }
+                    return;
                 }
-                if (command[3] == "press")
+                else if (command[3] == "press")
                 {
                     int messageValue = Convert.ToInt32(messageReceived.Arguments[0]);
                     bool buttonBool = messageValue == 1 ? true : false;
-                    //AppLogger.LogToGui("OSC BUTTON PRESS " + command[4] + ": " + buttonBool, false);
 
                     switch (command[4])
                     {
@@ -287,7 +354,7 @@ namespace DS4Windows
                             oscState[stateInd].R1 = buttonBool;
                             break;
                         case "r2":
-                            oscState[stateInd].R2Btn = buttonBool;
+                            oscState[stateInd].R2 = Convert.ToByte(buttonBool ? 255 : 0);
                             break;
                         case "r3":
                             oscState[stateInd].R3 = buttonBool;
@@ -296,20 +363,24 @@ namespace DS4Windows
                             oscState[stateInd].L1 = buttonBool;
                             break;
                         case "l2":
-                            oscState[stateInd].L2Btn = buttonBool;
+                            oscState[stateInd].L2 = Convert.ToByte(buttonBool ? 255 : 0);
                             break;
                         case "l3":
                             oscState[stateInd].L3 = buttonBool;
                             break;
+                        case "dpadup":
                         case "dup":
                             oscState[stateInd].DpadUp = buttonBool;
                             break;
+                        case "dpaddown":
                         case "ddown":
                             oscState[stateInd].DpadDown = buttonBool;
                             break;
+                        case "dpadleft":
                         case "dleft":
                             oscState[stateInd].DpadLeft = buttonBool;
                             break;
+                        case "dpadright":
                         case "dright":
                             oscState[stateInd].DpadRight = buttonBool;
                             break;
@@ -321,13 +392,29 @@ namespace DS4Windows
                             break;
                     }
                 }
-
-                if (command[3] == "stick")
+                else if (command[3] == "stick" && messageReceived.Arguments.Count == 1)
                 {
-                    //AppLogger.LogToGui("OSC STICK COMMAND " + messageReceived.Arguments[0].GetType(), false);
+                    switch (command[4])
+                    {
+                        case "lx":
+                            oscState[stateInd].LX = Convert.ToByte(Convert.ToSingle(messageReceived.Arguments[0]));
+                            break;
+                        case "ly":
+                            oscState[stateInd].LY = Convert.ToByte(Convert.ToSingle(messageReceived.Arguments[0]));
+                            break;
+                        case "rx":                              
+                            oscState[stateInd].RX = Convert.ToByte(Convert.ToSingle(messageReceived.Arguments[0]));
+                            break;
+                        case "ry":                             
+                            oscState[stateInd].RY = Convert.ToByte(Convert.ToSingle(messageReceived.Arguments[0]));
+                            break;
+                    }
+                }
+                else if (command[3] == "stick" && messageReceived.Arguments.Count == 2)
+                {
                     float xValue = Convert.ToSingle(messageReceived.Arguments[0]);
                     float yValue = Convert.ToSingle(messageReceived.Arguments[1]);
-                    //AppLogger.LogToGui("OSC STICK " + xValue + ": " + yValue, false);
+
                     if (command[4] == "left")
                     {
                         oscState[stateInd].LX = Convert.ToByte(xValue * 255);
@@ -337,6 +424,18 @@ namespace DS4Windows
                     {
                         oscState[stateInd].RX = Convert.ToByte(xValue * 255);
                         oscState[stateInd].RY = Convert.ToByte(yValue * 255);
+                    }
+                }
+                else if (command[3] == "trigger")
+                {
+                    switch (command[4])
+                    {
+                        case "r2":
+                            oscState[stateInd].R2 = Convert.ToByte(Convert.ToSingle(messageReceived.Arguments[0]));
+                            break;
+                        case "l2":
+                            oscState[stateInd].L2 = Convert.ToByte(Convert.ToSingle(messageReceived.Arguments[0]));
+                            break;
                     }
                 }
             };
@@ -2673,18 +2772,8 @@ namespace DS4Windows
             tempMapState.Circle |= oscMapState.Circle;
             tempMapState.Triangle |= oscMapState.Triangle;
             tempMapState.R1 |= oscMapState.R1;
-            tempMapState.R2Btn |= oscMapState.R2Btn;
-            if (oscMapState.R2Btn == true)
-            {
-                tempMapState.R2 = 255;
-            }
             tempMapState.R3 |= oscMapState.R3;
             tempMapState.L1 |= oscMapState.L1;
-            tempMapState.L2Btn |= oscMapState.L2Btn;
-            if (oscMapState.L2Btn == true)
-            {
-                tempMapState.L2 = 255;
-            }
             tempMapState.L3 |= oscMapState.L3;
             tempMapState.DpadUp |= oscMapState.DpadUp;
             tempMapState.DpadLeft |= oscMapState.DpadLeft;
@@ -2695,8 +2784,10 @@ namespace DS4Windows
 
             tempMapState.LX = oscMapState.LX != 128 ? oscMapState.LX : tempMapState.LX;
             tempMapState.LY = oscMapState.LY != 128 ? oscMapState.LY : tempMapState.LY;
+            tempMapState.L2 = oscMapState.L2 != 0 ? oscMapState.L2 : tempMapState.L2;
             tempMapState.RX = oscMapState.RX != 128 ? oscMapState.RX : tempMapState.RX;
             tempMapState.RY = oscMapState.RY != 128 ? oscMapState.RY : tempMapState.RY;
+            tempMapState.R2 = oscMapState.R2 != 0 ? oscMapState.R2 : tempMapState.R2;
         }
 
         private void OSCPreMappingStep(int ind, DS4State cState, DS4State tempMapState,
@@ -2712,18 +2803,8 @@ namespace DS4Windows
             cState.Circle |= oscMapState.Circle;
             cState.Triangle |= oscMapState.Triangle;
             cState.R1 |= oscMapState.R1;
-            cState.R2Btn |= oscMapState.R2Btn;
-            if (oscMapState.R2Btn == true)
-            {
-                cState.R2 = 255;
-            }
             cState.R3 |= oscMapState.R3;
             cState.L1 |= oscMapState.L1;
-            cState.L2Btn |= oscMapState.L2Btn;
-            if (oscMapState.L2Btn == true)
-            {
-                cState.L2 = 255;
-            }
             cState.L3 |= oscMapState.L3;
             cState.DpadUp |= oscMapState.DpadUp;
             cState.DpadLeft |= oscMapState.DpadLeft;
@@ -2734,17 +2815,20 @@ namespace DS4Windows
 
             cState.LX = oscMapState.LX != 128 ? oscMapState.LX : cState.LX;
             cState.LY = oscMapState.LY != 128 ? oscMapState.LY : cState.LY;
+            cState.L2 = oscMapState.L2 != 0 ? oscMapState.L2 : cState.L2;
             cState.RX = oscMapState.RX != 128 ? oscMapState.RX : cState.RX;
             cState.RY = oscMapState.RY != 128 ? oscMapState.RY : cState.RY;
-            //AppLogger.LogToGui("I HEARD SOMETHING " + pCState.Cross+" : "+tempMapState.Cross, false);
+            cState.R2 = oscMapState.R2 != 0 ? oscMapState.R2 : cState.R2;
+            
             CompareAndSendChangesToOSC(ind, tempMapState, cState);
         }
 
         private void CompareAndSendChangesToOSC(int index, DS4State oldState, DS4State newState)
         {
+            // Buttons 
             if(oldState.Square != newState.Square)
             {
-                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/square", newState.Square==true?1:0));
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/square", newState.Square == true ? 1 : 0));
             }
 
             if (oldState.Triangle != newState.Triangle)
@@ -2787,11 +2871,6 @@ namespace DS4Windows
                 oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/l1", newState.L1 == true ? 1 : 0));
             }
 
-            if (oldState.L2 != newState.L2)
-            {
-                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/l2", Convert.ToInt32(newState.L2)));
-            }
-
             if (oldState.L3 != newState.L3)
             {
                 oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/l3", newState.L3 == true ? 1 : 0));
@@ -2802,37 +2881,16 @@ namespace DS4Windows
                 oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/r1", newState.R1 == true ? 1 : 0));
             }
 
-            if (oldState.R2 != newState.R2)
-            {
-                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/r2", Convert.ToInt32(newState.R2)));
-            }
-
             if (oldState.R3 != newState.R3)
             {
                 oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/r3", newState.R3 == true ? 1 : 0));
-            }
-
-            if (oldState.LX != newState.LX)
-            {
-                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/lx", Convert.ToInt32(newState.LX)));
-            }
-            if (oldState.LY != newState.LY)
-            {
-                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/ly", Convert.ToInt32(newState.LY)));
-            }
-            if (oldState.RX != newState.RX)
-            {
-                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/rx", Convert.ToInt32(newState.RX)));
-            }
-            if (oldState.RY != newState.RY)
-            {
-                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/ry", Convert.ToInt32(newState.RY)));
             }
 
             if (oldState.Options != newState.Options)
             {
                 oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/options", newState.Options == true ? 1 : 0));
             }
+
             if (oldState.Share != newState.Share)
             {
                 oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/share", newState.Share == true ? 1 : 0));
@@ -2842,12 +2900,44 @@ namespace DS4Windows
             {
                 oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/ps", newState.PS == true ? 1 : 0));
             }
-            
-            /*if (oldState.Battery != newState.Battery)
+
+            // Sticks
+            if (oldState.LX != newState.LX)
             {
-                AppLogger.LogToGui("BATTERY " + oldState.Battery + " : " + newState.Battery, false);
-                oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/battery", Convert.ToInt32(newState.Battery)));
-            }*/
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/lx", Convert.ToInt32(newState.LX)));
+            }
+
+            if (oldState.LY != newState.LY)
+            {
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/ly", Convert.ToInt32(newState.LY)));
+            }
+
+            if (oldState.RX != newState.RX)
+            {
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/rx", Convert.ToInt32(newState.RX)));
+            }
+
+            if (oldState.RY != newState.RY)
+            {
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/ry", Convert.ToInt32(newState.RY)));
+            }
+
+            // Triggers
+            if (oldState.L2 != newState.L2)
+            {
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/l2", Convert.ToInt32(newState.L2)));
+            }
+
+            if (oldState.R2 != newState.R2)
+            {
+                oscSender.Send(new OscMessage("/ds4windows/monitor/" + index + "/r2", Convert.ToInt32(newState.R2)));
+            }
+
+            // if (oldState.Battery != newState.Battery)
+            // {
+            //     AppLogger.LogToGui("BATTERY " + oldState.Battery + " : " + newState.Battery, false);
+            //     oscSender.Send(new SharpOSC.OscMessage("/ds4windows/monitor/" + index + "/battery", Convert.ToInt32(newState.Battery)));
+            // }
         }
 
         private void LagFlashWarning(DS4Device device, int ind, bool on)

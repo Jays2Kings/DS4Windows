@@ -109,7 +109,7 @@ The **Other** tab contains the settings for which controller is being emulated, 
 **Output Slots** shows which controllers that are connected are designated to the 8 slots that DS4Windows allows to be plugged in at one time. Here you can also select a controller and virtually plug and unplug it in.
 
 ### Settings
-![Settings Screenshot](https://user-images.githubusercontent.com/32114370/189569023-19eacbfd-6f4c-45ee-8fd5-fbf691ce81a0.png)
+![Settings Screenshot](https://user-images.githubusercontent.com/75176311/232901882-6e271499-cdff-4f93-bfa5-921205c7fb69.PNG)
 
 The **Settings** tab is where the settings for the DS4Windows application are. Options such as *Run at Startup*, *Start Minimized*, or *Show Notifications* live here.
 
@@ -121,7 +121,9 @@ The **Settings** tab is where the settings for the DS4Windows application are. O
 
 **Icon Choice** - Changes the Icon of the DS4Windows application
 
-**App Theme** - Switch DS4Windows to Light or Dark mode.
+**App Theme** - Switch DS4Windows to Light or Dark mode
+
+**External OSC Control & Monitoring** - Use Open Sound Control messages to remotely control and monitor buttons, sticks, triggers, and battery levels
 
 **UDP Server** - Setting for connecting the motion controls of a compatible controller to another program
 

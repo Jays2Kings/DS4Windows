@@ -235,8 +235,8 @@ namespace DS4Windows
         //    LogDebug($"Associated input controller #{outSlotDev.InputIndex + 1} ({outSlotDev.InputDisplayString}) to virtual {outSlotDev.OutputDevice.GetDeviceType()} Controller in{(outSlotDev.PermanentType != OutContType.None ? " permanent" : "")} output slot #{outSlotDev.Index + 1}");
         //}
 
-        private string[] MapMonitoringOscMessageToCommand(string[] command) {
-
+        private string[] MapMonitoringOscMessageToCommand(string[] command)
+        {
             // Overwrite "monitor" with the controller Id
             command[2] = command[3];
 

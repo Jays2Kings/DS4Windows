@@ -57,14 +57,7 @@ namespace DS4Windows
             {
                 if (lightModeInfo.useCustomLed)
                 {
-                    if (lightModeInfo.ledAsBattery)
-                    {
-                        ref DS4Color fullColor = ref lightModeInfo.m_CustomLed; // ref getCustomColor(deviceNum);
-                        ref DS4Color lowColor = ref lightModeInfo.m_LowLed; //ref getLowColor(deviceNum);
-                        color = getTransitionedColor(ref lowColor, ref fullColor, device.getBattery());
-                    }
-                    else
-                        color = lightModeInfo.m_CustomLed; //getCustomColor(deviceNum);
+                    color = lightModeInfo.m_CustomLed; //getCustomColor(deviceNum);
                 }
                 else
                 {

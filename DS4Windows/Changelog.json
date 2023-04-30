@@ -25,7 +25,7 @@
             "* Added additional mapping checks in ProfileDTO MapFrom routine",
             "* Changed how macros are saved from binding window. Do not reset shift trigger",
             "* Support Horipad 4 FPS. Contribution by **markguleno**",
-            "* Fixed custom led mode"],
+            "* Fixed custom led mode. Contribution by **MatrixDJ96**"],
           "updated_at": "2023-04-30T19:46:54+0000"
         }
       ]

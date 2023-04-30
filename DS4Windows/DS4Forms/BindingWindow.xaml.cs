@@ -919,7 +919,8 @@ namespace DS4WinWPF.DS4Forms
                 fullPanel.Children.Remove(box);
                 box = null;
                 //mapBindingPanel.Visibility = Visibility.Visible;
-                bindingVM.PopulateCurrentBinds();
+                bindingVM.PrepareSaveMacro(bindingVM.ActionBinding,
+                    bindingVM.ActionBinding.IsShift());
                 Close();
             };
         }

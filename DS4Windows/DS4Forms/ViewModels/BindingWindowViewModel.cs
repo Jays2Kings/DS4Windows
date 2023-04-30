@@ -128,6 +128,24 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
 
+        public void PrepareSaveMacro(OutBinding bind, bool shiftBind=false)
+        {
+            DS4ControlSettings setting = settings;
+
+            if (!shiftBind)
+            {
+                bind.outputType = OutBinding.OutType.Macro;
+                bind.macro = (int[])setting.action.actionMacro;
+                bind.macroType = settings.keyType;
+            }
+            else
+            {
+                bind.outputType = OutBinding.OutType.Macro;
+                bind.macro = (int[])setting.shiftAction.actionMacro;
+                bind.macroType = setting.shiftKeyType;
+            }
+        }
+
         public void WriteBinds()
         {
             currentOutBind.WriteBind(settings);
@@ -220,7 +238,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public bool HasScanCode { get => hasScanCode; set => hasScanCode = value; }
         public bool Toggle { get => toggle; set => toggle = value; }
-        public int ShiftTrigger { get => shiftTrigger; set => shiftTrigger = value; }
+        public int ShiftTrigger
+        {
+            get => shiftTrigger;
+            set => shiftTrigger = value;
+        }
         public int HeavyRumble { get => heavyRumble; set => heavyRumble = value; }
         public int LightRumble { get => lightRumble; set => lightRumble = value; }
         public int FlashRate

@@ -29,6 +29,7 @@ Kanuan
 Korney Czukowski (czukowski)
 Leonardo Melati (Leomelati)
 MakiseKurisu
+markguleno
 mayawei
 mika-n
 MikeCZ23
@@ -53,6 +54,7 @@ toshixm
 tpneill
 V-Olk
 wingfixer
+xAdler
 xLive
 xrossb
 Ygov

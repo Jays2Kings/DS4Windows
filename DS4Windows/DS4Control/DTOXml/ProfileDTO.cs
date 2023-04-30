@@ -1705,7 +1705,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 {
                     if (dcs.keyType != DS4KeyType.None)
                     {
-                        keyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, dcs.keyType);
+                        keyTypeSerializer.CustomMapKeyTypes.TryAdd(dcs.control, dcs.keyType);
                     }
 
                     if (dcs.actionType == DS4ControlSettings.ActionType.Button)
@@ -1722,20 +1722,20 @@ namespace DS4WinWPF.DS4Control.DTOXml
                             }
                             else
                             {
-                                keyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, tempFlags);
+                                keyTypeSerializer.CustomMapKeyTypes.TryAdd(dcs.control, tempFlags);
                             }
                         }
 
-                        buttonSerializer.CustomMapButtons.Add(dcs.control, dcs.action.actionBtn);
+                        buttonSerializer.CustomMapButtons.TryAdd(dcs.control, dcs.action.actionBtn);
                     }
                     else if (dcs.actionType == DS4ControlSettings.ActionType.Key)
                     {
-                        keySerializer.CustomMapKeys.Add(dcs.control, (ushort)dcs.action.actionKey);
+                        keySerializer.CustomMapKeys.TryAdd(dcs.control, (ushort)dcs.action.actionKey);
                     }
                     else if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
                     {
-                        macroSerializer.CustomMapMacros.Add(dcs.control,
-                            string.Join("/", dcs.action.actionMacro));
+                        macroSerializer.CustomMapMacros[dcs.control] = 
+                            string.Join("/", dcs.action.actionMacro);
                     }
                 }
 
@@ -1761,7 +1761,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 {
                     if (dcs.shiftKeyType != DS4KeyType.None)
                     {
-                        shiftKeyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, dcs.shiftKeyType);
+                        shiftKeyTypeSerializer.CustomMapKeyTypes.TryAdd(dcs.control, dcs.shiftKeyType);
                     }
 
                     if (dcs.shiftActionType == DS4ControlSettings.ActionType.Button)
@@ -1778,22 +1778,22 @@ namespace DS4WinWPF.DS4Control.DTOXml
                             }
                             else
                             {
-                                shiftKeyTypeSerializer.CustomMapKeyTypes.Add(dcs.control, tempFlags);
+                                shiftKeyTypeSerializer.CustomMapKeyTypes.TryAdd(dcs.control, tempFlags);
                             }
                         }
 
-                        shiftButtonSerializer.CustomMapButtons.Add(dcs.control, dcs.shiftAction.actionBtn);
+                        shiftButtonSerializer.CustomMapButtons.TryAdd(dcs.control, dcs.shiftAction.actionBtn);
                         shiftButtonSerializer.ShiftTriggers.TryAdd(dcs.control, dcs.shiftTrigger);
                     }
                     else if (dcs.shiftActionType == DS4ControlSettings.ActionType.Key)
                     {
-                        shiftKeySerializer.CustomMapKeys.Add(dcs.control, (ushort)dcs.shiftAction.actionKey);
+                        shiftKeySerializer.CustomMapKeys.TryAdd(dcs.control, (ushort)dcs.shiftAction.actionKey);
                         shiftKeySerializer.ShiftTriggers.TryAdd(dcs.control, dcs.shiftTrigger);
                     }
                     else if (dcs.shiftActionType == DS4ControlSettings.ActionType.Macro)
                     {
-                        shiftMacroSerializer.CustomMapMacros.Add(dcs.control,
-                            string.Join("/", dcs.shiftAction.actionMacro));
+                        shiftMacroSerializer.CustomMapMacros[dcs.control] = 
+                            string.Join("/", dcs.shiftAction.actionMacro);
                         shiftMacroSerializer.ShiftTriggers.TryAdd(dcs.control, dcs.shiftTrigger);
                     }
                 }

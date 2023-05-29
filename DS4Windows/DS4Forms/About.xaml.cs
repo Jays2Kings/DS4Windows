@@ -66,11 +66,6 @@ namespace DS4WinWPF.DS4Forms
             Util.StartProcessHelper("https://www.youtube.com/channel/UCIoUA_XLlCSZbvZGeg3Byeg");
         }
 
-        private void TwitterSocialBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Util.StartProcessHelper("https://twitter.com/ds4windows");
-        }
-
         private void GithubSocialBtn_Click(object sender, RoutedEventArgs e)
         {
             Util.StartProcessHelper("https://github.com/Ryochan7/DS4Windows");

@@ -105,7 +105,6 @@
 	<Resource Include="Resources\social\GitHub-Mark-Light-64px.png" />
     <Resource Include="Resources\social\GitHub-Mark-64px.png" />
     <Resource Include="Resources\social\poast_icon.png" />
-    <Resource Include="Resources\social\twitter_logo_initial.png" />
     <Resource Include="Resources\social\youtube_social_icon_red.png" />
 
     <Resource Include="Resources\DS4 Config_white.png" />

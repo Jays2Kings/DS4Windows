@@ -38,7 +38,6 @@ Note: The Website Is No Longer Working
 
 ## Social
 
-[Twitter @ds4windows](https://twitter.com/ds4windows)  
 [YouTube](https://www.youtube.com/channel/UCIoUA_XLlCSZbvZGeg3Byeg)  
 [Poast](https://poa.st/@DS4Windows)  
 

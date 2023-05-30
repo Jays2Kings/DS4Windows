@@ -326,6 +326,7 @@ namespace DS4Windows
         public const OutputStick DEFAULT_OUTPUT_STICK = OutputStick.RightStick;
         public const OutputStickAxes DEFAULT_OUTPUT_STICK_AXES = OutputStickAxes.XY;
         public const double SMOOTHING_WEIGHT_DEFAULT = 0.5;
+        public const bool JITTER_COMPENSATION_DEFAULT = false;
 
         public int deadZone;
         public int maxZone;
@@ -343,6 +344,7 @@ namespace DS4Windows
         public double beta = DEFAULT_BETA;
         public OutputStick outputStick = DEFAULT_OUTPUT_STICK;
         public OutputStickAxes outputStickDir = DEFAULT_OUTPUT_STICK_AXES;
+        public bool jitterCompensation = JITTER_COMPENSATION_DEFAULT;
 
         public delegate void GyroMouseStickInfoEventHandler(GyroMouseStickInfo sender,
             EventArgs args);
@@ -372,6 +374,16 @@ namespace DS4Windows
         }
         public event GyroMouseStickInfoEventHandler BetaChanged;
 
+        public bool JitterCompensation
+        {
+            get => jitterCompensation;
+            set
+            {
+                if (jitterCompensation == value) return;
+                jitterCompensation = value;
+            }
+        }
+
         public void Reset()
         {
             deadZone = 30; maxZone = 830;
@@ -386,6 +398,7 @@ namespace DS4Windows
             smoothingMethod = SmoothingMethod.None;
             useSmoothing = false;
             smoothWeight = SMOOTHING_WEIGHT_DEFAULT;
+            jitterCompensation = JITTER_COMPENSATION_DEFAULT;
         }
 
         public void ResetSmoothing()

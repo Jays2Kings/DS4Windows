@@ -531,6 +531,25 @@ namespace DS4Windows
                 deltaY = 0;
             }
 
+            if (msinfo.jitterCompensation)
+            {
+                // Possibly expose threshold later
+                const double threshold = 2;
+                const float thresholdF = (float)threshold;
+
+                double absX = Math.Abs(deltaX);
+                if (absX <= normX * threshold)
+                {
+                    deltaX = (int)(signX * Math.Pow(absX / thresholdF, 1.408) * threshold);
+                }
+
+                double absY = Math.Abs(deltaY);
+                if (absY <= normY * threshold)
+                {
+                    deltaY = (int)(signY * Math.Pow(absY / thresholdF, 1.408) * threshold);
+                }
+            }
+
             if (msinfo.useSmoothing)
             {
                 if (msinfo.smoothingMethod == GyroMouseStickInfo.SmoothingMethod.OneEuro)

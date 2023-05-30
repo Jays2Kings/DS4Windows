@@ -1946,6 +1946,9 @@
                                         <CheckBox Content="Invert Y" Margin="10,0,0,0" IsChecked="{Binding GyroMouseStickInvertY}" />
                                     </StackPanel>
 
+                                    <CheckBox Content="Jitter Compensation" Margin="{StaticResource spaceMargin}"
+                                        IsChecked="{Binding GyroMouseStickJitterCompensation}" ToolTip="{lex:Loc GyroTriggerJitterCompensationTooltip}" />
+
                                     <CheckBox Content="Smoothing" IsChecked="{Binding GyroMouseStickSmooth}" Margin="{StaticResource spaceMargin}" />
                                     <GroupBox Header="Smoothing Options" IsEnabled="{Binding GyroMouseStickSmooth,FallbackValue='False'}" Margin="{StaticResource spaceMargin}">
                                         <StackPanel>

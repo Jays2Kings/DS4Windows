@@ -2628,6 +2628,12 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
 
+        public bool GyroMouseStickJitterCompensation
+        {
+            get => Global.GyroMouseStickInf[device].jitterCompensation;
+            set => Global.GyroMouseStickInf[device].jitterCompensation = value;
+        }
+
         public bool GyroMouseStickSmooth
         {
             get => Global.GyroMouseStickInf[device].useSmoothing;

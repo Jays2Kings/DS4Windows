@@ -559,7 +559,6 @@ namespace DS4Windows
             bool result = false;
             switch (metaInfo.inputDevType)
             {
-                case InputDevices.InputDeviceType.DS3:
                 case InputDevices.InputDeviceType.DS4:
                     result = deviceOptions.DS4DeviceOpts.Enabled;
                     break;
@@ -573,6 +572,9 @@ namespace DS4Windows
                 case InputDevices.InputDeviceType.JoyConR:
                 case InputDevices.InputDeviceType.JoyConGrip:
                     result = deviceOptions.JoyConDeviceOpts.Enabled;
+                    break;
+                case InputDevices.InputDeviceType.DS3:
+                    result = deviceOptions.DS3DeviceOpts.Enabled;
                     break;
                 default:
                     break;

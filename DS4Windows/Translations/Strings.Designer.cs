@@ -403,6 +403,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DS3 Controller Support.
+        /// </summary>
+        public static string ControllerSupportDS3 {
+            get {
+                return ResourceManager.GetString("ControllerSupportDS3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DS4 Controller Support.
         /// </summary>
         public static string ControllerSupportDS4 {
@@ -771,6 +780,33 @@ namespace DS4WinWPF.Translations {
         public static string EmulatedController {
             get {
                 return ResourceManager.GetString("EmulatedController", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interpret Monitoring Messages.
+        /// </summary>
+        public static string EnableInterpretingOscMonitoring {
+            get {
+                return ResourceManager.GetString("EnableInterpretingOscMonitoring", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Monitoring Service.
+        /// </summary>
+        public static string EnableOscSender {
+            get {
+                return ResourceManager.GetString("EnableOscSender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Control Server.
+        /// </summary>
+        public static string EnableOscServer {
+            get {
+                return ResourceManager.GetString("EnableOscServer", resourceCulture);
             }
         }
         
@@ -1222,6 +1258,15 @@ namespace DS4WinWPF.Translations {
         public static string None {
             get {
                 return ResourceManager.GetString("None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to External OSC Control &amp; Monitoring.
+        /// </summary>
+        public static string OscServerHeading {
+            get {
+                return ResourceManager.GetString("OscServerHeading", resourceCulture);
             }
         }
         

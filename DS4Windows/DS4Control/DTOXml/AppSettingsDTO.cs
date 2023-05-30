@@ -997,6 +997,14 @@ namespace DS4WinWPF.DS4Control.DTOXml
         }
     }
 
+    public class DS3SupportSettings : BaseInputDeviceSettingsGroup
+    {
+        public DS3SupportSettings() : base()
+        {
+            Enabled = DS3DeviceOptions.DEFAULT_ENABLE;
+        }
+    }
+
     public class DualSenseSupportSettings : BaseInputDeviceSettingsGroup
     {
     }

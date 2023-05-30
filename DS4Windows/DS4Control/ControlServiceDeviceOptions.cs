@@ -26,6 +26,9 @@ namespace DS4Windows
         private JoyConDeviceOptions joyConDeviceOpts = new JoyConDeviceOptions();
         public JoyConDeviceOptions JoyConDeviceOpts { get => joyConDeviceOpts; }
 
+        private DS3DeviceOptions dS3DeviceOpts = new DS3DeviceOptions();
+        public DS4DeviceOptions DS3DeviceOpts { get => dS4DeviceOpts; }
+
         private bool verboseLogMessages;
         public bool VerboseLogMessages { get => verboseLogMessages; set => verboseLogMessages = value; }
 
@@ -59,6 +62,23 @@ namespace DS4Windows
     public class DS4DeviceOptions
     {
         public const bool DEFAULT_ENABLE = true;
+        private bool enabled = DEFAULT_ENABLE;
+        public bool Enabled
+        {
+            get => enabled;
+            set
+            {
+                if (enabled == value) return;
+                enabled = value;
+                EnabledChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler EnabledChanged;
+    }
+
+    public class DS3DeviceOptions
+    {
+        public const bool DEFAULT_ENABLE = false;
         private bool enabled = DEFAULT_ENABLE;
         public bool Enabled
         {

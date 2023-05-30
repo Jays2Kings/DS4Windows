@@ -679,7 +679,7 @@ Disabled:
   <data name="EnableInterpretingOscMonitoring" xml:space="preserve">
     <value>Interpret Monitoring Messages</value>
   </data>
-    <data name="EnableOscSender" xml:space="preserve">
+  <data name="EnableOscSender" xml:space="preserve">
     <value>Enable Monitoring Service</value>
   </data>
   <data name="ControllerSupportDS4" xml:space="preserve">
@@ -741,5 +741,8 @@ Disabled:
   </data>
   <data name="WakeupFromSuspend" xml:space="preserve">
     <value>Waking Up From Suspend</value>
+  </data>
+  <data name="ControllerSupportDS3" xml:space="preserve">
+    <value>DS3 Controller Support</value>
   </data>
 </root>

@@ -139,8 +139,13 @@ namespace DS4WinWPF.DS4Forms
 
             // Check if requested window location exists on startup
             WindowStartupLocation = WindowStartupLocation.Manual;
-            Left = Global.FormLocationX = (int)Math.Clamp(Global.FormLocationX, 0, Global.fullDesktopBounds.Right);
-            Top = Global.FormLocationY = (int)Math.Clamp(Global.FormLocationY, 0, Global.fullDesktopBounds.Bottom);
+            Global.AdjustWindowWorkingBounds(Global.FormLocationX, Global.FormLocationY,
+                out int formLocationX, out int formLocationY);
+            Left = Global.FormLocationX = formLocationX;
+            Top = Global.FormLocationY = formLocationY;
+            //Left = Global.FormLocationX = (int)Math.Clamp(Global.FormLocationX, 0, Global.fullDesktopBounds.Right);
+            //Top = Global.FormLocationY = (int)Math.Clamp(Global.FormLocationY, 0, Global.fullDesktopBounds.Bottom);
+
             // Keep possible example that does not rely on WpfScreenHelper
             //Left = Math.Clamp(Global.FormLocationX, 0, SystemParameters.VirtualScreenLeft);
             //Top = Math.Clamp(Global.FormLocationY, 0, SystemParameters.VirtualScreenHeight);

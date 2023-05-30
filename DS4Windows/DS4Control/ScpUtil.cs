@@ -3002,6 +3002,14 @@ namespace DS4Windows
 
             return result;
         }
+
+        public static void AdjustWindowWorkingBounds(int left, int top,
+            out int boundLeft, out int boundTop)
+        {
+            Rect tempRect = SystemInformation.WpfVirtualScreen;
+            boundLeft = left < tempRect.Left ? (int)tempRect.Left : left;
+            boundTop = top < tempRect.Top ? (int)tempRect.Top : top;
+        }
     }
 
     public class BackingStore

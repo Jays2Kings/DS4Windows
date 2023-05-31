@@ -123,7 +123,7 @@
     <value>Une action</value>
   </data>
   <data name="AddDirectory" xml:space="preserve">
-    <value>Ajouter de répertoire</value>
+    <value>Ajouter un répertoire</value>
   </data>
   <data name="AddPrograms" xml:space="preserve">
     <value>Ajouter des programmes</value>
@@ -162,25 +162,25 @@
     <value>Effacer</value>
   </data>
   <data name="CloseMinimizes" xml:space="preserve">
-    <value>La fermeture du programme entraîne minimisé à la place</value>
+    <value>Minimiser à la fermeture</value>
   </data>
   <data name="Color" xml:space="preserve">
     <value>Couleur</value>
   </data>
   <data name="Controller1Text" xml:space="preserve">
-    <value>Controller 1</value>
+    <value>Manette 1</value>
   </data>
   <data name="Controller2Text" xml:space="preserve">
-    <value>Controller 2</value>
+    <value>Manette 2</value>
   </data>
   <data name="Controller3Text" xml:space="preserve">
-    <value>Controller 3</value>
+    <value>Manette 3</value>
   </data>
   <data name="Controller4Text" xml:space="preserve">
-    <value>Controller 4</value>
+    <value>Manette 4</value>
   </data>
   <data name="Controllers" xml:space="preserve">
-    <value>Controllers</value>
+    <value>Manettes</value>
   </data>
   <data name="ControlPanel" xml:space="preserve">
     <value>Panneau de configuration</value>
@@ -189,13 +189,13 @@
     <value>Effacer</value>
   </data>
   <data name="DriverSetup" xml:space="preserve">
-    <value>Installer le Controller/Driver</value>
+    <value>Installer les pilotes</value>
   </data>
   <data name="Duplicate" xml:space="preserve">
     <value>Dupliquer</value>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Éditer</value>
+    <value>Modifier</value>
   </data>
   <data name="EditAction" xml:space="preserve">
     <value>Modifier l'action</value>
@@ -219,19 +219,19 @@
     <value>Stick gauche</value>
   </data>
   <data name="Log" xml:space="preserve">
-    <value>Des journaux</value>
+    <value>Journaux</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Le nom</value>
+    <value>Nom</value>
   </data>
   <data name="New" xml:space="preserve">
     <value>Nouveau</value>
   </data>
   <data name="NewAction" xml:space="preserve">
-    <value>Une nouvelle action</value>
+    <value>Nouvelle action</value>
   </data>
   <data name="NewProfile" xml:space="preserve">
-    <value>Un nouveau profil</value>
+    <value>Nouveau profil</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Aucun</value>
@@ -240,31 +240,31 @@
     <value>Chemin de l'ordinateur</value>
   </data>
   <data name="Profile" xml:space="preserve">
-    <value>Le profil</value>
+    <value>Profil </value>
   </data>
   <data name="ProfileFolder" xml:space="preserve">
-    <value>Le dossier de profil</value>
+    <value>Dossier des profils</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
-    <value>Charge rapide</value>
+    <value>Chargement rapide</value>
   </data>
   <data name="RecordText" xml:space="preserve">
-    <value>Record</value>
+    <value>Enregistrer</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Effacer</value>
   </data>
   <data name="RemoveAction" xml:space="preserve">
-    <value>Effacer de l'action</value>
+    <value>Effacer l'action</value>
   </data>
   <data name="RightStick" xml:space="preserve">
     <value>Stick droit</value>
   </data>
   <data name="Rumble" xml:space="preserve">
-    <value>Grondement</value>
+    <value>Vibration</value>
   </data>
   <data name="RunAtStartup" xml:space="preserve">
-    <value>Commencer au démarrage</value>
+    <value>Lancer au démarrage</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Sauvegarder</value>
@@ -279,16 +279,16 @@
     <value>Afficher les notifications</value>
   </data>
   <data name="StartMinimized" xml:space="preserve">
-    <value>Début minimisé</value>
+    <value>Lancer minimisé</value>
   </data>
   <data name="StartText" xml:space="preserve">
-    <value>Start</value>
+    <value>Commencer</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>Status</value>
+    <value>Statuts</value>
   </data>
   <data name="StopText" xml:space="preserve">
-    <value>Stop</value>
+    <value>Arrêter</value>
   </data>
   <data name="TouchScroll" xml:space="preserve">
     <value>Défilement de la souris</value>
@@ -297,22 +297,22 @@
     <value>Faire glisser</value>
   </data>
   <data name="TouchTap" xml:space="preserve">
-    <value>Frapper</value>
+    <value>Appuyer</value>
   </data>
   <data name="Trigger" xml:space="preserve">
     <value>Déclencheur</value>
   </data>
   <data name="WarningsOnly" xml:space="preserve">
-    <value>Avertissements seulementrum</value>
+    <value>Avertissements seulement</value>
   </data>
   <data name="RumbleMaxSecs" xml:space="preserve">
-    <value>Grondement secondes maximum</value>
+    <value>sec</value>
   </data>
   <data name="RumbleMaxSecsTip" xml:space="preserve">
-    <value>Arrêt automatique des vibrations en quelques secondes (0 = vibration infinie)</value>
+    <value>Arrêt automatique des vibrations après (0 pour vibration infinie, en secondes)</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Le titre de fenêtre</value>
+    <value>Titre de la fenêtre</value>
   </data>
   <data name="MoveUp" xml:space="preserve">
     <value>Vers le haut</value>
@@ -327,15 +327,15 @@
     <value>Le titre de fenêtre. ^ABC = Correspondance au début de la chaîne (^) | ABC$ =  Correspondance à la fin de la chaîne ($) | *ABC = Contient une chaîne (*)</value>
   </data>
   <data name="GamepadTest" xml:space="preserve">
-    <value>Tester le contrôleur de jeu</value>
+    <value>Tester la manette de jeu</value>
   </data>
   <data name="EnableOutputDataToDS4" xml:space="preserve">
-    <value>Activer les données de sortie vers DS4</value>
+    <value>Activer la sortie de données vers DS4</value>
   </data>
   <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
-    <value>Sortie de la barre lumineuse et des données de grondement périodiquement sur la manette DS4. Décochez si la manette de jeu ne prend pas en charge la réception de données.
-Les modifications apportées à cette option prennent effet au moment de la connexion de la controller.</value>
-    <comment>Pour entrer un saut de ligne dans une valeur de ressource de chaîne dans l'éditeur de ressources VisualStudio, appuyez sur Maj + Entrée.</comment>
+    <value>Active la barre lumineuse et la vibration périodiquement sur la manette DS4. Décochez si la manette de jeu ne prend pas en charge la réception de données.
+Les modifications apportées à cette option prennent effet au moment de la connexion de la manette.</value>
+    <comment>Pour entrer un saut de ligne dans une chaîne de caractères dans l'éditeur de ressources VisualStudio, appuyez sur Maj + Entrée.</comment>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Appliquer</value>
@@ -347,66 +347,66 @@ Les modifications apportées à cette option prennent effet au moment de la conn
     <value>Nom de l'exe personnalisé</value>
   </data>
   <data name="CustomExeNameInfo" xml:space="preserve">
-    <value>Certains jeux implémentent un bloc qui fait que l'entrée DS4 est ignorée si un jeu détecte DS4Windows.exe ou InputMapper.exe en cours d'exécution à ce moment-là. Une solution de contournement au blocage consiste à renommer DS4Windows.exe afin que la vérification dans le jeu échoue. La spécification d'un nom d'exe personnalisé ici permet à DS4Updater de mettre à jour automatiquement une copie personnalisée de DS4Windows avec le nom de fichier souhaité. Assurez-vous d'omettre l'extension.
+    <value>Certains jeux implémentent un script qui ignore les entrée de la manette DS4 si les processus DS4Windows.exe ou InputMapper.exe sont en cours d'exécution. Il est possible de contourner ce blocage en modifiant le nom DS4Windows.exe afin que la détection échoue. Spécifier le nom personnalisé ici permet à DS4Updater de mettre à jour automatiquement une copie personnalisée de DS4Windows avec le nom de fichier souhaité. Assurez-vous d'omettre l'extension.
 
-Exemple: pourquoi_DS4Windows</value>
+Exemple : pourquoi_moi_DS4Windows</value>
   </data>
   <data name="XInputChecker" xml:space="preserve">
-    <value>XInputChecker</value>
+    <value>Détection XInput</value>
   </data>
   <data name="Controller5Text" xml:space="preserve">
-    <value>Controller 5</value>
+    <value>Manette 5</value>
   </data>
   <data name="Controller6Text" xml:space="preserve">
-    <value>Controller 6</value>
+    <value>Manette 6</value>
   </data>
   <data name="Controller7Text" xml:space="preserve">
-    <value>Controller 7</value>
+    <value>Manette 7</value>
   </data>
   <data name="Controller8Text" xml:space="preserve">
-    <value>Controller 8</value>
+    <value>Manette 8</value>
   </data>
   <data name="GamepadGyroCameraDescription" xml:space="preserve">
-    <value>Mappe la sortie du contrôleur sur une manette de jeu XInput standard ou une manette DS4. Gyro est mappé sur un joystick semblable à une souris.</value>
+    <value>Mappe la sortie de la manette sur une manette de jeu XInput standard ou une manette DS4. Le gyroscope est mappé sur un joystick en tant que souris.</value>
   </data>
   <data name="GamepadGyroCameraName" xml:space="preserve">
-    <value>Manette de jeu avec joystick en forme de souris</value>
+    <value>Manette avec joysticks en tant que souris</value>
   </data>
   <data name="GamepadPresetDescription" xml:space="preserve">
     <value>Mappe la sortie du contrôleur sur une manette de jeu standard</value>
   </data>
   <data name="GamepadPresetName" xml:space="preserve">
-    <value>Une manette de jeu</value>
+    <value>Manette de jeu</value>
   </data>
   <data name="KBMGyroMouseDescription" xml:space="preserve">
-    <value>Mappe la sortie du contrôleur aux contrôles KB + M virtuels. Utile pour jouer à des jeux de tir sans prise en charge de la manette de jeu. Gyro est mappé à une souris virtuelle.</value>
+    <value>Mappe la sortie de la manette à un clavier/souris virtuel. Utile pour jouer à des jeux de tir sans prise en charge de la manette de jeu. Le gyroscope est mappé à une souris virtuelle.</value>
   </data>
   <data name="KBMGyroMouseName" xml:space="preserve">
-    <value>Commandes KB+M avec Gyro Mouse</value>
+    <value>Commandesclavier/souris avec une souris gyroscope</value>
   </data>
   <data name="KBMPresetDescription" xml:space="preserve">
-    <value>Mappe la sortie du contrôleur aux contrôles KB + M virtuels. Utile pour jouer à des jeux de tir sans prise en charge de la manette de jeu.</value>
+    <value>Mappe la sortie de la manette à un clavier/souris virtuel. Utile pour jouer à des jeux de tir sans prise en charge de la manette de jeu.</value>
   </data>
   <data name="KBMPresetName" xml:space="preserve">
-    <value>Commandes KB+M</value>
+    <value>Commandes clavier/souris</value>
   </data>
   <data name="MixedGyroMousePresetDescription" xml:space="preserve">
-    <value>Mappe les boutons et les axes sur une manette de jeu standard. Associe le Gyro à une souris virtuelle.</value>
+    <value>Mappe les boutons et les joysticks à une manette de jeu standard. Associe le gyroscope à une souris virtuelle.</value>
   </data>
   <data name="MixedGyroMousePresetName" xml:space="preserve">
-    <value>Une manette de jeu avec souris gyro</value>
+    <value>Manette de jeu avec souris gyroscope</value>
   </data>
   <data name="MixedPresetDescription" xml:space="preserve">
-    <value>Mappe la sortie du contrôleur sur une manette de jeu XInput mixte + une souris.</value>
+    <value>Mappe la sortie du contrôleur à une manette de jeu XInput et une souris.</value>
   </data>
   <data name="MixedPresetName" xml:space="preserve">
     <value>Manette de jeu avec caméra haute précision</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>La description</value>
+    <value>Description</value>
   </data>
   <data name="PresetIntroText" xml:space="preserve">
-    <value>Voulez-vous utiliser une option prédéfinie? Si vous choisissez Non, l'éditeur de profil utilisera un profil de manette de jeu vide.</value>
+    <value>Voulez-vous utiliser une configuration prédéfinie ? Si vous choisissez non, un profil vide sera défini dans l'éditeur.</value>
   </data>
   <data name="Presets" xml:space="preserve">
     <value>Préconfigurations</value>
@@ -421,18 +421,18 @@ Exemple: pourquoi_DS4Windows</value>
     <value>Profils</value>
   </data>
   <data name="NoControllersConnected" xml:space="preserve">
-    <value>Aucun contrôleur connecté (Max {0})</value>
+    <value>Aucune manette connecté (Max {0})</value>
   </data>
   <data name="FlickThreshold" xml:space="preserve">
-    <value>Flick Threshold</value>
+    <value>Seuil d'accoup</value>
   </data>
   <data name="FlickTime" xml:space="preserve">
-    <value>Flick Time</value>
+    <value>Temps d'accoup</value>
   </data>
   <data name="MinAngleThreshold" xml:space="preserve">
-    <value>Min Angle Threshold</value>
+    <value>Seuil minimal d'angle</value>
   </data>
   <data name="RealWorldCalibration" xml:space="preserve">
-    <value>Real World Calibration</value>
+    <value>Calibration dans le monde réel</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -120,10 +120,10 @@
     <value>Amélioration</value>
   </data>
   <data name="Action" xml:space="preserve">
-    <value>Une action</value>
+    <value>Action</value>
   </data>
   <data name="AddDirectory" xml:space="preserve">
-    <value>Ajouter de répertoire</value>
+    <value>Ajouter un répertoire</value>
   </data>
   <data name="AddPrograms" xml:space="preserve">
     <value>Ajouter des programmes</value>
@@ -162,25 +162,25 @@
     <value>Effacer</value>
   </data>
   <data name="CloseMinimizes" xml:space="preserve">
-    <value>La fermeture du programme entraîne minimisé à la place</value>
+    <value>Minimiser à la fermeture</value>
   </data>
   <data name="Color" xml:space="preserve">
     <value>Couleur</value>
   </data>
   <data name="Controller1Text" xml:space="preserve">
-    <value>Controller 1</value>
+    <value>Manette 1</value>
   </data>
   <data name="Controller2Text" xml:space="preserve">
-    <value>Controller 2</value>
+    <value>Manette 2</value>
   </data>
   <data name="Controller3Text" xml:space="preserve">
-    <value>Controller 3</value>
+    <value>Manette 3</value>
   </data>
   <data name="Controller4Text" xml:space="preserve">
-    <value>Controller 4</value>
+    <value>Manette 4</value>
   </data>
   <data name="Controllers" xml:space="preserve">
-    <value>Controllers</value>
+    <value>Manettes</value>
   </data>
   <data name="ControlPanel" xml:space="preserve">
     <value>Panneau de configuration</value>
@@ -189,13 +189,13 @@
     <value>Effacer</value>
   </data>
   <data name="DriverSetup" xml:space="preserve">
-    <value>Installer le Controller/Driver</value>
+    <value>Installer les pilotes</value>
   </data>
   <data name="Duplicate" xml:space="preserve">
     <value>Dupliquer</value>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Éditer</value>
+    <value>Modifier</value>
   </data>
   <data name="EditAction" xml:space="preserve">
     <value>Modifier l'action</value>
@@ -219,19 +219,19 @@
     <value>Stick gauche</value>
   </data>
   <data name="Log" xml:space="preserve">
-    <value>Des journaux</value>
+    <value>Journaux</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Le nom</value>
+    <value>Nom</value>
   </data>
   <data name="New" xml:space="preserve">
     <value>Nouveau</value>
   </data>
   <data name="NewAction" xml:space="preserve">
-    <value>Une nouvelle action</value>
+    <value>Nouvelle action</value>
   </data>
   <data name="NewProfile" xml:space="preserve">
-    <value>Un nouveau profil</value>
+    <value>Nouveau profil</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Aucun</value>
@@ -240,31 +240,31 @@
     <value>Chemin de l'ordinateur</value>
   </data>
   <data name="Profile" xml:space="preserve">
-    <value>Le profil</value>
+    <value>Profil </value>
   </data>
   <data name="ProfileFolder" xml:space="preserve">
-    <value>Le dossier de profil</value>
+    <value>Dossier des profils</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
-    <value>Charge rapide</value>
+    <value>Chargement rapide</value>
   </data>
   <data name="RecordText" xml:space="preserve">
-    <value>Record</value>
+    <value>Enregistrer</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Effacer</value>
   </data>
   <data name="RemoveAction" xml:space="preserve">
-    <value>Effacer de l'action</value>
+    <value>Effacer l'action</value>
   </data>
   <data name="RightStick" xml:space="preserve">
     <value>Stick droit</value>
   </data>
   <data name="Rumble" xml:space="preserve">
-    <value>Grondement</value>
+    <value>Vibration</value>
   </data>
   <data name="RunAtStartup" xml:space="preserve">
-    <value>Commencer au démarrage</value>
+    <value>Lancer au démarrage</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Sauvegarder</value>
@@ -279,16 +279,16 @@
     <value>Afficher les notifications</value>
   </data>
   <data name="StartMinimized" xml:space="preserve">
-    <value>Début minimisé</value>
+    <value>Lancer minimisé</value>
   </data>
   <data name="StartText" xml:space="preserve">
-    <value>Start</value>
+    <value>Commencer</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>Status</value>
+    <value>Statuts</value>
   </data>
   <data name="StopText" xml:space="preserve">
-    <value>Stop</value>
+    <value>Arrêter</value>
   </data>
   <data name="TouchScroll" xml:space="preserve">
     <value>Défilement de la souris</value>
@@ -297,22 +297,22 @@
     <value>Faire glisser</value>
   </data>
   <data name="TouchTap" xml:space="preserve">
-    <value>Frapper</value>
+    <value>Appuyer</value>
   </data>
   <data name="Trigger" xml:space="preserve">
     <value>Déclencheur</value>
   </data>
   <data name="WarningsOnly" xml:space="preserve">
-    <value>Avertissements seulementrum</value>
+    <value>Avertissements seulement</value>
   </data>
   <data name="RumbleMaxSecs" xml:space="preserve">
-    <value>Grondement secondes maximum</value>
+    <value>sec</value>
   </data>
   <data name="RumbleMaxSecsTip" xml:space="preserve">
-    <value>Arrêt automatique des vibrations en quelques secondes (0 = vibration infinie)</value>
+    <value>Arrêt automatique des vibrations après (0 pour vibration infinie, en secondes)</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Le titre de fenêtre</value>
+    <value>Titre de la fenêtre</value>
   </data>
   <data name="MoveUp" xml:space="preserve">
     <value>Vers le haut</value>
@@ -327,15 +327,15 @@
     <value>Le titre de fenêtre. ^ABC = Correspondance au début de la chaîne (^) | ABC$ =  Correspondance à la fin de la chaîne ($) | *ABC = Contient une chaîne (*)</value>
   </data>
   <data name="GamepadTest" xml:space="preserve">
-    <value>Tester le contrôleur de jeu</value>
+    <value>Tester la manette de jeu</value>
   </data>
   <data name="EnableOutputDataToDS4" xml:space="preserve">
-    <value>Activer les données de sortie vers DS4</value>
+    <value>Activer la sortie de données vers DS4</value>
   </data>
   <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
-    <value>Sortie de la barre lumineuse et des données de grondement périodiquement sur la manette DS4. Décochez si la manette de jeu ne prend pas en charge la réception de données.
-Les modifications apportées à cette option prennent effet au moment de la connexion de la controller.</value>
-    <comment>Pour entrer un saut de ligne dans une valeur de ressource de chaîne dans l'éditeur de ressources VisualStudio, appuyez sur Maj + Entrée.</comment>
+    <value>Active la barre lumineuse et la vibration périodiquement sur la manette DS4. Décochez si la manette de jeu ne prend pas en charge la réception de données.
+Les modifications apportées à cette option prennent effet au moment de la connexion de la manette.</value>
+    <comment>Pour entrer un saut de ligne dans une chaîne de caractères dans l'éditeur de ressources VisualStudio, appuyez sur Maj + Entrée.</comment>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Appliquer</value>
@@ -347,66 +347,66 @@ Les modifications apportées à cette option prennent effet au moment de la conn
     <value>Nom de l'exe personnalisé</value>
   </data>
   <data name="CustomExeNameInfo" xml:space="preserve">
-    <value>Certains jeux implémentent un bloc qui fait que l'entrée DS4 est ignorée si un jeu détecte DS4Windows.exe ou InputMapper.exe en cours d'exécution à ce moment-là. Une solution de contournement au blocage consiste à renommer DS4Windows.exe afin que la vérification dans le jeu échoue. La spécification d'un nom d'exe personnalisé ici permet à DS4Updater de mettre à jour automatiquement une copie personnalisée de DS4Windows avec le nom de fichier souhaité. Assurez-vous d'omettre l'extension.
+    <value>Certains jeux implémentent un script qui ignore les entrée de la manette DS4 si les processus DS4Windows.exe ou InputMapper.exe sont en cours d'exécution. Il est possible de contourner ce blocage en modifiant le nom DS4Windows.exe afin que la détection échoue. Spécifier le nom personnalisé ici permet à DS4Updater de mettre à jour automatiquement une copie personnalisée de DS4Windows avec le nom de fichier souhaité. Assurez-vous d'omettre l'extension.
 
-Exemple: pourquoi_DS4Windows</value>
+Exemple : tu_es_tilte_boubou_DS4Windows</value>
   </data>
   <data name="XInputChecker" xml:space="preserve">
-    <value>XInputChecker</value>
+    <value>Détection XInput</value>
   </data>
   <data name="Controller5Text" xml:space="preserve">
-    <value>Controller 5</value>
+    <value>Manette 5</value>
   </data>
   <data name="Controller6Text" xml:space="preserve">
-    <value>Controller 6</value>
+    <value>Manette 6</value>
   </data>
   <data name="Controller7Text" xml:space="preserve">
-    <value>Controller 7</value>
+    <value>Manette 7</value>
   </data>
   <data name="Controller8Text" xml:space="preserve">
-    <value>Controller 8</value>
+    <value>Manette 8</value>
   </data>
   <data name="GamepadGyroCameraDescription" xml:space="preserve">
-    <value>Mappe la sortie du contrôleur sur une manette de jeu XInput standard ou une manette DS4. Gyro est mappé sur un joystick semblable à une souris.</value>
+    <value>Mappe la sortie de la manette sur une manette de jeu XInput standard ou une manette DS4. Le gyroscope est mappé sur un joystick en tant que souris.</value>
   </data>
   <data name="GamepadGyroCameraName" xml:space="preserve">
-    <value>Manette de jeu avec joystick en forme de souris</value>
+    <value>Manette avec joysticks en tant que souris</value>
   </data>
   <data name="GamepadPresetDescription" xml:space="preserve">
     <value>Mappe la sortie du contrôleur sur une manette de jeu standard</value>
   </data>
   <data name="GamepadPresetName" xml:space="preserve">
-    <value>Une manette de jeu</value>
+    <value>Manette de jeu</value>
   </data>
   <data name="KBMGyroMouseDescription" xml:space="preserve">
-    <value>Mappe la sortie du contrôleur aux contrôles KB + M virtuels. Utile pour jouer à des jeux de tir sans prise en charge de la manette de jeu. Gyro est mappé à une souris virtuelle.</value>
+    <value>Mappe la sortie de la manette à un clavier/souris virtuel. Utile pour jouer à des jeux de tir sans prise en charge de la manette de jeu. Le gyroscope est mappé à une souris virtuelle.</value>
   </data>
   <data name="KBMGyroMouseName" xml:space="preserve">
-    <value>Commandes KB+M avec Gyro Mouse</value>
+    <value>Commandes clavier/souris avec une souris gyroscope</value>
   </data>
   <data name="KBMPresetDescription" xml:space="preserve">
-    <value>Mappe la sortie du contrôleur aux contrôles KB + M virtuels. Utile pour jouer à des jeux de tir sans prise en charge de la manette de jeu.</value>
+    <value>Mappe la sortie de la manette à un clavier/souris virtuel. Utile pour jouer à des jeux de tir sans prise en charge de la manette de jeu.</value>
   </data>
   <data name="KBMPresetName" xml:space="preserve">
-    <value>Commandes KB+M</value>
+    <value>Commandes clavier/souris</value>
   </data>
   <data name="MixedGyroMousePresetDescription" xml:space="preserve">
-    <value>Mappe les boutons et les axes sur une manette de jeu standard. Associe le Gyro à une souris virtuelle.</value>
+    <value>Mappe les boutons et les joysticks à une manette de jeu standard. Associe le gyroscope à une souris virtuelle.</value>
   </data>
   <data name="MixedGyroMousePresetName" xml:space="preserve">
-    <value>Une manette de jeu avec souris gyro</value>
+    <value>Manette de jeu avec souris gyroscope</value>
   </data>
   <data name="MixedPresetDescription" xml:space="preserve">
-    <value>Mappe la sortie du contrôleur sur une manette de jeu XInput mixte + une souris.</value>
+    <value>Mappe la sortie du contrôleur à une manette de jeu XInput et une souris.</value>
   </data>
   <data name="MixedPresetName" xml:space="preserve">
     <value>Manette de jeu avec caméra haute précision</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>La description</value>
+    <value>Description</value>
   </data>
   <data name="PresetIntroText" xml:space="preserve">
-    <value>Voulez-vous utiliser une option prédéfinie? Si vous choisissez Non, l'éditeur de profil utilisera un profil de manette de jeu vide.</value>
+    <value>Voulez-vous utiliser une configuration prédéfinie ? Si vous choisissez non, un profil vide sera défini dans l'éditeur.</value>
   </data>
   <data name="Presets" xml:space="preserve">
     <value>Préconfigurations</value>
@@ -421,18 +421,327 @@ Exemple: pourquoi_DS4Windows</value>
     <value>Profils</value>
   </data>
   <data name="NoControllersConnected" xml:space="preserve">
-    <value>Aucun contrôleur connecté (Max {0})</value>
+    <value>Aucune manette connecté (Max {0})</value>
   </data>
   <data name="FlickThreshold" xml:space="preserve">
-    <value>Flick Threshold</value>
+    <value>Seuil d'accoup</value>
   </data>
   <data name="FlickTime" xml:space="preserve">
-    <value>Flick Time</value>
+    <value>Temps d'accoup</value>
   </data>
   <data name="MinAngleThreshold" xml:space="preserve">
-    <value>Min Angle Threshold</value>
+    <value>Seuil minimal d'angle</value>
   </data>
   <data name="RealWorldCalibration" xml:space="preserve">
-    <value>Real World Calibration</value>
+    <value>Calibration dans le monde réel</value>
+  </data>
+<data name="ViGEmPluginFailure" xml:space="preserve">
+    <value>Le plug-in de périphérique ViGEm à rencontré un problème. Probablement un problème interne à ViGEmBus. Fermeture de la connexion. Si le problème persiste, veuillez fermer DS4Windows et redémarrer windows.</value>
+  </data>
+  <data name="CRC32Fail" xml:space="preserve">
+    <value>Vérfications d'intégrité des données du périphérique échouées. Fermeture du périphérique.</value>
+  </data>
+  <data name="FutureNetNotInstalled" xml:space="preserve">
+    <value>.NET 5 Runtime n'a pas été détecté sur votre système. Veuillez télécharger et installer .NET 5 Runtime pour assurer la compatibilité avec les futures versions de DS4Windows. Vous serez redirigé vers la page de téléchargement de .NET 5 Runtime à la fermeture de cette fenêtre.</value>
+  </data>
+  <data name="UpgradeNetCaption" xml:space="preserve">
+    <value>Veuillez mettre à jour .NET Runtime</value>
+  </data>
+  <data name="HidHide" xml:space="preserve">
+    <value>HidHide</value>
+  </data>
+  <data name="HidHideConfigClient" xml:space="preserve">
+    <value>Configuration Client HidHide</value>
+  </data>
+  <data name="ExclusiveAccess" xml:space="preserve">
+    <value>Accès exclusif</value>
+  </data>
+  <data name="HidGuardianAccess" xml:space="preserve">
+    <value>Accès HidGuardian</value>
+  </data>
+  <data name="HidHideAccess" xml:space="preserve">
+    <value>Accès HidHide</value>
+  </data>
+  <data name="SharedAccess" xml:space="preserve">
+    <value>Accès partagé</value>
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Renommer</value>
+  </data>
+  <data name="DisableVirtualController" xml:space="preserve">
+    <value>Désactiver la manette virtuelle</value>
+  </data>
+  <data name="DisableVirtualControllerTip" xml:space="preserve">
+    <value>Ne pas créer/associer de manettes virtuelles pour les manettes connectées à l'aide de ce profil (s'applique à l'enregistrement du profil)</value>
+  </data>
+  <data name="EmulatedController" xml:space="preserve">
+    <value>Manette émulée</value>
+  </data>
+  <data name="OutContNotice" xml:space="preserve">
+    <value>Choisissez le type de manette virtuelle de sortie (s'applique à la sauvegarde du profil)</value>
+  </data>
+  <data name="VirtualControllerSettings" xml:space="preserve">
+    <value>Paramètres de la manette virtuelle</value>
+  </data>
+  <data name="ChangeOnNewDeviceConn" xml:space="preserve">
+    <value>Changements effectifs à la connection d'un nouveau périphérique</value>
+  </data>
+  <data name="StickFuzzTooltip" xml:space="preserve">
+    <value>La valeur 'Fuzz' spécifie le nombre minimum d'unités que le stick analogique déplace, dans la zone active, avant que le changement soit enregistré dans le mappeur. Ce réglage peut être utile pour les joysticks usés qui ne peuvent pas maintenir une position constante. Cette valeur est exprimée en unités brutes du stick.</value>
+  </data>
+  <data name="StickMaxOutputForceTooltip" xml:space="preserve">
+    <value>Applique toujours le paramètre de sortie maximale. Utile pour obtenir une sortie maximale et associer une direction précise à une valeur de sortie circulaire</value>
+  </data>
+  <data name="StickMaxOutputTooltip" xml:space="preserve">
+    <value>Dans certaines situations, il peut être utile de limiter la valeur de sortie maximale émise par le stick analogique. Cette fonction permet ainsi de limiter la valeur de sortie du stick analogique.</value>
+  </data>
+  <data name="AntiDeadzoneTooltip" xml:space="preserve">
+    <value>L'anti-zone morte agit comme un décalage à associer à un axe pour indiquer la valeur de sortie minimale générée après qu'un axe ait quitté sa zone morte assignée. Ceci vise principalement à faciliter le mappage d'une valeur de zone morte attribuée à un axe dans un jeu vidéo. Par exemple, la zone morte typique attribuée pour XInput LS dans un jeu vidéo est d'environ 8000 (25%). Sans anti-zone morte assignée, un axe devrait dépasser la zone morte assignée dans DS4Windows avec la zone morte de l'axe assignée dans le jeu.</value>
+  </data>
+  <data name="StickInputCurveTooltip" xml:space="preserve">
+    <value>ANCIEN PARAMÈTRE OBSOLÈTE. Avant d'appliquer toute information de zone morte, essayez d'utiliser une courbe basée sur les coordonnées d'entrée brutes.</value>
+  </data>
+  <data name="TouchpadMinThresholdTooltip" xml:space="preserve">
+    <value>Course minimale sur le pavé tactile avant qu'un déplacement de souris soit pris en compte</value>
+  </data>
+  <data name="TouchpadRotationTooltip" xml:space="preserve">
+    <value>Ajustement du balayage du pavé tactile selon un angle de rotation. Utile lorsqu'un balayage normal du pavé tactile n'est pas effectué en ligne droite. L'angle est compris entre -180 et 180 degrés et sa valeur par défaut est 0.</value>
+  </data>
+  <data name="TouchpadSlideTooltip" xml:space="preserve">
+    <value>Sensibilité nécessaire avant le défilement de la molette de la souris</value>
+  </data>
+  <data name="TouchpadTapTooltip" xml:space="preserve">
+    <value>Active le clic gauche de la souris avec un appuie sur le pavé tactile. L'intervalle de temps maximum est défini sur la valeur multiplié par 2 millisecondes.</value>
+  </data>
+  <data name="TouchpadTrackballEnableTooltip" xml:space="preserve">
+    <value>Ajoute de l'élan à un balayage du pavé tactile une fois que le doigt est levé. Ajoute un déplacement supplémentaire du curseur de la souris par rapport à ce qui serait possible avec l'espace restreint du pavé tactile</value>
+  </data>
+  <data name="TouchpadTrackballFrictionTooltip" xml:space="preserve">
+    <value>Ajoute de la friction au Trackball virtuel. La diminution de la friction augmentera le temps de déplacement final du curseur de la souris</value>
+  </data>
+  <data name="StickOuterBindDeadTooltip" xml:space="preserve">
+    <value>Seuil de déclenchement d'une action</value>
+  </data>
+  <data name="StickOuterBindInvertTooltip" xml:space="preserve">
+    <value>Permet à une liaison externe de s'activer avant d'atteindre un seuil. L'action se déclenche une fois que le seuil a été dépassé.</value>
+  </data>
+  <data name="StickOuterBindTooltip" xml:space="preserve">
+    <value>Action à exécuter lorsque le déplacement du joystick dépasse un seuil. Utile pour attribuer des touches aux actions de marche ou de sprint. L'inversion provoque l'activation de l'action jusqu'au seuil.</value>
+  </data>
+  <data name="SASteeringWheelFuzzTooltip" xml:space="preserve">
+    <value>La valeur 'Fuzz' spécifie le nombre minimum d'unités de l'appareil, dans la zone active, que l'accéléromètre doit être tourné avant que le changement soit enregistré dans le mappeur. Cette valeur est exprimée en unités brutes de l'accéléromètre.</value>
+  </data>
+  <data name="StickRotationTooltip" xml:space="preserve">
+    <value>[+] Sens horaire | [-] Sens anti-horaire
+
+Le réglage de rotation est destiné à aider à corriger l'orientation d'un stick analogique si votre pouce est légèrement décalé lors du déplacement d'un stick analogique. Par exemple, votre pouce peut être légèrement décalé du centre lorsque le stick analogique est déplacé complètement vers le haut. Mes pouces se déplacent légèrement vers la droite lorsque je déplace un stick analogique complètement vers le haut en raison de la façon dont mes mains saisissent le DS4. La valeur utilisée indique le nombre de degrés utilisés pour ajuster la valeur finale de sortie de l'axe. Cet angle est compris entre -180 et 180 degrés et sa valeur par défaut est 0.</value>
+  </data>
+  <data name="TouchpadJitterCompTooltip" xml:space="preserve">
+    <value>Accélère le bas du mouvement du pavé tactile. Réduit les mouvements accidentels du curseur de la souris lorsque vous maintenez une position essentiellement fixe sur le pavé tactile</value>
+  </data>
+  <data name="DS4BTPollRate" xml:space="preserve">
+    <value>Fréquence d'actualisation BlueTooth avec la DS4</value>
+  </data>
+  <data name="DS4LightbarPassthruDisabled" xml:space="preserve">
+    <value>Fonctionnalité actuellement désactivée dans l'application en raison de problèmes de pilote. Espérons que les problèmes seront résolus dans une future mise à jour.</value>
+  </data>
+  <data name="DualSRumbleForceGenericRescale" xml:space="preserve">
+    <value>Forcer l'utilisation des deux niveaux de force en % (général et spécifique à DualSense)</value>
+  </data>
+  <data name="DualSRumbleModeDisabled" xml:space="preserve">
+    <value>Désactivé</value>
+  </data>
+  <data name="DualSRumbleModeAccurate" xml:space="preserve">
+    <value>Précision</value>
+  </data>
+  <data name="DualSRumbleModeLegacy" xml:space="preserve">
+    <value>Héritage</value>
+  </data>
+  <data name="DualSRumbleModeNPowerLevelTxt" xml:space="preserve">
+    <value>Mode de vibration et niveau de force :</value>
+  </data>
+  <data name="DualSRumbleModePassthru" xml:space="preserve">
+    <value>Passerelle</value>
+  </data>
+  <data name="DualSRumbleSpecificSettings" xml:space="preserve">
+    <value>Paramètres de vibration spécifiques à la DualSense</value>
+  </data>
+  <data name="DualSRumbleForceGenericRescale_Tip" xml:space="preserve">
+    <value>Réglage recommandé : DÉSACTIVÉ.
+
+- Désactivé : la vibration sera redimensionnée nativement par le contrôleur en fonction du niveau de puissance défini (meilleure qualité)
+
+- Activé : la mise à l'échelle des vibrations natives DS4Windows et le contrôle natif de DualSense seront actifs</value>
+  </data>
+  <data name="DualSRumbleModes_Tip" xml:space="preserve">
+    <value>Mode Précision (recommandé) :
+- Reproduit mieux la sensation de vibration des manettes DualShock 4/Xbox 360
+- Exécute plus précisément les effets de vibration prévus par le jeu
+- Les vibrations ont plus de profondeur. Dans un même niveau de puissance, il existe une plus grande variation entre l'activation minimale et maximale des vibrations dans le jeu,
+allant d'une intensité très faible jusqu'à la force maximale définie pour ce niveau de puissance.
+
+Mode Héritage :
+- Globalement plus puissant, mais manque de profondeur
+- Procure une sensation plus "nette"
+- Dans le jeu, l'activation minimale sera légèrement inférieure et l'activation maximale sera légèrement supérieure au niveau de puissance choisi.
+
+Désactivé:
+- Désactive complètement les vibrations</value>
+  </data>
+  <data name="DualSRumblePowerLevel_Tip" xml:space="preserve">
+    <value>Réétalonnage du niveau de puissance des vibrations natif du DualSense.
+
+- En mode Précision, les vibrations seront comprises entre [1% et Niveau de puissance choisi].
+    - Exemple à 62% : [min = 1% /// max = 62%]
+
+- En mode Héritage, les vibrations seront environ comprises entre [Niveau de puissance - 12% et Niveau de puissance + 12%].
+    - Exemple à 62% : [min = 50% /// max = 74%]</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accepter</value>
+  </data>
+  <data name="Black" xml:space="preserve">
+    <value>Noir</value>
+  </data>
+  <data name="Colored" xml:space="preserve">
+    <value>Coloré</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Défaut</value>
+  </data>
+  <data name="DeviceType" xml:space="preserve">
+    <value>Type d'appareil</value>
+  </data>
+  <data name="DisconnectFromBtWhenStopping" xml:space="preserve">
+    <value>Se déconnecter du BlueTooth lors de l'arrêt</value>
+  </data>
+  <data name="Dynamic" xml:space="preserve">
+    <value>Dynamique</value>
+  </data>
+  <data name="FlashLightbarAtHighLatency" xml:space="preserve">
+    <value>Faire clignoter la barre lumineuse à latence élevée.</value>
+  </data>
+  <data name="HideDS4Controller" xml:space="preserve">
+    <value>Masquer la manette DS4</value>
+  </data>
+  <data name="HotkeysAbout" xml:space="preserve">
+    <value>Raccourcis clavier/À propos</value>
+  </data>
+  <data name="IconChoice" xml:space="preserve">
+    <value>Choix de l'icône</value>
+  </data>
+  <data name="MinimizeToTaskbar" xml:space="preserve">
+    <value>Réduire à la barre des tâches</value>
+  </data>
+  <data name="MinimizeToTaskbarTip" xml:space="preserve">
+    <value>Réduit dans la barre des tâches au lieu de la barre d'état système</value>
+  </data>
+  <data name="OutputSlots" xml:space="preserve">
+    <value>Emplacements de sortie</value>
+  </data>
+  <data name="Permanent" xml:space="preserve">
+    <value>Permanent</value>
+  </data>
+  <data name="Plug" xml:space="preserve">
+    <value>Brancher</value>
+  </data>
+  <data name="RevertToDefaultProfileOnUnknown" xml:space="preserve">
+    <value>Revenir au profil par défaut pour les nouveaux appareils</value>
+  </data>
+  <data name="ShowAutoProfileDebugMessages" xml:space="preserve">
+    <value>Afficher les messages de débogage du profil automatique</value>
+  </data>
+  <data name="SwipeTouchpadToSwitchProfiles" xml:space="preserve">
+    <value>Faites glisser sur le pavé tactile pour changer de profil</value>
+  </data>
+  <data name="TurnOffDS4WindowsTemporarily" xml:space="preserve">
+    <value>Désactiver temporairement DS4Windows</value>
+  </data>
+  <data name="Unplug" xml:space="preserve">
+    <value>Débrancher</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>Blanc</value>
+  </data>
+  <data name="AppTheme" xml:space="preserve">
+    <value>Thème de l'application</value>
+  </data>
+  <data name="CheckEvery" xml:space="preserve">
+    <value>Vérifiez tous les </value>
+  </data>
+  <data name="OscServerHeading" xml:space="preserve">
+    <value>Contrôle et surveillance OSC externe</value>
+  </data>
+  <data name="EnableOscServer" xml:space="preserve">
+    <value>Activer le serveur de contrôle</value>
+  </data>
+  <data name="EnableInterpretingOscMonitoring" xml:space="preserve">
+    <value>Interpréter les messages de surveillance</value>
+  </data>
+  <data name="EnableOscSender" xml:space="preserve">
+    <value>Activer le service de surveillance</value>
+  </data>
+  <data name="ControllerSupportDS4" xml:space="preserve">
+    <value>Support manette DS4</value>
+  </data>
+  <data name="ControllerSupportDualSense" xml:space="preserve">
+    <value>Support manette DualSense</value>
+  </data>
+  <data name="ControllerSupportJoyCon" xml:space="preserve">
+    <value>Support manette JoyCon</value>
+  </data>
+  <data name="ControllerSupportSwitchPro" xml:space="preserve">
+    <value>Support manette Switch Pro</value>
+  </data>
+  <data name="Copycat" xml:space="preserve">
+    <value>Copycat</value>
+  </data>
+  <data name="CopycatTip" xml:space="preserve">
+    <value>Modifie certains flags utilisés par les manettes DS4 non officielles. Cela pourrait corriger la prise en charge des vibrations et de la barre lumineuse pour certaines "fausses" DS4.</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Sombre</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Jours</value>
+  </data>
+  <data name="DetectedControllers" xml:space="preserve">
+    <value>Manettes détectées</value>
+  </data>
+  <data name="DeviceOptions" xml:space="preserve">
+    <value>Options de périphérique</value>
+  </data>
+  <data name="EnableVerboseLog" xml:space="preserve">
+    <value>Activer le journal détaillé</value>
+  </data>
+  <data name="EnableVerboseLogTip" xml:space="preserve">
+    <value>Afficher des messages supplémentaires au journal lorsqu'une manette de jeu est connectée</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>Heures</value>
+  </data>
+  <data name="UseCustomSteamFolder" xml:space="preserve">
+    <value>Utiliser le dossier Steam personnalisé</value>
+  </data>
+  <data name="Utils" xml:space="preserve">
+    <value>Utilitaires</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="RunAs" xml:space="preserve">
+    <value>Exécuter en tant que</value>
+  </data>
+  <data name="Task" xml:space="preserve">
+    <value>Tâche</value>
+  </data>
+  <data name="GyroTriggerJitterCompensationTooltip" xml:space="preserve">
+    <value>Ajouter un bridage supplémentaire à l'extrémité basse de la courbe pour prendre en compte les secousses de l'appareil.</value>
+  </data>
+  <data name="WakeupFromSuspend" xml:space="preserve">
+    <value>Sortie de veille</value>
+  </data>
+  <data name="ControllerSupportDS3" xml:space="preserve">
+    <value>Support manette DS3</value>
   </data>
 </root>

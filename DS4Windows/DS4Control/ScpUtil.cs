@@ -3002,14 +3002,6 @@ namespace DS4Windows
 
             return result;
         }
-
-        public static void AdjustWindowWorkingBounds(int left, int top,
-            out int boundLeft, out int boundTop)
-        {
-            Rect tempRect = SystemInformation.WpfVirtualScreen;
-            boundLeft = left < tempRect.Left ? (int)tempRect.Left : left;
-            boundTop = top < tempRect.Top ? (int)tempRect.Top : top;
-        }
     }
 
     public class BackingStore
@@ -7362,18 +7354,9 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/formHeight"); Int32.TryParse(Item.InnerText, out formHeight); }
                     catch { missingSetting = true; }
-                    try {
-                        int temp = 0;
-                        Item = m_Xdoc.SelectSingleNode("/Profile/formLocationX"); Int32.TryParse(Item.InnerText, out temp);
-                        formLocationX = Math.Max(temp, 0);
-                    }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/formLocationX"); Int32.TryParse(Item.InnerText, out formLocationX); }
                     catch { missingSetting = true; }
-
-                    try {
-                        int temp = 0;
-                        Item = m_Xdoc.SelectSingleNode("/Profile/formLocationY"); Int32.TryParse(Item.InnerText, out temp);
-                        formLocationY = Math.Max(temp, 0);
-                    }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/formLocationY"); Int32.TryParse(Item.InnerText, out formLocationY); }
                     catch { missingSetting = true; }
 
                     for (int i = 0; i < Global.MAX_DS4_CONTROLLER_COUNT; i++)

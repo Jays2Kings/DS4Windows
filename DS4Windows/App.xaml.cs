@@ -207,7 +207,9 @@ namespace DS4WinWPF
             DS4Windows.Global.LoadLinkedProfiles();
             DS4Forms.MainWindow window = new DS4Forms.MainWindow(parser);
             MainWindow = window;
+            window.IsInitialShow = true;
             window.Show();
+            window.IsInitialShow = false;
 
             // Remove hook for custom assembly loading. Needed or app performance drops
             //AppDomain.CurrentDomain.AssemblyResolve -= CurrentDomain_AssemblyResolve;

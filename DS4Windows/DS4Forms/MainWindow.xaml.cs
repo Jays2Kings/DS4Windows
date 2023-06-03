@@ -21,6 +21,7 @@ using HttpProgress;
 
 using DS4WinWPF.DS4Forms.ViewModels;
 using DS4Windows;
+using DS4WinWPF.DS4Control;
 using DS4WinWPF.Translations;
 using H.NotifyIcon.Core;
 
@@ -57,8 +58,11 @@ namespace DS4WinWPF.DS4Forms
         private bool preserveSize = true;
         private Size oldSize;
         private bool contextclose;
+        private readonly bool startMinimized;
 
         public ProfileList ProfileListHolder { get => profileListHolder; }
+
+        public bool IsInitialShow { get; set; }
 
         public MainWindow(ArgumentParser parser)
         {
@@ -119,10 +123,7 @@ namespace DS4WinWPF.DS4Forms
                 }
             }
 
-            if (Global.StartMinimized || parser.Mini)
-            {
-                WindowState = WindowState.Minimized;
-            }
+            startMinimized = Global.StartMinimized || parser.Mini;
 
             bool isElevated = Global.IsAdministrator();
             if (isElevated)
@@ -130,25 +131,6 @@ namespace DS4WinWPF.DS4Forms
                 uacImg.Visibility = Visibility.Collapsed;
             }
 
-            // Check display width bounds on startup
-            this.Width = Global.FormWidth = (int)Math.Clamp(Global.FormWidth, 0, Global.fullDesktopBounds.Width);
-            this.Height = Global.FormHeight = (int)Math.Clamp(Global.FormHeight, 0, Global.fullDesktopBounds.Height);
-            // Keep possible example that does not rely on WpfScreenHelper
-            //this.Width = Math.Clamp(Global.FormWidth, 0, SystemParameters.VirtualScreenWidth);
-            //this.Height = Math.Clamp(Global.FormHeight, 0, SystemParameters.VirtualScreenHeight);
-
-            // Check if requested window location exists on startup
-            WindowStartupLocation = WindowStartupLocation.Manual;
-            Global.AdjustWindowWorkingBounds(Global.FormLocationX, Global.FormLocationY,
-                out int formLocationX, out int formLocationY);
-            Left = Global.FormLocationX = formLocationX;
-            Top = Global.FormLocationY = formLocationY;
-            //Left = Global.FormLocationX = (int)Math.Clamp(Global.FormLocationX, 0, Global.fullDesktopBounds.Right);
-            //Top = Global.FormLocationY = (int)Math.Clamp(Global.FormLocationY, 0, Global.fullDesktopBounds.Bottom);
-
-            // Keep possible example that does not rely on WpfScreenHelper
-            //Left = Math.Clamp(Global.FormLocationX, 0, SystemParameters.VirtualScreenLeft);
-            //Top = Math.Clamp(Global.FormLocationY, 0, SystemParameters.VirtualScreenHeight);
             noContLb.Content = string.Format(Strings.NoControllersConnected,
                 ControlService.CURRENT_DS4_CONTROLLER_LIMIT);
 
@@ -971,6 +953,11 @@ Suspend support not enabled.", true);
         {
             base.OnSourceInitialized(e);
 
+            if (!Global.firstRun)
+            {
+                WindowPlacementHelper.ApplyPlacement(this, startMinimized);
+            }
+
             HwndSource source = PresentationSource.FromVisual(this) as HwndSource;
             HookWindowMessages(source);
             source.AddHook(WndProc);
@@ -1523,21 +1510,19 @@ Suspend support not enabled.", true);
 
         private void MainDS4Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (WindowState != WindowState.Minimized && preserveSize)
+            if (WindowState != WindowState.Minimized && preserveSize && !IsInitialShow)
             {
-                Global.FormWidth = Convert.ToInt32(Width);
-                Global.FormHeight = Convert.ToInt32(Height);
+                var result = WindowPlacementHelper.GetPlacement(this);
+                Global.FormWidth = result.Right - result.Left;
+                Global.FormHeight = result.Bottom - result.Top;
             }
         }
 
         private void MainDS4Window_LocationChanged(object sender, EventArgs e)
         {
-            int left = Convert.ToInt32(Left), top = Convert.ToInt32(Top);
-            if (left >= 0 && top >= 0)
-            {
-                Global.FormLocationX = left;
-                Global.FormLocationY = top;
-            }
+            var result = WindowPlacementHelper.GetPlacement(this);
+            Global.FormLocationX = result.Left;
+            Global.FormLocationY = result.Top;
         }
 
         private void NotifyIcon_TrayMiddleMouseDown(object sender, RoutedEventArgs e)

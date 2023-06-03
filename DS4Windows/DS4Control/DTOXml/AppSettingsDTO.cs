@@ -96,7 +96,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public int FormLocationX
         {
             get => _formLocationX;
-            set => _formLocationX = Math.Max(value, 0);
+            set => _formLocationX = value;
         }
 
         private int _formLocationY;
@@ -104,7 +104,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public int FormLocationY
         {
             get => _formLocationY;
-            set => _formLocationY = Math.Max(value, 0);
+            set => _formLocationY = value;
         }
 
         [XmlElement("Controller1")]

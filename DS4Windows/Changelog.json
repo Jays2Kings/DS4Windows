@@ -1,9 +1,33 @@
 {
-  "latest_version": "3.2.10",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 10},
-  "updated_at": "2023-04-30T19:46:54+0000",
+  "latest_version": "3.2.11",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 11},
+  "updated_at": "2023-06-03T23:08:23+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.2.11",
+      "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 11},
+      "base_header": "Version 3.2.11",
+      "release_date": "2023-06-03T23:08:23+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.2.11",
+          "log_text": ["* Added task logging to resume method",
+            "* Increase wait period in resume routine",
+            "* Updated HidHide installer link to version 1.2.128.0",
+            "* Changed boundary check for main window placement on startup",
+            "* Added jitter compensation to Gyro Mouse Joystick",
+            "* Make DS3 device support optional. Separate it from DS4 Controller Support",
+            "* Lowered JoyCon LS X- boundary when no user calibration is present",
+            "* Updated FakerInputDll.dll files with file write flag fix",
+            "* Fixed initial saving of default enable status for non-DS4 controllers. Mainly changes saving to AppData folder",
+            "* Updated French translation. Contribution by **EnzoChaussivert**",
+            "* Fixed restoring of Window position on multi-monitor systems. Contribution by **kurtanr**"],
+          "updated_at": "2023-06-03T23:08:23+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.2.10",
       "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 10},

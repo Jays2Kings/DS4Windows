@@ -27,7 +27,7 @@ namespace DS4Windows
         public JoyConDeviceOptions JoyConDeviceOpts { get => joyConDeviceOpts; }
 
         private DS3DeviceOptions dS3DeviceOpts = new DS3DeviceOptions();
-        public DS4DeviceOptions DS3DeviceOpts { get => dS4DeviceOpts; }
+        public DS3DeviceOptions DS3DeviceOpts { get => dS3DeviceOpts; }
 
         private bool verboseLogMessages;
         public bool VerboseLogMessages { get => verboseLogMessages; set => verboseLogMessages = value; }
@@ -177,7 +177,8 @@ namespace DS4Windows
 
     public class DualSenseDeviceOptions
     {
-        private bool enabled = true;
+        public const bool DEFAULT_ENABLE = false;
+        private bool enabled = DEFAULT_ENABLE;
         public bool Enabled
         {
             get => enabled;
@@ -305,7 +306,8 @@ namespace DS4Windows
 
     public class SwitchProDeviceOptions
     {
-        private bool enabled = true;
+        public const bool DEFAULT_ENABLE = false;
+        private bool enabled = DEFAULT_ENABLE;
         public bool Enabled
         {
             get => enabled;
@@ -404,7 +406,8 @@ namespace DS4Windows
 
     public class JoyConDeviceOptions
     {
-        private bool enabled = true;
+        public const bool DEFAULT_ENABLE = false;
+        private bool enabled = DEFAULT_ENABLE;
         public bool Enabled
         {
             get => enabled;

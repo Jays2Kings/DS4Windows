@@ -1543,7 +1543,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             GyroMouseStickMaxOutput = source.gyroMStickInfo[deviceIndex].maxOutput;
             _gyroMouseStickMaxOutputEnabled = source.gyroMStickInfo[deviceIndex].maxOutputEnabled;
             GyroMouseStickVerticalScale = source.gyroMStickInfo[deviceIndex].vertScale;
-            _gyroMouseJitterCompensation = source.gyroMStickInfo[deviceIndex].jitterCompensation;
+            _gyroMouseStickJitterCompensation = source.gyroMStickInfo[deviceIndex].jitterCompensation;
             GyroMouseStickSmoothingSettings = new GyroMouseStickSmoothingSettings()
             {
                 UseSmoothing = source.gyroMStickInfo[deviceIndex].useSmoothing,

@@ -58,7 +58,7 @@ namespace DS4WinWPF.DS4Forms
         private bool preserveSize = true;
         private Size oldSize;
         private bool contextclose;
-        private readonly bool startMinimized;
+        private bool startMinimized;
 
         public ProfileList ProfileListHolder { get => profileListHolder; }
 

@@ -288,7 +288,7 @@
     <value>Status</value>
   </data>
   <data name="StopText" xml:space="preserve">
-    <value>Stop</value>
+    <value>Stopp</value>
   </data>
   <data name="TouchScroll" xml:space="preserve">
     <value>Scrollen</value>
@@ -601,5 +601,47 @@ Beispiel: whyme_DS4Windows</value>
   </data>
   <data name="White" xml:space="preserve">
     <value>Weiß</value>
+  </data>
+  <data name="ShowAutoProfileDebugMessages" xml:space="preserve">
+    <value>Zeige Debug-Nachrichten</value>
+  </data>
+  <data name="RevertToDefaultProfileOnUnknown" xml:space="preserve">
+    <value>Kehre zu Standardprofil zurück bei unbekannt</value>
+  </data>
+  <data name="TurnOffDS4WindowsTemporarily" xml:space="preserve">
+    <value>Schalte DS4Windows temporär ab</value>
+  </data>
+  <data name="Plug" xml:space="preserve">
+    <value>Verbinden</value>
+  </data>
+  <data name="HideDS4Controller" xml:space="preserve">
+    <value>Verstecke DS4 Controller</value>
+  </data>
+  <data name="SwipeTouchpadToSwitchProfiles" xml:space="preserve">
+    <value>Benutze das Touchpad um Profile zu wechseln</value>
+  </data>
+  <data name="DisconnectFromBtWhenStopping" xml:space="preserve">
+    <value>Trenne Bluetoothverbindung beim Beenden</value>
+  </data>
+  <data name="FlashLightbarAtHighLatency" xml:space="preserve">
+    <value>Blinke mit hoher Latenz</value>
+  </data>
+  <data name="MinimizeToTaskbar" xml:space="preserve">
+    <value>In Taskbar minimieren</value>
+  </data>
+  <data name="MinimizeToTaskbarTip" xml:space="preserve">
+    <value>In Taskbar minimieren, statt in System-Tray</value>
+  </data>
+  <data name="IconChoice" xml:space="preserve">
+    <value>Symbolwahl</value>
+  </data>
+  <data name="CheckEvery" xml:space="preserve">
+    <value>Checke aller</value>
+  </data>
+  <data name="UseCustomSteamFolder" xml:space="preserve">
+    <value>Verwende individuellen Steam-Ordner</value>
+  </data>
+  <data name="HotkeysAbout" xml:space="preserve">
+    <value>Tastenkürzel/Über</value>
   </data>
 </root>

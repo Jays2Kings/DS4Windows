@@ -27,6 +27,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public bool EnableDS3 { get => serviceDeviceOpts.DS3DeviceOpts.Enabled; }
 
         public DS4DeviceOptions DS4DeviceOpts { get => serviceDeviceOpts.DS4DeviceOpts; }
+        public DS3DeviceOptions DS3DeviceOpts { get => serviceDeviceOpts.DS3DeviceOpts; }
         public DualSenseDeviceOptions DSDeviceOpts { get => serviceDeviceOpts.DualSenseOpts; }
         public SwitchProDeviceOptions SwitchProDeviceOpts { get => serviceDeviceOpts.SwitchProDeviceOpts; }
         public JoyConDeviceOptions JoyConDeviceOpts { get => serviceDeviceOpts.JoyConDeviceOpts; }

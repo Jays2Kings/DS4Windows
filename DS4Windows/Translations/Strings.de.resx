@@ -159,7 +159,7 @@
     <value>Nach Updates beim Starten von DS4Windows suchen</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Löschen</value>
+    <value>Leeren</value>
   </data>
   <data name="CloseMinimizes" xml:space="preserve">
     <value>Schließen minimiert das Fenster</value>
@@ -192,7 +192,7 @@
     <value>Treiber-Setup</value>
   </data>
   <data name="Duplicate" xml:space="preserve">
-    <value>Kopieren</value>
+    <value>Duplizieren</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Bearbeiten</value>
@@ -246,7 +246,7 @@
     <value>Profil-Ordner</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
-    <value>Schnell laden</value>
+    <value>Schnellladen</value>
   </data>
   <data name="RecordText" xml:space="preserve">
     <value>Aufnehmen</value>
@@ -288,7 +288,7 @@
     <value>Status</value>
   </data>
   <data name="StopText" xml:space="preserve">
-    <value>Stop</value>
+    <value>Stopp</value>
   </data>
   <data name="TouchScroll" xml:space="preserve">
     <value>Scrollen</value>
@@ -447,7 +447,7 @@ Beispiel: whyme_DS4Windows</value>
     <value>Echtwelt-Kalibrierung</value>
   </data>
   <data name="ViGEmPluginFailure" xml:space="preserve">
-    <value>ViGEm Geräte Plugin fehlgeschlagen. Wahrscheinlich ein internes ViGEmBus-Problem. Verbindung getrennt. Wenn das Problem weiterhin besteht, schliessen Sie bitte DS4Windows und starten Sie Windows neu.</value>
+    <value>ViGEm Geräte-Plugin fehlgeschlagen. Wahrscheinlich ein internes ViGEmBus-Problem. Verbindung getrennt. Wenn das Problem weiterhin besteht, schliessen Sie bitte DS4Windows und starten Sie Windows neu.</value>
   </data>
   <data name="CRC32Fail" xml:space="preserve">
     <value>Datenintegritätsprüfungen für drahtloses Gerät fehlgeschlagen. Gerät getrennt.</value>
@@ -483,7 +483,7 @@ Beispiel: whyme_DS4Windows</value>
     <value>Virtuelle Steuerung deaktivieren</value>
   </data>
   <data name="DisableVirtualControllerTip" xml:space="preserve">
-    <value>Virtuelle Steuerungen für verbundene Controller, die dieses Profil verwenden, nicht erzeugen/verbinden (gilt nach Speichern des Profils)</value>
+    <value>Virtuelle Steuerung für verbundene Controller, die dieses Profil verwenden, nicht erzeugen/verbinden (gilt nach Speichern des Profils)</value>
   </data>
   <data name="EmulatedController" xml:space="preserve">
     <value>Emulierter Controller</value>
@@ -495,7 +495,7 @@ Beispiel: whyme_DS4Windows</value>
     <value>Einstellungen der virtuellen Steuerung</value>
   </data>
   <data name="ChangeOnNewDeviceConn" xml:space="preserve">
-    <value>Änderungen werden bei neür Geräteverbindung wirksam</value>
+    <value>Änderungen werden bei neuer Geräteverbindung wirksam</value>
   </data>
   <data name="StickFuzzTooltip" xml:space="preserve">
     <value>Fuzz gibt die minimale Anzahl von Einheiten an, die der Analogknüppel in der aktiven Zone bewegt, bevor der Ausgang im Mapper als verändert registriert wird. Diese Einstellung kann für abgenutzte Knüppel nützlich sein, die keine konstante Position halten können. Der Wert wird in rohen Knüppeleinheiten angegeben.</value>
@@ -553,5 +553,95 @@ Beispiel: whyme_DS4Windows</value>
   </data>
   <data name="DS4LightbarPassthruDisabled" xml:space="preserve">
     <value>Die Funktion ist derzeit aufgrund von Treiberproblemen in der App deaktiviert. Hoffentlich werden die Probleme in einem zukünftigen Update behoben.</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Akzeptieren</value>
+  </data>
+  <data name="AppTheme" xml:space="preserve">
+    <value>Farbschema</value>
+  </data>
+  <data name="Black" xml:space="preserve">
+    <value>Schwarz</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="Colored" xml:space="preserve">
+    <value>Gefärbt</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Dunkel</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Tage</value>
+  </data>
+  <data name="DetectedControllers" xml:space="preserve">
+    <value>Erkannte Controller</value>
+  </data>
+  <data name="DeviceOptions" xml:space="preserve">
+    <value>Geräteoptionen</value>
+  </data>
+  <data name="DeviceType" xml:space="preserve">
+    <value>Gerätetyp</value>
+  </data>
+  <data name="Dynamic" xml:space="preserve">
+    <value>Dynamisch</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>Stunden</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>Programm</value>
+  </data>
+  <data name="Task" xml:space="preserve">
+    <value>Aufgabe</value>
+  </data>
+  <data name="Unplug" xml:space="preserve">
+    <value>Trennen</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>Weiß</value>
+  </data>
+  <data name="ShowAutoProfileDebugMessages" xml:space="preserve">
+    <value>Zeige Debug-Nachrichten</value>
+  </data>
+  <data name="RevertToDefaultProfileOnUnknown" xml:space="preserve">
+    <value>Kehre zu Standardprofil zurück bei unbekannt</value>
+  </data>
+  <data name="TurnOffDS4WindowsTemporarily" xml:space="preserve">
+    <value>Schalte DS4Windows temporär ab</value>
+  </data>
+  <data name="Plug" xml:space="preserve">
+    <value>Verbinden</value>
+  </data>
+  <data name="HideDS4Controller" xml:space="preserve">
+    <value>Verstecke DS4 Controller</value>
+  </data>
+  <data name="SwipeTouchpadToSwitchProfiles" xml:space="preserve">
+    <value>Benutze das Touchpad um Profile zu wechseln</value>
+  </data>
+  <data name="DisconnectFromBtWhenStopping" xml:space="preserve">
+    <value>Trenne Bluetoothverbindung beim Beenden</value>
+  </data>
+  <data name="FlashLightbarAtHighLatency" xml:space="preserve">
+    <value>Blinke mit hoher Latenz</value>
+  </data>
+  <data name="MinimizeToTaskbar" xml:space="preserve">
+    <value>In Taskbar minimieren</value>
+  </data>
+  <data name="MinimizeToTaskbarTip" xml:space="preserve">
+    <value>In Taskbar minimieren, statt in System-Tray</value>
+  </data>
+  <data name="IconChoice" xml:space="preserve">
+    <value>Symbolwahl</value>
+  </data>
+  <data name="CheckEvery" xml:space="preserve">
+    <value>Checke aller</value>
+  </data>
+  <data name="UseCustomSteamFolder" xml:space="preserve">
+    <value>Verwende individuellen Steam-Ordner</value>
+  </data>
+  <data name="HotkeysAbout" xml:space="preserve">
+    <value>Tastenkürzel/Über</value>
   </data>
 </root>

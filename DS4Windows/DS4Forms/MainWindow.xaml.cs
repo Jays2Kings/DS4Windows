@@ -479,7 +479,8 @@ Suspend support not enabled.", true);
                             //Thread.Sleep(60000);
                             //App.rootHub.Start();
 
-                            Task startupTask = Task.Delay(150000).ContinueWith(t =>
+                            //Task startupTask = Task.Run(() =>
+                            Task startupTask = Task.Delay(5000).ContinueWith(t =>
                             {
                                 App.rootHub.Start();
                             });

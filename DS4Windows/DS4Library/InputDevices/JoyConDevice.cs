@@ -207,10 +207,12 @@ namespace DS4Windows.InputDevices
         public int OutputReportLen { get => outputReportLen; }
         public int RumbleReportLen { get => rumbleReportLen; }
 
+        private bool foundLeftStickCalib;
         private ushort[] leftStickCalib = new ushort[6];
         private ushort leftStickOffsetX = 0;
         private ushort leftStickOffsetY = 0;
 
+        private bool foundRightStickCalib;
         private ushort[] rightStickCalib = new ushort[6];
         private ushort rightStickOffsetX = 0;
         private ushort rightStickOffsetY = 0;
@@ -831,10 +833,36 @@ namespace DS4Windows.InputDevices
                         stick_raw[2] = inputReportBuffer[8];
 
                         tempAxisX = (stick_raw[0] | ((stick_raw[1] & 0x0F) << 8)) - leftStickOffsetX;
+                        tempAxisY = ((stick_raw[1] >> 4) | (stick_raw[2] << 4)) - leftStickOffsetY;
+
+                        if (firstReport && !foundLeftStickCalib)
+                        {
+                            if (tempAxisX > leftStickXData.mid)
+                            {
+                                uint diff = (uint)(tempAxisX - leftStickXData.mid);
+                                leftStickXData.min = (ushort)(leftStickXData.min + diff);
+                            }
+                            else if (tempAxisX < leftStickXData.mid)
+                            {
+                                uint diff = (uint)(leftStickXData.max - tempAxisX);
+                                leftStickXData.max = (ushort)(leftStickXData.max - diff);
+                            }
+
+                            if (tempAxisY > leftStickYData.mid)
+                            {
+                                uint diff = (uint)(tempAxisY - leftStickYData.mid);
+                                leftStickYData.min = (ushort)(leftStickYData.min + diff);
+                            }
+                            else if (tempAxisY < leftStickYData.mid)
+                            {
+                                uint diff = (uint)(leftStickYData.max - tempAxisY);
+                                leftStickYData.max = (ushort)(leftStickYData.max - diff);
+                            }
+                        }
+
                         tempAxisX = tempAxisX > leftStickXData.max ? leftStickXData.max : (tempAxisX < leftStickXData.min ? leftStickXData.min : tempAxisX);
                         cState.LX = (byte)((tempAxisX - leftStickXData.min) / (double)(leftStickXData.max - leftStickXData.min) * 255);
 
-                        tempAxisY = ((stick_raw[1] >> 4) | (stick_raw[2] << 4)) - leftStickOffsetY;
                         tempAxisY = tempAxisY > leftStickYData.max ? leftStickYData.max : (tempAxisY < leftStickYData.min ? leftStickYData.min : tempAxisY);
                         cState.LY = (byte)((((tempAxisY - leftStickYData.min) / (double)(leftStickYData.max - leftStickYData.min) - 0.5) * -1.0 + 0.5) * 255);
 
@@ -866,10 +894,36 @@ namespace DS4Windows.InputDevices
                         stick_raw2[2] = inputReportBuffer[11];
 
                         tempAxisX = (stick_raw2[0] | ((stick_raw2[1] & 0x0F) << 8)) - rightStickOffsetX;
+                        tempAxisY = ((stick_raw2[1] >> 4) | (stick_raw2[2] << 4)) - rightStickOffsetY;
+
+                        if (firstReport && !foundRightStickCalib)
+                        {
+                            if (tempAxisX > rightStickXData.mid)
+                            {
+                                uint diff = (uint)(tempAxisX - rightStickXData.mid);
+                                rightStickXData.min = (ushort)(rightStickXData.min + diff);
+                            }
+                            else if (tempAxisX < rightStickXData.mid)
+                            {
+                                uint diff = (uint)(rightStickXData.max - tempAxisX);
+                                rightStickXData.max = (ushort)(rightStickXData.max - diff);
+                            }
+
+                            if (tempAxisY > rightStickYData.mid)
+                            {
+                                uint diff = (uint)(tempAxisY - rightStickYData.mid);
+                                rightStickYData.min = (ushort)(rightStickYData.min + diff);
+                            }
+                            else if (tempAxisY < rightStickYData.mid)
+                            {
+                                uint diff = (uint)(rightStickYData.max - tempAxisY);
+                                rightStickYData.max = (ushort)(rightStickYData.max - diff);
+                            }
+                        }
+
                         tempAxisX = tempAxisX > rightStickXData.max ? rightStickXData.max : (tempAxisX < rightStickXData.min ? rightStickXData.min : tempAxisX);
                         cState.RX = (byte)((tempAxisX - rightStickXData.min) / (double)(rightStickXData.max - rightStickXData.min) * 255);
 
-                        tempAxisY = ((stick_raw2[1] >> 4) | (stick_raw2[2] << 4)) - rightStickOffsetY;
                         tempAxisY = tempAxisY > rightStickYData.max ? rightStickYData.max : (tempAxisY < rightStickYData.min ? rightStickYData.min : tempAxisY);
                         cState.RY = (byte)((((tempAxisY - rightStickYData.min) / (double)(rightStickYData.max - rightStickYData.min) - 0.5) * -1.0 + 0.5) * 255);
 
@@ -1342,6 +1396,7 @@ namespace DS4Windows.InputDevices
                 if (tmpBuffer[SPI_RESP_OFFSET] == 0xB2 && tmpBuffer[SPI_RESP_OFFSET + 1] == 0xA1)
                 {
                     foundUserCalib = true;
+                    foundLeftStickCalib = true;
                 }
 
                 if (foundUserCalib)
@@ -1412,6 +1467,7 @@ namespace DS4Windows.InputDevices
                 if (tmpBuffer[SPI_RESP_OFFSET] == 0xB2 && tmpBuffer[SPI_RESP_OFFSET + 1] == 0xA1)
                 {
                     foundUserCalib = true;
+                    foundRightStickCalib = true;
                 }
 
                 if (foundUserCalib)

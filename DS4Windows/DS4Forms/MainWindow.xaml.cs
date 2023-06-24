@@ -947,6 +947,14 @@ Suspend support not enabled.", true);
             autoProfilesTimer.Stop();
             //autoProfileHolder.Save();
             Util.UnregisterNotify(regHandle);
+
+            // Attempt to dispose of notify icon early
+            if (notifyIcon != null)
+            {
+                notifyIcon.Dispose();
+                notifyIcon = null;
+            }
+
             Application.Current.Shutdown();
         }
 

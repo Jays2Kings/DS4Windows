@@ -844,7 +844,7 @@ namespace DS4Windows.InputDevices
                             }
                             else if (tempAxisX < leftStickXData.mid)
                             {
-                                uint diff = (uint)(leftStickXData.max - tempAxisX);
+                                uint diff = (uint)(leftStickXData.mid - tempAxisX);
                                 leftStickXData.max = (ushort)(leftStickXData.max - diff);
                             }
 
@@ -855,7 +855,7 @@ namespace DS4Windows.InputDevices
                             }
                             else if (tempAxisY < leftStickYData.mid)
                             {
-                                uint diff = (uint)(leftStickYData.max - tempAxisY);
+                                uint diff = (uint)(leftStickYData.mid - tempAxisY);
                                 leftStickYData.max = (ushort)(leftStickYData.max - diff);
                             }
                         }
@@ -905,7 +905,7 @@ namespace DS4Windows.InputDevices
                             }
                             else if (tempAxisX < rightStickXData.mid)
                             {
-                                uint diff = (uint)(rightStickXData.max - tempAxisX);
+                                uint diff = (uint)(rightStickXData.mid - tempAxisX);
                                 rightStickXData.max = (ushort)(rightStickXData.max - diff);
                             }
 
@@ -916,7 +916,7 @@ namespace DS4Windows.InputDevices
                             }
                             else if (tempAxisY < rightStickYData.mid)
                             {
-                                uint diff = (uint)(rightStickYData.max - tempAxisY);
+                                uint diff = (uint)(rightStickYData.mid - tempAxisY);
                                 rightStickYData.max = (ushort)(rightStickYData.max - diff);
                             }
                         }

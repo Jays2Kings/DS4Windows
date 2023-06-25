@@ -13,7 +13,7 @@
         {
           "code": "en",
           "header": "Version 3.2.12",
-          "log_text": ["* Fixed DS3 support not being able to enabled. Contribution by **sunnyqeen**",
+          "log_text": ["* Fixed DS3 support not being able to be enabled. Contribution by **sunnyqeen**",
             "* Updated german translation. Contribution by **PaulWentzel**",
             "* Added Finnish translation. Contribution by **eemijun**",
             "* Attempt to adjust JoyCon stick axis ranges based on initial axis coordinates",

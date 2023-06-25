@@ -306,36 +306,32 @@ namespace DS4Windows
         }
 
         /// <summary>
-        /// DS4Windows and HidHideClient need to be on same drive. Assume default
-        /// install path. Don't care if someone has changed the install path.
-        /// Return found path or string.Empty if path not found. Good enough for me.
+        /// Use HidHide MSI registry info to try to find HidHideClient
+        /// install path. Return found path or string.Empty if path not found.
+        /// Good enough for me.
         /// </summary>
         /// <returns></returns>
         public static string GetHidHideClientPath()
         {
             string result = string.Empty;
-            string driveLetter = Path.GetPathRoot(Global.exedirpath);
-            string[] testPaths = new string[]
+            string installLocation =
+                Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{48DD38C8-443E-4474-A249-AB32389E08F6}", "InstallLocation", "").ToString();
+            if (!string.IsNullOrEmpty(installLocation))
             {
-                Path.Combine(driveLetter, "Program Files",
-                    "Nefarius Software Solutions e.U", "HidHideClient", "HidHideClient.exe"),
-
-                Path.Combine(driveLetter, @"Program Files (x86)",
-                    "Nefarius Software Solutions e.U", "HidHideClient", "HidHideClient.exe"),
-
-                Path.Combine(driveLetter, @"Program Files",
-                    "Nefarius Software Solutions", "HidHide", "x64", "HidHideClient.exe"),
-
-                Path.Combine(driveLetter, @"Program Files",
-                    "Nefarius Software Solutions", "HidHide", "x86", "HidHideClient.exe"),
-            };
-
-            foreach(string testPath in testPaths)
-            {
-                if (File.Exists(testPath))
+                string[] testPaths = new string[]
                 {
-                    result = testPath;
-                    break;
+                    Path.Combine(installLocation, "HidHideClient.exe"),
+                    Path.Combine(installLocation, "x64", "HidHideClient.exe"),
+                    Path.Combine(installLocation, "x86", "HidHideClient.exe"),
+                };
+
+                foreach (string testPath in testPaths)
+                {
+                    if (File.Exists(testPath))
+                    {
+                        result = testPath;
+                        break;
+                    }
                 }
             }
 

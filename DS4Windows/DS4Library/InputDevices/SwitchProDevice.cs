@@ -1045,13 +1045,13 @@ namespace DS4Windows.InputDevices
 
             if (foundUserCalib)
             {
-                rightStickXData.max = (ushort)(rightStickCalib[2] + rightStickCalib[4]);
+                rightStickXData.max = (ushort)(rightStickCalib[2] + rightStickCalib[0]);
                 rightStickXData.mid = rightStickCalib[2];
-                rightStickXData.min = (ushort)(rightStickCalib[2] - rightStickCalib[0]);
+                rightStickXData.min = (ushort)(rightStickCalib[2] - rightStickCalib[4]);
 
-                rightStickYData.max = (ushort)(rightStickCalib[3] + rightStickCalib[5]);
+                rightStickYData.max = (ushort)(rightStickCalib[3] + rightStickCalib[1]);
                 rightStickYData.mid = rightStickCalib[3];
-                rightStickYData.min = (ushort)(rightStickCalib[3] - rightStickCalib[1]);
+                rightStickYData.min = (ushort)(rightStickCalib[3] - rightStickCalib[5]);
             }
             else
             {

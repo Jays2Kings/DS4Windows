@@ -1272,7 +1272,7 @@ Suspend support not enabled.", true);
             controllerLV.SelectedIndex = idx;
             CompositeDeviceModel item = conLvViewModel.CurrentItem;
 
-            if (item != null)
+            if (item != null && item.SelectedIndex != -1)
             {
                 ProfileEntity entity = profileListHolder.ProfileListCol[item.SelectedIndex];
                 ShowProfileEditor(idx, entity);

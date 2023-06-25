@@ -191,7 +191,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private string selectedProfile;
         private ProfileList profileListHolder;
         private ProfileEntity selectedEntity;
-        private int selectedIndex = 1;
+        private int selectedIndex = -1;
         private int devIndex;
 
         public DS4Device Device { get => device; set => device = value; }
@@ -384,6 +384,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         public void ChangeSelectedProfile()
         {
+            if (selectedIndex == -1)
+            {
+                return;
+            }
+
             if (this.selectedEntity != null)
             {
                 HookEvents(false);

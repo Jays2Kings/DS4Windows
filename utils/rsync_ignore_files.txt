@@ -2,6 +2,7 @@
 /cs
 /de
 /es
+/fi
 /fr
 /he
 /hu-HU
@@ -20,6 +21,7 @@
 /zh-Hans
 /zh-Hant
 /zh-TW
+/ref
 Logs
 Profiles
 *.xml

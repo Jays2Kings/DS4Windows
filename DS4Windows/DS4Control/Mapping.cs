@@ -5560,7 +5560,7 @@ namespace DS4Windows
             //verticalRemainder = rawMouseY - mouseY;
         }
 
-        private static double remainderCutoff(double dividend, double divisor)
+        public static double remainderCutoff(double dividend, double divisor)
         {
             return dividend - (divisor * (int)(dividend / divisor));
         }

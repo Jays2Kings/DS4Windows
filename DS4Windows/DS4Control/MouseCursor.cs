@@ -200,8 +200,11 @@ namespace DS4Windows
             }
 
             hRemainder = vRemainder = 0.0;
-            double distSqu = (xMotion * xMotion) + (yMotion * yMotion);
 
+            xMotion = xMotion - (Mapping.remainderCutoff(xMotion * 100, 1.0) / 100);
+            yMotion = yMotion - (Mapping.remainderCutoff(yMotion * 100, 1.0) / 100);
+
+            double distSqu = (xMotion * xMotion) + (yMotion * yMotion);
             xAction = (int)xMotion;
             yAction = (int)yMotion;
 
@@ -413,6 +416,9 @@ namespace DS4Windows
             {
                 yMotion += verticalRemainder;
             }
+
+            xMotion = xMotion - (Mapping.remainderCutoff(xMotion * 100, 1.0) / 100);
+            yMotion = yMotion - (Mapping.remainderCutoff(yMotion * 100, 1.0) / 100);
 
             double distSqu = (xMotion * xMotion) + (yMotion * yMotion);
             int xAction = (int)xMotion;

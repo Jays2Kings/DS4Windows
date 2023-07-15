@@ -101,6 +101,83 @@
     </Reference>
   </ItemGroup>
 
+  <!-- Apparently the None tags are needed as well as the Resource tags.
+       Without the None, app slowdown occurs for me. Why?!!! -->
+  <ItemGroup>
+    <None Include="Resources\social\GitHub-Mark-Light-64px.png" />
+    <None Include="Resources\social\GitHub-Mark-64px.png" />
+    <None Include="Resources\social\poast_icon.png" />
+    <None Include="Resources\social\youtube_social_icon_red.png" />
+
+    <None Include="Resources\DS4 Config_white.png" />
+    <None Include="Resources\newprofile_white.png" />
+    <None Include="Resources\copy_white.png" />
+    <None Include="Resources\delete_white.png" />
+    <None Include="Resources\edit_white.png" />
+    <None Include="Resources\export_white.png" />
+    <None Include="Resources\import_white.png" />
+    <None Include="Resources\clock_white.png" />
+    <None Include="Resources\BT_white.png" />
+    <None Include="Resources\cancel_white.png" />
+    <None Include="Resources\checked_white.png" />
+    <None Include="Resources\key-solid_white.png" />
+    <None Include="Resources\keydown_white.png" />
+    <None Include="Resources\keyup_white.png" />
+    <None Include="Resources\USB_white.png" />
+    <None Include="Resources\DS4W - Black.ico" />
+    <None Include="Resources\key-solid.png" />
+    <None Include="Resources\rainbowCCrop.png" />
+    <None Include="Resources\rainbowC.png" />
+    <None Include="Resources\DS4 lightbar.png" />
+    <None Include="Resources\keydown.png" />
+    <None Include="Resources\keyup.png" />
+    <None Include="Resources\clock.png" />
+    <None Include="Resources\right touch.png" />
+    <None Include="Resources\left touch.png" />
+    <None Include="Resources\mouse.png" />
+    <None Include="Resources\360 highlight.png" />
+    <None Include="Resources\360 map.png" />
+    <None Include="Resources\size.png" />
+    <None Include="Resources\DS4-Config_PS.png" />
+    <None Include="Resources\DS4-Config_Right.png" />
+    <None Include="Resources\DS4-Config_Left.png" />
+    <None Include="Resources\DS4-Config_Down.png" />
+    <None Include="Resources\DS4-Config_Up.png" />
+    <None Include="Resources\DS4-Config_LS.png" />
+    <None Include="Resources\DS4-Config_TouchUpper.png" />
+    <None Include="Resources\DS4-Config_TouchMulti.png" />
+    <None Include="Resources\DS4-Config_TouchRight.png" />
+    <None Include="Resources\DS4-Config_TouchLeft.png" />
+    <None Include="Resources\DS4-Config_options.png" />
+    <None Include="Resources\DS4-Config_Share.png" />
+    <None Include="Resources\DS4-Config_R2.png" />
+    <None Include="Resources\DS4-Config_L2.png" />
+    <None Include="Resources\DS4-Config_R1.png" />
+    <None Include="Resources\DS4-Config_L1.png" />
+    <None Include="Resources\DS4-Config_Triangle.png" />
+    <None Include="Resources\DS4-Config_Square.png" />
+    <None Include="Resources\DS4-Config_Circle.png" />
+    <None Include="Resources\DS4-Config_Cross.png" />
+    <None Include="Resources\rainbow.png" />
+    <None Include="Resources\DS4-Config_RS.png" />
+    <None Include="Resources\DS4 Config.png" />
+    <None Include="Resources\Pairmode.png" />
+    <None Include="Resources\USB.png" />
+
+    <None Include="Resources\newprofile.png" />
+    <None Include="Resources\BT.png" />
+    <None Include="Resources\cancel.png" />
+    <None Include="Resources\checked.png" />
+    <None Include="Resources\copy.png" />
+    <None Include="Resources\DS4W - White.ico" />
+    <None Include="Resources\DS4W.ico" />
+    <None Include="Resources\edit.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\export.png" />
+    <None Include="Resources\import.png" />
+
+  </ItemGroup>
+
   <ItemGroup>
 	<Resource Include="Resources\social\GitHub-Mark-Light-64px.png" />
     <Resource Include="Resources\social\GitHub-Mark-64px.png" />

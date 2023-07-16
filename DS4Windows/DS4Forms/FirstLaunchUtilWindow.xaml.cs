@@ -35,5 +35,10 @@ namespace DS4WinWPF.DS4Forms
         {
             Close();
         }
+
+        private void DsHidMiniLink_Click(object sender, RoutedEventArgs e)
+        {
+            Util.StartProcessHelper("https://vigem.org/projects/DsHidMini/");
+        }
     }
 }

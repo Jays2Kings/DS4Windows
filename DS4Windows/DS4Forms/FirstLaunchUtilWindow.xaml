@@ -49,6 +49,9 @@
                             <StackPanel Orientation="Vertical">
                                 <CheckBox Name="ds3SupportEnableCkb" IsChecked="{Binding EnableDS3}" Content="DS3 Device Support" FontWeight="Bold" />
                                 <TextBlock Text="Support for DualShock 3 (PS3) controllers. Requires the use of the DsHidMini driver from the ViGEm project (nefarius)." Margin="0,8,0,0" />
+                                <TextBlock>
+                                    <Hyperlink x:Name="dsHidMiniLink" Click="DsHidMiniLink_Click" Foreground="{DynamicResource AccentColor}">https://vigem.org/projects/DsHidMini/</Hyperlink>
+                                </TextBlock>
                             </StackPanel>
                         </Border>
 

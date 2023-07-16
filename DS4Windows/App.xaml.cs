@@ -135,6 +135,10 @@ namespace DS4WinWPF
 
             DS4Windows.Global.FindConfigLocation();
             bool firstRun = DS4Windows.Global.firstRun;
+
+            // Could not find unique profile location; does not exist or multiple places.
+            // Advise user to specify where DS4Windows should save its configuation files
+            // and profiles
             if (firstRun)
             {
                 DS4Forms.SaveWhere savewh =
@@ -142,6 +146,7 @@ namespace DS4WinWPF
                 savewh.ShowDialog();
             }
 
+            // Exit if base configuration could not be generated
             if (firstRun && !CreateConfDirSkeleton())
             {
                 MessageBox.Show($"Cannot create config folder structure in {DS4Windows.Global.appdatapath}. Exiting",
@@ -168,6 +173,17 @@ namespace DS4WinWPF
             if (!firstRun && !readAppConfig)
             {
                 logger.Info($@"Profiles.xml not read at location ${DS4Windows.Global.appdatapath}\Profiles.xml. Using default app settings");
+            }
+
+            // Ask user which devices the mapper should attempt to open when detected.
+            // Currently only support DS4 by default to avoid extra complications from
+            // Steam Input
+            if (firstRun)
+            {
+                DS4Forms.FirstLaunchUtilWindow firstLaunchUtilWin =
+                    new DS4Forms.FirstLaunchUtilWindow(DS4Windows.Global.DeviceOptions);
+                firstLaunchUtilWin.ShowDialog();
+                DS4Windows.Global.Save();
             }
 
             if (firstRun)

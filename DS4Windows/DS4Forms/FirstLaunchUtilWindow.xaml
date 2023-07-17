@@ -13,50 +13,61 @@
 
         <TabControl Name="pagesTabControl" TabStripPlacement="Left">
             <TabItem Header="Device Support" Visibility="Collapsed">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <StackPanel Orientation="Vertical" Margin="4">
-                        <TextBlock Text="Enabled Devices Mapper Support" FontWeight="UltraBold" FontSize="16" HorizontalAlignment="Center" Margin="0,16,0,0" />
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Enabled Devices Mapper Support" FontWeight="UltraBold" FontSize="16" HorizontalAlignment="Center"
+                               Margin="0,8,0,0" DockPanel.Dock="Top" />
 
-                        <Border BorderThickness="0" CornerRadius="10" BorderBrush="{DynamicResource BorderColor}" Margin="0,16,0,0">
-                            <StackPanel Orientation="Vertical">
-                                <CheckBox Name="ds4SupportEnableCkb" IsChecked="{Binding EnableDS4}" Content="DS4 Device Support" FontWeight="Bold" />
-                                <TextBlock Text="Support for known DualShock 4 controllers" Margin="0,8,0,0" />
-                            </StackPanel>
-                        </Border>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,8,0,0">
+                        <StackPanel Orientation="Vertical" Margin="4">
+                            <TextBlock TextWrapping="Wrap" DockPanel.Dock="Top">
+                                <TextBlock.Text>
+                                    Due to other mappers enabling support for multiple device types by default (Steam Input), DS4Windows only enables support for reading from DS4 controllers by default.
+                                You can specify mapper support for other supported device types here. Be careful when using DS4Windows with other possible mappers running at the same time.
+                                </TextBlock.Text>
+                            </TextBlock>
 
-                        <Border BorderThickness="0" CornerRadius="10" BorderBrush="{DynamicResource BorderColor}" Margin="0,16,0,0">
-                            <StackPanel Orientation="Vertical">
-                                <CheckBox Name="dualSenseSupportEnableCkb" IsChecked="{Binding EnableDualSense}" Content="DualSense Device Support" FontWeight="Bold" />
-                                <TextBlock Text="Support for DualSense (PS5) controllers. Base model and DS Edge" Margin="0,8,0,0" />
-                            </StackPanel>
-                        </Border>
+                            <Border BorderThickness="0" CornerRadius="10" BorderBrush="{DynamicResource BorderColor}" Margin="0,16,0,0">
+                                <StackPanel Orientation="Vertical">
+                                    <CheckBox Name="ds4SupportEnableCkb" IsChecked="{Binding EnableDS4}" Content="DS4 Device Support" FontWeight="Bold" />
+                                    <TextBlock Text="Support for known DualShock 4 controllers" Margin="0,8,0,0" />
+                                </StackPanel>
+                            </Border>
 
-                        <Border BorderThickness="0" CornerRadius="10" BorderBrush="{DynamicResource BorderColor}" Margin="0,16,0,0">
-                            <StackPanel Orientation="Vertical">
-                                <CheckBox Name="switchProSupportEnableCkb" IsChecked="{Binding EnableSwitchPro}" Content="Switch Pro Device Support" FontWeight="Bold" />
-                                <TextBlock Text="Support for Switch Pro (Nintendo Switch) controllers." Margin="0,8,0,0" />
-                            </StackPanel>
-                        </Border>
+                            <Border BorderThickness="0" CornerRadius="10" BorderBrush="{DynamicResource BorderColor}" Margin="0,16,0,0">
+                                <StackPanel Orientation="Vertical">
+                                    <CheckBox Name="dualSenseSupportEnableCkb" IsChecked="{Binding EnableDualSense}" Content="DualSense Device Support" FontWeight="Bold" />
+                                    <TextBlock Text="Support for DualSense (PS5) controllers. Base model and DS Edge" Margin="0,8,0,0" />
+                                </StackPanel>
+                            </Border>
 
-                        <Border BorderThickness="0" CornerRadius="10" BorderBrush="{DynamicResource BorderColor}" Margin="0,16,0,0">
-                            <StackPanel Orientation="Vertical">
-                                <CheckBox Name="joyConSupportEnableCkb" IsChecked="{Binding EnableJoyCon}" Content="JoyCon Device Support" FontWeight="Bold" />
-                                <TextBlock Text="Support for JoyCon (Nintendo Switch) controllers." Margin="0,8,0,0" />
-                            </StackPanel>
-                        </Border>
+                            <Border BorderThickness="0" CornerRadius="10" BorderBrush="{DynamicResource BorderColor}" Margin="0,16,0,0">
+                                <StackPanel Orientation="Vertical">
+                                    <CheckBox Name="switchProSupportEnableCkb" IsChecked="{Binding EnableSwitchPro}" Content="Switch Pro Device Support" FontWeight="Bold" />
+                                    <TextBlock Text="Support for Switch Pro (Nintendo Switch) controllers." Margin="0,8,0,0" />
+                                </StackPanel>
+                            </Border>
 
-                        <Border BorderThickness="0" CornerRadius="10" BorderBrush="{DynamicResource BorderColor}" Margin="0,16,0,0">
-                            <StackPanel Orientation="Vertical">
-                                <CheckBox Name="ds3SupportEnableCkb" IsChecked="{Binding EnableDS3}" Content="DS3 Device Support" FontWeight="Bold" />
-                                <TextBlock Text="Support for DualShock 3 (PS3) controllers. Requires the use of the DsHidMini driver from the ViGEm project (nefarius)." Margin="0,8,0,0" />
-                                <TextBlock>
+                            <Border BorderThickness="0" CornerRadius="10" BorderBrush="{DynamicResource BorderColor}" Margin="0,16,0,0">
+                                <StackPanel Orientation="Vertical">
+                                    <CheckBox Name="joyConSupportEnableCkb" IsChecked="{Binding EnableJoyCon}" Content="JoyCon Device Support" FontWeight="Bold" />
+                                    <TextBlock Text="Support for JoyCon (Nintendo Switch) controllers." Margin="0,8,0,0" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border BorderThickness="0" CornerRadius="10" BorderBrush="{DynamicResource BorderColor}" Margin="0,16,0,0">
+                                <StackPanel Orientation="Vertical">
+                                    <CheckBox Name="ds3SupportEnableCkb" IsChecked="{Binding EnableDS3}" Content="DS3 Device Support" FontWeight="Bold" />
+                                    <TextBlock Text="Support for DualShock 3 (PS3) controllers. Requires the use of the DsHidMini driver from the ViGEm project (nefarius)." Margin="0,8,0,0" />
+                                    <TextBlock>
                                     <Hyperlink x:Name="dsHidMiniLink" Click="DsHidMiniLink_Click" Foreground="{DynamicResource AccentColor}">https://vigem.org/projects/DsHidMini/</Hyperlink>
-                                </TextBlock>
-                            </StackPanel>
-                        </Border>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
 
-                    </StackPanel>
-                </ScrollViewer>
+                        </StackPanel>
+                    </ScrollViewer>
+                </StackPanel>
+                
             </TabItem>
         </TabControl>
     </DockPanel>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
         mc:Ignorable="d"
-        Title="First Launch" Height="450" Width="800">
+        Title="First Launch" Height="500" Width="800">
     <!-- Window will likely be used for other first launch configuration in the future.
          For now, only deal with device mapper support -->
     <DockPanel>

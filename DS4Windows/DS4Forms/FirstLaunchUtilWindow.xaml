@@ -4,62 +4,66 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:LocalizeDictionary.DesignCulture=""
+        lex:ResxLocalizationProvider.DefaultAssembly="DS4Windows"
+        lex:ResxLocalizationProvider.DefaultDictionary="Strings"
         mc:Ignorable="d"
-        Title="First Launch" Height="500" Width="800">
+        Title="{lex:Loc FirstLaunch.WinTitle}" Height="500" Width="800">
     <!-- Window will likely be used for other first launch configuration in the future.
          For now, only deal with device mapper support -->
     <DockPanel>
-        <Button Content="Close" Click="Button_Click" DockPanel.Dock="Bottom" Margin="16,16,16,16" />
+        <Button Content="{lex:Loc Close}" Click="Button_Click" DockPanel.Dock="Bottom" Margin="16,16,16,16" />
 
         <TabControl Name="pagesTabControl" TabStripPlacement="Left">
             <TabItem Header="Device Support" Visibility="Collapsed">
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Enabled Devices Mapper Support" FontWeight="UltraBold" FontSize="16" HorizontalAlignment="Center"
+                    <TextBlock Text="{lex:Loc FirstLaunch.Header}" FontWeight="UltraBold" FontSize="16" HorizontalAlignment="Center"
                                Margin="0,8,0,0" DockPanel.Dock="Top" />
 
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,8,0,0">
                         <StackPanel Orientation="Vertical" Margin="4">
-                            <TextBlock TextWrapping="Wrap" DockPanel.Dock="Top">
+                            <TextBlock TextWrapping="Wrap"
+                                       DockPanel.Dock="Top">
                                 <TextBlock.Text>
-                                    Due to other mappers enabling support for multiple device types by default (Steam Input), DS4Windows only enables support for reading from DS4 controllers by default.
-                                You can specify mapper support for other supported device types here. Be careful when using DS4Windows with other possible mappers running at the same time.
+                                    <lex:Loc Key="FirstLaunch.DeviceIntroText"></lex:Loc>
                                 </TextBlock.Text>
                             </TextBlock>
 
                             <Border BorderThickness="0" CornerRadius="10" BorderBrush="{DynamicResource BorderColor}" Margin="0,16,0,0">
                                 <StackPanel Orientation="Vertical">
-                                    <CheckBox Name="ds4SupportEnableCkb" IsChecked="{Binding EnableDS4}" Content="DS4 Device Support" FontWeight="Bold" />
-                                    <TextBlock Text="Support for known DualShock 4 controllers" Margin="0,8,0,0" />
+                                    <CheckBox Name="ds4SupportEnableCkb" IsChecked="{Binding EnableDS4}" Content="{lex:Loc FirstLaunch.DS4EnableCkbLabel}" FontWeight="Bold" />
+                                    <TextBlock Text="{lex:Loc FirstLaunch.DS4EnableText}" Margin="0,8,0,0" />
                                 </StackPanel>
                             </Border>
 
                             <Border BorderThickness="0" CornerRadius="10" BorderBrush="{DynamicResource BorderColor}" Margin="0,16,0,0">
                                 <StackPanel Orientation="Vertical">
-                                    <CheckBox Name="dualSenseSupportEnableCkb" IsChecked="{Binding EnableDualSense}" Content="DualSense Device Support" FontWeight="Bold" />
-                                    <TextBlock Text="Support for DualSense (PS5) controllers. Base model and DS Edge" Margin="0,8,0,0" />
+                                    <CheckBox Name="dualSenseSupportEnableCkb" IsChecked="{Binding EnableDualSense}" Content="{lex:Loc FirstLaunch.DSEnableCkbLabel}" FontWeight="Bold" />
+                                    <TextBlock Text="{lex:Loc FirstLaunch.DSEnableText}" Margin="0,8,0,0" />
                                 </StackPanel>
                             </Border>
 
                             <Border BorderThickness="0" CornerRadius="10" BorderBrush="{DynamicResource BorderColor}" Margin="0,16,0,0">
                                 <StackPanel Orientation="Vertical">
-                                    <CheckBox Name="switchProSupportEnableCkb" IsChecked="{Binding EnableSwitchPro}" Content="Switch Pro Device Support" FontWeight="Bold" />
-                                    <TextBlock Text="Support for Switch Pro (Nintendo Switch) controllers." Margin="0,8,0,0" />
+                                    <CheckBox Name="switchProSupportEnableCkb" IsChecked="{Binding EnableSwitchPro}" Content="{lex:Loc FirstLaunch.SwitchProEnableCkbLabel}" FontWeight="Bold" />
+                                    <TextBlock Text="{lex:Loc FirstLaunch.SwitchProEnableText}" Margin="0,8,0,0" />
                                 </StackPanel>
                             </Border>
 
                             <Border BorderThickness="0" CornerRadius="10" BorderBrush="{DynamicResource BorderColor}" Margin="0,16,0,0">
                                 <StackPanel Orientation="Vertical">
-                                    <CheckBox Name="joyConSupportEnableCkb" IsChecked="{Binding EnableJoyCon}" Content="JoyCon Device Support" FontWeight="Bold" />
-                                    <TextBlock Text="Support for JoyCon (Nintendo Switch) controllers." Margin="0,8,0,0" />
+                                    <CheckBox Name="joyConSupportEnableCkb" IsChecked="{Binding EnableJoyCon}" Content="{lex:Loc FirstLaunch.JoyConEnableCkbLabel}" FontWeight="Bold" />
+                                    <TextBlock Text="{lex:Loc FirstLaunch.JoyConEnableText}" Margin="0,8,0,0" />
                                 </StackPanel>
                             </Border>
 
                             <Border BorderThickness="0" CornerRadius="10" BorderBrush="{DynamicResource BorderColor}" Margin="0,16,0,0">
                                 <StackPanel Orientation="Vertical">
-                                    <CheckBox Name="ds3SupportEnableCkb" IsChecked="{Binding EnableDS3}" Content="DS3 Device Support" FontWeight="Bold" />
-                                    <TextBlock Text="Support for DualShock 3 (PS3) controllers. Requires the use of the DsHidMini driver from the ViGEm project (nefarius)." Margin="0,8,0,0" />
+                                    <CheckBox Name="ds3SupportEnableCkb" IsChecked="{Binding EnableDS3}" Content="{lex:Loc FirstLaunch.DS3EnableCkbLabel}" FontWeight="Bold" />
+                                    <TextBlock Text="{lex:Loc FirstLaunch.DS3EnableText}" Margin="0,8,0,0" />
                                     <TextBlock>
-                                    <Hyperlink x:Name="dsHidMiniLink" Click="DsHidMiniLink_Click" Foreground="{DynamicResource AccentColor}">https://vigem.org/projects/DsHidMini/</Hyperlink>
+                                        <Hyperlink x:Name="dsHidMiniLink" Click="DsHidMiniLink_Click" Foreground="{DynamicResource AccentColor}">https://vigem.org/projects/DsHidMini/</Hyperlink>
                                     </TextBlock>
                                 </StackPanel>
                             </Border>

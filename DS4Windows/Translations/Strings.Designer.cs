@@ -866,6 +866,123 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Due to other mappers enabling support for multiple device types by default (Steam Input), DS4Windows only enables support for reading from DS4 controllers by default. You can specify mapper support for other supported device types here. Be careful when using DS4Windows with other possible mappers running at the same time..
+        /// </summary>
+        public static string FirstLaunch_DeviceIntroText {
+            get {
+                return ResourceManager.GetString("FirstLaunch.DeviceIntroText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DS3 Device Support.
+        /// </summary>
+        public static string FirstLaunch_DS3EnableCkbLabel {
+            get {
+                return ResourceManager.GetString("FirstLaunch.DS3EnableCkbLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support for DualShock 3 (PS3) controllers. Requires the use of the DsHidMini driver from the ViGEm project (nefarius)..
+        /// </summary>
+        public static string FirstLaunch_DS3EnableText {
+            get {
+                return ResourceManager.GetString("FirstLaunch.DS3EnableText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DS4 Device Support.
+        /// </summary>
+        public static string FirstLaunch_DS4EnableCkbLabel {
+            get {
+                return ResourceManager.GetString("FirstLaunch.DS4EnableCkbLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support for known DualShock 4 controllers.
+        /// </summary>
+        public static string FirstLaunch_DS4EnableText {
+            get {
+                return ResourceManager.GetString("FirstLaunch.DS4EnableText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DualSense Device Support.
+        /// </summary>
+        public static string FirstLaunch_DSEnableCkbLabel {
+            get {
+                return ResourceManager.GetString("FirstLaunch.DSEnableCkbLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support for DualSense (PS5) controllers. Base model and DS Edge.
+        /// </summary>
+        public static string FirstLaunch_DSEnableText {
+            get {
+                return ResourceManager.GetString("FirstLaunch.DSEnableText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled Devices Mapper Support.
+        /// </summary>
+        public static string FirstLaunch_Header {
+            get {
+                return ResourceManager.GetString("FirstLaunch.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JoyCon Device Support.
+        /// </summary>
+        public static string FirstLaunch_JoyConEnableCkbLabel {
+            get {
+                return ResourceManager.GetString("FirstLaunch.JoyConEnableCkbLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support for JoyCon (Nintendo Switch) controllers.
+        /// </summary>
+        public static string FirstLaunch_JoyConEnableText {
+            get {
+                return ResourceManager.GetString("FirstLaunch.JoyConEnableText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch Pro Device Support.
+        /// </summary>
+        public static string FirstLaunch_SwitchProEnableCkbLabel {
+            get {
+                return ResourceManager.GetString("FirstLaunch.SwitchProEnableCkbLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support for Switch Pro (Nintendo Switch) controllers..
+        /// </summary>
+        public static string FirstLaunch_SwitchProEnableText {
+            get {
+                return ResourceManager.GetString("FirstLaunch.SwitchProEnableText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Launch.
+        /// </summary>
+        public static string FirstLaunch_WinTitle {
+            get {
+                return ResourceManager.GetString("FirstLaunch.WinTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Flash Lightbar at High Latency.
         /// </summary>
         public static string FlashLightbarAtHighLatency {

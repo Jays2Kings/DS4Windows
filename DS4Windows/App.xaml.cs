@@ -105,12 +105,12 @@ namespace DS4WinWPF
             DS4Windows.Util.NtSetInformationProcess(Process.GetCurrentProcess().Handle,
                 DS4Windows.Util.PROCESS_INFORMATION_CLASS.ProcessPagePriority, ref pagePrio, 4);
 
-            try
+            // another instance is already running if TryOpenExisting returns true.
+            if (EventWaitHandleAcl.TryOpenExisting(SingleAppComEventName,
+                System.Security.AccessControl.EventWaitHandleRights.Synchronize |
+                System.Security.AccessControl.EventWaitHandleRights.Modify,
+                out EventWaitHandle tempComEvent))
             {
-                // another instance is already running if OpenExisting succeeds.
-                EventWaitHandle tempComEvent = EventWaitHandleAcl.OpenExisting(SingleAppComEventName,
-                    System.Security.AccessControl.EventWaitHandleRights.Synchronize |
-                    System.Security.AccessControl.EventWaitHandleRights.Modify);
                 tempComEvent.Set();  // signal the other instance.
                 tempComEvent.Close();
 
@@ -118,7 +118,6 @@ namespace DS4WinWPF
                 Current.Shutdown();    // Quit temp instance
                 return;
             }
-            catch { /* don't care about errors */ }
 
             // Allow sleep time durations less than 16 ms
             DS4Windows.Util.timeBeginPeriod(1);

@@ -71,9 +71,6 @@ namespace DS4WinWPF
 
         public event EventHandler ThemeChanged;
 
-        private Dictionary<string, System.Reflection.Assembly> langAssemblies =
-            new Dictionary<string, System.Reflection.Assembly>();
-
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             runShutdown = true;

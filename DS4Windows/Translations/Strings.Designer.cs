@@ -169,6 +169,24 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Display Profile Switch via.
+        /// </summary>
+        public static string AutoProfiles_DisplaySwitchVia {
+            get {
+                return ResourceManager.GetString("AutoProfiles.DisplaySwitchVia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log + Notification.
+        /// </summary>
+        public static string AutoProfiles_LogAndNotification {
+            get {
+                return ResourceManager.GetString("AutoProfiles.LogAndNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Process path. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*).
         /// </summary>
         public static string AutoProfPathTip {
@@ -1375,6 +1393,15 @@ namespace DS4WinWPF.Translations {
         public static string None {
             get {
                 return ResourceManager.GetString("None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notification.
+        /// </summary>
+        public static string Notification {
+            get {
+                return ResourceManager.GetString("Notification", resourceCulture);
             }
         }
         

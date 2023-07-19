@@ -640,4 +640,7 @@
   <data name="OscServer" xml:space="preserve">
     <value>Enable OSC Server. Listen to port on all addresses.</value>
   </data>
+  <data name="UsingAutoTempProfile" xml:space="preserve">
+    <value>Controller {0} is using temp Profile "{1}"</value>
+  </data>
 </root>

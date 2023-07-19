@@ -85,6 +85,14 @@ namespace DS4Windows
         public int[] actionMacro = new int[1];
     }
 
+    public enum AutoProfileDisplayProfileSwitchChoices : ushort
+    {
+        None,
+        Log,
+        Notification,
+        LogAndNotification,
+    }
+
     public class DS4ControlSettings
     {
         public const int MAX_MACRO_VALUE = 286;
@@ -1674,6 +1682,12 @@ namespace DS4Windows
         {
             set { m_Config.autoProfileRevertDefaultProfile = value; }
             get { return m_Config.autoProfileRevertDefaultProfile; }
+        }
+
+        public static AutoProfileDisplayProfileSwitchChoices autoProfileSwitchNotifyChoice
+        {
+            get => m_Config.autoProfileSwitchNotifyChoice;
+            set => m_Config.autoProfileSwitchNotifyChoice = value;
         }
 
         /// <summary>
@@ -3457,6 +3471,8 @@ namespace DS4Windows
         // TRUE=AutoProfile reverts to default profile if current foreground process is unknown, FALSE=Leave existing profile active when a foreground proces is unknown (ie. no matching auto-profile rule)
         public const bool DEFAULT_AUTO_PROFILE_REVERT_DEFAULT_PROFILE = true;
         public bool autoProfileRevertDefaultProfile = DEFAULT_AUTO_PROFILE_REVERT_DEFAULT_PROFILE;
+        public AutoProfileDisplayProfileSwitchChoices autoProfileSwitchNotifyChoice =
+            AutoProfileDisplayProfileSwitchChoices.None;
 
         bool tempBool = false;
 

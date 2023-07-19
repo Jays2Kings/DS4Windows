@@ -1,4 +1,5 @@
 ﻿using DS4Windows;
+using DS4WinWPF.DS4Forms.ViewModels.Util;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -60,6 +61,23 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public bool UsingExpandedControllers
         {
             get => ControlService.USING_MAX_CONTROLLERS;
+        }
+
+        private List<EnumChoiceSelection<AutoProfileDisplayProfileSwitchChoices>> displayProfileSwitchList =
+            new List<EnumChoiceSelection<AutoProfileDisplayProfileSwitchChoices>>()
+            {
+                new EnumChoiceSelection<AutoProfileDisplayProfileSwitchChoices>(Translations.Strings.None, AutoProfileDisplayProfileSwitchChoices.None),
+                new EnumChoiceSelection<AutoProfileDisplayProfileSwitchChoices>(Translations.Strings.Log, AutoProfileDisplayProfileSwitchChoices.Log),
+                new EnumChoiceSelection<AutoProfileDisplayProfileSwitchChoices>(Translations.Strings.Notification, AutoProfileDisplayProfileSwitchChoices.Notification),
+                new EnumChoiceSelection<AutoProfileDisplayProfileSwitchChoices>(Translations.Strings.AutoProfiles_LogAndNotification, AutoProfileDisplayProfileSwitchChoices.LogAndNotification),
+            };
+
+        public List<EnumChoiceSelection<AutoProfileDisplayProfileSwitchChoices>> DisplayProfileSwitchList => displayProfileSwitchList;
+
+        public AutoProfileDisplayProfileSwitchChoices ProfileSwitchChoice
+        {
+            get => Global.autoProfileSwitchNotifyChoice;
+            set => Global.autoProfileSwitchNotifyChoice = value;
         }
 
         public AutoProfilesViewModel(AutoProfileHolder autoProfileHolder, ProfileList profileList)

@@ -563,6 +563,16 @@ namespace DS4WinWPF.DS4Control.DTOXml
             }
         }
 
+        [XmlElement("AutoProfileSwitchNotifyChoice")]
+        public AutoProfileDisplayProfileSwitchChoices AutoProfileSwitchNotifyChoice
+        {
+            get; set;
+        } = AutoProfileDisplayProfileSwitchChoices.None;
+        public bool ShouldSerializeAutoProfileSwitchNotifyChoice()
+        {
+            return AutoProfileSwitchNotifyChoice != AutoProfileDisplayProfileSwitchChoices.None;
+        }
+
         [XmlElement("AbsRegionDisplay")]
         public string AbsRegionDisplay
         {
@@ -791,6 +801,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             UseCustomSteamFolder = source.useCustomSteamFolder;
             CustomSteamFolder = source.customSteamFolder;
             AutoProfileRevertDefaultProfile = source.autoProfileRevertDefaultProfile;
+            AutoProfileSwitchNotifyChoice = source.autoProfileSwitchNotifyChoice;
             AbsRegionDisplay = source.absDisplayEDID;
 
             DeviceOptions = new InputDeviceOptions()
@@ -890,6 +901,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             destination.useCustomSteamFolder = UseCustomSteamFolder;
             destination.customSteamFolder = CustomSteamFolder;
             destination.autoProfileRevertDefaultProfile = AutoProfileRevertDefaultProfile;
+            destination.autoProfileSwitchNotifyChoice = AutoProfileSwitchNotifyChoice;
             if (!string.IsNullOrEmpty(AbsRegionDisplay))
             {
                 destination.absDisplayEDID = AbsRegionDisplay;

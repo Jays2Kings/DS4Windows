@@ -87,6 +87,12 @@ namespace DS4WinWPF
                                 if (autoProfileDebugLogLevel > 0)
                                     DS4Windows.AppLogger.LogToGui($"DEBUG: Auto-Profile. LoadProfile Controller {j + 1}={tempname}", false, true);
 
+                                if (Global.autoProfileSwitchNotifyChoice !=
+                                    AutoProfileDisplayProfileSwitchChoices.None)
+                                {
+                                    DisplayProfileChange(j, tempname);
+                                }
+
                                 Global.LoadTempProfile(j, tempname, true, Program.rootHub); // j is controller index, i is filename
                                                                                             // if (LaunchProgram[j] != string.Empty) Process.Start(LaunchProgram[j]);
                             }
@@ -135,6 +141,12 @@ namespace DS4WinWPF
                             {
                                 if (autoProfileDebugLogLevel > 0)
                                     DS4Windows.AppLogger.LogToGui($"DEBUG: Auto-Profile. Unknown process. Reverting to default profile. Controller {j + 1}={Global.ProfilePath[j]} (default)", false, true);
+
+                                if (Global.autoProfileSwitchNotifyChoice !=
+                                    AutoProfileDisplayProfileSwitchChoices.None)
+                                {
+                                    DisplayProfileChange(j, "default");
+                                }
 
                                 Global.LoadProfile(j, false, Program.rootHub);
                             }
@@ -227,6 +239,37 @@ namespace DS4WinWPF
                     Thread.SpinWait(1000);
                 }
                 Thread.SpinWait(1000);
+            }
+        }
+
+        private void DisplayProfileChange(int ind, string profile)
+        {
+            switch (Global.autoProfileSwitchNotifyChoice)
+            {
+                case AutoProfileDisplayProfileSwitchChoices.Log:
+                    {
+                        string prolog = string.Format(DS4WinWPF.Properties.Resources.UsingAutoTempProfile, (ind + 1).ToString(), profile);
+                        DS4Windows.AppLogger.LogToGui(prolog, false);
+                    }
+
+                    break;
+                case AutoProfileDisplayProfileSwitchChoices.Notification:
+                    {
+                        string prolog = string.Format(DS4WinWPF.Properties.Resources.UsingAutoTempProfile, (ind + 1).ToString(), profile);
+                        DS4Windows.AppLogger.LogToTray(prolog);
+                    }
+
+                    break;
+                case AutoProfileDisplayProfileSwitchChoices.LogAndNotification:
+                    {
+                        string prolog = string.Format(DS4WinWPF.Properties.Resources.UsingAutoTempProfile, (ind + 1).ToString(), profile);
+                        DS4Windows.AppLogger.LogToGui(prolog, false);
+                        DS4Windows.AppLogger.LogToTray(prolog);
+                    }
+
+                    break;
+                default:
+                    break;
             }
         }
 

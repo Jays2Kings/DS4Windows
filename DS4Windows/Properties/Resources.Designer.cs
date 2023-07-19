@@ -1549,6 +1549,15 @@ namespace DS4WinWPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Controller {0} is using temp Profile &quot;{1}&quot;.
+        /// </summary>
+        public static string UsingAutoTempProfile {
+            get {
+                return ResourceManager.GetString("UsingAutoTempProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Using Exclusive Mode.
         /// </summary>
         public static string UsingExclusive {

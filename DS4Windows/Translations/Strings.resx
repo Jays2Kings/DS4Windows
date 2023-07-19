@@ -784,4 +784,13 @@ Disabled:
   <data name="FirstLaunch.WinTitle" xml:space="preserve">
     <value>First Launch</value>
   </data>
+  <data name="AutoProfiles.DisplaySwitchVia" xml:space="preserve">
+    <value>Display Profile Switch via</value>
+  </data>
+  <data name="AutoProfiles.LogAndNotification" xml:space="preserve">
+    <value>Log + Notification</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Notification</value>
+  </data>
 </root>

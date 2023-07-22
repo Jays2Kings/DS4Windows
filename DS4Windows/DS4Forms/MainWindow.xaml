@@ -317,6 +317,7 @@
                             <Label Content="{lex:Loc AppTheme}" ContentStringFormat="{}{0}:"/>
                             <ComboBox x:Name="appThemeCom" SelectedIndex="{Binding AppChoiceIndex,FallbackValue='0'}" Margin="10,0,0,0">
                                 <ComboBoxItem Content="{lex:Loc Default}"/>
+                                <ComboBoxItem Content="{lex:Loc Light}"/>
                                 <ComboBoxItem Content="{lex:Loc Dark}"/>
                             </ComboBox>
                         </StackPanel>

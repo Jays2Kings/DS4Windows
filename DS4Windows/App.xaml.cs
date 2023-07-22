@@ -66,6 +66,7 @@ namespace DS4WinWPF
             Dictionary<DS4Windows.AppThemeChoice, string>()
         {
             [DS4Windows.AppThemeChoice.Default] = "DS4Forms/Themes/DefaultTheme.xaml",
+            [DS4Windows.AppThemeChoice.Light] = "DS4Forms/Themes/DefaultTheme.xaml",
             [DS4Windows.AppThemeChoice.Dark] = "DS4Forms/Themes/DarkTheme.xaml",
         };
 
@@ -206,10 +207,7 @@ namespace DS4WinWPF
             // Have app use selected culture
             SetUICulture(DS4Windows.Global.UseLang);
             DS4Windows.AppThemeChoice themeChoice = DS4Windows.Global.UseCurrentTheme;
-            if (themeChoice != DS4Windows.AppThemeChoice.Default)
-            {
-                ChangeTheme(DS4Windows.Global.UseCurrentTheme, false);
-            }
+            ChangeTheme(DS4Windows.Global.UseCurrentTheme, false);
 
             DS4Windows.Global.LoadLinkedProfiles();
             DS4Forms.MainWindow window = new DS4Forms.MainWindow(parser);
@@ -660,7 +658,22 @@ namespace DS4WinWPF
         public void ChangeTheme(DS4Windows.AppThemeChoice themeChoice,
             bool fireChanged=true)
         {
-            if (themeLocs.TryGetValue(themeChoice, out string loc))
+            if (themeChoice == DS4Windows.AppThemeChoice.Default)
+            {
+                Application.Current.Resources.MergedDictionaries.Clear();
+
+                // Attempt to switch theme based on currently selected Windows apps theme mode
+                DS4Windows.AppThemeChoice implicitTheme = DS4Windows.Util.SystemAppsUsingDarkTheme() ?
+                    DS4Windows.AppThemeChoice.Dark : DS4Windows.AppThemeChoice.Light;
+                themeLocs.TryGetValue(implicitTheme, out string loc);
+                Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri(loc, uriKind: UriKind.Relative) });
+
+                if (fireChanged)
+                {
+                    ThemeChanged?.Invoke(this, EventArgs.Empty);
+                }
+            }
+            else if (themeLocs.TryGetValue(themeChoice, out string loc))
             {
                 Application.Current.Resources.MergedDictionaries.Clear();
                 Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri(loc, uriKind: UriKind.Relative) });

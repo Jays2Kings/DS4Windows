@@ -793,4 +793,7 @@ Disabled:
   <data name="Notification" xml:space="preserve">
     <value>Notification</value>
   </data>
+  <data name="Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
 </root>

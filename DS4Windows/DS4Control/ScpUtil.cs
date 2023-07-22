@@ -69,6 +69,7 @@ namespace DS4Windows
     public enum AppThemeChoice : uint
     {
         Default,
+        Light,
         Dark,
     }
 

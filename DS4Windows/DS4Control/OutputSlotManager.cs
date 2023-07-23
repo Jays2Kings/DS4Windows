@@ -138,7 +138,8 @@ namespace DS4Windows
         public void DeferredPlugin(OutputDevice outputDevice, int inIdx, string inDisplayString,
             OutputDevice[] outdevs, OutContType contType)
         {
-            queueLocker.EnterWriteLock();
+            // releases ReaderWriterLockSlim when locker goes out of scope
+            using WriteLocker locker = new WriteLocker(queueLocker);
             //queuedTasks++;
             //Action tempAction = new Action(() =>
             {
@@ -181,7 +182,6 @@ namespace DS4Windows
             };
 
             //queuedTasks--;
-            queueLocker.ExitWriteLock();
         }
 
         public void DeferredRemoval(OutputDevice outputDevice, int inIdx,
@@ -189,7 +189,8 @@ namespace DS4Windows
         {
             _ = immediate;
 
-            queueLocker.EnterWriteLock();
+            // releases ReaderWriterLockSlim when locker goes out of scope
+            using WriteLocker locker = new WriteLocker(queueLocker);
             //queuedTasks++;
 
             {
@@ -220,7 +221,6 @@ namespace DS4Windows
             };
 
             //queuedTasks--;
-            queueLocker.ExitWriteLock();
         }
 
         public OutSlotDevice FindOpenSlot()
@@ -301,7 +301,8 @@ namespace DS4Windows
         {
             _ = immediate;
 
-            queueLocker.EnterWriteLock();
+            // releases ReaderWriterLockSlim when locker goes out of scope
+            using WriteLocker locker = new WriteLocker(queueLocker);
             //queuedTasks++;
             {
                 int slotIdx = 0;
@@ -325,7 +326,6 @@ namespace DS4Windows
             };
 
             //queuedTasks--;
-            queueLocker.ExitWriteLock();
         }
     }
 }

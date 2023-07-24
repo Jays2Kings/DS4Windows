@@ -17,6 +17,7 @@
 /se
 /tr
 /uk-UA
+/vi
 /zh-CN
 /zh-Hans
 /zh-Hant

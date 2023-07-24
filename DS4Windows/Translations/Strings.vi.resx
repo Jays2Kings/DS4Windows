@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Accel" xml:space="preserve">
+    <value>Tăng tốc</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Hành động</value>
+  </data>
+  <data name="AddDirectory" xml:space="preserve">
+    <value>Thêm thư mục</value>
+  </data>
+  <data name="AddPrograms" xml:space="preserve">
+    <value>Thêm chương trình</value>
+  </data>
+  <data name="AddStartMenuPrograms" xml:space="preserve">
+    <value>Thêm chương trình menu bắt đầu</value>
+  </data>
+  <data name="AddSteamGames" xml:space="preserve">
+    <value>Thêm Game Steam</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Tất cả</value>
+  </data>
+  <data name="AutoProfiles" xml:space="preserve">
+    <value>Tự chọn thiết lập</value>
+  </data>
+  <data name="Battery" xml:space="preserve">
+    <value>Dung lượng</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Truy cập</value>
+  </data>
+  <data name="BrowseOtherPrograms" xml:space="preserve">
+    <value>Tìm ứng dụng khác</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Hủy</value>
+  </data>
+  <data name="CheckUpdateNow" xml:space="preserve">
+    <value>Kiểm tra phiên bản mới ngay</value>
+  </data>
+  <data name="CheckUpdateStartup" xml:space="preserve">
+    <value>Kiểm tra cập nhật mỗi khi khởi động</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Dọn</value>
+  </data>
+  <data name="CloseMinimizes" xml:space="preserve">
+    <value>Ẩn</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Màu</value>
+  </data>
+  <data name="Controller1Text" xml:space="preserve">
+    <value>Tay cầm 1</value>
+  </data>
+  <data name="Controller2Text" xml:space="preserve">
+    <value>Tay cầm 2</value>
+  </data>
+  <data name="Controller3Text" xml:space="preserve">
+    <value>Tay cầm 3</value>
+  </data>
+  <data name="Controller4Text" xml:space="preserve">
+    <value>Tay cầm 4</value>
+  </data>
+  <data name="Controllers" xml:space="preserve">
+    <value>Tay cầm</value>
+  </data>
+  <data name="ControlPanel" xml:space="preserve">
+    <value>Bảng điều khiển</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Xóa</value>
+  </data>
+  <data name="DriverSetup" xml:space="preserve">
+    <value>Controller/Driver Setup</value>
+  </data>
+  <data name="Duplicate" xml:space="preserve">
+    <value>Tạo bản sao</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Sửa</value>
+  </data>
+  <data name="EditAction" xml:space="preserve">
+    <value>Sửa hành động</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Xuất tệp</value>
+  </data>
+  <data name="Full" xml:space="preserve">
+    <value>Đầy</value>
+  </data>
+  <data name="Gyro" xml:space="preserve">
+    <value>Gyro</value>
+  </data>
+  <data name="HideUnchecked" xml:space="preserve">
+    <value>Ẩn tích</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Nhập tệp</value>
+  </data>
+  <data name="LeftStick" xml:space="preserve">
+    <value>Cần Trái</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Nhật ký</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Tên</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Tạo mới</value>
+  </data>
+  <data name="NewAction" xml:space="preserve">
+    <value>Hành động mới</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Thiết lập mới</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Path</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Thiếp Lập</value>
+  </data>
+  <data name="ProfileFolder" xml:space="preserve">
+    <value>Thư mục thiếp lập</value>
+  </data>
+  <data name="QuickCharge" xml:space="preserve">
+    <value>Sạc nhanh</value>
+  </data>
+  <data name="RecordText" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Bỏ</value>
+  </data>
+  <data name="RemoveAction" xml:space="preserve">
+    <value>Bỏ hành động</value>
+  </data>
+  <data name="RightStick" xml:space="preserve">
+    <value>Cần Phải</value>
+  </data>
+  <data name="Rumble" xml:space="preserve">
+    <value>Rung</value>
+  </data>
+  <data name="RunAtStartup" xml:space="preserve">
+    <value>Mở khi khởi động</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="SaveProfile" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Cài đặt</value>
+  </data>
+  <data name="ShowNotifications" xml:space="preserve">
+    <value>Hiện thông báo</value>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>Khởi động ngầm</value>
+  </data>
+  <data name="StartText" xml:space="preserve">
+    <value>Bật</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
+  <data name="StopText" xml:space="preserve">
+    <value>Tắt</value>
+  </data>
+  <data name="TouchScroll" xml:space="preserve">
+    <value>Cuộn</value>
+  </data>
+  <data name="TouchSlide" xml:space="preserve">
+    <value>Vuốt</value>
+  </data>
+  <data name="TouchTap" xml:space="preserve">
+    <value>Chạm</value>
+  </data>
+  <data name="Trigger" xml:space="preserve">
+    <value>Cò</value>
+  </data>
+  <data name="WarningsOnly" xml:space="preserve">
+    <value>Chỉ cảnh báo</value>
+  </data>
+  <data name="RumbleMaxSecs" xml:space="preserve">
+    <value>sec</value>
+  </data>
+  <data name="RumbleMaxSecsTip" xml:space="preserve">
+    <value>Tự tắt rung trong (0=auto stop disabled)</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Tiêu đề</value>
+  </data>
+  <data name="MoveUp" xml:space="preserve">
+    <value>Di chuyển lên</value>
+  </data>
+  <data name="MoveDown" xml:space="preserve">
+    <value>Di chuyển xuống</value>
+  </data>
+  <data name="AutoProfPathTip" xml:space="preserve">
+    <value>Process path. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*)</value>
+  </data>
+  <data name="AutoProfTitleTip" xml:space="preserve">
+    <value>Window title. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*)</value>
+  </data>
+  <data name="GamepadTest" xml:space="preserve">
+    <value>Test Tay Cầm</value>
+  </data>
+  <data name="EnableOutputDataToDS4" xml:space="preserve">
+    <value>Bật truyền dữ liệu tới DS4</value>
+  </data>
+  <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
+    <value>Chỉnh màu và bật tắt rung . Bỏ chọn nếu tay cầm không hỗ trợ.
+Changes to this option takes effect at the gamepad connection time.</value>
+    <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Áp dụng</value>
+  </data>
+  <data name="HidNinja" xml:space="preserve">
+    <value>HidNinja</value>
+  </data>
+  <data name="CustomExeName" xml:space="preserve">
+    <value>Custom Exe Name</value>
+  </data>
+  <data name="CustomExeNameInfo" xml:space="preserve">
+    <value>Some games implement a block that causes DS4 input to be ignored if a game detects either DS4Windows.exe or InputMapper.exe running at the time. A workaround to the block is to rename DS4Windows.exe so the check in the game fails. Specifying a custom exe name here allows DS4Updater to automatically update a custom copy of DS4Windows to the desired file name. Make sure to omit the extension.
+
+Example: whyme_DS4Windows</value>
+  </data>
+  <data name="XInputChecker" xml:space="preserve">
+    <value>XInputChecker</value>
+  </data>
+  <data name="Controller5Text" xml:space="preserve">
+    <value>Tay cầm 5</value>
+  </data>
+  <data name="Controller6Text" xml:space="preserve">
+    <value>Tay cầm 6</value>
+  </data>
+  <data name="Controller7Text" xml:space="preserve">
+    <value>Tay cầm 7</value>
+  </data>
+  <data name="Controller8Text" xml:space="preserve">
+    <value>Tay cầm 8</value>
+  </data>
+  <data name="GamepadGyroCameraDescription" xml:space="preserve">
+    <value>Giả lập tay cầm như một tay xbox hoặc Tay DS4. Gyro được gán như một con chuột.</value>
+  </data>
+  <data name="GamepadGyroCameraName" xml:space="preserve">
+    <value>Tay cầm với cần điều khiển như chuột</value>
+  </data>
+  <data name="GamepadPresetDescription" xml:space="preserve">
+    <value>Giả lập tay cầm như một tay cầm mặc định</value>
+  </data>
+  <data name="GamepadPresetName" xml:space="preserve">
+    <value>Tay cầm</value>
+  </data>
+  <data name="KBMGyroMouseDescription" xml:space="preserve">
+    <value>Giả lập tay cầm như chuột + bàn phím ảo. Sử dụng với những game không hỗ trợ tay cầm. Gyro được giả lập thành chuột ảo.</value>
+  </data>
+  <data name="KBMGyroMouseName" xml:space="preserve">
+    <value>Giả lập bàn phím + chuột với Gyro Mouse</value>
+  </data>
+  <data name="KBMPresetDescription" xml:space="preserve">
+    <value>Giả lập tay cầm như chuột + bàn phím ảo. Sử dụng với những game không hỗ trợ tay cầm.</value>
+  </data>
+  <data name="KBMPresetName" xml:space="preserve">
+    <value>Bàn phím + chuột Controls</value>
+  </data>
+  <data name="MixedGyroMousePresetDescription" xml:space="preserve">
+    <value>Giả lập phím và trục như tay cầm. Giả Gyro thành chuột ảo</value>
+  </data>
+  <data name="MixedGyroMousePresetName" xml:space="preserve">
+    <value>Tay cầm với Gyro Mouse</value>
+  </data>
+  <data name="MixedPresetDescription" xml:space="preserve">
+    <value>Giả lập thành một tay cầm với cần analog phải là chuột.</value>
+  </data>
+  <data name="MixedPresetName" xml:space="preserve">
+    <value>Tay cầm có cảm biến camera</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Miêu Tả</value>
+  </data>
+  <data name="PresetIntroText" xml:space="preserve">
+    <value>Bạn có muốn sử dụng thiết lập có sẳn? Chọn không sẽ sử dụng thiếp lập mặc định.</value>
+  </data>
+  <data name="Presets" xml:space="preserve">
+    <value>Thiết lập</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>Nhật ký</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Đóng</value>
+  </data>
+  <data name="Profiles" xml:space="preserve">
+    <value>Thiết lập</value>
+  </data>
+  <data name="NoControllersConnected" xml:space="preserve">
+    <value>Không có biết bị được kết nối (Max {0})</value>
+  </data>
+  <data name="FlickThreshold" xml:space="preserve">
+    <value>Flick Vùng</value>
+  </data>
+  <data name="FlickTime" xml:space="preserve">
+    <value>Flick Thời gian</value>
+  </data>
+  <data name="MinAngleThreshold" xml:space="preserve">
+    <value>Góc tối thiểu vùng</value>
+  </data>
+  <data name="RealWorldCalibration" xml:space="preserve">
+    <value>Real World Calibration</value>
+  </data>
+  <data name="ViGEmPluginFailure" xml:space="preserve">
+    <value>Trình cắm thiết bị ViGEm thất bại. Có khả năng là sự cố ViGEmBus nội bộ. Đóng kết nối. Nếu sự cố vẫn tiếp diễn, hãy tắt DS4Windows và khởi động lại.</value>
+  </data>
+  <data name="CRC32Fail" xml:space="preserve">
+    <value>Kiểm tra dữ liệu không thành công cho thiết bị không dây. thiết bị đóng</value>
+  </data>
+  <data name="FutureNetNotInstalled" xml:space="preserve">
+    <value>Phát hiện hệ thống chưa cài NET 5 Runtime. Hãy tải và cài đặt .NET 5 Runtime để tương thích với phiên bản mới. bạn sẽ được đưa đến trang tải .NET 5 Runtime sau khi đóng cửa sổ này.</value>
+  </data>
+  <data name="UpgradeNetCaption" xml:space="preserve">
+    <value>Vui lòng cập nhật .NET Runtime</value>
+  </data>
+  <data name="HidHide" xml:space="preserve">
+    <value>HidHide</value>
+  </data>
+  <data name="HidHideConfigClient" xml:space="preserve">
+    <value>HidHide Configuration Client</value>
+  </data>
+  <data name="ExclusiveAccess" xml:space="preserve">
+    <value>Exclusive Access</value>
+  </data>
+  <data name="HidGuardianAccess" xml:space="preserve">
+    <value>HidGuardian Access</value>
+  </data>
+  <data name="HidHideAccess" xml:space="preserve">
+    <value>HidHide Access</value>
+  </data>
+  <data name="SharedAccess" xml:space="preserve">
+    <value>Shared Access</value>
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Đổi tên</value>
+  </data>
+  <data name="DisableVirtualController" xml:space="preserve">
+    <value>Tắt giả lập tay cầm</value>
+  </data>
+  <data name="DisableVirtualControllerTip" xml:space="preserve">
+    <value>Do not spawn/associate virtual controllers for connected controllers using this profile (Applies on profile save)</value>
+  </data>
+  <data name="EmulatedController" xml:space="preserve">
+    <value>Giả lập tay cầm</value>
+  </data>
+  <data name="OutContNotice" xml:space="preserve">
+    <value>Chọn giả lập tay cầm nào (Áp dụng khi lưu thiết lập)</value>
+  </data>
+  <data name="VirtualControllerSettings" xml:space="preserve">
+    <value>Thiết lập tay cầm ảo</value>
+  </data>
+  <data name="ChangeOnNewDeviceConn" xml:space="preserve">
+    <value>Thay đổi trên thiết bị mới</value>
+  </data>
+  <data name="StickFuzzTooltip" xml:space="preserve">
+    <value>Fuzz chỉ định số lượng đơn vị tối thiểu mà thanh analog di chuyển, trong vùng hoạt động, trước khi đầu ra được đăng ký là đã thay đổi trong trình ánh xạ. Cài đặt này có thể hữu ích đối với gậy bị mòn không thể duy trì vị trí cố định. Giá trị được thể hiện bằng đơn vị thanh thô.</value>
+  </data>
+  <data name="StickMaxOutputForceTooltip" xml:space="preserve">
+    <value>Luôn thực thi cài đặt đầu ra tối đa. Hữu ích cho Đầu ra tối đa 100% và giá trị giới hạn ở giá trị đầu ra tròn</value>
+  </data>
+  <data name="StickMaxOutputTooltip" xml:space="preserve">
+    <value>Trong một số trường hợp, có thể hữu ích khi giới hạn giá trị tối đa được xuất ra bởi thanh analog đầu ra. Đầu ra tối đa cho phép điều chỉnh giá trị đầu ra cuối cùng của thanh analog.</value>
+  </data>
+  <data name="AntiDeadzoneTooltip" xml:space="preserve">
+    <value>Một anti-deadzone hoạt động như một phần bù để sử dụng với một trục để biểu thị giá trị đầu ra tối thiểu được tạo sau khi một trục rời khỏi vùng chết được chỉ định của nó. Điều này chủ yếu nhằm giúp ánh xạ một trục tới giá trị vùng chết được chỉ định được sử dụng cho một trục trong trò chơi điện tử. Ví dụ: vùng chết điển hình được chỉ định cho XInput LS trong trò chơi điện tử là khoảng 8000 (25%). Không có vùng chết được chỉ định, một trục sẽ phải di chuyển qua vùng chết được chỉ định trong DS4Windows cùng với vùng chết trục được chỉ định của trò chơi.</value>
+  </data>
+  <data name="StickInputCurveTooltip" xml:space="preserve">
+    <value>CÀI ĐẶT CŨ LỖI THỜI. Cố gắng áp dụng một đường cong dựa trên tọa độ đầu vào thô trước khi áp dụng bất kỳ thông tin vùng chết nào. Rung rinh</value>
+  </data>
+  <data name="TouchpadMinThresholdTooltip" xml:space="preserve">
+    <value>Hành trình đầu ra được tính toán tối thiểu trước khi sự kiện Chuột được gửi đến hệ thống</value>
+  </data>
+  <data name="TouchpadRotationTooltip" xml:space="preserve">
+    <value>Điều chỉnh thao tác vuốt trên bàn di chuột theo một góc xoay nhất định. Hữu ích khi thao tác vuốt bàn di chuột thông thường không phải là một đường thẳng. Giá trị cho phép nằm trong khoảng từ -180 đến 180. Mặc định là 0.</value>
+  </data>
+  <data name="TouchpadSlideTooltip" xml:space="preserve">
+    <value>Độ nhạy được sử dụng để thực hiện thao tác Cuộn bánh xe chuột đa điểm</value>
+  </data>
+  <data name="TouchpadTapTooltip" xml:space="preserve">
+    <value>Kích hoạt chuột Nhấp chuột trái bằng Touchpad Tap. Khoảng thời gian tối đa được đặt ở (giá trị * 2) ms.</value>
+  </data>
+  <data name="TouchpadTrackballEnableTooltip" xml:space="preserve">
+    <value>Thêm động lượng cho thao tác vuốt trên Bàn di chuột sau khi nhấc ngón tay lên. Thêm hành trình của con trỏ Chuột nhiều hơn mức có thể với không gian hạn chế trên Bàn di chuột</value>
+  </data>
+  <data name="TouchpadTrackballFrictionTooltip" xml:space="preserve">
+    <value>Thêm ma sát vào Trackball ảo. Giảm ma sát sẽ tăng thời gian di chuyển cuối cùng của con trỏ chuột</value>
+  </data>
+  <data name="StickOuterBindDeadTooltip" xml:space="preserve">
+    <value>Ngưỡng khi một hành động sẽ kích hoạt</value>
+  </data>
+  <data name="StickOuterBindInvertTooltip" xml:space="preserve">
+    <value>Có lửa liên kết bên ngoài trước khi đạt đến ngưỡng. Hành động phát hành khi ngưỡng đã được vượt quá</value>
+  </data>
+  <data name="StickOuterBindTooltip" xml:space="preserve">
+    <value>Hành động thực hiện khi hành trình của gậy vượt qua ngưỡng. Hữu ích để lập bản đồ các phím cho các hành động Đi bộ hoặc Chạy nước rút. Đảo ngược khiến hành động kích hoạt cho đến khi đạt ngưỡng</value>
+  </data>
+  <data name="SASteeringWheelFuzzTooltip" xml:space="preserve">
+    <value>Fuzz chỉ định số lượng đơn vị thiết bị tối thiểu, trong vùng hoạt động, mà Gia tốc phải được xoay trước khi đầu ra được đăng ký là đã thay đổi trong trình ánh xạ. Giá trị được biểu thị bằng đơn vị Gia tốc thô.</value>
+  </data>
+  <data name="StickRotationTooltip" xml:space="preserve">
+    <value>+ = Clockwise. - = Counter-clockwise.
+
+The rotation setting is meant to help correct the orientation of an analog stick if your thumb is slightly shifted when moving an analog stick. For example, your thumb might be slightly shifted from center when the analog stick is moved fully north. My thumbs shift slightly to the right when moving an analog stick fully north due to the way my hands grip the DS4. The value used denotes the number of degrees used to adjust the final axis output value. Values allows range from -180 to 180. Default is 0.</value>
+  </data>
+  <data name="TouchpadJitterCompTooltip" xml:space="preserve">
+    <value>Điều tiết mức thấp của chuyển động Touchpad. Giảm tình cờ di chuyển con trỏ chuột khi giữ một vị trí gần như cố định trên Touchpad</value>
+  </data>
+  <data name="DS4BTPollRate" xml:space="preserve">
+    <value>Độ trễ của tay cầm</value>
+  </data>
+  <data name="DS4LightbarPassthruDisabled" xml:space="preserve">
+    <value>Tính năng này hiện tại bị hạn chế vì xung đột. Hi vọng sẽ được khắc phục trong tương lai.</value>
+  </data>
+  <data name="DualSRumbleForceGenericRescale" xml:space="preserve">
+    <value>Buộc sử dụng cả hai mức cường độ % (Cụ thể chung và DualSense)</value>
+  </data>
+  <data name="DualSRumbleModeDisabled" xml:space="preserve">
+    <value>Tắt</value>
+  </data>
+  <data name="DualSRumbleModeAccurate" xml:space="preserve">
+    <value>Độ chính xác</value>
+  </data>
+  <data name="DualSRumbleModeLegacy" xml:space="preserve">
+    <value>Legacy</value>
+  </data>
+  <data name="DualSRumbleModeNPowerLevelTxt" xml:space="preserve">
+    <value>Chế độ rung và cường độ rung:</value>
+  </data>
+  <data name="DualSRumbleModePassthru" xml:space="preserve">
+    <value>Passthru</value>
+  </data>
+  <data name="DualSRumbleSpecificSettings" xml:space="preserve">
+    <value>Cài đặt âm thanh cụ thể của DualSense</value>
+  </data>
+  <data name="DualSRumbleForceGenericRescale_Tip" xml:space="preserve">
+    <value>Khuyến cáo nên để tắt.
+
+- Disabled: rumble will be rescaled natively by the controller accordingly to the defined power level (better quality)
+
+- Enabled: both DS4Windows generic rumble rescale and DualSense's native control will be active</value>
+  </data>
+  <data name="DualSRumbleModes_Tip" xml:space="preserve">
+    <value>Accurate Mode (recommended):
+- Better replicates the DualShock 4/Xbox 360 controller rumble feeling
+- More accurately executes game's intended rumble effects
+- Rumble has more depth. Within the same power level there is a greater difference between min and max in-game rumble activation,
+varying from real low up to the max strength of the defined power level
+
+Legacy Mode:
+- Overral stronger, but lacks depth
+- Has a "sharper" feeling
+- The min and max activation in-game will be, respectively, only slightly below and slight above the chosen power level strength
+
+Disabled:
+- Fully disables rumble</value>
+  </data>
+  <data name="DualSRumblePowerLevel_Tip" xml:space="preserve">
+    <value>DualSense's native rumble Power Level rescaler.
+
+- When in Accurate Mode, rumble's [ min // max ] will be [ 1% /// Chosen Power Level ]
+    - Example (62%): [ min = 1% /// max = 62% ]
+
+- When in Legacy Mode, rumble's [min /// max ] will be roughly [ Power Level - 12% /// Power Level + 12% ]
+    - Example (62%): [ min = 50% /// max = 74% ]</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Đồng ý</value>
+  </data>
+  <data name="Black" xml:space="preserve">
+    <value>Đen</value>
+  </data>
+  <data name="Colored" xml:space="preserve">
+    <value>Màu sắc rực rỡ</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Mặc định</value>
+  </data>
+  <data name="DeviceType" xml:space="preserve">
+    <value>Loại thiết bị</value>
+  </data>
+  <data name="DisconnectFromBtWhenStopping" xml:space="preserve">
+    <value>Ngắt kết nối không dây khi không hoạt động</value>
+  </data>
+  <data name="Dynamic" xml:space="preserve">
+    <value>Dynamic</value>
+  </data>
+  <data name="FlashLightbarAtHighLatency" xml:space="preserve">
+    <value>Nháy đèn khi độ trễ cao</value>
+  </data>
+  <data name="HideDS4Controller" xml:space="preserve">
+    <value>Ẩn tay cầm PS4</value>
+  </data>
+  <data name="HotkeysAbout" xml:space="preserve">
+    <value>Phím tắt/Về chúng tôi</value>
+  </data>
+  <data name="IconChoice" xml:space="preserve">
+    <value>Chọn biểu tượng</value>
+  </data>
+  <data name="MinimizeToTaskbar" xml:space="preserve">
+    <value>Ẩn xuống thanh taskbar</value>
+  </data>
+  <data name="MinimizeToTaskbarTip" xml:space="preserve">
+    <value>Minimize to Taskbar instead of System Tray</value>
+  </data>
+  <data name="OutputSlots" xml:space="preserve">
+    <value>Output Slots</value>
+  </data>
+  <data name="Permanent" xml:space="preserve">
+    <value>Vĩnh viễn</value>
+  </data>
+  <data name="Plug" xml:space="preserve">
+    <value>Cắm</value>
+  </data>
+  <data name="RevertToDefaultProfileOnUnknown" xml:space="preserve">
+    <value>Hoàn nguyên về hồ sơ mặc định trên không xác định</value>
+  </data>
+  <data name="ShowAutoProfileDebugMessages" xml:space="preserve">
+    <value>Hiển thị thông báo gỡ lỗi cấu hình tự động</value>
+  </data>
+  <data name="SwipeTouchpadToSwitchProfiles" xml:space="preserve">
+    <value>Vuốt Touchpad để đổi thiếp lập</value>
+  </data>
+  <data name="TurnOffDS4WindowsTemporarily" xml:space="preserve">
+    <value>Tắt tạm thời DS4Windows</value>
+  </data>
+  <data name="Unplug" xml:space="preserve">
+    <value>Rút cắm</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>Trắng</value>
+  </data>
+  <data name="AppTheme" xml:space="preserve">
+    <value>Chủ đề</value>
+  </data>
+  <data name="CheckEvery" xml:space="preserve">
+    <value>Kiểm tra mỗi</value>
+  </data>
+  <data name="OscServerHeading" xml:space="preserve">
+    <value>External OSC Control &amp; Monitoring</value>
+  </data>
+  <data name="EnableOscServer" xml:space="preserve">
+    <value>Bật server điều khiển</value>
+  </data>
+  <data name="EnableInterpretingOscMonitoring" xml:space="preserve">
+    <value>Giải thích thông báo giám sát</value>
+  </data>
+  <data name="EnableOscSender" xml:space="preserve">
+    <value>Kích hoạt dịch vụ giám sát</value>
+  </data>
+  <data name="ControllerSupportDS4" xml:space="preserve">
+    <value>Hỗ trợ tay cầm PS4</value>
+  </data>
+  <data name="ControllerSupportDualSense" xml:space="preserve">
+    <value>Hỗ trợ tay cầm Dualsense</value>
+  </data>
+  <data name="ControllerSupportJoyCon" xml:space="preserve">
+    <value>Hỗ trợ tay cầm JoyCon</value>
+  </data>
+  <data name="ControllerSupportSwitchPro" xml:space="preserve">
+    <value>Hỗ trợ tay cầm Switch Pro</value>
+  </data>
+  <data name="Copycat" xml:space="preserve">
+    <value>Copycat</value>
+  </data>
+  <data name="CopycatTip" xml:space="preserve">
+    <value>Thay đổi một số cờ được sử dụng cho bộ điều khiển DS4 không phải của Sony. Nó có thể khắc phục hỗ trợ rumble và lightbar cho một số bản sao DS4 của bên thứ ba</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Tối</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Ngày</value>
+  </data>
+  <data name="DetectedControllers" xml:space="preserve">
+    <value>Phát hiện thiết bị</value>
+  </data>
+  <data name="DeviceOptions" xml:space="preserve">
+    <value>Cài đặt thiết bị</value>
+  </data>
+  <data name="EnableVerboseLog" xml:space="preserve">
+    <value>Bật nhật ký chi tiết</value>
+  </data>
+  <data name="EnableVerboseLogTip" xml:space="preserve">
+    <value>Hiển thị thông báo nhật ký bổ sung khi gamepad được kết nối</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>Giờ</value>
+  </data>
+  <data name="UseCustomSteamFolder" xml:space="preserve">
+    <value>Sử dụng thư mục Steam tùy chỉnh</value>
+  </data>
+  <data name="Utils" xml:space="preserve">
+    <value>công dụng</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>Chương trình</value>
+  </data>
+  <data name="RunAs" xml:space="preserve">
+    <value>Chạy với</value>
+  </data>
+  <data name="Task" xml:space="preserve">
+    <value>Tác vụ</value>
+  </data>
+  <data name="GyroTriggerJitterCompensationTooltip" xml:space="preserve">
+    <value>Thêm điều chỉnh bổ sung ở cuối đường cong để giải thích cho thiết bị bị rung</value>
+  </data>
+  <data name="WakeupFromSuspend" xml:space="preserve">
+    <value>Thức dậy từ đình chỉ</value>
+  </data>
+  <data name="ControllerSupportDS3" xml:space="preserve">
+    <value>Hỗ trợ tay cầm PS3</value>
+  </data>
+</root>

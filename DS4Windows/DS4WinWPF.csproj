@@ -104,10 +104,6 @@
   <!-- Apparently the None tags are needed as well as the Resource tags.
        Without the None, app slowdown occurs for me. Why?!!! -->
   <ItemGroup>
-    <None Include="Resources\social\GitHub-Mark-Light-64px.png" />
-    <None Include="Resources\social\GitHub-Mark-64px.png" />
-    <None Include="Resources\social\poast_icon.png" />
-    <None Include="Resources\social\youtube_social_icon_red.png" />
 
     <None Include="Resources\DS4 Config_white.png" />
     <None Include="Resources\newprofile_white.png" />
@@ -179,10 +175,6 @@
   </ItemGroup>
 
   <ItemGroup>
-	<Resource Include="Resources\social\GitHub-Mark-Light-64px.png" />
-    <Resource Include="Resources\social\GitHub-Mark-64px.png" />
-    <Resource Include="Resources\social\poast_icon.png" />
-    <Resource Include="Resources\social\youtube_social_icon_red.png" />
 
     <Resource Include="Resources\DS4 Config_white.png" />
     <Resource Include="Resources\newprofile_white.png" />

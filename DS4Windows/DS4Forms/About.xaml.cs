@@ -61,16 +61,6 @@ namespace DS4WinWPF.DS4Forms
             Util.StartProcessHelper("https://code.google.com/r/brianfundakowskifeldman-ds4windows/");
         }
 
-        private void YoutubeSocialBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Util.StartProcessHelper("https://www.youtube.com/channel/UCIoUA_XLlCSZbvZGeg3Byeg");
-        }
-
-        private void GithubSocialBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Util.StartProcessHelper("https://github.com/Ryochan7/DS4Windows");
-        }
-
         private void ViGEmBusLink_Click(object sender, RoutedEventArgs e)
         {
             Util.StartProcessHelper("https://vigem.org/");
@@ -116,35 +106,9 @@ namespace DS4WinWPF.DS4Forms
             Util.StartProcessHelper("https://buymeacoffee.com/ryochan7");
         }
 
-        private void PoastSocialBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Util.StartProcessHelper("https://poa.st/@DS4Windows");
-        }
-
         private void CashAppLink_Click(object sender, RoutedEventArgs e)
         {
             Util.StartProcessHelper("https://cash.app/$ryochan7");
-        }
-    }
-
-    public class AboutImgPathLocations
-    {
-        private string gitHubImg =
-            $"{Global.RESOURCES_PREFIX}/social/GitHub-Mark-64px.png";
-        public string GitHubImg { get => gitHubImg; }
-
-        public AboutImgPathLocations()
-        {
-            App current = App.Current as App;
-            if (current != null)
-            {
-                PopulateFromAppResources(current);
-            }
-        }
-
-        private void PopulateFromAppResources(App currentApp)
-        {
-            gitHubImg = $"{Global.RESOURCES_PREFIX}/social/{currentApp.FindResource("GitHubImg")}";
         }
     }
 }

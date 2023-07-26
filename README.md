@@ -36,15 +36,6 @@ Note: The Website Is No Longer Working
 - Disable **PlayStation Configuration Support** and
 **Xbox Configuration Support** options in Steam
 
-## Social
-
-[YouTube](https://www.youtube.com/channel/UCIoUA_XLlCSZbvZGeg3Byeg)  
-[Poast](https://poa.st/@DS4Windows)  
-
-### Other
-
-[Backloggery](https://backloggery.com/ryochan7)
-
 ## Installation Tutorial
 
 The Installation and Setup Guide can be found here: https://docs.ds4windows.app/guides/install-setup/
@@ -172,11 +163,7 @@ play. There are likely going to be times when I cannot directly test
 against a game since I will not have access to play it. Most free to play
 games or games that include a playable demo should be fine for testing.
 For other games, it might be better if people could test against any game
-that I have in my library and try to reproduce a problem. Here are
-links to my Steam and GOG profiles so that people can see what games I have.
-
-https://steamcommunity.com/id/Ryochan7/games/?tab=all  
-https://www.gog.com/u/Ryochan7/games
+that I have in my library and try to reproduce a problem.
 
 ## Pull Requests
 
@@ -195,7 +182,6 @@ which to do so.
 **Buy Me A Coffee:** https://buymeacoffee.com/ryochan7
 **PayPal:** https://paypal.me/ryochan7  
 **Cash App:** https://cash.app/$ryochan7  
-**Patreon:** https://patreon.com/user?u=501036  
 **SubscribeStar:** https://subscribestar.com/ryochan7
 
 ### Crypto

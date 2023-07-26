@@ -8,25 +8,9 @@
         mc:Ignorable="d"
         Title="{lex:LocExtension HotkeysAbout}" Height="450" Width="800"
         Style="{DynamicResource WindowStyle}">
-    <Window.Resources>
-        <local:AboutImgPathLocations x:Key="aboutImgPathLocs" />
-    </Window.Resources>
     <DockPanel>
         <Label x:Name="headerLb" Content="DS4Windows - Ryochan7 Build (Version " DockPanel.Dock="Top" HorizontalAlignment="Center" />
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0,4,0,0">
-            <Button x:Name="githubSocialBtn" Click="GithubSocialBtn_Click"
-                    BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" ToolTip="GitHub">
-                <Image Source="{Binding GitHubImg, Source={StaticResource aboutImgPathLocs}}" Height="32" />
-            </Button>
-            <Button x:Name="youtubeSocialBtn" Click="YoutubeSocialBtn_Click"
-                    BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" ToolTip="YouTube">
-                <Image Source="/DS4Windows;component/Resources/social/youtube_social_icon_red.png" Height="32" />
-            </Button>
-            <Button x:Name="poastSocialBtn" Click="PoastSocialBtn_Click"
-                    BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Height="32" Cursor="Hand" Margin="4,0,0,0" ToolTip="Poast">
-                <Image Source="/DS4Windows;component/Resources/social/poast_icon.png" />
-            </Button>
-        </StackPanel>
+        
         <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0,4,0,0">
             <Hyperlink x:Name="changeLogLink" Click="ChangeLogLink_Click" Foreground="{DynamicResource AccentColor}">Changelog</Hyperlink>
         </TextBlock>

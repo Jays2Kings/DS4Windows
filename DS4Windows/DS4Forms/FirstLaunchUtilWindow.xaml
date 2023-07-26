@@ -9,7 +9,8 @@
         lex:ResxLocalizationProvider.DefaultAssembly="DS4Windows"
         lex:ResxLocalizationProvider.DefaultDictionary="Strings"
         mc:Ignorable="d"
-        Title="{lex:Loc FirstLaunch.WinTitle}" Height="500" Width="800">
+        Title="{lex:Loc FirstLaunch.WinTitle}" Height="500" Width="800"
+        Style="{DynamicResource WindowStyle}">
     <!-- Window will likely be used for other first launch configuration in the future.
          For now, only deal with device mapper support -->
     <DockPanel>

@@ -172,7 +172,7 @@
     <value>Kontroler 1</value>
   </data>
   <data name="Controller2Text" xml:space="preserve">
-    <value>Kontroler  2</value>
+    <value>Kontroler 2</value>
   </data>
   <data name="Controller3Text" xml:space="preserve">
     <value>Kontroler 3</value>
@@ -354,13 +354,13 @@ Perubahan pada opsi ini berlaku saat kontroler terhubung</value>
     <value>Pemeriksa XInput</value>
   </data>
   <data name="Controller5Text" xml:space="preserve">
-    <value>Kontroler  5</value>
+    <value>Kontroler 5</value>
   </data>
   <data name="Controller6Text" xml:space="preserve">
-    <value>Kontroler  6</value>
+    <value>Kontroler 6</value>
   </data>
   <data name="Controller7Text" xml:space="preserve">
-    <value>Kontroler  7</value>
+    <value>Kontroler 7</value>
   </data>
   <data name="Controller8Text" xml:space="preserve">
     <value>Kontroler 8</value>
@@ -720,7 +720,7 @@ Contoh (62%): [terendah = 50% /// tertinggi = 74%]</value>
     <value>Jam</value>
   </data>
   <data name="UseCustomSteamFolder" xml:space="preserve">
-    <value>Gunakan fodler Steam Kustom</value>
+    <value>Gunakan folder Steam Kustom</value>
   </data>
   <data name="Utils" xml:space="preserve">
     <value>Utilitas</value>
@@ -792,6 +792,6 @@ Contoh (62%): [terendah = 50% /// tertinggi = 74%]</value>
     <value>Notifikasi</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Lampu</value>
+    <value>Terang</value>
   </data>
 </root>

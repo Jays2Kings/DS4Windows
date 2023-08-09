@@ -2127,8 +2127,8 @@
                                 </StackPanel>
                                 <CheckBox Content="{lex:Loc DisableVirtualController}" IsChecked="{Binding DInputOnly}"
                                   ToolTip="{lex:Loc DisableVirtualControllerTip}" />
-                                <CheckBox Content="Enable Virtual Trigger Buttons (DS4)" IsChecked="{Binding VirtualTriggerButtons}"
-                                  ToolTip="{lex:Loc DisableVirtualControllerTip}" Margin="0,8,0,0" />
+                                <CheckBox Content="{lex:Loc ProfileEditor.VirtualTrigButtonOutput}" IsChecked="{Binding VirtualTriggerButtons}"
+                                  Margin="0,8,0,0" />
                             </StackPanel>
                         </GroupBox>
                         <GroupBox Header="{lex:Loc Rumble}" MinHeight="50" Margin="4,4,4,0" Padding="0,4,0,4">

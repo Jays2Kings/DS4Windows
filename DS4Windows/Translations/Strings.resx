@@ -796,4 +796,7 @@ Disabled:
   <data name="Light" xml:space="preserve">
     <value>Light</value>
   </data>
+  <data name="ProfileEditor.VirtualTrigButtonOutput" xml:space="preserve">
+    <value>Enable Virtual Trigger Buttons (DS4)</value>
+  </data>
 </root>

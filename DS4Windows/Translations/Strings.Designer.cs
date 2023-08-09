@@ -1496,6 +1496,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable Virtual Trigger Buttons (DS4).
+        /// </summary>
+        public static string ProfileEditor_VirtualTrigButtonOutput {
+            get {
+                return ResourceManager.GetString("ProfileEditor.VirtualTrigButtonOutput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profile Folder.
         /// </summary>
         public static string ProfileFolder {

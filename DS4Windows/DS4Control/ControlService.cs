@@ -2710,6 +2710,13 @@ namespace DS4Windows
 
                 if (!useDInputOnly[ind])
                 {
+                    // Perform this virtual trigger button check in post
+                    if (OutputVirtualTriggerButton[ind])
+                    {
+                        cState.L2Btn = cState.L2 > 0;
+                        cState.R2Btn = cState.R2 > 0;
+                    }
+
                     outputDevices[ind]?.ConvertandSendReport(cState, ind);
                     //testNewReport(ref x360reports[ind], cState, ind);
                     //x360controls[ind]?.SendReport(x360reports[ind]);

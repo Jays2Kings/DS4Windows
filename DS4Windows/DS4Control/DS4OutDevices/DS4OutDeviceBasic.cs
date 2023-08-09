@@ -46,10 +46,10 @@ namespace DS4Windows
 
                 if (state.L1) tempButtons |= DualShock4Button.ShoulderLeft.Value;
                 if (state.R1) tempButtons |= DualShock4Button.ShoulderRight.Value;
-                //if (state.L2Btn) tempButtons |= DualShock4Buttons.TriggerLeft;
-                //if (state.R2Btn) tempButtons |= DualShock4Buttons.TriggerRight;
-                if (state.L2 > 0) tempButtons |= DualShock4Button.TriggerLeft.Value;
-                if (state.R2 > 0) tempButtons |= DualShock4Button.TriggerRight.Value;
+                if (state.L2Btn) tempButtons |= DualShock4Button.TriggerLeft.Value;
+                if (state.R2Btn) tempButtons |= DualShock4Button.TriggerRight.Value;
+                //if (state.L2 > 0) tempButtons |= DualShock4Button.TriggerLeft.Value;
+                //if (state.R2 > 0) tempButtons |= DualShock4Button.TriggerRight.Value;
 
                 if (state.Triangle) tempButtons |= DualShock4Button.Triangle.Value;
                 if (state.Circle) tempButtons |= DualShock4Button.Circle.Value;

@@ -1323,6 +1323,19 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
+        [XmlIgnore]
+        public bool OutputVirtualTriggerButtons
+        {
+            get; private set;
+        } = BackingStore.DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS;
+
+        [XmlElement("OutputVirtualTriggerButtons")]
+        public string OutputVirtualTriggerButtonsString
+        {
+            get => OutputVirtualTriggerButtons.ToString();
+            set => OutputVirtualTriggerButtons = XmlDataUtilities.StrToBool(value);
+        }
+
         [XmlElement("ProfileActions")]
         public string ProfileActions
         {
@@ -1692,6 +1705,8 @@ namespace DS4WinWPF.DS4Control.DTOXml
             };
 
             OutputContDevice = source.outputDevType[deviceIndex];
+            OutputVirtualTriggerButtons = source.outputVirtualTriggerButtons[deviceIndex];
+
             ProfileActions = string.Join("/", source.profileActions[deviceIndex]);
             Control = new DS4ControlAssignementSerializer();
             ShiftControl = new DS4ControlAssignementSerializer();
@@ -2284,8 +2299,9 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 destination.buttonAbsMouseInfos[deviceIndex].snapToCenter = AbsMouseRegionSettings.SnapToCenter;
             };
 
-
             destination.outputDevType[deviceIndex] = OutputContDevice;
+            destination.outputVirtualTriggerButtons[deviceIndex] = OutputVirtualTriggerButtons;
+
             if (!string.IsNullOrEmpty(ProfileActions))
             {
                 string[] actionNames = ProfileActions.Split('/');

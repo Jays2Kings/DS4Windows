@@ -648,6 +648,20 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public EventHandler DInputOnlyChanged;
 
+        public bool VirtualTriggerButtons
+        {
+            get => Global.OutputVirtualTriggerButton[device];
+            set
+            {
+                bool temp = Global.OutputVirtualTriggerButton[device];
+                if (temp == value) return;
+
+                Global.OutputVirtualTriggerButton[device] = value;
+                VirtualTriggerButtonsChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler VirtualTriggerButtonsChanged;
+
         public bool IdleDisconnectExists
         {
             get => Global.IdleDisconnectTimeout[device] != 0;

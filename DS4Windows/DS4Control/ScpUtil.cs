@@ -2380,6 +2380,8 @@ namespace DS4Windows
         public static ControlServiceDeviceOptions DeviceOptions => m_Config.deviceOptions;
 
         public static OutContType[] OutContType => m_Config.outputDevType;
+        public static bool[] OutputVirtualTriggerButton => m_Config.outputVirtualTriggerButtons;
+
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
         public static string[] OlderProfilePath => m_Config.olderProfilePath;
@@ -3468,6 +3470,15 @@ namespace DS4Windows
             OutContType.X360, OutContType.X360,
             OutContType.X360, OutContType.X360, OutContType.X360,
             OutContType.X360, OutContType.X360, OutContType.X360};
+
+        public const bool DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS = true;
+        public bool[] outputVirtualTriggerButtons = new bool[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS, DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS, DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS, DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS,
+            DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS, DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS, DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS, DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS,
+            DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS,
+        };
+
 
         // TRUE=AutoProfile reverts to default profile if current foreground process is unknown, FALSE=Leave existing profile active when a foreground proces is unknown (ie. no matching auto-profile rule)
         public const bool DEFAULT_AUTO_PROFILE_REVERT_DEFAULT_PROFILE = true;

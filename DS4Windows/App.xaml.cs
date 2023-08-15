@@ -104,17 +104,24 @@ namespace DS4WinWPF
                 DS4Windows.Util.PROCESS_INFORMATION_CLASS.ProcessPagePriority, ref pagePrio, 4);
 
             // another instance is already running if TryOpenExisting returns true.
-            if (EventWaitHandleAcl.TryOpenExisting(SingleAppComEventName,
+            try
+            {
+                if (EventWaitHandleAcl.TryOpenExisting(SingleAppComEventName,
                 System.Security.AccessControl.EventWaitHandleRights.Synchronize |
                 System.Security.AccessControl.EventWaitHandleRights.Modify,
                 out EventWaitHandle tempComEvent))
-            {
-                tempComEvent.Set();  // signal the other instance.
-                tempComEvent.Close();
+                {
+                    tempComEvent.Set();  // signal the other instance.
+                    tempComEvent.Close();
 
-                runShutdown = false;
-                Current.Shutdown();    // Quit temp instance
-                return;
+                    runShutdown = false;
+                    Current.Shutdown();    // Quit temp instance
+                    return;
+                }
+            }
+            catch (System.UnauthorizedAccessException)
+            {
+                // Ignore exception
             }
 
             // Allow sleep time durations less than 16 ms

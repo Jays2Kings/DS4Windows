@@ -488,7 +488,7 @@ namespace DS4Windows
             Global.outputKBMMapping.PopulateMappings();
         }
 
-        private void OutputslotMan_ViGEmFailure(object sender, EventArgs e)
+        private void OutputslotMan_ViGEmFailure(object sender, int errorCode)
         {
             eventDispatcher.BeginInvoke((Action)(() =>
             {
@@ -496,7 +496,8 @@ namespace DS4Windows
                 while (inServiceTask)
                     Thread.SpinWait(1000);
 
-                LogDebug(DS4WinWPF.Translations.Strings.ViGEmPluginFailure, true);
+                LogDebug(string.Format(DS4WinWPF.Translations.Strings.ViGEmPluginFailure, errorCode),
+                    true);
                 Stop();
             }));
         }

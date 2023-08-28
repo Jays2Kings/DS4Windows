@@ -58,7 +58,7 @@ namespace DS4Windows
             int slotNum, OutSlotDevice outSlotDev);
         public event SlotUnassignedDelegate SlotUnassigned;
 
-        public event EventHandler ViGEmFailure;
+        public event EventHandler<int> ViGEmFailure;
 
         // First ViGEmBus version that has usable XInput slot grabbing
         private static Version xinputSlotMinVersion = new Version("1.17.333.0");
@@ -150,11 +150,11 @@ namespace DS4Windows
                     {
                         outputDevice.Connect();
                     }
-                    catch (Win32Exception)
+                    catch (Win32Exception e)
                     {
                         // Leave task immediately if connect call failed
                         //queuedTasks--;
-                        ViGEmFailure?.Invoke(this, EventArgs.Empty);
+                        ViGEmFailure?.Invoke(this, e.ErrorCode);
                         return;
                     }
 

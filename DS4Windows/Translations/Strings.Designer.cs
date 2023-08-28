@@ -1984,7 +1984,7 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ViGEm Device Plugin Failed. Likely an internal ViGEmBus problem. Closing connection. If the issue persists, please close DS4Windows and then reboot Windows..
+        ///   Looks up a localized string similar to ViGEm Device Plugin Failed. Error Code {0}. Likely an internal ViGEmBus problem. Closing connection. If the issue persists, please close DS4Windows and then reboot Windows..
         /// </summary>
         public static string ViGEmPluginFailure {
             get {

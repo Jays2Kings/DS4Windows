@@ -1,0 +1,797 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Accel" xml:space="preserve">
+    <value>Akselerasi</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Aksi</value>
+  </data>
+  <data name="AddDirectory" xml:space="preserve">
+    <value>Tambahkan Direktori</value>
+  </data>
+  <data name="AddPrograms" xml:space="preserve">
+    <value>Tambahkan Program</value>
+  </data>
+  <data name="AddStartMenuPrograms" xml:space="preserve">
+    <value>Tambhkan Program Start Menu</value>
+  </data>
+  <data name="AddSteamGames" xml:space="preserve">
+    <value>Tambahkan Permainan dari Steam</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Semua</value>
+  </data>
+  <data name="AutoProfiles" xml:space="preserve">
+    <value>Profil Otomatis</value>
+  </data>
+  <data name="Battery" xml:space="preserve">
+    <value>Baterai</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Pilih File</value>
+  </data>
+  <data name="BrowseOtherPrograms" xml:space="preserve">
+    <value>Pilih Program Lain</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Batal</value>
+  </data>
+  <data name="CheckUpdateNow" xml:space="preserve">
+    <value>Periksa Pembaruan Sekarang</value>
+  </data>
+  <data name="CheckUpdateStartup" xml:space="preserve">
+    <value>Periksa pembaruan saat DS4Windows mulai</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Bersihkan</value>
+  </data>
+  <data name="CloseMinimizes" xml:space="preserve">
+    <value>Tutup untuk Meminimalkan</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Warna</value>
+  </data>
+  <data name="Controller1Text" xml:space="preserve">
+    <value>Kontroler 1</value>
+  </data>
+  <data name="Controller2Text" xml:space="preserve">
+    <value>Kontroler 2</value>
+  </data>
+  <data name="Controller3Text" xml:space="preserve">
+    <value>Kontroler 3</value>
+  </data>
+  <data name="Controller4Text" xml:space="preserve">
+    <value>Kontroler 4</value>
+  </data>
+  <data name="Controllers" xml:space="preserve">
+    <value>Kontroler</value>
+  </data>
+  <data name="ControlPanel" xml:space="preserve">
+    <value>Panel Kontrol</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Hapus</value>
+  </data>
+  <data name="DriverSetup" xml:space="preserve">
+    <value>Konfigurasi Kontroler/Driver</value>
+  </data>
+  <data name="Duplicate" xml:space="preserve">
+    <value>Duplikat</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditAction" xml:space="preserve">
+    <value>Edit Aksi</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Ekspor</value>
+  </data>
+  <data name="Full" xml:space="preserve">
+    <value>Penuh</value>
+  </data>
+  <data name="Gyro" xml:space="preserve">
+    <value>Gyro</value>
+  </data>
+  <data name="HideUnchecked" xml:space="preserve">
+    <value>Sembunyikan yang Belum Dicentang</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Impor</value>
+  </data>
+  <data name="LeftStick" xml:space="preserve">
+    <value>Stik Kiri</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Catatan</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nama</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Baru</value>
+  </data>
+  <data name="NewAction" xml:space="preserve">
+    <value>Aksi Baru</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Profil Baru</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Tidak ada</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Jalur</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="ProfileFolder" xml:space="preserve">
+    <value>Folder Profil</value>
+  </data>
+  <data name="QuickCharge" xml:space="preserve">
+    <value>Pengisian Cepat</value>
+  </data>
+  <data name="RecordText" xml:space="preserve">
+    <value>Rekam</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Hapus</value>
+  </data>
+  <data name="RemoveAction" xml:space="preserve">
+    <value>Hapus Aksi</value>
+  </data>
+  <data name="RightStick" xml:space="preserve">
+    <value>Stik Kanan</value>
+  </data>
+  <data name="Rumble" xml:space="preserve">
+    <value>Getar</value>
+  </data>
+  <data name="RunAtStartup" xml:space="preserve">
+    <value>Jalankan Saat Komputer di Mulai</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Simpan</value>
+  </data>
+  <data name="SaveProfile" xml:space="preserve">
+    <value>Simpan</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Pengaturan</value>
+  </data>
+  <data name="ShowNotifications" xml:space="preserve">
+    <value>Tampilkan Notifikasi</value>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>Mulai dengan Minimal</value>
+  </data>
+  <data name="StartText" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="StopText" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="TouchScroll" xml:space="preserve">
+    <value>Gulir</value>
+  </data>
+  <data name="TouchSlide" xml:space="preserve">
+    <value>Geser</value>
+  </data>
+  <data name="TouchTap" xml:space="preserve">
+    <value>Tap</value>
+  </data>
+  <data name="Trigger" xml:space="preserve">
+    <value>Pelatuk</value>
+  </data>
+  <data name="WarningsOnly" xml:space="preserve">
+    <value>Hanya Peringatan</value>
+  </data>
+  <data name="RumbleMaxSecs" xml:space="preserve">
+    <value>sec</value>
+  </data>
+  <data name="RumbleMaxSecsTip" xml:space="preserve">
+    <value>Memberhentikan otomatisasi getar dalam detik (0 = fitur berhenti otomatis dinonaktifkan)</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Judul Window</value>
+  </data>
+  <data name="MoveUp" xml:space="preserve">
+    <value>Geser ke Atas</value>
+  </data>
+  <data name="MoveDown" xml:space="preserve">
+    <value>Geser ke bawah</value>
+  </data>
+  <data name="AutoProfPathTip" xml:space="preserve">
+    <value>Memproses Jalur. ^ABC = Cocok di awal string (^) | ABC$ = Cocok di akhir string ($) | ABC = Mengandung string ()</value>
+  </data>
+  <data name="AutoProfTitleTip" xml:space="preserve">
+    <value>Judul Window. ^ABC = Cocok di awal string (^) | ABC$ = Cocok di akhir string ($) | ABC = Mengandung string ()</value>
+  </data>
+  <data name="GamepadTest" xml:space="preserve">
+    <value>Kontroler Test</value>
+  </data>
+  <data name="EnableOutputDataToDS4" xml:space="preserve">
+    <value>Aktifkan Pengiriman data ke DS4</value>
+  </data>
+  <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
+    <value>Kirim data lampu indikator dan getar secara berkala ke gamepad DS4. Hapus centang jika kontroler tidak mendukung penerimaan data.
+Perubahan pada opsi ini berlaku saat kontroler terhubung</value>
+    <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Terapkan</value>
+  </data>
+  <data name="HidNinja" xml:space="preserve">
+    <value>HidNinja</value>
+  </data>
+  <data name="CustomExeName" xml:space="preserve">
+    <value>Nama Exe Kustom</value>
+  </data>
+  <data name="CustomExeNameInfo" xml:space="preserve">
+    <value>Beberapa permainan menerapkan pemblokiran yang menyebabkan input dari DS4 diabaikan jika permainan tersebut mendeteksi DS4Windows.exe atau InputMapper.exe berjalan pada saat yang sama. Solusi alternatif untuk mengatasi pemblokiran ini adalah dengan mengganti nama DS4Windows.exe sehingga pemeriksaan pada game tersebut gagal. Menentukan nama exe kustom di sini memungkinkan DS4Updater untuk secara otomatis memperbarui salinan kustom DS4Windows ke nama file yang diinginkan. Pastikan untuk menghilangkan ekstensinya. Contoh: whyme_DS4Windows</value>
+  </data>
+  <data name="XInputChecker" xml:space="preserve">
+    <value>Pemeriksa XInput</value>
+  </data>
+  <data name="Controller5Text" xml:space="preserve">
+    <value>Kontroler 5</value>
+  </data>
+  <data name="Controller6Text" xml:space="preserve">
+    <value>Kontroler 6</value>
+  </data>
+  <data name="Controller7Text" xml:space="preserve">
+    <value>Kontroler 7</value>
+  </data>
+  <data name="Controller8Text" xml:space="preserve">
+    <value>Kontroler 8</value>
+  </data>
+  <data name="GamepadGyroCameraDescription" xml:space="preserve">
+    <value>Mengatur tombol kontroler ke standard XInput kontroler dan DS4 kontroler, Gyro akan di atur ulang dengan Joystick yang mirip dengan mouse</value>
+  </data>
+  <data name="GamepadGyroCameraName" xml:space="preserve">
+    <value>Kontroler dengan Joystick yang mirip dengan Mouse</value>
+  </data>
+  <data name="GamepadPresetDescription" xml:space="preserve">
+    <value>Mengatur tombol controller ke kontroller standar</value>
+  </data>
+  <data name="GamepadPresetName" xml:space="preserve">
+    <value>Kontroler</value>
+  </data>
+  <data name="KBMGyroMouseDescription" xml:space="preserve">
+    <value>Mengatur tombol kontroler ke kontrol virtual KB+M. Berguna untuk bermain game FPS tanpa dukungan kontroler. Gyro dihubungkan ke virtual Mouse.</value>
+  </data>
+  <data name="KBMGyroMouseName" xml:space="preserve">
+    <value>Kontrol KB+M dengan Gyro Mouse</value>
+  </data>
+  <data name="KBMPresetDescription" xml:space="preserve">
+    <value>Mengatur tombol kontroler ke kontrol virtual KB+M. Berguna untuk bermain game FPS tanpa dukungan kontroler. Gyro dihubungkan ke virtual Mouse.</value>
+  </data>
+  <data name="KBMPresetName" xml:space="preserve">
+    <value>Kontrol KB+M</value>
+  </data>
+  <data name="MixedGyroMousePresetDescription" xml:space="preserve">
+    <value>Mengatur ulang tombol dan axis ke kontroler standar. Memetakan Gyro ke virtual mouse</value>
+  </data>
+  <data name="MixedGyroMousePresetName" xml:space="preserve">
+    <value>Kontroler dengan Gyro Mouse</value>
+  </data>
+  <data name="MixedPresetDescription" xml:space="preserve">
+    <value>Mengatur ulang tombol kontroler menjadi gabungan antara XInput kontroler + RS Mouse</value>
+  </data>
+  <data name="MixedPresetName" xml:space="preserve">
+    <value>Kontroler dengan High Precision Camera</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Deskripsi</value>
+  </data>
+  <data name="PresetIntroText" xml:space="preserve">
+    <value>Apakah Anda ingin menggunakan opsi pra atur ? Dengan memilih Tidak, akan membuat Editor Profil menggunakan profil kontroler kosong.</value>
+  </data>
+  <data name="Presets" xml:space="preserve">
+    <value>Prasetel</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>Changelog</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Tutup</value>
+  </data>
+  <data name="Profiles" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="NoControllersConnected" xml:space="preserve">
+    <value>Tidak ada Kontroler yang Terhubung (Max {0})</value>
+  </data>
+  <data name="FlickThreshold" xml:space="preserve">
+    <value>Batas Flick</value>
+  </data>
+  <data name="FlickTime" xml:space="preserve">
+    <value>Waktu Flick</value>
+  </data>
+  <data name="MinAngleThreshold" xml:space="preserve">
+    <value>Batas Sudut Minimum</value>
+  </data>
+  <data name="RealWorldCalibration" xml:space="preserve">
+    <value>Pengkalibrasi Langsung</value>
+  </data>
+  <data name="ViGEmPluginFailure" xml:space="preserve">
+    <value>Plugin Perangkat ViGEm Gagal. Kemungkinan masalah internal ViGEmBus. Menutup koneksi. Jika masalah berlanjut, harap tutup DS4Windows dan kemudian restart Windows.</value>
+  </data>
+  <data name="CRC32Fail" xml:space="preserve">
+    <value>Pengecekan informasi pada intergritas data gagal untuk perangkat nirkabel, Menutup perangkat.</value>
+  </data>
+  <data name="FutureNetNotInstalled" xml:space="preserve">
+    <value>.NET 5 Runtime tidak terdeteksi pada sistem/komputer Anda. Silakan unduh dan instal .NET 5 Runtime untuk memastikan kompatibilitas dengan versi DS4Windows yang akan datang. Anda akan diarahkan ke halaman unduhan .NET 5 Runtime setelah menutup jendela ini.</value>
+  </data>
+  <data name="UpgradeNetCaption" xml:space="preserve">
+    <value>Mohon perbarui .NET Runtime.</value>
+  </data>
+  <data name="HidHide" xml:space="preserve">
+    <value>HidHide</value>
+  </data>
+  <data name="HidHideConfigClient" xml:space="preserve">
+    <value>Klien Konfigurasi HidHide</value>
+  </data>
+  <data name="ExclusiveAccess" xml:space="preserve">
+    <value>Akses Eksklusif</value>
+  </data>
+  <data name="HidGuardianAccess" xml:space="preserve">
+    <value>Akses HidGuardian</value>
+  </data>
+  <data name="HidHideAccess" xml:space="preserve">
+    <value>Akses HidHide</value>
+  </data>
+  <data name="SharedAccess" xml:space="preserve">
+    <value>Akses Bersama</value>
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Ubah Nama</value>
+  </data>
+  <data name="DisableVirtualController" xml:space="preserve">
+    <value>Matikan Kontroler Virtual</value>
+  </data>
+  <data name="DisableVirtualControllerTip" xml:space="preserve">
+    <value>Jangan buat/assosiasikan kontroler virtual untuk kontroler yang terhubung menggunakan profil ini (Berlaku saat menyimpan profil)</value>
+  </data>
+  <data name="EmulatedController" xml:space="preserve">
+    <value>Emulasi Kontroler</value>
+  </data>
+  <data name="OutContNotice" xml:space="preserve">
+    <value>Pilih jenis output kontroler virtual (Berlaku saat menyimpan profil)</value>
+  </data>
+  <data name="VirtualControllerSettings" xml:space="preserve">
+    <value>Pengaturan Kontroler Virtual</value>
+  </data>
+  <data name="ChangeOnNewDeviceConn" xml:space="preserve">
+    <value>Perubahan berlaku saat perangkat baru terhubung</value>
+  </data>
+  <data name="StickFuzzTooltip" xml:space="preserve">
+    <value>Fuzz menentukan jumlah minimum unit yang harus bergerak pada stick analog, di dalam zona aktif, sebelum keluaran diregistrasi sebagai perubahan dalam pemetaan. Pengaturan ini dapat berguna untuk stick yang aus yang tidak dapat mempertahankan posisi yang konstan. Nilainya diungkapkan dalam unit stick mentah.</value>
+  </data>
+  <data name="StickMaxOutputForceTooltip" xml:space="preserve">
+    <value>Selalu mengharuskan pengaturan output maksimal. Berguna untuk 100% Output Maksimum dan membatasi nilai ke nilai output lingkaran.</value>
+  </data>
+  <data name="StickMaxOutputTooltip" xml:space="preserve">
+    <value>Dalam beberapa situasi, mungkin berguna untuk membatasi nilai maksimum yang dihasilkan oleh output analog stick. Output Maksimum memungkinkan pengendalian nilai output akhir dari analog stick.</value>
+  </data>
+  <data name="AntiDeadzoneTooltip" xml:space="preserve">
+    <value>Anti-deadzone bertindak sebagai offset untuk digunakan dengan aksis dalam menunjukkan nilai output minimum yang dihasilkan setelah aksis meninggalkan deadzone yang ditetapkan. Hal ini terutama dimaksudkan untuk membantu pemetaan sumbu ke nilai deadzone yang ditetapkan yang digunakan untuk aksis dalam permainan. Sebagai contoh, deadzone yang ditetapkan untuk XInput LS dalam permainan video adalah sekitar 8000 (25%). Tanpa anti-deadzone yang ditetapkan, sebuah aksis harus bergerak melewati deadzone yang ditetapkan di DS4Windows bersama dengan deadzone aksis yang ditetapkan dalam permainan.
+
+</value>
+  </data>
+  <data name="StickInputCurveTooltip" xml:space="preserve">
+    <value>PENGATURAN LAMA DAN USANG. Upaya untuk menerapkan kurva berdasarkan input koordinat langsung sebelum ada informasi zona mati yang diterapkan. Tidak stabil.</value>
+  </data>
+  <data name="TouchpadMinThresholdTooltip" xml:space="preserve">
+    <value>Perhitungan output minimum sebelum sebuah data Mouse dikirim ke sistem</value>
+  </data>
+  <data name="TouchpadRotationTooltip" xml:space="preserve">
+    <value>Mengatur geseran touchpad dengan sudut rotasi tertentu. Berguna ketika geseran touchpad biasa tidak dalam garis lurus. Nilai dapat berada dalam rentang -180 hingga 180. Bawaan adalah 0.</value>
+  </data>
+  <data name="TouchpadSlideTooltip" xml:space="preserve">
+    <value>Sensitivitas yang digunakan untuk mengaktifkan aksi multi-touch Mouse Wheel Scroll</value>
+  </data>
+  <data name="TouchpadTapTooltip" xml:space="preserve">
+    <value>Aktifkan klik kiri Mouse dengan Ketukan Touchpad. Interval waktu maksimum diatur pada (nilai * 2) ms.</value>
+  </data>
+  <data name="TouchpadTrackballEnableTooltip" xml:space="preserve">
+    <value>Menambahkan momentum ke geseran Touchpad setelah jari diangkat. Menambahkan pergerakan kursor Mouse lebih banyak daripada yang mungkin dilakukan di ruang terbatas pada Touchpad.</value>
+  </data>
+  <data name="TouchpadTrackballFrictionTooltip" xml:space="preserve">
+    <value>Menambahkan gesekan pada virtual Trackball. Gesekan yang lebih rendah akan meningkatkan waktu pergerakan kursor Mouse akhir.</value>
+  </data>
+  <data name="StickOuterBindDeadTooltip" xml:space="preserve">
+    <value>Batas untuk kapan suatu tindakan akan aktif</value>
+  </data>
+  <data name="StickOuterBindInvertTooltip" xml:space="preserve">
+    <value>Mengaktifkan ikatan luar sebelum mencapai ambang batas. Tindakan dilepaskan setelah ambang batas terlampaui</value>
+  </data>
+  <data name="StickOuterBindTooltip" xml:space="preserve">
+    <value>Tindakan yang dieksekusi ketika pergerakan stick melewati ambang batas. Berguna untuk mengatur tombol untuk Berjalan atau Berlari. Inversi menyebabkan tindakan akan aktif hingga mencapai ambang batas.</value>
+  </data>
+  <data name="SASteeringWheelFuzzTooltip" xml:space="preserve">
+    <value>Fuzz menentukan jumlah minimum unit perangkat, dalam zona aktif, yang harus dirotasi oleh Akselerometer sebelum keluaran didaftarkan sebagai berubah dalam pemeta. Nilai ini diukur dalam unit Akselerometer mentah.</value>
+  </data>
+  <data name="StickRotationTooltip" xml:space="preserve">
+    <value>+ = Putaran searah jarum jam. - = Putaran berlawanan arah jarum jam.
+Pengaturan rotasi dimaksudkan untuk membantu memperbaiki orientasi stik analog jika jempol Anda sedikit tergeser saat memindahkan stik analog. Misalnya, jempol Anda mungkin sedikit tergeser dari pusat saat stik analog digerakkan sepenuhnya ke utara. Jempol saya sedikit bergeser ke kanan saat memindahkan stik analog sepenuhnya ke utara karena cara saya memegang kontroler DS4. Nilai yang digunakan menunjukkan jumlah derajat yang digunakan untuk menyesuaikan nilai output sumbu akhir. Nilai yang diperbolehkan berkisar dari -180 hingga 180. Default adalah 0.</value>
+  </data>
+  <data name="TouchpadJitterCompTooltip" xml:space="preserve">
+    <value>Mengurangi kecepatan gerakan di bagian bawah Touchpad. Mengurangi pergerakan kursor mouse yang tidak disengaja saat memegang posisi yang hampir tetap di Touchpad.</value>
+  </data>
+  <data name="DS4BTPollRate" xml:space="preserve">
+    <value>DS4 BT Poll Rate</value>
+  </data>
+  <data name="DS4LightbarPassthruDisabled" xml:space="preserve">
+    <value>Fitur saat ini dinonaktifkan dalam aplikasi karena masalah dengan driver. Semoga masalahnya dapat diperbaiki dalam pembaruan mendatang.</value>
+  </data>
+  <data name="DualSRumbleForceGenericRescale" xml:space="preserve">
+    <value>Paksa penggunaan dari kedua % tingkat kekuatan  (umum dan khusus DualSense)</value>
+  </data>
+  <data name="DualSRumbleModeDisabled" xml:space="preserve">
+    <value>Matikan</value>
+  </data>
+  <data name="DualSRumbleModeAccurate" xml:space="preserve">
+    <value>Akurat</value>
+  </data>
+  <data name="DualSRumbleModeLegacy" xml:space="preserve">
+    <value>Legacy</value>
+  </data>
+  <data name="DualSRumbleModeNPowerLevelTxt" xml:space="preserve">
+    <value>Mode Getar dan Tingkat Kekuatan:</value>
+  </data>
+  <data name="DualSRumbleModePassthru" xml:space="preserve">
+    <value>Passthru</value>
+  </data>
+  <data name="DualSRumbleSpecificSettings" xml:space="preserve">
+    <value>Pengaturan getar khusus DualSense</value>
+  </data>
+  <data name="DualSRumbleForceGenericRescale_Tip" xml:space="preserve">
+    <value>Dianjurkan untuk TIDAK AKTIFKAN.-Dinonaktifkan: getar akan disesuaikan ulang secara native oleh kontroler sesuai dengan tingkat daya yang ditentukan (kualitas lebih baik)-Diaktifkan: kedua reskalasi getar generik DS4Windows dan kontroler asli DualSense akan aktif</value>
+  </data>
+  <data name="DualSRumbleModes_Tip" xml:space="preserve">
+    <value>Mode Akurat (Disarankan):
+
+- Meniru rasa getaran kontroler DualShock 4/Xbox 360 lebih baik
+- Lebih akurat mengeksekusi efek getar yang dimaksudkan oleh permainan
+- Getar memiliki rasa kedalaman lebih. Dalam tingkat kekuatan yang sama, terdapat perbedaan yang lebih besar antara aktivasi getar terendah dan tertinggi dalam permainan, mulai dari sangat lemah hingga kekuatan maksimum dari tingkat daya yang ditentukan.
+
+Mode Legacy:
+
+- Secara keseluruhan lebih kuat, tetapi kurang dalam
+- Memiliki perasaan yang "lebih tajam"
+- Aktivasi getar terendah dan tertinggi dalam permainan, masing-masing hanya sedikit di bawah dan sedikit di atas kekuatan tingkat daya yang dipilih
+
+Dinonaktifkan:
+
+- Menonaktifkan getar secara keseluruhan</value>
+  </data>
+  <data name="DualSRumblePowerLevel_Tip" xml:space="preserve">
+    <value>Pengubah Tingkat Daya getar native DualSense.
+
+Saat dalam Mode Akurat, getar [terendah // tertinggi] akan menjadi [1% /// Tingkat Daya yang Dipilih]
+
+Contoh (62%): [terendah = 1% /// tertinggi = 62%]
+Saat dalam Mode Warisan, getar [terendah /// tertinggi] akan sekitar [Tingkat Daya - 12% /// Tingkat Daya + 12%]
+
+Contoh (62%): [terendah = 50% /// tertinggi = 74%]</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Setuju</value>
+  </data>
+  <data name="Black" xml:space="preserve">
+    <value>Hitam</value>
+  </data>
+  <data name="Colored" xml:space="preserve">
+    <value>Berwarna</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Bawaan</value>
+  </data>
+  <data name="DeviceType" xml:space="preserve">
+    <value>Tipe Perangkat</value>
+  </data>
+  <data name="DisconnectFromBtWhenStopping" xml:space="preserve">
+    <value>Putuskan koneksi Bluetooth saat berhenti</value>
+  </data>
+  <data name="Dynamic" xml:space="preserve">
+    <value>Dinamis</value>
+  </data>
+  <data name="FlashLightbarAtHighLatency" xml:space="preserve">
+    <value>Kedipkan lampu Lightbar pada saat Latensi Tinggi</value>
+  </data>
+  <data name="HideDS4Controller" xml:space="preserve">
+    <value>Sembunyikan Kontroler DS 4</value>
+  </data>
+  <data name="HotkeysAbout" xml:space="preserve">
+    <value>Tombol/Tentang</value>
+  </data>
+  <data name="IconChoice" xml:space="preserve">
+    <value>Pilihan Ikon</value>
+  </data>
+  <data name="MinimizeToTaskbar" xml:space="preserve">
+    <value>Minimalkan ke Taskbar</value>
+  </data>
+  <data name="MinimizeToTaskbarTip" xml:space="preserve">
+    <value>Minimalkan ke Taskbar daripada ke System Tray</value>
+  </data>
+  <data name="OutputSlots" xml:space="preserve">
+    <value>Slot Output</value>
+  </data>
+  <data name="Permanent" xml:space="preserve">
+    <value>Permanen</value>
+  </data>
+  <data name="Plug" xml:space="preserve">
+    <value>Plug</value>
+  </data>
+  <data name="RevertToDefaultProfileOnUnknown" xml:space="preserve">
+    <value>Kembalikan ke profil bawaan saat tidak dikenali</value>
+  </data>
+  <data name="ShowAutoProfileDebugMessages" xml:space="preserve">
+    <value>Tampilkan pesan debug profil otomatis</value>
+  </data>
+  <data name="SwipeTouchpadToSwitchProfiles" xml:space="preserve">
+    <value>Geser Touchpad Untuk Mengganti Profil</value>
+  </data>
+  <data name="TurnOffDS4WindowsTemporarily" xml:space="preserve">
+    <value>Matikan DS4Windows untuk sementara</value>
+  </data>
+  <data name="Unplug" xml:space="preserve">
+    <value>Unplug</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>Putih</value>
+  </data>
+  <data name="AppTheme" xml:space="preserve">
+    <value>Tema Aplikasi</value>
+  </data>
+  <data name="CheckEvery" xml:space="preserve">
+    <value>Periksa Semua</value>
+  </data>
+  <data name="OscServerHeading" xml:space="preserve">
+    <value>Kontrol dan Pemantauan OSC Eksternal</value>
+  </data>
+  <data name="EnableOscServer" xml:space="preserve">
+    <value>Aktifkan Server Kontrol</value>
+  </data>
+  <data name="EnableInterpretingOscMonitoring" xml:space="preserve">
+    <value>Mengartikan Pesan Pemantauan</value>
+  </data>
+  <data name="EnableOscSender" xml:space="preserve">
+    <value>Aktifkan Layanan Pemantauan</value>
+  </data>
+  <data name="ControllerSupportDS4" xml:space="preserve">
+    <value>Dukungan  Kontroler DS4</value>
+  </data>
+  <data name="ControllerSupportDualSense" xml:space="preserve">
+    <value>Dukungan Kontroler DualSense</value>
+  </data>
+  <data name="ControllerSupportJoyCon" xml:space="preserve">
+    <value>Dukungan Kontroler JoyCon</value>
+  </data>
+  <data name="ControllerSupportSwitchPro" xml:space="preserve">
+    <value>Dukungan Kontroler Switch Pro</value>
+  </data>
+  <data name="Copycat" xml:space="preserve">
+    <value>Copycat</value>
+  </data>
+  <data name="CopycatTip" xml:space="preserve">
+    <value>Mengubah beberapa flag yang digunakan untuk kontroler DS4 non-Sony. Ini mungkin memperbaiki getar dan lampu indikator untuk beberapa klon DS4 buatan pihak ketiga</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Gelap</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Hari</value>
+  </data>
+  <data name="DetectedControllers" xml:space="preserve">
+    <value>Kontroler Terdeteksi</value>
+  </data>
+  <data name="DeviceOptions" xml:space="preserve">
+    <value>Opsi Perangkat</value>
+  </data>
+  <data name="EnableVerboseLog" xml:space="preserve">
+    <value>Aktifkan log verbose</value>
+  </data>
+  <data name="EnableVerboseLogTip" xml:space="preserve">
+    <value>Tampilkan pesan log tambahan saat kontroler terhubung</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>Jam</value>
+  </data>
+  <data name="UseCustomSteamFolder" xml:space="preserve">
+    <value>Gunakan folder Steam Kustom</value>
+  </data>
+  <data name="Utils" xml:space="preserve">
+    <value>Utilitas</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="RunAs" xml:space="preserve">
+    <value>Jalankan Sebagai</value>
+  </data>
+  <data name="Task" xml:space="preserve">
+    <value>Tugas</value>
+  </data>
+  <data name="GyroTriggerJitterCompensationTooltip" xml:space="preserve">
+    <value>Tambahkan pengendalian tambahan pada ujung rendah kurva untuk mengatasi guncangan perangkat</value>
+  </data>
+  <data name="WakeupFromSuspend" xml:space="preserve">
+    <value>Mengaktifkan Dari Mode Tidur</value>
+  </data>
+  <data name="ControllerSupportDS3" xml:space="preserve">
+    <value>Dukungan Kontroler DS3</value>
+  </data>
+  <data name="FirstLaunch.DeviceIntroText" xml:space="preserve">
+    <value>Dikarenakan mapper lain secara bawaan mengaktifkan dukungan untuk beberapa jenis perangkat (Steam Input), DS4Windows hanya mengaktifkan dukungan untuk membaca dari kontroler DS4 secara bawaan. Anda dapat menentukan dukungan mapper untuk jenis perangkat lain yang didukung di sini. Hati-hati saat menggunakan DS4Windows bersama mapper lain yang mungkin berjalan pada saat yang sama</value>
+  </data>
+  <data name="FirstLaunch.DS3EnableCkbLabel" xml:space="preserve">
+    <value>Dukungan Perangkat DS3 (PS3)</value>
+  </data>
+  <data name="FirstLaunch.DS3EnableText" xml:space="preserve">
+    <value>Dukungan untuk kontroler DualShock 3 (PS3). Membutuhkan penggunaan driver DsHidMini dari proyek ViGEm (nefarius).</value>
+  </data>
+  <data name="FirstLaunch.DS4EnableCkbLabel" xml:space="preserve">
+    <value>Dukungan untuk kontroler DualShock 4 (PS4).</value>
+  </data>
+  <data name="FirstLaunch.DS4EnableText" xml:space="preserve">
+    <value>Dukungan untuk kontroler DualShock 4 (PS4) yang telah dikenali.</value>
+  </data>
+  <data name="FirstLaunch.DSEnableCkbLabel" xml:space="preserve">
+    <value>Dukungan untuk kontroler DualSense (PS5)</value>
+  </data>
+  <data name="FirstLaunch.DSEnableText" xml:space="preserve">
+    <value>Dukungan untuk kontroler DualSense (PS5). Model biasa dan DS Edge.</value>
+  </data>
+  <data name="FirstLaunch.Header" xml:space="preserve">
+    <value>Dukungan Mapper untuk Perangkat yang Diaktifkan</value>
+  </data>
+  <data name="FirstLaunch.JoyConEnableCkbLabel" xml:space="preserve">
+    <value>Dukungan untuk kontroler JoyCon</value>
+  </data>
+  <data name="FirstLaunch.JoyConEnableText" xml:space="preserve">
+    <value>Dukungan untuk kontroler Joy-Con (Nintendo Switch)</value>
+  </data>
+  <data name="FirstLaunch.SwitchProEnableCkbLabel" xml:space="preserve">
+    <value>Dukungan untuk kontroler Switch Pro</value>
+  </data>
+  <data name="FirstLaunch.SwitchProEnableText" xml:space="preserve">
+    <value>Dukungan untuk kontroler Switch Pro (Nintendo Switch).</value>
+  </data>
+  <data name="FirstLaunch.WinTitle" xml:space="preserve">
+    <value>Pertama Kali Dijalankan</value>
+  </data>
+  <data name="AutoProfiles.DisplaySwitchVia" xml:space="preserve">
+    <value>Tampilkan Pergantian Profil melalui</value>
+  </data>
+  <data name="AutoProfiles.LogAndNotification" xml:space="preserve">
+    <value>Catatan + Pemberitahuan</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Notifikasi</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Terang</value>
+  </data>
+</root>

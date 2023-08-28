@@ -7,6 +7,7 @@
 /fr
 /he
 /hu-HU
+/idn
 /it
 /ja
 /ko

@@ -1335,6 +1335,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get => OutputVirtualTriggerButtons.ToString();
             set => OutputVirtualTriggerButtons = XmlDataUtilities.StrToBool(value);
         }
+        public bool ShouldSerializeOutputVirtualTriggerButtonsString()
+        {
+            return OutputVirtualTriggerButtons != BackingStore.DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS;
+        }
 
         [XmlElement("ProfileActions")]
         public string ProfileActions

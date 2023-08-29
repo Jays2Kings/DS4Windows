@@ -1849,6 +1849,13 @@ namespace DS4Windows.InputDevices
                         dState.SideL = cState.SideL;
                         dState.SideR = cState.SideR;
                     }
+                    else
+                    {
+                        // Allow secondary SideL and SideR to serve a separate function.
+                        // Using DualSense FnL and FnR codes for the button mapping
+                        dState.FnL = cState.SideL;
+                        dState.FnR = cState.SideR;
+                    }
 
                     if (outputMapGyro) dState.Motion = cState.Motion;
                     //dState.Motion = cState.Motion;
@@ -1875,6 +1882,13 @@ namespace DS4Windows.InputDevices
                         dState.ReportTimeStamp = cState.ReportTimeStamp;
                         dState.SideL = cState.SideL;
                         dState.SideR = cState.SideR;
+                    }
+                    else
+                    {
+                        // Allow secondary SideL and SideR to serve a separate function.
+                        // Using DualSense FnL and FnR codes for the button mapping
+                        dState.FnL = cState.SideL;
+                        dState.FnR = cState.SideR;
                     }
 
                     if (outputMapGyro) dState.Motion = cState.Motion;

@@ -770,7 +770,7 @@ namespace DS4Windows
                     break;
                 case InputDevices.InputDeviceType.JoyConL:
                 case InputDevices.InputDeviceType.JoyConR:
-                    result.AddRange(new DS4Controls[] { DS4Controls.Capture, DS4Controls.SideL, DS4Controls.SideR });
+                    result.AddRange(new DS4Controls[] { DS4Controls.Capture, DS4Controls.SideL, DS4Controls.SideR, DS4Controls.FnL, DS4Controls.FnR });
                     break;
                 case InputDevices.InputDeviceType.SwitchPro:
                     result.AddRange(new DS4Controls[] { DS4Controls.Capture });

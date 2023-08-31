@@ -665,9 +665,9 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         private List<EnumChoiceSelection<DS4TriggerOutputMode>> outputDS4TriggerModeOptions =
             new List<EnumChoiceSelection<DS4TriggerOutputMode>>
             {
-                new EnumChoiceSelection<DS4TriggerOutputMode>("Default (Analog + Buttons)", DS4TriggerOutputMode.Default),
-                new EnumChoiceSelection<DS4TriggerOutputMode>("Analog", DS4TriggerOutputMode.Analog),
-                new EnumChoiceSelection<DS4TriggerOutputMode>("Buttons", DS4TriggerOutputMode.Buttons),
+                new EnumChoiceSelection<DS4TriggerOutputMode>(Translations.Strings.DS4OutputTriggersDefault, DS4TriggerOutputMode.Default),
+                new EnumChoiceSelection<DS4TriggerOutputMode>(Translations.Strings.Analog, DS4TriggerOutputMode.Analog),
+                new EnumChoiceSelection<DS4TriggerOutputMode>(Translations.Strings.Buttons, DS4TriggerOutputMode.Buttons),
             };
 
         public List<EnumChoiceSelection<DS4TriggerOutputMode>> OutputDS4TriggerModeOptions => outputDS4TriggerModeOptions;

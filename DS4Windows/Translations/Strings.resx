@@ -799,4 +799,13 @@ Disabled:
   <data name="ProfileEditor.VirtualTrigButtonOutput" xml:space="preserve">
     <value>Enable Virtual Trigger Buttons (DS4)</value>
   </data>
+  <data name="Analog" xml:space="preserve">
+    <value>Analog</value>
+  </data>
+  <data name="Buttons" xml:space="preserve">
+    <value>Buttons</value>
+  </data>
+  <data name="DS4OutputTriggersDefault" xml:space="preserve">
+    <value>Default (Analog + Buttons)</value>
+  </data>
 </root>

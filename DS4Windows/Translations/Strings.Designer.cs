@@ -133,6 +133,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Analog.
+        /// </summary>
+        public static string Analog {
+            get {
+                return ResourceManager.GetString("Analog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An anti-deadzone acts as an offset for use with an axis to denote the minimum output value generated after an axis has left its assigned deadzone. This is mainly meant to help with mapping an axis to the assigned deadzone value used for an axis in a video game. For example, the typical assigned deadzone for XInput LS in a video game is around 8000 (25%). With no anti-deadzone assigned, an axis would have to move past the assigned deadzone in DS4Windows along with the game&apos;s assigned axis deadzone..
         /// </summary>
         public static string AntiDeadzoneTooltip {
@@ -237,6 +246,15 @@ namespace DS4WinWPF.Translations {
         public static string BrowseOtherPrograms {
             get {
                 return ResourceManager.GetString("BrowseOtherPrograms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buttons.
+        /// </summary>
+        public static string Buttons {
+            get {
+                return ResourceManager.GetString("Buttons", resourceCulture);
             }
         }
         
@@ -644,6 +662,15 @@ namespace DS4WinWPF.Translations {
         public static string DS4LightbarPassthruDisabled {
             get {
                 return ResourceManager.GetString("DS4LightbarPassthruDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default (Analog + Buttons).
+        /// </summary>
+        public static string DS4OutputTriggersDefault {
+            get {
+                return ResourceManager.GetString("DS4OutputTriggersDefault", resourceCulture);
             }
         }
         

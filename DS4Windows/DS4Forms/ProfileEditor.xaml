@@ -2127,8 +2127,14 @@
                                 </StackPanel>
                                 <CheckBox Content="{lex:Loc DisableVirtualController}" IsChecked="{Binding DInputOnly}"
                                   ToolTip="{lex:Loc DisableVirtualControllerTip}" />
-                                <CheckBox Content="{lex:Loc ProfileEditor.VirtualTrigButtonOutput}" IsChecked="{Binding VirtualTriggerButtons}"
-                                  Margin="0,8,0,0" />
+                                <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
+                                    <Label Content="{lex:Loc ProfileEditor.VirtualTrigButtonOutput}" Margin="0,0,8,0" />
+                                    <ComboBox ItemsSource="{Binding Path=OutputDS4TriggerModeOptions}"
+                                        DisplayMemberPath="DisplayName" SelectedValuePath="ChoiceValue" SelectedValue="{Binding OutputDS4TriggerMode}" />
+                                </StackPanel>
+                                
+                                <!--<CheckBox Content="{lex:Loc ProfileEditor.VirtualTrigButtonOutput}" IsChecked="{Binding VirtualTriggerButtons}"
+                                  Margin="0,8,0,0" />-->
                             </StackPanel>
                         </GroupBox>
                         <GroupBox Header="{lex:Loc Rumble}" MinHeight="50" Margin="4,4,4,0" Padding="0,4,0,4">

@@ -662,6 +662,30 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         }
         public event EventHandler VirtualTriggerButtonsChanged;
 
+        private List<EnumChoiceSelection<DS4TriggerOutputMode>> outputDS4TriggerModeOptions =
+            new List<EnumChoiceSelection<DS4TriggerOutputMode>>
+            {
+                new EnumChoiceSelection<DS4TriggerOutputMode>("Default (Analog + Buttons)", DS4TriggerOutputMode.Default),
+                new EnumChoiceSelection<DS4TriggerOutputMode>("Analog", DS4TriggerOutputMode.Analog),
+                new EnumChoiceSelection<DS4TriggerOutputMode>("Buttons", DS4TriggerOutputMode.Buttons),
+            };
+
+        public List<EnumChoiceSelection<DS4TriggerOutputMode>> OutputDS4TriggerModeOptions => outputDS4TriggerModeOptions;
+
+        public DS4TriggerOutputMode OutputDS4TriggerMode
+        {
+            get => Global.OutputDS4TriggerMode[device];
+            set
+            {
+                DS4TriggerOutputMode temp = Global.OutputDS4TriggerMode[device];
+                if (temp == value) return;
+
+                Global.OutputDS4TriggerMode[device] = value;
+                OutputDS4TriggerModeChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler OutputDS4TriggerModeChanged;
+
         public bool IdleDisconnectExists
         {
             get => Global.IdleDisconnectTimeout[device] != 0;

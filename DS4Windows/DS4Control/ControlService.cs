@@ -2712,10 +2712,22 @@ namespace DS4Windows
                 if (!useDInputOnly[ind])
                 {
                     // Perform this virtual trigger button check in post
-                    if (OutputVirtualTriggerButton[ind])
+                    if (activeOutDevType[ind] == OutContType.DS4)
                     {
-                        cState.L2Btn = cState.L2 > 0;
-                        cState.R2Btn = cState.R2 > 0;
+                        DS4TriggerOutputMode trigMode = Global.GetOutputDS4TriggerMode(ind);
+                        if (trigMode == DS4TriggerOutputMode.Default)
+                        {
+                            cState.L2Btn = cState.L2 > 0;
+                            cState.R2Btn = cState.R2 > 0;
+                        }
+                        else if (trigMode == DS4TriggerOutputMode.Buttons)
+                        {
+                            cState.L2Btn = cState.L2 > 0;
+                            cState.R2Btn = cState.R2 > 0;
+                            // Disable analog output
+                            cState.L2 = 0;
+                            cState.R2 = 0;
+                        }
                     }
 
                     outputDevices[ind]?.ConvertandSendReport(cState, ind);

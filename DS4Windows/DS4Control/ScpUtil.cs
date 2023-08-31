@@ -94,6 +94,13 @@ namespace DS4Windows
         LogAndNotification,
     }
 
+    public enum DS4TriggerOutputMode : uint
+    {
+        Default,
+        Analog,
+        Buttons,
+    }
+
     public class DS4ControlSettings
     {
         public const int MAX_MACRO_VALUE = 286;
@@ -2381,6 +2388,11 @@ namespace DS4Windows
 
         public static OutContType[] OutContType => m_Config.outputDevType;
         public static bool[] OutputVirtualTriggerButton => m_Config.outputVirtualTriggerButtons;
+        public static DS4TriggerOutputMode[] OutputDS4TriggerMode => m_Config.outputDS4TriggerMode;
+        public static DS4TriggerOutputMode GetOutputDS4TriggerMode(int index)
+        {
+            return m_Config.outputDS4TriggerMode[index];
+        }
 
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
@@ -3477,6 +3489,14 @@ namespace DS4Windows
             DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS, DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS, DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS, DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS,
             DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS, DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS, DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS, DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS,
             DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS,
+        };
+
+        public const DS4TriggerOutputMode DEFAULT_DS4_TRIGGER_OUTPUT = DS4TriggerOutputMode.Default;
+        public DS4TriggerOutputMode[] outputDS4TriggerMode = new DS4TriggerOutputMode[Global.TEST_PROFILE_ITEM_COUNT]
+        {
+            DEFAULT_DS4_TRIGGER_OUTPUT,DEFAULT_DS4_TRIGGER_OUTPUT,DEFAULT_DS4_TRIGGER_OUTPUT,
+            DEFAULT_DS4_TRIGGER_OUTPUT,DEFAULT_DS4_TRIGGER_OUTPUT,DEFAULT_DS4_TRIGGER_OUTPUT,
+            DEFAULT_DS4_TRIGGER_OUTPUT,DEFAULT_DS4_TRIGGER_OUTPUT,DEFAULT_DS4_TRIGGER_OUTPUT,
         };
 
 

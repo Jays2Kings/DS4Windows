@@ -1323,21 +1323,14 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
-        [XmlIgnore]
-        public bool OutputVirtualTriggerButtons
+        [XmlElement("DS4OutputTriggerMode")]
+        public DS4TriggerOutputMode OutputDS4TriggerMode
         {
-            get; private set;
-        } = BackingStore.DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS;
-
-        [XmlElement("OutputVirtualTriggerButtons")]
-        public string OutputVirtualTriggerButtonsString
-        {
-            get => OutputVirtualTriggerButtons.ToString();
-            set => OutputVirtualTriggerButtons = XmlDataUtilities.StrToBool(value);
+            get; set;
         }
-        public bool ShouldSerializeOutputVirtualTriggerButtonsString()
+        public bool ShouldSerializeOutputDS4TriggerMode()
         {
-            return OutputVirtualTriggerButtons != BackingStore.DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS;
+            return OutputDS4TriggerMode != BackingStore.DEFAULT_DS4_TRIGGER_OUTPUT;
         }
 
         [XmlElement("ProfileActions")]
@@ -1709,7 +1702,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             };
 
             OutputContDevice = source.outputDevType[deviceIndex];
-            OutputVirtualTriggerButtons = source.outputVirtualTriggerButtons[deviceIndex];
+            OutputDS4TriggerMode = source.outputDS4TriggerMode[deviceIndex];
 
             ProfileActions = string.Join("/", source.profileActions[deviceIndex]);
             Control = new DS4ControlAssignementSerializer();
@@ -2304,7 +2297,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             };
 
             destination.outputDevType[deviceIndex] = OutputContDevice;
-            destination.outputVirtualTriggerButtons[deviceIndex] = OutputVirtualTriggerButtons;
+            destination.outputDS4TriggerMode[deviceIndex] = OutputDS4TriggerMode;
 
             if (!string.IsNullOrEmpty(ProfileActions))
             {

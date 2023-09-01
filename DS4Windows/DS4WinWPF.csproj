@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -79,7 +79,7 @@
     <!--<PackageReference Include="Nefarius.Utilities.DeviceManagement" Version="3.2.184" />-->
     <!--<PackageReference Include="Nefarius.ViGEm.Client" Version="1.21.230" />-->
     <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
-    <PackageReference Include="System.Management" Version="7.0.0" />
+    <PackageReference Include="System.Management" Version="7.0.2" />
     <PackageReference Include="TaskScheduler" Version="2.10.1" />
     <PackageReference Include="WPFLocalizeExtension" Version="3.9.4" />
     <PackageReference Include="WpfScreenHelper" Version="2.1.0" />

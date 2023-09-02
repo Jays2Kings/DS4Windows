@@ -1,9 +1,35 @@
 {
-  "latest_version": "3.2.13",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 13},
-  "updated_at": "2023-07-24T15:42:16+0000",
+  "latest_version": "3.2.14",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 14},
+  "updated_at": "2023-09-02T19:12:26+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.2.14",
+      "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 14},
+      "base_header": "Version 3.2.14",
+      "release_date": "2023-09-02T19:12:26+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.2.14",
+          "log_text": ["* Removed social accounts from app",
+            "* Added style resource for first launch window",
+            "* Check for inverse application cloak HidHide setting. Skip checking HidHide whitelist if option is enabled",
+            "* Allow DS4 output to not report virtual trigger button state",
+            "* Added small exception handling for single app instance check",
+            "* Updated Nefarius.ViGEm.Client.dll files with fixed userdata args for adding notification callback",
+            "* Display Windows error code for unknown ViGEmFailure in the Log",
+            "* Added Greek translation. Contribution by **trlef19**",
+            "* Added Indonesia translation. Contribution by **Adamsw72**",
+            "* Added extra user documentation to repo. Edited README.md. Contribution by **Oliver-Noah**",
+            "* Expose secondary joined JoyCon SideL and SideR buttons in mapper. Use DS FnL and FnR codes",
+            "* Allow DS4 trigger button output only",
+            "* Allow virtual DS4 trigger behavior combobox strings to be translatable"],
+          "updated_at": "2023-09-02T19:12:26+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.2.13",
       "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 13},

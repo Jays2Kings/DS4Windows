@@ -117,6 +117,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             switch (currentStore.DeviceType)
             {
                 case DS4Windows.InputDevices.InputDeviceType.DS3:
+                    result = 0;
+                    break;
                 case DS4Windows.InputDevices.InputDeviceType.DS4:
                     result = 1;
                     break;
@@ -131,6 +133,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                     result = 4;
                     break;
                 default:
+                    // Default to empty control
+                    result = 0;
                     break;
             }
 
@@ -145,6 +149,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             switch (currentStore.DeviceType)
             {
                 case DS4Windows.InputDevices.InputDeviceType.DS3:
+                    // Does not have device specific options
+                    break;
                 case DS4Windows.InputDevices.InputDeviceType.DS4:
                     dataContextObject = new DS4ControllerOptionsWrapper(CurrentDS4Options, serviceDeviceOpts.DS4DeviceOpts);
                     break;

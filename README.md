@@ -40,16 +40,6 @@ Note: The Website Is No Longer Working
 
 The Installation and Setup Guide can be found here: https://docs.ds4windows.app/guides/install-setup/
 
-## Personal Game Testing
-
-My PC game library is not that expansive so there are likely games
-that will be tested by users that I will not have access to
-play. There are likely going to be times when I cannot directly test
-against a game since I will not have access to play it. Most free to play
-games or games that include a playable demo should be fine for testing.
-For other games, it might be better if people could test against any game
-that I have in my library and try to reproduce a problem.
-
 ## Tip Jar
 
 If you would like to send some coin my way, here are some means by

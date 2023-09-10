@@ -231,8 +231,8 @@ namespace DS4Windows
                     VidPidInfo metainfo = knownDevices.Single(x => x.vid == hDevice.Attributes.VendorId &&
                         x.pid == hDevice.Attributes.ProductId);
 
-                    if (!metainfo.featureSet.HasFlag(VidPidFeatureSet.VendorDefinedDevice) && hDevice.Description == "HID-compliant vendor-defined device")
-                        continue; // ignore the Nacon Revolution Pro programming interface
+                    if (!metainfo.featureSet.HasFlag(VidPidFeatureSet.VendorDefinedDevice) && hDevice.Capabilities.UsagePage >= 0xFF00)
+                        continue; // Ignore devices using Vendor-Defined HID Usage Pages (expected to ignore the Nacon Revolution Pro programming interface)
                     else if (DevicePaths.Contains(hDevice.DevicePath))
                         continue; // BT/USB endpoint already open once
 

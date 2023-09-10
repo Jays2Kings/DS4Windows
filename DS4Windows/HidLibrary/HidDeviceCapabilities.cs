@@ -2,10 +2,12 @@
 {
     public class HidDeviceCapabilities
     {
+        private ushort usagePage;
+
         internal HidDeviceCapabilities(NativeMethods.HIDP_CAPS capabilities)
         {
             Usage = capabilities.Usage;
-            UsagePage = capabilities.UsagePage;
+            usagePage = capabilities.UsagePage;
             InputReportByteLength = capabilities.InputReportByteLength;
             OutputReportByteLength = capabilities.OutputReportByteLength;
             FeatureReportByteLength = capabilities.FeatureReportByteLength;
@@ -24,7 +26,7 @@
         }
 
         public ushort Usage { get; private set; }
-        public ushort UsagePage { get; private set; }
+        public ushort UsagePage { get => usagePage; private set => usagePage = value; }
         public short InputReportByteLength { get; private set; }
         public short OutputReportByteLength { get; private set; }
         public short FeatureReportByteLength { get; private set; }

@@ -197,12 +197,23 @@ namespace DS4Windows
             }
         }
 
-        public static void StartProcessHelper(string path)
+        /// <summary>
+        /// Use admin check to determine if process can be launched normally (normal user)
+        /// or launched through Windows Explorer to de-elevate a process
+        /// </summary>
+        /// <param name="path">Program path or URL</param>
+        /// <param name="argument">Extra arguments to pass to the launching program</param>
+        public static void StartProcessHelper(string path, string arguments = null)
         {
             if (!Global.IsAdministrator())
             {
                 ProcessStartInfo startInfo = new ProcessStartInfo(path);
                 startInfo.UseShellExecute = true;
+                if (!string.IsNullOrEmpty(arguments))
+                {
+                    startInfo.Arguments = arguments;
+                }
+
                 try
                 {
                     using (Process temp = Process.Start(startInfo))
@@ -213,7 +224,7 @@ namespace DS4Windows
             }
             else
             {
-                StartProcessInExplorer(path);
+                StartProcessInExplorer(path, arguments);
             }
         }
 
@@ -222,13 +233,22 @@ namespace DS4Windows
         /// as under the Admin account
         /// </summary>
         /// <param name="path">Program path or URL</param>
-        public static void StartProcessInExplorer(string path)
+        /// <param name="argument">Extra arguments to pass to the launching program</param>
+        public static void StartProcessInExplorer(string path, string arguments = null)
         {
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = "explorer.exe";
             // Need to place Path/URL in double quotes to allow equals sign to not be
             // interpreted as a delimiter
-            startInfo.Arguments = $"\"{path}\"";
+            if (string.IsNullOrEmpty(arguments))
+            {
+                startInfo.Arguments = $"\"{path}\"";
+            }
+            else
+            {
+                startInfo.Arguments = $"\"{path}\" \"{arguments}\"";
+            }
+
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
             startInfo.UseShellExecute = true;
             try

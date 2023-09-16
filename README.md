@@ -36,16 +36,12 @@ Note: The Website Is No Longer Working
 - Disable **PlayStation Configuration Support** and
 **Xbox Configuration Support** options in Steam
 
-## Installation Tutorial
-
-The Installation and Setup Guide can be found here: https://docs.ds4windows.app/guides/install-setup/
-
 ## Tip Jar
 
 If you would like to send some coin my way, here are some means by
 which to do so.
 
-**Buy Me A Coffee:** https://buymeacoffee.com/ryochan7
+**Buy Me A Coffee:** https://buymeacoffee.com/ryochan7  
 **PayPal:** https://paypal.me/ryochan7  
 **Cash App:** https://cash.app/$ryochan7  
 **SubscribeStar:** https://subscribestar.com/ryochan7

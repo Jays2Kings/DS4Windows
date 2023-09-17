@@ -14,7 +14,6 @@ using static DS4Windows.Global;
 using DS4WinWPF.DS4Control;
 using DS4Windows.DS4Control;
 using Nefarius.ViGEm.Client.Targets.DualShock4;
-using Nefarius.Utilities.DeviceManagement.PnP;
 using static DS4Windows.Util;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
@@ -732,7 +731,7 @@ namespace DS4Windows
             bool result = false;
             if (dev != null && hidDeviceHidingEnabled)
             {
-                string deviceInstanceId = PnPDevice.GetInstanceIdFromInterfaceId(dev.HidDevice.DevicePath);
+                string deviceInstanceId = Global.GetInstanceIdFromDevicePath(dev.HidDevice.DevicePath);
                 if (Global.hidHideInstalled)
                 {
                     result = Global.CheckHidHideAffectedStatus(deviceInstanceId,

@@ -96,11 +96,6 @@ namespace DS4WinWPF.DS4Forms
             Util.StartProcessHelper("https://github.com/shauleiz/vJoy/tree/master/apps/common/vJoyInterfaceCS");
         }
 
-        private void DeviceManagementLink_Click(object sender, RoutedEventArgs e)
-        {
-            Util.StartProcessHelper("https://github.com/nefarius/Nefarius.Utilities.DeviceManagement");
-        }
-
         private void BuyCoffeeLink_Click(object sender, RoutedEventArgs e)
         {
             Util.StartProcessHelper("https://buymeacoffee.com/ryochan7");

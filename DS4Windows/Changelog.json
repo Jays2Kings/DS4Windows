@@ -1,9 +1,29 @@
 {
-  "latest_version": "3.2.14",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 14},
-  "updated_at": "2023-09-02T19:12:26+0000",
+  "latest_version": "3.2.15",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 15},
+  "updated_at": "2023-09-23T17:53:59+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.2.15",
+      "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 15},
+      "base_header": "Version 3.2.15",
+      "release_date": "2023-09-23T17:53:59+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.2.15",
+          "log_text": ["* Show blank panel for DS3 in registration window",
+            "* Check for vendor-defined HID devices based on HID Capabilities instead of description. Contribution by **Kanuan**",
+            "* Changed props in HidDeviceCapabilities class to be full properties",
+            "* Changed HidDeviceAttributes class to use full properties",
+            "* Changed auto props in HidDevice to use full properties",
+            "* Have Launch Program Special Action try to de-elevate when launching a program",
+            "* Removed Nefarius.Utilities.DeviceManagement AnyCPU library dependency. Do virtual device check in program code instead"],
+          "updated_at": "2023-09-23T17:53:59+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.2.14",
       "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 14},

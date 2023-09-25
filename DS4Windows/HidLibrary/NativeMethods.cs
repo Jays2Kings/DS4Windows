@@ -110,7 +110,9 @@ namespace DS4Windows
         internal const int DEVICE_NOTIFY_SERVICE_HANDLE = 1;
         internal const int DEVICE_NOTIFY_WINDOW_HANDLE = 0;
         internal const int WM_DEVICECHANGE = 0x219;
+        internal const short DIGCF_DEFAULT = 0x1;
         internal const short DIGCF_PRESENT = 0x2;
+        internal const short DIGCF_PROFILE = 0x8;
         internal const short DIGCF_DEVICEINTERFACE = 0x10;
         internal const int DIGCF_ALLCLASSES = 0x4;
         internal const int DICS_ENABLE = 1;

@@ -340,7 +340,13 @@ namespace DS4Windows
         internal static extern int SetupDiCreateDeviceInfoList(ref Guid classGuid, int hwndParent);
 
         [DllImport("setupapi.dll")]
+        internal static extern IntPtr SetupDiCreateDeviceInfoList(IntPtr guid, int hwndParent);
+
+        [DllImport("setupapi.dll")]
         static internal extern int SetupDiDestroyDeviceInfoList(IntPtr deviceInfoSet);
+
+        [DllImport("setupapi.dll")]
+        internal static extern bool SetupDiOpenDeviceInfo(IntPtr deviceInfoSet, string deviceInstanceId, IntPtr parent, uint flags, ref SP_DEVINFO_DATA deviceInfoData);
 
         [DllImport("setupapi.dll")]
         static internal extern bool SetupDiEnumDeviceInterfaces(IntPtr deviceInfoSet, ref SP_DEVINFO_DATA deviceInfoData, ref Guid interfaceClassGuid, int memberIndex, ref SP_DEVICE_INTERFACE_DATA deviceInterfaceData);

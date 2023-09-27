@@ -1,9 +1,23 @@
 {
-  "latest_version": "3.2.15",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 15},
-  "updated_at": "2023-09-23T17:53:59+0000",
+  "latest_version": "3.2.16",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 16},
+  "updated_at": "2023-09-27T20:14:36+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.2.16",
+      "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 16},
+      "base_header": "Version 3.2.16",
+      "release_date": "2023-09-27T20:14:36+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.2.16",
+          "log_text": ["* Change SetupAPI calls used to grab device information. Needed for fake USB DS4 device"],
+          "updated_at": "2023-09-27T20:14:36+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.2.15",
       "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 15},

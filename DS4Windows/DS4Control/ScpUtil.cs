@@ -1092,7 +1092,7 @@ namespace DS4Windows
         }
 
         internal static string GetStringDeviceProperty(string deviceInstanceId,
-            NativeMethods.DEVPROPKEY prop, int extraFlags = NativeMethods.DIGCF_PRESENT)
+            NativeMethods.DEVPROPKEY prop)
         {
             string result = string.Empty;
             NativeMethods.SP_DEVINFO_DATA deviceInfoData = new NativeMethods.SP_DEVINFO_DATA();
@@ -1237,7 +1237,7 @@ namespace DS4Windows
         }
 
         internal static string[] GetStringArrayDeviceProperty(string deviceInstanceId,
-            NativeMethods.DEVPROPKEY prop, int extraFlags = NativeMethods.DIGCF_PRESENT)
+            NativeMethods.DEVPROPKEY prop)
         {
             string[] result = null;
             NativeMethods.SP_DEVINFO_DATA deviceInfoData = new NativeMethods.SP_DEVINFO_DATA();
@@ -1299,8 +1299,7 @@ namespace DS4Windows
                 }
 
                 // Check for potential non-present device as well
-                string parentInstanceId = GetStringDeviceProperty(testInstanceId, NativeMethods.DEVPKEY_Device_Parent,
-                    NativeMethods.DIGCF_PRESENT | NativeMethods.DIGCF_PROFILE);
+                string parentInstanceId = GetStringDeviceProperty(testInstanceId, NativeMethods.DEVPKEY_Device_Parent);
 
                 // Found root enumerator. Use instanceId of device one layer lower in final check
                 if (parentInstanceId.Equals(@"HTREE\ROOT\0", StringComparison.OrdinalIgnoreCase))

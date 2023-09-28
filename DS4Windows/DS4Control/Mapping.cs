@@ -3988,12 +3988,23 @@ namespace DS4Windows
                                         else
                                         {
                                             // No special process modifiers (ie. $hidden wnd keyword). Launch the child process using the default WinOS settings
-                                            Util.StartProcessHelper(action.details, action.extra);
+                                            using (Process temp = new Process())
+                                            {
+                                                temp.StartInfo.FileName = action.details;
+                                                temp.StartInfo.Arguments = action.extra;
+                                                temp.StartInfo.UseShellExecute = true;
+                                                temp.Start();
+                                            }
                                         }
                                     }
                                     else
                                     {
-                                        Util.StartProcessHelper(action.details);
+                                        using (Process temp = new Process())
+                                        {
+                                            temp.StartInfo.FileName = action.details;
+                                            temp.StartInfo.UseShellExecute = true;
+                                            temp.Start();
+                                        }
                                     }
                                 }
                             }

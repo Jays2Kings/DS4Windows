@@ -21,21 +21,6 @@ namespace DS4WinWPF.DS4Forms
             Util.StartProcessHelper("https://docs.google.com/document/d/1CovpH08fbPSXrC6TmEprzgPwCe0tTjQ_HTFfDotpmxk/edit?usp=sharing");
         }
 
-        private void PaypalLink_Click(object sender, RoutedEventArgs e)
-        {
-            Util.StartProcessHelper("https://paypal.me/ryochan7");
-        }
-
-        private void PatreonLink_Click(object sender, RoutedEventArgs e)
-        {
-            Util.StartProcessHelper("https://patreon.com/user?u=501036");
-        }
-
-        private void SubscribeStartLink_Click(object sender, RoutedEventArgs e)
-        {
-            Util.StartProcessHelper("https://subscribestar.com/ryochan7");
-        }
-
         private void SiteLink_Click(object sender, RoutedEventArgs e)
         {
             Util.StartProcessHelper("https://ryochan7.github.io/ds4windows-site/");
@@ -94,16 +79,6 @@ namespace DS4WinWPF.DS4Forms
         private void VJoyInterfaceLink_Click(object sender, RoutedEventArgs e)
         {
             Util.StartProcessHelper("https://github.com/shauleiz/vJoy/tree/master/apps/common/vJoyInterfaceCS");
-        }
-
-        private void BuyCoffeeLink_Click(object sender, RoutedEventArgs e)
-        {
-            Util.StartProcessHelper("https://buymeacoffee.com/ryochan7");
-        }
-
-        private void CashAppLink_Click(object sender, RoutedEventArgs e)
-        {
-            Util.StartProcessHelper("https://cash.app/$ryochan7");
         }
     }
 }

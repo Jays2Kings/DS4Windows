@@ -35,19 +35,3 @@ Note: The Website Is No Longer Working
   *Disabling 'Enable output data' in the controller profile settings might help with latency issues, but will disable lightbar and rumble support.*
 - Disable **PlayStation Configuration Support** and
 **Xbox Configuration Support** options in Steam
-
-## Tip Jar
-
-If you would like to send some coin my way, here are some means by
-which to do so.
-
-**Buy Me A Coffee:** https://buymeacoffee.com/ryochan7  
-**PayPal:** https://paypal.me/ryochan7  
-**Cash App:** https://cash.app/$ryochan7  
-**SubscribeStar:** https://subscribestar.com/ryochan7
-
-### Crypto
-
-**Bitcoin:** 1DnMJwjdd7JRfHJap2mmTmADYm38SzR2z9  
-**Litecoin:** La5mniW7SFMH2RhqDgUty3RwkBSYbjbnJ6  
-**Monero:** 49RvRMiMewaeez1Y2auxHmfMaAUYfhUpBem4ohzRJd9b5acPcxzh1icjnhZfjnYd1S7NQ57reQ7cP1swGre3rpfzUgJhEB7

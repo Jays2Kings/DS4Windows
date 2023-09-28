@@ -144,7 +144,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         public void RemoveAction(SpecialActionItem item)
         {
             Global.RemoveAction(item.SpecialAction.name);
-            actionCol.RemoveAt(specialActionIndex);
+            int itemIndex = item.Index;
+            actionCol.RemoveAt(itemIndex);
             Global.ProfileActions[deviceNum].Remove(item.SpecialAction.name);
             Global.CacheExtraProfileInfo(deviceNum);
         }

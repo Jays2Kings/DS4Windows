@@ -978,6 +978,7 @@ namespace DS4Windows
         protected const int BT_INPUT_REPORT_CRC32_POS = 74; //last 4 bytes of the 78-sized input report are crc32
         public const uint DefaultPolynomial = 0xedb88320u;
         private const int CRC32_NUM_ATTEMPTS = 10;
+        private const int SONYWA_FEATURE_REPORT_LENGTH = 64;
         protected uint HamSeed = 2351727372;
 
         protected unsafe void performDs4Input()
@@ -1765,10 +1766,10 @@ namespace DS4Windows
         public virtual bool DisconnectDongle(bool remove = false)
         {
             bool result = false;
-            byte[] disconnectReport = new byte[65];
+            byte[] disconnectReport = new byte[SONYWA_FEATURE_REPORT_LENGTH];
             disconnectReport[0] = 0xe2;
             disconnectReport[1] = 0x02;
-            Array.Clear(disconnectReport, 2, 63);
+            Array.Clear(disconnectReport, 2, SONYWA_FEATURE_REPORT_LENGTH-2);
 
             if (remove)
                 StopOutputUpdate();

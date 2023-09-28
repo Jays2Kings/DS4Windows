@@ -1789,7 +1789,8 @@ namespace DS4Windows
                             }
                             else if (tempDevice.getConnectionType() == ConnectionType.SONYWA)
                             {
-                                tempDevice.StopUpdate();
+                                // Controller disconnect will complete on next attempted read.
+                                // Do not use StopUpdate here
                                 tempDevice.DisconnectDongle(true);
                             }
                             else

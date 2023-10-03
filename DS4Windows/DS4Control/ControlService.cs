@@ -1066,8 +1066,8 @@ namespace DS4Windows
                 Xbox360OutDevice tempXbox = outDevice as Xbox360OutDevice;
                 Nefarius.ViGEm.Client.Targets.Xbox360FeedbackReceivedEventHandler p = (sender, args) =>
                 {
-                    //Console.WriteLine("Rumble ({0}, {1}) {2}",
-                    //    args.LargeMotor, args.SmallMotor, DateTime.Now.ToString("hh:mm:ss.FFFF"));
+                    //Trace.WriteLine(string.Format("Rumble ({0}, {1}) {2}",
+                    //    args.LargeMotor, args.SmallMotor, DateTime.Now.ToString("hh:mm:ss.FFFF")));
                     SetDevRumble(device, args.LargeMotor, args.SmallMotor, devIndex);
                 };
                 tempXbox.cont.FeedbackReceived += p;

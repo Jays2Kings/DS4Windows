@@ -332,6 +332,9 @@
     <EmbeddedResource Update="Translations\Strings.se.resx">
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.tr.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Update="Translations\Strings.uk-UA.resx">
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>

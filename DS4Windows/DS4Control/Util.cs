@@ -346,7 +346,7 @@ namespace DS4Windows
         {
             string result = string.Empty;
             string installLocation =
-                Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{48DD38C8-443E-4474-A249-AB32389E08F6}", "InstallLocation", "").ToString();
+                Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{48DD38C8-443E-4474-A249-AB32389E08F6}", "InstallLocation", "")?.ToString() ?? string.Empty;
             if (!string.IsNullOrEmpty(installLocation))
             {
                 string[] testPaths = new string[]

@@ -1847,6 +1847,8 @@
                                                     <MenuItem Header="Right" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                                     <MenuItem Header="L3" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                                     <MenuItem Header="R3" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                                    <MenuItem Header="Side L" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                                    <MenuItem Header="Side R" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                                     <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                                     <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                                     <MenuItem Header="Options" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />

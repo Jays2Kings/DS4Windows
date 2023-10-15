@@ -1048,7 +1048,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public JoyConDeviceOptions.LinkMode LinkMode
         {
             get; set;
-        }
+        } = JoyConDeviceOptions.LinkMode.Joined;
 
         public JoyConDeviceOptions.JoinedGyroProvider JoinedGyroProvider
         {

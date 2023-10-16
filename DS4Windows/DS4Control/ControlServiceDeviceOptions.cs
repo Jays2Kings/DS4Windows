@@ -426,7 +426,8 @@ namespace DS4Windows
             Joined,
         }
 
-        private LinkMode linkedMode = LinkMode.Joined;
+        public const LinkMode LINK_MODE_DEFAULT = LinkMode.Joined;
+        private LinkMode linkedMode = LINK_MODE_DEFAULT;
         public LinkMode LinkedMode
         {
             get => linkedMode;

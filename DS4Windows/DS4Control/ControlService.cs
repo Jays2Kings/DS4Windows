@@ -653,6 +653,18 @@ namespace DS4Windows
 
                     int maxPathCheckLength = 512;
                     StringBuilder sb = new StringBuilder(maxPathCheckLength);
+
+                    DirectoryInfo dirInfo = new DirectoryInfo(Path.GetDirectoryName(ExePath));
+                    // Check if exe is placed in a junction symlink directory (done with Scoop).
+                    // Good enough
+                    if (dirInfo.Attributes.HasFlag(FileAttributes.ReparsePoint) &&
+                        dirInfo.LinkTarget != null)
+                    {
+                        // App directory is a junction. Find real directory and get proper path
+                        // for inserting into HidHide
+                        ExePath = Path.Combine(dirInfo.LinkTarget, Path.GetFileName(ExePath));
+                    }
+
                     string driveLetter = Path.GetPathRoot(ExePath).Replace("\\", "");
                     uint _ = NativeMethods.QueryDosDevice(driveLetter, sb, maxPathCheckLength);
                     //int error = Marshal.GetLastWin32Error();

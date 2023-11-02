@@ -1,9 +1,28 @@
 {
-  "latest_version": "3.2.17",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 17},
-  "updated_at": "2023-09-30T19:58:19+0000",
+  "latest_version": "3.2.18",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 18},
+  "updated_at": "2023-10-29T17:24:35+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.2.18",
+      "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 18},
+      "base_header": "Version 3.2.18",
+      "release_date": "2023-10-29T17:24:35+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.2.18",
+          "log_text": ["* Fixed HidHide registry check when key does not exist",
+            "* Fixed Gyro Mouse Joystick trigger indexes for some triggers. DualSense Edge triggers in particular",
+            "* Updated SharpOSC libraries",
+            "* Fixed default app setting for JoyCon LinkMode option",
+            "* Added Turkish translation. Contribution by **onuralpyilkin**",
+            "* Changed helpURL for SendInput warning message"],
+          "updated_at": "2023-10-29T17:24:35+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.2.17",
       "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 17},

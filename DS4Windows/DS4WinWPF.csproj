@@ -15,9 +15,9 @@
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <EnableNETAnalyzers>false</EnableNETAnalyzers>
     <ServerGarbageCollection>true</ServerGarbageCollection>
-    <AssemblyVersion>3.2.17</AssemblyVersion>
-    <FileVersion>3.2.17</FileVersion>
-    <Version>3.2.17</Version>
+    <AssemblyVersion>3.2.18</AssemblyVersion>
+    <FileVersion>3.2.18</FileVersion>
+    <Version>3.2.18</Version>
     <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
     <Copyright>Copyright © Scarlet.Crush Productions 2012, 2013; InhexSTER, HecticSeptic, electrobrains 2013, 2014; Jays2Kings 2013, 2014, 2015, 2016; Ryochan7 2017-2023</Copyright>
@@ -332,6 +332,9 @@
     <EmbeddedResource Update="Translations\Strings.se.resx">
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Update="Translations\Strings.tr.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Update="Translations\Strings.uk-UA.resx">
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
@@ -365,6 +368,6 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="rem Copy compiled l18n assemblies to alt folder&#xD;&#xA;GOTO END&#xD;&#xA;if not exist $(TargetDir)Lang mkdir $(TargetDir)Lang&#xD;&#xA;set langs=ar cs de el es fi fr he hu-HU idn it ja nl pl pt pt-BR ru se uk-UA vi zh-Hans zh-Hant&#xD;&#xA;&#xD;&#xA;for %25%25l in (%25langs%25) do (&#xD;&#xA;  xcopy $(TargetDir)%25%25l $(TargetDir)Lang\%25%25l\ /s /y&#xD;&#xA;)&#xD;&#xA;&#xD;&#xA;echo $(Version)&gt; $(ProjectDir)\newest.txt&#xD;&#xA;&#xD;&#xA;:END&#xD;&#xA;" />
+    <Exec Command="rem Copy compiled l18n assemblies to alt folder&#xD;&#xA;GOTO END&#xD;&#xA;if not exist $(TargetDir)Lang mkdir $(TargetDir)Lang&#xD;&#xA;set langs=ar cs de el es fi fr he hu-HU idn it ja nl pl pt pt-BR ru se tr uk-UA vi zh-Hans zh-Hant&#xD;&#xA;&#xD;&#xA;for %25%25l in (%25langs%25) do (&#xD;&#xA;  xcopy $(TargetDir)%25%25l $(TargetDir)Lang\%25%25l\ /s /y&#xD;&#xA;)&#xD;&#xA;&#xD;&#xA;echo $(Version)&gt; $(ProjectDir)\newest.txt&#xD;&#xA;&#xD;&#xA;:END&#xD;&#xA;" />
   </Target>
 </Project>

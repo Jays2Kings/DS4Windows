@@ -653,6 +653,18 @@ namespace DS4Windows
 
                     int maxPathCheckLength = 512;
                     StringBuilder sb = new StringBuilder(maxPathCheckLength);
+
+                    DirectoryInfo dirInfo = new DirectoryInfo(Path.GetDirectoryName(ExePath));
+                    // Check if exe is placed in a junction symlink directory (done with Scoop).
+                    // Good enough
+                    if (dirInfo.Attributes.HasFlag(FileAttributes.ReparsePoint) &&
+                        dirInfo.LinkTarget != null)
+                    {
+                        // App directory is a junction. Find real directory and get proper path
+                        // for inserting into HidHide
+                        ExePath = Path.Combine(dirInfo.LinkTarget, Path.GetFileName(ExePath));
+                    }
+
                     string driveLetter = Path.GetPathRoot(ExePath).Replace("\\", "");
                     uint _ = NativeMethods.QueryDosDevice(driveLetter, sb, maxPathCheckLength);
                     //int error = Marshal.GetLastWin32Error();
@@ -1545,7 +1557,7 @@ namespace DS4Windows
                 bool runningAsAdmin = Global.IsAdministrator();
                 if (Global.outputKBMHandler.GetIdentifier() != FakerInputHandler.IDENTIFIER && !runningAsAdmin)
                 {
-                    string helpURL = @"https://docs.ds4windows.app/troubleshooting/kb-mouse-issues/#windows-not-responding-to-ds4ws-kb-m-commands-in-some-situations";
+                    string helpURL = @"https://ryochan7.github.io/ds4windows-site/troubleshooting/kb-mouse-issues/#windows-not-responding-to-ds4ws-kb-m-commands-in-some-situations";
                     LogDebug($"Some applications may block controller inputs. (Windows UAC Conflictions). Please go to {helpURL} for more information and workarounds.");
                 }
 

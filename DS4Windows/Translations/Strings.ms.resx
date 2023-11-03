@@ -1,0 +1,811 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Accel" xml:space="preserve">
+    <value>Pecutan</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Tindakan</value>
+  </data>
+  <data name="AddDirectory" xml:space="preserve">
+    <value>Tambah Direktori</value>
+  </data>
+  <data name="AddPrograms" xml:space="preserve">
+    <value>Tambah Program</value>
+  </data>
+  <data name="AddStartMenuPrograms" xml:space="preserve">
+    <value>Tambah Program Menu Mula</value>
+  </data>
+  <data name="AddSteamGames" xml:space="preserve">
+    <value>Tambah Permainan Steam</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Semua</value>
+  </data>
+  <data name="AutoProfiles" xml:space="preserve">
+    <value>Profil Automatik</value>
+  </data>
+  <data name="Battery" xml:space="preserve">
+    <value>Bateri</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Semak Imbas</value>
+  </data>
+  <data name="BrowseOtherPrograms" xml:space="preserve">
+    <value>Semak Imbas Program Lain</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Batal</value>
+  </data>
+  <data name="CheckUpdateNow" xml:space="preserve">
+    <value>Periksa Kemaskini Sekarang</value>
+  </data>
+  <data name="CheckUpdateStartup" xml:space="preserve">
+    <value>Semak Kemas Kini Pada Permulaan DS4Windows</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Bersihkan</value>
+  </data>
+  <data name="CloseMinimizes" xml:space="preserve">
+    <value>Tutup Meminimumkan</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Warna</value>
+  </data>
+  <data name="Controller1Text" xml:space="preserve">
+    <value>Alat Kawalan 1</value>
+  </data>
+  <data name="Controller2Text" xml:space="preserve">
+    <value>Alat Kawalan 2</value>
+  </data>
+  <data name="Controller3Text" xml:space="preserve">
+    <value>Alat Kawalan 3</value>
+  </data>
+  <data name="Controller4Text" xml:space="preserve">
+    <value>Alat Kawalan 4</value>
+  </data>
+  <data name="Controllers" xml:space="preserve">
+    <value>Alat Kawalan</value>
+  </data>
+  <data name="ControlPanel" xml:space="preserve">
+    <value>Panel Kawalan</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Padam</value>
+  </data>
+  <data name="DriverSetup" xml:space="preserve">
+    <value>Pasang Alat Kawalan/Pemacu</value>
+  </data>
+  <data name="Duplicate" xml:space="preserve">
+    <value>Pendua</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Sunting</value>
+  </data>
+  <data name="EditAction" xml:space="preserve">
+    <value>Sunting Tindakan</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Eksport</value>
+  </data>
+  <data name="Full" xml:space="preserve">
+    <value>Penuh</value>
+  </data>
+  <data name="Gyro" xml:space="preserve">
+    <value>Giro</value>
+  </data>
+  <data name="HideUnchecked" xml:space="preserve">
+    <value>Sembunyikan Yang Tidak ditanda</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="LeftStick" xml:space="preserve">
+    <value>Kayu(stick) kiri</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nama</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Baharu</value>
+  </data>
+  <data name="NewAction" xml:space="preserve">
+    <value>Tindakan Baharu</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Profil Baharu</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Tiada</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Laluan</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="ProfileFolder" xml:space="preserve">
+    <value>Folder Profil</value>
+  </data>
+  <data name="QuickCharge" xml:space="preserve">
+    <value>Cas Pantas</value>
+  </data>
+  <data name="RecordText" xml:space="preserve">
+    <value>Rekod Teks</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Buang</value>
+  </data>
+  <data name="RemoveAction" xml:space="preserve">
+    <value>Buang Tindakan</value>
+  </data>
+  <data name="RightStick" xml:space="preserve">
+    <value>Kayu(stick) Kanan</value>
+  </data>
+  <data name="Rumble" xml:space="preserve">
+    <value>Getaran</value>
+  </data>
+  <data name="RunAtStartup" xml:space="preserve">
+    <value>Dijalankan Pada Permulaan Sistem</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Simpan</value>
+  </data>
+  <data name="SaveProfile" xml:space="preserve">
+    <value>Simpan Profil</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Tetapan</value>
+  </data>
+  <data name="ShowNotifications" xml:space="preserve">
+    <value>Tunjuk Pemberitahuan</value>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>Mula Diminimumkan</value>
+  </data>
+  <data name="StartText" xml:space="preserve">
+    <value>Mula</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="StopText" xml:space="preserve">
+    <value>Berhenti</value>
+  </data>
+  <data name="TouchScroll" xml:space="preserve">
+    <value>Tatal</value>
+  </data>
+  <data name="TouchSlide" xml:space="preserve">
+    <value>Slaid</value>
+  </data>
+  <data name="TouchTap" xml:space="preserve">
+    <value>Ketik</value>
+  </data>
+  <data name="Trigger" xml:space="preserve">
+    <value>Picu</value>
+  </data>
+  <data name="WarningsOnly" xml:space="preserve">
+    <value>Amaran Sahaja</value>
+  </data>
+  <data name="RumbleMaxSecs" xml:space="preserve">
+    <value>Saat</value>
+  </data>
+  <data name="RumbleMaxSecsTip" xml:space="preserve">
+    <value>Auto berhenti derum dalam beberapa saat(0=auto berhenti dilumpuhkan)</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Tajuk Tetingkap</value>
+  </data>
+  <data name="MoveUp" xml:space="preserve">
+    <value>Bergerak keatas</value>
+  </data>
+  <data name="MoveDown" xml:space="preserve">
+    <value>Bergerak kebawah</value>
+  </data>
+  <data name="AutoProfPathTip" xml:space="preserve">
+    <value>Laluan proses. ^ABC = Padankan pada permulaan rentetan (^) | ABC$ = Padankan di hujung rentetan ($) | *ABC = Mengandungi rentetan (*)</value>
+  </data>
+  <data name="AutoProfTitleTip" xml:space="preserve">
+    <value>Tajuk tetingkap. ^ABC = Padankan pada permulaan rentetan (^) | ABC$ = Padankan di hujung rentetan ($) | *ABC = Mengandungi rentetan (*)</value>
+  </data>
+  <data name="GamepadTest" xml:space="preserve">
+    <value>Ujian Pad Permainan</value>
+  </data>
+  <data name="EnableOutputDataToDS4" xml:space="preserve">
+    <value>Dayakan data Output kepada DS4</value>
+  </data>
+  <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
+    <value>Keluarkan bar cahaya dan data derum secara berkala ke pad permainan DS4. Nyahtanda jika pad permainan tidak menyokong penerimaan data.
+Perubahan pada pilihan ini berkuat kuasa pada masa sambungan pad permainan.</value>
+    <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Terap</value>
+  </data>
+  <data name="HidNinja" xml:space="preserve">
+    <value>HidNinja</value>
+  </data>
+  <data name="CustomExeName" xml:space="preserve">
+    <value>Nama boleh laku tersuai</value>
+  </data>
+  <data name="CustomExeNameInfo" xml:space="preserve">
+    <value>Sesetengah permainan melaksanakan sekatan yang menyebabkan input DS4 diabaikan jika permainan mengesan sama ada 'DS4Windows.exe' atau 'InputMapper.exe' berjalan pada masa itu. Penyelesaian kepada sekatan itu ialah menamakan semula 'DS4Windows.exe' supaya semakan dalam permainan gagal. Menentukan nama exe tersuai di sini membolehkan DS4Updater mengemas kini salinan tersuai DS4Windows secara automatik kepada nama fail yang dikehendaki. Pastikan anda meninggalkan sambungan.
+
+Contoh: whyme_DS4Windows</value>
+  </data>
+  <data name="XInputChecker" xml:space="preserve">
+    <value>XInputChecker</value>
+  </data>
+  <data name="Controller5Text" xml:space="preserve">
+    <value>Alat Kawalan 5</value>
+  </data>
+  <data name="Controller6Text" xml:space="preserve">
+    <value>Alat Kawalan 6</value>
+  </data>
+  <data name="Controller7Text" xml:space="preserve">
+    <value>Alat Kawalan 7</value>
+  </data>
+  <data name="Controller8Text" xml:space="preserve">
+    <value>Alat Kawalan 8</value>
+  </data>
+  <data name="GamepadGyroCameraDescription" xml:space="preserve">
+    <value>Petakan output alat kawalan ke pad permainan XInput standard atau pad DS4. Gyro dipetakan kepada kayu bedik seperti tetikus.</value>
+  </data>
+  <data name="GamepadGyroCameraName" xml:space="preserve">
+    <value>Pad permainan (dengan kayu bedik berbentuk tetikus)</value>
+  </data>
+  <data name="GamepadPresetDescription" xml:space="preserve">
+    <value>Menukar output alat kawalan kepada pad permainan standard.</value>
+  </data>
+  <data name="GamepadPresetName" xml:space="preserve">
+    <value>Pad permainan</value>
+  </data>
+  <data name="KBMGyroMouseDescription" xml:space="preserve">
+    <value>Petakan output alat kawalan ke kawalan KB+M maya. Berguna untuk bermain permainan FPS tanpa sokongan pad permainan. Gyro dipetakan ke Tetikus maya.</value>
+  </data>
+  <data name="KBMGyroMouseName" xml:space="preserve">
+    <value>KB+M Kawalan dengan tetikus giro</value>
+  </data>
+  <data name="KBMPresetDescription" xml:space="preserve">
+    <value>Petakan output alat kawalan ke kawalan KB+M maya. Berguna untuk bermain permainan FPS tanpa sokongan pad permainan.</value>
+  </data>
+  <data name="KBMPresetName" xml:space="preserve">
+    <value>Kawalan KB+M</value>
+  </data>
+  <data name="MixedGyroMousePresetDescription" xml:space="preserve">
+    <value>Maps the buttons and axes to a standard gamepad. Maps the Gyro to a virtual mouse.</value>
+  </data>
+  <data name="MixedGyroMousePresetName" xml:space="preserve">
+    <value>Pad permainan dengan tetikus giro</value>
+  </data>
+  <data name="MixedPresetDescription" xml:space="preserve">
+    <value>Petakan output alat kawalan ke pad permainan XInput + tetikus RS bercampur.</value>
+  </data>
+  <data name="MixedPresetName" xml:space="preserve">
+    <value>Pad permainan dengan Kamera Ketepatan Tinggi</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Penerangan</value>
+  </data>
+  <data name="PresetIntroText" xml:space="preserve">
+    <value>Adakah anda mahu menggunakan pilihan pratetap? Memilih 'Tidak' akan menyebabkan editor profil menggunakan profil pad permainan kosong.</value>
+  </data>
+  <data name="Presets" xml:space="preserve">
+    <value>Pratetap</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>Log Perubahan</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Tutup</value>
+  </data>
+  <data name="Profiles" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="NoControllersConnected" xml:space="preserve">
+    <value>Tiada Alat Kawalan Disambungkan (Maks {0})</value>
+  </data>
+  <data name="FlickThreshold" xml:space="preserve">
+    <value>Ambang Kuis</value>
+  </data>
+  <data name="FlickTime" xml:space="preserve">
+    <value>Masa Kuis</value>
+  </data>
+  <data name="MinAngleThreshold" xml:space="preserve">
+    <value>Ambang Sudut Min</value>
+  </data>
+  <data name="RealWorldCalibration" xml:space="preserve">
+    <value>Penentukuran Dunia Sebenar</value>
+  </data>
+  <data name="ViGEmPluginFailure" xml:space="preserve">
+      <value>Pemalam Peranti ViGEm Gagal. Kod Ralat {0}. Mungkin masalah dalaman ViGEmBus. Menutup sambungan. Jika isu berterusan, sila tutup DS4Windows dan kemudian but semula Windows.</value>
+  </data>
+  <data name="CRC32Fail" xml:space="preserve">
+    <value>Pemeriksaan integriti data gagal untuk peranti nirwayar. Menutup peranti.</value>
+  </data>
+  <data name="FutureNetNotInstalled" xml:space="preserve">
+    <value>.NET 5 Runtime tidak dikesan pada sistem anda. Sila muat turun dan pasang .NET 5 Runtime untuk memastikan keserasian dengan binaan DS4Windows akan datang. Anda akan dialihkan ke halaman muat turun .NET 5 Runtime selepas menutup tetingkap ini.</value>
+  </data>
+  <data name="UpgradeNetCaption" xml:space="preserve">
+    <value>Sila kemas kini .NET Runtime</value>
+  </data>
+  <data name="HidHide" xml:space="preserve">
+    <value>HidHide</value>
+  </data>
+  <data name="HidHideConfigClient" xml:space="preserve">
+    <value>Klien Konfigurasi HidHide</value>
+  </data>
+  <data name="ExclusiveAccess" xml:space="preserve">
+    <value>Akses Eksklusif</value>
+  </data>
+  <data name="HidGuardianAccess" xml:space="preserve">
+    <value>Akses HidGuardian</value>
+  </data>
+  <data name="HidHideAccess" xml:space="preserve">
+    <value>Akses HidHide</value>
+  </data>
+  <data name="SharedAccess" xml:space="preserve">
+    <value>Akses Dikongsi</value>
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Namakan Semula</value>
+  </data>
+  <data name="DisableVirtualController" xml:space="preserve">
+    <value>Lumpuhkan Alat Kawalan Maya</value>
+  </data>
+  <data name="DisableVirtualControllerTip" xml:space="preserve">
+    <value>Jangan wujudkan/kaitkan alat kawalan maya untuk alat kawalan yang disambungkan menggunakan profil ini (Digunakan pada simpanan profil)</value>
+  </data>
+  <data name="EmulatedController" xml:space="preserve">
+    <value>Alat Kawalan Ditiru</value>
+  </data>
+  <data name="OutContNotice" xml:space="preserve">
+    <value>Pilih jenis alat kawalan maya output (Digunakan pada simpanan profil)</value>
+  </data>
+  <data name="VirtualControllerSettings" xml:space="preserve">
+    <value>Tetapan Alat Kawalan Maya</value>
+  </data>
+  <data name="ChangeOnNewDeviceConn" xml:space="preserve">
+    <value>Perubahan berkuat kuasa pada sambungan peranti baharu</value>
+  </data>
+  <data name="StickFuzzTooltip" xml:space="preserve">
+    <value>Fuzz menentukan bilangan minimum unit yang digerakkan oleh kayu analog, dalam zon aktif, sebelum output didaftarkan seperti yang diubah dalam pemeta. Tetapan ini boleh berguna untuk kayu haus yang tidak dapat mengekalkan kedudukan tetap. Nilai dinyatakan dalam unit kayu mentah.</value>
+  </data>
+  <data name="StickMaxOutputForceTooltip" xml:space="preserve">
+    <value>Sentiasa kuatkan tetapan output maks. Berguna untuk 100% Output Maks dan mengehadkan nilai kepada nilai keluaran bulat</value>
+  </data>
+  <data name="StickMaxOutputTooltip" xml:space="preserve">
+    <value>Dalam sesetengah situasi, ia mungkin berguna untuk mengehadkan nilai maksimum yang dikeluarkan oleh output kayu analog. Output Maks membolehkan pendikitan nilai output akhir kayu analog.</value>
+  </data>
+  <data name="AntiDeadzoneTooltip" xml:space="preserve">
+    <value>Anti-deadzone bertindak sebagai offset untuk digunakan dengan paksi untuk menandakan nilai output minimum yang dijana selepas paksi meninggalkan zon mati yang ditetapkan. Ini terutamanya bertujuan untuk membantu memetakan paksi kepada nilai zon mati yang ditetapkan yang digunakan untuk paksi dalam permainan video. Sebagai contoh, zon mati biasa yang ditetapkan untuk XInput LS dalam permainan video ialah sekitar 8000 (25%). Dengan tiada anti-deadzone ditetapkan, paksi perlu bergerak melepasi zon mati yang ditetapkan dalam DS4Windows bersama-sama dengan zon mati paksi yang ditetapkan permainan.</value>
+  </data>
+  <data name="StickInputCurveTooltip" xml:space="preserve">
+    <value>TETAPAN USANG/LAMA. Cuba gunakan lengkung berdasarkan koordinat input mentah sebelum sebarang maklumat zon mati digunakan. Wonky</value>
+  </data>
+  <data name="TouchpadMinThresholdTooltip" xml:space="preserve">
+    <value>Perjalanan keluaran terkira minimum sebelum acara Tetikus dihantar ke sistem</value>
+  </data>
+  <data name="TouchpadRotationTooltip" xml:space="preserve">
+    <value>Melaraskan leret pad sentuh mengikut sudut putaran tertentu. Berguna apabila leret pad sentuh biasa bukan garis lurus. Nilai membenarkan julat dari -180 hingga 180. Lalai ialah 0.</value>
+  </data>
+  <data name="TouchpadSlideTooltip" xml:space="preserve">
+    <value>Sensitiviti yang digunakan untuk melibatkan tindakan Tatal Roda Tetikus berbilang sentuhan</value>
+  </data>
+  <data name="TouchpadTapTooltip" xml:space="preserve">
+    <value>Aktifkan Klik Kiri Tetikus dengan Ketik Pad Sentuh. Selang masa maksimum ditetapkan pada (nilai * 2) ms.</value>
+  </data>
+  <data name="TouchpadTrackballEnableTooltip" xml:space="preserve">
+    <value>Menambah momentum pada leret Pad Sentuh sebaik sahaja jari diangkat. Menambahkan perjalanan kursor Tetikus tambahan daripada yang mungkin dengan ruang terkurung pada Pad Sentuh</value>
+  </data>
+  <data name="TouchpadTrackballFrictionTooltip" xml:space="preserve">
+    <value>Tambahkan geseran pada Trackball maya. Geseran yang berkurangan akan meningkatkan masa perjalanan kursor tetikus akhir</value>
+  </data>
+  <data name="StickOuterBindDeadTooltip" xml:space="preserve">
+    <value>Ambang bila tindakan akan dicetuskan</value>
+  </data>
+  <data name="StickOuterBindInvertTooltip" xml:space="preserve">
+    <value>Jalankan ikatan luar sebelum mencapai ambang. Tindakan dikeluarkan apabila ambang telah melebihi</value>
+  </data>
+  <data name="StickOuterBindTooltip" xml:space="preserve">
+    <value>Tindakan untuk dilaksanakan apabila perjalanan kayu(stick) melepasi ambang. Berguna untuk kekunci pemetaan untuk tindakan Berjalan atau Pecut. Songsang menyebabkan tindakan menyala sehingga ambang</value>
+  </data>
+  <data name="SASteeringWheelFuzzTooltip" xml:space="preserve">
+    <value>Fuzz menentukan bilangan minimum unit peranti, dalam zon aktif, yang Accel perlu diputar sebelum output didaftarkan seperti diubah dalam pemeta. Nilai dinyatakan dalam unit Accel mentah.</value>
+  </data>
+  <data name="StickRotationTooltip" xml:space="preserve">
+    <value>+ = Mengikut arah jam. - = lawan arah jam.
+
+Tetapan putaran bertujuan untuk membantu membetulkan orientasi kayu(stick) analog jika ibu jari anda dianjak sedikit apabila menggerakkan kayu(stick) analog. Contohnya, ibu jari anda mungkin dianjak sedikit dari tengah apabila kayu(stick) analog digerakkan sepenuhnya ke utara. Ibu jari saya beralih sedikit ke kanan apabila menggerakkan kayu(stick) analog sepenuhnya ke utara kerana cara tangan saya menggenggam DS4. Nilai yang digunakan menunjukkan bilangan darjah yang digunakan untuk melaraskan nilai keluaran paksi akhir. Nilai membenarkan julat dari -180 hingga 180. Lalai ialah 0.</value>
+  </data>
+  <data name="TouchpadJitterCompTooltip" xml:space="preserve">
+    <value>Pendikit bahagian bawah pergerakan Pad Sentuh. Mengurangkan pergerakan kursor tetikus yang tidak disengajakan apabila memegang kedudukan tetap pada Pad Sentuh</value>
+  </data>
+  <data name="DS4BTPollRate" xml:space="preserve">
+    <value>Kadar Poll DS4 BT</value>
+  </data>
+  <data name="DS4LightbarPassthruDisabled" xml:space="preserve">
+    <value>Ciri dilumpuhkan pada masa ini dalam apl disebabkan isu pemacu. Mudah-mudahan masalah dapat diselesaikan dalam kemas kini masa hadapan.</value>
+  </data>
+  <data name="DualSRumbleForceGenericRescale" xml:space="preserve">
+    <value>Paksa pengunaan kedua-dua % tahap kekuatan (General dan DualSense specifc)</value>
+  </data>
+  <data name="DualSRumbleModeDisabled" xml:space="preserve">
+    <value>Dilumpuhkan</value>
+  </data>
+  <data name="DualSRumbleModeAccurate" xml:space="preserve">
+    <value>Tepat</value>
+  </data>
+  <data name="DualSRumbleModeLegacy" xml:space="preserve">
+    <value>Legasi</value>
+  </data>
+  <data name="DualSRumbleModeNPowerLevelTxt" xml:space="preserve">
+    <value>Mod derum dan tahap kekuatan:</value>
+  </data>
+  <data name="DualSRumbleModePassthru" xml:space="preserve">
+    <value>Passthru</value>
+  </data>
+  <data name="DualSRumbleSpecificSettings" xml:space="preserve">
+    <value>Tetapan derum khusus DualSense</value>
+  </data>
+  <data name="DualSRumbleForceGenericRescale_Tip" xml:space="preserve">
+    <value>Disyorkan untuk dibiarkan LUMPUH.
+
+- Dilumpuhkan: derum akan diskala semula secara asli oleh pengawal mengikut tahap kuasa yang ditentukan (kualiti lebih baik)
+
+- Didayakan: kedua-dua skala semula derum generik DS4Windows dan kawalan asli DualSense akan aktif</value>
+  </data>
+  <data name="DualSRumbleModes_Tip" xml:space="preserve">
+    <value>Mod Tepat (disyorkan):
+- Lebih baik mereplikasi perasaan derum alat kawalan DualShock 4/Xbox 360
+- Lebih tepat melaksanakan kesan derum yang dimaksudkan permainan
+- Derum mempunyai lebih kedalaman. Dalam tahap kuasa yang sama terdapat perbezaan yang lebih besar antara pengaktifan derum dalam permainan min dan maksimum,
+berbeza-beza dari sangat rendah hingga kekuatan maksimum tahap kuasa yang ditentukan
+
+Mod Legasi:
+- Secara keseluruhan lebih kuat, tetapi tidak mempunyai kedalaman
+- Mempunyai rasa yang "lebih tajam".
+- Pengaktifan min dan maksimum dalam permainan masing-masing, hanya sedikit di bawah dan sedikit di atas kekuatan aras kuasa yang dipilih
+
+Dilumpuhkan:
+- Lumpuhkan sepenuhnya derum</value>
+  </data>
+  <data name="DualSRumblePowerLevel_Tip" xml:space="preserve">
+    <value>Penskala semula Tahap Kuasa asli DualSense.
+
+- Apabila dalam Mod Tepat, derum [ min // maks ] akan menjadi [ 1% /// Tahap Kuasa Terpilih ]
+    - Contoh (62%): [ min = 1% /// maks = 62% ]
+
+- Apabila dalam Mod Legasi, [min /// maks ] derum akan menjadi kira-kira [ Tahap Kuasa - 12% /// Tahap Kuasa + 12% ]
+    - Contoh (62%): [ min = 50% /// maks = 74% ]</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Terima</value>
+  </data>
+  <data name="Black" xml:space="preserve">
+    <value>Hitam</value>
+  </data>
+  <data name="Colored" xml:space="preserve">
+    <value>Berwarna</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Lalai</value>
+  </data>
+  <data name="DeviceType" xml:space="preserve">
+    <value>Jenis peranti</value>
+  </data>
+  <data name="DisconnectFromBtWhenStopping" xml:space="preserve">
+    <value>Putuskan sambungan daripada BT apabila Berhenti</value>
+  </data>
+  <data name="Dynamic" xml:space="preserve">
+    <value>Dinamik</value>
+  </data>
+  <data name="FlashLightbarAtHighLatency" xml:space="preserve">
+    <value>Kelipkan lampu bar pada kependaman tinggi</value>
+  </data>
+  <data name="HideDS4Controller" xml:space="preserve">
+    <value>Sembunyikan Alat Kawalan DS4</value>
+  </data>
+  <data name="HotkeysAbout" xml:space="preserve">
+    <value>Kekunci pintas/Perihal</value>
+  </data>
+  <data name="IconChoice" xml:space="preserve">
+    <value>Pilihan Ikon</value>
+  </data>
+  <data name="MinimizeToTaskbar" xml:space="preserve">
+    <value>Minimumkan kepada Bar Tugas</value>
+  </data>
+  <data name="MinimizeToTaskbarTip" xml:space="preserve">
+    <value>Minimumkan kepada Bar Tugas dan bukannya Dulang Sistem</value>
+  </data>
+  <data name="OutputSlots" xml:space="preserve">
+    <value>Slot Keluaran</value>
+  </data>
+  <data name="Permanent" xml:space="preserve">
+    <value>kekal</value>
+  </data>
+  <data name="Plug" xml:space="preserve">
+    <value>Palam</value>
+  </data>
+  <data name="RevertToDefaultProfileOnUnknown" xml:space="preserve">
+    <value>Kembali ke profil lalai pada tidak diketahui</value>
+  </data>
+  <data name="ShowAutoProfileDebugMessages" xml:space="preserve">
+    <value>Tunjukkan mesej nyahpepijat profil automatik</value>
+  </data>
+  <data name="SwipeTouchpadToSwitchProfiles" xml:space="preserve">
+    <value>Leret Pad Sentuh Untuk Menukar Profil</value>
+  </data>
+  <data name="TurnOffDS4WindowsTemporarily" xml:space="preserve">
+    <value>Matikan DS4Windows Buat Sementara</value>
+  </data>
+  <data name="Unplug" xml:space="preserve">
+    <value>Cabut Plag</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>Putih</value>
+  </data>
+  <data name="AppTheme" xml:space="preserve">
+    <value>Tema Apl</value>
+  </data>
+  <data name="CheckEvery" xml:space="preserve">
+    <value>Semak setiap</value>
+  </data>
+  <data name="OscServerHeading" xml:space="preserve">
+    <value>Kawalan OSC Luaran &amp; Pemantauan</value>
+  </data>
+  <data name="EnableOscServer" xml:space="preserve">
+    <value>Dayakan Pelayan Kawalan</value>
+  </data>
+  <data name="EnableInterpretingOscMonitoring" xml:space="preserve">
+    <value>Mentafsir Mesej Pemantauan</value>
+  </data>
+  <data name="EnableOscSender" xml:space="preserve">
+    <value>Dayakan Perkhidmatan Pemantauan</value>
+  </data>
+  <data name="ControllerSupportDS4" xml:space="preserve">
+    <value>Sokongan Alat Kawalan DS4</value>
+  </data>
+  <data name="ControllerSupportDualSense" xml:space="preserve">
+    <value>Sokongan Alat Kawalan DualSense</value>
+  </data>
+  <data name="ControllerSupportJoyCon" xml:space="preserve">
+    <value>Sokongan Alat Kawalan JoyCon</value>
+  </data>
+  <data name="ControllerSupportSwitchPro" xml:space="preserve">
+    <value>Sokongan Alat Kawalan SwitchPro</value>
+  </data>
+  <data name="Copycat" xml:space="preserve">              
+    <value>Peniru</value>
+  </data>
+  <data name="CopycatTip" xml:space="preserve">
+    <value>Tukar beberapa 'flags' yang digunakan untuk alat kawalan DS4 bukan Sony. Ia mungkin membetulkan derum dan sokongan bar ringan untuk beberapa klon DS4 pihak ketiga</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Gelap</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Hari</value>
+  </data>
+  <data name="DetectedControllers" xml:space="preserve">
+    <value>Alat Kawalan Dikesan</value>
+  </data>
+  <data name="DeviceOptions" xml:space="preserve">
+    <value>Pilihan Peranti</value>
+  </data>
+  <data name="EnableVerboseLog" xml:space="preserve">
+    <value>Dayakan log verbose</value>
+  </data>
+  <data name="EnableVerboseLogTip" xml:space="preserve">
+    <value>Tunjukkan mesej log tambahan apabila pad permainan disambungkan</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>Jam</value>
+  </data>
+  <data name="UseCustomSteamFolder" xml:space="preserve">
+    <value>Gunakan Folder Steam tersuai</value>
+  </data>
+  <data name="Utils" xml:space="preserve">
+    <value>Util</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="RunAs" xml:space="preserve">
+    <value>Jalankan Sebagai</value>
+  </data>
+  <data name="Task" xml:space="preserve">
+    <value>Tugasan</value>
+  </data>
+  <data name="GyroTriggerJitterCompensationTooltip" xml:space="preserve">
+    <value>Tambahkan pendikit tambahan pada hujung bawah lengkung untuk mengambil kira gegaran peranti</value>
+  </data>
+  <data name="WakeupFromSuspend" xml:space="preserve">
+    <value>Bangun Dari Penggantungan</value>
+  </data>
+  <data name="ControllerSupportDS3" xml:space="preserve">
+    <value>Sokongan Alat Kawalan DS3</value>
+  </data>
+  <data name="FirstLaunch.DeviceIntroText" xml:space="preserve">
+    <value>Disebabkan oleh pemeta lain yang mendayakan sokongan untuk berbilang jenis peranti secara lalai (Input Steam), DS4Windows hanya mendayakan sokongan untuk membaca daripada alat kawalan DS4 secara lalai. Anda boleh menentukan sokongan pemeta untuk jenis peranti lain yang disokong di sini. Berhati-hati apabila menggunakan DS4Windows dengan pemeta lain yang mungkin berjalan pada masa yang sama.</value>
+  </data>
+  <data name="FirstLaunch.DS3EnableCkbLabel" xml:space="preserve">
+    <value>Sokongan Peranti DS3</value>
+  </data>
+  <data name="FirstLaunch.DS3EnableText" xml:space="preserve">
+    <value>Sokongan untuk alat kawalan DualShock 3 (PS3). Memerlukan penggunaan pemacu DsHidMini daripada projek ViGEm (nefarius).</value>
+  </data>
+  <data name="FirstLaunch.DS4EnableCkbLabel" xml:space="preserve">
+    <value>Sokongan Peranti DS4</value>
+  </data>
+  <data name="FirstLaunch.DS4EnableText" xml:space="preserve">
+    <value>Sokongan untuk alat kawalan DualShock 4 yang terkenal</value>
+  </data>
+  <data name="FirstLaunch.DSEnableCkbLabel" xml:space="preserve">
+    <value>Sokongan Peranti DualSense</value>
+  </data>
+  <data name="FirstLaunch.DSEnableText" xml:space="preserve">
+    <value>Sokongan untuk alat kawalan DualSense (PS5). Model asas dan DS Edge</value>
+  </data>
+  <data name="FirstLaunch.Header" xml:space="preserve">
+    <value>Sokongan Pemeta Peranti Didayakan</value>
+  </data>
+  <data name="FirstLaunch.JoyConEnableCkbLabel" xml:space="preserve">
+    <value>Sokongan Peranti JoyCon</value>
+  </data>
+  <data name="FirstLaunch.JoyConEnableText" xml:space="preserve">
+    <value>Sokongan untuk alat kawalan JoyCon (Nintendo Switch).</value>
+  </data>
+  <data name="FirstLaunch.SwitchProEnableCkbLabel" xml:space="preserve">
+    <value>Sokongan peranti Switch Pro</value>
+  </data>
+  <data name="FirstLaunch.SwitchProEnableText" xml:space="preserve">
+    <value>Sokongan untuk alat kawalan Switch Pro (Nintendo Switch).</value>
+  </data>
+  <data name="FirstLaunch.WinTitle" xml:space="preserve">
+    <value>Pelancaran Pertama</value>
+  </data>
+  <data name="AutoProfiles.DisplaySwitchVia" xml:space="preserve">
+    <value>Paparkan Profil Tukar melalui</value>
+  </data>
+  <data name="AutoProfiles.LogAndNotification" xml:space="preserve">
+    <value>Log + Pemberitahuan</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Pemberitahuan</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Terang</value>
+  </data>
+  <data name="ProfileEditor.VirtualDS4TrigOutput" xml:space="preserve">
+    <value>Mod Output Pencetus DS4</value>
+  </data>
+  <data name="Analog" xml:space="preserve">
+    <value>Analog</value>
+  </data>
+  <data name="Buttons" xml:space="preserve">
+    <value>Butang</value>
+  </data>
+  <data name="DS4OutputTriggersDefault" xml:space="preserve">
+    <value>Lalai (Analog + Butang)</value>
+  </data>
+</root>

@@ -15,7 +15,7 @@ This project is a fork of the work of Jays2Kings.
 
 DS4Windows is licensed under the terms of the GNU General Public License version 3.
 You can find a copy of the terms and conditions of that license at
-[GPL v3 text](https://www.gnu.org/licenses/gpl-3.0.txt). The license is also
+[https://www.gnu.org/licenses/gpl-3.0.txt](https://www.gnu.org/licenses/gpl-3.0.txt). The license is also
 available in this source code from the COPYING file.
 
 ## Downloads

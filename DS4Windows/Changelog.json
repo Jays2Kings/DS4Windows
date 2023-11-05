@@ -1,9 +1,27 @@
 {
-  "latest_version": "3.2.18",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 18},
-  "updated_at": "2023-10-29T17:24:35+0000",
+  "latest_version": "3.2.19",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 19},
+  "updated_at": "2023-11-05T21:29:22+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.2.19",
+      "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 19},
+      "base_header": "Version 3.2.19",
+      "release_date": "2023-11-05T21:29:22+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.2.19",
+          "log_text": ["* Tweaked HidHide whitelist app check to work behind a junction directory. Scoop install",
+            "* Updated some installer URLs in the WelcomeDialog window. Updated linked ViGEmBus installer to version 1.22.0",
+            "* Changing source code license to GPL version 3. Added notices",
+            "* Added GPL version 3 text to About window",
+            "* Perform junction directory check at startup. Use real install path for exepath if found"],
+          "updated_at": "2023-11-05T21:29:22+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.2.18",
       "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 18},

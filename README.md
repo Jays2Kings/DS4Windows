@@ -7,11 +7,16 @@ DualShock 4 experience on your PC. By emulating an Xbox 360 controller, many
 more games are accessible. Other input controllers are also supported including the
 DualSense, Switch Pro, and JoyCon controllers (**first party hardware only**).
 
-This project is a fork of the work of Jays2Kings. You can find the old project
-website at [ds4windows.com](http://ds4windows.com).
-Note: The Website Is No Longer Working
+This project is a fork of the work of Jays2Kings.
 
 ![DS4Windows Preview](https://raw.githubusercontent.com/Ryochan7/DS4Windows/jay/ds4winwpf_screen_20200412.png)
+
+## License
+
+DS4Windows is licensed under the terms of the GNU General Public License version 3.
+You can find a copy of the terms and conditions of that license at
+[https://www.gnu.org/licenses/gpl-3.0.txt](https://www.gnu.org/licenses/gpl-3.0.txt). The license is also
+available in this source code from the COPYING file.
 
 ## Downloads
 

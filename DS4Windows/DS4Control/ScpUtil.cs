@@ -1,4 +1,22 @@
-﻿using System;
+﻿/*
+DS4Windows
+Copyright (C) 2023  Travis Nickles
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -493,7 +511,24 @@ namespace DS4Windows
         public static BackingStore store => m_Config;
         protected static Int32 m_IdleTimeout = 600000;
 
-        public static string exelocation = Process.GetCurrentProcess().MainModule.FileName;
+        // Need to perform extra steps to check if DS4Windows is installed in a junction
+        // directory (done with Scoop). Use real path when available
+        public static string exelocation = new Func<string>(() =>
+        {
+            string filePath = Process.GetCurrentProcess().MainModule.FileName;
+            DirectoryInfo dirInfo = new DirectoryInfo(Path.GetDirectoryName(filePath));
+            // Check if exe is placed in a junction symlink directory (done with Scoop).
+            // Good enough
+            if (dirInfo.Attributes.HasFlag(FileAttributes.ReparsePoint) &&
+                dirInfo.LinkTarget != null)
+            {
+                // App directory is a junction. Find real directory and get proper path
+                // for inserting into HidHide
+                filePath = Path.Combine(dirInfo.LinkTarget, Path.GetFileName(filePath));
+            }
+
+            return filePath;
+        })();
         public static string exedirpath = Directory.GetParent(exelocation).FullName;
         public static string exeFileName = Path.GetFileName(exelocation);
         public static FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(exelocation);

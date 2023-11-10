@@ -106,6 +106,10 @@
                         <ComboBoxItem Content="Sixaxis Right"/>
                         <ComboBoxItem Content="Finger on Touchpad"/>
                         <ComboBoxItem Content="Mute"/>
+                        <ComboBoxItem Content="DSE Function Left"/>
+                        <ComboBoxItem Content="DSE Function Right"/>
+                        <ComboBoxItem Content="DSE Left Paddle"/>
+                        <ComboBoxItem Content="DSE Right Paddle"/>
                         <ComboBoxItem Content="Capture" />
                         <ComboBoxItem Content="Side L" />
                         <ComboBoxItem Content="Side R" />

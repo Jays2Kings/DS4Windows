@@ -1712,8 +1712,6 @@
                                                     <MenuItem Header="Right" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                                     <MenuItem Header="L3" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                                     <MenuItem Header="R3" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Side L" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Side R" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                                     <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                                     <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                                     <MenuItem Header="Options" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
@@ -1721,6 +1719,8 @@
                                                     <MenuItem Header="PS" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                                     <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
                                                     <MenuItem Header="Mute" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                                    <MenuItem Header="Side L" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
+                                                    <MenuItem Header="Side R" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
 
                                                     <!-- START Extra buttons for DualSense Edge controller -->
                                                     <MenuItem Header="Function Left" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
@@ -1847,8 +1847,6 @@
                                                     <MenuItem Header="Right" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                                     <MenuItem Header="L3" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                                     <MenuItem Header="R3" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Side L" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Side R" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                                     <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                                     <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                                     <MenuItem Header="Options" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
@@ -1856,6 +1854,8 @@
                                                     <MenuItem Header="PS" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                                     <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
                                                     <MenuItem Header="Mute" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                                    <MenuItem Header="Side L" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
+                                                    <MenuItem Header="Side R" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
 
                                                     <!-- START Extra buttons for DualSense Edge controller -->
                                                     <MenuItem Header="Function Left" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
@@ -2035,6 +2035,8 @@
                                                     <MenuItem Header="PS" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
                                                     <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
                                                     <MenuItem Header="Mute" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                                    <MenuItem Header="Side L" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
+                                                    <MenuItem Header="Side R" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
 
                                                     <!-- START Extra buttons for DualSense Edge controller -->
                                                     <MenuItem Header="Function Left" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />

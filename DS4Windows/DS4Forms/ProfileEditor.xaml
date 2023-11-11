@@ -14,6 +14,7 @@
     <UserControl.Resources>
         <xctk:InverseBoolConverter x:Key="InverseBoolConverter"/>
         <local:ControlIndexCheck x:Key="controlIndexCheck" />
+        <local:ResourcePaths x:Key="resourcesPaths" />
     </UserControl.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,4,0,10">
@@ -25,7 +26,7 @@
             <Button x:Name="presetBtn" Content="Select Preset" Margin="10,0,0,0" Click="PresetBtn_Click" />
             <Button x:Name="keepSizeBtn" Margin="10,0,0,0" Click="KeepSizeBtn_Click">
                 <StackPanel Orientation="Horizontal" Margin="0">
-                    <Image x:Name="sizeImage" Source="/DS4Windows;component/Resources/size.png" Width="20" Height="20"/>
+                    <Image x:Name="sizeImage" Source="{Binding Source={StaticResource resourcesPaths}, Path=SizePNG}" Width="20" Height="20"/>
                     <TextBlock x:Name="sizeMsg" Text="Keep this window size after closing" Margin="4,0,0,0" VerticalAlignment="Center" />
                 </StackPanel>
 
@@ -94,7 +95,7 @@
                             </ContextMenu>
                         </Canvas.Resources>
 
-                        <Image Source="/DS4Windows;component/Resources/DS4 Config.png" Width="440" Height="220" Stretch="Uniform"/>
+                        <Image Source="{Binding Source={StaticResource resourcesPaths}, Path=DS4ConfigPNG}" Width="440" Height="220" Stretch="Uniform"/>
 
                         <Button x:Name="ds4LightbarColorBtn" Width="138" Height="12" Canvas.Left="150" Canvas.Top="28"
                                 Background="{x:Null}" BorderBrush="{x:Null}" MouseEnter="Ds4LightbarColorBtn_MouseEnter" MouseLeave="Ds4LightbarColorBtn_MouseLeave" Click="Ds4LightbarColorBtn_Click">
@@ -119,13 +120,13 @@
                             <Rectangle x:Name="lightbarRect" Fill="{Binding LightbarBrush,FallbackValue=Green}" Width="{Binding Path=Width, ElementName=ds4LightbarColorBtn}"
                                        Height="{Binding Path=Height, ElementName=ds4LightbarColorBtn}">
                                 <Rectangle.OpacityMask>
-                                    <ImageBrush ImageSource="/DS4Windows;component/Resources/DS4 lightbar.png" />
+                                    <ImageBrush ImageSource="{Binding Source={StaticResource resourcesPaths}, Path=DS4LightbarPNG}" />
                                 </Rectangle.OpacityMask>
                             </Rectangle>
                         </Button>
 
-                        <Image x:Name="picBoxHover" IsEnabled="False" Source="/DS4Windows;component/Resources/DS4-Config_RS.png" Height="48" Width="48" Canvas.Left="447" Canvas.Top="5" />
-                        <Image x:Name="picBoxHover2" IsEnabled="False" Source="/DS4Windows;component/Resources/DS4-Config_RS.png" Height="48" Width="48" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" />
+                        <Image x:Name="picBoxHover" IsEnabled="False" Source="{Binding Source={StaticResource resourcesPaths}, Path=DS4ConfigRSPNG}" Height="48" Width="48" Canvas.Left="447" Canvas.Top="5" />
+                        <Image x:Name="picBoxHover2" IsEnabled="False" Source="{Binding Source={StaticResource resourcesPaths}, Path=DS4ConfigRSPNG}" Height="48" Width="48" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" />
 
                         <Button Content="Cross" x:Name="crossConBtn" Canvas.Left="330" Canvas.Top="125" Width="26" Height="26" Click="HoverConBtn_Click" Style="{StaticResource NoBGHoverBtn}" MouseEnter="ContBtn_MouseEnter" MouseLeave="ContBtn_MouseLeave" MouseRightButtonUp="ConBtn_MouseRightButtonUp" />
                         <Button Content="Circle" x:Name="circleConBtn" Canvas.Left="357" Canvas.Top="99" Width="26" Height="26" Style="{StaticResource NoBGHoverBtn}" Click="HoverConBtn_Click" MouseEnter="ContBtn_MouseEnter" MouseLeave="ContBtn_MouseLeave" MouseRightButtonUp="ConBtn_MouseRightButtonUp" />
@@ -1186,7 +1187,7 @@
                                     <Button x:Name="rainbowBtn" Height="20" Width="20"
                                 ToolTip="{lex:Loc Resources:AlwaysRainbow}" Click="RainbowBtn_Click">
                                         <Button.Content>
-                                            <Image Source="/DS4Windows;component/Resources/rainbow.png" />
+                                            <Image Source="{Binding Source={StaticResource resourcesPaths}, Path=DS4LightbarPNG}" />
                                         </Button.Content>
                                     </Button>
                                     <xctk:IntegerUpDown MinWidth="30" Height="30" Minimum="0" Maximum="60" Increment="1" Margin="8,0,0,0"

@@ -12,6 +12,9 @@
         mc:Ignorable="d"
         Title="Select action" Height="540" Width="1020" Closing="Window_Closing"
         Style="{DynamicResource WindowStyle}">
+    <Window.Resources>
+        <local:BindingWinResourcePaths x:Key="resourcePaths" />
+    </Window.Resources>
     <DockPanel x:Name="fullPanel" Margin="4">
         <StackPanel x:Name="extrasSidePanel" Width="160" Orientation="Vertical" DockPanel.Dock="Right">
             <StackPanel.Resources>
@@ -122,7 +125,7 @@
                 <StackPanel x:Name="outConPanel" Width="630" Orientation="Vertical" DockPanel.Dock="Right" HorizontalAlignment="Center" Margin="0">
                     <Canvas Height="247" Margin="0,10,0,0">
                         <Canvas.Background>
-                            <ImageBrush x:Name="conImageBrush" ImageSource="/DS4Windows;component/Resources/360 map.png" Stretch="Uniform"/>
+                            <ImageBrush x:Name="conImageBrush" ImageSource="{Binding Source={StaticResource resourcePaths}, Path=Xbox360MapPNG}" Stretch="Uniform"/>
                         </Canvas.Background>
                         <Canvas.Resources>
                             <Style TargetType="{x:Type Button}" x:Key="NoBGHoverBtn">
@@ -139,7 +142,7 @@
                             </Style>
                         </Canvas.Resources>
 
-                        <Image x:Name="highlightImg" Width="20" Height="20" Source="/DS4Windows;component/Resources/360 highlight.png" Canvas.Left="622" Canvas.Top="11" IsEnabled="False" />
+                        <Image x:Name="highlightImg" Width="20" Height="20" Source="{Binding Source={StaticResource resourcePaths}, Path=Xbox360HighlightPNG}" Canvas.Left="622" Canvas.Top="11" IsEnabled="False" />
                         <Label x:Name="highlightLb" Content="A" Background="Black" Foreground="White" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
 
                         <!--<Button x:Name="guideBtn2" Width="16" Height="30" Tag="Ni" Style="{StaticResource NoBGHoverBtn}" Canvas.Left="212" Canvas.Top="112"  />-->
@@ -551,7 +554,7 @@
                                 </Grid>
                                 <Canvas x:Name="mouseCanvas" Width="120" Height="170" Grid.Column="2">
                                     <StackPanel Width="120">
-                                        <Image Source="/DS4Windows;component/Resources/mouse.png" Stretch="Uniform"
+                                        <Image Source="{Binding Source={StaticResource resourcePaths}, Path=MousePNG}" Stretch="Uniform"
                                Width="100" Height="{Binding Path=Height, ElementName=mouseCanvas}" HorizontalAlignment="Center" />
                                     </StackPanel>
 

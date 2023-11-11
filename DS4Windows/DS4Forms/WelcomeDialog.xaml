@@ -14,6 +14,8 @@
         <Style TargetType="{x:Type TextBlock}" x:Key="CommonMarginTxt" BasedOn="{StaticResource {x:Type TextBlock}}">
             <Setter Property="Margin" Value="0,10,0,0" />
         </Style>
+
+        <local:WelcomeDialogResourcePaths x:Key="resourcePaths" />
     </Window.Resources>
     <ScrollViewer>
         <DockPanel Margin="10,10,10,10" LastChildFill="False">
@@ -44,7 +46,7 @@
                 connect to "Wireless Controller". If asked, enter pair code 0000.
                 Once paired, you're ready. Have fun!
                 </TextBlock>
-                <Image Source="/DS4Windows;component/Resources/Pairmode.png" Height="80" DockPanel.Dock="Top" />
+                <Image Source="{Binding Source={StaticResource resourcePaths}, Path=PairmodePNG}" Height="80" DockPanel.Dock="Top" />
             </DockPanel>
 
             <StackPanel x:Name="step4HidHidePanel" DockPanel.Dock="Top" Margin="0,8,0,0">

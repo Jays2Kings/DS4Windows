@@ -1628,6 +1628,15 @@ namespace DS4WinWPF.DS4Forms
         }
     }
 
+    public class ResourcePaths
+    {
+        public string SizePNG { get => $"{Global.RESOURCES_PREFIX}/size.png"; }
+        public string DS4ConfigPNG { get => $"{Global.RESOURCES_PREFIX}/DS4 Config.png"; }
+        public string DS4LightbarPNG { get => $"{Global.RESOURCES_PREFIX}/DS4 lightbar.png"; }
+        public string DS4ConfigRSPNG { get => $"{Global.RESOURCES_PREFIX}/DS4-Config_RS.png"; }
+        public string RainbowPNG { get => $"{Global.RESOURCES_PREFIX}/rainbow.png"; }
+    }
+
     public class ControlIndexCheck
     {
         public int TiltUp { get => (int)DS4Controls.GyroZNeg; }

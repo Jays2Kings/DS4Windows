@@ -433,18 +433,18 @@ namespace DS4WinWPF.DS4Forms.ViewModels
     {
         private static string[] imageSources = new string[]
         {
-            $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("KeyDownImg")}",
-            $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("KeyUpImg")}",
-            $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("ClockImg")}",
+            $"{Global.RESOURCES_PREFIX}/{(string)App.Current.FindResource("KeyDownImg")}",
+            $"{Global.RESOURCES_PREFIX}/{(string)App.Current.FindResource("KeyUpImg")}",
+            $"{Global.RESOURCES_PREFIX}/{(string)App.Current.FindResource("ClockImg")}",
         };
 
         public static void CacheImgLocations()
         {
             imageSources = new string[]
             {
-                $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("KeyDownImg")}",
-                $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("KeyUpImg")}",
-                $"/DS4Windows;component/Resources/{(string)App.Current.FindResource("ClockImg")}",
+                $"{Global.RESOURCES_PREFIX}/{(string)App.Current.FindResource("KeyDownImg")}",
+                $"{Global.RESOURCES_PREFIX}/{(string)App.Current.FindResource("KeyUpImg")}",
+                $"{Global.RESOURCES_PREFIX}/{(string)App.Current.FindResource("ClockImg")}",
             };
         }
 

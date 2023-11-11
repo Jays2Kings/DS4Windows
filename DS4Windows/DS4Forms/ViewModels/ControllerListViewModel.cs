@@ -273,7 +273,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             get
             {
                 string imgName = (string)App.Current.FindResource(device.ConnectionType == ConnectionType.USB ? "UsbImg" : "BtImg");
-                string source = $"/DS4Windows;component/Resources/{imgName}";
+                string source = $"{Global.RESOURCES_PREFIX}/{imgName}";
                 return source;
             }
         }
@@ -283,17 +283,17 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             get
             {
                 string imgName = (string)App.Current.FindResource("CancelImg");
-                string source = $"/DS4Windows;component/Resources/{imgName}";
+                string source = $"{Global.RESOURCES_PREFIX}/{imgName}";
                 switch(device.CurrentExclusiveStatus)
                 {
                     case DS4Device.ExclusiveStatus.Exclusive:
                         imgName = (string)App.Current.FindResource("CheckedImg");
-                        source = $"/DS4Windows;component/Resources/{imgName}";
+                        source = $"{Global.RESOURCES_PREFIX}/{imgName}";
                         break;
                     case DS4Device.ExclusiveStatus.HidHideAffected:
                     case DS4Device.ExclusiveStatus.HidGuardAffected:
                         imgName = (string)App.Current.FindResource("KeyImageImg");
-                        source = $"/DS4Windows;component/Resources/{imgName}";
+                        source = $"{Global.RESOURCES_PREFIX}/{imgName}";
                         break;
                     default:
                         break;

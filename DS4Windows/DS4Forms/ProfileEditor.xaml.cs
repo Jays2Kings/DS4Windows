@@ -79,6 +79,7 @@ namespace DS4WinWPF.DS4Forms
             PopulateHoverLocations();
             PopulateHoverIndexes();
             PopulateReverseHoverIndexes();
+            PopulateGyroActionsTriggersMenu();
 
             AssignTiltAssociation();
             AssignSwipeAssociation();
@@ -89,6 +90,21 @@ namespace DS4WinWPF.DS4Forms
             inputTimer = new NonFormTimer(100);
             inputTimer.Elapsed += InputDS4;
             SetupEvents();
+        }
+
+        private void PopulateGyroActionsTriggersMenu()
+        {
+            profileSettingsVM.CreateGyroTriggerMenuItems(gyroControlsTrigBtn.ContextMenu,
+                GyroControlsMenuItem_Click);
+
+            profileSettingsVM.CreateGyroTriggerMenuItems(gyroMouseTrigBtn.ContextMenu,
+                GyroMouseTrigMenuItem_Click);
+
+            profileSettingsVM.CreateGyroTriggerMenuItems(gyroMouseStickTrigBtn.ContextMenu,
+                GyroMouseStickTrigMenuItem_Click);
+
+            profileSettingsVM.CreateGyroTriggerMenuItems(gyroSwipeTrigBtn.ContextMenu,
+                GyroSwipeTrigMenuItem_Click);
         }
 
         private void SetupEvents()

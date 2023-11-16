@@ -267,7 +267,7 @@ namespace DS4WinWPF.DS4Forms
 
         private void InitInfoMaps()
         {
-            foreach(KeyValuePair<Button, BindAssociation> pair in associatedBindings)
+            foreach (KeyValuePair<Button, BindAssociation> pair in associatedBindings)
             {
                 Button button = pair.Key;
                 BindAssociation binding = pair.Value;
@@ -947,5 +947,12 @@ namespace DS4WinWPF.DS4Forms
         {
             bindingVM.WriteBinds();
         }
+    }
+
+    public class BindingWinResourcePaths
+    {
+        public string Xbox360MapPNG { get => $"{DS4Windows.Global.RESOURCES_PREFIX}/360 map.png"; }
+        public string Xbox360HighlightPNG { get => $"{DS4Windows.Global.RESOURCES_PREFIX}/360 highlight.png"; }
+        public string MousePNG { get => $"{DS4Windows.Global.RESOURCES_PREFIX}/mouse.png"; }
     }
 }

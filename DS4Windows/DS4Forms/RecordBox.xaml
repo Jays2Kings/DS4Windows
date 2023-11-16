@@ -28,6 +28,8 @@
                 <xctk:IntegerUpDown x:Name="lightRumbleUD" Value="{Binding RumbleLight,UpdateSourceTrigger=Explicit}" Minimum="0" Maximum="255" />
             </StackPanel>
         </DataTemplate>
+
+        <local:RecordBoxResourcePaths x:Key="resourcePaths" />
     </UserControl.Resources>
     <DockPanel Margin="4">
         <DockPanel DockPanel.Dock="Right" Width="200" LastChildFill="False" Margin="4,0">
@@ -75,12 +77,12 @@
                 <StackPanel x:Name="extraConPanel">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">
                         <Button x:Name="addRumbleBtn" Content="Add Rumble" Width="124" Click="AddRumbleBtn_Click" />
-                        <Image Source="/DS4Windows;component/Resources/left touch.png" Width="43" Visibility="Collapsed" />
+                        <Image Source="{Binding Source={StaticResource resourcePaths}, Path=LeftTouch}" Width="43" Visibility="Collapsed" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
                         <Button x:Name="changeLightBtn" Content="Change Lightbar Color" Width="124" Click="ChangeLightBtn_Click" />
-                        <Image Source="/DS4Windows;component/Resources/left touch.png" Width="43" Visibility="Collapsed" />
+                        <Image Source="{Binding Source={StaticResource resourcePaths}, Path=LeftTouch}" Width="43" Visibility="Collapsed" />
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

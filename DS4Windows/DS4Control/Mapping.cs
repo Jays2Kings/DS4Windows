@@ -734,7 +734,8 @@ namespace DS4Windows
         public static DateTime[] oldnowKeyAct = new DateTime[Global.MAX_DS4_CONTROLLER_COUNT] { DateTime.MinValue,
             DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
 
-        private static DS4Controls[] shiftTriggerMapping = new DS4Controls[35]
+        private const int SHIFT_TRIGGER_MAPPING_LEN = 35;
+        private static DS4Controls[] shiftTriggerMapping = new DS4Controls[SHIFT_TRIGGER_MAPPING_LEN]
         {
             DS4Controls.None, DS4Controls.Cross, DS4Controls.Circle, DS4Controls.Square,
             DS4Controls.Triangle, DS4Controls.Options, DS4Controls.Share, DS4Controls.DpadUp, DS4Controls.DpadDown,
@@ -744,6 +745,12 @@ namespace DS4Windows
             DS4Controls.None, DS4Controls.Mute, DS4Controls.FnL, DS4Controls.FnR, DS4Controls.BLP, DS4Controls.BRP,
             DS4Controls.Capture, DS4Controls.SideL, DS4Controls.SideR
         };
+
+        /// <summary>
+        /// Touch 1 Finger is treated special when it comes to shift triggers. It does not correspond
+        /// to a direct value from DS4Controls
+        /// </summary>
+        private const int TOUCH_FINGER_SHIFT_TRIGGER = 26;
 
         // Button to index mapping used for macrodone array. Not even sure this
         // is needed. This was originally made to replace a switch test used in the DS4ControlToInt method.
@@ -2292,13 +2299,13 @@ namespace DS4Windows
             {
                 result = false;
             }
-            else if (trigger < 31 && trigger != 26)
+            else if (trigger < SHIFT_TRIGGER_MAPPING_LEN && trigger != TOUCH_FINGER_SHIFT_TRIGGER)
             {
                 DS4Controls ds = shiftTriggerMapping[trigger];
                 result = GetBoolMapping(device, ds, cState, eState, tp, fieldMapping);
             }
             // 26 is a special case. It does not correlate to a direct DS4Controls value
-            else if (trigger == 26)
+            else if (trigger == TOUCH_FINGER_SHIFT_TRIGGER)
             {
                 result = cState.Touch1Finger;
             }

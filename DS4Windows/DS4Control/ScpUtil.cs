@@ -882,10 +882,10 @@ namespace DS4Windows
 
         public static Dictionary<TrayIconChoice, string> iconChoiceResources = new Dictionary<TrayIconChoice, string>
         {
-            [TrayIconChoice.Default] = "/DS4Windows;component/Resources/DS4W.ico",
-            [TrayIconChoice.Colored] = "/DS4Windows;component/Resources/DS4W.ico",
-            [TrayIconChoice.White] = "/DS4Windows;component/Resources/DS4W - White.ico",
-            [TrayIconChoice.Black] = "/DS4Windows;component/Resources/DS4W - Black.ico",
+            [TrayIconChoice.Default] = $"{Global.RESOURCES_PREFIX}/DS4W.ico",
+            [TrayIconChoice.Colored] = $"{Global.RESOURCES_PREFIX}/DS4W.ico",
+            [TrayIconChoice.White] = $"{Global.RESOURCES_PREFIX}/DS4W - White.ico",
+            [TrayIconChoice.Black] = $"{Global.RESOURCES_PREFIX}/DS4W - Black.ico",
         };
 
         public static void SaveWhere(string path)

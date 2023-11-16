@@ -36,6 +36,19 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 {
     public class ProfileSettingsViewModel
     {
+        private List<string> gyroTriggerItems = new List<string>()
+        {
+            "Cross", "Circle", "Square", "Triangle",
+            "L1", "L2", "R1", "R2",
+            "Up", "Down", "Left", "Right",
+            "L3", "R3", "Finger on Touchpad", "2 Fingers on Touchpad",
+            "Options", "Share", "PS", "Touchpad Click",
+            // START Extra buttons for DualSense Edge controller
+            "Function Left", "Function Right", "Bottom Left Paddle", "Bottom Right Paddle",
+            // END Extra buttons for DualSense Edge controller
+            "Always On",
+        };
+
         private int device;
         public int Device { get => device; }
 
@@ -2905,6 +2918,21 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             gyroMouseStickSmoothMethodIndex = FindGyroMouseStickSmoothMethodIndex();
 
             SetupEvents();
+        }
+
+        public void CreateGyroTriggerMenuItems(ContextMenu menu, RoutedEventHandler itemClickHandler)
+        {
+            foreach (string btnName in gyroTriggerItems)
+            {
+                MenuItem item = new MenuItem()
+                {
+                    Header = btnName,
+                    IsCheckable = true,
+                };
+
+                item.Click += itemClickHandler;
+                menu.Items.Add(item);
+            }
         }
 
         private int FindGyroMouseSmoothMethodIndex()

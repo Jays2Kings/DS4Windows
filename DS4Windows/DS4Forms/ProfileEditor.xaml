@@ -14,6 +14,7 @@
     <UserControl.Resources>
         <xctk:InverseBoolConverter x:Key="InverseBoolConverter"/>
         <local:ControlIndexCheck x:Key="controlIndexCheck" />
+        <local:ResourcePaths x:Key="resourcesPaths" />
     </UserControl.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,4,0,10">
@@ -25,7 +26,7 @@
             <Button x:Name="presetBtn" Content="Select Preset" Margin="10,0,0,0" Click="PresetBtn_Click" />
             <Button x:Name="keepSizeBtn" Margin="10,0,0,0" Click="KeepSizeBtn_Click">
                 <StackPanel Orientation="Horizontal" Margin="0">
-                    <Image x:Name="sizeImage" Source="/DS4Windows;component/Resources/size.png" Width="20" Height="20"/>
+                    <Image x:Name="sizeImage" Source="{Binding Source={StaticResource resourcesPaths}, Path=SizePNG}" Width="20" Height="20"/>
                     <TextBlock x:Name="sizeMsg" Text="Keep this window size after closing" Margin="4,0,0,0" VerticalAlignment="Center" />
                 </StackPanel>
 
@@ -94,7 +95,7 @@
                             </ContextMenu>
                         </Canvas.Resources>
 
-                        <Image Source="/DS4Windows;component/Resources/DS4 Config.png" Width="440" Height="220" Stretch="Uniform"/>
+                        <Image Source="{Binding Source={StaticResource resourcesPaths}, Path=DS4ConfigPNG}" Width="440" Height="220" Stretch="Uniform"/>
 
                         <Button x:Name="ds4LightbarColorBtn" Width="138" Height="12" Canvas.Left="150" Canvas.Top="28"
                                 Background="{x:Null}" BorderBrush="{x:Null}" MouseEnter="Ds4LightbarColorBtn_MouseEnter" MouseLeave="Ds4LightbarColorBtn_MouseLeave" Click="Ds4LightbarColorBtn_Click">
@@ -119,13 +120,13 @@
                             <Rectangle x:Name="lightbarRect" Fill="{Binding LightbarBrush,FallbackValue=Green}" Width="{Binding Path=Width, ElementName=ds4LightbarColorBtn}"
                                        Height="{Binding Path=Height, ElementName=ds4LightbarColorBtn}">
                                 <Rectangle.OpacityMask>
-                                    <ImageBrush ImageSource="/DS4Windows;component/Resources/DS4 lightbar.png" />
+                                    <ImageBrush ImageSource="{Binding Source={StaticResource resourcesPaths}, Path=DS4LightbarPNG}" />
                                 </Rectangle.OpacityMask>
                             </Rectangle>
                         </Button>
 
-                        <Image x:Name="picBoxHover" IsEnabled="False" Source="/DS4Windows;component/Resources/DS4-Config_RS.png" Height="48" Width="48" Canvas.Left="447" Canvas.Top="5" />
-                        <Image x:Name="picBoxHover2" IsEnabled="False" Source="/DS4Windows;component/Resources/DS4-Config_RS.png" Height="48" Width="48" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" />
+                        <Image x:Name="picBoxHover" IsEnabled="False" Source="{Binding Source={StaticResource resourcesPaths}, Path=DS4ConfigRSPNG}" Height="48" Width="48" Canvas.Left="447" Canvas.Top="5" />
+                        <Image x:Name="picBoxHover2" IsEnabled="False" Source="{Binding Source={StaticResource resourcesPaths}, Path=DS4ConfigRSPNG}" Height="48" Width="48" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" />
 
                         <Button Content="Cross" x:Name="crossConBtn" Canvas.Left="330" Canvas.Top="125" Width="26" Height="26" Click="HoverConBtn_Click" Style="{StaticResource NoBGHoverBtn}" MouseEnter="ContBtn_MouseEnter" MouseLeave="ContBtn_MouseLeave" MouseRightButtonUp="ConBtn_MouseRightButtonUp" />
                         <Button Content="Circle" x:Name="circleConBtn" Canvas.Left="357" Canvas.Top="99" Width="26" Height="26" Style="{StaticResource NoBGHoverBtn}" Click="HoverConBtn_Click" MouseEnter="ContBtn_MouseEnter" MouseLeave="ContBtn_MouseLeave" MouseRightButtonUp="ConBtn_MouseRightButtonUp" />
@@ -1186,7 +1187,7 @@
                                     <Button x:Name="rainbowBtn" Height="20" Width="20"
                                 ToolTip="{lex:Loc Resources:AlwaysRainbow}" Click="RainbowBtn_Click">
                                         <Button.Content>
-                                            <Image Source="/DS4Windows;component/Resources/rainbow.png" />
+                                            <Image Source="{Binding Source={StaticResource resourcesPaths}, Path=DS4LightbarPNG}" />
                                         </Button.Content>
                                     </Button>
                                     <xctk:IntegerUpDown MinWidth="30" Height="30" Minimum="0" Maximum="60" Increment="1" Margin="8,0,0,0"
@@ -1569,39 +1570,7 @@
                                         <Label Content="Triggers" />
                                         <Button x:Name="gyroControlsTrigBtn" Content="{Binding GyroControlsTrigDisplay,FallbackValue='Always On'}" MinWidth="160" Click="GyroControlsTrigBtn_Click" >
                                             <Button.ContextMenu>
-                                                <ContextMenu>
-                                                    <MenuItem Header="Cross" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="Circle" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="Square" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="Triangle" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="L1" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="L2" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="R1" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="R2" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="Up" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="Down" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="Left" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="Right" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="L3" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="R3" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="Options" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="Share" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="PS" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="Mute" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="Side L" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="Side R" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-
-                                                    <!-- START Extra buttons for DualSense Edge controller -->
-                                                    <MenuItem Header="Function Left" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="Function Right" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="Bottom Left Paddle" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <MenuItem Header="Bottom Right Paddle" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                    <!-- END Extra buttons for DualSense Edge controller -->
-                                                    <MenuItem Header="Always On" IsCheckable="True" Click="GyroControlsMenuItem_Click" />
-                                                </ContextMenu>
+                                                <ContextMenu />
                                             </Button.ContextMenu>
                                         </Button>
                                     </StackPanel>
@@ -1697,40 +1666,7 @@
                                         <Label Content="Triggers" />
                                         <Button x:Name="gyroMouseTrigBtn" Content="{Binding GyroMouseTrigDisplay,FallbackValue=Always On}" MinWidth="160" Click="GyroMouseTrigBtn_Click" >
                                             <Button.ContextMenu>
-                                                <ContextMenu>
-                                                    <MenuItem Header="Cross" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Circle" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Square" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Triangle" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="L1" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="L2" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="R1" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="R2" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Up" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Down" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Left" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Right" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="L3" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="R3" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Side L" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Side R" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Options" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Share" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="PS" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Mute" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-
-                                                    <!-- START Extra buttons for DualSense Edge controller -->
-                                                    <MenuItem Header="Function Left" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Function Right" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Bottom Left Paddle" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <MenuItem Header="Bottom Right Paddle" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                    <!-- END Extra buttons for DualSense Edge controller -->
-
-                                                    <MenuItem Header="Always On" IsCheckable="True" Click="GyroMouseTrigMenuItem_Click" />
-                                                </ContextMenu>
+                                                <ContextMenu />
                                             </Button.ContextMenu>
                                         </Button>
                                     </StackPanel>
@@ -1832,40 +1768,7 @@
                                         <Button x:Name="gyroMouseStickTrigBtn" Content="{Binding GyroMouseStickTrigDisplay,FallbackValue='Always On'}" MinWidth="160"
                                     Margin="8,0,0,0" Click="GyroMouseStickTrigBtn_Click" >
                                             <Button.ContextMenu>
-                                                <ContextMenu>
-                                                    <MenuItem Header="Cross" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Circle" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Square" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Triangle" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="L1" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="L2" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="R1" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="R2" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Up" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Down" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Left" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Right" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="L3" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="R3" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Side L" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Side R" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Options" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Share" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="PS" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Mute" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-
-                                                    <!-- START Extra buttons for DualSense Edge controller -->
-                                                    <MenuItem Header="Function Left" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Function Right" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Bottom Left Paddle" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <MenuItem Header="Bottom Right Paddle" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                    <!-- END Extra buttons for DualSense Edge controller -->
-
-                                                    <MenuItem Header="Always On" IsCheckable="True" Click="GyroMouseStickTrigMenuItem_Click" />
-                                                </ContextMenu>
+                                                <ContextMenu />
                                             </Button.ContextMenu>
                                         </Button>
                                     </StackPanel>
@@ -2013,38 +1916,7 @@
                                         <Label Content="Triggers" />
                                         <Button x:Name="gyroSwipeTrigBtn" Content="{Binding GyroSwipeTrigDisplay,FallbackValue=Always On}" MinWidth="160" Click="GyroSwipeTrigBtn_Click" >
                                             <Button.ContextMenu>
-                                                <ContextMenu>
-                                                    <MenuItem Header="Cross" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="Circle" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="Square" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="Triangle" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="L1" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="L2" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="R1" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="R2" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="Up" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="Down" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="Left" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="Right" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="L3" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="R3" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="Finger on Touchpad" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="2 Fingers on Touchpad" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="Options" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="Share" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="PS" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="Touchpad Click" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="Mute" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-
-                                                    <!-- START Extra buttons for DualSense Edge controller -->
-                                                    <MenuItem Header="Function Left" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="Function Right" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="Bottom Left Paddle" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <MenuItem Header="Bottom Right Paddle" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                    <!-- END Extra buttons for DualSense Edge controller -->
-
-                                                    <MenuItem Header="Always On" IsCheckable="True" Click="GyroSwipeTrigMenuItem_Click" />
-                                                </ContextMenu>
+                                                <ContextMenu />
                                             </Button.ContextMenu>
                                         </Button>
                                     </StackPanel>

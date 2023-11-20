@@ -532,7 +532,7 @@ namespace DS4Windows
         public static string exedirpath = Directory.GetParent(exelocation).FullName;
         public static string exeFileName = Path.GetFileName(exelocation);
         public static FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(exelocation);
-        public static string exeversion = fileVersion.ProductVersion;
+        public static string exeversion = fileVersion.FileVersion;
         public static ulong exeversionLong = (ulong)fileVersion.ProductMajorPart << 48 |
             (ulong)fileVersion.ProductMinorPart << 32 | (ulong)fileVersion.ProductBuildPart << 16;
         public static ulong fullExeVersionLong = exeversionLong | (ushort)fileVersion.ProductPrivatePart;

@@ -814,10 +814,76 @@ Disabled:
   <data name="MaxZone" xml:space="preserve">
     <value>Max Zone</value>
   </data>
+  <data name="AntiDeadZone" xml:space="preserve">
+    <value>Anti-dead Zone</value>
+  </data>
+  <data name="Axial" xml:space="preserve">
+    <value>Axial</value>
+  </data>
+  <data name="AxisConfig" xml:space="preserve">
+    <value>Axis Config</value>
+  </data>
+  <data name="Controls" xml:space="preserve">
+    <value>Controls</value>
+  </data>
+  <data name="Cubic" xml:space="preserve">
+    <value>Cubic</value>
+  </data>
   <data name="DeadZone X" xml:space="preserve">
     <value>DeadZone X</value>
   </data>
   <data name="DeadZone Y" xml:space="preserve">
     <value>DeadZone Y</value>
+  </data>
+  <data name="DeadZoneType" xml:space="preserve">
+    <value>Dead Zone Type</value>
+  </data>
+  <data name="EaseoutCubic" xml:space="preserve">
+    <value>Easeout Cubic</value>
+  </data>
+  <data name="EaseoutQuad" xml:space="preserve">
+    <value>Easeout Quad</value>
+  </data>
+  <data name="EnhancedPrecision" xml:space="preserve">
+    <value>Enhanced Precision</value>
+  </data>
+  <data name="FlickStick" xml:space="preserve">
+    <value>Flick Stick</value>
+  </data>
+  <data name="Linear" xml:space="preserve">
+    <value>Linear</value>
+  </data>
+  <data name="MaxOutput" xml:space="preserve">
+    <value>Max Output</value>
+  </data>
+  <data name="MouseOffset" xml:space="preserve">
+    <value>Mouse Offset</value>
+  </data>
+  <data name="MouseVerticalScale" xml:space="preserve">
+    <value>Mouse Vertical Scale</value>
+  </data>
+  <data name="OutputCurve" xml:space="preserve">
+    <value>Output Curve</value>
+  </data>
+  <data name="OutputMode" xml:space="preserve">
+    <value>Output Mode</value>
+  </data>
+  <data name="Quadratic" xml:space="preserve">
+    <value>Quadratic</value>
+  </data>
+  <data name="Radial" xml:space="preserve">
+    <value>Radial</value>
+  </data>
+  <data name="Sensitivity" xml:space="preserve">
+    <value>Sensitivity</value>
+  </data>
+  <data name="SixAxisAccel" xml:space="preserve">
+    <value>Six Axis (Accel)</value>
+  </data>
+  <data name="SquareStick" xml:space="preserve">
+    <value>Square Stick</value>
+  </data>
+  <data name="VerticalScale" xml:space="preserve">
+    <value>Vertical Scale</value>
   </data>
 </root>

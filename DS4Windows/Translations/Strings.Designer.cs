@@ -142,6 +142,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Anti-dead Zone.
+        /// </summary>
+        public static string AntiDeadZone {
+            get {
+                return ResourceManager.GetString("AntiDeadZone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An anti-deadzone acts as an offset for use with an axis to denote the minimum output value generated after an axis has left its assigned deadzone. This is mainly meant to help with mapping an axis to the assigned deadzone value used for an axis in a video game. For example, the typical assigned deadzone for XInput LS in a video game is around 8000 (25%). With no anti-deadzone assigned, an axis would have to move past the assigned deadzone in DS4Windows along with the game&apos;s assigned axis deadzone..
         /// </summary>
         public static string AntiDeadzoneTooltip {
@@ -210,6 +219,24 @@ namespace DS4WinWPF.Translations {
         public static string AutoProfTitleTip {
             get {
                 return ResourceManager.GetString("AutoProfTitleTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Axial.
+        /// </summary>
+        public static string Axial {
+            get {
+                return ResourceManager.GetString("Axial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Axis Config.
+        /// </summary>
+        public static string AxisConfig {
+            get {
+                return ResourceManager.GetString("AxisConfig", resourceCulture);
             }
         }
         
@@ -493,6 +520,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Controls.
+        /// </summary>
+        public static string Controls {
+            get {
+                return ResourceManager.GetString("Controls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copycat.
         /// </summary>
         public static string Copycat {
@@ -516,6 +552,15 @@ namespace DS4WinWPF.Translations {
         public static string CRC32Fail {
             get {
                 return ResourceManager.GetString("CRC32Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cubic.
+        /// </summary>
+        public static string Cubic {
+            get {
+                return ResourceManager.GetString("Cubic", resourceCulture);
             }
         }
         
@@ -554,6 +599,42 @@ namespace DS4WinWPF.Translations {
         public static string Days {
             get {
                 return ResourceManager.GetString("Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dead Zone.
+        /// </summary>
+        public static string DeadZone {
+            get {
+                return ResourceManager.GetString("DeadZone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeadZone X.
+        /// </summary>
+        public static string DeadZone_X {
+            get {
+                return ResourceManager.GetString("DeadZone X", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeadZone Y.
+        /// </summary>
+        public static string DeadZone_Y {
+            get {
+                return ResourceManager.GetString("DeadZone Y", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dead Zone Type.
+        /// </summary>
+        public static string DeadZoneType {
+            get {
+                return ResourceManager.GetString("DeadZoneType", resourceCulture);
             }
         }
         
@@ -802,6 +883,24 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Easeout Cubic.
+        /// </summary>
+        public static string EaseoutCubic {
+            get {
+                return ResourceManager.GetString("EaseoutCubic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Easeout Quad.
+        /// </summary>
+        public static string EaseoutQuad {
+            get {
+                return ResourceManager.GetString("EaseoutQuad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string Edit {
@@ -889,6 +988,15 @@ namespace DS4WinWPF.Translations {
         public static string EnableVerboseLogTip {
             get {
                 return ResourceManager.GetString("EnableVerboseLogTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enhanced Precision.
+        /// </summary>
+        public static string EnhancedPrecision {
+            get {
+                return ResourceManager.GetString("EnhancedPrecision", resourceCulture);
             }
         }
         
@@ -1033,6 +1141,15 @@ namespace DS4WinWPF.Translations {
         public static string FlashLightbarAtHighLatency {
             get {
                 return ResourceManager.GetString("FlashLightbarAtHighLatency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flick Stick.
+        /// </summary>
+        public static string FlickStick {
+            get {
+                return ResourceManager.GetString("FlickStick", resourceCulture);
             }
         }
         
@@ -1289,11 +1406,38 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Linear.
+        /// </summary>
+        public static string Linear {
+            get {
+                return ResourceManager.GetString("Linear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log.
         /// </summary>
         public static string Log {
             get {
                 return ResourceManager.GetString("Log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Output.
+        /// </summary>
+        public static string MaxOutput {
+            get {
+                return ResourceManager.GetString("MaxOutput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Zone.
+        /// </summary>
+        public static string MaxZone {
+            get {
+                return ResourceManager.GetString("MaxZone", resourceCulture);
             }
         }
         
@@ -1357,6 +1501,24 @@ namespace DS4WinWPF.Translations {
         public static string MixedPresetName {
             get {
                 return ResourceManager.GetString("MixedPresetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mouse Offset.
+        /// </summary>
+        public static string MouseOffset {
+            get {
+                return ResourceManager.GetString("MouseOffset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mouse Vertical Scale.
+        /// </summary>
+        public static string MouseVerticalScale {
+            get {
+                return ResourceManager.GetString("MouseVerticalScale", resourceCulture);
             }
         }
         
@@ -1460,6 +1622,24 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Output Curve.
+        /// </summary>
+        public static string OutputCurve {
+            get {
+                return ResourceManager.GetString("OutputCurve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output Mode.
+        /// </summary>
+        public static string OutputMode {
+            get {
+                return ResourceManager.GetString("OutputMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Output Slots.
         /// </summary>
         public static string OutputSlots {
@@ -1559,11 +1739,29 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quadratic.
+        /// </summary>
+        public static string Quadratic {
+            get {
+                return ResourceManager.GetString("Quadratic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quick Charge.
         /// </summary>
         public static string QuickCharge {
             get {
                 return ResourceManager.GetString("QuickCharge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Radial.
+        /// </summary>
+        public static string Radial {
+            get {
+                return ResourceManager.GetString("Radial", resourceCulture);
             }
         }
         
@@ -1703,6 +1901,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sensitivity.
+        /// </summary>
+        public static string Sensitivity {
+            get {
+                return ResourceManager.GetString("Sensitivity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {
@@ -1735,6 +1942,24 @@ namespace DS4WinWPF.Translations {
         public static string ShowNotifications {
             get {
                 return ResourceManager.GetString("ShowNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Six Axis (Accel).
+        /// </summary>
+        public static string SixAxisAccel {
+            get {
+                return ResourceManager.GetString("SixAxisAccel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Square Stick.
+        /// </summary>
+        public static string SquareStick {
+            get {
+                return ResourceManager.GetString("SquareStick", resourceCulture);
             }
         }
         
@@ -2007,6 +2232,15 @@ namespace DS4WinWPF.Translations {
         public static string Utils {
             get {
                 return ResourceManager.GetString("Utils", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vertical Scale.
+        /// </summary>
+        public static string VerticalScale {
+            get {
+                return ResourceManager.GetString("VerticalScale", resourceCulture);
             }
         }
         

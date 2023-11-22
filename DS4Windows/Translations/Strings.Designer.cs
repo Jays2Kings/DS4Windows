@@ -567,6 +567,24 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DeadZone X.
+        /// </summary>
+        public static string DeadZone_X {
+            get {
+                return ResourceManager.GetString("DeadZone X", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeadZone Y.
+        /// </summary>
+        public static string DeadZone_Y {
+            get {
+                return ResourceManager.GetString("DeadZone Y", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default.
         /// </summary>
         public static string Default {

@@ -1946,14 +1946,14 @@
                                     </StackPanel>
 
                                     <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                                        <Label Content="Deadzone X" />
+                                        <Label Content="{lex:Loc DeadZoneX}" />
                                         <xctk:IntegerUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
                                                 Value="{Binding GyroSwipeDeadZoneX}" Minimum="0" Maximum="2000" />
                                         <Label Content="deg/sec." />
                                     </StackPanel>
 
                                     <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                                        <Label Content="Deadzone Y" />
+                                        <Label Content="{lex:Loc DeadZoneY}" />
                                         <xctk:IntegerUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
                                                 Value="{Binding GyroSwipeDeadZoneY}" Minimum="0" Maximum="2000" />
                                         <Label Content="deg/sec." />

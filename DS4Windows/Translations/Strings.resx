@@ -814,4 +814,10 @@ Disabled:
   <data name="MaxZone" xml:space="preserve">
     <value>Max Zone</value>
   </data>
+  <data name="DeadZone X" xml:space="preserve">
+    <value>DeadZone X</value>
+  </data>
+  <data name="DeadZone Y" xml:space="preserve">
+    <value>DeadZone Y</value>
+  </data>
 </root>

@@ -198,8 +198,7 @@
     <comment/>
   </data>
   <data name="Controllers" xml:space="preserve">
-    <value>Controllers</value>
-    <comment/>
+    <value>控制器</value>
   </data>
   <data name="ControlPanel" xml:space="preserve">
     <value>手柄</value>
@@ -602,72 +601,48 @@
     <comment/>
   </data>
   <data name="StickFuzzTooltip" xml:space="preserve">
-    <value>Fuzz specifies the minimum number of units the analog stick moves, in active zone, before the output is registered as changed in the mapper. This setting can be useful for worn sticks that cannot maintain a constant position. The value is expressed in raw stick units.</value>
-    <comment/>
+    <value>模糊指定了摇杆被注册为输出前的最小移动单位。这个设置对无法保持恒定位置的战损摇杆很有帮助。此数值为原始摇杆单位。</value>
   </data>
   <data name="StickMaxOutputForceTooltip" xml:space="preserve">
-    <value>Always enforce max output setting. Useful for 100% Max Output and confining value to a circular output value</value>
-    <comment/>
+    <value>总是强制最大输出设置。对于100%最大输出并将值限制为圆形输出值非常有用。</value>
   </data>
   <data name="StickMaxOutputTooltip" xml:space="preserve">
-    <value>In some situations, it might be useful to limit the maximum value that is output by the output analog stick. Max Output allows throttling the final output value of the analog stick.</value>
-    <comment/>
-  </data>
-  <data name="AntiDeadzoneTooltip" xml:space="preserve">
-    <value>An anti-deadzone acts as an offset for use with an axis to denote the minimum output value generated after an axis has left its assigned deadzone. This is mainly meant to help with mapping an axis to the assigned deadzone value used for an axis in a video game. For example, the typical assigned deadzone for XInput LS in a video game is around 8000 (25%). With no anti-deadzone assigned, an axis would have to move past the assigned deadzone in DS4Windows along with the game's assigned axis deadzone.</value>
-    <comment/>
+    <value>在某些情况下，限制摇杆的最大输出可能会有用。最大输出可以限制模拟摇杆的最终输出。</value>
   </data>
   <data name="StickInputCurveTooltip" xml:space="preserve">
-    <value>OLD OBSOLETE SETTING. Attempt to apply a curve based on raw input coordinates before any dead zone info is applied. Wonky</value>
-    <comment/>
+    <value>旧的过时的设置。会在死区之前尝试对原生输入坐标应用一个曲线。不太灵光。</value>
   </data>
   <data name="TouchpadMinThresholdTooltip" xml:space="preserve">
-    <value>Minimum calculated output travel before a Mouse event is sent to the system</value>
-    <comment/>
+    <value>在鼠标事件发送到系统之前的最小计算输出行程</value>
   </data>
   <data name="TouchpadRotationTooltip" xml:space="preserve">
-    <value>Adjusts a touchpad swipe by a given rotation angle. Useful when a normal touchpad swipe is not a straight line across. Values allows range from -180 to 180. Default is 0.</value>
-    <comment/>
+    <value>通过设置的旋转角度调整触摸板滑动。当正常的触摸板滑动不是一条直线时很有用。设置的值允许从-180到 180。默认值为0。</value>
   </data>
   <data name="TouchpadSlideTooltip" xml:space="preserve">
-    <value>Sensitivity used to engage a multi-touch Mouse Wheel Scroll action</value>
-    <comment/>
-  </data>
-  <data name="TouchpadTapTooltip" xml:space="preserve">
-    <value>Activate Mouse Left click with a Touchpad Tap. Max time interval is set at (value * 2) ms.</value>
-    <comment/>
+    <value>用于多点触摸启用鼠标滚轮动作的灵敏度</value>
   </data>
   <data name="TouchpadTrackballEnableTooltip" xml:space="preserve">
-    <value>Adds momentum to a Touchpad swipe once a finger is lifted. Adds extra Mouse cursor travel than would be possible with the confined space on the Touchpad</value>
-    <comment/>
+    <value>在手指抬起后给触摸板滑动加个动量。可以增加鼠标指针的额外移动距离，不仅局限于触摸板大小的限制。</value>
   </data>
   <data name="TouchpadTrackballFrictionTooltip" xml:space="preserve">
-    <value>Add friction to virtual Trackball. Decreased friction will increase final mouse cursor travel time</value>
-    <comment/>
+    <value>给虚拟轨迹球增加摩擦力。减少摩擦力会最终增加鼠标指针的移动时间</value>
   </data>
   <data name="StickOuterBindDeadTooltip" xml:space="preserve">
     <value>操作触发阈值</value>
     <comment/>
   </data>
   <data name="StickOuterBindInvertTooltip" xml:space="preserve">
-    <value>Have outer bind fire before reaching a threshold. Action releases once the threshold has been exceeded</value>
-    <comment/>
-  </data>
-  <data name="StickOuterBindTooltip" xml:space="preserve">
-    <value>Action to execute when stick travel reaches past a treshold. Useful for mapping keys for Walk or Sprint actions. Invert casues the action to fire up until the threshold</value>
-    <comment/>
+    <value>让额外按键绑定在达到阈值前触发。动作会在超过阈值后结束。</value>
   </data>
   <data name="SASteeringWheelFuzzTooltip" xml:space="preserve">
     <value>Fuzz specifies the minimum number of device units, in active zone, that the Accel has to be rotated before the output is registered as changed in the mapper. The value is expressed in raw Accel units.</value>
     <comment/>
   </data>
   <data name="StickRotationTooltip" xml:space="preserve">
-    <value>+ = Clockwise. - = Counter-clockwise.The rotation setting is meant to help correct the orientation of an analog stick if your thumb is slightly shifted when moving an analog stick. For example, your thumb might be slightly shifted from center when the analog stick is moved fully north. My thumbs shift slightly to the right when moving an analog stick fully north due to the way my hands grip the DS4. The value used denotes the number of degrees used to adjust the final axis output value. Values allows range from -180 to 180. Default is 0.</value>
-    <comment/>
+    <value>+ = 顺时针， - = 逆时针。旋转设置旨在帮助校正模拟摇杆的方向，如果在移动模拟摇杆时你的拇指略微偏移。例如，当模拟摇杆完全向北移动时，你的拇指可能会从中心略微偏移。由于我的手握持DS4的方式，当我完全将模拟摇杆移动到北方时，我的拇指会略微向右偏移。所使用的值表示用于调整最终轴输出值的角度数。值的范围允许从-180到180。默认值为0</value>
   </data>
   <data name="TouchpadJitterCompTooltip" xml:space="preserve">
-    <value>Throttle low end of Touchpad movement. Reduces accidental mouse cursor movement when holding a mostly fixed position on the Touchpad</value>
-    <comment/>
+    <value>限制触摸板下部分的移动。在触摸板上基本保持一个位置时可以减少意外的鼠标指针移动。</value>
   </data>
   <data name="DS4BTPollRate" xml:space="preserve">
     <value>DS4 蓝牙轮询速率</value>
@@ -706,8 +681,11 @@
     <comment/>
   </data>
   <data name="DualSRumbleForceGenericRescale_Tip" xml:space="preserve">
-    <value>Recommended to be left DISABLED.- Disabled: rumble will be rescaled natively by the controller accordingly to the defined power level (better quality)- Enabled: both DS4Windows generic rumble rescale and DualSense's native control will be active</value>
-    <comment/>
+    <value>建议保持禁用。
+
+- 禁用： 震动会根据设定的等级重新调整原生震动（更好的质量）
+
+- 启用：DS4Windows的通用震动调整和DualSense的原生控制都会生效</value>
   </data>
   <data name="DualSRumbleModes_Tip" xml:space="preserve">
     <value>Accurate Mode (recommended):- Better replicates the DualShock 4/Xbox 360 controller rumble feeling- More accurately executes game's intended rumble effects- Rumble has more depth. Within the same power level there is a greater difference between min and max in-game rumble activation,varying from real low up to the max strength of the defined power levelLegacy Mode:- Overral stronger, but lacks depth- Has a "sharper" feeling- The min and max activation in-game will be, respectively, only slightly below and slight above the chosen power level strengthDisabled:- Fully disables rumble</value>
@@ -884,5 +862,101 @@
   <data name="Task" xml:space="preserve">
     <value>任务</value>
     <comment/>
+  </data>
+  <data name="AddStartMenuPrograms" xml:space="preserve">
+    <value>添加开始菜单程序</value>
+  </data>
+  <data name="Analog" xml:space="preserve">
+    <value>模拟</value>
+  </data>
+  <data name="DS4OutputTriggersDefault" xml:space="preserve">
+    <value>默认 （模拟+按钮）</value>
+  </data>
+  <data name="ControllerSupportDS3" xml:space="preserve">
+    <value>DS3 手柄支持</value>
+  </data>
+  <data name="AntiDeadzoneTooltip" xml:space="preserve">
+    <value>反死区作为一个与轴关联的偏移量，用于表示摇杆在某轴在离开其指定的死区后生成的最小输出值。这主要是为了应对游戏中某轴的死区。例如在游戏中，一般的XInput LS死区约为8000（25%）。如果没有分配反死区，摇杆就必须移动超过DS4Windows和游戏设定的死区才有输出。</value>
+  </data>
+  <data name="AutoProfiles.DisplaySwitchVia" xml:space="preserve">
+    <value>通过以下选项显示配置切换</value>
+  </data>
+  <data name="AutoProfiles.LogAndNotification" xml:space="preserve">
+    <value>日志 + 通知</value>
+  </data>
+  <data name="Buttons" xml:space="preserve">
+    <value>按钮</value>
+  </data>
+  <data name="EnableInterpretingOscMonitoring" xml:space="preserve">
+    <value>解释监控消息</value>
+  </data>
+  <data name="EnableOscSender" xml:space="preserve">
+    <value>启用监控消息</value>
+  </data>
+  <data name="EnableOscServer" xml:space="preserve">
+    <value>启用控制服务器</value>
+  </data>
+  <data name="GyroTriggerJitterCompensationTooltip" xml:space="preserve">
+    <value>增加额外的</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>通知</value>
+  </data>
+  <data name="OscServerHeading" xml:space="preserve">
+    <value>启用 OSC 控制和监控</value>
+  </data>
+  <data name="ProfileEditor.VirtualDS4TrigOutput" xml:space="preserve">
+    <value>DS4 扳机输出模式</value>
+  </data>
+  <data name="WakeupFromSuspend" xml:space="preserve">
+    <value>从挂起中唤醒</value>
+  </data>
+  <data name="FirstLaunch.DeviceIntroText" xml:space="preserve">
+    <value>由于其他映射软件默认支持多种设备（Steam输入），DS4Windows默认只启用DS4控制器的输入。你可以在这里启用其他支持的设备的输入。当DS4Windows与其他映射同时运行的时候请小心冲突。</value>
+  </data>
+  <data name="FirstLaunch.DS3EnableCkbLabel" xml:space="preserve">
+    <value>DS3 设备支持</value>
+  </data>
+  <data name="FirstLaunch.DS3EnableText" xml:space="preserve">
+    <value>支持DualShock 3 (PS3) 控制器。需要来自ViGEm project (nefarius)的DsHidMini 驱动。</value>
+  </data>
+  <data name="FirstLaunch.DS4EnableCkbLabel" xml:space="preserve">
+    <value>DS4 设备支持</value>
+  </data>
+  <data name="FirstLaunch.DS4EnableText" xml:space="preserve">
+    <value>支持已知的 DualShock 4控制器</value>
+  </data>
+  <data name="FirstLaunch.DSEnableCkbLabel" xml:space="preserve">
+    <value>DualSense设备支持</value>
+  </data>
+  <data name="FirstLaunch.DSEnableText" xml:space="preserve">
+    <value>支持 DualSense (PS5) 控制器。同时支持原版和DS Edge。</value>
+  </data>
+  <data name="FirstLaunch.Header" xml:space="preserve">
+    <value>启用设备映射支持</value>
+  </data>
+  <data name="FirstLaunch.JoyConEnableCkbLabel" xml:space="preserve">
+    <value>JoyCon 设备支持</value>
+  </data>
+  <data name="FirstLaunch.JoyConEnableText" xml:space="preserve">
+    <value>支持 JoyCon (Nintendo Switch) 控制器</value>
+  </data>
+  <data name="FirstLaunch.SwitchProEnableCkbLabel" xml:space="preserve">
+    <value>支持 Switch Pro 控制器</value>
+  </data>
+  <data name="FirstLaunch.SwitchProEnableText" xml:space="preserve">
+    <value>支持 Switch Pro (Nintendo Switch) 控制器</value>
+  </data>
+  <data name="FirstLaunch.WinTitle" xml:space="preserve">
+    <value>第一次启动</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>左</value>
+  </data>
+  <data name="TouchpadTapTooltip" xml:space="preserve">
+    <value>用触摸板单击触发鼠标左键点击。最大时间间隔为（值 * 2）ms</value>
+  </data>
+  <data name="StickOuterBindTooltip" xml:space="preserve">
+    <value>当摇杆行程超过阈值时，执行一个动作。当映射的按键是静步或疾跑时很有用。反转可以放动作在到达阈值前一直执行。</value>
   </data>
 </root>

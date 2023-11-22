@@ -886,4 +886,16 @@ Disabled:
   <data name="VerticalScale" xml:space="preserve">
     <value>Vertical Scale</value>
   </data>
+  <data name="AntiSnapback" xml:space="preserve">
+    <value>Anti Snapback</value>
+  </data>
+  <data name="AntiSnapbackTiming" xml:space="preserve">
+    <value>Anti Snapback timing</value>
+  </data>
+  <data name="Touchpad" xml:space="preserve">
+    <value>Touchpad</value>
+  </data>
+  <data name="ViGEm117MinNeeded" xml:space="preserve">
+    <value>Only works with ViGEmBus 1.17.333.0 and newer</value>
+  </data>
 </root>

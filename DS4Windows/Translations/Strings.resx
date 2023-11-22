@@ -808,4 +808,10 @@ Disabled:
   <data name="DS4OutputTriggersDefault" xml:space="preserve">
     <value>Default (Analog + Buttons)</value>
   </data>
+  <data name="DeadZone" xml:space="preserve">
+    <value>Dead Zone</value>
+  </data>
+  <data name="MaxZone" xml:space="preserve">
+    <value>Max Zone</value>
+  </data>
 </root>

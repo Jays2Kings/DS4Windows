@@ -558,6 +558,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dead Zone.
+        /// </summary>
+        public static string DeadZone {
+            get {
+                return ResourceManager.GetString("DeadZone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default.
         /// </summary>
         public static string Default {
@@ -1294,6 +1303,15 @@ namespace DS4WinWPF.Translations {
         public static string Log {
             get {
                 return ResourceManager.GetString("Log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Zone.
+        /// </summary>
+        public static string MaxZone {
+            get {
+                return ResourceManager.GetString("MaxZone", resourceCulture);
             }
         }
         

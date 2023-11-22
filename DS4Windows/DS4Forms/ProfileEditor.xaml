@@ -295,11 +295,11 @@
                                                             <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                         </Grid.RowDefinitions>
 
-                                                        <Label Content="Dead Zone:" Grid.Row="0" Grid.Column="0" />
+                                                        <Label Content="{lex:Loc DeadZone}" ContentStringFormat="{}{0}:" Grid.Row="0" Grid.Column="0" />
                                                         <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSDeadZone,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="0" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
-                                                        <Label Content="Max Zone:" Grid.Row="1" Grid.Column="0" />
+                                                        <Label Content="{lex:Loc MaxZone}" ContentStringFormat="{}{0}:" Grid.Row="1" Grid.Column="0" />
                                                         <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSMaxZone}" FormatString="F2" MinWidth="50" Grid.Row="1" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
@@ -583,11 +583,11 @@
                                                             <RowDefinition Style="{StaticResource gridRowHeight}" />
                                                         </Grid.RowDefinitions>
 
-                                                        <Label Content="Dead Zone:" Grid.Row="0" Grid.Column="0" />
+                                                        <Label Content="{lex:Loc DeadZone}" ContentStringFormat="{}{0}:" Grid.Row="0" Grid.Column="0" />
                                                         <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSDeadZone,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="0" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
-                                                        <Label Content="Max Zone:" Grid.Row="1" Grid.Column="0" />
+                                                        <Label Content="{lex:Loc MaxZone}" ContentStringFormat="{}{0}:" Grid.Row="1" Grid.Column="0" />
                                                         <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSMaxZone}" FormatString="F2" MinWidth="50" Grid.Row="1" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
@@ -856,13 +856,13 @@
                                 <TextBlock Text="L2" Grid.Column="1" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,8" />
                                 <TextBlock Text="R2" Grid.Column="2" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,8" />
 
-                                <Label Content="Dead Zone:" Grid.Row="1" Grid.Column="0" />
+                                <Label Content="{lex:Loc DeadZone}" ContentStringFormat="{}{0}:" Grid.Row="1" Grid.Column="0" />
                                 <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding L2DeadZone}" MinWidth="50" Grid.Row="1" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
                                 <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding R2DeadZone}" MinWidth="50" Grid.Row="1" Grid.Column="2" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
-                                <Label Content="Max Zone:" Grid.Row="2" Grid.Column="0" />
+                                <Label Content="{lex:Loc MaxZone}" ContentStringFormat="{}{0}:" Grid.Row="2" Grid.Column="0" />
                                 <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding L2MaxZone}" MinWidth="50" Grid.Row="2" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
                                 <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding R2MaxZone}" MinWidth="50" Grid.Row="2" Grid.Column="2" Maximum="1.0" Minimum="0.0" Increment="0.1"
@@ -1041,13 +1041,13 @@
                                 <TextBlock Text="X" Grid.Column="1" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,8" />
                                 <TextBlock Text="Z" Grid.Column="2"  FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,8" />
 
-                                <Label Content="Dead Zone:" Grid.Row="1" Grid.Column="0" />
+                                <Label Content="{lex:Loc DeadZone}" ContentStringFormat="{}{0}:" Grid.Row="1" Grid.Column="0" />
                                 <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding SXDeadZone}" MinWidth="50" Grid.Row="1" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
                                 <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding SZDeadZone}" MinWidth="50" Grid.Row="1" Grid.Column="2" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
 
-                                <Label Content="Max Zone:" Grid.Row="2" Grid.Column="0" />
+                                <Label Content="{lex:Loc MaxZone}" ContentStringFormat="{}{0}:" Grid.Row="2" Grid.Column="0" />
                                 <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding SXMaxZone}" MinWidth="50" Grid.Row="2" Grid.Column="1" Maximum="1.0" Minimum="0.0" Increment="0.1"
                                                    Margin="{StaticResource spaceMargin}" />
                                 <xctk:DoubleUpDown d:IsHidden="True" FormatString="F2" Value="{Binding SZMaxZone}" MinWidth="50" Grid.Row="2" Grid.Column="2" Maximum="1.0" Minimum="0.0" Increment="0.1"
@@ -1393,9 +1393,9 @@
                                 <StackPanel x:Name="touchMouseJoystickPanel">
 
                                     <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                                        <Label Content="Dead Zone" />
+                                        <Label Content="{lex:Loc DeadZone}" />
                                         <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding TouchMouseStickDeadZone}" MinWidth="60" />
-                                        <Label Content="Max Zone" Margin="8,0,0,0" />
+                                        <Label Content="{lex:Loc MaxZone}" ContentStringFormat="{}{0}:" Margin="8,0,0,0" />
                                         <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding TouchMouseStickMaxZone}" MinWidth="60"
                                                 Minimum="1" />
                                     </StackPanel>
@@ -1714,7 +1714,7 @@
                                     </StackPanel>
 
                                     <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                                        <Label Content="Deadzone" />
+                                        <Label Content="{lex:Loc DeadZone}" />
                                         <xctk:IntegerUpDown d:IsHidden="True" MinWidth="60" Margin="8,0,0,0"
                                                 Value="{Binding GyroMouseDeadZone}" Minimum="0" Maximum="1000" />
                                     </StackPanel>
@@ -1783,9 +1783,9 @@
                                     </StackPanel>
 
                                     <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                                        <Label Content="Dead Zone" />
+                                        <Label Content="{lex:Loc DeadZone}" />
                                         <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickDeadZone}" MinWidth="60" />
-                                        <Label Content="Max Zone" Margin="8,0,0,0" />
+                                        <Label Content="{lex:Loc MaxZone}" Margin="8,0,0,0" />
                                         <xctk:IntegerUpDown d:IsHidden="True" Margin="8,0,0,0" Value="{Binding GyroMouseStickMaxZone}" MinWidth="60"
                                                 Minimum="1" />
                                     </StackPanel>

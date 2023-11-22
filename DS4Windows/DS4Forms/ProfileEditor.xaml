@@ -1206,8 +1206,7 @@
 
                         <TabItem Header="Passthru" Visibility="Collapsed">
                             <StackPanel>
-                                <TextBlock Foreground="Red" Text="{lex:Loc DS4LightbarPassthruDisabled}" TextWrapping="Wrap">
-                                </TextBlock>
+                                
                             </StackPanel>
                         </TabItem>
                     </TabControl>

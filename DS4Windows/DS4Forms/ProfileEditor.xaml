@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
+             xmlns:localConvert="clr-namespace:DS4WinWPF.DS4Forms.Converters"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
              lex:LocalizeDictionary.DesignCulture=""
@@ -13,6 +14,7 @@
              d:DesignHeight="550" d:DesignWidth="1000">
     <UserControl.Resources>
         <xctk:InverseBoolConverter x:Key="InverseBoolConverter"/>
+        <localConvert:InvertBoolToVisibilityConverter x:Key="InvertBoolToVisibilityConverter" />
         <local:ControlIndexCheck x:Key="controlIndexCheck" />
         <local:ResourcePaths x:Key="resourcesPaths" />
     </UserControl.Resources>
@@ -1204,7 +1206,8 @@
 
                         <TabItem Header="Passthru" Visibility="Collapsed">
                             <StackPanel>
-                                <TextBlock Foreground="Red" Text="{lex:Loc DS4LightbarPassthruDisabled}" TextWrapping="Wrap">
+                                <TextBlock Foreground="Red" Text="{lex:Loc DS4LightbarPassthruDisabled}" TextWrapping="Wrap"
+                                           Visibility="{Binding UsingMinViGEm173333, Mode=OneWay, Converter={StaticResource InvertBoolToVisibilityConverter}}">
                                 </TextBlock>
                             </StackPanel>
                         </TabItem>
@@ -1517,7 +1520,7 @@
                             </TabItem>
                             <TabItem Header="Passthru" Visibility="Collapsed">
                                 <StackPanel>
-                                    <TextBlock Foreground="Red">
+                                    <TextBlock Foreground="Red" Visibility="{Binding UsingMinViGEm173333, Mode=OneWay, Converter={StaticResource InvertBoolToVisibilityConverter}}">
                                     Only works with ViGEmBus 1.17.333.0 and newer
                                     </TextBlock>
                                 </StackPanel>
@@ -1971,7 +1974,8 @@
 
                             <TabItem Header="Passthru" Visibility="Collapsed">
                                 <StackPanel x:Name="passthruPanel">
-                                    <TextBlock Foreground="Red">
+                                    <TextBlock Foreground="Red"
+                                               Visibility="{Binding UsingMinViGEm173333, Mode=OneWay, Converter={StaticResource InvertBoolToVisibilityConverter}}">
                                 Only works with ViGEmBus 1.17.333.0 and newer
                                     </TextBlock>
 

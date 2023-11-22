@@ -2888,6 +2888,11 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             set => Global.UseGenericRumbleStrRescaleForDualSenses[device] = value;
         }
 
+        public bool UsingMinViGEm173333
+        {
+            get => Global.IsUsingMinViGEm117333();
+        }
+
         public ProfileSettingsViewModel(int device)
         {
             this.device = device;

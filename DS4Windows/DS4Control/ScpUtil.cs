@@ -590,6 +590,7 @@ namespace DS4Windows
 
         public const string BLANK_VIGEMBUS_VERSION = "0.0.0.0";
         public const string MIN_SUPPORTED_VIGEMBUS_VERSION = "1.16.112.0";
+        public const string MIN_TOUCHPAD_PASSTHRU_VIGEMBUS_VERSION = "1.17.333.0";
 
         //public static bool vigemInstalled = IsViGEmBusInstalled();
         public static bool vigemInstalled = false;
@@ -1191,6 +1192,13 @@ namespace DS4Windows
             //return vigemInstalled;
             return vigemInstalled &&
                 minSupportedViGEmBusVersionInfo.CompareTo(vigemBusVersionInfo) <= 0;
+        }
+
+        public static bool IsUsingMinViGEm117333()
+        {
+            bool result = Global.vigemBusVersionInfo.CompareTo(
+                new Version(Global.MIN_TOUCHPAD_PASSTHRU_VIGEMBUS_VERSION)) >= 0;
+            return result;
         }
 
         public static void RefreshViGEmBusInfo()

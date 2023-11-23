@@ -898,4 +898,127 @@ Disabled:
   <data name="ViGEm117MinNeeded" xml:space="preserve">
     <value>Only works with ViGEmBus 1.17.333.0 and newer</value>
   </data>
+  <data name="AbsoluteMouse" xml:space="preserve">
+    <value>Absolute Mouse</value>
+  </data>
+  <data name="AbsoluteMouseOptions" xml:space="preserve">
+    <value>AbsoluteMouseOptions</value>
+  </data>
+  <data name="AntiRadius" xml:space="preserve">
+    <value>Anti Radius</value>
+  </data>
+  <data name="DeltaAcceleration" xml:space="preserve">
+    <value>Delta Acceleration</value>
+  </data>
+  <data name="DirectionalSwipe" xml:space="preserve">
+    <value>Directional Swipe</value>
+  </data>
+  <data name="EasingDuration" xml:space="preserve">
+    <value>Easing Duration</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="EnableTouchpadToggle" xml:space="preserve">
+    <value>Enable Touchpad Toggle</value>
+  </data>
+  <data name="FullBtnPull" xml:space="preserve">
+    <value>Full Btn Pull</value>
+  </data>
+  <data name="Fuzz" xml:space="preserve">
+    <value>Fuzz</value>
+  </data>
+  <data name="GyroControlsAccel" xml:space="preserve">
+    <value>Controls (Accel)</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="HipFireDelay" xml:space="preserve">
+    <value>Hip Fire Delay</value>
+  </data>
+  <data name="IdleDisconnect" xml:space="preserve">
+    <value>Idle Disconnect</value>
+  </data>
+  <data name="LaunchProgramWithProfile" xml:space="preserve">
+    <value>Launch program with profile</value>
+  </data>
+  <data name="Lightbar" xml:space="preserve">
+    <value>Lightbar</value>
+  </data>
+  <data name="MaxTravel" xml:space="preserve">
+    <value>Max Travel</value>
+  </data>
+  <data name="MinFactor" xml:space="preserve">
+    <value>MinFactor</value>
+  </data>
+  <data name="MinTravel" xml:space="preserve">
+    <value>Min Travel</value>
+  </data>
+  <data name="Mode" xml:space="preserve">
+    <value>Mode</value>
+  </data>
+  <data name="Mouse" xml:space="preserve">
+    <value>Mouse</value>
+  </data>
+  <data name="MouseAcceleration" xml:space="preserve">
+    <value>Mouse Acceleration</value>
+  </data>
+  <data name="MouseJoystick" xml:space="preserve">
+    <value>Mouse Joystick</value>
+  </data>
+  <data name="MouseSensitivity" xml:space="preserve">
+    <value>Mouse Sensitivity</value>
+  </data>
+  <data name="Multiplier" xml:space="preserve">
+    <value>Multiplier</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="OuterBind" xml:space="preserve">
+    <value>Outer Bind</value>
+  </data>
+  <data name="OuterBtn" xml:space="preserve">
+    <value>Outer Btn</value>
+  </data>
+  <data name="OuterBtnDead" xml:space="preserve">
+    <value>Outer Btn Dead</value>
+  </data>
+  <data name="Passthru" xml:space="preserve">
+    <value>Passthru</value>
+  </data>
+  <data name="Rotation" xml:space="preserve">
+    <value>Rotation</value>
+  </data>
+  <data name="SnapToCenter" xml:space="preserve">
+    <value>Snap To Center</value>
+  </data>
+  <data name="TestHeavy" xml:space="preserve">
+    <value>TestHeavy</value>
+  </data>
+  <data name="TestLight" xml:space="preserve">
+    <value>Test Light</value>
+  </data>
+  <data name="TriggerEffect" xml:space="preserve">
+    <value>Trigger Effect</value>
+  </data>
+  <data name="TwoStageMode" xml:space="preserve">
+    <value>Two Stage Mode</value>
+  </data>
+  <data name="UseController" xml:space="preserve">
+    <value>Use Controller</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="XCenter" xml:space="preserve">
+    <value>X Center</value>
+  </data>
+  <data name="YCenter" xml:space="preserve">
+    <value>Y Center</value>
+  </data>
 </root>

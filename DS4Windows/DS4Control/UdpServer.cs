@@ -552,7 +552,10 @@ namespace DS4Windows
             }
             catch (SocketException)
             {
-                ResetUDPConn();
+                if (running)
+                {
+                    ResetUDPConn();
+                }
             }
             catch (Exception /*e*/) { }
 
@@ -576,8 +579,11 @@ namespace DS4Windows
             }
             catch (SocketException /*ex*/)
             {
-                ResetUDPConn();
-                StartReceive();
+                if (running)
+                {
+                    ResetUDPConn();
+                    StartReceive();
+                }
             }
         }
 

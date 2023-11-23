@@ -106,6 +106,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string Active {
+            get {
+                return ResourceManager.GetString("Active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Directory.
         /// </summary>
         public static string AddDirectory {
@@ -201,6 +210,15 @@ namespace DS4WinWPF.Translations {
         public static string AntiSnapbackTiming {
             get {
                 return ResourceManager.GetString("AntiSnapbackTiming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appdata.
+        /// </summary>
+        public static string Appdata {
+            get {
+                return ResourceManager.GetString("Appdata", resourceCulture);
             }
         }
         
@@ -777,6 +795,15 @@ namespace DS4WinWPF.Translations {
         public static string Cubic {
             get {
                 return ResourceManager.GetString("Cubic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current.
+        /// </summary>
+        public static string Current {
+            get {
+                return ResourceManager.GetString("Current", resourceCulture);
             }
         }
         
@@ -1712,6 +1739,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Intro.
+        /// </summary>
+        public static string Intro {
+            get {
+                return ResourceManager.GetString("Intro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support. Gyro is mapped to a virtual Mouse..
         /// </summary>
         public static string KBMGyroMouseDescription {
@@ -2207,6 +2243,24 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Input #.
+        /// </summary>
+        public static string OutputSlotMan_InputNum {
+            get {
+                return ResourceManager.GetString("OutputSlotMan.InputNum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XInput #.
+        /// </summary>
+        public static string OutputSlotMan_XInputNum {
+            get {
+                return ResourceManager.GetString("OutputSlotMan.XInputNum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Output Slots.
         /// </summary>
         public static string OutputSlots {
@@ -2243,6 +2297,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pitch.
+        /// </summary>
+        public static string Pitch {
+            get {
+                return ResourceManager.GetString("Pitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plug.
         /// </summary>
         public static string Plug {
@@ -2266,6 +2329,24 @@ namespace DS4WinWPF.Translations {
         public static string PresetIntroText {
             get {
                 return ResourceManager.GetString("PresetIntroText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output Controller.
+        /// </summary>
+        public static string PresetOptWin_OutputController {
+            get {
+                return ResourceManager.GetString("PresetOptWin.OutputController", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preset Menu.
+        /// </summary>
+        public static string PresetOptWin_PresetMenu {
+            get {
+                return ResourceManager.GetString("PresetOptWin.PresetMenu", resourceCulture);
             }
         }
         
@@ -2324,6 +2405,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Program Folder.
+        /// </summary>
+        public static string ProgramFolder {
+            get {
+                return ResourceManager.GetString("ProgramFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quadratic.
         /// </summary>
         public static string Quadratic {
@@ -2347,6 +2437,33 @@ namespace DS4WinWPF.Translations {
         public static string Radial {
             get {
                 return ResourceManager.GetString("Radial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Battery: 0%.
+        /// </summary>
+        public static string ReadingsControl_BatteryZero {
+            get {
+                return ResourceManager.GetString("ReadingsControl.BatteryZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input Delay: N/A.
+        /// </summary>
+        public static string ReadingsControl_InputDelayNA {
+            get {
+                return ResourceManager.GetString("ReadingsControl.InputDelayNA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SixAxis: X Axis is flipped so it is easier to read.
+        /// </summary>
+        public static string ReadingsControl_SixAxisXText {
+            get {
+                return ResourceManager.GetString("ReadingsControl.SixAxisXText", resourceCulture);
             }
         }
         
@@ -2549,6 +2666,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Requested.
+        /// </summary>
+        public static string Requested {
+            get {
+                return ResourceManager.GetString("Requested", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Revert to default profile on unknown.
         /// </summary>
         public static string RevertToDefaultProfileOnUnknown {
@@ -2563,6 +2689,15 @@ namespace DS4WinWPF.Translations {
         public static string RightStick {
             get {
                 return ResourceManager.GetString("RightStick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roll.
+        /// </summary>
+        public static string Roll {
+            get {
+                return ResourceManager.GetString("Roll", resourceCulture);
             }
         }
         
@@ -2644,6 +2779,61 @@ namespace DS4WinWPF.Translations {
         public static string SaveProfile {
             get {
                 return ResourceManager.GetString("SaveProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For those who prefer a regular install. Settings saved at %appdata%\DS4Windows.
+        /// </summary>
+        public static string SaveWhere_AppDataDescText {
+            get {
+                return ResourceManager.GetString("SaveWhere.AppDataDescText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t Delete the other settings yet.
+        /// </summary>
+        public static string SaveWhere_DontDelete {
+            get {
+                return ResourceManager.GetString("SaveWhere.DontDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple save locations detected.
+        /// </summary>
+        public static string SaveWhere_MultipleSaves {
+            get {
+                return ResourceManager.GetString("SaveWhere.MultipleSaves", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pick where you want profiles and settings to be saved.
+        /// </summary>
+        public static string SaveWhere_PickWhere {
+            get {
+                return ResourceManager.GetString("SaveWhere.PickWhere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For those who prefer a portable program.
+        ///Note: this option does not work if in an admin folder w/o UAC.
+        /// </summary>
+        public static string SaveWhere_ProgramFolderDescText {
+            get {
+                return ResourceManager.GetString("SaveWhere.ProgramFolderDescText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Where.
+        /// </summary>
+        public static string SaveWhere_WinTitle {
+            get {
+                return ResourceManager.GetString("SaveWhere.WinTitle", resourceCulture);
             }
         }
         
@@ -3190,6 +3380,114 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bluetooth Settings.
+        /// </summary>
+        public static string Welcome_BluetoothSettings {
+            get {
+                return ResourceManager.GetString("Welcome.BluetoothSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If this window reappears after installing, you may need to reboot your PC..
+        /// </summary>
+        public static string Welcome_Step1HelpText {
+            get {
+                return ResourceManager.GetString("Welcome.Step1HelpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step 1: Install ViGEmBus Driver.
+        /// </summary>
+        public static string Welcome_Step1Text {
+            get {
+                return ResourceManager.GetString("Welcome.Step1Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you&apos;ve used a 360 controller on this PC, you can skip this step..
+        /// </summary>
+        public static string Welcome_Step2HelpText {
+            get {
+                return ResourceManager.GetString("Welcome.Step2HelpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step 2: If on Windows 7, Install 360 Driver.
+        /// </summary>
+        public static string Welcome_Step2Text {
+            get {
+                return ResourceManager.GetString("Welcome.Step2Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once flashing go to your Bluetooth Settings and connect to &quot;Wireless Controller&quot;. If asked, enter pair code 0000. Once paired, you&apos;re ready. Have fun!.
+        /// </summary>
+        public static string Welcome_Step3BluetoothHelpText {
+            get {
+                return ResourceManager.GetString("Welcome.Step3BluetoothHelpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step 3: Connecting the DualShock 4 controller.\nTo setup wired/USB:\nSimply plug a micro-USB into your PC and DualShock 4.\n\nTo setup Bluetooth (optional): Hold the PS Button and Share for 3 seconds. The lightbar will begin to double flash..
+        /// </summary>
+        public static string Welcome_Step3HelpText {
+            get {
+                return ResourceManager.GetString("Welcome.Step3HelpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use HidHide to configure and hide any input controllers from other apps running on your system. Some games require only one controller to be present or double input will cause problems in game..
+        /// </summary>
+        public static string Welcome_Step4HelpText {
+            get {
+                return ResourceManager.GetString("Welcome.Step4HelpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Optional) Step 4: Install HidHide Driver.
+        /// </summary>
+        public static string Welcome_Step4Text {
+            get {
+                return ResourceManager.GetString("Welcome.Step4Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use FakerInput driver to expose system-wide virtual keyboard, relative mouse, and absolute mouse. Allows virtual KB+M events to be usable in some situations when SendInput fails. Such situations are elevated process and games, UAC prompts, and anti-cheat systems that block SendInput events. Use of FakerInput is necessary to allow DS4Windows to work with some games with anti-cheat protection like Valorant..
+        /// </summary>
+        public static string Welcome_Step5HelpText {
+            get {
+                return ResourceManager.GetString("Welcome.Step5HelpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Optional) Step 5: Install FakerInput Driver.
+        /// </summary>
+        public static string Welcome_Step5Text {
+            get {
+                return ResourceManager.GetString("Welcome.Step5Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to DS4Windows.
+        /// </summary>
+        public static string Welcome_WinTitle {
+            get {
+                return ResourceManager.GetString("Welcome.WinTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to White.
         /// </summary>
         public static string White {
@@ -3231,6 +3529,15 @@ namespace DS4WinWPF.Translations {
         public static string XInputChecker {
             get {
                 return ResourceManager.GetString("XInputChecker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yaw.
+        /// </summary>
+        public static string Yaw {
+            get {
+                return ResourceManager.GetString("Yaw", resourceCulture);
             }
         }
         

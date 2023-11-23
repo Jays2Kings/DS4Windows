@@ -160,6 +160,24 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Anti Snapback.
+        /// </summary>
+        public static string AntiSnapback {
+            get {
+                return ResourceManager.GetString("AntiSnapback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anti Snapback timing.
+        /// </summary>
+        public static string AntiSnapbackTiming {
+            get {
+                return ResourceManager.GetString("AntiSnapbackTiming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
         public static string Apply {
@@ -2092,6 +2110,15 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Touchpad.
+        /// </summary>
+        public static string Touchpad {
+            get {
+                return ResourceManager.GetString("Touchpad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Throttle low end of Touchpad movement. Reduces accidental mouse cursor movement when holding a mostly fixed position on the Touchpad.
         /// </summary>
         public static string TouchpadJitterCompTooltip {
@@ -2241,6 +2268,15 @@ namespace DS4WinWPF.Translations {
         public static string VerticalScale {
             get {
                 return ResourceManager.GetString("VerticalScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only works with ViGEmBus 1.17.333.0 and newer.
+        /// </summary>
+        public static string ViGEm117MinNeeded {
+            get {
+                return ResourceManager.GetString("ViGEm117MinNeeded", resourceCulture);
             }
         }
         

@@ -20,7 +20,7 @@
     </UserControl.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,4,0,10">
-            <TextBlock Text="{lex:LocText Profile, Suffix=:}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+            <TextBlock Text="{lex:BLoc Profile, StringFormat='{}{0}:'}" VerticalAlignment="Center" Margin="0,0,8,0"/>
             <TextBox x:Name="profileNameTxt" Text="" Width="160" VerticalContentAlignment="Center" />
             <Button x:Name="saveBtn" Content="{lex:Loc SaveProfile}" Margin="10,0,0,0" Click="SaveBtn_Click" />
             <Button x:Name="cancelBtn" Content="{lex:Loc Cancel}" Margin="10,0,0,0" Click="CancelBtn_Click" />
@@ -35,7 +35,7 @@
             </Button>
         </StackPanel>
         <TabControl x:Name="sidebarTabControl" Width="480" DockPanel.Dock="Left" SelectionChanged="SidebarTabControl_SelectionChanged">
-            <TabItem Header="Controls">
+            <TabItem Header="{lex:Loc Controls}">
                 <DockPanel Width="470" LastChildFill="False">
                     <DockPanel.Background>
                         <SolidColorBrush Color="DimGray"/>
@@ -410,7 +410,7 @@
                                                     </xctk:IntegerUpDown>
                                                 </DockPanel>
 
-                                                <Label Content="Anti Snapback:" Grid.Row="5" Grid.Column="0" />
+                                                <Label Content="{lex:Loc AntiSnapback}" ContentStringFormat="{}{0}:" Grid.Row="5" Grid.Column="0" />
                                                 <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right">
                                                     <CheckBox IsChecked="{Binding LSAntiSnapback}" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
                                                     <xctk:DoubleUpDown d:IsHidden="True" FormatString="F1" Value="{Binding LSAntiSnapbackDelta, FallbackValue=135}"
@@ -419,7 +419,7 @@
                                                     <TextBlock Text="units" DockPanel.Dock="Right" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
                                                 </StackPanel>
 
-                                                <Label Content="Anti Snapback timing:" Grid.Row="6" Grid.Column="0" />
+                                                <Label Content="{lex:Loc AntiSnapbackTiming}" ContentStringFormat="{}{0}:" Grid.Row="6" Grid.Column="0" />
                                                 <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right">
                                                     <xctk:IntegerUpDown d:IsHidden="True" FormatString="F1" Value="{Binding LSAntiSnapbackTimeout}"
                                                        MinWidth="100" Minimum="0" Maximum="1000" Increment="1" IsEnabled="{Binding LSAntiSnapback}"
@@ -697,7 +697,7 @@
                                                     </xctk:IntegerUpDown>
                                                 </DockPanel>
 
-                                                <Label Content="Anti Snapback:" Grid.Row="5" Grid.Column="0" />
+                                                <Label Content="{lex:Loc AntiSnapback}" ContentStringFormat="{}{0}:" Grid.Row="5" Grid.Column="0" />
                                                 <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right">
                                                     <CheckBox IsChecked="{Binding RSAntiSnapback}" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
                                                     <xctk:DoubleUpDown d:IsHidden="True" FormatString="F1" Value="{Binding RSAntiSnapbackDelta, FallbackValue=135}"
@@ -706,7 +706,7 @@
                                                     <TextBlock Text="units" DockPanel.Dock="Right" FontSize="10" Margin="{StaticResource spaceMargin}" VerticalAlignment="Center" />
                                                 </StackPanel>
 
-                                                <Label Content="Anti Snapback timing:" Grid.Row="6" Grid.Column="0" />
+                                                <Label Content="{lex:Loc AntiSnapbackTiming}" ContentStringFormat="{}{0}:" Grid.Row="6" Grid.Column="0" />
                                                 <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right">
                                                     <xctk:IntegerUpDown d:IsHidden="True" FormatString="F1" Value="{Binding RSAntiSnapbackTimeout}"
                                                        MinWidth="100" Minimum="0" Maximum="1000" Increment="1" IsEnabled="{Binding RSAntiSnapback}"
@@ -1216,7 +1216,7 @@
                 </StackPanel>
             </TabItem>
 
-            <TabItem Header="Touchpad" Height="22" VerticalAlignment="Top">
+            <TabItem Header="{lex:Loc Touchpad}" Height="22" VerticalAlignment="Top">
                 <TabItem.Resources>
                     <Thickness x:Key="spaceMargin" Bottom="8" />
                 </TabItem.Resources>
@@ -1520,8 +1520,8 @@
                             </TabItem>
                             <TabItem Header="Passthru" Visibility="Collapsed">
                                 <StackPanel>
-                                    <TextBlock Foreground="Red" Visibility="{Binding UsingMinViGEm173333, Mode=OneWay, Converter={StaticResource InvertBoolToVisibilityConverter}}">
-                                    Only works with ViGEmBus 1.17.333.0 and newer
+                                    <TextBlock Foreground="Red" Visibility="{Binding UsingMinViGEm173333, Mode=OneWay, Converter={StaticResource InvertBoolToVisibilityConverter}}"
+                                               Text="{lex:Loc ViGEm117MinNeeded}">
                                     </TextBlock>
                                 </StackPanel>
 
@@ -1975,8 +1975,8 @@
                             <TabItem Header="Passthru" Visibility="Collapsed">
                                 <StackPanel x:Name="passthruPanel">
                                     <TextBlock Foreground="Red"
-                                               Visibility="{Binding UsingMinViGEm173333, Mode=OneWay, Converter={StaticResource InvertBoolToVisibilityConverter}}">
-                                Only works with ViGEmBus 1.17.333.0 and newer
+                                               Visibility="{Binding UsingMinViGEm173333, Mode=OneWay, Converter={StaticResource InvertBoolToVisibilityConverter}}"
+                                               Text="{lex:Loc ViGEm117MinNeeded}">
                                     </TextBlock>
 
                                     <StackPanel Orientation="Horizontal" Margin="0,8,0,8">

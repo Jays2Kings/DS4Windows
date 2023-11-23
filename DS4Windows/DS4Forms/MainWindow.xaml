@@ -60,7 +60,7 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn x:Name="idColumn" Header="ID" Width="120">
+                                <GridViewColumn x:Name="idColumn" Header="{lex:Loc ID}" Width="120">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock x:Name="idColumnTxtB" Text="{Binding IdText, Mode=OneWay}" ToolTip="{Binding TooltipIDText, Mode=OneWay}" ToolTipOpening="IdColumnTxtB_ToolTipOpening" Tag="{Binding DevIndex, Mode=OneTime}"/>
@@ -96,7 +96,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn x:Name="LinkProfColumn" Header="Link Profile/ID" Width="100">
+                                <GridViewColumn x:Name="LinkProfColumn" Header="{lex:Loc LinkProfileId}" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Width="{Binding ElementName=LinkProfColumn, Path=Width}">
@@ -105,7 +105,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn x:Name="selectProfileColumn" Header="Selected Profile" Width="130">
+                                <GridViewColumn x:Name="selectProfileColumn" Header="{lex:Loc SelectedProfile}" Width="130">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Width="{Binding Path=Width, ElementName=selectProfileColumn, Mode=OneWay}" HorizontalAlignment="Center">
@@ -356,27 +356,27 @@
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Header="UDP Server" Padding="0,10,0,0" Margin="{StaticResource spaceMargin}">
+                        <GroupBox Header="{lex:Loc UDPServer}" Padding="0,10,0,0" Margin="{StaticResource spaceMargin}">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" MinHeight="20">
-                                    <CheckBox x:Name="useUdpServerCk" Content="Enable Server" IsChecked="{Binding UseUDPServer}" Click="UseUdpServerCk_Click" VerticalAlignment="Center" />
+                                    <CheckBox x:Name="useUdpServerCk" Content="{lex:Loc MainWin.EnableServer}" IsChecked="{Binding UseUDPServer}" Click="UseUdpServerCk_Click" VerticalAlignment="Center" />
                                     <TextBox x:Name="udpServerTxt" IsEnabled="{Binding UseUDPServer,Mode=OneWay}" Text="{Binding UdpIpAddress, UpdateSourceTrigger=LostFocus,FallbackValue='127.0.0.1'}"
                                  Margin="8,0,0,0" />
-                                    <Label Content="Port" Padding="0" Margin="20,0,0,0" VerticalAlignment="Center" />
+                                    <Label Content="{lex:Loc Port}" Padding="0" Margin="20,0,0,0" VerticalAlignment="Center" />
                                     <!--<TextBox x:Name="updPortNum" IsEnabled="{Binding UseUDPServer}" Text="{Binding UdpPort, UpdateSourceTrigger=LostFocus,FallbackValue='26760'}" />-->
                                     <xctk:IntegerUpDown d:IsHidden="True" x:Name="updPortNum" IsEnabled="{Binding UseUDPServer}" MinWidth="20" Margin="8,0,0,0"
                                             Value="{Binding UdpPort, UpdateSourceTrigger=LostFocus,FallbackValue='26760'}" ButtonSpinnerLocation="Right" Increment="1" Maximum="65535" Minimum="0" />
                                 </StackPanel>
 
-                                <CheckBox Content="Use Smoothing" IsChecked="{Binding UseUdpSmoothing,FallbackValue='False'}" IsEnabled="{Binding UseUDPServer,Mode=OneWay}" Margin="0,4,0,10" />
+                                <CheckBox Content="{lex:Loc UseSmoothing}" IsChecked="{Binding UseUdpSmoothing,FallbackValue='False'}" IsEnabled="{Binding UseUDPServer,Mode=OneWay}" Margin="0,4,0,10" />
                                 <StackPanel x:Name="udpEuroPanel" Orientation="Horizontal" Margin="{StaticResource spaceMargin}" Visibility="{Binding UdpServerOneEuroPanelVisibility,FallbackValue='Collapsed'}">
                                     <StackPanel Orientation="Horizontal">
-                                        <Label Content="1&#x20ac; MinCutoff" />
+                                        <Label Content="{lex:Loc MainWin.OneEuroMinCutoff}" />
                                         <xctk:DoubleUpDown d:IsHidden="True" FormatString="F5" Value="{Binding UdpSmoothMinCutoff,FallbackValue=1.0,UpdateSourceTrigger=LostFocus}"
                                                            Minimum="0.00001" Maximum="100.0" Increment="0.1" MinWidth="60" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
-                                        <Label Content="1&#x20ac; Beta" />
+                                        <Label Content="{lex:Loc MainWin.OneEuroBeta}" />
                                         <xctk:DoubleUpDown  d:IsHidden="True" FormatString="F5" Value="{Binding UdpSmoothBeta,FallbackValue=0.0,UpdateSourceTrigger=LostFocus}"
                                                            Minimum="0.0" Maximum="1.0" Increment="0.1" MinWidth="60" />
                                     </StackPanel>
@@ -408,7 +408,7 @@
                         </DockPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                            <Label Content="Abs Display Monitor:" />
+                            <Label Content="{lex:Loc MainWin.AbsDisplayMonitor}" ContentStringFormat="{}{0}:" />
                             <ComboBox ItemsSource="{Binding AbsMonitorChoices}" DisplayMemberPath="DisplayItemString" SelectedValuePath="EDID"
                                       SelectedValue="{Binding AbsMonitorSettingEDID}" Margin="10,0,0,0">
                             </ComboBox>

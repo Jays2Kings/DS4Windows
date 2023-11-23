@@ -4,21 +4,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DS4WinWPF.DS4Forms"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:LocalizeDictionary.DesignCulture=""
+        lex:ResxLocalizationProvider.DefaultAssembly="DS4Windows"
+        lex:ResxLocalizationProvider.DefaultDictionary="Strings"
         mc:Ignorable="d"
-        Title="Rename Profile" Height="200" Width="600"
+        Title="{lex:Loc RenameProfileWin.WinTitle}" Height="200" Width="600"
         Style="{DynamicResource WindowStyle}">
     <DockPanel x:Name="mainDockPanel" Margin="8">
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Height="30">
-            <Button x:Name="cancelBtn" Content="Cancel" Click="CancelBtn_Click" Width="60" />
-            <Button x:Name="confirmBtn" Content="Confirm" Click="ConfirmBtn_Click" Width="60" Margin="20,0,0,0" />
+            <Button x:Name="cancelBtn" Content="{lex:Loc Cancel}" Click="CancelBtn_Click" Width="60" />
+            <Button x:Name="confirmBtn" Content="{lex:Loc Confirm}" Click="ConfirmBtn_Click" Width="60" Margin="20,0,0,0" />
         </StackPanel>
 
         <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBox DockPanel.Dock="Bottom" Margin="0,16,0,0" Text="{Binding ProfileName}">
             </TextBox>
 
-            <TextBlock DockPanel.Dock="Top">
-                Please type the new name to use for the selected profile XML file.
+            <TextBlock DockPanel.Dock="Top" Text="{lex:Loc RenameProfileWin.TypeNewProfileName}">
             </TextBlock>
         </DockPanel>
     </DockPanel>

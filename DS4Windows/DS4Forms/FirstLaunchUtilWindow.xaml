@@ -17,7 +17,7 @@
         <Button Content="{lex:Loc Close}" Click="Button_Click" DockPanel.Dock="Bottom" Margin="16,16,16,16" />
 
         <TabControl Name="pagesTabControl" TabStripPlacement="Left">
-            <TabItem Header="Device Support" Visibility="Collapsed">
+            <TabItem Header="{lex:Loc FirstLaunch.DeviceSupport}" Visibility="Collapsed">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="{lex:Loc FirstLaunch.Header}" FontWeight="UltraBold" FontSize="16" HorizontalAlignment="Center"
                                Margin="0,8,0,0" DockPanel.Dock="Top" />

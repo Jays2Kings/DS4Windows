@@ -9,7 +9,7 @@
         lex:ResxLocalizationProvider.DefaultAssembly="DS4Windows"
         lex:ResxLocalizationProvider.DefaultDictionary="Strings"
         mc:Ignorable="d"
-        Title="Controller Type Options" Height="450" Width="800"
+        Title="{lex:Loc ControllerRegOptWin.WinTitle}" Height="450" Width="800"
         Style="{DynamicResource WindowStyle}" Closed="Window_Closed">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -55,12 +55,12 @@
             <TabItem x:Name="dualSenseOptsTabItem" Header="DualSense" Visibility="Collapsed">
                 <StackPanel Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="4">
                     <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                        <Label Content="Player LED Mode" ContentStringFormat="{}{0}:" />
+                        <Label Content="{lex:Loc ControllerRegOptWin.PlayerLEDMode}" ContentStringFormat="{}{0}:" />
                         <ComboBox ItemsSource="{Binding Path=DsLEDModes}" DisplayMemberPath="DisplayName" SelectedValuePath="ChoiceValue" SelectedValue="{Binding Options.LedMode}" Margin="8,0,0,0" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                        <Label Content="Mute LED Mode" ContentStringFormat="{}{0}:" />
+                        <Label Content="{lex:Loc ControllerRegOptWin.MuteLEDMode}" ContentStringFormat="{}{0}:" />
                         <ComboBox ItemsSource="{Binding Path=DsMuteLEDModes}" DisplayMemberPath="DisplayName" SelectedValuePath="ChoiceValue" SelectedValue="{Binding Options.MuteLedMode}" Margin="8,0,0,0" />
                     </StackPanel>
                 </StackPanel>
@@ -75,7 +75,7 @@
 
                     <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
                         <TextBlock Text="*" Foreground="Red" />
-                        <CheckBox Content="Enable Home LED" IsChecked="{Binding Options.EnableHomeLED, FallbackValue='False'}" Margin="8,0,0,0" />
+                        <CheckBox Content="{lex:Loc ControllerRegOptWin.EnableHomeLED}" IsChecked="{Binding Options.EnableHomeLED, FallbackValue='False'}" Margin="8,0,0,0" />
                     </StackPanel>
                 </StackPanel>
             </TabItem>
@@ -91,13 +91,13 @@
                         <StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
                                 <TextBlock Text="*" Foreground="Red" Margin="0,0,8,0" VerticalAlignment="Center" />
-                                <Label Content="Link Mode" ContentStringFormat="{}{0}:" />
+                                <Label Content="{lex:Loc ControllerRegOptWin.LinkMode}" ContentStringFormat="{}{0}:" />
                                 <ComboBox ItemsSource="{Binding Path=LinkModes}" DisplayMemberPath="DisplayName" SelectedValuePath="ChoiceValue" SelectedValue="{Binding ParentOptions.LinkedMode}" Margin="8,0,0,0" />
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
                                 <TextBlock Text="*" Foreground="Red" Margin="0,0,8,0" VerticalAlignment="Center" />
-                                <Label Content="Joined Gyro Provider" ContentStringFormat="{}{0}:" />
+                                <Label Content="{lex:Loc ControllerRegOptWin.JoinedGyroProvider}" ContentStringFormat="{}{0}:" />
                                 <ComboBox ItemsSource="{Binding Path=JoinGyroOptions}" DisplayMemberPath="DisplayName" SelectedValuePath="ChoiceValue" SelectedValue="{Binding ParentOptions.JoinGyroProv}" Margin="8,0,0,0" />
                             </StackPanel>
                         </StackPanel>
@@ -105,7 +105,7 @@
 
                     <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
                         <TextBlock Text="*" Foreground="Red" Margin="0,0,8,0" VerticalAlignment="Center" />
-                        <CheckBox Content="Enable Home LED" IsChecked="{Binding Options.EnableHomeLED, FallbackValue='False'}" />
+                        <CheckBox Content="{lex:Loc ControllerRegOptWin.EnableHomeLED}" IsChecked="{Binding Options.EnableHomeLED, FallbackValue='False'}" />
                     </StackPanel>
                 </StackPanel>
             </TabItem>

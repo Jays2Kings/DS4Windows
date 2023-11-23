@@ -14,7 +14,7 @@
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
             <StackPanel Orientation="Horizontal" Width="200">
                 <Label x:Name="inputContNum" Content="#" FontWeight="Bold"/>
-                <Label x:Name="inputDelayLb" Content="Input Delay: N/A"  Margin="8,0,0,0">
+                <Label x:Name="inputDelayLb" Content="{lex:Loc ReadingsControl.InputDelayNA}"  Margin="8,0,0,0">
                     <Label.Background>
                         <SolidColorBrush x:Name="inpuDelayBackBrush" Color="Transparent" />
                     </Label.Background>
@@ -24,7 +24,7 @@
                 </Label>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                <Label x:Name="batteryLvlLb" Content="Battery: 0%" Margin="8,0,0,0" />
+                <Label x:Name="batteryLvlLb" Content="{lex:Loc ReadingsControl.BatteryZero}" Margin="8,0,0,0" />
             </StackPanel>
         </StackPanel>
         <Grid DockPanel.Dock="Top" Width="450" Margin="0,8,0,0">
@@ -105,7 +105,7 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Column="2">
-                <TextBlock Text="SixAxis: X Axis is flipped so it is easier to read" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"/>
+                <TextBlock Text="{lex:Loc ReadingsControl.SixAxisXText}" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"/>
                 <Canvas x:Name="sixaxisCanvas" Width="130" Height="130" ClipToBounds="True">
                     <Rectangle Width="{Binding Path=Width, ElementName=sixaxisCanvas}"
                                Height="{Binding Path=Height, ElementName=sixaxisCanvas}" Stroke="{DynamicResource ForegroundColor}">
@@ -221,15 +221,15 @@
                     <StackPanel Margin="0,0,6,0">
                         <Label Content="{lex:Loc Gyro}" HorizontalAlignment="Center" Padding="0"/>
                         <StackPanel Orientation="Horizontal">
-                            <Label Content="Yaw" Width="40" />
+                            <Label Content="{lex:Loc Yaw}" Width="40" />
                             <Slider x:Name="gyroYawSlider" Width="80" Minimum="-9000" Maximum="9000" Value="0" Focusable="False" Margin="0,8,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <Label Content="Pitch" Width="40" />
+                            <Label Content="{lex:Loc Pitch}" Width="40" />
                             <Slider x:Name="gyroPitchSlider" Width="80" Minimum="-9000" Maximum="9000" Value="0" Focusable="False" Margin="0,4,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <Label Content="Roll" Width="40" />
+                            <Label Content="{lex:Loc Roll}" Width="40" />
                             <Slider x:Name="gyroRollSlider" Width="80" Minimum="-9000" Maximum="9000" Value="0" Focusable="False" Margin="0,4,0,0"/>
                         </StackPanel>
                     </StackPanel>

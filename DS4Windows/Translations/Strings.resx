@@ -907,6 +907,63 @@ Disabled:
   <data name="AntiRadius" xml:space="preserve">
     <value>Anti Radius</value>
   </data>
+  <data name="BindingWin.AbsMouse" xml:space="preserve">
+    <value>Abs Mouse</value>
+  </data>
+  <data name="BindingWin.AbsMouseDown" xml:space="preserve">
+    <value>Abs Mouse Down</value>
+  </data>
+  <data name="BindingWin.AbsMouseLeft" xml:space="preserve">
+    <value>Abs Mouse Left</value>
+  </data>
+  <data name="BindingWin.AbsMouseRight" xml:space="preserve">
+    <value>Abs Mouse Right</value>
+  </data>
+  <data name="BindingWin.AbsMouseUp" xml:space="preserve">
+    <value>Abs Mouse Up</value>
+  </data>
+  <data name="BindingWin.ChangeLight" xml:space="preserve">
+    <value>Change Light</value>
+  </data>
+  <data name="BindingWin.ChangeMouseSensitivity" xml:space="preserve">
+    <value>Change Mouse Sensitivity</value>
+  </data>
+  <data name="BindingWin.KeyAndRelMouse" xml:space="preserve">
+    <value>KB &amp; Rel Mouse</value>
+  </data>
+  <data name="BindingWin.KeyboardAndMouse" xml:space="preserve">
+    <value>Keyboard &amp; Mouse</value>
+  </data>
+  <data name="BindingWin.MacroOn" xml:space="preserve">
+    <value>Macro On, Choose a key to disable, else close this window to save</value>
+  </data>
+  <data name="BindingWin.RecordAMacro" xml:space="preserve">
+    <value>Record A Macro</value>
+  </data>
+  <data name="BindingWin.SelectShiftTrigger" xml:space="preserve">
+    <value>Select Shift Trigger</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="ControllerRegOptWin.EnableHomeLED" xml:space="preserve">
+    <value>Enable Home LED</value>
+  </data>
+  <data name="ControllerRegOptWin.JoinedGyroProvider" xml:space="preserve">
+    <value>Joined Gyro Provider</value>
+  </data>
+  <data name="ControllerRegOptWin.LinkMode" xml:space="preserve">
+    <value>Link Mode</value>
+  </data>
+  <data name="ControllerRegOptWin.MuteLEDMode" xml:space="preserve">
+    <value>Mute LED Mode</value>
+  </data>
+  <data name="ControllerRegOptWin.PlayerLEDMode" xml:space="preserve">
+    <value>Player LED Mode</value>
+  </data>
+  <data name="ControllerRegOptWin.WinTitle" xml:space="preserve">
+    <value>Controller Type Options</value>
+  </data>
   <data name="DeltaAcceleration" xml:space="preserve">
     <value>Delta Acceleration</value>
   </data>
@@ -922,6 +979,15 @@ Disabled:
   <data name="EnableTouchpadToggle" xml:space="preserve">
     <value>Enable Touchpad Toggle</value>
   </data>
+  <data name="Extra" xml:space="preserve">
+    <value>Extra</value>
+  </data>
+  <data name="FirstLaunch.DeviceSupport" xml:space="preserve">
+    <value>Device Support</value>
+  </data>
+  <data name="FlashRate" xml:space="preserve">
+    <value>Flash Rate</value>
+  </data>
   <data name="FullBtnPull" xml:space="preserve">
     <value>Full Btn Pull</value>
   </data>
@@ -931,20 +997,44 @@ Disabled:
   <data name="GyroControlsAccel" xml:space="preserve">
     <value>Controls (Accel)</value>
   </data>
+  <data name="Heavy" xml:space="preserve">
+    <value>Heavy</value>
+  </data>
   <data name="Height" xml:space="preserve">
     <value>Height</value>
   </data>
   <data name="HipFireDelay" xml:space="preserve">
     <value>Hip Fire Delay</value>
   </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
   <data name="IdleDisconnect" xml:space="preserve">
     <value>Idle Disconnect</value>
+  </data>
+  <data name="LangPackControl.UseLangPack" xml:space="preserve">
+    <value>Use language pack</value>
   </data>
   <data name="LaunchProgramWithProfile" xml:space="preserve">
     <value>Launch program with profile</value>
   </data>
   <data name="Lightbar" xml:space="preserve">
     <value>Lightbar</value>
+  </data>
+  <data name="LinkProfileId" xml:space="preserve">
+    <value>Link Profile/ID</value>
+  </data>
+  <data name="MainWin.AbsDisplayMonitor" xml:space="preserve">
+    <value>Abs Display Monitor</value>
+  </data>
+  <data name="MainWin.EnableServer" xml:space="preserve">
+    <value>Enable Server</value>
+  </data>
+  <data name="MainWin.OneEuroBeta" xml:space="preserve">
+    <value>1€ Beta</value>
+  </data>
+  <data name="MainWin.OneEuroMinCutoff" xml:space="preserve">
+    <value>1€ MinCutoff</value>
   </data>
   <data name="MaxTravel" xml:space="preserve">
     <value>Max Travel</value>
@@ -973,6 +1063,9 @@ Disabled:
   <data name="Multiplier" xml:space="preserve">
     <value>Multiplier</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="Normal" xml:space="preserve">
     <value>Normal</value>
   </data>
@@ -991,11 +1084,80 @@ Disabled:
   <data name="Passthru" xml:space="preserve">
     <value>Passthru</value>
   </data>
+  <data name="Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="RecordBox.AddRumble" xml:space="preserve">
+    <value>Add Rumble</value>
+  </data>
+  <data name="RecordBox.ChangeLightbarColor" xml:space="preserve">
+    <value>Change Lightbar Color</value>
+  </data>
+  <data name="RecordBox.DoubleClickWaitEdit" xml:space="preserve">
+    <value>Double click on a wait to edit the time</value>
+  </data>
+  <data name="RecordBox.FifthMB" xml:space="preserve">
+    <value>5th Mouse Button</value>
+  </data>
+  <data name="RecordBox.FourthMB" xml:space="preserve">
+    <value>4th Mouse Button</value>
+  </data>
+  <data name="RecordBox.InsertWait" xml:space="preserve">
+    <value>Insert Wait</value>
+  </data>
+  <data name="RecordBox.LoadPreset" xml:space="preserve">
+    <value>Load Preset</value>
+  </data>
+  <data name="RecordBox.MacroOrder" xml:space="preserve">
+    <value>Macro Order</value>
+  </data>
+  <data name="RecordBox.PlayOnce" xml:space="preserve">
+    <value>Play Once</value>
+  </data>
+  <data name="RecordBox.RecordDelays" xml:space="preserve">
+    <value>Record Delays</value>
+  </data>
+  <data name="RecordBox.RepeatWhileHeld" xml:space="preserve">
+    <value>Repeat While Held</value>
+  </data>
+  <data name="RecordBox.SavePreset" xml:space="preserve">
+    <value>Save Preset</value>
+  </data>
+  <data name="RecordBox.UseActionToRecord" xml:space="preserve">
+    <value>Use Keyboard/Mouse + Controller 1 to record</value>
+  </data>
+  <data name="RecordBoxWin.WinTitle" xml:space="preserve">
+    <value>Edit Macro</value>
+  </data>
+  <data name="Regular" xml:space="preserve">
+    <value>Regular</value>
+  </data>
+  <data name="RenameProfileWin.TypeNewProfileName" xml:space="preserve">
+    <value>Please type the new name to use for the selected profile XML file.</value>
+  </data>
+  <data name="RenameProfileWin.WinTitle" xml:space="preserve">
+    <value>Rename Profile</value>
+  </data>
   <data name="Rotation" xml:space="preserve">
     <value>Rotation</value>
   </data>
+  <data name="ScanCode" xml:space="preserve">
+    <value>Scan Code</value>
+  </data>
+  <data name="SelectedProfile" xml:space="preserve">
+    <value>Selected Profile</value>
+  </data>
+  <data name="ShiftModifier" xml:space="preserve">
+    <value>Shift Modifier</value>
+  </data>
+  <data name="SkipVersion" xml:space="preserve">
+    <value>Skip Version</value>
+  </data>
   <data name="SnapToCenter" xml:space="preserve">
     <value>Snap To Center</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Test</value>
   </data>
   <data name="TestHeavy" xml:space="preserve">
     <value>TestHeavy</value>
@@ -1003,14 +1165,29 @@ Disabled:
   <data name="TestLight" xml:space="preserve">
     <value>Test Light</value>
   </data>
+  <data name="Toggle" xml:space="preserve">
+    <value>Toggle</value>
+  </data>
   <data name="TriggerEffect" xml:space="preserve">
     <value>Trigger Effect</value>
   </data>
   <data name="TwoStageMode" xml:space="preserve">
     <value>Two Stage Mode</value>
   </data>
+  <data name="UDPServer" xml:space="preserve">
+    <value>UDP Server</value>
+  </data>
+  <data name="Unbound" xml:space="preserve">
+    <value>Unbound</value>
+  </data>
+  <data name="UpdaterWin.WinTitle" xml:space="preserve">
+    <value>Update Window</value>
+  </data>
   <data name="UseController" xml:space="preserve">
     <value>Use Controller</value>
+  </data>
+  <data name="UseSmoothing" xml:space="preserve">
+    <value>Use Smoothing</value>
   </data>
   <data name="Width" xml:space="preserve">
     <value>Width</value>
@@ -1020,5 +1197,8 @@ Disabled:
   </data>
   <data name="YCenter" xml:space="preserve">
     <value>Y Center</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

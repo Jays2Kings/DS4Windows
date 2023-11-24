@@ -194,6 +194,8 @@
                                     <GridViewColumn.HeaderContainerStyle>
                                         <Style TargetType="{x:Type GridViewColumnHeader}">
                                             <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                            <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
+                                            <Setter Property="Foreground" Value="{DynamicResource ForegroundColor}" />
                                         </Style>
                                     </GridViewColumn.HeaderContainerStyle>
                                 </GridViewColumn>

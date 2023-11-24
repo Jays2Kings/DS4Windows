@@ -24,7 +24,7 @@
                     <ListView.View>
                         <GridView>
                             <GridView.Columns>
-                                <GridViewColumn Header="Trigger" Width="170">
+                                <GridViewColumn Header="{lex:Loc Trigger}" Width="170">
                                     <GridViewColumn.HeaderContainerStyle>
                                         <Style TargetType="{x:Type GridViewColumnHeader}">
                                             <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -190,10 +190,12 @@
                     <ListView.View>
                         <GridView>
                             <GridView.Columns>
-                                <GridViewColumn Header="Unload Trigger" Width="170">
+                                <GridViewColumn Header="{lex:Loc UnloadTrigger}" Width="170">
                                     <GridViewColumn.HeaderContainerStyle>
                                         <Style TargetType="{x:Type GridViewColumnHeader}">
                                             <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                            <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
+                                            <Setter Property="Foreground" Value="{DynamicResource ForegroundColor}" />
                                         </Style>
                                     </GridViewColumn.HeaderContainerStyle>
                                 </GridViewColumn>
@@ -240,10 +242,10 @@
                         <CheckBox x:Name="unloadCaptureTrigCk" Content="Capture" Tag="Capture" Click="ControlUnloadTriggerCheckBox_Click" />
                     </ListViewItem>
                     <ListViewItem>
-                        <CheckBox x:Name="unloadSideLTrigCk" Content="SideL" Tag="SideL" Click="ControlUnloadTriggerCheckBox_Click" />
+                        <CheckBox x:Name="unloadSideLTrigCk" Content="Side L" Tag="SideL" Click="ControlUnloadTriggerCheckBox_Click" />
                     </ListViewItem>
                     <ListViewItem>
-                        <CheckBox x:Name="unloadSideRTrigCk" Content="SideR" Tag="SideR" Click="ControlUnloadTriggerCheckBox_Click" />
+                        <CheckBox x:Name="unloadSideRTrigCk" Content="Side R" Tag="SideR" Click="ControlUnloadTriggerCheckBox_Click" />
                     </ListViewItem>
                     <ListViewItem>
                         <CheckBox x:Name="unloadL1TrigCk" Content="L1" Tag="L1" Click="ControlUnloadTriggerCheckBox_Click" />
@@ -353,15 +355,15 @@
                 </DockPanel.Resources>
                 <StackPanel>
                     <ComboBox x:Name="actionTypeCombo" SelectedIndex="{Binding ActionTypeIndex,FallbackValue=0}" Margin="0,0,0,8">
-                        <ComboBoxItem Content="-Select an Action-" />
-                        <ComboBoxItem Content="Record a macro" />
-                        <ComboBoxItem Content="Launch a program" />
-                        <ComboBoxItem Content="Load a profile" />
-                        <ComboBoxItem Content="Press/Toggle key" />
-                        <ComboBoxItem Content="Disconnect from Bluetooth" />
-                        <ComboBoxItem Content="Check Battery Life" />
-                        <ComboBoxItem Content="Multi-action Button" />
-                        <ComboBoxItem Content="Calibration of sixaxis wheel calibration" />
+                        <ComboBoxItem Content="{lex:Loc SpecialActionEdit.SelectAction}" />
+                        <ComboBoxItem Content="{lex:Loc SpecialActionEdit.RecordMacro}" />
+                        <ComboBoxItem Content="{lex:Loc SpecialActionEdit.LaunchProgram}" />
+                        <ComboBoxItem Content="{lex:Loc SpecialActionEdit.LoadProfile}" />
+                        <ComboBoxItem Content="{lex:Loc SpecialActionEdit.PressKey}" />
+                        <ComboBoxItem Content="{lex:Loc SpecialActionEdit.DisconnectBT}" />
+                        <ComboBoxItem Content="{lex:Loc SpecialActionEdit.CheckBattery}" />
+                        <ComboBoxItem Content="{lex:Loc SpecialActionEdit.MultiAction}" />
+                        <ComboBoxItem Content="{lex:Loc SpecialActionEdit.SixAxisWheelCalib}" />
                     </ComboBox>
 
                     <TabControl x:Name="actionTypeTabControl" SelectedIndex="{Binding ActionTypeIndex}" BorderBrush="{x:Null}">
@@ -370,21 +372,21 @@
                         </TabItem>
                         <TabItem x:Name="macroActTab" Header="Macro">
                             <StackPanel Margin="{StaticResource spaceMargin}">
-                                <Button x:Name="recordMacroBtn" Content="Record a macro"
+                                <Button x:Name="recordMacroBtn" Content="{lex:Loc SpecialActionEdit.RecordMacro}"
                                         Tag="{Binding Macro,Mode=OneWay,ValidatesOnNotifyDataErrors=True}" Margin="{StaticResource spaceMargin}"
                                         Click="RecordMacroBtn_Click" />
-                                <CheckBox Content="Scan Code" Margin="{StaticResource spaceMargin}" IsChecked="{Binding UseScanCode}" />
-                                <CheckBox Content="Run on Trigger Release" Margin="{StaticResource spaceMargin}" IsChecked="{Binding RunTriggerRelease}" />
-                                <CheckBox Content="Synchronized Run" Margin="{StaticResource spaceMargin}" IsChecked="{Binding SyncRun}" />
-                                <CheckBox Content="Keep key state" Margin="{StaticResource spaceMargin}" IsChecked="{Binding KeepKeyState}" />
-                                <CheckBox Content="Repeat while held" Margin="{StaticResource spaceMargin}" IsChecked="{Binding RepeatHeld}" />
-                                <TextBlock Text="{Binding Macrostring,FallbackValue='Macro Recorded'}" Margin="{StaticResource spaceMargin}" />
+                                <CheckBox Content="{lex:Loc ScanCode}" Margin="{StaticResource spaceMargin}" IsChecked="{Binding UseScanCode}" />
+                                <CheckBox Content="{lex:Loc SpecialActionEdit.RunTriggerRelease}" Margin="{StaticResource spaceMargin}" IsChecked="{Binding RunTriggerRelease}" />
+                                <CheckBox Content="{lex:Loc SpecialActionEdit.SyncRun}" Margin="{StaticResource spaceMargin}" IsChecked="{Binding SyncRun}" />
+                                <CheckBox Content="{lex:Loc SpecialActionEdit.KeepKeyState}" Margin="{StaticResource spaceMargin}" IsChecked="{Binding KeepKeyState}" />
+                                <CheckBox Content="{lex:Loc SpecialActionEdit.RepeatWhileHeld}" Margin="{StaticResource spaceMargin}" IsChecked="{Binding RepeatHeld}" />
+                                <TextBlock Text="{Binding Macrostring,FallbackValue={lex:Loc SpecialActionEdit.MacroRecorded}}" Margin="{StaticResource spaceMargin}" />
                             </StackPanel>
                         </TabItem>
                         <TabItem x:Name="launchProgActTab" Header="Launch Program">
                             <StackPanel Margin="{StaticResource spaceMargin}">
                                 <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                                    <Label Content="Hold for "></Label>
+                                    <Label Content="{lex:Loc SpecialActionEdit.HoldFor}" ContentStringFormat="{}{0} "></Label>
                                     <xctk:DecimalUpDown Value="{Binding Delay}" Width="60" Minimum="0" Maximum="60" FormatString= "F2" Increment="0.5" />
                                     <Label Content="secs" />
                                 </StackPanel>
@@ -422,32 +424,32 @@
                                         </CompositeCollection>
                                     </ComboBox.ItemsSource>
                                 </ComboBox>
-                                <Button x:Name="loadProfUnloadBtn" Content="Set Unload Trigger" Margin="{StaticResource spaceMargin}"
+                                <Button x:Name="loadProfUnloadBtn" Content="{lex:Loc SpecialActionEdit.SetUnloadTrigger}" Margin="{StaticResource spaceMargin}"
                                         IsEnabled="{Binding UnloadEnabled}" Click="LoadProfUnloadBtn_Click" />
-                                <CheckBox Content="Unload on trigger release" Margin="{StaticResource spaceMargin}" IsChecked="{Binding AutoUntrigger}" />
+                                <CheckBox Content="{lex:Loc SpecialActionEdit.UnloadTriggerRelease}" Margin="{StaticResource spaceMargin}" IsChecked="{Binding AutoUntrigger}" />
                             </StackPanel>
                         </TabItem>
                         <TabItem x:Name="pressKetActTab" Header="Press Key">
                             <StackPanel Margin="{StaticResource spaceMargin}">
-                                <Button x:Name="pressKeySelectBtn" Content="{Binding DescribeText,FallbackValue='Select a Key'}"
+                                <Button x:Name="pressKeySelectBtn" Content="{Binding DescribeText,FallbackValue={lex:Loc SpecialActionEdit.SelectKey}}"
                                         Margin="{StaticResource spaceMargin}" Click="PressKeySelectBtn_Click" />
-                                <Button x:Name="pressKeyToggleTriggerBtn" Content="Set Unload Trigger"
+                                <Button x:Name="pressKeyToggleTriggerBtn" Content="{lex:Loc SpecialActionEdit.SetUnloadTrigger}"
                                         Tag="{Binding UnloadError,ValidatesOnNotifyDataErrors=True}"
                                         Visibility="{Binding ShowToggleControls}"
                                         Margin="{StaticResource spaceMargin}" Click="PressKeyToggleTriggerBtn_Click" />
 
                                 <StackPanel Margin="{StaticResource spaceMargin}" Visibility="{Binding ShowToggleControls}">
-                                    <Label Content="Untoggle key by" />
+                                    <Label Content="{lex:Loc SpecialActionEdit.UntoggleKeyBy}" />
                                     <ComboBox x:Name="pressReleaseKeyCombo" SelectedIndex="{Binding PressReleaseIndex}">
-                                        <ComboBoxItem Content="pressing unload trigger" />
-                                        <ComboBoxItem Content="releasing unload trigger" />
+                                        <ComboBoxItem Content="{lex:Loc SpecialActionEdit.PressingUnloadTrigger}" />
+                                        <ComboBoxItem Content="{lex:Loc SpecialActionEdit.ReleasingUnloadTrigger}" />
                                     </ComboBox>
                                 </StackPanel>
                             </StackPanel>
                         </TabItem>
                         <TabItem x:Name="disconnectBTTab" Header="DisBT">
                             <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                                <Label Content="Hold for "></Label>
+                                <Label Content="{lex:Loc SpecialActionEdit.HoldFor}" ContentStringFormat="{}{0} "></Label>
                                 <xctk:DecimalUpDown Value="{Binding HoldInterval}" Width="60" Minimum="0" Maximum="60" FormatString= "F2" Increment="0.5" />
                                 <Label Content="secs" />
                             </StackPanel>
@@ -455,12 +457,12 @@
                         <TabItem x:Name="checkBatteryTab" Header="Check Battery">
                             <StackPanel Margin="{StaticResource spaceMargin}">
                                 <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
-                                    <Label Content="Hold for "></Label>
+                                    <Label Content="{lex:Loc SpecialActionEdit.HoldFor}" ContentStringFormat="{}{0} "></Label>
                                     <xctk:DecimalUpDown Value="{Binding Delay}" Width="60" Minimum="0" Maximum="60" FormatString= "F2" Increment="0.5"/>
                                     <Label Content="secs" />
                                 </StackPanel>
-                                <CheckBox Content="via notification" IsChecked="{Binding Notification}" Margin="{StaticResource spaceMargin}" />
-                                <CheckBox Content="via lightbar" IsChecked="{Binding Lightbar}" Margin="{StaticResource spaceMargin}" />
+                                <CheckBox Content="{lex:Loc SpecialActionEdit.ViaNotification}" IsChecked="{Binding Notification}" Margin="{StaticResource spaceMargin}" />
+                                <CheckBox Content="{lex:Loc SpecialActionEdit.ViaLightbar}" IsChecked="{Binding Lightbar}" Margin="{StaticResource spaceMargin}" />
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8,0,8">
                                     <StackPanel HorizontalAlignment="Left">
                                         <Button x:Name="batteryLowColorBtn" Width="20" Height="20" Click="BatteryEmptyColorBtn_Click">
@@ -492,20 +494,20 @@
                         </TabItem>
                         <TabItem x:Name="multiActTab" Header="MultiAct">
                             <StackPanel Margin="{StaticResource spaceMargin}">
-                                <Label Content="Tap Trigger" Margin="{StaticResource spaceMargin}" />
-                                <Button x:Name="multiTapTrigBtn" Content="{Binding TapMacroText,FallbackValue='Select a macro'}"
+                                <Label Content="{lex:Loc SpecialActionEdit.TapTrigger}" Margin="{StaticResource spaceMargin}" />
+                                <Button x:Name="multiTapTrigBtn" Content="{Binding TapMacroText,FallbackValue={lex:Loc SpecialActionEdit.SelectMacro}}"
                                         Margin="{StaticResource spaceMargin}" Click="MultiTapTrigBtn_Click" />
-                                <Label Content="Hold Trigger" Margin="{StaticResource spaceMargin}" />
-                                <Button x:Name="multiHoldTapTrigBtn" Content="{Binding HoldMacroText,FallbackValue='Select a macro'}"
+                                <Label Content="{lex:Loc SpecialActionEdit.HoldTrigger}" Margin="{StaticResource spaceMargin}" />
+                                <Button x:Name="multiHoldTapTrigBtn" Content="{Binding HoldMacroText,FallbackValue={lex:Loc SpecialActionEdit.SelectMacro}}"
                                         Margin="{StaticResource spaceMargin}" Click="MultiHoldTapTrigBtn_Click" />
-                                <Label Content="Double Tap Trigger" Margin="{StaticResource spaceMargin}" />
-                                <Button x:Name="multiDoubleTapTrigBtn" Content="{Binding DoubleTapMacroText,FallbackValue='Select a macro'}"
+                                <Label Content="{lex:Loc SpecialActionEdit.DoubleTapTrigger}" Margin="{StaticResource spaceMargin}" />
+                                <Button x:Name="multiDoubleTapTrigBtn" Content="{Binding DoubleTapMacroText,FallbackValue={lex:Loc SpecialActionEdit.SelectMacro}}"
                                         Margin="{StaticResource spaceMargin}" Click="MultiDoubleTapTrigBtn_Click" />
                             </StackPanel>
                         </TabItem>
                         <TabItem x:Name="sixaxisWheelCalibrateTab" Header="Sixaxis Wheel">
                             <StackPanel Orientation="Horizontal" Margin="{StaticResource spaceMargin}">
-                                <Label Content="Hold for "></Label>
+                                <Label Content="{lex:Loc HoldFor}" ContentStringFormat="{}{0} "></Label>
                                 <xctk:DecimalUpDown Value="{Binding Delay}" Width="60" Minimum="0" Maximum="60" FormatString= "F2" Increment="0.5" />
                                 <Label Content="secs" />
                             </StackPanel>

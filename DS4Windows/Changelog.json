@@ -1,9 +1,39 @@
 {
-  "latest_version": "3.2.19",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 19},
-  "updated_at": "2023-11-05T21:29:22+0000",
+  "latest_version": "3.2.20",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 20},
+  "updated_at": "2023-11-24T19:04:30+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.2.20",
+      "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 20},
+      "base_header": "Version 3.2.20",
+      "release_date": "2023-11-24T19:04:30+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.2.20",
+          "log_text": ["* Bump DotNetProjects.Extended.Wpf.Toolkit from 5.0.103 to 5.0.106",
+            "* Fixed some Gyro trigger indexes. Make sure Touchpad relate triggers work again",
+            "* Added DSE buttons for use as shift trigger. Actually allow JoyCon side buttons to work for shift triggers",
+            "* Abstract resource paths more. Allows easier renaming of assembly. Minor consequences in the VS XAML editor though",
+            "* Consolidate gyro trigger context menu lists in Profile Editor",
+            "* Added Malay translation. Contribution by **shoen1x**",
+            "* Use FileVersion prop for grabbing assembly version instead. More helpful for .NET 8 usage than right now",
+            "* Updated FakerInputDLL files",
+            "* Hide some ViGEmBus messages in Profile Editor regarding passthru when using supported versions. Small tweak",
+            "* Use ViGEmBus version check for lightbar passthru message as well",
+            "* add Resources.zh-hans.resx for Chinese simplified translation. Contribution by **CrazyHPi**",
+            "* update Strings.zh-Hans.resx for Chinese simplified translation. Contribution by **CrazyHPi**",
+            "* Marked more strings in GUI for translation. It will not affect this version obviously",
+            "* Removed use of deprecated LocText extension. Now use BLoc extension instead. Only used to render one string in Profile Editor previously",
+            "* Skip trying to reset UDP server connection if requested the server to stop",
+            "* Fixed Load a Profile Special Action unload trigger list header in Dark theme",
+            "* Changed display text for Side L and Side R buttons in unload trigger list"],
+          "updated_at": "2023-11-24T19:04:30+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.2.19",
       "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 19},

@@ -16,7 +16,7 @@
           "log_text": ["* Bump DotNetProjects.Extended.Wpf.Toolkit from 5.0.103 to 5.0.106",
             "* Fixed some Gyro trigger indexes. Make sure Touchpad relate triggers work again",
             "* Added DSE buttons for use as shift trigger. Actually allow JoyCon side buttons to work for shift triggers",
-            "* Abstract resource paths more. Allows easier renaming of assembly. Minor consequnces in the VS XAML editor though",
+            "* Abstract resource paths more. Allows easier renaming of assembly. Minor consequences in the VS XAML editor though",
             "* Consolidate gyro trigger context menu lists in Profile Editor",
             "* Added Malay translation. Contribution by **shoen1x**",
             "* Use FileVersion prop for grabbing assembly version instead. More helpful for .NET 8 usage than right now",

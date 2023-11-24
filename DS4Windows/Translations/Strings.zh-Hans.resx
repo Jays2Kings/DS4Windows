@@ -356,8 +356,7 @@
     <comment/>
   </data>
   <data name="Trigger" xml:space="preserve">
-    <value>滑动</value>
-    <comment/>
+    <value>触发</value>
   </data>
   <data name="WarningsOnly" xml:space="preserve">
     <value>仅警告</value>
@@ -977,7 +976,7 @@
     <value>轴向</value>
   </data>
   <data name="AxisConfig" xml:space="preserve">
-    <value>轴配置</value>
+    <value>轴向相关配置</value>
   </data>
   <data name="BindingWin.AbsMouse" xml:space="preserve">
     <value>绝对鼠标</value>
@@ -1413,5 +1412,77 @@
   </data>
   <data name="Welcome.Step5HelpText" xml:space="preserve">
     <value>使用FakerInput驱动来设置全局的虚拟键盘，相对鼠标，和绝对鼠标。在某些情况下，SendInput失效时可以发送虚拟的键盘与鼠标事件。这些情况包括提升优先级的进程与游戏，UAC提示框，以及一些反作弊系统会屏蔽SendInput事件。为了能让DS4Windows在一些带有反作弊保护的游戏，比如 Valorant，中正常运行，FakerInput是必要的。</value>
+  </data>
+  <data name="SpecialActionEdit.CheckBattery" xml:space="preserve">
+    <value>检查电池电量</value>
+  </data>
+  <data name="SpecialActionEdit.DisconnectBT" xml:space="preserve">
+    <value>断开蓝牙连接</value>
+  </data>
+  <data name="SpecialActionEdit.DoubleTapTrigger" xml:space="preserve">
+    <value>双击触发</value>
+  </data>
+  <data name="SpecialActionEdit.HoldFor" xml:space="preserve">
+    <value>按下</value>
+  </data>
+  <data name="SpecialActionEdit.HoldTrigger" xml:space="preserve">
+    <value>按住触发</value>
+  </data>
+  <data name="SpecialActionEdit.KeepKeyState" xml:space="preserve">
+    <value>保持键当前状态</value>
+  </data>
+  <data name="SpecialActionEdit.LaunchProgram" xml:space="preserve">
+    <value>启动程序</value>
+  </data>
+  <data name="SpecialActionEdit.LoadProfile" xml:space="preserve">
+    <value>加载配置</value>
+  </data>
+  <data name="SpecialActionEdit.MacroRecorded" xml:space="preserve">
+    <value>宏已录制</value>
+  </data>
+  <data name="SpecialActionEdit.MultiAction" xml:space="preserve">
+    <value>多动作按钮</value>
+  </data>
+  <data name="SpecialActionEdit.PressKey" xml:space="preserve">
+    <value>按下/切换按键</value>
+  </data>
+  <data name="SpecialActionEdit.RecordMacro" xml:space="preserve">
+    <value>录制宏</value>
+  </data>
+  <data name="SpecialActionEdit.RepeatWhileHeld" xml:space="preserve">
+    <value>按下时充浮</value>
+  </data>
+  <data name="SpecialActionEdit.RunTriggerRelease" xml:space="preserve">
+    <value>当松开触发键时运行</value>
+  </data>
+  <data name="SpecialActionEdit.SelectAction" xml:space="preserve">
+    <value>- 选择一个动作 -</value>
+  </data>
+  <data name="SpecialActionEdit.SelectKey" xml:space="preserve">
+    <value>选择一个按键</value>
+  </data>
+  <data name="SpecialActionEdit.SelectMacro" xml:space="preserve">
+    <value>选择一个宏</value>
+  </data>
+  <data name="SpecialActionEdit.SixAxisWheelCalib" xml:space="preserve">
+    <value>六轴方向盘的校准</value>
+  </data>
+  <data name="SpecialActionEdit.SyncRun" xml:space="preserve">
+    <value>同步运行</value>
+  </data>
+  <data name="SpecialActionEdit.TapTrigger" xml:space="preserve">
+    <value>点击触发</value>
+  </data>
+  <data name="SpecialActionEdit.UnloadTriggerRelease" xml:space="preserve">
+    <value>触发键松开时取消加载</value>
+  </data>
+  <data name="SpecialActionEdit.SetUnloadTrigger" xml:space="preserve">
+    <value>设置取消加载触发键</value>
+  </data>
+  <data name="SpecialActionEdit.ViaLightbar" xml:space="preserve">
+    <value>通过灯条显示</value>
+  </data>
+  <data name="SpecialActionEdit.ViaNotification" xml:space="preserve">
+    <value>通过通知显示</value>
   </data>
 </root>

@@ -2937,6 +2937,249 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check Battery Life.
+        /// </summary>
+        public static string SpecialActionEdit_CheckBattery {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.CheckBattery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disconnect from Bluetooth.
+        /// </summary>
+        public static string SpecialActionEdit_DisconnectBT {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.DisconnectBT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Double Tap Trigger.
+        /// </summary>
+        public static string SpecialActionEdit_DoubleTapTrigger {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.DoubleTapTrigger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hold for.
+        /// </summary>
+        public static string SpecialActionEdit_HoldFor {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.HoldFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hold Trigger.
+        /// </summary>
+        public static string SpecialActionEdit_HoldTrigger {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.HoldTrigger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep key state.
+        /// </summary>
+        public static string SpecialActionEdit_KeepKeyState {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.KeepKeyState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch a program.
+        /// </summary>
+        public static string SpecialActionEdit_LaunchProgram {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.LaunchProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load a profile.
+        /// </summary>
+        public static string SpecialActionEdit_LoadProfile {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.LoadProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Macro Recorded.
+        /// </summary>
+        public static string SpecialActionEdit_MacroRecorded {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.MacroRecorded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multi-action Button.
+        /// </summary>
+        public static string SpecialActionEdit_MultiAction {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.MultiAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pressing unload trigger.
+        /// </summary>
+        public static string SpecialActionEdit_PressingUnloadTrigger {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.PressingUnloadTrigger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Press/Toggle key.
+        /// </summary>
+        public static string SpecialActionEdit_PressKey {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.PressKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Record a macro.
+        /// </summary>
+        public static string SpecialActionEdit_RecordMacro {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.RecordMacro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to releasing unload trigger.
+        /// </summary>
+        public static string SpecialActionEdit_ReleasingUnloadTrigger {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.ReleasingUnloadTrigger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repeat while held.
+        /// </summary>
+        public static string SpecialActionEdit_RepeatWhileHeld {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.RepeatWhileHeld", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run on Trigger Release.
+        /// </summary>
+        public static string SpecialActionEdit_RunTriggerRelease {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.RunTriggerRelease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -Select an Action-.
+        /// </summary>
+        public static string SpecialActionEdit_SelectAction {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.SelectAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Key.
+        /// </summary>
+        public static string SpecialActionEdit_SelectKey {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.SelectKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a macro.
+        /// </summary>
+        public static string SpecialActionEdit_SelectMacro {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.SelectMacro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Unload Trigger.
+        /// </summary>
+        public static string SpecialActionEdit_SetUnloadTrigger {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.SetUnloadTrigger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calibration of sixaxis wheel calibration.
+        /// </summary>
+        public static string SpecialActionEdit_SixAxisWheelCalib {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.SixAxisWheelCalib", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Synchronized Run.
+        /// </summary>
+        public static string SpecialActionEdit_SyncRun {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.SyncRun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tap Trigger.
+        /// </summary>
+        public static string SpecialActionEdit_TapTrigger {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.TapTrigger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unload on trigger release.
+        /// </summary>
+        public static string SpecialActionEdit_UnloadTriggerRelease {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.UnloadTriggerRelease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Untoggle key by.
+        /// </summary>
+        public static string SpecialActionEdit_UntoggleKeyBy {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.UntoggleKeyBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to via lightbar.
+        /// </summary>
+        public static string SpecialActionEdit_ViaLightbar {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.ViaLightbar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to via notification.
+        /// </summary>
+        public static string SpecialActionEdit_ViaNotification {
+            get {
+                return ResourceManager.GetString("SpecialActionEdit.ViaNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Square Stick.
         /// </summary>
         public static string SquareStick {
@@ -3259,6 +3502,15 @@ namespace DS4WinWPF.Translations {
         public static string Unbound {
             get {
                 return ResourceManager.GetString("Unbound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unload Trigger.
+        /// </summary>
+        public static string UnloadTrigger {
+            get {
+                return ResourceManager.GetString("UnloadTrigger", resourceCulture);
             }
         }
         

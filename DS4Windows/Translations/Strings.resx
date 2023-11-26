@@ -779,7 +779,7 @@ Disabled:
     <value>Switch Pro Device Support</value>
   </data>
   <data name="FirstLaunch.SwitchProEnableText" xml:space="preserve">
-    <value>Support for Switch Pro (Nintendo Switch) controllers.</value>
+    <value>Support for Switch Pro (Nintendo Switch) controllers</value>
   </data>
   <data name="FirstLaunch.WinTitle" xml:space="preserve">
     <value>First Launch</value>
@@ -902,7 +902,7 @@ Disabled:
     <value>Absolute Mouse</value>
   </data>
   <data name="AbsoluteMouseOptions" xml:space="preserve">
-    <value>AbsoluteMouseOptions</value>
+    <value>Absolute Mouse Options</value>
   </data>
   <data name="AntiRadius" xml:space="preserve">
     <value>Anti Radius</value>
@@ -1040,7 +1040,7 @@ Disabled:
     <value>Max Travel</value>
   </data>
   <data name="MinFactor" xml:space="preserve">
-    <value>MinFactor</value>
+    <value>Min Factor</value>
   </data>
   <data name="MinTravel" xml:space="preserve">
     <value>Min Travel</value>
@@ -1160,7 +1160,7 @@ Disabled:
     <value>Test</value>
   </data>
   <data name="TestHeavy" xml:space="preserve">
-    <value>TestHeavy</value>
+    <value>Test Heavy</value>
   </data>
   <data name="TestLight" xml:space="preserve">
     <value>Test Light</value>

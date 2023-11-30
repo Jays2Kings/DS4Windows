@@ -123,6 +123,29 @@ namespace DS4WinWPF.DS4Forms
             profileSettingsVM.TouchpadOutputIndexChanged += TouchpadOutputDisplayChange;
         }
 
+        private void UnregisterEvents()
+        {
+            gyroOutModeCombo.SelectionChanged -= GyroOutModeCombo_SelectionChanged;
+            outConTypeCombo.SelectionChanged -= OutConTypeCombo_SelectionChanged;
+            mappingListBox.SelectionChanged -= MappingListBox_SelectionChanged;
+            Closed -= ProfileEditor_Closed;
+
+            profileSettingsVM.LSDeadZoneChanged -= UpdateReadingsLsDeadZone;
+            profileSettingsVM.RSDeadZoneChanged -= UpdateReadingsRsDeadZone;
+            profileSettingsVM.L2DeadZoneChanged -= UpdateReadingsL2DeadZone;
+            profileSettingsVM.R2DeadZoneChanged -= UpdateReadingsR2DeadZone;
+            profileSettingsVM.SXDeadZoneChanged -= UpdateReadingsSXDeadZone;
+            profileSettingsVM.SZDeadZoneChanged -= UpdateReadingsSZDeadZone;
+            profileSettingsVM.TouchpadOutputIndexChanged -= TouchpadOutputDisplayChange;
+
+            axialLSStickControl.AxialVM.DeadZoneXChanged -= UpdateReadingsLsDeadZoneX;
+            axialLSStickControl.AxialVM.DeadZoneYChanged -= UpdateReadingsLsDeadZoneY;
+            axialRSStickControl.AxialVM.DeadZoneXChanged -= UpdateReadingsRsDeadZoneX;
+            axialRSStickControl.AxialVM.DeadZoneYChanged -= UpdateReadingsRsDeadZoneY;
+
+            StopEditorBindings();
+        }
+
         /// <summary>
         /// Place touchpad button mode options UserControl in active Touchpad TabItem.
         /// Applicable TabItem control needs to contain a ContentControl
@@ -1422,6 +1445,7 @@ namespace DS4WinWPF.DS4Forms
             inputTimer.Stop();
             conReadingsUserCon.EnableControl(false);
             Global.CacheExtraProfileInfo(profileSettingsVM.Device);
+            UnregisterEvents();
         }
 
         private void UseControllerReadoutCk_Click(object sender, RoutedEventArgs e)

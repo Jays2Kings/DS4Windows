@@ -117,7 +117,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Accel" xml:space="preserve">
-    <value>Versnel</value>
+    <value>Versnellingsmeter</value>
   </data>
   <data name="Action" xml:space="preserve">
     <value>Actie</value>
@@ -156,10 +156,10 @@
     <value>Updates ophalen</value>
   </data>
   <data name="CheckUpdateStartup" xml:space="preserve">
-    <value>Updates ophalen bij opstarten PC</value>
+    <value>Updates ophalen bij opstarten DS4Windows</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Legen</value>
+    <value>Leegmaken</value>
   </data>
   <data name="CloseMinimizes" xml:space="preserve">
     <value>Sluiten zorgt voor minimaliseren</value>
@@ -183,22 +183,22 @@
     <value>Controllers</value>
   </data>
   <data name="ControlPanel" xml:space="preserve">
-    <value>Paneel instellingen</value>
+    <value>Configuratiescherm </value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Verwijderen</value>
   </data>
   <data name="DriverSetup" xml:space="preserve">
-    <value>Controller/Driver installeren</value>
+    <value>Controller/driver installeren</value>
   </data>
   <data name="Duplicate" xml:space="preserve">
-    <value>Kopiëren</value>
+    <value>Dupliceren</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Bewerken</value>
   </data>
   <data name="EditAction" xml:space="preserve">
-    <value>Aanpassen van actie</value>
+    <value>Actie aanpassen</value>
   </data>
   <data name="Export" xml:space="preserve">
     <value>Exporteren</value>
@@ -210,7 +210,7 @@
     <value>Gyro</value>
   </data>
   <data name="HideUnchecked" xml:space="preserve">
-    <value>Verberg de NIET aangevinkte</value>
+    <value>Verberg niet-aangevinkt</value>
   </data>
   <data name="Import" xml:space="preserve">
     <value>Importeren</value>
@@ -231,7 +231,7 @@
     <value>Nieuwe actie</value>
   </data>
   <data name="NewProfile" xml:space="preserve">
-    <value>Nieuw profiel aanmaken</value>
+    <value>Nieuw profiel</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Geen</value>
@@ -243,7 +243,7 @@
     <value>Profiel</value>
   </data>
   <data name="ProfileFolder" xml:space="preserve">
-    <value>Profielsbestand</value>
+    <value>Profielmap</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
     <value>Snelladen</value>
@@ -255,7 +255,7 @@
     <value>Verwijderen</value>
   </data>
   <data name="RemoveAction" xml:space="preserve">
-    <value>Verwijderen van actie</value>
+    <value>Verwijder actie</value>
   </data>
   <data name="RightStick" xml:space="preserve">
     <value>Rechtse stick</value>
@@ -264,13 +264,13 @@
     <value>Vibratie/trillen</value>
   </data>
   <data name="RunAtStartup" xml:space="preserve">
-    <value>Starten bij opstarten PC</value>
+    <value>Uitvoeren bij opstarten PC</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Opslaan</value>
   </data>
   <data name="SaveProfile" xml:space="preserve">
-    <value>Profiel opslaan</value>
+    <value>Opslaan</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Instellingen</value>
@@ -300,19 +300,19 @@
     <value>Tikken</value>
   </data>
   <data name="Trigger" xml:space="preserve">
-    <value>Trekker</value>
+    <value>Trigger</value>
   </data>
   <data name="WarningsOnly" xml:space="preserve">
-    <value>Alleen waarschuwingen</value>
+    <value>Enkel waarschuwingen</value>
   </data>
   <data name="RumbleMaxSecs" xml:space="preserve">
-    <value>Maximum vibratie-seconden</value>
+    <value>sec</value>
   </data>
   <data name="RumbleMaxSecsTip" xml:space="preserve">
-    <value>Automatisch stoppen van vibratie/trillen in seconden (0 = Oneindig trillen)</value>
+    <value>Automatisch stoppen van vibratie in seconden (0 = niet automatisch stoppen)</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Titelscherm</value>
+    <value>Titel venster</value>
   </data>
   <data name="MoveUp" xml:space="preserve">
     <value>Naar boven</value>
@@ -321,20 +321,20 @@
     <value>Naar beneden</value>
   </data>
   <data name="AutoProfPathTip" xml:space="preserve">
-    <value>Process pad. ^ABC = Overeenkomen van de beginstekst (^) | ABC$ = Overeenkomen van de eindtekst ($) | *ABC = Bevat tekstlijn (*)</value>
+    <value>Proces pad. ^ABC = komt overeen met begin van de tekst (^) | ABC$ = komt overeen met einde van de tekst ($) | *ABC = bevat tekst (*)</value>
   </data>
   <data name="AutoProfTitleTip" xml:space="preserve">
-    <value>Titelscherm. ^ABC = Overeenkomen van de beginstekst (^) | ABC$ = Overeenkomen van de eindtekst ($) | *ABC = Bevat tekstlijn (*)</value>
+    <value>Titel venster. ^ABC = komt overeen met begin van de tekst (^) | ABC$ = komt overeen met einde van de tekst ($) | *ABC = bevat tekst (*)</value>
   </data>
   <data name="GamepadTest" xml:space="preserve">
-    <value>Gamepad testen</value>
+    <value>Controller testen</value>
   </data>
   <data name="EnableOutputDataToDS4" xml:space="preserve">
-    <value>Enable Output data to DS4</value>
+    <value>Sta data uitvoer naar DS4 toe</value>
   </data>
   <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
-    <value>Geef regelmatig licht- en trildata naar de DS4 gamepad.Doe het vinkje uit als je geen data ontvangt.
-Wijzigen op deze instellingen hebben een effect op de verbindingsnelheid van de controller.</value>
+    <value>Stuur regelmatig licht- en trildata naar de DS4-controller. Vink uit als je controller geen data kan ontvangen.
+Wijzigen op deze instellingen hebben effect op de verbindingssnelheid van de controller.</value>
     <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
   </data>
   <data name="Apply" xml:space="preserve">
@@ -344,12 +344,12 @@ Wijzigen op deze instellingen hebben een effect op de verbindingsnelheid van de 
     <value>HidNinja</value>
   </data>
   <data name="CustomExeName" xml:space="preserve">
-    <value>Aangepaste Exe Naam</value>
+    <value>Aangepaste exe naam</value>
   </data>
   <data name="CustomExeNameInfo" xml:space="preserve">
-    <value>Sommige spellen voegen een codeblok toe dat zorgt dat de invoer van de DS4 wordt genegeerd als ze DS4Windows.exe of InputMapper.exe zien op hetzelfde moment. Een omweg voor dit codeblok is om DS4Windows.exe te hernoemen zodat de contoleerder faalt en het normaal werkt. Je kan een aangepaste exe name verkrijgen door de toegang te geven aan DS4Updater om dit automatisch aan te passen naar een andere bestandsnaam met een aangepaste versie. Zorg ervoor dat je geen bestandextensie toevoegt.
+    <value>Sommige spellen blokkeren de invoer van DS4 als ze DS4Windows.exe of InputMapper.exe zien. Een oplossing is om DS4Windows.exe te hernoemen zodat de check faalt en de game normaal werkt. Hier een aangepaste exe naam invullen staat DS4Updater toe om automatisch een aangepaste kopie van DS4Windows te maken met de gewenste naam. Zorg ervoor dat je geen bestandextensie toevoegt.
 
-Example: whyme_DS4Windows</value>
+Voorbeeld: waaromik_DS4Windows</value>
   </data>
   <data name="XInputChecker" xml:space="preserve">
     <value>XInputChecker</value>
@@ -367,40 +367,40 @@ Example: whyme_DS4Windows</value>
     <value>Controller 8</value>
   </data>
   <data name="GamepadGyroCameraDescription" xml:space="preserve">
-    <value>Toewijzen uitgangen van controller en binden aan een standaard Xinput-gamepad of DS4-pad. Gyro is toegewezen als een Muisachtige Joystick.</value>
+    <value>Wijst de controller uitvoer toe aan een standaard XInput- of DS4-gamepad. Gyro wordt toegewezen als een muisachtige joystick.</value>
   </data>
   <data name="GamepadGyroCameraName" xml:space="preserve">
-    <value>Gamepad met Muisachtige Joystick</value>
+    <value>Gamepad met muisachtige joystick</value>
   </data>
   <data name="GamepadPresetDescription" xml:space="preserve">
-    <value>Toewijzen uitgangen van controller en binden aan een standaard gamepad.</value>
+    <value>Wijst de controller-uitvoer toe aan een standaard gamepad.</value>
   </data>
   <data name="GamepadPresetName" xml:space="preserve">
     <value>Gamepad</value>
   </data>
   <data name="KBMGyroMouseDescription" xml:space="preserve">
-    <value>Toewijzen uitgangen van controller en binden aan virtuele- Muis en toetsenbord. Handig voor schietspellen dat geen controller ondersteuning hebben. Gyro is toegewezen als een virtuele Muis.</value>
+    <value>Wijst de uitvoer van de controller toe aan een virtuele muis en toetsenbord. Handig voor schietspellen zonder controller-ondersteuning. Gyro is toegewezen als een virtuele muis.</value>
   </data>
   <data name="KBMGyroMouseName" xml:space="preserve">
-    <value>Toetsenbord en Muis-bewegingen met gyro Muis.</value>
+    <value>Toetsenbord en muis-bewegingen met gyro muis.</value>
   </data>
   <data name="KBMPresetDescription" xml:space="preserve">
-    <value>Toewijzen uitgang van controller en binden aan virtuele- Muis en toetsenbord.ontrols. Handig voor schietspellen dat geen controller ondersteuning hebben.</value>
+    <value>Wijst de uitvoer van de controller toe aan een virtuele muis en toetsenbord. Handig voor schietspellen zonder controller-ondersteuning.</value>
   </data>
   <data name="KBMPresetName" xml:space="preserve">
-    <value>Toetsenbord en Muis</value>
+    <value>Toetsenbord en muis</value>
   </data>
   <data name="MixedGyroMousePresetDescription" xml:space="preserve">
-    <value>Toewijzen van knoppen en assen als standaard gamepad. Gyro is toegewezen als een virtuele Muis.</value>
+    <value>Wijst de knoppen en assen toe aan een standaard gamepad. Wijst gyro toe aan een virtuele Muis.</value>
   </data>
   <data name="MixedGyroMousePresetName" xml:space="preserve">
-    <value>Gamepad met Gyro Muis</value>
+    <value>Gamepad met gyro muis</value>
   </data>
   <data name="MixedPresetDescription" xml:space="preserve">
-    <value>Toewijzen uitgangen van controller en binding als een gemixte Xinput gamepad + Muis.</value>
+    <value>Wijst de uitvoer van de controller toe aan een gemixte XInput gamepad + muis.</value>
   </data>
   <data name="MixedPresetName" xml:space="preserve">
-    <value>Gamepad met Hoogaccurate camera</value>
+    <value>Gamepad met hoogaccurate camera</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Beschrijving</value>
@@ -424,15 +424,972 @@ Example: whyme_DS4Windows</value>
     <value>Geen controllers verbonden (Max {0})</value>
   </data>
   <data name="FlickThreshold" xml:space="preserve">
-    <value>Flick Threshold</value>
+    <value>Flick drempelwaarde</value>
   </data>
   <data name="FlickTime" xml:space="preserve">
-    <value>Flick Time</value>
+    <value>Flick tijd</value>
   </data>
   <data name="MinAngleThreshold" xml:space="preserve">
-    <value>Min Angle Threshold</value>
+    <value>Minimum hoek drempelwaarde</value>
   </data>
   <data name="RealWorldCalibration" xml:space="preserve">
-    <value>Real World Calibration</value>
+    <value>Fysieke calibratie</value>
+  </data>
+  <data name="Welcome.Step3HelpText" xml:space="preserve">
+    <value>Stap 3: DualShock 4 controller verbinden.
+Om bedraad/USB in te stellen:
+Verbind gewoon je DualShock 4 en PC met een micro-USB kabel.
+
+(Optioneel) Om Bluetooth in te stellen: Hou de PS- en deelknop 3 seconden lang ingedrukt. De lightbar zal dubbel beginnen knipperen.</value>
+    <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
+  </data>
+  <data name="HidHide" xml:space="preserve">
+    <value>HidHide</value>
+  </data>
+  <data name="HidHideConfigClient" xml:space="preserve">
+    <value>HidHide configuratie</value>
+  </data>
+  <data name="ExclusiveAccess" xml:space="preserve">
+    <value>Exclusieve toegang</value>
+  </data>
+  <data name="HidHideAccess" xml:space="preserve">
+    <value>HidHide toegang</value>
+  </data>
+  <data name="SharedAccess" xml:space="preserve">
+    <value>Gedeelde toegang</value>
+  </data>
+  <data name="ViGEmPluginFailure" xml:space="preserve">
+    <value>ViGEm apparaatplugin gefaald. Error Code {0}. Waarschijnlijk een intern ViGEmBus probleem. Connectie afsluiten. Als het probleem zich blijft voordoen, sluit dan DS4Windows en herstart Windows.</value>
+  </data>
+  <data name="CRC32Fail" xml:space="preserve">
+    <value>Data-integriteit checks gefaald voor draadloos apparaat. Apparaat afsluiten.</value>
+  </data>
+  <data name="FutureNetNotInstalled" xml:space="preserve">
+    <value>.NET 5 Runtime niet gevonden op je systeem. Download en installeer .NET 5 Runtime om compatibiliteit te verzekeren met toekomstige versies van DS4Windows. Je zal doorgestuurd worden naar de .NET 5 Runtime download pagina bij het sluiten van dit venster.</value>
+  </data>
+  <data name="UpgradeNetCaption" xml:space="preserve">
+    <value>Update .NET Runtime a.u.b.</value>
+  </data>
+  <data name="HidGuardianAccess" xml:space="preserve">
+    <value>HidGuardian toegang</value>
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Hernoemen</value>
+  </data>
+  <data name="DisableVirtualController" xml:space="preserve">
+    <value>Virtuele controller uitschakelen</value>
+  </data>
+  <data name="EmulatedController" xml:space="preserve">
+    <value>Geëmuleerde controller</value>
+  </data>
+  <data name="OutContNotice" xml:space="preserve">
+    <value>Kies het type uitvoer van de virtuele controller (Wordt toegepast bij opslaan profiel)</value>
+  </data>
+  <data name="VirtualControllerSettings" xml:space="preserve">
+    <value>Virtuele controller Instellingen</value>
+  </data>
+  <data name="ChangeOnNewDeviceConn" xml:space="preserve">
+    <value>Aanpassingen treden in werking wanneer een nieuw apparaat verbindt</value>
+  </data>
+  <data name="DisableVirtualControllerTip" xml:space="preserve">
+    <value>Maak/associeer geen virtuele controllers met verbonden controllers voor dit profiel (Wordt toegepast bij opslaan profiel)</value>
+  </data>
+  <data name="SpecialActionEdit.ViaNotification" xml:space="preserve">
+    <value>via notificatie</value>
+  </data>
+  <data name="SpecialActionEdit.ViaLightbar" xml:space="preserve">
+    <value>via lichtbar</value>
+  </data>
+  <data name="SpecialActionEdit.TapTrigger" xml:space="preserve">
+    <value>Trigger tikken</value>
+  </data>
+  <data name="SpecialActionEdit.SyncRun" xml:space="preserve">
+    <value>Voer gesynchroniseerd uit</value>
+  </data>
+  <data name="SpecialActionEdit.SixAxisWheelCalib" xml:space="preserve">
+    <value>Sixaxis stuur calibreren</value>
+  </data>
+  <data name="SpecialActionEdit.SelectMacro" xml:space="preserve">
+    <value>Selecteer een macro</value>
+  </data>
+  <data name="SpecialActionEdit.SelectAction" xml:space="preserve">
+    <value>-Selecteer een actie-</value>
+  </data>
+  <data name="SpecialActionEdit.RepeatWhileHeld" xml:space="preserve">
+    <value>Herhaal tijdens indrukken</value>
+  </data>
+  <data name="SpecialActionEdit.RecordMacro" xml:space="preserve">
+    <value>Neem een macro op</value>
+  </data>
+  <data name="SpecialActionEdit.PressKey" xml:space="preserve">
+    <value>Druk/schakel toets</value>
+  </data>
+  <data name="SpecialActionEdit.SelectKey" xml:space="preserve">
+    <value>Selecteer een toets</value>
+  </data>
+  <data name="SpecialActionEdit.MultiAction" xml:space="preserve">
+    <value>Multi-actieknop</value>
+  </data>
+  <data name="SpecialActionEdit.MacroRecorded" xml:space="preserve">
+    <value>Macro opgenomen</value>
+  </data>
+  <data name="SpecialActionEdit.LoadProfile" xml:space="preserve">
+    <value>Laad een profiel</value>
+  </data>
+  <data name="SpecialActionEdit.LaunchProgram" xml:space="preserve">
+    <value>Start een programma</value>
+  </data>
+  <data name="SpecialActionEdit.KeepKeyState" xml:space="preserve">
+    <value>Bewaar status van toets</value>
+  </data>
+  <data name="SpecialActionEdit.HoldTrigger" xml:space="preserve">
+    <value>Hou trigger ingedrukt</value>
+  </data>
+  <data name="SpecialActionEdit.HoldFor" xml:space="preserve">
+    <value>Hou vast voor</value>
+  </data>
+  <data name="SpecialActionEdit.DoubleTapTrigger" xml:space="preserve">
+    <value>Dubbeltik trigger</value>
+  </data>
+  <data name="SpecialActionEdit.DisconnectBT" xml:space="preserve">
+    <value>Bluetooth loskoppelen</value>
+  </data>
+  <data name="SpecialActionEdit.CheckBattery" xml:space="preserve">
+    <value>Check batterij</value>
+  </data>
+  <data name="Welcome.WinTitle" xml:space="preserve">
+    <value>Welkom bij DS4Windows</value>
+  </data>
+  <data name="Welcome.Step5Text" xml:space="preserve">
+    <value>(Optioneel) Stap 5: Installeer FakerInput Stuurprogramma</value>
+  </data>
+  <data name="Welcome.Step4Text" xml:space="preserve">
+    <value>(Optioneel) Stap 4: Installeer HidHide Stuurprogramma</value>
+  </data>
+  <data name="StickFuzzTooltip" xml:space="preserve">
+    <value>Fuzz specifieert hoeveel de analoge stick moet bewegen, in de actieve zone, voor de uitvoer geregistreerd wordt. Deze instelling kan handig zijn voor versleten sticks die geen constante positie kunnen houden. De uitgedrukte waarde is ruwe invoer.</value>
+  </data>
+  <data name="StickMaxOutputForceTooltip" xml:space="preserve">
+    <value>Gebruik altijd maximum Uitvoer. Handig voor 100% max uitvoer en om de uitvoer te beperken tot een cirkel. </value>
+  </data>
+  <data name="StickMaxOutputTooltip" xml:space="preserve">
+    <value>Beperkt de maximale uitvoerwaarde van de analoge stick door alle hogere invoerwaarden te verlagen tot de maximum waarde.</value>
+  </data>
+  <data name="AntiDeadzoneTooltip" xml:space="preserve">
+    <value>Een anti-deadzone geeft de minimum uitvoerwaarde die wordt gegenereerd als een as de toegewezen deadzone heeft verlaten. Als er geen anti-deadzone is toegewezen, zou een as voorbij de toegewezen deadzone in DS4Windows moeten bewegen en dan nog eens voorbij de toegewezen deadzone van het spel. De typische toegewezen deadzone voor XInput LS in een videogame is ongeveer 8000 (25%). 
+</value>
+  </data>
+  <data name="StickInputCurveTooltip" xml:space="preserve">
+    <value>VEROUDERDE INSTELLING. Probeert een curve toe te passen gebaseerd op ruwe invoercoördinaten vóór de deadzone toegepast is. Onstabiel</value>
+  </data>
+  <data name="TouchpadMinThresholdTooltip" xml:space="preserve">
+    <value>Minimum berekende uitvoer beweging voor een muisbeweging naar het systeem word gestuurd</value>
+  </data>
+  <data name="TouchpadRotationTooltip" xml:space="preserve">
+    <value>Past een touchpad swipe aan volgens een gegeven draaiingshoek. Handig wanneer een normale touchpad swipe geen rechte lijn is. Waarden mogen tussen -180 en 180 liggen. De standaardwaarde is 0°.</value>
+  </data>
+  <data name="TouchpadSlideTooltip" xml:space="preserve">
+    <value>Gevoeligheid voor het starten van multi-touch scrollen.</value>
+  </data>
+  <data name="TouchpadTapTooltip" xml:space="preserve">
+    <value>Activeer linker muisklik door te tikken op de touchpad. Maximum tijdsinterval is (waarde * 2) ms.</value>
+  </data>
+  <data name="TouchpadTrackballEnableTooltip" xml:space="preserve">
+    <value>Geeft momentum aan een touchpad swipe wanneer je de touchpad loslaat. Voegt extra beweging toe aan de cursorbeweging die normaal niet mogelijk zou zijn met de beperkte plaats op de touchpad.</value>
+  </data>
+  <data name="TouchpadTrackballFrictionTooltip" xml:space="preserve">
+    <value>Voeg wrijving toe aan virtuele trackball. Lagere wrijving zorgt voor meer beweging van de cursor.</value>
+  </data>
+  <data name="StickOuterBindDeadTooltip" xml:space="preserve">
+    <value>Drempelwaarde waarna de actie begint</value>
+  </data>
+  <data name="StickOuterBindInvertTooltip" xml:space="preserve">
+    <value>Start buitenste actie voor je de drempelwaarde bereikt. Actie stopt wanneer de drempelwaarde bereikt is.</value>
+  </data>
+  <data name="StickOuterBindTooltip" xml:space="preserve">
+    <value>Actie om uit te voeren wanneer de stick voorbij de drempelwaarde beweegt. Handig om bv. de toets voor lopen toe te wijzen. Omkeren zorgt ervoor dat de actie uitvoert tot de drempelwaarde bereikt is.</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Breedte</value>
+  </data>
+  <data name="XCenter" xml:space="preserve">
+    <value>X center</value>
+  </data>
+  <data name="YCenter" xml:space="preserve">
+    <value>Y center</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Actief</value>
+  </data>
+  <data name="Current" xml:space="preserve">
+    <value>Huidig</value>
+  </data>
+  <data name="Intro" xml:space="preserve">
+    <value>Intro</value>
+  </data>
+  <data name="OutputSlotMan.InputNum" xml:space="preserve">
+    <value>Invoer #</value>
+  </data>
+  <data name="OutputSlotMan.XInputNum" xml:space="preserve">
+    <value>XInput #</value>
+  </data>
+  <data name="Pitch" xml:space="preserve">
+    <value>Pitch</value>
+  </data>
+  <data name="PresetOptWin.OutputController" xml:space="preserve">
+    <value>Uitvoer controller</value>
+  </data>
+  <data name="PresetOptWin.PresetMenu" xml:space="preserve">
+    <value>Preset menu</value>
+  </data>
+  <data name="ReadingsControl.BatteryZero" xml:space="preserve">
+    <value>Batterij: 0%</value>
+  </data>
+  <data name="ReadingsControl.InputDelayNA" xml:space="preserve">
+    <value>Invoervertraging: N.V.T.</value>
+  </data>
+  <data name="ReadingsControl.SixAxisXText" xml:space="preserve">
+    <value>Sixaxis: X-as is omgekeerd zodat het makkelijker te lezen is</value>
+  </data>
+  <data name="Requested" xml:space="preserve">
+    <value>Verzocht</value>
+  </data>
+  <data name="Roll" xml:space="preserve">
+    <value>Roll</value>
+  </data>
+  <data name="Yaw" xml:space="preserve">
+    <value>Yaw</value>
+  </data>
+  <data name="Appdata" xml:space="preserve">
+    <value>Appdata</value>
+  </data>
+  <data name="ProgramFolder" xml:space="preserve">
+    <value>Program Folder</value>
+  </data>
+  <data name="SaveWhere.AppDataDescText" xml:space="preserve">
+    <value>Voor wie een normale installatie wil. Instellingen worden opgeslagen in %appdata%\DS4Windows</value>
+  </data>
+  <data name="SaveWhere.DontDelete" xml:space="preserve">
+    <value>Verwijder de andere instellingen nog niet</value>
+  </data>
+  <data name="SaveWhere.MultipleSaves" xml:space="preserve">
+    <value>Meerdere opslaglocaties gedetecteerd</value>
+  </data>
+  <data name="SaveWhere.PickWhere" xml:space="preserve">
+    <value>Kies waar je profielen en instellingen wil opslaan</value>
+  </data>
+  <data name="SaveWhere.ProgramFolderDescText" xml:space="preserve">
+    <value>Voor wie een draagbare installatie wil.
+Let op: deze optie werkt niet in een admin map zonder gebruikersaccountbeheer</value>
+  </data>
+  <data name="SaveWhere.WinTitle" xml:space="preserve">
+    <value>Waar opslaan</value>
+  </data>
+  <data name="Welcome.BluetoothSettings" xml:space="preserve">
+    <value>Bluetooth instellingen</value>
+  </data>
+  <data name="Welcome.Step1HelpText" xml:space="preserve">
+    <value>Als dit venster opnieuw verschijnt na installatie, moet je misschien je PC opnieuw opstarten.</value>
+  </data>
+  <data name="Welcome.Step1Text" xml:space="preserve">
+    <value>Stap 1: Installeer ViGEmBus stuurprogramma</value>
+  </data>
+  <data name="Welcome.Step2HelpText" xml:space="preserve">
+    <value>Als je al eens een Xbox 360 controller hebt gebruikt op deze PC, mag je deze stap overslaan.</value>
+  </data>
+  <data name="Welcome.Step2Text" xml:space="preserve">
+    <value>Stap 2: Enkel voor Windows 7, installeer 360 stuurprogramma</value>
+  </data>
+  <data name="Welcome.Step3BluetoothHelpText" xml:space="preserve">
+    <value>Als de lichtjes pinken, ga naar Bluetooth instellingen en verbind met "Wireless Controller" ("Draadloze Controller"). Indien gevraagd, gebruik koppelcode 0000. Na het koppelen ben je klaar. Veel plezier!</value>
+  </data>
+  <data name="Welcome.Step4HelpText" xml:space="preserve">
+    <value>Gebruik HidHide om controllers in te stellen en te verbergen van andere apps op je systeem. Sommige games vertonen afwijkend gedrag wanneer meerdere controllers tegelijk verbonden zijn.</value>
+  </data>
+  <data name="Welcome.Step5HelpText" xml:space="preserve">
+    <value>Gebruik FakerInput om voor het hele systeem het virtuele toetsenbord, relatieve muis en absolute muis beschikbaar te maken. Staat toe om virtuele toetsenbord en muis acties uit te voeren wanneer SendInput niet werkt. Bijvoorbeeld bij processen en games die hogere bevoegdheid nodig hebben, gebruikersaccountbeheer en anti-cheat systemen die SendInput blokkeren. Gebruik van FakerInput is nodig om DS4Windows te laten werken met bepaalde games , zoals Valorant.</value>
+  </data>
+  <data name="SpecialActionEdit.RunTriggerRelease" xml:space="preserve">
+    <value>Voer uit bij loslaten trigger</value>
+  </data>
+  <data name="SpecialActionEdit.UntoggleKeyBy" xml:space="preserve">
+    <value>Toets uitzetten door</value>
+  </data>
+  <data name="BindingWin.ChangeLight" xml:space="preserve">
+    <value>Verander licht</value>
+  </data>
+  <data name="BindingWin.ChangeMouseSensitivity" xml:space="preserve">
+    <value>Verander gevoeligheid muis</value>
+  </data>
+  <data name="BindingWin.KeyAndRelMouse" xml:space="preserve">
+    <value>Toetsenbord en relatieve muis</value>
+  </data>
+  <data name="BindingWin.KeyboardAndMouse" xml:space="preserve">
+    <value>Toetsenbord en muis</value>
+  </data>
+  <data name="BindingWin.MacroOn" xml:space="preserve">
+    <value>Macro aan, kies eventueel een toets om uit te schakelen, sluit dit venster om op te slaan</value>
+  </data>
+  <data name="BindingWin.RecordAMacro" xml:space="preserve">
+    <value>Neem een macro op</value>
+  </data>
+  <data name="BindingWin.SelectShiftTrigger" xml:space="preserve">
+    <value>Selecteer shift trigger</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Bevestig</value>
+  </data>
+  <data name="ControllerRegOptWin.EnableHomeLED" xml:space="preserve">
+    <value>Schakel home LED in</value>
+  </data>
+  <data name="ControllerRegOptWin.JoinedGyroProvider" xml:space="preserve">
+    <value>Samengevoegde gyro provider</value>
+  </data>
+  <data name="ControllerRegOptWin.LinkMode" xml:space="preserve">
+    <value>Link modus</value>
+  </data>
+  <data name="ControllerRegOptWin.MuteLEDMode" xml:space="preserve">
+    <value>Demp LED modus</value>
+  </data>
+  <data name="ControllerRegOptWin.PlayerLEDMode" xml:space="preserve">
+    <value>Speler LED modus</value>
+  </data>
+  <data name="ControllerRegOptWin.WinTitle" xml:space="preserve">
+    <value>Controller type opties</value>
+  </data>
+  <data name="DeltaAcceleration" xml:space="preserve">
+    <value>Delta versnelling</value>
+  </data>
+  <data name="DirectionalSwipe" xml:space="preserve">
+    <value>Swipe in een richting</value>
+  </data>
+  <data name="EasingDuration" xml:space="preserve">
+    <value>Overgangsduratie</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Ingeschakeld</value>
+  </data>
+  <data name="EnableTouchpadToggle" xml:space="preserve">
+    <value>Touchpad schakelen gebruiken</value>
+  </data>
+  <data name="Extra" xml:space="preserve">
+    <value>Extra</value>
+  </data>
+  <data name="FirstLaunch.DeviceSupport" xml:space="preserve">
+    <value>Apparaat ondersteuning</value>
+  </data>
+  <data name="Fuzz" xml:space="preserve">
+    <value>Fuzz</value>
+  </data>
+  <data name="GyroControlsAccel" xml:space="preserve">
+    <value>Besturing (versnellingsmeter)</value>
+  </data>
+  <data name="Heavy" xml:space="preserve">
+    <value>Zwaar</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Hoogte</value>
+  </data>
+  <data name="HipFireDelay" xml:space="preserve">
+    <value>Hip fire vertraging</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="IdleDisconnect" xml:space="preserve">
+    <value>Inactieve verbinding verbreken</value>
+  </data>
+  <data name="FlashRate" xml:space="preserve">
+    <value>Flitssnelheid</value>
+  </data>
+  <data name="FullBtnPull" xml:space="preserve">
+    <value>Volledige knop trekken</value>
+  </data>
+  <data name="LangPackControl.UseLangPack" xml:space="preserve">
+    <value>Gebruik taalpakket</value>
+  </data>
+  <data name="LaunchProgramWithProfile" xml:space="preserve">
+    <value>Voer programma uit met profiel</value>
+  </data>
+  <data name="Lightbar" xml:space="preserve">
+    <value>Lightbar</value>
+  </data>
+  <data name="LinkProfileId" xml:space="preserve">
+    <value>Link profiel/ID</value>
+  </data>
+  <data name="MainWin.AbsDisplayMonitor" xml:space="preserve">
+    <value>Absolute beeldscherm weergave</value>
+  </data>
+  <data name="MainWin.EnableServer" xml:space="preserve">
+    <value>Server inschakelen</value>
+  </data>
+  <data name="MainWin.OneEuroBeta" xml:space="preserve">
+    <value>1€ Bèta</value>
+  </data>
+  <data name="MainWin.OneEuroMinCutoff" xml:space="preserve">
+    <value>1€ Minimum cutoff</value>
+  </data>
+  <data name="MaxTravel" xml:space="preserve">
+    <value>Maximum beweging</value>
+  </data>
+  <data name="MinFactor" xml:space="preserve">
+    <value>Minimum factor</value>
+  </data>
+  <data name="MinTravel" xml:space="preserve">
+    <value>Minimum beweging</value>
+  </data>
+  <data name="Mode" xml:space="preserve">
+    <value>Modus</value>
+  </data>
+  <data name="Mouse" xml:space="preserve">
+    <value>Muis</value>
+  </data>
+  <data name="MouseAcceleration" xml:space="preserve">
+    <value>Muis versnelling</value>
+  </data>
+  <data name="MouseJoystick" xml:space="preserve">
+    <value>Muis joystick</value>
+  </data>
+  <data name="MouseSensitivity" xml:space="preserve">
+    <value>Muis gevoeligheid</value>
+  </data>
+  <data name="Multiplier" xml:space="preserve">
+    <value>Vermenigvuldiger</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nee</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>Normaal</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Andere</value>
+  </data>
+  <data name="OuterBind" xml:space="preserve">
+    <value>Buitenste waarde</value>
+  </data>
+  <data name="OuterBtn" xml:space="preserve">
+    <value>Buitenste knop</value>
+  </data>
+  <data name="OuterBtnDead" xml:space="preserve">
+    <value>Buitenste knop dead</value>
+  </data>
+  <data name="Passthru" xml:space="preserve">
+    <value>Passthrough</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Poort</value>
+  </data>
+  <data name="RecordBox.AddRumble" xml:space="preserve">
+    <value>Trilling toevoegen</value>
+  </data>
+  <data name="RecordBox.ChangeLightbarColor" xml:space="preserve">
+    <value>Kleur lightbar veranderen</value>
+  </data>
+  <data name="RecordBox.DoubleClickWaitEdit" xml:space="preserve">
+    <value>Dubbelklik op een wacht op de tijd te veranderen</value>
+  </data>
+  <data name="RecordBox.FifthMB" xml:space="preserve">
+    <value>5e muisknop</value>
+  </data>
+  <data name="RecordBox.FourthMB" xml:space="preserve">
+    <value>4e muisknop</value>
+  </data>
+  <data name="RecordBox.InsertWait" xml:space="preserve">
+    <value>Wacht invoegen</value>
+  </data>
+  <data name="RecordBox.LoadPreset" xml:space="preserve">
+    <value>Voorinstelling laden</value>
+  </data>
+  <data name="RecordBox.MacroOrder" xml:space="preserve">
+    <value>Macro volgorde</value>
+  </data>
+  <data name="RecordBox.PlayOnce" xml:space="preserve">
+    <value>Eén keer afspelen</value>
+  </data>
+  <data name="RecordBox.RecordDelays" xml:space="preserve">
+    <value>Vertraging opnemen</value>
+  </data>
+  <data name="RecordBox.RepeatWhileHeld" xml:space="preserve">
+    <value>Herhalen tijdens indrukken</value>
+  </data>
+  <data name="RecordBox.SavePreset" xml:space="preserve">
+    <value>Voorinstelling opslaan</value>
+  </data>
+  <data name="RecordBox.UseActionToRecord" xml:space="preserve">
+    <value>Gebruik toetsenbord/muis + controller 1 om op te nemen</value>
+  </data>
+  <data name="RecordBoxWin.WinTitle" xml:space="preserve">
+    <value>Macro bewerken</value>
+  </data>
+  <data name="Regular" xml:space="preserve">
+    <value>Gewoon</value>
+  </data>
+  <data name="RenameProfileWin.TypeNewProfileName" xml:space="preserve">
+    <value>Typ de nieuwe naam om te gebruiken voor het XML-bestand van het geselecteerde profiel.</value>
+  </data>
+  <data name="RenameProfileWin.WinTitle" xml:space="preserve">
+    <value>Profiel hernoemen</value>
+  </data>
+  <data name="Rotation" xml:space="preserve">
+    <value>Rotatie</value>
+  </data>
+  <data name="ScanCode" xml:space="preserve">
+    <value>Scan code</value>
+  </data>
+  <data name="SelectedProfile" xml:space="preserve">
+    <value>Geselecteerd profiel</value>
+  </data>
+  <data name="ShiftModifier" xml:space="preserve">
+    <value>Shift modifier</value>
+  </data>
+  <data name="SkipVersion" xml:space="preserve">
+    <value>Versie overslaan</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="TestHeavy" xml:space="preserve">
+    <value>Test zwaar</value>
+  </data>
+  <data name="TestLight" xml:space="preserve">
+    <value>Test licht</value>
+  </data>
+  <data name="Toggle" xml:space="preserve">
+    <value>Shakel</value>
+  </data>
+  <data name="TriggerEffect" xml:space="preserve">
+    <value>Trigger effect</value>
+  </data>
+  <data name="TwoStageMode" xml:space="preserve">
+    <value>Tweetrapsmodus</value>
+  </data>
+  <data name="UDPServer" xml:space="preserve">
+    <value>UDP server</value>
+  </data>
+  <data name="Unbound" xml:space="preserve">
+    <value>Ongebonden</value>
+  </data>
+  <data name="UpdaterWin.WinTitle" xml:space="preserve">
+    <value>Update venster</value>
+  </data>
+  <data name="UseController" xml:space="preserve">
+    <value>Gebruik controller</value>
+  </data>
+  <data name="UseSmoothing" xml:space="preserve">
+    <value>Gebruik smoothing</value>
+  </data>
+  <data name="SnapToCenter" xml:space="preserve">
+    <value>Snap naar het midden</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accepteer</value>
+  </data>
+  <data name="Black" xml:space="preserve">
+    <value>Zwart</value>
+  </data>
+  <data name="Colored" xml:space="preserve">
+    <value>Gekleurd</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Standaard</value>
+  </data>
+  <data name="DeviceType" xml:space="preserve">
+    <value>Apparaattype</value>
+  </data>
+  <data name="DisconnectFromBtWhenStopping" xml:space="preserve">
+    <value>Loskoppelen van Bluetooth bij stoppen</value>
+  </data>
+  <data name="Dynamic" xml:space="preserve">
+    <value>Dynamisch</value>
+  </data>
+  <data name="FlashLightbarAtHighLatency" xml:space="preserve">
+    <value>Flikker lightbar met hoge vertraging</value>
+  </data>
+  <data name="HideDS4Controller" xml:space="preserve">
+    <value>Verberg DS4-controller</value>
+  </data>
+  <data name="HotkeysAbout" xml:space="preserve">
+    <value>Sneltoetsen/Over</value>
+  </data>
+  <data name="IconChoice" xml:space="preserve">
+    <value>Icoonkeuze</value>
+  </data>
+  <data name="DualSRumbleModeDisabled" xml:space="preserve">
+    <value>Uitgeschakeld</value>
+  </data>
+  <data name="DualSRumbleModeAccurate" xml:space="preserve">
+    <value>Accuraat</value>
+  </data>
+  <data name="DualSRumbleModeLegacy" xml:space="preserve">
+    <value>Verouderd</value>
+  </data>
+  <data name="DualSRumbleModeNPowerLevelTxt" xml:space="preserve">
+    <value>Vibratiemodus en -sterkte</value>
+  </data>
+  <data name="DualSRumbleModePassthru" xml:space="preserve">
+    <value>Passthrough</value>
+  </data>
+  <data name="DualSRumbleSpecificSettings" xml:space="preserve">
+    <value>DualSense-specifieke vibratie-instellingen</value>
+  </data>
+  <data name="DualSRumbleForceGenericRescale" xml:space="preserve">
+    <value>Forceer gebruik van beide % sterkteniveaus (algemeen en DualSense-specifiek)</value>
+  </data>
+  <data name="SASteeringWheelFuzzTooltip" xml:space="preserve">
+    <value>Fuzz specifieert hoeveel de versnellingsmeter gedraaid moet worden, in de actieve zone, voor de uitvoer geregistreerd wordt. De uitgedrukte waarde is ruwe invoer.</value>
+  </data>
+  <data name="StickRotationTooltip" xml:space="preserve">
+    <value>+ = Met de klok mee. - = Tegen de klok in.
+
+De rotatie-instelling is bedoeld om de oriëntatie van een analoge stick te helpen corrigeren als uw duim een beetje verschoven is bij het bewegen van een stick. Uw duim kan bijvoorbeeld enigszins vanuit het midden verschoven zijn wanneer de analoge stick volledig naar boven is bewogen. Mijn duimen verschuiven iets naar rechts als ik een analoge stick helemaal naar het boven beweeg, vanwege de manier waarop ik de DS4 vasthoud. De gebruikte waarde geeft het aantal graden aan dat wordt gebruikt om de uiteindelijke uitvoerwaarde van de as aan te passen. Waarden mogen tussen -180 tot 180 liggen. De standaardwaarde is 0°.</value>
+  </data>
+  <data name="TouchpadJitterCompTooltip" xml:space="preserve">
+    <value>Limiteer kleine bewegingen op touchpad. Vermindert onopzettelijke cursorbewegingen wanneer je een bijna-constante positie houdt.</value>
+  </data>
+  <data name="DS4BTPollRate" xml:space="preserve">
+    <value>DS4 Bluetooth poll rate</value>
+  </data>
+  <data name="DS4LightbarPassthruDisabled" xml:space="preserve">
+    <value>Functie momenteel uitgeschakeld in app door problemen met stuurprogramma. Hopelijk worden de problemen opgelost in een toekomstige update.</value>
+  </data>
+  <data name="DualSRumbleForceGenericRescale_Tip" xml:space="preserve">
+    <value>Aangeraden om UITGESCHAKELD te laten.
+
+- Uitgeschakeld: vibratie wordt geschaald door de controller volgens het gedefinieerde krachtniveau (betere kwaliteit)
+
+- Ingeschakeld: zowel DS4Windows algemene vibratie schaling en DualSense ingebouwde controle zijn actief</value>
+  </data>
+  <data name="DualSRumbleModes_Tip" xml:space="preserve">
+    <value>Accurate modus (aangeraden):
+- Lijkt meer op DualShock 4/Xbox 360 controller vibratiegevoel
+- Meer accurate vibratie hoe de game het bedoelt
+- Vibratie heeft meer diepgang. Binnen hetzelfde krachtniveau is er een groter verschil tussen minimum en maximum in-game vibratie.
+
+Verouderde Modus:
+- Hardere vibratie, maar minder diepgang
+- Voelt "scherper"
+- De minimum en maximum vibratie zijn respectievelijk, maar een beetje onder en boven het gekozen krachtniveau.
+
+Uitgeschakeld:
+- Vibratie volledig uitgeschakeld</value>
+  </data>
+  <data name="DualSRumblePowerLevel_Tip" xml:space="preserve">
+    <value>DualSense ingebouwde krachtniveau schaling.
+
+- In accurate modus zal vibratie [ min // max ] gelijk zijn aan [ 1% /// gekozen krachtniveau ]
+    - Voorbeeld (62%): [ min = 1% /// max = 62% ]
+
+- In verouderde modus zal vibratie [min /// max ] gelijk zijn aan [ Power Level - 12% /// Power Level + 12% ]
+    - Voorbeeld (62%): [ min = 50% /// max = 74% ]</value>
+  </data>
+  <data name="MinimizeToTaskbar" xml:space="preserve">
+    <value>Minimaliseer naar taakbalk</value>
+  </data>
+  <data name="MinimizeToTaskbarTip" xml:space="preserve">
+    <value>Minimaliseer naar taakbalk i.p.v. systeemvak</value>
+  </data>
+  <data name="OutputSlots" xml:space="preserve">
+    <value>Uitvoer slots</value>
+  </data>
+  <data name="Permanent" xml:space="preserve">
+    <value>Permanent</value>
+  </data>
+  <data name="RevertToDefaultProfileOnUnknown" xml:space="preserve">
+    <value>Gebruik standaard profiel wanneer onbekend</value>
+  </data>
+  <data name="ShowAutoProfileDebugMessages" xml:space="preserve">
+    <value>toon automatisch profiel debug berichten</value>
+  </data>
+  <data name="SwipeTouchpadToSwitchProfiles" xml:space="preserve">
+    <value>Swipe touchpad om tussen profielen te wisselen</value>
+  </data>
+  <data name="TurnOffDS4WindowsTemporarily" xml:space="preserve">
+    <value>Schakel DS4Windows tijdelijk uit</value>
+  </data>
+  <data name="Plug" xml:space="preserve">
+    <value>Aansluiten</value>
+  </data>
+  <data name="Unplug" xml:space="preserve">
+    <value>Afsluiten</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>Wit</value>
+  </data>
+  <data name="AppTheme" xml:space="preserve">
+    <value>Appthema</value>
+  </data>
+  <data name="CheckEvery" xml:space="preserve">
+    <value>Check elke</value>
+  </data>
+  <data name="OscServerHeading" xml:space="preserve">
+    <value>Externe OSC controle en monitoring</value>
+  </data>
+  <data name="EnableOscServer" xml:space="preserve">
+    <value>Schakel controle server in</value>
+  </data>
+  <data name="EnableInterpretingOscMonitoring" xml:space="preserve">
+    <value>Interpreteer monitoring berichten</value>
+  </data>
+  <data name="EnableOscSender" xml:space="preserve">
+    <value>Schakel monitoring service in</value>
+  </data>
+  <data name="ControllerSupportDS4" xml:space="preserve">
+    <value>DS4-controller ondersteuning</value>
+  </data>
+  <data name="ControllerSupportDualSense" xml:space="preserve">
+    <value>DualSense controller ondersteuning</value>
+  </data>
+  <data name="ControllerSupportJoyCon" xml:space="preserve">
+    <value>JoyCon controller ondersteuning</value>
+  </data>
+  <data name="ControllerSupportSwitchPro" xml:space="preserve">
+    <value>Switch Pro controller ondersteuning</value>
+  </data>
+  <data name="Copycat" xml:space="preserve">
+    <value>Copycat</value>
+  </data>
+  <data name="CopycatTip" xml:space="preserve">
+    <value>Verander enkele waarden die gebruikt worden voor een non-Sony DS4-controller. Dit kan vibratie en lightbar ondersteuning herstellen voor bepaalde onofficiële DS4-controllers.</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Donker</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Dagen</value>
+  </data>
+  <data name="DetectedControllers" xml:space="preserve">
+    <value>Gedetecteerde controllers</value>
+  </data>
+  <data name="DeviceOptions" xml:space="preserve">
+    <value>Apparaatopties</value>
+  </data>
+  <data name="EnableVerboseLog" xml:space="preserve">
+    <value>Schakel uitgebreid logboek in</value>
+  </data>
+  <data name="EnableVerboseLogTip" xml:space="preserve">
+    <value>Toon aanvullende logberichten wanneer een gamepad verbonden is</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>Uur</value>
+  </data>
+  <data name="UseCustomSteamFolder" xml:space="preserve">
+    <value>Gebruik aangepaste Steam map</value>
+  </data>
+  <data name="Utils" xml:space="preserve">
+    <value>Voorzieningen</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>Programma</value>
+  </data>
+  <data name="RunAs" xml:space="preserve">
+    <value>Voer uit als</value>
+  </data>
+  <data name="Task" xml:space="preserve">
+    <value>Taak</value>
+  </data>
+  <data name="GyroTriggerJitterCompensationTooltip" xml:space="preserve">
+    <value>Limiteer het onderste deel van de curve om rekening te houden met beweging van het apparaat</value>
+  </data>
+  <data name="ControllerSupportDS3" xml:space="preserve">
+    <value>DS3 controller ondersteuning</value>
+  </data>
+  <data name="WakeupFromSuspend" xml:space="preserve">
+    <value>Wakker worden van sluimeren</value>
+  </data>
+  <data name="FirstLaunch.DeviceIntroText" xml:space="preserve">
+    <value>Omdat andere mappers standaard ondersteuning bieden voor meerdere apparaattypen (Steam Input), schakelt DS4Windows standaard alleen ondersteuning in voor het lezen van DS4-controllers. U kunt hier ondersteuning voor andere ondersteunde apparaattypen kiezen. Let op als u DS4Windows gebruikt terwijl andere mappers tegelijkertijd actief zijn.</value>
+  </data>
+  <data name="FirstLaunch.DS3EnableCkbLabel" xml:space="preserve">
+    <value>DS3 apparaat ondersteuning</value>
+  </data>
+  <data name="FirstLaunch.DS3EnableText" xml:space="preserve">
+    <value>Ondersteuning voor DualShock 3 controllers (PS3). Gebruikt het DsHidMini stuurprogramma uit het ViGEm project (Nefarius).</value>
+  </data>
+  <data name="FirstLaunch.DS4EnableCkbLabel" xml:space="preserve">
+    <value>DS4 apparaat ondersteuning</value>
+  </data>
+  <data name="FirstLaunch.DS4EnableText" xml:space="preserve">
+    <value>Ondersteuning voor DualShock 4 controller (PS4).</value>
+  </data>
+  <data name="FirstLaunch.DSEnableCkbLabel" xml:space="preserve">
+    <value>DualSense apparaat ondersteuning</value>
+  </data>
+  <data name="FirstLaunch.DSEnableText" xml:space="preserve">
+    <value>Ondersteuning voor DualSense controller (PS5).</value>
+  </data>
+  <data name="FirstLaunch.Header" xml:space="preserve">
+    <value>Apparaatmapper ondersteuning ingeschakeld</value>
+  </data>
+  <data name="FirstLaunch.JoyConEnableCkbLabel" xml:space="preserve">
+    <value>JoyCon apparaat ondersteuning</value>
+  </data>
+  <data name="FirstLaunch.JoyConEnableText" xml:space="preserve">
+    <value>Ondersteuning voor JoyCon controllers (Nintendo Switch).</value>
+  </data>
+  <data name="FirstLaunch.SwitchProEnableCkbLabel" xml:space="preserve">
+    <value>Switch Pro apparaat ondersteuning</value>
+  </data>
+  <data name="FirstLaunch.SwitchProEnableText" xml:space="preserve">
+    <value>Ondersteuning voor Switch Pro controller (Nintendo Switch).</value>
+  </data>
+  <data name="FirstLaunch.WinTitle" xml:space="preserve">
+    <value>Eerste keer opstarten</value>
+  </data>
+  <data name="AutoProfiles.DisplaySwitchVia" xml:space="preserve">
+    <value>Wissel van weergaveprofiel via</value>
+  </data>
+  <data name="AutoProfiles.LogAndNotification" xml:space="preserve">
+    <value>Logboek + notificatie</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Notificatie</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Licht</value>
+  </data>
+  <data name="ProfileEditor.VirtualDS4TrigOutput" xml:space="preserve">
+    <value>DS4 trigger uitvoer modus</value>
+  </data>
+  <data name="Analog" xml:space="preserve">
+    <value>Analoog</value>
+  </data>
+  <data name="Buttons" xml:space="preserve">
+    <value>Knoppen</value>
+  </data>
+  <data name="DS4OutputTriggersDefault" xml:space="preserve">
+    <value>Standaard (analoog + knoppen)</value>
+  </data>
+  <data name="DeadZone" xml:space="preserve">
+    <value>Deadzone</value>
+  </data>
+  <data name="MaxZone" xml:space="preserve">
+    <value>Maximum zone</value>
+  </data>
+  <data name="AntiDeadZone" xml:space="preserve">
+    <value>Anti-deadzone</value>
+  </data>
+  <data name="Axial" xml:space="preserve">
+    <value>Axiaal</value>
+  </data>
+  <data name="AxisConfig" xml:space="preserve">
+    <value>As configuratie</value>
+  </data>
+  <data name="Controls" xml:space="preserve">
+    <value>Besturing</value>
+  </data>
+  <data name="Cubic" xml:space="preserve">
+    <value>Kubisch</value>
+  </data>
+  <data name="DeadZone X" xml:space="preserve">
+    <value>Deadzone X</value>
+  </data>
+  <data name="DeadZone Y" xml:space="preserve">
+    <value>Deadzone Y</value>
+  </data>
+  <data name="DeadZoneType" xml:space="preserve">
+    <value>Deadzone type</value>
+  </data>
+  <data name="EaseoutCubic" xml:space="preserve">
+    <value>Overgang-in kubisch</value>
+  </data>
+  <data name="EaseoutQuad" xml:space="preserve">
+    <value>Overgang-uit quad</value>
+  </data>
+  <data name="EnhancedPrecision" xml:space="preserve">
+    <value>Verbeterde precisie</value>
+  </data>
+  <data name="FlickStick" xml:space="preserve">
+    <value>Flick stick</value>
+  </data>
+  <data name="Linear" xml:space="preserve">
+    <value>Lineair</value>
+  </data>
+  <data name="MaxOutput" xml:space="preserve">
+    <value>Maximum uitvoer</value>
+  </data>
+  <data name="MouseOffset" xml:space="preserve">
+    <value>Muis offset</value>
+  </data>
+  <data name="MouseVerticalScale" xml:space="preserve">
+    <value>Muis verticale schaal</value>
+  </data>
+  <data name="OutputCurve" xml:space="preserve">
+    <value>Uitvoercurve</value>
+  </data>
+  <data name="OutputMode" xml:space="preserve">
+    <value>Uitvoermodus</value>
+  </data>
+  <data name="Quadratic" xml:space="preserve">
+    <value>Kwadratisch</value>
+  </data>
+  <data name="Radial" xml:space="preserve">
+    <value>Radiaal</value>
+  </data>
+  <data name="Sensitivity" xml:space="preserve">
+    <value>Gevoeligheid</value>
+  </data>
+  <data name="SixAxisAccel" xml:space="preserve">
+    <value>Sixaxis (versnellingsmeter)</value>
+  </data>
+  <data name="SquareStick" xml:space="preserve">
+    <value>Vierkante stick</value>
+  </data>
+  <data name="VerticalScale" xml:space="preserve">
+    <value>Verticale schaal</value>
+  </data>
+  <data name="AntiSnapback" xml:space="preserve">
+    <value>Anti-snapback</value>
+  </data>
+  <data name="AntiSnapbackTiming" xml:space="preserve">
+    <value>Anti-snapback timing</value>
+  </data>
+  <data name="Touchpad" xml:space="preserve">
+    <value>Touchpad</value>
+  </data>
+  <data name="ViGEm117MinNeeded" xml:space="preserve">
+    <value>Werkt enkel met ViGEmBus 1.17.333.0 en nieuwer</value>
+  </data>
+  <data name="AbsoluteMouse" xml:space="preserve">
+    <value>Absolute muis</value>
+  </data>
+  <data name="AbsoluteMouseOptions" xml:space="preserve">
+    <value>Absolute muis opties</value>
+  </data>
+  <data name="AntiRadius" xml:space="preserve">
+    <value>Anti-straal</value>
+  </data>
+  <data name="BindingWin.AbsMouse" xml:space="preserve">
+    <value>Absolute muis</value>
+  </data>
+  <data name="BindingWin.AbsMouseDown" xml:space="preserve">
+    <value>Absolute muis naar beneden</value>
+  </data>
+  <data name="BindingWin.AbsMouseLeft" xml:space="preserve">
+    <value>Absolute muis naar links</value>
+  </data>
+  <data name="BindingWin.AbsMouseRight" xml:space="preserve">
+    <value>Absolute muis naar rechts</value>
+  </data>
+  <data name="BindingWin.AbsMouseUp" xml:space="preserve">
+    <value>Absolute muis naar boven</value>
+  </data>
+  <data name="SpecialActionEdit.ReleasingUnloadTrigger" xml:space="preserve">
+    <value>Ontlaad trigger loslaten</value>
+  </data>
+  <data name="SpecialActionEdit.PressingUnloadTrigger" xml:space="preserve">
+    <value>Ontlaad trigger indrukken</value>
+  </data>
+  <data name="SpecialActionEdit.SetUnloadTrigger" xml:space="preserve">
+    <value>Ontlaadtrigger instellen</value>
+  </data>
+  <data name="SpecialActionEdit.UnloadTriggerRelease" xml:space="preserve">
+    <value>Ontlaad bij loslaten trigger</value>
+  </data>
+  <data name="UnloadTrigger" xml:space="preserve">
+    <value>Ontlaad trigger</value>
   </data>
 </root>

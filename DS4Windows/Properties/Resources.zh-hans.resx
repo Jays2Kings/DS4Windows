@@ -141,7 +141,7 @@
         <value>编辑</value>
     </data>
     <data name="EnableTouchToggle" xml:space="preserve">
-        <value>允许是用PS键 + 触摸板点击来开关触摸板鼠标</value>
+        <value>允许使用PS键 + 触摸板点击来开关触摸板鼠标</value>
     </data>
     <data name="FallBack" xml:space="preserve">
         <value>退回</value>
@@ -303,7 +303,7 @@
         <value>请打开 ScpDriver.exe</value>
     </data>
     <data name="OscServer" xml:space="preserve">
-        <value>是用 OSC 服务器。在所有地址上监听端口。</value>
+        <value>使用 OSC 服务器。在所有地址上监听端口。</value>
     </data>
     <data name="OtherFileLocation" xml:space="preserve">
         <value>，其他地方的文件会被删除。</value>

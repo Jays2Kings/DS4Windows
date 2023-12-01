@@ -635,4 +635,13 @@
   <data name="SquareStickRoundness" xml:space="preserve">
     <value>Округлость квадратного стика</value>
   </data>
+    <data name="XMLActionsCorrupt" xml:space="preserve">
+    <value>Файл Actions.xml поврежден. Начните с нуля.</value>
+  </data>
+  <data name="OscServer" xml:space="preserve">
+    <value>Включить сервер OSC. Слушать порт на всех адресах.</value>
+  </data>
+  <data name="UsingAutoTempProfile" xml:space="preserve">
+    <value>Контроллер {0} использует временный профиль "{1}"</value>
+  </data>
 </root>

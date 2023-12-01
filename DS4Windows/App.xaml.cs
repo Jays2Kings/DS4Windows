@@ -374,6 +374,17 @@ namespace DS4WinWPF
                 // Might not be needed here
                 DS4Windows.Global.RefreshViGEmBusInfo();
 
+                // Load DS4Windows config if it exists
+                DS4Windows.Global.FindConfigLocation();
+                bool readAppConfig = DS4Windows.Global.Load();
+                if (readAppConfig)
+                {
+                    // Have app use selected culture
+                    SetUICulture(DS4Windows.Global.UseLang);
+                    DS4Windows.AppThemeChoice themeChoice = DS4Windows.Global.UseCurrentTheme;
+                    ChangeTheme(DS4Windows.Global.UseCurrentTheme, false);
+                }
+
                 CreateBaseThread();
                 DS4Forms.WelcomeDialog dialog = new DS4Forms.WelcomeDialog(true);
                 dialog.ShowDialog();

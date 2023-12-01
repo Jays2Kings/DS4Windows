@@ -1287,7 +1287,12 @@ Note: this option does not work if in an admin folder w/o UAC</value>
     <value>Once flashing go to your Bluetooth Settings and connect to "Wireless Controller". If asked, enter pair code 0000. Once paired, you're ready. Have fun!</value>
   </data>
   <data name="Welcome.Step3HelpText" xml:space="preserve">
-    <value>Step 3: Connecting the DualShock 4 controller.\nTo setup wired/USB:\nSimply plug a micro-USB into your PC and DualShock 4.\n\nTo setup Bluetooth (optional): Hold the PS Button and Share for 3 seconds. The lightbar will begin to double flash.</value>
+    <value>Step 3: Connecting the DualShock 4 controller.
+To setup wired/USB:
+Simply plug a micro-USB into your PC and DualShock 4.
+
+To setup Bluetooth (optional): Hold the PS Button and Share for 3 seconds. The lightbar will begin to double flash.</value>
+    <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
   </data>
   <data name="Welcome.Step4HelpText" xml:space="preserve">
     <value>Use HidHide to configure and hide any input controllers from other apps running on your system. Some games require only one controller to be present or double input will cause problems in game.</value>

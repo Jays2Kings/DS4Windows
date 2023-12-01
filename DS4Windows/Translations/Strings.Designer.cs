@@ -3686,7 +3686,11 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Step 3: Connecting the DualShock 4 controller.\nTo setup wired/USB:\nSimply plug a micro-USB into your PC and DualShock 4.\n\nTo setup Bluetooth (optional): Hold the PS Button and Share for 3 seconds. The lightbar will begin to double flash..
+        ///   Looks up a localized string similar to Step 3: Connecting the DualShock 4 controller.
+        ///To setup wired/USB:
+        ///Simply plug a micro-USB into your PC and DualShock 4.
+        ///
+        ///To setup Bluetooth (optional): Hold the PS Button and Share for 3 seconds. The lightbar will begin to double flash..
         /// </summary>
         public static string Welcome_Step3HelpText {
             get {

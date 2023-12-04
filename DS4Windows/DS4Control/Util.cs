@@ -343,6 +343,30 @@ namespace DS4Windows
             return releaseId;
         }
 
+        public static bool IsNet8DesktopRuntimeAvailable()
+        {
+            bool result = false;
+            string archString = Environment.Is64BitOperatingSystem ? "x64" : "x86";
+
+            using (RegistryKey subKey =
+                Registry.LocalMachine.OpenSubKey($@"SOFTWARE\WOW6432Node\dotnet\Setup\InstalledVersions\{archString}\sharedfx\Microsoft.WindowsDesktop.App"))
+            {
+                if (subKey != null)
+                {
+                    foreach (string valueName in subKey.GetValueNames())
+                    {
+                        if (!string.IsNullOrEmpty(valueName) && valueName.Contains("8."))
+                        {
+                            result = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
         public static bool SystemAppsUsingDarkTheme()
         {
             bool result = false;

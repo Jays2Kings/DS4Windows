@@ -603,6 +603,26 @@ namespace DS4WinWPF.DS4Control.DTOXml
         }
 
         [XmlIgnore]
+        public bool Net8Check
+        {
+            get; private set;
+        }
+
+        [XmlElement("Net8Check")]
+        public string Net8CheckString
+        {
+            get => Net8Check.ToString();
+            set
+            {
+                Net8Check = XmlDataUtilities.StrToBool(value);
+            }
+        }
+        public bool ShouldSerializeNet8CheckString()
+        {
+            return Net8Check == true;
+        }
+
+        [XmlIgnore]
         public LightbarDS4WinInfo LightbarInfo1
         {
             get; private set;
@@ -821,6 +841,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             AutoProfileRevertDefaultProfile = source.autoProfileRevertDefaultProfile;
             AutoProfileSwitchNotifyChoice = source.autoProfileSwitchNotifyChoice;
             AbsRegionDisplay = source.absDisplayEDID;
+            Net8Check = source.net8Check;
 
             DeviceOptions = new InputDeviceOptions()
             {
@@ -924,6 +945,8 @@ namespace DS4WinWPF.DS4Control.DTOXml
             {
                 destination.absDisplayEDID = AbsRegionDisplay;
             }
+
+            destination.net8Check = Net8Check;
 
             destination.deviceOptions.DS4DeviceOpts.Enabled = DeviceOptions.DS4SupportSettings.Enabled;
             destination.deviceOptions.DualSenseOpts.Enabled = DeviceOptions.DualSenseSupportSettings.Enabled;

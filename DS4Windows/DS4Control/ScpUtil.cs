@@ -2550,6 +2550,12 @@ namespace DS4Windows
             return m_Config.outputDS4TriggerMode[index];
         }
 
+        public static bool Net8Check
+        {
+            get => m_Config.net8Check;
+            set => m_Config.net8Check = value;
+        }
+
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
         public static string[] OlderProfilePath => m_Config.olderProfilePath;
@@ -3579,6 +3585,7 @@ namespace DS4Windows
         public AppThemeChoice useCurrentTheme;
         public string fakeExeFileName = string.Empty;
         public string absDisplayEDID = string.Empty;
+        public bool net8Check = false;
 
         public ControlServiceDeviceOptions deviceOptions =
             new ControlServiceDeviceOptions();

@@ -1,9 +1,32 @@
 {
-  "latest_version": "3.2.20",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 20},
-  "updated_at": "2023-11-24T19:04:30+0000",
+  "latest_version": "3.2.21",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 21},
+  "updated_at": "2023-12-05T05:23:00+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.2.21",
+      "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 21},
+      "base_header": "Version 3.2.21",
+      "release_date": "2023-12-05T05:23:00+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.2.21",
+          "log_text": ["* Updated ViGEmClient to work around IOCTL_VIGEM_WAIT_DEVICE_READY timeout when resuming from sleep. The problem affected normal operation as well. Just not that often",
+            "* Clear some memory references early in ProfileEditor. Contribution by **kurtanr**",
+            "* Fixed new line in translation string. Contribution by **DraakjeYoblama**",
+            "* Dutch strings update. Contribution by **DraakjeYoblama**",
+            "* Updated zn-hans translation. Contribution by **CrazyHPi**",
+            "* Russian translation update. Contribution by **mentalsolin**",
+            "* Attempt to load DS4Windows config when loading WelcomeDialog for a separate process. Makes sure set translation choice is used",
+            "* Enable localization for LogMessageDisplay window",
+            "* Added check for last check task when starting app update",
+            "* Enable .NET 8 nag window"],
+          "updated_at": "2023-12-05T05:23:00+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.2.20",
       "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 20},

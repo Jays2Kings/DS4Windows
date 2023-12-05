@@ -211,8 +211,15 @@ namespace DS4WinWPF.DS4Forms
                     Global.LastChecked = DateTime.Now;
                 }
 
-                // Temporary nag check for the .NET 8 Desktop Runtime
-                // TODO: Remove routine before starting work on DS4Windows 3.3
+                // Check if main window closing was requested from app update.
+                // Quit task early
+                //if (contextclose)
+                //{
+                //    return;
+                //}
+
+                //// Temporary nag check for the .NET 8 Desktop Runtime
+                //// TODO: Remove routine before starting work on DS4Windows 3.3
                 //if (!Global.Net8Check && !mainWinVM.IsNET8Available())
                 //{
                 //    Dispatcher.Invoke(() =>

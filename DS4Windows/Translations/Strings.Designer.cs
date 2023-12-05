@@ -2108,10 +2108,10 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DS4Windows version 3.3 and later will require the installation of .NET 8 to be installed on your system  
+        ///   Looks up a localized string similar to DS4Windows version 3.3 will require the installation of the .NET 8 Desktop Runtime on your system  
         ///[https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.0-windows-x64-installer](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.0-windows-x64-installer)  
         ///
-        ///Please click OK to confirm that you have read the message. Press Cancel to be reminded again..
+        ///Please click OK to confirm that you have read the message. Press Cancel to be reminded again on the next application launch..
         /// </summary>
         public static string Net8NotInstalledWinNotice {
             get {

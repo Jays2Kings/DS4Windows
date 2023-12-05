@@ -1397,10 +1397,10 @@ To setup Bluetooth (optional): Hold the PS Button and Share for 3 seconds. The l
     <value>.NET 8 Not Found</value>
   </data>
   <data name="Net8NotInstalledWinNotice" xml:space="preserve">
-    <value>DS4Windows version 3.3 and later will require the installation of .NET 8 to be installed on your system  
+    <value>DS4Windows version 3.3 will require the installation of the .NET 8 Desktop Runtime on your system  
 [https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.0-windows-x64-installer](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.0-windows-x64-installer)  
 
-Please click OK to confirm that you have read the message. Press Cancel to be reminded again.</value>
+Please click OK to confirm that you have read the message. Press Cancel to be reminded again on the next application launch.</value>
     <comment>Can use Markdown syntax</comment>
   </data>
   <data name="OK" xml:space="preserve">

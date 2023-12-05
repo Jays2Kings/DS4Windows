@@ -281,9 +281,10 @@ namespace DS4WinWPF.DS4Forms
 
                     if (launch)
                     {
+                        // Set that the window is getting ready to close for other components
+                        contextclose = true;
                         Dispatcher.BeginInvoke((Action)(() =>
                         {
-                            contextclose = true;
                             Close();
                         }));
                     }

@@ -346,7 +346,7 @@ namespace DS4Windows
         public static bool IsNet8DesktopRuntimeAvailable()
         {
             bool result = false;
-            string archString = Environment.Is64BitOperatingSystem ? "x64" : "x86";
+            string archString = Environment.Is64BitProcess ? "x64" : "x86";
 
             using (RegistryKey subKey =
                 Registry.LocalMachine.OpenSubKey($@"SOFTWARE\WOW6432Node\dotnet\Setup\InstalledVersions\{archString}\sharedfx\Microsoft.WindowsDesktop.App"))

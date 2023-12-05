@@ -224,7 +224,8 @@ namespace DS4WinWPF.DS4Forms
                 //{
                 //    Dispatcher.Invoke(() =>
                 //    {
-                //        Net8NoticeWindow noticeWin = new Net8NoticeWindow(Translations.Strings.Net8NotInstalledWinNotice);
+                //        string message = string.Format(Translations.Strings.Net8NotInstalledWinNotice, Environment.Is64BitProcess ? "x64" : "x86");
+                //        Net8NoticeWindow noticeWin = new Net8NoticeWindow(message);
                 //        if ((bool)noticeWin.ShowDialog())
                 //        {
                 //            Global.Net8Check = true;

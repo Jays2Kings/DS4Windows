@@ -4913,12 +4913,12 @@ namespace DS4Windows
                     {
                         tmpMigration.Migrate();
                         //migrationDoc.Load(tmpMigration.ProfileReader);
-                        profileXml = tmpMigration.ProfileReader.ReadOuterXml();
+                        profileXml = tmpMigration.CurrentMigrationText;
                         migratePerformed = true;
                     }
                     else if (tmpMigration.ProfileReader != null)
                     {
-                        profileXml = tmpMigration.ProfileReader.ReadOuterXml();
+                        profileXml = tmpMigration.CurrentMigrationText;
                         //migrationDoc.Load(tmpMigration.ProfileReader);
                         //migrationDoc.Load(profilepath);
                     }

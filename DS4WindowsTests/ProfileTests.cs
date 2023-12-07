@@ -318,7 +318,9 @@ namespace DS4WindowsTests
             dto.DeviceIndex = 0; // Use default slot
             dto.MapTo(tempStore);
 
+            // Check settings
             Assert.AreEqual(OutContType.X360, dto.OutputContDevice);
+            Assert.AreEqual(OutContType.X360, tempStore.outputDevType[0]);
         }
     }
 }

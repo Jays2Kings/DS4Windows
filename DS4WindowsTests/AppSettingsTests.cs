@@ -16,9 +16,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System.Configuration;
+using System;
+using System.Text;
+using System.Xml;
 using System.Xml.Serialization;
 using DS4Windows;
 using DS4WinWPF.DS4Control.DTOXml;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DS4WindowsTests
 {
@@ -30,11 +35,13 @@ namespace DS4WindowsTests
         public AppSettingsTests()
         {
             #region SettingsXml
+            // <Profile app_version=""3.2.21"" config_version=""2"">
+            //
+            //< !--Profile Configuration Data. 12 / 05 / 2023 00:24:21-- >
+            //< !--Made with DS4Windows version 3.2.21-- >
             appSettingsXml = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<!-- Profile Configuration Data. 12/05/2023 00:24:21 -->
-<!-- Made with DS4Windows version 3.2.21 -->
 
-<Profile app_version=""3.2.21"" config_version=""2"">
+<Profile>
   <useExclusiveMode>False</useExclusiveMode>
   <startMinimized>False</startMinimized>
   <minimizeToTaskbar>False</minimizeToTaskbar>
@@ -125,6 +132,56 @@ namespace DS4WindowsTests
             // Check settings
             DateTime.TryParse(dto.LastCheckString, out DateTime tempLastChecked);
             Assert.AreEqual(tempLastChecked, tempStore.lastChecked);
+        }
+
+        [TestMethod]
+        public void CheckSettingsSave()
+        {
+            // Read the settings into BackingStore
+            XmlSerializer serializer = new XmlSerializer(typeof(AppSettingsDTO));
+            BackingStore tempStore = new BackingStore();
+            using (StringReader sr = new StringReader(appSettingsXml))
+            {
+                AppSettingsDTO dto = serializer.Deserialize(sr) as AppSettingsDTO;
+                dto.MapTo(tempStore);
+            }
+
+            // Test writing BackingStore values back to an XML string.
+            // Make sure generated XML is equal to the initial input XML string
+            string testStr = string.Empty;
+            serializer = new XmlSerializer(typeof(AppSettingsDTO));
+            using (Utf8StringWriter strWriter = new Utf8StringWriter())
+            {
+                using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
+                    new XmlWriterSettings()
+                    {
+                        Encoding = Encoding.UTF8,
+                        Indent = true,
+                    });
+
+                // Write header explicitly
+                xmlWriter.WriteStartDocument();
+                //xmlWriter.WriteComment(string.Format(" Profile Configuration Data. {0} ", DateTime.Now));
+                //xmlWriter.WriteComment(string.Format(" Made with DS4Windows version {0} ", Global.exeversion));
+                xmlWriter.WriteWhitespace("\r\n");
+                xmlWriter.WriteWhitespace("\r\n");
+
+                // Write root element and children
+                AppSettingsDTO dto = new AppSettingsDTO();
+                dto.MapFrom(tempStore);
+                dto.SerializeAppAttrs = false;
+                // Omit xmlns:xsi and xmlns:xsd from output
+                serializer.Serialize(xmlWriter, dto,
+                    new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty }));
+                xmlWriter.Flush();
+                xmlWriter.Close();
+
+                testStr = strWriter.ToString();
+                //Trace.WriteLine("TEST OUTPUT");
+                //Trace.WriteLine(testStr);
+            }
+
+            Assert.AreEqual(appSettingsXml, testStr);
         }
     }
 }

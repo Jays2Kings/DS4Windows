@@ -8105,7 +8105,7 @@ namespace DS4Windows
             }
 
             return !Global.linkedProfileCheck[index] ?
-                Global.ProfilePath[index] : Global.OlderProfilePath[index];
+                profilePath[index] : olderProfilePath[index];
         }
 
         public static void ParseCustomLedString(string source, LightbarDS4WinInfo destination)

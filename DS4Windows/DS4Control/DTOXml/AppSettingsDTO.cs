@@ -53,11 +53,23 @@ namespace DS4WinWPF.DS4Control.DTOXml
         //    set { }
         //}
 
+        public const bool SERIALIZE_HEADER_ATTRS_DEFAULT = true;
+        [XmlIgnore]
+        public bool SerializeAppAttrs
+        {
+            get; set;
+        } = SERIALIZE_HEADER_ATTRS_DEFAULT;
+
         [XmlAttribute("app_version")]
         public string AppVersion
         {
             get => Global.exeversion;
             set { }
+        }
+
+        public bool ShouldSerializeAppVersion()
+        {
+            return SerializeAppAttrs;
         }
 
         [XmlAttribute("config_version")]
@@ -67,6 +79,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set { }
         }
 
+        public bool ShouldSerializeConfigVersion()
+        {
+            return SerializeAppAttrs;
+        }
 
         [XmlElement("useExclusiveMode")]
         public string UseExclusiveModeString
@@ -219,7 +235,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         [XmlElement("LastChecked")]
         public string LastCheckString
         {
-            get => LastChecked.ToString();
+            get => LastChecked.ToString("MM/dd/yyyy HH:mm:ss");
             set
             {
                 if (DateTime.TryParse(value, out DateTime temp))

@@ -4907,7 +4907,8 @@ namespace DS4Windows
                 {
                     XmlDocument migrationDoc = new XmlDocument();
 
-                    ProfileMigration tmpMigration = new ProfileMigration(profilepath);
+                    using FileStream fileStream = new FileStream(profilepath, FileMode.Open, FileAccess.Read);
+                    ProfileMigration tmpMigration = new ProfileMigration(fileStream);
                     if (tmpMigration.RequiresMigration())
                     {
                         tmpMigration.Migrate();
@@ -5145,7 +5146,8 @@ namespace DS4Windows
             {
                 XmlNode Item;
 
-                ProfileMigration tmpMigration = new ProfileMigration(profilepath);
+                using FileStream fileStream = new FileStream(profilepath, FileMode.Open, FileAccess.Read);
+                ProfileMigration tmpMigration = new ProfileMigration(fileStream);
                 if (tmpMigration.RequiresMigration())
                 {
                     tmpMigration.Migrate();

@@ -32,11 +32,27 @@ namespace DS4Windows
         private bool usedMigration;
         public bool UsedMigration { get => usedMigration; }
         private string currentMigrationText;
+        public string CurrentMigrationText { get => currentMigrationText; }
 
-        public ProfileMigration(string filePath)
+        public ProfileMigration(Stream inputStream)
         {
-            FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-            StreamReader innerStreamReader = new StreamReader(fileStream);
+            //FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            SetupFromStream(inputStream);
+            inputStream.Close();
+        }
+
+        public ProfileMigration(string profileText)
+        {
+            using (MemoryStream tempMemStream =
+                new MemoryStream(Encoding.UTF8.GetBytes(profileText ?? "")))
+            {
+                SetupFromStream(tempMemStream);
+            }
+        }
+
+        private void SetupFromStream(Stream inputStream)
+        {
+            StreamReader innerStreamReader = new StreamReader(inputStream);
             currentMigrationText = innerStreamReader.ReadToEnd();
             innerStreamReader.Dispose();
 
@@ -85,17 +101,20 @@ namespace DS4Windows
                 {
                     case 1:
                         migratedText = Version0002Migration();
+                        currentMigrationText = migratedText;
                         PrepareReaderMigration(migratedText);
                         tempVersion = 2;
                         goto case 2;
                     case 2:
                     case 3:
                         migratedText = Version0004Migration();
+                        currentMigrationText = migratedText;
                         PrepareReaderMigration(migratedText);
                         tempVersion = 4;
-                        goto default;
+                        goto case 4;
                     case 4:
                         migratedText = Version0005Migration();
+                        currentMigrationText = migratedText;
                         PrepareReaderMigration(migratedText);
                         tempVersion = 5;
                         goto default;
@@ -118,6 +137,8 @@ namespace DS4Windows
             currentMigrationText = migratedText;
             StringReader stringReader = new StringReader(currentMigrationText);
             profileReader = XmlReader.Create(stringReader);
+            // Move stream to root element
+            //profileReader.MoveToContent();
         }
 
         private void DetermineProfileVersion()

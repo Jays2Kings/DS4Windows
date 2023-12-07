@@ -18,6 +18,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
 using DS4Windows;
+using DS4WinWPF.DS4Control.DTOXml;
+using System.Xml.Serialization;
 
 namespace DS4WindowsTests
 {
@@ -107,6 +109,28 @@ namespace DS4WindowsTests
             }
 
             Assert.AreEqual(EXPECTED_JAYS_MIGRATED_VERSION, configFileVersion);
+        }
+
+        [TestMethod]
+        public void CheckJaysProfileRead()
+        {
+            ProfileMigration migration = new ProfileMigration(ds4winJays2KingsOldProfile);
+            migration.Migrate();
+            string profileXml = migration.CurrentMigrationText;
+
+            Assert.AreEqual(true, !string.IsNullOrEmpty(profileXml));
+
+            // Test profile reading. Will fail if an XML exception is thrown
+            XmlSerializer serializer = new XmlSerializer(typeof(ProfileDTO),
+                   ProfileDTO.GetAttributeOverrides());
+            using StringReader sr = new StringReader(profileXml);
+            BackingStore tempStore = new BackingStore();
+            ProfileDTO dto = serializer.Deserialize(sr) as ProfileDTO;
+            dto.DeviceIndex = 0; // Use default slot
+            dto.MapTo(tempStore);
+
+            // Check ColorString to test if profile elements were read at all
+            Assert.AreEqual("0,0,255", dto.ColorString);
         }
     }
 }

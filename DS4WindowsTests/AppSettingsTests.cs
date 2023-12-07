@@ -100,7 +100,6 @@ namespace DS4WindowsTests
       <Enabled>False</Enabled>
     </DS3SupportSettings>
   </DeviceOptions>
-  <Net8Check>True</Net8Check>
   <CustomLed1>False:0,0,255</CustomLed1>
   <CustomLed2>False:0,0,255</CustomLed2>
   <CustomLed3>False:0,0,255</CustomLed3>

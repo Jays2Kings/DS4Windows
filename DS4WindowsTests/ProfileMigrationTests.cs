@@ -131,6 +131,9 @@ namespace DS4WindowsTests
 
             // Check ColorString to test if profile elements were read at all
             Assert.AreEqual("0,0,255", dto.ColorString);
+            DS4Color profileColor = tempStore.lightbarSettingInfo[0].ds4winSettings.m_Led;
+            Assert.AreEqual("0,0,255",
+                $"{profileColor.red},{profileColor.green},{profileColor.blue}");
         }
     }
 }

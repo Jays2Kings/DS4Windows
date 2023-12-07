@@ -24,6 +24,7 @@ namespace DS4WindowsTests
     [TestClass]
     public class ProfileMigrationTests
     {
+        private const int EXPECTED_JAYS_MIGRATED_VERSION = 5;
         private string ds4winJays2KingsOldProfile = string.Empty;
 
         public ProfileMigrationTests()
@@ -96,6 +97,16 @@ namespace DS4WindowsTests
             string profileXml = migration.CurrentMigrationText;
 
             Assert.AreEqual(true, !string.IsNullOrEmpty(profileXml));
+
+            migration.ProfileReader.MoveToContent();
+            string temp = migration.ProfileReader.GetAttribute("config_version");
+            int configFileVersion = 0;
+            if (!string.IsNullOrEmpty(temp))
+            {
+                int.TryParse(temp, out configFileVersion);
+            }
+
+            Assert.AreEqual(EXPECTED_JAYS_MIGRATED_VERSION, configFileVersion);
         }
     }
 }

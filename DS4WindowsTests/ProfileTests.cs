@@ -32,11 +32,12 @@ namespace DS4WindowsTests
         public ProfileTests()
         {
             #region ProfileXMLString
+            //<!-- DS4Windows Configuration Data. 11/30/2023 00:16:38 -->
+            //< !--Made with DS4Windows version 3.2.20-- >
+            //app_version=""3.2.20"" config_version=""5""
             defaultProfileXml = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<!-- DS4Windows Configuration Data. 11/30/2023 00:16:38 -->
-<!-- Made with DS4Windows version 3.2.20 -->
 
-<DS4Windows app_version=""3.2.20"" config_version=""5"">
+<DS4Windows>
   <touchToggle>True</touchToggle>
   <idleDisconnectTimeout>0</idleDisconnectTimeout>
   <outputDataToDS4>True</outputDataToDS4>
@@ -353,14 +354,15 @@ namespace DS4WindowsTests
 
                 // Write header explicitly
                 //xmlWriter.WriteStartDocument();
-                xmlWriter.WriteComment(string.Format(" DS4Windows Configuration Data. {0} ", DateTime.Now));
-                xmlWriter.WriteComment(string.Format(" Made with DS4Windows version {0} ", Global.exeversion));
+                //xmlWriter.WriteComment(string.Format(" DS4Windows Configuration Data. {0} ", DateTime.Now));
+                //xmlWriter.WriteComment(string.Format(" Made with DS4Windows version {0} ", Global.exeversion));
                 xmlWriter.WriteWhitespace("\r\n");
                 xmlWriter.WriteWhitespace("\r\n");
 
                 // Write root element and children
                 ProfileDTO dto = new ProfileDTO();
                 dto.DeviceIndex = 0; // Use default slot
+                dto.SerializeAppAttrs = false;
                 dto.MapFrom(tempStore);
                 // Omit xmlns:xsi and xmlns:xsd from output
                 serializer.Serialize(xmlWriter, dto,
@@ -374,6 +376,7 @@ namespace DS4WindowsTests
             }
 
             Assert.AreEqual(true, !string.IsNullOrEmpty(testStr));
+            Assert.AreEqual(defaultProfileXml, testStr);
         }
     }
 }

@@ -33,11 +33,22 @@ namespace DS4WinWPF.DS4Control.DTOXml
     [XmlRoot("DS4Windows")]
     public class ProfileDTO : IDTO<BackingStore>
     {
+        public const bool SERIALIZE_HEADER_ATTRS_DEFAULT = true;
+        [XmlIgnore]
+        public bool SerializeAppAttrs
+        {
+            get; set;
+        } = SERIALIZE_HEADER_ATTRS_DEFAULT;
+
         [XmlAttribute("app_version")]
         public string AppVersion
         {
             get => Global.exeversion;
             set { }
+        }
+        public bool ShouldSerializeAppVersion()
+        {
+            return SerializeAppAttrs;
         }
 
         [XmlAttribute("config_version")]
@@ -45,6 +56,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
         {
             get => Global.CONFIG_VERSION.ToString();
             set { }
+        }
+        public bool ShouldSerializeConfigVersion()
+        {
+            return SerializeAppAttrs;
         }
 
         [XmlIgnore]

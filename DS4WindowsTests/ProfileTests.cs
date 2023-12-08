@@ -16,6 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System.Text;
+using System.Xml;
 using System.Xml.Serialization;
 using DS4Windows;
 using DS4WinWPF.DS4Control.DTOXml;
@@ -321,6 +323,57 @@ namespace DS4WindowsTests
             // Check settings
             Assert.AreEqual(OutContType.X360, dto.OutputContDevice);
             Assert.AreEqual(OutContType.X360, tempStore.outputDevType[0]);
+        }
+
+        [TestMethod]
+        public void CheckWriteProfile()
+        {
+            BackingStore tempStore = new BackingStore();
+            // Test profile reading. Will fail if an XML exception is thrown
+            XmlSerializer serializer = new XmlSerializer(typeof(ProfileDTO),
+                   ProfileDTO.GetAttributeOverrides());
+            using (StringReader sr = new StringReader(defaultProfileXml))
+            {
+                ProfileDTO dto = serializer.Deserialize(sr) as ProfileDTO;
+                dto.DeviceIndex = 0; // Use default slot
+                dto.MapTo(tempStore);
+            }
+
+            string testStr = string.Empty;
+            serializer = new XmlSerializer(typeof(ProfileDTO),
+                ProfileDTO.GetAttributeOverrides());
+            using (Utf8StringWriter strWriter = new Utf8StringWriter())
+            {
+                using XmlWriter xmlWriter = XmlWriter.Create(strWriter,
+                    new XmlWriterSettings()
+                    {
+                        Encoding = Encoding.UTF8,
+                        Indent = true,
+                    });
+
+                // Write header explicitly
+                //xmlWriter.WriteStartDocument();
+                xmlWriter.WriteComment(string.Format(" DS4Windows Configuration Data. {0} ", DateTime.Now));
+                xmlWriter.WriteComment(string.Format(" Made with DS4Windows version {0} ", Global.exeversion));
+                xmlWriter.WriteWhitespace("\r\n");
+                xmlWriter.WriteWhitespace("\r\n");
+
+                // Write root element and children
+                ProfileDTO dto = new ProfileDTO();
+                dto.DeviceIndex = 0; // Use default slot
+                dto.MapFrom(tempStore);
+                // Omit xmlns:xsi and xmlns:xsd from output
+                serializer.Serialize(xmlWriter, dto,
+                    new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty }));
+                xmlWriter.Flush();
+                xmlWriter.Close();
+
+                testStr = strWriter.ToString();
+                //Trace.WriteLine("TEST OUTPUT");
+                //Trace.WriteLine(testStr);
+            }
+
+            Assert.AreEqual(true, !string.IsNullOrEmpty(testStr));
         }
     }
 }

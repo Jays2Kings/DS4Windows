@@ -293,7 +293,7 @@ namespace DS4WindowsTests
         }
 
         /// <summary>
-        /// Nevermind. Mapping is not testable due to hard dependency on the
+        /// Never mind. Mapping is not testable due to hard dependency on the
         /// ControlService class. Does not help Mapping is static.
         /// Too bulky. Don't bother
         /// </summary>

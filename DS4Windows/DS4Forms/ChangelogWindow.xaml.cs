@@ -66,6 +66,8 @@ namespace DS4WinWPF.DS4Forms
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
+            DataContext = null;
+
             Close();
         }
     }

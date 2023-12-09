@@ -44,5 +44,10 @@ namespace DS4WinWPF.DS4Forms
             axialVM = new AxialStickControlViewModel(stickDeadInfo);
             mainGrid.DataContext = axialVM;
         }
+
+        public void UnregisterDataContext()
+        {
+            mainGrid.DataContext = null;
+        }
     }
 }

@@ -162,11 +162,13 @@ namespace DS4WinWPF.DS4Forms
 
             saved = true;
             recordBoxVM.ExportMacro();
+            DataContext = null;
             Save?.Invoke(this, EventArgs.Empty);
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
+            DataContext = null;
             Cancel?.Invoke(this, EventArgs.Empty);
         }
 

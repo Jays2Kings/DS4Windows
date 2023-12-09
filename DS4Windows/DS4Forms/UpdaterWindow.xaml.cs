@@ -77,5 +77,10 @@ namespace DS4WinWPF.DS4Forms
             updaterWinVM.SetSkippedVersion();
             Close();
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            DataContext = null;
+        }
     }
 }

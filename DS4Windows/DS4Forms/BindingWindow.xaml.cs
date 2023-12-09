@@ -943,9 +943,19 @@ namespace DS4WinWPF.DS4Forms
             };
         }
 
+        private void UnregisterDataContext()
+        {
+            topOptsPanel.DataContext = null;
+            extrasGB.DataContext = null;
+            modePanel.DataContext = null;
+            macroOnLb.DataContext = null;
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             bindingVM.WriteBinds();
+
+            UnregisterDataContext();
         }
     }
 

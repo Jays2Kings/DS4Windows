@@ -141,6 +141,23 @@ namespace DS4WinWPF.DS4Forms
             actionTypeCombo.SelectionChanged += ActionTypeCombo_SelectionChanged;
         }
 
+        private void UnregisterDataContext()
+        {
+            actionTypeTabControl.DataContext = null;
+            actionTypeCombo.DataContext = null;
+            actionNameTxt.DataContext = null;
+            triggersListView.DataContext = null;
+
+            macroActTab.DataContext = null;
+            launchProgActTab.DataContext = null;
+            loadProfileTab.DataContext = null;
+            pressKetActTab.DataContext = null;
+            disconnectBTTab.DataContext = null;
+            checkBatteryTab.DataContext = null;
+            multiActTab.DataContext = null;
+            sixaxisWheelCalibrateTab.DataContext = null;
+        }
+
         private void LoadAction(DS4Windows.SpecialAction specialAction)
         {
             specialActVM.LoadAction(specialAction);
@@ -230,6 +247,8 @@ namespace DS4WinWPF.DS4Forms
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
+            UnregisterDataContext();
+
             Cancel?.Invoke(this, EventArgs.Empty);
         }
 
@@ -248,6 +267,7 @@ namespace DS4WinWPF.DS4Forms
                 MessageBox.Show(Properties.Resources.ActionExists);
             }
 
+            UnregisterDataContext();
             if (valid)
             {
                 bool editMode = specialActVM.EditMode;

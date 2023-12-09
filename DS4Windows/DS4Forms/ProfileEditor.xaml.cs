@@ -745,6 +745,10 @@ namespace DS4WinWPF.DS4Forms
             mappingListBox.DataContext = null;
             specialActionsTab.DataContext = null;
             lightbarRect.DataContext = null;
+
+            touchButtonUC.UnregisterDataContext();
+            axialLSStickControl.UnregisterDataContext();
+            axialRSStickControl.UnregisterDataContext();
         }
 
         private void RefreshEditorBindings()

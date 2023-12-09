@@ -81,5 +81,10 @@ namespace DS4WinWPF.DS4Forms
                 }
             }
         }
+
+        private void Window_Closed(object sender, System.EventArgs e)
+        {
+            mainDockPanel.DataContext = null;
+        }
     }
 }

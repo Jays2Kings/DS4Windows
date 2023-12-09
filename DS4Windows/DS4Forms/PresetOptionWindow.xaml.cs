@@ -81,5 +81,10 @@ namespace DS4WinWPF.DS4Forms
             result = MessageBoxResult.OK;
             Close();
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            PresetListTab.DataContext = null;
+        }
     }
 }

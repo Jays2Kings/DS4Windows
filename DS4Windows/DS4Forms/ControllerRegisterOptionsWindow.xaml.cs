@@ -73,6 +73,8 @@ namespace DS4WinWPF.DS4Forms
         private void Window_Closed(object sender, EventArgs e)
         {
             deviceOptsVM.SaveControllerConfigs();
+
+            devOptionsDockPanel.DataContext = null;
         }
     }
 }

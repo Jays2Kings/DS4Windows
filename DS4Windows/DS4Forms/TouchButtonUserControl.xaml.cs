@@ -48,5 +48,10 @@ namespace DS4WinWPF.DS4Forms
             touchButtonVM = new TouchButtonUserControlViewModel(deviceIndex);
             DataContext = touchButtonVM;
         }
+
+        public void UnregisterDataContext()
+        {
+            DataContext = null;
+        }
     }
 }

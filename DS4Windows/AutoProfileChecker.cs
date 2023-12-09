@@ -111,8 +111,22 @@ namespace DS4WinWPF
                                     DisplayProfileChange(j, tempname);
                                 }
 
-                                Global.LoadTempProfile(j, tempname, true, Program.rootHub); // j is controller index, i is filename
-                                                                                            // if (LaunchProgram[j] != string.Empty) Process.Start(LaunchProgram[j]);
+                                DS4Device device = Program.rootHub.DS4Controllers[j];
+                                if (device != null)
+                                {
+                                    // Wait for controller to be in a wait period
+                                    int tempInd = j;
+                                    device.queueEvent(() =>
+                                    {
+                                        Global.LoadTempProfile(tempInd, tempname, true, Program.rootHub); // j is controller index, i is filename
+                                                                                                    // if (LaunchProgram[j] != string.Empty) Process.Start(LaunchProgram[j]);
+                                    });
+                                }
+                                else
+                                {
+                                    Global.LoadTempProfile(j, tempname, true, Program.rootHub); // j is controller index, i is filename
+                                                                                                // if (LaunchProgram[j] != string.Empty) Process.Start(LaunchProgram[j]);
+                                }
                             }
                             else
                             {
@@ -166,7 +180,20 @@ namespace DS4WinWPF
                                     DisplayProfileChange(j, "default");
                                 }
 
-                                Global.LoadProfile(j, false, Program.rootHub);
+                                DS4Device device = Program.rootHub.DS4Controllers[j];
+                                if (device != null)
+                                {
+                                    // Wait for controller to be in a wait period
+                                    int tempInd = j;
+                                    device.queueEvent(() =>
+                                    {
+                                        Global.LoadProfile(tempInd, false, Program.rootHub);
+                                    });
+                                }
+                                else
+                                {
+                                    Global.LoadProfile(j, false, Program.rootHub);
+                                }
                             }
                             else
                             {

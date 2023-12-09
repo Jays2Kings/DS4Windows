@@ -20,8 +20,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -424,7 +426,23 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
 
             //Global.Save();
-            Global.LoadProfile(devIndex, true, App.rootHub);
+            // Run profile loading in Task. Need to still wait for Task to finish
+            Task.Run(() =>
+            {
+                if (device != null)
+                {
+                    // Wait for controller to be in a wait period
+                    device.ReadWaitEv.Wait();
+                    device.ReadWaitEv.Reset();
+
+                    Global.LoadProfile(devIndex, true, App.rootHub);
+
+                    // Done with loading. Allow input thread to resume
+                    device.ReadWaitEv.Set();
+                }
+
+            }).Wait();
+
             string prolog = string.Format(Properties.Resources.UsingProfile, (devIndex + 1).ToString(), prof, $"{device.Battery}");
             DS4Windows.AppLogger.LogToGui(prolog, false);
 
@@ -465,7 +483,19 @@ namespace DS4WinWPF.DS4Forms.ViewModels
 
         private void SelectedEntity_ProfileSaved(object sender, EventArgs e)
         {
-            Global.LoadProfile(devIndex, false, App.rootHub);
+            // Run profile loading in Task. Need to still wait for Task to finish
+            Task.Run(() =>
+            {
+                // Wait for controller to be in a wait period
+                device.ReadWaitEv.Wait();
+                device.ReadWaitEv.Reset();
+
+                Global.LoadProfile(devIndex, false, App.rootHub);
+
+                // Done with loading. Allow input thread to resume
+                device.ReadWaitEv.Set();
+            }).Wait();
+
             LightColorChanged?.Invoke(this, EventArgs.Empty);
         }
 

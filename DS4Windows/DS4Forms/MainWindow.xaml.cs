@@ -1165,7 +1165,17 @@ Suspend support not enabled.", true);
                                         }
                                         else
                                         {
-                                            Global.LoadTempProfile(tdevice, strData[2], true, Program.rootHub);
+                                            Task.Run(() =>
+                                            {
+                                                DS4Device device = conLvViewModel.ControllerCol[tdevice].Device;
+                                                if (device != null)
+                                                {
+                                                    device.queueEvent(() =>
+                                                    {
+                                                        Global.LoadTempProfile(tdevice, strData[2], true, Program.rootHub);
+                                                    });
+                                                }
+                                            }).Wait();
                                         }
 
                                         DS4Device device = conLvViewModel.ControllerCol[tdevice].Device;

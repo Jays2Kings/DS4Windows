@@ -777,7 +777,28 @@ namespace DS4WinWPF.DS4Forms
                 App.rootHub.setRumble(0, 0, profileSettingsVM.FuncDevNum);
             }
             Global.outDevTypeTemp[deviceNum] = OutContType.X360;
-            Global.LoadProfile(deviceNum, false, App.rootHub);
+            // Run profile loading in Task. Need to still wait for Task to finish
+            Task.Run(() =>
+            {
+                DS4Device device = deviceNum >= 0 && deviceNum < ControlService.CURRENT_DS4_CONTROLLER_LIMIT ?
+                    App.rootHub.DS4Controllers[deviceNum] : null;
+                if (device != null)
+                {
+                    // Wait for controller to be in a wait period
+                    device.ReadWaitEv.Wait();
+                    device.ReadWaitEv.Reset();
+
+                    Global.LoadProfile(deviceNum, false, App.rootHub);
+
+                    // Done with loading. Allow input thread to resume
+                    device.ReadWaitEv.Set();
+                }
+                else
+                {
+                    Global.LoadProfile(deviceNum, false, App.rootHub);
+                }
+            });
+
             Closed?.Invoke(this, EventArgs.Empty);
         }
 

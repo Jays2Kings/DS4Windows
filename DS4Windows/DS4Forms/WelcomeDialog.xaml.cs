@@ -133,6 +133,8 @@ namespace DS4WinWPF.DS4Forms
         private void FinishedBtn_Click(object sender, RoutedEventArgs e)
         {
             monitorTimer.Stop();
+            monitorTimer = null;
+
             this.Close();
         }
 

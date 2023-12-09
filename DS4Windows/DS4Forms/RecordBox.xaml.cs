@@ -97,11 +97,15 @@ namespace DS4WinWPF.DS4Forms
         private void RecordBox_Cancel(object sender, EventArgs e)
         {
             recordBoxVM.RevertControlsSettings();
+            ds4.Stop();
+            ds4.Elapsed -= Ds4_Tick;
         }
 
         private void RecordBox_Save(object sender, EventArgs e)
         {
             recordBoxVM.RevertControlsSettings();
+            ds4.Stop();
+            ds4.Elapsed -= Ds4_Tick;
         }
 
         private void MacroSteps_CollectionChanged(object sender,

@@ -143,6 +143,10 @@ namespace DS4WinWPF.DS4Forms
             axialRSStickControl.AxialVM.DeadZoneXChanged -= UpdateReadingsRsDeadZoneX;
             axialRSStickControl.AxialVM.DeadZoneYChanged -= UpdateReadingsRsDeadZoneY;
 
+            inputTimer.Stop();
+            inputTimer.Elapsed -= InputDS4;
+            inputTimer = null;
+
             StopEditorBindings();
         }
 

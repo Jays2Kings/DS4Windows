@@ -515,7 +515,7 @@
                                             </Grid.RowDefinitions>
 
                                             <Label Content="{lex:Loc RealWorldCalibration}" ContentStringFormat="{}{0}:" Grid.Row="0" Grid.Column="0" />
-                                            <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSFlickRWC,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="0" Grid.Column="1" Maximum="100.0" Minimum="1.0" Increment="1.0"
+                                            <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding LSFlickRWC,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="0" Grid.Column="1" Maximum="200.0" Minimum="1.0" Increment="1.0"
                                                    Margin="{StaticResource spaceMargin}" />
 
                                             <Label Content="{lex:Loc FlickThreshold}" ContentStringFormat="{}{0}:" Grid.Row="1" Grid.Column="0" />
@@ -802,7 +802,7 @@
                                             </Grid.RowDefinitions>
 
                                             <Label Content="{lex:Loc RealWorldCalibration}" ContentStringFormat="{}{0}:" Grid.Row="0" Grid.Column="0" />
-                                            <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSFlickRWC,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="0" Grid.Column="1" Maximum="100.0" Minimum="1.0" Increment="1.0"
+                                            <xctk:DoubleUpDown d:IsHidden="True" Value="{Binding RSFlickRWC,UpdateSourceTrigger=LostFocus}" FormatString="F2" MinWidth="50" Grid.Row="0" Grid.Column="1" Maximum="200.0" Minimum="1.0" Increment="1.0"
                                                    Margin="{StaticResource spaceMargin}" />
 
                                             <Label Content="{lex:Loc FlickThreshold}" ContentStringFormat="{}{0}:" Grid.Row="1" Grid.Column="0" />

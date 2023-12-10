@@ -4866,11 +4866,11 @@ namespace DS4Windows
                 byte value = GetByteMapping(device, control, cState, eState, tp, fieldMap);
                 int wheelDir = down ? Global.outputKBMMapping.WHEEL_TICK_DOWN :
                     Global.outputKBMMapping.WHEEL_TICK_UP;
-                double ratio = value / 255.0;
-                //Debug.WriteLine(value);
+                //double ratio = value / 255.0;
+                double ratio = (1.0 - 0.05) * (value / 255.0) + 0.05;
 
-                // Use 4 runs as a full mouse wheel tick
-                double currentWheel = ratio / 4.0;
+                // Use 3 runs as a full mouse wheel tick
+                double currentWheel = ratio / 3.0;
                 stickWheel = currentWheel + stickWheelRemainder;
                 if (stickWheel >= 1.0)
                 {

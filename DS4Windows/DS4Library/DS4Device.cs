@@ -1979,6 +1979,13 @@ namespace DS4Windows
             }
         }
 
+        /// <summary>
+        /// Must not be run from input thread. Waits for input thread to be in a wait state
+        /// and then tell thread to no longer invoke the Report event. Input thread will then
+        /// resume followed by invoking the action passed. Flag will be set to have
+        /// Report event to resume being invoked after
+        /// </summary>
+        /// <param name="act">Action to execute in current thread</param>
         public void HaltReportingRunAction(Action act)
         {
             // Wait for controller to be in a wait period

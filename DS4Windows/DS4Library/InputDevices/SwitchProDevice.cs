@@ -672,7 +672,11 @@ namespace DS4Windows.InputDevices
                         }
                     }
 
-                    Report?.Invoke(this, EventArgs.Empty);
+                    if (fireReport)
+                    {
+                        Report?.Invoke(this, EventArgs.Empty);
+                    }
+
                     WriteReport();
 
                     //forceWrite = false;

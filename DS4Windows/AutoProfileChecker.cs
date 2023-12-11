@@ -116,16 +116,19 @@ namespace DS4WinWPF
                                 {
                                     // Wait for controller to be in a wait period
                                     int tempInd = j;
-                                    device.queueEvent(() =>
+                                    device.HaltReportingRunAction(() =>
                                     {
                                         Global.LoadTempProfile(tempInd, tempname, true, Program.rootHub); // j is controller index, i is filename
-                                                                                                    // if (LaunchProgram[j] != string.Empty) Process.Start(LaunchProgram[j]);
+                                                                                                            // if (LaunchProgram[j] != string.Empty) Process.Start(LaunchProgram[j]);
                                     });
                                 }
                                 else
                                 {
-                                    Global.LoadTempProfile(j, tempname, true, Program.rootHub); // j is controller index, i is filename
-                                                                                                // if (LaunchProgram[j] != string.Empty) Process.Start(LaunchProgram[j]);
+                                    device.HaltReportingRunAction(() =>
+                                    {
+                                        Global.LoadTempProfile(j, tempname, true, Program.rootHub); // j is controller index, i is filename
+                                                                                                    // if (LaunchProgram[j] != string.Empty) Process.Start(LaunchProgram[j]);
+                                    });
                                 }
                             }
                             else
@@ -185,14 +188,17 @@ namespace DS4WinWPF
                                 {
                                     // Wait for controller to be in a wait period
                                     int tempInd = j;
-                                    device.queueEvent(() =>
+                                    device.HaltReportingRunAction(() =>
                                     {
                                         Global.LoadProfile(tempInd, false, Program.rootHub);
                                     });
                                 }
                                 else
                                 {
-                                    Global.LoadProfile(j, false, Program.rootHub);
+                                    device.HaltReportingRunAction(() =>
+                                    {
+                                        Global.LoadProfile(j, false, Program.rootHub);
+                                    });
                                 }
                             }
                             else

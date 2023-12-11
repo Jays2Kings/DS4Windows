@@ -4078,23 +4078,30 @@ namespace DS4Windows
                                         (device + 1).ToString(), action.details, $"{d.Battery}");
 
                                     AppLogger.LogToGui(prolog, false);
-                                    LoadTempProfile(device, action.details, true, ctrl);
-                                    //LoadProfile(device, false, ctrl);
-
-                                    if (action.uTrigger.Count == 0 && !action.automaticUntrigger)
+                                    Task.Run(() =>
                                     {
-                                        // If the new profile has any actions with the same action key (controls) than this action (which doesn't have untrigger keys) then set status of those actions to wait for the release of the existing action key. 
-                                        List<string> profileActionsNext = getProfileActions(device);
-                                        for (int actionIndexNext = 0, profileListLenNext = profileActionsNext.Count; actionIndexNext < profileListLenNext; actionIndexNext++)
+                                        d.HaltReportingRunAction(() =>
                                         {
-                                            string actionnameNext = profileActionsNext[actionIndexNext];
-                                            SpecialAction actionNext = GetProfileAction(device, actionnameNext);
-                                            int indexNext = GetProfileActionIndexOf(device, actionnameNext);
+                                            LoadTempProfile(device, action.details, true, ctrl);
 
-                                            if (actionNext.controls == action.controls)
-                                                actionDone[indexNext].dev[device] = true;
-                                        }
-                                    }
+                                            //LoadProfile(device, false, ctrl);
+
+                                            if (action.uTrigger.Count == 0 && !action.automaticUntrigger)
+                                            {
+                                                // If the new profile has any actions with the same action key (controls) than this action (which doesn't have untrigger keys) then set status of those actions to wait for the release of the existing action key. 
+                                                List<string> profileActionsNext = getProfileActions(device);
+                                                for (int actionIndexNext = 0, profileListLenNext = profileActionsNext.Count; actionIndexNext < profileListLenNext; actionIndexNext++)
+                                                {
+                                                    string actionnameNext = profileActionsNext[actionIndexNext];
+                                                    SpecialAction actionNext = GetProfileAction(device, actionnameNext);
+                                                    int indexNext = GetProfileActionIndexOf(device, actionnameNext);
+
+                                                    if (actionNext.controls == action.controls)
+                                                        actionDone[indexNext].dev[device] = true;
+                                                }
+                                            }
+                                        });
+                                    });
 
                                     return;
                                 }

@@ -431,14 +431,10 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             {
                 if (device != null)
                 {
-                    // Wait for controller to be in a wait period
-                    device.ReadWaitEv.Wait();
-                    device.ReadWaitEv.Reset();
-
-                    Global.LoadProfile(devIndex, true, App.rootHub);
-
-                    // Done with loading. Allow input thread to resume
-                    device.ReadWaitEv.Set();
+                    device.HaltReportingRunAction(() =>
+                    {
+                        Global.LoadProfile(devIndex, true, App.rootHub);
+                    });
                 }
 
             }).Wait();
@@ -486,14 +482,10 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             // Run profile loading in Task. Need to still wait for Task to finish
             Task.Run(() =>
             {
-                // Wait for controller to be in a wait period
-                device.ReadWaitEv.Wait();
-                device.ReadWaitEv.Reset();
-
-                Global.LoadProfile(devIndex, false, App.rootHub);
-
-                // Done with loading. Allow input thread to resume
-                device.ReadWaitEv.Set();
+                device.HaltReportingRunAction(() =>
+                {
+                    Global.LoadProfile(devIndex, false, App.rootHub);
+                });
             }).Wait();
 
             LightColorChanged?.Invoke(this, EventArgs.Empty);

@@ -400,7 +400,10 @@ namespace DS4Windows.InputDevices
                         }
                     }
 
-                    Report?.Invoke(this, EventArgs.Empty);
+                    if (fireReport)
+                    {
+                        Report?.Invoke(this, EventArgs.Empty);
+                    }
 
                     PrepareOutReport();
                     if (outputDirty)

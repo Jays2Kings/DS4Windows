@@ -788,14 +788,10 @@ namespace DS4WinWPF.DS4Forms
                     App.rootHub.DS4Controllers[deviceNum] : null;
                 if (device != null)
                 {
-                    // Wait for controller to be in a wait period
-                    device.ReadWaitEv.Wait();
-                    device.ReadWaitEv.Reset();
-
-                    Global.LoadProfile(deviceNum, false, App.rootHub);
-
-                    // Done with loading. Allow input thread to resume
-                    device.ReadWaitEv.Set();
+                    device.HaltReportingRunAction(() =>
+                    {
+                        Global.LoadProfile(deviceNum, false, App.rootHub);
+                    });
                 }
                 else
                 {

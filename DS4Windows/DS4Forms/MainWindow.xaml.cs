@@ -1170,7 +1170,7 @@ Suspend support not enabled.", true);
                                                 DS4Device device = conLvViewModel.ControllerCol[tdevice].Device;
                                                 if (device != null)
                                                 {
-                                                    device.queueEvent(() =>
+                                                    device.HaltReportingRunAction(() =>
                                                     {
                                                         Global.LoadTempProfile(tdevice, strData[2], true, Program.rootHub);
                                                     });

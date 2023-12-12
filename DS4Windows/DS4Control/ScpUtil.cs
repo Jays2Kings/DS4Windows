@@ -4926,6 +4926,8 @@ namespace DS4Windows
                     {
                         loaded = false;
                     }
+
+                    tmpMigration.Close();
                 }
 
                 if (device < Global.MAX_DS4_CONTROLLER_COUNT)

@@ -141,6 +141,18 @@ namespace DS4Windows
             //profileReader.MoveToContent();
         }
 
+        public void Close()
+        {
+            if (profileReader != null)
+            {
+                // Close and flush current XmlReader instance
+                profileReader.Close();
+                profileReader.Dispose();
+
+                profileReader = null;
+            }
+        }
+
         private void DetermineProfileVersion()
         {
             bool hasAntiDeadLSTag = false;

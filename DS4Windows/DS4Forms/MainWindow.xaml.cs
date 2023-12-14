@@ -1384,7 +1384,7 @@ Suspend support not enabled.", true);
             if (!status)
             {
                 App.rootHub.ChangeMotionEventStatus(status);
-                await Task.Delay(100).ContinueWith((t) =>
+                await Task.Delay(200).ContinueWith((t) =>
                 {
                     App.rootHub.ChangeUDPStatus(status);
                 });
@@ -1392,7 +1392,7 @@ Suspend support not enabled.", true);
             else
             {
                 Program.rootHub.ChangeUDPStatus(status);
-                await Task.Delay(100).ContinueWith((t) =>
+                await Task.Delay(200).ContinueWith((t) =>
                 {
                     App.rootHub.ChangeMotionEventStatus(status);
                 });

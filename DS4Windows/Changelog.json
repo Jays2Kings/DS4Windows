@@ -1,9 +1,39 @@
 {
-  "latest_version": "3.2.21",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 21},
-  "updated_at": "2023-12-05T05:23:00+0000",
+  "latest_version": "3.3.0",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 3, "buildPart": 0},
+  "updated_at": "2023-12-15T22:10:24+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.3.0",
+      "version_number_info": {"majorPart": 3, "minorPart": 3, "buildPart": 0},
+      "base_header": "Version 3.3.0",
+      "release_date": "2023-12-15T22:10:24+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.3.0",
+          "log_text": ["* Update project to target .NET 8 Desktop Runtime",
+            "* Updated bundled libraries to target .NET 8",
+            "* Added initial unit test project to solution",
+            "* Updated use of ProfileMigration class",
+            "* Changed how migrated XML string is grabbed from ProfileMigration class",
+            "* Fixed issues with converting of older profiles from earlier DS4Windows versions including Jays2Kings builds",
+            "* Force waiting for mapper routine to be over before switching profiles. Fixes BT lightbar issues",
+            "* Unregister DataContext used to link VMs early. Purge memory early and reduce memory usage. Thanks to **kurtanr** for figuring out the problem",
+            "* Loosen analog to mouse wheel mapping",
+            "* Increased RWC for FlickStick in editor. Allow upper limit of 200",
+            "* Changed technique for stopping mapping routine from input thread. Allows some routines to still run while profile loading is in progress",
+            "* Make sure XmlReader instance is closed after using ProfileMigration class",
+            "* Quick UDP server startup tweaks",
+            "* Add missing button ids to the gyroTriggerItems. Contribution by **christranq**",
+            "* DualSense LED: Swap player 4 & player 6. Contribution by **RobbyCBennett**"],
+          "editor": "ryochan7",
+          "editors_note": [".NET 8. Buffering the quit"],
+          "updated_at": "2023-12-15T22:10:24+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.2.21",
       "version_number_info": {"majorPart": 3, "minorPart": 2, "buildPart": 21},

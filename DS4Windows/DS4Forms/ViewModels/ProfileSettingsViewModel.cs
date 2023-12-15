@@ -43,6 +43,7 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             "Up", "Down", "Left", "Right",
             "L3", "R3", "Finger on Touchpad", "2 Fingers on Touchpad",
             "Options", "Share", "PS", "Touchpad Click",
+            "Mute", "Side L", "Side R",
             // START Extra buttons for DualSense Edge controller
             "Function Left", "Function Right", "Bottom Left Paddle", "Bottom Right Paddle",
             // END Extra buttons for DualSense Edge controller

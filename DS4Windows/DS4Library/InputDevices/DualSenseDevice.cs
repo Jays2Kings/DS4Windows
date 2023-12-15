@@ -1393,13 +1393,13 @@ namespace DS4Windows.InputDevices
                     deviceSlotMask = 0x01 | 0x04 | 0x10;
                     break;
                 case 3:
-                    deviceSlotMask = 0x02 | 0x04 | 0x08;
+                    deviceSlotMask = 0x01 | 0x02 | 0x08 | 0x10;
                     break;
                 case 4:
                     deviceSlotMask = 0x01 | 0x10;
                     break;
                 case 5:
-                    deviceSlotMask = 0x01 | 0x02 | 0x08 | 0x10;
+                    deviceSlotMask = 0x02 | 0x04 | 0x08;
                     break;
                 case 6:
                     deviceSlotMask = 0x01 | 0x02 | 0x04 | 0x08 | 0x10;

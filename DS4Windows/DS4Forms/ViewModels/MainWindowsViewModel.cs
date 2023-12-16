@@ -180,10 +180,5 @@ namespace DS4WinWPF.DS4Forms.ViewModels
         {
             return DS4Windows.Util.IsNet8DesktopRuntimeAvailable();
         }
-
-        public void SetNet8Check(bool status)
-        {
-            Global.Net8Check = status;
-        }
     }
 }

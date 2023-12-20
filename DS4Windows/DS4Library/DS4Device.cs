@@ -1989,20 +1989,23 @@ namespace DS4Windows
         public void HaltReportingRunAction(Action act)
         {
             // Wait for controller to be in a wait period
-            readWaitEv.Wait();
-            readWaitEv.Reset();
+            bool result = readWaitEv.Wait(millisecondsTimeout: 500);
+            if (result)
+            {
+                readWaitEv.Reset();
 
-            // Tell device to no longer fire reports
-            fireReport = false;
+                // Tell device to no longer fire reports
+                fireReport = false;
 
-            // Flag is set. Allow input thread to resume
-            readWaitEv.Set();
+                // Flag is set. Allow input thread to resume
+                readWaitEv.Set();
 
-            // Invoke main desired action
-            act?.Invoke();
+                // Invoke main desired action
+                act?.Invoke();
 
-            // Start firing reports again
-            fireReport = true;
+                // Start firing reports again
+                fireReport = true;
+            }
         }
 
         public void updateSerial()

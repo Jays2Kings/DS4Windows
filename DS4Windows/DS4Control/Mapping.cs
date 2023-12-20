@@ -716,7 +716,7 @@ namespace DS4Windows
         private static bool stickWheelDownDir = false;
 
         //mapcustom
-        public static bool[] pressedonce = new bool[2400], macrodone = new bool[48];
+        public static bool[] pressedonce = new bool[2400], macrodone = new bool[DS4_CONTROL_MACRO_ARRAY_LEN];
         static bool[] macroControl = new bool[26];
         static uint macroCount = 0;
         static Dictionary<string, Task>[] macroTaskQueue = new Dictionary<string, Task>[Global.MAX_DS4_CONTROLLER_COUNT] { new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>(), new Dictionary<string, Task>() };
@@ -751,11 +751,12 @@ namespace DS4Windows
         /// to a direct value from DS4Controls
         /// </summary>
         private const int TOUCH_FINGER_SHIFT_TRIGGER = 26;
+        private const int DS4_CONTROL_MACRO_ARRAY_LEN = 52;
 
         // Button to index mapping used for macrodone array. Not even sure this
         // is needed. This was originally made to replace a switch test used in the DS4ControlToInt method.
         // DS4Controls -> Macro input map index
-        private static int[] ds4ControlMapping = new int[52]
+        private static int[] ds4ControlMapping = new int[DS4_CONTROL_MACRO_ARRAY_LEN]
         {
             0, // DS4Controls.None
             16, // DS4Controls.LXNeg
@@ -810,6 +811,7 @@ namespace DS4Windows
             50, // DS4Controls.BLP
             51, // DS4Controls.BRP
         };
+        private static int macroEndIndex = DS4_CONTROL_MACRO_ARRAY_LEN - 1;
 
         // Define here to save some time processing.
         // It is enough to feel a difference during gameplay.

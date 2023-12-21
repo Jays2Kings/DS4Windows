@@ -1,9 +1,27 @@
 {
-  "latest_version": "3.3.0",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 3, "buildPart": 0},
-  "updated_at": "2023-12-15T22:10:24+0000",
+  "latest_version": "3.3.1",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 3, "buildPart": 1},
+  "updated_at": "2023-12-21T12:56:39+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.3.1",
+      "version_number_info": {"majorPart": 3, "minorPart": 3, "buildPart": 1},
+      "base_header": "Version 3.3.1",
+      "release_date": "2023-12-21T12:56:39+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.3.1",
+          "log_text": ["* Fixed use of SocketAsyncEventArgs for .NET 8. Allows clients to disconnect and reconnect as expected",
+            "* Use manualresetevent timeout as a precaution for HaltReportingRunAction method",
+            "* Fixed length of macroDone array. Added const to enforce array length. Fixes macro binding for Switch, JoyCon, DSE exclusive buttons"],
+          "editor": "ryochan7",
+          "editors_note": ["UDP regression fix"],
+          "updated_at": "2023-12-21T12:56:39+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.3.0",
       "version_number_info": {"majorPart": 3, "minorPart": 3, "buildPart": 0},

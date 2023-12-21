@@ -813,15 +813,6 @@ namespace DS4Windows
         };
         private static int macroEndIndex = DS4_CONTROL_MACRO_ARRAY_LEN - 1;
 
-        // Define here to save some time processing.
-        // It is enough to feel a difference during gameplay.
-        // 201907: Commented out these temp variables because those were not actually used anymore (value was assigned but it was never used anywhere)
-        //private static int[] rsOutCurveModeArray = new int[4] { 0, 0, 0, 0 };
-        //private static int[] lsOutCurveModeArray = new int[4] { 0, 0, 0, 0 };
-        //static bool tempBool = false;
-        //private static double[] tempDoubleArray = new double[4] { 0.0, 0.0, 0.0, 0.0 };
-        //private static int[] tempIntArray = new int[4] { 0, 0, 0, 0 };
-
         // Special macros
         static bool altTabDone = true;
         static DateTime altTabNow = DateTime.UtcNow,

@@ -66,7 +66,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public bool TouchToggle
         {
             get; private set;
-        }
+        } = BackingStore.DEFAULT_TOUCH_TOGGLE;
 
         [XmlElement("touchToggle")]
         public string TouchToggleString
@@ -85,7 +85,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public bool OutputDataToDS4
         {
             get; private set;
-        }
+        } = BackingStore.DEFAULT_OUTPUT_TO_DS4;
 
         [XmlElement("outputDataToDS4")]
         public string OutputDataToDS4String
@@ -256,7 +256,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public bool TouchpadJitterCompensation
         {
             get; private set;
-        }
+        } = BackingStore.DEFAULT_TOUCHPAD_JITTER_COMP;
 
         [XmlElement("touchpadJitterCompensation")]
         public string TouchpadJitterCompensationString
@@ -282,7 +282,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public byte TapSensitivity
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_TOUCHPAD_SENS;
 
         [XmlIgnore]
         public bool DoubleTap
@@ -769,7 +769,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public string SATriggers
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_SA_TRIGGERS;
 
         private bool _sATriggerCond = true;
         [XmlElement("SATriggerCond")]
@@ -918,7 +918,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         }
 
 
-        private string _gyroMouseStickTriggers = "-1";
+        private string _gyroMouseStickTriggers = BackingStore.DEFAULT_GYRO_MSTICK_TRIGGERS;
         [XmlElement("GyroMouseStickTriggers")]
         public string GyroMouseStickTriggers
         {
@@ -1055,7 +1055,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
-        private int _bTPollRate = 4;
+        private int _bTPollRate = BackingStore.DEFAULT_DS4_BT_POLL_RATE;
         [XmlElement("BTPollRate")]
         public int BTPollRateString
         {
@@ -1067,7 +1067,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public string LSOutputCurveMode
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_STICK_OUTPUT_CURVE;
 
         [XmlElement("LSOutputCurveCustom")]
         public string LSOutputCurveCustom
@@ -1079,7 +1079,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public string RSOutputCurveMode
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_STICK_OUTPUT_CURVE;
 
         [XmlElement("RSOutputCurveCustom")]
         public string RSOutputCurveCustom
@@ -1171,13 +1171,13 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public StickMode LSOutputMode
         {
             get; set;
-        }
+        } = StickMode.Controls;
 
         [XmlElement("RSOutputMode")]
         public StickMode RSOutputMode
         {
             get; set;
-        }
+        } = StickMode.Controls;
 
         [XmlElement("LSOutputSettings")]
         public StickModeOutputSettings LSOutputSettings
@@ -1354,7 +1354,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public OutContType OutputContDevice
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_OUT_CONT_TYPE;
 
         [XmlElement("DS4OutputTriggerMode")]
         public DS4TriggerOutputMode OutputDS4TriggerMode
@@ -2778,9 +2778,9 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public string Triggers
         {
             get; set;
-        }
+        } = GyroControlsInfo.DEFAULT_TRIGGERS;
 
-        private bool _triggerCond;
+        private bool _triggerCond = GyroControlsInfo.DEFAULT_TRIGGER_COND;
         [XmlIgnore]
         public bool TriggerCond
         {
@@ -2795,7 +2795,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _triggerCond = BackingStore.SaTriggerCondValue(value);
         }
 
-        private bool _triggerTurns;
+        private bool _triggerTurns = GyroControlsInfo.DEFAULT_TRIGGER_TURNS;
         [XmlIgnore]
         public bool TriggerTurns
         {
@@ -2809,7 +2809,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _triggerTurns = XmlDataUtilities.StrToBool(value);
         }
 
-        private bool _toggle;
+        private bool _toggle = GyroControlsInfo.DEFAULT_TRIGGER_TOGGLE;
         [XmlIgnore]
         public bool Toggle
         {
@@ -2892,21 +2892,21 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public int DeadZoneX
         {
             get; set;
-        }
+        } = GyroDirectionalSwipeInfo.DEFAULT_GYRO_DIR_SPEED;
 
         [XmlElement("DeadZoneY")]
         public int DeadZoneY
         {
             get; set;
-        }
+        } = GyroDirectionalSwipeInfo.DEFAULT_GYRO_DIR_SPEED;
 
         [XmlElement("Triggers")]
         public string Triggers
         {
             get; set;
-        }
+        } = GyroDirectionalSwipeInfo.DEFAULT_TRIGGERS;
 
-        private bool _triggerCond;
+        private bool _triggerCond = GyroDirectionalSwipeInfo.DEFAULT_TRIGGER_COND;
         [XmlIgnore]
         public bool TriggerCond
         {
@@ -2921,7 +2921,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _triggerCond = BackingStore.SaTriggerCondValue(value);
         }
 
-        private bool _triggerTurns;
+        private bool _triggerTurns = GyroDirectionalSwipeInfo.DEFAULT_TRIGGER_TURNS;
         [XmlIgnore]
         public bool TriggerTurns
         {
@@ -2939,13 +2939,13 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public GyroDirectionalSwipeInfo.XAxisSwipe XAxis
         {
             get; set;
-        }
+        } = GyroDirectionalSwipeInfo.DEFAULT_X_AXIS;
 
         [XmlElement("DelayTime")]
         public int DelayTime
         {
             get; set;
-        }
+        } = GyroDirectionalSwipeInfo.DEFAULT_DELAY_TIME;
     }
 
     public class StickModeOutputSettings

@@ -845,12 +845,14 @@ namespace DS4Windows
         public const StickOutCurve.Curve OUTPUT_CURVE_DEFAULT = StickOutCurve.Curve.Linear;
         public const double ANG_DEGREE_DEFAULT = 0.0;
         public const double ANG_RAD_DEFAULT = ANG_DEGREE_DEFAULT * Math.PI / 180.0;
+        public const int DEFAULT_VERT_SCALE = 100;
+        public const double DEFAULT_MAX_OUTPUT = 100.0;
 
         public int deadZone;
         public int maxZone = MAX_ZONE_DEFAULT;
         public double antiDeadX = ANTI_DEADZONE_DEFAULT;
         public double antiDeadY = ANTI_DEADZONE_DEFAULT;
-        public int vertScale;
+        public int vertScale = DEFAULT_VERT_SCALE;
         public bool maxOutputEnabled;
         public double maxOutput = 100.0;
         // Flags representing invert axis choices
@@ -914,8 +916,8 @@ namespace DS4Windows
         {
             deadZone = 0; maxZone = MAX_ZONE_DEFAULT;
             antiDeadX = ANTI_DEADZONE_DEFAULT; antiDeadY = ANTI_DEADZONE_DEFAULT;
-            inverted = 0; vertScale = 100;
-            maxOutputEnabled = false; maxOutput = 100.0;
+            inverted = 0; vertScale = DEFAULT_VERT_SCALE;
+            maxOutputEnabled = false; maxOutput = DEFAULT_MAX_OUTPUT;
             outputStick = DEFAULT_OUTPUT_STICK;
             outputStickDir = DEFAULT_OUTPUT_STICK_AXES;
             trackballMode = TRACKBALL_MODE_DEFAULT;

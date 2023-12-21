@@ -3157,7 +3157,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _invert = value;
         }
 
-        private double _maxOutput = TouchMouseStickInfo.MAX_ZONE_DEFAULT;
+        private double _maxOutput = TouchMouseStickInfo.DEFAULT_MAX_OUTPUT;
         [XmlElement("MaxOutput")]
         public double MaxOutput
         {
@@ -3180,7 +3180,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _maxOutputEnabled = XmlDataUtilities.StrToBool(value);
         }
 
-        private int _verticalScale = 100;
+        private int _verticalScale = TouchMouseStickInfo.DEFAULT_VERT_SCALE;
         [XmlElement("VerticalScale")]
         public int VerticalScale
         {

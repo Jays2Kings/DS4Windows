@@ -402,6 +402,10 @@ namespace DS4WindowsTests
             Assert.AreEqual("0,0,255",
                 $"{profileColor.red},{profileColor.green},{profileColor.blue}");
 
+            // Test if output device type has been set properly. Uses default value from ProfileDTO
+            Assert.AreEqual(OutContType.X360, tempStore.outputDevType[0]);
+            Assert.AreEqual(BackingStore.DEFAULT_DINPUT_ONLY, tempStore.dinputOnly[0]);
+
             // Check that profile migration worked as expected
             string testMigratedProfileStr = ObtainConvertedJaysXML(tempStore);
             Assert.AreEqual(ds4winJays2KingsExpectedMigratedProfile, testMigratedProfileStr);

@@ -3207,6 +3207,7 @@ namespace DS4Windows
         public const int DEFAULT_DS4_BT_POLL_RATE = 4;
         public const int DEFAULT_RUMBLE = 100;
         public const double DEFAULT_ANALOG_SENS = 1.0;
+        public const bool DEFAULT_DINPUT_ONLY = false;
 
         // Stick output curve consts in place more as a precaution
         public const string DEFAULT_STICK_OUTPUT_CURVE = "linear";
@@ -3516,7 +3517,10 @@ namespace DS4Windows
         };
 
         public string[] launchProgram = new string[Global.TEST_PROFILE_ITEM_COUNT] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
-        public bool[] dinputOnly = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
+        public bool[] dinputOnly = new bool[Global.TEST_PROFILE_ITEM_COUNT]
+        { DEFAULT_DINPUT_ONLY, DEFAULT_DINPUT_ONLY, DEFAULT_DINPUT_ONLY,
+          DEFAULT_DINPUT_ONLY, DEFAULT_DINPUT_ONLY, DEFAULT_DINPUT_ONLY,
+          DEFAULT_DINPUT_ONLY, DEFAULT_DINPUT_ONLY, DEFAULT_DINPUT_ONLY };
         public bool[] startTouchpadOff = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
         public TouchpadOutMode[] touchOutMode = new TouchpadOutMode[Global.TEST_PROFILE_ITEM_COUNT] { TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse,
             TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse };
@@ -9295,7 +9299,7 @@ namespace DS4Windows
             lightInfo.ledAsBattery = false;
 
             launchProgram[device] = string.Empty;
-            dinputOnly[device] = false;
+            dinputOnly[device] = DEFAULT_DINPUT_ONLY;
             startTouchpadOff[device] = false;
             touchOutMode[device] = TouchpadOutMode.Mouse;
             sATriggers[device] = BackingStore.DEFAULT_SA_TRIGGERS;

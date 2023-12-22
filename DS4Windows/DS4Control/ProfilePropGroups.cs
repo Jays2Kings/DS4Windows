@@ -566,6 +566,7 @@ namespace DS4Windows
 
     public class ButtonMouseInfo
     {
+        // 1.0 = 100%
         //public const double MOUSESTICKANTIOFFSET = 0.0128;
         public const double MOUSESTICKANTIOFFSET = 0.008;
         public const int DEFAULT_BUTTON_SENS = 25;

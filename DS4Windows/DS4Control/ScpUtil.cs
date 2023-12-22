@@ -3750,10 +3750,10 @@ namespace DS4Windows
         };
 
         // Used to hold the controller type desired in a profile
-        public OutContType[] outputDevType = new OutContType[Global.TEST_PROFILE_ITEM_COUNT] { OutContType.X360,
-            OutContType.X360, OutContType.X360,
-            OutContType.X360, OutContType.X360, OutContType.X360,
-            OutContType.X360, OutContType.X360, OutContType.X360};
+        public OutContType[] outputDevType = new OutContType[Global.TEST_PROFILE_ITEM_COUNT]
+        { DEFAULT_OUT_CONT_TYPE, DEFAULT_OUT_CONT_TYPE, DEFAULT_OUT_CONT_TYPE,
+          DEFAULT_OUT_CONT_TYPE, DEFAULT_OUT_CONT_TYPE, DEFAULT_OUT_CONT_TYPE,
+          DEFAULT_OUT_CONT_TYPE, DEFAULT_OUT_CONT_TYPE, DEFAULT_OUT_CONT_TYPE};
 
         public const bool DEFAULT_OUTPUT_VIRTUAL_TRIG_BUTTONS = true;
         public bool[] outputVirtualTriggerButtons = new bool[Global.TEST_PROFILE_ITEM_COUNT]

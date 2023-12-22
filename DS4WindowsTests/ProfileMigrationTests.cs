@@ -91,7 +91,7 @@ namespace DS4WindowsTests
   <Color>0,0,255</Color>
   <RumbleBoost>100</RumbleBoost>
   <RumbleAutostopTime>0</RumbleAutostopTime>
-  <LightbarMode>None</LightbarMode>
+  <LightbarMode>DS4Win</LightbarMode>
   <ledAsBatteryIndicator>False</ledAsBatteryIndicator>
   <FlashType>0</FlashType>
   <flashBatteryAt>0</flashBatteryAt>
@@ -110,14 +110,14 @@ namespace DS4WindowsTests
   <TouchpadClickPassthru>False</TouchpadClickPassthru>
   <L2AntiDeadZone>0</L2AntiDeadZone>
   <R2AntiDeadZone>0</R2AntiDeadZone>
-  <L2MaxZone>0</L2MaxZone>
-  <R2MaxZone>0</R2MaxZone>
-  <L2MaxOutput>0</L2MaxOutput>
-  <R2MaxOutput>0</R2MaxOutput>
+  <L2MaxZone>100</L2MaxZone>
+  <R2MaxZone>100</R2MaxZone>
+  <L2MaxOutput>100</L2MaxOutput>
+  <R2MaxOutput>100</R2MaxOutput>
   <ButtonMouseSensitivity>25</ButtonMouseSensitivity>
-  <ButtonMouseOffset>0</ButtonMouseOffset>
+  <ButtonMouseOffset>0.008</ButtonMouseOffset>
   <Rainbow>0</Rainbow>
-  <MaxSatRainbow>0</MaxSatRainbow>
+  <MaxSatRainbow>100</MaxSatRainbow>
   <LSDeadZone>10</LSDeadZone>
   <RSDeadZone>10</RSDeadZone>
   <LSAntiDeadZone>20</LSAntiDeadZone>
@@ -185,11 +185,11 @@ namespace DS4WindowsTests
   <Sensitivity>1|1|1|1|1|1</Sensitivity>
   <ChargingType>0</ChargingType>
   <MouseAcceleration>True</MouseAcceleration>
-  <ButtonMouseVerticalScale>0</ButtonMouseVerticalScale>
+  <ButtonMouseVerticalScale>100</ButtonMouseVerticalScale>
   <LaunchProgram />
   <DinputOnly>False</DinputOnly>
   <StartTouchpadOff>False</StartTouchpadOff>
-  <TouchpadOutputMode>None</TouchpadOutputMode>
+  <TouchpadOutputMode>Mouse</TouchpadOutputMode>
   <SATriggers />
   <SATriggerCond>and</SATriggerCond>
   <SASteeringWheelEmulationAxis>None</SASteeringWheelEmulationAxis>

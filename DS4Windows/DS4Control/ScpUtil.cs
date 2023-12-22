@@ -3208,6 +3208,11 @@ namespace DS4Windows
         public const int DEFAULT_RUMBLE = 100;
         public const double DEFAULT_ANALOG_SENS = 1.0;
         public const bool DEFAULT_DINPUT_ONLY = false;
+        public const TouchpadOutMode DEFAULT_TOUCH_OUT_MODE = TouchpadOutMode.Mouse;
+        public const GyroOutMode DEFAULT_GYRO_OUT_MODE = GyroOutMode.Controls;
+        public const bool DEFAULT_SA_TRIGGER_COND = true;
+        public const bool DEFAULT_SA_MSTICK_TRIGGER_COND = true;
+        public const bool DEFAULT_GYRO_MSTICK_TRIGGER_TURNS = true;
 
         // Stick output curve consts in place more as a precaution
         public const string DEFAULT_STICK_OUTPUT_CURVE = "linear";
@@ -3522,10 +3527,14 @@ namespace DS4Windows
           DEFAULT_DINPUT_ONLY, DEFAULT_DINPUT_ONLY, DEFAULT_DINPUT_ONLY,
           DEFAULT_DINPUT_ONLY, DEFAULT_DINPUT_ONLY, DEFAULT_DINPUT_ONLY };
         public bool[] startTouchpadOff = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
-        public TouchpadOutMode[] touchOutMode = new TouchpadOutMode[Global.TEST_PROFILE_ITEM_COUNT] { TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse,
-            TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse, TouchpadOutMode.Mouse };
-        public GyroOutMode[] gyroOutMode = new GyroOutMode[Global.TEST_PROFILE_ITEM_COUNT] { GyroOutMode.Controls, GyroOutMode.Controls,
-            GyroOutMode.Controls, GyroOutMode.Controls, GyroOutMode.Controls, GyroOutMode.Controls, GyroOutMode.Controls, GyroOutMode.Controls, GyroOutMode.Controls };
+        public TouchpadOutMode[] touchOutMode = new TouchpadOutMode[Global.TEST_PROFILE_ITEM_COUNT]
+        { DEFAULT_TOUCH_OUT_MODE, DEFAULT_TOUCH_OUT_MODE, DEFAULT_TOUCH_OUT_MODE,
+          DEFAULT_TOUCH_OUT_MODE, DEFAULT_TOUCH_OUT_MODE, DEFAULT_TOUCH_OUT_MODE,
+          DEFAULT_TOUCH_OUT_MODE, DEFAULT_TOUCH_OUT_MODE, DEFAULT_TOUCH_OUT_MODE };
+        public GyroOutMode[] gyroOutMode = new GyroOutMode[Global.TEST_PROFILE_ITEM_COUNT]
+        { DEFAULT_GYRO_OUT_MODE, DEFAULT_GYRO_OUT_MODE, DEFAULT_GYRO_OUT_MODE,
+          DEFAULT_GYRO_OUT_MODE, DEFAULT_GYRO_OUT_MODE, DEFAULT_GYRO_OUT_MODE,
+          DEFAULT_GYRO_OUT_MODE, DEFAULT_GYRO_OUT_MODE, DEFAULT_GYRO_OUT_MODE };
         public GyroControlsInfo[] gyroControlsInf = new GyroControlsInfo[Global.TEST_PROFILE_ITEM_COUNT]
         {
             new GyroControlsInfo(), new GyroControlsInfo(), new GyroControlsInfo(),
@@ -3540,9 +3549,18 @@ namespace DS4Windows
         { BackingStore.DEFAULT_GYRO_MSTICK_TRIGGERS, BackingStore.DEFAULT_GYRO_MSTICK_TRIGGERS, BackingStore.DEFAULT_GYRO_MSTICK_TRIGGERS,
           BackingStore.DEFAULT_GYRO_MSTICK_TRIGGERS, BackingStore.DEFAULT_GYRO_MSTICK_TRIGGERS, BackingStore.DEFAULT_GYRO_MSTICK_TRIGGERS,
           BackingStore.DEFAULT_GYRO_MSTICK_TRIGGERS, BackingStore.DEFAULT_GYRO_MSTICK_TRIGGERS, BackingStore.DEFAULT_GYRO_MSTICK_TRIGGERS };
-        public bool[] sATriggerCond = new bool[Global.TEST_PROFILE_ITEM_COUNT] { true, true, true, true, true, true, true, true, true };
-        public bool[] sAMouseStickTriggerCond = new bool[Global.TEST_PROFILE_ITEM_COUNT] { true, true, true, true, true, true, true, true, true };
-        public bool[] gyroMouseStickTriggerTurns = new bool[Global.TEST_PROFILE_ITEM_COUNT] { true, true, true, true, true, true, true, true, true };
+        public bool[] sATriggerCond = new bool[Global.TEST_PROFILE_ITEM_COUNT]
+        { DEFAULT_SA_TRIGGER_COND, DEFAULT_SA_TRIGGER_COND, DEFAULT_SA_TRIGGER_COND,
+          DEFAULT_SA_TRIGGER_COND, DEFAULT_SA_TRIGGER_COND, DEFAULT_SA_TRIGGER_COND,
+          DEFAULT_SA_TRIGGER_COND, DEFAULT_SA_TRIGGER_COND, DEFAULT_SA_TRIGGER_COND };
+        public bool[] sAMouseStickTriggerCond = new bool[Global.TEST_PROFILE_ITEM_COUNT]
+        { DEFAULT_SA_MSTICK_TRIGGER_COND, DEFAULT_SA_MSTICK_TRIGGER_COND, DEFAULT_SA_MSTICK_TRIGGER_COND,
+          DEFAULT_SA_MSTICK_TRIGGER_COND, DEFAULT_SA_MSTICK_TRIGGER_COND, DEFAULT_SA_MSTICK_TRIGGER_COND,
+          DEFAULT_SA_MSTICK_TRIGGER_COND, DEFAULT_SA_MSTICK_TRIGGER_COND, DEFAULT_SA_MSTICK_TRIGGER_COND };
+        public bool[] gyroMouseStickTriggerTurns = new bool[Global.TEST_PROFILE_ITEM_COUNT]
+        { DEFAULT_GYRO_MSTICK_TRIGGER_TURNS, DEFAULT_GYRO_MSTICK_TRIGGER_TURNS, DEFAULT_GYRO_MSTICK_TRIGGER_TURNS,
+          DEFAULT_GYRO_MSTICK_TRIGGER_TURNS, DEFAULT_GYRO_MSTICK_TRIGGER_TURNS, DEFAULT_GYRO_MSTICK_TRIGGER_TURNS,
+          DEFAULT_GYRO_MSTICK_TRIGGER_TURNS, DEFAULT_GYRO_MSTICK_TRIGGER_TURNS, DEFAULT_GYRO_MSTICK_TRIGGER_TURNS };
         public GyroMouseStickInfo[] gyroMStickInfo = new GyroMouseStickInfo[Global.TEST_PROFILE_ITEM_COUNT]
         {
             new GyroMouseStickInfo(),
@@ -9233,10 +9251,10 @@ namespace DS4Windows
 
             lsModInfo[device].Reset();
             rsModInfo[device].Reset();
-            lsModInfo[device].deadZone = rsModInfo[device].deadZone = 10;
-            lsModInfo[device].antiDeadZone = rsModInfo[device].antiDeadZone = 20;
-            lsModInfo[device].maxZone = rsModInfo[device].maxZone = 100;
-            lsModInfo[device].maxOutput = rsModInfo[device].maxOutput = 100.0;
+            lsModInfo[device].deadZone = rsModInfo[device].deadZone = StickDeadZoneInfo.DEFAULT_DEADZONE;
+            lsModInfo[device].antiDeadZone = rsModInfo[device].antiDeadZone = StickDeadZoneInfo.DEFAULT_ANTIDEADZONE;
+            lsModInfo[device].maxZone = rsModInfo[device].maxZone = StickDeadZoneInfo.DEFAULT_MAXZONE;
+            lsModInfo[device].maxOutput = rsModInfo[device].maxOutput = StickDeadZoneInfo.DEFAULT_MAXOUTPUT;
             lsModInfo[device].fuzz = rsModInfo[device].fuzz = StickDeadZoneInfo.DEFAULT_FUZZ;
 
             //l2ModInfo[device].deadZone = r2ModInfo[device].deadZone = 0;
@@ -9301,10 +9319,10 @@ namespace DS4Windows
             launchProgram[device] = string.Empty;
             dinputOnly[device] = DEFAULT_DINPUT_ONLY;
             startTouchpadOff[device] = false;
-            touchOutMode[device] = TouchpadOutMode.Mouse;
+            touchOutMode[device] = DEFAULT_TOUCH_OUT_MODE;
             sATriggers[device] = BackingStore.DEFAULT_SA_TRIGGERS;
-            sATriggerCond[device] = true;
-            gyroOutMode[device] = GyroOutMode.Controls;
+            sATriggerCond[device] = DEFAULT_SA_TRIGGER_COND;
+            gyroOutMode[device] = DEFAULT_GYRO_OUT_MODE;
             sAMouseStickTriggers[device] = BackingStore.DEFAULT_GYRO_MSTICK_TRIGGERS;
             sAMouseStickTriggerCond[device] = true;
 
@@ -9312,7 +9330,7 @@ namespace DS4Windows
             gyroSwipeInfo[device].Reset();
 
             gyroMouseStickToggle[device] = false;
-            gyroMouseStickTriggerTurns[device] = true;
+            gyroMouseStickTriggerTurns[device] = DEFAULT_GYRO_MSTICK_TRIGGER_TURNS;
             sASteeringWheelEmulationAxis[device] = SASteeringWheelEmulationAxisType.None;
             sASteeringWheelEmulationRange[device] = 360;
             saWheelFuzzValues[device] = 0;
@@ -9345,7 +9363,7 @@ namespace DS4Windows
             touchpadRelMouse[device].Reset();
             touchMStickInfo[device].Reset();
             touchpadButtonMode[device] = TouchButtonActivationMode.Click;
-            outputDevType[device] = OutContType.X360;
+            outputDevType[device] = DEFAULT_OUT_CONT_TYPE;
             ds4Mapping = false;
         }
 

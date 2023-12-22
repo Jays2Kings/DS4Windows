@@ -112,6 +112,9 @@ namespace DS4Windows
 
     public class TriggerDeadZoneZInfo
     {
+        public const int DEFAULT_MAX_ZONE = 100;
+        public const double DEFAULT_MAX_OUTPUT = 100.0;
+
         // Trigger deadzone is expressed in axis units (bad old convention)
         public byte deadZone;
 
@@ -128,7 +131,7 @@ namespace DS4Windows
         public event EventHandler DeadZoneChanged;
 
         public int antiDeadZone;
-        public int maxZone = 100;
+        public int maxZone = DEFAULT_MAX_ZONE;
         public int MaxZone
         {
             get => maxZone;
@@ -141,7 +144,7 @@ namespace DS4Windows
         }
         public event EventHandler MaxZoneChanged;
 
-        public double maxOutput = 100.0;
+        public double maxOutput = DEFAULT_MAX_OUTPUT;
 
         public double MaxOutput
         {
@@ -159,8 +162,8 @@ namespace DS4Windows
         {
             deadZone = 0;
             antiDeadZone = 0;
-            MaxZone = 100;
-            MaxOutput = 100.0;
+            MaxZone = DEFAULT_MAX_ZONE;
+            MaxOutput = DEFAULT_MAX_OUTPUT;
         }
 
         public void ResetEvents()
@@ -656,6 +659,9 @@ namespace DS4Windows
 
     public class LightbarDS4WinInfo
     {
+        public const double DEFAULT_MAX_RAINBOW_SAT = 1.0;
+        public static DS4Color DEFAULT_CUSTOM_LED = new DS4Color(0, 0, 255);
+
         public bool useCustomLed;
         public bool ledAsBattery;
         public DS4Color m_CustomLed = new DS4Color(0, 0, 255);
@@ -664,7 +670,7 @@ namespace DS4Windows
         public DS4Color m_ChargingLed;
         public DS4Color m_FlashLed;
         public double rainbow;
-        public double maxRainbowSat = 1.0;
+        public double maxRainbowSat = DEFAULT_MAX_RAINBOW_SAT;
         public int flashAt; // Battery % when flashing occurs. <0 means disabled
         public byte flashType;
         public int chargingType;
@@ -672,7 +678,9 @@ namespace DS4Windows
 
     public class LightbarSettingInfo
     {
-        public LightbarMode mode = LightbarMode.DS4Win;
+        public const LightbarMode DEFAULT_MODE = LightbarMode.DS4Win;
+
+        public LightbarMode mode = DEFAULT_MODE;
         public LightbarDS4WinInfo ds4winSettings = new LightbarDS4WinInfo();
         public LightbarMode Mode
         {

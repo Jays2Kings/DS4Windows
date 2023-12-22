@@ -132,7 +132,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public byte RumbleBoost
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_RUMBLE;
 
         [XmlElement("RumbleAutostopTime")]
         public int RumbleAutostopTime
@@ -144,7 +144,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public LightbarMode LightbarMode
         {
             get; set;
-        }
+        } = LightbarSettingInfo.DEFAULT_MODE;
 
         [XmlIgnore]
         public bool LedAsBatteryIndicator
@@ -348,7 +348,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
-        private int _l2MaxZone;
+        private int _l2MaxZone = TriggerDeadZoneZInfo.DEFAULT_MAX_ZONE;
         [XmlElement("L2MaxZone")]
         public int L2MaxZone
         {
@@ -356,7 +356,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _l2MaxZone = Math.Clamp(value, 0, 100);
         }
 
-        private int _r2MaxZone;
+        private int _r2MaxZone = TriggerDeadZoneZInfo.DEFAULT_MAX_ZONE;
         [XmlElement("R2MaxZone")]
         public int R2MaxZone
         {
@@ -364,7 +364,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _r2MaxZone = Math.Clamp(value, 0, 100);
         }
 
-        private double _l2MaxOutput;
+        private double _l2MaxOutput = TriggerDeadZoneZInfo.DEFAULT_MAX_OUTPUT;
         [XmlElement("L2MaxOutput")]
         public double L2MaxOutput
         {
@@ -372,7 +372,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _l2MaxOutput = Math.Clamp(value, 0.0, 100.0);
         }
 
-        private double _r2MaxOutput;
+        private double _r2MaxOutput = TriggerDeadZoneZInfo.DEFAULT_MAX_OUTPUT;
         [XmlElement("R2MaxOutput")]
         public double R2MaxOutput
         {
@@ -384,13 +384,13 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public int ButtonMouseSensitivity
         {
             get; set;
-        }
+        } = ButtonMouseInfo.DEFAULT_BUTTON_SENS;
 
         [XmlElement("ButtonMouseOffset")]
         public double ButtonMouseOffset
         {
             get; set;
-        }
+        } = ButtonMouseInfo.MOUSESTICKANTIOFFSET;
 
         [XmlElement("Rainbow")]
         public double Rainbow
@@ -398,7 +398,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
-        private double _maxSatRainbow;
+        private double _maxSatRainbow = LightbarDS4WinInfo.DEFAULT_MAX_RAINBOW_SAT;
         [XmlElement("MaxSatRainbow")]
         public double MaxSatRainbow
         {
@@ -406,7 +406,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _maxSatRainbow = Math.Clamp(value, 0.0, 100.0) / 100.0;
         }
 
-        private int _lSDeadZone = 10;
+        private int _lSDeadZone = StickDeadZoneInfo.DEFAULT_DEADZONE;
         [XmlElement("LSDeadZone")]
         public int LSDeadZone
         {
@@ -414,7 +414,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _lSDeadZone = Math.Clamp(value, 0, 127);
         }
 
-        private int _rSDeadZone = 10;
+        private int _rSDeadZone = StickDeadZoneInfo.DEFAULT_DEADZONE;
         [XmlElement("RSDeadZone")]
         public int RSDeadZone
         {
@@ -422,7 +422,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _rSDeadZone = Math.Clamp(value, 0, 127);
         }
 
-        private int _lSAntiDeadZone = 20;
+        private int _lSAntiDeadZone = StickDeadZoneInfo.DEFAULT_ANTIDEADZONE;
         [XmlElement("LSAntiDeadZone")]
         public int LSAntiDeadZone
         {
@@ -430,7 +430,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _lSAntiDeadZone = value;
         }
 
-        private int _rSAntiDeadZone = 20;
+        private int _rSAntiDeadZone = StickDeadZoneInfo.DEFAULT_ANTIDEADZONE;
         [XmlElement("RSAntiDeadZone")]
         public int RSAntiDeadZone
         {
@@ -438,7 +438,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _rSAntiDeadZone = value;
         }
 
-        private int _lSMaxZone = 100;
+        private int _lSMaxZone = StickDeadZoneInfo.DEFAULT_MAXZONE;
         [XmlElement("LSMaxZone")]
         public int LSMaxZone
         {
@@ -446,7 +446,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _lSMaxZone = Math.Clamp(value, 0, 100);
         }
 
-        private int _rSMaxZone = 100;
+        private int _rSMaxZone = StickDeadZoneInfo.DEFAULT_MAXZONE;
         [XmlElement("RSMaxZone")]
         public int RSMaxZone
         {
@@ -470,7 +470,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _rSVerticalScale = Math.Clamp(value, 0.0, 400.0);
         }
 
-        private double _lSMaxOutput = 100.0;
+        private double _lSMaxOutput = StickDeadZoneInfo.DEFAULT_MAXOUTPUT;
         [XmlElement("LSMaxOutput")]
         public double LSMaxOutput
         {
@@ -478,7 +478,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _lSMaxOutput = Math.Clamp(value, 0.0, 100.0);
         }
 
-        private double _rSMaxOutput = 100.0;
+        private double _rSMaxOutput = StickDeadZoneInfo.DEFAULT_MAXOUTPUT;
         [XmlElement("RSMaxOutput")]
         public double RSMaxOutput
         {
@@ -627,7 +627,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _sZDeadZone = value;
         }
 
-        private double _sxMaxZone = 1.0;
+        private double _sxMaxZone = BackingStore.DEFAULT_SX_TILT_MAXZONE;
         [XmlElement("SXMaxZone")]
         public double SXMaxZone
         {
@@ -635,7 +635,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _sxMaxZone = Math.Clamp(value * 0.01, 0.0, 1.0);
         }
 
-        private double _szMaxZone = 1.0;
+        private double _szMaxZone = BackingStore.DEFAULT_SX_TILT_MAXZONE;
         [XmlElement("SZMaxZone")]
         public double SZMaxZone
         {
@@ -666,6 +666,10 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public string Sensitivity
         {
             get; set;
+        } = string.Empty;
+        public bool ShouldSerializeSensitivity()
+        {
+            return !string.IsNullOrEmpty(Sensitivity);
         }
 
         [XmlElement("ChargingType")]
@@ -682,7 +686,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _mouseAcceleration = XmlDataUtilities.StrToBool(value);
         }
 
-        private double _buttonMouseVerticalScale;
+        private double _buttonMouseVerticalScale = ButtonMouseInfo.DEFAULT_BUTTON_VERTICAL_SCALE;
         [XmlElement("ButtonMouseVerticalScale")]
         public double ButtonMouseVerticalScale
         {
@@ -707,7 +711,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public string LaunchProgram
         {
             get; set;
-        }
+        } = string.Empty;
 
         private bool _dinputOnly;
         [XmlElement("DinputOnly")]
@@ -763,7 +767,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public TouchpadOutMode TouchpadOutputMode
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_TOUCH_OUT_MODE;
 
         [XmlElement("SATriggers")]
         public string SATriggers
@@ -771,7 +775,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         } = BackingStore.DEFAULT_SA_TRIGGERS;
 
-        private bool _sATriggerCond = true;
+        private bool _sATriggerCond = BackingStore.DEFAULT_SA_TRIGGER_COND;
         [XmlElement("SATriggerCond")]
         public string SATriggerCondString
         {
@@ -915,7 +919,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public GyroOutMode GyroOutputMode
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_GYRO_OUT_MODE;
 
 
         private string _gyroMouseStickTriggers = BackingStore.DEFAULT_GYRO_MSTICK_TRIGGERS;
@@ -926,7 +930,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _gyroMouseStickTriggers = value;
         }
 
-        private bool _gyroMouseStickTriggerCond = true;
+        private bool _gyroMouseStickTriggerCond = BackingStore.DEFAULT_SA_MSTICK_TRIGGER_COND;
         [XmlElement("GyroMouseStickTriggerCond")]
         public string GyroMouseStickTriggerCondString
         {
@@ -934,7 +938,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _gyroMouseStickTriggerCond = BackingStore.SaTriggerCondValue(value);
         }
 
-        private bool _gyroMouseStickTriggerTurns = true;
+        private bool _gyroMouseStickTriggerTurns = BackingStore.DEFAULT_GYRO_MSTICK_TRIGGER_TURNS;
         [XmlElement("GyroMouseStickTriggerTurns")]
         public string GyroMouseStickTriggerTurnsString
         {

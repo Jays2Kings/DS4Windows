@@ -297,8 +297,8 @@ namespace DS4WindowsTests
   <L2OutputCurveMode>linear</L2OutputCurveMode>
   <L2TwoStageMode>Disabled</L2TwoStageMode>
   <R2TwoStageMode>Disabled</R2TwoStageMode>
-  <L2HipFireTime>0</L2HipFireTime>
-  <R2HipFireTime>0</R2HipFireTime>
+  <L2HipFireTime>100</L2HipFireTime>
+  <R2HipFireTime>100</R2HipFireTime>
   <L2TriggerEffect>None</L2TriggerEffect>
   <R2TriggerEffect>None</R2TriggerEffect>
   <R2OutputCurveMode>linear</R2OutputCurveMode>

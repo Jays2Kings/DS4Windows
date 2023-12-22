@@ -1403,7 +1403,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             RSAxialDeadOptions = new StickAxialDeadOptionsSerializer();
             RSDeltaAccelSettings = new StickDeltaAccelSettings();
             LaunchProgram = string.Empty;
-            SATriggers = "-1";
+            SATriggers = BackingStore.DEFAULT_SA_TRIGGERS;
             SASteeringWheelSmoothingOptions = new SASteeringWheelSmoothingOptions();
             GyroControlsSettings = new GyroControlsSettings();
             GyroMouseStickSmoothingSettings = new GyroMouseStickSmoothingSettings();

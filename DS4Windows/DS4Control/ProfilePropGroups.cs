@@ -862,6 +862,7 @@ namespace DS4Windows
         //public const string DEFAULT_SMOOTH_TECHNIQUE = "one-euro";
         public const OutputStick DEFAULT_OUTPUT_STICK = OutputStick.RightStick;
         public const OutputStickAxes DEFAULT_OUTPUT_STICK_AXES = OutputStickAxes.XY;
+        public const int DEFAULT_DEADZONE = 0;
         public const int MAX_ZONE_DEFAULT = 8;
         public const double ANTI_DEADZONE_DEFAULT = 0.40;
         public const bool TRACKBALL_MODE_DEFAULT = true;
@@ -872,16 +873,18 @@ namespace DS4Windows
         public const double ANG_RAD_DEFAULT = ANG_DEGREE_DEFAULT * Math.PI / 180.0;
         public const int DEFAULT_VERT_SCALE = 100;
         public const double DEFAULT_MAX_OUTPUT = 100.0;
+        public const uint DEFAULT_INVERTED = 0;
+        public const bool DEFAULT_MAX_OUTPUT_ENABLED = false;
 
-        public int deadZone;
+        public int deadZone = DEFAULT_DEADZONE;
         public int maxZone = MAX_ZONE_DEFAULT;
         public double antiDeadX = ANTI_DEADZONE_DEFAULT;
         public double antiDeadY = ANTI_DEADZONE_DEFAULT;
         public int vertScale = DEFAULT_VERT_SCALE;
-        public bool maxOutputEnabled;
+        public bool maxOutputEnabled = DEFAULT_MAX_OUTPUT_ENABLED;
         public double maxOutput = DEFAULT_MAX_OUTPUT;
         // Flags representing invert axis choices
-        public uint inverted;
+        public uint inverted = DEFAULT_INVERTED;
         //public bool useSmoothing;
         public SmoothingMethod smoothingMethod;
         public double minCutoff = DEFAULT_MINCUTOFF;
@@ -939,10 +942,10 @@ namespace DS4Windows
 
         public void Reset()
         {
-            deadZone = 0; maxZone = MAX_ZONE_DEFAULT;
+            deadZone = DEFAULT_DEADZONE; maxZone = MAX_ZONE_DEFAULT;
             antiDeadX = ANTI_DEADZONE_DEFAULT; antiDeadY = ANTI_DEADZONE_DEFAULT;
-            inverted = 0; vertScale = DEFAULT_VERT_SCALE;
-            maxOutputEnabled = false; maxOutput = DEFAULT_MAX_OUTPUT;
+            inverted = DEFAULT_INVERTED; vertScale = DEFAULT_VERT_SCALE;
+            maxOutputEnabled = DEFAULT_MAX_OUTPUT_ENABLED; maxOutput = DEFAULT_MAX_OUTPUT;
             outputStick = DEFAULT_OUTPUT_STICK;
             outputStickDir = DEFAULT_OUTPUT_STICK_AXES;
             trackballMode = TRACKBALL_MODE_DEFAULT;

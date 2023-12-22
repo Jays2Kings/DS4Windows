@@ -3103,7 +3103,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             }
         }
 
-        private int _deadZone = 0;
+        private int _deadZone = TouchMouseStickInfo.DEFAULT_DEADZONE;
         [XmlElement("DeadZone")]
         public int DeadZone
         {
@@ -3153,7 +3153,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _antiDeadZoneY = value;
         }
 
-        private uint _invert;
+        private uint _invert = TouchMouseStickInfo.DEFAULT_INVERTED;
         [XmlElement("Invert")]
         public uint Invert
         {
@@ -3169,7 +3169,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _maxOutput = value;
         }
 
-        private bool _maxOutputEnabled;
+        private bool _maxOutputEnabled = TouchMouseStickInfo.DEFAULT_MAX_OUTPUT_ENABLED;
         [XmlIgnore]
         public bool MaxOutputEnabled
         {

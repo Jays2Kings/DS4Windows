@@ -1406,4 +1406,7 @@ Please click OK to confirm that you have read the message. Press Cancel to be re
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
 </root>

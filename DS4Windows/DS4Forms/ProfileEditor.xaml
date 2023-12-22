@@ -972,7 +972,7 @@
                                     </ComboBox.ToolTip>
                                 </ComboBox>
 
-                                <Label Content="{lex:Loc FullPullBtn}" ContentStringFormat="{}{0}:" Grid.Row="9" Grid.Column="0" />
+                                <Label Content="{lex:Loc FullBtnPull}" ContentStringFormat="{}{0}:" Grid.Row="9" Grid.Column="0" />
                                 <DockPanel Grid.Row="9" Grid.Column="1">
                                     <Button Content="{lex:Loc Full}" MinWidth="40" Tag="{Binding L2FullPull, Source={StaticResource controlIndexCheck}}" Click="TriggerFullPullBtn_Click"
                                             Margin="{StaticResource spaceMargin}" DockPanel.Dock="Top" />
@@ -986,7 +986,7 @@
                                            Margin="{StaticResource spaceMargin}" HorizontalAlignment="Center" DockPanel.Dock="Top" />
                                 </DockPanel>
 
-                                <Label Content="{lex:Loc HipFire Delay}" ContentStringFormat="{}{0}:" Grid.Row="10" Grid.Column="0" />
+                                <Label Content="{lex:Loc HipFireDelay}" ContentStringFormat="{}{0}:" Grid.Row="10" Grid.Column="0" />
                                 <DockPanel Grid.Row="10" Grid.Column="1">
                                     <Label Content="ms" DockPanel.Dock="Right" />
                                     <xctk:IntegerUpDown d:IsHidden="True" Value="{Binding L2HipFireTime}" MinWidth="50" Maximum="5000" Minimum="0" Increment="10"

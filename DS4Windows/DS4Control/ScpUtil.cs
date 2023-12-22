@@ -3212,7 +3212,14 @@ namespace DS4Windows
         public const GyroOutMode DEFAULT_GYRO_OUT_MODE = GyroOutMode.Controls;
         public const bool DEFAULT_SA_TRIGGER_COND = true;
         public const bool DEFAULT_SA_MSTICK_TRIGGER_COND = true;
+        public const bool DEFAULT_GYRO_TRIGGER_TURNS = true;
         public const bool DEFAULT_GYRO_MSTICK_TRIGGER_TURNS = true;
+        public const int DEFAULT_SA_WHEEL_EMULATION_RANGE = 360;
+        public const int DEFAULT_GYRO_SENS = 100;
+        public const int DEFAULT_GYRO_SENS_VERTICAL_SCALE = 100;
+        public const int DEFAULT_TOUCH_DIS_INVERT_TRIGGER = -1;
+        public const bool DEFAULT_TRACKBALL_MODE = false;
+        public const double DEFAULT_TRACKBALL_FRICTION = 10.0;
 
         // Stick output curve consts in place more as a precaution
         public const string DEFAULT_STICK_OUTPUT_CURVE = "linear";
@@ -3583,9 +3590,14 @@ namespace DS4Windows
             false, false, false, false, false, false };
 
         public SASteeringWheelEmulationAxisType[] sASteeringWheelEmulationAxis = new SASteeringWheelEmulationAxisType[Global.TEST_PROFILE_ITEM_COUNT] { SASteeringWheelEmulationAxisType.None, SASteeringWheelEmulationAxisType.None, SASteeringWheelEmulationAxisType.None, SASteeringWheelEmulationAxisType.None, SASteeringWheelEmulationAxisType.None, SASteeringWheelEmulationAxisType.None, SASteeringWheelEmulationAxisType.None, SASteeringWheelEmulationAxisType.None, SASteeringWheelEmulationAxisType.None };
-        public int[] sASteeringWheelEmulationRange = new int[Global.TEST_PROFILE_ITEM_COUNT] { 360, 360, 360, 360, 360, 360, 360, 360, 360 };
-        public int[][] touchDisInvertTriggers = new int[Global.TEST_PROFILE_ITEM_COUNT][] { new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 },
-            new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 } };
+        public int[] sASteeringWheelEmulationRange = new int[Global.TEST_PROFILE_ITEM_COUNT]
+        { DEFAULT_SA_WHEEL_EMULATION_RANGE, DEFAULT_SA_WHEEL_EMULATION_RANGE, DEFAULT_SA_WHEEL_EMULATION_RANGE,
+          DEFAULT_SA_WHEEL_EMULATION_RANGE, DEFAULT_SA_WHEEL_EMULATION_RANGE, DEFAULT_SA_WHEEL_EMULATION_RANGE,
+          DEFAULT_SA_WHEEL_EMULATION_RANGE, DEFAULT_SA_WHEEL_EMULATION_RANGE, DEFAULT_SA_WHEEL_EMULATION_RANGE };
+        public int[][] touchDisInvertTriggers = new int[Global.TEST_PROFILE_ITEM_COUNT][]
+        { new int[1] { DEFAULT_TOUCH_DIS_INVERT_TRIGGER}, new int[1] { DEFAULT_TOUCH_DIS_INVERT_TRIGGER}, new int[1] { DEFAULT_TOUCH_DIS_INVERT_TRIGGER },
+          new int[1] { DEFAULT_TOUCH_DIS_INVERT_TRIGGER}, new int[1] { DEFAULT_TOUCH_DIS_INVERT_TRIGGER }, new int[1] { DEFAULT_TOUCH_DIS_INVERT_TRIGGER },
+          new int[1] { DEFAULT_TOUCH_DIS_INVERT_TRIGGER }, new int[1] { DEFAULT_TOUCH_DIS_INVERT_TRIGGER}, new int[1] { DEFAULT_TOUCH_DIS_INVERT_TRIGGER } };
         public Boolean useExclusiveMode = false; // Re-enable Ex Mode
 
         public const int DEFAULT_FORM_WIDTH = 782;
@@ -3678,10 +3690,19 @@ namespace DS4Windows
         // Cache whether profile has custom extras
         public bool[] containsCustomExtras = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
 
-        public int[] gyroSensitivity = new int[Global.TEST_PROFILE_ITEM_COUNT] { 100, 100, 100, 100, 100, 100, 100, 100, 100 };
-        public int[] gyroSensVerticalScale = new int[Global.TEST_PROFILE_ITEM_COUNT] { 100, 100, 100, 100, 100, 100, 100, 100, 100 };
+        public int[] gyroSensitivity = new int[Global.TEST_PROFILE_ITEM_COUNT]
+        { DEFAULT_GYRO_SENS, DEFAULT_GYRO_SENS, DEFAULT_GYRO_SENS,
+          DEFAULT_GYRO_SENS, DEFAULT_GYRO_SENS, DEFAULT_GYRO_SENS,
+          DEFAULT_GYRO_SENS, DEFAULT_GYRO_SENS, DEFAULT_GYRO_SENS };
+        public int[] gyroSensVerticalScale = new int[Global.TEST_PROFILE_ITEM_COUNT]
+        { DEFAULT_GYRO_SENS_VERTICAL_SCALE, DEFAULT_GYRO_SENS_VERTICAL_SCALE, DEFAULT_GYRO_SENS_VERTICAL_SCALE,
+          DEFAULT_GYRO_SENS_VERTICAL_SCALE, DEFAULT_GYRO_SENS_VERTICAL_SCALE, DEFAULT_GYRO_SENS_VERTICAL_SCALE,
+          DEFAULT_GYRO_SENS_VERTICAL_SCALE, DEFAULT_GYRO_SENS_VERTICAL_SCALE, DEFAULT_GYRO_SENS_VERTICAL_SCALE };
         public int[] gyroInvert = new int[Global.TEST_PROFILE_ITEM_COUNT] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        public bool[] gyroTriggerTurns = new bool[Global.TEST_PROFILE_ITEM_COUNT] { true, true, true, true, true, true, true, true, true };
+        public bool[] gyroTriggerTurns = new bool[Global.TEST_PROFILE_ITEM_COUNT]
+        { DEFAULT_GYRO_TRIGGER_TURNS, DEFAULT_GYRO_TRIGGER_TURNS, DEFAULT_GYRO_TRIGGER_TURNS,
+          DEFAULT_GYRO_TRIGGER_TURNS, DEFAULT_GYRO_TRIGGER_TURNS, DEFAULT_GYRO_TRIGGER_TURNS,
+          DEFAULT_GYRO_TRIGGER_TURNS, DEFAULT_GYRO_TRIGGER_TURNS, DEFAULT_GYRO_TRIGGER_TURNS };
 
         public GyroMouseInfo[] gyroMouseInfo = new GyroMouseInfo[Global.TEST_PROFILE_ITEM_COUNT]
         {
@@ -3696,8 +3717,14 @@ namespace DS4Windows
 
         public int[] gyroMouseStickHorizontalAxis = new int[Global.TEST_PROFILE_ITEM_COUNT] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-        public bool[] trackballMode = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
-        public double[] trackballFriction = new double[Global.TEST_PROFILE_ITEM_COUNT] { 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0 };
+        public bool[] trackballMode = new bool[Global.TEST_PROFILE_ITEM_COUNT]
+        { DEFAULT_TRACKBALL_MODE, DEFAULT_TRACKBALL_MODE, DEFAULT_TRACKBALL_MODE,
+          DEFAULT_TRACKBALL_MODE, DEFAULT_TRACKBALL_MODE, DEFAULT_TRACKBALL_MODE,
+          DEFAULT_TRACKBALL_MODE, DEFAULT_TRACKBALL_MODE, DEFAULT_TRACKBALL_MODE };
+        public double[] trackballFriction = new double[Global.TEST_PROFILE_ITEM_COUNT]
+        { DEFAULT_TRACKBALL_FRICTION, DEFAULT_TRACKBALL_FRICTION, DEFAULT_TRACKBALL_FRICTION,
+          DEFAULT_TRACKBALL_FRICTION, DEFAULT_TRACKBALL_FRICTION, DEFAULT_TRACKBALL_FRICTION,
+          DEFAULT_TRACKBALL_FRICTION, DEFAULT_TRACKBALL_FRICTION, DEFAULT_TRACKBALL_FRICTION };
         //public bool[] touchStickTrackballMode = new bool[Global.TEST_PROFILE_ITEM_COUNT] { false, false, false, false, false, false, false, false, false };
         //public double[] touchStickTrackballFriction = new double[Global.TEST_PROFILE_ITEM_COUNT] { 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0 };
 
@@ -9313,7 +9340,7 @@ namespace DS4Windows
             lightInfo.flashType = 0;
             lightInfo.chargingType = 0;
             lightInfo.rainbow = 0;
-            lightInfo.maxRainbowSat = 1.0;
+            lightInfo.maxRainbowSat = LightbarDS4WinInfo.DEFAULT_MAX_RAINBOW_SAT;
             lightInfo.ledAsBattery = false;
 
             launchProgram[device] = string.Empty;
@@ -9332,22 +9359,23 @@ namespace DS4Windows
             gyroMouseStickToggle[device] = false;
             gyroMouseStickTriggerTurns[device] = DEFAULT_GYRO_MSTICK_TRIGGER_TURNS;
             sASteeringWheelEmulationAxis[device] = SASteeringWheelEmulationAxisType.None;
-            sASteeringWheelEmulationRange[device] = 360;
+            sASteeringWheelEmulationRange[device] = DEFAULT_SA_WHEEL_EMULATION_RANGE;
             saWheelFuzzValues[device] = 0;
             wheelSmoothInfo[device].Reset();
-            touchDisInvertTriggers[device] = new int[1] { -1 };
-            gyroSensitivity[device] = 100;
-            gyroSensVerticalScale[device] = 100;
+            touchDisInvertTriggers[device] = new int[1] { DEFAULT_TOUCH_DIS_INVERT_TRIGGER };
+            gyroSensitivity[device] = DEFAULT_GYRO_SENS;
+            gyroSensVerticalScale[device] = DEFAULT_GYRO_SENS_VERTICAL_SCALE;
             gyroInvert[device] = 0;
-            gyroTriggerTurns[device] = true;
+            gyroTriggerTurns[device] = DEFAULT_GYRO_TRIGGER_TURNS;
             gyroMouseInfo[device].Reset();
 
             gyroMouseHorizontalAxis[device] = 0;
             gyroMouseToggle[device] = false;
-            squStickInfo[device].lsMode = false;
-            squStickInfo[device].rsMode = false;
-            squStickInfo[device].lsRoundness = 5.0;
-            squStickInfo[device].rsRoundness = 5.0;
+            //squStickInfo[device].lsMode = false;
+            //squStickInfo[device].rsMode = false;
+            //squStickInfo[device].lsRoundness = SquareStickInfo.DEFAULT_ROUNDNESS;
+            //squStickInfo[device].rsRoundness = SquareStickInfo.DEFAULT_ROUNDNESS;
+            squStickInfo[device].Reset();
             lsAntiSnapbackInfo[device].timeout = StickAntiSnapbackInfo.DEFAULT_TIMEOUT;
             lsAntiSnapbackInfo[device].delta = StickAntiSnapbackInfo.DEFAULT_DELTA;
             lsAntiSnapbackInfo[device].enabled = StickAntiSnapbackInfo.DEFAULT_ENABLED;
@@ -9357,8 +9385,8 @@ namespace DS4Windows
             setR2OutCurveMode(device, 0);
             setSXOutCurveMode(device, 0);
             setSZOutCurveMode(device, 0);
-            trackballMode[device] = false;
-            trackballFriction[device] = 10.0;
+            trackballMode[device] = DEFAULT_TRACKBALL_MODE;
+            trackballFriction[device] = DEFAULT_TRACKBALL_FRICTION;
             touchpadAbsMouse[device].Reset();
             touchpadRelMouse[device].Reset();
             touchMStickInfo[device].Reset();

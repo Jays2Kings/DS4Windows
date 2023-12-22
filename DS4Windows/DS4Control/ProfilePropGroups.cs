@@ -25,10 +25,20 @@ namespace DS4Windows
 {
     public class SquareStickInfo
     {
+        public const double DEFAULT_ROUNDNESS = 5.0;
+
         public bool lsMode;
         public bool rsMode;
-        public double lsRoundness = 5.0;
-        public double rsRoundness = 5.0;
+        public double lsRoundness = DEFAULT_ROUNDNESS;
+        public double rsRoundness = DEFAULT_ROUNDNESS;
+
+        public void Reset()
+        {
+            lsMode = false;
+            rsMode = false;
+            lsRoundness = DEFAULT_ROUNDNESS;
+            rsRoundness = DEFAULT_ROUNDNESS;
+        }
     }
 
     public class StickDeadZoneInfo

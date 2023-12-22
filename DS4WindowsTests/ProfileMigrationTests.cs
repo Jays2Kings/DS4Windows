@@ -204,7 +204,7 @@ namespace DS4WindowsTests
   <GyroSensitivity>100</GyroSensitivity>
   <GyroSensVerticalScale>100</GyroSensVerticalScale>
   <GyroInvert>0</GyroInvert>
-  <GyroTriggerTurns>False</GyroTriggerTurns>
+  <GyroTriggerTurns>True</GyroTriggerTurns>
   <GyroControlsSettings>
     <Triggers>-1</Triggers>
     <TriggerCond>and</TriggerCond>

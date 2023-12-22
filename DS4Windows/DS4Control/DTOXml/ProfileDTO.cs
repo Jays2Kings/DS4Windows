@@ -791,7 +791,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _sASteeringWheelEmulationAxis = value;
         }
 
-        private int _sASteeringWheelEmulationRange = 360;
+        private int _sASteeringWheelEmulationRange = BackingStore.DEFAULT_SA_WHEEL_EMULATION_RANGE;
         [XmlElement("SASteeringWheelEmulationRange")]
         public int SASteeringWheelEmulationRange
         {
@@ -813,7 +813,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
-        private int[] _touchDisInvTriggers = new int[1] { -1 };
+        private int[] _touchDisInvTriggers = new int[1] { BackingStore.DEFAULT_TOUCH_DIS_INVERT_TRIGGER };
         [XmlElement("TouchDisInvTriggers")]
         public string TouchDisInvTriggersString
         {
@@ -833,7 +833,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             }
         }
 
-        private int _gyroSensitivity = 100;
+        private int _gyroSensitivity = BackingStore.DEFAULT_GYRO_SENS;
         [XmlElement("GyroSensitivity")]
         public int GyroSensitivity
         {
@@ -841,7 +841,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _gyroSensitivity = value;
         }
 
-        private int _gyroSensVerticalScale = 100;
+        private int _gyroSensVerticalScale = BackingStore.DEFAULT_GYRO_SENS_VERTICAL_SCALE;
         [XmlElement("GyroSensVerticalScale")]
         public int GyroSensVerticalScale
         {
@@ -855,7 +855,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
-        private bool _gyroTriggerTurns;
+        private bool _gyroTriggerTurns = BackingStore.DEFAULT_GYRO_TRIGGER_TURNS;
         [XmlElement("GyroTriggerTurns")]
         public string GyroTriggerTurnsString
         {
@@ -1107,7 +1107,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _rsSquareStick = XmlDataUtilities.StrToBool(value);
         }
 
-        private double _squareStickRoundness = 5.0;
+        private double _squareStickRoundness = SquareStickInfo.DEFAULT_ROUNDNESS;
         [XmlElement("SquareStickRoundness")]
         public double SquareStickRoundness
         {
@@ -1115,7 +1115,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _squareStickRoundness = value;
         }
 
-        private double _squareRStickRoundness = 5.0;
+        private double _squareRStickRoundness = SquareStickInfo.DEFAULT_ROUNDNESS;
         [XmlElement("SquareRStickRoundness")]
         public double SquareRStickRoundness
         {
@@ -1290,7 +1290,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
-        private bool _trackballMode;
+        private bool _trackballMode = BackingStore.DEFAULT_TRACKBALL_MODE;
         [XmlElement("TrackballMode")]
         public string TrackballModeString
         {
@@ -1298,7 +1298,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _trackballMode = XmlDataUtilities.StrToBool(value);
         }
 
-        private double _trackballFriction = 10.0;
+        private double _trackballFriction = BackingStore.DEFAULT_TRACKBALL_FRICTION;
         [XmlElement("TrackballFriction")]
         public double TrackballFriction
         {

@@ -3224,6 +3224,8 @@ namespace DS4Windows
         // Stick output curve consts in place more as a precaution
         public const string DEFAULT_STICK_OUTPUT_CURVE = "linear";
         public const int DEFAULT_STICK_OUTPUT_CURVE_ID = 0;
+        public const string DEFAULT_SA_OUTPUT_CURVE = "linear";
+        public const int DEFAULT_SA_OUTPUT_CURVE_ID = 0;
 
         public String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + "\\Profiles.xml";
         public String m_Actions = Global.appdatapath + "\\Actions.xml";

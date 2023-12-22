@@ -358,16 +358,22 @@ namespace DS4Windows
         public const OutputStickAxes DEFAULT_OUTPUT_STICK_AXES = OutputStickAxes.XY;
         public const double SMOOTHING_WEIGHT_DEFAULT = 0.5;
         public const bool JITTER_COMPENSATION_DEFAULT = false;
+        public const int DEFAULT_DEADZONE = 30;
+        public const int DEFAULT_MAXZONE = 830;
+        public const double DEFAULT_ANTI_DEAD = 0.4;
+        public const double DEFAULT_MAX_OUTPUT = 100.0;
+        public const int DEFAULT_VERTICAL_SCALE = 100;
+        public const uint DEFAULT_INVERTED = 0;
 
-        public int deadZone;
-        public int maxZone;
-        public double antiDeadX;
-        public double antiDeadY;
-        public int vertScale;
+        public int deadZone = DEFAULT_DEADZONE;
+        public int maxZone = DEFAULT_MAXZONE;
+        public double antiDeadX = DEFAULT_ANTI_DEAD;
+        public double antiDeadY = DEFAULT_ANTI_DEAD;
+        public int vertScale = DEFAULT_VERTICAL_SCALE;
         public bool maxOutputEnabled;
-        public double maxOutput = 100.0;
+        public double maxOutput = DEFAULT_MAX_OUTPUT;
         // Flags representing invert axis choices
-        public uint inverted;
+        public uint inverted = DEFAULT_INVERTED;
         public bool useSmoothing;
         public double smoothWeight = SMOOTHING_WEIGHT_DEFAULT;
         public SmoothingMethod smoothingMethod;
@@ -417,10 +423,10 @@ namespace DS4Windows
 
         public void Reset()
         {
-            deadZone = 30; maxZone = 830;
-            antiDeadX = 0.4; antiDeadY = 0.4;
-            inverted = 0; vertScale = 100;
-            maxOutputEnabled = false; maxOutput = 100.0;
+            deadZone = DEFAULT_DEADZONE; maxZone = DEFAULT_MAXZONE;
+            antiDeadX = DEFAULT_ANTI_DEAD; antiDeadY = DEFAULT_ANTI_DEAD;
+            inverted = DEFAULT_INVERTED; vertScale = DEFAULT_VERTICAL_SCALE;
+            maxOutputEnabled = false; maxOutput = DEFAULT_MAX_OUTPUT;
             outputStick = DEFAULT_OUTPUT_STICK;
             outputStickDir = DEFAULT_OUTPUT_STICK_AXES;
 
@@ -1155,9 +1161,9 @@ namespace DS4Windows
 
     public class TriggerOutputSettings
     {
-        private const TwoStageTriggerMode DEFAULT_TRIG_MODE = TwoStageTriggerMode.Disabled;
-        private const int DEFAULT_HIP_TIME = 100;
-        private const InputDevices.TriggerEffects DEFAULT_TRIGGER_EFFECT = InputDevices.TriggerEffects.None;
+        public const TwoStageTriggerMode DEFAULT_TRIG_MODE = TwoStageTriggerMode.Disabled;
+        public const int DEFAULT_HIP_TIME = 100;
+        public const InputDevices.TriggerEffects DEFAULT_TRIGGER_EFFECT = InputDevices.TriggerEffects.None;
 
         //public TriggerMode mode = TriggerMode.Normal;
         public TwoStageTriggerMode twoStageMode = DEFAULT_TRIG_MODE;

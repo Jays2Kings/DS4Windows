@@ -955,7 +955,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _gyroMouseStickHAxis = Math.Clamp(value, 0, 1);
         }
 
-        private int _gyroMouseStickDeadZone = 30;
+        private int _gyroMouseStickDeadZone = GyroMouseStickInfo.DEFAULT_DEADZONE;
         [XmlElement("GyroMouseStickDeadZone")]
         public int GyroMouseStickDeadZone
         {
@@ -963,7 +963,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _gyroMouseStickDeadZone = value;
         }
 
-        private int _gyroMouseStickMaxZone = 830;
+        private int _gyroMouseStickMaxZone = GyroMouseStickInfo.DEFAULT_MAXZONE;
         [XmlElement("GyroMouseStickMaxZone")]
         public int GyroMouseStickMaxZone
         {
@@ -983,7 +983,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
-        private double _gyroMouseStickAntiDeadX = 0.40;
+        private double _gyroMouseStickAntiDeadX = GyroMouseStickInfo.DEFAULT_ANTI_DEAD;
         [XmlElement("GyroMouseStickAntiDeadX")]
         public double GyroMouseStickAntiDeadX
         {
@@ -991,7 +991,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _gyroMouseStickAntiDeadX = Math.Clamp(value, 0.0, 1.0);
         }
 
-        private double _gyroMouseStickAntiDeadY = 0.40;
+        private double _gyroMouseStickAntiDeadY = GyroMouseStickInfo.DEFAULT_ANTI_DEAD;
         [XmlElement("GyroMouseStickAntiDeadY")]
         public double GyroMouseStickAntiDeadY
         {
@@ -999,7 +999,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _gyroMouseStickAntiDeadY = Math.Clamp(value, 0.0, 1.0);
         }
 
-        private uint _gyroMouseStickInvert = 0;
+        private uint _gyroMouseStickInvert = GyroMouseStickInfo.DEFAULT_INVERTED;
         [XmlElement("GyroMouseStickInvert")]
         public uint GyroMouseStickInvert
         {
@@ -1015,7 +1015,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _gyroMouseStickToggle = XmlDataUtilities.StrToBool(value);
         }
 
-        private double _gyroMouseStickMaxOutput = 100.0;
+        private double _gyroMouseStickMaxOutput = GyroMouseStickInfo.DEFAULT_MAX_OUTPUT;
         [XmlElement("GyroMouseStickMaxOutput")]
         public double GyroMouseStickMaxOutput
         {
@@ -1031,7 +1031,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _gyroMouseStickMaxOutputEnabled = XmlDataUtilities.StrToBool(value);
         }
 
-        private int _gyroMouseStickVerticalScale = 100;
+        private int _gyroMouseStickVerticalScale = GyroMouseStickInfo.DEFAULT_VERTICAL_SCALE;
         [XmlElement("GyroMouseStickVerticalScale")]
         public int GyroMouseStickVerticalScale
         {
@@ -1225,7 +1225,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
-        private int _l2HipFireTime;
+        private int _l2HipFireTime = TriggerOutputSettings.DEFAULT_HIP_TIME;
         [XmlElement("L2HipFireTime")]
         public int L2HipFireTime
         {
@@ -1233,7 +1233,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             set => _l2HipFireTime = Math.Clamp(value, 0, 5000);
         }
 
-        private int _r2HipFireTime;
+        private int _r2HipFireTime = TriggerOutputSettings.DEFAULT_HIP_TIME;
         [XmlElement("R2HipFireTime")]
         public int R2HipFireTime
         {
@@ -1269,7 +1269,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public string SXOutputCurveMode
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_SA_OUTPUT_CURVE;
 
 
         [XmlElement("SXOutputCurveCustom")]
@@ -1282,7 +1282,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public string SZOutputCurveMode
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_SA_OUTPUT_CURVE;
 
         [XmlElement("SZOutputCurveCustom")]
         public string SZOutputCurveCustom

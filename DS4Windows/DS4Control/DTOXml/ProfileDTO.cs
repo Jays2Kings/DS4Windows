@@ -175,7 +175,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public byte TouchSensitivity
         {
             get; set;
-        }
+        } = BackingStore.DEFAULT_TOUCHPAD_SENS;
 
         private DS4Color _lowColor = new DS4Color();
         [XmlElement("LowColor")]
@@ -282,7 +282,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
         public byte TapSensitivity
         {
             get; set;
-        } = BackingStore.DEFAULT_TOUCHPAD_SENS;
+        }
 
         [XmlIgnore]
         public bool DoubleTap

@@ -1,9 +1,29 @@
 {
-  "latest_version": "3.3.1",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 3, "buildPart": 1},
-  "updated_at": "2023-12-21T12:56:39+0000",
+  "latest_version": "3.3.2",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 3, "buildPart": 2},
+  "updated_at": "2023-12-23T18:36:38+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.3.2",
+      "version_number_info": {"majorPart": 3, "minorPart": 3, "buildPart": 2},
+      "base_header": "Version 3.3.2",
+      "release_date": "2023-12-23T18:36:38+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.3.2",
+          "log_text": ["* Various fixes for ProfileDTO class to fix reading of retro profiles",
+            "* Fixed default maxZone for TouchMouseStick",
+            "* Added test to check output XML string after profile migration",
+            "* Fixed hip fire time profile settings",
+            "* Fixed some translation string keys in Profile Editor"],
+          "editor": "ryochan7",
+          "editors_note": ["Unit tests really helped here"],
+          "updated_at": "2023-12-23T18:36:38+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.3.1",
       "version_number_info": {"majorPart": 3, "minorPart": 3, "buildPart": 1},

@@ -334,8 +334,8 @@
     <value>Ativar a saída de data para DS4</value>
   </data>
   <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
-    <value>Output lightbar and rumble data periodically to DS4 gamepad. Untick if the gamepad doesn't support data receiving.
-Changes to this option takes effect at the gamepad connection time.</value>
+    <valueEnvio periódico de dados da lightbar e rumble para o DS4.Desmarque se o comando não suportar a receção de dados.
+Mudanças só serão aplicadas ao conectar o comando.</value>
     <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
   </data>
   <data name="Apply" xml:space="preserve">
@@ -368,10 +368,10 @@ Exemplo: whyme_DS4Windows</value>
     <value>Comando 8</value>
   </data>
   <data name="GamepadGyroCameraDescription" xml:space="preserve">
-    <value>Maps the controller output to a standard XInput gamepad or DS4 pad. Gyro is mapped to a Mouse-like Joystick.</value>
+    <value>Mapeia o output do comando para um comando padrão XInput ou comando DS4.Gyro será mapeado para um rato virtual.</value>
   </data>
   <data name="GamepadGyroCameraName" xml:space="preserve">
-    <value>Gamepad with Mouse-like Joystick</value>
+    <value>Comando com analógicos semelhantes a um rato</value>
   </data>
   <data name="GamepadPresetDescription" xml:space="preserve">
     <value>Mapeia a saída do controlador para um gamepad standard</value>
@@ -380,13 +380,13 @@ Exemplo: whyme_DS4Windows</value>
     <value>Gamepad</value>
   </data>
   <data name="KBMGyroMouseDescription" xml:space="preserve">
-    <value>Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support. Gyro is mapped to a virtual Mouse.</value>
+    <value>Mapeia o output do comando para controlos virtuais KB+M. Útil para jogos FPS sem suporte para comando nativo. Gyro será mapeado para um rato virtual.</value>
   </data>
   <data name="KBMGyroMouseName" xml:space="preserve">
-    <value>KB+M Controls with Gyro Mouse</value>
+    <value>Controlos KB+M com rato Gyro</value>
   </data>
   <data name="KBMPresetDescription" xml:space="preserve">
-    <value>Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support.</value>
+    <value>Mapeia o output do comando para controlos virtuais KB+M.. Útil para jogos FPS sem suporte para comando nativo.</value>
   </data>
   <data name="KBMPresetName" xml:space="preserve">
     <value>Controlos KB+M</value>

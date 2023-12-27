@@ -334,7 +334,7 @@
     <value>Ativar a saída de data para DS4</value>
   </data>
   <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
-    <valueEnvio periódico de dados da lightbar e rumble para o DS4.Desmarque se o comando não suportar a receção de dados.
+    <value>Envio periódico de dados da lightbar e rumble para o DS4.Desmarque se o comando não suportar a receção de dados.
 Mudanças só serão aplicadas ao conectar o comando.</value>
     <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
   </data>
@@ -401,7 +401,7 @@ Exemplo: whyme_DS4Windows</value>
     <value>Mapeia o output para uma junção de um comando XInput com rato RS.</value>
   </data>
   <data name="MixedPresetName" xml:space="preserve">
-    <value>comando com câmera de alta precisão</value>
+    <value>Comando com câmera de alta precisão</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Descrição</value>
@@ -413,7 +413,7 @@ Exemplo: whyme_DS4Windows</value>
     <value>Predefinições</value>
   </data>
   <data name="Changelog" xml:space="preserve">
-    <value>Changelog</value>
+    <value>Registo de alterações</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>Fechar</value>
@@ -440,7 +440,7 @@ Exemplo: whyme_DS4Windows</value>
     <value>ViGEm Device Plugin Falhou. Provável que seja um problema do ViGemBus. A fechar a conexão. Se o problema persistir, por favor reinicie o Windows. ATENÇÃO: Será provavel que terás uma Blue Screen of Death ao encerrar o Windows.</value>
   </data>
   <data name="CRC32Fail" xml:space="preserve">
-    <value>Check de integridade falhou para o dispositivo wireless. A fechar dispositivo.</value>
+    <value>A validação de integridade de dados falhou para o dispositivo wireless. A fechar dispositivo.</value>
   </data>
   <data name="FutureNetNotInstalled" xml:space="preserve">
     <value>Não detectámos o .NET 5 Runtime no teu sistem. Faz o download e instala o .NET 5 Runtime para garantires a compatibilidade com versões futuras do DS4Windows. Irás ser redirecionado para a página de download do .NET 5 Runtime ao fechar esta janela.

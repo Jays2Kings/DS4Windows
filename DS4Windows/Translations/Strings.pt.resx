@@ -328,14 +328,14 @@
     <value>Window title. ^ABC = Match at the beginning of string (^) | ABC$ = Match at the end of string ($) | *ABC =Contains a string (*)</value>
   </data>
   <data name="GamepadTest" xml:space="preserve">
-    <value>Teste de Gamepad</value>
+    <value>Teste de comando</value>
   </data>
   <data name="EnableOutputDataToDS4" xml:space="preserve">
     <value>Ativar a saída de data para DS4</value>
   </data>
   <data name="EnableOutputDataToDS4Tip" xml:space="preserve">
-    <value>Output lightbar and rumble data periodically to DS4 gamepad. Untick if the gamepad doesn't support data receiving.
-Changes to this option takes effect at the gamepad connection time.</value>
+    <value>Envio periódico de dados da lightbar e rumble para o DS4.Desmarque se o comando não suportar a receção de dados.
+Mudanças só serão aplicadas ao conectar o comando.</value>
     <comment>To enter a line break into a string resource value in VisualStudio resource editor press Shift+Enter.</comment>
   </data>
   <data name="Apply" xml:space="preserve">
@@ -368,52 +368,52 @@ Exemplo: whyme_DS4Windows</value>
     <value>Comando 8</value>
   </data>
   <data name="GamepadGyroCameraDescription" xml:space="preserve">
-    <value>Maps the controller output to a standard XInput gamepad or DS4 pad. Gyro is mapped to a Mouse-like Joystick.</value>
+    <value>Mapeia o output do comando para um comando padrão XInput ou comando DS4.Gyro será mapeado para um rato virtual.</value>
   </data>
   <data name="GamepadGyroCameraName" xml:space="preserve">
-    <value>Gamepad with Mouse-like Joystick</value>
+    <value>Comando com analógicos semelhantes a um rato</value>
   </data>
   <data name="GamepadPresetDescription" xml:space="preserve">
-    <value>Mapeia a saída do controlador para um gamepad standard</value>
+    <value>Mapeia a saída do controlador para um gamepad padrão</value>
   </data>
   <data name="GamepadPresetName" xml:space="preserve">
     <value>Gamepad</value>
   </data>
   <data name="KBMGyroMouseDescription" xml:space="preserve">
-    <value>Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support. Gyro is mapped to a virtual Mouse.</value>
+    <value>Mapeia o output do comando para controlos virtuais KB+M. Útil para jogos FPS sem suporte para comando nativo. Gyro será mapeado para um rato virtual.</value>
   </data>
   <data name="KBMGyroMouseName" xml:space="preserve">
-    <value>KB+M Controls with Gyro Mouse</value>
+    <value>Controlos KB+M com rato Gyro</value>
   </data>
   <data name="KBMPresetDescription" xml:space="preserve">
-    <value>Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support.</value>
+    <value>Mapeia o output do comando para controlos virtuais KB+M. Útil para jogos FPS sem suporte para comando nativo.</value>
   </data>
   <data name="KBMPresetName" xml:space="preserve">
     <value>Controlos KB+M</value>
   </data>
   <data name="MixedGyroMousePresetDescription" xml:space="preserve">
-    <value>Maps the buttons and axes to a standard gamepad. Maps the Gyro to a virtual mouse</value>
+    <value>Mapeia os butões e os axis para um comando padrão.Gyro será mapeado para um rato virtual</value>
   </data>
   <data name="MixedGyroMousePresetName" xml:space="preserve">
-    <value>Gamepad com Gyro Mouse</value>
+    <value>Comando com rato Gyro</value>
   </data>
   <data name="MixedPresetDescription" xml:space="preserve">
-    <value>Maps the controller output to mixed XInput gamepad + RS mouse.</value>
+    <value>Mapeia o output para uma junção de um comando XInput com rato RS.</value>
   </data>
   <data name="MixedPresetName" xml:space="preserve">
-    <value>Gamepad com câmera de alta precisão</value>
+    <value>Comando com câmera de alta precisão</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Descrição</value>
   </data>
   <data name="PresetIntroText" xml:space="preserve">
-    <value>Queres usar uma opção predefinida? Escolher -Não- fará com que o Editor de Perfil use um perfil de Gamepad vazio.</value>
+    <value>Queres usar uma opção predefinida? Escolher -Não- fará com que o Editor de Perfil use um perfil de comando vazio.</value>
   </data>
   <data name="Presets" xml:space="preserve">
     <value>Predefinições</value>
   </data>
   <data name="Changelog" xml:space="preserve">
-    <value>Changelog</value>
+    <value>Registo de alterações</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>Fechar</value>
@@ -425,22 +425,22 @@ Exemplo: whyme_DS4Windows</value>
     <value>Nenhum comando conectado (Max {0})</value>
   </data>
   <data name="FlickThreshold" xml:space="preserve">
-    <value>Flick Threshold</value>
+    <value>Limite de Flick</value>
   </data>
   <data name="FlickTime" xml:space="preserve">
-    <value>Flick Time</value>
+    <value>Tempo de Flick</value>
   </data>
   <data name="MinAngleThreshold" xml:space="preserve">
-    <value>Min Angle Threshold</value>
+    <value>Ângulo minimo limite</value>
   </data>
   <data name="RealWorldCalibration" xml:space="preserve">
     <value>Calibração Real World</value>
   </data>
   <data name="ViGEmPluginFailure" xml:space="preserve">
-    <value>ViGEm Device Plugin Failed. Likely an internal ViGEmBus problem. Closing connection. If the issue persists, please reboot Windows. WARNING: You will likely get a BSOD on Windows shutdown.</value>
+    <value>ViGEm Device Plugin Falhou. Provável que seja um problema do ViGemBus. A fechar a conexão. Se o problema persistir, por favor reinicie o Windows. ATENÇÃO: Será provavel que terás uma Blue Screen of Death ao encerrar o Windows.</value>
   </data>
   <data name="CRC32Fail" xml:space="preserve">
-    <value>Data integrity checks failed for wireless device. Closing device.</value>
+    <value>A validação de integridade de dados falhou para o dispositivo wireless. A fechar dispositivo.</value>
   </data>
   <data name="FutureNetNotInstalled" xml:space="preserve">
     <value>Não detectámos o .NET 5 Runtime no teu sistem. Faz o download e instala o .NET 5 Runtime para garantires a compatibilidade com versões futuras do DS4Windows. Irás ser redirecionado para a página de download do .NET 5 Runtime ao fechar esta janela.

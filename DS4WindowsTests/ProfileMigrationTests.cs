@@ -376,6 +376,8 @@ namespace DS4WindowsTests
             }
 
             Assert.AreEqual(EXPECTED_JAYS_MIGRATED_VERSION, configFileVersion);
+
+            migration.Close();
         }
 
         [TestMethod]
@@ -384,6 +386,7 @@ namespace DS4WindowsTests
             ProfileMigration migration = new ProfileMigration(ds4winJays2KingsOldProfile);
             migration.Migrate();
             string profileXml = migration.CurrentMigrationText;
+            migration.Close();
 
             Assert.AreEqual(true, !string.IsNullOrEmpty(profileXml));
 

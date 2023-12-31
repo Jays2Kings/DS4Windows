@@ -16,7 +16,8 @@
           "log_text": ["* Fixed auto profile routine when a device does not exist for an input slot",
             "* Update Portuguese translation. Contribution by **Denellyne**",
             "* Close ProfileMigration instances in unit tests when finished",
-            "* Removed unused Net8NoticeWindow class"],
+            "* Removed unused Net8NoticeWindow class",
+            "* Fixed Jays2Kings stick dead zone migration check. Carry over non-zero dead zone choice"],
           "editor": "ryochan7",
           "editors_note": ["Unit tests really helped here"],
           "updated_at": "2023-12-31T07:01:07+0000"

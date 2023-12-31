@@ -1,9 +1,28 @@
 {
-  "latest_version": "3.3.2",
-  "latest_version_number_info": {"majorPart": 3, "minorPart": 3, "buildPart": 2},
-  "updated_at": "2023-12-23T18:36:38+0000",
+  "latest_version": "3.3.3",
+  "latest_version_number_info": {"majorPart": 3, "minorPart": 3, "buildPart": 3},
+  "updated_at": "2023-12-31T07:01:07+0000",
   "changelog": {
     "versions": [
+    {
+      "version_str": "3.3.3",
+      "version_number_info": {"majorPart": 3, "minorPart": 3, "buildPart": 3},
+      "base_header": "Version 3.3.3",
+      "release_date": "2023-12-31T07:01:07+0000",
+      "locales": [
+        {
+          "code": "en",
+          "header": "Version 3.3.3",
+          "log_text": ["* Fixed auto profile routine when a device does not exist for an input slot",
+            "* Update Portuguese translation. Contribution by **Denellyne**",
+            "* Close ProfileMigration instances in unit tests when finished",
+            "* Removed unused Net8NoticeWindow class"],
+          "editor": "ryochan7",
+          "editors_note": ["Unit tests really helped here"],
+          "updated_at": "2023-12-31T07:01:07+0000"
+        }
+      ]
+    },
     {
       "version_str": "3.3.2",
       "version_number_info": {"majorPart": 3, "minorPart": 3, "buildPart": 2},

@@ -434,9 +434,15 @@ namespace DS4Windows
                         {
                             string lsdead = profileReader.ReadElementContentAsString();
                             bool valid = int.TryParse(lsdead, out int temp);
-                            if (valid && temp <= 0)
+                            if (valid)
                             {
-                                temp = 10;
+                                // Add default deadzone if a 0 dead zone was set in profile.
+                                // Jays2Kings used implicit dead zones in the mapper code
+                                if (temp <= 0)
+                                {
+                                    temp = StickDeadZoneInfo.DEFAULT_DEADZONE;
+                                }
+
                                 tempWriter.WriteElementString("LSDeadZone", temp.ToString());
                             }
 
@@ -446,14 +452,21 @@ namespace DS4Windows
                         {
                             string rsdead = profileReader.ReadElementContentAsString();
                             bool valid = int.TryParse(rsdead, out int temp);
-                            if (valid && temp <= 0)
+                            if (valid)
                             {
-                                temp = 10;
+                                // Add default deadzone if a 0 dead zone was set in profile.
+                                // Jays2Kings used implicit dead zones in the mapper code
+                                if (temp <= 0)
+                                {
+                                    temp = StickDeadZoneInfo.DEFAULT_DEADZONE;
+                                }
+
                                 tempWriter.WriteElementString("RSDeadZone", temp.ToString());
                             }
 
                             break;
                         }
+
                         default:
                             tempWriter.WriteNode(profileReader, true);
                             break;
